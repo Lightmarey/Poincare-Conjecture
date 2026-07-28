@@ -158,6 +158,8 @@ when $B\cap X^n$ has that property in every $X^n$.
 
 \begin{definition}[Dimension of a CW complex]
 \label{def:dimension-cw-complex}
+\lean{HatcherLib.CWDimension, HatcherLib.IsFiniteDimensionalCW, HatcherLib.HasCWDimensionAtMost}
+\leanok
 \group{CW Complexes}
 \uses{def:cell-complex}
 If $X=X^n$ and $n$ is minimal, then $X$ is finite-dimensional of dimension $n$.
@@ -167,7 +169,6 @@ If $X=X^n$ and $n$ is minimal, then $X$ is finite-dimensional of dimension $n$.
 \label{ex:cw-graph}
 \dcref{ch0:0.1}
 \group{CW Complexes}
-\mathlibok
 \uses{def:cell-complex}
 A 1-dimensional CW complex is a graph: its 0-cells are vertices and its 1-cells
 are edges, whose two ends may attach to the same vertex.
@@ -229,6 +230,8 @@ even dimension.
 
 \begin{definition}[Characteristic map of a cell]
 \label{def:characteristic-map}
+\lean{HatcherLib.CharacteristicMap}
+\leanok
 \group{CW Complexes}
 \uses{def:cell-complex}
 Each cell $e^n_\alpha$ has a \textbf{characteristic map}
@@ -239,7 +242,6 @@ homeomorphism from the disk interior onto $e^n_\alpha$.
 \begin{definition}[Subcomplex]
 \label{def:subcomplex}
 \group{CW Complexes}
-\mathlibok
 \uses{def:cell-complex}
 A \textbf{subcomplex} is a closed subspace $A\subset X$ that is a union of cells.
 The attaching image of every cell in $A$ lies in $A$, so $A$ is itself a CW complex.
@@ -248,7 +250,6 @@ The attaching image of every cell in $A$ lies in $A$, so $A$ is itself a CW comp
 \begin{definition}[CW pair]
 \label{def:cw-pair}
 \group{CW Complexes}
-\mathlibok
 \uses{def:subcomplex}
 A pair $(X,A)$ consisting of a CW complex and a subcomplex is a \textbf{CW pair}.
 \end{definition}
@@ -271,6 +272,8 @@ however, the closure of every union of cells is a subcomplex.
 
 \begin{definition}[Product CW structure]
 \label{def:product-cw-structure}
+\lean{HatcherLib.CWProductStructure.isProductCWStructure}
+\leanok
 \group{CW Complexes}
 \uses{def:cell-complex}
 For CW complexes $X$ and $Y$, the product CW structure has cells
@@ -281,6 +284,8 @@ many cells.
 
 \begin{definition}[Quotient CW structure]
 \label{def:quotient-cw-structure}
+\lean{HatcherLib.CWQuotientStructure.quotientCWComplex_isQuotientCWStructure}
+\leanok
 \group{CW Complexes}
 \uses{def:cw-pair}
 For a CW pair $(X,A)$, $X/A$ has the cells of $X-A$ together with one new 0-cell.
@@ -290,6 +295,8 @@ with $X^{n-1}\to X^{n-1}/A^{n-1}$.
 
 \begin{definition}[Suspension]
 \label{def:suspension}
+\lean{HatcherLib.Suspension, HatcherLib.suspensionMk}
+\leanok
 \group{Homotopy Theory}
 For a space $X$, its \textbf{suspension} $SX$ is
 $(X\times I)/(X\times\{0\})/(X\times\{1\})$, with the two collapsed sets becoming
@@ -300,6 +307,8 @@ the cone below.
 
 \begin{definition}[Cone]
 \label{def:cone}
+\lean{HatcherLib.Cone, HatcherLib.coneMk}
+\leanok
 \group{Homotopy Theory}
 The \textbf{cone} on $X$ is $CX=(X\times I)/(X\times\{0\})$; $SX$ is the union
 of two copies of $CX$.
@@ -307,6 +316,8 @@ of two copies of $CX$.
 
 \begin{definition}[Join of spaces]
 \label{def:join}
+\lean{HatcherLib.Join, HatcherLib.joinMk}
+\leanok
 \group{Homotopy Theory}
 \uses{def:cone,def:suspension}
 The \textbf{join} $X*Y$ is the quotient of $X\times Y\times I$ by
@@ -317,6 +328,8 @@ $0x+1y=y$ and $1x+0y=x$.
 
 \begin{definition}[Simplex]
 \label{def:simplex}
+\lean{HatcherLib.Simplex}
+\leanok
 \group{Homotopy Theory}
 \uses{def:join}
 The join of $n$ points is the $(n-1)$-simplex
@@ -334,6 +347,8 @@ $X\times Y\times I$.
 
 \begin{definition}[Wedge sum]
 \label{def:wedge-sum}
+\lean{HatcherLib.WedgeSum, HatcherLib.wedgeMk}
+\leanok
 \group{Homotopy Theory}
 For pointed spaces $(X,x_0)$ and $(Y,y_0)$, the \textbf{wedge sum} $X\vee Y$ is
 $(X\sqcup Y)/(x_0\sim y_0)$. An arbitrary wedge of CW complexes is a CW complex
@@ -343,6 +358,8 @@ one $S^n$ for each $n$-cell.
 
 \begin{definition}[Smash product]
 \label{def:smash-product}
+\lean{HatcherLib.SmashProduct, HatcherLib.smashMk}
+\leanok
 \group{Homotopy Theory}
 \uses{def:wedge-sum}
 For pointed spaces, the \textbf{smash product} is
@@ -358,6 +375,8 @@ when the two differ. Also $S^m\wedge S^n\cong S^{m+n}$.
 
 \begin{proposition}[Collapsing a contractible CW subcomplex]
 \label{prop:collapsing-contractible-cw-subcomplex}
+\lean{HatcherLib.collapseMk_homotopyEquiv_of_cwPair}
+\leanok
 \group{CW Complexes}
 \uses{def:cw-pair,def:contractible}
 If $(X,A)$ is a CW pair and $A$ is contractible, then the quotient map
@@ -379,6 +398,8 @@ $X\times\{1\}$, and the mapping cone is the analogous construction with the cone
 
 \begin{definition}[Mapping cone]
 \label{def:mapping-cone}
+\lean{HatcherLib.MappingCone, HatcherLib.mappingConeMk}
+\leanok
 \group{Homotopy Theory}
 \uses{def:cone,def:attaching-space}
 For $f:X\to Y$, the \textbf{mapping cone} is
@@ -388,6 +409,8 @@ $X=S^{n-1}$, this attaches an $n$-cell to $Y$; also $C_f=M_f/X$.
 
 \begin{proposition}[Homotopic attaching maps yield homotopy equivalent spaces]
 \label{prop:attaching-homotopic-maps-preview}
+\lean{HatcherLib.attachingSpace_homotopyEquiv_of_cwPair}
+\leanok
 \group{CW Complexes}
 \uses{def:cw-pair,def:attaching-space}
 If $(X_1,A)$ is a CW pair and $f,g:A\to X_0$ are homotopic, then
@@ -515,6 +538,8 @@ outside $N-B$.
 
 \begin{proposition}[CW pairs have the homotopy extension property]
 \label{prop:cw-pairs-have-hep}
+\lean{HatcherLib.IsCWPair.hasHEP, HatcherLib.IsCWPair.hepBase_deformationRetract}
+\leanok
 \dcref{ch0:0.16}
 \group{CW Complexes}
 \uses{def:cw-pair,def:homotopy-extension-property,def:deformation-retraction}
@@ -524,6 +549,7 @@ $(X,A)$ has HEP.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Radial projection gives a deformation retraction
 $D^n\times I\to D^n\times\{0\}\cup\partial D^n\times I$. Apply this on each
 $n$-cell, extending over the skeleta. Perform the $n$-stage during
@@ -574,6 +600,8 @@ $X_0\sqcup_fX_1$ and $X_0\sqcup_gX_1$ relative to $X_0$.
 
 \begin{proposition}[Homotopic attaching maps give a homotopy equivalence rel $X_0$]
 \label{prop:attaching-maps-homotopic-rel-x0}
+\lean{HatcherLib.attachingSpace_homotopyEquiv_rel_of_cwPair}
+\leanok
 \dcref{ch0:0.18}
 \group{CW Complexes}
 \uses{def:cw-pair,def:attaching-space,prop:cw-pairs-have-hep,lem:attach-homotopic-hep-rel}
@@ -582,6 +610,7 @@ $X_0\sqcup_fX_1\simeq X_0\sqcup_gX_1\ \rel X_0$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch A subcomplex is closed and the preceding proposition applies because CW
 pairs have HEP.
 \end{proof}

@@ -4,6 +4,8 @@
 
 \begin{definition}[variation]
   \label{def:dc-ch9-2-1}
+\lean{Riemannian.Variation.IsDifferentiableVariation,Riemannian.Variation.IsDifferentiableVariation.isVariation,Riemannian.Variation.IsDifferentiableVariationOfOrder,Riemannian.Variation.IsDifferentiableVariationOfOrder.isVariationOfOrder,Riemannian.Variation.IsProperVariation,Riemannian.Variation.IsSmoothDifferentiableVariation,Riemannian.Variation.IsSmoothVariation,Riemannian.Variation.IsVariation.curve_isPiecewiseDifferentiableCurve,Riemannian.Variation.IsVariation.curve_zero,Riemannian.Variation.IsVariation.isVariationOfOrderOne,Riemannian.Variation.IsVariationOfOrder.curve_isPiecewiseDifferentiableCurve,Riemannian.Variation.IsVariationOfOrder.curve_piecewise_contMDiff,Riemannian.Variation.IsVariationOfOrder.isVariation,Riemannian.Variation.IsVariationOfOrder.variationalFieldBundle_piecewise_contMDiff,Riemannian.Variation.IsVariationOfOrder.variationalFieldBundle_proj_eq,Riemannian.Variation.curve,Riemannian.Variation.isProperVariation_iff,Riemannian.Variation.transversal,Riemannian.Variation.variationalField,Riemannian.Variation.variationalFieldBundle}
+\leanok
   \dcref{ch9:2.1}
   Let $c:[0,a]\to M$ be a piecewise differentiable curve in a manifold $M$. A
   \emph{variation} of $c$ is a continuous mapping $f:(-\varepsilon,\varepsilon)\times[0,a]\to M$
@@ -121,6 +123,8 @@
 \end{proof}
 \begin{lemma}[minimizing geodesics minimize energy]
   \label{lem:dc-ch9-2-3}
+\lean{Riemannian.Geodesic.IsMinimizingGeodesicSegment.dcEnergy_eq_iff_geodesicOn_and_minimizing,Riemannian.Geodesic.IsMinimizingGeodesicSegment.dcEnergy_le,Riemannian.Geodesic.IsMinimizingGeodesicSegment.geodesicOn_and_minimizing_of_dcEnergy_eq}
+\leanok
   \dcref{ch9:2.3}
   \uses{cor:dc-ch3-3-9, lem:dc-ch9-2-2-schwarz, lem:dc-ch9-2-3-inequality,
     lem:dc-ch9-2-3-equality-case, lem:dc-ch9-2-3-arclength-bridge}
@@ -134,6 +138,7 @@
   with equality holding if and only if $c$ is a minimizing geodesic.
 \end{lemma}
 \begin{proof}
+\leanok
   \sketch
   $$
   aE(\gamma)=(L(\gamma))^2\le(L(c))^2\le aE(c),

@@ -30,12 +30,16 @@ of two unlinked circles but becomes trivial when those circles are linked.
 
 \begin{definition}[Path]
 \label{def:path}
+\lean{HatcherLib.Path}
+\leanok
 \group{Fundamental Group}
 A path in a space $X$ is a continuous map $f:I=[0,1]\to X$.
 \end{definition}
 
 \begin{definition}[Homotopy of paths and homotopic paths]
 \label{def:homotopy-of-paths}
+\lean{HatcherLib.Path.Homotopy, HatcherLib.Path.Homotopic}
+\leanok
 \group{Fundamental Group}
 \uses{def:homotopy,def:path}
 A homotopy of paths in $X$ is a family $f_t:I\to X$, $0\leq t\leq1$, with fixed
@@ -46,6 +50,8 @@ when such a homotopy exists.
 
 \begin{example}[Linear homotopies in $\R^n$]
 \label{ex:linear-homotopies-convex}
+\lean{HatcherLib.affinePathHomotopy, HatcherLib.affine_paths_homotopic, HatcherLib.convex_paths_homotopic}
+\leanok
 \dcref{ch1:1.1}
 \group{Fundamental Group}
 \uses{def:homotopy-of-paths}
@@ -57,6 +63,8 @@ homotopic.
 
 \begin{proposition}[Homotopy of paths is an equivalence relation]
 \label{prop:homotopy-paths-equivalence-relation}
+\lean{HatcherLib.pathHomotopic_equivalence}
+\leanok
 \dcref{ch1:1.2}
 \group{Fundamental Group}
 \uses{def:homotopy-of-paths}
@@ -64,6 +72,7 @@ Homotopy is an equivalence relation on paths with fixed endpoints.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Reflexivity uses the constant homotopy, symmetry reverses the parameter,
 and transitivity concatenates two homotopies in the $t$-coordinate. Continuity
 of the concatenated homotopy follows from the pasting lemma.
@@ -71,6 +80,8 @@ of the concatenated homotopy follows from the pasting lemma.
 
 \begin{definition}[Composition (product) of paths]
 \label{def:path-composition}
+\lean{HatcherLib.pathProduct, HatcherLib.pathProduct_homotopic}
+\leanok
 \group{Fundamental Group}
 \uses{def:path}
 If $f(1)=g(0)$, define
@@ -87,6 +98,8 @@ homotopies at each parameter value.
 
 \begin{definition}[Loop, basepoint, and the set $\pi_1(X,x_0)$]
 \label{def:loop-and-pi1-set}
+\lean{HatcherLib.Loop, HatcherLib.PiOneSet, HatcherLib.PiOne}
+\leanok
 \group{Fundamental Group}
 \uses{def:path,def:homotopy-of-paths}
 A loop at $x_0\in X$ is a path $f:I\to X$ with $f(0)=f(1)=x_0$. The set of
@@ -95,6 +108,8 @@ homotopy classes of loops at $x_0$ is denoted $\pi_1(X,x_0)$.
 
 \begin{proposition}[$\pi_1(X,x_0)$ is a group]
 \label{prop:pi1-is-a-group}
+\lean{HatcherLib.PiOne, HatcherLib.piOneClass_pathProduct}
+\leanok
 \dcref{ch1:1.3}
 \group{Fundamental Group}
 \uses{def:loop-and-pi1-set,def:path-composition}
@@ -102,6 +117,7 @@ $\pi_1(X,x_0)$ is a group under $[f][g]=[f\cdot g]$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Reparametrization $f\varphi$ by a continuous $\varphi:I\to I$ fixing
 the endpoints is homotopic to $f$ through
 $f((1-t)\varphi(s)+ts)$. This proves associativity and identity laws, since
@@ -114,6 +130,8 @@ $[f]$.
 
 \begin{example}[$\pi_1$ of a convex set is trivial]
 \label{ex:convex-set-trivial-pi1}
+\lean{HatcherLib.convex_piOne_subsingleton, HatcherLib.convex_loops_homotopic}
+\leanok
 \dcref{ch1:1.4}
 \group{Fundamental Group}
 \uses{ex:linear-homotopies-convex,def:loop-and-pi1-set}
@@ -123,6 +141,8 @@ loop is homotopic to the constant loop by the linear homotopy.
 
 \begin{definition}[Change-of-basepoint map]
 \label{def:change-of-basepoint-map}
+\lean{HatcherLib.changeBasepoint}
+\leanok
 \group{Fundamental Group}
 \uses{def:path-composition,def:loop-and-pi1-set}
 For a path $h$ from $x_0$ to $x_1$, define
@@ -132,6 +152,8 @@ $\beta_h[f]=[h\cdot f\cdot\bar h]$, where $\bar h(s)=h(1-s)$.
 
 \begin{proposition}[The change-of-basepoint map is an isomorphism]
 \label{prop:change-of-basepoint-isomorphism}
+\lean{HatcherLib.changeBasepoint, HatcherLib.changeBasepoint_bijective}
+\leanok
 \dcref{ch1:1.5}
 \group{Fundamental Group}
 \uses{def:change-of-basepoint-map}
@@ -139,6 +161,7 @@ $\beta_h$ is an isomorphism with inverse $\beta_{\bar h}$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Concatenation modulo homotopy gives
 $\beta_h([f][g])=\beta_h[f]\beta_h[g]$. The relations
 $h\cdot\bar h\simeq c_{x_0}$ and $\bar h\cdot h\simeq c_{x_1}$ show that
@@ -147,6 +170,8 @@ $\beta_h\beta_{\bar h}$ and $\beta_{\bar h}\beta_h$ are identities.
 
 \begin{definition}[Simply-connected space]
 \label{def:simply-connected}
+\lean{HatcherLib.SimplyConnected}
+\leanok
 \group{Fundamental Group}
 \uses{def:loop-and-pi1-set}
 A space is simply-connected if it is path-connected and its fundamental group
@@ -155,6 +180,8 @@ is trivial.
 
 \begin{proposition}[Simply-connected iff unique homotopy class of connecting paths]
 \label{prop:simply-connected-iff-unique-path-class}
+\lean{HatcherLib.simplyConnected_iff_unique_path_class}
+\leanok
 \dcref{ch1:1.6}
 \group{Fundamental Group}
 \uses{def:simply-connected,def:homotopy-of-paths}
@@ -163,6 +190,7 @@ unique homotopy class of paths.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch If $\pi_1(X)=0$ and $f,g$ join $x_0$ to $x_1$, then
 $f\simeq f\cdot\bar g\cdot g\simeq g$. Conversely, uniqueness for paths from
 $x_0$ to itself identifies every loop with the constant loop, while existence
@@ -173,6 +201,8 @@ of paths gives path-connectedness.
 
 \begin{theorem}[The fundamental group of the circle]
 \label{thm:fundamental-group-of-circle}
+\lean{HatcherLib.geometricCirclePiOneMulEquiv, HatcherLib.geometricCircleWindingLoop, HatcherLib.geometricCirclePiOneMulEquiv_windingLoop}
+\leanok
 \dcref{ch1:1.7}
 \group{Fundamental Group}
 \uses{def:loop-and-pi1-set,def:covering-space}
@@ -182,6 +212,8 @@ $\omega(s)=(\cos2\pi s,\sin2\pi s)$ based at $(1,0)$.
 
 \begin{definition}[Covering space]
 \label{def:covering-space}
+\lean{HatcherLib.CoveringMap, HatcherLib.EvenlyCovered}
+\leanok
 \group{Fundamental Group}
 Given $p:\widetilde X\to X$, every $x\in X$ must have an open neighborhood
 $U$ such that $p^{-1}(U)$ is a disjoint union of open sets each mapped
@@ -189,6 +221,7 @@ homeomorphically onto $U$.
 \end{definition}
 
 \begin{proof}[Proof of \cref{thm:fundamental-group-of-circle}]
+\leanok
 \sketch For $p:\R\to S^1$, $p(u)=(\cos2\pi u,\sin2\pi u)$, path and homotopy
 lifting hold. A loop based at $(1,0)$ lifts from $0$ to a unique integer $n$;
 the lifted path is linearly homotopic in $\R$ to $u\mapsto nu$, so the loop is
@@ -200,6 +233,8 @@ covered neighborhoods, lifting successively, and using uniqueness to patch.
 
 \begin{theorem}[Fundamental Theorem of Algebra]
 \label{thm:fundamental-theorem-of-algebra}
+\lean{HatcherLib.fundamentalTheoremOfAlgebra}
+\leanok
 \dcref{ch1:1.8}
 \group{Fundamental Group}
 \uses{thm:fundamental-group-of-circle}
@@ -207,6 +242,7 @@ Every nonconstant polynomial over $\C$ has a complex root.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch If $p(z)=z^n+a_1z^{n-1}+\cdots+a_n$ has no zero, normalize
 $p(re^{2\pi is})/p(r)$ to obtain loops in $S^1$. Varying $r$ makes them
 homotopic to the null loop at $r=0$. For $r>1+\sum|a_i|$, the homotopy
@@ -218,6 +254,8 @@ The constructive proof by Sperner is cited in \cite{AignerZiegler1999}.
 
 \begin{theorem}[Brouwer fixed point theorem, dimension 2]
 \label{thm:brouwer-fixed-point-dim2}
+\lean{HatcherLib.euclideanClosedUnitDisk_exists_fixedPoint}
+\leanok
 \dcref{ch1:1.9}
 \group{Fundamental Group}
 \uses{thm:fundamental-group-of-circle,def:retraction}
@@ -225,6 +263,7 @@ Every continuous $h:D^2\to D^2$ has a fixed point.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch If $h$ had no fixed point, the ray from $h(x)$ through $x$ would
 define a continuous retraction $D^2\to S^1$. A loop in $S^1$ contracts
 linearly in $D^2$; composing with the retraction would contract it in $S^1$,
@@ -233,6 +272,8 @@ contradicting $\pi_1(S^1)\cong\Z$.
 
 \begin{theorem}[Borsuk--Ulam theorem, dimension 2]
 \label{thm:borsuk-ulam-dim2}
+\lean{HatcherLib.borsukUlam_two_of_continuous}
+\leanok
 \dcref{ch1:1.10}
 \group{Fundamental Group}
 \uses{thm:fundamental-group-of-circle}
@@ -240,6 +281,7 @@ For every continuous $f:S^2\to\R^2$, there is $x\in S^2$ with $f(x)=f(-x)$.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch Otherwise $g(x)=(f(x)-f(-x))/|f(x)-f(-x)|$ maps $S^2$ to $S^1$
 and satisfies $g(-x)=-g(x)$. A lift on the equator changes by $q/2$ after
 half a turn for an odd integer $q$, so the equatorial loop has nonzero degree.
@@ -248,6 +290,8 @@ It is also the image under $g$ of a loop contracting in $S^2$, a contradiction.
 
 \begin{corollary}[Covering $S^2$ by three closed sets]
 \label{cor:sphere-three-closed-sets-antipodal}
+\lean{HatcherLib.sphere_three_closed_sets_antipodal}
+\leanok
 \dcref{ch1:1.11}
 \group{Fundamental Group}
 \uses{thm:borsuk-ulam-dim2}
@@ -256,6 +300,7 @@ an antipodal pair.
 \end{corollary}
 
 \begin{proof}
+\leanok
 \sketch Apply Borsuk--Ulam to
 $x\mapsto(d(x,A_1),d(x,A_2))$. If either coordinate vanishes, the corresponding
 closed set contains the pair; otherwise both points lie in $A_3$.
@@ -263,6 +308,8 @@ closed set contains the pair; otherwise both points lie in $A_3$.
 
 \begin{proposition}[$\pi_1$ of a product]
 \label{prop:pi1-of-product-space}
+\lean{HatcherLib.piOneProdMulEquiv}
+\leanok
 \dcref{ch1:1.12}
 \group{Fundamental Group}
 \uses{def:loop-and-pi1-set}
@@ -271,12 +318,15 @@ $\pi_1(X\times Y,(x_0,y_0))\cong\pi_1(X,x_0)\times\pi_1(Y,y_0)$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Coordinate projections identify loops and homotopies in $X\times Y$
 with pairs in $X$ and $Y$, and this bijection respects concatenation.
 \end{proof}
 
 \begin{definition}[Induced homomorphism]
 \label{def:induced-homomorphism}
+\lean{HatcherLib.inducedPiOne, HatcherLib.inducedPiOneOfEq}
+\leanok
 \group{Fundamental Group}
 \uses{def:loop-and-pi1-set}
 For a basepoint-preserving map $\varphi:(X,x_0)\to(Y,y_0)$, define
@@ -286,6 +336,8 @@ Then $(\varphi\psi)_*=\varphi_*\psi_*$ and $\one_*=\one$.
 
 \begin{lemma}[Loops decompose over a path-connected open cover]
 \label{lem:loop-decomposition-open-cover}
+\lean{HatcherLib.loop_decomposition_of_pathConnectedOpenCover}
+\leanok
 \dcref{ch1:1.15}
 \group{Fundamental Group}
 \uses{def:loop-and-pi1-set}
@@ -296,6 +348,7 @@ $A_\alpha$.
 \end{lemma}
 
 \begin{proof}
+\leanok
 \sketch Subdivide the parameter interval so each subpath lies in one cover set.
 At each subdivision point choose a path in the adjacent intersection from $x_0$
 to that point, and insert that path and its inverse. The resulting factors are
@@ -304,6 +357,8 @@ loops in individual cover sets.
 
 \begin{proposition}[$\pi_1(S^n) = 0$ for $n \ge 2$]
 \label{prop:pi1-sphere-trivial-n-geq-2}
+\lean{HatcherLib.sphereSimplyConnected_of_two_le, HatcherLib.sphere_piOne_subsingleton_of_two_le}
+\leanok
 \dcref{ch1:1.14}
 \group{Fundamental Group}
 \uses{def:induced-homomorphism,lem:loop-decomposition-open-cover,ex:convex-set-trivial-pi1}
@@ -311,6 +366,7 @@ $\pi_1(S^n)=0$ if $n\geq2$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Cover $S^n$ by complements of two antipodal points. Each is
 homeomorphic to $\R^n$ and their intersection is $S^{n-1}\times\R$, which is
 path-connected for $n\geq2$. The lemma decomposes every loop into loops in
@@ -319,6 +375,8 @@ contractible cover sets.
 
 \begin{corollary}[$\R^2$ is not homeomorphic to $\R^n$ for $n \ne 2$]
 \label{cor:r2-not-homeomorphic-rn}
+\lean{HatcherLib.euclideanTwo_not_homeomorphic_euclidean}
+\leanok
 \dcref{ch1:1.16}
 \group{Fundamental Group}
 \uses{prop:pi1-of-product-space,prop:pi1-sphere-trivial-n-geq-2,thm:fundamental-group-of-circle}
@@ -326,6 +384,7 @@ $\R^2$ is not homeomorphic to $\R^n$ for $n\ne2$.
 \end{corollary}
 
 \begin{proof}
+\leanok
 \sketch For $n=1$, deleting a point leaves $\R^2$ connected but $\R$ disconnected.
 For $n>2$, $\R^n-\{x\}\simeq S^{n-1}$ has trivial fundamental group,
 whereas $\R^2-\{0\}\simeq S^1$ has fundamental group $\Z$.
@@ -333,6 +392,8 @@ whereas $\R^2-\{0\}\simeq S^1$ has fundamental group $\Z$.
 
 \begin{proposition}[Retracts and deformation retracts induce injections/isomorphisms on $\pi_1$]
 \label{prop:retract-induces-injective-pi1}
+\lean{HatcherLib.retract_inducedPiOne_injective, HatcherLib.deformationRetractPiOneMulEquiv}
+\leanok
 \dcref{ch1:1.17}
 \group{Fundamental Group}
 \uses{def:induced-homomorphism,def:retraction,def:deformation-retraction}
@@ -341,6 +402,7 @@ if $A$ is a deformation retract, the map is an isomorphism.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch For a retraction $r$, $r_*i_*=\one$, so $i_*$ is injective. A deformation
 retraction supplies a homotopy from the identity to a map through $A$, proving
 surjectivity as well.
@@ -348,6 +410,8 @@ surjectivity as well.
 
 \begin{definition}[Homotopy of maps of pairs; based homotopy equivalence]
 \label{def:based-homotopy-equivalence}
+\lean{HatcherLib.PairHomotopy, HatcherLib.BasedHomotopy, HatcherLib.basedHomotopyEquivType, HatcherLib.BasedHomotopyEquiv.toHomotopyEquiv}
+\leanok
 \group{Fundamental Group}
 \uses{def:homotopy}
 A homotopy of pairs carries the first subspace into the second at every time.
@@ -357,6 +421,8 @@ of mutually inverse based maps up to based homotopy.
 
 \begin{proposition}[Homotopy equivalences induce isomorphisms on $\pi_1$, basepoints unconstrained]
 \label{prop:homotopy-equivalence-induces-pi1-iso}
+\lean{HatcherLib.homotopyEquivPiOneMulEquiv}
+\leanok
 \dcref{ch1:1.18}
 \group{Fundamental Group}
 \uses{def:induced-homomorphism,lem:basepoint-change-homotopy,def:homotopy-equivalence}
@@ -366,6 +432,8 @@ $\varphi_*:\pi_1(X,x_0)\to\pi_1(Y,\varphi(x_0))$ is an isomorphism.
 
 \begin{lemma}[Basepoint tracking under an unbased homotopy]
 \label{lem:basepoint-change-homotopy}
+\lean{HatcherLib.inducedPiOne_homotopy_eq_changeBasepoint}
+\leanok
 \dcref{ch1:1.19}
 \group{Fundamental Group}
 \uses{def:change-of-basepoint-map,def:induced-homomorphism}
@@ -374,6 +442,7 @@ $\varphi_{0*}=\beta_h\varphi_{1*}$.
 \end{lemma}
 
 \begin{proof}
+\leanok
 \sketch For a loop $f$ at $x_0$, the loops
 $h_t\cdot(\varphi_t f)\cdot\bar h_t$, with $h_t$ the initial segment of $h$,
 form a homotopy based at $\varphi_0(x_0)$.
@@ -392,6 +461,8 @@ induced map is injective and the first is also surjective.
 
 \begin{definition}[Free product of groups]
 \label{def:free-product-of-groups}
+\lean{HatcherLib.FreeProduct, HatcherLib.FreeProductWord, HatcherLib.freeProductInclusion}
+\leanok
 \group{Fundamental Group}
 A free product $*_\alpha G_\alpha$ consists of finite reduced words
 $g_1\cdots g_m$, with nonidentity adjacent letters from distinct factors.
@@ -401,6 +472,8 @@ by reduction.
 
 \begin{definition}[Free group, basis, rank]
 \label{def:free-group-basis-rank}
+\lean{HatcherLib.FreeGroupOn, HatcherLib.FreeBasis, HatcherLib.IsFree, HatcherLib.chosenFreeBasis, HatcherLib.freeGroupRank, HatcherLib.freeBasisIndexEquivGenerators, HatcherLib.freeBasis_cardinalMk_eq_rank, HatcherLib.freeGroupAbelianizationBasis}
+\leanok
 \group{Fundamental Group}
 \uses{def:free-product-of-groups}
 A free group is a free product of copies of $\Z$. The corresponding generators
@@ -410,6 +483,8 @@ abelian on the same basis.
 
 \begin{proposition}[Universal property of the free product]
 \label{prop:free-product-universal-property}
+\lean{HatcherLib.freeProductLift, HatcherLib.freeProductLift_comp_inclusion, HatcherLib.freeProductLift_unique}
+\leanok
 \group{Fundamental Group}
 \uses{def:free-product-of-groups}
 Homomorphisms $\varphi_\alpha:G_\alpha\to H$ extend uniquely to
@@ -582,6 +657,8 @@ surface.
 
 \begin{definition}[Sheets of a covering space]
 \label{def:covering-space-sheets}
+\lean{HatcherLib.IsSheet, HatcherLib.isSheet_iff_connectedComponentIn, HatcherLib.coveringSheetNumber, HatcherLib.coveringSheetNumber_isLocallyConstant, HatcherLib.coveringSheetNumber_eq}
+\leanok
 \group{Covering Spaces}
 \uses{def:covering-space}
 For an evenly covered connected open $U\subset X$, the components of $p^{-1}(U)$
@@ -595,6 +672,8 @@ from \cite{Konig1990}.
 
 \begin{definition}[Lift of a map]
 \label{def:lift-of-a-map}
+\lean{HatcherLib.IsLift}
+\leanok
 \group{Covering Spaces}
 \uses{def:covering-space}
 A lift of $f:Y\to X$ through $p:\widetilde X\to X$ is a map
@@ -603,6 +682,8 @@ $\widetilde f:Y\to\widetilde X$ satisfying $p\widetilde f=f$.
 
 \begin{proposition}[Homotopy lifting property]
 \label{prop:covering-homotopy-property}
+\lean{HatcherLib.existsUnique_liftHomotopy, HatcherLib.exists_path_lift}
+\leanok
 \dcref{ch1:1.30}
 \group{Covering Spaces}
 \uses{def:covering-space,def:lift-of-a-map,thm:fundamental-group-of-circle}
@@ -614,6 +695,8 @@ paths lift uniquely after an initial lift is chosen.
 
 \begin{proposition}[Covering maps are injective on $\pi_1$]
 \label{prop:covering-map-pi1-injective}
+\lean{HatcherLib.coveringPathClassMap_injective, HatcherLib.coveringPiOneMap_injective, HatcherLib.mem_coveringImageSubgroup_iff_monodromy_fixed}
+\leanok
 \dcref{ch1:1.31}
 \group{Covering Spaces}
 \uses{prop:covering-homotopy-property,def:loop-and-pi1-set}
@@ -623,6 +706,7 @@ $\widetilde x_0$ are loops.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Lift a nullhomotopy of the projection of a loop; its lift joins the
 original loop to a constant loop, proving injectivity. A loop with a closed
 lift is visibly in the image, and homotopy lifting gives the converse.
@@ -630,6 +714,8 @@ lift is visibly in the image, and homotopy lifting gives the converse.
 
 \begin{proposition}[Sheets equal the index of the image subgroup]
 \label{prop:covering-sheets-equals-index}
+\lean{HatcherLib.coveringFiberCosetEquiv, HatcherLib.coveringFiber_cardinal_eq_coset_cardinal, HatcherLib.coveringSheets_eq_subgroup_index}
+\leanok
 \dcref{ch1:1.32}
 \group{Covering Spaces}
 \uses{def:covering-space-sheets,prop:covering-map-pi1-injective}
@@ -638,6 +724,7 @@ the index of $H=p_*(\pi_1(\widetilde X,\widetilde x_0))$ in $\pi_1(X,x_0)$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Map a left coset $H[g]$ to the endpoint of the lift of $g$ from
 $\widetilde x_0$. The lifting criterion for loops gives well-definedness and
 injectivity; path-connectedness of $\widetilde X$ gives surjectivity.
@@ -645,6 +732,8 @@ injectivity; path-connectedness of $\widetilde X$ gives surjectivity.
 
 \begin{proposition}[Lifting criterion]
 \label{prop:covering-lifting-criterion}
+\lean{HatcherLib.exists_lift_iff_piOne_range_le}
+\leanok
 \dcref{ch1:1.33}
 \group{Covering Spaces}
 \uses{prop:covering-homotopy-property,def:lift-of-a-map}
@@ -655,6 +744,7 @@ $f_*(\pi_1(Y,y_0))\subset p_*(\pi_1(\widetilde X,\widetilde x_0))$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Necessity follows from $f_*=p_*\widetilde f_*$. For sufficiency, send
 $y$ to the endpoint of the lift of $f\gamma$ for a path $\gamma$ from $y_0$
 to $y$. The subgroup condition makes this independent of $\gamma$; local
@@ -666,6 +756,8 @@ as shown by the counterexample in the corresponding exercise.
 
 \begin{proposition}[Unique lifting property]
 \label{prop:covering-unique-lifting}
+\lean{HatcherLib.lifts_eq_of_eq_at}
+\leanok
 \dcref{ch1:1.34}
 \group{Covering Spaces}
 \uses{def:lift-of-a-map}
@@ -674,6 +766,7 @@ everywhere.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch The equalizer of the two lifts is open and closed: near an agreement
 point both images lie in one sheet, while distinct sheets separate a point of
 disagreement.
@@ -683,6 +776,8 @@ disagreement.
 
 \begin{definition}[Semilocally simply-connected]
 \label{def:semilocally-simply-connected}
+\lean{HatcherLib.SemilocallySimplyConnected}
+\leanok
 \group{Covering Spaces}
 $X$ is semilocally simply-connected if every $x\in X$ has a neighborhood $U$
 whose inclusion induces the trivial map $\pi_1(U,x)\to\pi_1(X,x)$.
@@ -690,6 +785,8 @@ whose inclusion induces the trivial map $\pi_1(U,x)\to\pi_1(X,x)$.
 
 \begin{proposition}[Construction of the universal cover]
 \label{prop:universal-cover-construction}
+\lean{HatcherLib.UniversalCoverConstruction.universalCoverEndpoint_isUniversalCoveringMap}
+\leanok
 \group{Covering Spaces}
 \uses{def:semilocally-simply-connected,prop:simply-connected-iff-unique-path-class}
 If $X$ is path-connected, locally path-connected, and semilocally
@@ -697,6 +794,7 @@ simply-connected, then $X$ has a simply-connected covering space.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Let $\widetilde X$ be homotopy classes of paths starting at $x_0$,
 with endpoint projection. For a path-connected open $U$ with trivial image of
 $\pi_1(U)$, the sets of classes $[\gamma\eta]$, with $\eta$ a path in $U$,
@@ -722,6 +820,8 @@ cylinder is therefore the universal covering of $X_{m,n}$.
 
 \begin{proposition}[Covering spaces realizing arbitrary subgroups]
 \label{prop:covering-space-existence-for-subgroup}
+\lean{HatcherLib.exists_coveringSpace_for_subgroup}
+\leanok
 \dcref{ch1:1.36}
 \group{Covering Spaces}
 \uses{prop:universal-cover-construction}
@@ -731,6 +831,7 @@ for some covering $X_H\to X$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch On the universal cover identify path classes with the same endpoint
 when their concatenated loop represents an element of $H$. The quotient
 inherits evenly covered basic neighborhoods, and a loop lifts closed exactly
@@ -739,6 +840,8 @@ when its class lies in $H$.
 
 \begin{proposition}[Basepointed covering spaces are isomorphic iff same image subgroup]
 \label{prop:covering-space-isomorphism-criterion}
+\lean{HatcherLib.basedCoveringEquivType, HatcherLib.nonempty_basedCoveringEquiv_iff_piOneRanges_eq}
+\leanok
 \dcref{ch1:1.37}
 \group{Covering Spaces}
 \uses{prop:covering-lifting-criterion,prop:covering-unique-lifting}
@@ -748,6 +851,7 @@ $p_{1*}\pi_1(\widetilde X_1)=p_{2*}\pi_1(\widetilde X_2)$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Necessity follows by composing with the isomorphism. For sufficiency,
 the lifting criterion gives pointed maps in both directions over $X$; unique
 lifting makes their composites identities.
@@ -755,6 +859,8 @@ lifting makes their composites identities.
 
 \begin{theorem}[Classification of covering spaces]
 \label{thm:covering-space-classification}
+\lean{HatcherLib.BasedConnectedCover.classificationEquiv, HatcherLib.nonempty_coveringEquiv_iff_conj}
+\leanok
 \dcref{ch1:1.38}
 \group{Covering Spaces}
 \uses{prop:covering-space-existence-for-subgroup,prop:covering-space-isomorphism-criterion}
@@ -765,6 +871,7 @@ of subgroups.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch Existence and pointed uniqueness are the preceding propositions.
 Changing the basepoint in a fiber conjugates the image subgroup by the
 projected connecting loop, and every conjugate is obtained this way.
@@ -772,6 +879,8 @@ projected connecting loop, and every conjugate is obtained this way.
 
 \begin{definition}[Universal cover]
 \label{def:universal-cover}
+\lean{HatcherLib.IsUniversalCoveringMap, HatcherLib.IsUniversalCoveringMap.existsUnique_mapToCover, HatcherLib.IsUniversalCoveringMap.existsUnique_coveringMapToCover, HatcherLib.universalCoverBasedEquivOfIsUniversal}
+\leanok
 \group{Covering Spaces}
 \uses{thm:covering-space-classification,prop:covering-lifting-criterion}
 A simply-connected covering of a path-connected, locally path-connected space
@@ -788,6 +897,8 @@ of homomorphisms $\pi_1(X,x_0)\to\Sigma_n$.
 
 \begin{definition}[Deck transformation group]
 \label{def:deck-transformation-group}
+\lean{HatcherLib.DeckTransformationGroup, HatcherLib.deckTransformation_ext, HatcherLib.deckTransformationGroup_isFree}
+\leanok
 \group{Covering Spaces}
 \uses{def:covering-space,prop:covering-unique-lifting}
 Deck transformations of $p:\widetilde X\to X$ are self-isomorphisms of the
@@ -797,6 +908,8 @@ transformation is determined by one point and only the identity fixes a point.
 
 \begin{definition}[Normal covering space]
 \label{def:normal-covering-space}
+\lean{HatcherLib.IsNormalCovering}
+\leanok
 \group{Covering Spaces}
 \uses{def:deck-transformation-group}
 A connected covering is normal (regular) if any two lifts of each $x\in X$
@@ -805,6 +918,8 @@ are exchanged by a deck transformation.
 
 \begin{proposition}[Deck group and normalizers]
 \label{prop:normal-covering-deck-group}
+\lean{HatcherLib.isNormalCovering_iff_piOneImageSubgroup_normal, HatcherLib.normalizerPiOneCoverDeckGroupMulEquivOfLocPathConnectedBase, HatcherLib.normalCoverPiOneDeckGroupMulEquiv, HatcherLib.universalCoverPiOneDeckGroupMulEquiv}
+\leanok
 \dcref{ch1:1.39}
 \group{Covering Spaces}
 \uses{def:normal-covering-space,thm:covering-space-classification,prop:covering-lifting-criterion}
@@ -817,6 +932,7 @@ $\pi_1(X,x_0)/H$; for the universal cover it is $\pi_1(X,x_0)$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch Changing a lift of $x_0$ conjugates $H$. The lifting criterion gives
 a deck transformation between two lifts exactly when the corresponding
 conjugate subgroup equals $H$, yielding normality and the normalizer. The map
@@ -826,6 +942,8 @@ namely $H$.
 
 \begin{definition}[Group action on a space; covering space action; free action]
 \label{def:group-action}
+\lean{HatcherLib.GroupAction, HatcherLib.GroupAction.IsCovering, HatcherLib.GroupAction.IsFree, HatcherLib.GroupAction.IsCovering.isFree, HatcherLib.rationalTranslationAction_isFree, HatcherLib.rationalTranslationAction_not_isCovering, HatcherLib.deckTransformationGroup_isCoveringSpaceAction, HatcherLib.subgroup_deckTransformationGroup_isCoveringSpaceAction}
+\leanok
 \group{Covering Spaces}
 An action $G\to\operatorname{Homeo}(Y)$ is a covering space action if each
 $y\in Y$ has a neighborhood $U$ with $g(U)\cap U\neq\emptyset$ only for
@@ -837,6 +955,8 @@ orbits and is not a covering space action.
 
 \begin{definition}[Orbit space]
 \label{def:orbit-space}
+\lean{HatcherLib.OrbitSpace, HatcherLib.orbitProjection, HatcherLib.normalCoverOrbitHomeomorph}
+\leanok
 \group{Covering Spaces}
 \uses{def:group-action}
 The orbit space $Y/G$ has points the orbits $Gy=\{g(y):g\in G\}$. For a
@@ -845,6 +965,8 @@ normal covering, $\widetilde X/G(\widetilde X)=X$.
 
 \begin{proposition}[Covering space actions give normal covering spaces]
 \label{prop:covering-space-action-quotient}
+\lean{HatcherLib.orbitProjection_isNormalCovering, HatcherLib.actionDeckTransformationMulEquiv, HatcherLib.actionFundamentalGroupQuotientMulEquiv}
+\leanok
 \dcref{ch1:1.40}
 \group{Covering Spaces}
 \uses{def:group-action,def:orbit-space,prop:normal-covering-deck-group,prop:covering-unique-lifting}
@@ -854,6 +976,7 @@ path-connected, $G\cong\pi_1(Y/G)/p_*\pi_1(Y)$.
 \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch The translates of a neighborhood satisfying the action condition are
 disjoint sheets over its image, proving the covering and normality. A deck
 transformation agrees with the unique group element carrying one chosen point
@@ -916,6 +1039,8 @@ $K\cong\pi_1(T_{m,n}/K)$ is free.
 
 \begin{definition}[Cayley graph and Cayley complex]
 \label{def:cayley-graph-and-complex}
+\lean{HatcherLib.CayleyGraph, HatcherLib.cayleyComplexType, HatcherLib.CayleyGenerates, HatcherLib.cayleyGenerates_iff_closure_range_eq_top, HatcherLib.cayleySimpleGraph_connected, HatcherLib.cayleyGraph_left_translate_isLink}
+\leanok
 \group{Covering Spaces}
 \uses{cor:every-group-realized-as-pi1}
 For $G=\langle g_\alpha\mid r_\beta\rangle$, the Cayley graph has vertex set
@@ -969,6 +1094,8 @@ construction for $\Z_m*\Z_n$ is tree-like.
 
 \begin{definition}[Graph, vertices, edges]
 \label{def:graph}
+\lean{HatcherLib.TopologicalGraph, HatcherLib.TopologicalGraphVertex, HatcherLib.TopologicalGraphEdge, HatcherLib.TopologicalGraph.isEmpty_cell_of_one_lt}
+\leanok
 \group{Fundamental Group}
 \uses{def:cell-complex}
 A graph is a 1-dimensional CW complex with discrete vertex set $X^0$ and
@@ -978,6 +1105,8 @@ respect to the cell closures and is locally path-connected.
 
 \begin{definition}[Subgraph and tree]
 \label{def:subgraph-and-tree}
+\lean{HatcherLib.TopologicalGraphSubcomplex, HatcherLib.IsTopologicalTree, HatcherLib.IsSpanningTopologicalSubcomplex, HatcherLib.IsMaximalTopologicalTree, HatcherLib.TopologicalGraphSubcomplex.isClosed, HatcherLib.TopologicalGraphSubcomplex.carrier_eq_vertices_union_edges}
+\leanok
 \group{Fundamental Group}
 \uses{def:graph,def:contractible}
 A subgraph is a closed union of vertices and edges. A tree is a contractible
@@ -1031,6 +1160,8 @@ property identifies the resulting CW topology with the covering topology.
 
 \begin{theorem}[Every subgroup of a free group is free]
 \label{thm:subgroup-of-free-group-is-free}
+\lean{HatcherLib.subgroup_of_free_is_free}
+\leanok
 \dcref{ch1:1A.4}
 \group{Covering Spaces}
 \uses{prop:covering-space-existence-for-subgroup,prop:covering-map-pi1-injective,lem:covering-space-of-graph-is-graph,prop:fundamental-group-of-graph-is-free}
@@ -1038,6 +1169,7 @@ Every subgroup of a free group is free.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch Realize the free group as the fundamental group of a wedge of circles.
 The subgroup construction gives a covering graph whose fundamental group is
 the subgroup by covering injectivity. The graph proposition makes that
@@ -1060,6 +1192,8 @@ cover.
 
 \begin{definition}[$K(G,1)$ space]
 \label{def:k-g-1-space}
+\lean{HatcherLib.IsKGOneSpace}
+\leanok
 \group{Fundamental Group}
 \uses{def:universal-cover,def:contractible}
 A path-connected space with fundamental group $G$ and contractible universal
@@ -1130,6 +1264,8 @@ cover of $Y$. Apply the same extension argument to $X\times I$ for uniqueness.
 
 \begin{definition}[Graph of groups; graph product]
 \label{def:graph-of-groups}
+\lean{HatcherLib.graphOfGroupsType}
+\leanok
 \group{Fundamental Group}
 \uses{ex:milnor-construction-eg-bg,def:mapping-cylinder}
 A graph of groups assigns $G_v$ to each vertex of a connected oriented graph

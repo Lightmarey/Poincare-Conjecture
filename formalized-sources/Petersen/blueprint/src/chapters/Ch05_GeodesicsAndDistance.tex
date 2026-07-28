@@ -343,6 +343,7 @@ components of $v\in T_p\tilde M$.
   \label{ex:pet-ch5-punctured-plane-geodesic}
   \dcref{ch5:5.2.7}
   \lean{PetersenLib.example_punctured_plane_geodesic_interval}
+\leanok
   \uses{def:pet-ch5-geodesically-complete}
   In the punctured plane $\mathbb R^2-\{(0,0)\}$ the unit-speed geodesic from
   $(-1,0)$ with tangent $(1,0)$ is defined only on $(-\infty,1)$, but nearby
@@ -481,6 +482,7 @@ components of $v\in T_p\tilde M$.
   \label{ex:pet-ch5-infimum-not-realized}
   \dcref{ch5:5.3.1}
   \lean{PetersenLib.example_infimum_not_realized}
+\leanok
   \uses{def:pet-ch5-distance}
   In $\mathbb R^2-\{(0,0)\}$ with the induced metric, $|(-1,0)(1,0)|=2$, but no curve
   of length $2$ from $(-1,0)$ to $(1,0)$ avoids $(0,0)$, so this distance is not
@@ -580,6 +582,7 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[a minimiser is a reparametrised integral curve of $\nabla r$]
   \label{rem:pet-ch5-minimizer-is-reparametrized-integral-curve}
   \lean{PetersenLib.distanceFunction_minimizer_eq_integralCurve_comp}
+\leanok
   \uses{rem:pet-ch5-distance-function-rigidity,lem:pet-ch5-distance-function-segments}
   In the situation of \cref{rem:pet-ch5-distance-function-rigidity}, put
   $L=L(c)|_a^b$ and $\varphi(s)=L(c)|_a^s=\int_a^s|\dot c|\,dt$, and suppose
@@ -598,6 +601,7 @@ components of $v\in T_p\tilde M$.
   so the hypothesis has not been discharged.
 \end{remark}
 \begin{proof}
+\leanok
   \uses{rem:pet-ch5-distance-function-rigidity}
   \sketch
   By \cref{rem:pet-ch5-distance-function-rigidity}, $\dot c=\varphi'\nabla r$;
@@ -989,6 +993,7 @@ components of $v\in T_p\tilde M$.
   \label{prop:pet-ch5-exp-diffeomorphism-properties}
   \dcref{ch5:5.5.1a}
   \lean{PetersenLib.expMap_localDiffeomorphism,PetersenLib.expDiagonalMap_localDiffeomorphism}
+\leanok
   \uses{def:pet-ch5-exponential-map}
   \begin{enumerate}
   \item For $p\in M$, $D\exp_p:T_0(T_pM)\to T_pM$ is nonsingular at the origin, so
@@ -1012,6 +1017,7 @@ components of $v\in T_p\tilde M$.
   $\exp_q v$, which is an unwritten consequence of geodesic uniqueness.
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch5-exp-diffeomorphism-properties}
   \sketch
   (1) For the canonical isomorphism
@@ -1185,6 +1191,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[normal exponential map]
   \label{def:pet-ch5-normal-exponential-map}
   \lean{PetersenLib.normalExpMap}
+\leanok
   \uses{def:pet-ch5-exponential-map}
   Let $N\subset M$ be a properly embedded submanifold; its normal bundle is
   $T^\perp N=\{v\in T_pM\mid p\in N,\ v\in(T_pN)^\perp\}$, so $T_pM=T_pN\oplus
@@ -1219,6 +1226,7 @@ components of $v\in T_p\tilde M$.
   \label{thm:pet-ch5-short-geodesics-segments}
   \dcref{ch5:5.5.4a}
   \lean{PetersenLib.expMap_isSegment_unique}
+\leanok
   \uses{def:pet-ch5-exponential-map,def:pet-ch5-segment,
         lem:pet-ch5-short-geodesics-segments-normal}
   Let $(M,g)$ be Riemannian, $p\in M$, $\varepsilon>0$ such that

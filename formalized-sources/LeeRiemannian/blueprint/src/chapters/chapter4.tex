@@ -168,9 +168,11 @@ where extensions are taken near $M$, $\widetilde\nabla$ is the Euclidean connect
 \dcref{ch4:4.10}
 \uses{prop:connection-coefficients-frame}
 \lean{LeeLib.Ch04.connOfCoeff, LeeLib.Ch04.connOfCoeff_isCovariantDerivativeOn, LeeLib.Ch04.connectionCoeff_connOfCoeff, LeeLib.Ch04.covariantDeriv_eq_connectionCoeff_formula}
+\leanok
 If a smooth $n$-manifold with or without boundary has a global frame $(E_i)$, then (4.9) gives a one-to-one correspondence between connections on $TM$ and $n^3$ smooth functions $\Gamma^k_{ij}$.
 \end{lemma}
 \begin{proof}
+\leanok
 \sketch A connection supplies $\Gamma^k_{ij}$ through (4.8). Conversely, (4.9) defines a smooth operation satisfying linearity; the product rule is the direct expansion of $X(Y^j)$.
 \end{proof}
 
@@ -227,6 +229,7 @@ where $(\nabla^0+D)_XY=\nabla^0_XY+D(X,Y)$.
 \label{prop:connection-on-tensor-bundles}
 \dcref{ch4:4.15}
 \lean{LeeLib.Ch04.covDerivCovector, LeeLib.Ch04.covDerivCovector_apply, LeeLib.Ch04.covDeriv_pairing_leibniz}
+\leanok
 Let $M$ be a smooth manifold with or without boundary and let $\nabla$ be a
 connection in $TM$. There is a unique induced connection on every tensor
 bundle $T^{(k,l)}TM$, denoted again by $\nabla$, satisfying:
@@ -256,6 +259,7 @@ $\omega^1,\ldots,\omega^k$, and smooth vector fields $Y_1,\ldots,Y_l$,
 \end{enumerate}
 \end{proposition}
 \begin{proof}
+\leanok
 \sketch Pairing is the contraction of $\omega\otimes Y$, so (i)--(iv) give
 (a). Repeatedly expressing the evaluation of $F$ as contractions of
 $F\otimes\omega^1\otimes\cdots\otimes\omega^k\otimes Y_1\otimes\cdots\otimes
@@ -370,12 +374,14 @@ $\nabla_X(\nabla_YF)$.
 \dcref{ch4:4.21}
 \uses{prop:connection-on-tensor-bundles}
 \lean{LeeLib.Ch04.secondCovariantDeriv_function}
+\leanok
 For every smooth vector or tensor field $F$,
 \[
 \nabla^2_{X,Y}F=\nabla_X(\nabla_YF)-\nabla_{\nabla_XY}F.
 \]
 \end{proposition}
 \begin{proof}
+\leanok
 \sketch Contract $\nabla F\otimes Y$ in its final two slots to obtain
 $\nabla_YF$, and contract $\nabla^2F\otimes X$ and then $Y$ to obtain
 $\nabla^2_{X,Y}F$. Applying $\nabla_X$, using compatibility with contraction
@@ -447,6 +453,7 @@ is an injective smooth immersion, but its velocity field is not extendible.
 \dcref{ch4:4.24}
 \uses{ex:figure-eight-curve}
 \lean{LeeLib.Ch04.covariantDerivAlongChart, LeeLib.Ch04.covariantDerivAlongChart_add, LeeLib.Ch04.covariantDerivAlongChart_smul}
+\leanok
 For a connection $\nabla$ on a smooth manifold $M$ with or without boundary and
 a smooth curve $\gamma\colon I\to M$, there is a unique operator
 \[
@@ -466,6 +473,7 @@ The same construction applies to smooth tensor fields of every type along
 $\gamma$.
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch At $t_0\in I$, locality reduces the construction to a coordinate
 neighborhood of $\gamma(t_0)$. Writing
 $V(t)=V^i(t)\partial_i|_{\gamma(t)}$ gives the forced formula
@@ -521,6 +529,7 @@ parallel. Its coordinate functions satisfy (4.16).
 \label{thm:geodesic-existence-uniqueness}
 \dcref{ch4:4.27}
 \lean{LeeLib.Ch04.IsSprayGeodesicAt, LeeLib.Ch04.exists_sprayGeodesic_initial, LeeLib.Ch04.sprayGeodesic_eventuallyEq, LeeLib.Ch04.isSprayGeodesicAt_eventuallyEq_of_lift_eq, LeeLib.Ch04.IsSprayGeodesicOnWithInitial.chartAcceleration_zero, LeeLib.Ch04.IsSprayGeodesicOnWithInitial.hasDerivAt_extChartAt_zero}
+\leanok
 Let $M$ be a smooth manifold without boundary and $\nabla$ a connection in
 $TM$. For every $p\in M$, $w\in T_pM$, and $t_0\in\mathbb R$, there are an open
 interval $I\ni t_0$ and a geodesic $\gamma\colon I\to M$ such that
@@ -532,6 +541,7 @@ Any two geodesics with these initial data agree on their common domain.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch In coordinates near $p$, introduce $v^i=\dot x^i$ and rewrite (4.16) as
 \begin{align}
 \dot x^k(t)&=v^k(t),\\
@@ -561,9 +571,11 @@ $p\in M$ and $v\in T_pM$, there is a unique maximal geodesic
 $\gamma\colon I\to M$ on an open interval $I\ni0$ satisfying
 $\gamma(0)=p$ and $\gamma'(0)=v$.
 \lean{LeeLib.Ch04.maximalSprayGeodesicInterval, LeeLib.Ch04.maximalSprayGeodesic, LeeLib.Ch04.maximalSprayGeodesicInterval_isOpen, LeeLib.Ch04.maximalSprayGeodesic_structure_of_footInSource}
+\leanok
 \end{corollary}
 
 \begin{proof}
+\leanok
 \sketch Take the union of all open intervals containing $0$ on which a geodesic
 with the prescribed data exists. Theorem \ref{thm:geodesic-existence-uniqueness}
 makes the local geodesics agree on overlaps, so they glue to the unique maximal
@@ -590,6 +602,7 @@ Tensor fields satisfy the analogous linear systems from Proposition 4.18.
 \label{thm:linear-ode-existence-uniqueness}
 \dcref{ch4:4.31}
 \lean{LeeLib.Ch04.exists_hasDerivWithinAt_Icc, LeeLib.Ch04.IsSolOn, LeeLib.Ch04.flowMap, LeeLib.Ch04.flowMap_injective}
+\leanok
 Let $I\subseteq\mathbb R$ be an open interval and let
 $A_i^k\colon I\to\mathbb R$ be smooth for $1\leq i,k\leq n$. For every
 $t_0\in I$ and $c=(c^1,\ldots,c^n)\in\mathbb R^n$, the problem
@@ -601,6 +614,7 @@ depends smoothly on $(t,c)\in I\times\mathbb R^n$.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch After translating the parameter, take $t_0=0$. On
 $I\times\mathbb R^n$ define
 \[
@@ -634,6 +648,7 @@ the parameter translation.
 \dcref{ch4:4.32}
 \uses{thm:covariant-derivative-along-curve,thm:linear-ode-existence-uniqueness}
 \lean{LeeLib.Ch04.exists_isParallelAlongChart_Icc, LeeLib.Ch04.isParallelAlongChart_eqOn_Icc, LeeLib.Ch04.chartParallelTransport}
+\leanok
 Let $M$ be a smooth manifold, possibly with boundary, with a connection in $TM$.
 Given a smooth curve $\gamma\colon I\to M$, $t_0\in I$, and either
 $v\in T_{\gamma(t_0)}M$ or $v\in T^{(k,l)}_{\gamma(t_0)}M$, there is a unique
@@ -641,6 +656,7 @@ parallel vector or tensor field $V$ along $\gamma$ satisfying $V(t_0)=v$.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch If $\gamma(I)$ lies in one chart, solve (4.19), or the analogous tensor
 system, on all of $I$ using Theorem \ref{thm:linear-ode-existence-uniqueness}.
 In general, extend the solution through successive chart-covered subintervals.
@@ -667,6 +683,7 @@ partition. It is parallel when $D_tV=0$ wherever both fields are smooth.
 \label{cor:parallel-transport-piecewise-smooth-curves}
 \dcref{ch4:4.33}
 \lean{LeeLib.Ch04.exists_isPiecewiseParallelAlongChart_Icc, LeeLib.Ch04.isPiecewiseParallelAlongChart_eqOn_Icc}
+\leanok
 Let $M$ be a smooth manifold, possibly with boundary, with a connection in $TM$.
 For an admissible curve $\gamma\colon[a,b]\to M$ and initial vector
 $v\in T_{\gamma(a)}M$ or tensor $v\in T^{(k,l)}(T_{\gamma(a)}M)$, there is a
@@ -675,6 +692,7 @@ Moreover, $V$ is smooth wherever $\gamma$ is smooth.
 \end{corollary}
 
 \begin{proof}
+\leanok
 \sketch On an admissible partition $(a_0,\ldots,a_k)$, transport $v$ along the
 first smooth segment and use its endpoint value as the initial value on the next
 segment. Induction gives existence, and segmentwise uniqueness gives global
@@ -785,6 +803,7 @@ Thus (4.26) satisfies the connection axioms.
 \dcref{ch4:4.38}
 \uses{lem:pullback-connection}
 \lean{LeeLib.Ch04.covariantDeriv_pullback_naturality, LeeLib.Ch04.pullback_covariantDeriv_apply}
+\leanok
 Let $\nabla=\varphi^*\widetilde\nabla$ and let $\gamma\colon I\to M$ be smooth.
 \begin{enumerate}
 \item[(a)] For every smooth vector field $V$ along $\gamma$,
@@ -826,6 +845,7 @@ dF_p(\nabla_v^\top Y)=\nabla_{dF_p(v)}^\top(F_*Y).
 \dcref{ch4:4-6}
 \uses{ex:covariant-hessian}
 \lean{LeeLib.Ch04.torsion, LeeLib.Ch04.torsion_apply, LeeLib.Ch04.isSymmetric_iff}
+\leanok
 Let $\nabla$ be a connection in $TM$ and define
 \[
 \tau(X,Y)=\nabla_XY-\nabla_YX-[X,Y].
@@ -851,6 +871,7 @@ $\nabla^2u$ is a symmetric $2$-tensor for every $u\in C^\infty(M)$.
 \dcref{ch4:4-9}
 \uses{prop:torsion-tensor}
 \lean{LeeLib.Ch04.sameTorsion_iff_differenceTensor_symm, LeeLib.Ch04.sameChartAcceleration_iff_chartGamma_diff_antisymm, LeeLib.Ch04.isGeodesicInChart_congr_of_diff_antisymm, LeeLib.Ch04.chartGamma_diff_antisymm_iff_differenceTensor_frame_antisymm, LeeLib.Ch04.differenceTensor_chartFrame_eq_sum}
+\leanok
 Let $\nabla^0,\nabla^1$ be connections on $TM$, with difference tensor $D$.
 \begin{enumerate}
 \item[(a)] The two connections have the same torsion if and only if
@@ -870,6 +891,7 @@ D(X,Y)=-D(Y,X).
 \label{prop:parallel-reparametrization}
 \dcref{ch4:4-10}
 \lean{LeeLib.Ch04.covariantDerivAlongChart_comp, LeeLib.Ch04.isParallelAlongChart_comp}
+\leanok
 Let $M$ carry a connection, let $\gamma\colon I\to M$ be smooth, and let
 $Y\in\mathfrak X(\gamma)$. If $Y$ is parallel along $\gamma$, then its induced
 field is parallel along every reparametrization of $\gamma$.
