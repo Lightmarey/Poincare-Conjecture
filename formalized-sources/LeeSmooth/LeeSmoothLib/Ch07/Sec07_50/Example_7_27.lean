@@ -127,14 +127,18 @@ lemma hasFDerivAt_orthogonalLevelMap_one (n : ℕ) :
       (1 : M(n)) := by
   -- Combine the derivatives of transpose and the identity with the product rule.
   have hTranspose :
-      HasFDerivAt (fun A : M(n) ↦ A.transpose) (transposeContinuousLinearMap n) (1 : M(n)) := by
-    simpa [transposeContinuousLinearMap] using
-      (transposeContinuousLinearMap n).hasFDerivAt (x := (1 : M(n)))
+      HasFDerivAt (transposeContinuousLinearMap n) (transposeContinuousLinearMap n)
+        (1 : M(n)) :=
+    (transposeContinuousLinearMap n).hasFDerivAt (x := (1 : M(n)))
   have hId :
-      HasFDerivAt (fun A : M(n) ↦ A) (ContinuousLinearMap.id ℝ (M(n))) (1 : M(n)) := by
-    simpa using (ContinuousLinearMap.id ℝ (M(n))).hasFDerivAt (x := (1 : M(n)))
-  simpa [orthogonalLevelMapOneDeriv, orthogonalLevelMap, matrixMulContinuousLinearMap_apply] using
-    (matrixMulContinuousLinearMap n).hasFDerivAt_of_bilinear hTranspose hId
+      HasFDerivAt (ContinuousLinearMap.id ℝ (M(n))) (ContinuousLinearMap.id ℝ (M(n)))
+        (1 : M(n)) :=
+    (ContinuousLinearMap.id ℝ (M(n))).hasFDerivAt (x := (1 : M(n)))
+  convert (matrixMulContinuousLinearMap n).hasFDerivAt_of_bilinear hTranspose hId using 1
+  all_goals try rfl
+  · ext B i j
+    simp [orthogonalLevelMapOneDeriv, matrixMulContinuousLinearMap_apply,
+      transposeContinuousLinearMap_apply]
 
 /-- Example 7.27 (3): the differential of `A ↦ A.transpose * A` at the identity sends `B` to
 `B.transpose + B`. -/
@@ -237,7 +241,8 @@ theorem isCompact_orthogonalGroup (n : ℕ) :
     -- The orthogonal group is a closed level set of the continuous map `A ↦ Aᵀ * A`.
     rw [orthogonalGroup_eq_levelSet]
     have hCont : Continuous (orthogonalLevelMap n) := by
-      simpa [orthogonalLevelMap] using (show Continuous fun A : M(n) ↦ A.transpose * A by fun_prop)
+      change Continuous (fun A : M(n) ↦ A.transpose * A)
+      fun_prop
     exact isClosed_eq hCont continuous_const
   -- Closed and bounded subsets of finite-dimensional matrix space are compact.
   simpa [Set.image_univ, Subtype.range_coe] using

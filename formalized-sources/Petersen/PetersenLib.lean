@@ -149,10 +149,7 @@ import PetersenLib.Ch02.Exercises30
 import PetersenLib.Ch02.Exercises26
 import PetersenLib.Ch02.Exercises22
 import PetersenLib.Ch02.Exercises21
--- import PetersenLib.Ch02.Exercises20  -- EXCLUDED: does not compile on mathlib v4.30.0.
--- Renamed to Exercises20.lean.wip. The `clmChristoffelFirst` trilinear-form
--- definition fails HSub instance synthesis after the continuous-multilinear-map
--- changes; needs a real proof update, not a mechanical one. See MIGRATION_NOTES.md.
+import PetersenLib.Ch02.Exercises20
 import PetersenLib.Ch02.ChristoffelNonTensorial
 import PetersenLib.Ch02.Exercises29
 import PetersenLib.Ch02.Exercises23

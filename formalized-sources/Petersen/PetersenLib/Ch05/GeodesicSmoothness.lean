@@ -145,7 +145,8 @@ theorem IsGeodesicOn.exists_eqOn_expMap_ray (g : RiemannianMetric I M)
     simpa using ((hasDerivAt_id (0 : ℝ)).const_mul κ).add_const t₀
   have hγf_vel : HasDerivAt (fun τ : ℝ => extChartAt I (γ t₀) (γf τ)) u 0 := by
     have hv' : HasDerivAt (fun τ : ℝ => extChartAt I (γ t₀) (γ τ)) v (κ * 0 + t₀) := by
-      simpa using hv
+      change HasDerivAt (Geodesic.chartLocalCurve (I := I) γ t₀) v (κ * 0 + t₀)
+      simpa only [mul_zero, zero_add] using hv
     have := hv'.scomp (0 : ℝ) hA
     simpa [hγf, Function.comp_def, hu] using this
   -- intrinsic ODE uniqueness identifies the rescaled geodesic with the ray

@@ -184,7 +184,7 @@ theorem complex_projective_scaled_chart_section_cont_mdiff (n : ℕ) (i : Fin (n
   have hf :
       ContMDiff (Icp n) (Icp n) ∞ f := by
     -- The projective chart is smooth as a map from its source subtype to the Euclidean target.
-    simpa [f] using
+    simpa [f] using!
       smoothChart_contMDiff_toHomeomorphSourceTarget
         (e := complexProjectiveChart n i)
         (he := hmemω)
@@ -459,8 +459,8 @@ theorem complexCoordinateAsPlane_contDiff :
   rw [contDiff_piLp]
   intro i
   fin_cases i
-  · simpa [complexCoordinateAsPlane_apply_zero] using Complex.reCLM.contDiff
-  · simpa [complexCoordinateAsPlane_apply_one] using Complex.imCLM.contDiff
+  · simpa [complexCoordinateAsPlane_apply_zero] using! Complex.reCLM.contDiff
+  · simpa [complexCoordinateAsPlane_apply_one] using! Complex.imCLM.contDiff
 
 /-- Helper for Problem 4-5: the inverse identification `ℝ² → ℂ` is smooth. -/
 theorem planeCoordinateAsComplex_contDiff :
@@ -475,13 +475,13 @@ theorem planeCoordinateAsComplex_contDiff :
   -- Each real coordinate projection becomes a smooth complex-valued map via `Complex.ofRealCLM`.
   have hzero :
       ContDiff ℝ ∞ (fun u : EuclideanSpace ℝ (Fin 2) ↦ (u 0 : ℂ)) := by
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       Complex.ofRealCLM.contDiff.comp
         ((contDiff_piLp_apply (p := 2) (i := (0 : Fin 2))) :
           ContDiff ℝ ∞ (fun u : EuclideanSpace ℝ (Fin 2) ↦ u 0))
   have hone :
       ContDiff ℝ ∞ (fun u : EuclideanSpace ℝ (Fin 2) ↦ (u 1 : ℂ)) := by
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       Complex.ofRealCLM.contDiff.comp
         ((contDiff_piLp_apply (p := 2) (i := (1 : Fin 2))) :
           ContDiff ℝ ∞ (fun u : EuclideanSpace ℝ (Fin 2) ↦ u 1))
@@ -523,7 +523,7 @@ theorem complex_projective_line_model_forward_contMDiff :
     ContMDiff (Icp 1) (𝓡 2) ∞ complex_projective_line_model_forward := by
   -- Compose the smooth coordinate projection with the fixed `ℂ ≃ ℝ²` adapter.
   rw [contMDiff_iff_contDiff]
-  simpa [complex_projective_line_model_forward, Function.comp] using
+  simpa [complex_projective_line_model_forward, Function.comp] using!
     complexCoordinateAsPlane_contDiff.comp
       ((contDiff_piLp_apply (p := 2) (i := (0 : Fin 1))) :
         ContDiff ℝ ∞ (fun u : EuclideanSpace ℂ (Fin 1) ↦ u 0))
@@ -533,7 +533,7 @@ theorem complex_projective_line_model_inverse_contMDiff :
     ContMDiff (𝓡 2) (Icp 1) ∞ complex_projective_line_model_inverse := by
   -- First recover the complex coordinate from `ℝ²`, then reinsert it into `ℂ¹`.
   rw [contMDiff_iff_contDiff]
-  simpa [complex_projective_line_model_inverse, Function.comp] using
+  simpa [complex_projective_line_model_inverse, Function.comp] using!
     complex_projective_line_single_contDiff.comp planeCoordinateAsComplex_contDiff
 
 /-- Helper for Problem 4-5: the south-chart affine model is a diffeomorphism
@@ -578,7 +578,7 @@ theorem complex_projective_line_conj_forward_contMDiff :
     ContMDiff (Icp 1) (Icp 1) ∞ complex_projective_line_conj_forward := by
   -- Compose the smooth coordinate projection with complex conjugation and then reinsert it.
   rw [contMDiff_iff_contDiff]
-  simpa [complex_projective_line_conj_forward, Function.comp] using
+  simpa [complex_projective_line_conj_forward, Function.comp] using!
     complex_projective_line_single_contDiff.comp
       (Complex.conjCLE.contDiff.comp
         ((contDiff_piLp_apply (p := 2) (i := (0 : Fin 1))) :
@@ -849,7 +849,7 @@ theorem complex_projective_line_south_branch_contMDiffOn :
   -- Rewrite the branch source back to the packaged `OpenPartialHomeomorph`.
   rw [(complex_projective_line_south_branch_source_target).1]
   simpa [complex_projective_line_south_branch, Function.comp]
-    using hBranch
+    using! hBranch
 
 /-- Helper for Problem 4-5: the south-chart branch inverse is smooth on its target. -/
 theorem complex_projective_line_south_branch_symm_contMDiffOn :
@@ -889,7 +889,7 @@ theorem complex_projective_line_south_branch_symm_contMDiffOn :
   -- Rewrite the target to the north-pole complement of the south branch.
   rw [(complex_projective_line_south_branch_source_target).2]
   simpa [complex_projective_line_south_branch, Function.comp]
-    using hBranch
+    using! hBranch
 
 /-- Helper for Problem 4-5: the north-chart branch is smooth on its source. -/
 theorem complex_projective_line_north_branch_contMDiffOn :
@@ -927,7 +927,7 @@ theorem complex_projective_line_north_branch_contMDiffOn :
   -- Rewrite the packaged branch source to the normalized north chart source.
   rw [(complex_projective_line_north_branch_source_target).1]
   simpa [complex_projective_line_north_branch, Function.comp]
-    using hBranch
+    using! hBranch
 
 /-- Helper for Problem 4-5: the north-chart branch inverse is smooth on its target. -/
 theorem complex_projective_line_north_branch_symm_contMDiffOn :
@@ -967,7 +967,7 @@ theorem complex_projective_line_north_branch_symm_contMDiffOn :
   -- Rewrite the target to the south-pole complement of the north branch.
   rw [(complex_projective_line_north_branch_source_target).2]
   simpa [complex_projective_line_north_branch, Function.comp]
-    using hBranch
+    using! hBranch
 
 /-- Helper for Problem 4-5: the south-chart branch packages to a `PartialDiffeomorph`. -/
 def complex_projective_line_south_partialDiffeomorph :
@@ -1040,7 +1040,13 @@ theorem complex_projective_line_branch_transition_matches_stereographic {x : ℂ
     intro hu
     apply hsouth_coord_ne
     have hcomplex := congrArg planeCoordinateAsComplex hu
-    simpa [u, planeCoordinateAsComplex_complexCoordinateAsPlane] using hcomplex
+    calc
+      ((complexProjectiveChart 1 (Fin.last 1) x) 0) = planeCoordinateAsComplex u := by
+        simpa only [u] using
+          (planeCoordinateAsComplex_complexCoordinateAsPlane
+            ((complexProjectiveChart 1 (Fin.last 1) x) 0)).symm
+      _ = planeCoordinateAsComplex 0 := hcomplex
+      _ = 0 := by simp [planeCoordinateAsComplex]
   have hnotSouth :
       stereographicNorthInv 2 u ∈ (southPoleComplement 2 : Set unitSphere2) := by
     -- The north inverse of a nonzero coordinate cannot be the south pole because

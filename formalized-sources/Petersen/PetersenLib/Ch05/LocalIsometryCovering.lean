@@ -105,7 +105,8 @@ theorem geodesicallyComplete_of_riemannianCovering
         Set.univ 0 (c t)
         ((deriv (Geodesic.chartLocalCurve (I := I') c t) t : E') :
           TangentSpace I' (c t)) := by
-      simpa only [sub_neg_eq_add, add_neg_cancel] using hcRestart.shift (-t)
+      simpa only [sub_neg_eq_add, add_neg_cancel, Set.mem_univ, Set.setOf_true] using
+        hcRestart.shift (-t)
     have hcShift' := hcShift
     rw [← hlift t] at hcShift'
     have hFδ' := hFδ

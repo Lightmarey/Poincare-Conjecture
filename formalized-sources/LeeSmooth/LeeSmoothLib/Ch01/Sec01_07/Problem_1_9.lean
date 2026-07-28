@@ -158,7 +158,7 @@ theorem complexProjectiveChartDomain_isOpen (n : ℕ) (i : Fin (n + 1)) :
   -- The quotient topology says that openness is detected on the space of nonzero representatives.
   exact (hq.isOpen_preimage).mp <| by
     -- On representatives, the domain is cut out by the open nonvanishing condition `v i ≠ 0`.
-    simpa [q, complexProjectiveChartDomain, complexProjectiveChartDomainPred] using
+    simpa [q, complexProjectiveChartDomain, complexProjectiveChartDomainPred] using!
       isOpen_ne_fun
         ((PiLp.continuous_apply 2 _ i).comp continuous_subtype_val)
         continuous_const
@@ -248,7 +248,7 @@ private theorem complexProjectiveChartToFun_continuousOn (n : ℕ) (i : Fin (n +
   -- On representatives with nonzero `i`th coordinate, the chart map is the explicit ratio map.
     simpa [q, complexProjectiveChartDomain, complexProjectiveChartToFun,
       complexProjectiveChartDomainPred]
-      using complexProjectiveAffineCoordinates_continuousOn n i
+      using! complexProjectiveAffineCoordinates_continuousOn n i
 
 private theorem complexProjectiveChartInv_continuous (n : ℕ) (i : Fin (n + 1)) :
     Continuous (complexProjectiveChartInv n i) := by
@@ -423,7 +423,7 @@ private theorem complexProjectiveNormalizedSpherePoint_continuous (n : ℕ) :
       exact_mod_cast (norm_ne_zero_iff.mpr v.2)
   -- Multiplying the representative by this continuous scale gives the normalized vector field.
   refine Continuous.subtype_mk ?_ (fun v ↦ complexProjectiveNormalizedSphereVector_mem_sphere n v)
-  simpa [complexProjectiveNormalizedSpherePoint, complexProjectiveNormalizedSphereVector] using
+  simpa [complexProjectiveNormalizedSpherePoint, complexProjectiveNormalizedSphereVector] using!
     hscale.smul continuous_subtype_val
 
 /-- Helper for Problem 1-9: normalizing projectively equivalent representatives changes only by a
@@ -497,7 +497,7 @@ private theorem complexProjectiveToSphereQuotient_continuous (n : ℕ) :
           (MulAction.orbitRel complexProjectiveUnitCircle (complexProjectiveSphere n))))
   -- Check continuity on the space of nonzero representatives where the formula is explicit.
   refine hq.continuous_iff.mpr ?_
-  simpa [q, complexProjectiveToSphereQuotient, Function.comp] using
+  simpa [q, complexProjectiveToSphereQuotient, Function.comp] using!
     (hmk.comp (complexProjectiveNormalizedSpherePoint_continuous n))
 
 /-- Helper for Problem 1-9: a point of the unit sphere is nonzero in the ambient vector space. -/
@@ -517,7 +517,7 @@ private theorem sphereQuotientToComplexProjectiveSpace_wellDefined (n : ℕ)
   rcases h with ⟨z, hz⟩
   apply (mk_eq_mk_iff' ℂ _ _ _ _).2
   refine ⟨(z : ℂ), ?_⟩
-  simpa using congrArg (fun x : complexProjectiveSphere n =>
+  simpa using! congrArg (fun x : complexProjectiveSphere n =>
     (x : complexProjectiveAmbient n)) hz
 
 /-- Helper for Problem 1-9: the sphere quotient maps to projective space by forgetting the chosen
@@ -563,7 +563,7 @@ private theorem complex_projective_sphere_quotient_inverse (n : ℕ) :
     -- A sphere representative stays fixed after projectivizing and re-normalizing.
     refine Quotient.inductionOn q ?_
     intro x
-    simpa [sphereQuotientToComplexProjectiveSpace, complexProjectiveToSphereQuotient] using
+    simpa [sphereQuotientToComplexProjectiveSpace, complexProjectiveToSphereQuotient] using!
       congrArg (complexProjectiveSphereQuotientMk n)
         (complexProjectiveNormalizedSpherePoint_of_sphere n x)
 
@@ -613,7 +613,7 @@ private theorem mem_complexProjectiveChartAt_source (n : ℕ) (x : ℂP[n]) :
     x ∈ (complexProjectiveChartAt n x).source := by
   let hx := Classical.choose_spec (complex_projective_space_has_standard_chart n x)
   simpa [complexProjectiveChartAt]
-    using hx
+    using! hx
 
 private theorem complexProjectiveChartAt_mem_atlas (n : ℕ) (x : ℂP[n]) :
     complexProjectiveChartAt n x ∈ complexProjectiveChartAtlas n := by

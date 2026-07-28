@@ -391,7 +391,9 @@ theorem isParallelAlong_eqOn (g : RiemannianMetric I M) {c : ℝ → M}
   set u : ℝ → E := fun τ => extChartAt I α (c τ) with hu_def
   set A : ℝ → E →L[ℝ] E :=
     fun t => -chartChristoffelContractionRight (I := I) g α (deriv u t) (u t) with hA
-  have hKA : ∀ t ∈ Icc a b, ‖A t‖₊ ≤ K := fun t ht => by rw [hA]; simpa using hK t ht
+  have hKA : ∀ t ∈ Icc a b, ‖A t‖₊ ≤ K := fun t ht => by
+    rw [hA]
+    simpa [hu_def] using! hK t ht
   have hsol : ∀ (X : ∀ t, TangentSpace I (c t)),
       (∀ t ∈ Ioo a b, DifferentiableAt ℝ (chartFieldRep (I := I) c α X) t) →
       (∀ t ∈ Ioo a b, derivAlongCurve (I := I) g c X t = 0) →

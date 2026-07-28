@@ -152,15 +152,12 @@ theorem metricInner_secondCov_middle_congr (g : RiemannianMetric I M)
   have hloc := tensorial_congr_apply
     (fun A q => g.metricInner q ((secondCov nabla X A Z) q) ((extendVector p w) q))
     (fun A B q => by
-      dsimp only
       rw [secondCov_add_middle, SmoothVectorField.add_apply,
         g.metricInner_add_left])
     (fun φ hφ A q => by
-      dsimp only
       rw [secondCov_smul_middle, SmoothVectorField.smul_apply,
         g.metricInner_smul_left])
     h
-  dsimp only at hloc
   rwa [extendVector_apply] at hloc
 
 /-! ### The Laplacian as a frame sum near a point -/
@@ -416,7 +413,6 @@ theorem sum_metricInner_secondCov_gradientField_eq_dir_laplacianAt
     LinearMap.mk₂ ℝ
       (fun v w => g.metricInner p ((secondCov nabla G (extendVector p v) G) p) w)
       (fun v₁ v₂ w => by
-        dsimp only
         have h := metricInner_secondCov_middle_congr g nabla G G
           (Y := extendVector p (v₁ + v₂))
           (Y' := extendVector p v₁ + extendVector p v₂) w
@@ -425,7 +421,6 @@ theorem sum_metricInner_secondCov_gradientField_eq_dir_laplacianAt
         rw [h, secondCov_add_middle, SmoothVectorField.add_apply,
           g.metricInner_add_left])
       (fun c v w => by
-        dsimp only
         have h := metricInner_secondCov_middle_congr g nabla G G
           (Y := extendVector p (c • v))
           (Y' := SmoothVectorField.smul (fun _ => c) contMDiff_const

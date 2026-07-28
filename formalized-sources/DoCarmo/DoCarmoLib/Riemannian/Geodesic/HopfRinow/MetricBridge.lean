@@ -43,30 +43,38 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpa
 
 omit [InnerProductSpace ℝ E] [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** Readback expansion: the inverse trivialization at `α`, applied at a
-foot `b` to a coordinate vector `a : E`, is the linear combination of chart-basis
-fibre vectors with the chart coordinates of `a`. Holds unconditionally: off the base
-set both sides are the junk-zero readback. -/
-theorem trivializationAt_symm_eq_sum_chartBasisVecFiber (α : M) (b : M) (a : E) :
+foot `b` in the chart source to a coordinate vector `a : E`, is the linear
+combination of chart-basis fibre vectors with the chart coordinates of `a`. -/
+theorem trivializationAt_symm_eq_sum_chartBasisVecFiber (α : M) (b : M) (a : E)
+    (hb : b ∈ (chartAt H α).source) :
     (trivializationAt E (TangentSpace I) α).symm b a
       = ∑ i, Geodesic.chartCoord (E := E) i a • Tensor.chartBasisVecFiber (I := I) α i b := by
-  rw [← Bundle.Trivialization.coe_symmₗ (R := ℝ) (trivializationAt E (TangentSpace I) α) b]
+  rw [← Bundle.Trivialization.coe_symmₗ (R := ℝ)
+    (trivializationAt E (TangentSpace I) α) hb]
   conv_lhs => rw [← Module.Basis.sum_repr (Module.finBasis ℝ E) a]
   rw [map_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [map_smul]
-  rfl
+  change ((Module.finBasis ℝ E).repr a) i •
+      (Bundle.Trivialization.symmₗ ℝ (trivializationAt E (TangentSpace I) α) b)
+        ((Module.finBasis ℝ E) i)
+    = ((Module.finBasis ℝ E).repr a) i •
+      (trivializationAt E (TangentSpace I) α).symm b ((Module.finBasis ℝ E) i)
+  rw [Bundle.Trivialization.coe_symmₗ (R := ℝ)
+    (trivializationAt E (TangentSpace I) α) hb]
 
 omit [InnerProductSpace ℝ E] [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** Bilinear expansion of the intrinsic metric against two readbacks:
 `g_b(e.symm b a, e.symm b c) = ∑ᵢⱼ G_{ij}(b) aⁱ cʲ`, where `G` is the chart Gram
 matrix. -/
-theorem metricInner_trivializationAt_symm (g : RiemannianMetric I M) (α : M) (b : M) (a c : E) :
+theorem metricInner_trivializationAt_symm (g : RiemannianMetric I M) (α : M) (b : M) (a c : E)
+    (hb : b ∈ (chartAt H α).source) :
     g.metricInner b ((trivializationAt E (TangentSpace I) α).symm b a)
         ((trivializationAt E (TangentSpace I) α).symm b c)
       = ∑ i, ∑ j, Tensor.chartGramMatrix (I := I) g α b i j
           * Geodesic.chartCoord (E := E) i a * Geodesic.chartCoord (E := E) j c := by
-  rw [trivializationAt_symm_eq_sum_chartBasisVecFiber,
-    trivializationAt_symm_eq_sum_chartBasisVecFiber]
+  rw [trivializationAt_symm_eq_sum_chartBasisVecFiber α b a hb,
+    trivializationAt_symm_eq_sum_chartBasisVecFiber α b c hb]
   simp only [RiemannianMetric.metricInner_apply, map_sum, ContinuousLinearMap.sum_apply,
     map_smul, ContinuousLinearMap.smul_apply, smul_eq_mul]
   simp only [Finset.mul_sum]
@@ -83,7 +91,7 @@ theorem chartMetricInner_extChartAt_eq_metricInner (g : RiemannianMetric I M) (�
     chartMetricInner (I := I) g α (extChartAt I α b) a c
       = g.metricInner b ((trivializationAt E (TangentSpace I) α).symm b a)
           ((trivializationAt E (TangentSpace I) α).symm b c) := by
-  rw [metricInner_trivializationAt_symm]
+  rw [metricInner_trivializationAt_symm g α b a c hb]
   have hsrc : b ∈ (extChartAt I α).source := by rw [extChartAt_source]; exact hb
   have hinv : (extChartAt I α).symm (extChartAt I α b) = b := (extChartAt I α).left_inv hsrc
   simp only [chartMetricInner_def, chartGramOnE_def, hinv]
@@ -96,9 +104,12 @@ theorem trivializationAt_symm_eq_tangentCoordChange (α : M) {b : M}
     (hb : b ∈ (chartAt H α).source) (a : E) :
     (trivializationAt E (TangentSpace I) α).symm b a = tangentCoordChange I α b b a := by
   have h := TangentBundle.symmL_trivializationAt_eq_core (I := I) (b₀ := α) (b := b) hb
-  rw [show (trivializationAt E (TangentSpace I) α).symm b a
-        = (trivializationAt E (TangentSpace I) α).symmL ℝ b a from rfl, h]
-  rfl
+  calc
+    (trivializationAt E (TangentSpace I) α).symm b a =
+        (trivializationAt E (TangentSpace I) α).symmL ℝ b a :=
+      (Bundle.Trivialization.symmL_apply (R := ℝ)
+        (trivializationAt E (TangentSpace I) α) hb a).symm
+    _ = tangentCoordChange I α b b a := congrArg (fun f => f a) h
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** At the basepoint the readback is the identity: the inverse
@@ -173,7 +184,7 @@ theorem chartGramMatrix_change (g : RiemannianMetric I M) (α β : M) {x : M}
               (tangentCoordChange I β α x ((Module.finBasis ℝ E) i))
           * Geodesic.chartCoord (E := E) b
               (tangentCoordChange I β α x ((Module.finBasis ℝ E) j)) := by
-  rw [← metricInner_trivializationAt_symm g α x,
+  rw [← metricInner_trivializationAt_symm g α x _ _ hxα,
     ← chartBasisVecFiber_eq_symm_tangentCoordChange α β hxα hxβ i,
     ← chartBasisVecFiber_eq_symm_tangentCoordChange α β hxα hxβ j]
   rfl

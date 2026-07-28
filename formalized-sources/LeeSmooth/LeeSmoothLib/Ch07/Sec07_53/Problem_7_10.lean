@@ -134,7 +134,7 @@ theorem complexProjectiveActionLocalModel_contDiffWithinAt
         (fun p : (E →L[ℂ] E) × EuclideanSpace ℂ (Fin n) ↦
           restrictScalarsCLM p.1) := by
     -- Restrict scalars on the operator so evaluation is an `ℝ`-smooth bilinear map.
-    simpa [restrictScalarsCLM] using restrictScalarsCLM.contDiff.comp contDiff_fst
+    simpa [restrictScalarsCLM] using! restrictScalarsCLM.contDiff.comp contDiff_fst
   have hApply :
       ContDiff ℝ ∞
         (fun p : (E →L[ℂ] E) × EuclideanSpace ℂ (Fin n) ↦
@@ -317,7 +317,7 @@ theorem complexProjectiveAction_continuous :
   let q : { v : E // v ≠ 0 } → ℂP[n] := Projectivization.mk' ℂ
   have hq : Topology.IsQuotientMap q := by
     -- View complex projective space as the quotient of punctured homogeneous coordinates.
-    simpa [q, Projectivization.mk'] using
+    simpa [q, Projectivization.mk'] using!
       (isQuotientMap_quotient_mk' :
         Topology.IsQuotientMap
           (@Quotient.mk'
@@ -325,7 +325,7 @@ theorem complexProjectiveAction_continuous :
             (projectivizationSetoid ℂ E)))
   have hqCont : Continuous q := by
     -- The quotient map from punctured vectors to projective space is continuous.
-    simpa [q, Projectivization.mk'] using
+    simpa [q, Projectivization.mk'] using!
       (continuous_quotient_mk' :
         Continuous
           (@Quotient.mk'
@@ -343,7 +343,7 @@ theorem complexProjectiveAction_continuous :
       (fun p ↦ (smul_ne_zero_iff_ne p.1).2 p.2.2)
   -- Descend the continuous representative action through the projectivization quotient map.
   refine hq.continuous_lift_prod_right ?_
-  simpa [q, Projectivization.mk'_eq_mk, Projectivization.smul_mk] using hqCont.comp hRep
+  simpa [q, Projectivization.mk'_eq_mk, Projectivization.smul_mk] using! hqCont.comp hRep
 
 /-- Helper for Problem 7-10: after choosing source and target standard charts, the chart-conjugated
 projective action is smooth in the Euclidean model. -/
@@ -469,7 +469,7 @@ theorem complexProjectiveAction_contMDiffAt_of_chart_pair
     continuousWithinAt_univ, Set.preimage_univ, Set.univ_inter]
   refine ⟨?_, ?_⟩
   · exact complexProjectiveAction_continuous (n := n) |>.continuousAt
-  · simpa [e, eU, p0] using
+  · simpa [e, eU, p0] using!
       complexProjectiveAction_writtenInCharts_contDiffWithinAt (n := n) (p := p) hi hj
 
 /-- Problem 7-10 (2): the canonical continuous-linear automorphism action on `ℂPⁿ` is smooth. -/
@@ -533,7 +533,7 @@ def complex_generalLinear_toContinuousLinearUnits_lie_hom :
             (Units.contMDiff_val (𝕜 := ℝ) (R := M) (n := ∞))
         -- Lift the smooth ambient map through the open embedding `Units.val`.
         refine ContMDiff.of_comp_isOpenEmbedding Units.isOpenEmbedding_val ?_
-        simpa [complexGeneralLinear_toContinuousLinearUnits_val_eq] using hComp }
+        simpa [complexGeneralLinear_toContinuousLinearUnits_val_eq] using! hComp }
 
 /-- Helper for Problem 7-10: any smooth homomorphism from `GL(n + 1, ℂ)` to the canonical
 continuous-linear automorphism owner induces a smooth action on `ℂPⁿ` via `MulAction.compHom`. -/

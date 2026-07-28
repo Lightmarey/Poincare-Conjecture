@@ -103,7 +103,8 @@ theorem exists_preimage_orthogonal_ker
   have hdiag : ∀ w : K, Bl.restrict K w w = 0 → w = 0 := by
     intro w h0
     have h0' : B (w : V) (w : V) = 0 := by
-      simpa [LinearMap.BilinForm.restrict_apply] using h0
+      rw [← hBl_apply]
+      simpa only [LinearMap.BilinForm.restrict_apply, LinearMap.domRestrict_apply] using h0
     refine Subtype.ext ?_
     by_contra hne
     exact (hpos _ hne).ne' h0'
@@ -391,7 +392,9 @@ theorem quotientForm_contMDiffAt (g : RiemannianMetric I M) {q : M → M'}
   have hcoeτ : ∀ (p : M) (hp : p ∈ τ.baseSet),
       (τ.symm p : E → TangentSpace I p) = ⇑(τ.continuousLinearEquivAt ℝ p hp).symm := by
     intro p hp
-    rw [τ.symm_continuousLinearEquivAt_eq hp]; rfl
+    rw [τ.symm_continuousLinearEquivAt_eq hp]
+    funext x
+    exact (τ.symmL_apply hp x).symm
   have hGval : ∀ p : M, p ∈ τ.baseSet → ∀ x x' : E,
       G p x x' = g.metricInner p (τ.symm p x) (τ.symm p x') := by
     intro p hp x x'
@@ -416,7 +419,9 @@ theorem quotientForm_contMDiffAt (g : RiemannianMetric I M) {q : M → M'}
           : E' → TangentSpace I' (q (s y)))
         = ⇑((trivializationAt E' (TangentSpace I')
               (q (s y₀))).continuousLinearEquivAt ℝ (q (s y)) hqy₀).symm := by
-      rw [Bundle.Trivialization.symm_continuousLinearEquivAt_eq _ hqy₀]; rfl
+      rw [Bundle.Trivialization.symm_continuousLinearEquivAt_eq _ hqy₀]
+      funext x
+      exact ((trivializationAt E' (TangentSpace I') (q (s y₀))).symmL_apply hqy₀ x).symm
     have key : (trivializationAt E' (TangentSpace I') (q (s y₀))).symm (q (s y)) (D y x)
         = mfderiv I I' q (s y) (τ.symm (s y) x) := by
       rw [hDx, hcoeσ₀, ContinuousLinearEquiv.symm_apply_apply, hcoeτ (s y) hsy]
@@ -438,7 +443,9 @@ theorem quotientForm_contMDiffAt (g : RiemannianMetric I M) {q : M → M'}
     rw [hcoeτ (s y₀) hp₀mem, ContinuousLinearEquiv.symm_apply_apply, hz] at hkey
     have hcoeσ : (σ.symm (q (s y₀)) : E' → TangentSpace I' (q (s y₀)))
         = ⇑(σ.continuousLinearEquivAt ℝ (q (s y₀)) hqmem).symm := by
-      rw [σ.symm_continuousLinearEquivAt_eq hqmem]; rfl
+      rw [σ.symm_continuousLinearEquivAt_eq hqmem]
+      funext x
+      exact (σ.symmL_apply hqmem x).symm
     rw [hcoeσ] at hkey
     have := congrArg (σ.continuousLinearEquivAt ℝ (q (s y₀)) hqmem) hkey
     rwa [ContinuousLinearEquiv.apply_symm_apply, ContinuousLinearEquiv.apply_symm_apply] at this
@@ -473,7 +480,9 @@ theorem quotientForm_contMDiffAt (g : RiemannianMetric I M) {q : M → M'}
     set ι : E' ≃L[ℝ] E' := σ.continuousLinearEquivAt ℝ (q (s y)) hqy with hι
     have hcoeσq : (σ.symm (q (s y)) : E' → TangentSpace I' (q (s y)))
         = ⇑(σ.continuousLinearEquivAt ℝ (q (s y)) hqy).symm := by
-      rw [σ.symm_continuousLinearEquivAt_eq hqy]; rfl
+      rw [σ.symm_continuousLinearEquivAt_eq hqy]
+      funext x
+      exact (σ.symmL_apply hqy x).symm
     have hθsymm : ∀ v : E, (τ.symm (s y) v : E) = θ.symm v := fun v => by
       rw [hθ]; exact congrFun (hcoeτ (s y) hsy) v
     have hιsymm : ∀ w : E', (σ.symm (q (s y)) w : E') = ι.symm w := fun w => by

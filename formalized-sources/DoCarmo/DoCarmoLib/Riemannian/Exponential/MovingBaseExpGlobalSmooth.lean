@@ -56,7 +56,8 @@ theorem contMDiff_infty_of_isGeodesic [SigmaCompactSpace M]
   let p : M := γ 0
   obtain ⟨v, _a, hv, _hev, _ha, _hchr⟩ := hgeo 0
   have hv' : HasDerivAt (fun s => extChartAt I p (γ s)) v 0 := by
-    simpa only [p, Riemannian.Geodesic.chartLocalCurve_def] using hv
+    unfold Riemannian.Geodesic.chartLocalCurve at hv
+    simpa only [p] using hv
   have heq : γ = Riemannian.Geodesic.globalGeodesic (I := I) g hg p v :=
     Riemannian.Geodesic.globalGeodesic_eq (I := I) g hg hgeo hγc rfl hv'
   have hγexp : γ = fun t => expMapGlobal (I := I) g hg p (t • v) := by
@@ -69,7 +70,7 @@ theorem contMDiff_infty_of_isGeodesic [SigmaCompactSpace M]
         (expMapGlobal_smul (I := I) g hg p (v : TangentSpace I p) t).symm
   rw [hγexp]
   have hlin : ContDiff ℝ ∞ (fun t : ℝ => t • (v : E)) := by fun_prop
-  simpa only [Function.comp_apply] using
+  simpa only [Function.comp_def] using
     (contMDiff_expMapGlobal (I := I) g hg p).comp hlin.contMDiff
 
 /-! ### Zero-slice readback -/
@@ -93,8 +94,9 @@ theorem hasDerivAt_extChartAt_expMapGlobal_smul
     funext s
     rw [expMapGlobal_smul]
   rw [hfun]
-  simpa only [Riemannian.Geodesic.chartReading_def] using
-    Riemannian.Geodesic.hasDerivAt_chartReading_globalGeodesic g hg p v
+  have h := Riemannian.Geodesic.hasDerivAt_chartReading_globalGeodesic g hg p v
+  unfold Riemannian.Geodesic.chartReading at h
+  exact h
 
 /-! ### The flow composition and readback -/
 

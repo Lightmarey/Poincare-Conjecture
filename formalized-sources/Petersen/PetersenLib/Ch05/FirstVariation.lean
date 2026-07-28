@@ -148,7 +148,7 @@ theorem continuousOn_chartMetricInner_comp {X : Type*} [TopologicalSpace X]
       ContinuousOn (fun x => Geodesic.chartCoord (E := E) k (w x)) S := by
     intro k w hw
     have := (Geodesic.chartCoordFunctional (E := E) k).continuous.comp_continuousOn hw
-    simpa using this
+    simpa [Function.comp_def] using! this
   exact (((chartGramOnE_contDiffOn (I := I) g α i j).continuousOn.comp hy hmem).mul
     (hcoord i u hu)).mul (hcoord j v hv)
 
@@ -171,7 +171,7 @@ theorem continuousOn_chartChristoffelContraction_comp {X : Type*} [TopologicalSp
       ContinuousOn (fun x => Geodesic.chartCoord (E := E) k' (w x)) S := by
     intro k' w hw
     have := (Geodesic.chartCoordFunctional (E := E) k').continuous.comp_continuousOn hw
-    simpa using this
+    simpa [Function.comp_def] using! this
   exact (((chartChristoffel_contDiffOn_interior (I := I) g α i j k).continuousOn.comp
     hy hmem').mul (hcoord i u hu)).mul (hcoord j v hv)
 

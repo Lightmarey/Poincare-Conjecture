@@ -123,6 +123,82 @@ theorem comp {g : F → F} {mu : ℝ}
 
 end IsConformalWithCoeff
 
+/-! ## The differentiated conformality identity (Liouville's proof) -/
+
+/-- **do Carmo Ch. 8 §5, equation (7) and its polarized form.**
+
+At a point of a conformal map, let `L` be the first differential, `B` the
+second differential, and `dlam` the differential of the coefficient of
+conformality.  Differentiating
+`⟪L u, L v⟫ = lam² ⟪u, v⟫` gives `hdiff`.  The cyclic polarization of those
+identities determines the whole symmetric second differential.  The vector
+`gradLam` is the Riesz representative of `dlam` (the hypothesis `hgrad`
+records that representation explicitly, so the lemma is independent of the
+choice of a Riesz-map API).
+
+The orthogonal specialization below is the form used in do Carmo's proof:
+for `⟪u,v⟫ = 0`, the last term vanishes and one obtains equation (7). -/
+theorem liouville_secondDerivative_formula
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [FiniteDimensional ℝ E]
+    (L : E →L[ℝ] E) (B : E →L[ℝ] E →L[ℝ] E)
+    (lam : ℝ) (dlam : E →L[ℝ] ℝ) (gradLam : E)
+    (hlam : lam ≠ 0)
+    (hL : ∀ u v, ⟪L u, L v⟫ = lam ^ 2 * ⟪u, v⟫)
+    (hgrad : ∀ u, dlam u = ⟪gradLam, u⟫)
+    (hBsymm : ∀ u v, B u v = B v u)
+    (hdiff : ∀ u v w,
+      ⟪B u v, L w⟫ + ⟪L v, B u w⟫ = 2 * lam * dlam u * ⟪v, w⟫)
+    (u v : E) :
+    B u v = lam⁻¹ •
+      (dlam u • L v + dlam v • L u - ⟪u, v⟫ • L gradLam) := by
+  have hinj : Function.Injective L := by
+    intro x y hxy
+    have hzero : L (x - y) = 0 := by rw [map_sub, hxy, sub_self]
+    have hprod : lam ^ 2 * ⟪x - y, x - y⟫ = 0 := by
+      rw [← hL (x - y) (x - y), hzero, inner_zero_left]
+    have hinner : ⟪x - y, x - y⟫ = 0 :=
+      (mul_eq_zero.mp hprod).resolve_left (pow_ne_zero 2 hlam)
+    exact sub_eq_zero.mp (inner_self_eq_zero.mp hinner)
+  have hsurj : Function.Surjective L :=
+    LinearMap.surjective_of_injective (f := L.toLinearMap) hinj
+  apply ext_inner_right ℝ
+  intro z
+  obtain ⟨w, rfl⟩ := hsurj z
+  have h1 := hdiff u v w
+  have h2 := hdiff v w u
+  have h3 := hdiff w u v
+  rw [real_inner_comm (B u w) (L v)] at h1
+  rw [real_inner_comm (B v u) (L w), hBsymm v u] at h2
+  rw [real_inner_comm u w] at h2
+  rw [hBsymm w u, real_inner_comm (B w v) (L u), hBsymm w v] at h3
+  have hformula :
+      ⟪B u v, L w⟫ =
+        lam * (dlam u * ⟪v, w⟫ + dlam v * ⟪u, w⟫ - dlam w * ⟪u, v⟫) := by
+    linear_combination (h1 + h2 - h3) / 2
+  rw [hformula]
+  simp only [inner_smul_left, inner_sub_left, inner_add_left, RCLike.conj_to_real,
+    hL, hgrad]
+  field_simp
+
+/-- The orthogonal-pair specialization of
+`liouville_secondDerivative_formula`, i.e. do Carmo's equation (7). -/
+theorem liouville_secondDerivative_formula_of_inner_eq_zero
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [FiniteDimensional ℝ E]
+    (L : E →L[ℝ] E) (B : E →L[ℝ] E →L[ℝ] E)
+    (lam : ℝ) (dlam : E →L[ℝ] ℝ) (gradLam : E)
+    (hlam : lam ≠ 0)
+    (hL : ∀ u v, ⟪L u, L v⟫ = lam ^ 2 * ⟪u, v⟫)
+    (hgrad : ∀ u, dlam u = ⟪gradLam, u⟫)
+    (hBsymm : ∀ u v, B u v = B v u)
+    (hdiff : ∀ u v w,
+      ⟪B u v, L w⟫ + ⟪L v, B u w⟫ = 2 * lam * dlam u * ⟪v, w⟫)
+    {u v : E} (huv : ⟪u, v⟫ = 0) :
+    B u v = lam⁻¹ • (dlam u • L v + dlam v • L u) := by
+  rw [liouville_secondDerivative_formula L B lam dlam gradLam hlam hL hgrad hBsymm hdiff]
+  rw [huv, zero_smul, sub_zero]
+
 /-- **do Carmo Ch. 8 §5.** The identity map is conformal with coefficient of
 conformality `1` (the degenerate isometry/dilatation). -/
 theorem isConformalWithCoeff_id (x : F) : IsConformalWithCoeff (id : F → F) x 1 := by
@@ -174,5 +250,30 @@ theorem isConformalWithCoeff_inversion [CompleteSpace F] (p₀ : F) {x : F}
     LinearIsometryEquiv.inner_map_map]
   have hne : dist x p₀ ≠ 0 := ne_of_gt hdist
   field_simp
+
+/-- **do Carmo Ch. 8 §5, Example 5.1.** Unit-sphere inversion is an
+involution. -/
+theorem inversion_unit_involutive (c : F) :
+    Function.Involutive (EuclideanGeometry.inversion c 1) :=
+  EuclideanGeometry.inversion_involutive c one_ne_zero
+
+/-- **do Carmo Ch. 8 §5, Example 5.1.** Unit-sphere inversion fixes every
+point of the sphere. -/
+theorem inversion_unit_fixed_of_mem_sphere {c x : F} (hx : x ∈ Metric.sphere c 1) :
+    EuclideanGeometry.inversion c 1 x = x :=
+  EuclideanGeometry.inversion_of_mem_sphere hx
+
+/-- **do Carmo Ch. 8 §5, Example 5.1.** Unit-sphere inversion lies on the
+radial line through its center. -/
+theorem inversion_unit_eq_lineMap (c x : F) :
+    EuclideanGeometry.inversion c 1 x =
+      AffineMap.lineMap c x ((1 / dist x c) ^ 2) :=
+  EuclideanGeometry.inversion_eq_lineMap c 1 x
+
+/-- **do Carmo Ch. 8 §5, Example 5.1.** Unit-sphere inversion sends a point
+at distance `r` from the center to one at distance `r⁻¹`. -/
+theorem dist_inversion_unit_center (c x : F) :
+    dist (EuclideanGeometry.inversion c 1 x) c = 1 / dist x c := by
+  simpa using EuclideanGeometry.dist_inversion_center c x 1
 
 end Riemannian

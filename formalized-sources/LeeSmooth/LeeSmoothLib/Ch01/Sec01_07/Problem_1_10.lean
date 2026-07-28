@@ -184,7 +184,7 @@ theorem standard_chart_matrix_unique {k n : ℕ}
         ((left_coordinate_plane k n).prodEquivOfIsCompl (right_coordinate_plane k n)
           (coordinate_planes_isCompl k n)).toLinearMap) = S.1 := by
     -- Example 1.36 reconstructs `S` as the graph of its chart map.
-    simpa using congrArg Subtype.val
+    simpa using! congrArg Subtype.val
       (grassmannian.graph_chartFun_eq (coordinate_planes_isCompl k n)
         (left_coordinate_plane_finrank k n) S hS)
   have hgraphConcrete : S.1 = LinearMap.graph chartMap := by

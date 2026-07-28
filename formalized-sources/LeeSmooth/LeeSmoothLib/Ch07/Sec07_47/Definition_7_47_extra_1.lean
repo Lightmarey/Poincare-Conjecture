@@ -116,7 +116,7 @@ def toContinuousMulEquiv (F : LieGroupIsomorphism I J G H) : G ≃ₜ* H where
   toMulEquiv := toMulEquiv F
   continuous_toFun := F.toDiffeomorph.continuous
   continuous_invFun := by
-    let Φ : G ≃ₘ⟮I, J⟯ H := F.toDiffeomorph
-    simpa using Φ.symm.continuous
+    change Continuous F.toDiffeomorph.symm
+    exact F.toDiffeomorph.symm.continuous
 
 end LieGroupIsomorphism

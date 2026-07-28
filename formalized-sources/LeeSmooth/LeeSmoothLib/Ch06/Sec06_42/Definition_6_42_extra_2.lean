@@ -125,8 +125,9 @@ theorem contMDiff_endpointMap
       ContMDiff (𝓡 n) ((𝓡 n).prod (𝓡 n)) ∞ (normal_bundle_toProd n m M) :=
     h_toProd.isImmersion.contMDiff
   -- Compose the ambient addition map with the normal-bundle coordinates and simplify.
-  simpa [endpointMap, normal_bundle_toProd] using
-    (contMDiff_add (𝓡 n) ∞).comp hSmoothToProd
+  change ContMDiff (𝓡 n) (𝓡 n) ∞
+    ((fun p ↦ p.1 + p.2) ∘ normal_bundle_toProd n m M)
+  exact (contMDiff_add (𝓡 n) ∞).comp hSmoothToProd
 
 variable [ChartedSpace (EuclideanSpace ℝ (Fin n)) (NM[n, m; M])]
 variable [IsManifold (𝓡 n) ∞ (NM[n, m; M])]

@@ -69,7 +69,7 @@ a) ⟹ b)). Applied to `f = exp_p : T_pM → M`, the hypothesis `ho` is "the geo
 through the origin are straight lines" and the conclusion is the Hadamard diffeomorphism. -/
 def DCExpandsMetric.diffeomorphOfSimplyConnectedOfGeodesicCompleteAt
     [T2Space M'] [I'.Boundaryless] [ConnectedSpace M]
-    [SimplyConnectedSpace M'] [LocPathConnectedSpace M']
+    [SimplyConnectedSpace M'] [LocallyPathConnectedSpace M']
     {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'} {f : M → M'}
     (hexp : DCExpandsMetric gM gN f) (hgM : gM.IsRiemannianDist)
     (o : M) (ho : ∀ v : TangentSpace I o, ∃ γ : ℝ → M, γ 0 = o ∧
@@ -84,7 +84,7 @@ def DCExpandsMetric.diffeomorphOfSimplyConnectedOfGeodesicCompleteAt
 itself: the constructed diffeomorphism is `f`, upgraded, not a new map. -/
 theorem DCExpandsMetric.diffeomorphOfSimplyConnectedOfGeodesicCompleteAt_coe
     [T2Space M'] [I'.Boundaryless] [ConnectedSpace M]
-    [SimplyConnectedSpace M'] [LocPathConnectedSpace M']
+    [SimplyConnectedSpace M'] [LocallyPathConnectedSpace M']
     {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'} {f : M → M'}
     (hexp : DCExpandsMetric gM gN f) (hgM : gM.IsRiemannianDist)
     (o : M) (ho : ∀ v : TangentSpace I o, ∃ γ : ℝ → M, γ 0 = o ∧

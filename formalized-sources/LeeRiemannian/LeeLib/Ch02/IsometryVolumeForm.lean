@@ -157,6 +157,7 @@ theorem IsMetricPreserving.pullbackAlternating_volumeForm (h : IsMetricPreservin
     rw [h.coe_pushBasis hon hx]; exact h.orthonormal_pushforward hon hx
   have hval := volumeFormL_apply_eq_one (o' (φ x)) ((h.pushBasis hon hx).toOrthonormalBasis hon')
     (by rwa [Basis.toBasis_toOrthonormalBasis])
+  change (o' (φ x)).volumeFormL (fun i => mfderiv I I' φ x (Y i x)) = 1
   simpa only [Basis.coe_toOrthonormalBasis, h.coe_pushBasis hon hx] using hval
 
 /-- The orientation hypothesis of `pullbackAlternating_volumeForm` is dischargeable: for the

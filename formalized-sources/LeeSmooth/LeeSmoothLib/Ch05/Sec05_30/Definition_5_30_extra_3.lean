@@ -34,8 +34,8 @@ class IsDefiningMap (I : ModelWithCorners ℝ E H) (J : ModelWithCorners ℝ E' 
   isLevelSet : S = Φ ⁻¹' {level}
   surj_mfderiv : ∀ x : M, x ∈ S → Function.Surjective (mfderiv I J Φ x)
 
-/-- A defining map canonically provides the smoothness hypothesis as a `Fact`. -/
-instance instFactContMDiffIsDefiningMap (I : ModelWithCorners ℝ E H)
+/-- A defining map explicitly packages the smoothness hypothesis as a `Fact`. -/
+def instFactContMDiffIsDefiningMap (I : ModelWithCorners ℝ E H)
     (J : ModelWithCorners ℝ E' H') (S : Set M) (Φ : M → N) (h : IsDefiningMap I J S Φ) :
     Fact (ContMDiff I J ∞ Φ) where
   out := h.contMDiff
@@ -56,8 +56,8 @@ class IsLocalDefiningMapOn (I : ModelWithCorners ℝ E H) (J : ModelWithCorners 
   isLevelSet : {x : U | (x : M) ∈ S} = Φ ⁻¹' {level}
   surj_mfderiv : ∀ x : U, (x : M) ∈ S → Function.Surjective (mfderiv I J Φ x)
 
-/-- A local defining map canonically provides the smoothness hypothesis as a `Fact`. -/
-instance instFactContMDiffIsLocalDefiningMapOn (I : ModelWithCorners ℝ E H)
+/-- A local defining map explicitly packages the smoothness hypothesis as a `Fact`. -/
+def instFactContMDiffIsLocalDefiningMapOn (I : ModelWithCorners ℝ E H)
     (J : ModelWithCorners ℝ E' H') (S : Set M) (U : TopologicalSpace.Opens M) (Φ : U → N)
     (h : IsLocalDefiningMapOn I J S U Φ) :
     Fact (ContMDiff I J ∞ Φ) where

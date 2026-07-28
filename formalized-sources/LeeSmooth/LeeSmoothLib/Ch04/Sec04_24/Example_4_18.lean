@@ -18,16 +18,17 @@ def cubicAxisMap : ℝ → Plane :=
 theorem cubicAxisMap_contDiff :
     ContDiff ℝ ∞ cubicAxisMap := by
   -- View `γ` as the product of the cubic coordinate and the constant zero coordinate.
-  simpa [cubicAxisMap] using
-    (((contDiff_id : ContDiff ℝ ∞ fun t : ℝ ↦ t).pow 3).prodMk
-      (contDiff_const : ContDiff ℝ ∞ fun _ : ℝ ↦ (0 : ℝ)))
+  change ContDiff ℝ ∞ (fun t : ℝ ↦ (t ^ (3 : ℕ), 0))
+  exact ((contDiff_id : ContDiff ℝ ∞ fun t : ℝ ↦ t).pow 3).prodMk
+    (contDiff_const : ContDiff ℝ ∞ fun _ : ℝ ↦ (0 : ℝ))
 
 /-- Helper for Example 4.18: the range of the real cubic map is order-connected. -/
 lemma real_cubic_range_ordConnected :
     Set.OrdConnected (Set.range (fun t : ℝ ↦ t ^ (3 : ℕ))) := by
   -- The image of the connected line under a continuous map is preconnected.
   refine (isPreconnected_range ?_).ordConnected
-  simpa using (continuous_id.pow 3 : Continuous fun t : ℝ ↦ t ^ (3 : ℕ))
+  change Continuous (fun t : ℝ ↦ t ^ (3 : ℕ))
+  exact continuous_id.pow 3
 
 /-- Helper for Example 4.18: the real cubic map is a topological embedding. -/
 lemma real_cubic_isEmbedding :
@@ -43,8 +44,8 @@ lemma real_cubic_isEmbedding :
 theorem cubicAxisMap_isEmbedding :
     IsEmbedding cubicAxisMap := by
   -- Factor `γ` as the cubic map followed by the inclusion of the x-axis in `ℝ²`.
-  simpa [cubicAxisMap] using
-    (isEmbedding_prodMkLeft (0 : ℝ)).comp real_cubic_isEmbedding
+  change IsEmbedding (fun t : ℝ ↦ (t ^ (3 : ℕ), 0))
+  exact (isEmbedding_prodMkLeft (0 : ℝ)).comp real_cubic_isEmbedding
 
 /-- Example 4.18 (3): The derivative of `γ(t) = (t^3, 0)` vanishes at `0`. -/
 -- Proof sketch: Compute the Fréchet derivative coordinatewise. The derivative of `t ↦ t^3` at `0`
@@ -59,7 +60,8 @@ theorem cubicAxisMap_fderiv_zero :
     have hpow : DifferentiableAt ℝ (fun x : ℝ ↦ x ^ (3 : ℕ)) 0 := differentiableAt_id.pow 3
     have hconst : DifferentiableAt ℝ (fun _ : ℝ ↦ (0 : ℝ)) 0 :=
       differentiableAt_const (c := (0 : ℝ))
-    simpa [cubicAxisMap] using hpow.fderiv_prodMk hconst
+    change fderiv ℝ (fun x : ℝ ↦ (x ^ (3 : ℕ), 0)) 0 = _
+    exact hpow.fderiv_prodMk hconst
   -- The cubic derivative vanishes at the origin, and the constant coordinate has zero derivative.
   have hpow_zero : fderiv ℝ (fun x : ℝ ↦ x ^ (3 : ℕ)) 0 = 0 := by
     simpa using (fderiv_pow_ring (𝕜 := ℝ) (𝔸 := ℝ) (x := 0) 3)

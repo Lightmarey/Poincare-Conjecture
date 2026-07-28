@@ -1,5 +1,8 @@
 import DoCarmoLib.Riemannian.Variation.Energy
+import DoCarmoLib.Riemannian.Variation.ArcLengthBridge
 import DoCarmoLib.Riemannian.Geodesic.HopfRinow.ConstantSpeed
+import DoCarmoLib.Riemannian.Exponential.MinimizingGeodesic
+import DoCarmoLib.Riemannian.Manifold.DoCarmoCh3
 
 /-!
 # Minimizing geodesics minimize energy (do Carmo Ch. 9, §2, Lemma 2.3)
@@ -16,67 +19,47 @@ whose steps are: (i) `γ` is a geodesic, hence has constant speed, hence realize
 *equality* in the Schwarz comparison `lem:dc-ch9-2-2-schwarz`; (ii) `γ` is minimizing,
 so `L(γ) ≤ L(c)`; (iii) the Schwarz comparison for `c`.
 
-## What this file proves, and the shape of the minimality hypothesis
+## Core comparison and minimizing-segment assembly
 
 Steps (i) and (iii) are `dcArcLength_sq_eq_mul_dcEnergy_of_isGeodesicOn` and the
 library's `dcArcLength_sq_le_mul_dcEnergy`; the chain is `dcEnergy_le_of_dcArcLength_le`.
 
-Minimality enters **only** through step (ii), and only as the inequality
-`L(γ) ≤ L(c)` — so that is the hypothesis taken here, rather than a metric
-("`d(p,q) = L(γ)`") formulation.  This is not a shortcut but a scope decision worth
-recording, because it is what makes the lemma usable at all today:
+The reusable core takes step (ii) directly as `L(γ) ≤ L(c)`.  The library's literal
+predicate `Geodesic.IsMinimizingGeodesicSegment` instead quantifies over every
+piecewise-`C¹` competitor using `Manifold.pathELength`, an `ℝ≥0∞` lower integral.
+`DCArcLength` is an `ℝ` Bochner integral, so `ArcLengthBridge.lean` supplies the exact
+conversion between the two length idioms.
 
-* DoCarmoLib has **no `IsMinimizingGeodesic` predicate**.  Minimality is spelled out
-  inline, and in two mutually non-interchangeable idioms — `edist (γ a) (γ b) =
-  ENNReal.ofReal (ℓ * (b - a))` (`Exponential/MinimizingGeodesic.lean`) and
-  `∀ s t ∈ Icc 0 1, dist (γ s) (γ t) = |s - t| * dist x y`
-  (`Geodesic.exists_minimizing_geodesic`).
-* Both of those, and all of Ch. 3/Ch. 7, measure length with `Manifold.pathELength`
-  (an `ℝ≥0∞` lintegral), whereas `DCArcLength` (do Carmo Ch. 1 Def. 2.9, and what
-  `Energy.lean` is written in) is an `ℝ` Bochner integral.  The two are joined by
-  `Variation/ArcLengthBridge.lean` (`ofReal_dcArcLength_eq_pathELength`), and in
-  particular `dcArcLength_le_of_pathELength_le` there converts a `pathELength`
-  minimality comparison into the `L(γ) ≤ L(c)` this file consumes.
-
-Taking `L(γ) ≤ L(c)` keeps the lemma exactly as strong as its proof, and leaves the
-conversion from a metric minimality statement as a *separate* obligation at the call
-site (discharged by `ArcLengthBridge.lean`, which this file deliberately does not
-import) rather than baking it in.  See the `## Residual` section below.
+On the canonical interval `[0,1]`,
+`Geodesic.IsMinimizingGeodesicSegment.dcEnergy_le` packages the universal minimizing
+hypothesis with that bridge and the core comparison.  This normalization matches the
+project's minimizing-segment predicate and loses no mathematical content under the
+standard affine reparametrization.
 
 ## The equality case
 
 do Carmo's equality case ("equality iff `c` is a minimizing geodesic") splits into
-the two conclusions his proof actually extracts, both of which are proved here:
+three analytic conclusions, all of which are proved here:
 
 * `dcSpeed_ae_const_of_dcEnergy_eq` — equality forces the speed of `c` to be a.e.
   constant, i.e. do Carmo's "the parameter of `c` is proportional to arc length";
+* `pathELength_eq_of_dcEnergy_eq` — the a.e. statement integrates on every subinterval,
+  giving the pointwise proportional-path-length identity used by `cor:dc-ch3-3-9`;
 * `dcArcLength_eq_of_dcEnergy_eq` — equality forces `L(c) = L(γ)`, i.e. `c` is
   minimizing too.
 
-Those two are what do Carmo *feeds* to `cor:dc-ch3-3-9` ("a curve whose length
-realizes the distance and which is parametrized proportionally to arc length is a
-geodesic") to conclude that `c` is a geodesic.  They are **not** literally that
-corollary's hypotheses, and the difference is exactly the residual below: the
-corollary wants proportional arc length *pointwise* and minimality against *every*
-competitor, while these give a.e.-constancy and `L(c) = L(γ)` for the single `c` at
-hand.  That final application is *not* performed here.
+These are what do Carmo feeds to `cor:dc-ch3-3-9` ("a curve whose length realizes the
+distance and which is parametrized proportionally to arc length is a geodesic").
+`Geodesic.IsMinimizingGeodesicSegment.geodesicOn_and_minimizing_of_dcEnergy_eq`
+performs that final application: equality transfers the reference curve's universal
+length bound to `c`, and the pointwise path-length identity makes `c` a geodesic on
+the open interval.  The theorem returns both conclusions explicitly.
 
-## Residual
-
-`lem:dc-ch9-2-3` is **not** closed, by exactly one step:
-
-**`a.e.-constant speed ⟹ pointwise proportional arc length.**  `cor:dc-ch3-3-9`
-*assumes* `∀ t ∈ Icc, pathELength I c (τ 0) t = ofReal (ℓ * (t - τ 0))` pointwise,
-which is strictly stronger than the a.e.-constant speed the equality case yields.
-Upgrading should now be tractable — an integral does not see the null set, so
-a.e.-constant speed does give the length identity at *every* `t`, and
-`ofReal_dcArcLength_eq_pathELength` (`Variation/ArcLengthBridge.lean`) converts that
-to `pathELength`.  A second mismatch to expect at that call site: the corollary's
-minimality is quantified over all competitors `σ`, whereas
-`dcArcLength_eq_of_dcEnergy_eq` gives `L(γ) = L(c)` for one `c`.  Filed as **I-0355**.
-
-Consequently `lem:dc-ch9-2-3` is **not** tagged `\leanok`: the sub-nodes proved here
-are tagged individually, and the full `iff` awaits the bridge.
+Finally,
+`Geodesic.IsMinimizingGeodesicSegment.dcEnergy_eq_iff_geodesicOn_and_minimizing`
+packages the full equality iff.  Its converse assumes the reference geodesic is also
+presented as a piecewise-`C¹` curve, because the minimizing-segment predicate itself
+stores continuity and the geodesic equation but not that separate presentation.
 
 ## Regularity
 
@@ -220,8 +203,8 @@ theorem dcEnergy_le_of_dcArcLength_le
 
 do Carmo: "If equality holds, then `(L(c))² = aE(c)`, so the parameter of `c` is
 proportional to arc length, and `L(γ) = L(c)`, so `c` is a minimizing geodesic (see
-`cor:dc-ch3-3-9`)."  The two conclusions he extracts before invoking `cor:dc-ch3-3-9`
-are the two lemmas below. -/
+`cor:dc-ch3-3-9`)."  The analytic consequences he extracts before invoking
+`cor:dc-ch3-3-9` are proved below. -/
 
 /-- **Math.** do Carmo Ch. 9, §2, `lem:dc-ch9-2-3` (equality case, first conclusion).
 If a competitor `c` attains the minimal energy, its **parameter is proportional to arc
@@ -229,8 +212,8 @@ length**: the speed `|dc/dt|` is a.e. constant.
 
 do Carmo's "if equality holds, then `(L(c))² = aE(c)`, so the parameter of `c` is
 proportional to arc length".  This is what he feeds to `cor:dc-ch3-3-9`; note it is
-weaker than that corollary's hypothesis, which wants proportional arc length
-*pointwise* rather than almost everywhere (the residual, **I-0355**). -/
+initially an almost-everywhere statement; `pathELength_eq_of_dcEnergy_eq` upgrades it
+to the pointwise path-length identity. -/
 theorem dcSpeed_ae_const_of_dcEnergy_eq
     {g : RiemannianMetric I M} {γ c : ℝ → M} {a b : ℝ} (hab : a < b)
     (hγ : Geodesic.IsGeodesicOn (I := I) g γ (Ioo a b))
@@ -258,6 +241,94 @@ theorem dcSpeed_ae_const_of_dcEnergy_eq
   have hceq : (DCArcLength g c a b) ^ 2 = (b - a) * DCEnergy g c a b := by
     nlinarith [heq, hle, hsq, hba, hE]
   exact (dcArcLength_sq_eq_iff g c hab hcs hcs2).1 hceq
+
+/-! ### A.e.-constant speed gives pointwise proportional path length -/
+
+/-- **Math.** If the speed is a.e. equal to `ℓ` on `(a,b]`, then the accumulated real
+arc length on every subinterval `[a,t]` is `ℓ * (t - a)`. -/
+theorem dcArcLength_eq_of_dcSpeed_ae_const
+    (g : RiemannianMetric I M) (c : ℝ → M) {a b ℓ : ℝ}
+    (hae : dcSpeed g c =ᵐ[(volume : Measure ℝ).restrict (Ioc a b)]
+      Function.const ℝ ℓ) :
+    ∀ t ∈ Icc a b, DCArcLength g c a t = ℓ * (t - a) := by
+  have hae' : ∀ᵐ s ∂(volume : Measure ℝ), s ∈ Ioc a b → dcSpeed g c s = ℓ := by
+    have h := (ae_restrict_iff' (μ := (volume : Measure ℝ)) measurableSet_Ioc).1 hae
+    simpa only [Function.const_apply] using h
+  intro t ht
+  rw [dcArcLength_eq_integral_dcSpeed]
+  have hcongr : (∫ s in a..t, dcSpeed g c s) = (∫ _s in a..t, ℓ) := by
+    refine intervalIntegral.integral_congr_ae ?_
+    rw [uIoc_of_le ht.1]
+    filter_upwards [hae'] with s hs' hst'
+    exact hs' ⟨hst'.1, hst'.2.trans ht.2⟩
+  rw [hcongr, intervalIntegral.integral_const, smul_eq_mul]
+  ring
+
+/-- **Math.** An a.e.-constant speed has the expected pointwise accumulated length.
+
+The equality case of do Carmo's energy lemma first yields an a.e. statement on `Ioc a b`.
+This theorem upgrades it to every endpoint `t ∈ Icc a b`: the interval integral ignores the
+null exceptional set, and `ofReal_dcArcLength_eq_pathELength` then changes the real arc-length
+integral into the `ENNReal` path length used by the minimizing-geodesic theorems. -/
+theorem pathELength_eq_of_dcSpeed_ae_const
+    (g : RiemannianMetric I M) (c : ℝ → M) {a b ℓ : ℝ} (hab : a ≤ b)
+    (hs : IntervalIntegrable (dcSpeed g c) volume a b)
+    (hae : dcSpeed g c =ᵐ[(volume : Measure ℝ).restrict (Ioc a b)]
+      Function.const ℝ ℓ) :
+    letI : Bundle.RiemannianBundle (fun x : M ↦ TangentSpace I x) := ⟨g.toRiemannianMetric⟩
+    letI : ∀ x : M, NormedAddCommGroup (TangentSpace I x) :=
+      fun x =>
+        Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+    letI : ∀ x : M, ContinuousENorm (TangentSpace I x) :=
+      fun _x => SeminormedAddGroup.toContinuousENorm
+    ∀ t ∈ Icc a b,
+      Manifold.pathELength I c a t = ENNReal.ofReal (ℓ * (t - a)) := by
+  letI : Bundle.RiemannianBundle (fun x : M ↦ TangentSpace I x) := ⟨g.toRiemannianMetric⟩
+  letI : ∀ x : M, NormedAddCommGroup (TangentSpace I x) :=
+    fun x =>
+      Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+  letI : ∀ x : M, ContinuousENorm (TangentSpace I x) :=
+    fun _x => SeminormedAddGroup.toContinuousENorm
+  intro t ht
+  have hst : IntervalIntegrable (dcSpeed g c) volume a t := by
+    apply hs.mono_set
+    rw [uIcc_of_le ht.1, uIcc_of_le hab]
+    exact Icc_subset_Icc le_rfl ht.2
+  calc
+    Manifold.pathELength I c a t = ENNReal.ofReal (DCArcLength g c a t) :=
+      (ofReal_dcArcLength_eq_pathELength (I := I) g c ht.1 hst).symm
+    _ = ENNReal.ofReal (ℓ * (t - a)) :=
+      congrArg ENNReal.ofReal (dcArcLength_eq_of_dcSpeed_ae_const g c hae t ht)
+
+/-- **Math.** Equality in the energy comparison makes the competitor pointwise
+arc-length-proportional, with speed `L(c) / (b - a)`.  This is the exact parameter
+hypothesis needed by the minimizing-curves-are-geodesics theorem. -/
+theorem pathELength_eq_of_dcEnergy_eq
+    {g : RiemannianMetric I M} {γ c : ℝ → M} {a b : ℝ} (hab : a < b)
+    (hγ : Geodesic.IsGeodesicOn (I := I) g γ (Ioo a b))
+    (hcont : ContinuousOn γ (Ioo a b))
+    (hmin : DCArcLength g γ a b ≤ DCArcLength g c a b)
+    (hγs : IntervalIntegrable (dcSpeed g γ) volume a b)
+    (hγs2 : IntervalIntegrable (fun t => (dcSpeed g γ t) ^ 2) volume a b)
+    (hcs : IntervalIntegrable (dcSpeed g c) volume a b)
+    (hcs2 : IntervalIntegrable (fun t => (dcSpeed g c t) ^ 2) volume a b)
+    (hE : DCEnergy g γ a b = DCEnergy g c a b) :
+    letI : Bundle.RiemannianBundle (fun x : M ↦ TangentSpace I x) := ⟨g.toRiemannianMetric⟩
+    letI : ∀ x : M, NormedAddCommGroup (TangentSpace I x) :=
+      fun x =>
+        Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+    letI : ∀ x : M, ContinuousENorm (TangentSpace I x) :=
+      fun _x => SeminormedAddGroup.toContinuousENorm
+    ∀ t ∈ Icc a b, Manifold.pathELength I c a t =
+      ENNReal.ofReal ((DCArcLength g c a b / (b - a)) * (t - a)) := by
+  letI : Bundle.RiemannianBundle (fun x : M ↦ TangentSpace I x) := ⟨g.toRiemannianMetric⟩
+  letI : ∀ x : M, NormedAddCommGroup (TangentSpace I x) :=
+    fun x =>
+      Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+  letI : ∀ x : M, ContinuousENorm (TangentSpace I x) :=
+    fun _x => SeminormedAddGroup.toContinuousENorm
+  exact pathELength_eq_of_dcSpeed_ae_const g c hab.le hcs
+    (dcSpeed_ae_const_of_dcEnergy_eq hab hγ hcont hmin hγs hγs2 hcs hcs2 hE)
 
 /-- **Math.** do Carmo Ch. 9, §2, `lem:dc-ch9-2-3` (equality case, second conclusion).
 If a competitor `c` attains the minimal energy, then `L(γ) = L(c)`: **`c` is minimizing
@@ -293,5 +364,202 @@ theorem dcArcLength_eq_of_dcEnergy_eq
   have hsq_eq : (DCArcLength g γ a b) ^ 2 = (DCArcLength g c a b) ^ 2 := by
     nlinarith [heq, hle, hsq, hba, hE]
   nlinarith [hsq_eq, hnn, hnnc, hmin]
+
+/-! ### Assembly with the minimizing-geodesic predicate -/
+
+/-- **Math.** On the canonical interval `[0,1]`, a minimizing geodesic has no more
+energy than any piecewise-`C¹` competitor with the same endpoints.  This packages
+`dcEnergy_le_of_dcArcLength_le` with the literal universal length comparison in
+`Geodesic.IsMinimizingGeodesicSegment`. -/
+theorem Geodesic.IsMinimizingGeodesicSegment.dcEnergy_le
+    {g : RiemannianMetric I M} {γ c : ℝ → M}
+    (hγmin : Geodesic.IsMinimizingGeodesicSegment (I := I) g γ 0 1)
+    (hc : Geodesic.IsPiecewiseDifferentiableCurve (I := I) c 0 1)
+    (hc0 : c 0 = γ 0) (hc1 : c 1 = γ 1)
+    (hγs : IntervalIntegrable (dcSpeed g γ) volume 0 1)
+    (hγs2 : IntervalIntegrable (fun t => (dcSpeed g γ t) ^ 2) volume 0 1)
+    (hcs : IntervalIntegrable (dcSpeed g c) volume 0 1)
+    (hcs2 : IntervalIntegrable (fun t => (dcSpeed g c t) ^ 2) volume 0 1) :
+    DCEnergy g γ 0 1 ≤ DCEnergy g c 0 1 := by
+  letI : Bundle.RiemannianBundle (fun x : M ↦ TangentSpace I x) :=
+    ⟨g.toRiemannianMetric⟩
+  letI : ∀ x : M, NormedAddCommGroup (TangentSpace I x) :=
+    fun x =>
+      Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+  letI : ∀ x : M, ContinuousENorm (TangentSpace I x) :=
+    fun _x => SeminormedAddGroup.toContinuousENorm
+  have hγgeo : Geodesic.IsGeodesicOn (I := I) g γ (Ioo 0 1) :=
+    hγmin.2.1.2.mono Ioo_subset_Icc_self
+  have hγcont : ContinuousOn γ (Ioo 0 1) :=
+    hγmin.2.1.1.mono Ioo_subset_Icc_self
+  have hγcPath : Manifold.pathELength I γ 0 1 ≤ Manifold.pathELength I c 0 1 :=
+    hγmin.2.2 c hc hc0 hc1
+  have hγc : DCArcLength g γ 0 1 ≤ DCArcLength g c 0 1 :=
+    dcArcLength_le_of_pathELength_le g γ c zero_le_one hγs hcs hγcPath
+  exact dcEnergy_le_of_dcArcLength_le zero_lt_one hγgeo hγcont hγc
+    hγs hγs2 hcs hcs2
+
+section MinimizingGeodesicEquality
+
+variable [CompleteSpace E]
+variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
+  [T2Space (TangentBundle I M')]
+
+/-- **Math.** Equality against a minimizing geodesic forces the competitor to be a
+geodesic on the open interval and to minimize length against every piecewise-`C¹`
+competitor.  This is the forward equality case of do Carmo Ch. 9, §2, Lemma 2.3,
+including the final application of Ch. 3, Corollary 3.9. -/
+theorem Geodesic.IsMinimizingGeodesicSegment.geodesicOn_and_minimizing_of_dcEnergy_eq
+    (g : RiemannianMetric I M') (hg : g.IsRiemannianDist) {γ c : ℝ → M'}
+    (hγmin : Geodesic.IsMinimizingGeodesicSegment (I := I) g γ 0 1)
+    (hc : Geodesic.IsPiecewiseDifferentiableCurve (I := I) c 0 1)
+    (hc0 : c 0 = γ 0) (hc1 : c 1 = γ 1)
+    (hγs : IntervalIntegrable (dcSpeed g γ) volume 0 1)
+    (hγs2 : IntervalIntegrable (fun t => (dcSpeed g γ t) ^ 2) volume 0 1)
+    (hcs : IntervalIntegrable (dcSpeed g c) volume 0 1)
+    (hcs2 : IntervalIntegrable (fun t => (dcSpeed g c t) ^ 2) volume 0 1)
+    (hE : DCEnergy g γ 0 1 = DCEnergy g c 0 1) :
+    Geodesic.IsGeodesicOn (I := I) g c (Ioo 0 1) ∧
+      (letI : Bundle.RiemannianBundle (fun x : M' ↦ TangentSpace I x) :=
+          ⟨g.toRiemannianMetric⟩
+       letI : ∀ x : M', NormedAddCommGroup (TangentSpace I x) :=
+         fun x =>
+           Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+       letI : ∀ x : M', ContinuousENorm (TangentSpace I x) :=
+         fun _x => SeminormedAddGroup.toContinuousENorm
+       ∀ σ : ℝ → M', Geodesic.IsPiecewiseDifferentiableCurve (I := I) σ 0 1 →
+         σ 0 = c 0 → σ 1 = c 1 →
+           Manifold.pathELength I c 0 1 ≤ Manifold.pathELength I σ 0 1) := by
+  letI : Bundle.RiemannianBundle (fun x : M' ↦ TangentSpace I x) :=
+    ⟨g.toRiemannianMetric⟩
+  letI : ∀ x : M', NormedAddCommGroup (TangentSpace I x) :=
+    fun x =>
+      Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+  letI : ∀ x : M', ContinuousENorm (TangentSpace I x) :=
+    fun _x => SeminormedAddGroup.toContinuousENorm
+  have hγgeo : Geodesic.IsGeodesicOn (I := I) g γ (Ioo 0 1) :=
+    hγmin.2.1.2.mono Ioo_subset_Icc_self
+  have hγcont : ContinuousOn γ (Ioo 0 1) :=
+    hγmin.2.1.1.mono Ioo_subset_Icc_self
+  have hγcPath : Manifold.pathELength I γ 0 1 ≤ Manifold.pathELength I c 0 1 :=
+    hγmin.2.2 c hc hc0 hc1
+  have hγc : DCArcLength g γ 0 1 ≤ DCArcLength g c 0 1 :=
+    dcArcLength_le_of_pathELength_le g γ c zero_le_one hγs hcs hγcPath
+  have hL : DCArcLength g γ 0 1 = DCArcLength g c 0 1 :=
+    dcArcLength_eq_of_dcEnergy_eq zero_lt_one hγgeo hγcont hγc
+      hγs hγs2 hcs hcs2 hE
+  have hpath : Manifold.pathELength I c 0 1 = Manifold.pathELength I γ 0 1 := by
+    calc
+      Manifold.pathELength I c 0 1 = ENNReal.ofReal (DCArcLength g c 0 1) :=
+        (ofReal_dcArcLength_eq_pathELength (I := I) g c zero_le_one hcs).symm
+      _ = ENNReal.ofReal (DCArcLength g γ 0 1) := congrArg ENNReal.ofReal hL.symm
+      _ = Manifold.pathELength I γ 0 1 :=
+        ofReal_dcArcLength_eq_pathELength (I := I) g γ zero_le_one hγs
+  have hminC1 :
+      ∀ σ : ℝ → M', ContMDiffOn 𝓘(ℝ, ℝ) I 1 σ (Icc 0 1) →
+        σ 0 = c 0 → σ 1 = c 1 →
+          Manifold.pathELength I c 0 1 ≤ Manifold.pathELength I σ 0 1 := by
+    intro σ hσ hσ0 hσ1
+    have hσpw : Geodesic.IsPiecewiseDifferentiableCurve (I := I) σ 0 1 := by
+      refine ⟨hσ.continuousOn, ⟨1, (fun i : ℕ => (i : ℝ)), Nat.zero_lt_one,
+        by norm_num, by norm_num, ?_, ?_⟩⟩
+      · intro i hi
+        have hi0 : i = 0 := by omega
+        subst hi0
+        norm_num
+      · intro i hi
+        have hi0 : i = 0 := by omega
+        subst hi0
+        simpa using hσ
+    calc
+      Manifold.pathELength I c 0 1 = Manifold.pathELength I γ 0 1 := hpath
+      _ ≤ Manifold.pathELength I σ 0 1 :=
+        hγmin.2.2 σ hσpw (hσ0.trans hc0) (hσ1.trans hc1)
+  rcases hc with ⟨_, n, τ, _, hτ0, hτn, hτstrict, hpieces⟩
+  have hLnonneg : 0 ≤ DCArcLength g c 0 1 := by
+    rw [dcArcLength_eq_integral_dcSpeed]
+    exact intervalIntegral.integral_nonneg zero_le_one fun t _ => dcSpeed_nonneg g c t
+  have harc :=
+    pathELength_eq_of_dcEnergy_eq zero_lt_one hγgeo hγcont hγc
+      hγs hγs2 hcs hcs2 hE
+  have hgeo : Geodesic.IsGeodesicOn (I := I) g c (Ioo 0 1) := by
+    have h := Exponential.isGeodesicOn_piecewise_of_arclength_forall_le
+      (I := I) (ℓ := DCArcLength g c 0 1 / (1 - 0)) g hg
+      (div_nonneg hLnonneg (by norm_num))
+      (fun i hi => (hτstrict i hi).le) hpieces
+      (by simpa [hτ0, hτn] using harc)
+      (by simpa [hτ0, hτn] using hminC1)
+    simpa [hτ0, hτn] using h
+  refine ⟨hgeo, ?_⟩
+  intro σ hσ hσ0 hσ1
+  calc
+    Manifold.pathELength I c 0 1 = Manifold.pathELength I γ 0 1 := hpath
+    _ ≤ Manifold.pathELength I σ 0 1 :=
+      hγmin.2.2 σ hσ (hσ0.trans hc0) (hσ1.trans hc1)
+
+/-- **Math.** The complete equality characterization in do Carmo Ch. 9, §2,
+Lemma 2.3, on `[0,1]`: equality of energies is equivalent to the competitor being
+an interior geodesic which minimizes length among all piecewise-`C¹` curves with the
+same endpoints. -/
+theorem Geodesic.IsMinimizingGeodesicSegment.dcEnergy_eq_iff_geodesicOn_and_minimizing
+    (g : RiemannianMetric I M') (hg : g.IsRiemannianDist) {γ c : ℝ → M'}
+    (hγmin : Geodesic.IsMinimizingGeodesicSegment (I := I) g γ 0 1)
+    (hγpw : Geodesic.IsPiecewiseDifferentiableCurve (I := I) γ 0 1)
+    (hc : Geodesic.IsPiecewiseDifferentiableCurve (I := I) c 0 1)
+    (hc0 : c 0 = γ 0) (hc1 : c 1 = γ 1)
+    (hγs : IntervalIntegrable (dcSpeed g γ) volume 0 1)
+    (hγs2 : IntervalIntegrable (fun t => (dcSpeed g γ t) ^ 2) volume 0 1)
+    (hcs : IntervalIntegrable (dcSpeed g c) volume 0 1)
+    (hcs2 : IntervalIntegrable (fun t => (dcSpeed g c t) ^ 2) volume 0 1) :
+    DCEnergy g γ 0 1 = DCEnergy g c 0 1 ↔
+      Geodesic.IsGeodesicOn (I := I) g c (Ioo 0 1) ∧
+        (letI : Bundle.RiemannianBundle (fun x : M' ↦ TangentSpace I x) :=
+            ⟨g.toRiemannianMetric⟩
+         letI : ∀ x : M', NormedAddCommGroup (TangentSpace I x) :=
+           fun x =>
+             Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+         letI : ∀ x : M', ContinuousENorm (TangentSpace I x) :=
+           fun _x => SeminormedAddGroup.toContinuousENorm
+         ∀ σ : ℝ → M', Geodesic.IsPiecewiseDifferentiableCurve (I := I) σ 0 1 →
+           σ 0 = c 0 → σ 1 = c 1 →
+             Manifold.pathELength I c 0 1 ≤ Manifold.pathELength I σ 0 1) := by
+  constructor
+  · intro hE
+    exact hγmin.geodesicOn_and_minimizing_of_dcEnergy_eq g hg hc hc0 hc1
+      hγs hγs2 hcs hcs2 hE
+  · rintro ⟨hcgeo, hcmin⟩
+    letI : Bundle.RiemannianBundle (fun x : M' ↦ TangentSpace I x) :=
+      ⟨g.toRiemannianMetric⟩
+    letI : ∀ x : M', NormedAddCommGroup (TangentSpace I x) :=
+      fun x =>
+        Bundle.instNormedAddCommGroupOfRiemannianBundleOfIsTopologicalAddGroupOfContinuousConstSMulReal x
+    letI : ∀ x : M', ContinuousENorm (TangentSpace I x) :=
+      fun _x => SeminormedAddGroup.toContinuousENorm
+    have hγgeo : Geodesic.IsGeodesicOn (I := I) g γ (Ioo 0 1) :=
+      hγmin.2.1.2.mono Ioo_subset_Icc_self
+    have hγcont : ContinuousOn γ (Ioo 0 1) :=
+      hγmin.2.1.1.mono Ioo_subset_Icc_self
+    have hccont : ContinuousOn c (Ioo 0 1) :=
+      hc.1.mono Ioo_subset_Icc_self
+    have hγcPath : Manifold.pathELength I γ 0 1 ≤ Manifold.pathELength I c 0 1 :=
+      hγmin.2.2 c hc hc0 hc1
+    have hcγPath : Manifold.pathELength I c 0 1 ≤ Manifold.pathELength I γ 0 1 :=
+      hcmin γ hγpw hc0.symm hc1.symm
+    have hγc : DCArcLength g γ 0 1 ≤ DCArcLength g c 0 1 :=
+      dcArcLength_le_of_pathELength_le g γ c zero_le_one hγs hcs hγcPath
+    have hcγ : DCArcLength g c 0 1 ≤ DCArcLength g γ 0 1 :=
+      dcArcLength_le_of_pathELength_le g c γ zero_le_one hcs hγs hcγPath
+    have hL : DCArcLength g γ 0 1 = DCArcLength g c 0 1 :=
+      le_antisymm hγc hcγ
+    have hγE : (DCArcLength g γ 0 1) ^ 2 = DCEnergy g γ 0 1 := by
+      simpa using dcArcLength_sq_eq_mul_dcEnergy_of_isGeodesicOn
+        zero_lt_one hγgeo hγcont hγs hγs2
+    have hcE : (DCArcLength g c 0 1) ^ 2 = DCEnergy g c 0 1 := by
+      simpa using dcArcLength_sq_eq_mul_dcEnergy_of_isGeodesicOn
+        zero_lt_one hcgeo hccont hcs hcs2
+    rw [hL] at hγE
+    exact hγE.symm.trans hcE
+
+end MinimizingGeodesicEquality
 
 end Riemannian

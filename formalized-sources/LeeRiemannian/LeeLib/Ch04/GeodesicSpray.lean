@@ -96,7 +96,7 @@ degenerates to the zero section. -/
 def geodesicVectorFieldChart (cov : Connection I E (TangentSpace I : M → Type _))
     (b : Basis ι ℝ E) (α : M) (p : TangentBundle I M) : TangentSpace I.tangent p :=
   (trivializationAt (E × E) (TangentSpace I.tangent)
-      (⟨α, (0 : E)⟩ : TangentBundle I M)).symm p
+      (⟨α, (0 : E)⟩ : TangentBundle I M)).symmL ℝ p
     (geodesicSprayFiber cov b α p)
 
 section Smoothness
@@ -237,6 +237,8 @@ theorem trivializationAt_apply_geodesicVectorFieldChart
   have hp' : p ∈ (trivializationAt (E × E) (TangentSpace I.tangent)
       (⟨α, (0 : E)⟩ : TangentBundle I M)).baseSet := by
     rw [← geodesicChartDomain_eq_trivBaseSet (I := I) α]; exact hp
+  unfold geodesicVectorFieldChart
+  rw [Bundle.Trivialization.symmL_apply _ hp']
   exact (trivializationAt (E × E) (TangentSpace I.tangent)
     (⟨α, (0 : E)⟩ : TangentBundle I M)).apply_mk_symm hp'
       (geodesicSprayFiber cov b α p)
@@ -671,7 +673,6 @@ theorem geodesicVectorFieldChart_zero_section
   rw [hfiber]
   set e := trivializationAt (E × E) (TangentSpace I.tangent)
     (⟨p, (0 : E)⟩ : TangentBundle I M)
-  rw [← Bundle.Trivialization.coe_symmₗ (R := ℝ) e (⟨p, (0 : E)⟩ : TangentBundle I M)]
   exact map_zero _
 
 /-- **Constant curves are geodesics** (Lee, §"Geodesics": a stationary curve is a

@@ -156,13 +156,15 @@ theorem example_8_20_F_contMDiff :
   let toR2 : (Fin 2 → ℝ) ≃L[ℝ] R2 :=
     (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 2 ↦ ℝ)).symm
   have h0 : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun p : example_8_20_M ↦ (p : R2) 0) := by
-    simpa [Function.comp] using
-      ((PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 0).contDiff.contMDiff.comp
-        (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞ (Subtype.val : example_8_20_M → R2)))
+    change ContMDiff _ _ _ ((fun x : R2 ↦ x 0) ∘ (Subtype.val : example_8_20_M → R2))
+    exact (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 0).contDiff.contMDiff.comp
+      (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞
+        (Subtype.val : example_8_20_M → R2))
   have h1 : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun p : example_8_20_M ↦ (p : R2) 1) := by
-    simpa [Function.comp] using
-      ((PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1).contDiff.contMDiff.comp
-        (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞ (Subtype.val : example_8_20_M → R2)))
+    change ContMDiff _ _ _ ((fun x : R2 ↦ x 1) ∘ (Subtype.val : example_8_20_M → R2))
+    exact (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1).contDiff.contMDiff.comp
+      (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞
+        (Subtype.val : example_8_20_M → R2))
   have hPi :
       ContMDiff (𝓡 2) 𝓘(ℝ, Fin 2 → ℝ) ∞
         (fun p : example_8_20_M ↦
@@ -171,13 +173,18 @@ theorem example_8_20_F_contMDiff :
     intro i
     fin_cases i
     · -- The first coordinate is the sum of the two smooth coordinate projections.
-      simpa [example_8_20_F_apply] using h0.add h1
+      change ContMDiff _ _ _
+        ((fun p : example_8_20_M ↦ (p : R2) 0) +
+          fun p : example_8_20_M ↦ (p : R2) 1)
+      exact h0.add h1
     · -- The second coordinate is `x / y + 1`, smooth on the open source region where `y > 0`.
       have hdiv :
           ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun p : example_8_20_M ↦ (p : R2) 0 / (p : R2) 1) := by
         exact h0.div₀ h1 (fun p ↦ ne_of_gt p.property.1)
-      simpa [example_8_20_F_apply] using
-        hdiv.add (contMDiff_const : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun _ : example_8_20_M ↦ (1 : ℝ)))
+      change ContMDiff _ _ _
+        ((fun p : example_8_20_M ↦ (p : R2) 0 / (p : R2) 1) + fun _ ↦ (1 : ℝ))
+      exact hdiv.add
+        (contMDiff_const : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun _ : example_8_20_M ↦ (1 : ℝ)))
   have hSub :
       ContMDiff (𝓡 2) (𝓡 2) ∞ ((Subtype.val : example_8_20_N → R2) ∘ example_8_20_F) := by
     refine (toR2.contDiff.contMDiff.comp hPi).congr ?_
@@ -191,13 +198,15 @@ theorem example_8_20_F_inv_contMDiff :
   let toR2 : (Fin 2 → ℝ) ≃L[ℝ] R2 :=
     (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 2 ↦ ℝ)).symm
   have h0 : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun q : example_8_20_N ↦ (q : R2) 0) := by
-    simpa [Function.comp] using
-      ((PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 0).contDiff.contMDiff.comp
-        (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞ (Subtype.val : example_8_20_N → R2)))
+    change ContMDiff _ _ _ ((fun x : R2 ↦ x 0) ∘ (Subtype.val : example_8_20_N → R2))
+    exact (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 0).contDiff.contMDiff.comp
+      (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞
+        (Subtype.val : example_8_20_N → R2))
   have h1 : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun q : example_8_20_N ↦ (q : R2) 1) := by
-    simpa [Function.comp] using
-      ((PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1).contDiff.contMDiff.comp
-        (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞ (Subtype.val : example_8_20_N → R2)))
+    change ContMDiff _ _ _ ((fun x : R2 ↦ x 1) ∘ (Subtype.val : example_8_20_N → R2))
+    exact (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1).contDiff.contMDiff.comp
+      (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞
+        (Subtype.val : example_8_20_N → R2))
   have hPi :
       ContMDiff (𝓡 2) 𝓘(ℝ, Fin 2 → ℝ) ∞
         (fun q : example_8_20_N ↦
@@ -281,12 +290,13 @@ private theorem example_8_20_forward_ambient_deriv_on_X (p : example_8_20_M) :
       HasFDerivAt (fun q : R2 ↦ (q 1)⁻¹)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((p : R2) 1 ^ 2)⁻¹)).comp proj1) (p : R2) := by
     -- Differentiate the reciprocal of the second coordinate at the source point.
-    simpa [proj1] using
-      (hasFDerivAt_inv (𝕜 := ℝ) (x := (p : R2) 1) hy0).comp (p : R2) h1
+    change HasFDerivAt ((fun x : ℝ ↦ x⁻¹) ∘ fun q : R2 ↦ q 1) _ (p : R2)
+    exact (hasFDerivAt_inv (𝕜 := ℝ) (x := (p : R2) 1) hy0).comp (p : R2) h1
   have hFirst :
       HasFDerivAt (fun q : R2 ↦ example_8_20_FAmbient q 0) (proj0 + proj1) (p : R2) := by
     -- The first coordinate is the sum `x + y`.
-    simpa [example_8_20_FAmbient, proj0, proj1] using h0.add h1
+    change HasFDerivAt ((fun q : R2 ↦ q 0) + fun q ↦ q 1) _ (p : R2)
+    exact h0.add h1
   have hSecond :
       HasFDerivAt (fun q : R2 ↦ example_8_20_FAmbient q 1)
         (((p : R2) 0) • ((ContinuousLinearMap.toSpanSingleton ℝ (-((p : R2) 1 ^ 2)⁻¹)).comp
@@ -316,7 +326,9 @@ private theorem example_8_20_forward_ambient_deriv_on_X (p : example_8_20_M) :
       HasFDerivAt example_8_20_FAmbient
         (toR2.toContinuousLinearMap.comp (ContinuousLinearMap.pi f')) (p : R2) := by
     -- Transport the derivative from product coordinates back to the `PiLp` model space `R2`.
-    simpa [toR2, Function.comp] using (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
+    change HasFDerivAt
+      (toR2 ∘ fun q : R2 ↦ fun i : Fin 2 ↦ example_8_20_FAmbient q i) _ (p : R2)
+    exact toR2.comp_hasFDerivAt_iff.2 hAmbientPi
   have hAmbientMDiff : MDifferentiableAt (𝓡 2) (𝓡 2) example_8_20_FAmbient (p : R2) := by
     exact hAmbient.hasMFDerivAt.mdifferentiableAt
   have hNeZero : (∞ : ℕ∞ω) ≠ 0 := by
@@ -347,7 +359,12 @@ private theorem example_8_20_forward_ambient_deriv_on_X (p : example_8_20_M) :
       change ((ContinuousLinearMap.pi f') !₂[(((p : R2) 1) ^ 2), (0 : ℝ)] 1) = (p : R2) 1
       simp [f', proj0, proj1]
       field_simp [hy0]
-  simpa [example_8_20_XAmbient, mfderiv_eq_fderiv] using hEval
+  rw [mfderiv_eq_fderiv]
+  change (fderiv ℝ example_8_20_FAmbient (p : R2)) (example_8_20_XAmbient p) =
+    !₂[(((p : R2) 1) ^ 2), (p : R2) 1]
+  change (fderiv ℝ example_8_20_FAmbient (p : R2))
+    !₂[(((p : R2) 1) ^ 2), (0 : ℝ)] = _
+  exact hEval
 
 /-- Helper for Example 8.20: the explicit pushforward vector field is `example_8_20_F`-related
 to `example_8_20_X`. -/
@@ -362,7 +379,7 @@ private theorem example_8_20_pushforward_related :
   refine ⟨example_8_20_F_contMDiff, ?_⟩
   intro p
   have hsymm : example_8_20_diffeomorph.symm (example_8_20_F p) = p := by
-    simpa [example_8_20_diffeomorph] using example_8_20_F_left_inv p
+    exact example_8_20_F_left_inv p
   rw [VectorField.mpullback_apply, hsymm, eq_comm]
   have hNeZero : (∞ : ℕ∞ω) ≠ 0 := by
     simp
@@ -379,7 +396,7 @@ private theorem example_8_20_pushforward_related :
       ContinuousLinearMap.IsInvertible
         (mfderiv (𝓡 2) (𝓡 2) example_8_20_diffeomorph.symm (example_8_20_F p)) := by
     have he : ↑e = mfderiv (𝓡 2) (𝓡 2) example_8_20_diffeomorph.symm (example_8_20_F p) := by
-      simpa [e] using hcoe.symm
+      simpa [e] using hcoe
     exact ⟨e, he⟩
   have hPushEq :
       (mfderiv (𝓡 2) (𝓡 2) example_8_20_diffeomorph.symm (example_8_20_F p)).inverse
@@ -401,7 +418,7 @@ private theorem example_8_20_pushforward_related :
     have hcomp :
         example_8_20_diffeomorph.symm ∘ example_8_20_F = id := by
       funext x
-      simpa [example_8_20_diffeomorph] using example_8_20_F_left_inv x
+      exact example_8_20_F_left_inv x
     rw [hcomp, mfderiv_id] at h
     exact (ContinuousLinearMap.IsInvertible.inverse_apply_eq hInvLinear).2 h
   exact hPushEq

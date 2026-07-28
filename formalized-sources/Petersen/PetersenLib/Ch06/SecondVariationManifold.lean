@@ -372,7 +372,8 @@ theorem hasDerivAt_deriv_windowEnergy (g : RiemannianMetric I M) (α : M)
     ((hc.contDiffAt (hSopen.mem_nhds ⟨h0mem, hτ⟩)).differentiableAt (by norm_num))
   have ht₁ : t₁ ∈ Ioo a b := hsub (left_mem_Icc.mpr h12.le)
   have ht₂ : t₂ ∈ Ioo a b := hsub (right_mem_Icc.mpr h12.le)
-  convert htrans using 2
+  apply htrans.congr_deriv
+  congr 1
   · -- the boundary pairings
     rw [transversalAccel_eq_tangentCoordChange_mixedPartialCoord (I := I) g α hδ ht₂
         hcdef hc2 hsrc,

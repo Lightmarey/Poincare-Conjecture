@@ -32,7 +32,13 @@ lemma matrixToContinuousLinearMapContinuous (m n : ℕ) :
       ((Fin n → ℝ) →L[ℝ] Fin m → ℝ) :=
     Matrix.toLin'.trans LinearMap.toContinuousLinearMap
   -- The bridge is a linear equivalence between finite-dimensional spaces, hence continuous.
-  simpa [e] using e.continuous_of_finiteDimensional
+  have hfun :
+      (fun A : Matrix (Fin m) (Fin n) ℝ ↦
+        LinearMap.toContinuousLinearMap (Matrix.toLin' A)) = e := by
+    funext A
+    rfl
+  rw [hfun]
+  exact e.continuous_of_finiteDimensional
 
 /-- Helper for Example 1.28: the rank of `Matrix.toLin' A` is bounded by `min m n`. -/
 lemma matrixToLin'RankLeMin (m n : ℕ) (A : Matrix (Fin m) (Fin n) ℝ) :

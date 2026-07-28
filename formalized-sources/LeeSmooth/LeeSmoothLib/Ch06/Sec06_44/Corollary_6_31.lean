@@ -43,7 +43,7 @@ theorem smooth_submersion_preimage_has_embedded_submanifold_structure
         ∃ hT : IsEmbeddedSubmanifold IN L T,
           hT.codimension = hS.codimension := by
   let _ : IsEmbeddedSubmanifold IM K S := hS
-  simpa using
+  simpa using!
     transverse_preimage_has_embedded_submanifold_structure
       (Manifold.IsSmoothSubmersion.isTransverseToSubmanifold hF)
 

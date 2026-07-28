@@ -98,7 +98,9 @@ lemma graphDerivativeSectionAlongFst_contMDiff
   have htangent :
       ContMDiff I.tangent J.tangent ∞ (tangentMap I J f) := by
     simpa using f.contMDiff.contMDiff_tangentMap (by simp)
-  simpa [Function.comp] using htangent.comp (hX.comp contMDiff_fst)
+  change ContMDiff (I.prod J) J.tangent ∞
+    (tangentMap I J f ∘ (T% X) ∘ Prod.fst)
+  exact htangent.comp (hX.comp contMDiff_fst)
 
 omit [IsManifold I ∞ M] [IsManifold J ∞ N] in
 /-- Helper for Problem 8-14: the graph-source chart neighborhood around `f p₀.1` is a genuine
@@ -115,8 +117,10 @@ lemma graphTransportSourceChart_mem_nhds
     simpa using
       (extChartAt_source_mem_nhds (f p0.1) :
         (extChartAt J (f p0.1)).source ∈ nhds (f p0.1))
-  simpa [Function.comp] using
-    hcont.preimage_mem_nhds hsource
+  have hsource' : (chartAt H' (f p0.1)).source ∈ nhds (f p0.1) := by
+    simpa only [extChartAt_source] using hsource
+  change (fun p : M × N ↦ f p.1) ⁻¹' (chartAt H' (f p0.1)).source ∈ nhds p0
+  exact hcont.preimage_mem_nhds hsource'
 
 omit [IsManifold I ∞ M] [IsManifold J ∞ N] in
 /-- Helper for Problem 8-14: the source chart map `p ↦ extChartAt J (f p₀.1) (f p.1)` is smooth at
@@ -127,15 +131,17 @@ lemma graphTransportSourceChart_contMDiffAt
       (fun p : M × N ↦ extChartAt J (f p0.1) (f p.1)) p0 := by
   -- Compose the smooth graph-base map `f ∘ Prod.fst` with the fixed target chart.
   have hbase : ContMDiffAt (I.prod J) J ∞ (fun p : M × N ↦ f p.1) p0 := by
-    simpa [Function.comp] using
-      ((f.contMDiff.comp
-          (contMDiff_fst : ContMDiff (I.prod J) I ∞ (Prod.fst : M × N → M))) p0)
+    change ContMDiffAt (I.prod J) J ∞ (f ∘ (Prod.fst : M × N → M)) p0
+    exact (f.contMDiff.comp
+      (contMDiff_fst : ContMDiff (I.prod J) I ∞ (Prod.fst : M × N → M))) p0
   have hchart :
       ContMDiffAt J 𝓘(𝕜, E') ∞ (extChartAt J (f p0.1)) (f p0.1) := by
     simpa using
       (contMDiffAt_extChartAt :
         ContMDiffAt J 𝓘(𝕜, E') ∞ (extChartAt J (f p0.1)) (f p0.1))
-  simpa [Function.comp] using hchart.comp p0 hbase
+  change ContMDiffAt (I.prod J) 𝓘(𝕜, E') ∞
+    (extChartAt J (f p0.1) ∘ (fun p : M × N ↦ f p.1)) p0
+  exact hchart.comp p0 hbase
 
 omit [IsManifold I ∞ M] [IsManifold J ∞ N] in
 /-- Helper for Problem 8-14: on the source-chart neighborhood, the chart map lands in
@@ -176,9 +182,12 @@ lemma graphTransportTargetDerivativeInCoordinatesAlongSnd_contMDiffAt
           (fun y : N ↦ mfderiv% (extChartAt J p0.2) y) p0.2 p.2) p0 := by
   -- Pull the one-variable target derivative-in-coordinates family back along the smooth second
   -- projection.
-  simpa [Function.comp] using
-    (graphTransportTargetDerivativeInCoordinates_contMDiffAt p0.2).comp p0
-      (contMDiffAt_snd : ContMDiffAt (I.prod J) J ∞ (Prod.snd : M × N → N) p0)
+  change ContMDiffAt (I.prod J) 𝓘(𝕜, E' →L[𝕜] E') ∞
+    ((inTangentCoordinates J 𝓘(𝕜, E') id (extChartAt J p0.2)
+      (fun y : N ↦ mfderiv% (extChartAt J p0.2) y) p0.2) ∘
+        (Prod.snd : M × N → N)) p0
+  exact (graphTransportTargetDerivativeInCoordinates_contMDiffAt p0.2).comp p0
+    (contMDiffAt_snd : ContMDiffAt (I.prod J) J ∞ (Prod.snd : M × N → N) p0)
 
 omit [IsManifold I ∞ M] in
 /-- Helper for Problem 8-14: composing the fixed inverse chart derivative-in-coordinates family
@@ -272,7 +281,6 @@ lemma graphTransportRawDerivativeSandwich_eq_trivialization
   -- Rewrite each raw derivative as the corresponding tangent-bundle trivialization linear map.
   rw [TangentBundle.continuousLinearMapAt_trivializationAt hp2,
     TangentBundle.symmL_trivializationAt hp1]
-  rfl
 
 omit [IsManifold I ∞ M] in
 /-- Helper for Problem 8-14: near `p₀`, the graph transport written by
@@ -292,8 +300,11 @@ lemma graphTransportIdentityInCoordinates_eventuallyEq_rawDerivativeSandwich
       {p : M × N | p.2 ∈ (chartAt H' p0.2).source} ∈ nhds p0 := by
     have hcont : ContinuousAt (Prod.snd : M × N → N) p0 :=
       (contMDiffAt_snd : ContMDiffAt (I.prod J) J ∞ (Prod.snd : M × N → N) p0).continuousAt
-    simpa [extChartAt_source] using hcont.preimage_mem_nhds
-      (extChartAt_source_mem_nhds p0.2 : (extChartAt J p0.2).source ∈ nhds p0.2)
+    have hsource : (chartAt H' p0.2).source ∈ nhds p0.2 := by
+      simpa only [extChartAt_source] using
+        (extChartAt_source_mem_nhds p0.2 : (extChartAt J p0.2).source ∈ nhds p0.2)
+    change Prod.snd ⁻¹' (chartAt H' p0.2).source ∈ nhds p0
+    exact hcont.preimage_mem_nhds hsource
   filter_upwards [hfst, hsnd] with p hp1 hp2
   -- On that neighborhood, `inTangentCoordinates` expands to the expected derivative sandwich.
   exact inTangentCoordinates_eq_mfderiv_comp hp1 hp2
@@ -317,8 +328,11 @@ lemma graphTransportRawDerivativeSandwich_eventuallyEq_trivialization
       {p : M × N | p.2 ∈ (chartAt H' p0.2).source} ∈ nhds p0 := by
     have hcont : ContinuousAt (Prod.snd : M × N → N) p0 :=
       (contMDiffAt_snd : ContMDiffAt (I.prod J) J ∞ (Prod.snd : M × N → N) p0).continuousAt
-    simpa [extChartAt_source] using hcont.preimage_mem_nhds
-      (extChartAt_source_mem_nhds p0.2 : (extChartAt J p0.2).source ∈ nhds p0.2)
+    have hsource : (chartAt H' p0.2).source ∈ nhds p0.2 := by
+      simpa only [extChartAt_source] using
+        (extChartAt_source_mem_nhds p0.2 : (extChartAt J p0.2).source ∈ nhds p0.2)
+    change Prod.snd ⁻¹' (chartAt H' p0.2).source ∈ nhds p0
+    exact hcont.preimage_mem_nhds hsource
   filter_upwards [hfst, hsnd] with p hp1 hp2
   -- Rewrite the raw derivative sandwich in terms of the fixed trivializations at `f p₀.1` and
   -- `p₀.2`.
@@ -358,9 +372,9 @@ lemma graphTransportPairBase_contMDiffAt
   -- projection.
   have hfst :
       ContMDiffAt (I.prod J) J ∞ (fun p : M × N ↦ f p.1) p0 := by
-    simpa [Function.comp] using
-      ((f.contMDiff.comp
-        (contMDiff_fst : ContMDiff (I.prod J) I ∞ (Prod.fst : M × N → M))) p0)
+    change ContMDiffAt (I.prod J) J ∞ (f ∘ (Prod.fst : M × N → M)) p0
+    exact (f.contMDiff.comp
+      (contMDiff_fst : ContMDiff (I.prod J) I ∞ (Prod.fst : M × N → M))) p0
   simpa [graphTransportPairBase] using hfst.prodMk (contMDiffAt_snd :
     ContMDiffAt (I.prod J) J ∞ (Prod.snd : M × N → N) p0)
 
@@ -401,15 +415,14 @@ lemma graphTransportSourcePullbackSymmL_eq
         (trivializationAt E' (fun x : N ↦ TangentSpace J x) q0.1).continuousLinearMapAt 𝕜 q.1 :=
     graphTransportSourcePullbackContinuousLinearMapAt_eq (J := J) q0 q
   have hq' : q.1 ∈ (trivializationAt E' (fun x : N ↦ TangentSpace J x) q0.1).baseSet := by
-    simpa [graphTransportSourceBundle, graphTransportPairBaseFstSmoothMap] using hq
+    exact hq
   have hleft :
       (trivializationAt E' (graphTransportSourceBundle (J := J)) q0).continuousLinearMapAt 𝕜 q
         ((trivializationAt E' (fun x : N ↦ TangentSpace J x) q0.1).symmL 𝕜 q.1 v) = v := by
     rw [hMap]
-    simpa using
-      Bundle.Trivialization.continuousLinearMapAt_symmL
-        (R := 𝕜) (e := trivializationAt (F := E') (E := fun x : N ↦ TangentSpace J x) q0.1)
-        hq' v
+    exact Bundle.Trivialization.continuousLinearMapAt_symmL
+      (R := 𝕜) (e := trivializationAt (F := E') (E := fun x : N ↦ TangentSpace J x) q0.1)
+      hq' v
   have hinj :
       Function.Injective
         ((trivializationAt E' (graphTransportSourceBundle (J := J)) q0).continuousLinearMapAt 𝕜 q) := by
@@ -448,8 +461,7 @@ lemma graphTransportTrivializationSandwich_eq_pairBaseInCoordinates
       graphTransportPairBase f p ∈
         (trivializationAt E' (graphTransportSourceBundle (J := J))
           (graphTransportPairBase f p0)).baseSet := by
-    simpa [graphTransportPairBase, graphTransportSourceBundle,
-      graphTransportPairBaseFstSmoothMap] using hp1
+    exact hp1
   rw [graphTransportSourcePullbackSymmL_eq (J := J)
     (graphTransportPairBase f p0) (graphTransportPairBase f p) hq]
   -- The remaining `1` composes away in model space.
@@ -486,8 +498,11 @@ lemma graphTransportTrivializationSandwich_eventuallyEq_pairBaseInCoordinates
       {p : M × N | p.2 ∈ (chartAt H' p0.2).source} ∈ nhds p0 := by
     have hcont : ContinuousAt (Prod.snd : M × N → N) p0 :=
       (contMDiffAt_snd : ContMDiffAt (I.prod J) J ∞ (Prod.snd : M × N → N) p0).continuousAt
-    simpa [extChartAt_source] using hcont.preimage_mem_nhds
-      (extChartAt_source_mem_nhds p0.2 : (extChartAt J p0.2).source ∈ nhds p0.2)
+    have hsource : (chartAt H' p0.2).source ∈ nhds p0.2 := by
+      simpa only [extChartAt_source] using
+        (extChartAt_source_mem_nhds p0.2 : (extChartAt J p0.2).source ∈ nhds p0.2)
+    change Prod.snd ⁻¹' (chartAt H' p0.2).source ∈ nhds p0
+    exact hcont.preimage_mem_nhds hsource
   filter_upwards [hfst, hsnd] with p hp1 hp2
   -- On this neighborhood, the pair-base coordinate family is exactly the desired explicit family.
   symm
@@ -573,7 +588,9 @@ lemma graphTransportSourceInverseDerivativeInCoordinatesAlongFst_contMDiffAt
               ContMDiffAt (J.prod J) 𝓘(𝕜, E') ∞
                 (fun q : N × N ↦ extChartAt J q0.1 q.1) q0 from
               by
-                simpa [Function.comp] using hchart.comp q0 hfst).contMDiffWithinAt)
+                change ContMDiffAt (J.prod J) 𝓘(𝕜, E') ∞
+                  (extChartAt J q0.1 ∘ (Prod.fst : N × N → N)) q0
+                exact hchart.comp q0 hfst).contMDiffWithinAt)
         hfstMapsTo
   -- Finally upgrade the within-smooth statement to a pointwise one using the chart neighborhood.
   exact hsourceWithin.contMDiffAt
@@ -581,8 +598,11 @@ lemma graphTransportSourceInverseDerivativeInCoordinatesAlongFst_contMDiffAt
       -- Staying in the fixed source chart is a neighborhood condition at `q₀`.
       have hcont : ContinuousAt (Prod.fst : N × N → N) q0 :=
         (contMDiffAt_fst : ContMDiffAt (J.prod J) J ∞ (Prod.fst : N × N → N) q0).continuousAt
-      simpa [extChartAt_source] using hcont.preimage_mem_nhds
-        (extChartAt_source_mem_nhds q0.1 : (extChartAt J q0.1).source ∈ nhds q0.1))
+      have hsource : (chartAt H' q0.1).source ∈ nhds q0.1 := by
+        simpa only [extChartAt_source] using
+          (extChartAt_source_mem_nhds q0.1 : (extChartAt J q0.1).source ∈ nhds q0.1)
+      change Prod.fst ⁻¹' (chartAt H' q0.1).source ∈ nhds q0
+      exact hcont.preimage_mem_nhds hsource)
 
 omit [IsManifold I ∞ M] in
 /-- Helper for Problem 8-14: on the pair base `N × N`, the fixed source and target
@@ -634,9 +654,10 @@ lemma graphTransportPairBaseTrivializationSandwich_eventuallyEq_pairBaseInCoordi
   -- Package the identity map on `N` as a bundled smooth map so the existing bridge applies.
   let fId : C^∞⟮J, N; J, N⟯ := ⟨id, contMDiff_id⟩
   -- The pair-base statement is exactly the identity-graph statement after simplifying `id`.
-  simpa [fId] using
-    (graphTransportTrivializationSandwich_eventuallyEq_pairBaseInCoordinates
-      (I := J) (M := N) (J := J) fId q0)
+  have h := graphTransportTrivializationSandwich_eventuallyEq_pairBaseInCoordinates
+    (I := J) (M := N) (J := J) fId q0
+  filter_upwards [h] with q hq
+  simpa [fId, graphTransportPairBase] using hq
 
 omit [IsManifold I ∞ M] in
 /-- Helper for Problem 8-14: specializing the graph-transport trivialization comparison to
@@ -791,8 +812,14 @@ lemma graphTransportFixedTrivializationFamily_contMDiffAt_of_pairBase
         ((trivializationAt E' (TangentSpace J) p0.2).continuousLinearMapAt 𝕜 p.2).comp
           ((trivializationAt E' (TangentSpace J) (f p0.1)).symmL 𝕜 (f p.1))) p0 := by
   -- Pull the pair-base smooth family back along the smooth graph base map `p ↦ (f p.1, p.2)`.
-  simpa [graphTransportPairBase] using
-    hpair.comp p0 (graphTransportPairBase_contMDiffAt (I := I) (J := J) f p0)
+  change ContMDiffAt (I.prod J) 𝓘(𝕜, E' →L[𝕜] E') ∞
+    ((fun q : N × N ↦
+      (Bundle.Trivialization.continuousLinearMapAt 𝕜
+        (trivializationAt E' (TangentSpace J) p0.2) q.2).comp
+      (Bundle.Trivialization.symmL 𝕜
+        (trivializationAt E' (TangentSpace J) (f p0.1)) q.1)) ∘
+      graphTransportPairBase f) p0
+  exact hpair.comp p0 (graphTransportPairBase_contMDiffAt (I := I) (J := J) f p0)
 
 omit [IsManifold I ∞ M] in
 /-- Helper for Problem 8-14: the explicit fixed-trivialization graph-transport family is smooth
@@ -886,14 +913,17 @@ lemma graphRelatedSecondComponent_contMDiff
   let b₁ : M × N → N := fun p ↦ f p.1
   let b₂ : M × N → N := Prod.snd
   let ϕ : ∀ p : M × N, TangentSpace J (b₁ p) →L[𝕜] TangentSpace J (b₂ p) :=
-    fun _ ↦ (ContinuousLinearMap.id 𝕜 E' : E' →L[𝕜] E')
+    fun _ ↦ (1 : E' →L[𝕜] E')
   let v : ∀ p : M × N, TangentSpace J (b₁ p) := fun p ↦ mfderiv I J f p.1 (X p.1)
   have hϕ :
       ContMDiffAt (I.prod J) 𝓘(𝕜, E' →L[𝕜] E') ∞
         (fun p : M × N ↦ inTangentCoordinates J J b₁ b₂ ϕ p0 p) p0 := by
     -- This is the only genuine transport step: the coordinate form of the identity map between
     -- tangent fibers must vary smoothly with both base points.
-    simpa [b₁, b₂, ϕ] using graphTransportIdentityInCoordinates_contMDiffAt f p0
+    change ContMDiffAt (I.prod J) 𝓘(𝕜, E' →L[𝕜] E') ∞
+      (fun p : M × N ↦ inTangentCoordinates J J (fun q : M × N ↦ f q.1) Prod.snd
+        (fun _ ↦ (1 : E' →L[𝕜] E')) p0 p) p0
+    exact graphTransportIdentityInCoordinates_contMDiffAt f p0
   have hv :
       ContMDiffAt (I.prod J) J.tangent ∞ (fun p : M × N ↦ (v p : TangentBundle J N)) p0 := by
     -- Reuse the previously proved smooth derivative section without reopening the tangent-map
@@ -903,7 +933,10 @@ lemma graphRelatedSecondComponent_contMDiff
     -- The target base map is just the second projection.
     simpa [b₂] using (contMDiffAt_snd : ContMDiffAt (I.prod J) J ∞ (Prod.snd : M × N → N) p0)
   -- Apply the smooth transport family to the smooth derivative section.
-  simpa [b₁, b₂, ϕ, v] using (ContMDiffAt.clm_apply_of_inCoordinates hϕ hv hb₂)
+  convert (ContMDiffAt.clm_apply_of_inCoordinates hϕ hv hb₂) using 1
+  funext p
+  simp [b₁, b₂, ϕ, v, ContinuousLinearMap.one_def]
+  exact (ContinuousLinearMap.id_apply (R₁ := 𝕜) ((mfderiv I J f p.1) (X p.1))).symm
 
 omit [IsManifold I ∞ M] [IsManifold J ∞ N] in
 /-- Helper for Problem 8-14: under the product tangent-bundle equivalence, `graphRelated f X`
@@ -932,7 +965,8 @@ theorem contMDiff_graphRelated
     have hF : ContMDiff (I.prod J) (I.tangent.prod J.tangent) ∞ F := by
       -- Each component is smooth after pulling back along the corresponding projection.
       have hfirst : ContMDiff (I.prod J) I.tangent ∞ (fun p : M × N ↦ T% X p.1) := by
-        simpa using hX.comp contMDiff_fst
+        change ContMDiff (I.prod J) I.tangent ∞ ((T% X) ∘ Prod.fst)
+        exact hX.comp contMDiff_fst
       have hsecond :
           ContMDiff (I.prod J) J.tangent ∞
             (fun p : M × N ↦

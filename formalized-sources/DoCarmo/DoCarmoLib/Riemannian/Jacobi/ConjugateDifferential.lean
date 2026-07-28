@@ -9,7 +9,9 @@ and only if `exp_p(v)` is a conjugate point along `γ_v`.*
 Given `d(exp_p)_v(Z) = Y_Z(1)` (`ExpDifferential`), this is a statement about the linear map
 `Z ↦ Y_Z(1)`: it has a kernel vector `Z ≠ 0` exactly when some Jacobi field with `Y(0) = 0`,
 not identically zero, also has `Y(1) = 0` — which is the definition of `γ 1` being conjugate
-(`IsConjugatePointAt`).
+(`IsConjugatePointAt`).  The predicate is a relation on an explicitly supplied curve; use
+`IsGeodesicConjugatePointAt` when the geodesic-on-the-interval hypothesis belongs in the
+statement.
 
 Two small facts carry it:
 
@@ -60,6 +62,30 @@ is conjugate to `γ(0)` along `γ` if there is a nontrivial Jacobi field along
 def IsConjugatePointAt (g : RiemannianMetric I M) (γ : ℝ → M) (t₁ : ℝ) : Prop :=
   ∃ J DJ : ℝ → E, IsJacobiFieldAlongOn (I := I) g γ J DJ 0 t₁ ∧
     (∃ t ∈ Icc (0:ℝ) t₁, J t ≠ 0) ∧ J 0 = 0 ∧ J t₁ = 0
+
+/-- **Math.** The geodesic-aware conjugacy predicate.  `IsConjugatePointAt` is
+deliberately a relation on a supplied curve so that the Jacobi-differential
+bridges can reuse it; this wrapper packages the geodesic hypothesis required
+by do Carmo's definition. -/
+def IsGeodesicConjugatePointAt (g : RiemannianMetric I M) (γ : ℝ → M) (t₁ : ℝ) : Prop :=
+  Geodesic.IsGeodesicCurveOn (I := I) g γ (Icc 0 t₁) ∧
+    IsConjugatePointAt (I := I) g γ t₁
+
+/-- **Math.** The first positive conjugate time along `γ`: `γ(t₁)` is
+conjugate to `γ(0)`, and no earlier positive point of the same curve is
+conjugate to it. -/
+def IsFirstConjugatePointAt (g : RiemannianMetric I M)
+    (γ : ℝ → M) (t₁ : ℝ) : Prop :=
+  Geodesic.IsGeodesicCurveOn (I := I) g γ (Icc 0 t₁) ∧
+    0 < t₁ ∧ IsConjugatePointAt (I := I) g γ t₁ ∧
+    ∀ t, 0 < t → t < t₁ → ¬ IsConjugatePointAt (I := I) g γ t
+
+/-- **Math.** do Carmo Ch. 5, Definition 3.4: the conjugate locus `C(p)`
+is the set of first conjugate points to `p` along geodesics issuing from
+`p`. -/
+def conjugateLocus (g : RiemannianMetric I M) (p : M) : Set M :=
+  {q | ∃ (γ : ℝ → M) (t : ℝ), γ 0 = p ∧ γ t = q ∧
+    IsFirstConjugatePointAt (I := I) g γ t}
 
 /-- **Math.** **A chart reading of a tangent vector loses no information.** The tangent
 coordinate change `C_{x→β}` at the foot `x` is injective, by the cocycle
@@ -199,7 +225,7 @@ theorem expDifferential_injective_iff_not_conjugate
       -- and it is not identically zero, since `Z ≠ 0`
       have hne : ∃ t ∈ Icc (0 : ℝ) 1, J t ≠ 0 := by
         by_contra hall
-        push_neg at hall
+        push Not at hall
         have hz : DJ 0 = 0 :=
           IsJacobiFieldAlongOn.deriv_eq_zero_of_forall_eq_zero zero_lt_one hJ hall
         rw [hDJ0'] at hz

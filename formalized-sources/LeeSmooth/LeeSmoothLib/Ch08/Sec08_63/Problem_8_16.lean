@@ -94,7 +94,9 @@ theorem fderiv_negCoordFn_apply (p v : R3) (i : Fin 3) :
       HasFDerivAt (fun q : R3 ↦ -q i)
         (-(PiLp.proj 2 (fun _ : Fin 3 ↦ ℝ) i : R3 →L[ℝ] ℝ)) p := by
     -- Differentiate the coordinate projection first and then negate the scalar-valued map.
-    simpa using (PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 3 ↦ ℝ) p i).neg
+    change HasFDerivAt (-(fun q : R3 ↦ q i)) _ p
+    exact (PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2)
+      (E := fun _ : Fin 3 ↦ ℝ) p i).neg
   rw [hneg.fderiv]
   rfl
 
@@ -134,12 +136,12 @@ theorem fderiv_xMulYSq_apply (p v : R3) :
         (p 1 ^ (2 : ℕ) • (PiLp.proj 2 (fun _ : Fin 3 ↦ ℝ) 0 : R3 →L[ℝ] ℝ) +
           p 0 • (((2 : ℝ) * p 1) • (PiLp.proj 2 (fun _ : Fin 3 ↦ ℝ) 1 : R3 →L[ℝ] ℝ))) p := by
     -- The scalar coefficient in part (a) is the only nonlinear derivative needed in the file.
+    change HasFDerivAt ((fun q : R3 ↦ q 0) * fun q : R3 ↦ q 1 ^ (2 : ℕ)) _ p
     simpa [smul_add, smul_smul, add_comm, add_left_comm, add_assoc, mul_comm, mul_left_comm,
       mul_assoc] using hx.mul hySq
   rw [hxy.fderiv]
   -- Evaluate the resulting linear map on the tangent vector `v`.
-  simp only [ContinuousLinearMap.add_apply, ContinuousLinearMap.smul_apply, PiLp.proj_apply,
-    smul_eq_mul]
+  simp only [add_apply, smul_apply, PiLp.proj_apply, smul_eq_mul]
   ring
 
 /-- Helper for Problem 8-16: pointwise form of the Lie bracket computation in part (a). -/
@@ -156,7 +158,8 @@ theorem problem_8_16_a_lie_bracket_apply (p : R3) :
       (PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 3 ↦ ℝ) p 1).differentiableAt
   have hxySq : DifferentiableAt ℝ (fun q : R3 ↦ q 0 * q 1 ^ (2 : ℕ)) p := by
     -- The nonlinear coefficient in part (a) is still just a polynomial in the coordinates.
-    simpa using hx.mul (hy.pow 2)
+    change DifferentiableAt ℝ ((fun q : R3 ↦ q 0) * (fun q : R3 ↦ q 1) ^ (2 : ℕ)) p
+    exact hx.mul (hy.pow 2)
   have hXCoord1 :
       DifferentiableAt ℝ (fun q : R3 ↦ problem_8_16_a_X q 1) p := by
     have hshape :
@@ -185,7 +188,7 @@ theorem problem_8_16_a_lie_bracket_apply (p : R3) :
         -(4 : ℝ) * p 0 * p 1 := by
     -- Scale the derivative of `x * y^2` and evaluate it on `∂/∂y`.
     rw [fderiv_const_mul hxySq]
-    simp only [ContinuousLinearMap.smul_apply, smul_eq_mul]
+    simp only [smul_apply, smul_eq_mul]
     rw [fderiv_xMulYSq_apply]
     simp [problem_8_16_a_Y]
     ring

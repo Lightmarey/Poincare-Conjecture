@@ -133,10 +133,13 @@ lemma compKernelSpatial_time_deriv {n : ℕ} {s : ℝ} (hs : 0 < s)
     have hdiv : HasDerivAt (fun a : ℝ => ‖x‖ ^ 2 / (4 * a)) (-(‖x‖ ^ 2) / (4 * s ^ 2)) s := by
       have := (hasDerivAt_const s (‖x‖ ^ 2)).div h4s (by positivity)
       convert this using 1
-      field_simp
-      ring
+      · exact AddCommGroup.ext rfl
+      · exact Module.ext rfl
+      · rfl
+      · field_simp
+        ring
     have := (hlog.const_mul (-(n : ℝ) / 2)).add hdiv
-    convert this using 1
+    convert this using 1 <;> try rfl
     field_simp
     ring
   -- transfer the derivative from `exp(H)` to `compKernelSpatial` on `{a>0}`

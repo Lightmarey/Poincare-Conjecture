@@ -406,6 +406,62 @@ theorem not_isConjugatePointAt_of_constantCurvature_of_lt_pi (g : RiemannianMetr
   exact not_isConjugatePointAt_of_constantCurvature_of_speedSq (I := I) g hK hℓ hgeo hγc
     hspeed hc h Dh hd1 hd2 h0 Dh0 hne
 
+/-! ### The first conjugate point in positive constant curvature -/
+
+/-- **Math.** In positive constant sectional curvature `K₀`, the point at distance
+`π / √K₀` along a unit-speed geodesic is its first conjugate point, provided
+the manifold has dimension at least two. The endpoint is conjugate by the explicit
+sine Jacobi fields, while every earlier positive endpoint is non-conjugate because
+`K₀ t² < π²`.
+
+Blueprint: `cor:dc-ch5-3-3-first-conjugate`. -/
+theorem isFirstConjugatePointAt_constCurvature_pos (g : RiemannianMetric I M) {K₀ : ℝ}
+    (hKpos : 0 < K₀) (hK : g.leviCivitaConnection.IsConstantCurvature g K₀) {γ : ℝ → M}
+    (hgeo : IsGeodesicOn (I := I) g γ (Icc 0 (Real.pi / Real.sqrt K₀)))
+    (hγc : ∀ t ∈ Icc (0 : ℝ) (Real.pi / Real.sqrt K₀), ContinuousAt γ t)
+    (hspeed : ∀ t ∈ Icc (0 : ℝ) (Real.pi / Real.sqrt K₀),
+      Geodesic.speedSq (I := I) g γ t = 1)
+    (hn : 2 ≤ Module.finrank ℝ E) :
+    IsFirstConjugatePointAt (I := I) g γ (Real.pi / Real.sqrt K₀) := by
+  have hsqrt : 0 < Real.sqrt K₀ := Real.sqrt_pos.2 hKpos
+  have hLpos : (0 : ℝ) < Real.pi / Real.sqrt K₀ := div_pos Real.pi_pos hsqrt
+  refine ⟨⟨fun t ht => (hγc t ht).continuousWithinAt, hgeo⟩, hLpos,
+    isConjugatePointAt_constCurvature_pos g hKpos hK hgeo hγc hspeed hn, ?_⟩
+  intro t htpos htL
+  have hsub : Icc (0 : ℝ) t ⊆ Icc 0 (Real.pi / Real.sqrt K₀) :=
+    Icc_subset_Icc le_rfl htL.le
+  refine not_isConjugatePointAt_of_constantCurvature_of_lt_pi (I := I) g hK htpos
+    (hgeo.mono hsub) (fun s hs => hγc s (hsub hs)) (fun s hs => hspeed s (hsub hs))
+    one_ne_zero ?_
+  have hmul : Real.sqrt K₀ * t < Real.pi := by
+    rw [mul_comm]
+    exact (lt_div_iff₀ hsqrt).mp htL
+  have hsqrt_sq : (Real.sqrt K₀) ^ 2 = K₀ := Real.sq_sqrt hKpos.le
+  have hsumpos : 0 < Real.pi + Real.sqrt K₀ * t := by
+    nlinarith [Real.pi_pos, mul_pos hsqrt htpos]
+  have hprod : 0 < (Real.pi - Real.sqrt K₀ * t) *
+      (Real.pi + Real.sqrt K₀ * t) :=
+    mul_pos (sub_pos.mpr hmul) hsumpos
+  nlinarith [hprod]
+
+/-- **Math.** The first-conjugate endpoint in positive constant curvature belongs
+to the conjugate locus of its initial point. This is the intrinsic
+constant-curvature consequence behind the sphere identity `C(p) = {-p}`; identifying
+the endpoint with the antipode is additional sphere geometry.
+
+Blueprint: `cor:dc-ch5-3-3-conjugate-locus-endpoint`. -/
+theorem mem_conjugateLocus_constCurvature_pos (g : RiemannianMetric I M) {K₀ : ℝ}
+    (hKpos : 0 < K₀) (hK : g.leviCivitaConnection.IsConstantCurvature g K₀)
+    {p : M} {γ : ℝ → M} (hγ0 : γ 0 = p)
+    (hgeo : IsGeodesicOn (I := I) g γ (Icc 0 (Real.pi / Real.sqrt K₀)))
+    (hγc : ∀ t ∈ Icc (0 : ℝ) (Real.pi / Real.sqrt K₀), ContinuousAt γ t)
+    (hspeed : ∀ t ∈ Icc (0 : ℝ) (Real.pi / Real.sqrt K₀),
+      Geodesic.speedSq (I := I) g γ t = 1)
+    (hn : 2 ≤ Module.finrank ℝ E) :
+    γ (Real.pi / Real.sqrt K₀) ∈ conjugateLocus (I := I) g p := by
+  exact ⟨γ, Real.pi / Real.sqrt K₀, hγ0, rfl,
+    isFirstConjugatePointAt_constCurvature_pos g hKpos hK hgeo hγc hspeed hn⟩
+
 /-! ### The transfer between two spaces of the same constant curvature -/
 
 variable {H' : Type*} [TopologicalSpace H'] {I' : ModelWithCorners ℝ E H'}

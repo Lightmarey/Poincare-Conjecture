@@ -9,6 +9,8 @@ open scoped Matrix
 
 noncomputable section
 
+attribute [local instance 100] LieRing.ofAssociativeRing
+
 universe u
 
 local notation "gl2" => Matrix (Fin 2) (Fin 2) ℝ

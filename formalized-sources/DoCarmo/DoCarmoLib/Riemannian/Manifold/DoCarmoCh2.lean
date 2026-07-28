@@ -126,6 +126,26 @@ theorem exists_smoothVectorField_eq [FiniteDimensional ℝ E] [SigmaCompactSpace
     have := hs p; simpa only [ht, if_pos rfl, Set.mem_singleton_iff] using this
   exact ⟨⟨fun x => s x, s.contMDiff⟩, hsp⟩
 
+/-- **Math.** The four axioms for a map of smooth vector fields to be an affine
+connection in the sense of do Carmo Ch. 2, Def. 2.1: additivity and
+`𝒟(M)`-homogeneity in the direction field, additivity in the differentiated
+field, and the Leibniz rule in that field.
+
+This unbundled predicate is equivalent to supplying the proof fields of
+`AffineConnection`; `AffineConnection.ofIsAffineConnectionMap` is the bundling
+map. -/
+def IsAffineConnectionMap
+    (cov : SmoothVectorField I M → SmoothVectorField I M → SmoothVectorField I M) : Prop :=
+  (∀ X Y Z : SmoothVectorField I M, cov (X + Y) Z = cov X Z + cov Y Z) ∧
+  (∀ (f : M → ℝ) (hf : ContMDiff I 𝓘(ℝ, ℝ) ∞ f)
+      (X Z : SmoothVectorField I M),
+      cov (SmoothVectorField.smul f hf X) Z = SmoothVectorField.smul f hf (cov X Z)) ∧
+  (∀ X Y Z : SmoothVectorField I M, cov X (Y + Z) = cov X Y + cov X Z) ∧
+  ∀ (f : M → ℝ) (hf : ContMDiff I 𝓘(ℝ, ℝ) ∞ f)
+      (X Y : SmoothVectorField I M) (p : M),
+      (cov X (SmoothVectorField.smul f hf Y)) p
+        = f p • (cov X Y) p + (SmoothVectorField.dir X f p) • (Y p)
+
 /-- **Math.** do Carmo Ch. 2, Def. 2.1: an **affine connection** `∇` on the
 manifold `M` is a map
 `∇ : 𝒳(M) × 𝒳(M) → 𝒳(M)`, `(X, Y) ↦ ∇_X Y`, satisfying, for all
@@ -158,6 +178,24 @@ structure AffineConnection (I : ModelWithCorners ℝ E H) (M : Type*)
         = f p • (cov X Y) p + (SmoothVectorField.dir X f p) • (Y p)
 
 namespace AffineConnection
+
+/-- **Math.** Bundle a binary operation on smooth vector fields satisfying the affine
+connection axioms into an `AffineConnection`. -/
+def ofIsAffineConnectionMap
+    (cov : SmoothVectorField I M → SmoothVectorField I M → SmoothVectorField I M)
+    (hcov : IsAffineConnectionMap cov) : AffineConnection I M where
+  cov := cov
+  add_left := hcov.1
+  smul_left := hcov.2.1
+  add_right := hcov.2.2.1
+  leibniz := hcov.2.2.2
+
+omit [CompleteSpace E] in
+/-- **Math.** The covariant-derivative operation of an affine connection satisfies the
+unbundled affine-connection axioms. -/
+theorem isAffineConnectionMap (nabla : AffineConnection I M) :
+    IsAffineConnectionMap nabla.cov :=
+  ⟨nabla.add_left, nabla.smul_left, nabla.add_right, nabla.leibniz⟩
 
 /-- **Math.** do Carmo Ch. 2, Def. 3.4: an affine connection `∇` is
 **symmetric** when

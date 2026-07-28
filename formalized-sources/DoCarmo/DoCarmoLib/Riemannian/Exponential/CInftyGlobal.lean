@@ -89,7 +89,8 @@ theorem contMDiff_expMapGlobal (g : RiemannianMetric I M) (hg : g.IsRiemannianDi
     -- chart-`p` velocity is `w` (by construction of `globalGeodesic`)
     have hvelp : deriv (fun t => extChartAt I p (globalGeodesic (I := I) g hg p w t)) 0 = w := by
       have h := (hasDerivAt_chartReading_globalGeodesic g hg p w).deriv
-      simpa only [chartReading_def] using h
+      unfold chartReading at h
+      exact h
     -- chart-`α` velocity is `C w = tangentCoordChange I p α p w`
     have hvelα : deriv (fun t => extChartAt I α (globalGeodesic (I := I) g hg p w t)) 0
         = tangentCoordChange I p α p w := by

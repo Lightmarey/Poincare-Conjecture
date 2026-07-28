@@ -654,6 +654,8 @@ curvature $\lambda/(n-1)$.
 
 \begin{definition}[Open cone]
 \label{def:cone}
+\lean{MorganTianLib.positiveReal,MorganTianLib.coneMetric, MorganTianLib.coneMetric_metricInner_mk}
+\leanok
 \label{conedefn}
 The \emph{open cone} over $(N,g)$ is
 \[
@@ -1219,6 +1221,7 @@ such $\mu$ exists, proving Part 1.
 \begin{remark}[Deviation from Morgan--Tian: Part 1 is formalized by corner rigidity,
 not by the first variation]
 \label{rem:part1-corner-rigidity-route}
+\lean{MorganTianLib.minimalGeodesic_restrict_unique, MorganTianLib.globalGeodesic_eqOn_of_minimizing}
 \leanok
 The argument just given for Part 1 is Morgan--Tian's, and it is complete.  It is
 \emph{not}, however, the route taken in the formalization
@@ -1346,6 +1349,8 @@ of Jacobi fields.)
 \begin{remark}[Deviation from Morgan--Tian: the variation is built in charts, not
 from $\exp$]
 \label{rem:second-variation-chart-route}
+\lean{MorganTianLib.isMetricCompatibleAt_chartMetricBilin, MorganTianLib.secondVariation_energyDensity, MorganTianLib.exists_brokenVariationData, MorganTianLib.hasDerivAt_pieceEnergy_chartMetricBilin}
+\leanok
 The derivation of Equation~(\ref{secvarindex}) just given follows Morgan--Tian in
 taking the variation $\tilde\gamma(t,u)=\exp_{\gamma(t)}(uY(t))$.  That choice is
 convenient on paper but is \emph{not} the route taken in the formalization, for a
@@ -1608,6 +1613,8 @@ We can now state and prove the classical theorem of Hopf and Rinow
 
 \begin{theorem}[Hopf-Rinow Theorem]
 \label{thm:hopf-rinow}
+\lean{MorganTianLib.hopfRinow_geodesic_complete, MorganTianLib.hopfRinow_minimizing_geodesic, MorganTianLib.hopfRinow_properSpace}
+\leanok
 \uses{def:geodesic}
 (Hopf-Rinow) Let $(M,g)$ be a Riemannian manifold which is
 complete as a metric space; for parts (2) and (3) assume in
@@ -1621,6 +1628,7 @@ geodesic, of length $d(p,q)$;
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{def:geodesic,def:exponential-map,lem:minimizing-geodesic-exists,thm:levi-civita-connection}
 Metric completeness lets successive short minimizing segments converge, so a maximal geodesic cannot stop at finite time. Geodesic completeness and the open-and-closed argument for points reachable by minimizing geodesics then give a minimizer between any two points. Conversely, if every geodesic is defined for all time, the same argument supplies minimizing geodesics, and Cauchy sequences converge by placing their tails in a normal ball. The remaining compactness and properness formulations follow from closed bounded balls and the exponential image of compact tangent balls.
@@ -1633,6 +1641,8 @@ consequently, $\exp_p\colon T_pM\to M$ is onto.
 
 \begin{definition}[Cut locus]
 \label{def:cut-locus}
+\lean{MorganTianLib.bookSegmentDomain,MorganTianLib.bookCutLocus}
+\leanok
 \uses{def:exponential-map}
 Let $M$ be complete and connected, and let $p\in M$. Let $U_p\subset T_pM$ denote
 the set of all $v\in T_pM$ for which: (i) $\gamma_v$ is the unique
@@ -1737,6 +1747,8 @@ $0<\lambda\le 1$ then $c(\lambda v)=c(v)/\lambda\ge c(v)>1$, i.e. $\lambda v\in 
 
 \begin{lemma}[Properties of the cut locus]
 \label{lem:cut-locus-properties}
+\lean{MorganTianLib.cutLocus_properties}
+\leanok
 \uses{def:cut-locus,def:cut-time-locus,lem:segment-domain-star-shaped}
 Let $M$ be complete and connected, and let $p\in M$. Then:
 \begin{enumerate}
@@ -1749,6 +1761,7 @@ ${\mathcal C}_p=M\setminus\exp_p(U_p)$ is closed;
 \end{lemma}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{def:cut-locus,lem:localized-cut-locus,thm:hopf-rinow,lem:normal-ball}
 Radial minimality is downward closed, which proves star-shapedness. A finite cut time is attained by continuity of distance. If the endpoint were neither conjugate nor joined by a second minimizing geodesic, the inverse function theorem and compactness of minimizing initial vectors would extend uniqueness and minimality beyond the cut time, a contradiction. These arguments also give continuity of the cut time along directions where the alternatives remain separated.
@@ -1915,11 +1928,13 @@ $\mu_g$-null subset of $M$ containing ${\mathcal C}_p$.
   MorganTianLib.expMapGlobal_locallyInjective_of_minimizing_radial,
   MorganTianLib.injOn_expMapGlobal_segmentDomain,
   MorganTianLib.exists_mem_segmentDomain_expMapGlobal_eq}
+\leanok
 The map
 $$\exp_p\colon U_p\to M\setminus {\mathcal C}_p$$
 is a diffeomorphism. \end{proposition}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{def:cut-locus,def:exponential-map,def:geodesic,lem:cut-locus-properties}
 Every point outside the cut locus has a unique minimizing radial vector, which lies in $U_p$; this proves bijectivity. Such a vector is not conjugate before its cut time, so the exponential differential is invertible there. The inverse function theorem gives a smooth local inverse, and the local inverses agree by uniqueness, producing the global diffeomorphism.
@@ -1930,6 +1945,8 @@ used repeatedly in the volume arguments below.
 
 \begin{lemma}[Radial structure of the domain $U_p$]
 \label{lem:cut-time-star-shaped}
+\lean{MorganTianLib.bookSegmentDomain_radial_properties}
+\leanok
 \uses{def:cut-locus,lem:cut-locus-properties}
 Let $M$ be complete and connected, let $p\in M$, let
 $U_p\subset T_pM$ be the
@@ -1952,6 +1969,7 @@ $[0,c(v))$.
 \end{lemma}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{def:cut-locus,lem:cut-locus-properties,prop:minimal-geodesic-no-conjugate,def:conjugate-point,lem:exponential-differential-jacobi}
 Homogeneity of the cut time gives the radial description of $U_p$. Downward closure of minimizing times shows that every shorter multiple of a vector in $U_p$ remains in $U_p$. Conversely, approaching the cut time along the ray identifies the radial boundary and yields the stated formula for the domain.
@@ -1962,6 +1980,8 @@ Homogeneity of the cut time gives the radial description of $U_p$. Downward clos
 
 \begin{definition}[Injectivity radius]
 \label{def:injectivity-radius}
+\lean{MorganTianLib.metricExpBallDiffeomorph, MorganTianLib.metricBookInjectivityRadius}
+\leanok
 \uses{def:exponential-map,def:cut-locus}
 The {\sl injectivity radius $\inj_M(p)$ of $M$ at $p$} is the
 supremum of the $r> 0$ for which the restriction of $\exp_p\colon T_pM\to M$ to the ball $B(0,r)$ of radius $r$ in $T_pM$
@@ -2006,6 +2026,8 @@ the Uniformization Theorem (Theorem~\ref{thm:uniformization}).
 
 \begin{definition}[Local isometry]
 \label{def:local-isometry}
+\lean{MorganTianLib.LocalIsometry.IsLocalIsometry, MorganTianLib.LocalIsometry.IsLocalIsometry.of_contMDiff_preservesMetric, MorganTianLib.LocalIsometry.isLocalIsometry_iff_contMDiff_preservesMetric}
+\leanok
 \uses{def:riemannian-metric}
 A smooth map $F\colon (N,h)\to (M,g)$ between Riemannian manifolds
 of the same dimension is a {\sl local isometry} if $F^*g=h$, i.e.,
@@ -2018,6 +2040,8 @@ isometry; its inverse is then also an isometry.
 
 \begin{lemma}[Local isometries and the exponential map]
 \label{lem:local-isometry-exponential}
+\lean{MorganTianLib.LocalIsometry.IsLocalIsometry.isGeodesic_comp, MorganTianLib.LocalIsometry.IsLocalIsometry.expMapIntrinsic_naturality_of_complete}
+\leanok
 \uses{def:local-isometry,def:geodesic,def:exponential-map}
 A local isometry $F\colon N\to M$ carries geodesics to geodesics.
 If in addition $N$ is complete (as a metric space), then for every
@@ -2027,6 +2051,7 @@ $$F\left(\exp_x(tv)\right)=\exp_{F(x)}\left(t\,dF_x(v)\right).$$
 \end{lemma}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{thm:levi-civita-connection,thm:hopf-rinow}
 Being a geodesic is a local property, and on a small neighborhood
@@ -2084,6 +2109,8 @@ Apply the exponential-map identity for a local isometry at each preimage of the 
 
 \begin{lemma}[Rigidity of local isometries]
 \label{lem:local-isometry-rigidity}
+\lean{MorganTianLib.LocalIsometry.IsLocalIsometry.eq_of_pointDatum}
+\leanok
 \uses{def:local-isometry}
 Let $N$ be connected and let $F_1,F_2\colon N\to M$ be local
 isometries with $F_1(x_0)=F_2(x_0)$ and $d(F_1)_{x_0}=d(F_2)_{x_0}$
@@ -2091,6 +2118,7 @@ for some $x_0\in N$. Then $F_1=F_2$.
 \end{lemma}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{lem:local-isometry-exponential,def:exponential-map,lem:normal-ball}
 Let $A=\{x\in N\,|\, F_1(x)=F_2(x)\text{ and }
@@ -2113,12 +2141,15 @@ $A=N$.
 
 \begin{lemma}[Local isometries from complete manifolds are coverings]
 \label{lem:local-isometry-covering}
+\lean{MorganTianLib.LocalIsometry.IsLocalIsometry.surjectiveCovering}
+\leanok
 \uses{def:local-isometry}
 Let $F\colon N\to M$ be a local isometry, where $N$ is complete and
 $M$ is connected. Then $F$ is a surjective covering map.
 \end{lemma}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{lem:local-isometry-exponential,thm:hopf-rinow,def:exponential-map}
 Completeness of the source and preservation of lengths let every short geodesic from a target point lift for its full parameter interval. Normal-ball inverse branches based at the points of one fiber are pairwise disjoint by uniqueness of lifted geodesics. Every point over a sufficiently small target ball belongs to one such branch, so the ball is evenly covered. Thus the local isometry is a covering map.
@@ -2560,6 +2591,8 @@ inequality holds across the cut locus in the following weak sense.
 
 \begin{remark}[Laplacian in weak sense]
 \label{rem:laplacian-weak-sense}
+\lean{MorganTianLib.weakLaplacianLE_iff_test_integral}
+\leanok
 \label{calabi}
 \uses{lem:laplacian-local-formula}
 Let $f$ be a locally Lipschitz function on $M$ and let $h$ be a
@@ -4150,6 +4183,7 @@ Apply the radial Bishop--Gromov inequality direction by direction, extending eac
 \label{BishopGromov}
 \uses{def:ricci-curvature,thm:ricci-curvature-comparison,lem:bishop-gromov-ball,def:riemannian-measure}
 \lean{MorganTianLib.bishop_gromov_ball,MorganTianLib.bishop_gromov_ball_ratio}
+\leanok
 (Relative Volume Comparison, Bishop-Gromov 1964-1980) Suppose $(M,
 g)$ is a Riemannian manifold. Fix a point $p\in M$, and suppose that
 $B(p,R)$ has compact closure in $M$. Suppose that for some $k\ge 0$
@@ -4163,6 +4197,7 @@ then $\Vol\,B(p,r)/r^n$ is a non-increasing function of $r$ for $r<R$.
 \end{theorem}
 
 \begin{proof}
+\leanok
 \sketch
 \uses{lem:volume-element-comparison,lem:geodesic-polar-form,lem:localized-cut-locus,lem:model-polar-isometry,lem:normal-ball}
 For almost every radial direction, Ricci comparison makes the ratio of the radial Jacobian to the model density nonincreasing until the cut time. Extend it by zero after the cut time and integrate first in radius and then over the unit sphere. The elementary ratio-of-integrals lemma preserves monotonicity under both integrations. Polar coordinates and nullity of the cut locus identify the resulting integrals with the volumes of the manifold and model balls, and the small-radius normalization gives the limiting value one.

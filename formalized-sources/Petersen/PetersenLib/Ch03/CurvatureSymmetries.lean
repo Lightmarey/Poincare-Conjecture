@@ -237,7 +237,8 @@ theorem curvatureTensorFour_antisymm_right {g : RiemannianMetric I M}
     (hZ : IsSmoothVectorField Z) (hW : IsSmoothVectorField W) (p : M) :
     curvatureTensorFour D X Y Z W p = -curvatureTensorFour D X Y W Z p := by
   have hZW : IsSmoothVectorField (fun q => Z q + W q) := by
-    simpa using ((⟨Z, hZ⟩ : SmoothVectorField I M) + ⟨W, hW⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨Z, hZ⟩ : SmoothVectorField I M) + ⟨W, hW⟩).smooth
   have h0 := curvatureTensorFour_self_eq_zero D hX hY hZW p
   have hZ0 := curvatureTensorFour_self_eq_zero D hX hY hZ p
   have hW0 := curvatureTensorFour_self_eq_zero D hX hY hW p
@@ -364,7 +365,8 @@ theorem AffineConnection.cov_sub_sub_field (D : AffineConnection I M)
     D.cov p v (fun q => A q - B q - C q)
       = D.cov p v A - D.cov p v B - D.cov p v C := by
   have hAB : IsSmoothVectorField (fun q => A q - B q) := by
-    simpa using ((⟨A, hA⟩ : SmoothVectorField I M) - ⟨B, hB⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨A, hA⟩ : SmoothVectorField I M) - ⟨B, hB⟩).smooth
   have e : (fun q => A q - B q - C q)
       = fun q => (fun r => A r - B r) q - C q := rfl
   rw [e, D.sub_field p v hAB hC, D.sub_field p v hA hB]

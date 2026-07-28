@@ -68,7 +68,8 @@ theorem circleAngleVectorField_contMDiff :
     (⟨g, 0⟩ : TangentBundle (𝓡 1) Circle)
   -- The zero vector over the moving base point is the zero section.
   have sfg : ContMDiff (𝓡 1) (𝓡 1).tangent ∞ fg := by
-    simpa [fg, Bundle.zeroSection] using Bundle.contMDiff_zeroSection ℝ (TangentSpace (𝓡 1))
+    simpa [fg, Bundle.zeroSection] using!
+      Bundle.contMDiff_zeroSection ℝ (TangentSpace (𝓡 1))
   let fv : Circle → TangentBundle (𝓡 1) Circle := fun _ ↦
     (⟨1, circleExpIdentityVelocity⟩ : TangentBundle (𝓡 1) Circle)
   -- A fixed vector in the identity fiber is smooth as a map into the total space.
@@ -80,7 +81,7 @@ theorem circleAngleVectorField_contMDiff :
     let h1 : (1 : Circle) ∈ e.baseSet := FiberBundle.mem_baseSet_trivializationAt' (1 : Circle)
     let L : TangentSpace (𝓡 1) (1 : Circle) →L[ℝ] EuclideanSpace ℝ (Fin 1) :=
       (e.linearEquivAt ℝ (1 : Circle) h1).toContinuousLinearMap
-    simpa [fv, e, L, h1] using (L.contMDiffAt.comp g0 contMDiffAt_const)
+    simpa [fv, e, L, h1] using! (L.contMDiffAt.comp g0 contMDiffAt_const)
   let F₁ : Circle → TangentBundle (𝓡 1) Circle × TangentBundle (𝓡 1) Circle := fun g ↦
     (fg g, fv g)
   have S₁ : ContMDiff (𝓡 1) ((𝓡 1).tangent.prod (𝓡 1).tangent) ∞ F₁ := sfg.prodMk sfv

@@ -84,7 +84,7 @@ lake build
 ```
 
 Requires mathlib at the repository-wide SHA pinned in `lakefile.lean` and
-toolchain v4.30.0. Expect about 280 `declaration uses 'sorry'` warnings;
+toolchain v4.32.1. Expect about 279 `declaration uses 'sorry'` warnings;
 they are real, and they are the point.
 
 ## Overlap with LeeRiemannian

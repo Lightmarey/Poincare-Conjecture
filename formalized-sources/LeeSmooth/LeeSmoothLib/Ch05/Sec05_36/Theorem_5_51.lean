@@ -165,7 +165,7 @@ private theorem boundary_model_target_isInteriorPoint
     extChartAt (𝓡∂ (m + 1)) (x : EuclideanHalfSpace (m + 1))
         (x : EuclideanHalfSpace (m + 1)) ∈
       interior (Set.range (𝓡∂ (m + 1)))
-  simpa [extChartAt_self_eq, interior_range_modelWithCornersEuclideanHalfSpace (m + 1)] using
+  simpa [extChartAt_self_eq, interior_range_modelWithCornersEuclideanHalfSpace (m + 1)] using!
     (show 0 < x.1.1 0 from x.2)
 
 /-- Helper for Theorem 5.51: the positive target patch is contained in the manifold interior of
@@ -438,7 +438,7 @@ private noncomputable def boundary_model_translation_positive_target_diffeomorph
       (boundary_model_positive_target_opens m)
       (boundary_model_translation_positive_target_homeomorph z0)).mp ?_
     rw [hcomp]
-    simpa using
+    exact
       ((contMDiff_subtype_val :
           ContMDiff (𝓡 (m + 1)) (𝓡 (m + 1)) (⊤ : WithTop ℕ∞)
             (Subtype.val : boundary_model_source_opens z0 →
@@ -618,7 +618,7 @@ private theorem euclidean_space_to_boundary_model_chart_at_symm_val
             ⟨z, euclidean_space_to_boundary_model_chart_at_target_mem_boundary_model_target hz⟩ :
               boundary_model_source_opens (0 : EuclideanSpace ℝ (Fin (m + 1)))).1) := by
     exact euclidean_space_to_boundary_model_chart_at_symm_eq_translate_inverse hz
-  simpa [boundary_model_translation_homeomorph_symm_apply_val] using hsymm
+  simpa [boundary_model_translation_homeomorph_symm_apply_val] using! hsymm
 
 /-- Helper for Theorem 5.51: on the normalized source half-space, the chart-at-`0` map is exactly
 the explicit translation into the positive boundary-model patch. -/
@@ -749,7 +749,7 @@ private theorem interior_euclidean_chart_at_mem_source
             simpa [extChartAt, mem_chart_source,
               interior_range_modelWithCornersEuclideanHalfSpace (k + 1)] using hxInt'
           exact hxIntCoord.1
-        simpa [euclidean_space_to_boundary_model_chart_at, targetOpen, targetNonempty] using
+        simpa [euclidean_space_to_boundary_model_chart_at, targetOpen, targetNonempty] using!
           hxPos
 
 /-- Helper for Theorem 5.51: Euclideanizing the interior chart at `x` cuts out a literal ambient
@@ -889,9 +889,9 @@ private theorem interior_slice_chart_induces_pointed_subtype_chart_mem_source
       (interior_slice_chart_induces_patch_chart S e he x hx)).source
   rw [OpenPartialHomeomorph.trans_source]
   constructor
-  · simpa [P] using hx
+  · simpa [P] using! hx
   · have hxTarget : x ∈ (P.openPartialHomeomorphSubtypeCoe ⟨xP⟩).target := by
-      simpa [P] using hx
+      simpa [P] using! hx
     have hxPatch :
         (((P.openPartialHomeomorphSubtypeCoe ⟨xP⟩).symm x) :
           {y : S | y.1 ∈ e.source}) = ⟨x, hx⟩ := by
@@ -982,7 +982,7 @@ private theorem boundary_slice_chart_induces_patch_chart_mem_source
     exact mem_univ _
   · -- The remaining source condition is exactly the center-membership fact from the reused
     -- Euclidean half-slice chart API.
-    simpa using
+    simpa using!
       euclidean_half_slice_projection_partial_homeomorph_center_mem_source
         e.target e.open_target hk hkn c xHalfSlice
 
@@ -1020,9 +1020,9 @@ private theorem boundary_slice_chart_induces_pointed_subtype_chart_mem_source
       (boundary_slice_chart_induces_patch_chart S e he x hx)).source
   rw [OpenPartialHomeomorph.trans_source]
   constructor
-  · simpa [P] using hx
+  · simpa [P] using! hx
   · have hxTarget : x ∈ (P.openPartialHomeomorphSubtypeCoe ⟨xP⟩).target := by
-      simpa [P] using hx
+      simpa [P] using! hx
     have hxPatch :
         (((P.openPartialHomeomorphSubtypeCoe ⟨xP⟩).symm x) :
           {y : S | y.1 ∈ e.source}) = ⟨x, hx⟩ := by
@@ -1291,7 +1291,7 @@ private theorem open_subtype_patch_inclusion_isSmoothEmbedding
   -- topological embedding.
   refine Manifold.IsSmoothEmbedding.mk ?_ <|
     open_subtype_patch_inclusion_isEmbedding hEmb.2
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     Manifold.IsImmersion.ex416_comp hEmb.1 (Manifold.IsImmersion.of_opens U)
 
 /-- Helper for Theorem 5.51: lowering the differentiability index preserves immersions by keeping
@@ -1473,7 +1473,7 @@ private theorem restricted_local_normal_form_image_subset_zero_slice
         (hNF.codChart.restr W) yS.1 =
           rank_normal_form k n k (hNF.domChart yS) := by
       simpa [hyLeftInv, Function.comp] using hNF.eqOn hyTarget
-    simpa [hcoord, rank_normal_form_self_eq_local_euclidean_slice_inclusion_zero hk] using
+    simpa [hcoord, rank_normal_form_self_eq_local_euclidean_slice_inclusion_zero hk] using!
       (euclidean_slice_inclusion_tail hk
         (fun _ : Fin (n - k) ↦ (0 : ℝ))
         (hNF.domChart yS) i)

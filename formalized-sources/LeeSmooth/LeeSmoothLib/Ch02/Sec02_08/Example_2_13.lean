@@ -57,9 +57,9 @@ theorem circle_fourier_exp_contMDiff :
     ContMDiff (𝓘(ℝ)) (𝓡 1) ∞ (fun t : ℝ ↦ Circle.exp (2 * Real.pi * t)) := by
   have hmul : ContMDiff (𝓘(ℝ)) 𝓘(ℝ) ∞ (fun t : ℝ ↦ (2 * Real.pi) * t) := by
     -- The phase function is an affine real map, hence smooth.
-    simpa using (contMDiff_const.mul contMDiff_id)
+    simpa using! (contMDiff_const.mul contMDiff_id)
   -- Compose the smooth exponential parametrization of the circle with the smooth phase map.
-  simpa [Function.comp] using contMDiff_circleExp.comp hmul
+  simpa [Function.comp] using! contMDiff_circleExp.comp hmul
 
 /-- Helper for Example 2.13: smoothness of a map into the `n`-torus is equivalent to smoothness
 of all of its circle-valued coordinate functions. -/
@@ -104,7 +104,7 @@ theorem torus_coordinatewise_fourier_exp_contMDiff (n : ℕ) :
         ContMDiff (𝓡 n) (𝓘(ℝ)) ∞
           (fun x : EuclideanSpace ℝ (Fin n) ↦ x i))
   -- Compose the one-dimensional Fourier exponential with the chosen coordinate projection.
-  simpa [Function.comp] using circle_fourier_exp_contMDiff.comp hproj
+  simpa [Function.comp] using! circle_fourier_exp_contMDiff.comp hproj
 
 /- Example 2.13 (5): the inclusion `ι : Sⁿ ↪ ℝ^(n+1)` is smooth; this is exactly the canonical
 mathlib owner `contMDiff_coe_sphere` specialized to the Euclidean sphere model. -/
@@ -329,7 +329,7 @@ theorem sphere_to_realProjectiveSpace_contMDiff (n : ℕ) :
         (fun z : puncturedRealEuclidean n ↦ mk' ℝ z) :=
     real_projective_quotient_map_on_punctured_open_contMDiff n
   -- Compose the sphere lift into the punctured ambient space with the canonical quotient map.
-  simpa [lift, Function.comp, Projectivization.mk'_eq_mk] using hquot.comp hlift
+  simpa [lift, Function.comp, Projectivization.mk'_eq_mk] using! hquot.comp hlift
 
 /-- Example 2.13 (8): for a finite product of smooth manifolds, each coordinate projection is
 smooth. -/

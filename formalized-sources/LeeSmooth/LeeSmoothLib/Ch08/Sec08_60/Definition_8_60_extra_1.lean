@@ -64,9 +64,11 @@ lemma leftTranslationMfderivIsInvertible (g g' : G) :
     Φ.mfderivToContinuousLinearEquiv one_ne_zero g'
   refine ⟨e, ?_⟩
   -- Identify the differential of the diffeomorphism with the differential of `g * ·`.
-  simpa [e, Φ] using
+  have hΦ : (Φ : G → G) = fun x ↦ g * x := rfl
+  rw [← hΦ]
+  simpa [e] using
     (Φ.mfderivToContinuousLinearEquiv_coe one_ne_zero (x := g') :
-      ↑(Φ.mfderivToContinuousLinearEquiv one_ne_zero g') = mfderiv% Φ g').symm
+      ↑(Φ.mfderivToContinuousLinearEquiv one_ne_zero g') = mfderiv% Φ g')
 
 /-- Definition 8.60-extra-1: A vector field is left-invariant iff the differential of each left
 translation sends its value at `g'` to its value at `g * g'`. -/

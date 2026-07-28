@@ -294,7 +294,7 @@ theorem exists_geodesic_flow_step_jacobiTransport_manifold_ball
         have := hZstate (t - a) htmm
         rwa [show a + (t - a) = t by ring] at this
       rw [hstateEq] at hd
-      simpa [hWdef] using hd
+      convert hd using 1 <;> first | rfl | simp [hWdef]
     -- geodesic / continuity / confinement data along `γ` on `[a, b]`
     have hIccwin : Icc a b ⊆ Ioo (s₀ - δ) (s₀ + δ) := by
       intro t ht

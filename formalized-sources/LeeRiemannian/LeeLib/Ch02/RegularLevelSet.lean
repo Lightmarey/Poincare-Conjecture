@@ -107,7 +107,8 @@ theorem mem_regularSet_iff_grad_ne_zero (g : RiemannianMetric I M) (f : M → �
   · ext w
     have := congrFun (congrArg DFunLike.coe h) w
     simp only [ContinuousLinearMap.zero_apply] at this ⊢
-    exact (NormedSpace.fromTangentSpace (f x)).injective (by simpa using this)
+    apply (NormedSpace.fromTangentSpace (f x)).injective
+    exact this
 
 omit [FiniteDimensional ℝ E] [I.Boundaryless] in
 /-- **The non-vanishing locus of the differential of a smooth map is open.**

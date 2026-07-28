@@ -252,10 +252,10 @@ private theorem Projectivization.linear_equiv_projective_coordinate_contDiff
         (fun u : EuclideanSpace ℂ (Fin m) ↦ eR (complexProjectiveChartInvVector m i u)) := by
     -- Restrict scalars to `ℝ` so the complex-linear automorphism becomes a smooth real-linear
     -- automorphism, then compose it with the inserted homogeneous vector.
-    simpa [eR] using
+    simpa [eR] using!
       eR.contDiff.comp (complexProjectiveChartInvVector_contDiff m i)
   -- Finally project to the `l`th homogeneous coordinate.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     ((contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (i := l)) : ContDiff ℝ ω
       (fun v : EuclideanSpace ℂ (Fin (m + 1)) ↦ v l)).comp himage
 
@@ -346,7 +346,7 @@ private theorem Projectivization.linear_equiv_projective_overlap_image_eq
         Projectivization.map e.toLinearMap e.injective
             ((complexProjectiveChart m i).symm ((complexProjectiveChart m i).extend Icp x)) ∈
           complexProjectiveChartDomain m j := by
-      simpa [OpenPartialHomeomorph.extend_coe, hx_source, hx_eq] using hx_target
+      simpa [OpenPartialHomeomorph.extend_coe, hx_source, hx_eq] using! hx_target
     simpa [OpenPartialHomeomorph.extend_coe, hx_source] using hiff.mp hx_target'
   · intro hu
     -- Start from affine coordinates `u`, move back to the `i`-chart inverse, and recover the
@@ -381,7 +381,7 @@ private theorem Projectivization.complex_linear_equiv_projectivization_written_i
       Projectivization.map e.toLinearMap e.injective
           (((complexProjectiveChart m i).extend Icp).symm u) ∈
         (complexProjectiveChart m j).source := by
-    simpa [OpenPartialHomeomorph.extend_coe_symm] using
+    simpa [OpenPartialHomeomorph.extend_coe_symm] using!
       (Projectivization.linear_equiv_projective_image_mem_chartDomain_iff e i j u).2 hu
   -- Once the source and target extended charts are rewritten to the standard charts, the map is
   -- exactly the affine quotient formula from `linear_equiv_projective_chart_formula`.
@@ -457,7 +457,7 @@ private theorem Projectivization.complex_linear_equiv_projectivization_contMDiff
   have hcont : Continuous f := by
     let q : {v : EuclideanSpace ℂ (Fin (m + 1)) // v ≠ 0} → ℂP[m] := Projectivization.mk' ℂ
     have hq : Continuous q := by
-      simpa [q, Projectivization.mk'] using
+      simpa [q, Projectivization.mk'] using!
         (continuous_quotient_mk' :
           Continuous
             (@Quotient.mk'
@@ -467,14 +467,14 @@ private theorem Projectivization.complex_linear_equiv_projectivization_contMDiff
         Continuous
           (fun v : {v : EuclideanSpace ℂ (Fin (m + 1)) // v ≠ 0} ↦
             Projectivization.mk ℂ (e v) (P v).2) := by
-      simpa [q, P, Projectivization.mk'_eq_mk] using hq.comp hP
+      simpa [q, P, Projectivization.mk'_eq_mk] using! hq.comp hP
     -- Descend the continuous representative map through the projectivization quotient.
-    simpa [f, Projectivization.map, Projectivization.lift, P] using
+    simpa [f, Projectivization.map, Projectivization.lift, P] using!
       hmk.quotient_lift fun a b hab ↦ by
         rcases (show ∃ c : ℂˣ,
             c • (b : EuclideanSpace ℂ (Fin (m + 1))) = (a : EuclideanSpace ℂ (Fin (m + 1))) from by
           simpa [projectivizationSetoid, MulAction.orbitRel_apply, MulAction.mem_orbit_iff]
-            using hab) with ⟨c, hc⟩
+            using! hab) with ⟨c, hc⟩
         change Projectivization.mk ℂ (e a) (P a).2 = Projectivization.mk ℂ (e b) (P b).2
         exact
           (Projectivization.mk_eq_mk_iff ℂ (e a) (e b) (P a).2 (P b).2).2
@@ -699,7 +699,7 @@ private theorem complex_basisMap_contMDiff
   rw [contMDiffAt_iff]
   constructor
   · -- Continuity is inherited from the transported homeomorphism before any chart computation.
-    simpa [eS, complex_basisMapSymm] using
+    simpa [eS, complex_basisMapSymm] using!
       (((complex_basisEquiv (m := m) b).symm.homeomorph).continuous_invFun.continuousAt :
         ContinuousAt (Projectivization.basisMap b) x)
   · -- Route correction: rewrite the intermediate target chart to `eS`, so the written map is the
@@ -744,7 +744,7 @@ private theorem complex_basisMap_contMDiff
             (Projectivization.basisMap b x)
         simpa [hcenter, hcenterChart] using htarget'
       filter_upwards [htarget] with y hy
-      simpa [hchart, hpoint, eS, complex_basisMapSymm] using
+      simpa [hchart, hpoint, eS, complex_basisMapSymm] using!
         (writtenInExtChartAt_chartAt_symm_comp
           (I := Icp) (H := EuclideanSpace ℂ (Fin m)) (H' := ℂP[m])
           (x := Projectivization.basisMap b x) (y := y) hy)
@@ -775,7 +775,7 @@ private theorem complex_basisMapSymm_contMDiff
   rw [contMDiffAt_iff]
   constructor
   · -- The inverse map is the forward direction of the transported homeomorphism.
-    simpa [eS, complex_basisMapSymm] using
+    simpa [eS, complex_basisMapSymm] using!
       (((complex_basisEquiv (m := m) b).symm.homeomorph).continuous_toFun.continuousAt :
         ContinuousAt (complex_basisMapSymm (m := m) b) x)
   · -- Rewriting the source chart to `eS` reduces the written map to the chart identity in the
@@ -788,7 +788,7 @@ private theorem complex_basisMapSymm_contMDiff
           (id : EuclideanSpace ℂ (Fin m) → EuclideanSpace ℂ (Fin m))
           (Set.range Icp) (extChartAt Icp x x)).congr_of_eventuallyEq_of_mem ?_ ?_
     · filter_upwards [extChartAt_target_mem_nhdsWithin (I := Icp) x] with y hy
-      simpa [hchart, eS, complex_basisMapSymm] using
+      simpa [hchart, eS, complex_basisMapSymm] using!
         (writtenInExtChartAt_chartAt_comp
           (I := Icp) (H := EuclideanSpace ℂ (Fin m)) (H' := ℂP[m])
           (x := x) (y := y) hy)
@@ -931,7 +931,7 @@ private theorem complex_basisCompatible_ofBasis
   refine ⟨Φ, ?_⟩
   intro x
   -- The composite first changes from the standard basis to `b₀`, then transports along `b₀`.
-  simpa [Φ, A] using
+  simpa [Φ, A] using!
     (congrArg (fun f : ℂP[m] → ℙ ℂ V ↦ f x)
       (basis_map_eq_base_basis_comp_projectivization (m := m) (V := V) b₀ b)).symm
 

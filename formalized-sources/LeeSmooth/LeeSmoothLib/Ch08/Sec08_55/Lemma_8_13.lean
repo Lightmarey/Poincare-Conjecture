@@ -58,10 +58,9 @@ theorem gramSchmidtFrame_pointwise_orthonormal
     fun j ↦ NormedSpace.fromTangentSpace x (X j x)
   have hlin :
       LinearIndependent ℝ Y := by
-    simpa [Y] using
-      hXx.map'
-        (NormedSpace.fromTangentSpace x).toLinearMap
-        (by ext v; simp)
+    change LinearIndependent ℝ
+      ((⇑(NormedSpace.fromTangentSpace x)) ∘ fun j : Fin n ↦ X j x)
+    exact hXx.map' (NormedSpace.fromTangentSpace x).toLinearMap (by ext v; simp)
   simpa [Y, fromTangentSpace_gramSchmidtFrame] using
     (gramSchmidtNormed_orthonormal hlin)
 
@@ -75,10 +74,10 @@ theorem frameCoordinates_linearIndependent
     {x : EuclideanSpace ℝ (Fin n)} (hx : x ∈ U) :
     LinearIndependent ℝ (frameCoordinates X · x) := by
   -- Push the pointwise tangent-space frame through the canonical tangent-space coordinates once.
-  simpa [frameCoordinates] using
-    (hX.linearIndependent hx).map'
-      (NormedSpace.fromTangentSpace x).toLinearMap
-      (by ext v; simp)
+  change LinearIndependent ℝ
+    ((⇑(NormedSpace.fromTangentSpace x)) ∘ fun j : Fin n ↦ X j x)
+  exact (hX.linearIndependent hx).map'
+    (NormedSpace.fromTangentSpace x).toLinearMap (by ext v; simp)
 
 /-- Helper for the Gram-Schmidt algorithm for frames: projection onto the line spanned by a smooth
 nowhere-vanishing vector
@@ -100,7 +99,9 @@ theorem contDiffOn_starProjection_singleton
       ContDiffOn ℝ ∞ (fun x ↦ inner ℝ (v x) (w x) / ‖v x‖ ^ 2) U := by
     intro x hx
     exact (hinner x hx).div (hnormSq x hx) (pow_ne_zero 2 (norm_ne_zero_iff.mpr (hv_ne x hx)))
-  simpa [Submodule.starProjection_singleton] using hcoeff.smul hv
+  simp only [Submodule.starProjection_singleton]
+  change ContDiffOn ℝ ∞ ((fun x ↦ inner ℝ (v x) (w x) / ‖v x‖ ^ 2) • v) U
+  exact hcoeff.smul hv
 
 /-- Helper for the Gram-Schmidt algorithm for frames: the raw Gram-Schmidt vectors of a local
 frame never vanish on the
@@ -181,8 +182,8 @@ theorem gramSchmidt_contDiffOn
   -- First convert the original tangent-space smoothness hypotheses into Euclidean coordinates.
   have hXsmooth : ∀ j : Fin n, ContDiffOn ℝ ∞ (frameCoordinates X j) U := by
     intro j
-    simpa [frameCoordinates] using
-      ((contMDiffOn_vectorSpace_iff_contDiffOn).mp (hX.contMDiffOn j))
+    change ContDiffOn ℝ ∞ (X j) U
+    exact (contMDiffOn_vectorSpace_iff_contDiffOn).mp (hX.contMDiffOn j)
   -- Strong induction supplies exactly the earlier-index smoothness hypotheses in `gramSchmidt_def`.
   intro i
   induction i using Fin.strong_induction_on with
@@ -225,11 +226,9 @@ theorem span_gramSchmidtFrame_range
     (NormedSpace.fromTangentSpace x).injective
   rw [Submodule.map_span, Submodule.map_span]
   rw [← Set.range_comp, ← Set.range_comp]
-  simpa [frameCoordinates, fromTangentSpace_gramSchmidtFrame] using
-    (show
-      Submodule.span ℝ (Set.range (gramSchmidtNormed ℝ (frameCoordinates X · x))) =
-        Submodule.span ℝ (Set.range (frameCoordinates X · x)) by
-        rw [span_gramSchmidtNormed_range, span_gramSchmidt])
+  change Submodule.span ℝ (Set.range (gramSchmidtNormed ℝ (frameCoordinates X · x))) =
+    Submodule.span ℝ (Set.range (frameCoordinates X · x))
+  rw [span_gramSchmidtNormed_range, span_gramSchmidt]
 
 /-- Helper for the Gram-Schmidt algorithm for frames: in Euclidean coordinates, `gramSchmidtFrame`
 is just the normalized raw
@@ -263,7 +262,9 @@ theorem gramSchmidtFrame_contMDiffOn
       ContDiffOn ℝ ∞ (fun x ↦ (‖rawGramSchmidtFrame X i x‖ : ℝ)⁻¹) U := by
     intro x hx
     exact (hnorm x hx).inv (norm_ne_zero_iff.mpr (gramSchmidt_ne_zero_on hX i hx))
-  simpa using hnormInv.smul hraw
+  change ContDiffOn ℝ ∞
+    ((fun x ↦ (‖rawGramSchmidtFrame X i x‖ : ℝ)⁻¹) • rawGramSchmidtFrame X i) U
+  exact hnormInv.smul hraw
 
 /-- Helper for the Gram-Schmidt algorithm for frames: the pointwise Gram-Schmidt frame of a smooth
 local frame is a smooth orthonormal
@@ -277,10 +278,14 @@ theorem gramSchmidtFrame_isOrthonormalFrameOn
   have hlin :
       ∀ x ∈ U, LinearIndependent ℝ (gramSchmidtFrame X · x) := by
     intro x hx
-    simpa using
-      ((gramSchmidtFrame_pointwise_orthonormal (hX.linearIndependent hx)).linearIndependent).map'
-        ((NormedSpace.fromTangentSpace x).symm.toLinearMap)
-        (by ext v; simp)
+    change LinearIndependent ℝ
+      ((⇑(NormedSpace.fromTangentSpace x).symm) ∘ fun i : Fin n ↦
+        gramSchmidtNormed ℝ
+          (fun j ↦ NormedSpace.fromTangentSpace x (X j x)) i)
+    exact
+      ((gramSchmidtFrame_pointwise_orthonormal
+        (hX.linearIndependent hx)).linearIndependent).map'
+          ((NormedSpace.fromTangentSpace x).symm.toLinearMap) (by ext v; simp)
   refine
     { linearIndependent := by
         intro x hx
@@ -291,7 +296,7 @@ theorem gramSchmidtFrame_isOrthonormalFrameOn
       contMDiffOn := by
         intro i
         rw [contMDiffOn_vectorSpace_iff_contDiffOn]
-        simpa using gramSchmidtFrame_contMDiffOn hX i
+        exact gramSchmidtFrame_contMDiffOn hX i
       orthonormal := by
         intro x hx
         exact gramSchmidtFrame_pointwise_orthonormal (hX.linearIndependent hx) }

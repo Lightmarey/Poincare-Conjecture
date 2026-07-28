@@ -87,7 +87,8 @@ theorem continuous_remainder {pd : ℝ → E → F} (hpd : Continuous (Function.
     (by
       have hmul : Continuous fun p : (ℝ × E) × ℝ => p.2 * p.1.1 := by fun_prop
       exact hpd.comp (hmul.prodMk (by fun_prop))) 0 1
-  simpa [Function.uncurry, remainder] using this
+  change Continuous (fun x : ℝ × E => ∫ s in (0 : ℝ)..1, pd (s * x.1) x.2)
+  exact this
 
 /-! ### Joint differentiability of the Hadamard remainder
 

@@ -52,10 +52,10 @@ theorem problem_8_12_X_contMDiff :
   simpa [problem_8_12_X] using
     (contDiff_piLp' (2 : ENNReal) fun i ↦ by
       fin_cases i
-      · simpa using
+      · simpa [problem_8_12_X] using!
           ((contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R2 ↦ p 1)).neg
-      · simpa using
+      · simpa [problem_8_12_X] using!
           (contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R2 ↦ p 0))
 
@@ -81,11 +81,11 @@ theorem problem_8_12_chart0_vectorField_contMDiff :
   simpa [problem_8_12_chart0_vectorField] using
     (contDiff_piLp' (2 : ENNReal) fun i ↦ by
       fin_cases i
-      · simpa using
+      · simpa [problem_8_12_chart0_vectorField] using!
           contDiff_const.add
             ((contDiff_piLp_apply (2 : ENNReal) :
               ContDiff ℝ ∞ fun p : R2 ↦ p 0).pow 2)
-      · simpa using
+      · simpa [problem_8_12_chart0_vectorField] using!
           (contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R2 ↦ p 0).mul
             (contDiff_piLp_apply (2 : ENNReal) :
@@ -113,11 +113,11 @@ theorem problem_8_12_chart1_vectorField_contMDiff :
   simpa [problem_8_12_chart1_vectorField, neg_add, add_comm, add_left_comm, add_assoc] using
     (contDiff_piLp' (2 : ENNReal) fun i ↦ by
       fin_cases i
-      · convert
+      · simpa [problem_8_12_chart1_vectorField] using!
           (contDiff_const.add
             ((contDiff_piLp_apply (2 : ENNReal) :
-              ContDiff ℝ ∞ fun p : R2 ↦ p 0).pow 2)).neg using 1
-      · simpa using
+              ContDiff ℝ ∞ fun p : R2 ↦ p 0).pow 2)).neg
+      · simpa [problem_8_12_chart1_vectorField] using!
           ((contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R2 ↦ p 0).mul
             (contDiff_piLp_apply (2 : ENNReal) :
@@ -176,7 +176,7 @@ theorem problem_8_12_localLift_contMDiff (i : Fin 3)
       ContMDiff (𝓡 2).tangent (𝓡 2).tangent ∞
         (tangentMap (𝓡 2) (𝓡 2) (realProjectiveChart 2 i).symm) := by
     simpa using hsymm.contMDiff_tangentMap le_rfl
-  simpa [problem_8_12_localLift, Function.comp_apply] using hT.comp hV
+  simpa [problem_8_12_localLift, Function.comp_apply] using! hT.comp hV
 
 /-- Helper for Problem 8-12: pushing the pullback of an ambient vector field along an open
 inclusion recovers the original ambient field. -/
@@ -245,7 +245,7 @@ theorem problem_8_12_chart20_denominator_ne_zero
     (u : realProjectiveChartOverlapOpens 2 (Fin.last 2) (0 : Fin 3)) :
     (u : R2) 0 ≠ 0 := by
   -- Rewrite overlap membership into the nonvanishing homogeneous coordinate condition.
-  simpa [realProjectiveChartInvVector] using
+  simpa [realProjectiveChartInvVector] using!
     (mem_realProjectiveChartOverlap_iff 2 (Fin.last 2) (0 : Fin 3) (u : R2)).1 u.2
 
 /-- Helper for Problem 8-12: on the `(2,1)` chart overlap, the second `z ≠ 0` coordinate is
@@ -254,7 +254,7 @@ theorem problem_8_12_chart21_denominator_ne_zero
     (u : realProjectiveChartOverlapOpens 2 (Fin.last 2) (1 : Fin 3)) :
     (u : R2) 1 ≠ 0 := by
   -- Rewrite overlap membership into the nonvanishing homogeneous coordinate condition.
-  simpa [realProjectiveChartInvVector] using
+  simpa [realProjectiveChartInvVector] using!
     (mem_realProjectiveChartOverlap_iff 2 (Fin.last 2) (1 : Fin 3) (u : R2)).1 u.2
 
 /-- Helper for Problem 8-12: on the `(0,1)` chart overlap, the first `x ≠ 0` coordinate is
@@ -385,7 +385,7 @@ theorem problem_8_12_chart20_ambient_deriv
       HasFDerivAt (fun q : R2 ↦ (q 0)⁻¹)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 0 ^ 2)⁻¹)).comp proj0) (u : R2) := by
     -- Differentiate the reciprocal of the first coordinate at the overlap point.
-    simpa [proj0] using
+    simpa [proj0, Function.comp_def] using!
       (hasFDerivAt_inv (𝕜 := ℝ) (x := (u : R2) 0) hu0).comp (u : R2) h0
   have hFirst :
       HasFDerivAt (fun q : R2 ↦ q 1 / q 0)
@@ -393,7 +393,8 @@ theorem problem_8_12_chart20_ambient_deriv
           ((u : R2) 1) • ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 0 ^ 2)⁻¹)).comp
             proj0)) (u : R2) := by
     -- Rewrite `b / a` as `b * a⁻¹` and differentiate product-wise.
-    simpa [div_eq_mul_inv, proj0, proj1, add_comm, add_left_comm, add_assoc] using h1.mul hInv
+    simpa [div_eq_mul_inv, proj0, proj1, add_comm, add_left_comm, add_assoc] using!
+      h1.mul hInv
   have hSecond :
       HasFDerivAt (fun q : R2 ↦ 1 / q 0)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 0 ^ 2)⁻¹)).comp proj0) (u : R2) := by
@@ -421,7 +422,7 @@ theorem problem_8_12_chart20_ambient_deriv
       HasFDerivAt (fun q : R2 ↦ WithLp.toLp 2 ![q 1 / q 0, 1 / q 0])
         (toR2.toContinuousLinearMap.comp (ContinuousLinearMap.pi f')) (u : R2) := by
     -- Transport the derivative from plain product coordinates back to the `PiLp` model.
-    simpa [toR2, Function.comp] using (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
+    simpa [toR2, Function.comp] using! (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
   have hEval :
       fderiv ℝ (fun q : R2 ↦ WithLp.toLp 2 ![q 1 / q 0, 1 / q 0]) (u : R2)
           (WithLp.toLp 2 ![-(u : R2) 1, (u : R2) 0]) =
@@ -439,7 +440,8 @@ theorem problem_8_12_chart20_ambient_deriv
         ((u : R2) 1 / (u : R2) 0) * (1 / (u : R2) 0)
       simp [f', proj0, proj1]
       field_simp [hu0]
-  simpa [problem_8_12_chart2_vectorField, problem_8_12_chart0_vectorField, mfderiv_eq_fderiv] using
+  simpa [problem_8_12_chart2_vectorField, problem_8_12_chart0_vectorField,
+    mfderiv_eq_fderiv] using!
     hEval
 
 /-- Helper for Problem 8-12: differentiating `(a, b) ↦ (a / b, 1 / b)` along `(-b, a)` produces
@@ -465,7 +467,7 @@ theorem problem_8_12_chart21_ambient_deriv
       HasFDerivAt (fun q : R2 ↦ (q 1)⁻¹)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 1 ^ 2)⁻¹)).comp proj1) (u : R2) := by
     -- Differentiate the reciprocal of the second coordinate at the overlap point.
-    simpa [proj1] using
+    simpa [proj1, Function.comp_def] using!
       (hasFDerivAt_inv (𝕜 := ℝ) (x := (u : R2) 1) hu1).comp (u : R2) h1
   have hFirst :
       HasFDerivAt (fun q : R2 ↦ q 0 / q 1)
@@ -473,7 +475,8 @@ theorem problem_8_12_chart21_ambient_deriv
           ((u : R2) 0) • ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 1 ^ 2)⁻¹)).comp
             proj1)) (u : R2) := by
     -- Rewrite `a / b` as `a * b⁻¹` and differentiate product-wise.
-    simpa [div_eq_mul_inv, proj0, proj1, add_comm, add_left_comm, add_assoc] using h0.mul hInv
+    simpa [div_eq_mul_inv, proj0, proj1, add_comm, add_left_comm, add_assoc] using!
+      h0.mul hInv
   have hSecond :
       HasFDerivAt (fun q : R2 ↦ 1 / q 1)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 1 ^ 2)⁻¹)).comp proj1) (u : R2) := by
@@ -501,7 +504,7 @@ theorem problem_8_12_chart21_ambient_deriv
       HasFDerivAt (fun q : R2 ↦ WithLp.toLp 2 ![q 0 / q 1, 1 / q 1])
         (toR2.toContinuousLinearMap.comp (ContinuousLinearMap.pi f')) (u : R2) := by
     -- Transport the derivative from plain product coordinates back to the `PiLp` model.
-    simpa [toR2, Function.comp] using (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
+    simpa [toR2, Function.comp] using! (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
   have hEval :
       fderiv ℝ (fun q : R2 ↦ WithLp.toLp 2 ![q 0 / q 1, 1 / q 1]) (u : R2)
           (WithLp.toLp 2 ![-(u : R2) 1, (u : R2) 0]) =
@@ -520,7 +523,8 @@ theorem problem_8_12_chart21_ambient_deriv
         -(((u : R2) 0 / (u : R2) 1) * (1 / (u : R2) 1))
       simp [f', proj0, proj1]
       field_simp [hu1]
-  simpa [problem_8_12_chart2_vectorField, problem_8_12_chart1_vectorField, mfderiv_eq_fderiv] using
+  simpa [problem_8_12_chart2_vectorField, problem_8_12_chart1_vectorField,
+    mfderiv_eq_fderiv] using!
     hEval
 
 /-- Helper for Problem 8-12: differentiating `(s, t) ↦ (1 / s, t / s)` along
@@ -546,7 +550,7 @@ theorem problem_8_12_chart01_ambient_deriv
       HasFDerivAt (fun q : R2 ↦ (q 0)⁻¹)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 0 ^ 2)⁻¹)).comp proj0) (u : R2) := by
     -- Differentiate the reciprocal of the first coordinate at the overlap point.
-    simpa [proj0] using
+    simpa [proj0, Function.comp_def] using!
       (hasFDerivAt_inv (𝕜 := ℝ) (x := (u : R2) 0) hu0).comp (u : R2) h0
   have hFirst :
       HasFDerivAt (fun q : R2 ↦ 1 / q 0)
@@ -559,7 +563,8 @@ theorem problem_8_12_chart01_ambient_deriv
           ((u : R2) 1) • ((ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 0 ^ 2)⁻¹)).comp
             proj0)) (u : R2) := by
     -- Rewrite `t / s` as `t * s⁻¹` and differentiate product-wise.
-    simpa [div_eq_mul_inv, proj0, proj1, add_comm, add_left_comm, add_assoc] using h1.mul hInv
+    simpa [div_eq_mul_inv, proj0, proj1, add_comm, add_left_comm, add_assoc] using!
+      h1.mul hInv
   let f' : Fin 2 → R2 →L[ℝ] ℝ := fun i =>
     match i with
     | 0 => (ContinuousLinearMap.toSpanSingleton ℝ (-((u : R2) 0 ^ 2)⁻¹)).comp proj0
@@ -582,7 +587,7 @@ theorem problem_8_12_chart01_ambient_deriv
       HasFDerivAt (fun q : R2 ↦ WithLp.toLp 2 ![1 / q 0, q 1 / q 0])
         (toR2.toContinuousLinearMap.comp (ContinuousLinearMap.pi f')) (u : R2) := by
     -- Transport the derivative from plain product coordinates back to the `PiLp` model.
-    simpa [toR2, Function.comp] using (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
+    simpa [toR2, Function.comp] using! (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
   have hEval :
       fderiv ℝ (fun q : R2 ↦ WithLp.toLp 2 ![1 / q 0, q 1 / q 0]) (u : R2)
           (WithLp.toLp 2 ![1 + (u : R2) 0 ^ (2 : ℕ), (u : R2) 0 * (u : R2) 1]) =
@@ -602,7 +607,8 @@ theorem problem_8_12_chart01_ambient_deriv
       simp [f', proj0, proj1]
       field_simp [hu0]
       ring
-  simpa [problem_8_12_chart0_vectorField, problem_8_12_chart1_vectorField, mfderiv_eq_fderiv] using
+  simpa [problem_8_12_chart0_vectorField, problem_8_12_chart1_vectorField,
+    mfderiv_eq_fderiv] using!
     hEval
 
 /-- Helper for Problem 8-12: the `(2,0)` chart transition pushes the `z ≠ 0` coordinate field to
@@ -894,7 +900,7 @@ theorem problem_8_12_localLift_eq_of_overlap
             mfderiv (𝓡 2) (𝓡 2)
               (fun v : U ↦ (realProjectiveChart 2 i).symm (v : R2)) u (XU u) := by
         symm
-        simpa [Function.comp] using
+        simpa [Function.comp] using!
           (mfderiv_comp_apply (x := u)
             (g := (realProjectiveChart 2 i).symm)
             (f := (Subtype.val : U → R2)) hchartI hsub (XU u))
@@ -923,7 +929,7 @@ theorem problem_8_12_localLift_eq_of_overlap
               (fun v : U ↦ (realProjectiveChart 2 j).symm (F v)) u (XU u) =
             mfderiv (𝓡 2) (𝓡 2) (realProjectiveChart 2 j).symm (F u)
               (mfderiv (𝓡 2) (𝓡 2) F u (XU u)) := by
-        simpa [Function.comp] using
+        simpa [Function.comp] using!
           (mfderiv_comp_apply (x := u)
             (g := (realProjectiveChart 2 j).symm)
             (f := F) hchartJ hF (XU u))
@@ -973,7 +979,7 @@ theorem problem_8_12_chart20_localLift_eq
       OpenPartialHomeomorph.trans_apply] using
       (realProjectiveChart 2 (0 : Fin 3)).left_inv hv
   have hF : MDifferentiableAt (𝓡 2) (𝓡 2) F u := by
-    simpa [F] using htransition.comp u hsub
+    simpa [F, Function.comp_def] using! htransition.comp u hsub
   have hpush :
       mfderiv (𝓡 2) (𝓡 2) F u
         (VectorField.mpullback (𝓡 2) (𝓡 2)
@@ -1020,7 +1026,7 @@ theorem problem_8_12_chart21_localLift_eq
       OpenPartialHomeomorph.trans_apply] using
       (realProjectiveChart 2 (1 : Fin 3)).left_inv hv
   have hF : MDifferentiableAt (𝓡 2) (𝓡 2) F u := by
-    simpa [F] using htransition.comp u hsub
+    simpa [F, Function.comp_def] using! htransition.comp u hsub
   have hpush :
       mfderiv (𝓡 2) (𝓡 2) F u
         (VectorField.mpullback (𝓡 2) (𝓡 2)
@@ -1067,7 +1073,7 @@ theorem problem_8_12_chart01_localLift_eq
       OpenPartialHomeomorph.trans_apply] using
       (realProjectiveChart 2 (1 : Fin 3)).left_inv hv
   have hF : MDifferentiableAt (𝓡 2) (𝓡 2) F u := by
-    simpa [F] using htransition.comp u hsub
+    simpa [F, Function.comp_def] using! htransition.comp u hsub
   have hpush :
       mfderiv (𝓡 2) (𝓡 2) F u
         (VectorField.mpullback (𝓡 2) (𝓡 2)
@@ -1338,7 +1344,7 @@ theorem problem_8_12_exists_rotation_lift :
             problem_8_12_roughLift ((realProjectiveChart 2 (0 : Fin 3)).symm u) := by
                 simpa using congrFun hYeq ((realProjectiveChart 2 (0 : Fin 3)).symm u)
           _ = problem_8_12_localLift (0 : Fin 3) problem_8_12_chart0_vectorField u := by
-                simpa using
+                simpa using!
                   problem_8_12_roughLift_eq_chart0
                     ((realProjectiveChart 2 (0 : Fin 3)).symm u)
                     (realProjectiveChart_symm_mem_domain 2 (0 : Fin 3) u)

@@ -266,7 +266,7 @@ theorem closed_unit_ball_isBoundaryPoint_of_mem_sphere {n : ℕ} {x : ClosedUnit
               exact congrArg (fun e => e x)
                 (extChartAt_comp (I := (𝓡∂ 1)) (H := EuclideanHalfSpace 1)
                   (H' := Set.Icc (-1 : ℝ) 1) (x := x))
-            simpa [e, Topology.IsOpenEmbedding.singletonChartedSpace_chartAt_eq] using hComp
+            simpa [e, Topology.IsOpenEmbedding.singletonChartedSpace_chartAt_eq] using! hComp
           have habs : |x.1 0| = 1 := by
             -- In `ℝ¹`, lying on the unit sphere means the unique coordinate has absolute value `1`.
             simpa [Metric.mem_sphere, dist_eq_norm, EuclideanSpace.norm_eq, Real.sqrt_sq_eq_abs]
@@ -281,11 +281,11 @@ theorem closed_unit_ball_isBoundaryPoint_of_mem_sphere {n : ℕ} {x : ClosedUnit
               apply Subtype.ext
               simp [closed_unit_ball_one_to_Icc, topIcc, hcoord]
             have hTop : (𝓡∂ 1).IsBoundaryPoint topIcc := by
-              simpa [topIcc] using
+              simpa [topIcc] using!
                 (Icc_isBoundaryPoint_top (x := (-1 : ℝ)) (y := (1 : ℝ)))
             have hSelf : (𝓡∂ 1).IsBoundaryPoint x := by
               rw [ModelWithCorners.IsBoundaryPoint, hExt]
-              simpa [hIcc] using hTop
+              simpa [hIcc] using! hTop
             simpa [leeBoundaryModelWithCorners] using hSelf
           · have hneg : x.1 0 < 0 := lt_of_not_ge hnonneg
             have hcoord : x.1 0 = -1 := by
@@ -297,11 +297,11 @@ theorem closed_unit_ball_isBoundaryPoint_of_mem_sphere {n : ℕ} {x : ClosedUnit
               apply Subtype.ext
               simp [closed_unit_ball_one_to_Icc, botIcc, hcoord]
             have hBot : (𝓡∂ 1).IsBoundaryPoint botIcc := by
-              simpa [botIcc] using
+              simpa [botIcc] using!
                 (Icc_isBoundaryPoint_bot (x := (-1 : ℝ)) (y := (1 : ℝ)))
             have hSelf : (𝓡∂ 1).IsBoundaryPoint x := by
               rw [ModelWithCorners.IsBoundaryPoint, hExt]
-              simpa [hIcc] using hBot
+              simpa [hIcc] using! hBot
             simpa [leeBoundaryModelWithCorners] using hSelf
       | succ k =>
           have hnot : ¬ ‖x.1‖ < (1 : ℝ) / 2 := by
@@ -370,7 +370,7 @@ theorem closed_unit_ball_isInteriorPoint_of_mem_ball {n : ℕ} {x : ClosedUnitBa
               exact congrArg (fun e => e x)
                 (extChartAt_comp (I := (𝓡∂ 1)) (H := EuclideanHalfSpace 1)
                   (H' := Set.Icc (-1 : ℝ) 1) (x := x))
-            simpa [e, Topology.IsOpenEmbedding.singletonChartedSpace_chartAt_eq] using hComp
+            simpa [e, Topology.IsOpenEmbedding.singletonChartedSpace_chartAt_eq] using! hComp
           have hcoord : -1 < x.1 0 ∧ x.1 0 < 1 := by
             have hnorm : ‖x.1‖ < 1 := by
               -- In `ℝ¹`, interior-ball membership is the same as strict coordinate inequality.

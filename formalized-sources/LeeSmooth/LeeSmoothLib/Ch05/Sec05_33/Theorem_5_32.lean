@@ -144,11 +144,9 @@ lemma immersionChartComparison_contDiffWithinAt
         (fun y : E' ↦ hJx.equiv (y, (0 : hJx.complement)))
         (hJx.domChart.extend J).target xJ := by
     -- The source-side normal form is a continuous linear map.
-    simpa [frontL, ContinuousLinearMap.comp_apply, Function.comp] using
-      (frontL.contDiff.contDiffWithinAt :
-        ContDiffWithinAt 𝕜 (⊤ : WithTop ℕ∞)
-          (frontL : E' → E)
-          (hJx.domChart.extend J).target xJ)
+    change ContDiffWithinAt 𝕜 (⊤ : WithTop ℕ∞) (frontL : E' → E)
+      (hJx.domChart.extend J).target xJ
+    exact frontL.contDiff.contDiffWithinAt
   have hFrontMaps :
       Set.MapsTo
         (fun y : E' ↦ hJx.equiv (y, (0 : hJx.complement)))
@@ -179,8 +177,10 @@ lemma immersionChartComparison_contDiffWithinAt
         hJx.mem_codChart_source hKx.mem_codChart_source).comp_of_eq xJ hFront hFrontMaps
         hFrontAt
   -- Postcompose with the inverse linear equivalence and the first-coordinate projection.
-  simpa [comparison, backL, frontL, ContinuousLinearMap.comp_apply, Function.comp] using
-    (backL.contDiff.contDiffAt.comp_contDiffWithinAt xJ hTransition)
+  change ContDiffWithinAt 𝕜 (⊤ : WithTop ℕ∞)
+    (backL ∘ I.extendCoordChange hJx.codChart hKx.codChart ∘ frontL)
+    (hJx.domChart.extend J).target xJ
+  exact backL.contDiff.contDiffAt.comp_contDiffWithinAt xJ hTransition
 
 /-- Helper for Theorem 5.32: in the chosen source chart, the identity map agrees near the base
 point with the explicit smooth comparison map coming from the two immersion normal forms. -/
@@ -258,8 +258,11 @@ lemma contMDiffAt_id_of_isImmersionAt_pair
     hJx.domChart_mem_maximalAtlas hKx.domChart_mem_maximalAtlas
     hJx.mem_domChart_source hKx.mem_domChart_source]
   refine ⟨continuousWithinAt_id, ?_⟩
-  simpa [Set.preimage_univ, Set.inter_univ] using
-    hChartedId.congr_set (hJx.domChart.extend_target_eventuallyEq (I := J) hJx.mem_domChart_source)
+  rw [Set.preimage_univ, Set.univ_inter]
+  change ContDiffWithinAt 𝕜 (⊤ : WithTop ℕ∞) _ (Set.range J) xJ
+  exact
+    hChartedId.congr_set
+      (hJx.domChart.extend_target_eventuallyEq (I := J) hJx.mem_domChart_source)
 
 /-- Helper for Theorem 5.32: if the same topological space carries two immersed-submanifold
 structures through the same map `ι`, then the identity map between those structures is smooth. -/

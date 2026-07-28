@@ -47,9 +47,9 @@ lemma contMDiff_const_smul
     [MulAction G X] [ContMDiffSMul I IX ∞ G X] (g : G) :
     ContMDiff IX IX ∞ (fun x : X ↦ g • x) := by
   -- Freeze the group variable in the smooth action map.
-  simpa using
-    ((contMDiff_const : ContMDiff IX I ∞ fun _ : X ↦ g).smul
-      (contMDiff_id : ContMDiff IX IX ∞ fun x : X ↦ x))
+  change ContMDiff IX IX ∞ ((fun _ : X ↦ g) • (id : X → X))
+  exact (contMDiff_const : ContMDiff IX I ∞ fun _ : X ↦ g).smul
+    (contMDiff_id : ContMDiff IX IX ∞ fun x : X ↦ x)
 
 /-- Helper for the equivariant rank theorem: fixed multiplication by `g` is a diffeomorphism, with
 inverse fixed multiplication by `g⁻¹`. -/
@@ -64,16 +64,16 @@ def smulDiffeomorph
   contMDiff_toFun := by
     -- The forward branch is the smooth fixed-smul map.
     have hsmul : ContMDiff IX IX ∞ (fun x : X ↦ g • x) := by
-      simpa using
-        ((contMDiff_const : ContMDiff IX I ∞ fun _ : X ↦ g).smul
-          (contMDiff_id : ContMDiff IX IX ∞ fun x : X ↦ x))
+      change ContMDiff IX IX ∞ ((fun _ : X ↦ g) • (id : X → X))
+      exact (contMDiff_const : ContMDiff IX I ∞ fun _ : X ↦ g).smul
+        (contMDiff_id : ContMDiff IX IX ∞ fun x : X ↦ x)
     simpa [MulAction.toPerm] using hsmul
   contMDiff_invFun := by
     -- The inverse branch is fixed multiplication by `g⁻¹`.
     have hsmulInv : ContMDiff IX IX ∞ (fun x : X ↦ g⁻¹ • x) := by
-      simpa using
-        ((contMDiff_const : ContMDiff IX I ∞ fun _ : X ↦ g⁻¹).smul
-          (contMDiff_id : ContMDiff IX IX ∞ fun x : X ↦ x))
+      change ContMDiff IX IX ∞ ((fun _ : X ↦ g⁻¹) • (id : X → X))
+      exact (contMDiff_const : ContMDiff IX I ∞ fun _ : X ↦ g⁻¹).smul
+        (contMDiff_id : ContMDiff IX IX ∞ fun x : X ↦ x)
     simpa [MulAction.toPerm] using hsmulInv
 
 /-- Helper for the equivariant rank theorem: `smulDiffeomorph` acts by the given group action. -/
@@ -228,11 +228,12 @@ lemma rankAt_smulDiffeomorph_comp
           (((mfderiv IM IN f p).range).map
             ((e : TangentSpace IN (f p) →L[𝕜]
               TangentSpace IN (Φ (f p))).toLinearMap)) := by
-          simpa using congrArg
+          convert congrArg
             (fun f' : TangentSpace IN (f p) →ₗ[𝕜]
               TangentSpace IN (Φ (f p)) =>
               Module.finrank 𝕜 (((mfderiv IM IN f p).range).map f'))
-            hDerivEqLinear
+            hDerivEqLinear using 1
+          all_goals rfl
     _ = Module.finrank 𝕜 ((mfderiv IM IN f p).range) := by
           simpa [e] using LinearEquiv.finrank_map_eq e.toLinearEquiv ((mfderiv IM IN f p).range)
     _ = rankAt IM IN f p := by
@@ -247,8 +248,11 @@ theorem rankAt_smul_eq
   -- used by the rank-transport lemmas, then compare ranks through that common composite.
   have hComm :
       F ∘ (fun x : M ↦ g • x) = (fun y : N ↦ g • y) ∘ F := by
-    simpa [Function.comp] using
-      comp_smulDiffeomorph_eq_smulDiffeomorph_comp (I := I) (IM := IM) (IN := IN) F g
+    convert comp_smulDiffeomorph_eq_smulDiffeomorph_comp
+      (I := I) (IM := IM) (IN := IN) F g using 1
+    all_goals
+      funext x
+      rfl
   calc
     rankAt IM IN F (g • p) = rankAt IM IN (F ∘ fun x : M ↦ g • x) p := by
       symm

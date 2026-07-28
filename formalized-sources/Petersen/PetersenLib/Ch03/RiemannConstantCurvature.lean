@@ -61,7 +61,7 @@ theorem exists_metricOrthonormalBasis (g : RiemannianMetric I M) (p : M) :
   refine ⟨(stdOrthonormalBasis ℝ (TangentSpace I p)).toBasis, fun i j => ?_⟩
   have h := orthonormal_iff_ite.mp
     (stdOrthonormalBasis ℝ (TangentSpace I p)).orthonormal i j
-  simpa using h
+  exact h
 
 /-! ## The diagonal pivot -/
 
@@ -180,7 +180,6 @@ theorem diag_of_directionalCurvature (D : RiemannianConnection I g) (p : M)
               - g.metricInner p x u * g.metricInner p u x) := by
           rw [g.metricInner_smul_left, g.metricInner_sub_left,
             g.metricInner_smul_left]
-        simp only at h
         rw [hL, hR] at h
         have ha := hAlg.antisymm₃₄ x u u x
         have hbipu : bivectorInnerProduct g p x u x u

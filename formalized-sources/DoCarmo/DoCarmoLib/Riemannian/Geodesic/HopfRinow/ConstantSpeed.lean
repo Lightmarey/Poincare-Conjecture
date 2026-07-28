@@ -1,5 +1,6 @@
 import DoCarmoLib.Riemannian.Geodesic.HopfRinow.MetricBridge
 import DoCarmoLib.Riemannian.Geodesic.HopfRinow.EVariationLePathELength
+import Mathlib.Algebra.Group.Ext
 
 /-!
 # Geodesics have constant speed and are locally Lipschitz
@@ -104,8 +105,15 @@ theorem HasGeodesicEquationAt.hasMFDerivAt {g : RiemannianMetric I M}
       ((1 : ℝ →L[ℝ] ℝ).smulRight (deriv (chartLocalCurve (I := I) γ t) t)) t := by
     rw [ContinuousLinearMap.smulRight_one_eq_toSpanSingleton]
     exact hd.hasFDerivAt
-  simpa [writtenInExtChartAt, extChartAt_model_space_eq_id, Function.comp_def,
-    hasFDerivWithinAt_univ] using hf
+  convert hf.hasFDerivWithinAt using 1
+  · exact AddCommGroup.ext rfl
+  · exact Module.ext rfl
+  · rfl
+  · exact Module.ext rfl
+  · rfl
+  · funext x
+    rfl
+  · simp
 
 omit [InnerProductSpace ℝ E] [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** The manifold velocity of a geodesic at the base time, read in the
@@ -212,8 +220,9 @@ theorem IsGeodesicOn.contMDiffOn [I.Boundaryless] {g : RiemannianMetric I M}
     have hd : ContinuousAt (deriv (chartLocalCurve (I := I) γ t)) τ :=
       (hγ τ hτ.1).continuousAt_deriv_extChartAt hτc hτ.2
     have hspan : Continuous fun v : E => ContinuousLinearMap.toSpanSingleton ℝ v := by
-      simpa [ContinuousLinearMap.smulRight_one_eq_toSpanSingleton] using
-        (ContinuousLinearMap.smulRightL ℝ ℝ E (1 : ℝ →L[ℝ] ℝ)).continuous
+      convert (ContinuousLinearMap.smulRightL ℝ ℝ E
+        (1 : ℝ →L[ℝ] ℝ)).continuous using 1
+      rfl
     exact (hspan.continuousAt.comp hd).continuousWithinAt
   · intro τ hτ
     have hτc : ContinuousAt γ τ := (hcont τ hτ.1).continuousAt (hs.mem_nhds hτ.1)

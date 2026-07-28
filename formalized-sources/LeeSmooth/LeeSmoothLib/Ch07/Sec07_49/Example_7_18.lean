@@ -115,9 +115,13 @@ theorem real_generalLinear_pos_isOpenSubgroup (n : ℕ) :
   -- `GL(n, ℝ)⁺` is the determinant preimage of the open half-line `(0, ∞)`.
   let s : Set ℝˣ := {u | 0 < (u : ℝ)}
   have hs : IsOpen s := by
-    simpa [s] using isOpen_Ioi.preimage Units.continuous_val
-  simpa [Matrix.mem_glpos, s] using
-    Matrix.GeneralLinearGroup.continuous_det.isOpen_preimage s hs
+    change IsOpen (Units.val ⁻¹' Set.Ioi 0)
+    exact isOpen_Ioi.preimage Units.continuous_val
+  rw [show (GL(n, ℝ)⁺ : Set (GL (Fin n) ℝ)) =
+      Matrix.GeneralLinearGroup.det ⁻¹' s by
+    ext A
+    simp [Matrix.mem_glpos, s]]
+  exact Matrix.GeneralLinearGroup.continuous_det.isOpen_preimage s hs
 
 /-- Part (2) of Example 7.18: the canonical inclusion `S¹ ↪ ℂˣ`,
 realized as `Circle.toUnits`, is a closed embedding. -/
@@ -127,14 +131,15 @@ theorem circle_toUnits_isClosedEmbedding :
     -- Continuity follows from continuity of the value and inverse coordinates in `ℂ`.
     refine Units.continuous_iff.mpr ?_
     constructor
-    · simpa [Circle.toUnits_apply] using
-        (continuous_subtype_val : Continuous fun z : Circle ↦ (z : ℂ))
-    · simpa [Circle.toUnits_apply] using
-        (continuous_subtype_val.comp continuous_inv :
-          Continuous fun z : Circle ↦ ((z⁻¹ : Circle) : ℂ))
+    · change Continuous (fun z : Circle ↦ (z : ℂ))
+      exact continuous_subtype_val
+    · change Continuous (fun z : Circle ↦ ((z⁻¹ : Circle) : ℂ))
+      exact continuous_subtype_val.comp continuous_inv
   -- A continuous injective map from compact `S¹` into Hausdorff `ℂˣ` is a closed embedding.
   refine hcont.isClosedEmbedding ?_
-  simpa [Circle.toUnits] using (unitSphereToUnits_injective (𝕜 := ℂ))
+  intro x y hxy
+  apply Subtype.ext
+  exact congrArg Units.val hxy
 
 /- Example 7.18 (3): `SL(n, ℝ)` is the kernel of the determinant map on `GL(n, ℝ)`, expressed as
 the range of `Matrix.SpecialLinearGroup.toGL`. -/
@@ -205,14 +210,18 @@ lemma complex_matrix_to_real_block_isClosedEmbedding (n : ℕ) :
     have happly : Continuous fun A : Matrix (Fin n) (Fin n) ℂ ↦ A i j := by
       fun_prop
     fin_cases a <;> fin_cases b
-    · simpa [complex_matrix_to_real_block, complex_entry_block] using
-        Complex.continuous_re.comp happly
-    · simpa [complex_matrix_to_real_block, complex_entry_block] using
-        (Complex.continuous_im.comp happly).neg
-    · simpa [complex_matrix_to_real_block, complex_entry_block] using
-        Complex.continuous_im.comp happly
-    · simpa [complex_matrix_to_real_block, complex_entry_block] using
-        Complex.continuous_re.comp happly
+    · convert Complex.continuous_re.comp happly using 1
+      funext A
+      rfl
+    · convert (Complex.continuous_im.comp happly).neg using 1
+      funext A
+      rfl
+    · convert Complex.continuous_im.comp happly using 1
+      funext A
+      rfl
+    · convert Complex.continuous_re.comp happly using 1
+      funext A
+      rfl
   have hbackward : Continuous (recoverComplexMatrix n) := by
     -- The recovery map reads finitely many coordinates and recombines them linearly.
     refine continuous_matrix fun i j ↦ ?_
@@ -220,9 +229,11 @@ lemma complex_matrix_to_real_block_isClosedEmbedding (n : ℕ) :
       fun_prop
     have h10 : Continuous fun A : Matrix (Fin n × Fin 2) (Fin n × Fin 2) ℝ ↦ A (i, 1) (j, 0) := by
       fun_prop
-    simpa [recoverComplexMatrix] using
+    convert
       (Complex.continuous_ofReal.comp h00).add
-        ((Complex.continuous_ofReal.comp h10).mul continuous_const)
+        ((Complex.continuous_ofReal.comp h10).mul continuous_const) using 1
+    funext A
+    rfl
   exact hleft.isClosedEmbedding hbackward hforward
 
 /- Example 7.18 (5): the inclusion `SL(n, ℝ) ↪ GL(n, ℝ)` is a closed embedding. -/

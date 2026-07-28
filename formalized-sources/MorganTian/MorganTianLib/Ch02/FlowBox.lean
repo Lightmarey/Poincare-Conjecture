@@ -301,7 +301,13 @@ theorem exists_isLocalFlow_of_isCompact [T2Space M] (X : SmoothVectorField I M)
         at this
     have h2 : HasDerivAt (fun r : ℝ => tt x + r) 1 u :=
       (hasDerivAt_id u).const_add (tt x)
-    simpa using (h1.sub h2).hasDerivWithinAt
+    have hfun :
+        (fun r : ℝ => tt (Φ x r) - (tt x + r)) =
+          (fun r : ℝ => tt (Φ x r)) - fun r : ℝ => tt x + r := by
+      funext r
+      rfl
+    rw [hfun]
+    simpa only [sub_self] using (h1.sub h2).hasDerivWithinAt
   have h0mem : (0 : ℝ) ∈ Ioo (-η) η := ⟨neg_neg_iff_pos.mpr hη, hη⟩
   have hbound : ‖(tt (Φ x s) - (tt x + s)) - (tt (Φ x 0) - (tt x + 0))‖ ≤
       0 * ‖s - 0‖ :=

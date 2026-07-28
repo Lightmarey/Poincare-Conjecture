@@ -27,7 +27,10 @@ using `DCLieBracket_contMDiffAt`.
 Reference: do Carmo, *Riemannian Geometry*, Ch. 4 §2–§3.
 -/
 
+open Set Filter
 open scoped ContDiff Manifold Topology Bundle
+
+set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -76,6 +79,114 @@ theorem bracketField_dir [I.Boundaryless] (X Y : SmoothVectorField I M) {f : M �
     (hf : ContMDiff I 𝓘(ℝ, ℝ) ∞ f) (p : M) :
     (bracketField X Y).dir f p = X.dir (Y.dir f) p - Y.dir (X.dir f) p :=
   mfderiv_mlieBracket_eq_commutator X Y hf p
+
+omit [CompleteSpace E] in
+/-- **Math.** A scalar function smooth on a chart source has a globally smooth extension
+with the same germ at a chosen point. -/
+private theorem exists_contMDiff_germ_extension
+    [FiniteDimensional ℝ E] [I.Boundaryless] [SigmaCompactSpace M] [T2Space M]
+    {f : M → ℝ} {s : Set M} (hs : IsOpen s)
+    (hf : ContMDiffOn I 𝓘(ℝ, ℝ) ∞ f s) {x : M} (hx : x ∈ s) :
+    ∃ F : M → ℝ, ContMDiff I 𝓘(ℝ, ℝ) ∞ F ∧ F =ᶠ[nhds x] f := by
+  classical
+  haveI : LocallyCompactSpace H := I.locallyCompactSpace
+  haveI : LocallyCompactSpace M := ChartedSpace.locallyCompactSpace H M
+  obtain ⟨K, hK_nhds, hK_closed, hK_sub⟩ :=
+    exists_mem_nhds_isClosed_subset (hs.mem_nhds hx)
+  obtain ⟨K', hK'_nhds, hK'_closed, hK'_sub⟩ :=
+    exists_mem_nhds_isClosed_subset
+      (isOpen_interior.mem_nhds (mem_interior_iff_mem_nhds.mpr hK_nhds))
+  obtain ⟨lam, hlam0, hlam1, -⟩ :=
+    exists_contMDiffMap_zero_one_of_isClosed I
+      (isClosed_compl_iff.mpr isOpen_interior) hK'_closed
+      (by rw [Set.disjoint_compl_left_iff_subset]; exact hK'_sub)
+  refine ⟨fun q => if q ∈ s then (lam : M → ℝ) q * f q else 0, ?_, ?_⟩
+  · intro q
+    by_cases hq : q ∈ s
+    · have hmul : ContMDiffOn I 𝓘(ℝ, ℝ) ∞
+          (fun q' => (lam : M → ℝ) q' * f q') s :=
+        (lam.contMDiff.contMDiffOn).mul hf
+      have hcongr : ContMDiffOn I 𝓘(ℝ, ℝ) ∞
+          (fun q' => if q' ∈ s then (lam : M → ℝ) q' * f q' else 0) s :=
+        hmul.congr fun q' hq' => if_pos hq'
+      exact (hcongr q hq).contMDiffAt (hs.mem_nhds hq)
+    · have hqK : q ∉ K := fun h => hq (hK_sub h)
+      have hzero : ∀ q' ∈ (Kᶜ : Set M),
+          (if q' ∈ s then (lam : M → ℝ) q' * f q' else 0) = 0 := by
+        intro q' hq'
+        by_cases hq's : q' ∈ s
+        · rw [if_pos hq's]
+          have hlamq' : (lam : M → ℝ) q' = 0 := by
+            have hq'int : q' ∉ interior K := fun h => hq' (interior_subset h)
+            simpa using hlam0 (Set.mem_compl hq'int)
+          rw [hlamq', zero_mul]
+        · rw [if_neg hq's]
+      exact (contMDiffAt_const (c := (0 : ℝ))).congr_of_eventuallyEq
+        (eventuallyEq_of_mem (hK_closed.isOpen_compl.mem_nhds hqK) hzero)
+  · filter_upwards [isOpen_interior.mem_nhds (mem_interior_iff_mem_nhds.mpr hK'_nhds)]
+      with q hq
+    have hqK' : q ∈ K' := interior_subset hq
+    have hqs : q ∈ s := hK_sub (interior_subset (hK'_sub hqK'))
+    rw [if_pos hqs, show (lam : M → ℝ) q = 1 from by simpa using hlam1 hqK', one_mul]
+
+omit [CompleteSpace E] in
+/-- **Math.** Globally smooth real-valued functions separate smooth vector fields. -/
+private theorem smoothVectorField_ext_of_dir
+    [FiniteDimensional ℝ E] [I.Boundaryless] [SigmaCompactSpace M] [T2Space M]
+    {Z₁ Z₂ : SmoothVectorField I M}
+    (h : ∀ (f : M → ℝ), ContMDiff I 𝓘(ℝ, ℝ) ∞ f →
+      ∀ p : M, Z₁.dir f p = Z₂.dir f p) :
+    Z₁ = Z₂ := by
+  ext p
+  let u : TangentSpace I p := Z₁ p - Z₂ p
+  have key : ∀ L : E →L[ℝ] ℝ, L u = 0 := by
+    intro L
+    let f : M → ℝ := fun q => L (extChartAt I p q)
+    have hf : ContMDiffOn I 𝓘(ℝ, ℝ) ∞ f (chartAt H p).source := by
+      have hL' : ContMDiffOn 𝓘(ℝ, E) 𝓘(ℝ, ℝ) ∞ (L : E → ℝ) univ :=
+        L.contMDiff.contMDiffOn
+      exact hL'.comp (contMDiffOn_extChartAt (I := I) (x := p) (n := ∞))
+        (fun _ _ => mem_univ _)
+    obtain ⟨F, hF, hFf⟩ := exists_contMDiff_germ_extension
+      (I := I) (chartAt H p).open_source hf (mem_chart_source H p)
+    have hdir := h F hF p
+    change mfderiv I 𝓘(ℝ, ℝ) F p (Z₁ p) = mfderiv I 𝓘(ℝ, ℝ) F p (Z₂ p) at hdir
+    rw [hFf.mfderiv_eq] at hdir
+    have hchart : MDifferentiableAt I 𝓘(ℝ, E) (extChartAt I p) p :=
+      (contMDiffAt_extChartAt (I := I) (x := p) (n := 1)).mdifferentiableAt (by norm_num)
+    have hL : MDifferentiableAt 𝓘(ℝ, E) 𝓘(ℝ, ℝ) (L : E → ℝ) (extChartAt I p p) :=
+      (L.contMDiffAt (n := 1)).mdifferentiableAt (by norm_num)
+    have hval (v : TangentSpace I p) :
+        mfderiv I 𝓘(ℝ, ℝ) (fun q => L (extChartAt I p q)) p v = L v := by
+      rw [show (fun q => L (extChartAt I p q)) =
+          (L : E → ℝ) ∘ (extChartAt I p) from rfl,
+        mfderiv_comp (I := I) (I' := 𝓘(ℝ, E)) (I'' := 𝓘(ℝ, ℝ)) p hL hchart,
+        ContinuousLinearMap.comp_apply, mfderiv_extChartAt_self,
+        ContinuousLinearMap.mfderiv_eq]
+      rfl
+    change mfderiv I 𝓘(ℝ, ℝ) (fun q => L (extChartAt I p q)) p (Z₁ p) =
+      mfderiv I 𝓘(ℝ, ℝ) (fun q => L (extChartAt I p q)) p (Z₂ p) at hdir
+    rw [hval, hval] at hdir
+    rw [show u = Z₁ p - Z₂ p from rfl, map_sub, hdir, sub_self]
+  have hu : u = 0 := (SeparatingDual.eq_zero_iff_forall_dual_eq_zero u).2 key
+  exact sub_eq_zero.mp hu
+
+/-- **Math.** do Carmo Ch. 0, Lemma 5.2: the smooth Lie bracket is the unique
+smooth vector field whose action on every smooth real-valued function is the
+commutator of the two induced derivations. -/
+theorem exists_unique_bracketField
+    [FiniteDimensional ℝ E] [I.Boundaryless] [SigmaCompactSpace M] [T2Space M]
+    (X Y : SmoothVectorField I M) :
+    ∃! Z : SmoothVectorField I M,
+      ∀ (f : M → ℝ), ContMDiff I 𝓘(ℝ, ℝ) ∞ f →
+        ∀ p : M, Z.dir f p = X.dir (Y.dir f) p - Y.dir (X.dir f) p := by
+  refine ⟨bracketField X Y, ?_, ?_⟩
+  · intro f hf p
+    exact bracketField_dir X Y hf p
+  · intro Z hZ
+    apply smoothVectorField_ext_of_dir
+    intro f hf p
+    rw [hZ f hf p, bracketField_dir X Y hf p]
 
 /-- **Math.** Bracket Leibniz in the first slot as an identity of vector fields:
 `[fX, Y] = f [X, Y] − (Yf) X`. -/

@@ -141,12 +141,12 @@ codomain. -/
 theorem ContDiffAt.div_complex {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {f g : F → ℂ} {x : F} (hf : ContDiffAt ℝ ∞ f x) (hg : ContDiffAt ℝ ∞ g x) (hx : g x ≠ 0) :
     ContDiffAt ℝ ∞ (fun y => f y / g y) x := by
-  simpa only [div_eq_mul_inv] using hf.mul (hg.inv hx)
+  simpa only [div_eq_mul_inv] using! hf.mul (hg.inv hx)
 
 theorem ContDiffOn.div_complex {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {f g : F → ℂ} {s : Set F} (hf : ContDiffOn ℝ ∞ f s) (hg : ContDiffOn ℝ ∞ g s)
     (hx : ∀ y ∈ s, g y ≠ 0) : ContDiffOn ℝ ∞ (fun y => f y / g y) s := fun y hy => by
-  simpa only [div_eq_mul_inv] using (hf y hy).mul ((hg y hy).inv (hx y hy))
+  simpa only [div_eq_mul_inv] using! (hf y hy).mul ((hg y hy).inv (hx y hy))
 
 /-- The `i`-th affine coordinate of a representative: `z ↦ (z_{σ j}/z_i)_j`. -/
 def affineCoordAux (i : Fin (n + 1)) (z : sphere (0 : 𝔼) 1) : Fin n → ℂ :=

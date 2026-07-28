@@ -100,7 +100,8 @@ theorem IsJacobiFieldOn.comp_neg {g : RiemannianMetric I M} {α : M}
       simp only [neg_one_smul, neg_sub]
       abel
     rw [hval] at hcomp
-    simpa only [hderiv] using hcomp
+    convert hcomp using 1
+    rw [hderiv]
   · intro t ht
     have hmem : -t ∈ Icc a b := hmaps ht
     have hbase := h.hasDerivWithinAt_snd (-t) hmem
@@ -123,7 +124,7 @@ theorem IsJacobiFieldOn.comp_neg {g : RiemannianMetric I M} {α : M}
           (deriv u (-t)) (-1 : ℝ) (DJ (-t)) (u (-t))]
       simp only [neg_one_smul, neg_neg, neg_sub]
     rw [hval] at hcomp
-    simpa only [hderiv] using hcomp
+    convert hcomp using 1 <;> first | rfl | rw [hderiv]
 
 theorem IsJacobiFieldAlongOn.comp_neg {g : RiemannianMetric I M} {γ : ℝ → M}
     {J DJ : ℝ → E} {a b : ℝ}

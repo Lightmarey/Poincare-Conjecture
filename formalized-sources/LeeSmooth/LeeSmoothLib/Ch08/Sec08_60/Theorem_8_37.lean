@@ -76,6 +76,8 @@ theorem contMDiffMulInvariantVectorFieldTop
           ((mfderiv% fun p : G × G ↦ p.1 * p.2) (g, 1)) (0, v) := by
       simpa using hprod.symm
     rw [show g * 1 = g by simp]
+    simp only [equivTangentBundleProd, Equiv.coe_fn_symm_mk]
+    rw [mul_one]
     exact congrArg
       (fun w : TangentSpace I g ↦ (Bundle.TotalSpace.mk g w : TangentBundle I G)) hEq
   exact S
@@ -115,7 +117,7 @@ theorem mulInvariantVectorField_one
       (mfderiv% fun x : G ↦ 1 * x) 1 =
         ContinuousLinearMap.id ℝ (TangentSpace I (1 : G)) := by
     rw [hId, mfderiv_id]
-  simpa [mulInvariantVectorField] using congrArg (fun f => f v) hMfderiv
+  simpa [mulInvariantVectorField] using! congrArg (fun f => f v) hMfderiv
 
 /-- Helper for Theorem 8.37: evaluation at the identity is additive. -/
 theorem lieAlgebraEvaluationAtIdentity_map_add

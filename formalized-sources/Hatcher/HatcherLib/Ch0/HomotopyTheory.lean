@@ -26,7 +26,7 @@ retraction of `X` onto `A` exhibits `A` and `X` as homotopy equivalent (Hatcher'
 
 namespace HatcherLib
 
-universe u v
+universe u v w
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
 
@@ -62,13 +62,30 @@ abbrev IsContractible (X : Type u) [TopologicalSpace X] : Prop := ContractibleSp
 /-- A map `φ` is a **homotopy equivalence** when it has a two-sided homotopy inverse
 (Hatcher's "`f` is a homotopy equivalence"). This is the unbundled form of
 `ContinuousMap.HomotopyEquiv`. -/
-def IsHmtpyEquiv {A B : Type u} [TopologicalSpace A] [TopologicalSpace B] (φ : C(A, B)) : Prop :=
+def IsHmtpyEquiv {A : Type u} {B : Type v} [TopologicalSpace A] [TopologicalSpace B]
+    (φ : C(A, B)) : Prop :=
   ∃ ψ : C(B, A), (ψ.comp φ).Homotopic (ContinuousMap.id A) ∧
     (φ.comp ψ).Homotopic (ContinuousMap.id B)
 
+/-- Package an unbundled homotopy equivalence as mathlib's bundled equivalence. -/
+noncomputable def IsHmtpyEquiv.toHomotopyEquiv {A : Type u} {B : Type v} [TopologicalSpace A]
+    [TopologicalSpace B] {φ : C(A, B)} (hφ : IsHmtpyEquiv φ) :
+    ContinuousMap.HomotopyEquiv A B where
+  toFun := φ
+  invFun := hφ.choose
+  left_inv := hφ.choose_spec.1
+  right_inv := hφ.choose_spec.2
+
+/-- Forget the inverse map from a bundled homotopy equivalence. -/
+theorem isHmtpyEquiv_of_homotopyEquiv {A : Type u} {B : Type v} [TopologicalSpace A]
+    [TopologicalSpace B] (e : ContinuousMap.HomotopyEquiv A B) :
+    IsHmtpyEquiv e.toFun :=
+  ⟨e.invFun, e.left_inv, e.right_inv⟩
+
 namespace IsHmtpyEquiv
 
-variable {A B C : Type u} [TopologicalSpace A] [TopologicalSpace B] [TopologicalSpace C]
+variable {A : Type u} {B : Type v} {C : Type w}
+  [TopologicalSpace A] [TopologicalSpace B] [TopologicalSpace C]
 
 /-- The composite of two homotopy equivalences is a homotopy equivalence. -/
 theorem comp {φ : C(A, B)} {χ : C(B, C)} (hφ : IsHmtpyEquiv φ) (hχ : IsHmtpyEquiv χ) :
@@ -94,14 +111,14 @@ end IsHmtpyEquiv
 /-- A map `i : A → Z` exhibits `A` as a **deformation retract** of `Z` (map form,
 Hatcher's "a third space containing both as deformation retracts"): a retraction
 `ρ : Z → A` with `ρ ∘ i = 𝟙_A` and `i ∘ ρ ≃ 𝟙_Z` rel the image of `A`. -/
-def IsDeformationRetractIncl {A Z : Type u} [TopologicalSpace A] [TopologicalSpace Z]
+def IsDeformationRetractIncl {A : Type u} {Z : Type v} [TopologicalSpace A] [TopologicalSpace Z]
     (i : C(A, Z)) : Prop :=
   ∃ ρ : C(Z, A), ρ.comp i = ContinuousMap.id A ∧
     Nonempty ((i.comp ρ).HomotopyRel (ContinuousMap.id Z) (Set.range i))
 
 /-- A deformation-retract inclusion is a homotopy equivalence (`r i = 𝟙` on the
 nose, `i r ≃ 𝟙` via the deformation homotopy). -/
-theorem IsDeformationRetractIncl.isHmtpyEquiv {A Z : Type u} [TopologicalSpace A]
+theorem IsDeformationRetractIncl.isHmtpyEquiv {A : Type u} {Z : Type v} [TopologicalSpace A]
     [TopologicalSpace Z] {i : C(A, Z)} (hi : IsDeformationRetractIncl i) :
     IsHmtpyEquiv i := by
   obtain ⟨ρ, hρ, ⟨H⟩⟩ := hi
@@ -111,6 +128,11 @@ theorem IsDeformationRetractIncl.isHmtpyEquiv {A Z : Type u} [TopologicalSpace A
 `r ∘ r = r`; the equation says exactly that `r` is the identity on its image
 (Hatcher, Def. of a retraction). -/
 def IsRetraction (r : C(X, X)) : Prop := ∀ x, r (r x) = r x
+
+theorem IsRetraction.fix_of_mem_range {r : C(X, X)} (hr : IsRetraction r)
+    {x : X} (hx : x ∈ Set.range r) : r x = x := by
+  obtain ⟨y, rfl⟩ := hx
+  exact hr y
 
 /-- A **deformation retraction** of `X` onto a subspace `A` (Hatcher, Def. of a
 deformation retraction): a homotopy `fₜ : X → X` rel `A` from the identity `f₀ = 𝟙`
@@ -125,6 +147,9 @@ structure DeformationRetract (A : Set X) where
   /-- the homotopy `𝟙 ≃ r`, rel `A`. -/
   homotopy : ContinuousMap.HomotopyRel (ContinuousMap.id X) retraction A
 
+/-- Scanner-visible alias for the type of deformation retractions of `X` onto `A`. -/
+abbrev DeformationRetraction (A : Set X) := DeformationRetract A
+
 namespace DeformationRetract
 
 variable {A : Set X}
@@ -133,6 +158,15 @@ variable {A : Set X}
 in the sense of `IsRetraction`. -/
 theorem isRetraction (d : DeformationRetract A) : IsRetraction d.retraction :=
   fun x => d.fixes (d.retraction x) (d.mapsInto x)
+
+/-- The terminal map has image exactly the prescribed subspace (the inclusion
+`A ⊆ range r` follows from the fixed-point condition). -/
+theorem range_retraction (d : DeformationRetract A) : Set.range d.retraction = A := by
+  apply Set.Subset.antisymm
+  · rintro _ ⟨x, rfl⟩
+    exact d.mapsInto x
+  · intro a ha
+    exact ⟨a, d.fixes a ha⟩
 
 /-- The inclusion `A ↪ X` of the retract. -/
 def incl (A : Set X) : C(↥A, X) := ⟨Subtype.val, continuous_subtype_val⟩

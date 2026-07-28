@@ -69,7 +69,7 @@ lemma fRelated_mfderivCompEq
                 mfderiv I K (g ∘ F) p =
                   (mfderiv J K g (F p)).comp (mfderiv I J F p) :=
               mfderiv_comp p hgDiff hFDiff
-            simpa [Function.comp] using congrArg (fun A ↦ A (X p)) hComp
+            simpa [Function.comp] using! congrArg (fun A ↦ A (X p)) hComp
     _ = mfderiv% g (F p) (Y (F p)) := by
           rw [VectorField.f_related_apply hXY p]
 
@@ -100,6 +100,7 @@ lemma contMDiffAt_mfderiv_applyField
     -- The codomain bundle is trivial, so its chart-side linear map is the identity.
     ext v
     simp [rhs, mvfderiv]
+    rw [(trivializationAt E' (TangentSpace J) p).symmL_apply hx]
   have hTangentCoords :
       inTangentCoordinates J 𝓘(𝕜, E'') id g (fun q ↦ mfderiv% g q) p =ᶠ[𝓝 p] rhs := by
     -- Replace the fixed-base tangent coordinates from `mfderiv_const` by the tangent-bundle
@@ -119,7 +120,7 @@ lemma contMDiffAt_mfderiv_applyField
             mfderiv[Set.range J] (extChartAt J p).symm (extChartAt J p x) :=
         TangentBundle.symmL_trivializationAt (by simpa [extChartAt] using hx)
       simpa [extChartAt] using hSymmL'
-    simpa [rhs, mvfderiv, hSymmL] using hEq
+    simpa [rhs, mvfderiv, hSymmL] using! hEq
   have hphi :
       ContMDiffAt J (J.prod 𝓘(𝕜, E' →L[𝕜] E'')) ∞
         (fun q ↦ Bundle.TotalSpace.mk' (E' →L[𝕜] E'') q (mvfderiv J g q)) p := by
@@ -180,7 +181,7 @@ private lemma chartPullbackDerivative_pointwise
         NormedSpace.fromTangentSpace (g (ψ.symm x)) (mfderiv% g (ψ.symm x) (Y (ψ.symm x)))
     rw [(isInvertible_mfderivWithin_extChartAt_symm hx).self_apply_inverse]
     rfl
-  simpa [ψ, mfderivWithin_eq_fderivWithin] using hPoint
+  simpa [ψ, mfderivWithin_eq_fderivWithin] using! hPoint
 
 /-- Helper for Proposition 8.30: near the preferred chart at `p`, the chart-side derivative term
 is eventually equal to the manifold derivative field of `g` pulled back along the chart inverse. -/
@@ -247,7 +248,7 @@ private lemma chartPullbackDerivativeAtBase
           (mfderiv% g (ψ.symm (ψ p)) (Y (ψ.symm (ψ p)))) =
         NormedSpace.fromTangentSpace (g p) (mfderiv% g p (Y p)) := by
     rw [hbase]
-  simpa [ψ] using hAtBase.trans hRight
+  simpa [ψ] using! hAtBase.trans hRight
 
 /-- Helper for Proposition 8.30: an eventual chart-space normalization near `ψ p` converts the
 basepoint `fderivWithin` term into the manifold derivative of the normalized field. -/
@@ -278,7 +279,7 @@ private lemma chartPullbackDerivativeTermAtBase
     fderivWithin 𝕜 U (Set.range J) (ψ p) (Z' (ψ p)) =
         fderivWithin 𝕜 (fun x ↦ U'' (ψ.symm x)) (Set.range J) (ψ p) (Z' (ψ p)) := hEval
     _ = NormedSpace.fromTangentSpace (U'' p) (mfderiv% U'' p (Z p)) := by
-      simpa [ψ, Z'] using chartPullbackDerivativeAtBase hU''
+      simpa [ψ, Z'] using! chartPullbackDerivativeAtBase hU''
 
 omit [IsManifold J ∞ N] in
 /-- Helper for Proposition 8.30: the preferred chart inverse is `C^2` within `range J` at the
@@ -301,7 +302,7 @@ private lemma extChartAtSymm_inverse_eq_mfderiv
       mfderiv% (extChartAt J p) z := by
   -- Cancel the chart and chart-inverse derivatives using the standard preferred-chart identities.
   apply ContinuousLinearMap.inverse_eq
-  · simpa using
+  · simpa using!
       mfderivWithin_extChartAt_symm_comp_mfderiv_extChartAt' hz
   · simpa using
       mfderiv_extChartAt_comp_mfderivWithin_extChartAt_symm' hz
@@ -361,7 +362,7 @@ private lemma chartPullbackFieldPointwise
         mfderiv_extChartAt_comp_mfderivWithin_extChartAt_symm hx
   -- After replacing the inverse derivative by the chart derivative, the remaining coercion is
   -- exactly `fromTangentSpace` on the model manifold.
-  simpa [Y', ψ, hrightInv, VectorField.mpullbackWithin_apply] using
+  simpa [Y', ψ, hrightInv, VectorField.mpullbackWithin_apply] using!
     congrArg
       (fun L ↦
         NormedSpace.fromTangentSpace (ψ (ψ.symm x)) (L (Y (ψ.symm x))))
@@ -456,7 +457,7 @@ private lemma chartPullbackBracketAt_eq_lieBracketWithinAt
   have hInv : (mfderiv[Set.range J] ψ.symm (ψ p)).inverse = mfderiv% ψ p := by
     -- Normalize the inverse derivative of the preferred chart inverse at the chart basepoint.
     apply ContinuousLinearMap.inverse_eq
-    · simpa [ψ] using
+    · simpa [ψ] using!
         mfderivWithin_extChartAt_symm_comp_mfderiv_extChartAt' (mem_extChartAt_source p)
     · simpa [ψ] using
         mfderiv_extChartAt_comp_mfderivWithin_extChartAt_symm' (mem_extChartAt_source p)
@@ -504,7 +505,6 @@ private lemma chartPullbackBracketAt_eq_lieBracketWithinAt
             rw [hBracketApply]
     _ = VectorField.lieBracketWithin 𝕜 Y₁' Y₂' (Set.range J) (ψ p) := by
           rw [(isInvertible_mfderiv_extChartAt (mem_extChartAt_source p)).self_apply_inverse]
-          rfl
 
 /-- Helper for Proposition 8.30: the manifold Lie bracket acts on a smooth map by the commutator
 of the first-order differential operators induced by the vector fields. -/
@@ -762,7 +762,7 @@ theorem f_related_mlieBracket
       calc
         mfderiv% (fun z ↦ f (F z)) x (X₁ x)
             = mfderiv% f (F x) (mfderiv I J F x (X₁ x)) := by
-                simpa [Function.comp] using
+                simpa [Function.comp] using!
                   mfderiv_comp_apply (x := x) (g := f) (f := F) hx hFdiff (X₁ x)
         _ = mfderiv% f (F x) (Y₁ (F x)) := by
               rw [VectorField.f_related_apply h₁ x]
@@ -782,7 +782,7 @@ theorem f_related_mlieBracket
       calc
         mfderiv% (fun z ↦ f (F z)) x (X₂ x)
             = mfderiv% f (F x) (mfderiv I J F x (X₂ x)) := by
-                simpa [Function.comp] using
+                simpa [Function.comp] using!
                   mfderiv_comp_apply (x := x) (g := f) (f := F) hx hFdiff (X₂ x)
         _ = mfderiv% f (F x) (Y₂ (F x)) := by
               rw [VectorField.f_related_apply h₂ x]
@@ -799,7 +799,7 @@ theorem f_related_mlieBracket
       calc
         mfderiv% (fun z ↦ f (F z)) p (X₁ p)
             = mfderiv% f (F p) (mfderiv I J F p (X₁ p)) := by
-                simpa [Function.comp] using
+                simpa [Function.comp] using!
                   mfderiv_comp_apply (x := p) (g := f) (f := F)
                     (hf.mdifferentiableAt (by simp)) hFdiff (X₁ p)
         _ = mfderiv% f (F p) (Y₁ (F p)) := by
@@ -815,7 +815,7 @@ theorem f_related_mlieBracket
       calc
         mfderiv% (fun z ↦ f (F z)) p (X₂ p)
             = mfderiv% f (F p) (mfderiv I J F p (X₂ p)) := by
-                simpa [Function.comp] using
+                simpa [Function.comp] using!
                   mfderiv_comp_apply (x := p) (g := f) (f := F)
                     (hf.mdifferentiableAt (by simp)) hFdiff (X₂ p)
         _ = mfderiv% f (F p) (Y₂ (F p)) := by
@@ -827,13 +827,13 @@ theorem f_related_mlieBracket
     have hmf :
         mfderiv I 𝓘(ℝ) S₁ p = mfderiv I 𝓘(ℝ) (fun x ↦ U₁ (F x)) p := by
       simpa [S₁, U₁] using Filter.EventuallyEq.mfderiv_eq hSourceNear₁
-    simpa using congrArg (fun A ↦ A (X₂ p)) hmf
+    simpa using! congrArg (fun A ↦ A (X₂ p)) hmf
   have hSourceDeriv₂ :
       mfderiv% S₂ p (X₁ p) = mfderiv% (fun x ↦ U₂ (F x)) p (X₁ p) := by
     have hmf :
         mfderiv I 𝓘(ℝ) S₂ p = mfderiv I 𝓘(ℝ) (fun x ↦ U₂ (F x)) p := by
       simpa [S₂, U₂] using Filter.EventuallyEq.mfderiv_eq hSourceNear₂
-    simpa using congrArg (fun A ↦ A (X₁ p)) hmf
+    simpa using! congrArg (fun A ↦ A (X₁ p)) hmf
   have hTerm₁ :
       NormedSpace.fromTangentSpace (S₂ p) (mfderiv% S₂ p (X₁ p)) =
         NormedSpace.fromTangentSpace (U₂ (F p))

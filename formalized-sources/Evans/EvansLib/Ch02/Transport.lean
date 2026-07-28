@@ -319,7 +319,7 @@ theorem transportSolutionNonhom_char_deriv (b : Fin n → ℝ) (g : Euclideanℝ
       hcont.continuousAt
   have hB : HasDerivAt
       (fun r : ℝ => ∫ s in (0:ℝ)..(p 0 + r), f (p + (s - p 0) • charDir n b)) (f p) 0 := by
-    simpa using hFTC.comp 0 hlin
+    simpa only [Function.comp_def, mul_one] using hFTC.comp 0 hlin
   exact hB.const_add (g (transportProj n b p))
 
 end EvansLib

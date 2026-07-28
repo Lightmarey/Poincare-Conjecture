@@ -63,11 +63,11 @@ the tangent trivialization centred at `α`. -/
 section ChartBasis
 
 /-- **Math.** The `i`-th coordinate tangent vector `∂_i|_b` of the chart at
-`α`: image of the `i`-th model-space basis vector under the inverse of the
-tangent trivialization centred at `α`; junk off the base set. -/
+`α`: image of the `i`-th model-space basis vector under the bundled inverse
+linear readback of the tangent trivialization centred at `α`; zero off the base set. -/
 def chartBasisVecFiber (α : M) (i : Fin (Module.finrank ℝ E)) (b : M) :
     TangentSpace I b :=
-  (trivializationAt E (TangentSpace I) α).symm b ((Module.finBasis ℝ E) i)
+  (trivializationAt E (TangentSpace I) α).symmL ℝ b ((Module.finBasis ℝ E) i)
 
 /-- **Math.** Section-form packaging of `chartBasisVecFiber α i`. -/
 def chartBasisVec (α : M) (i : Fin (Module.finrank ℝ E)) :
@@ -84,7 +84,7 @@ lemma trivializationAt_chartBasisVec_snd
       = (Module.finBasis ℝ E) i := by
   have h := (trivializationAt E (TangentSpace I) α).apply_mk_symm hb
     ((Module.finBasis ℝ E) i)
-  simpa [chartBasisVecFiber] using congrArg Prod.snd h
+  simpa [chartBasisVecFiber, Bundle.Trivialization.symmL_apply _ hb] using congrArg Prod.snd h
 
 /-- **Math.** The coordinate vector fields are smooth on the base set of the
 trivialization at `α`. -/
@@ -120,6 +120,7 @@ lemma chartBasisFamily_apply (α : M) {b : M}
       chartBasisVecFiber (I := I) α i b := by
   unfold chartBasisFamily chartBasisVecFiber
   rw [Module.Basis.map_apply]
+  rw [Bundle.Trivialization.symmL_apply _ hb]
   rfl
 
 end ChartBasis
@@ -161,8 +162,8 @@ theorem metricCoordinateComponents_expansion (g : RiemannianMetric I M)
   set b := chartBasisFamily (I := I) α hx with hb
   conv_lhs => rw [← b.sum_repr v, ← b.sum_repr w]
   show (g.inner x (∑ i, b.repr v i • b i)) (∑ j, b.repr w j • b j) = _
-  simp only [map_sum, map_smul, ContinuousLinearMap.sum_apply,
-    ContinuousLinearMap.smul_apply, smul_eq_mul, Finset.mul_sum]
+  simp only [map_sum, map_smul, sum_apply,
+    smul_apply, smul_eq_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   have hentry : metricCoordinateComponents g α x i j = g.metricInner x (b i) (b j) := by
@@ -181,7 +182,9 @@ theorem euclideanMetricCoordinates (n : ℕ) (x : EuclideanSpace ℝ (Fin n))
       ((EuclideanSpace.basisFun (Fin n) ℝ) j : EuclideanSpace ℝ (Fin n)) =
       if i = j then 1 else 0 := by
   have h := orthonormal_iff_ite.mp (EuclideanSpace.basisFun (Fin n) ℝ).orthonormal i j
-  simpa using h
+  change inner ℝ ((EuclideanSpace.basisFun (Fin n) ℝ) i)
+    ((EuclideanSpace.basisFun (Fin n) ℝ) j) = if i = j then 1 else 0
+  exact h
 
 end CoordinateRepresentation
 
@@ -214,8 +217,8 @@ theorem frameRepresentation_expansion (g : RiemannianMetric I M) {x : M} {n : �
       ∑ i, ∑ j, (b.repr v i) * (b.repr w j) * frameRepresentation g b i j := by
   conv_lhs => rw [← b.sum_repr v, ← b.sum_repr w]
   show (g.inner x (∑ i, b.repr v i • b i)) (∑ j, b.repr w j • b j) = _
-  simp only [map_sum, map_smul, ContinuousLinearMap.sum_apply,
-    ContinuousLinearMap.smul_apply, smul_eq_mul, Finset.mul_sum]
+  simp only [map_sum, map_smul, sum_apply,
+    smul_apply, smul_eq_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   show (b.repr w) j * ((b.repr v) i * (g.inner x (b i)) (b j))
@@ -234,9 +237,11 @@ theorem frameRepresentation_orthonormal (g : RiemannianMetric I M) {x : M} {n : 
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Finset.sum_eq_single i]
   · rw [show frameRepresentation g b i i = 1 by
+      change g.metricInner x (b i) (b i) = 1
       simpa using hb i i, mul_one]
   · intro j _ hj
     rw [show frameRepresentation g b i j = 0 by
+      change g.metricInner x (b i) (b j) = 0
       simpa [hj.symm] using hb i j, mul_zero]
   · intro h
     exact absurd (Finset.mem_univ i) h

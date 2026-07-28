@@ -22,8 +22,8 @@ smooth as a map from `ℍ^n` to `ℝ^n`. -/
 lemma euclideanHalfSpace_inclusion_contMDiff :
     ContMDiff (𝓡∂ n) (𝓡 n) ∞ (EuclideanHalfSpace.inclusion n) := by
   -- The inclusion is the defining model-with-corners map `𝓡∂ n`.
-  simpa [EuclideanHalfSpace.inclusion] using
-    (contMDiff_model (I := 𝓡∂ n) (n := (∞ : ℕ∞ω)))
+  change ContMDiff (𝓡∂ n) (𝓡 n) ∞ (fun x : EuclideanHalfSpace n => x.1)
+  exact (𝓡∂ n).contMDiff
 
 /-- Helper for Problem 4-1: in the preferred charts at the boundary point `0`, the half-space
 inclusion has manifold derivative equal to the identity. -/
@@ -31,8 +31,9 @@ lemma euclideanHalfSpace_inclusion_hasMFDerivAt_id_at_zero :
     HasMFDerivAt (𝓡∂ n) (𝓡 n) (EuclideanHalfSpace.inclusion n) 0
       (ContinuousLinearMap.id ℝ (TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n))) := by
   -- The defining map of a model with corners has derivative `id` in its own preferred chart.
-  simpa [EuclideanHalfSpace.inclusion] using
-    ((𝓡∂ n).hasMFDerivAt (x := (0 : EuclideanHalfSpace n)))
+  change HasMFDerivAt (𝓡∂ n) (𝓡 n) (fun x : EuclideanHalfSpace n => x.1) 0
+    (ContinuousLinearMap.id ℝ (TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n)))
+  exact (𝓡∂ n).hasMFDerivAt
 
 /-- Helper for Problem 4-1: the origin is a boundary point of the Euclidean half-space model. -/
 lemma euclideanHalfSpace_zero_isBoundaryPoint :
@@ -61,14 +62,19 @@ theorem euclideanHalfSpace_inclusion_contMDiff_and_mfderiv_isInvertible_at_zero 
       simpa [EuclideanHalfSpace.inclusion, f'] using
         (euclideanHalfSpace_inclusion_hasMFDerivAt_id_at_zero n).mfderiv
     rw [hmf]
-    simpa [f'] using
-      (ContinuousLinearMap.isInvertible_equiv :
-        ((ContinuousLinearEquiv.refl ℝ
-          (TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n)) :
-            TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n) ≃L[ℝ]
-              TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n)) :
-          TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n) →L[ℝ]
-            TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n)).IsInvertible)
+    let e : TangentSpace (𝓡∂ n) (0 : EuclideanHalfSpace n) ≃L[ℝ]
+        TangentSpace (𝓡 n) (EuclideanHalfSpace.inclusion n 0) :=
+      { toFun := fun v => v
+        invFun := fun v => v
+        map_add' := by intros; rfl
+        map_smul' := by intros; rfl
+        left_inv := by intro v; rfl
+        right_inv := by intro v; rfl
+        continuous_toFun := continuous_id
+        continuous_invFun := continuous_id }
+    refine ⟨e, ?_⟩
+    ext v
+    rfl
 
 /-- Problem 4-1 (2): the boundary inclusion `ℍ^n ↪ ℝ^n` is not a local diffeomorphism at the
 boundary point `0`, so the inverse-function conclusion of Theorem 4.5 fails at boundary points. -/
@@ -82,9 +88,8 @@ theorem euclideanHalfSpace_inclusion_not_isLocalDiffeomorphAt_zero :
     exact (hlocal.isBoundaryPoint_iff (by simp)).mp hsource_boundary
   have htarget_interior : (𝓡 n).IsInteriorPoint (EuclideanHalfSpace.inclusion n 0) := by
     -- Euclidean space is boundaryless, so every point is interior.
-    simpa [EuclideanHalfSpace.inclusion] using
-      (BoundarylessManifold.isInteriorPoint :
-        (𝓡 n).IsInteriorPoint (0 : EuclideanSpace ℝ (Fin n)))
+    change (𝓡 n).IsInteriorPoint (0 : EuclideanSpace ℝ (Fin n))
+    exact BoundarylessManifold.isInteriorPoint
   exact ((𝓡 n).isBoundaryPoint_iff_not_isInteriorPoint (EuclideanHalfSpace.inclusion n 0)).1
     htarget_boundary htarget_interior
 

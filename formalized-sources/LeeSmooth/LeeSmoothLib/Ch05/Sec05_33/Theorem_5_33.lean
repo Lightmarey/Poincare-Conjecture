@@ -186,7 +186,7 @@ lemma immersionProjectedLocalSectionContinuous
       hImm.codChart_mem_maximalAtlas
   have hcodExt :
       ContMDiffOn I 𝓘(𝕜, E) ∞ (hImm.codChart.extend I) V := by
-    exact (contMDiffOn_extend hcodChart_mem).mono hV_cod
+    exact (hImm.codChart.contMDiffOn_extend hcodChart_mem).mono hV_cod
   have hproj :
       ContMDiffOn I 𝓘(𝕜, E') ∞ (π ∘ (hImm.codChart.extend I)) V := by
     simpa [Function.comp] using π.contDiff.contMDiff.comp_contMDiffOn hcodExt
@@ -199,8 +199,8 @@ lemma immersionProjectedLocalSectionContinuous
     -- needed once the projected coordinates stay in the target chart.
     exact hdomChartSymm.comp hproj hmaps
   -- Restrict the ambient-on-`V` continuity statement to the open subtype used in the theorem.
-  simpa [σ₀, π, Function.comp] using
-    (continuousOn_iff_continuous_restrict).mp hσOn.continuousOn
+  change Continuous (V.restrict σ₀)
+  exact (continuousOn_iff_continuous_restrict).mp hσOn.continuousOn
 
 -- Helper: on the source chart of an immersion normal form, the direct chart inverse section fixes
 -- every point of the source slice.

@@ -70,7 +70,10 @@ private theorem mdifferentiableAt_finset_sum {ι : Type*} (s : Finset ι)
     (∀ i ∈ s, MDifferentiableAt I 𝓘(ℝ) (g i) x) →
       MDifferentiableAt I 𝓘(ℝ) (∑ i ∈ s, g i) x := by
   induction s using Finset.cons_induction with
-  | empty => intro _; simpa using mdifferentiableAt_const (c := (0 : ℝ))
+  | empty =>
+      intro _
+      change MDifferentiableAt I 𝓘(ℝ) (fun _ : M => (0 : ℝ)) x
+      exact mdifferentiableAt_const
   | cons a s ha ih =>
     intro hg
     rw [Finset.sum_cons]

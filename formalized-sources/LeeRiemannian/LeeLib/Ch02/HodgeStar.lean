@@ -406,7 +406,12 @@ private theorem sum_perm_sign_mul_apply_mul_det_aux (e : OrthonormalBasis ι' �
     have hmap : η (fun i => e (ε (σ (Sum.inl (π i)))))
         = Equiv.Perm.sign π • η (fun i => e (ε (σ (Sum.inl i)))) := by
       have h := η.toAlternatingMap.map_perm (fun i => e (ε (σ (Sum.inl i)))) π
-      simpa using h
+      have hfun : (fun i => e (ε (σ (Sum.inl (π i))))) =
+          (fun i => e (ε (σ (Sum.inl i)))) ∘ π := by
+        funext i
+        rfl
+      rw [hfun]
+      exact h
     show ((Equiv.Perm.sign π : ℤ) : ℝ) * η (fun i => e (ε (σ (Sum.inl (π i))))) = _
     rw [hmap]
     rcases Int.units_eq_one_or (Equiv.Perm.sign π) with h | h <;> simp [h]

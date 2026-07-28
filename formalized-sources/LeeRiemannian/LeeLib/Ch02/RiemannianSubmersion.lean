@@ -491,8 +491,10 @@ theorem contMDiffAt_horizontalLiftAt_inTangentCoordinates (hπ : IsSubmersion π
     intro v hv
     rw [metricInCoordinates_apply g x₀ x₀ (mem_chart_source H x₀)]
     refine g.pos x₀ _ ?_
-    exact fun h => hv (((trivializationAt E (TangentSpace I) x₀).continuousLinearEquivAt ℝ x₀
-      hx₀).symm.map_eq_zero_iff.mp h)
+    exact fun h => hv (by
+      rw [← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hx₀] at h
+      exact (((trivializationAt E (TangentSpace I) x₀).continuousLinearEquivAt ℝ x₀
+        hx₀).symm.map_eq_zero_iff.mp h))
   -- The trivialized differential is still surjective: it is `dπ` between two isomorphisms.
   have hAsurj : Function.Surjective (mfderivInCoordinates π x₀ x₀) := by
     intro w
@@ -501,7 +503,9 @@ theorem contMDiffAt_horizontalLiftAt_inTangentCoordinates (hπ : IsSubmersion π
     obtain ⟨s, hs⟩ := hπ x₀ (ι₀.symm w)
     refine ⟨θ₀ s, ?_⟩
     rw [mfderivInCoordinates_apply]
-    have hθ : (trivializationAt E (TangentSpace I) x₀).symmL ℝ x₀ (θ₀ s) = s := θ₀.symm_apply_apply s
+    have hθ : (trivializationAt E (TangentSpace I) x₀).symmL ℝ x₀ (θ₀ s) = s := by
+      rw [← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hx₀]
+      exact θ₀.symm_apply_apply s
     rw [hθ, hs, ← Bundle.Trivialization.coe_continuousLinearEquivAt_eq (R := ℝ) _ hy₀]
     exact ι₀.apply_symm_apply w
   -- Near `x₀`, the lift in tangent coordinates is the lift of the trivialized data.
@@ -516,12 +520,16 @@ theorem contMDiffAt_horizontalLiftAt_inTangentCoordinates (hπ : IsSubmersion π
     have hyb : π x ∈ (trivializationAt E' (TangentSpace I') (π x₀)).baseSet := by simpa using hy
     set θ := (trivializationAt E (TangentSpace I) x₀).continuousLinearEquivAt ℝ x hxb
     set ι := (trivializationAt E' (TangentSpace I') (π x₀)).continuousLinearEquivAt ℝ (π x) hyb
-    have hB' : ∀ a b : E, metricInCoordinates g x₀ x a b = g.inner x (θ.symm a) (θ.symm b) :=
-      metricInCoordinates_apply g x₀ x hx
+    have hB' : ∀ a b : E, metricInCoordinates g x₀ x a b = g.inner x (θ.symm a) (θ.symm b) := by
+      intro a b
+      rw [metricInCoordinates_apply g x₀ x hx,
+        ← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hxb]
+      rfl
     have hA' : ∀ a : E, mfderivInCoordinates π x₀ x a = ι (mfderiv I I' π x (θ.symm a)) := by
       intro a
       rw [mfderivInCoordinates_apply,
-        ← Bundle.Trivialization.coe_continuousLinearEquivAt_eq (R := ℝ) _ hyb]
+        ← Bundle.Trivialization.coe_continuousLinearEquivAt_eq (R := ℝ) _ hyb,
+        ← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hxb]
       rfl
     ext u
     rw [horizontalLift_congr (E := E) (E' := E') (F := E) (F' := E')
@@ -573,8 +581,10 @@ theorem contMDiffAt_horizontalLiftAlong (hπ : IsSubmersion π)
     intro v hv
     rw [metricInCoordinates_apply g x₀ x₀ (mem_chart_source H x₀)]
     refine g.pos x₀ _ ?_
-    exact fun h => hv (((trivializationAt E (TangentSpace I) x₀).continuousLinearEquivAt ℝ x₀
-      hx₀).symm.map_eq_zero_iff.mp h)
+    exact fun h => hv (by
+      rw [← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hx₀] at h
+      exact (((trivializationAt E (TangentSpace I) x₀).continuousLinearEquivAt ℝ x₀
+        hx₀).symm.map_eq_zero_iff.mp h))
   -- The trivialized differential is still surjective: it is `dπ` between two isomorphisms.
   have hAsurj : Function.Surjective (mfderivInCoordinates π x₀ x₀) := by
     intro w
@@ -583,7 +593,9 @@ theorem contMDiffAt_horizontalLiftAlong (hπ : IsSubmersion π)
     obtain ⟨s, hs⟩ := hπ x₀ (ι₀.symm w)
     refine ⟨θ₀ s, ?_⟩
     rw [mfderivInCoordinates_apply]
-    have hθ : (trivializationAt E (TangentSpace I) x₀).symmL ℝ x₀ (θ₀ s) = s := θ₀.symm_apply_apply s
+    have hθ : (trivializationAt E (TangentSpace I) x₀).symmL ℝ x₀ (θ₀ s) = s := by
+      rw [← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hx₀]
+      exact θ₀.symm_apply_apply s
     rw [hθ, hs, ← Bundle.Trivialization.coe_continuousLinearEquivAt_eq (R := ℝ) _ hy₀]
     exact ι₀.apply_symm_apply w
   -- Near `x₀`, the trivialized lift is the lift of the trivialized data.
@@ -599,12 +611,16 @@ theorem contMDiffAt_horizontalLiftAlong (hπ : IsSubmersion π)
     have hyb : π x ∈ (trivializationAt E' (TangentSpace I') (π x₀)).baseSet := by simpa using hy
     set θ := (trivializationAt E (TangentSpace I) x₀).continuousLinearEquivAt ℝ x hxb
     set ι := (trivializationAt E' (TangentSpace I') (π x₀)).continuousLinearEquivAt ℝ (π x) hyb
-    have hB' : ∀ a b : E, metricInCoordinates g x₀ x a b = g.inner x (θ.symm a) (θ.symm b) :=
-      metricInCoordinates_apply g x₀ x hx
+    have hB' : ∀ a b : E, metricInCoordinates g x₀ x a b = g.inner x (θ.symm a) (θ.symm b) := by
+      intro a b
+      rw [metricInCoordinates_apply g x₀ x hx,
+        ← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hxb]
+      rfl
     have hA' : ∀ a : E, mfderivInCoordinates π x₀ x a = ι (mfderiv I I' π x (θ.symm a)) := by
       intro a
       rw [mfderivInCoordinates_apply,
-        ← Bundle.Trivialization.coe_continuousLinearEquivAt_eq (R := ℝ) _ hyb]
+        ← Bundle.Trivialization.coe_continuousLinearEquivAt_eq (R := ℝ) _ hyb,
+        ← Bundle.Trivialization.symm_continuousLinearEquivAt_eq' (R := ℝ) _ hxb]
       rfl
     rw [horizontalLift_congr (E := E) (E' := E') (F := E) (F' := E')
       (inner_pos g x) (hπ x) θ ι hB' hA' (u x)]

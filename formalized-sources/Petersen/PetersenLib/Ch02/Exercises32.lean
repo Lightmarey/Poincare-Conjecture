@@ -161,7 +161,7 @@ theorem exists_localInverse_euclidean_of_hasDerivAt
   have hh : ContDiff ℝ ∞ h := ℓ.contDiff.comp hγ
   have hderivh : HasDerivAt h (ℓ v) t₀ := by
     have := (ℓ.hasFDerivAt).comp_hasDerivAt t₀ hderiv
-    simpa [hdef] using this
+    simpa [hdef, Function.comp_def] using! this
   set f' : ℝ ≃L[ℝ] ℝ := (LinearEquiv.smulOfNeZero ℝ ℝ (ℓ v) hℓ).toContinuousLinearEquiv
     with hf'def
   have hf'coe : (f' : ℝ →L[ℝ] ℝ) = ContinuousLinearMap.smulRight (1 : ℝ →L[ℝ] ℝ) (ℓ v) := by

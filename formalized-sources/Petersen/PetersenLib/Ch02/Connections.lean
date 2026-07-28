@@ -611,7 +611,7 @@ noncomputable def RiemannianMetric.leviCivita (g : RiemannianMetric I M) :
     have hsum : IsSmoothVectorField (fun q => X₁ q + X₂ q) := by
       have := ((⟨X₁, hX₁⟩ : SmoothVectorField I M)
         + ⟨X₂, hX₂⟩ : SmoothVectorField I M).smooth
-      simpa using this
+      simpa using! this
     refine eq_of_metricInner_eq g (fun z => ?_)
     refine mul_left_cancel₀ (two_ne_zero (α := ℝ)) ?_
     have hσvS : IsSmoothVectorField
@@ -646,7 +646,7 @@ noncomputable def RiemannianMetric.leviCivita (g : RiemannianMetric I M) :
   leibniz p v {f X} hf hX := by
     have hfX : IsSmoothVectorField (fun q => f q • X q) := by
       have := (SmoothVectorField.smul f hf ⟨X, hX⟩).smooth
-      simpa using this
+      simpa using! this
     refine eq_of_metricInner_eq g (fun z => ?_)
     refine mul_left_cancel₀ (two_ne_zero (α := ℝ)) ?_
     have hσvS : IsSmoothVectorField

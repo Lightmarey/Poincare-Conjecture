@@ -587,6 +587,7 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[existence and uniqueness of the bracket field]
   \label{lem:dc-ch0-5-2}
+\lean{Riemannian.bracketField_dir,Riemannian.exists_unique_bracketField}
   \dcref{ch0:5.2}
   \leanok
   Let $X,Y$ be differentiable vector fields on $M$. Then there exists a unique
@@ -889,7 +890,6 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 \end{theorem}
 \begin{proof}
   \sketch
-  \leanok
   \uses{lem:dc-ch0-5-6-exists,lem:dc-ch0-5-6-onlyif-complete}
   For the forward implication, Hausdorffness and a countable basis yield a subordinate
   partition of unity by \cref{lem:dc-ch0-5-6-exists}. Conversely, a partition forces
@@ -1056,6 +1056,8 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{remark}[bump functions and locality]
   \label{rem:dc-ch0-5-7}
+\lean{Riemannian.exists_ch0_bump_function,Riemannian.exists_ch0_manifold_bump_function}
+\leanok
   \dcref{ch0:5.7}
   Given $p\in\mathbb{R}^n$ and an open ball $B_r(p)\subset\mathbb{R}^n$, there exist
   a neighborhood $U$ of $p$ with $\overline U\subset B_r(p)$ and a differentiable

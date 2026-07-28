@@ -213,7 +213,9 @@ theorem inner_cons_normal (h : IsMetricPreserving g g' F) (hN : IsUnitNormalAt I
   | zero =>
     induction c using Fin.cases with
     | zero => simpa using hN.unit
-    | succ j => simpa using hN.normal (b j)
+    | succ j =>
+      rw [Fin.cons_zero, Fin.cons_succ, hN.normal]
+      rw [if_neg (Fin.succ_ne_zero j).symm]
   | succ i =>
     induction c using Fin.cases with
     | zero =>
@@ -349,6 +351,7 @@ theorem volumeForm_eq_normalRestrict (h : IsMetricPreserving g g' F)
   have hval := volumeFormL_apply_eq_one (o' (F x))
     ((consNormalBasis (b := fun i => Y i x) h hN hdim (hon x hx)).toOrthonormalBasis hon')
     (by rwa [Basis.toBasis_toOrthonormalBasis])
+  change (o' (F x)).volumeFormL (consNormal I F hdim N x fun i => Y i x) = 1
   simpa only [Basis.coe_toOrthonormalBasis, coe_consNormalBasis] using hval
 
 /-! ## The orientation induced on a hypersurface by a unit normal
@@ -373,7 +376,9 @@ theorem exists_orthonormalBasis_inner (g : RiemannianMetric I M) (x : M) :
   refine ⟨(stdOrthonormalBasis ℝ (TangentSpace I x)).toBasis, fun i j => ?_⟩
   have hon := (stdOrthonormalBasis ℝ (TangentSpace I x)).orthonormal
   rw [orthonormal_iff_ite] at hon
-  simpa only [OrthonormalBasis.coe_toBasis] using hon i j
+  have hinner (v w : TangentSpace I x) : g.inner x v w = ⟪v, w⟫_ℝ := rfl
+  rw [hinner]
+  simpa only [OrthonormalBasis.coe_toBasis] using! hon i j
 
 /-- `(N ⌟ dV_g̃)|_M` does not vanish at any point: its value on a `g`-orthonormal basis of
 `T_x M` is the value of `dV_g̃` on the adapted orthonormal basis of `T_{F x} M̃`, hence `±1`. -/
@@ -528,6 +533,7 @@ theorem volumeForm_apply_basis_eq_one (g : RiemannianMetric I M) (o : PointwiseO
   have hon' : Orthonormal ℝ ⇑b := orthonormal_of_inner g hb
   have hval := volumeFormL_apply_eq_one (o x) (b.toOrthonormalBasis hon')
     (by rwa [Basis.toBasis_toOrthonormalBasis])
+  change (o x).volumeFormL ⇑b = 1
   simpa only [Basis.coe_toOrthonormalBasis] using hval
 
 /-- `dV_g` takes the value `-1` on a negatively oriented orthonormal basis of `T_x M`. -/
@@ -540,6 +546,7 @@ theorem volumeForm_apply_basis_eq_neg_one (g : RiemannianMetric I M)
   have hon' : Orthonormal ℝ ⇑b := orthonormal_of_inner g hb
   have hval := volumeFormL_apply_eq_neg_one (o x) (b.toOrthonormalBasis hon')
     (by rwa [Basis.toBasis_toOrthonormalBasis])
+  change (o x).volumeFormL ⇑b = -1
   simpa only [Basis.coe_toOrthonormalBasis] using hval
 
 /-- **Lee, Proposition 2.43, equation (2.17), with the orientation hypothesis discharged.**

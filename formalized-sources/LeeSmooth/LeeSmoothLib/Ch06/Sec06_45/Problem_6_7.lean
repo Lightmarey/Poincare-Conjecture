@@ -74,12 +74,16 @@ lemma problem_6_7_firstCoordinate_contDiff
   have hval :
       ContMDiff 𝓘(ℝ) 𝓘(ℝ, EuclideanSpace ℝ (Fin 2)) ∞
         (fun t : ℝ ↦ (G t).1) := by
-    simpa [Function.comp] using
-      (contMDiff_model (I := 𝓡∂ 2) (n := (∞ : ℕ∞ω))).comp G.contMDiff
+    have h := (contMDiff_model (I := 𝓡∂ 2) (n := (∞ : ℕ∞ω))).comp G.contMDiff
+    change ContMDiff 𝓘(ℝ) 𝓘(ℝ, EuclideanSpace ℝ (Fin 2)) ∞
+      (fun t : ℝ ↦ (G t).1) at h
+    exact h
   have hπ₀ : ContDiff ℝ ∞ (fun x : EuclideanSpace ℝ (Fin 2) ↦ x 0) := by
     fun_prop
   -- Then read off the first coordinate of the ambient `PiLp`-valued function.
-  simpa [problem_6_7_firstCoordinate, Function.comp] using hπ₀.comp hval.contDiff
+  change ContDiff ℝ ∞ ((fun x : EuclideanSpace ℝ (Fin 2) ↦ x 0) ∘
+    fun t : ℝ ↦ (G t).1)
+  exact hπ₀.comp hval.contDiff
 
 /-- Helper for Problem 6-7: any smooth extension into `ℍ²` has nonnegative first coordinate
 everywhere and agrees with `id` on `[0, ∞)`. -/
@@ -93,13 +97,12 @@ lemma problem_6_7_extensionFirstCoordinate_eqOnRay
     -- Every point of `ℍ²` has nonnegative boundary coordinate.
     exact (G t).2
   · intro t ht
-    let x : problem_6_7_nonnegativeRay := ⟨t, ht⟩
-    have hGt : G x = problem_6_7_restriction x := hG x
+    have hGt := hG (⟨t, ht⟩ : problem_6_7_nonnegativeRay)
+    change G t = problem_6_7_map t at hGt
     have hcoord :
         problem_6_7_firstCoordinate G t = problem_6_7_firstCoordinate problem_6_7_map t := by
       -- Evaluating the extension equality at the first coordinate identifies the scalar traces.
-      simpa [problem_6_7_firstCoordinate, problem_6_7_restriction] using
-        congrArg (fun z : ℍ^{2} ↦ z.1 0) hGt
+      exact congrArg (fun z : ℍ^{2} ↦ z.1 0) hGt
     calc
       problem_6_7_firstCoordinate G t = problem_6_7_firstCoordinate problem_6_7_map t := hcoord
       _ = t := problem_6_7_restriction_isSmoothOn ht

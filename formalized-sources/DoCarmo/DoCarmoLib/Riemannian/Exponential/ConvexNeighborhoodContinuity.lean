@@ -201,7 +201,7 @@ theorem continuousOn_secondDerivChartForm (g : RiemannianMetric I M) (p : M)
     (y := extChartAt I p p) g hu' hu'
   refine ((hterm1.const_smul (2 : ℝ)).add (hterm2.const_smul (2 : ℝ))).congr ?_
   intro z _
-  simp only [secondDerivChartForm, smul_eq_mul, Pi.add_apply]
+  simp only [secondDerivChartForm, Pi.smul_apply, smul_eq_mul, Pi.add_apply]
 
 /-- **Math.** **The second time-derivative is strictly positive at the center `q = p`.**
 At the reference point `q = p` the geodesic through `p` with velocity `v ≠ 0` is the radial

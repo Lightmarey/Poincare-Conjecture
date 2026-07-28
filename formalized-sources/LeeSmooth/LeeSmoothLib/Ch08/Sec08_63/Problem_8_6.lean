@@ -64,7 +64,7 @@ local instance problem_8_6_unitQuaternionSphereLieGroupTop :
     have hambient :
         ContMDiff ((𝓡 3).prod (𝓡 3)) 𝓘(ℝ, ℍ) ∞
           (fun p : unitQuaternionSphere × unitQuaternionSphere ↦ (p.1 : ℍ) * (p.2 : ℍ)) := by
-      simpa [Function.comp] using hmul.comp hprod
+      simpa [Function.comp] using! hmul.comp hprod
     have hsphere :
         ∀ p : unitQuaternionSphere × unitQuaternionSphere,
           (fun q : unitQuaternionSphere × unitQuaternionSphere ↦ (q.1 : ℍ) * (q.2 : ℍ)) p ∈
@@ -79,11 +79,11 @@ local instance problem_8_6_unitQuaternionSphereLieGroupTop :
         rw [mem_sphere_zero_iff_norm] at hp₂_mem
         exact hp₂_mem
       rw [mem_sphere_zero_iff_norm, norm_mul, hp₁, hp₂, one_mul]
-    simpa using ContMDiff.codRestrict_sphere hambient hsphere
+    simpa using! ContMDiff.codRestrict_sphere hambient hsphere
   contMDiff_inv := by
     -- On unit quaternions, inversion agrees with quaternion conjugation.
     have hstar : ContMDiff 𝓘(ℝ, ℍ) 𝓘(ℝ, ℍ) ∞ (fun x : ℍ ↦ star x) := by
-      simpa using (starL ℝ : ℍ ≃L[ℝ] ℍ).contDiff.contMDiff
+      simpa using! (starL ℝ : ℍ ≃L[ℝ] ℍ).contDiff.contMDiff
     have hinv (x : unitQuaternionSphere) : ((x : ℍ)⁻¹) = star (x : ℍ) := by
       calc
         ((x : ℍ)⁻¹) = (Quaternion.normSq (x : ℍ))⁻¹ • star (x : ℍ) := by rfl
@@ -95,7 +95,7 @@ local instance problem_8_6_unitQuaternionSphereLieGroupTop :
       funext hinv
     have hstarSphere :
         ContMDiff (𝓡 3) 𝓘(ℝ, ℍ) ∞ (fun x : unitQuaternionSphere ↦ star (x : ℍ)) := by
-      simpa [Function.comp] using hstar.comp contMDiff_coe_sphere
+      simpa [Function.comp] using! hstar.comp contMDiff_coe_sphere
     have hstarMemSphere :
         ∀ x : unitQuaternionSphere,
           star (x : ℍ) ∈ Metric.sphere (0 : ℍ) 1 := by
@@ -112,7 +112,8 @@ local instance problem_8_6_unitQuaternionSphereLieGroupTop :
       simpa [invViaStar] using (hinv x).symm
     have hInvViaStarSmooth : ContMDiff (𝓡 3) (𝓡 3) ∞ invViaStar := by
       -- Codrestrict the smooth ambient conjugation map back to the sphere.
-      simpa [invViaStar] using ContMDiff.codRestrict_sphere hstarSphere hstarMemSphere
+      simpa [invViaStar] using!
+        ContMDiff.codRestrict_sphere hstarSphere hstarMemSphere
     rw [← hInvViaStar]
     exact hInvViaStarSmooth
 
@@ -250,13 +251,13 @@ private theorem problem_8_6_coe_mfderiv_leftMul_apply
     -- Differentiate the normalized ambient composite and evaluate the resulting linear map.
     have hambientLeftMul :
         MDifferentiableAt 𝓘(ℝ, ℍ) 𝓘(ℝ, ℍ) (fun r : ℍ ↦ (g : ℍ) * r) (q : ℍ) := by
-      simpa using (((ContinuousLinearMap.mul ℝ ℍ) (g : ℍ)).mdifferentiableAt)
+      simpa using! (((ContinuousLinearMap.mul ℝ ℍ) (g : ℍ)).mdifferentiableAt)
     have hcomposeAmbientRaw :
         mfderiv (𝓡 3) 𝓘(ℝ, ℍ)
           ((fun r : ℍ ↦ (g : ℍ) * r) ∘ ((↑) : unitQuaternionSphere → ℍ)) q x =
             (fderiv ℝ (fun r : ℍ ↦ (g : ℍ) * r) (q : ℍ))
               (mfderiv (𝓡 3) 𝓘(ℝ, ℍ) ((↑) : unitQuaternionSphere → ℍ) q x) := by
-      simpa using
+      simpa using!
         (mfderiv_comp_apply_of_eq q hambientLeftMul hcoe rfl x)
     rw [hcomposeAmbientRaw]
     rw [show fderiv ℝ (fun r : ℍ ↦ (g : ℍ) * r) (q : ℍ) =
@@ -352,7 +353,8 @@ theorem problem_8_6_X1_contDiff :
       problem_8_6_X1OnSphere =
         mulInvariantVectorField (problem_8_6_rightMulField i rfl 1) := by
     -- Identify `X₁` with the generic right-multiplication field, then rewrite by invariance.
-    simpa [problem_8_6_X1OnSphere, problem_8_6_X1, problem_8_6_rightMulField] using hRightMulField
+    simpa [problem_8_6_X1OnSphere, problem_8_6_X1, problem_8_6_rightMulField] using!
+      hRightMulField
   rw [hX1]
   -- Smoothness is now the canonical invariant-vector-field theorem.
   simpa using
@@ -369,7 +371,8 @@ theorem problem_8_6_X2_contDiff :
       problem_8_6_X2OnSphere =
         mulInvariantVectorField (problem_8_6_rightMulField j rfl 1) := by
     -- Identify `X₂` with the generic right-multiplication field, then rewrite by invariance.
-    simpa [problem_8_6_X2OnSphere, problem_8_6_X2, problem_8_6_rightMulField] using hRightMulField
+    simpa [problem_8_6_X2OnSphere, problem_8_6_X2, problem_8_6_rightMulField] using!
+      hRightMulField
   rw [hX2]
   -- Smoothness is now the canonical invariant-vector-field theorem.
   simpa using
@@ -386,7 +389,8 @@ theorem problem_8_6_X3_contDiff :
       problem_8_6_X3OnSphere =
         mulInvariantVectorField (problem_8_6_rightMulField k rfl 1) := by
     -- Identify `X₃` with the generic right-multiplication field, then rewrite by invariance.
-    simpa [problem_8_6_X3OnSphere, problem_8_6_X3, problem_8_6_rightMulField] using hRightMulField
+    simpa [problem_8_6_X3OnSphere, problem_8_6_X3, problem_8_6_rightMulField] using!
+      hRightMulField
   rw [hX3]
   -- Smoothness is now the canonical invariant-vector-field theorem.
   simpa using
@@ -398,7 +402,7 @@ theorem problem_8_6_X1_left_invariant :
   have hLeftInvariant : VectorField.IsLeftInvariant (problem_8_6_rightMulField i rfl) :=
     problem_8_6_rightMulField_leftInvariant rfl
   -- `X₁` is the generic right-multiplication field for the imaginary unit `i`.
-  simpa [problem_8_6_X1OnSphere, problem_8_6_X1, problem_8_6_rightMulField] using
+  simpa [problem_8_6_X1OnSphere, problem_8_6_X1, problem_8_6_rightMulField] using!
     hLeftInvariant
 
 /-- For Problem 8-6 (9): the restriction of `X₂` to the unit quaternions is left-invariant. -/
@@ -407,7 +411,7 @@ theorem problem_8_6_X2_left_invariant :
   have hLeftInvariant : VectorField.IsLeftInvariant (problem_8_6_rightMulField j rfl) :=
     problem_8_6_rightMulField_leftInvariant rfl
   -- `X₂` is the generic right-multiplication field for the imaginary unit `j`.
-  simpa [problem_8_6_X2OnSphere, problem_8_6_X2, problem_8_6_rightMulField] using
+  simpa [problem_8_6_X2OnSphere, problem_8_6_X2, problem_8_6_rightMulField] using!
     hLeftInvariant
 
 /-- For Problem 8-6 (10): the restriction of `X₃` to the unit quaternions is left-invariant. -/
@@ -416,7 +420,7 @@ theorem problem_8_6_X3_left_invariant :
   have hLeftInvariant : VectorField.IsLeftInvariant (problem_8_6_rightMulField k rfl) :=
     problem_8_6_rightMulField_leftInvariant rfl
   -- `X₃` is the generic right-multiplication field for the imaginary unit `k`.
-  simpa [problem_8_6_X3OnSphere, problem_8_6_X3, problem_8_6_rightMulField] using
+  simpa [problem_8_6_X3OnSphere, problem_8_6_X3, problem_8_6_rightMulField] using!
     hLeftInvariant
 
 /-- Helper for Problem 8-6: the three imaginary quaternion coordinates. -/
@@ -490,7 +494,7 @@ private theorem problem_8_6_ambientMulBasis_linearIndependent (q : unitQuaternio
     -- Left multiplication by a nonzero quaternion is injective.
     exact LinearMap.ker_eq_bot.mpr (fun x y hxy ↦ mul_left_cancel₀ hq hxy)
   -- Map the independent basis `(i, j, k)` through that injective linear map.
-  simpa [L, problem_8_6_imaginaryBasis, Function.comp, LinearMap.mulLeft_apply] using
+  simpa [L, problem_8_6_imaginaryBasis, Function.comp, LinearMap.mulLeft_apply] using!
     problem_8_6_imaginaryBasis_linearIndependent.map' L hker
 
 /-- For Problem 8-6: the explicit global frame on `S^3` obtained by restricting the quaternionic
@@ -515,7 +519,7 @@ private theorem problem_8_6_frameConditions (q : unitQuaternionSphere) :
       -- The subtype inclusion is injective, so independence can be checked ambiently.
       exact LinearMap.ker_eq_bot.mpr Subtype.val_injective
     exact (inc.linearIndependent_iff hker).mp (by
-      simpa [ambientSubtype, inc, Function.comp] using hambient)
+      simpa [ambientSubtype, inc, Function.comp] using! hambient)
   have hFrameMap :
       LinearIndependent ℝ
         (fun n : Fin 3 ↦ (problem_8_6_tangentOrthogonalEquiv q).symm (ambientSubtype n)) := by

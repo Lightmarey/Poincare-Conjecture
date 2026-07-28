@@ -264,8 +264,8 @@ theorem slice_condition_chartAt_mem_source
       (slice_chart_induces_patch_chart (S := S) (e := e) he x hx)).source
   rw [OpenPartialHomeomorph.trans_source]
   constructor
-  · simpa [P] using hx
-  · simpa [P, xP] using
+  · simpa [P] using! hx
+  · simpa [P, xP] using!
       slice_chart_induces_patch_chart_mem_source (S := S) (e := e) he x hx
 
 /-- Helper for Theorem 5.8: any point lying in an induced subtype chart source already lies in the
@@ -287,7 +287,7 @@ theorem slice_condition_chartAt_source_subset_ambient_source
     (((P.openPartialHomeomorphSubtypeCoe ⟨xP⟩).symm).trans
       (slice_chart_induces_patch_chart (S := S) (e := e) he x hx)).source at hy
   rw [OpenPartialHomeomorph.trans_source] at hy
-  simpa [P, xP] using hy.1
+  simpa [P, xP] using! hy.1
 
 /-- Helper for Theorem 5.8: the pointed subtype chart evaluates by first restricting to the open
 patch and then applying the patch chart. -/
@@ -322,7 +322,7 @@ theorem pointed_subtype_chart_apply_via_patch
           simpa [P, subtype_source_patch] using hy.1⟩ := by
     -- Two points of the patch subtype are equal once their underlying points of `S` agree.
     apply Subtype.ext
-    simpa using iP.right_inv hyTarget
+    simpa using! iP.right_inv hyTarget
   rw [hsymm]
 
 /-- Helper for Theorem 5.8: the inverse pointed subtype chart is the patch-chart inverse followed
@@ -364,7 +364,7 @@ theorem slice_condition_chartAt_apply
   let c := slice_condition_tail_constants (S := S) hS x hk
   have hSlice :
       e '' (S ∩ e.source) = Set.euclideanSlice e.target k hk c := by
-    simpa [e, he, slice_condition_tail_constants] using
+    simpa [e, he, slice_condition_tail_constants] using!
       slice_condition_ambient_chart_image_eq_slice (S := S) hS x hk
   let yPatch : subtype_source_patch (S := S) e := ⟨y, by
     -- Source points of the induced subtype chart lie in the ambient chart source.
@@ -427,7 +427,7 @@ theorem slice_condition_chartAt_symm_image_data
   have hzSlice : z ∈ sliceChart.target := by
     -- The patch-to-slice homeomorphism is global, so the patch-chart target is exactly the
     -- Euclidean-slice chart target.
-    simpa [patchChart, sliceChart, OpenPartialHomeomorph.trans_target] using hzPatch
+    simpa [patchChart, sliceChart, OpenPartialHomeomorph.trans_target] using! hzPatch
   let w : Set.euclideanSlice e.target k hk c := sliceChart.symm z
   have hw_val : w.1 = euclidean_slice_inclusion hk c z := by
     -- The Euclidean slice chart inverse is the fixed-tail inclusion.
@@ -442,12 +442,12 @@ theorem slice_condition_chartAt_symm_image_data
     -- Read the trans-source condition off the inverse image point of the composed patch chart.
     have hzPatchSymm : patchChart.symm z ∈ patchChart.source := by
       exact patchChart.symm.map_source hzPatch
-    simpa [patchChart, OpenPartialHomeomorph.trans_source] using hzPatchSymm
+    simpa [patchChart, OpenPartialHomeomorph.trans_source] using! hzPatchSymm
   have hpatch_apply :
       sliceChart
           (slice_chart_patch_homeomorph (S := S) (e := e) hSlice (patchChart.symm z)) = z := by
     -- Expanding the composed patch chart gives the literal `π`-formula on the slice patch.
-    simpa [patchChart, sliceChart, OpenPartialHomeomorph.trans_apply] using
+    simpa [patchChart, sliceChart, OpenPartialHomeomorph.trans_apply] using!
       patchChart.right_inv hzPatch
   have hpatch_to_slice :
       slice_chart_patch_homeomorph (S := S) (e := e) hSlice (patchChart.symm z) = w := by
@@ -620,7 +620,7 @@ theorem ambient_transition_precomp_slice_inclusion_contDiffOn
         ((ex.symm.trans ey).source) := by
     rw [contDiffGroupoid, mem_groupoid_of_pregroupoid, contDiffPregroupoid] at hcompat
     simpa [ex, ey, Function.comp, modelWithCornersSelf_coe, OpenPartialHomeomorph.coe_trans]
-      using hcompat.1
+      using! hcompat.1
   have hinclusion :
       ContDiffOn ℝ (⊤ : WithTop ℕ∞) (euclidean_slice_inclusion hk c)
         (((slice_condition_chartAt (S := S) hS x).symm.trans
@@ -723,7 +723,7 @@ theorem slice_condition_chartedSpace_isManifold
   rcases he' with ⟨y, rfl⟩
   have hk : k ≤ n := satisfies_local_slice_condition_dimension_le
     (S := S) (hS_nonempty := ⟨x.1, x.2⟩) hS
-  simpa using slice_condition_chartAt_transition_contDiffOn (S := S) hS x y hk
+  simpa using! slice_condition_chartAt_transition_contDiffOn (S := S) hS x y hk
 
 /-- A local `k`-slice structure on `S ⊆ M` yields a boundaryless topological `k`-manifold
 structure on the subtype `S` with the induced topology. -/

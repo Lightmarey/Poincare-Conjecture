@@ -169,8 +169,11 @@ theorem smoothEmbeddingRangeHasTopManifoldStructure
     · intro u hu
       have hu' : u ∈ (hx.domChart.extend (𝓡 n)).target := by
         simpa [eS, OpenPartialHomeomorph.extend_target, OpenPartialHomeomorph.trans_target] using hu
-      simpa [Function.comp, OpenPartialHomeomorph.extend_coe_symm,
-        OpenPartialHomeomorph.extend_coe] using hx.writtenInCharts hu'
+      simp only [Function.comp_apply, OpenPartialHomeomorph.extend_coe_symm,
+        OpenPartialHomeomorph.extend_coe]
+      change hx.codChart.extend ((𝓡 n).prod 𝓘(ℝ))
+        (F ((hx.domChart.extend (𝓡 n)).symm u)) = hx.equiv (u, 0)
+      exact hx.writtenInCharts hu'
   -- The range still carries the subspace topology, so immersion plus the subtype embedding gives
   -- the desired smooth embedding of the inclusion.
   have hSubtype :
@@ -330,7 +333,15 @@ lemma globalGraphParametrization_isSmoothEmbedding
         ((mfderiv (𝓡 n) ((𝓡 n).prod 𝓘(ℝ)) F x) v).1 =
           ((mfderiv (𝓡 n) ((𝓡 n).prod 𝓘(ℝ)) F x) w).1 := by
       exact congrArg Prod.fst hvw
-    simpa [hDeriv, mfderiv_id] using hFirst
+    have hId :
+        mfderiv (𝓡 n) (𝓡 n) (fun y : EuclideanSpace ℝ (Fin n) => y) x =
+          ContinuousLinearMap.id ℝ (TangentSpace (𝓡 n) x) := by
+      change mfderiv (𝓡 n) (𝓡 n) id x =
+        ContinuousLinearMap.id ℝ (TangentSpace (𝓡 n) x)
+      exact mfderiv_id
+    rw [hDeriv, hId] at hFirst
+    change (v : EuclideanSpace ℝ (Fin n)) = (w : EuclideanSpace ℝ (Fin n))
+    exact hFirst
   have hFemb : Topology.IsEmbedding F := by
     -- The graph map is a topological embedding because projection to the first coordinate is
     -- a continuous inverse on the image.

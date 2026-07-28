@@ -170,7 +170,7 @@ private theorem chartRepresentingVector_gives_pointDerivation
   have hX_eq : X = y := by
     -- The inverse-chart derivative identifies the chosen tangent vector with the representing
     -- model-space vector.
-    simpa [X, q] using
+    simpa [X, q] using!
       congrArg
         (fun A : TangentSpace 𝓘(ℝ, E) q →L[ℝ] TangentSpace I p ↦ A y)
         (mfderivWithin_range_extChartAt_symm (I := I) (x := p))
@@ -187,7 +187,7 @@ private theorem chartRepresentingVector_gives_pointDerivation
       mfderiv I 𝓘(ℝ) f p y =
         fderivWithin ℝ (writtenInExtChartAt I 𝓘(ℝ) p f) (Set.range I) q y := by
     -- Apply the identified linear maps to the representing vector `y`.
-    simpa [q] using congrArg (fun A ↦ A y) hmfderiv
+    simpa [q] using! congrArg (fun A ↦ A y) hmfderiv
   have hX_apply :
       TangentSpace.toPointDerivation X f =
         fderivWithin ℝ (writtenInExtChartAt I 𝓘(ℝ) p f) (Set.range I) q y := by
@@ -244,7 +244,7 @@ private theorem chartPushforward_represents_pointDerivationChartModel
     have hg_has :
         HasMFDerivAt 𝓘(ℝ, E) 𝓘(ℝ) g q (fderiv ℝ g q) := by
       simpa [mfderiv_eq_fderiv] using hg_md.hasMFDerivAt
-    simpa [hpull, Function.comp, q] using hg_has.comp p hchart
+    simpa [hpull, Function.comp, q] using! hg_has.comp p hchart
   have hf_mfderiv :
       mfderiv I 𝓘(ℝ) f p =
         (fderiv ℝ g q).comp (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p) := by
@@ -255,7 +255,7 @@ private theorem chartPushforward_represents_pointDerivationChartModel
         fderiv ℝ g q (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p X) := by
     -- Evaluating the tangent-vector derivation amounts to applying the pushed-forward derivative.
     rw [TangentSpace.toPointDerivation_apply]
-    simpa [q] using congrArg (fun A : TangentSpace I p →L[ℝ] ℝ ↦ A X) hf_mfderiv
+    simpa [q] using! congrArg (fun A : TangentSpace I p →L[ℝ] ℝ ↦ A X) hf_mfderiv
   calc
     pointDerivationChartModel (H := H) (I := I) p w g
       = w f := by

@@ -130,11 +130,17 @@ theorem exists_forall_chartMetricInner_self_lt (g : RiemannianMetric I M) (p : M
     simp only [chartMetricInner_def]
     refine continuous_finset_sum _ fun i _ => continuous_finset_sum _ fun j _ => ?_
     have hci : Continuous fun w : E => Geodesic.chartCoord (E := E) i w := by
-      simpa only [Geodesic.chartCoordFunctional_apply] using
-        (Geodesic.chartCoordFunctional (E := E) i).continuous
+      rw [show (fun w : E => Geodesic.chartCoord (E := E) i w) =
+        ⇑(Geodesic.chartCoordFunctional (E := E) i) by
+          funext w
+          exact (Geodesic.chartCoordFunctional_apply (E := E) i w).symm]
+      exact (Geodesic.chartCoordFunctional (E := E) i).continuous
     have hcj : Continuous fun w : E => Geodesic.chartCoord (E := E) j w := by
-      simpa only [Geodesic.chartCoordFunctional_apply] using
-        (Geodesic.chartCoordFunctional (E := E) j).continuous
+      rw [show (fun w : E => Geodesic.chartCoord (E := E) j w) =
+        ⇑(Geodesic.chartCoordFunctional (E := E) j) by
+          funext w
+          exact (Geodesic.chartCoordFunctional_apply (E := E) j w).symm]
+      exact (Geodesic.chartCoordFunctional (E := E) j).continuous
     exact (continuous_const.mul hci).mul hcj
   have h0 : chartMetricInner (I := I) g p (extChartAt I p p) 0 0 = 0 :=
     chartMetricInner_zero_left (I := I) g p _ _
@@ -650,11 +656,17 @@ theorem exists_le_pathELength [T2Space M] (g : RiemannianMetric I M) (p : M) :
       rw [hfun]
       refine continuous_finset_sum _ fun i _ => continuous_finset_sum _ fun j _ => ?_
       have hci : Continuous fun v : E => Geodesic.chartCoord (E := E) i v := by
-        have h := (Geodesic.chartCoordFunctional (E := E) i).continuous
-        simpa only [Geodesic.chartCoordFunctional_apply] using h
+        rw [show (fun v : E => Geodesic.chartCoord (E := E) i v) =
+          ⇑(Geodesic.chartCoordFunctional (E := E) i) by
+            funext v
+            exact (Geodesic.chartCoordFunctional_apply (E := E) i v).symm]
+        exact (Geodesic.chartCoordFunctional (E := E) i).continuous
       have hcj : Continuous fun v : E => Geodesic.chartCoord (E := E) j v := by
-        have h := (Geodesic.chartCoordFunctional (E := E) j).continuous
-        simpa only [Geodesic.chartCoordFunctional_apply] using h
+        rw [show (fun v : E => Geodesic.chartCoord (E := E) j v) =
+          ⇑(Geodesic.chartCoordFunctional (E := E) j) by
+            funext v
+            exact (Geodesic.chartCoordFunctional_apply (E := E) j v).symm]
+        exact (Geodesic.chartCoordFunctional (E := E) j).continuous
       exact (continuous_const.mul hci).mul hcj
     -- the `g_p`-radius controls the coordinate radius through the Gram bound
     have hnorm_le : ∀ v : E,
@@ -960,11 +972,17 @@ theorem exists_normalSphere_min_edist (g : RiemannianMetric I M')
     rw [hfun]
     refine continuous_finset_sum _ fun i _ => continuous_finset_sum _ fun j _ => ?_
     have hci : Continuous fun v : E => Geodesic.chartCoord (E := E) i v := by
-      have h := (Geodesic.chartCoordFunctional (E := E) i).continuous
-      simpa only [Geodesic.chartCoordFunctional_apply] using h
+      rw [show (fun v : E => Geodesic.chartCoord (E := E) i v) =
+        ⇑(Geodesic.chartCoordFunctional (E := E) i) by
+          funext v
+          exact (Geodesic.chartCoordFunctional_apply (E := E) i v).symm]
+      exact (Geodesic.chartCoordFunctional (E := E) i).continuous
     have hcj : Continuous fun v : E => Geodesic.chartCoord (E := E) j v := by
-      have h := (Geodesic.chartCoordFunctional (E := E) j).continuous
-      simpa only [Geodesic.chartCoordFunctional_apply] using h
+      rw [show (fun v : E => Geodesic.chartCoord (E := E) j v) =
+        ⇑(Geodesic.chartCoordFunctional (E := E) j) by
+          funext v
+          exact (Geodesic.chartCoordFunctional_apply (E := E) j v).symm]
+      exact (Geodesic.chartCoordFunctional (E := E) j).continuous
     exact (continuous_const.mul hci).mul hcj
   -- the coordinate `g_p`-sphere of radius `δ` is compact …
   set S : Set E := closedBall (0 : E) (Real.sqrt c * δ) ∩

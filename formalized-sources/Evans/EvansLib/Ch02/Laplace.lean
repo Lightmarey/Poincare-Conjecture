@@ -92,7 +92,11 @@ lemma iteratedDeriv_two_comp_quadratic {g g' g'' : ℝ → ℝ} {A b : ℝ} (hA 
     have e1 : HasDerivAt (fun s : ℝ => 2 * s * b) (2 * b) s := by
       simpa using ((hasDerivAt_id s).const_mul (2 : ℝ)).mul_const b
     have e2 : HasDerivAt (fun s : ℝ => s ^ 2) (2 * s) s := by simpa using hasDerivAt_pow 2 s
-    simpa using ((hasDerivAt_const s A).add e1).add e2
+    convert ((hasDerivAt_const s A).add e1).add e2 using 1
+    · exact AddCommGroup.ext rfl
+    · exact Module.ext rfl
+    · rfl
+    · ring
   have hq0 : q 0 = A := by simp [hq]
   have hqcont : Continuous q := by rw [hq]; fun_prop
   have hWpos : IsOpen {s : ℝ | 0 < q s} := isOpen_lt continuous_const hqcont

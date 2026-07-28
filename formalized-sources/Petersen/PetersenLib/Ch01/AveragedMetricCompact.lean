@@ -145,13 +145,21 @@ theorem pullbackAction_continuous (g₀ : RiemannianMetric I M)
       rfl
     have hcoeT : (tT.symm (γ • p) : E → TangentSpace I (γ • p))
         = ⇑(tT.continuousLinearEquivAt ℝ (γ • p) hγ').symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hγ']; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hγ']
+      funext x
+      exact (tT.symmL_apply hγ' x).symm
     have hcoeS : (sT.symm p : E → TangentSpace I p)
         = ⇑(sT.continuousLinearEquivAt ℝ p hp).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hp]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hp]
+      funext x
+      exact (sT.symmL_apply hp x).symm
     rw [hval, hcoeT, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
-  have hsymmU : sT.symm p uu = u := by rw [huu]; exact sT.symmL_continuousLinearMapAt hp u
-  have hsymmV : sT.symm p vv = v := by rw [hvv]; exact sT.symmL_continuousLinearMapAt hp v
+  have hsymmU : sT.symm p uu = u := by
+    rw [huu, ← sT.symmL_apply (R := ℝ) hp]
+    exact sT.symmL_continuousLinearMapAt (R := ℝ) hp u
+  have hsymmV : sT.symm p vv = v := by
+    rw [hvv, ← sT.symmL_apply (R := ℝ) hp]
+    exact sT.symmL_continuousLinearMapAt (R := ℝ) hp v
   -- unfold `G (γ•p)` (metric in target coordinates) via the bilinear `inCoordinates` lemma
   have htrivR : trivializationAt ℝ (Bundle.Trivial M ℝ) (γ₀ • p)
       = Bundle.Trivial.trivialization M ℝ := Bundle.Trivial.eq_trivialization M ℝ _
@@ -232,10 +240,14 @@ theorem pullbackForm_joint_contMDiffAt (g₀ : RiemannianMetric I M)
       rfl
     have hcoeT : (tT.symm (q.1 • q.2) : E → TangentSpace I (q.1 • q.2))
         = ⇑(tT.continuousLinearEquivAt ℝ (q.1 • q.2) hfx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]
+      funext x
+      exact (tT.symmL_apply hfx x).symm
     have hcoeS : (sT.symm q.2 : E → TangentSpace I q.2)
         = ⇑(sT.continuousLinearEquivAt ℝ q.2 hx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]
+      funext x
+      exact (sT.symmL_apply hx x).symm
     rw [hDu, hcoeT, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
   rw [hRHS, hG]
   have htrivM' : trivializationAt ℝ (Bundle.Trivial M ℝ) (q₀.1 • q₀.2)

@@ -36,7 +36,12 @@ theorem graphMap_isEmbedding (U : Set X) (f : X → Y) (hf : ContinuousOn f U) :
     isEmbedding_graph hcont
   have hprod : IsEmbedding (Prod.map ((↑) : U → X) (id : Y → Y)) :=
     IsEmbedding.subtypeVal.prodMap .id
-  simpa [graphMap, Function.comp] using hprod.comp hgraph
+  have hmap : graphMap U f =
+      Prod.map ((↑) : U → X) (id : Y → Y) ∘ fun x : U ↦ (x, f x) := by
+    funext x
+    rfl
+  rw [hmap]
+  exact hprod.comp hgraph
 
 /-- Example 1.3: graph coordinates identify the graph of a continuous function on `U` with the
 domain `U` itself. -/

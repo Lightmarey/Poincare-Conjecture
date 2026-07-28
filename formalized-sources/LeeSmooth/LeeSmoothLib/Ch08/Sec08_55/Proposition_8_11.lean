@@ -49,7 +49,7 @@ theorem exists_finBasis_extension
   have hw : LinearIndependent ℝ w := by
     simpa [w, W] using linearIndependent_span hv
   have hWcard : Fintype.card (Fin k) = Module.finrank ℝ W := by
-    simpa [W] using (linearIndependent_iff_card_eq_finrank_span.mp hv)
+    simpa [W, Set.finrank] using (linearIndependent_iff_card_eq_finrank_span.mp hv)
   letI : Nonempty (Fin k) := ⟨⟨0, hk1⟩⟩
   let bW : Module.Basis (Fin k) ℝ W := basisOfLinearIndependentOfCardEqFinrank hw hWcard
   -- Then choose a complementary subspace and append any basis of that complement.
@@ -212,9 +212,9 @@ theorem exists_localFrame_completion_at_of_linearlyIndependentOn
         e j p = X ⟨j.1, hj⟩ p := by simp [e, hj]
         _ = bExt (Fin.castLE hkleT ⟨j.1, hj⟩) := (hbExt ⟨j.1, hj⟩).symm
         _ = bExt j := by rfl
-    · simpa [e, hj, hbasis] using
-        (Bundle.Trivialization.localFrame_apply_of_mem_baseSet τ c hpτ :
-          τ.localFrame c j p = (τ.basisAt c hpτ) j)
+    · rw [show e j p = τ.localFrame c j p by simp [e, hj],
+        Bundle.Trivialization.localFrame_apply_of_mem_baseSet τ c hpτ, hbasis]
+      rfl
   have heLin : LinearIndependent ℝ (fun j : FrameIndex ↦ e j p) := by
     simpa [hep] using bExt.linearIndependent
   have heSmooth :

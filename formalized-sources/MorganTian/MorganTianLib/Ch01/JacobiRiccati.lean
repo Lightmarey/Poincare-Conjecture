@@ -113,6 +113,11 @@ structure IsRadialJacobi (ℛ 𝒥 𝒥' : ℝ → E →L[ℝ] E) (b C : ℝ) : 
   /-- `‖ℛ‖ ≤ C` on `[0, b]`. -/
   curv_bound : ∀ t ∈ Icc (0 : ℝ) b, ‖ℛ t‖ ≤ C
 
+/-- **Math.** ASCII facade for the radial matrix Jacobi predicate.
+Blueprint: `lem:radial-shape-riccati`. -/
+abbrev RadialJacobi (ℛ 𝒥 𝒥' : ℝ → E →L[ℝ] E) (b C : ℝ) : Prop :=
+  IsRadialJacobi ℛ 𝒥 𝒥' b C
+
 namespace IsRadialJacobi
 
 variable {ℛ 𝒥 𝒥' : ℝ → E →L[ℝ] E} {b C : ℝ}
@@ -216,8 +221,11 @@ theorem hasDerivAt_shapeOp (h : IsRadialJacobi ℛ 𝒥 𝒥' b C)
       + 𝒥' t * -(Ring.inverse (𝒥 t) * 𝒥' t * Ring.inverse (𝒥 t))
       = -(ℛ t) - shapeOp 𝒥 𝒥' t * shapeOp 𝒥 𝒥' t := by
     rw [e1, e2, shapeOp, sub_eq_add_neg]
-  rw [shapeOp]
-  simpa only [hkey] using hA
+  have hfun : shapeOp 𝒥 𝒥' = fun r => 𝒥' r * Ring.inverse (𝒥 r) := by
+    funext r
+    rfl
+  rw [hfun]
+  simpa only [hkey, shapeOp] using hA
 
 /-! #### Symmetry of the shape operator (Wronskian identity) -/
 
@@ -256,10 +264,15 @@ theorem wronskian_eq (h : IsRadialJacobi ℛ 𝒥 𝒥' b C) (hb : 0 < b)
     -- `w' = ⟪-ℛ(𝒥 a), 𝒥 c⟫ - ⟪𝒥 a, -ℛ(𝒥 c)⟫ = 0` by symmetry of `ℛ`
     -- (the `⟪𝒥' a, 𝒥' c⟫` terms cancel)
     have hsub := (hva.inner ℝ hyc).sub (hya.inner ℝ hvc)
-    convert hsub using 1
-    have hs := h.curv_symm r hr (𝒥 r a) (𝒥 r c)
-    simp only [inner_neg_left, inner_neg_right]
-    linarith
+    have hfun : w =
+        (fun t => ⟪𝒥' t a, 𝒥 t c⟫) - fun t => ⟪𝒥 t a, 𝒥' t c⟫ := by
+      funext t
+      rfl
+    rw [hfun]
+    exact hsub.congr_deriv (by
+      have hs := h.curv_symm r hr (𝒥 r a) (𝒥 r c)
+      simp only [inner_neg_left, inner_neg_right]
+      linarith)
   -- hence `w` is constant on `[0, b]`, equal to `w 0 = 0`
   have hdiff : DifferentiableOn ℝ w (Icc (0 : ℝ) b) := fun r hr =>
     (hderiv r hr).differentiableWithinAt

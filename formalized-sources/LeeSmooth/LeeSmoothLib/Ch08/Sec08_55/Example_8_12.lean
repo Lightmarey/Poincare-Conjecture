@@ -93,11 +93,11 @@ private theorem example_8_12_coordinateRatio_contDiffOn (i : Fin 2) :
   -- Divide the smooth coordinate projection by the smooth norm, using that the norm never
   -- vanishes on the punctured plane.
   have hcoord : ContDiffOn ℝ ∞ (fun x : R2 ↦ x i) (P2 : Set R2) := by
-    simpa using
+    simpa using!
       ((contDiff_piLp_apply (𝕜 := ℝ) (p := (2 : ENNReal)) (E := fun _ : Fin 2 ↦ ℝ) (i := i)) :
         ContDiff ℝ ∞ (fun x : R2 ↦ x i)).contDiffOn
   have hnorm : ContDiffOn ℝ ∞ (fun x : R2 ↦ ‖x‖) (P2 : Set R2) := by
-    simpa using
+    simpa using!
       (contDiff_id.contDiffOn.norm (𝕜 := ℝ) fun x hx ↦ hx)
   exact hcoord.div hnorm fun x hx ↦ norm_ne_zero_iff.mpr hx
 
@@ -110,8 +110,8 @@ private theorem example_8_12_radialAmbientField_contMDiffOn :
   refine contDiffOn_piLp' (p := (2 : ENNReal)) ?_
   intro i
   fin_cases i
-  · simpa [example_8_12_radialAmbientField] using example_8_12_coordinateRatio_contDiffOn 0
-  · simpa [example_8_12_radialAmbientField] using example_8_12_coordinateRatio_contDiffOn 1
+  · simpa [example_8_12_radialAmbientField] using! example_8_12_coordinateRatio_contDiffOn 0
+  · simpa [example_8_12_radialAmbientField] using! example_8_12_coordinateRatio_contDiffOn 1
 
 /-- Helper for the punctured-plane frame example: the angular ambient field is smooth on
 `ℝ² \ {0}`. -/
@@ -122,8 +122,8 @@ private theorem example_8_12_angularAmbientField_contMDiffOn :
   refine contDiffOn_piLp' (p := (2 : ENNReal)) ?_
   intro i
   fin_cases i
-  · simpa [example_8_12_angularAmbientField] using (example_8_12_coordinateRatio_contDiffOn 1).neg
-  · simpa [example_8_12_angularAmbientField] using example_8_12_coordinateRatio_contDiffOn 0
+  · simpa [example_8_12_angularAmbientField] using! (example_8_12_coordinateRatio_contDiffOn 1).neg
+  · simpa [example_8_12_angularAmbientField] using! example_8_12_coordinateRatio_contDiffOn 0
 
 /-- Ambient representative of the pushed-forward intrinsic pair `(E₁, E₂)`, used to express
 Example 8.12 through the subset owner `IsOrthonormalFrameOn` on `P2 ⊆ ℝ²`. -/
@@ -233,7 +233,7 @@ private theorem example_8_12_pushforwardFrame_linearIndependent
       LinearIndependent ℝ
         (fun i : Fin 2 ↦ fromTangentSpace x (example_8_12_pushforwardFrame i x)) :=
     (example_8_12_pushforwardFrame_pointwise_orthonormal hx).linearIndependent
-  simpa using
+  simpa using!
     hcoords.map' ((fromTangentSpace x).symm.toLinearMap) (by
       ext v
       simp)
@@ -283,7 +283,7 @@ private theorem example_8_12_intrinsic_linearIndependent (p : P2) :
   refine
     LinearIndependent.of_comp
       (mfderiv (𝓡 2) (𝓡 2) (Subtype.val : P2 → R2) p).toLinearMap ?_
-  simpa [Function.comp, example_8_12_pushforwardFrame, hp0] using
+  simpa [Function.comp, example_8_12_pushforwardFrame, hp0] using!
     example_8_12_pushforwardFrame_linearIndependent p.property
 
 /-- Helper for Example 8.12: pulling back the pushed-forward ambient frame along the open-subtype

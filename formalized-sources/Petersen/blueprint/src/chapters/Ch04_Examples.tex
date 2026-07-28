@@ -139,6 +139,7 @@ curvature eigenvalues.
 \begin{proposition}[curvature of product spheres]
   \label{prop:pet-ch4-product-sphere-curvature}
   \lean{PetersenLib.productSphereCurvature}
+\leanok
   \uses{def:pet-ch4-product-sphere-metric,prop:pet-ch4-euclidean-sphere-constant-curvature,prop:pet-ch4-triple-vanishing-diagonalizes-operator}
   On $S^n_a\times S^m_b$, let $Y$ be a unit vector field on $S^n$, $V$ a unit
   vector field on $S^m$, and $X$ a unit vector field tangent to either factor and
@@ -152,6 +153,7 @@ curvature eigenvalues.
   \]
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch4-product-sphere-curvature}
   \sketch
   The Koszul formula shows that the product connection preserves each factor
@@ -166,6 +168,7 @@ curvature eigenvalues.
 \begin{remark}[Ricci, scalar curvature, and the Einstein condition for product spheres]
   \label{rem:pet-ch4-product-sphere-ricci-einstein}
   \lean{PetersenLib.productSphereRicciEinstein}
+\leanok
   \uses{prop:pet-ch4-product-sphere-curvature,prop:pet-ch4-curvature-operator-diagonal-bounds}
   On $S^n_a\times S^m_b$: $\mathrm{Ric}(X)=(n-1)aX$, $\mathrm{Ric}(V)=(m-1)bV$, and
   $\mathrm{scal}=n(n-1)a+m(m-1)b$; all sectional curvatures lie in
@@ -258,6 +261,7 @@ curvature components and their Ricci and scalar contractions.
 \begin{theorem}[curvature operator of a rotationally symmetric metric]
   \label{thm:pet-ch4-rotsym-curvature-operator}
   \lean{PetersenLib.rotSymCurvatureOperator}
+\leanok
   \uses{prop:pet-ch4-rotsym-radial-jacobi,prop:pet-ch4-triple-vanishing-diagonalizes-operator}
   For $g=dr^2+\rho^2(r)ds_{n-1}^2$ and $X,Y$ tangent to $S^{n-1}$,
   \[
@@ -269,6 +273,7 @@ curvature components and their Ricci and scalar contractions.
   $-\ddot\rho/\rho$ and $(1-\dot\rho^2)/\rho^2$.
 \end{theorem}
 \begin{proof}
+\leanok
   \uses{thm:pet-ch4-rotsym-curvature-operator}
   \sketch
   The radial formula in \cref{prop:pet-ch4-rotsym-radial-jacobi} gives the
@@ -289,6 +294,7 @@ curvature components and their Ricci and scalar contractions.
 \begin{proposition}[Ricci and scalar curvature of a rotationally symmetric metric]
   \label{prop:pet-ch4-rotsym-ricci-scalar}
   \lean{PetersenLib.rotSymRicciScalar}
+\leanok
   \uses{thm:pet-ch4-rotsym-curvature-operator}
   For $g=dr^2+\rho^2(r)ds_{n-1}^2$ on $I\times S^{n-1}$, $n\ge2$, and $X$ tangent
   to $S^{n-1}$,
@@ -302,6 +308,7 @@ curvature components and their Ricci and scalar contractions.
   \]
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch4-rotsym-ricci-scalar}
   \sketch
   Use an orthonormal frame with first vector $\partial_r$. The two eigenvalues
@@ -315,6 +322,7 @@ curvature components and their Ricci and scalar contractions.
 \begin{remark}[the two-dimensional case]
   \label{rem:pet-ch4-rotsym-dim2}
   \lean{PetersenLib.rotSymDim2Curvature}
+\leanok
   \uses{prop:pet-ch4-rotsym-ricci-scalar}
   When $n=2$ there are no tangential curvatures, so
   $\mathrm{sec}=-\ddot\rho/\rho$; this is a genuine difference between
@@ -324,11 +332,13 @@ curvature components and their Ricci and scalar contractions.
 \begin{proposition}[constant curvature of $S^n_k$]
   \label{prop:pet-ch4-snk-constant-curvature}
   \lean{PetersenLib.snkConstantCurvature}
+\leanok
   \uses{thm:pet-ch4-rotsym-curvature-operator}
   The metric $dr^2+\mathrm{sn}_k^2(r)ds_{n-1}^2$ has all sectional curvatures
   equal to $k$.
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch4-snk-constant-curvature}
   \sketch
   For $\rho=\operatorname{sn}_k$, the identities
@@ -340,12 +350,14 @@ curvature components and their Ricci and scalar contractions.
 \begin{proposition}[Ricci flat rotationally symmetric metrics are flat]
   \label{prop:pet-ch4-ricci-flat-rotsym}
   \lean{PetersenLib.ricciFlatRotSymIsFlat}
+\leanok
   \uses{prop:pet-ch4-rotsym-ricci-scalar}
   If $dr^2+\rho^2(r)ds_{n-1}^2$ is Ricci flat, then the metric is flat. More
   precisely, if $n>2$, then $\rho(r)=a+r$ after reversing $r$ if necessary; if
   $n=2$, then $\rho$ is affine.
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch4-ricci-flat-rotsym}
   \sketch
   The radial Ricci eigenvalue in \cref{prop:pet-ch4-rotsym-ricci-scalar}
@@ -372,6 +384,7 @@ curvature components and their Ricci and scalar contractions.
 \begin{proposition}[classification of scalar-flat rotationally symmetric solutions]
   \label{prop:pet-ch4-scalar-flat-cases}
   \lean{PetersenLib.scalarFlatRotSymCases}
+\leanok
   \uses{def:pet-ch4-scalar-flat-ode}
   For the family $\dot\rho^2=1+C\rho^{2-n}$ of \cref{def:pet-ch4-scalar-flat-ode}:
   if $C=0$ then $\rho(r)=a+r$ (the Euclidean metric); if $C>0$ then $\rho$ is
@@ -382,6 +395,7 @@ curvature components and their Ricci and scalar contractions.
   and is defined on all of $\mathbb{R}$.
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch4-scalar-flat-cases}
   \sketch
   For $C=0$, the first integral gives $\dot\rho^2=1$ and hence the affine
@@ -552,6 +566,7 @@ the scalar-flat radial equation.
 \begin{proposition}[the Schwarzschild metric is Ricci flat]
   \label{prop:pet-ch4-schwarzschild-ricci-flat}
   \lean{PetersenLib.schwarzschildRicciFlat}
+\leanok
   \uses{prop:pet-ch4-schwarzschild-reduces-scalar-flat,prop:pet-ch4-scalar-flat-cases}
   For $n\ge4$, let $\rho$ be the even solution of the scalar-flat equation from
   \cref{prop:pet-ch4-scalar-flat-cases} (with $n$ there replaced by $n-1$) with
@@ -570,6 +585,7 @@ the scalar-flat radial equation.
   scaled) as $\rho\to\infty$.
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch4-schwarzschild-ricci-flat}
   \sketch
   Differentiating $\dot\rho^2=1-\rho_0^{n-3}\rho^{3-n}$ gives
@@ -1109,6 +1125,7 @@ algebra; biinvariance is characterized by the adjoint action.
   \label{prop:pet-ch4-biinvariant-curvature-formula}
   \dcref{ch4:4.4.2}
   \lean{PetersenLib.biinvariantConnectionCurvature}
+\leanok
   \uses{prop:pet-ch4-biinvariant-criterion,def:pet-ch4-adjoint-action}
   On a Lie group $G$ with biinvariant metric $(\cdot,\cdot)$ and
   $X,Y,Z,W\in\mathfrak g$,
@@ -1119,6 +1136,7 @@ algebra; biinvariance is characterized by the adjoint action.
   In particular, sectional curvature is always $\ge0$.
 \end{proposition}
 \begin{proof}
+\leanok
   \uses{prop:pet-ch4-biinvariant-curvature-formula}
   \sketch
   By \cref{prop:pet-ch4-biinvariant-criterion}, differentiating the orthogonal
@@ -1135,6 +1153,7 @@ algebra; biinvariance is characterized by the adjoint action.
 \begin{remark}[nonnegative curvature of biinvariant metrics]
   \label{rem:pet-ch4-biinvariant-nonneg-curvature}
   \lean{PetersenLib.biinvariantNonnegCurvatureRemark}
+\leanok
   \uses{prop:pet-ch4-biinvariant-curvature-formula}
   Lie groups with biinvariant Riemannian metrics always have nonnegative
   sectional curvature; with more work the curvature operator itself can be

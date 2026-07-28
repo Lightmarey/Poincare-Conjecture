@@ -26,7 +26,8 @@ theorem isOpen_det_ne_zero_real_matrix (n : ℕ) :
     continuous_id.matrix_det
   have hclosed :
       IsClosed {A : Matrix (Fin n) (Fin n) ℝ | Matrix.det A = 0} := by
-    simpa [Set.setOf_mem_eq] using isClosed_singleton.preimage hdet
+    change IsClosed ((fun A : Matrix (Fin n) (Fin n) ℝ ↦ Matrix.det A) ⁻¹' {0})
+    exact isClosed_singleton.preimage hdet
   -- The nonsingular locus is the complement of the determinant-zero locus.
   simpa [Set.compl_setOf, ne_eq, eq_comm] using hclosed.isOpen_compl
 

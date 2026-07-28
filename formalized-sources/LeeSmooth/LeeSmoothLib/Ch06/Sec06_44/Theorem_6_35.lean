@@ -124,7 +124,7 @@ private theorem preimageSubtypeValRange_le_targetComap_at_parametricPoint
       (I := IM) (JS := JX) (S := X)).mdifferentiableAt
       (by simp)
   have hFpre : ContMDiff JW IM ∞ (fun y : (Function.uncurry F) ⁻¹' X ↦ Function.uncurry F y) := by
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       hF.comp
         (subtypeVal_contMDiff_of_isEmbeddedSubmanifold
           (I := IS.prod IN) (JS := JW) (S := (Function.uncurry F) ⁻¹' X))
@@ -179,7 +179,7 @@ private theorem preimageSubtypeValRange_le_targetComap_at_parametricPoint
       simpa [w'] using hFwithin.2
     have hproj :
         Differentiable ℝ (fun v ↦ (hImm.equiv.symm v).1) := by
-      simpa using
+      simpa using!
         (contDiff_fst.comp hImm.equiv.symm.contDiff).differentiable
           (by simp : (⊤ : ℕ∞ω) ≠ 0)
     have hprojWithin :
@@ -256,7 +256,7 @@ private theorem preimageSubtypeValRange_le_targetComap_at_parametricPoint
           (mfderiv (IS.prod IN) IM (Function.uncurry F) w).comp
             (mfderiv JW (IS.prod IN)
               (Subtype.val : (Function.uncurry F) ⁻¹' X → S × N) w) := by
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (mfderiv_comp
           (x := w) (g := Function.uncurry F)
           (f := (Subtype.val : (Function.uncurry F) ⁻¹' X → S × N))
@@ -270,10 +270,10 @@ private theorem preimageSubtypeValRange_le_targetComap_at_parametricPoint
     have hright :
         mfderiv JW IM ((Subtype.val : X → M) ∘ g) w =
           (mfderiv JX IM (Subtype.val : X → M) x).comp (mfderiv JW JX g w) := by
-      simpa [Function.comp] using
+      simpa [Function.comp, x, g] using!
         (mfderiv_comp (x := w) (g := (Subtype.val : X → M)) (f := g) hsubX hgdiff)
     exact hleft.symm.trans (hmid.trans hright)
-  simpa [LinearMap.comp_apply] using (congrArg (fun L ↦ L u) hcomp).symm
+  simpa [LinearMap.comp_apply] using! (congrArg (fun L ↦ L u) hcomp).symm
 
 /-- Helper for Theorem 6.35: a nonempty embedded submanifold of a finite-dimensional ambient
 manifold has finite-dimensional model space. -/
@@ -400,7 +400,7 @@ private theorem parametricPreimageProjection_contMDiff
     [IsEmbeddedSubmanifold (IS.prod IN) JW ((Function.uncurry F) ⁻¹' X)] :
     ContMDiff JW IS ∞ (fun w : (Function.uncurry F) ⁻¹' X ↦ w.1.1) := by
   -- The restricted projection is `Prod.fst` after the smooth subtype inclusion.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     contMDiff_fst.comp
       (subtypeVal_contMDiff_of_isEmbeddedSubmanifold
         (I := IS.prod IN) (JS := JW) (S := (Function.uncurry F) ⁻¹' X))

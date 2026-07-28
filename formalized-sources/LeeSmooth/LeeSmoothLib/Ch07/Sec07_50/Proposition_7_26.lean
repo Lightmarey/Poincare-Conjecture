@@ -338,7 +338,7 @@ lemma contMDiff_id_fromSelfModeledCarrier [BoundarylessManifold I G] :
   rw [contMDiff_iff]
   refine ⟨continuous_id, ?_⟩
   intro x y
-  simpa [extChartAtOpenPartialHomeomorph] using
+  simpa [extChartAtOpenPartialHomeomorph] using!
     contDiffOn_extChartAt_transition x y
 
 /-- Helper for Proposition 7.26: the same identity map is smooth in the reverse direction from the
@@ -370,7 +370,7 @@ lemma contMDiff_id_toSelfModeledCarrier [BoundarylessManifold I G] :
   rw [contMDiff_iff]
   refine ⟨continuous_id, ?_⟩
   intro x y
-  simpa [extChartAtOpenPartialHomeomorph] using
+  simpa [extChartAtOpenPartialHomeomorph] using!
     contDiffOn_extChartAt_transition x y
 
 /-- Helper for Proposition 7.26: the self-modeled `extChartAt` atlas carries a Lie-group
@@ -401,7 +401,7 @@ lemma selfModeledCarrierLieGroup [BoundarylessManifold I G] :
   have hDivOriginal :
       ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1 * p.2⁻¹) := by
     -- The original Lie-group structure already makes division smooth.
-    simpa [div_eq_mul_inv] using
+    simpa [div_eq_mul_inv] using!
       (contMDiff_fst.mul contMDiff_snd.inv :
         ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1 * p.2⁻¹))
   have hSource :
@@ -416,13 +416,13 @@ lemma selfModeledCarrierLieGroup [BoundarylessManifold I G] :
         ((modelWithCornersSelf 𝕜 EG).prod (modelWithCornersSelf 𝕜 EG))
         I ∞ (fun p : G × G ↦ p.1 * p.2⁻¹) := by
     -- After the source-model change, the underlying division map is unchanged.
-    simpa [Function.comp] using hDivOriginal.comp hSource
+    simpa [Function.comp] using! hDivOriginal.comp hSource
   have hDivSelf :
       ContMDiff
         ((modelWithCornersSelf 𝕜 EG).prod (modelWithCornersSelf 𝕜 EG))
         (modelWithCornersSelf 𝕜 EG) ∞ (fun p : G × G ↦ p.1 * p.2⁻¹) := by
     -- Move the target model across the forward identity bridge.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       contMDiff_id_toSelfModeledCarrier.comp hDivAsOriginal
   -- Proposition 7.1 upgrades smooth division in the self-model coordinates to a Lie-group
   -- structure.
@@ -606,7 +606,7 @@ theorem orbitMap_hasConstantRank [FiniteDimensional 𝕜 EM] (p : M) :
       EG _ _ HG _ G _ _ I _ _ _
       EM _ _ _ HM _ M _ _ J _ _ _ _
       F hF
-  simpa [orbitMapMulActionHom] using hConstRank
+  simpa [orbitMapMulActionHom] using! hConstRank
 
 /-- Once the orbit map has constant rank, its fiber over `p` is a properly embedded subset of `G`,
 hence the stabilizer is properly embedded as well. -/
@@ -673,7 +673,8 @@ lemma stabilizer_has_embeddedSubmanifold_data {r : ℕ} (p : M)
         ∃ hEmb : IsEmbeddedSubmanifold I K ((MulAction.stabilizer G p : Set G)),
           hEmb.codimension = r := by
   -- Rewrite the orbit-map fiber over `p` as the stabilizer subset before applying Theorem 5.12.
-  simpa [preimage_singleton_orbit_map_eq_stabilizer] using
+  rw [← preimage_singleton_orbit_map_eq_stabilizer p]
+  exact
     constant_rank_level_set_has_embedded_submanifold_structure (orbitMap_smooth p) hOrbitRank p
 
 section
@@ -783,7 +784,7 @@ noncomputable def stabilizerSmoothLieSubgroup (p : M)
     have hfst :
         ContMDiff (K.prod K) I ∞
           (fun q : S × S ↦ (q.1 : G)) := by
-      simpa using
+      simpa using!
         hsub.comp
           (contMDiff_fst :
             ContMDiff (K.prod K) K ∞
@@ -791,12 +792,12 @@ noncomputable def stabilizerSmoothLieSubgroup (p : M)
     have hsnd :
         ContMDiff (K.prod K) I ∞
           (fun q : S × S ↦ (q.2 : G)) := by
-      simpa using
+      simpa using!
         hsub.comp
           (contMDiff_snd :
             ContMDiff (K.prod K) K ∞
               (fun q : S × S ↦ q.2))
-    simpa using hfst.mul hsnd
+    simpa using! hfst.mul hsnd
   have hmulSubtype :
       ContMDiff (K.prod K) K ∞
         (fun q : S × S ↦ q.1 * q.2) := by
@@ -949,7 +950,7 @@ lemma orbitMapRank_eq_sourceFinrank_of_stabilizer_eq_bot (p : M)
     stabilizerModelDim_eq_zero_of_eq_bot p hRank hp
   have hr_le : r ≤ Module.finrank ℝ EG := by
     let _ : FiniteDimensional ℝ (TangentSpace I (1 : G)) := by
-      simpa using (inferInstance : FiniteDimensional ℝ EG)
+      simpa using! (inferInstance : FiniteDimensional ℝ EG)
     have hRankOne :
         Module.finrank ℝ ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap.range) = r := by
       have hRankAtOne :
@@ -961,7 +962,7 @@ lemma orbitMapRank_eq_sourceFinrank_of_stabilizer_eq_bot (p : M)
     have hRangeLe :
         Module.finrank ℝ ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap.range) ≤
           Module.finrank ℝ EG := by
-      simpa using
+      simpa using!
         (LinearMap.finrank_range_le
           ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap))
     omega
@@ -979,7 +980,7 @@ lemma orbitMapMfderiv_injective_of_stabilizer_eq_bot (p : M)
     ∀ g : G, Function.Injective (mfderiv I J (orbit_map G p) g) := by
   intro g
   let _ : FiniteDimensional ℝ (TangentSpace I g) := by
-    simpa using (inferInstance : FiniteDimensional ℝ EG)
+    simpa using! (inferInstance : FiniteDimensional ℝ EG)
   have hRankg :
       rankAt I J (orbit_map G p) g = Module.finrank ℝ EG :=
     orbitMapRank_eq_sourceFinrank_of_stabilizer_eq_bot p hp g
@@ -1096,7 +1097,7 @@ lemma orbitMap_selfModeled_isImmersion_of_stabilizer_eq_bot (p : M)
   have hOrbitImm : IsImmersion I J ∞ (orbit_map G p) :=
     orbitMap_isImmersion_of_stabilizer_eq_bot p hp
   -- Compose the transported identity immersion with the original orbit-map immersion.
-  simpa [Function.comp] using Manifold.IsImmersion.ex416_comp hOrbitImm hIdImm
+  simpa [Function.comp] using! Manifold.IsImmersion.ex416_comp hOrbitImm hIdImm
 
 /-- Companion owner for Proposition 7.26: if the isotropy group at `p` is trivial, then the orbit
 map, recharted on `G` by its self model, determines a smooth immersed submanifold of `M`. -/

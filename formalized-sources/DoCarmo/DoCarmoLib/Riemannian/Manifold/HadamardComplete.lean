@@ -60,7 +60,7 @@ particular `M` is diffeomorphic to `ℝⁿ`. The global smoothness of `exp_p`
 (`Riemannian.Exponential.contMDiff_expMapGlobal`) discharges the `hsmooth` hypothesis of
 `hadamardDiffeomorphOfNonpos`. -/
 def hadamardDiffeomorphOfNonpos_complete
-    [ConnectedSpace M] [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [ConnectedSpace M] [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M] (p : M)
     (hK : ∀ x : M, ∀ a c : TangentSpace I x,
       0 ≤ g.metricInner x (g.leviCivitaConnection.curvatureOperatorAt x a c c) a) :
@@ -70,7 +70,7 @@ def hadamardDiffeomorphOfNonpos_complete
 /-- **Math.** The unconditional Cartan–Hadamard diffeomorphism **is** `exp_p` itself
 (anti-vacuity guard). -/
 theorem hadamardDiffeomorphOfNonpos_complete_coe
-    [ConnectedSpace M] [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [ConnectedSpace M] [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M] (p : M)
     (hK : ∀ x : M, ∀ a c : TangentSpace I x,
       0 ≤ g.metricInner x (g.leviCivitaConnection.curvatureOperatorAt x a c c) a) :

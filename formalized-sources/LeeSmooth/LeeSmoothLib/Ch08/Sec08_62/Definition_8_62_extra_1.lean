@@ -12,6 +12,8 @@ variable {V : Type uV} [AddCommGroup V] [Module 𝕜 V]
 variable [FiniteDimensional 𝕜 𝔤] [FiniteDimensional 𝕜 V]
 variable [LieRingModule 𝔤 V] [LieModule 𝕜 𝔤 V]
 
+local instance : LieRing (Module.End 𝕜 V) := LieRing.ofAssociativeRing
+
 -- Domain sampling pass:
 -- * primary domain: finite-dimensional representations of Lie algebras;
 -- * core/canonical owners inspected: `LieModule`, `LieModule.toEnd`,

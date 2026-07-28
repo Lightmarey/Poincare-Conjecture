@@ -31,7 +31,7 @@ private theorem applyToSmooth_add (X : TangentSpace I p)
     applyToSmooth X (f + g) = applyToSmooth X f + applyToSmooth X g := by
   have hf : MDiffAt f p := f.contMDiff.mdifferentiableAt (by simp)
   have hg : MDiffAt g p := g.contMDiff.mdifferentiableAt (by simp)
-  simpa [applyToSmooth] using congr($(mfderiv_add hf hg) X)
+  simpa [applyToSmooth] using! congr($(mfderiv_add hf hg) X)
 
 private theorem applyToSmooth_smul (X : TangentSpace I p)
     (c : ℝ) (f : C^∞⟮I, M; ℝ⟯) :
@@ -45,9 +45,9 @@ private theorem applyToSmooth_mul (X : TangentSpace I p)
       f p * applyToSmooth X g + g p * applyToSmooth X f := by
   have hf : MDiffAt f p := f.contMDiff.mdifferentiableAt (by simp)
   have hg : MDiffAt g p := g.contMDiff.mdifferentiableAt (by simp)
-  simpa [applyToSmooth, PointedContMDiffMap.smul_def, smul_eq_mul, mul_comm, mul_left_comm,
-    mul_assoc, add_comm, add_left_comm, add_assoc] using
-    fromTangentSpace_mfderiv_smul_apply hf hg X
+  simpa [applyToSmooth, mvfderiv, PointedContMDiffMap.smul_def, smul_eq_mul, mul_comm,
+    mul_left_comm, mul_assoc, add_comm, add_left_comm, add_assoc] using!
+    congr($(mvfderiv_mul hf hg) X)
 
 /-- A tangent vector determines the corresponding point derivation on smooth real-valued functions
 at its base point. -/
@@ -154,7 +154,7 @@ def toPointDerivation (v : 𝒟_[p](I)) :
         (𝒪∞.presheaf.Γgerm p (topSection g))
       have hf_eval := eval_Γgerm_topSection p (f : C^∞⟮I, M; ℝ⟯)
       have hg_eval := eval_Γgerm_topSection p g
-      simpa [Algebra.smul_def, RingHom.algebraMap_toAlgebra, hf_eval, hg_eval] using h₁.trans h₂)
+      simpa [Algebra.smul_def, RingHom.algebraMap_toAlgebra, hf_eval, hg_eval] using! h₁.trans h₂)
 
 /-- Helper for Problem 3-7: the point derivation induced by `v : 𝒟_[p](I)` depends only on the
 germ of a global smooth function at `p`. -/
@@ -186,7 +186,7 @@ theorem mem_chartSource (p : M) : p ∈ chartSource (H := H) p :=
 /-- Helper for Problem 3-7: the preferred chart is smooth on the preferred chart-source subtype. -/
 theorem contMDiff_chartSource_extChartAt [IsManifold I ∞ M] (p : M) :
     ContMDiff I 𝓘(ℝ, E) ∞ (fun x : chartSource (H := H) p ↦ extChartAt I p x.1) := by
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     (contMDiffOn_extChartAt (I := I) (n := ∞) (x := p)).comp_contMDiff
       (contMDiff_subtype_val : ContMDiff I I ∞ (Subtype.val : chartSource (H := H) p → M))
       (fun x ↦ x.2)
@@ -400,7 +400,7 @@ def chart_pullback_germ_pointDerivation [IsManifold I ∞ M]
           (chart_pullback_section (H := H) (I := I) p g))
       have hf_eval := eval_chart_pullback_section_germ (H := H) (I := I) p f
       have hg_eval := eval_chart_pullback_section_germ (H := H) (I := I) p g
-      simpa [Algebra.smul_def, RingHom.algebraMap_toAlgebra, hf_eval, hg_eval] using
+      simpa [Algebra.smul_def, RingHom.algebraMap_toAlgebra, hf_eval, hg_eval] using!
         h₁.trans h₂)
 
 /-- Helper for Problem 3-7: evaluating the chart-source germ derivation means applying the germ
@@ -524,7 +524,7 @@ theorem writtenInExtChartAt_pullback_contMDiffOn_target [IsManifold I ∞ M] (p 
     ContMDiffOn 𝓘(ℝ, E) 𝓘(ℝ) ∞ (fun y : E ↦ f ((extChartAt I p).symm y))
       ((extChartAt I p).target) := by
   -- Compose the global smooth function `f` with the inverse preferred chart on its natural target.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     f.contMDiff.comp_contMDiffOn
       (contMDiffOn_extChartAt_symm (I := I) (n := ∞) p)
 
@@ -557,7 +557,8 @@ theorem exists_scalar_contDiff_extension_of_isClosed [FiniteDimensional ℝ E]
   refine ⟨proj0.comp F, ?_⟩
   intro x
   -- Recover the scalar extension by taking the unique coordinate of the `ℝ¹` extension.
-  simpa [proj0, real_to_r1_apply_zero] using congrArg (fun v : EuclideanSpace ℝ (Fin 1) ↦ v 0) (hF_eq x)
+  simpa [proj0, real_to_r1_apply_zero] using!
+    congrArg (fun v : EuclideanSpace ℝ (Fin 1) ↦ v 0) (hF_eq x)
 
 /-- Helper for Problem 3-7: choose an ambient open neighborhood around the chart point whose
 closure stays inside the safe set consisting of the preferred chart target together with the
@@ -649,7 +650,7 @@ theorem chart_pullback_section_germ_eq_topSection_of_eventuallyEq_writtenInExtCh
             rw [writtenInExtChartAt_eq_on_target (I := I) p f
               (y := extChartAt I p x.1) hxTarget]
             exact congrArg f ((extChartAt I p).left_inv hxSource)
-  simpa [chart_pullback_section, topSection] using hxPull
+  simpa [chart_pullback_section, topSection] using! hxPull
 
 /-- Helper for Problem 3-7: evaluating the chart-source germ derivation on a model-space test
 function agreeing with the chart-written representative near the chart point gives the same value
@@ -727,7 +728,7 @@ theorem chart_representing_vector_gives_target_derivation_of_chart_pullback_germ
       (H := H) (I := I) p f g hg y
   have hX_eq : X = y := by
     -- In the preferred chart at the base point, the inverse-chart derivative is the identity.
-    simpa [X, q] using
+    simpa [X, q] using!
       congrArg
         (fun A : TangentSpace 𝓘(ℝ, E) q →L[ℝ] TangentSpace I p ↦ A y)
         (mfderivWithin_range_extChartAt_symm (I := I) (x := p))
@@ -744,7 +745,7 @@ theorem chart_representing_vector_gives_target_derivation_of_chart_pullback_germ
       mfderiv I 𝓘(ℝ) f p y =
         fderivWithin ℝ (writtenInExtChartAt I 𝓘(ℝ) p f) (Set.range I) q y := by
     -- Apply the identified linear maps to the representing tangent vector.
-    simpa [q] using congrArg (fun A ↦ A y) hmfderiv
+    simpa [q] using! congrArg (fun A ↦ A y) hmfderiv
   have hX_apply :
       TangentSpace.toPointDerivation X f =
         fderivWithin ℝ (writtenInExtChartAt I 𝓘(ℝ) p f) (Set.range I) q y := by
@@ -802,7 +803,7 @@ theorem tangent_eq_of_same_chart_pushforward_local [IsManifold I ∞ M] (p : M)
       mfderiv[Set.range I] (extChartAt I p).symm (extChartAt I p p)
           (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p X) = X := by
     -- Differentiating the chart and its inverse shows that this composition is the identity.
-    simpa using congrArg
+    simpa using! congrArg
       (fun A : TangentSpace I p →L[ℝ] TangentSpace I p ↦ A X)
       (mfderivWithin_extChartAt_symm_comp_mfderiv_extChartAt' (I := I)
         (x := p) (y := p) (hy := mem_extChartAt_source (I := I) p))
@@ -810,7 +811,7 @@ theorem tangent_eq_of_same_chart_pushforward_local [IsManifold I ∞ M] (p : M)
       mfderiv[Set.range I] (extChartAt I p).symm (extChartAt I p p)
           (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p X') = X' := by
     -- The same chart/inverse-chart identity holds for the competitor vector `X'`.
-    simpa using congrArg
+    simpa using! congrArg
       (fun A : TangentSpace I p →L[ℝ] TangentSpace I p ↦ A X')
       (mfderivWithin_extChartAt_symm_comp_mfderiv_extChartAt' (I := I)
         (x := p) (y := p) (hy := mem_extChartAt_source (I := I) p))
@@ -832,7 +833,7 @@ theorem chartPullback_globalize_near_basepoint [IsManifold I ∞ M]
   have hpull_smooth :
       ContMDiffOn I 𝓘(ℝ) ∞ (fun x : M ↦ g (extChartAt I p x)) (chartAt H p).source := by
     -- Pull the global model-space test function back through the preferred chart on its source.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       g.contMDiff.comp_contMDiffOn
         (contMDiffOn_extChartAt (I := I) (n := ∞) (x := p))
   have hf0_smooth : ContMDiff I 𝓘(ℝ) ∞ f0 := by
@@ -1096,7 +1097,7 @@ theorem chart_representing_vector_gives_target_derivation [IsManifold I ∞ M]
       (H := H) (I := I) p f g hg y
   have hX_eq : X = y := by
     -- In the preferred chart at the base point, the inverse-chart derivative is the identity.
-    simpa [X, q] using
+    simpa [X, q] using!
       congrArg
         (fun A : TangentSpace 𝓘(ℝ, E) q →L[ℝ] TangentSpace I p ↦ A y)
         (mfderivWithin_range_extChartAt_symm (I := I) (x := p))
@@ -1113,7 +1114,7 @@ theorem chart_representing_vector_gives_target_derivation [IsManifold I ∞ M]
       mfderiv I 𝓘(ℝ) f p y =
         fderivWithin ℝ (writtenInExtChartAt I 𝓘(ℝ) p f) (Set.range I) q y := by
     -- Apply the identified linear maps to the representing tangent vector.
-    simpa [q] using congrArg (fun A ↦ A y) hmfderiv
+    simpa [q] using! congrArg (fun A ↦ A y) hmfderiv
   have hX_apply :
       TangentSpace.toPointDerivation X f =
         fderivWithin ℝ (writtenInExtChartAt I 𝓘(ℝ) p f) (Set.range I) q y := by
@@ -1173,7 +1174,7 @@ theorem chart_pushforward_represents_chartModelPointDerivation [IsManifold I ∞
     have hg_has :
         HasMFDerivAt 𝓘(ℝ, E) 𝓘(ℝ) g q (fderiv ℝ g q) := by
       simpa [mfderiv_eq_fderiv] using hg_md.hasMFDerivAt
-    simpa [hpull, Function.comp, q] using hg_has.comp p hchart
+    simpa [hpull, Function.comp, q] using! hg_has.comp p hchart
   have hf_mfderiv :
       mfderiv I 𝓘(ℝ) f p =
         (fderiv ℝ g q).comp (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p) := by
@@ -1184,7 +1185,7 @@ theorem chart_pushforward_represents_chartModelPointDerivation [IsManifold I ∞
         fderiv ℝ g q (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p X) := by
     -- Evaluating the tangent-vector derivation is exactly applying the transported derivative.
     rw [TangentSpace.toPointDerivation_apply]
-    simpa [q] using congrArg (fun A : TangentSpace I p →L[ℝ] ℝ ↦ A X) hf_mfderiv
+    simpa [q] using! congrArg (fun A : TangentSpace I p →L[ℝ] ℝ ↦ A X) hf_mfderiv
   calc
     globalChartModelPointDerivation (H := H) (I := I) p v g
         = smooth_germ_derivation_at.toPointDerivation v f := by
@@ -1201,7 +1202,7 @@ theorem chart_pushforward_of_inverse_chart_vector [IsManifold I ∞ M]
         (mfderiv[Set.range I] (extChartAt I p).symm (extChartAt I p p) y) = y := by
   -- Differentiate `extChartAt I p ∘ (extChartAt I p).symm = id` at the chart point and apply the
   -- resulting linear-map identity to the chosen model-space vector.
-  simpa using
+  simpa using!
     congrArg
       (fun A : TangentSpace 𝓘(ℝ, E) (extChartAt I p p) →L[ℝ]
           TangentSpace 𝓘(ℝ, E) (extChartAt I p p) ↦ A y)
@@ -1230,7 +1231,7 @@ theorem tangent_eq_of_same_chart_pushforward [IsManifold I ∞ M] (p : M)
       mfderiv[Set.range I] (extChartAt I p).symm (extChartAt I p p)
           (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p X) = X := by
     -- The chart derivative followed by the inverse-chart derivative is the identity at `p`.
-    simpa using congrArg
+    simpa using! congrArg
       (fun A : TangentSpace I p →L[ℝ] TangentSpace I p ↦ A X)
       (mfderivWithin_extChartAt_symm_comp_mfderiv_extChartAt' (I := I)
         (x := p) (y := p) (hy := mem_extChartAt_source (I := I) p))
@@ -1238,7 +1239,7 @@ theorem tangent_eq_of_same_chart_pushforward [IsManifold I ∞ M] (p : M)
       mfderiv[Set.range I] (extChartAt I p).symm (extChartAt I p p)
           (mfderiv I 𝓘(ℝ, E) (extChartAt I p) p X') = X' := by
     -- The same inverse-chart identity holds for `X'`.
-    simpa using congrArg
+    simpa using! congrArg
       (fun A : TangentSpace I p →L[ℝ] TangentSpace I p ↦ A X')
           (mfderivWithin_extChartAt_symm_comp_mfderiv_extChartAt' (I := I)
         (x := p) (y := p) (hy := mem_extChartAt_source (I := I) p))
@@ -1304,7 +1305,7 @@ theorem model_point_derivation_existsUnique_vector [FiniteDimensional ℝ E]
         have hcomp := fderiv_comp (𝕜 := ℝ)
           (f := fun x : EuclideanSpace ℝ (Fin n) ↦ e.symm x) (g := f) (x := e q) hf' heinv
         have happly := congrArg (fun A : EuclideanSpace ℝ (Fin n) →L[ℝ] ℝ ↦ A z) hcomp
-        simpa [ContinuousLinearEquiv.fderiv] using happly
+        simpa [ContinuousLinearEquiv.fderiv] using! happly
   · intro y hy
     have hy' : ∀ g : C^∞⟮𝓘(ℝ, EuclideanSpace ℝ (Fin n)), EuclideanSpace ℝ (Fin n); ℝ⟯,
         w' g = fderiv ℝ g (e q) (e y) := by
@@ -1326,7 +1327,7 @@ theorem model_point_derivation_existsUnique_vector [FiniteDimensional ℝ E]
           change fderiv ℝ (fun x : E ↦ g (e x)) q y = fderiv ℝ g (e q) (e y)
           have hcomp := fderiv_comp (𝕜 := ℝ) (f := fun x : E ↦ e x) (g := g) (x := q) hg he
           have happly := congrArg (fun A : E →L[ℝ] ℝ ↦ A y) hcomp
-          simpa [ContinuousLinearEquiv.fderiv] using happly
+          simpa [ContinuousLinearEquiv.fderiv] using! happly
     have hyz : directional_point_derivation (n := n) (e q) (e y) = w' := by
       -- The transported vector `e y` gives the same Euclidean derivation as `w'`.
       ext g
@@ -1364,7 +1365,7 @@ theorem smooth_germ_derivation_existsUnique_tangentVector [IsManifold I ∞ M]
         TangentSpace.toPointDerivation X =
           smooth_germ_derivation_at.toPointDerivation v := by
       -- The existence half now closes directly through the chart-source germ derivation.
-      simpa [X] using
+      simpa [X] using!
         smooth_germ_derivation_at.chart_representing_vector_gives_target_derivation_of_chart_pullback_germ
           (H := H) (I := I) p v y hy
     exact hrepr
@@ -1372,12 +1373,12 @@ theorem smooth_germ_derivation_existsUnique_tangentVector [IsManifold I ∞ M]
     have hpushX :
         mfderiv I 𝓘(ℝ, E) (extChartAt I p) p X = y := by
       -- The chosen tangent vector is defined by transporting `y` back through the inverse chart.
-      simpa [X] using
-        congrArg
-          (fun A : TangentSpace 𝓘(ℝ, E) (extChartAt I p p) →L[ℝ]
-              TangentSpace 𝓘(ℝ, E) (extChartAt I p p) ↦ A y)
-          (mfderiv_extChartAt_comp_mfderivWithin_extChartAt_symm' (I := I)
-            (x := p) (y := p) (hy := mem_extChartAt_source (I := I) p))
+      dsimp only [X]
+      convert! congrArg
+        (fun A : TangentSpace 𝓘(ℝ, E) (extChartAt I p p) →L[ℝ]
+            TangentSpace 𝓘(ℝ, E) (extChartAt I p p) ↦ A y)
+        (mfderiv_extChartAt_comp_mfderivWithin_extChartAt_symm' (I := I)
+          (x := p) (y := p) (hy := mem_extChartAt_source (I := I) p)) using 1 <;> simp
     have hreprX' :
         ∀ g : C^∞⟮𝓘(ℝ, E), E; ℝ⟯,
           w g = fderiv ℝ g (extChartAt I p p)

@@ -55,7 +55,13 @@ private theorem hasFDerivAt_straighteningCoef {f : E → ℝ} {u₀ : E}
     HasFDerivAt (fun u => f u - f u₀ - ℓ (u - u₀)) (0 : E →L[ℝ] ℝ) u₀ := by
   have h1 : HasFDerivAt (fun u : E => ℓ (u - u₀)) ℓ u₀ := by
     simpa [map_sub] using ℓ.hasFDerivAt.sub_const (ℓ u₀)
-  simpa using (hf'.sub_const (f u₀)).sub h1
+  have hfun :
+      (fun u : E => f u - f u₀ - ℓ (u - u₀)) =
+        (fun u : E => f u - f u₀) - fun u : E => ℓ (u - u₀) := by
+    funext u
+    rfl
+  rw [hfun]
+  simpa only [sub_self] using (hf'.sub_const (f u₀)).sub h1
 
 /-- The straightening map has derivative the **identity** at `u₀`. -/
 private theorem hasFDerivAt_straighteningMap {f : E → ℝ} {u₀ : E}

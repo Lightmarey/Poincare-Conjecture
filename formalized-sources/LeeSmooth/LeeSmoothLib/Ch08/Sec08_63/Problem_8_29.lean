@@ -22,6 +22,8 @@ open scoped ContDiff ContMDiffMonoidMorphism Manifold Matrix MatrixGroups
 open AffineEquiv LinearMap.GeneralLinearGroup Matrix.UnitaryGroup
 open Matrix.SpecialLinearGroup
 
+attribute [local instance 100] LieRing.ofAssociativeRing
+
 local notation "Mℝ(" n ")" => Matrix (Fin n) (Fin n) ℝ
 local notation "Mℂ(" n ")" => Matrix (Fin n) (Fin n) ℂ
 local notation "Iℝ(" n ")" => 𝓘(ℝ, Mℝ(n))
@@ -62,7 +64,7 @@ theorem inducedLieAlgebraTargetLinearMapEq
     (F : ContMDiffMonoidMorphism I J ∞ G H) :
     (GroupLieAlgebra I G →ₗ[𝕜] TangentSpace J (F 1)) =
       (GroupLieAlgebra I G →ₗ[𝕜] GroupLieAlgebra J H) := by
-  simpa [GroupLieAlgebra] using
+  simpa [GroupLieAlgebra] using!
     congrArg (fun h : H ↦ GroupLieAlgebra I G →ₗ[𝕜] TangentSpace J h) F.map_one
 
 /-- Helper for Problem 8-29: the identity derivative of a smooth monoid homomorphism viewed as a
@@ -144,11 +146,11 @@ theorem inducedLieAlgebraLinearMap_mulInvariantVectorField_apply
         @Eq (EG →L[𝕜] EH) (mfderiv I J (F ∘ (g * ·)) (1 : G))
           (mfderiv I J (((F g) * ·) ∘ F) (1 : G)) := by
       simpa [hcomp] using mfderiv_congr hcomp
-    simpa using congrArg (fun L : EG →L[𝕜] EH ↦ L X) hmf
+    simpa using! congrArg (fun L : EG →L[𝕜] EH ↦ L X) hmf
   have htarget :
       mfderiv I J (((F g) * ·) ∘ F) (1 : G) X =
         mfderiv J J ((F g) * ·) (1 : H) ((mfderiv I J F (1 : G)) X) := by
-    simpa using
+    simpa using!
       mfderiv_comp_apply_of_eq (1 : G) hmulH hF_one F.map_one X
   have htransport :
       mfderiv J J ((F g) * ·) (1 : H) ((mfderiv I J F (1 : G)) X) =
@@ -203,7 +205,7 @@ theorem inducedLieAlgebraLinearMap_map_lie_of_related
         VectorField.mlieBracket J
           ((inducedLieAlgebraLinearMap F X)ᴸ)
           ((inducedLieAlgebraLinearMap F Y)ᴸ) (1 : H) := by
-    simpa using
+    simpa using!
       congrArg
         (fun z : H ↦
           VectorField.mlieBracket J
@@ -363,7 +365,7 @@ theorem chartMapEventuallyIntoTargetSourceAtOne
     simpa using (extChartAt I (1 : G)).left_inv (mem_extChartAt_source (1 : G))
   have hFcont :
       ContinuousAt F ((extChartAt I (1 : G)).symm ((extChartAt I (1 : G)) (1 : G))) := by
-    simpa [hChartLeftInv] using hFContinuous.continuousAt
+    simpa [hChartLeftInv] using! hFContinuous.continuousAt
   have hSymmCont :
       ContinuousAt (extChartAt I (1 : G)).symm
         ((extChartAt I (1 : G)) (1 : G)) :=
@@ -406,7 +408,7 @@ theorem targetChartInverseDerivativeAtOne
       mfderiv% (extChartAt J (1 : H)) z := by
   -- Normalize the target-side inverse derivative with the same chart identities at `1`.
   apply ContinuousLinearMap.inverse_eq
-  · simpa using
+  · simpa using!
       mfderivWithin_extChartAt_symm_comp_mfderiv_extChartAt' hz
   · simpa using
       mfderiv_extChartAt_comp_mfderivWithin_extChartAt_symm' hz
@@ -447,7 +449,7 @@ theorem chartPushforwardRelatedWithinAtOnePointwise
   have hψdiff :
       MDifferentiableAt J 𝓘(𝕜, EH) ψ (F (φ.symm x)) := by
     have hChartSource : F (φ.symm x) ∈ (chartAt HH (1 : H)).source := by
-      simpa [ψ, extChartAt] using hFx
+      simpa [ψ, extChartAt] using! hFx
     simpa [ψ] using (mdifferentiableAt_extChartAt hChartSource)
   have hψleft : ψ.symm (ψ (F (φ.symm x))) = F (φ.symm x) :=
     PartialEquiv.left_inv ψ hFx
@@ -580,7 +582,7 @@ theorem chartPushforwardDerivativeTermAtOne
   -- Rewrite the derivative target by eventual equality, then apply the within-set chain rule.
   rw [Filter.EventuallyEq.fderivWithin_eq_of_mem hU hx0]
   symm
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     (fderivWithin_fderivWithin hU''At hFdiff hMapsTo hUnique rfl _)
 
 /-- Helper for Problem 8-29: the preferred chart map of `F` sends the source identity chart point
@@ -1004,7 +1006,7 @@ identity on the group Lie algebra. -/
   have hF₂ : MDifferentiableAt J K F₂ (1 : H) :=
     F₂.contMDiff_toFun.mdifferentiableAt (by simp)
   -- Evaluate both induced maps at `X` and invoke the chain rule at the identity.
-  simpa [LieHom.comp_apply, inducedLieAlgebraLinearMap_apply] using
+  simpa [LieHom.comp_apply, inducedLieAlgebraLinearMap_apply] using!
     (mfderiv_comp_apply_of_eq (1 : G) hF₂ hF₁ F₁.map_one X)
 
 end ContMDiffMonoidMorphism
@@ -1115,7 +1117,7 @@ private theorem chartExtend_mfderiv_left_inverse
       MDifferentiableAt I (modelWithCornersSelf 𝕜 E) (e.extend I) p := by
     -- Maximal-atlas charts are differentiable at every source point.
     exact
-      (contMDiffAt_extend he_one hp).mdifferentiableAt
+      (OpenPartialHomeomorph.contMDiffAt_extend he_one hp).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hrange :
       MDifferentiableWithinAt (modelWithCornersSelf 𝕜 E) I (e.extend I).symm (Set.range I)
@@ -1166,10 +1168,12 @@ private theorem chartExtend_mfderiv_injective
     simpa [Linv] using congrArg Linv hw
   have hw₁ :
       ((Linv.comp (mfderiv I (modelWithCornersSelf 𝕜 E) (e.extend I) p)) w₁) = w₁ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₁) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₁) hleft
   have hw₂ :
       ((Linv.comp (mfderiv I (modelWithCornersSelf 𝕜 E) (e.extend I) p)) w₂) = w₂ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₂) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₂) hleft
   have hw₁' : w₁ = Linv (mfderiv I (modelWithCornersSelf 𝕜 E) (e.extend I) p w₁) := by
     simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using hw₁.symm
   have hw₂' : Linv (mfderiv I (modelWithCornersSelf 𝕜 E) (e.extend I) p w₂) = w₂ := by
@@ -1210,7 +1214,7 @@ private theorem subtypeVal_chartPushforward_eq_model
       (hImmAt.domChart.extend (modelWithCornersSelf 𝕜 S.ModelSpace)).map_source <| by
         simpa [OpenPartialHomeomorph.extend_source] using hy
     simpa [Function.comp, L, OpenPartialHomeomorph.extend_coe,
-      hImmAt.domChart.left_inv hy, ContinuousLinearMap.comp_apply] using
+      hImmAt.domChart.left_inv hy, ContinuousLinearMap.comp_apply] using!
       hImmAt.writtenInCharts hy_target
   have hEq :
       ((hImmAt.codChart.extend I) ∘ (Subtype.val : S.carrier → G)) =ᶠ[nhds p]
@@ -1233,7 +1237,7 @@ private theorem subtypeVal_chartPushforward_eq_model
         (hImmAt.domChart.extend (modelWithCornersSelf 𝕜 S.ModelSpace)) p := by
     -- Maximal-atlas charts are differentiable in model coordinates.
     exact
-      (contMDiffAt_extend hdomChart_mem_maximalAtlas_one
+      (OpenPartialHomeomorph.contMDiffAt_extend hdomChart_mem_maximalAtlas_one
         hImmAt.mem_domChart_source).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hcod :
@@ -1241,7 +1245,7 @@ private theorem subtypeVal_chartPushforward_eq_model
         ((Subtype.val : S.carrier → G) p) := by
     -- The ambient chart enjoys the same differentiability property.
     exact
-      (contMDiffAt_extend hcodChart_mem_maximalAtlas_one
+      (OpenPartialHomeomorph.contMDiffAt_extend hcodChart_mem_maximalAtlas_one
         hImmAt.mem_codChart_source).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hL :
@@ -1314,7 +1318,7 @@ private theorem subtypeVal_mfderiv_injective_atOne
               ((Subtype.val : S.carrier → G) (1 : S.carrier)))
             (mfderiv (modelWithCornersSelf 𝕜 S.ModelSpace) I
               (Subtype.val : S.carrier → G) (1 : S.carrier) w₁) := by
-      simpa [hImmAt, L] using
+      simpa [hImmAt, L] using!
         (subtypeVal_chartPushforward_eq_model S hImm (1 : S.carrier) w₁).symm
     have hw₂_model :
         (mfderiv I (modelWithCornersSelf 𝕜 E) (hImmAt.codChart.extend I)
@@ -1324,10 +1328,13 @@ private theorem subtypeVal_mfderiv_injective_atOne
             L ((mfderiv (modelWithCornersSelf 𝕜 S.ModelSpace)
               (modelWithCornersSelf 𝕜 S.ModelSpace)
               (hImmAt.domChart.extend (modelWithCornersSelf 𝕜 S.ModelSpace)) (1 : S.carrier)) w₂) := by
-      simpa [hImmAt, L] using
+      simpa [hImmAt, L] using!
         subtypeVal_chartPushforward_eq_model S hImm (1 : S.carrier) w₂
     -- Compare the two vectors after applying the ambient chart derivative.
-    exact hw₁_model.trans <| by simpa [hw] using hw₂_model
+    exact hw₁_model.trans <|
+      (congrArg
+        (mfderiv I (modelWithCornersSelf 𝕜 E) (hImmAt.codChart.extend I)
+          ((Subtype.val : S.carrier → G) (1 : S.carrier))) hw).trans hw₂_model
   have hsource_chart :
       (mfderiv (modelWithCornersSelf 𝕜 S.ModelSpace)
           (modelWithCornersSelf 𝕜 S.ModelSpace)
@@ -1370,7 +1377,7 @@ theorem inclusion_inducedLieAlgebraHomomorphism_injective
   apply hMfderivInj
   simpa [LieSubgroup.inclusion, ContMDiffMonoidMorphism.inducedLieAlgebraHomomorphism,
     ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap,
-    ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using hXY
+    ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using! hXY
 
 /-- The canonical ambient Lie subalgebra attached to a Lie subgroup. -/
 def groupLieSubalgebra
@@ -1422,12 +1429,12 @@ theorem mem_groupLieSubalgebra_iff_exists_subgroupTangent
     refine ⟨Y, ?_⟩
     simpa [LieSubgroup.inclusion, ContMDiffMonoidMorphism.inducedLieAlgebraHomomorphism,
       ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap,
-      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using hY
+      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using! hY
   · rintro ⟨v, hv⟩
     refine ⟨v, ?_⟩
     simpa [LieSubgroup.inclusion, ContMDiffMonoidMorphism.inducedLieAlgebraHomomorphism,
       ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap,
-      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using hv
+      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using! hv
 
 end LieSubgroup
 
@@ -1520,7 +1527,7 @@ private theorem contMDiffUnitsOfVal
     ContMDiff I (𝓘(𝕜, R)) ∞ f := by
   -- The units manifold is an open submanifold of the ambient normed algebra.
   refine ContMDiff.of_comp_isOpenEmbedding Units.isOpenEmbedding_val ?_
-  simpa using h
+  simpa using! h
 
 noncomputable local instance realGeneralLinearGroupLieGroup (n : ℕ) : RealGLLieGroup(n) := by
   let _ : ChartedSpace (Mℝ(n)) ((Mℝ(n))ˣ) :=

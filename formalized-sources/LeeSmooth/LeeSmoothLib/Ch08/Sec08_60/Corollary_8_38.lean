@@ -79,6 +79,8 @@ theorem contMDiff_mulInvariantVectorField_top
           ((mfderiv% fun p : G × G ↦ p.1 * p.2) (g, 1)) (0, v) := by
       simpa using hprod.symm
     rw [show g * 1 = g by simp]
+    simp only [equivTangentBundleProd, Equiv.coe_fn_symm_mk]
+    rw [mul_one]
     exact congrArg
       (fun w : TangentSpace I g ↦ (Bundle.TotalSpace.mk g w : TangentBundle I G)) hEq
   exact S
@@ -96,10 +98,9 @@ theorem left_invariant_rough_vector_field_smooth
     by
       ext g
       -- Evaluate the differential characterization of left invariance at the identity.
-      have hAtOne : X (g * 1) = (X 1)ᴸ g := by
-        simpa [mulInvariantVectorField] using (hXmfderiv g 1).symm
-      convert hAtOne using 1
-      rw [mul_one]
+      have hAtOne := (hXmfderiv g 1).symm
+      rw [mul_one] at hAtOne
+      exact hAtOne
   -- After transporting along that identification, smoothness is the canonical invariant-field case.
   rw [hEq]
   exact contMDiff_mulInvariantVectorField_top (X 1)

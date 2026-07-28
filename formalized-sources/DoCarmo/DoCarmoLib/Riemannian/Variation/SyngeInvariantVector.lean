@@ -2,6 +2,7 @@ import Mathlib.Analysis.InnerProductSpace.Adjoint
 import Mathlib.Analysis.InnerProductSpace.PiL2
 import Mathlib.LinearAlgebra.Eigenspace.Zero
 import Mathlib.LinearAlgebra.Matrix.ToLin
+import Mathlib.LinearAlgebra.Orientation
 import Mathlib.LinearAlgebra.UnitaryGroup
 
 /-!
@@ -83,6 +84,39 @@ theorem toMatrix_orthogonal_of_isometry {m : ℕ} (b : OrthonormalBasis (Fin m) 
   (Matrix.mem_orthogonalGroup_iff' (Fin m) ℝ).mp (A.toMatrix_mem_unitaryGroup b b)
 
 variable [FiniteDimensional ℝ V]
+
+/-- **Math.** The determinant of a real orthogonal transformation is `1` or `-1`. -/
+theorem det_sq_eq_one_of_isometry (A : V ≃ₗᵢ[ℝ] V) :
+    (LinearMap.det (A : V →ₗ[ℝ] V)) ^ 2 = 1 := by
+  let b : OrthonormalBasis (Fin (Module.finrank ℝ V)) ℝ V :=
+    stdOrthonormalBasis ℝ V
+  let Mx := LinearMap.toMatrix b.toBasis b.toBasis (A : V →ₗ[ℝ] V)
+  have hO : Mxᵀ * Mx = 1 := toMatrix_orthogonal_of_isometry b A
+  have hd := congrArg Matrix.det hO
+  have hdM : Mx.det = LinearMap.det (A : V →ₗ[ℝ] V) := by
+    simp only [Mx, LinearMap.det_toMatrix]
+  rw [Matrix.det_mul, Matrix.det_transpose, Matrix.det_one, hdM] at hd
+  nlinarith
+
+/-- **Math.** An orientation-preserving real orthogonal transformation has determinant `1`. -/
+theorem det_eq_one_of_orientation_preserving (A : V ≃ₗᵢ[ℝ] V)
+    (o : Orientation ℝ V (Fin (Module.finrank ℝ V)))
+    (hA : Orientation.map (Fin (Module.finrank ℝ V)) A.toLinearEquiv o = o) :
+    LinearMap.det (A : V →ₗ[ℝ] V) = 1 := by
+  have hsq := det_sq_eq_one_of_isometry A
+  have hpos : 0 < LinearMap.det (A : V →ₗ[ℝ] V) :=
+    (Orientation.map_eq_iff_det_pos o A.toLinearEquiv (by simp)).mp hA
+  nlinarith
+
+/-- **Math.** An orientation-reversing real orthogonal transformation has determinant `-1`. -/
+theorem det_eq_neg_one_of_orientation_reversing (A : V ≃ₗᵢ[ℝ] V)
+    (o : Orientation ℝ V (Fin (Module.finrank ℝ V)))
+    (hA : Orientation.map (Fin (Module.finrank ℝ V)) A.toLinearEquiv o = -o) :
+    LinearMap.det (A : V →ₗ[ℝ] V) = -1 := by
+  have hsq := det_sq_eq_one_of_isometry A
+  have hneg : LinearMap.det (A : V →ₗ[ℝ] V) < 0 :=
+    (Orientation.map_eq_neg_iff_det_neg o A.toLinearEquiv (by simp)).mp hA
+  nlinarith
 
 /-- **Math.** do Carmo Ch. 9, **Lemma 3.8**: an orthogonal transformation `A` of `ℝ^{n-1}`
 with `det A = (-1)^n` leaves a non-zero vector invariant.

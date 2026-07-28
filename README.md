@@ -8,8 +8,8 @@
 [![Website: Live](https://img.shields.io/badge/Website-Live-0969da?style=flat-square)](https://frenzymath.github.io/Poincare-Conjecture/)
 [![Project board: Worklist](https://img.shields.io/badge/Project-Worklist-2da44e?style=flat-square)](https://github.com/orgs/frenzymath/projects/1)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-yellow?style=flat-square)](LICENSE)
-[![Lean: v4.30.0](https://img.shields.io/badge/Lean-v4.30.0-6f42c1?style=flat-square)](https://github.com/leanprover/lean4/tree/v4.30.0)
-[![Mathlib: c5ea003](https://img.shields.io/badge/Mathlib-c5ea003-0969da?style=flat-square)](https://github.com/leanprover-community/mathlib4/tree/c5ea00351c28e24afc9f0f84379aa41082b1188f)
+[![Lean: v4.32.1](https://img.shields.io/badge/Lean-v4.32.1-6f42c1?style=flat-square)](https://github.com/leanprover/lean4/tree/v4.32.1)
+[![Mathlib: 520045a](https://img.shields.io/badge/Mathlib-520045a-0969da?style=flat-square)](https://github.com/leanprover-community/mathlib4/tree/520045ab14e26149ee970e2e617ca04b09bde5d6)
 </div>
 
 <p align="center">
@@ -74,6 +74,6 @@ This is an independent formalization. A limited part of the Riemannian
 geometry infrastructure was originally derived from
 [OpenGA](https://github.com/MathNetwork/OpenGA) and has since been substantially
 extended and rewritten. The project is built on
-[Mathlib](https://github.com/leanprover-community/mathlib4/tree/c5ea00351c28e24afc9f0f84379aa41082b1188f).
+[Mathlib](https://github.com/leanprover-community/mathlib4/tree/520045ab14e26149ee970e2e617ca04b09bde5d6).
 
 Licensed under [Apache 2.0](LICENSE).

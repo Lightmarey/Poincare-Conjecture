@@ -45,6 +45,7 @@ theorem isLocalSection_restrict_top {π : C(M, N)} {σ : C(N, M)}
     (hσ : Function.RightInverse σ π) :
     π.IsLocalSection ⊤ (σ.restrict (⊤ : Set N)) := by
   intro x
-  simpa using hσ.eq (x : N)
+  change π (σ (x : N)) = (x : N)
+  exact hσ (x : N)
 
 end Function.RightInverse

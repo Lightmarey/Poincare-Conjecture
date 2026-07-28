@@ -126,7 +126,7 @@ theorem isSmoothVectorField_tangentialCovField {g : RiemannianMetric I M}
   have hcoeff := contMDiff_normalCoefficient (g := g) D hN hY hZ
   have hsmul : IsSmoothVectorField
       (fun q => normalCoefficient D g N Y Z q • N q) := by
-    simpa using
+    simpa [IsSmoothVectorField] using!
       (SmoothVectorField.smul (normalCoefficient D g N Y Z) hcoeff ⟨N, hN⟩).smooth
   have hsub := ((⟨_, hcov⟩ : SmoothVectorField I M) - ⟨_, hsmul⟩).smooth
   have e : (fun q => D.covField Y Z q
@@ -134,7 +134,7 @@ theorem isSmoothVectorField_tangentialCovField {g : RiemannianMetric I M}
       = tangentialCovField D g N Y Z := by
     funext q; simp [tangentialCovField, tangentialCov, normalCoefficient]
   rw [← e]
-  simpa using hsub
+  simpa [IsSmoothVectorField] using! hsub
 
 end Smoothness
 
@@ -217,7 +217,7 @@ private theorem cov_cov_metricInner_split {g : RiemannianMetric I M}
   have hcoeff := contMDiff_normalCoefficient (g := g) D.toAffineConnection hN hY hZ
   have hsmul : IsSmoothVectorField
       (fun q => normalCoefficient D.toAffineConnection g N Y Z q • N q) := by
-    simpa using (SmoothVectorField.smul
+    simpa [IsSmoothVectorField] using! (SmoothVectorField.smul
       (normalCoefficient D.toAffineConnection g N Y Z) hcoeff ⟨N, hN⟩).smooth
   -- split `∇_Y Z` into tangential + normal parts and differentiate
   have hsplit : D.cov p (X p) (D.toAffineConnection.covField Y Z)

@@ -230,7 +230,8 @@ theorem continuous_squareGauge : Continuous squareGauge := by
     fun_prop
   have h1 : Continuous fun p : Plane ↦ |p 1| := by
     fun_prop
-  simpa [squareGauge] using h0.max h1
+  change Continuous (fun p : Plane ↦ max |p 0| |p 1|)
+  exact h0.max h1
 
 /-- Helper for Problem 3-5: `radialToSquare` is continuous at every nonzero point. -/
 theorem continuousAt_radialToSquare_of_ne_zero {p : Plane} (hp : p ≠ 0) :
@@ -422,12 +423,16 @@ theorem rotationArc_hasDerivAt_zero (p : Plane) :
     rw [hasDerivAt_pi]
     intro i
     fin_cases i
-    · simpa [Real.sin_zero, Real.cos_zero] using
-        (((Real.hasDerivAt_cos 0).mul_const (p 0)).sub
-          ((Real.hasDerivAt_sin 0).mul_const (p 1)))
-    · simpa [Real.sin_zero, Real.cos_zero] using
-        (((Real.hasDerivAt_sin 0).mul_const (p 0)).add
-          ((Real.hasDerivAt_cos 0).mul_const (p 1)))
+    · convert (((Real.hasDerivAt_cos 0).mul_const (p 0)).sub
+          ((Real.hasDerivAt_sin 0).mul_const (p 1))) using 1
+      · funext x
+        rfl
+      · simp [Real.sin_zero, Real.cos_zero]
+    · convert (((Real.hasDerivAt_sin 0).mul_const (p 0)).add
+          ((Real.hasDerivAt_cos 0).mul_const (p 1))) using 1
+      · funext x
+        rfl
+      · simp [Real.sin_zero, Real.cos_zero]
   have hbase :
       (fun i : Fin 2 ↦ p i) =
         (fun t : ℝ ↦
@@ -441,8 +446,12 @@ theorem rotationArc_hasDerivAt_zero (p : Plane) :
         (fun i : Fin 2 ↦ p i) :=
     PiLp.hasFDerivAt_toLp (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (fun i : Fin 2 ↦ p i)
   rw [hbase] at htoLp
-  simpa [rotationArc, rotationVelocity] using
-    htoLp.comp_hasDerivAt 0 htuple
+  change HasDerivAt
+    (WithLp.toLp 2 ∘ fun t : ℝ ↦
+      (![Real.cos t * p 0 - Real.sin t * p 1,
+        Real.sin t * p 0 + Real.cos t * p 1] : Fin 2 → ℝ))
+    (WithLp.toLp 2 ![-p 1, p 0]) 0
+  exact htoLp.comp_hasDerivAt 0 htuple
 
 /-- Helper for Problem 3-5: the tangent vector to the rotation arc is nonzero on the unit circle. -/
 theorem rotationVelocity_ne_zero {p : Plane} (hp : p ∈ unitCircle) :
@@ -477,7 +486,8 @@ theorem squareBoundary_coord_isLocalMax_at_corner {δ : ℝ → Plane} {v : Plan
         HasFDerivAt (fun q : Plane ↦ q i)
           (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) i) (δ 0) :=
       PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (δ 0) i
-    simpa using hproj.comp_hasDerivAt 0 hδ
+    change HasDerivAt ((fun q : Plane ↦ q i) ∘ δ) (v i) 0
+    exact hproj.comp_hasDerivAt 0 hδ
   have hcoord : ContinuousAt (fun t ↦ δ t i) 0 := hcoord_deriv.continuousAt
   have hpos : ∀ᶠ t in 𝓝 0, 0 < δ t i := by
     have hIoi : Set.Ioi (0 : ℝ) ∈ 𝓝 (δ 0 i) := by
@@ -517,7 +527,8 @@ theorem squareBoundary_curve_deriv_eq_zero_at_corner {δ : ℝ → Plane} {v : P
         HasFDerivAt (fun q : Plane ↦ q i)
           (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) i) (δ 0) :=
       PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (δ 0) i
-    simpa using hproj.comp_hasDerivAt 0 hδ
+    change HasDerivAt ((fun q : Plane ↦ q i) ∘ δ) (v i) 0
+    exact hproj.comp_hasDerivAt 0 hδ
   simpa [hcoord.deriv] using hmax.deriv_eq_zero
 
 -- Proof sketch: if a diffeomorphism sent the smooth unit circle to the square boundary, then the
@@ -554,7 +565,8 @@ theorem not_exists_diffeomorph_maps_unitCircle_to_squareBoundary :
     -- Chain the derivative of `F` with the derivative of the rotation arc.
     have hFderiv' : HasFDerivAt F (fderiv ℝ F p) (rotationArc p 0) := by
       simpa using hFderiv
-    simpa [δ, v] using hFderiv'.comp_hasDerivAt 0 (rotationArc_hasDerivAt_zero p)
+    change HasDerivAt (F ∘ rotationArc p) ((fderiv ℝ F p) v) 0
+    exact hFderiv'.comp_hasDerivAt 0 (rotationArc_hasDerivAt_zero p)
   have hzero : (fderiv ℝ F p) v = 0 := by
     -- The corner obstruction forces the image-curve velocity to vanish.
     simpa [δ] using squareBoundary_curve_deriv_eq_zero_at_corner hδderiv hδ0 hδsq

@@ -23,6 +23,8 @@ universe u𝕜 u𝔤
 
 open scoped TensorProduct
 
+attribute [local instance 100] LieRing.ofAssociativeRing
+
 section
 
 variable (𝕜 : Type u𝕜) [Field 𝕜]
@@ -297,7 +299,7 @@ lemma complexificationIncl_injective
     (𝔤 : Type u𝔤) [LieRing 𝔤] [LieAlgebra ℝ 𝔤] :
     Function.Injective (complexificationIncl 𝔤) := by
   -- Reduce to the injectivity of the canonical tensor-product map `x ↦ 1 ⊗ x`.
-  simpa [complexificationIncl] using
+  simpa [complexificationIncl] using!
     (Module.FaithfullyFlat.tensorProduct_mk_injective (A := ℝ) (B := ℂ) 𝔤)
 
 /-- Helper for Theorem 8.49: a faithful finite-dimensional `ℂ`-representation of the
@@ -383,7 +385,7 @@ lemma quotientLieHom_surjective
   refine Quotient.inductionOn' x ?_
   intro y
   refine ⟨y, ?_⟩
-  simpa [quotientLieHom] using
+  simpa [quotientLieHom] using!
     (LieSubmodule.Quotient.is_quotient_mk (N := (I : LieSubmodule ℂ L L)) y).symm
 
 /-- Helper for Theorem 8.49: the quotient projection of a finite-dimensional Lie algebra admits a
@@ -454,7 +456,7 @@ lemma finrankQuotient_lt_of_nontrivialLieIdeal
     Module.finrank ℂ (L ⧸ I) < Module.finrank ℂ (L ⧸ I) + Module.finrank ℂ I :=
       Nat.lt_add_of_pos_right hIpos
     _ = Module.finrank ℂ L := by
-      simpa using (Submodule.finrank_quotient_add_finrank (R := ℂ) I.toSubmodule)
+      simpa using! (Submodule.finrank_quotient_add_finrank (R := ℂ) I.toSubmodule)
 
 /-- Helper for Theorem 8.49: pulling back a faithful quotient module along `L → L ⧸ I` forces the
 kernel of the pulled-back action to lie in `I`. -/
@@ -554,12 +556,12 @@ lemma faithfulOfKernelLeIdeal_and_faithfulOnIdeal
   have hxV : ∀ v : V, ⁅x, v⁆ = 0 := by
     intro v
     -- Projecting the product action to the first factor recovers the `V`-action.
-    simpa using congrArg Prod.fst (hx (v, 0))
+    simpa using! congrArg Prod.fst (hx (v, 0))
   have hxI : x ∈ I := hKernelV x hxV
   have hxW : ∀ w : W, ⁅((⟨x, hxI⟩ : I)), w⁆ = 0 := by
     intro w
     -- Projecting to the second factor recovers the restricted `I`-action on `W`.
-    simpa using congrArg Prod.snd (hx (0, w))
+    simpa using! congrArg Prod.snd (hx (0, w))
   have hxZeroInIdeal : ((⟨x, hxI⟩ : I)) = 0 := by
     -- Faithfulness on `I` now kills the residual ideal element.
     exact
@@ -598,7 +600,7 @@ lemma existsWeightVectorOfNontrivialGenWeightSpaceOnAbelianIdeal
   refine ⟨w, hw_nonzero, ?_⟩
   intro a
   -- Rewrite the restricted `A`-action back into the ambient bracket notation used downstream.
-  simpa [LieIdeal.coe_bracket_of_module] using hw_weight a
+  simpa [χ, LieIdeal.coe_bracket_of_module] using! hw_weight a
 
 /-- Helper for Theorem 8.49: any functional on an abelian Lie algebra gives a one-dimensional exact
 weight module. -/
@@ -1087,7 +1089,7 @@ lemma ambientExactWeightVectorOfCharacterRelationQuotientBridge
     Submodule.Quotient.mk (1 : UniversalEnvelopingAlgebra ℂ L), hOne, ?_⟩
   intro a
   -- Rewrite the pulled-back `L`-action through `U(L)` and then use the quotient relation on `[1]`.
-  simpa [LieRingModule.compLieHom_apply] using
+  simpa [LieRingModule.compLieHom_apply] using!
     quotientOne_action_of_character_relation A ψ N hrel a
 
 /-- Helper for Theorem 8.49: the real abelian-ideal frontier is a finite-dimensional ambient

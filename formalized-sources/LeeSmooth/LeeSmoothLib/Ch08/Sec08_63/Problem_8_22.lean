@@ -8,6 +8,8 @@ import Mathlib
 
 universe u v
 
+attribute [local instance 100] LieRing.ofAssociativeRing
+
 section
 
 variable {R : Type v} {A : Type u} [CommRing R] [Ring A] [Algebra R A]

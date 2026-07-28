@@ -133,7 +133,7 @@ private theorem preferredChartPosHasEuclideanNeighborhood
     exact e.continuousOn.isOpen_inter_preimage e.open_source hHalfOpen
   have hyS : y ∈ s := by
     refine ⟨hySource, ?_⟩
-    exact ⟨hyV₀, by simpa [e] using hyPos⟩
+    exact ⟨hyV₀, by simpa [e] using! hyPos⟩
   have hImage : e '' s = ((𝓡∂ (n + 1)) ⁻¹' V) := by
     ext z
     constructor
@@ -342,7 +342,7 @@ private theorem chartImageHomeomorphicToBoundarylessOpen
   let T : Set Vopen := hUV '' sU
   have hsUOpen : IsOpen sU := by
     -- Inside the neighborhood subtype, the chart source is just the preimage of an open set.
-    simpa [sU] using e.open_source.preimage continuous_subtype_val
+    simpa [sU] using! e.open_source.preimage continuous_subtype_val
   have hTOpen : IsOpen T := by
     -- Homeomorphisms are open maps, so the restricted source remains open on the Euclidean side.
     simpa [T] using hUV.isOpenMap sU hsUOpen
@@ -727,7 +727,7 @@ private theorem succInteriorChart_open_source
     (x : ↥((𝓡∂ (n + 1)).interior M)) :
     IsOpen (succInteriorSource n x) := by
   -- The interior-chart source is the preimage of the ambient chart source under the subtype map.
-  simpa [succInteriorSource] using
+  simpa [succInteriorSource] using!
     (succInteriorAmbientChart n x).open_source.preimage continuous_subtype_val
 
 private theorem succInteriorChart_open_target
@@ -745,7 +745,7 @@ private theorem succInteriorChart_open_target
   refine Filter.mem_of_superset (hWOpen.mem_nhds hzW) ?_
   intro w hw
   refine (succInteriorTarget_mem_iff (n := n) x).2 ⟨hw.2, ?_⟩
-  exact hVTarget (by simpa using hw.1)
+  exact hVTarget (by simpa using! hw.1)
 
 private theorem succInteriorChart_continuousOn_toFun
     (x : ↥((𝓡∂ (n + 1)).interior M)) :
@@ -763,7 +763,7 @@ private theorem succInteriorChart_continuousOn_toFun
     simpa [succInteriorSource] using hy
   -- Forget the half-space proof after applying the ambient chart.
   rw [continuousOn_iff_continuous_restrict] at hAmbient ⊢
-  simpa using continuous_subtype_val.comp hAmbient
+  simpa using! continuous_subtype_val.comp hAmbient
 
 private theorem succInteriorChart_continuousOn_invFun
     (x : ↥((𝓡∂ (n + 1)).interior M)) :
@@ -888,7 +888,7 @@ private theorem boundaryCoords_continuous :
           fun j : Fin n ↦ z.1 (Fin.succ j)) := by
     exact continuous_pi fun j ↦
       (PiLp.continuous_apply 2 _ (Fin.succ j)).comp continuous_subtype_val
-  simpa [boundaryCoords] using
+  simpa [boundaryCoords] using!
     (EuclideanSpace.equiv (Fin n) ℝ).symm.continuous.comp hCoords
 
 /-- Helper for Proposition 1.38: zero-inserting boundary coordinates is continuous. -/
@@ -923,7 +923,7 @@ private theorem boundaryAmbientChart_self_zero
   have hxBoundary : (𝓡∂ (n + 1)).IsBoundaryPoint x.1 := x.2
   -- At the chart center, the defining boundary condition is exactly vanishing first coordinate.
   simpa [eq_comm, ModelWithCorners.IsBoundaryPoint, boundaryAmbientChart,
-    frontier_range_modelWithCornersEuclideanHalfSpace] using hxBoundary
+    frontier_range_modelWithCornersEuclideanHalfSpace] using! hxBoundary
 
 /-- Helper for Proposition 1.38: in an ambient boundary chart, boundary points land on the zero
 slice of the distinguished first coordinate. -/
@@ -1047,14 +1047,14 @@ private theorem boundaryChart_open_source
     (x : ↥((𝓡∂ (n + 1)).boundary M)) :
     IsOpen (boundarySource n x) := by
   -- The source is the preimage of the ambient chart source under the subtype inclusion.
-  simpa [boundarySource] using
+  simpa [boundarySource] using!
     (boundaryAmbientChart n x).open_source.preimage continuous_subtype_val
 
 private theorem boundaryChart_open_target
     (x : ↥((𝓡∂ (n + 1)).boundary M)) :
     IsOpen (boundaryTarget n x) := by
   -- Route correction: the explicit target is a straightforward preimage of the open ambient target.
-  simpa [boundaryTarget] using
+  simpa [boundaryTarget] using!
     (boundaryAmbientChart n x).open_target.preimage (boundaryCoordsInv_continuous n)
 
 private theorem boundaryChart_continuousOn_toFun
@@ -1073,7 +1073,7 @@ private theorem boundaryChart_continuousOn_toFun
     simpa [boundarySource] using hy
   -- Compose the ambient chart with the continuous boundary-coordinate projection.
   rw [continuousOn_iff_continuous_restrict] at hAmbient ⊢
-  simpa using (boundaryCoords_continuous n).comp hAmbient
+  simpa using! (boundaryCoords_continuous n).comp hAmbient
 
 private theorem boundaryChart_continuousOn_invFun
     (x : ↥((𝓡∂ (n + 1)).boundary M)) :

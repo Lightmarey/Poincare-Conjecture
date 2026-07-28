@@ -1,5 +1,6 @@
 import DoCarmoLib.Riemannian.Geodesic.FlowCInftyDependence
 import DoCarmoLib.Riemannian.Exponential.Ray
+import DoCarmoLib.Riemannian.Exponential.LocalDiffeo
 
 set_option linter.unusedSectionVars false
 set_option maxSynthPendingDepth 3
@@ -304,6 +305,125 @@ theorem contMDiffOn_infty_expMap_ball
   rw [hfdef]
   exact ((extChartAt I p).left_inv (by
     rw [extChartAt_source]; exact hsrc w (mem_ball_zero_iff.mp hw))).symm
+
+set_option maxHeartbeats 1000000 in
+/-- **Math.** **`exp_p` is a `C^∞` diffeomorphism of a ball around `0 ∈ T_pM` onto an
+open subset of `M`.**  The chart reading is `C^∞` by
+`exists_contDiffOn_infty_extChartAt_expMap_ball`; the derivative is an equivalence on a
+smaller ball by the strict-derivative argument, and the inverse is assembled pointwise from
+the `C^∞` inverse function theorem. -/
+theorem exists_infty_local_diffeomorphism_expMap
+    (g : RiemannianMetric I M) (p : M) :
+    ∃ ε : ℝ, 0 < ε ∧
+      (∀ w : E, ‖w‖ < ε → (w : TangentSpace I p) ∈ expDomain (I := I) g p) ∧
+      (∀ w : E, ‖w‖ < ε →
+        expMap (I := I) g p (w : TangentSpace I p) ∈ (chartAt H p).source) ∧
+      Set.InjOn (fun w : E => expMap (I := I) g p (w : TangentSpace I p))
+        (ball (0 : E) ε) ∧
+      IsOpen ((fun w : E => expMap (I := I) g p (w : TangentSpace I p)) ''
+        ball (0 : E) ε) ∧
+      ContDiffOn ℝ ∞
+        (fun w : E => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)))
+        (ball (0 : E) ε) ∧
+      IsOpen ((fun w : E => extChartAt I p
+        (expMap (I := I) g p (w : TangentSpace I p))) '' ball (0 : E) ε) ∧
+      ∃ finv : E → E,
+        (∀ w : E, ‖w‖ < ε →
+          finv (extChartAt I p (expMap (I := I) g p (w : TangentSpace I p))) = w) ∧
+        ContDiffOn ℝ ∞ finv
+          ((fun w : E => extChartAt I p
+            (expMap (I := I) g p (w : TangentSpace I p))) '' ball (0 : E) ε) := by
+  classical
+  obtain ⟨ρ₁, hρ₁, hdom₁, hsrc₁, hinv⟩ :=
+    exists_hasStrictFDerivAt_equiv_extChartAt_expMap_ball (I := I) g p
+  obtain ⟨ρ₂, hρ₂, hinj, hdom₂⟩ := exists_injOn_expMap (I := I) g p
+  obtain ⟨ρ₃, hρ₃, hdom₃, hsrc₃, hcd⟩ :=
+    exists_contDiffOn_infty_extChartAt_expMap_ball (I := I) g p
+  set f : E → E :=
+    fun w => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)) with hfdef
+  set ε : ℝ := min (min ρ₁ ρ₂) ρ₃ with hεdef
+  have hε : 0 < ε := lt_min (lt_min hρ₁ hρ₂) hρ₃
+  have hε₁ : ε ≤ ρ₁ := (min_le_left _ _).trans (min_le_left _ _)
+  have hε₂ : ε ≤ ρ₂ := (min_le_left _ _).trans (min_le_right _ _)
+  have hε₃ : ε ≤ ρ₃ := min_le_right _ _
+  have hnInf : (∞ : WithTop ℕ∞) ≠ 0 := by simp
+  have hinjε : Set.InjOn (fun w : E => expMap (I := I) g p
+      (w : TangentSpace I p)) (ball (0 : E) ε) :=
+    hinj.mono (ball_subset_ball hε₂)
+  have hfinj : Set.InjOn f (ball (0 : E) ε) := by
+    intro a ha b hb hab
+    refine hinjε ha hb ?_
+    have hsrca : expMap (I := I) g p (a : TangentSpace I p) ∈
+        (extChartAt I p).source := by
+      rw [extChartAt_source]
+      exact hsrc₁ a ((mem_ball_zero_iff.mp ha).trans_le hε₁)
+    have hsrcb : expMap (I := I) g p (b : TangentSpace I p) ∈
+        (extChartAt I p).source := by
+      rw [extChartAt_source]
+      exact hsrc₁ b ((mem_ball_zero_iff.mp hb).trans_le hε₁)
+    exact (extChartAt I p).injOn hsrca hsrcb hab
+  have hopen_f : IsOpen (f '' ball (0 : E) ε) := by
+    rw [isOpen_iff_mem_nhds]
+    rintro y ⟨w, hw, rfl⟩
+    obtain ⟨D', hD'⟩ := hinv w ((mem_ball_zero_iff.mp hw).trans_le hε₁)
+    rw [← hD'.map_nhds_eq_of_equiv]
+    exact image_mem_map (isOpen_ball.mem_nhds hw)
+  have himg : (fun w : E => expMap (I := I) g p
+        (w : TangentSpace I p)) '' ball (0 : E) ε
+      = (extChartAt I p).source ∩ extChartAt I p ⁻¹' (f '' ball (0 : E) ε) := by
+    ext x
+    constructor
+    · rintro ⟨w, hw, rfl⟩
+      have hsrcw : expMap (I := I) g p (w : TangentSpace I p) ∈
+          (chartAt H p).source :=
+        hsrc₁ w ((mem_ball_zero_iff.mp hw).trans_le hε₁)
+      exact ⟨by rw [extChartAt_source]; exact hsrcw, ⟨w, hw, rfl⟩⟩
+    · rintro ⟨hxsrc, ⟨w, hw, hfw⟩⟩
+      refine ⟨w, hw, ?_⟩
+      have hsrcw : expMap (I := I) g p (w : TangentSpace I p) ∈
+          (extChartAt I p).source := by
+        rw [extChartAt_source]
+        exact hsrc₁ w ((mem_ball_zero_iff.mp hw).trans_le hε₁)
+      exact (extChartAt I p).injOn hsrcw hxsrc hfw
+  have hopen_exp : IsOpen ((fun w : E => expMap (I := I) g p
+      (w : TangentSpace I p)) '' ball (0 : E) ε) := by
+    rw [himg]
+    exact (continuousOn_extChartAt (I := I) p).isOpen_inter_preimage
+      (isOpen_extChartAt_source p) hopen_f
+  set finv : E → E := fun z =>
+    if hz : z ∈ f '' ball (0 : E) ε then hz.choose else 0 with hfinvdef
+  have hfinvspec : ∀ z (hz : z ∈ f '' ball (0 : E) ε),
+      finv z ∈ ball (0 : E) ε ∧ f (finv z) = z := by
+    intro z hz
+    rw [hfinvdef]
+    simp only [dif_pos hz]
+    exact ⟨hz.choose_spec.1, hz.choose_spec.2⟩
+  have hfinvleft : ∀ w ∈ ball (0 : E) ε, finv (f w) = w := by
+    intro w hw
+    have hz : f w ∈ f '' ball (0 : E) ε := mem_image_of_mem f hw
+    obtain ⟨hball, heq⟩ := hfinvspec (f w) hz
+    exact hfinj hball hw heq
+  have hfinvCInf : ∀ z ∈ f '' ball (0 : E) ε, ContDiffAt ℝ ∞ finv z := by
+    rintro z ⟨v₀, hv₀, rfl⟩
+    have hCInfAt : ContDiffAt ℝ ∞ f v₀ :=
+      (hcd.mono (ball_subset_ball hε₃)).contDiffAt
+        (isOpen_ball.mem_nhds hv₀)
+    obtain ⟨D', hD'⟩ := hinv v₀ ((mem_ball_zero_iff.mp hv₀).trans_le hε₁)
+    have hf' : HasFDerivAt f (D' : E →L[ℝ] E) v₀ := hD'.hasFDerivAt
+    have hloc : ContDiffAt ℝ ∞
+        (hCInfAt.localInverse hf' hnInf) (f v₀) :=
+      hCInfAt.to_localInverse hf' hnInf
+    have hg : ∀ᶠ w in 𝓝 v₀, finv (f w) = w := by
+      filter_upwards [isOpen_ball.mem_nhds hv₀] with w hw
+      exact hfinvleft w hw
+    have hev : ∀ᶠ y in 𝓝 (f v₀), finv y = hCInfAt.localInverse hf' hnInf y :=
+      (hCInfAt.hasStrictFDerivAt' hf' hnInf).localInverse_unique hg
+    exact hloc.congr_of_eventuallyEq hev
+  refine ⟨ε, hε, fun w hw => hdom₁ w (hw.trans_le hε₁),
+    fun w hw => hsrc₁ w (hw.trans_le hε₁), hinjε, hopen_exp,
+    hcd.mono (ball_subset_ball hε₃), hopen_f, finv,
+    fun w hw => hfinvleft w (mem_ball_zero_iff.mpr hw), ?_⟩
+  exact fun z hz => (hfinvCInf z hz).contDiffWithinAt
 
 end Exponential
 end Riemannian

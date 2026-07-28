@@ -309,12 +309,15 @@ system (1') on $TU$.
 
 \begin{lemma}[the geodesic field]
   \label{lem:dc-ch3-2-3}
+\lean{Riemannian.Geodesic.existsUnique_geodesicField}
+\leanok
   \dcref{ch3:2.3}
   \notready
   There exists a unique vector field $G$ on $TM$ whose trajectories are of the form
   $t\mapsto(\gamma(t),\gamma'(t))$, where $\gamma$ is a geodesic on $M$.
 \end{lemma}
 \begin{proof}
+\leanok
   \sketch
   Uniqueness: in a coordinate system $(U,\mathbf{x})$ the trajectories of
   $G$ on $TU$ are $t\mapsto(\gamma(t),\gamma'(t))$ with $\gamma$ a geodesic, hence
@@ -439,6 +442,7 @@ system (1') on $TU$.
   \dcref{ch3:2.5}
   \uses{lem:dc-ch3-2-5-exist, lem:dc-ch3-2-5-unique}
   \lean{Riemannian.Geodesic.exists_geodesic_with_initial_velocity_at}
+\leanok
   Given $p\in M$, there exist an open set $V\subset M$ with $p\in V$, numbers
   $\delta>0$, $\varepsilon_1>0$, and a $C^\infty$ map
   
@@ -678,6 +682,8 @@ system (1') on $TU$.
 
 \begin{proposition}[uniform interval of definition]
   \label{prop:dc-ch3-2-7}
+\lean{Riemannian.GeodesicLocal.geodesic_local_existence_fixedInterval_metricBall}
+\leanok
   \dcref{ch3:2.7}
   \uses{prop:dc-ch3-2-5, lem:dc-ch3-2-6, lem:dc-ch3-2-7-vuniform, lem:dc-ch3-2-7-c1flow, lem:dc-ch3-2-7-c2flow}
   \notready
@@ -689,6 +695,7 @@ system (1') on $TU$.
   $|w|<\varepsilon$.
 \end{proposition}
 \begin{proof}
+\leanok
   \sketch
   The geodesic $\gamma(t,q,v)$ of \cref{prop:dc-ch3-2-5} is defined for
   $|t|<\delta$ and $|v|<\varepsilon_1$. By the lemma of homogeneity (2.6),
@@ -1041,6 +1048,8 @@ velocity $\frac{v}{|v|}$.
 
 \begin{proposition}[exp_q is a local diffeomorphism]
   \label{prop:dc-ch3-2-9}
+\lean{Riemannian.Exponential.exists_infty_local_diffeomorphism_expMap}
+\leanok
   \dcref{ch3:2.9}
   \uses{def:dc-ch3-expmap, lem:dc-ch3-expmap-ray, lem:dc-ch3-2-9-dexp, lem:dc-ch3-2-9-strict, lem:dc-ch3-2-9-c1ball, lem:dc-ch3-2-9-c1, lem:dc-ch3-2-9-invertible, lem:dc-ch3-2-9-c1diffeo, lem:dc-ch3-2-9-c2ball, lem:dc-ch3-2-9-c2diffeo}
   \notready
@@ -1049,6 +1058,7 @@ velocity $\frac{v}{|v|}$.
   $B_\varepsilon(0)$ onto an open subset of $M$.
 \end{proposition}
 \begin{proof}
+\leanok
   \sketch
   Compute $d(\exp_q)_0$:
   
@@ -1062,6 +1072,8 @@ velocity $\frac{v}{|v|}$.
 
 \begin{example}[Euclidean space]
   \label{ex:dc-ch3-2-10}
+\lean{Riemannian.euclideanGeodesic,Riemannian.euclidean_chartBasisVecFiber,Riemannian.euclidean_chartChristoffel,Riemannian.euclidean_chartChristoffelContraction,Riemannian.euclidean_chartGramMatrix,Riemannian.expMapIntrinsic_euclidean,Riemannian.isGeodesic_euclideanGeodesic}
+\leanok
   \dcref{ch3:2.10}
   \notready
   Let $M=\mathbb{R}^n$. The covariant derivative is the usual derivative, so the
@@ -1092,6 +1104,8 @@ velocity $\frac{v}{|v|}$.
 
 \begin{definition}[piecewise differentiable curve]
   \label{def:dc-ch3-3-1}
+\lean{Riemannian.Geodesic.IsPiecewiseDifferentiableCurve}
+\leanok
   \dcref{ch3:3.1}
   A \emph{piecewise differentiable curve} is a continuous map $c:[a,b]\to M$ for which
   there is a partition $a=t_0<t_1<\dots<t_k=b$ such that each restriction
@@ -1103,6 +1117,8 @@ velocity $\frac{v}{|v|}$.
 
 \begin{definition}[minimizing geodesic]
   \label{def:dc-ch3-3-2}
+\lean{Riemannian.Geodesic.IsMinimizingGeodesicSegment}
+\leanok
   \dcref{ch3:3.2}
   A segment of a geodesic $\gamma:[a,b]\to M$ is \emph{minimizing} if
   $\ell(\gamma)\le\ell(c)$ for every piecewise differentiable curve $c$ joining
@@ -1111,6 +1127,8 @@ velocity $\frac{v}{|v|}$.
 
 \begin{definition}[parametrized surface]
   \label{def:dc-ch3-3-3}
+\lean{Riemannian.Geodesic.IsNonPiAngle,Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.isParametrizedSurface,Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.regularOn,Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.surfaceDomain,Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.toExtended,Riemannian.Geodesic.IsSmoothParametrizedSurfaceWithBoundary,Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.closing_vertex_nonPi,Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.interior_vertex_nonPi}
+\leanok
   \dcref{ch3:3.3}
   Let $A$ be a connected set in $\mathbb{R}^2$, $U\subset A\subset\overline{U}$, $U$
   open, such that $\partial A$ is a piecewise differentiable curve with vertex

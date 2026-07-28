@@ -167,7 +167,7 @@ vanishes on `(v, v)` along every ray, then `f` is a **diffeomorphism** `Hadamard
 This is `HadamardModel.diffeomorphOfPole` with its abstract `hrays` bundle replaced by the sharp
 pointwise residual `hchr` — the only genuinely analytic input remaining in the poles theorem. -/
 def diffeomorphOfPole_of_christoffel [ConnectedSpace N] [SimplyConnectedSpace N]
-    [LocPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
+    [LocallyPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
     (hf : IsLocalDiffeomorph 𝓘(ℝ, G) I ∞ f)
     (hchr : ∀ (v : G) (t : ℝ),
       Geodesic.chartChristoffelContraction (I := 𝓘(ℝ, G)) (HadamardModel.pullbackMetric g hf)
@@ -177,7 +177,7 @@ def diffeomorphOfPole_of_christoffel [ConnectedSpace N] [SimplyConnectedSpace N]
 
 /-- **Math.** The diffeomorphism produced by `diffeomorphOfPole_of_christoffel` **is** `f`. -/
 theorem diffeomorphOfPole_of_christoffel_coe [ConnectedSpace N] [SimplyConnectedSpace N]
-    [LocPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
+    [LocallyPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
     (hf : IsLocalDiffeomorph 𝓘(ℝ, G) I ∞ f)
     (hchr : ∀ (v : G) (t : ℝ),
       Geodesic.chartChristoffelContraction (I := 𝓘(ℝ, G)) (HadamardModel.pullbackMetric g hf)
@@ -211,7 +211,7 @@ through the origin are straight lines"), then `f` is a **diffeomorphism** `Hadam
 This is `HadamardModel.diffeomorphOfPole` with the abstract `hrays` bundle replaced by the single
 geometric residual `hgeo`. -/
 def diffeomorphOfPole_of_rayGeodesic [ConnectedSpace N] [SimplyConnectedSpace N]
-    [LocPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
+    [LocallyPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
     (hf : IsLocalDiffeomorph 𝓘(ℝ, G) I ∞ f)
     (hgeo : ∀ v : G, Geodesic.IsGeodesic (I := 𝓘(ℝ, G)) (HadamardModel.pullbackMetric g hf)
       (rayCurve v)) :
@@ -220,7 +220,7 @@ def diffeomorphOfPole_of_rayGeodesic [ConnectedSpace N] [SimplyConnectedSpace N]
 
 /-- **Math.** The diffeomorphism produced by `diffeomorphOfPole_of_rayGeodesic` **is** `f`. -/
 theorem diffeomorphOfPole_of_rayGeodesic_coe [ConnectedSpace N] [SimplyConnectedSpace N]
-    [LocPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
+    [LocallyPathConnectedSpace N] {f : HadamardModel G → N} (g : RiemannianMetric I N)
     (hf : IsLocalDiffeomorph 𝓘(ℝ, G) I ∞ f)
     (hgeo : ∀ v : G, Geodesic.IsGeodesic (I := 𝓘(ℝ, G)) (HadamardModel.pullbackMetric g hf)
       (rayCurve v)) :

@@ -374,7 +374,7 @@ lemma contMDiff_id_toSelfModeledCarrier [BoundarylessManifold I G] :
   rw [contMDiff_iff]
   refine ⟨continuous_id, ?_⟩
   intro x y
-  simpa [extChartAtOpenPartialHomeomorph] using
+  simpa [extChartAtOpenPartialHomeomorph] using!
     contDiffOn_extChartAt_transition x y
 
 /-- Helper for Proposition 7.17: the same identity map is smooth in the reverse direction from the
@@ -392,7 +392,7 @@ lemma contMDiff_id_fromSelfModeledCarrier [BoundarylessManifold I G] :
   rw [contMDiff_iff]
   refine ⟨continuous_id, ?_⟩
   intro x y
-  simpa [extChartAtOpenPartialHomeomorph] using
+  simpa [extChartAtOpenPartialHomeomorph] using!
     contDiffOn_extChartAt_transition x y
 
 /-- Helper for Proposition 7.17: the self-modeled `extChartAt` atlas carries a Lie-group
@@ -409,7 +409,7 @@ lemma selfModeledCarrierLieGroup [BoundarylessManifold I G] :
   have hDivOriginal :
       ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1 * p.2⁻¹) := by
     -- The original Lie-group structure already makes division smooth in the original model.
-    simpa [div_eq_mul_inv] using
+    simpa [div_eq_mul_inv] using!
       (contMDiff_fst.mul contMDiff_snd.inv :
         ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1 * p.2⁻¹))
   have hSource :
@@ -424,13 +424,13 @@ lemma selfModeledCarrierLieGroup [BoundarylessManifold I G] :
         ((modelWithCornersSelf 𝕜 EG).prod (modelWithCornersSelf 𝕜 EG))
         I ∞ (fun p : G × G ↦ p.1 * p.2⁻¹) := by
     -- After changing the source model, the underlying division map is still the same function.
-    simpa [Function.comp] using hDivOriginal.comp hSource
+    simpa [Function.comp] using! hDivOriginal.comp hSource
   have hDivSelf :
       ContMDiff
         ((modelWithCornersSelf 𝕜 EG).prod (modelWithCornersSelf 𝕜 EG))
         (modelWithCornersSelf 𝕜 EG) ∞ (fun p : G × G ↦ p.1 * p.2⁻¹) := by
     -- Change the target model by the forward identity bridge.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       contMDiff_id_toSelfModeledCarrier.comp hDivAsOriginal
   -- Proposition 7.1 now upgrades the transported smooth division law to a Lie-group structure.
   exact lieGroup_of_contMDiff_mul_inv hDivSelf
@@ -664,7 +664,7 @@ lemma injective_mfderiv_of_rankAt_eq_sourceFinrank
     (hRankp : rankAt I J F p = Module.finrank 𝕜 EG) :
     Function.Injective (mfderiv I J F p) := by
   let _ : FiniteDimensional 𝕜 (TangentSpace I p) := by
-    simpa using (inferInstance : FiniteDimensional 𝕜 EG)
+    simpa using! (inferInstance : FiniteDimensional 𝕜 EG)
   have hRangeFinrank :
       Module.finrank 𝕜 ((mfderiv I J F p).toLinearMap.range) = Module.finrank 𝕜 EG := by
     -- Rewrite `rankAt` as the range dimension of the manifold derivative.
@@ -704,7 +704,7 @@ lemma rankAtOne_eq_sourceFinrank_of_injectiveLieGroupHom
             hEmb.codimension = rankAt I J F (1 : G) := by
     -- Route correction: use the constant-rank level-set theorem directly on the identity fiber,
     -- rather than recharting the whole source manifold into a self-model first.
-    simpa [k, K] using
+    simpa [k, K] using!
       (constant_rank_level_set_has_embedded_submanifold_structure
         F.contMDiff_toFun hRankF (1 : H))
   rcases hLevel with ⟨cs, hs, hEmb, hCodim⟩
@@ -858,7 +858,7 @@ lemma mfderivInjectiveAt_of_injectiveAtOneLieGroupHom
   -- identity from Theorem 7.5, then use the full-rank injectivity criterion pointwise.
   have hRankOne : rankAt I J F (1 : G) = Module.finrank 𝕜 EG := by
     rw [rankAt_eq_finrank_range_mfderiv]
-    simpa using LinearMap.finrank_range_of_inj hOne
+    simpa using! LinearMap.finrank_range_of_inj hOne
   have hRankg : rankAt I J F g = Module.finrank 𝕜 EG := by
     calc
       rankAt I J F g = rankAt I J F (1 : G) := ContMDiffMonoidMorphism.rankAt_eq_rankAt_one F g
@@ -882,7 +882,7 @@ theorem injectiveLieGroupHomIsImmersion_of_hasConstantRank
     (hRankF : HasConstantRank I0 J0 F (rankAt I0 J0 F (1 : G0))) :
     IsImmersion I0 J0 ∞ F := by
   have hCont : ContMDiff I0 J0 ∞ (fun x : G0 ↦ F x) := by
-    simpa using F.contMDiff_toFun
+    simpa using! F.contMDiff_toFun
   rw [Manifold.is_immersion_iff_forall_injective_mfderiv hCont]
   intro g
   exact mfderivInjectiveAt_of_injectiveAtOneLieGroupHom F g
@@ -1177,20 +1177,20 @@ lemma contMDiff_conjugatedDivision
         ∞
         (fun p : B × B ↦ (Φ.symm p.1, Φ.symm p.2)) := by
     -- The inverse diffeomorphism is smooth on each factor, hence on the product.
-    simpa using Φ.symm.contMDiff_toFun.prodMap Φ.symm.contMDiff_toFun
+    simpa using! Φ.symm.contMDiff_toFun.prodMap Φ.symm.contMDiff_toFun
   have hSourceDiv :
       ContMDiff
         ((modelWithCornersSelf 𝕜 E).prod (modelWithCornersSelf 𝕜 E))
         (modelWithCornersSelf 𝕜 E) ∞
         (fun p : A × A ↦ p.1 * p.2⁻¹) := by
     -- The source is already a Lie group in self coordinates, so its division map is smooth.
-    simpa [div_eq_mul_inv] using
+    simpa [div_eq_mul_inv] using!
       (contMDiff_fst.mul contMDiff_snd.inv :
         ContMDiff
           ((modelWithCornersSelf 𝕜 E).prod (modelWithCornersSelf 𝕜 E))
           (modelWithCornersSelf 𝕜 E) ∞
           (fun p : A × A ↦ p.1 * p.2⁻¹))
-  simpa [Function.comp] using hSourceDiv.comp hSourceChange
+  simpa [Function.comp] using! hSourceDiv.comp hSourceChange
 
 /-- Helper for Proposition 7.17: a multiplicative diffeomorphism transports the conjugated source
 division law to the actual division law on the target. -/
@@ -1430,7 +1430,7 @@ theorem rangeLieSubgroupStructureOfInjectiveImmersion
       IsImmersion (modelWithCornersSelf 𝕜 EG) J ∞ F := by
     -- Route correction: first change the source atlas to the self-modeled one, then transport the
     -- literal subgroup range directly instead of re-entering Proposition 5.18.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       Manifold.IsImmersion.ex416_comp hImmF
         hIdImm
   let instRangeTop : TopologicalSpace F.toMonoidHom.range :=
@@ -1502,7 +1502,7 @@ theorem smoothLieSubgroup_factorization_unique
   -- ambient values.
   calc
     ((compLieGroupIsomorphism Φ.symm Φ' k : K') : H) = F (Φ.symm k) := by
-      simpa using hΦ' (Φ.symm k)
+      simpa using! hΦ' (Φ.symm k)
     _ = ((Φ (Φ.symm k) : K) : H) := by
       simpa using (hΦ (Φ.symm k)).symm
     _ = (k : H) := by
@@ -1561,7 +1561,7 @@ theorem injective_lie_group_hom_range_has_lie_subgroup_structure
     have hΦ'K : ∀ x : G0, ((Φ'K x : K') : H0) = F x := by
       intro x
       simpa [Φ'K, K'] using hΦ' x
-    simpa [ΦK, Φ'K, K, K'] using
+    simpa [ΦK, Φ'K, K, K'] using!
       smoothLieSubgroup_factorization_unique F ΦK Φ'K hΦK hΦ'K
 
 /-- Unlabeled helper: any two source-faithful smooth image structures on the image of a Lie group
@@ -1591,7 +1591,7 @@ theorem injective_lie_group_hom_factorization_unique
     ((compLieGroupIsomorphism Φ.symm Φ' s :
       SmoothImageLieGroupStructure.Range S') : H)
         = F (Φ.symm s) := by
-            simpa using hΦ' (Φ.symm s)
+            simpa using! hΦ' (Φ.symm s)
     _ = ((Φ (Φ.symm s) : F.toMonoidHom.range) : H) := by
           simpa using (hΦ (Φ.symm s)).symm
     _ = (s : H) := by

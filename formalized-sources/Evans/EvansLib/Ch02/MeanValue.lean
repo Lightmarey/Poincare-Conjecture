@@ -10,11 +10,11 @@ formalizes that downstream chain in the form Evans actually uses it: taking the
 **(solid-ball) mean-value property** as the working hypothesis.
 
 The mean-value property itself — that a harmonic function equals its ball average
-(Evans Thm 2, `thm:mean-value-formulas-laplace`) — is the one step that requires the
-divergence theorem on a ball (Green's identity), which current mathlib provides only
-for boxes. We therefore package the property as a predicate `HasBallMeanValueProperty`
-and prove the maximum-principle / uniqueness / Harnack consequences from it; the bridge
-`harmonic ⟹ HasBallMeanValueProperty` is `thm:mean-value-formulas-laplace`, still open.
+(Evans Thm 2, `thm:mean-value-formulas-laplace`) — is packaged here as the predicate
+`HasBallMeanValueProperty`.  This file proves the maximum-principle / uniqueness /
+Harnack consequences from that predicate.  The compact radial-test proof of the bridge
+`harmonic ⟹ HasBallMeanValueProperty` is completed downstream in
+`LaplaceMeanValueTheorem.lean`.
 
 Everything here is stated over `EuclideanSpace ℝ (Fin n)` with the Lebesgue `volume`,
 using mathlib's ball average `⨍ y in Metric.ball x r, u y`, so no surface measure is
@@ -47,7 +47,7 @@ mean-value property on `U` when it equals its average over every ball whose clos
 lies in `U`:
 `u x = ⨍_{B(x,r)} u dy` for all `B̄(x,r) ⊆ U`, `r > 0`.
 Evans's mean-value formula (`thm:mean-value-formulas-laplace`) asserts every harmonic
-function has this property; that implication needs Green's identity and is left open. -/
+function has this property; see `HarmonicOnNhd.hasBallMeanValueProperty`. -/
 def HasBallMeanValueProperty (u : EuclideanSpace ℝ (Fin n) → ℝ)
     (U : Set (EuclideanSpace ℝ (Fin n))) : Prop :=
   ∀ ⦃x : EuclideanSpace ℝ (Fin n)⦄ ⦃r : ℝ⦄, 0 < r → closedBall x r ⊆ U →

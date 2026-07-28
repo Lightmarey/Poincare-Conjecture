@@ -46,7 +46,10 @@ theorem smooth_structure_determined_by_atlas
         rw [mem_maximalAtlas_iff]
         intro e' he'
         have hleft : e.symm ≫ₕ e' ∈ G := he e' he'
-        exact ⟨hleft, by simpa using G.symm hleft⟩
+        have hright := G.symm hleft
+        rw [OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm,
+          OpenPartialHomeomorph.symm_symm] at hright
+        exact ⟨hleft, hright⟩
 
 /-- Proposition 1.17 (2): two smooth atlases determine the same smooth structure exactly when
 their union is again a smooth atlas. The source-facing statement is expressed by

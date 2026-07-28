@@ -114,7 +114,7 @@ theorem exists_isGeodesicOn_expMap_ray (g : RiemannianMetric I M) (p : M) :
         two_ne_zero).hasFDerivAt
     have hsmul : HasDerivAt (fun s : ℝ => s • u) u t := by
       simpa using (hasDerivAt_id t).smul_const u
-    simpa using hf_at.comp_hasDerivAt t hsmul
+    simpa only [Function.comp_def] using hf_at.comp_hasDerivAt t hsmul
   -- start point
   have hstart : (fun t : ℝ =>
       expMap (I := I) g p ((t • u : E) : TangentSpace I p)) 0 = p := by

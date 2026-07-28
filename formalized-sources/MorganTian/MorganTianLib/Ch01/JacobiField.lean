@@ -114,6 +114,12 @@ structure IsJacobiFieldOn (g : RiemannianMetric I M) (α : M)
       - Geodesic.chartChristoffelContraction (I := I) g α
         (deriv u t) (DJ t) (u t)) (Icc a b) t
 
+/-- **Math.** ASCII facade for the chart Jacobi-field predicate.
+Blueprint: `lem:jacobi-field-coordinates`. -/
+abbrev JacobiFieldOn (g : RiemannianMetric I M) (α : M)
+    (u J DJ : ℝ → E) (a b : ℝ) : Prop :=
+  IsJacobiFieldOn (I := I) g α u J DJ a b
+
 namespace IsJacobiFieldOn
 
 variable {g : RiemannianMetric I M} {α : M} {u J DJ Z DZ : ℝ → E} {a b : ℝ}
@@ -196,10 +202,18 @@ theorem isJacobiFieldOn_of_isSolOn {g : RiemannianMetric I M} {α : M}
   hasDerivWithinAt_fst t ht := by
     have := (ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasDerivWithinAt t
       (h t ht)
+    have hfun : (fun t => (W t).1) = Prod.fst ∘ W := by
+      funext t
+      rfl
+    rw [hfun]
     simpa using this
   hasDerivWithinAt_snd t ht := by
     have := (ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasDerivWithinAt t
       (h t ht)
+    have hfun : (fun t => (W t).2) = Prod.snd ∘ W := by
+      funext t
+      rfl
+    rw [hfun]
     simpa using this
 
 /-- **Math.** **Existence of Jacobi fields along a coordinate curve** with
@@ -482,8 +496,7 @@ theorem continuousOn_chartCurvatureEndo_comp
       ((hG.clm_apply hu').clm_apply hu')).clm_comp hG
   have h4 := (hG.clm_apply hu').clm_comp (happE.clm_comp hG)
   refine (((h1.sub h2).add h3).sub h4).congr fun t _ => ?_
-  rw [chartCurvatureEndo_eq]
-  simp only [Pi.add_apply]
+  rfl
 
 /-- **Math.** Continuity of the covariant pair coefficient along a `C¹` curve
 over the interior of the chart target. -/

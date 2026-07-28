@@ -125,10 +125,10 @@ theorem subtype_val_isImmersionAtOfComplement_of_local_slice_condition
   let domChart := slice_condition_centered_subtype_chart (S := S) hS x
   let codChart := slice_condition_centered_ambient_chart (S := S) hS x
   have hx_dom : x ∈ domChart.source := by
-    simpa [domChart, OpenPartialHomeomorph.centerAt_source] using
+    simpa [domChart, OpenPartialHomeomorph.centerAt_source] using!
       slice_condition_chartAt_mem_source (S := S) hS x
   have hx_cod : x.1 ∈ codChart.source := by
-    simpa [codChart, OpenPartialHomeomorph.centerAt_source] using
+    simpa [codChart, OpenPartialHomeomorph.centerAt_source] using!
       slice_condition_ambient_chart_mem_source (S := S) hS x
   have hdom_base :
       slice_condition_chartAt (S := S) hS x ∈
@@ -156,9 +156,9 @@ theorem subtype_val_isImmersionAtOfComplement_of_local_slice_condition
   · intro y hy
     -- Centering does not change the source sets, so the ambient-source inclusion reduces to the
     -- previously proved uncentered source-containment lemma.
-    simpa [domChart, codChart, OpenPartialHomeomorph.centerAt_source] using
+    simpa [domChart, codChart, OpenPartialHomeomorph.centerAt_source] using!
       slice_condition_chartAt_source_subset_ambient_source (S := S) hS x
-        (by simpa [domChart, OpenPartialHomeomorph.centerAt_source] using hy)
+        (by simpa [domChart, OpenPartialHomeomorph.centerAt_source] using! hy)
   · intro z hz
     have hz_target :
         z ∈ domChart.target := by

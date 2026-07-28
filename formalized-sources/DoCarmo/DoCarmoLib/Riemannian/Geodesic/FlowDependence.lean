@@ -561,7 +561,7 @@ theorem hasStrictFDerivAt_of_picardResidual_curve
   have huD : ((1 : C(Set.Icc (0:ℝ) T, E) →L[ℝ] C(Set.Icc (0:ℝ) T, E)) - JP).comp D
       = constE := by
     refine ContinuousLinearMap.ext fun v => ?_
-    simpa [hJP_def, hconstE_def] using hD v
+    simpa [hJP_def, hconstE_def, ContinuousLinearMap.const] using hD v
   have hDid : -(G' ∘L ContinuousLinearMap.inr ℝ E (C(Set.Icc (0:ℝ) T, E))).inverse
       ∘L (G' ∘L ContinuousLinearMap.inl ℝ E (C(Set.Icc (0:ℝ) T, E))) = D := by
     rw [hGinr, hGinl, ContinuousLinearMap.comp_neg, neg_neg, ← huD,
@@ -605,12 +605,12 @@ theorem exists_hasStrictFDerivAt_of_picardResidual_curve
     fun v => ?_, ?_⟩
   · have h := congrArg
       (fun B : C(Set.Icc (0:ℝ) T, E) →L[ℝ] C(Set.Icc (0:ℝ) T, E) => B (constE v)) hval
-    simpa [ContinuousLinearMap.sub_apply, sub_eq_iff_eq_add, hconstE_def] using h
+    simpa [sub_apply, sub_eq_iff_eq_add, hJP_def, hconstE_def, ContinuousLinearMap.const] using h
   · exact hasStrictFDerivAt_of_picardResidual_curve hT hu hd hmem hc hA₀ hTL hσ0 hσc hσ
       fun v => by
         have h := congrArg
           (fun B : C(Set.Icc (0:ℝ) T, E) →L[ℝ] C(Set.Icc (0:ℝ) T, E) => B (constE v)) hval
-        simpa [ContinuousLinearMap.sub_apply, sub_eq_iff_eq_add, hconstE_def] using h
+        simpa [sub_apply, sub_eq_iff_eq_add, hJP_def, hconstE_def, ContinuousLinearMap.const] using h
 
 /-- **Math.** Evaluation form of `hasStrictFDerivAt_of_picardResidual_curve`: for each fixed
 time `t ∈ [0,T]`, the map `x ↦ σ x t` is strictly differentiable at `x₀` with derivative
@@ -727,7 +727,7 @@ theorem hasStrictFDerivAt_of_picardResidual
   have huD : ((1 : C(Set.Icc (0:ℝ) T, E) →L[ℝ] C(Set.Icc (0:ℝ) T, E)) - JP).comp D
       = constE := by
     refine ContinuousLinearMap.ext fun v => ?_
-    simpa [hJP_def, hconstE_def] using hD v
+    simpa [hJP_def, hconstE_def, ContinuousLinearMap.const] using hD v
   have hDid : -(G' ∘L ContinuousLinearMap.inr ℝ E (C(Set.Icc (0:ℝ) T, E))).inverse
       ∘L (G' ∘L ContinuousLinearMap.inl ℝ E (C(Set.Icc (0:ℝ) T, E))) = D := by
     rw [hGinr, hGinl, ContinuousLinearMap.comp_neg, neg_neg, ← huD,
@@ -796,7 +796,7 @@ theorem continuousOn_of_forall_hasStrictFDerivAt
     simp only [add_sub_cancel_left] at h₁ h₂
     calc ‖(f' x' - f' x) w‖
         = ‖(f (x' + w) - f x' - f' x w) - (f (x' + w) - f x' - f' x' w)‖ := by
-          rw [ContinuousLinearMap.sub_apply]; congr 1; abel
+          rw [sub_apply]; congr 1; abel
       _ ≤ ‖f (x' + w) - f x' - f' x w‖ + ‖f (x' + w) - f x' - f' x' w‖ :=
           norm_sub_le _ _
       _ ≤ ε / 4 * ‖w‖ + ε / 4 * ‖w‖ := add_le_add h₁ h₂

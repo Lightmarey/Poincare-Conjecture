@@ -108,6 +108,7 @@ theorem IsParallelSolOn.sub {g : RiemannianMetric I M} {α : M} {u v w : ℝ →
     (Icc a b) t
   rw [key]
   have h := (hv t ht).sub (hw t ht)
+  change HasDerivWithinAt (v - w) _ (Icc a b) t
   convert h using 1
   abel
 

@@ -156,7 +156,7 @@ lemma continuous_radialPowerMap
           (fun y : EuclideanSpace ℝ (Fin n) ↦ Real.rpow ‖y‖ ((s : ℝ) - 1)) x := by
       exact (Real.continuousAt_rpow_const ‖x‖ ((s : ℝ) - 1)
         (Or.inl (norm_pos_iff.mpr hx).ne')).comp continuousAt_id.norm
-    simpa [radialPowerMap] using hscalar.smul continuousAt_id
+    simpa [radialPowerMap] using! hscalar.smul continuousAt_id
 
 /-- Helper for Problem 1-6: the positive radial map gives a canonical homeomorphism of the open
 unit ball. -/
@@ -369,7 +369,7 @@ lemma chart_at_point_with_ball_target
   let chi : OpenPartialHomeomorph M (EuclideanSpace ℝ (Fin n)) := er.trans f
   have he_max : e ∈ IsManifold.maximalAtlas (𝓡 n) ∞ M := IsManifold.chart_mem_maximalAtlas x0
   have her_max : er ∈ IsManifold.maximalAtlas (𝓡 n) ∞ M := by
-    simpa [er] using restr_mem_maximalAtlas (contDiffGroupoid ∞ (𝓡 n)) he_max hsopen
+    simpa [er] using! restr_mem_maximalAtlas (contDiffGroupoid ∞ (𝓡 n)) he_max hsopen
   have hx0_source : x0 ∈ e.source := mem_chart_source (EuclideanSpace ℝ (Fin n)) x0
   have hx0_ball : e x0 ∈ Metric.ball y0 r := by
     simpa [y0] using hrpos
@@ -485,11 +485,12 @@ lemma radial_power_unit_ball_openPartialHomeomorph_eqOn
     simpa [i] using hx_target'
   have hi_symm : ((i.symm x : U) : EuclideanSpace ℝ (Fin n)) = x := by
     -- The subtype inclusion chart is the identity after applying its inverse on the target.
-    simpa [i] using (unitBallSubtypeCoe).right_inv hx_target'
+    simpa [i] using! (unitBallSubtypeCoe).right_inv hx_target'
   -- Unfold the conjugation: move into the subtype, apply the explicit radial branch, and return.
   calc
     radial_power_unit_ball_openPartialHomeomorph s x = i (h (i.symm x)) := by
       simp [radial_power_unit_ball_openPartialHomeomorph, i, h, OpenPartialHomeomorph.trans_apply]
+      rfl
     _ = radialPowerMap (s : ℝ) (((i.symm x : U) : EuclideanSpace ℝ (Fin n))) := by
       rfl
     _ = radialPowerMap (s : ℝ) x := by
@@ -512,12 +513,13 @@ lemma radial_power_unit_ball_openPartialHomeomorph_symm_eqOn
     simpa [i] using hx_target'
   have hi_symm : ((i.symm x : U) : EuclideanSpace ℝ (Fin n)) = x := by
     -- The inverse ambient branch starts from the same subtype representative.
-    simpa [i] using (unitBallSubtypeCoe).right_inv hx_target'
+    simpa [i] using! (unitBallSubtypeCoe).right_inv hx_target'
   -- The inverse conjugation uses the inverse exponent on the subtype chart.
   calc
     (radial_power_unit_ball_openPartialHomeomorph s).symm x = i (h.symm (i.symm x)) := by
       simp [radial_power_unit_ball_openPartialHomeomorph, i, h, OpenPartialHomeomorph.trans_apply,
         OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm]
+      rfl
     _ = radialPowerMap ((s : ℝ)⁻¹) (((i.symm x : U) : EuclideanSpace ℝ (Fin n))) := by
       rfl
     _ = radialPowerMap ((s : ℝ)⁻¹) x := by
@@ -1857,10 +1859,10 @@ theorem exists_uncountably_many_distinct_smooth_structures
         -- Atlas equality moves the `u`-center chart into the `v`-transported maximal atlas.
         have hu_mem_family : centerChart u ∈ maximalAtlasFamily v := by
           rw [← huv]
-          simpa [maximalAtlasFamily] using hcenter_mem u
+          simpa [maximalAtlasFamily] using! hcenter_mem u
         simpa [maximalAtlasFamily] using hu_mem_family
       have hv_mem : centerChart v ∈ IsManifold.maximalAtlas (𝓡 n) ∞ M := by
-        simpa [maximalAtlasFamily] using hcenter_mem v
+        simpa [maximalAtlasFamily] using! hcenter_mem v
       have hzero_source :
           (0 : EuclideanSpace ℝ (Fin n)) ∈ ((centerChart u).symm.trans (centerChart v)).source := by
         -- The common center point `x0` shows that the distinguished transition is defined at `0`.

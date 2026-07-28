@@ -27,11 +27,11 @@ private lemma one_zero_cutoff_contDiff {r₁ r₂ : ℝ} (hr : r₁ < r₂) :
     ContDiff ℝ ∞ (one_zero_cutoff r₁ r₂) := by
   -- Compose the smooth building block with the two affine maps in the numerator and denominator.
   have h_left : ContDiff ℝ ∞ (fun t : ℝ ↦ expNegInvGlue (r₂ - t)) := by
-    simpa using expNegInvGlue.contDiff.comp (contDiff_const.sub contDiff_id)
+    simpa using! expNegInvGlue.contDiff.comp (contDiff_const.sub contDiff_id)
   have h_right : ContDiff ℝ ∞ (fun t : ℝ ↦ expNegInvGlue (t - r₁)) := by
-    simpa using expNegInvGlue.contDiff.comp (contDiff_id.sub contDiff_const)
+    simpa using! expNegInvGlue.contDiff.comp (contDiff_id.sub contDiff_const)
   -- Divide by the denominator once the global positivity invariant is available.
-  simpa [one_zero_cutoff] using
+  simpa [one_zero_cutoff] using!
     h_left.div (h_left.add h_right) (fun t ↦ (cutoff_denominator_pos hr t).ne')
 
 /-- Helper for Lemma 2.21: on the left of `r₁`, the normalized cutoff is identically `1`. -/

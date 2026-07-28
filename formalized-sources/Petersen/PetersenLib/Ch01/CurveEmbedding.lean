@@ -53,7 +53,8 @@ theorem curveIsometricEmbedding (c : ℝ → EuclideanSpace ℝ (Fin 2))
     intro u v huv
     rw [hmf t] at huv
     have hu : (@id ℝ u) • deriv c t = (@id ℝ v) • deriv c t := by
-      simpa [ContinuousLinearMap.smulRight_apply] using huv
+      change (@id ℝ u) • deriv c t = (@id ℝ v) • deriv c t at huv
+      exact huv
     have h : (@id ℝ u - @id ℝ v) • deriv c t = 0 := by
       rw [sub_smul, hu, sub_self]
     rcases smul_eq_zero.mp h with h0 | h0
@@ -65,7 +66,7 @@ theorem curveIsometricEmbedding (c : ℝ → EuclideanSpace ℝ (Fin 2))
     show @inner ℝ ℝ _ u v = @inner ℝ (EuclideanSpace ℝ (Fin 2)) _
       (((1 : ℝ →L[ℝ] ℝ).smulRight (deriv c t)) u)
       (((1 : ℝ →L[ℝ] ℝ).smulRight (deriv c t)) v)
-    simp only [ContinuousLinearMap.smulRight_apply, ContinuousLinearMap.one_apply]
+    simp only [ContinuousLinearMap.smulRight_apply, one_apply_eq_self]
     rw [real_inner_smul_left, real_inner_smul_right, real_inner_self_eq_norm_sq,
       hunit t]
     show @id ℝ v * @id ℝ u = @id ℝ u * (@id ℝ v * 1 ^ 2)

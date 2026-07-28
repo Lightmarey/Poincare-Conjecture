@@ -239,8 +239,10 @@ theorem euclidean_slice_projection_continuous (hk : k ≤ n) :
       Continuous fun x : EuclideanSpace ℝ (Fin n) => fun i : Fin k ↦ x (Fin.castLE hk i) :=
     continuous_pi fun i ↦
       PiLp.continuous_apply (p := 2) (β := fun _ : Fin n => ℝ) (Fin.castLE hk i)
-  simpa [euclidean_slice_projection] using
-    (PiLp.continuous_toLp 2 (fun _ : Fin k => ℝ)).comp hcoord
+  change Continuous
+    (WithLp.toLp 2 ∘ fun x : EuclideanSpace ℝ (Fin n) =>
+      fun i : Fin k ↦ x (Fin.castLE hk i))
+  exact (PiLp.continuous_toLp 2 (fun _ : Fin k => ℝ)).comp hcoord
 
 /-- Helper for Theorem 5.8: the projection to the first `k` coordinates is smooth. -/
 theorem euclidean_slice_projection_contMDiff (hk : k ≤ n) :
@@ -252,8 +254,9 @@ theorem euclidean_slice_projection_contMDiff (hk : k ≤ n) :
       (Fin k → ℝ) →L[ℝ] EuclideanSpace ℝ (Fin k) :=
     (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin k => ℝ)).symm.toContinuousLinearMap
   -- The coordinate projection is the composition of continuous linear maps on Euclidean spaces.
-  simpa [euclidean_slice_projection, projPi, toLp] using
-    (toLp.comp projPi).contMDiff
+  change ContMDiff (𝓡 n) (𝓡 k) (⊤ : WithTop ℕ∞)
+    (toLp.comp projPi : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℝ (Fin k))
+  exact (toLp.comp projPi).contMDiff
 
 /-- Helper for Theorem 5.8: reinserting fixed tail coordinates is continuous. -/
 theorem euclidean_slice_inclusion_continuous
@@ -285,8 +288,10 @@ theorem euclidean_slice_inclusion_continuous
         (Fin.leftInverse_cast (Nat.add_sub_of_le hk)) (j'.natAdd k)
       simpa [Function.comp, hcast] using
         (continuous_const : Continuous fun _ : EuclideanSpace ℝ (Fin k) => c j')
-  simpa [euclidean_slice_inclusion] using
-    (PiLp.continuous_toLp 2 (fun _ : Fin n => ℝ)).comp hcoord
+  change Continuous
+    (WithLp.toLp 2 ∘ fun x : EuclideanSpace ℝ (Fin k) =>
+      fun i : Fin n ↦ ((Fin.append x c) ∘ Fin.cast (Nat.add_sub_of_le hk).symm) i)
+  exact (PiLp.continuous_toLp 2 (fun _ : Fin n => ℝ)).comp hcoord
 
 /-- Helper for Theorem 5.8: reinserting fixed tail coordinates is smooth. -/
 theorem euclidean_slice_inclusion_contMDiff
@@ -431,17 +436,14 @@ theorem euclidean_slice_product_equiv_apply_zero
     simp only [euclidean_slice_product_equiv, euclidean_slice_inclusion,
       ContinuousLinearEquiv.trans_apply, Function.comp_apply]
     simp [Equiv.piCongrLeft']
-    rw [equiv_cast_symm_castAdd_eq_castAdd, finSumFinEquiv_symm_apply_castAdd,
-      euclidean_slice_product_equiv_source_pair_fst]
-    exact hk
+    rw [equiv_cast_symm_castAdd_eq_castAdd hk j', finSumFinEquiv_symm_apply_castAdd]
   · intro j'
     -- On the tail coordinates, the same reduction lands in the zero right source component.
     simp only [euclidean_slice_product_equiv, euclidean_slice_inclusion,
       ContinuousLinearEquiv.trans_apply, Function.comp_apply]
     simp [Equiv.piCongrLeft']
-    rw [equiv_cast_symm_natAdd_eq_natAdd, finSumFinEquiv_symm_apply_natAdd,
-      euclidean_slice_product_equiv_source_pair_snd]
-    exact hk
+    rw [equiv_cast_symm_natAdd_eq_natAdd hk j', finSumFinEquiv_symm_apply_natAdd]
+    rfl
 
 /-- Helper for Theorem 5.8: subtracting the base point of an affine Euclidean slice removes the
 fixed tail constants and leaves only the zero-tail inclusion. -/
@@ -488,16 +490,10 @@ theorem rank_normal_form_self_eq_euclidean_slice_inclusion_zero
   rcases (Fin.rightInverse_cast (Nat.add_sub_of_le hk)).surjective i with ⟨j, rfl⟩
   refine Fin.addCases ?_ ?_ j
   · intro j'
-    rw [cast_first_coordinates]
-    have hfirst :
-        LocalNormalFormAPI.rank_normal_form k n k x
-            (Fin.cast (Nat.add_sub_of_le hk) (Fin.castAdd (n - k) j')) =
-          x j' := by
-      exact LocalNormalFormAPI.rank_normal_form_apply_of_lt
-        (i := Fin.cast (Nat.add_sub_of_le hk) (Fin.castAdd (n - k) j')) (x := x)
-        (by simpa) (by simpa)
-    simpa using hfirst.trans
-      (euclidean_slice_inclusion_first hk (fun _ : Fin (n - k) ↦ (0 : ℝ)) x j').symm
+    rw [cast_first_coordinates hk j']
+    rw [euclidean_slice_inclusion_first hk
+      (fun _ : Fin (n - k) ↦ (0 : ℝ)) x j']
+    simp [_root_.rank_normal_form, LocalNormalFormAPI.rank_normal_form, j'.isLt]
   · intro j'
     have hgeTail : k ≤ (euclidean_slice_tail_coordinate hk j').1 := by
       simpa [euclidean_slice_tail_coordinate] using (Nat.le_add_left k j'.1)

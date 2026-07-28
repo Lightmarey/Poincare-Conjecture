@@ -273,6 +273,8 @@ hypotheses on $f$; see \cite{GilbargTrudinger1983}.
 
 \begin{theorem}[Mean-value formulas for Laplace's equation]
 \label{thm:mean-value-formulas-laplace}
+\lean{EvansLib.unitSphereRadialIntegralAt_eq_volume_mul_of_harmonicOnNhd, EvansLib.HarmonicOnNhd.hasBallMeanValueProperty}
+\leanok
 \dcref{ch2:2.2-thm-2}
 \group{Harmonic Functions}
 \uses{def:harmonic-function}
@@ -282,6 +284,7 @@ u(x)=\fint_{\partial B(x,r)}u\,dS
 =\fint_{B(x,r)}u\,dy.$$
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch Let $\phi(r)=\fint_{\partial B(x,r)}u\,dS$. Differentiation and the
 divergence theorem give
 $$\phi'(r)=\frac{r}{n}\fint_{B(x,r)}\Delta u\,dy=0.$$
@@ -291,6 +294,8 @@ identity in polar coordinates yields the ball identity.
 
 \begin{theorem}[Converse to mean-value property]
 \label{thm:converse-mean-value-property-laplace}
+\lean{EvansLib.harmonicOnNhd_of_unitSphereRadialIntegralAt_eq_zero}
+\leanok
 \dcref{ch2:2.2-thm-3}
 \group{Harmonic Functions}
 \uses{def:harmonic-function}
@@ -299,6 +304,7 @@ $$u(x)=\fint_{\partial B(x,r)}u\,dS$$
 for every $B(x,r)\subset U$, then $u$ is harmonic.
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch The preceding differentiation formula makes every spherical average
 constant in $r$. If $\Delta u(x_0)\ne0$, after replacing $u$ by $-u$ if needed,
 $\Delta u>0$ on a small ball about $x_0$, contradicting
@@ -451,6 +457,8 @@ infimum over $y$ forces $v(x)=0$.
 
 \begin{theorem}[Strong maximum principle]
 \label{thm:strong-maximum-principle-laplace}
+\lean{EvansLib.harmonic_exists_frontier_isMaxOn, EvansLib.harmonic_eqOn_of_isPreconnected_of_isMaxOn}
+\leanok
 \dcref{ch2:2.2-thm-4}
 \group{Maximum Principles}
 \uses{thm:mean-value-formulas-laplace}
@@ -463,6 +471,7 @@ $u\in C^2(U)\cap C(\overline U)$ be harmonic.
 then $u$ is constant on $U$.
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch At an interior maximizer $x_0$, the mean-value formula forces
 $u\equiv u(x_0)$ on every ball centered at $x_0$ and compactly contained in
 $U$. The set of maximizers is therefore open and closed in $U$, proving (ii);
@@ -471,6 +480,8 @@ $U$. The set of maximizers is therefore open and closed in $U$, proving (ii);
 
 \begin{remark}[Strict positivity from boundary data]
 \label{rem:strong-maximum-principle-positivity}
+\lean{EvansLib.harmonic_pos_of_nonneg_on_frontier}
+\leanok
 \dcref{ch2:2.2.3-rem-2}
 \group{Maximum Principles}
 \uses{thm:strong-maximum-principle-laplace}
@@ -481,6 +492,8 @@ $U$.
 
 \begin{theorem}[Uniqueness]
 \label{thm:uniqueness-poisson-dirichlet}
+\lean{EvansLib.eqOn_closure_of_eqOn_frontier_of_laplacian_eq}
+\leanok
 \dcref{ch2:2.2-thm-5}
 \group{Maximum Principles}
 \uses{thm:strong-maximum-principle-laplace}
@@ -493,6 +506,7 @@ u=g&\text{on }\partial U.
 \end{cases}$$
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch The difference of two solutions is harmonic and vanishes on
 $\partial U$. Apply the maximum principle to the difference and its negative.
 \end{proof}
@@ -559,12 +573,15 @@ $C_k=(2^{n+1}nk)^k/\alpha(n)$.
 
 \begin{theorem}[Liouville's Theorem]
 \label{thm:liouville-theorem-harmonic}
+\lean{EvansLib.harmonic_liouville_of_isBounded}
+\leanok
 \dcref{ch2:2.2-thm-8}
 \group{Harmonic Functions}
 \uses{thm:harmonic-function-derivative-estimates, thm:liouville-mvp}
 Every bounded harmonic function $u:\R^n\to\R$ is constant.
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch For any $x_0$ and $r>0$, the derivative estimate gives
 $$|Du(x_0)|\le\frac{C_1\alpha(n)}r\|u\|_{L^\infty(\R^n)}.$$
 Letting $r\to\infty$ gives $Du=0$.
@@ -623,6 +640,8 @@ $x_0$.
 
 \begin{theorem}[Harnack's inequality]
 \label{thm:harnacks-inequality}
+\lean{EvansLib.exists_harnack_const_harmonic}
+\leanok
 \dcref{ch2:2.2-thm-11}
 \group{Harmonic Functions}
 \uses{thm:mean-value-formulas-laplace, thm:harnack-global-mvp}
@@ -632,6 +651,7 @@ $$\sup_Vu\le C\inf_Vu$$
 for every nonnegative harmonic function $u$ in $U$.
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch With $r=\dist(V,\partial U)/4$, the mean-value formula and
 $B(y,r)\subset B(x,2r)$ show that $2^{-n}u(y)\le u(x)\le2^n u(y)$ whenever
 $x,y\in V$ and $|x-y|\le r$. A finite chain of overlapping balls covering the
@@ -826,11 +846,14 @@ u=g&\text{on }\partial U.
 
 \begin{theorem}[Uniqueness]
 \label{thm:uniqueness-poisson-energy-method}
+\lean{EvansLib.eqOn_closure_of_eqOn_frontier_of_laplacian_eq}
+\leanok
 \dcref{ch2:2.2-thm-16}
 \group{Energy Methods}
 There is at most one $u\in C^2(\overline U)$ satisfying (46).
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch The difference $w$ of two solutions is harmonic and vanishes on the
 boundary. Integration by parts gives
 $$0=-\int_Uw\Delta w\,dx=\int_U|Dw|^2\,dx,$$
@@ -1451,6 +1474,8 @@ $t\mapsto u(x,t)$ need not be analytic \cite{Mikhailov1978}.
 
 \begin{theorem}[Uniqueness, energy method]
 \label{thm:uniqueness-heat-energy-method}
+\lean{EvansLib.eqOn_closure_of_eqOn_parabolicBoundary_anisotropic}
+\leanok
 \dcref{ch2:2.3-thm-10}
 \group{Energy Methods}
 For $g\in C(\Gamma_T)$ and $f\in C(U_T)$, there is at most one
@@ -1460,6 +1485,7 @@ $$u_t-\Delta u=f\ \text{in }U_T,
 u=g\ \text{on }\Gamma_T.$$
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch For the difference $w$ of two solutions, define
 $e(t)=\int_Uw(x,t)^2\,dx$. Since $w=0$ on the parabolic boundary,
 $$e'(t)=2\int_Uw\Delta w\,dx=-2\int_U|Dw|^2\,dx\le0.$$
@@ -1672,6 +1698,8 @@ u(x,t)=\frac12\fint_{B(x,t)}
 
 \begin{lemma}[Some useful identities]
 \label{lem:wave-equation-useful-identities}
+\lean{EvansLib.waveRadial_second_deriv,EvansLib.waveRadial_expansion, EvansLib.evansRadialCoeff_zero_eq_doubleFactorial, EvansLib.waveRadial_transform_of_epd}
+\leanok
 \dcref{ch2:2.4-lem-2}
 \group{Wave Equation}
 Let $\phi\in C^{k+1}(\R)$ and $k\ge1$. Then
@@ -1727,6 +1755,8 @@ u(x,t)=\frac1{\gamma_n}\left[
 
 \begin{theorem}[Solution of wave equation in odd dimensions]
 \label{thm:wave-equation-odd-dimensions-solution}
+\lean{EvansLib.oddWaveSolution_isSolutionOfIVP_of_order}
+\leanok
 \dcref{ch2:2.4-thm-2}
 \group{Wave Equation}
 \uses{lem:transformed-spherical-mean-wave-equation}
@@ -1739,6 +1769,7 @@ u_t(x,t)\to h(x^0)$$
 as $(x,t)\to(x^0,0)$ with $t>0$.
 \end{theorem}
 \begin{proof}
+\leanok
 \sketch By linearity treat the displacement and velocity data separately.
 For $g=0$, differentiate (31) and use
 $$\partial_tH(x;t)=\frac t n\fint_{B(x,t)}\Delta h\,dy,

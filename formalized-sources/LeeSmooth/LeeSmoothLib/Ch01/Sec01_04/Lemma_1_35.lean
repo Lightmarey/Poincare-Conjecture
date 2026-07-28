@@ -70,7 +70,8 @@ theorem toTopologicalSpace_secondCountableTopology
   have hU_open : ∀ e : s, IsOpen (U e) := fun e ↦ c.open_source' (hs_subset e.2)
   haveI : ∀ e : s, SecondCountableTopology (U e) := fun e ↦ by
     -- Each chart domain is homeomorphic to an open subset of the second-countable model space.
-    simpa [U] using (c.openPartialHomeomorph e.1 (hs_subset e.2)).secondCountableTopology_source
+    change SecondCountableTopology (c.openPartialHomeomorph e.1 (hs_subset e.2)).source
+    exact (c.openPartialHomeomorph e.1 (hs_subset e.2)).secondCountableTopology_source
   have hU_cover : ⋃ e : s, U e = Set.univ := by
     -- Reindex the given countable subatlas cover by the subtype of atlas elements in `s`.
     simpa [U, Set.iUnion_subtype] using hs_cover
@@ -107,7 +108,9 @@ theorem toChartedSpace_isManifold
   rcases he'f' with ⟨hg', rfl⟩
   -- After unpacking atlas membership, the required transition map is the original `PartialEquiv`
   -- transition, so the hypothesis applies verbatim.
-  simpa using hsmooth g g' hg hg'
+  change ContDiffOn 𝕜 ∞ (I ∘ g.symm.trans g' ∘ I.symm)
+    (I.symm ⁻¹' (g.symm.trans g').source ∩ Set.range I)
+  exact hsmooth g g' hg hg'
 
 /-- Lemma 1.35 (1): a topology that turns the chart family of `c` into the expected charted-space
 structure is forced to coincide with `c.toTopologicalSpace`. -/
@@ -141,10 +144,16 @@ theorem eq_toTopologicalSpace_of_chartedSpace
     have hc_chartAt_coe :
         ∀ x : M,
           (_root_.chartAt H x : M → H) = c.chartAt x := fun x ↦ rfl
+    have hc_chartAt_eta :
+        ∀ x : M, (fun a : M ↦ c.chartAt x a) = (c.chartAt x : M → H) := fun x ↦ by
+      funext a
+      rfl
+    have hc_chartAt_source :
+        ∀ x : M, (_root_.chartAt H x).source = (c.chartAt x).source := fun x ↦ rfl
     have hc :
         @IsOpen M c.toTopologicalSpace s ↔
       ∀ x : M, IsOpen ((c.chartAt x) '' ((c.chartAt x).source ∩ s)) := by
-      simpa [hc_chartAt_coe] using
+      simpa only [hc_chartAt_coe, hc_chartAt_eta, hc_chartAt_source] using
         ChartedSpace.isOpen_iff H s
     exact hc.2 (ht.1 hs)
   · intro hs

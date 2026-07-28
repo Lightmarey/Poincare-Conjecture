@@ -40,7 +40,7 @@ lemma modelCoordinateVectorField_isLocalFrameOn
         have hbasis :
             LinearIndependent ℝ (fun i : Fin n ↦ (EuclideanSpace.basisFun (Fin n) ℝ) i) :=
           (EuclideanSpace.basisFun (Fin n) ℝ).toBasis.linearIndependent
-        simpa only [model_coordinate_vector_field] using
+        simpa only [model_coordinate_vector_field] using!
           LinearIndependent.map' hbasis φy.symm.toLinearMap
             (LinearMap.ker_eq_bot.mpr φy.symm.injective)
       generating := by
@@ -54,7 +54,7 @@ lemma modelCoordinateVectorField_isLocalFrameOn
           (EuclideanSpace.basisFun (Fin n) ℝ).toBasis.linearIndependent
         have hlin :
             LinearIndependent ℝ (fun i : Fin n ↦ model_coordinate_vector_field U i y) := by
-          simpa only [model_coordinate_vector_field] using
+          simpa only [model_coordinate_vector_field] using!
             LinearIndependent.map' hbasis φy.symm.toLinearMap
               (LinearMap.ker_eq_bot.mpr φy.symm.injective)
         letI : FiniteDimensional ℝ (TangentSpace (𝓡 n) y) := by
@@ -140,11 +140,11 @@ theorem example_8_10_chart_coordinate_frame
           have hvalue :
               φx (smooth_chart_coordinate_vector_field e he i x) =
                 model_coordinate_vector_field U i (Φ x) := by
-            simpa [U, Φ, hφx] using
+            simpa [U, Φ, hφx] using!
               smoothChartCoordinateVectorField_mfderiv_eq_model (e := e) (he := he) i x
           apply φx.injective
           simpa using hvalue
-        simpa [hpull] using
+        simpa [hpull] using!
           LinearIndependent.map' hlinModel φx.symm.toLinearMap
             (LinearMap.ker_eq_bot.mpr φx.symm.injective)
       generating := by
@@ -166,14 +166,14 @@ theorem example_8_10_chart_coordinate_frame
           have hvalue :
               φx (smooth_chart_coordinate_vector_field e he i x) =
                 model_coordinate_vector_field U i (Φ x) := by
-            simpa [U, Φ, hφx] using
+            simpa [U, Φ, hφx] using!
               smoothChartCoordinateVectorField_mfderiv_eq_model (e := e) (he := he) i x
           apply φx.injective
           simpa using hvalue
         have hlin :
             LinearIndependent ℝ
               (fun i : Fin n ↦ smooth_chart_coordinate_vector_field e he i x) := by
-          simpa [hpull] using
+          simpa [hpull] using!
             LinearIndependent.map' hlinModel φx.symm.toLinearMap
               (LinearMap.ker_eq_bot.mpr φx.symm.injective)
         letI : FiniteDimensional ℝ (TangentSpace (𝓡 n) x) := by
@@ -305,7 +305,7 @@ lemma torusAngleCoordinateVectorField_linearlyIndependentAt (p : 𝕋^{n}) :
     have hstd :
         LinearIndependent ℝ (fun i : Fin n ↦ (EuclideanSpace.basisFun (Fin n) ℝ) i) :=
       (EuclideanSpace.basisFun (Fin n) ℝ).toBasis.linearIndependent
-    simpa only using
+    simpa only using!
       LinearIndependent.map' hstd
         (NormedSpace.fromTangentSpace
           (𝕜 := ℝ) (E := EuclideanSpace ℝ (Fin n)) x).symm.toLinearMap
@@ -338,7 +338,7 @@ lemma torusAngleCoordinateVectorField_linearlyIndependentAt (p : 𝕋^{n}) :
             ((EuclideanSpace.basisFun (Fin n) ℝ) i)) := by
           rw [← hφx]
           rfl
-  simpa [hcover] using
+  simpa [hcover] using!
     LinearIndependent.map' hbasis φx.toLinearMap
       (LinearMap.ker_eq_bot.mpr φx.injective)
 

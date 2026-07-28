@@ -18,11 +18,12 @@ From the `v`-side we then get that every superlevel set `{v | ofReal t ≤ c(v)}
 
   `measurable_cutTime` : `Measurable (cutTime g hg p)`.
 
-**Why this matters.** `c` is famously only *upper* semicontinuous in general — lower semicontinuity
-(equivalently: openness of the segment domain `U_p`) is the hard half, and needs the Klingenberg
-dichotomy. Measurability is all the volume theory ever uses, and it is cheap: it follows from
-upper semicontinuity alone. This is what lets `Ch01/CutLocusNull.lean` prove `μ_g(C_p) = 0` without
-first proving `U_p` open.
+**Why this matters.** This file isolates the upper-semicontinuity/measurability half of the
+cut-time analysis. Lower semicontinuity (equivalently: openness of the segment domain `U_p`) is
+the hard geometric half and is proved later in `CutLocusAgreement.lean`; once that result is
+available, `CutTimeContinuous.lean` combines the two halves into continuity. Measurability remains
+available here without depending on the openness argument, which is what lets `Ch01/CutLocusNull.lean`
+use the cut-time package independently.
 
 `cutTime_smul_eq_one` records the rescaling fact in the exact form the cut-vector set needs:
 if `u` is a `g`-unit vector with finite cut time `c`, then `c·u` has cut time exactly `1`.

@@ -12,8 +12,8 @@ local notation "Plane" => ℝ × ℝ
 the ambient continuous map composed with the interval inclusion. -/
 theorem figureEightCurve_continuous : Continuous figureEightCurve := by
   -- Rewrite `figureEightCurve` as the ambient map restricted to the open interval `(-π, π)`.
-  simpa [figureEightCurve] using
-    figureEightCurveMap_contDiff.continuous.comp continuous_subtype_val
+  change Continuous (figureEightCurveMap ∘ Subtype.val)
+  exact figureEightCurveMap_contDiff.continuous.comp continuous_subtype_val
 
 /-- Helper for Problem 5-4: a continuous injective map from a linear order without endpoints into
 `ℝ` is an open embedding. -/
@@ -102,7 +102,8 @@ lemma continuous_injective_interval_to_curve_manifold_isLocalHomeomorph
   set g : Set.Ioo u v → M := (Set.Ioo u v).restrict f
   have hg_cont : Continuous g := by
     -- Restrict the original continuous map to the smaller interval.
-    simpa [g] using hf_cont.comp continuous_subtype_val
+    change Continuous (f ∘ Subtype.val)
+    exact hf_cont.comp continuous_subtype_val
   have hg_inj : Function.Injective g := by
     -- Injectivity is preserved under restriction to a subtype of the domain.
     exact hf_inj.comp Subtype.val_injective
@@ -113,7 +114,8 @@ lemma continuous_injective_interval_to_curve_manifold_isLocalHomeomorph
   set gChart : Set.Ioo u v → e.source := Set.codRestrict g e.source hg_source
   have hgChart_cont : Continuous gChart := by
     -- Codomain restriction to the chart source is continuous because the image already lands there.
-    simpa [gChart] using hg_cont.subtype_mk hg_source
+    change Continuous (Set.codRestrict g e.source hg_source)
+    exact hg_cont.subtype_mk hg_source
   have hgChart_inj : Function.Injective gChart := by
     -- Codomain restriction does not change injectivity.
     intro y₁ y₂ h
@@ -130,8 +132,8 @@ lemma continuous_injective_interval_to_curve_manifold_isLocalHomeomorph
     exact IsLocalHomeomorph.isOpenEmbedding_of_comp
       e.isOpenEmbedding_restrict.isLocalHomeomorph hcoord_emb hgChart_cont
   -- Compose with the open inclusion of the chart source to recover the original restricted map.
-  simpa [g, gChart, Function.comp] using
-    e.open_source.isOpenEmbedding_subtypeVal.comp hgChart_emb
+  change IsOpenEmbedding (Subtype.val ∘ gChart)
+  exact e.open_source.isOpenEmbedding_subtypeVal.comp hgChart_emb
 
 lemma continuous_injective_interval_to_curve_manifold_isEmbedding
     {a b : ℝ} (hab : a < b)
@@ -156,7 +158,7 @@ theorem figureEightCurve_image_not_embedded_curve :
   have hLiftedContinuous : Continuous liftedCurve := by
     -- The embedded-submanifold structure equips the subtype with the induced subspace topology.
     refine hEmbedded.isSmoothEmbedding_subtype_val.isEmbedding.isInducing.continuous_iff.2 ?_
-    simpa [liftedCurve, Function.comp] using figureEightCurve_continuous
+    exact figureEightCurve_continuous
   have hLiftedInj : Function.Injective liftedCurve := by
     -- Injectivity is unchanged by codomain restriction to the range.
     exact figureEightCurve_injective.codRestrict (fun t ↦ Set.mem_range_self t)
@@ -167,6 +169,6 @@ theorem figureEightCurve_image_not_embedded_curve :
       (by linarith [Real.pi_pos]) hLiftedContinuous hLiftedInj
   have hFigureEightEmbedding : IsEmbedding figureEightCurve := by
     -- Composing the lifted embedding with the subtype inclusion recovers `figureEightCurve`.
-    simpa [liftedCurve, Function.comp] using
-      hEmbedded.isSmoothEmbedding_subtype_val.isEmbedding.comp hLiftedEmbedding
+    change IsEmbedding (Subtype.val ∘ liftedCurve)
+    exact hEmbedded.isSmoothEmbedding_subtype_val.isEmbedding.comp hLiftedEmbedding
   exact figureEightCurve_not_isEmbedding hFigureEightEmbedding

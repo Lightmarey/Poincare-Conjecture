@@ -52,7 +52,7 @@ locality lemma stays in Ch02 without importing Ch03. -/
 private theorem cov_zeroField (D : AffineConnection I M) (p : M) (v : TangentSpace I p) :
     D.cov p v (fun q : M => (0 : TangentSpace I q)) = 0 := by
   have h0 : IsSmoothVectorField (fun q : M => (0 : TangentSpace I q)) := by
-    simpa using (0 : SmoothVectorField I M).smooth
+    simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I M).smooth
   have h := D.add_field p v h0 h0
   have e : (fun q : M => (0 : TangentSpace I q) + 0)
       = fun q : M => (0 : TangentSpace I q) := by funext q; simp
@@ -69,10 +69,10 @@ private theorem isSmoothVF_finsetSum {ι : Type*} (s : Finset ι)
     IsSmoothVectorField (fun q => ∑ i ∈ s, F i q) := by
   classical
   induction s using Finset.induction_on with
-  | empty => simpa using (0 : SmoothVectorField I M).smooth
+  | empty => simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I M).smooth
   | insert a s ha ih =>
       have h : IsSmoothVectorField (fun q => F a q + ∑ i ∈ s, F i q) := by
-        simpa using ((⟨F a, hF a⟩ : SmoothVectorField I M)
+        simpa [IsSmoothVectorField] using! ((⟨F a, hF a⟩ : SmoothVectorField I M)
           + ⟨fun q => ∑ i ∈ s, F i q, ih⟩).smooth
       have e : (fun q => ∑ i ∈ insert a s, F i q)
           = fun q => F a q + ∑ i ∈ s, F i q := by
@@ -94,7 +94,8 @@ private theorem cov_finsetSumSmul (D : AffineConnection I M)
       rw [e, cov_zeroField]; simp
   | insert a s ha ih =>
       have hterm : ∀ m, IsSmoothVectorField (fun q => f m q • V m q) := fun m => by
-        simpa using (SmoothVectorField.smul (f m) (hf m) ⟨V m, hV m⟩).smooth
+        simpa [IsSmoothVectorField] using!
+          (SmoothVectorField.smul (f m) (hf m) ⟨V m, hV m⟩).smooth
       have hsum : IsSmoothVectorField (fun q => ∑ m ∈ s, f m q • V m q) :=
         isSmoothVF_finsetSum s _ hterm
       have e : (fun q => ∑ m ∈ insert a s, f m q • V m q)
@@ -187,7 +188,7 @@ private theorem cov_eq_frameExpansion (D : AffineConnection I M) (p : M)
     exists_contMDiff_eventuallyEq (I := I) hbaseopen
       (chartVectorFieldCoeff_contMDiffOn p hW i) hbase
   have hterm : ∀ i, IsSmoothVectorField (fun q => γ i q • ⇑(frameField (I := I) p i) q) :=
-    fun i => by simpa using
+    fun i => by simpa [IsSmoothVectorField] using!
       (SmoothVectorField.smul (γ i) (hγsmooth i) (frameField (I := I) p i)).smooth
   have hWsum : IsSmoothVectorField (fun q => ∑ i, γ i q • ⇑(frameField (I := I) p i) q) :=
     isSmoothVF_finsetSum Finset.univ _ hterm

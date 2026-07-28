@@ -122,7 +122,6 @@ theorem oneFormLaplacianAt_eq_sum_frame (g : RiemannianMetric I M)
       (fun v w => g.metricInner p
         ((secondCov nabla (extendVector p v) (extendVector p w) X) p) z)
       (fun v₁ v₂ w => by
-        dsimp only
         have h : (secondCov nabla (extendVector p (v₁ + v₂))
               (extendVector p w) X) p
             = (secondCov nabla (extendVector p v₁ + extendVector p v₂)
@@ -133,7 +132,6 @@ theorem oneFormLaplacianAt_eq_sum_frame (g : RiemannianMetric I M)
         rw [h, secondCov_add_left, SmoothVectorField.add_apply,
           g.metricInner_add_left])
       (fun c v w => by
-        dsimp only
         have h : (secondCov nabla (extendVector p (c • v))
               (extendVector p w) X) p
             = (secondCov nabla (SmoothVectorField.smul (fun _ => c)
@@ -145,7 +143,6 @@ theorem oneFormLaplacianAt_eq_sum_frame (g : RiemannianMetric I M)
           g.metricInner_smul_left]
         rfl)
       (fun v w₁ w₂ => by
-        dsimp only
         have h := metricInner_secondCov_middle_congr g nabla
           (extendVector p v) X
           (Y := extendVector p (w₁ + w₂))
@@ -155,7 +152,6 @@ theorem oneFormLaplacianAt_eq_sum_frame (g : RiemannianMetric I M)
         rw [h, secondCov_add_middle, SmoothVectorField.add_apply,
           g.metricInner_add_left])
       (fun c v w => by
-        dsimp only
         have h := metricInner_secondCov_middle_congr g nabla
           (extendVector p v) X
           (Y := extendVector p (c • w))

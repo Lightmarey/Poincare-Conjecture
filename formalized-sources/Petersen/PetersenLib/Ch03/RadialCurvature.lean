@@ -449,9 +449,9 @@ theorem radialCurvatureEquation {g : RiemannianMetric I M}
     have hsq_smooth : ContMDiff I 𝓘(ℝ) ∞
         (fun q => (1 / 2 : ℝ)
           * g.metricInner q (gradient g f q) (gradient g f q)) := by
-      simpa [smul_eq_mul] using
-        (contMDiff_const (I := I) (I' := 𝓘(ℝ, ℝ)) (c := (1 / 2 : ℝ))).smul
-          (contMDiff_metricInner_gradient_self hgradf)
+      convert (contMDiff_const (I := I) (I' := 𝓘(ℝ, ℝ)) (c := (1 / 2 : ℝ))).smul
+          (contMDiff_metricInner_gradient_self hgradf) using 1 <;>
+        ext q <;> simp [smul_eq_mul]
     -- `Hess(½|∇f|²)(X,Y) = g(∇_X(S(∇f)), Y)`
     have hthird : hessianLieDerivative g
           (fun q => (1 / 2 : ℝ)
@@ -485,9 +485,9 @@ theorem radialCurvatureEquation {g : RiemannianMetric I M}
     have hsq_smooth : ContMDiff I 𝓘(ℝ) ∞
         (fun q => (1 / 2 : ℝ)
           * g.metricInner q (gradient g f q) (gradient g f q)) := by
-      simpa [smul_eq_mul] using
-        (contMDiff_const (I := I) (I' := 𝓘(ℝ, ℝ)) (c := (1 / 2 : ℝ))).smul
-          (contMDiff_metricInner_gradient_self hgradf)
+      convert (contMDiff_const (I := I) (I' := 𝓘(ℝ, ℝ)) (c := (1 / 2 : ℝ))).smul
+          (contMDiff_metricInner_gradient_self hgradf) using 1 <;>
+        ext q <;> simp [smul_eq_mul]
     have hthird : hessianLieDerivative g
           (fun q => (1 / 2 : ℝ)
             * g.metricInner q (gradient g f q) (gradient g f q)) ![X, Y] p
@@ -718,7 +718,7 @@ theorem radialEquation_distanceFunction {g : RiemannianMetric I M}
       (D.toAffineConnection.covField (gradient g r) (gradient g r)) :=
     D.smooth_cov hgradr hgradr
   have hzero : IsSmoothVectorField (fun q : M => (0 : TangentSpace I q)) := by
-    simpa using (0 : SmoothVectorField I M).smooth
+    simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I M).smooth
   have hvanish : D.cov p (X p)
       (D.toAffineConnection.covField (gradient g r) (gradient g r)) = 0 := by
     have hEqOn : Set.EqOn
@@ -769,9 +769,9 @@ theorem distanceFunction_curvatureEquations {g : RiemannianMetric I M}
   have hsq_smooth : ContMDiff I 𝓘(ℝ) ∞
       (fun q => (1 / 2 : ℝ)
         * g.metricInner q (gradient g r q) (gradient g r q)) := by
-    simpa [smul_eq_mul] using
-      (contMDiff_const (I := I) (I' := 𝓘(ℝ, ℝ)) (c := (1 / 2 : ℝ))).smul
-        (contMDiff_metricInner_gradient_self hgradr)
+    convert (contMDiff_const (I := I) (I' := 𝓘(ℝ, ℝ)) (c := (1 / 2 : ℝ))).smul
+        (contMDiff_metricInner_gradient_self hgradr) using 1 <;>
+      ext q <;> simp [smul_eq_mul]
   have hthird : hessianLieDerivative g
         (fun q => (1 / 2 : ℝ)
           * g.metricInner q (gradient g r q) (gradient g r q)) ![X, Y] p
@@ -782,7 +782,7 @@ theorem distanceFunction_curvatureEquations {g : RiemannianMetric I M}
         (D.toAffineConnection.covField (gradient g r) (gradient g r)) :=
       D.smooth_cov hgradr hgradr
     have hzero : IsSmoothVectorField (fun q : M => (0 : TangentSpace I q)) := by
-      simpa using (0 : SmoothVectorField I M).smooth
+      simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I M).smooth
     have hEqOn : Set.EqOn
         (D.toAffineConnection.covField (gradient g r) (gradient g r))
         (fun q : M => (0 : TangentSpace I q)) U := fun q hq => hgeo q hq

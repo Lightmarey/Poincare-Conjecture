@@ -270,6 +270,10 @@ theorem continuousOn_velocitySeeded_curvature
         (DCVelocity (I := I) γ t) (e t) (DCVelocity (I := I) γ t) (e t))
       (Set.Icc a b) := continuousOn_const.mul hvcont
   refine hscaled.congr fun t ht => ?_
+  change g.leviCivitaConnection.curvatureFormAt g (γ t)
+      (e₀ t : TangentSpace I (γ t)) (e t) (e₀ t) (e t) =
+    (ℓ ^ 2)⁻¹ * g.leviCivitaConnection.curvatureFormAt g (γ t)
+      (DCVelocity (I := I) γ t) (e t) (DCVelocity (I := I) γ t) (e t)
   rw [hvel t ht, curvatureFormAt_smul_fst_trd]
   field_simp
 
@@ -436,7 +440,8 @@ theorem sum_indexForm_smul_frame_neg (g : RiemannianMetric I M) (γ : ℝ → M)
     funext t
     have h : HasDerivAt (fun t : ℝ => Real.sin (Real.pi * t))
         (Real.cos (Real.pi * t) * Real.pi) t := by
-      simpa using (Real.hasDerivAt_sin (Real.pi * t)).comp t ((hasDerivAt_id t).const_mul Real.pi)
+      simpa only [Function.comp_def, mul_one] using
+        (Real.hasDerivAt_sin (Real.pi * t)).comp t ((hasDerivAt_id t).const_mul Real.pi)
     rw [h.deriv]; ring
   -- step 1: rewrite each index form via the frame formula, with `deriv (sin π·) = π cos π·`
   have step1 : ∀ j ∈ Finset.univ.erase n₀,
@@ -604,9 +609,9 @@ theorem exists_contMDiffOn_infty_bonnetMyersSineVariation_strip [CompleteSpace M
     ∃ δ : ℝ, 0 < δ ∧ ∃ J : Set ℝ, IsOpen J ∧ Set.Icc (0 : ℝ) 1 ⊆ J ∧
       ContMDiffOn 𝓘(ℝ, ℝ × ℝ) I ∞
         (bonnetMyersSineVariation (I := I) g hg γ e) (Set.Ioo (-δ) δ ×ˢ J) := by
-  simpa only [bonnetMyersSineVariation] using
-    Riemannian.Exponential.exists_contMDiffOn_infty_expMapGlobal_sine_parallel_strip
-      (I := I) g hg hgeo hγc he hsegment
+  unfold bonnetMyersSineVariation
+  exact Riemannian.Exponential.exists_contMDiffOn_infty_expMapGlobal_sine_parallel_strip
+    (I := I) g hg hgeo hγc he hsegment
 
 /-- **Math.** The concrete Bonnet--Myers variation is `C³` on one open
 product neighbourhood of its full zero slice over `[0,1]`.  The time
@@ -621,9 +626,9 @@ theorem exists_contMDiffOn_three_bonnetMyersSineVariation_strip [CompleteSpace M
     ∃ δ : ℝ, 0 < δ ∧ ∃ J : Set ℝ, IsOpen J ∧ Set.Icc (0 : ℝ) 1 ⊆ J ∧
       ContMDiffOn 𝓘(ℝ, ℝ × ℝ) I 3
         (bonnetMyersSineVariation (I := I) g hg γ e) (Set.Ioo (-δ) δ ×ˢ J) := by
-  simpa only [bonnetMyersSineVariation] using
-    Riemannian.Exponential.exists_contMDiffOn_three_expMapGlobal_sine_parallel_strip
-      (I := I) g hg hgeo hγc he hsegment
+  unfold bonnetMyersSineVariation
+  exact Riemannian.Exponential.exists_contMDiffOn_three_expMapGlobal_sine_parallel_strip
+    (I := I) g hg hgeo hγc he hsegment
 
 /-- **Math.** The energy of the concrete Bonnet--Myers sine variation has a local minimum
 at its zero slice whenever the base geodesic realizes the distance between its endpoints.
@@ -655,6 +660,21 @@ theorem isLocalMin_dcEnergy_bonnetMyersSineVariation [CompleteSpace M]
 
 /-! ### Bonnet--Myers assembly -/
 
+/-- **Math.** The sectional-curvature lower bound used in do Carmo Ch. 9, Cor. 3.3.
+
+For a `g`-orthonormal pair `v, w`, the curvature-form numerator
+`R(v,w,v,w)` is the sectional curvature of their plane.  Thus this is the
+pointwise condition `K >= 1 / r^2`, stated directly in the manifold API and
+with no choice of frame. -/
+def HasSectionalCurvatureLowerBound (g : RiemannianMetric I M) (r : ℝ) : Prop :=
+  ∀ (p : M) (v w : E),
+    g.metricInner p (v : TangentSpace I p) (v : TangentSpace I p) = 1 →
+    g.metricInner p (w : TangentSpace I p) (w : TangentSpace I p) = 1 →
+    g.metricInner p (v : TangentSpace I p) (w : TangentSpace I p) = 0 →
+    1 / r ^ 2 ≤ g.leviCivitaConnection.curvatureFormAt g p
+      (v : TangentSpace I p) (w : TangentSpace I p)
+      (v : TangentSpace I p) (w : TangentSpace I p)
+
 /-- **Math.** The global Ricci lower bound used by the Bonnet--Myers assembly.
 
 `ricciForm` in DoCarmoLib is the unnormalised trace, so the bound is written in the
@@ -671,6 +691,33 @@ def HasRicciLowerBound (g : RiemannianMetric I M) (r : ℝ) : Prop :=
         g.leviCivitaConnection.curvatureFormAt g p
           (e n₀ : TangentSpace I p) (e j : TangentSpace I p)
           (e n₀ : TangentSpace I p) (e j : TangentSpace I p)
+
+/-- **Math.** A lower bound on every sectional curvature gives the normalized Ricci lower
+bound required by Bonnet--Myers.  In DoCarmoLib the Ricci trace is unnormalized, so summing
+`K >= 1 / r^2` over the orthonormal directions perpendicular to `e n₀` produces the explicit
+factor `#(univ.erase n₀)` in `HasRicciLowerBound`. -/
+theorem hasRicciLowerBound_of_sectionalCurvatureLowerBound
+    (g : RiemannianMetric I M) (r : ℝ)
+    (hK : HasSectionalCurvatureLowerBound (I := I) g r) :
+    HasRicciLowerBound (I := I) g r := by
+  intro p e n₀ horth
+  have hterm : ∀ j ∈ Finset.univ.erase n₀,
+      1 / r ^ 2 ≤ g.leviCivitaConnection.curvatureFormAt g p
+        (e n₀ : TangentSpace I p) (e j : TangentSpace I p)
+        (e n₀ : TangentSpace I p) (e j : TangentSpace I p) := by
+    intro j hj
+    have hne : n₀ ≠ j := (Finset.ne_of_mem_erase hj).symm
+    exact hK p (e n₀) (e j)
+      (by simpa using horth n₀ n₀)
+      (by simpa using horth j j)
+      (by simpa [hne] using horth n₀ j)
+  have hsum := Finset.card_nsmul_le_sum
+    (Finset.univ.erase n₀)
+    (fun j => g.leviCivitaConnection.curvatureFormAt g p
+      (e n₀ : TangentSpace I p) (e j : TangentSpace I p)
+      (e n₀ : TangentSpace I p) (e j : TangentSpace I p))
+    (1 / r ^ 2) hterm
+  simpa [nsmul_eq_mul, div_eq_mul_inv] using hsum
 
 /-- **Math.** The data needed to feed the Bonnet--Myers index-form contradiction along
 one long, distance-linear geodesic.  The `hindex_nonneg` field is the sole variation
@@ -1095,6 +1142,33 @@ theorem bonnetMyers_diameterBound_of_analytic (g : RiemannianMetric I M)
   intro q hq
   rw [Metric.mem_closedBall, dist_comm]
   exact hrd p₀ q
+
+/-- **Math.** Bonnet--Myers with a sectional-curvature hypothesis and the same explicit
+analytic variation callback as `bonnetMyers_diameterBound_of_analytic`.
+
+The sectional bound is converted to the unnormalized Ricci bound by
+`hasRicciLowerBound_of_sectionalCurvatureLowerBound`; no claim about the fundamental group is
+made here. -/
+theorem bonnetMyers_diameterBound_of_sectional_of_analytic (g : RiemannianMetric I M)
+    (hg : g.IsRiemannianDist) [ConnectedSpace M] [CompleteSpace M]
+    {r : ℝ} (hr : 0 < r) (hdim : 2 ≤ Module.finrank ℝ E)
+    (hK : HasSectionalCurvatureLowerBound (I := I) g r)
+    (hanalytic : ∀ (σ : ℝ → M) (ℓ : ℝ), 0 < ℓ → Real.pi * r < ℓ →
+      Continuous σ → Riemannian.Geodesic.IsGeodesic (I := I) g σ →
+      (∀ s ∈ Set.Icc (0 : ℝ) 1, ∀ t ∈ Set.Icc (0 : ℝ) 1,
+        dist (σ s) (σ t) = |s - t| * ℓ) →
+      ∀ (e : Fin (Module.finrank ℝ E) → ℝ → E)
+        (n₀ : Fin (Module.finrank ℝ E)),
+        (∀ i, IsParallelFieldAlongOn (I := I) g σ (e i) (-1) 2) →
+        (∀ t ∈ Set.Icc (-1 : ℝ) 2, ∀ i j,
+          g.metricInner (σ t) (e i t : TangentSpace I (σ t)) (e j t : TangentSpace I (σ t)) =
+            if i = j then 1 else 0) →
+        (∀ t ∈ Set.Icc (-1 : ℝ) 2,
+          DCVelocity (I := I) σ t = (ℓ • e n₀ t : TangentSpace I (σ t))) →
+        BonnetMyersAnalyticData (I := I) g σ e n₀) :
+    Metric.diam (Set.univ : Set M) ≤ Real.pi * r ∧ CompactSpace M := by
+  exact bonnetMyers_diameterBound_of_analytic (I := I) (r := r) g hg hr hdim
+    (hasRicciLowerBound_of_sectionalCurvatureLowerBound (I := I) g r hK) hanalytic
 
 end Riemannian.Variation
 

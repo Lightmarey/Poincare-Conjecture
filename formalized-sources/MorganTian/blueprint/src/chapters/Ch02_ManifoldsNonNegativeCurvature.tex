@@ -862,7 +862,6 @@ the barrier formulation used in \cite{Petersen}.
 
 \begin{lemma}[Second-derivative test, minimum version]
 \label{lem:second-derivative-test-min}
-\mathlibok
 Let $\phi$ be continuous at $t_0$, differentiable near $t_0$, with
 $\phi'(t_0)=0$ and with $\phi'$ differentiable at $t_0$. If
 $\phi''(t_0)>0$, then $t_0$ is a local minimum.
@@ -887,7 +886,6 @@ $\phi''(t_0)=0$.
 
 \begin{lemma}[Existence of integral curves]
 \label{lem:integral-curve-exists}
-\mathlibok
 For a smooth vector field $X$ on a boundaryless smooth manifold and
 $q\in M$, there is a curve $\gamma\colon\Ar\to M$ with $\gamma(0)=q$
 which satisfies $\gamma'=X\circ\gamma$ near $0$.
@@ -995,7 +993,6 @@ local maximum. If it attains a global maximum, it is constant.
 \end{theorem}
 \begin{proof}
 \sketch
-\leanok
 \uses{thm:weak-harmonic-regularity,claim:dirichlet-problem-small-balls,claim:weak-subsolution-comparison,rem:laplacian-weak-sense,lem:laplacian-local-formula}
 \uses{claim:dirichlet-problem-small-balls,claim:weak-subsolution-comparison,lem:green-identity-compact-support,lem:hopf-strong-maximum,def:exponential-map}
 Around a local maximum $p$, choose a small normal ball contained in the
@@ -1349,6 +1346,7 @@ from the metric identity and positive definiteness.
   MorganTianLib.pathELength_comp_eq_of_metricPreserving,
   MorganTianLib.edist_smoothVectorFieldFlow_le_of_bochner,
   MorganTianLib.isometry_smoothVectorFieldFlow_of_bochner}
+\leanok
 \uses{thm:levi-civita-connection,def:geodesic,thm:hopf-rinow,def:exponential-map}
 Let $(X,g)$ be complete and let $B\colon X\to\Ar$ be smooth with
 $\Hess(B)=0$ and $|\nabla B|=1$. Put $V=(\nabla B)^*$. Then:
@@ -1363,6 +1361,7 @@ $\theta_0=\mathrm{id}$ and $\theta_s\theta_t=\theta_{s+t}$;
 \end{enumerate}
 \end{lemma}
 \begin{proof}
+\leanok
 \sketch
 \uses{thm:levi-civita-connection,lem:hessian-symmetric,def:geodesic,thm:hopf-rinow,def:exponential-map,lem:covariant-derivative-along-maps}
 The identity
@@ -1412,6 +1411,7 @@ $|d\theta_t(w)|=|w|$, proving item~4 by polarization.
   MorganTianLib.levelSetInducedMetric_metricInner,
   MorganTianLib.metricInner_mfderiv_levelSet_val,
   MorganTianLib.exists_hasCovDerivAlongAt_curveVelocity_levelSet}
+\leanok
 \uses{lem:parallel-gradient-flow,def:geodesic,def:riemannian-metric}
 Under the hypotheses of Lemma~\ref{lem:parallel-gradient-flow}, let
 $N_c=B^{-1}(c)$ with the induced metric. Then:
@@ -1426,6 +1426,7 @@ $N_c$. Thus $N_c$ is totally geodesic.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
+\leanok
 \sketch
 \uses{lem:parallel-gradient-flow,lem:covariant-derivative-along-maps,def:geodesic,def:exponential-map,thm:levi-civita-connection}
 The flow moves every point to level $c$, proving nonemptiness. Since
@@ -1491,6 +1492,7 @@ accelerations coincide, proving item~3.
   MorganTianLib.mfderiv_bochnerSplittingMap_apply,
   MorganTianLib.metricInner_mfderiv_bochnerSplittingMap,
   MorganTianLib.mfderiv_bochnerSplittingMap_injective}
+\leanok
 \uses{def:geodesic,thm:hopf-rinow,def:exponential-map,thm:levi-civita-connection,def:riemannian-metric}
 Let $(X,g)$ be complete and connected and let $B\colon X\to\Ar$ be
 smooth with $\Hess(B)=0$ and $|\nabla B|=1$. Then
@@ -1502,6 +1504,7 @@ is an isometry onto $X$, where
 $(g_N\oplus dt^2)((w,a),(w',a'))=g_N(w,w')+aa'$.
 \end{proposition}
 \begin{proof}
+\leanok
 \sketch
 \uses{lem:parallel-gradient-flow,lem:parallel-gradient-level-sets,thm:levi-civita-connection,lem:hessian-symmetric,def:riemannian-metric}
 Let $\theta$ be the gradient flow. Its inverse-coordinate map is

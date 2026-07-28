@@ -38,14 +38,14 @@ variable {K : ModelWithCorners 𝕜 EN HN} [IsManifold K ⊤ N]
 /-- A charted manifold modeled on a space with corners over an `IsRCLikeNormedField` is locally
 path-connected. -/
 private theorem chartedSpace_locPathConnectedSpace (J : ModelWithCorners 𝕜 ES HS) :
-    LocPathConnectedSpace S := by
+    LocallyPathConnectedSpace S := by
   letI : RCLike 𝕜 := IsRCLikeNormedField.rclike 𝕜
   letI : NormedSpace ℝ ES := NormedSpace.restrictScalars ℝ 𝕜 ES
-  letI : LocPathConnectedSpace HS := by
-    letI : LocPathConnectedSpace (Set.range J) := J.convex_range.locPathConnectedSpace
+  letI : LocallyPathConnectedSpace HS := by
+    letI : LocallyPathConnectedSpace (Set.range J) := J.convex_range.locallyPathConnectedSpace
     let e : HS ≃ₜ Set.range J := J.isClosedEmbedding.toHomeomorph
-    exact e.isOpenEmbedding.locPathConnectedSpace
-  exact ChartedSpace.locPathConnectedSpace HS S
+    exact e.isOpenEmbedding.locallyPathConnectedSpace
+  exact ChartedSpace.locallyPathConnectedSpace HS S
 
 /- Proposition 6.34: if `F` is a smooth family of maps from `N` to `M` parametrized by a
 connected manifold `S`, then any two fibers of the family are homotopic. -/
@@ -55,8 +55,8 @@ omit [IsManifold I ⊤ M] [IsManifold J ⊤ S] [IsManifold K ⊤ N] in theorem
     smooth_family_slices_homotopic
     {F : S → N → M} (hF : IsSmoothFamily I J K F) (s₁ s₂ : S) :
     (hF.slice s₁ : C(N, M)).Homotopic (hF.slice s₂ : C(N, M)) := by
-  letI : LocPathConnectedSpace S := chartedSpace_locPathConnectedSpace J
-  letI : PathConnectedSpace S := PathConnectedSpace.of_locPathConnectedSpace
+  letI : LocallyPathConnectedSpace S := chartedSpace_locPathConnectedSpace J
+  letI : PathConnectedSpace S := PathConnectedSpace.of_locallyPathConnectedSpace
   let γ : Path s₁ s₂ := PathConnectedSpace.somePath s₁ s₂
   have hγ : Continuous fun p : Set.Icc (0 : ℝ) 1 × N ↦ (γ p.1, p.2) :=
     (γ.continuous.comp continuous_fst).prodMk continuous_snd

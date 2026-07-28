@@ -86,7 +86,7 @@ private theorem exists_levelSet_tangent_field
   refine ⟨fun q => Ā q - coeff q • N q, ?_, ?_, ?_⟩
   · have hsm := ((⟨Ā, hĀ⟩ : SmoothVectorField I M)
       - SmoothVectorField.smul coeff hcoeff ⟨N, hN⟩).smooth
-    simpa [SmoothVectorField.smul] using hsm
+    simpa [IsSmoothVectorField] using! hsm
   · have hcp : coeff p = 0 := by
       simp only [hcoeffdef, hĀdef, extendTangentVector_apply]; exact ha
     show Ā p - coeff p • N p = a

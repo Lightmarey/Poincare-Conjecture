@@ -128,9 +128,9 @@ lemma hopf_map_aux_eq_coords (p : C2) :
 lemma hopf_first_contDiff : ContDiff ℝ ∞ hopf_first := by
   -- This coordinate is the real part of a quadratic complex polynomial.
   have hfst : ContDiff ℝ ∞ fun x : C2 ↦ x.fst := by
-    simpa using (WithLp.fstL 2 ℝ ℂ ℂ).contDiff
+    simpa using! (WithLp.fstL 2 ℝ ℂ ℂ).contDiff
   have hsnd : ContDiff ℝ ∞ fun x : C2 ↦ x.snd := by
-    simpa using (WithLp.sndL 2 ℝ ℂ ℂ).contDiff
+    simpa using! (WithLp.sndL 2 ℝ ℂ ℂ).contDiff
   have hfirst :
       hopf_first = (Complex.reCLM : ℂ → ℝ) ∘
         (fun x : C2 ↦ x.snd * conj x.fst + x.fst * conj x.snd) := by
@@ -145,9 +145,9 @@ lemma hopf_first_contDiff : ContDiff ℝ ∞ hopf_first := by
 lemma hopf_second_contDiff : ContDiff ℝ ∞ hopf_second := by
   -- This coordinate has the same quadratic form, with the constant factor `I`.
   have hfst : ContDiff ℝ ∞ fun x : C2 ↦ x.fst := by
-    simpa using (WithLp.fstL 2 ℝ ℂ ℂ).contDiff
+    simpa using! (WithLp.fstL 2 ℝ ℂ ℂ).contDiff
   have hsnd : ContDiff ℝ ∞ fun x : C2 ↦ x.snd := by
-    simpa using (WithLp.sndL 2 ℝ ℂ ℂ).contDiff
+    simpa using! (WithLp.sndL 2 ℝ ℂ ℂ).contDiff
   have hsecond :
       hopf_second = (Complex.reCLM : ℂ → ℝ) ∘
         (fun x : C2 ↦ Complex.I * x.fst * conj x.snd - Complex.I * x.snd * conj x.fst) := by
@@ -162,9 +162,9 @@ lemma hopf_second_contDiff : ContDiff ℝ ∞ hopf_second := by
 lemma hopf_third_contDiff : ContDiff ℝ ∞ hopf_third := by
   -- This coordinate is the difference of two norm-square expressions.
   have hfst : ContDiff ℝ ∞ fun x : C2 ↦ x.fst := by
-    simpa using (WithLp.fstL 2 ℝ ℂ ℂ).contDiff
+    simpa using! (WithLp.fstL 2 ℝ ℂ ℂ).contDiff
   have hsnd : ContDiff ℝ ∞ fun x : C2 ↦ x.snd := by
-    simpa using (WithLp.sndL 2 ℝ ℂ ℂ).contDiff
+    simpa using! (WithLp.sndL 2 ℝ ℂ ℂ).contDiff
   have hthird :
       hopf_third = (Complex.reCLM : ℂ → ℝ) ∘
         (fun x : C2 ↦ x.snd * conj x.snd - x.fst * conj x.fst) := by
@@ -253,7 +253,7 @@ theorem hopf_map_smooth :
   have hambient : ContMDiff (𝓡 3) 𝓘(ℝ, R3) ∞ fun p : unitSphere3 ↦ hopf_map_aux p := by
     exact hopf_map_aux_contMDiff.comp contMDiff_coe_sphere
   -- The codomain restriction is smooth because the ambient formula lands in `S²`.
-  simpa [hopf_map] using
+  simpa [hopf_map] using!
     (ContMDiff.codRestrict_sphere
       (n := 2)
       (f := fun p : unitSphere3 ↦ hopf_map_aux p)

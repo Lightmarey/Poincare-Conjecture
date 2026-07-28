@@ -83,12 +83,12 @@ theorem hasDerivAt_chartMetricInner (g : RiemannianMetric I M) (α : M) (y : E)
       (Geodesic.chartCoord (E := E) i f') t := by
     intro i
     have := (Geodesic.chartCoordFunctional (E := E) i).hasFDerivAt.comp_hasDerivAt t hf
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   have hch : ∀ j, HasDerivAt (fun s : ℝ => Geodesic.chartCoord (E := E) j (h s))
       (Geodesic.chartCoord (E := E) j h') t := by
     intro j
     have := (Geodesic.chartCoordFunctional (E := E) j).hasFDerivAt.comp_hasDerivAt t hh
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   -- differentiate the double sum termwise, working with function-level sums so
   -- `HasDerivAt.sum` unifies against `∑ i ∈ univ, A i`
   have hsum : HasDerivAt

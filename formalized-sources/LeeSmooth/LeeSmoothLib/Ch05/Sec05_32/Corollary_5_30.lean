@@ -33,7 +33,7 @@ lemma continuous_codRestrict
   -- The embedding part of `hS` identifies continuity into `S` with continuity after composing
   -- with the inclusion `Subtype.val : S → M`.
   refine hS.isEmbedding.isInducing.continuous_iff.2 ?_
-  simpa [Function.comp] using hF.continuous
+  exact hF.continuous
 
 /-- Helper for Corollary 5.30: in immersion charts for the inclusion `S ↪ M`, the restricted map
 to `S` is recovered from the ambient chart expression by the projected inverse equivalence. -/
@@ -76,13 +76,13 @@ lemma contMDiffAt_toSubtype
   have hambient :
       ContDiffWithinAt 𝕜 ⊤ ((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) (Set.range K) x' := by
     -- Rewrite the ambient smoothness in the chart pair `(e, hImm.codChart)`.
-    simpa [Set.preimage_univ] using
+    simpa [Set.preimage_univ, x'] using
       ((contMDiffWithinAt_iff_of_mem_maximalAtlas (s := Set.univ) (e := e)
         (e' := hImm.codChart) (IsManifold.chart_mem_maximalAtlas x)
         hImm.codChart_mem_maximalAtlas hx hy').1 (hF.contMDiffAt.contMDiffWithinAt)).2
   have hproj :
       ContDiff 𝕜 ⊤ (fun v ↦ (hImm.equiv.symm v).1) := by
-    simpa using contDiff_fst.comp hImm.equiv.symm.contDiff
+    exact contDiff_fst.comp hImm.equiv.symm.contDiff
   have hprojWithin :
       ContDiffWithinAt 𝕜 ⊤ (fun v ↦ (hImm.equiv.symm v).1) Set.univ
         (((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) x') :=

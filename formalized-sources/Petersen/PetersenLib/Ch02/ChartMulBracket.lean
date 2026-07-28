@@ -19,7 +19,7 @@ private lemma slice_first {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     fderiv ℝ (fun a => T (fderiv ℝ F (a, c))) c u
       = T (S (ContinuousLinearMap.inl ℝ E E u)) := by
   have hbase : HasFDerivAt (fun a : E => (a, c)) (ContinuousLinearMap.inl ℝ E E) c := by
-    simpa using (hasFDerivAt_id c).prodMk (hasFDerivAt_const c c)
+    convert (hasFDerivAt_id c).prodMk (hasFDerivAt_const c c) using 1 <;> ext <;> simp
   have hcomp : HasFDerivAt (fun a => fderiv ℝ F (a, c))
       (S.comp (ContinuousLinearMap.inl ℝ E E)) c := by
     exact HasFDerivAt.comp c hf2 hbase
@@ -45,9 +45,11 @@ theorem adChart_eq_bracketChart
   set S : (E × E) →L[ℝ] (E × E) →L[ℝ] E := fderiv ℝ (fderiv ℝ F) (c, c) with hSdef
   -- Derivatives of the coordinate inclusions.
   have hInl : ∀ (q p : E), HasFDerivAt (fun z : E => (z, q)) (ContinuousLinearMap.inl ℝ E E) p :=
-    fun q p => by simpa using (hasFDerivAt_id p).prodMk (hasFDerivAt_const q p)
+    fun q p => by
+      convert (hasFDerivAt_id p).prodMk (hasFDerivAt_const q p) using 1 <;> ext <;> simp
   have hInr : ∀ (q p : E), HasFDerivAt (fun z : E => (q, z)) (ContinuousLinearMap.inr ℝ E E) p :=
-    fun q p => by simpa using (hasFDerivAt_const q p).prodMk (hasFDerivAt_id p)
+    fun q p => by
+      convert (hasFDerivAt_const q p).prodMk (hasFDerivAt_id p) using 1 <;> ext <;> simp
   -- First- and second-order regularity of `F`.
   have hFd : DifferentiableAt ℝ F (c, c) := hμ.differentiableAt (by norm_num)
   have hf2 : HasFDerivAt (fderiv ℝ F) S (c, c) :=

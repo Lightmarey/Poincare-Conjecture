@@ -270,10 +270,10 @@ theorem pullbackForm_contMDiffAt (gN : RiemannianMetric I' M') {F : M → M'} {x
       rfl
     have hcoeT : (tT.symm (F x) : E' → TangentSpace I' (F x))
         = ⇑(tT.continuousLinearEquivAt ℝ (F x) hfx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]; rfl
+      rfl
     have hcoeS : (sT.symm x : E → TangentSpace I x)
         = ⇑(sT.continuousLinearEquivAt ℝ x hx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]; rfl
+      rfl
     rw [hDu, hcoeT, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
   rw [hRHS, hG]
   have htrivM' : trivializationAt ℝ (Bundle.Trivial M' ℝ) (F x₀) = Bundle.Trivial.trivialization M' ℝ :=
@@ -392,7 +392,10 @@ theorem orthogonalProjectionSubmersion (K : Submodule ℝ F) :
       intro z hz
       have h0 : (K.orthogonalProjection z : K) = 0 := (hker z).mpr hz
       have := hw z (by rw [hclm p]; exact_mod_cast h0)
-      simpa [innerProductSpaceMetric_apply, real_inner_comm] using this
+      have hmetric : inner ℝ w z = 0 := by
+        rw [← innerProductSpaceMetric_apply F p w z]
+        exact this
+      simpa [real_inner_comm] using hmetric
     have huK : u ∈ K := hmemK u hu
     have hvK : v ∈ K := hmemK v hv
     rw [hclm p]

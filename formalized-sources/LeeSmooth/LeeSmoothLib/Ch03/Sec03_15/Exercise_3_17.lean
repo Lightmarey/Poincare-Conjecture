@@ -58,11 +58,11 @@ lemma cubicShear_symm_hasFDerivAt (p : ℝ × ℝ) :
     simpa [pow_two, mul_comm, mul_left_comm, mul_assoc] using
       ((hasFDerivAt_fst : HasFDerivAt (fun q : ℝ × ℝ ↦ q.1)
           (ContinuousLinearMap.fst ℝ ℝ ℝ) p).pow 3)
-  simpa [cubicShear_symm_apply] using
-    ((hasFDerivAt_fst : HasFDerivAt (fun q : ℝ × ℝ ↦ q.1)
-        (ContinuousLinearMap.fst ℝ ℝ ℝ) p).prodMk
-      ((hasFDerivAt_snd : HasFDerivAt (fun q : ℝ × ℝ ↦ q.2)
-          (ContinuousLinearMap.snd ℝ ℝ ℝ) p).sub hpow))
+  change HasFDerivAt (fun q : ℝ × ℝ => (q.1, q.2 - q.1 ^ 3))
+    ((ContinuousLinearMap.fst ℝ ℝ ℝ).prod
+      (ContinuousLinearMap.snd ℝ ℝ ℝ -
+        (3 * p.1 ^ 2) • ContinuousLinearMap.fst ℝ ℝ ℝ)) p
+  exact hasFDerivAt_fst.prodMk (hasFDerivAt_snd.sub hpow)
 
 /-- Helper for Exercise 3.17: the inverse-shear Jacobian sends the horizontal basis vector to
 `(1, -(3 x^2))`. -/

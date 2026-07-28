@@ -1,6 +1,7 @@
 import DoCarmoLib.Riemannian.Variation.EnergySecondDeriv
 import DoCarmoLib.Riemannian.Variation.FirstVariation
 import DoCarmoLib.Riemannian.Variation.IndexForm
+import DoCarmoLib.Riemannian.Variation.SegmentAssembly
 
 /-!
 # do Carmo's formula (3): the second variation of energy, assembled
@@ -518,10 +519,13 @@ theorem integral_second_variation_integrand_eq_nonproper
             - g.metricInner (f (s₀, a)) (S (s₀, a) : TangentSpace I (f (s₀, a))) (DtS (s₀, a))) := by
   rw [intervalIntegral.integral_add hi_DsDsT hi_DsT]
   -- term A : `∫⟨D/∂s D/∂s ∂f/∂t, ∂f/∂t⟩ = ⟨D/∂s ∂f/∂s, γ'⟩|_a^b - ∫ R(∂f/∂s, ∂f/∂t, ∂f/∂s, ∂f/∂t)`
+  have hzero : ∀ t, g.metricInner (f (s₀, t)) (W2 (s₀, t) : TangentSpace I (f (s₀, t)))
+      ((fun _ : ℝ => (0 : E)) t) = 0 := fun t => g.metricInner_zero_right _ _
   have hzeroInt : IntervalIntegrable
       (fun t => g.metricInner (f (s₀, t)) (W2 (s₀, t) : TangentSpace I (f (s₀, t)))
         ((fun _ => (0 : E)) t)) volume a b := by
-    simp only [g.metricInner_zero_right]; exact intervalIntegrable_const
+    simp only [hzero]
+    exact intervalIntegrable_const
   have hA : (∫ t in a..b, g.metricInner (f (s₀, t))
         (DsDsT (s₀, t) : TangentSpace I (f (s₀, t))) (T (s₀, t)))
       = (g.metricInner (f (s₀, b)) (W2 (s₀, b) : TangentSpace I (f (s₀, b))) (T (s₀, b))
@@ -542,7 +546,7 @@ theorem integral_second_variation_integrand_eq_nonproper
     -- integration by parts against the geodesic `γ'` (velocity pair `(T, 0)`), boundary kept
     have hbdry := hW2.integral_metricInner_covariantDeriv_left hgeo hdiff hcont hab hi_DtW2 hzeroInt
     rw [hbdry]
-    simp only [g.metricInner_zero_right, intervalIntegral.integral_zero, sub_zero]
+    simp only [hzero, intervalIntegral.integral_zero, sub_zero]
   -- term B : `∫⟨D/∂s ∂f/∂t, D/∂s ∂f/∂t⟩ = ⟨V, V'⟩|_a^b - ∫⟨V, V''⟩`
   have hB : (∫ t in a..b, g.metricInner (f (s₀, t))
         (DsT (s₀, t) : TangentSpace I (f (s₀, t))) (DsT (s₀, t)))

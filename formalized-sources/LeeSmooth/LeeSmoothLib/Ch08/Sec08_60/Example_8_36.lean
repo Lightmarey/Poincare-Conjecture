@@ -259,6 +259,8 @@ section MatrixAndEndomorphismExamples
 
 open Matrix
 
+attribute [local instance 100] LieRing.ofAssociativeRing
+
 variable (n : ℕ)
 
 /- Example 8.36 (3): on real `n × n` matrices, the Lie bracket is the commutator `AB - BA`. -/
@@ -295,7 +297,7 @@ of linear maps. -/
 theorem linear_endomorphism_commutator_apply
     (A B : Module.End ℝ V) (v : V) :
     ⁅A, B⁆ v = A (B v) - B (A v) := by
-  simpa using congrFun (LieRing.of_associative_ring_bracket A B) v
+  exact LinearMap.congr_fun (LieRing.of_associative_ring_bracket A B) v
 
 /- Example 8.36 (8): under the standard basis of `ℝ^n`, the canonical matrix/endomorphism
 equivalence `LinearMap.toMatrixAlgEquiv'` is already a Lie algebra equivalence via

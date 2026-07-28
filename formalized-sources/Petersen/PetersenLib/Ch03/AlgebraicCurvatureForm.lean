@@ -235,7 +235,7 @@ theorem ext_basis (hB : IsAlgCurvatureForm B) (hB' : IsAlgCurvatureForm B')
     intro i j k l; simp only [h i j k l, sub_self]
   intro x y z t
   have := hd.eq_zero_of_basis b h0 x y z t
-  simp only at this; linarith
+  linarith [this]
 
 /-- **Math.** Key step of do Carmo Ch. 4, Lemma 3.3: an algebraic curvature form
 whose diagonal `B(x,y,x,y)` vanishes for all `x,y` is identically zero.
@@ -277,7 +277,7 @@ theorem ext (hB : IsAlgCurvatureForm B) (hB' : IsAlgCurvatureForm B')
     intro x y; simp only [hdiag x y, sub_self]
   intro x y z t
   have := hd.eq_zero_of_diag h0 x y z t
-  simp only at this; linarith
+  linarith [this]
 
 end IsAlgCurvatureForm
 

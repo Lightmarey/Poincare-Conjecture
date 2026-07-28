@@ -25,9 +25,9 @@ theorem composite_curve_velocity {J : Set ℝ} {t₀ : ℝ} {F : M → N} {γ : 
     (hγ : MDifferentiableWithinAt 𝓘(ℝ) I γ J t₀) :
     curve_velocityWithin I' (F ∘ γ) J t₀ =
       mfderiv I I' F (γ t₀) (curve_velocityWithin I γ J t₀) := by
-  simpa using
-    DFunLike.congr_fun (mfderiv_comp_mfderivWithin t₀ hF hγ hJ)
-      (show TangentSpace 𝓘(ℝ) t₀ from (1 : ℝ))
+  unfold curve_velocityWithin
+  exact DFunLike.congr_fun (mfderiv_comp_mfderivWithin t₀ hF hγ hJ)
+    (show TangentSpace 𝓘(ℝ) t₀ from (1 : ℝ))
 
 -- The textbook smoothness hypotheses imply the pointwise differentiability assumptions used in
 -- `composite_curve_velocity`.

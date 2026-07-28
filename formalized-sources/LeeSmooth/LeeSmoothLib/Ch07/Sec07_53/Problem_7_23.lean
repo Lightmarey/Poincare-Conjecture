@@ -25,8 +25,10 @@ lemma continuous_unitSphereToUnitsQuaternion :
   -- coordinates, both of which come from the ambient quaternion topology.
   rw [Units.continuous_iff]
   constructor
-  · simpa using continuous_subtype_val
-  · simpa using (continuous_subtype_val.inv₀ ne_zero_of_mem_unit_sphere)
+  · change Continuous (fun x : QuaternionSphere ↦ (x : ℍ))
+    exact continuous_subtype_val
+  · change Continuous ((fun x : QuaternionSphere ↦ (x : ℍ))⁻¹)
+    exact continuous_subtype_val.inv₀ ne_zero_of_mem_unit_sphere
 
 /-- Helper for Problem 7-23: the unit quaternions, canonically realized as `sphere (0 : ℍ) 1`, embed
 as a closed subgroup of the Lie group `ℍˣ` through `unitSphereToUnits ℍ`. -/
@@ -200,9 +202,16 @@ lemma specialUnitaryStar_eq_explicit (A : SU(2)) :
       !![((A : Matrix (Fin 2) (Fin 2) ℂ) 1 1), -((A : Matrix (Fin 2) (Fin 2) ℂ) 0 1);
         -((A : Matrix (Fin 2) (Fin 2) ℂ) 1 0), ((A : Matrix (Fin 2) (Fin 2) ℂ) 0 0)] := by
   -- First forget the subgroup equality, then read the `SL₂` inverse formula entrywise.
-  simpa [specialUnitaryToSpecialLinear] using
-    congrArg Subtype.val ((specialUnitaryToSpecialLinear_star_eq_inv A).trans
-      (Matrix.SpecialLinearGroup.SL2_inv_expl (specialUnitaryToSpecialLinear A)))
+  have hExplicit :
+      star (A : Matrix (Fin 2) (Fin 2) ℂ) =
+        ![![((A : Matrix (Fin 2) (Fin 2) ℂ) 1 1), -((A : Matrix (Fin 2) (Fin 2) ℂ) 0 1)],
+          ![-((A : Matrix (Fin 2) (Fin 2) ℂ) 1 0), ((A : Matrix (Fin 2) (Fin 2) ℂ) 0 0)]] := by
+    simpa [specialUnitaryToSpecialLinear] using
+      congrArg Subtype.val ((specialUnitaryToSpecialLinear_star_eq_inv A).trans
+        (Matrix.SpecialLinearGroup.SL2_inv_expl (specialUnitaryToSpecialLinear A)))
+  rw [hExplicit]
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
 
 /-- Helper for Problem 7-23: the star of a complex number is `re - im * I`. -/
 lemma complexStar_eq_re_sub_im_mul_I (z : ℂ) :
@@ -352,12 +361,19 @@ lemma quaternionSphereToSpecialUnitary_continuous :
       intro i j
       fin_cases i
       · fin_cases j
-        · simpa [quaternionToSpecialUnitaryMatrix] using hRe.add (hImI.mul continuous_const)
-        · simpa [quaternionToSpecialUnitaryMatrix] using hImJ.add (hImK.mul continuous_const)
+        · convert hRe.add (hImI.mul continuous_const) using 1
+          funext q
+          rfl
+        · convert hImJ.add (hImK.mul continuous_const) using 1
+          funext q
+          rfl
       · fin_cases j
-        · simpa [quaternionToSpecialUnitaryMatrix] using hImJ.neg.add (hImK.mul continuous_const)
-        · simpa [quaternionToSpecialUnitaryMatrix, sub_eq_add_neg] using
-            hRe.sub (hImI.mul continuous_const)).subtype_mk _
+        · convert hImJ.neg.add (hImK.mul continuous_const) using 1
+          funext q
+          rfl
+        · convert hRe.sub (hImI.mul continuous_const) using 1
+          funext q
+          rfl).subtype_mk _
 
 /-- Helper for Problem 7-23: the first-row reconstruction from `SU(2)` is continuous. -/
 lemma specialUnitaryToQuaternionSphere_continuous :

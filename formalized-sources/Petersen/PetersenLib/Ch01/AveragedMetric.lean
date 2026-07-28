@@ -88,15 +88,11 @@ theorem mfderiv_smul_injective (hs : ∀ γ : Γ, ContMDiff I I ∞ (fun p : M =
   have hchain := mfderiv_comp (I := I) (I' := I) (I'' := I) p hγinv hγ
   rw [hcomp, mfderiv_id] at hchain
   intro u v huv
-  have h1 : mfderiv I I (fun q : M => γ⁻¹ • q) (γ • p)
-      (mfderiv I I (fun q : M => γ • q) p u) = u := by
-    have := congrArg (fun L : TangentSpace I p →L[ℝ] TangentSpace I p => L u) hchain.symm
-    simpa using this
-  have h2 : mfderiv I I (fun q : M => γ⁻¹ • q) (γ • p)
-      (mfderiv I I (fun q : M => γ • q) p v) = v := by
-    have := congrArg (fun L : TangentSpace I p →L[ℝ] TangentSpace I p => L v) hchain.symm
-    simpa using this
-  rw [← h1, ← h2, huv]
+  have hu := congrArg (fun L : TangentSpace I p →L[ℝ] TangentSpace I p => L u) hchain.symm
+  have hv := congrArg (fun L : TangentSpace I p →L[ℝ] TangentSpace I p => L v) hchain.symm
+  have huv' := congrArg (mfderiv I I (fun q : M => γ⁻¹ • q) (γ • p)) huv
+  simp only [ContinuousLinearMap.id_apply] at hu hv
+  exact hu.symm.trans (huv'.trans hv)
 
 /-- **Eng.** `p ↦ γ • p` is a smooth immersion (indeed a diffeomorphism), so its pullback form is
 a metric. -/
@@ -127,7 +123,7 @@ theorem contMDiff_finsetSum_section {ι : Type*} (s : Finset ι)
       have h0 := Bundle.contMDiff_zeroSection (𝕜 := ℝ) (IB := I) (n := ∞)
         (F := E →L[ℝ] E →L[ℝ] ℝ)
         (E := fun p : M => TangentSpace I p →L[ℝ] TangentSpace I p →L[ℝ] ℝ)
-      simpa [Bundle.zeroSection] using h0
+      exact h0.congr fun p => by simp [Bundle.zeroSection]
   | insert i s hi ih =>
       rw [Finset.sum_insert hi]
       exact ContMDiff.add_section (hf i (Finset.mem_insert_self i s))
@@ -149,8 +145,8 @@ theorem averagedForm_apply (g₀ : RiemannianMetric I M) (p : M) (u v : TangentS
       = ∑ γ : Γ, g₀.metricInner (γ • p)
           (mfderiv I I (fun q : M => γ • q) p u) (mfderiv I I (fun q : M => γ • q) p v) := by
   show (∑ γ : Γ, fun p => pullbackForm (I := I) g₀ (fun q : M => γ • q) p) p u v = _
-  rw [Finset.sum_apply, ContinuousLinearMap.coe_sum', Finset.sum_apply,
-    ContinuousLinearMap.coe_sum', Finset.sum_apply]
+  rw [Finset.sum_apply, FunLike.coe_sum, Finset.sum_apply,
+    FunLike.coe_sum, Finset.sum_apply]
   rfl
 
 /-- **Math.** The averaged form is symmetric: each pullback `γ^*g₀` is. -/

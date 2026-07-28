@@ -144,7 +144,8 @@ lemma contMDiff_codRestrict_opens
     ContMDiff K I ⊤ (fun x ↦ (⟨F x, hFU x⟩ : U)) := by
   -- Reduce smoothness into the open subtype to smoothness after composing with its inclusion.
   refine (contMDiff_subtype_val_comp_iff (I := I) (K := K) U (fun x ↦ (⟨F x, hFU x⟩ : U))).mp ?_
-  simpa [Function.comp] using hF
+  change ContMDiff K I ⊤ F
+  exact hF
 
 noncomputable section
 
@@ -175,7 +176,8 @@ instance isWeaklyEmbeddedSubmanifold_univ [BoundarylessManifold I M]
     -- Route correction: replace the removed imported corollary with the local open-subtype
     -- restriction lemma specialized to the open set `⊤`.
     let U : Opens M := ⊤
-    simpa [U, Set.codRestrict] using contMDiff_codRestrict_opens (I := I) (K := K) U hF hFS
+    change ContMDiff K I ⊤ (fun x ↦ (⟨F x, hFS x⟩ : (Set.univ : Set M)))
+    exact contMDiff_codRestrict_opens (I := I) (K := K) U hF hFS
 
 end
 

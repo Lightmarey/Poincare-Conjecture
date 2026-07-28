@@ -43,7 +43,7 @@ theorem ContMDiffSection.contMDiff_apply
       ContMDiff (𝓘(𝕜).tangent) 𝓘(𝕜) ∞ (fun p : TangentBundle 𝓘(𝕜) 𝕜 => p.2) :=
     contMDiff_snd_tangentBundle_modelSpace (H := 𝕜) (I := 𝓘(𝕜)) (n := ∞)
   -- The fiber coordinate of the composed tangent map is exactly `VectorField.apply X f`.
-  simpa [Function.comp, VectorField.apply_def, tangentMap_snd] using hSnd.comp hTangent
+  simpa [Function.comp, VectorField.apply_def, tangentMap_snd] using! hSnd.comp hTangent
 
 namespace ContMDiffSection
 
@@ -60,7 +60,7 @@ theorem apply_add
   -- Reduce the bundled equality to the pointwise derivative-of-sum formula at `x`.
   have hf : MDiffAt f x := f.contMDiff.mdifferentiableAt (by simp)
   have hg : MDiffAt g x := g.contMDiff.mdifferentiableAt (by simp)
-  simpa [ContMDiffSection.apply, VectorField.apply_def] using
+  simpa [ContMDiffSection.apply, VectorField.apply_def] using!
     congrArg (fun L => L (X x)) (mfderiv_add hf hg)
 
 /-- Applying a smooth vector field to a scalar multiple of a smooth function is `𝕜`-linear. -/
@@ -70,7 +70,7 @@ theorem apply_smul
   ext x
   -- Reduce the bundled equality to the pointwise derivative of a constant scalar multiple.
   have hf : MDiffAt f x := f.contMDiff.mdifferentiableAt (by simp)
-  simpa [ContMDiffSection.apply, VectorField.apply_def, smul_eq_mul] using
+  simpa [ContMDiffSection.apply, VectorField.apply_def, smul_eq_mul] using!
     congrArg (fun L => L (X x)) (const_smul_mfderiv hf c)
 
 /-- Applying a smooth vector field to a product of smooth functions satisfies the Leibniz rule. -/
@@ -83,8 +83,8 @@ theorem apply_mul
   have hf : MDiffAt f x := f.contMDiff.mdifferentiableAt (by simp)
   have hg : MDiffAt g x := g.contMDiff.mdifferentiableAt (by simp)
   simpa [ContMDiffSection.apply, VectorField.apply_def, PointedContMDiffMap.smul_def,
-    smul_eq_mul, mul_comm, mul_left_comm, mul_assoc, add_comm, add_left_comm, add_assoc] using
-    fromTangentSpace_mfderiv_smul_apply hf hg (X x)
+    smul_eq_mul, mul_comm, mul_left_comm, mul_assoc] using!
+    congr($(mvfderiv_mul hf hg) (X x))
 
 /-- Notation 8.56-extra-3: a bundled smooth vector field on `M` determines the corresponding
 derivation of `C^∞(M, 𝕜)` obtained by applying each tangent vector `X x` pointwise to smooth

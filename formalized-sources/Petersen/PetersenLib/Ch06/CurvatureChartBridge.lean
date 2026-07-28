@@ -85,8 +85,6 @@ the chart-frame expansion at `p` collapses to the plain basis expansion of `E`. 
 theorem chartBasisVecFiber_self (p : M) (i : Fin (Module.finrank ℝ E)) :
     (chartBasisVecFiber (I := I) p i p : E) = (Module.finBasis ℝ E) i := by
   rw [chartBasisVecFiber,
-    show (trivializationAt E (TangentSpace I) p).symm p
-        = (trivializationAt E (TangentSpace I) p).symmL ℝ p from rfl,
     TangentBundle.symmL_trivializationAt_eq_core (mem_chart_source H p)]
   exact tangentCoordChange_self (I := I) (x := p) (z := p) (mem_extChartAt_source (I := I) p)
 

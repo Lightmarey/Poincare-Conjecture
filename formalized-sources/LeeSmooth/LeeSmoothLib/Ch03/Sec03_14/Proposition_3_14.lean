@@ -51,10 +51,14 @@ lemma mem_piChartAt_target_iff (p : ∀ j : Fin k, M j) {y : ∀ j : Fin k, E j}
   -- The chart of a finite product is the product of the factor charts.
   constructor
   · intro hy j
-    simpa [piChartedSpace_chartAt, ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using
-      hy j (by simp)
+    change ((PartialEquiv.pi (fun i => (I i).toPartialEquiv)).symm y) j ∈
+      (chartAt (H j) (p j)).target
+    exact hy j (by simp)
   · intro hy j hj
-    simpa [piChartedSpace_chartAt, ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using hy j
+    change ((PartialEquiv.pi (fun i => (I i).toPartialEquiv)).symm y) j ∈
+      (chartAt (H j) (p j)).target
+    rw [PartialEquiv.pi_symm_apply]
+    exact hy j
 
 /-- Helper for Proposition 3.14: the target of the finite-product extended chart is the
 coordinatewise product of the factor extended-chart targets. -/
@@ -158,6 +162,6 @@ theorem tangentSpaceFiniteProductEquivDirectSum_apply (p : ∀ j : Fin k, M j)
       (tangentSpaceFiniteProductEquivDirectSum_toFun (I := I) p v)
   -- Rewrite the manifold derivative of the projection to the linear coordinate projection.
   rw [mfderiv_piProjection]
-  simpa [ContinuousLinearMap.proj_apply] using hCoordinate
+  exact hCoordinate
 
 end

@@ -187,7 +187,7 @@ lemma boundarylessAmbientId_isSmoothEmbedding :
           exact mem_chart_source H x)
   · simpa using (mem_chart_source H x)
   · simpa [domChart, boundarylessChartedSpaceFor,
-      boundarylessModelChartedSpace] using
+      boundarylessModelChartedSpace] using!
       (IsManifold.chart_mem_maximalAtlas x :
         chartAt E x ∈
           IsManifold.maximalAtlas (modelWithCornersSelf ℝ E) (⊤ : WithTop ℕ∞) M)

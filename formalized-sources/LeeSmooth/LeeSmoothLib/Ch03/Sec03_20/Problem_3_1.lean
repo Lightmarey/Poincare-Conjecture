@@ -24,7 +24,7 @@ private theorem chartedSpace_locallyConnectedSpace (I : ModelWithCorners 𝕜 E 
   letI : RCLike 𝕜 := IsRCLikeNormedField.rclike 𝕜
   letI : NormedSpace ℝ E := NormedSpace.restrictScalars ℝ 𝕜 E
   letI : LocallyConnectedSpace H := by
-    letI : LocPathConnectedSpace (Set.range I) := I.convex_range.locPathConnectedSpace
+    letI : LocallyPathConnectedSpace (Set.range I) := I.convex_range.locallyPathConnectedSpace
     let e : H ≃ₜ Set.range I := I.isClosedEmbedding.toHomeomorph
     exact e.locallyConnectedSpace
   exact ChartedSpace.locallyConnectedSpace H M
@@ -53,7 +53,8 @@ theorem mfderiv_eq_zero_iff_isLocallyConstant {f : M → N}
     -- Route correction: the reverse implication is purely local and uses eventual equality with
     -- a constant map, so no chart computation is needed here.
     have heq : f =ᶠ[𝓝 p] fun _ : M ↦ f p := by
-      simpa using hloc.eventually_eq p
+      change ∀ᶠ y in 𝓝 p, f y = f p
+      exact hloc.eventually_eq p
     have hconst : HasMFDerivAt I I' (fun _ : M ↦ f p) p
         (0 : TangentSpace I p →L[𝕜] TangentSpace I' (f p)) := hasMFDerivAt_const (f p) p
     exact (hconst.congr_of_eventuallyEq heq).mfderiv

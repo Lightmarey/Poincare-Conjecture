@@ -194,7 +194,7 @@ theorem isRightInvariant_mpullback_inv_of_isLeftInvariant
       (by
         simpa using
           (mdifferentiableAt_mul_right (I := I) (a := g) (b := x) :
-            MDiffAt (· * g) x))
+            MDiffAt (· * g) x).mdifferentiableWithinAt)
       (by simp)
       (uniqueMDiffWithinAt_univ I)
       (by
@@ -208,7 +208,7 @@ theorem isRightInvariant_mpullback_inv_of_isLeftInvariant
       (by
         simpa using
           (mdifferentiableAt_mul_left (I := I) (a := g⁻¹) (b := x⁻¹) :
-            MDiffAt (g⁻¹ * ·) x⁻¹))
+            MDiffAt (g⁻¹ * ·) x⁻¹).mdifferentiableWithinAt)
       (by simp)
       (uniqueMDiffWithinAt_univ I)
       (by
@@ -250,7 +250,7 @@ theorem isLeftInvariant_mpullback_inv_of_isRightInvariant
       (by
         simpa using
           (mdifferentiableAt_mul_left (I := I) (a := g) (b := x) :
-            MDiffAt (g * ·) x))
+            MDiffAt (g * ·) x).mdifferentiableWithinAt)
       (by simp)
       (uniqueMDiffWithinAt_univ I)
       (by
@@ -264,7 +264,7 @@ theorem isLeftInvariant_mpullback_inv_of_isRightInvariant
       (by
         simpa using
           (mdifferentiableAt_mul_right (I := I) (a := g⁻¹) (b := x⁻¹) :
-            MDiffAt (· * g⁻¹) x⁻¹))
+            MDiffAt (· * g⁻¹) x⁻¹).mdifferentiableWithinAt)
       (by simp)
       (uniqueMDiffWithinAt_univ I)
       (by
@@ -303,7 +303,7 @@ theorem mpullback_inv_involutive
       (by
         simpa using
           (((contMDiff_inv I (∞ : WithTop ℕ∞)).mdifferentiableAt (x := x) (by simp)) :
-            MDiffAt (fun y : G ↦ y⁻¹) x))
+            MDiffAt (fun y : G ↦ y⁻¹) x).mdifferentiableWithinAt)
       (by simp)
       (uniqueMDiffWithinAt_univ I)
       (by
@@ -448,7 +448,7 @@ theorem inversion_pushforward_on_groupLieAlgebra_bijective :
     apply Subtype.ext
     ext g
     have hX : VectorField.IsRightInvariant (X : Π h : G, TangentSpace I h) := by
-      simpa using hXmem
+      simpa using! hXmem
     have hLeft :
         VectorField.IsLeftInvariant
           (VectorField.mpullback I I (fun h : G ↦ h⁻¹) (X : Π h : G, TangentSpace I h)) := by

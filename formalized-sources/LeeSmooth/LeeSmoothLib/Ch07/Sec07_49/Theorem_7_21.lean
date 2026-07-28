@@ -95,15 +95,14 @@ lemma subtypeValImmersionProjectedLocalSectionContinuous
   have hdomChartSymm :
       ContMDiffOn 𝓘(𝕜, S.ModelSpace) J ∞ (hImm.domChart.extend J).symm
         (hImm.domChart.extend J).target := by
-    convert contMDiffOn_extend_symm hdomChart_mem using 2
-    simpa [J] using (J.image_eq hImm.domChart.target).symm
+    simpa [J] using! contMDiffOn_extend_symm hdomChart_mem
   have hcodChart_mem :
       hImm.codChart ∈ IsManifold.maximalAtlas I (∞ : ℕ∞ω) G :=
     IsManifold.maximalAtlas_subset_of_le (show (∞ : ℕ∞ω) ≤ (⊤ : ℕ∞ω) by simp)
       hImm.codChart_mem_maximalAtlas
   have hcodExt :
       ContMDiffOn I 𝓘(𝕜, E) ∞ (hImm.codChart.extend I) V := by
-    exact (contMDiffOn_extend hcodChart_mem).mono hV_cod
+    exact (OpenPartialHomeomorph.contMDiffOn_extend hcodChart_mem).mono hV_cod
   have hproj :
       ContMDiffOn I 𝓘(𝕜, S.ModelSpace) ∞ (π ∘ (hImm.codChart.extend I)) V := by
     simpa [Function.comp] using π.contDiff.contMDiff.comp_contMDiffOn hcodExt
@@ -115,7 +114,7 @@ lemma subtypeValImmersionProjectedLocalSectionContinuous
     -- The direct chart inverse already lands in the subgroup once the projected coordinates stay
     -- inside the intrinsic chart target.
     exact hdomChartSymm.comp hproj hmaps
-  simpa [σ₀, π, J, Function.comp] using
+  simpa [σ₀, π, J, Function.comp] using!
     (continuousOn_iff_continuous_restrict).mp hσOn.continuousOn
 
 /-- Helper for Theorem 7.21: on the intrinsic source branch of the immersion normal form, the
@@ -526,8 +525,8 @@ lemma subtypeVal_isEmbedding_of_isClosed_of_locallyCompactField (S : LieSubgroup
     hS_closed.isClosedEmbedding_subtypeVal.isEmbedding
   -- Compose the open embedding onto the closed subgroup with the ambient closed-subgroup
   -- inclusion.
-  simpa [subtypeVal_factor_through_closedSubgroup] using
-    hClosedEmb.comp hFactorOpenEmb.isEmbedding
+  rw [subtypeVal_factor_through_closedSubgroup S hS_closed]
+  exact hClosedEmb.comp hFactorOpenEmb.isEmbedding
 
 /-- Helper for Theorem 7.21: a closed Lie subgroup has globally embedded inclusion because the
 canonical closed-subgroup factor is an open embedding and the ambient closed-subgroup inclusion is
@@ -560,7 +559,8 @@ lemma subtypeValToClosedCarrier_isEmbedding_of_embedding (S : LieSubgroup I)
           subtypeValToClosedCarrier S hS_closed) := by
     -- Normalize the factorization through the canonical closed subgroup before cancelling the
     -- closed-subgroup inclusion embedding.
-    simpa [subtypeVal_factor_through_closedSubgroup] using hEmb
+    rw [← subtypeVal_factor_through_closedSubgroup S hS_closed]
+    exact hEmb
   exact (Topology.IsEmbedding.of_comp_iff hClosedEmb).mp hComp
 
 /-- Helper for Theorem 7.21: after the main closed-to-embedding step is proved, the canonical

@@ -167,7 +167,7 @@ theorem exists_contDiffOn_two_expGram_ball (g : RiemannianMetric I M) (p : M) :
     have hev : ContDiffAt ℝ 2 (fun y : E => fderiv ℝ (expChart (I := I) g p) y c) x :=
       ((ContinuousLinearMap.apply ℝ E c).contDiff.contDiffAt).comp x hDE
     have := ((Geodesic.chartCoordFunctional (E := E) i).contDiff.contDiffAt).comp x hev
-    simpa using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   unfold expGram
   simp only [chartMetricInner_def]
   exact ContDiffAt.sum fun i _ =>

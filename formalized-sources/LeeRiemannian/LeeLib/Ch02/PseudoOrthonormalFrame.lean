@@ -338,8 +338,10 @@ theorem exists_pseudo_orthonormalFrame_nhds [FiniteDimensional ℝ E]
   have hspan : finrank ℝ (span ℝ (Set.range w)) = finrank ℝ (TangentSpace I p) := by
     rw [← prefixSpan_last w]
     exact (hw _ le_rfl).1
+  have hdim : finrank ℝ E = finrank ℝ (TangentSpace I p) := rfl
+  have hspanE : finrank ℝ E = finrank ℝ (span ℝ (Set.range w)) := hdim.trans hspan.symm
   have hli : LinearIndependent ℝ w :=
-    linearIndependent_iff_card_eq_finrank_span.mpr (by simpa [Set.finrank] using hspan.symm)
+    linearIndependent_iff_card_eq_finrank_span.mpr (by simpa [Set.finrank] using hspanE)
   let wb : Basis (Fin (finrank ℝ E)) ℝ (TangentSpace I p) :=
     Basis.mk hli (Submodule.eq_top_of_finrank_eq hspan).ge
   -- spread it to vector fields near `p`

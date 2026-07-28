@@ -37,13 +37,13 @@ theorem isTangentToSubmanifold_iff_forall_smooth_apply_eq_zero
         EqOn (VectorField.apply X f) 0 S := by
   constructor
   · intro hX f hf p hp
-    simpa using
+    simpa using!
       (tangentVector_mem_submanifold_iff_forall_smooth_eq_zero S hS ⟨p, hp⟩ (X p)).mp
         (hX ⟨p, hp⟩) f hf
   · intro h p
     refine (tangentVector_mem_submanifold_iff_forall_smooth_eq_zero S hS p (X p)).mpr ?_
     intro f hf
-    simpa using h f hf p.2
+    simpa using! h f hf p.2
 
 end VectorField
 

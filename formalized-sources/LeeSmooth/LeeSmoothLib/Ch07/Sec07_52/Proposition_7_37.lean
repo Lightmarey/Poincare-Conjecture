@@ -78,7 +78,7 @@ theorem contMDiffUnitsOfVal
     ContMDiff I (𝓘(𝕜, R)) ∞ f := by
   -- The units manifold is an open submanifold of the ambient normed algebra.
   refine ContMDiff.of_comp_isOpenEmbedding Units.isOpenEmbedding_val ?_
-  simpa using h
+  exact h
 
 /-- Helper for Proposition 7.37: smoothness of a `ContinuousLinearMap`-valued map is equivalent to
 smoothness of all evaluation maps when the source vector space is finite-dimensional. -/
@@ -112,7 +112,8 @@ theorem contMDiffContinuousLinearMap_iff_forall_apply
         intro i
         let y : V₁ := e₁.symm (Pi.single i 1)
         have hy := h y
-        simpa [e, e₁, y] using hy
+        change ContMDiff I 𝓘(𝕜, W) ∞ (fun x ↦ f x y)
+        exact hy
       -- Return from coordinates by composing with the inverse equivalence.
       let eSymm : (Fin d → W) →L[𝕜] (V₁ →L[𝕜] W) := e.symm.toContinuousLinearMap
       have hSymm : ContMDiff 𝓘(𝕜, Fin d → W) 𝓘(𝕜, V₁ →L[𝕜] W) ∞ eSymm :=
@@ -146,8 +147,10 @@ theorem linearActionContinuousUnits_contMDiff [CompleteSpace 𝕜] (h : IsLinear
   rw [contMDiffContinuousLinearMap_iff_forall_apply]
   intro v
   -- For each fixed vector, the evaluation map is the smooth orbit map.
-  simpa using
-    (contMDiff_id.smul (contMDiff_const : ContMDiff I 𝓘(𝕜, V) ∞ fun _ : G ↦ v))
+  convert
+    (contMDiff_id.smul (contMDiff_const : ContMDiff I 𝓘(𝕜, V) ∞ fun _ : G ↦ v)) using 1
+  funext g
+  exact linearActionContinuousUnits_apply h g v
 
 /-- Helper for Proposition 7.37: a smooth linear action packages into a smooth representation. -/
 noncomputable def lieGroupRepresentationOfIsLinearAction (h : IsLinearAction 𝕜 G V) :

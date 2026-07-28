@@ -168,11 +168,12 @@ lemma rankAt_leftTranslation_comp
               TangentSpace J (F (1 : G)) →L[𝕜]
                 TangentSpace J
                   ((leftTranslationDiffeomorph (I := J) (F g)) (F (1 : G)))).toLinearMap)) := by
-          simpa using congrArg
+          convert congrArg
             (fun f : TangentSpace J (F (1 : G)) →ₗ[𝕜]
               TangentSpace J ((leftTranslationDiffeomorph (I := J) (F g)) (F (1 : G))) =>
               Module.finrank 𝕜 (((mfderiv I J F (1 : G)).range).map f))
-            hDerivEqLinear
+            hDerivEqLinear using 1
+          all_goals rfl
     _ = Module.finrank 𝕜 ((mfderiv I J F (1 : G)).range) := by
           simpa [e] using LinearEquiv.finrank_map_eq e.toLinearEquiv
             ((mfderiv I J F (1 : G)).range)
@@ -203,7 +204,8 @@ theorem hasConstantRank
     HasConstantRank I J F (rankAt I J F (1 : G)) := by
   -- Constant rank is exactly smoothness together with the pointwise rank formula.
   refine ⟨?_, ?_⟩
-  · simpa using F.contMDiff_toFun.mdifferentiable (by simp)
+  · change MDiff F.toMonoidHom
+    exact F.contMDiff_toFun.mdifferentiable (by simp)
   · intro g
     exact rankAt_eq_rankAt_one F g
 

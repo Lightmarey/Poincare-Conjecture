@@ -808,10 +808,18 @@ theorem theorema_egregium (hdim' : D'.dim = 2) (p : ↥s)
     (v₁ := ⟨_, hE'₁t (Φ.diffeo p)⟩) (v₂ := ⟨_, hE'₂t (Φ.diffeo p)⟩)
     (by have h := hu i i; rw [if_pos rfl] at h; exact h)
     (by have h := hu j j; rw [if_pos rfl] at h; exact h)
-    (by simpa [hij] using hu i j)
+    (by
+      have h := hu i j
+      rw [if_neg hij] at h
+      change (opensEuclideanMetric t).inner (Φ.diffeo p) _ _ = 0
+      exact h)
     (by have h := hv k k; rw [if_pos rfl] at h; exact h)
     (by have h := hv l l; rw [if_pos rfl] at h; exact h)
-    (by simpa [hkl] using hv k l)
+    (by
+      have h := hv k l
+      rw [if_neg hkl] at h
+      change (opensEuclideanMetric t).inner (Φ.diffeo p) _ _ = 0
+      exact h)
   linarith [hgp, hgq, hpair, hflatU, hflatV, hswap]
 
 end DCPatchIsometry

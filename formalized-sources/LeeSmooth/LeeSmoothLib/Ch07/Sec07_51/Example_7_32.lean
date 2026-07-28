@@ -69,8 +69,9 @@ def orthogonal_euclidean_linear_equiv :
     exact (orthogonal_euclidean_toLinearEquiv n).map_mul A B
 
 private def orthogonal_euclidean_add_aut :
-    O(n) →* AddAut E where
-  toFun A := (orthogonal_euclidean_linear_equiv n A).toLinearEquiv.toAddEquiv
+    O(n) →* Multiplicative (AddAut E) where
+  toFun A := Multiplicative.ofAdd
+    (orthogonal_euclidean_linear_equiv n A).toLinearEquiv.toAddEquiv
   map_one' := by
     apply AddEquiv.ext
     intro x
@@ -93,7 +94,7 @@ private abbrev euclidean_orthogonal_mul_action :
     euclidean_orthogonal_mul_action n A (Multiplicative.ofAdd x) =
       Multiplicative.ofAdd (orthogonal_euclidean_linear_equiv n A x) :=
   by
-    simp [euclidean_orthogonal_mul_action, orthogonal_euclidean_add_aut]
+    rfl
 
 /-- Helper for Example 7.32: the Euclidean group, realized on the pair type `ℝ^n × O(n)` with the
 semidirect-product group law induced by the natural orthogonal action. -/

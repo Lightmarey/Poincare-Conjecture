@@ -179,6 +179,7 @@ theorem continuousOn_iteratedFDeriv_partial {f : F₁ × E₁ → G₁} {s : Set
   refine hbase.congr fun p hp => ?_
   obtain ⟨a, x⟩ := p
   have hx : x ∈ s := hp.2
+  dsimp only
   rw [ContinuousMultilinearMap.compContinuousLinearMapL_apply,
     ← iteratedFDerivWithin_partial_eq hs hf m a hx,
     iteratedFDerivWithin_of_isOpen m hs hx]
@@ -267,6 +268,7 @@ theorem continuousOn_iteratedFDeriv_partial_prod {f : F₁ × E₁ → G₁} {u 
   obtain ⟨a, x⟩ := p
   have ha : a ∈ u := hp.1
   have hx : x ∈ s := hp.2
+  dsimp only
   rw [ContinuousMultilinearMap.compContinuousLinearMapL_apply,
     ← iteratedFDerivWithin_partial_prod_eq hu hs hf m ha hx,
     iteratedFDerivWithin_of_isOpen m hs hx]

@@ -46,8 +46,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimension
 /-- **Math.** The radial factor `r^{n-1} dr` of the polar decomposition has no atoms: it is
 absolutely continuous with respect to Lebesgue measure on `(0,∞)`, which has none.
 
-Mathlib registers no `NoAtoms` instance for `volumeIoiPow`, so we supply it. -/
-instance noAtoms_volumeIoiPow (n : ℕ) : NoAtoms (Measure.volumeIoiPow n) where
+Mathlib registers no `NullSingletonClass` instance for `volumeIoiPow`, so we supply it. -/
+instance nullSingletonClass_volumeIoiPow (n : ℕ) :
+    NullSingletonClass (Measure.volumeIoiPow n) where
   measure_singleton r := by
     refine withDensity_absolutelyContinuous _ _ ?_
     rw [comap_subtype_coe_apply measurableSet_Ioi]

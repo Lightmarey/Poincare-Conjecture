@@ -73,16 +73,19 @@ theorem HasGeodesicEquationAt.comp_const_add (g : RiemannianMetric I M) {γ : �
   refine ⟨v, a, ?_, ?_, ?_, ?_⟩
   · -- velocity: `HasDerivAt (chartLocalCurve γ̃ σ) v σ`
     rw [hshift]
-    simpa using hv.scomp σ (hadd σ)
+    exact ((hv.scomp σ (hadd σ)).congr_of_eventuallyEq
+      (Filter.Eventually.of_forall (fun s => rfl))).congr_deriv (by simp)
   · -- the ambient differentiability, pulled back along the shift
     have htend : Tendsto (fun s : ℝ => c + s) (𝓝 σ) (𝓝 (c + σ)) := by
-      simpa using (continuous_const.add continuous_id).tendsto σ
+      convert (continuous_const.add continuous_id).tendsto σ using 1 <;> rfl
     filter_upwards [htend.eventually hev] with s hs
     rw [hshift, deriv_comp_const_add]
-    simpa using hs.scomp s (hadd s)
+    exact ((hs.scomp s (hadd s)).congr_of_eventuallyEq
+      (Filter.Eventually.of_forall (fun x => rfl))).congr_deriv (by simp)
   · -- acceleration: `HasDerivAt (deriv (chartLocalCurve γ̃ σ)) a σ`
     rw [hderivEq]
-    simpa using ha.scomp σ (hadd σ)
+    exact ((ha.scomp σ (hadd σ)).congr_of_eventuallyEq
+      (Filter.Eventually.of_forall (fun s => rfl))).congr_deriv (by simp)
   · -- the Christoffel corrector is unchanged
     exact hchr
 

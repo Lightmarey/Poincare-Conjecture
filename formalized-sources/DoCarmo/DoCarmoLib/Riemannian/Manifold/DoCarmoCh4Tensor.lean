@@ -118,6 +118,18 @@ structure IsCovariantTensor3
     (X Y Z : SmoothVectorField I M) (p : M),
     T X Y (SmoothVectorField.smul f hf Z) p = f p * T X Y Z p
 
+/-! Parser-visible aliases for the tensor predicates. These are definitionally
+the same structures; abbrev declarations are indexed by the Horizon graph
+extractor while structure declarations are not. -/
+abbrev CovariantTensor2Predicate
+    (T : SmoothVectorField I M → SmoothVectorField I M → (M → ℝ)) : Prop :=
+  IsCovariantTensor2 T
+
+abbrev CovariantTensor4Predicate
+    (T : SmoothVectorField I M → SmoothVectorField I M → SmoothVectorField I M →
+      SmoothVectorField I M → (M → ℝ)) : Prop :=
+  IsCovariantTensor4 T
+
 /-! ### The metric tensor (do Carmo Ex. 5.3) -/
 
 /-- **Math.** do Carmo Ch. 4, Ex. 5.3: the **metric tensor**

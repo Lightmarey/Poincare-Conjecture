@@ -94,7 +94,7 @@ theorem isSmoothCoveringMap_of_proper_localDiffeomorph {π : E → M}
     · intro x _
       exact fiber_finite_of_proper_local_diffeomorph (IE := IE) (IM := IM) hproper hlocal x
     · intro e _
-      exact exists_openPartialHomeomorph_eq_of_localDiffeomorph
+      simpa [eq_comm] using exists_openPartialHomeomorph_eq_of_localDiffeomorph
         (IE := IE) (IM := IM) hlocal e
   · -- Surjectivity is the clopen-range argument from the textbook proof.
     exact surjective_of_nonempty_preconnected_open_closed_range

@@ -46,6 +46,6 @@ theorem exercise2_5_31 {g : RiemannianMetric I M} (D : RiemannianConnection I g)
   have hcompat := D.metric_compat hX hX p v
   rw [hpar p v] at hcompat
   simp only [g.metricInner_zero_left, g.metricInner_zero_right, add_zero] at hcompat
-  simpa [dirTangent] using hcompat
+  simpa [dirTangent, zero_apply] using! hcompat
 
 end PetersenLib

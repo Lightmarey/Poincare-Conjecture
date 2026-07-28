@@ -59,7 +59,7 @@ lemma exists_angleFunction_of_missing_point {U : TopologicalSpace.Opens Circle} 
   · -- Continuity comes from the continuity of `arg` away from the rotated missing point.
     let g : U → ℂ := fun z ↦ (((u * z : Circle) : ℂ))
     have hg : Continuous g := by
-      simpa [g] using
+      simpa [g] using!
         (continuous_subtype_val.comp (continuous_const.mul continuous_subtype_val))
     have hslit : ∀ z : U, (((u * z : Circle) : ℂ)) ∈ Complex.slitPlane := by
       intro z
@@ -74,7 +74,7 @@ lemma exists_angleFunction_of_missing_point {U : TopologicalSpace.Opens Circle} 
       intro z
       have hgz : ContinuousAt g z := hg.continuousAt
       exact (Complex.continuousAt_arg (by simpa [g] using hslit z)).comp hgz
-    simpa [g] using harg.sub continuous_const
+    simpa [g] using! harg.sub continuous_const
   · intro z
     -- Exponentiating the rotated argument undoes the rotation and recovers the original point.
     have hexp_mul : Circle.exp (Complex.arg (((u * z : Circle) : ℂ))) = (u * z : Circle) := by
@@ -105,7 +105,7 @@ theorem exists_angleFunction_iff_ne_univ (U : TopologicalSpace.Opens Circle) :
     let θ' : Circle → ℝ := fun z ↦ θ ⟨z, by simp⟩
     have hθ' : Continuous θ' := by
       have hincl : Continuous fun z : Circle ↦ (⟨z, by simp⟩ : (⊤ : TopologicalSpace.Opens Circle)) := by
-        simpa using (Homeomorph.Set.univ Circle).symm.continuous
+        simpa using! (Homeomorph.Set.univ Circle).symm.continuous
       exact hθ.1.comp hincl
     have hrange : Set.range θ' = Set.range θ := by
       ext x
@@ -194,13 +194,13 @@ lemma Complex.arg_contDiffAt_of_mem_slitPlane {z : ℂ} (hz : z ∈ Complex.slit
     simpa [Complex.polarCoord, Complex.polarCoord_source] using
       polarCoord_contDiffAt (Complex.equivRealProd z) hz
   have hcomplex : ContDiffAt ℝ (⊤ : WithTop ℕ∞) Complex.polarCoord z := by
-    simpa [Complex.polarCoord] using hreal.comp z Complex.equivRealProdCLM.contDiff.contDiffAt
+    simpa [Complex.polarCoord] using! hreal.comp z Complex.equivRealProdCLM.contDiff.contDiffAt
   -- The argument is the second polar-coordinate component.
   have hEq : Complex.arg = fun w : ℂ ↦ (Complex.polarCoord w).2 := by
     funext w
     simp [Complex.polarCoord_apply]
   rw [hEq]
-  simpa using contDiff_snd.contDiffAt.comp z hcomplex
+  simpa using! contDiff_snd.contDiffAt.comp z hcomplex
 
 /-- Helper for Problem 1-8: the explicit branch-cut formula is smooth at each circle point whose
 rotated image avoids the branch point `-1`. -/
@@ -218,7 +218,7 @@ lemma explicit_branch_contMDiffAt {u : Circle} {z : Circle}
   -- Compose the smooth ambient branch `arg` with that smooth rotation.
   have harg : ContMDiffAt (𝓘(ℝ, ℂ)) 𝓘(ℝ) ∞ Complex.arg (((u * z : Circle) : ℂ)) :=
     (Complex.arg_contDiffAt_of_mem_slitPlane hz).contMDiffAt.of_le le_top
-  simpa [mul_comm, mul_left_comm, mul_assoc] using harg.comp z hmul.contMDiffAt
+  simpa [mul_comm, mul_left_comm, mul_assoc] using! harg.comp z hmul.contMDiffAt
 
 /-- Helper for Problem 1-8: if an open circle subset misses one point, then the standard branch-cut
 angle function on that subset is smooth. -/
@@ -233,7 +233,7 @@ lemma smooth_branch_of_missing_point {U : TopologicalSpace.Opens Circle} {c : Ci
     · let u : Circle := -c⁻¹
       let g : U → ℂ := fun z ↦ (((u * z : Circle) : ℂ))
       have hg : Continuous g := by
-        simpa [g] using
+        simpa [g] using!
           (continuous_subtype_val.comp (continuous_const.mul continuous_subtype_val))
       have hslit : ∀ z : U, (((u * z : Circle) : ℂ)) ∈ Complex.slitPlane := by
         intro z
@@ -248,7 +248,7 @@ lemma smooth_branch_of_missing_point {U : TopologicalSpace.Opens Circle} {c : Ci
         intro z
         have hgz : ContinuousAt g z := hg.continuousAt
         exact (Complex.continuousAt_arg (by simpa [g] using hslit z)).comp hgz
-      simpa [u, g] using harg.sub continuous_const
+      simpa [u, g] using! harg.sub continuous_const
     · intro z
       -- Exponentiating cancels the branch-cut formula and recovers the original circle point.
       have hexp_mul :
@@ -317,7 +317,7 @@ theorem IsAngleFunction.contMDiff (hθ : IsAngleFunction θ) :
       _ = y := hη.2 y
   have hg_smooth : ContMDiffAt (𝓡 1) 𝓘(ℝ) ∞ g z := by
     -- Shifting a smooth branch by a constant preserves smoothness.
-    simpa [g] using (hη_smooth z).add contMDiffAt_const
+    simpa [g] using! (hη_smooth z).add contMDiffAt_const
   have hwindow_mem : Set.Ioo (θ z - Real.pi / 2) (θ z + Real.pi / 2) ∈ nhds (θ z) := by
     refine IsOpen.mem_nhds isOpen_Ioo ?_
     constructor <;> linarith [Real.pi_pos]
@@ -371,7 +371,7 @@ theorem IsAngleFunction.rightInverse_circleExpOpenImage (hθ : IsAngleFunction �
     Function.RightInverse hθ.circleExpOpenImage (Set.rangeFactorization θ) := by
   rintro ⟨x, ⟨z, rfl⟩⟩
   apply Subtype.ext
-  simpa using congrArg θ (hθ.leftInverse_circleExpOpenImage z)
+  simpa using! congrArg θ (hθ.leftInverse_circleExpOpenImage z)
 
 /-- Helper for Problem 1-8: the inverse parametrization followed by the angle function is the
 inclusion of the open image into `ℝ`. -/

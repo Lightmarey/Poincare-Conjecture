@@ -119,10 +119,13 @@ lemma compKernelSpatial_hasDerivAt_time {s : ℝ} (hs : 0 < s) (x : EuclideanSpa
     have hdiv : HasDerivAt (fun a : ℝ => ‖x‖ ^ 2 / (4 * a)) (-(‖x‖ ^ 2) / (4 * s ^ 2)) s := by
       have := (hasDerivAt_const s (‖x‖ ^ 2)).div h4s (by positivity)
       convert this using 1
-      field_simp
-      ring
+      · exact AddCommGroup.ext rfl
+      · exact Module.ext rfl
+      · rfl
+      · field_simp
+        ring
     have := (hlog.const_mul (-(n : ℝ) / 2)).add hdiv
-    convert this using 1
+    convert this using 1 <;> try rfl
     field_simp
     ring
   have hev : (fun a => compKernelSpatial n a x)
@@ -158,7 +161,11 @@ lemma compKernelSpatial_partialDeriv {s : ℝ} (hs : 0 < s) (x : EuclideanSpace 
       simpa using hasDerivAt_pow 2 (0 : ℝ)
     have hnum : HasDerivAt (fun a : ℝ => ‖x‖ ^ 2 + 2 * a * x j + a ^ 2) (2 * x j) 0 := by
       have h := ((hasDerivAt_const (0 : ℝ) (‖x‖ ^ 2)).add e1).add e2
-      simpa using h
+      convert h using 1
+      · exact AddCommGroup.ext rfl
+      · exact Module.ext rfl
+      · rfl
+      · ring
     exact hnum.div_const (4 * s)
   rw [hg]
   have hExp := (hQd.exp.const_mul (s ^ (-(n : ℝ) / 2)))
@@ -211,7 +218,12 @@ lemma compKernelSpaceTime_partialDeriv_zero {y : EuclideanSpace ℝ (Fin n)} {τ
   have hg : DifferentiableAt ℝ (compKernelSpaceTime n y τ) p :=
     (compKernelSpaceTime_contDiffAt hp (k := 1)).differentiableAt (by norm_num)
   have hlin : HasDerivAt (fun a : ℝ => τ - p 0 - a) (-1) 0 := by
-    simpa using (hasDerivAt_const (0 : ℝ) (τ - p 0)).sub (hasDerivAt_id (0 : ℝ))
+    convert (hasDerivAt_const (0 : ℝ) (τ - p 0)).sub
+      (hasDerivAt_id (0 : ℝ)) using 1
+    · exact AddCommGroup.ext rfl
+    · exact Module.ext rfl
+    · rfl
+    · norm_num
   have hgt : HasDerivAt (fun a : ℝ => compKernelSpatial n a (spacePart p - y))
       (compKernelSpatial n (τ - p 0) (spacePart p - y)
         * (-(‖spacePart p - y‖ ^ 2) / (4 * (τ - p 0) ^ 2) - (n : ℝ) / (2 * (τ - p 0))))

@@ -159,7 +159,7 @@ private theorem isCompact_closedBall_euclideanHalfSpace
     exact isClosed_le continuous_const hcoord
   have hambient : IsCompact (Metric.closedBall c.1 r) :=
     isCompact_closedBall c.1 r
-  simpa [Metric.closedBall, Subtype.dist_eq] using
+  simpa [Metric.closedBall, Subtype.dist_eq] using!
     hclosedHalf.isClosedEmbedding_subtypeVal.isCompact_preimage hambient
 
 /-- Helper for Exercise 1.42: the closure of a zero-centered open half-space ball is the
@@ -421,10 +421,10 @@ private noncomputable def boundaryParallelTranslationHomeomorph
     constructor <;> intro hx
     · -- The tangent translation preserves the nonnegative first coordinate.
       change 0 ≤ (h x) 0
-      simpa [h, hc] using hx
+      simpa [h, hc] using! hx
     · -- The inverse translation preserves the same half-space for the same reason.
       change 0 ≤ x 0 + -c.1 0 at hx
-      simpa [hc] using hx
+      simpa [hc] using! hx
 
 /-- Helper for Exercise 1.42: in ambient coordinates, the boundary-parallel translation subtracts
 the chosen boundary point. -/
@@ -461,7 +461,7 @@ private theorem boundaryParallelTranslation_mem_contDiffGroupoid
     refine hforward.congr_mono ?_ ?_
     · intro x hx
       rcases mem_range.1 hx.2 with ⟨y, rfl⟩
-      simpa using boundaryParallelTranslationHomeomorph_apply_val c hc y
+      simpa using! boundaryParallelTranslationHomeomorph_apply_val c hc y
     · exact inter_subset_left
   · -- The inverse ambient map is the opposite affine translation `x ↦ x + c`.
     have hreverse :
@@ -471,7 +471,7 @@ private theorem boundaryParallelTranslation_mem_contDiffGroupoid
     refine hreverse.congr_mono ?_ ?_
     · intro x hx
       rcases mem_range.1 hx.2 with ⟨y, rfl⟩
-      simpa using boundaryParallelTranslationHomeomorph_symm_apply_val c hc y
+      simpa using! boundaryParallelTranslationHomeomorph_symm_apply_val c hc y
     · exact inter_subset_left
 
 /-- Helper for Exercise 1.42: the boundary-parallel translation sends the boundary-centered model
@@ -899,4 +899,4 @@ theorem exists_countable_regular_coordinate_ball_half_ball_basis
       refine ⟨hbCountable, hbBasis, ?_⟩
       intro s hs
       -- Membership in the extracted countable subbasis is exactly the desired regular disjunction.
-      simpa [IsRegularCoordinateBallOrHalfBall] using hbB hs
+      simpa [IsRegularCoordinateBallOrHalfBall] using! hbB hs

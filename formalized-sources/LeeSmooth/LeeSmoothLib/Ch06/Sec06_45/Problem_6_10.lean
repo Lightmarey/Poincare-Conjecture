@@ -112,7 +112,7 @@ lemma mdifferentiableAt_toSubtype_of_isEmbeddedSubmanifold
     simpa [x'] using hFwithin.2
   have hproj :
       Differentiable ℝ (fun v ↦ (hImm.equiv.symm v).1) := by
-    simpa using
+    simpa using!
       (contDiff_fst.comp hImm.equiv.symm.contDiff).differentiable
         (by simp : (⊤ : ℕ∞ω) ≠ 0)
   have hprojWithin :
@@ -215,7 +215,7 @@ lemma sameCarrierTangentSpace_eq_of_embeddedStructures (p : S) :
         mfderiv J I (Subtype.val : S → M) p =
           (mfderiv J' I (Subtype.val : S → M) p).comp (mfderiv J J' g p) := by
       -- The inclusion factors through the carrier identity into the `J'`-structure.
-      simpa [g, Function.comp] using
+      simpa [g, Function.comp] using!
         (mfderiv_comp (x := p) (g := (Subtype.val : S → M)) (f := g) hsubJ' hdiffJJ')
     rw [hcomp]
     exact LinearMap.range_comp_le_range _ _
@@ -226,7 +226,7 @@ lemma sameCarrierTangentSpace_eq_of_embeddedStructures (p : S) :
         mfderiv J' I (Subtype.val : S → M) p =
           (mfderiv J I (Subtype.val : S → M) p).comp (mfderiv J' J g p) := by
       -- Reversing the carrier identity gives the opposite tangent inclusion.
-      simpa [g, Function.comp] using
+      simpa [g, Function.comp] using!
         (mfderiv_comp (x := p) (g := (Subtype.val : S → M)) (f := g) hsubJ hdiffJ'J)
     rw [hcomp]
     exact LinearMap.range_comp_le_range _ _
@@ -238,9 +238,9 @@ lemma tangentQuotientFinrank_eq_codimension (p : S) :
     Module.finrank ℝ ((TangentSpace I (p : M)) ⧸ T[J; p]) =
       (inferInstance : IsEmbeddedSubmanifold I J S).codimension := by
   let _ : FiniteDimensional ℝ (TangentSpace I (p : M)) := by
-    simpa using (inferInstance : FiniteDimensional ℝ E)
+    simpa using! (inferInstance : FiniteDimensional ℝ E)
   let _ : FiniteDimensional ℝ (TangentSpace J p) := by
-    simpa using (inferInstance : FiniteDimensional ℝ E')
+    simpa using! (inferInstance : FiniteDimensional ℝ E')
   let hEmbedded : IsEmbeddedSubmanifold I J S := inferInstance
   let hSubtypeEmbeddingInf : Manifold.IsSmoothEmbedding J I ∞ (Subtype.val : S → M) :=
     isSmoothEmbedding_of_le
@@ -336,7 +336,7 @@ lemma preimageTangentSpace_le_comap
       (I := I) (JS := JX) (S := X)).mdifferentiableAt (by simp)
   have hFpre : ContMDiff JW I ∞ (fun y : f ⁻¹' X ↦ f y) := by
     -- Restrict the ambient smooth map to the chosen preimage submanifold.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       hF.comp
         (subtypeVal_contMDiff_of_isEmbeddedSubmanifold
           (I := K) (JS := JW) (S := f ⁻¹' X))
@@ -365,7 +365,7 @@ lemma preimageTangentSpace_le_comap
             (mfderiv JW K (Subtype.val : f ⁻¹' X → N) p) =
           mfderiv JW I (f ∘ (Subtype.val : f ⁻¹' X → N)) p := by
       symm
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (mfderiv_comp (x := p) (g := f)
           (f := (Subtype.val : f ⁻¹' X → N))
           (hF.mdifferentiableAt (by simp)) hsubPre)
@@ -376,10 +376,10 @@ lemma preimageTangentSpace_le_comap
     have hright :
         mfderiv JW I ((Subtype.val : X → M) ∘ g) p =
           (mfderiv JX I (Subtype.val : X → M) x).comp (mfderiv JW JX g p) := by
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (mfderiv_comp (x := p) (g := (Subtype.val : X → M)) (f := g) hsubX hgdiff)
     exact hleft.trans (hmid.trans hright)
-  simpa [LinearMap.comp_apply] using (congrArg (fun L ↦ L u) hcomp).symm
+  simpa [LinearMap.comp_apply] using! (congrArg (fun L ↦ L u) hcomp).symm
 
 -- The next helper transports codimension from Theorem 6.30's witness structure to the chosen
 -- preimage structure.
@@ -455,9 +455,9 @@ theorem tangentSpace_preimage_eq_comap_of_transverse_aux
   dsimp
   let x : X := ⟨f p, p.2⟩
   let _ : FiniteDimensional ℝ (TangentSpace K (p : N)) := by
-    simpa using (inferInstance : FiniteDimensional ℝ F)
+    simpa using! (inferInstance : FiniteDimensional ℝ F)
   let _ : FiniteDimensional ℝ (TangentSpace I (f p)) := by
-    simpa using (inferInstance : FiniteDimensional ℝ E)
+    simpa using! (inferInstance : FiniteDimensional ℝ E)
   have hle :
       T[JW; p] ≤ (T[JX; x]).comap (mfderiv K I f p).toLinearMap := by
     -- Tangent vectors to the preimage already land in the tangent space of `X`.
@@ -654,9 +654,9 @@ lemma intersectionTangentSpace_le_inf
           (mfderiv JX I (Subtype.val : X → M) ⟨(p : M), p.2.1⟩).comp
             (mfderiv JXX' JX gX p) := by
       -- Differentiate the factorization through the first inclusion.
-      simpa [gX, Function.comp] using
+      simpa [gX, Function.comp] using!
         (mfderiv_comp (x := p) (g := (Subtype.val : X → M)) (f := gX) hsubX hgXdiff)
-    simpa [LinearMap.comp_apply] using (congrArg (fun L => L w) hcomp).symm
+    simpa [LinearMap.comp_apply] using! (congrArg (fun L => L w) hcomp).symm
   · rw [show T[JX'; ⟨(p : M), p.2.2⟩] =
       (mfderiv JX' I (Subtype.val : X' → M) ⟨(p : M), p.2.2⟩).range by rfl]
     refine LinearMap.mem_range.2 ⟨mfderiv JXX' JX' gX' p w, ?_⟩
@@ -665,9 +665,9 @@ lemma intersectionTangentSpace_le_inf
           (mfderiv JX' I (Subtype.val : X' → M) ⟨(p : M), p.2.2⟩).comp
             (mfderiv JXX' JX' gX' p) := by
       -- Differentiate the factorization through the second inclusion.
-      simpa [gX', Function.comp] using
+      simpa [gX', Function.comp] using!
         (mfderiv_comp (x := p) (g := (Subtype.val : X' → M)) (f := gX') hsubX' hgX'diff)
-    simpa [LinearMap.comp_apply] using (congrArg (fun L => L w) hcomp).symm
+    simpa [LinearMap.comp_apply] using! (congrArg (fun L => L w) hcomp).symm
 
 -- The next helper isolates the pure linear-algebra quotient computation needed in the
 -- transverse-intersection endgame.
@@ -797,7 +797,7 @@ theorem tangentSpace_inter_eq_inf_of_transverse_aux
   let px : X := ⟨(p : M), p.2.1⟩
   let px' : X' := ⟨(p : M), p.2.2⟩
   let _ : FiniteDimensional ℝ (TangentSpace I (p : M)) := by
-    simpa using (inferInstance : FiniteDimensional ℝ E)
+    simpa using! (inferInstance : FiniteDimensional ℝ E)
   have hle :
       (T[JXX'; p] : Submodule ℝ (TangentSpace I (p : M))) ≤
         T[JX; px] ⊓ T[JX'; px'] := by

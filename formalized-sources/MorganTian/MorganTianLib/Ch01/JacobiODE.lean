@@ -109,6 +109,11 @@ structure IsJacobiSolOn (R : ℝ → F →L[ℝ] F) (a b : ℝ) (y v : ℝ → F
   hasDerivWithinAt_fst : ∀ t ∈ Icc a b, HasDerivWithinAt y (v t) (Icc a b) t
   hasDerivWithinAt_snd : ∀ t ∈ Icc a b, HasDerivWithinAt v (-(R t) (y t)) (Icc a b) t
 
+/-- **Math.** ASCII facade for the Jacobi second-order ODE predicate.
+Blueprint: `lem:second-order-linear-ode`. -/
+abbrev JacobiSolOn (R : ℝ → F →L[ℝ] F) (a b : ℝ) (y v : ℝ → F) : Prop :=
+  IsJacobiSolOn R a b y v
+
 namespace IsJacobiSolOn
 
 variable {R : ℝ → F →L[ℝ] F} {a b : ℝ} {y v z w : ℝ → F}
@@ -136,9 +141,17 @@ theorem isJacobiSolOn_of_isSolOn {R : ℝ → F →L[ℝ] F} {a b : ℝ} {W : �
     IsJacobiSolOn R a b (fun t => (W t).1) (fun t => (W t).2) where
   hasDerivWithinAt_fst t ht := by
     have := (ContinuousLinearMap.fst ℝ F F).hasFDerivAt.comp_hasDerivWithinAt t (h t ht)
+    have hfun : (fun t => (W t).1) = Prod.fst ∘ W := by
+      funext t
+      rfl
+    rw [hfun]
     simpa using this
   hasDerivWithinAt_snd t ht := by
     have := (ContinuousLinearMap.snd ℝ F F).hasFDerivAt.comp_hasDerivWithinAt t (h t ht)
+    have hfun : (fun t => (W t).2) = Prod.snd ∘ W := by
+      funext t
+      rfl
+    rw [hfun]
     simpa using this
 
 /-- Package a real bound `‖R t‖ ≤ C` on `[a, b]` as an `ℝ≥0` operator-norm bound
@@ -244,9 +257,19 @@ end IsJacobiSolOn
 theorem isJacobiSolOn_zero (R : ℝ → F →L[ℝ] F) (a b : ℝ) :
     IsJacobiSolOn R a b 0 0 where
   hasDerivWithinAt_fst t _ := by
-    simpa using (hasDerivWithinAt_const t (Icc a b) (0 : F))
+    have hfun : (0 : ℝ → F) = fun _ => 0 := by
+      funext x
+      rfl
+    rw [hfun]
+    simpa only [map_zero, neg_zero] using
+      (hasDerivWithinAt_const t (Icc a b) (0 : F))
   hasDerivWithinAt_snd t _ := by
-    simpa using (hasDerivWithinAt_const t (Icc a b) (0 : F))
+    have hfun : (0 : ℝ → F) = fun _ => 0 := by
+      funext x
+      rfl
+    rw [hfun]
+    simpa only [map_zero, neg_zero] using
+      (hasDerivWithinAt_const t (Icc a b) (0 : F))
 
 namespace IsJacobiSolOn
 

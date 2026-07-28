@@ -107,7 +107,7 @@ omit [IsTopologicalAddGroup V] [DecidableEq ι'] in
 @[simp] theorem innerFormsCLM_apply (e : ι' → V) (w θ : V [⋀^ι]→L[ℝ] ℝ) :
     innerFormsCLM e w θ
       = ((Fintype.card ι).factorial : ℝ)⁻¹ * ∑ s : ι → ι', w (fun i => e (s i)) * θ (fun i => e (s i)) := by
-  simp [innerFormsCLM, Finset.sum_apply, Finset.mul_sum]
+  simp [innerFormsCLM, Finset.mul_sum]
 
 end PointwiseCLM
 
@@ -321,7 +321,7 @@ theorem contMDiffAt_apply_section
   rw [hcoord]
   refine (congrArg (w x) (funext fun i => ?_)).symm
   show sT.symmL ℝ x ((sT ⟨x, Y i x⟩).2) = Y i x
-  rw [Trivialization.symmL_apply, Trivialization.symm_apply_apply_mk sT hx]
+  rw [sT.symmL_apply hx, Trivialization.symm_apply_apply_mk sT hx]
 
 end ManifoldApply
 

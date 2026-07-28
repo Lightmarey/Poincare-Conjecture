@@ -179,7 +179,9 @@ theorem exercise_6_7_10 (g : RiemannianMetric I M) {c : ℝ → M}
       intro s
       have hline : HasDerivAt (fun τ => k * τ) k s := by
         simpa using (hasDerivAt_id s).const_mul k
-      simpa using (hψderiv s).sub hline
+      change HasDerivAt
+        ((fun τ => g.inner (c τ) (J₁ τ) (curveVelocity c τ)) - fun τ => k * τ) 0 s
+      simpa only [sub_self] using (hψderiv s).sub hline
     have hconst := is_const_of_deriv_eq_zero (fun s => (hη s).differentiableAt)
       (fun s => (hη s).deriv) t 0
     simp only [mul_zero, sub_zero] at hconst

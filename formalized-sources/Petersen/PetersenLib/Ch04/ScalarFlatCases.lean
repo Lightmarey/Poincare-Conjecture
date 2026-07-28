@@ -94,7 +94,7 @@ theorem scalarFlat_affine_of_C_zero {n : ℕ} {ρ : ℝ → ℝ}
     have hg : ∀ x : ℝ, HasDerivAt (fun s => ρ s - s) 0 x := by
       intro x
       have := ((hρdiff x).hasDerivAt).sub (hasDerivAt_id x)
-      simpa [hone x] using this
+      simpa [hone x] using! this
     intro r
     have key : ρ r - r = ρ 0 - 0 :=
       is_const_of_deriv_eq_zero (fun y => (hg y).differentiableAt)
@@ -110,7 +110,7 @@ theorem scalarFlat_affine_of_C_zero {n : ℕ} {ρ : ℝ → ℝ}
     have hg : ∀ x : ℝ, HasDerivAt (fun s => ρ s + s) 0 x := by
       intro x
       have := ((hρdiff x).hasDerivAt).add (hasDerivAt_id x)
-      simpa [hone x] using this
+      simpa [hone x] using! this
     intro r
     have key : ρ r + r = ρ 0 + 0 :=
       is_const_of_deriv_eq_zero (fun y => (hg y).differentiableAt)

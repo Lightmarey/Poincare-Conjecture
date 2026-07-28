@@ -36,9 +36,9 @@ private noncomputable def radialScalingDiffeomorph (r : ℝ) (hr : r ≠ 0) :
         intro x
         simp [smul_smul, hr] }
   contMDiff_toFun := by
-    simpa using ((r • ContinuousLinearMap.id ℝ R3) : R3 →L[ℝ] R3).contMDiff
+    simpa using! ((r • ContinuousLinearMap.id ℝ R3) : R3 →L[ℝ] R3).contMDiff
   contMDiff_invFun := by
-    simpa using ((r⁻¹ • ContinuousLinearMap.id ℝ R3) : R3 →L[ℝ] R3).contMDiff
+    simpa using! ((r⁻¹ • ContinuousLinearMap.id ℝ R3) : R3 →L[ℝ] R3).contMDiff
 
 /-- Helper for Problem 6-9: transport an `n`-manifold charted-space structure across a
 homeomorphism. -/
@@ -210,7 +210,7 @@ lemma modelLocalDiffeomorphAt_isImmersionAtOfComplementPUnit
     (by simp)
     hdom_mem
     (by
-      simpa using
+      simpa using!
         (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ, E)).id_mem_maximalAtlas)
     ?_
   intro u hu
@@ -222,7 +222,7 @@ lemma modelLocalDiffeomorphAt_isImmersionAtOfComplementPUnit
   have hright : domChart (domChart.symm u) = u := domChart.right_inv hu_target
   -- In the chosen local-diffeomorphism chart, the map is literally the identity.
   simpa [domChart, Function.comp, OpenPartialHomeomorph.extend_coe,
-    OpenPartialHomeomorph.extend_coe_symm] using hfu.trans hright
+    OpenPartialHomeomorph.extend_coe_symm] using! hfu.trans hright
 
 /- Radial scaling identifies the unit sphere in `ℝ^3` with the sphere of radius `r > 0`. -/
 private noncomputable def positiveSphere_homeomorph (r : ℝ) (hr : 0 < r) :
@@ -240,13 +240,24 @@ private noncomputable def positiveSphere_homeomorph (r : ℝ) (hr : 0 < r) :
     apply Subtype.ext
     simp [smul_smul, hr.ne']
   continuous_toFun :=
-    Continuous.subtype_mk (continuous_const.smul continuous_subtype_val) fun x ↦ by
+    Continuous.subtype_mk
+      (show Continuous (fun x : unitSphere2 ↦ r • (x : R3)) from
+        (continuous_const : Continuous (fun _ : unitSphere2 ↦ r)).smul
+          continuous_subtype_val) fun x ↦ by
       rw [mem_sphere_zero_iff_norm, norm_smul, Real.norm_eq_abs, abs_of_pos hr]
       simp [mem_sphere_zero_iff_norm.1 x.2]
   continuous_invFun :=
-    Continuous.subtype_mk (continuous_const.smul continuous_subtype_val) fun x ↦ by
+    Continuous.subtype_mk
+      (show Continuous (fun x : sphereR r ↦ r⁻¹ • (x : R3)) from
+        (continuous_const : Continuous (fun _ : sphereR r ↦ r⁻¹)).smul
+          continuous_subtype_val) fun x ↦ by
       rw [mem_sphere_zero_iff_norm, norm_smul, Real.norm_eq_abs, abs_inv, abs_of_pos hr]
       simp [hr.ne', mem_sphere_zero_iff_norm.1 x.2]
+
+private theorem positiveSphere_homeomorph_apply_val (r : ℝ) (hr : 0 < r)
+    (x : unitSphere2) :
+    (((positiveSphere_homeomorph r hr) x : sphereR r) : R3) = r • (x : R3) := by
+  rfl
 
 /- The canonical smooth structure on a positive-radius sphere is the transport of the standard
 unit-sphere structure along radial scaling. -/
@@ -276,7 +287,7 @@ lemma radialScaling_isSmoothEmbeddingTop (r : ℝ) (hr : 0 < r) :
   -- embedding.
   have hLocal :
       IsLocalDiffeomorph (𝓡 3) (𝓡 3) (⊤ : WithTop ℕ∞) (fun x : R3 ↦ r • x) := by
-    simpa [radialScalingDiffeomorph] using
+    simpa [radialScalingDiffeomorph] using!
       (radialScalingDiffeomorph r hr.ne').isLocalDiffeomorph
   have hImm :
       IsImmersion (𝓡 3) (𝓡 3) (⊤ : WithTop ℕ∞) (fun x : R3 ↦ r • x) := by
@@ -290,7 +301,7 @@ inclusion to a smooth embedding into `ℝ^3`. -/
 lemma positiveSphere_scaledInclusion_isSmoothEmbedding (r : ℝ) (hr : 0 < r) :
     IsSmoothEmbedding (𝓡 2) (𝓡 3) (⊤ : WithTop ℕ∞) (fun x : unitSphere2 ↦ r • (x : R3)) := by
   -- Compose the canonical unit-sphere inclusion with the ambient radial scaling embedding.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     Manifold.IsSmoothEmbedding.comp
       (radialScaling_isSmoothEmbeddingTop r hr)
       (unitSphere_subtype_val_isSmoothEmbedding 2)
@@ -320,7 +331,7 @@ theorem positiveSphere_isEmbeddedSubmanifold (r : ℝ) (hr : 0 < r) :
         (positiveSphere_homeomorph r hr)
         (by
           intro x
-          rfl))
+          exact positiveSphere_homeomorph_apply_val r hr x))
   exact
     { toBoundarylessManifold := inferInstance
       isSmoothEmbedding_subtype_val := hSubtype }
@@ -342,7 +353,7 @@ theorem surjective_comp_iff_range_sup_ker_eq_top
   have hdom :
       Function.Surjective (B.toLinearMap.domRestrict A.range) ↔
         A.range ⊔ B.ker = ⊤ := by
-    simpa using
+    simpa only [codisjoint_iff] using
       (LinearMap.surjective_domRestrict_iff
         (f := B.toLinearMap) (S := A.range) hB)
   constructor
@@ -392,7 +403,7 @@ theorem problem_6_9_map_contMDiff :
           ((contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (i := 0)).sin)
     · simpa using
         ((contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (i := 1)).neg).exp
-  simpa [problem_6_9_map] using hExplicit
+  simpa [problem_6_9_map] using! hExplicit
 
 /-- The squared radius of the image point `F (x, y)`, simplified to the explicit formula that
 depends only on the second coordinate. -/
@@ -403,7 +414,7 @@ def problem_6_9_radius_sq (p : R2) : ℝ :=
 theorem ambientRadiusSq_contMDiff :
     ContMDiff (𝓡 3) 𝓘(ℝ, ℝ) ∞ ambientRadiusSq := by
   rw [contMDiff_iff_contDiff]
-  simpa [ambientRadiusSq] using
+  simpa [ambientRadiusSq] using!
     (contDiff_norm_sq ℝ : ContDiff ℝ ∞ fun x : R3 ↦ ‖x‖ ^ 2)
 
 /-- Helper for Problem 6-9: away from the origin, the derivative of the ambient squared-radius
@@ -511,20 +522,20 @@ theorem problem_6_9_radiusSqScalar_hasDerivAt (y : ℝ) :
   -- Differentiate the positive and negative exponential terms separately.
   have hpos_raw : HasDerivAt (fun y : ℝ => Real.exp (y * 2))
       (Real.exp (y * 2) * 2) y := by
-    simpa using
+    simpa using!
       (Real.hasDerivAt_exp (y * 2)).comp y (hasDerivAt_mul_const (2 : ℝ))
   have hpos : HasDerivAt (fun y : ℝ => Real.exp (2 * y))
       (2 * Real.exp (2 * y)) y := by
     simpa [mul_comm, two_mul, mul_left_comm, mul_assoc] using hpos_raw
   have hneg_raw : HasDerivAt (fun y : ℝ => Real.exp (y * (-2)))
       (Real.exp (y * (-2)) * (-2)) y := by
-    simpa using
+    simpa using!
       (Real.hasDerivAt_exp (y * (-2))).comp y (hasDerivAt_mul_const (-2 : ℝ))
   have hneg : HasDerivAt (fun y : ℝ => Real.exp (-2 * y))
       (-2 * Real.exp (-2 * y)) y := by
     simpa [mul_comm, two_mul, neg_mul, mul_left_comm, mul_assoc] using hneg_raw
   -- The derivative of the sum is the sum of the derivatives.
-  simpa using hpos.add hneg
+  simpa using! hpos.add hneg
 
 /-- Helper for Problem 6-9: differentiating `problem_6_9_radius_sq` produces the expected scalar
 multiple of the second-coordinate projection. -/
@@ -934,7 +945,7 @@ theorem r1TransitionMemContDiffGroupoidReal
         hmid ?_
       intro x hx
       simp [Set.mem_univ, eModel]
-    simpa [eModel, Function.comp, OpenPartialHomeomorph.trans_source] using hfinal
+    simpa [eModel, Function.comp, OpenPartialHomeomorph.trans_source] using! hfinal
   · -- The same conjugation argument applies to the inverse transition.
     have hmid :
         ContDiffOn ℝ m
@@ -953,7 +964,7 @@ theorem r1TransitionMemContDiffGroupoidReal
       intro x hx
       simp [Set.mem_univ, eModel]
     simpa [eModel, Function.comp, OpenPartialHomeomorph.trans_source,
-      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using
+      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using!
       hfinal
 
 /-- Helper for Problem 6-9: the codimension computation in the regular-level-set theorem yields a

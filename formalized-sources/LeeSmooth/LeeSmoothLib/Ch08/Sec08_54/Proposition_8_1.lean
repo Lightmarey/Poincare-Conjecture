@@ -70,8 +70,8 @@ private lemma diffeomorph_mfderiv_isInvertible
   -- Package the derivative as the canonical linear equivalence supplied by the diffeomorphism API.
   let e := F.mfderivToContinuousLinearEquiv (by simp) x
   refine ⟨e, ?_⟩
-  simpa [e] using
-    (Diffeomorph.mfderivToContinuousLinearEquiv_coe (Φ := F) (hn := by simp) (x := x)).symm
+  simpa [e] using!
+    (Diffeomorph.mfderivToContinuousLinearEquiv_coe (Φ := F) (hn := by simp) (x := x))
 
 /-- Helper for Proposition 8.1: the chart and its inverse are smooth between the source and target
 open subtypes already under the current `C^∞` maximal-atlas hypothesis. -/
@@ -128,7 +128,7 @@ private lemma mdifferentiableAt_extend
     {x : M} (hx : x ∈ e.source) :
     MDifferentiableAt I 𝓘(ℝ, EuclideanSpace ℝ (Fin n)) (e.extend I) x := by
   -- The extended chart is smooth on its source because `e` belongs to the maximal atlas.
-  exact (contMDiffAt_extend (I := I) (n := (∞ : ℕ∞ω)) he hx).mdifferentiableAt (by simp)
+  exact (e.contMDiffAt_extend (I := I) (n := (∞ : ℕ∞ω)) he hx).mdifferentiableAt (by simp)
 
 /-- Helper for Proposition 8.1: the inverse extended chart is manifold-differentiable within its
 natural target. -/
@@ -141,10 +141,9 @@ private lemma mdifferentiableWithinAt_extend_symm
   -- The inverse extended chart is smooth on the full chart target.
   have hy' : y ∈ I '' e.target := by
     rwa [OpenPartialHomeomorph.extend_target'] at hy
-  convert
-      (contMDiffOn_extend_symm (I := I) (n := (∞ : ℕ∞ω)) he y hy').mdifferentiableWithinAt
-        (by simp) using 1
-  rw [OpenPartialHomeomorph.extend_target']
+  simpa only [OpenPartialHomeomorph.extend_target'] using!
+    (contMDiffOn_extend_symm (I := I) (n := (∞ : ℕ∞ω)) he y hy').mdifferentiableWithinAt
+      (by simp)
 
 omit [ChartedSpace H M] [IsManifold I (∞ : ℕ∞ω) M] in
 /-- Helper for Proposition 8.1: the natural target of `e.extend I` has the unique differential
@@ -233,7 +232,7 @@ private lemma mpullback_diffeomorph_symm_apply
   refine
     (ContinuousLinearMap.IsInvertible.inverse_apply_eq
       ⟨e, by
-        simpa [e] using hcoe.symm⟩).2 ?_
+        simpa [e] using! hcoe⟩).2 ?_
   have hcomp :
       mfderiv I I (F.symm ∘ F) p (X p) =
         mfderiv J I F.symm (F p) (mfderiv I J F p (X p)) := by
@@ -247,12 +246,12 @@ private lemma mpullback_diffeomorph_symm_apply
   have hcomp' :
       mfderiv I I (fun x : M ↦ F.symm (F x)) p (X p) =
         mfderiv J I F.symm (F p) (mfderiv I J F p (X p)) := by
-    simpa [Function.comp] using hcomp
+    simpa [Function.comp] using! hcomp
   have hid : (fun x : M ↦ F.symm (F x)) = id := by
     funext x
     simp
   rw [hid, mfderiv_id] at hcomp'
-  simpa using hcomp'
+  simpa using! hcomp'
 
 omit [IsManifold I (∞ : ℕ∞ω) M] in
 /-- Helper for Proposition 8.1: pulling back by a diffeomorphism and then by its inverse returns
@@ -278,7 +277,7 @@ private lemma mpullback_diffeomorph_cancel
   exact
     (ContinuousLinearMap.IsInvertible.inverse_apply_eq
       ⟨e, by
-        simpa [e] using hcoe.symm⟩).2 hpush
+        simpa [e] using! hcoe⟩).2 hpush
 
 /-- Helper for Proposition 8.1: smoothness of a vector field on the chart source is equivalent to
 smoothness of its pullback to the source open subtype. -/
@@ -555,7 +554,7 @@ private lemma chartPullbackCoordinate_comp_eq_inChart
   have hcoordAt :
       MDifferentiableAt I 𝓘(ℝ, EuclideanSpace ℝ (Fin n)) (fun r : V ↦ I r) (F p) := by
     -- On the target open subset, the preferred chart is the explicit coordinate map `r ↦ I r`.
-    simpa [extChartAt_coe, TopologicalSpace.Opens.chartAt_eq, chartAt_self_eq] using
+    simpa [extChartAt_coe, TopologicalSpace.Opens.chartAt_eq, chartAt_self_eq] using!
       (contMDiffAt_extChartAt (I := I) (n := (∞ : ℕ∞ω)) (x := F p)).mdifferentiableAt (by simp)
   have hFAt : MDifferentiableAt I I F p := F.contMDiff.mdifferentiableAt (by simp)
   have hsubAt : MDifferentiableAt I I (Subtype.val : U → M) p := by
@@ -602,7 +601,7 @@ private lemma chartPullbackCoordinate_comp_eq_inChart
         mfderiv I 𝓘(ℝ, EuclideanSpace ℝ (Fin n)) (((fun r : V ↦ I r) ∘ F)) p (XU p) =
           mfderiv I 𝓘(ℝ, EuclideanSpace ℝ (Fin n)) (((e.extend I) ∘ (Subtype.val : U → M))) p
             (XU p) := by
-      simpa using congrArg
+      simpa using! congrArg
         (fun L : TangentSpace I p →L[ℝ] EuclideanSpace ℝ (Fin n) ↦ L (XU p)) hcompMfderiv
     -- Rewrite the differentiated target composite through the explicit function equality.
     exact hchainLeft.trans (hmid.trans hchainRight)
@@ -688,7 +687,7 @@ theorem smooth_on_chart_iff_smooth_in_chart
       (I := I) (J := 𝓘(ℝ, EuclideanSpace ℝ (Fin n))) U inChart
   have hbridge :
       (fun p : U ↦ coordY (F p)) = fun p : U ↦ inChart p.1 := by
-    simpa [coordY] using chartPullbackCoordinate_comp_eq_inChart (I := I) e he X
+    simpa [coordY] using! chartPullbackCoordinate_comp_eq_inChart (I := I) e he X
   have hbridgeSymm :
       coordY = (fun p : U ↦ inChart p.1) ∘ F.symm := by
     funext q
@@ -749,7 +748,7 @@ theorem smoothEuclideanMap_iff_smoothComponents
     have htoLp : ContDiff ℝ ∞ (WithLp.toLp 2 : (Fin n → ℝ) → EuclideanSpace ℝ (Fin n)) :=
       PiLp.contDiff_toLp
     have hcomp := htoLp.contMDiff.comp_contMDiffOn hpi
-    simpa using hcomp
+    simpa using! hcomp
 
 /-- Helper for Proposition 8.1: the Euclidean-valued chart criterion is equivalent to smoothness
 of the individual scalar chart components. -/

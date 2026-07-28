@@ -205,7 +205,7 @@ private theorem euclideanFinImage_measureZero_of_sourceFinrank_lt_targetFinrank
         rw [← Real.dimH_univ_eq_finrank (EuclideanSpace ℝ (Fin m))]
         exact dimH_mono (Set.subset_univ _)
       _ < Module.finrank ℝ (EuclideanSpace ℝ (Fin n)) := by
-        simpa using Nat.cast_lt.2 hlt
+        simpa [EuclideanSpace] using hlt
   have hhausdorff :
       Measure.hausdorffMeasure
           (Module.finrank ℝ (EuclideanSpace ℝ (Fin n)) : ℝ) (f '' s) = 0 := by
@@ -953,8 +953,8 @@ private theorem contDiffWithinAt_outputCoordinate_of_contDiffWithinAt
     (hf : ContDiffWithinAt ℝ ∞ f (Set.range IFin) x) :
     ContDiffWithinAt ℝ ∞ (fun y ↦ (f y) i) (Set.range IFin) x := by
   -- The fixed coordinate projection is linear, so the chain rule preserves `C^∞`.
-  simpa using
-    (EuclideanSpace.proj i).contDiff.comp_contDiffWithinAt hf
+  change ContDiffWithinAt ℝ ∞ ((EuclideanSpace.proj i) ∘ f) (Set.range IFin) x
+  exact (EuclideanSpace.proj i).contDiff.comp_contDiffWithinAt hf
 
 /-- Helper for Theorem 6.10: a Step 1 witness packages the actual scalar local data available
 before any straightening argument is attempted. -/

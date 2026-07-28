@@ -56,8 +56,9 @@ lemma graphFirstProjection_contMDiff
     (S : ImmersedSubmanifold (IM.prod IN) (M × N)) :
     ContMDiff (modelWithCornersSelf ℝ S.ModelSpace) IM ∞ (graphFirstProjection S) := by
   -- View the restricted projection as `Prod.fst ∘ S.inclusion`.
-  simpa [graphFirstProjection, Function.comp] using
-    (contMDiff_fst.comp (ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff)
+  change ContMDiff (modelWithCornersSelf ℝ S.ModelSpace) IM ∞
+    (Prod.fst ∘ S.inclusion)
+  exact contMDiff_fst.comp (ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff
 
 omit [FiniteDimensional ℝ EM] [FiniteDimensional ℝ EN] in
 /-- Helper for Corollary 6.33: the restricted second projection of an immersed submanifold is
@@ -67,8 +68,9 @@ lemma graphSecondProjection_contMDiff
     ContMDiff (modelWithCornersSelf ℝ S.ModelSpace) IN ∞ (graphSecondProjection S) := by
   -- The same normalization identifies the restricted second projection with
   -- `Prod.snd ∘ S.inclusion`.
-  simpa [graphSecondProjection, Function.comp] using
-    (contMDiff_snd.comp (ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff)
+  change ContMDiff (modelWithCornersSelf ℝ S.ModelSpace) IN ∞
+    (Prod.snd ∘ S.inclusion)
+  exact contMDiff_snd.comp (ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff
 
 /-- Helper for Corollary 6.33: a linear map into a product has range spanning the whole product
 with the vertical factor if and only if its first-factor projection is surjective. -/
@@ -119,10 +121,9 @@ lemma range_inr_sup_range_iff_surjective_fst_comp_continuousLinear
     (ContinuousLinearMap.inr ℝ X Y).range ⊔ A.range = ⊤ ↔
       Function.Surjective ((ContinuousLinearMap.fst ℝ X Y).comp A) := by
   -- Freeze the coercion from continuous linear maps to linear maps once.
-  simpa using
-    (range_inr_sup_range_iff_surjective_fst_comp A.toLinearMap :
-      (LinearMap.inr ℝ X Y).range ⊔ A.toLinearMap.range = ⊤ ↔
-        Function.Surjective ((LinearMap.fst ℝ X Y).comp A.toLinearMap))
+  change (LinearMap.inr ℝ X Y).range ⊔ A.toLinearMap.range = ⊤ ↔
+    Function.Surjective (Prod.fst ∘ A)
+  exact range_inr_sup_range_iff_surjective_fst_comp A.toLinearMap
 
 omit [FiniteDimensional ℝ EM] [FiniteDimensional ℝ EN] in
 /-- Helper for Corollary 6.33: the derivative of the restricted first projection is the first
@@ -143,8 +144,10 @@ lemma graphFirstProjection_mfderiv_eq_fst_comp
         (mfderiv (modelWithCornersSelf ℝ S.ModelSpace) (IM.prod IN) S.inclusion x) :=
     (((ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff.mdifferentiableAt
       (by simp : (∞ : ℕ∞ω) ≠ 0)).hasMFDerivAt)
-  simpa [graphFirstProjection, graphSecondProjection, Function.comp] using
-    (HasMFDerivAt.comp x hg hf).mfderiv
+  change mfderiv (modelWithCornersSelf ℝ S.ModelSpace) IM
+    (Prod.fst ∘ S.inclusion) x = _
+  rw [mfderiv_fst] at hg
+  exact (HasMFDerivAt.comp x hg hf).mfderiv
 
 omit [FiniteDimensional ℝ EM] [FiniteDimensional ℝ EN] [IsManifold IM ∞ M] [IsManifold IN ∞ N] in
 /-- Helper for Corollary 6.33: the derivative of the vertical slice map is the canonical inclusion
@@ -154,10 +157,8 @@ lemma verticalSliceMap_mfderiv
     mfderiv IN (IM.prod IN) (verticalSliceMap p) q =
       ContinuousLinearMap.inr ℝ (TangentSpace IM p) (TangentSpace IN q) := by
   -- The vertical slice is the product of the constant map `p` and the identity on `N`.
-  simpa [verticalSliceMap] using
-    (mfderiv_prod_right :
-      mfderiv IN (IM.prod IN) (fun y : N ↦ (p, y)) q =
-        ContinuousLinearMap.inr ℝ (TangentSpace IM p) (TangentSpace IN q))
+  change mfderiv IN (IM.prod IN) (fun y : N ↦ (p, y)) q = _
+  exact mfderiv_prod_right
 
 omit [FiniteDimensional ℝ EM] [FiniteDimensional ℝ EN] in
 /-- Helper for Corollary 6.33: vertical-slice transversality at `x` is equivalent to surjectivity
@@ -254,8 +255,9 @@ lemma isLocalGraphAt_of_localSection_and_uniqueSlices
     have hInclusion : ContMDiff IM IM ∞ (TopologicalSpace.Opens.inclusion hU_le_U₀) :=
       contMDiff_inclusion hU_le_U₀
     -- Restrict the local section to the final base neighborhood.
-    simpa [σU, Function.comp] using
-      hσSmooth.comp hInclusion
+    change ContMDiff IM (modelWithCornersSelf ℝ S.ModelSpace) ∞
+      (σ ∘ TopologicalSpace.Opens.inclusion hU_le_U₀)
+    exact hσSmooth.comp hInclusion
   have hσU_eq : ∀ u : U, graphFirstProjection S (σU u) = u := by
     intro u
     -- On the shrunken neighborhood, the section still inverts the first projection.
@@ -277,7 +279,8 @@ lemma isLocalGraphAt_of_localSection_and_uniqueSlices
   let f : U → N := fun u ↦ graphSecondProjection S (σU u)
   have hf : ContMDiff IM IN ∞ f := by
     -- The graphing map is the second projection of the smooth local section.
-    simpa [f, Function.comp] using (graphSecondProjection_contMDiff S).comp hσUSmooth
+    change ContMDiff IM IN ∞ (graphSecondProjection S ∘ σU)
+    exact (graphSecondProjection_contMDiff S).comp hσUSmooth
   have hσU_graph : ∀ u : U, S.inclusion (σU u) = ((u : M), f u) := by
     intro u
     -- A section point is determined by its first coordinate and the chosen second projection.

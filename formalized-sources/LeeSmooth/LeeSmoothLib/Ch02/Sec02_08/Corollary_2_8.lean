@@ -45,12 +45,12 @@ theorem gluing_lemma_for_smooth_maps
   have htoTop : ContMDiff I I ∞ toTop := by
     have h_id : ContMDiff I I ∞ (Subtype.val ∘ toTop) := by
       change ContMDiff I I ∞ (fun x : M ↦ x)
-      simpa using (contMDiff_id : ContMDiff I I ∞ (fun x : M ↦ x))
+      simpa using! (contMDiff_id : ContMDiff I I ∞ (fun x : M ↦ x))
     exact (ContMDiff.subtypeVal_comp_iff (⊤ : Opens M) toTop).1 h_id
   let F : C^∞⟮I, M; I', N⟯ := ⟨fun x ↦ gl (toTop x), (smoothSheaf.contMDiff_section gl).comp htoTop⟩
   have hF : ∀ a (x : U a), F x = f a x := by
     intro a x
-    simpa [F, sf, toTop] using
+    simpa [F, sf, toTop] using!
       congrArg (fun s : 𝒮.presheaf.obj (Opposite.op (U a)) ↦ s x) (hgl a)
   refine ⟨F, hF, ?_⟩
   intro G hG

@@ -102,6 +102,21 @@ lemma daAntideriv_contDiff {h : ℝ → ℝ} (hh : ContDiff ℝ 1 h) :
   · intro hcon; exact absurd hcon (by simp)
   · rw [daAntideriv_deriv hc]; exact hh
 
+/-- The fundamental theorem raises the finite differentiability order of the
+antiderivative by one.  This is the finite-order regularity statement behind
+the usual `C²` d'Alembert specialization. -/
+lemma daAntideriv_contDiff_succ {k : ℕ} {h : ℝ → ℝ}
+    (hh : ContDiff ℝ k h) :
+    ContDiff ℝ (k + 1 : ℕ) (daAntideriv h) := by
+  have hc : Continuous h := hh.continuous
+  rw [show ((k + 1 : ℕ) : WithTop ℕ∞) = (k : WithTop ℕ∞) + 1 by norm_num,
+    contDiff_succ_iff_deriv]
+  refine ⟨fun y => (daAntideriv_hasDerivAt hc y).differentiableAt, ?_, ?_⟩
+  · intro hcon
+    exact absurd hcon (by simp)
+  · rw [daAntideriv_deriv hc]
+    exact hh
+
 /-- `H(b) - H(a) = ∫ₐᵇ h`, rewriting the d'Alembert integral as a difference. -/
 lemma daAntideriv_sub {h : ℝ → ℝ} (hh : Continuous h) (a b : ℝ) :
     daAntideriv h b - daAntideriv h a = ∫ z in a..b, h z := by
@@ -172,6 +187,19 @@ lemma dAlembert_eq {g h : ℝ → ℝ} (hh : Continuous h) :
 lemma dAlembert_contDiff {g h : ℝ → ℝ} (hg : ContDiff ℝ 2 g) (hh : ContDiff ℝ 1 h) :
     ContDiff ℝ 2 (dAlembert g h) := by
   have hH : ContDiff ℝ 2 (daAntideriv h) := daAntideriv_contDiff hh
+  rw [dAlembert_eq hh.continuous]
+  exact ((((hg.comp stAdd.contDiff).const_smul (2⁻¹ : ℝ)).add
+    ((hg.comp stSub.contDiff).const_smul (2⁻¹ : ℝ))).add
+    ((hH.comp stAdd.contDiff).const_smul (2⁻¹ : ℝ))).add
+    ((hH.comp stSub.contDiff).const_smul (-2⁻¹ : ℝ))
+
+/-- d'Alembert preserves every finite order available from the initial data. -/
+lemma dAlembert_contDiff_of_order {k : ℕ} (hk : 1 ≤ k)
+    {g h : ℝ → ℝ} (hg : ContDiff ℝ k g) (hh : ContDiff ℝ (k - 1 : ℕ) h) :
+    ContDiff ℝ k (dAlembert g h) := by
+  have hH0 := daAntideriv_contDiff_succ hh
+  have hH : ContDiff ℝ k (daAntideriv h) := by
+    simpa [Nat.sub_add_cancel hk] using hH0
   rw [dAlembert_eq hh.continuous]
   exact ((((hg.comp stAdd.contDiff).const_smul (2⁻¹ : ℝ)).add
     ((hg.comp stSub.contDiff).const_smul (2⁻¹ : ℝ))).add
@@ -261,6 +289,20 @@ solution of the wave equation on all of space–time. -/
 theorem dAlembert_isClassicalSolution {g h : ℝ → ℝ} (hg : ContDiff ℝ 2 g) (hh : ContDiff ℝ 1 h) :
     IsClassicalSolutionOn 2 Set.univ (waveSymbol 1) (dAlembert g h) :=
   ⟨(dAlembert_contDiff hg hh).contDiffOn, dAlembert_isPDESolution hg hh⟩
+
+/-- Finite-order form of d'Alembert's theorem: for every `k ≥ 2`, data
+`g ∈ C^k` and `h ∈ C^(k-1)` produce a `C^k` function which is a classical
+solution of the second-order wave equation. -/
+theorem dAlembert_isClassicalSolution_of_order {k : ℕ} (hk : 2 ≤ k)
+    {g h : ℝ → ℝ} (hg : ContDiff ℝ k g) (hh : ContDiff ℝ (k - 1 : ℕ) h) :
+    ContDiff ℝ k (dAlembert g h) ∧
+      IsClassicalSolutionOn 2 Set.univ (waveSymbol 1) (dAlembert g h) := by
+  have hg2 : ContDiff ℝ 2 g :=
+    hg.of_le (by exact_mod_cast hk)
+  have hh1 : ContDiff ℝ 1 h :=
+    hh.of_le (by exact_mod_cast (show 1 ≤ k - 1 by omega))
+  exact ⟨dAlembert_contDiff_of_order (by omega) hg hh,
+    dAlembert_isClassicalSolution hg2 hh1⟩
 
 /-! ## Initial conditions -/
 

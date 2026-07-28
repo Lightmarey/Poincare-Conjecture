@@ -44,7 +44,7 @@ def IsSmoothFamily (I : ModelWithCorners 𝕜 EM HM) (J : ModelWithCorners 𝕜 
 
 /-- A bundled smooth map on `S × N` determines a smooth family of maps `N → M` parametrized by
 `S`. -/
-instance isSmoothFamily_of_bundledSmoothMap (F : C^∞⟮J.prod K, S × N; I, M⟯) :
+theorem isSmoothFamily_of_bundledSmoothMap (F : C^∞⟮J.prod K, S × N; I, M⟯) :
     IsSmoothFamily I J K (Function.curry F) :=
   F.contMDiff
 

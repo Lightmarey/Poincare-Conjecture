@@ -51,7 +51,6 @@ private theorem torusAngleCoordinateVectorFieldRaw_apply
     simp [torusAngleCoordinateVectorFieldRaw]
   · rw [if_neg hji]
     simp [torusAngleCoordinateVectorFieldRaw, hji]
-    rfl
 
 /-- Helper for Example 8.5: the torus extended chart reads each circle coordinate separately. -/
 private theorem torusExtChartAt_component
@@ -115,7 +114,7 @@ private theorem torusExtChartAt_mfderiv_component
     torusChartAt_source_component (n := n) p z j hz
   have hTorusProjection :
       MDifferentiableAt TnModel (𝓡 1) (fun q : 𝕋^{n} ↦ q j) z := by
-    simpa using
+    simpa using!
       (hasMFDerivAt_piProjection (I := fun _ : Fin n ↦ 𝓡 1)
         (p := z) (j := j)).mdifferentiableAt
   have hModelProjection :
@@ -123,7 +122,7 @@ private theorem torusExtChartAt_mfderiv_component
         (ContinuousLinearMap.proj j :
           (Fin n → EuclideanSpace ℝ (Fin 1)) →L[ℝ] EuclideanSpace ℝ (Fin 1))
         (ψ z) := by
-    simpa using
+    simpa using!
       (ContinuousLinearMap.mdifferentiableAt
         (ContinuousLinearMap.proj j :
           (Fin n → EuclideanSpace ℝ (Fin 1)) →L[ℝ] EuclideanSpace ℝ (Fin 1)))
@@ -148,7 +147,7 @@ private theorem torusExtChartAt_mfderiv_component
         mfderiv TnModel CircleChartModel (((ContinuousLinearMap.proj j :
             (Fin n → EuclideanSpace ℝ (Fin 1)) →L[ℝ] EuclideanSpace ℝ (Fin 1)) ∘ ψ)) z v := by
     -- Differentiate the model-space projection after the torus chart map.
-    simpa using
+    simpa using!
       (mfderiv_comp_apply_of_eq
         (x := z)
         (y := ψ z)
@@ -171,7 +170,7 @@ private theorem torusExtChartAt_mfderiv_component
         mfderiv (𝓡 1) CircleChartModel ψj (z j)
           (mfderiv TnModel (𝓡 1) (fun q : 𝕋^{n} ↦ q j) z v) := by
     -- Differentiate the circle chart after the `j`th torus projection.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       (mfderiv_comp_apply_of_eq
         (x := z)
         (y := z j)
@@ -279,7 +278,7 @@ private theorem torusAngleCoordinateVectorField_contMDiff (i : Fin n) :
               ⟨y, circle_angle_vector_field y⟩).2) (p i) := by
       have h := circleAngleVectorField_contMDiff (p i)
       rw [Bundle.contMDiffAt_section (p i)] at h
-      simpa using h
+      simpa using! h
     -- On the active coordinate, the torus field reduces to the circle field after projection.
     refine (hCircle.comp p hProjection).congr_of_eventuallyEq ?_
     filter_upwards [hnear] with z hz

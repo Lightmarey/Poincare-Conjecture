@@ -137,7 +137,7 @@ theorem chartFrameRealize_tangentCoordChange (α : M) {q : M} (hq : q ∈ (chart
     (w : E) :
     ∑ i, Geodesic.chartCoord (E := E) i (tangentCoordChange I q α q w)
         • chartBasisVecFiber (I := I) α i q = w := by
-  rw [← trivializationAt_symm_eq_sum_chartBasisVecFiber (I := I) α q,
+  rw [← trivializationAt_symm_eq_sum_chartBasisVecFiber (I := I) α q (hb := hq),
     trivializationAt_symm_eq_tangentCoordChange (I := I) α hq,
     tangentCoordChange_realize_comp (I := I) (mem_chart_source H q) hq,
     tangentCoordChange_self (I := I) (mem_extChartAt_source (I := I) q)]

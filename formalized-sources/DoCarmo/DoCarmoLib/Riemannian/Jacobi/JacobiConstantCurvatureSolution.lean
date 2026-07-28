@@ -164,7 +164,7 @@ theorem hasDerivAt_constCurvatureSol_pos {K₀ : ℝ} (hK : 0 < K₀) (t : ℝ) 
   have h2 : HasDerivAt (fun t : ℝ => Real.sin (Real.sqrt K₀ * t))
       (Real.cos (Real.sqrt K₀ * t) * Real.sqrt K₀) t := (Real.hasDerivAt_sin _).comp t h1
   have h3 := h2.div_const (Real.sqrt K₀)
-  convert h3 using 1
+  convert h3 using 1 <;> try rfl
   field_simp
 
 /-- **Math.** `K₀ > 0`: `Dh(t) = cos(t√K₀)` has derivative `−K₀ · (sin(t√K₀)/√K₀)`, i.e. the
@@ -202,7 +202,7 @@ theorem hasDerivAt_constCurvatureSol_neg {K₀ : ℝ} (hK : K₀ < 0) (t : ℝ) 
   have h2 : HasDerivAt (fun t : ℝ => Real.sinh (Real.sqrt (-K₀) * t))
       (Real.cosh (Real.sqrt (-K₀) * t) * Real.sqrt (-K₀)) t := (Real.hasDerivAt_sinh _).comp t h1
   have h3 := h2.div_const (Real.sqrt (-K₀))
-  convert h3 using 1
+  convert h3 using 1 <;> try rfl
   field_simp
 
 /-- **Math.** `K₀ < 0`: `Dh(t) = cosh(t√(−K₀))` has derivative `−K₀ · (sinh(t√(−K₀))/√(−K₀))`,

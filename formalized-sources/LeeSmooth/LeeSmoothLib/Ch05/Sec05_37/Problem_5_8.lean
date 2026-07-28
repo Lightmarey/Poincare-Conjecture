@@ -114,7 +114,7 @@ lemma basis_model_transition_mem_contDiffGroupoid
         hmid ?_
       intro x hx
       simp [Set.mem_univ, eModel]
-    simpa [hsource, eModel, Function.comp, OpenPartialHomeomorph.trans_source] using hfinal
+    simpa [hsource, eModel, Function.comp, OpenPartialHomeomorph.trans_source] using! hfinal
   · -- The same conjugation argument applies to the inverse transition.
     have hmid :
         ContDiffOn ℝ (⊤ : WithTop ℕ∞)
@@ -132,7 +132,7 @@ lemma basis_model_transition_mem_contDiffGroupoid
       intro x hx
       simp [Set.mem_univ, eModel]
     simpa [htarget, eModel, Function.comp, OpenPartialHomeomorph.trans_source,
-      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using
+      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using!
       hfinal
 
 /-- Helper for Problem 5-8: after transporting the ambient charts through a basis of `E`, the
@@ -688,7 +688,7 @@ lemma orthonormal_chart_mem_maximalAtlas_in_basis_model
       (OpenPartialHomeomorph.refl E) ∈
         IsManifold.maximalAtlas (modelWithCornersSelf ℝ E) (⊤ : WithTop ℕ∞) E := by
     -- The ambient identity chart is smooth in the original `E`-model atlas.
-    simpa using
+    simpa using!
       (contDiffGroupoid (⊤ : WithTop ℕ∞) (modelWithCornersSelf ℝ E)).id_mem_maximalAtlas
   -- Route correction: obtain the transported Euclidean chart by pushing the ambient identity
   -- chart through the fixed basis model change, instead of rebuilding a new atlas argument.
@@ -711,7 +711,7 @@ lemma full_dimensional_halfslice_eq_last_coordinate_nonneg
   · intro hz
     refine ⟨hz.1.1, ?_⟩
     change 0 ≤ z (Fin.last m)
-    simpa using hz.2
+    simpa using! hz.2
   · intro hz
     refine ⟨⟨hz.1, ?_⟩, ?_⟩
     · intro i
@@ -740,7 +740,7 @@ lemma unit_exterior_ray_sign_chart_mem_contDiffGroupoid (s : Bool) :
         (L := (ContinuousLinearEquiv.neg ℝ :
           EuclideanSpace ℝ (Fin 1) ≃L[ℝ] EuclideanSpace ℝ (Fin 1))))
   · -- In the positive branch, the chart is the identity linear automorphism.
-    simpa [unit_exterior_ray_sign_chart] using
+    simpa [unit_exterior_ray_sign_chart] using!
       (euclidean_linear_equiv_mem_contDiffGroupoid
         (L := ContinuousLinearEquiv.refl ℝ (EuclideanSpace ℝ (Fin 1))))
 
@@ -970,7 +970,7 @@ lemma unit_exterior_signed_shell_source_set_isOpen
     fun_prop
   -- The shell source is the intersection of the retained-coordinate unit ball with a strict
   -- signed-coordinate positivity patch.
-  simpa [unit_exterior_signed_shell_source_set] using
+  simpa [unit_exterior_signed_shell_source_set] using!
     (isOpen_lt htail continuous_const).inter (isOpen_lt continuous_const hcoord)
 
 /-- Helper for Problem 5-8: the ambient shell target is open because both the retained-coordinate
@@ -998,7 +998,7 @@ lemma unit_exterior_signed_shell_target_set_isOpen
     fun_prop
   -- The target is Lee's ambient shell: strict tail-ball control plus strict lower-graph
   -- inequality.
-  simpa [unit_exterior_signed_shell_target_set, uz] using
+  simpa [unit_exterior_signed_shell_target_set, uz] using!
     (isOpen_lt htail continuous_const).inter (isOpen_lt hlower hbranch)
 
 /-- Helper for Problem 5-8: the ambient inverse graphing formula is globally continuous, since the
@@ -1013,13 +1013,13 @@ lemma closed_unit_ball_boundary_chart_inverse_extend_continuous_global
     -- The sign choice only toggles between the square-root branch and its negation.
     cases s with
     | false =>
-        simpa [closed_unit_ball_boundary_branch] using
+        simpa [closed_unit_ball_boundary_branch] using!
           (show Continuous
             (fun u : EuclideanSpace ℝ (Fin (k + 1)) ↦
               -Real.sqrt (1 - ‖u‖ ^ 2)) by
             fun_prop)
     | true =>
-        simpa [closed_unit_ball_boundary_branch] using
+        simpa [closed_unit_ball_boundary_branch] using!
           (show Continuous
             (fun u : EuclideanSpace ℝ (Fin (k + 1)) ↦
               Real.sqrt (1 - ‖u‖ ^ 2)) by
@@ -1042,7 +1042,7 @@ lemma closed_unit_ball_boundary_chart_inverse_extend_continuous_global
               closed_unit_ball_boundary_sign s * (ur z).2)) :=
     htail.prodMk hcoord
   -- Reinsert the chosen coordinate using the inverse split linear equivalence.
-  simpa [closed_unit_ball_boundary_chart_inverse_extend, ur] using
+  simpa [closed_unit_ball_boundary_chart_inverse_extend, ur] using!
     (split_at_coordinate_symm_continuous (i := i)).comp hpair
 
 /-- Helper for Problem 5-8: after undoing the shell flip, the signed distinguished coordinate of
@@ -1377,7 +1377,7 @@ lemma unit_exterior_signed_shell_chart_mem_contDiffGroupoid
         ((unit_exterior_signed_shell_flip k).contDiff.contDiffOn :
           ContDiffOn ℝ ω (unit_exterior_signed_shell_flip k) Set.univ)
     -- The forward shell chart is literally the ambient graphing map followed by the shell flip.
-    simpa [unit_exterior_signed_shell_chart] using hflip.comp hforward (by
+    simpa [unit_exterior_signed_shell_chart] using! hflip.comp hforward (by
       intro x hx
       simp)
   · -- Undoing the shell flip preserves the retained coordinates, so the inverse graphing formula
@@ -1397,7 +1397,7 @@ lemma unit_exterior_signed_shell_chart_mem_contDiffGroupoid
       simp
     -- Route correction: use the explicit target inequality plus the retained-coordinate
     -- preservation under the shell flip, instead of unfolding the whole inverse chart package.
-    simpa [unit_exterior_signed_shell_chart] using
+    simpa [unit_exterior_signed_shell_chart] using!
       (closed_unit_ball_boundary_chart_inverse_extend_contDiffOn k i s).comp hflip_symm
         (by
           intro z hz
@@ -1528,7 +1528,7 @@ lemma unit_exterior_ray_chart_local_image
           (OpenPartialHomeomorph.refl (EuclideanSpace ℝ (Fin 1))) ∈
             IsManifold.maximalAtlas (𝓡 1) (⊤ : WithTop ℕ∞)
               (EuclideanSpace ℝ (Fin 1)) := by
-        simpa using
+        simpa using!
           (contDiffGroupoid (⊤ : WithTop ℕ∞) (𝓡 1)).id_mem_maximalAtlas
       have hsign_max :
           unit_exterior_ray_sign_chart s ∈
@@ -1545,7 +1545,7 @@ lemma unit_exterior_ray_chart_local_image
       have hrestr_max :
           e0 ∈ IsManifold.maximalAtlas (𝓡 1) (⊤ : WithTop ℕ∞)
             (EuclideanSpace ℝ (Fin 1)) := by
-        simpa [e0] using
+        simpa [e0] using!
           (restr_mem_maximalAtlas
             (contDiffGroupoid (⊤ : WithTop ℕ∞) (𝓡 1))
             hsign_max

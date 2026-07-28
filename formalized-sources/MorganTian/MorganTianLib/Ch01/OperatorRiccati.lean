@@ -92,7 +92,7 @@ theorem le_of_left_slope_eventually_lt {h : ℝ → ℝ} {c d : ℝ} (hcd : c �
         exact mem_Iio.mpr (neg_lt_neg (mem_Ioi.mp hz))
       refine ((hmap.eventually hev).and self_mem_nhdsWithin).frequently.mono ?_
       rintro z ⟨hz, hz' : x < z⟩
-      have hzx : z - x ≠ 0 := by intro hzero; simp at hz'; linarith [sub_eq_zero.mp hzero]
+      have hzx : z - x ≠ 0 := ne_of_gt (sub_pos.mpr hz')
       calc slope g x z = (g z - g x) / (z - x) := slope_def_field g x z
         _ = (h (-x) - h (-z)) / (-x - -z) := by
             rw [hg]
@@ -385,7 +385,8 @@ theorem operator_riccati_nonneg {r₀ Cs : ℝ} {s s' : ℝ → ℝ}
       squeeze_zero_norm
         (fun y => by simpa using abs_minRayleigh_sub_le (U y) (U x)) h2
     have h4 := h3.add_const (m x)
-    simpa using h4
+    change Tendsto m (nhds x) (nhds (m x))
+    simpa only [sub_add_cancel, zero_add] using h4
   -- `m → 0` at `0⁺`
   have hm0 : Tendsto m (𝓝[>] 0) (𝓝 0) := by
     refine squeeze_zero_norm (fun r => by simpa using abs_minRayleigh_le (U r)) ?_
@@ -489,15 +490,26 @@ theorem operator_riccati_nonneg {r₀ Cs : ℝ} {s s' : ℝ → ℝ}
       HasDerivAt ρ ((2 * s x * s' x - W * s x ^ 2) * Real.exp (-(W * x))) x := by
     intro x hx
     have h1 : HasDerivAt (fun r => s r ^ 2) (2 * s x * s' x) x := by
+      have hfun : (fun r => s r ^ 2) = s ^ 2 := by
+        funext r
+        rfl
+      rw [hfun]
       simpa [mul_comm, mul_assoc, mul_left_comm] using (hs x hx).pow 2
     have h2 : HasDerivAt (fun r => Real.exp (-(W * r)))
         (Real.exp (-(W * x)) * -W) x := by
       have h3 : HasDerivAt (fun r : ℝ => -(W * r)) (-W) x := by
+        have hfun : (fun r : ℝ => -(W * r)) = -(fun r : ℝ => W * r) := by
+          funext r
+          rfl
+        rw [hfun]
         simpa using ((hasDerivAt_id x).const_mul W).neg
       exact HasDerivAt.exp h3
-    have := h1.mul h2
-    convert this using 1
-    ring
+    have hprod := h1.mul h2
+    have hfun : ρ = (fun r => s r ^ 2) * fun r => Real.exp (-(W * r)) := by
+      funext r
+      rfl
+    rw [hfun]
+    exact hprod.congr_deriv (by ring)
   -- continuity of `h` on `(0, r₀)`
   have hhcont : ∀ x ∈ Ioo (0 : ℝ) r₀, ContinuousAt h x := by
     intro x hx

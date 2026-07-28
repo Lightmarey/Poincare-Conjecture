@@ -119,9 +119,9 @@ lemma split_at_coordinate_symm_continuous {k : ℕ} (i : Fin (k + 1)) :
     rcases eq_or_ne j i with rfl | hj
     · simpa using continuous_snd
     · rcases Fin.exists_succAbove_eq hj with ⟨j', rfl⟩
-      simpa using (continuous_apply j').comp hremove
+      simpa using! (continuous_apply j').comp hremove
   -- Finally transport the reinserted tuple back to Euclidean space.
-  simpa [split_at_coordinate] using
+  simpa [split_at_coordinate] using!
     ((EuclideanSpace.equiv (Fin (k + 1)) ℝ).symm.toHomeomorph.continuous_toFun).comp hinsert
 
 /-- Helper for Problem 2-4: the coordinate split is a continuous linear equivalence, so the fixed
@@ -300,7 +300,7 @@ lemma closed_unit_ball_one_to_Icc_right_inv (t : Set.Icc (-1 : ℝ) 1) :
 lemma continuous_closed_unit_ball_one_to_Icc :
     Continuous closed_unit_ball_one_to_Icc := by
   -- The underlying coordinate projection is continuous, and the interval constraint is pointwise.
-  simpa [closed_unit_ball_one_to_Icc] using
+  simpa [closed_unit_ball_one_to_Icc] using!
     (Continuous.subtype_mk (by fun_prop) closed_unit_ball_one_coord_mem_Icc)
 
 /-- Helper for Problem 2-4: the interval-to-ball reconstruction map is continuous. -/
@@ -308,7 +308,7 @@ lemma continuous_icc_to_closed_unit_ball_one :
     Continuous icc_to_closed_unit_ball_one := by
   -- The ambient one-coordinate vector map is continuous, and the closed-ball constraint is
   -- pointwise.
-  simpa [icc_to_closed_unit_ball_one] using
+  simpa [icc_to_closed_unit_ball_one] using!
     (Continuous.subtype_mk (by fun_prop) icc_one_mem_closed_unit_ball_one)
 
 /-- Helper for Problem 2-4: the one-dimensional closed unit ball is homeomorphic to the interval
@@ -519,7 +519,7 @@ lemma closed_unit_ball_one_to_Icc_contMDiff :
           (Set.range (𝓡∂ 1)) (extChartAt (𝓡∂ 1) x x)).congr_of_eventuallyEq_of_mem ?_ ?_
     · filter_upwards [extChartAt_target_mem_nhdsWithin (I := 𝓡∂ 1) x] with y hy
       simpa [writtenInExtChartAt, Function.comp,
-        Topology.IsOpenEmbedding.singletonChartedSpace_chartAt_eq] using
+        Topology.IsOpenEmbedding.singletonChartedSpace_chartAt_eq] using!
         (writtenInExtChartAt_chartAt_comp
           (I := 𝓡∂ 1) (H := EuclideanHalfSpace 1) (H' := Set.Icc (-1 : ℝ) 1) x hy)
     · exact Set.mem_of_subset_of_mem (extChartAt_target_subset_range (I := 𝓡∂ 1) x)
@@ -585,10 +585,10 @@ lemma closed_unit_ball_boundary_branch_contDiffOn (k : ℕ) (s : Bool) :
   -- The sign choice only toggles between the core branch and its negation.
   cases s with
   | false =>
-      simpa [closed_unit_ball_boundary_branch] using
+      simpa [closed_unit_ball_boundary_branch] using!
         (closed_unit_ball_boundary_branch_core_contDiffOn k).neg
   | true =>
-      simpa [closed_unit_ball_boundary_branch] using
+      simpa [closed_unit_ball_boundary_branch] using!
         closed_unit_ball_boundary_branch_core_contDiffOn k
 
 /-- Helper for Problem 2-4: the higher-dimensional boundary charts use a fixed sign coefficient to
@@ -701,7 +701,7 @@ lemma closed_unit_ball_boundary_chart_inverse_extend_contDiffOn (k : ℕ)
     simpa [split_at_coordinate_continuousLinearEquiv,
       LinearEquiv.coeFn_toContinuousLinearEquivOfContinuous_symm] using
       (split_at_coordinate_continuousLinearEquiv i).symm.contDiff
-  simpa [closed_unit_ball_boundary_chart_inverse_extend, u, r] using
+  simpa [closed_unit_ball_boundary_chart_inverse_extend, u, r] using!
     hsymm.comp_contDiffOn hpair
 
 /-- Helper for Problem 2-4: Lee's normalized boundary inverse is smooth as a map from the
@@ -731,7 +731,7 @@ lemma closed_unit_ball_boundary_chart_inverse_contMDiffOn_target (k : ℕ)
           ((𝓡∂ (k + 2)) '' closed_unit_ball_boundary_chart_target k) := by
       rintro y ⟨z, hz, rfl⟩
       -- On points coming from the half-space model, the model inverse returns the original point.
-      simpa [ModelWithCorners.left_inv (I := 𝓡∂ (k + 2)) z] using
+      simpa [ModelWithCorners.left_inv (I := 𝓡∂ (k + 2)) z] using!
         closed_unit_ball_boundary_chart_inverse_eq_extend (k := k) i s z
     -- The ambient extension is smooth on a larger ambient neighborhood, so it is smooth on the
     -- actual image of the target; then replace it by the half-space formula on that image.
@@ -1091,7 +1091,7 @@ lemma modelWithCornersEuclideanHalfSpace_symm_val (k : ℕ)
   -- The model with corners is just the subtype inclusion of the half-space into Euclidean space.
   have hzRange : z ∈ Set.range ((𝓡∂ (k + 2)) : EuclideanHalfSpace (k + 2) → _) := by
     simpa [ModelWithCorners.target_eq] using hz
-  simpa using (𝓡∂ (k + 2)).right_inv hzRange
+  simpa using! (𝓡∂ (k + 2)).right_inv hzRange
 
 /-- Helper for Problem 2-4: on the source of the center chart, the extended chart is literally
 translation by the fixed half-space center point. -/
@@ -1251,13 +1251,13 @@ lemma closed_unit_ball_boundary_chart_forward_extend_continuous (k : ℕ)
     -- The sign choice only toggles between the square-root branch and its negation.
     cases s with
     | false =>
-        simpa [closed_unit_ball_boundary_branch] using
+        simpa [closed_unit_ball_boundary_branch] using!
           (show Continuous
             (fun u : EuclideanSpace ℝ (Fin (k + 1)) ↦
               -Real.sqrt (1 - ‖u‖ ^ 2)) by
             fun_prop)
     | true =>
-        simpa [closed_unit_ball_boundary_branch] using
+        simpa [closed_unit_ball_boundary_branch] using!
           (show Continuous
             (fun u : EuclideanSpace ℝ (Fin (k + 1)) ↦
               Real.sqrt (1 - ‖u‖ ^ 2)) by
@@ -1281,7 +1281,7 @@ lemma closed_unit_ball_boundary_chart_forward_extend_continuous (k : ℕ)
               (closed_unit_ball_boundary_branch k s (ui x).1 - (ui x).2))) :=
     htail.prodMk hcoord
   -- Reinsert the normalized split coordinates with the continuous inverse split.
-  simpa [closed_unit_ball_boundary_chart_forward_extend, ui] using
+  simpa [closed_unit_ball_boundary_chart_forward_extend, ui] using!
     (split_at_coordinate_symm_continuous (i := (0 : Fin (k + 2)))).comp hpair
 
 /-- Helper for Problem 2-4: normalizing the ambient forward chart by `split_at_coordinate 0`
@@ -1365,7 +1365,7 @@ lemma isOpen_closed_unit_ball_boundary_chart_target (k : ℕ) :
     fun_prop
   -- The target is the intersection of the open unit-ball condition on the tail coordinates and the
   -- strict hypograph inequality for the graph branch.
-  simpa [closed_unit_ball_boundary_chart_target, ufun, rfun] using
+  simpa [closed_unit_ball_boundary_chart_target, ufun, rfun] using!
     (isOpen_lt hu.norm continuous_const).inter (isOpen_lt hr hbranch)
 
 /-- Helper for Problem 2-4: the explicit forward boundary chart sends the signed hemisphere patch
@@ -1449,13 +1449,13 @@ lemma closed_unit_ball_boundary_chart_inverse_continuous (k : ℕ)
     -- As in the forward chart, the sign choice only negates the square-root branch.
     cases s with
     | false =>
-        simpa [closed_unit_ball_boundary_branch] using
+        simpa [closed_unit_ball_boundary_branch] using!
           (show Continuous
             (fun u : EuclideanSpace ℝ (Fin (k + 1)) ↦
               -Real.sqrt (1 - ‖u‖ ^ 2)) by
             fun_prop)
     | true =>
-        simpa [closed_unit_ball_boundary_branch] using
+        simpa [closed_unit_ball_boundary_branch] using!
           (show Continuous
             (fun u : EuclideanSpace ℝ (Fin (k + 1)) ↦
               Real.sqrt (1 - ‖u‖ ^ 2)) by
@@ -1478,7 +1478,7 @@ lemma closed_unit_ball_boundary_chart_inverse_continuous (k : ℕ)
               closed_unit_ball_boundary_sign s * (ur z).2)) :=
     htail.prodMk hcoord
   -- The half-space inverse is the continuous inverse split applied to these normalized coordinates.
-  simpa [closed_unit_ball_boundary_chart_inverse, ur] using
+  simpa [closed_unit_ball_boundary_chart_inverse, ur] using!
     (split_at_coordinate_symm_continuous (i := i)).comp hpair
 
 /-- Helper for Problem 2-4: applying the inverse boundary graph formula after the forward chart on
@@ -1764,8 +1764,9 @@ lemma mem_closed_unit_ball_chartAtLocal_source (k : ℕ)
   by_cases hp : ‖p.1‖ < (1 : ℝ) / 2
   · -- On the interior branch, the selected center chart contains the point by construction.
     rw [closed_unit_ball_chartAtLocal_of_norm_lt k p hp]
-    simpa [closed_unit_ball_center_chart, OpenPartialHomeomorph.trans_source,
-      closed_unit_ball_center_chart_source] using And.intro hp (by trivial)
+    rw [closed_unit_ball_center_chart, OpenPartialHomeomorph.trans_source]
+    refine ⟨?_, by trivial⟩
+    simpa [closed_unit_ball_center_chart_source] using hp
   · let is := (closed_unit_ball_boundary_choice_data k p hp).1
     have his : 0 < closed_unit_ball_boundary_sign is.2 * p.1 is.1 :=
       (closed_unit_ball_boundary_choice_data k p hp).2
@@ -1860,7 +1861,7 @@ lemma closed_unit_ball_boundary_chart_forward_extend_contDiffOn (k : ℕ)
     simpa [split_at_coordinate_continuousLinearEquiv,
       LinearEquiv.coeFn_toContinuousLinearEquivOfContinuous_symm] using
       (split_at_coordinate_continuousLinearEquiv (0 : Fin (k + 2))).symm.contDiff
-  simpa [closed_unit_ball_boundary_chart_forward_extend, u, r] using
+  simpa [closed_unit_ball_boundary_chart_forward_extend, u, r] using!
     hsymm.comp_contDiffOn hpair
 
 section
@@ -2057,7 +2058,7 @@ lemma closed_unit_ball_center_boundary_transition_eqOn_forward_extend (k : ℕ)
           ((((closed_unit_ball_center_chart k).extend (𝓡∂ (k + 2))).symm z).1) := by
     -- Applying the model inclusion just forgets the half-space proof on the explicit forward
     -- chart value.
-    simpa [OpenPartialHomeomorph.extend_coe, closed_unit_ball_boundary_chart_forward] using
+    simpa [OpenPartialHomeomorph.extend_coe, closed_unit_ball_boundary_chart_forward] using!
       congrArg (fun w : EuclideanHalfSpace (k + 2) ↦ w.1) hforward
   -- Route correction: rewrite through the extended charts first, then substitute the explicit
   -- center inverse formula instead of trying to normalize the transported composition directly.
@@ -2174,7 +2175,7 @@ lemma closed_unit_ball_boundary_boundary_transition_eqOn_forward_inverse (k : �
           ((((closed_unit_ball_boundary_chart k i s).extend (𝓡∂ (k + 2))).symm z).1) := by
     -- Applying the model inclusion again just forgets the half-space proof on the explicit
     -- forward chart value.
-    simpa [OpenPartialHomeomorph.extend_coe, closed_unit_ball_boundary_chart_forward] using
+    simpa [OpenPartialHomeomorph.extend_coe, closed_unit_ball_boundary_chart_forward] using!
       congrArg (fun w : EuclideanHalfSpace (k + 2) ↦ w.1) hforward
   -- Normalize first through the two extended charts, then substitute the explicit inverse formula
   -- of the first boundary chart.
@@ -2209,9 +2210,9 @@ lemma closed_unit_ball_higher_dimensional_isManifold_infty (k : ℕ) :
     (M := Metric.closedBall (0 : EuclideanSpace ℝ (Fin (k + 2))) 1) ?_
   intro e e' he he'
   have he_fixed : e ∈ closed_unit_ball_fixed_atlas k := by
-    simpa [closed_unit_ball_fixed_chartedSpace] using he
+    simpa [closed_unit_ball_fixed_chartedSpace] using! he
   have he'_fixed : e' ∈ closed_unit_ball_fixed_atlas k := by
-    simpa [closed_unit_ball_fixed_chartedSpace] using he'
+    simpa [closed_unit_ball_fixed_chartedSpace] using! he'
   rw [closed_unit_ball_fixed_atlas, Set.mem_insert_iff, Set.mem_range] at he_fixed he'_fixed
   rcases he_fixed with rfl | ⟨⟨i, s⟩, rfl⟩
   · rcases he'_fixed with rfl | ⟨⟨i, s⟩, rfl⟩
@@ -2404,7 +2405,7 @@ lemma closed_unit_ball_higher_dimensional_inclusion_contMDiff (k : ℕ) :
     (mem_closed_unit_ball_chartAtLocal_source k x)]
   by_cases hx : ‖x.1‖ < (1 : ℝ) / 2
   · have hchart : chartAt (EuclideanHalfSpace (k + 2)) x = closed_unit_ball_center_chart k := by
-      simpa [closed_unit_ball_fixed_chartedSpace] using
+      simpa [closed_unit_ball_fixed_chartedSpace] using!
         closed_unit_ball_chartAtLocal_of_norm_lt k x hx
     rw [extChartAt, hchart, contMDiffWithinAt_iff_contDiffWithinAt]
     have hx_source : x ∈ (closed_unit_ball_center_chart k).source := by
@@ -2442,13 +2443,13 @@ lemma closed_unit_ball_higher_dimensional_inclusion_contMDiff (k : ℕ) :
             z - (closed_unit_ball_center_target_point k).1) := by
       -- The center chart expression is affine on the ambient Euclidean space.
       fun_prop
-    simpa [Function.comp, y] using
+    simpa [Function.comp, y] using!
       (haff.contDiffWithinAt.congr_of_eventuallyEq_of_mem hEq hy_range)
   · let is := (closed_unit_ball_boundary_choice_data k x hx).1
     have hchart :
         chartAt (EuclideanHalfSpace (k + 2)) x =
           closed_unit_ball_boundary_chart k is.1 is.2 := by
-      simpa [closed_unit_ball_fixed_chartedSpace, is] using
+      simpa [closed_unit_ball_fixed_chartedSpace, is] using!
         closed_unit_ball_chartAtLocal_of_not_norm_lt k x hx
     rw [extChartAt, hchart, contMDiffWithinAt_iff_contDiffWithinAt]
     have hx_source : x ∈ (closed_unit_ball_boundary_chart k is.1 is.2).source := by
@@ -2520,7 +2521,7 @@ lemma closed_unit_ball_higher_dimensional_inclusion_contMDiff (k : ℕ) :
           (I := 𝓡∂ (k + 2)) hx_source] with z hz
       exact closed_unit_ball_boundary_chart_symm_extend_val_eq_inverse_extend
         (k := k) is.1 is.2 hz
-    simpa [Function.comp, y] using
+    simpa [Function.comp, y] using!
       (hsmooth.congr_of_eventuallyEq_of_mem hEq hy_range)
 
 /-- Helper for Problem 2-4: in dimensions at least two, Lee's closed-ball atlas should give a

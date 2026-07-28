@@ -126,7 +126,8 @@ theorem localIsometry_uniquelyDeterminedByOnePoint [PreconnectedSpace M]
       have hv := hx v
       simp only [tangentMap] at hv
       have h2 := congrArg Bundle.TotalSpace.snd hv
-      simpa [hbase] using h2
+      change (mfderiv I I' F x v : E') = (mfderiv I I' G x v : E')
+      exact h2
     · rintro ⟨h1, h2⟩ v
       simp only [tangentMap]
       congr 1

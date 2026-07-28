@@ -128,9 +128,15 @@ theorem continuousOn_chartChristoffelContractionRight_comp [I.Boundaryless] {X :
   have hmem' : ∀ x ∈ S, y x ∈ interior (extChartAt I α).target := fun x hx =>
     extChartAt_target_subset_interior_of_boundaryless (I := I) α (hmem x hx)
   refine continuousOn_finsetSum _ fun k _ => continuousOn_finsetSum _ fun i _ =>
-    continuousOn_finsetSum _ fun j _ => ContinuousOn.smul ?_ continuousOn_const
-  exact ((chartChristoffel_contDiffOn_interior (I := I) g α i j k).continuousOn.comp hy hmem').mul
-    ((Geodesic.chartCoordFunctional (E := E) i).continuous.comp_continuousOn hv)
+    continuousOn_finsetSum _ fun j _ => ?_
+  have hscalar :=
+    ((chartChristoffel_contDiffOn_interior (I := I) g α i j k).continuousOn.comp hy hmem').mul
+      ((Geodesic.chartCoordFunctional (E := E) i).continuous.comp_continuousOn hv)
+  have hconst : ContinuousOn (fun _ : X =>
+      (Geodesic.chartCoordFunctional (E := E) j).smulRight ((Module.finBasis ℝ E) k)) S :=
+    continuousOn_const
+  simpa [Pi.smul_apply, Function.comp_def, chartChristoffel_def, Geodesic.chartCoord] using!
+    hscalar.smul hconst
 
 /-- **Math.** Petersen §6.1 (p. 249): **chart-change covariance of the regularity of a field
 along `c`** — if the chart-`β` reading of `V` is differentiable at `t₀`, so is its chart-`α`

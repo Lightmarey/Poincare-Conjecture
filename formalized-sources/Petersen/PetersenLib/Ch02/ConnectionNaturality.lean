@@ -67,7 +67,7 @@ private theorem mfderiv_symm_leftInverse (Φ : Diffeomorph I I' M M' ∞) (x : M
   have hid : (⇑Φ.symm ∘ ⇑Φ) = (id : M → M) := funext fun a => Φ.symm_apply_apply a
   rw [hid, mfderiv_id] at h
   have := congrArg (fun L => L v) h
-  simpa using this.symm
+  simpa using! this.symm
 
 /-- The differential of `Φ` is a left inverse of the differential of `Φ.symm`. -/
 private theorem mfderiv_symm_rightInverse (Φ : Diffeomorph I I' M M' ∞) (x : M) :
@@ -79,7 +79,7 @@ private theorem mfderiv_symm_rightInverse (Φ : Diffeomorph I I' M M' ∞) (x : 
   rw [hid, mfderiv_id] at h
   rw [Φ.symm_apply_apply] at h
   have := congrArg (fun L => L w) h
-  simpa using this.symm
+  simpa using! this.symm
 
 /-- **Math.** The differential `DΦ_x : T_xM → T_{Φx}M'` of a diffeomorphism,
 packaged as a continuous linear equivalence with inverse `DΦ⁻¹_{Φx}`. -/

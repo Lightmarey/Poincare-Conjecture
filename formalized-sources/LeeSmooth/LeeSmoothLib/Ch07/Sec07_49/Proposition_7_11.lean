@@ -30,7 +30,7 @@ lemma subgroupSubtypeVal_contMDiff
     (hS : IsEmbeddedSubmanifold I (modelWithCornersSelf 𝕜 E') (S : Set G)) :
     ContMDiff (modelWithCornersSelf 𝕜 E') I (⊤ : WithTop ℕ∞) (Subtype.val : S → G) := by
   -- The Chapter 5 embedded-submanifold bridge makes the subtype inclusion smooth.
-  simpa using
+  simpa using!
     subtype_val_contMDiff_of_isSmoothEmbedding
       (I := I) (J := modelWithCornersSelf 𝕜 E') (S := (S : Set G))
       hS.isSmoothEmbedding_subtype_val
@@ -61,7 +61,7 @@ lemma subgroupMul_contMDiff
       ((modelWithCornersSelf 𝕜 E').prod (modelWithCornersSelf 𝕜 E'))
       I (⊤ : WithTop ℕ∞) fun p : S × S ↦ (p.1 : G) := by
     -- Each projection becomes an ambient smooth map after composing with the subtype inclusion.
-    simpa using
+    simpa using!
       (subgroupSubtypeVal_contMDiff (𝕜 := 𝕜) (I := I) (E' := E') S hS).comp
         (contMDiff_fst :
           ContMDiff
@@ -71,7 +71,7 @@ lemma subgroupMul_contMDiff
       ((modelWithCornersSelf 𝕜 E').prod (modelWithCornersSelf 𝕜 E'))
       I (⊤ : WithTop ℕ∞) fun p : S × S ↦ (p.2 : G) := by
     -- The same restriction argument applies to the second projection.
-    simpa using
+    simpa using!
       (subgroupSubtypeVal_contMDiff (𝕜 := 𝕜) (I := I) (E' := E') S hS).comp
         (contMDiff_snd :
           ContMDiff
@@ -81,7 +81,7 @@ lemma subgroupMul_contMDiff
       ((modelWithCornersSelf 𝕜 E').prod (modelWithCornersSelf 𝕜 E'))
       I (⊤ : WithTop ℕ∞) fun p : S × S ↦ (p.1 : G) * (p.2 : G) := by
     -- Ambient multiplication is smooth, so the restricted ambient product is smooth as well.
-    simpa using hfst.mul hsnd
+    simpa using! hfst.mul hsnd
   have hmulSubtype : ContMDiff
       ((modelWithCornersSelf 𝕜 E').prod (modelWithCornersSelf 𝕜 E'))
       (modelWithCornersSelf 𝕜 E') (⊤ : WithTop ℕ∞)

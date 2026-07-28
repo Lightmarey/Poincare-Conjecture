@@ -72,7 +72,7 @@ lemma piNM_baseAmbient_contMDiff [CompatibleSmoothStructure n m M] :
     ContMDiff (𝓡 n) (𝓡 n) ∞
       (fun p : NM[n, m; M] ↦ ((π_NM[n, m; M] p : M) : EuclideanSpace ℝ (Fin n))) := by
   -- Compose the smooth embedding into product coordinates with the first projection.
-  simpa only [normal_bundle_toProd_fst] using
+  simpa only [normal_bundle_toProd_fst] using!
     (contMDiff_fst.comp
       (NormalBundle.isSmoothEmbedding_normal_bundle_toProd
         (n := n) (m := m) (M := M)).isImmersion.contMDiff)
@@ -235,7 +235,7 @@ lemma contMDiffOn_chartOfMemMaximalAtlas
       (I := 𝓡 n) (I' := 𝓡 n) (e := e) (e' := OpenPartialHomeomorph.refl _)
       he
       (by
-        simpa using
+        simpa using!
           (StructureGroupoid.id_mem_maximalAtlas
             (G := contDiffGroupoid (⊤ : WithTop ℕ∞) (𝓡 n)) :
             OpenPartialHomeomorph.refl (EuclideanSpace ℝ (Fin n)) ∈
@@ -265,7 +265,7 @@ lemma contMDiffOn_symm_chartOfMemMaximalAtlas
     (contMDiffOn_iff_of_mem_maximalAtlas'
       (I := 𝓡 n) (I' := 𝓡 n) (e := OpenPartialHomeomorph.refl _) (e' := e)
       (by
-        simpa using
+        simpa using!
           (StructureGroupoid.id_mem_maximalAtlas
             (G := contDiffGroupoid (⊤ : WithTop ℕ∞) (𝓡 n)) :
             OpenPartialHomeomorph.refl (EuclideanSpace ℝ (Fin n)) ∈
@@ -328,7 +328,7 @@ lemma contMDiffOn_chartOfMemMaximalAtlasInfty
       (I := 𝓡 n) (I' := 𝓡 n) (e := e) (e' := OpenPartialHomeomorph.refl _)
       he
       (by
-        simpa using
+        simpa using!
           (StructureGroupoid.id_mem_maximalAtlas
             (G := contDiffGroupoid (∞ : ℕ∞ω) (𝓡 n)) :
             OpenPartialHomeomorph.refl (EuclideanSpace ℝ (Fin n)) ∈
@@ -358,7 +358,7 @@ lemma contMDiffOn_symm_chartOfMemMaximalAtlasInfty
     (contMDiffOn_iff_of_mem_maximalAtlas'
       (I := 𝓡 n) (I' := 𝓡 n) (e := OpenPartialHomeomorph.refl _) (e' := e)
       (by
-        simpa using
+        simpa using!
           (StructureGroupoid.id_mem_maximalAtlas
             (G := contDiffGroupoid (∞ : ℕ∞ω) (𝓡 n)) :
             OpenPartialHomeomorph.refl (EuclideanSpace ℝ (Fin n)) ∈
@@ -457,7 +457,7 @@ lemma sliceTailProjection_isSmoothSubmersion (hmn : m ≤ n) :
           continuous_pi fun i ↦
             PiLp.continuous_apply (p := 2) (β := fun _ : Fin n ↦ ℝ)
               (euclidean_slice_tail_coordinate hmn i)
-        simpa [sliceTailProjection] using
+        simpa [sliceTailProjection] using!
           (PiLp.continuous_toLp 2 (fun _ : Fin (n - m) ↦ ℝ)).comp hcoord }
   refine ⟨?_, ?_⟩
   · -- A continuous linear map between Euclidean spaces is smooth.
@@ -511,7 +511,7 @@ private theorem zeroTailProjection_memBall
                 ∑ i : Fin (n - m),
                   (euclidean_slice_inclusion hmn (fun _ : Fin (n - m) ↦ (0 : ℝ)) zProj).ofLp
                     (euclidean_slice_tail_coordinate hmn i) ^ 2 := by
-              simpa [a, f, cast_first_coordinates, euclidean_slice_tail_coordinate] using
+              simpa [a, f, cast_first_coordinates, euclidean_slice_tail_coordinate] using!
                 (Fin.sum_univ_add (f := f))
         _ =
               (∑ i : Fin m, zProj.ofLp i ^ 2) +
@@ -607,7 +607,7 @@ private theorem smoothEmbedding_continuousCodRestrictInfty
     Continuous (Set.codRestrict F S hFS) := by
   -- Continuity into the subtype is equivalent to continuity after composing with the inclusion.
   refine hS.isEmbedding.isInducing.continuous_iff.2 ?_
-  simpa [Function.comp] using hF.continuous
+  simpa [Function.comp] using! hF.continuous
 
 /-- Helper for Proposition 6.25: in immersion charts for a smooth embedding, the codomain-
 restricted chart expression is recovered by projecting the ambient chart expression. -/
@@ -673,10 +673,11 @@ private theorem smoothEmbedding_contMDiffAtCodRestrictInfty
         ContinuousWithinAt fS Set.univ x ∧
           ContDiffWithinAt 𝕜 ∞
             ((hImm.domChart.extend J) ∘ fS ∘ (e.extend K).symm) (Set.range K) x' := by
-    simpa [fS, e, x', Set.preimage_univ, Set.univ_inter] using
-      (@contMDiffWithinAt_iff_of_mem_maximalAtlas
-        𝕜 _ EN _ _ HN _ K N _ _ ES _ _ HS _ J S _ _ e hImm.domChart fS Set.univ ∞ _ _ x)
-        (IsManifold.chart_mem_maximalAtlas x) hImm.domChart_mem_maximalAtlas hx hy
+    simpa [fS, e, x', Set.preimage_univ, Set.univ_inter] using!
+      (contMDiffWithinAt_iff_of_mem_maximalAtlas
+        (I := K) (I' := J) (e := e) (e' := hImm.domChart) (f := fS)
+        (s := Set.univ) (x := x) (n := ∞)
+        (IsManifold.chart_mem_maximalAtlas x) hImm.domChart_mem_maximalAtlas hx hy)
   -- Move the pointwise goal to the chart pair given by the immersion normal form.
   rw [ContMDiffAt, hchartSubtype, continuousWithinAt_univ]
   refine ⟨hcont, ?_⟩
@@ -685,10 +686,11 @@ private theorem smoothEmbedding_contMDiffAtCodRestrictInfty
         ContinuousWithinAt F Set.univ x ∧
           ContDiffWithinAt 𝕜 ∞
             ((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) (Set.range K) x' := by
-    simpa [e, x', Set.preimage_univ, Set.univ_inter] using
-      (@contMDiffWithinAt_iff_of_mem_maximalAtlas
-        𝕜 _ EN _ _ HN _ K N _ _ EA _ _ HA _ I A _ _ e hImm.codChart F Set.univ ∞ _ _ x)
-        (IsManifold.chart_mem_maximalAtlas x) hImm.codChart_mem_maximalAtlas hx hy'
+    simpa [e, x', Set.preimage_univ, Set.univ_inter] using!
+      (contMDiffWithinAt_iff_of_mem_maximalAtlas
+        (I := K) (I' := I) (e := e) (e' := hImm.codChart) (f := F)
+        (s := Set.univ) (x := x) (n := ∞)
+        (IsManifold.chart_mem_maximalAtlas x) hImm.codChart_mem_maximalAtlas hx hy')
   have hambient :
       ContDiffWithinAt 𝕜 ∞ ((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) (Set.range K) x' := by
     -- Rewrite ambient smoothness in the chart pair `(e, hImm.codChart)`.
@@ -698,7 +700,7 @@ private theorem smoothEmbedding_contMDiffAtCodRestrictInfty
     simpa [eSymm] using eSymm.contDiff
   have hproj :
       ContDiff 𝕜 ∞ (fun v ↦ (eSymm v).1) := by
-    simpa [eSymm] using contDiff_fst.comp hsymm
+    simpa [eSymm] using! contDiff_fst.comp hsymm
   have hprojWithin :
       ContDiffWithinAt 𝕜 ∞ (fun v ↦ (eSymm v).1) Set.univ
         (((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) x') :=
@@ -858,7 +860,7 @@ lemma normalBundleToProd_comp_localSectionThrough_of_trivialization_contMDiff
       ContMDiff (𝓡 m) (𝓡 n) ∞
         (fun x : U ↦ ((x : M) : EuclideanSpace ℝ (Fin n))) := by
     -- The first product coordinate is just the ambient inclusion of the open subset `U ⊆ M`.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       subtype_val_contMDiff.comp
         (contMDiff_subtype_val : ContMDiff (𝓡 m) (𝓡 m) ∞ (Subtype.val : U → M))
   have hσ :
@@ -923,7 +925,7 @@ lemma localSectionThrough_of_ambientNormalField
       ContMDiff (𝓡 m) (𝓡 n) ∞
         (fun x : U ↦ ((x : M) : EuclideanSpace ℝ (Fin n))) := by
     -- The first product coordinate is the ambient inclusion of the open subset `U ⊆ M`.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       subtype_val_contMDiff.comp
         (contMDiff_subtype_val : ContMDiff (𝓡 m) (𝓡 m) ∞ (Subtype.val : U → M))
   have hsmooth :
@@ -988,7 +990,7 @@ lemma mem_euclideanSlice_iff_sliceTailProjection_eq
     refine ⟨hyU, ?_⟩
     intro i
     have hi := congrArg (fun z : EuclideanSpace ℝ (Fin (n - m)) ↦ z i) hy
-    simpa [sliceTailProjection] using hi
+    simpa [sliceTailProjection] using! hi
 
 /-- Helper for Proposition 6.25: on the chosen slice chart around `x₀`, membership in `M` is
 equivalent to the fixed tail-coordinate equation for the slice-tail composite. -/
@@ -1099,7 +1101,7 @@ lemma sliceTailComposite_mfderiv_surjective
       (n := n)
       (slice_condition_ambient_chart_mem_maximalAtlas (S := M) hSlice x0)
       hpSource
-  simpa using hProjSurj.comp hChartSurj
+  simpa using! hProjSurj.comp hChartSurj
 
 /-- Helper for Proposition 6.25: the slice-tail composite is a local defining map on the chosen
 ambient chart source. -/
@@ -1367,7 +1369,7 @@ private theorem localInclusionForm_image_eq_zeroSlice_of_projection_memTarget
           (hNF.codChart.restr W) yM.1 =
             LocalNormalFormAPI.rank_normal_form m n m (hNF.domChart yM) := by
         simpa [Function.comp, hyLeftInv] using hNF.eqOn hyTarget
-      simpa [hcoord, rank_normal_form_self_eq_euclidean_slice_inclusion_zero hmn] using
+      simpa [hcoord, rank_normal_form_self_eq_euclidean_slice_inclusion_zero hmn] using!
         (euclidean_slice_inclusion_tail hmn
           (fun _ : Fin (n - m) ↦ (0 : ℝ))
           (hNF.domChart yM) i)
@@ -1443,7 +1445,7 @@ private theorem localInclusionFormRestrictedImageEqZeroSlice
     refine ⟨e.map_source hyRestr_e, ?_⟩
     -- The local normal form forces all tail coordinates of the restricted image to vanish.
     simpa [e, localInclusionFormRestrictedChart, hcoord,
-      rank_normal_form_self_eq_euclidean_slice_inclusion_zero hmn] using
+      rank_normal_form_self_eq_euclidean_slice_inclusion_zero hmn] using!
       (euclidean_slice_inclusion_tail hmn
         (fun _ : Fin (n - m) ↦ (0 : ℝ)) u)
   · intro hz
@@ -1547,7 +1549,7 @@ private theorem localInclusionFormRestricted_mem_iff_sliceTailProjection_eq_zero
       rw [← hImageEq]
       exact ⟨q, ⟨hqM, hqSource⟩, rfl⟩
     -- Membership in the zero-tail slice is equivalent to vanishing of the tail projection.
-    simpa [Φ] using
+    simpa [Φ] using!
       (mem_euclideanSlice_iff_sliceTailProjection_eq (n := n) (m := m) hmn
         (e.map_source hqSource)).1 heSlice
   · intro hqEq
@@ -1555,7 +1557,7 @@ private theorem localInclusionFormRestricted_mem_iff_sliceTailProjection_eq_zero
         e q ∈ Set.euclideanSlice e.target m hmn (fun _ : Fin (n - m) ↦ (0 : ℝ)) := by
       exact
         (mem_euclideanSlice_iff_sliceTailProjection_eq (n := n) (m := m) hmn
-          (e.map_source hqSource)).2 (by simpa [Φ] using hqEq)
+          (e.map_source hqSource)).2 (by simpa [Φ] using! hqEq)
     rw [← hImageEq] at heSlice
     rcases heSlice with ⟨y, ⟨hyM, hySource⟩, hyEq⟩
     have hyq : y = q := by
@@ -1610,7 +1612,7 @@ private theorem embeddedSubmanifoldLocalDefiningMapAt_of_topManifold
         mem_iff_eq := ?_
         surjective_mfderiv := ?_ }
     · -- Adding a constant vector preserves smoothness on the same open source.
-      simpa [Φ] using hDef0.smoothOn.add
+      simpa [Φ] using! hDef0.smoothOn.add
         (contMDiffOn_const : ContMDiffOn (𝓡 n) (𝓡 (n - m)) ∞
           (fun _ : EuclideanSpace ℝ (Fin n) ↦ -c) e.source)
     · intro p q hpM hpSource hqSource
@@ -1787,7 +1789,7 @@ lemma sliceChartSourcePatchAmbientInclusion_contMDiff
       (fun x : sliceChartSourcePatch (n := n) (m := m) (M := M) x0 hSlice ↦
         ((x : M) : EuclideanSpace ℝ (Fin n))) := by
   -- Restrict the already smooth ambient inclusion of `M` to the open slice-chart source patch.
-  simpa [sliceChartSourcePatch, Function.comp] using
+  simpa [sliceChartSourcePatch, Function.comp] using!
     subtype_val_contMDiff.comp
       (contMDiff_subtype_val :
         ContMDiff (𝓡 m) (𝓡 m) ∞
@@ -1854,7 +1856,7 @@ lemma sliceTailDerivativeField_contMDiff
         have hF :
             ContDiffAt ℝ ∞ (Function.uncurry F) (x.1, x.1) := by
           -- Regard `Φ` as a constant family in the base variable and differentiate in the second slot.
-          simpa [F, Function.comp] using hΦAt.comp (x.1, x.1) contDiffAt_snd
+          simpa [F, Function.comp] using! hΦAt.comp (x.1, x.1) contDiffAt_snd
         -- `ContDiffAt.fderiv` yields the smooth operator-valued derivative field in fixed coordinates.
         simpa [F] using
           (ContDiffAt.fderiv
@@ -1916,7 +1918,7 @@ lemma sliceTailDerivativeField_onPatch_contMDiff
           (n := n) (m := m) (M := M) x0 hSlice)
         (fun x ↦ x.2)
   -- Compose the ambient derivative field on `V` with the smooth inclusion of the slice patch.
-  simpa [ιV, V, e, Φ, Function.comp] using
+  simpa [ιV, V, e, Φ, Function.comp] using!
     (sliceTailDerivativeField_contMDiff (n := n) (m := m) (M := M) x0 hSlice hmn).comp hιV
 
 /-- Helper for Proposition 6.25: the derivative field of a local defining map is smooth on the
@@ -1997,7 +1999,7 @@ lemma localDefiningMapDerivativeField_onPatch_contMDiff
           have hF :
               ContDiffAt ℝ ∞ (Function.uncurry F) (x.1, x.1) := by
             -- Regard `Φ` as constant in the first variable and differentiate in the second slot.
-            simpa [F, Function.comp] using hΦAt.comp (x.1, x.1) contDiffAt_snd
+            simpa [F, Function.comp] using! hΦAt.comp (x.1, x.1) contDiffAt_snd
           -- `ContDiffAt.fderiv` produces the smooth derivative field in fixed Euclidean
           -- coordinates.
           simpa [F] using
@@ -2010,7 +2012,7 @@ lemma localDefiningMapDerivativeField_onPatch_contMDiff
               (by simp : (∞ : WithTop ℕ∞) + 1 ≤ ∞))
     simpa using hx'
   -- Restrict the ambient derivative field to the open patch of `M`.
-  simpa [P, Uo, ιU, ambientOpenPatchInSubmanifold, Function.comp] using hAmbient.comp hιU
+  simpa [P, Uo, ιU, ambientOpenPatchInSubmanifold, Function.comp] using! hAmbient.comp hιU
 
 /-- Helper for Proposition 6.25: on the open patch cut out by a local defining map, a Euclidean
 vector lies in the normal space exactly when it is orthogonal to the kernel of the Euclidean
@@ -2098,7 +2100,7 @@ lemma normalSpace_iff_mem_orthogonalKer_localDefiningMap
       apply LinearMap.mem_ker.2
       have hw0' :
           fderiv ℝ Φ (((x : M) : EuclideanSpace ℝ (Fin n))) w = 0 := by
-        simpa [mfderiv_eq_fderiv] using hw0
+        simpa [mfderiv_eq_fderiv] using! hw0
       have hwFixed :
           fixedModelMfderiv (n := n) (M := M) Φ (x : M) (e w) = 0 := by
         -- The fixed-model derivative sends the Euclidean representative of a tangent-kernel vector
@@ -2185,7 +2187,7 @@ lemma piNM_hasProductSmoothLocalSectionThrough_of_localDefiningMap
   have hηsmooth : ContMDiff (𝓡 m) (𝓡 n) ∞ η := by
     -- The adjoint-evaluation operator is continuous linear, so composing it with the smooth
     -- derivative field of the local defining map keeps the field smooth.
-    simpa [η, Function.comp] using
+    simpa [η, Function.comp] using!
       (adjointApplyContinuousLinearMap c0).contMDiff.comp
         (localDefiningMapDerivativeField_onPatch_contMDiff
           (n := n) (m := m) (M := M) hDef)
@@ -2204,7 +2206,7 @@ lemma piNM_hasProductSmoothLocalSectionThrough_of_localDefiningMap
   have hηp : η xU = normal_bundle_vector n m M p := by
     -- At the base point `π_NM p`, the chosen adjoint coefficient recovers the original normal
     -- vector of `p`.
-    simpa [η, xU, adjointApplyContinuousLinearMap_apply] using hc0
+    simpa [η, xU, adjointApplyContinuousLinearMap_apply] using! hc0
   rcases
       localSectionThrough_of_ambientNormalField
         (n := n) (m := m) (M := M) p
@@ -2335,7 +2337,7 @@ lemma retraction_baseAmbient_contMDiff
       (contMDiff_subtype_val : ContMDiff (𝓡 n) (𝓡 n) ∞ (Subtype.val : T.tube → NM[n, m; M])).comp
         T.endpointDiffeomorph.contMDiff_invFun
   -- Compose the smooth ambient base-point coordinate with the inverse endpoint diffeomorphism.
-  simpa [retraction_apply] using
+  simpa [retraction_apply] using!
     piNM_baseAmbient_contMDiff.comp hSymmAmbient
 
 /-- Helper: the zero normal vector over `x` lies in the chosen tube. -/
@@ -2389,7 +2391,7 @@ theorem tubeProjection_isSmoothSubmersion [CompatibleSmoothStructure n m M]
     (T : TubularNeighborhood n m M) :
     IsSmoothSubmersion (𝓡 n) (𝓡 m) (fun p : T.tube ↦ π_NM[n, m; M] p) := by
   -- Restricting the source along an open inclusion preserves the submersion property.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     (Manifold.IsSmoothSubmersion.comp_isLocalDiffeomorph
       NormalBundle.piNM_isSmoothSubmersion
       (tubeInclusion_isLocalDiffeomorph T))
@@ -2401,7 +2403,7 @@ theorem retraction_isSmoothSubmersion [CompatibleSmoothStructure n m M]
   -- Transport the restricted smooth-submersion property across the inverse endpoint diffeomorphism.
   have h_symm : IsLocalDiffeomorph (𝓡 n) (𝓡 n) ∞ T.endpointDiffeomorph.symm := by
     simpa using Diffeomorph.isLocalDiffeomorph T.endpointDiffeomorph.symm
-  simpa [retraction_apply, Function.comp] using
+  simpa [retraction_apply, Function.comp] using!
     (Manifold.IsSmoothSubmersion.comp_isLocalDiffeomorph
       (NormalBundle.TubularNeighborhood.tubeProjection_isSmoothSubmersion
         (n := n) (m := m) (M := M) T)

@@ -93,7 +93,10 @@ lemma hasDerivAt_comp_single_line {m : ℕ} {u : EuclideanSpace ℝ (Fin m) → 
   have hline : HasDerivAt (fun s : ℝ => p + s • EuclideanSpace.single i 1)
       (EuclideanSpace.single i 1) s₀ := by
     simpa using ((hasDerivAt_id s₀).smul_const (EuclideanSpace.single i 1)).const_add p
-  simpa using hu.hasFDerivAt.comp_hasDerivAt s₀ hline
+  convert hu.hasFDerivAt.comp_hasDerivAt s₀ hline using 1
+  · exact AddCommGroup.ext rfl
+  · exact Module.ext rfl
+  · rfl
 
 /-- **One-sided first-derivative test in a coordinate direction.** If `u` is
 differentiable at `p` and `u(p + s eᵢ) ≤ u(p)` for `s` in a left neighbourhood of `0`,

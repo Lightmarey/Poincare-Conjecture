@@ -173,15 +173,16 @@ lemma lowerTriangularProdMapIsInvertible
 /-- Helper for Problem 7-3: the inverse left translation `h ↦ g⁻¹ * h` is smooth. -/
 theorem contMDiff_mul_left_inv (g : G) : ContMDiff I I ∞ fun h : G ↦ g⁻¹ * h := by
   -- This is the ordinary left-multiplication smoothness theorem applied to `g⁻¹`.
-  simpa using
-    ((contMDiff_const : ContMDiff I I ∞ fun _ : G ↦ g⁻¹).mul contMDiff_id)
+  change ContMDiff I I ∞ ((fun _ : G ↦ g⁻¹) * id)
+  exact (contMDiff_const : ContMDiff I I ∞ fun _ : G ↦ g⁻¹).mul contMDiff_id
 
 /-- Helper for Problem 7-3: left translation by a fixed group element is a smooth
 diffeomorphism. -/
 def leftMulDiffeomorph (g : G) : G ≃ₘ⟮I, I⟯ G :=
   { toEquiv := Equiv.mulLeft g
     contMDiff_toFun := by
-      simpa using ((contMDiff_const : ContMDiff I I ∞ fun _ : G ↦ g).mul contMDiff_id)
+      change ContMDiff I I ∞ ((fun _ : G ↦ g) * id)
+      exact (contMDiff_const : ContMDiff I I ∞ fun _ : G ↦ g).mul contMDiff_id
     contMDiff_invFun := contMDiff_mul_left_inv g }
 
 /-- Helper for Problem 7-3: one interior chart point and smooth left translations show that `G`
@@ -245,9 +246,10 @@ lemma mfderivMultiplicationShear_apply (g h : G)
         mfderiv% (multiplicationShear : G × G → G × G) (g, h) =
           (mfderiv% (fun p : G × G ↦ p.1) (g, h)).prod
             (mfderiv% (fun p : G × G ↦ p.1 * p.2) (g, h)) := by
-      simpa [multiplicationShear] using mfderiv_prodMk mdifferentiableAt_fst hMul
-    have happly := congrArg (fun F ↦ F (X, Y)) hderiv
-    simpa using happly
+      change mfderiv% (fun x : G × G ↦ (x.1, x.1 * x.2)) (g, h) = _
+      exact mfderiv_prodMk mdifferentiableAt_fst hMul
+    rw [hderiv]
+    rfl
   have hMulApply :
       mfderiv% (fun p : G × G ↦ p.1 * p.2) (g, h) (X, Y) =
         mfderiv% (fun z : G ↦ z * h) g X + mfderiv% (fun z : G ↦ g * z) h Y :=
@@ -271,7 +273,9 @@ lemma mfderivMultiplicationShear_eq_blockMap (g h : G) :
       mfderiv% (multiplicationShear : G × G → G × G) (g, h) (X, Y) =
         (X, mfderiv% (fun z : G ↦ z * h) g X + mfderiv% (fun z : G ↦ g * z) h Y) :=
     mfderivMultiplicationShear_apply g h X Y
-  simpa using hApply
+  change mfderiv% (multiplicationShear : G × G → G × G) (g, h) (X, Y) =
+    (X, mfderiv% (fun z : G ↦ z * h) g X + mfderiv% (fun z : G ↦ g * z) h Y)
+  exact hApply
 
 /-- Helper for Problem 7-3: the derivative of left translation by `g` is invertible at every
 point. -/
@@ -282,7 +286,8 @@ lemma leftMulMfderivIsInvertible (g h : G) :
   let e := Φ.mfderivToContinuousLinearEquiv hInf h
   -- Differentiate the left-translation diffeomorphism and read off the associated equivalence.
   refine ⟨e, ?_⟩
-  simpa [Φ, e] using (Φ.mfderivToContinuousLinearEquiv_coe hInf).symm
+  change (e : TangentSpace I h →L[𝕜] TangentSpace I (Φ h)) = mfderiv I I Φ h
+  exact Φ.mfderivToContinuousLinearEquiv_coe hInf
 
 /-- Helper for Problem 7-3: the shear derivative is invertible at every point because it is a
 lower-triangular block map with invertible left-translation block. -/
@@ -306,7 +311,8 @@ lemma mfderivMultiplicationShearIsInvertible (g h : G) :
 lemma multiplicationShear_contMDiff :
     ContMDiff (I.prod I) (I.prod I) ∞ (multiplicationShear : G × G → G × G) := by
   -- Smoothness comes from the first projection together with smooth multiplication.
-  simpa [multiplicationShear] using (contMDiff_fst.prodMk (contMDiff_fst.mul contMDiff_snd))
+  change ContMDiff (I.prod I) (I.prod I) ∞ (fun x : G × G ↦ (x.1, x.1 * x.2))
+  exact contMDiff_fst.prodMk (contMDiff_fst.mul contMDiff_snd)
 
 /-- Helper for Problem 7-3: smooth multiplication makes the product manifold `G × G`
 boundaryless. -/
@@ -340,7 +346,8 @@ is smooth. -/
 theorem multiplication_shear_isLocalDiffeomorph :
     IsLocalDiffeomorph (I.prod I) (I.prod I) ∞ (fun p : G × G ↦ (p.1, p.1 * p.2)) := by
   intro p
-  simpa [multiplicationShear] using multiplicationShear_isLocalDiffeomorphAt p
+  change IsLocalDiffeomorphAt (I.prod I) (I.prod I) ∞ multiplicationShear p
+  exact multiplicationShear_isLocalDiffeomorphAt p
 
 /-- Smoothness of multiplication on a smooth manifold group forces smoothness of inversion. -/
 theorem contMDiff_inv_of_contMDiff_mul

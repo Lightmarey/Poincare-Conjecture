@@ -42,7 +42,7 @@ theorem contMDiff_units_of_val
     ContMDiff I (𝓘(𝕜, R)) ∞ f := by
   -- The units manifold is an open submanifold of the ambient normed algebra.
   refine ContMDiff.of_comp_isOpenEmbedding Units.isOpenEmbedding_val ?_
-  simpa using h
+  exact h
 
 /-- Helper: a group whose division map is `C^n` is a `LieGroup I n G`. -/
 private theorem lieGroupOfContMDiffMulInv
@@ -190,8 +190,8 @@ section MultiplicativeModels
 -- exponential/Fourier-character block so they do not participate in later determinant search.
 private instance multiplicativeChartedSpace
     {H : Type*} {E : Type*} [TopologicalSpace H] [TopologicalSpace E] [ChartedSpace H E] :
-    ChartedSpace H (Multiplicative E) := by
-  simpa [Multiplicative] using (inferInstance : ChartedSpace H E)
+    ChartedSpace H (Multiplicative E) :=
+  (inferInstance : ChartedSpace H E)
 
 private instance multiplicativeIsManifold
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] :
@@ -202,10 +202,25 @@ private instance multiplicativeLieGroup
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] :
     LieGroup (𝓘(ℝ, E)) ∞ (Multiplicative E) :=
   lieGroup_of_contMDiff_mul_inv <| by
-    simpa [Multiplicative, div_eq_mul_inv, sub_eq_add_neg] using
-      (contMDiff_fst.sub contMDiff_snd :
-        ContMDiff ((𝓘(ℝ, E)).prod (𝓘(ℝ, E))) (𝓘(ℝ, E)) ∞
-          fun p : E × E ↦ p.1 - p.2)
+    have htoAdd : ContMDiff (𝓘(ℝ, E)) (𝓘(ℝ, E)) ∞
+        (Multiplicative.toAdd : Multiplicative E → E) := by
+      convert (contMDiff_id : ContMDiff (𝓘(ℝ, E)) (𝓘(ℝ, E)) ∞ (id : E → E)) using 1
+      all_goals rfl
+    have hofAdd : ContMDiff (𝓘(ℝ, E)) (𝓘(ℝ, E)) ∞
+        (Multiplicative.ofAdd : E → Multiplicative E) := by
+      convert (contMDiff_id : ContMDiff (𝓘(ℝ, E)) (𝓘(ℝ, E)) ∞ (id : E → E)) using 1
+      all_goals rfl
+    have hpair : ContMDiff ((𝓘(ℝ, E)).prod (𝓘(ℝ, E)))
+        ((𝓘(ℝ, E)).prod (𝓘(ℝ, E))) ∞
+        (fun p : Multiplicative E × Multiplicative E ↦
+          (Multiplicative.toAdd p.1, Multiplicative.toAdd p.2)) :=
+      (htoAdd.comp contMDiff_fst).prodMk (htoAdd.comp contMDiff_snd)
+    have hsub : ContMDiff ((𝓘(ℝ, E)).prod (𝓘(ℝ, E))) (𝓘(ℝ, E)) ∞
+        (fun p : E × E ↦ p.1 - p.2) :=
+      contMDiff_fst.sub contMDiff_snd
+    convert hofAdd.comp (hsub.comp hpair) using 1
+    funext p
+    simp [sub_eq_add_neg, ofAdd_add, ofAdd_neg]
 
 /-- The real exponential is a smooth Lie group homomorphism from the additive Lie group `ℝ`,
 written multiplicatively, to `ℝˣ`. -/
@@ -218,7 +233,8 @@ def real_exp_units_lie_hom :
         intro s t
         simpa using realExpUnits_map_add (Multiplicative.toAdd s) (Multiplicative.toAdd t) }
   contMDiff_toFun := by
-    simpa using realExpUnits_contMDiff
+    change ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ realExpUnits
+    exact realExpUnits_contMDiff
 
 /-- The bundled real exponential evaluates by `t ↦ e^t`. -/
 @[simp] theorem real_exp_units_lie_hom_apply (t : Multiplicative ℝ) :
@@ -291,7 +307,8 @@ theorem real_exp_pos_mulEquiv_spec (t : Multiplicative ℝ) :
 def real_pos_openSubgroup : OpenSubgroup ℝˣ where
   toSubgroup := Units.posSubgroup ℝ
   isOpen' := by
-    simpa using isOpen_Ioi.preimage (Units.continuous_val : Continuous fun u : ℝˣ ↦ (u : ℝ))
+    change IsOpen (Units.val ⁻¹' Set.Ioi 0)
+    exact isOpen_Ioi.preimage (Units.continuous_val : Continuous fun u : ℝˣ ↦ (u : ℝ))
 
 /-- The open subgroup owner `real_pos_openSubgroup` has the expected underlying subgroup. -/
 @[simp] theorem real_pos_openSubgroup_toSubgroup :
@@ -361,18 +378,17 @@ manifold structure. -/
 private theorem realPosSubgroupSubtypeVal_contMDiff :
     ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (Subtype.val : Units.posSubgroup ℝ → ℝˣ) := by
   -- View the subgroup carrier as the canonical open subset `ℝ⁺`.
-  simpa [realPosSubgroupOpens] using
-    (contMDiff_subtype_val :
-      ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (Subtype.val : realPosSubgroupOpens → ℝˣ))
+  change ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (Subtype.val : realPosSubgroupOpens → ℝˣ)
+  exact contMDiff_subtype_val
 
 /-- Helper: the inclusion `ℝ⁺ ↪ ℝˣ` is smooth at the top differentiability level
 used in the `LieSubgroup` structure. -/
 private theorem realPosSubgroupSubtypeVal_contMDiffTop :
     ContMDiff 𝓘(ℝ) 𝓘(ℝ) (⊤ : WithTop ℕ∞) (Subtype.val : Units.posSubgroup ℝ → ℝˣ) := by
   -- View the subgroup carrier as the canonical open subset `ℝ⁺`.
-  simpa [realPosSubgroupOpens] using
-    (contMDiff_subtype_val :
-      ContMDiff 𝓘(ℝ) 𝓘(ℝ) (⊤ : WithTop ℕ∞) (Subtype.val : realPosSubgroupOpens → ℝˣ))
+  change ContMDiff 𝓘(ℝ) 𝓘(ℝ) (⊤ : WithTop ℕ∞)
+    (Subtype.val : realPosSubgroupOpens → ℝˣ)
+  exact contMDiff_subtype_val
 
 /-- Helper: applying `Subtype.val` to subgroup division in `ℝ⁺` gives the ambient
 division map in `ℝˣ`. -/
@@ -380,10 +396,9 @@ private theorem realUnitsDiv_contMDiff :
     ContMDiff (𝓘(ℝ).prod 𝓘(ℝ)) 𝓘(ℝ) (⊤ : WithTop ℕ∞)
       (fun q : ℝˣ × ℝˣ ↦ q.1 * q.2⁻¹) := by
   -- The ambient division map is just multiplication composed with inversion in `ℝˣ`.
-  simpa [div_eq_mul_inv] using
-    (contMDiff_fst.mul contMDiff_snd.inv :
-      ContMDiff (𝓘(ℝ).prod 𝓘(ℝ)) 𝓘(ℝ) (⊤ : WithTop ℕ∞)
-        (fun q : ℝˣ × ℝˣ ↦ q.1 * q.2⁻¹))
+  change ContMDiff (𝓘(ℝ).prod 𝓘(ℝ)) 𝓘(ℝ) (⊤ : WithTop ℕ∞)
+    (Prod.fst * fun q : ℝˣ × ℝˣ ↦ q.2⁻¹)
+  exact contMDiff_fst.mul contMDiff_snd.inv
 
 /-- Helper: the product inclusion `ℝ⁺ × ℝ⁺ ↪ ℝˣ × ℝˣ` is smooth. -/
 private theorem realPosSubgroupPairVal_contMDiff :
@@ -501,7 +516,9 @@ private theorem realExpPosUnit_log_contMDiff :
     ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞
       (fun u : Units.posSubgroup ℝ ↦
         Multiplicative.ofAdd (Real.log ((u : ℝˣ) : ℝ))) := by
-  simpa [Multiplicative] using realPosSubgroupLog_contMDiff
+  change ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞
+    (fun u : Units.posSubgroup ℝ ↦ Real.log ((u : ℝˣ) : ℝ))
+  exact realPosSubgroupLog_contMDiff
 
 /-- Helper: the inclusion `Subtype.val : Units.posSubgroup ℝ → ℝˣ` is an
 immersion for the inherited open-subset manifold structure on `ℝ⁺`. -/
@@ -509,8 +526,9 @@ private theorem realPosLieSubgroupSubtypeVal_isImmersion :
     Manifold.IsImmersion (modelWithCornersSelf ℝ ℝ) 𝓘(ℝ) (⊤ : WithTop ℕ∞)
       (Subtype.val : Units.posSubgroup ℝ → ℝˣ) := by
   -- Route correction: use the canonical smooth embedding of the open subset `ℝ⁺`.
-  simpa [realPosSubgroupOpens] using
-    (Manifold.IsSmoothEmbedding.of_opens realPosSubgroupOpens).isImmersion
+  change Manifold.IsImmersion (modelWithCornersSelf ℝ ℝ) 𝓘(ℝ) (⊤ : WithTop ℕ∞)
+    (Subtype.val : realPosSubgroupOpens → ℝˣ)
+  exact (Manifold.IsSmoothEmbedding.of_opens realPosSubgroupOpens).isImmersion
 
 /-- Helper: the positive subgroup of `ℝˣ` has the exact Lie-group structure
 required by the `LieSubgroup` field. -/
@@ -545,7 +563,9 @@ private theorem realExpPosLieIso_contMDiff_invFun :
       (fun u : Units.posSubgroup ℝ ↦
         Multiplicative.ofAdd (Real.log ((u : ℝˣ) : ℝ))) := by
   -- Forget the multiplicative wrapper and use smoothness of `log` on `ℝ⁺`.
-  simpa [Multiplicative] using realPosSubgroupLog_contMDiff
+  change ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞
+    (fun u : Units.posSubgroup ℝ ↦ Real.log ((u : ℝˣ) : ℝ))
+  exact realPosSubgroupLog_contMDiff
 
 /-- Helper: the real exponential as a Lie-group isomorphism from the additive
 Lie group `ℝ`, written multiplicatively, onto the positive subgroup `ℝ⁺`. -/
@@ -563,7 +583,9 @@ private theorem realExpPosLieIso_spec (t : Multiplicative ℝ) :
     ((realExpPosLieIso t : Units.posSubgroup ℝ) : ℝˣ) =
       realExpUnits (Multiplicative.toAdd t) := by
   -- The named Lie-group isomorphism reuses the same underlying multiplicative equivalence.
-  simpa [realExpPosLieIso] using real_exp_pos_mulEquiv_spec t
+  change ((real_exp_pos_mulEquiv t : Units.posSubgroup ℝ) : ℝˣ) =
+    realExpUnits (Multiplicative.toAdd t)
+  exact real_exp_pos_mulEquiv_spec t
 
 /-- Helper: the positive subgroup of `ℝˣ` inherits a Lie-subgroup structure, and
 `real_exp_pos_mulEquiv` upgrades to a Lie-group isomorphism onto it. -/
@@ -606,7 +628,8 @@ def complex_exp_units_lie_hom :
         intro z w
         simpa using complexExpUnits_map_add (Multiplicative.toAdd z) (Multiplicative.toAdd w) }
   contMDiff_toFun := by
-    simpa using complexExpUnits_contMDiff
+    change ContMDiff (𝓘(ℝ, ℂ)) (𝓘(ℝ, ℂ)) ∞ complexExpUnits
+    exact complexExpUnits_contMDiff
 
 /-- The bundled complex exponential evaluates by `z ↦ e^z`. -/
 @[simp] theorem complex_exp_units_lie_hom_apply (z : Multiplicative ℂ) :
@@ -675,9 +698,11 @@ theorem epsilon_smooth :
     ContMDiff 𝓘(ℝ) (𝓡 1) ∞ 𝐞 := by
   have hphase : ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (fun t : ℝ ↦ (2 * Real.pi) * t) := by
     -- The phase function is linear, hence smooth.
-    simpa using (contMDiff_const.mul contMDiff_id)
+    change ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ ((fun _ : ℝ ↦ 2 * Real.pi) * (id : ℝ → ℝ))
+    exact contMDiff_const.mul contMDiff_id
   -- Compose the smooth circle exponential with the linear phase.
-  simpa [Real.fourierChar_apply', Function.comp] using contMDiff_circleExp.comp hphase
+  convert contMDiff_circleExp.comp hphase using 1
+  all_goals try rfl
 
 /-- The map `ε(t) = e^{2π i t}` is a smooth Lie group homomorphism from the additive Lie group
 `ℝ`, written multiplicatively, to `S¹`. -/
@@ -694,7 +719,8 @@ def epsilon_lie_hom : ContMDiffMonoidMorphism 𝓘(ℝ) (𝓡 1) ∞ (Multiplica
               𝐞 (Multiplicative.toAdd s) * 𝐞 (Multiplicative.toAdd t)
             from (𝐞 : AddChar ℝ Circle).map_add_eq_mul _ _) }
   contMDiff_toFun := by
-    simpa using epsilon_smooth
+    change ContMDiff 𝓘(ℝ) (𝓡 1) ∞ (𝐞 : ℝ → Circle)
+    exact epsilon_smooth
 
 /-- The bundled circle character evaluates by `t ↦ e^{2π i t}`. -/
 @[simp] theorem epsilon_lie_hom_apply (t : Multiplicative ℝ) :
@@ -771,7 +797,8 @@ theorem torus_epsilon_smooth (n : ℕ) :
         (fun x : Fin n → ℝ ↦ x i) :=
     (contMDiff_pi_iff.mp hid) i
   -- Each coordinate is the one-dimensional Fourier character.
-  simpa [torus_epsilon_add_char] using epsilon_smooth.comp hproj
+  convert epsilon_smooth.comp hproj using 1
+  all_goals try rfl
 
 /-- The map `εⁿ : ℝⁿ → 𝕋ⁿ` is a smooth Lie group homomorphism from the additive Lie group `ℝⁿ`,
 written multiplicatively, to the torus `𝕋ⁿ`. -/
@@ -798,7 +825,8 @@ def torus_epsilon_lie_hom (n : ℕ) :
             ((𝐞 : AddChar ℝ Circle).map_add_eq_mul _ _)
         simpa [torus_epsilon_add_char] using hmul }
   contMDiff_toFun := by
-    simpa using torus_epsilon_smooth n
+    change ContMDiff _ _ ∞ (ε^{n} : (Fin n → ℝ) → (Fin n → Circle))
+    exact torus_epsilon_smooth n
 
 /-- The bundled torus character evaluates coordinatewise by `e^{2π i xᵢ}`. -/
 @[simp] theorem torus_epsilon_lie_hom_apply (n : ℕ) (x : Multiplicative (Fin n → ℝ)) :
@@ -1017,8 +1045,8 @@ private theorem realGeneralLinearDet_contMDiff (n : ℕ) :
   letI : NormedAlgebra ℝ (Mℝ(n)) := realMatrixNormedAlgebra n
   letI : ChartedSpace (Mℝ(n)) (Mℝ(n))ˣ := realMatrixUnitsChartedSpace n
   refine contMDiff_units_of_val ?_
-  simpa [Function.comp, Matrix.GeneralLinearGroup.val_det_apply] using
-    (contMDiff_matrix_det_real n).contMDiff.comp (realGeneralLinearGroupVal_contMDiff n)
+  change ContMDiff _ _ ∞ ((fun M : Mℝ(n) ↦ M.det) ∘ Units.val)
+  exact (contMDiff_matrix_det_real n).contMDiff.comp (realGeneralLinearGroupVal_contMDiff n)
 
 /-- Helper: the determinant on `GL(n, ℂ)` is smooth. -/
 private theorem complexGeneralLinearGroupVal_contMDiff (n : ℕ) :
@@ -1086,8 +1114,8 @@ private theorem complexGeneralLinearDet_contMDiff (n : ℕ) :
   letI : NormedAlgebra ℝ (Mℂ(n)) := complexMatrixNormedAlgebra n
   letI : ChartedSpace (Mℂ(n)) (Mℂ(n))ˣ := complexMatrixUnitsChartedSpace n
   refine contMDiff_units_of_val ?_
-  simpa [Function.comp, Matrix.GeneralLinearGroup.val_det_apply] using
-    (contMDiff_matrix_det_complex n).contMDiff.comp (complexGeneralLinearGroupVal_contMDiff n)
+  change ContMDiff _ _ ∞ ((fun M : Mℂ(n) ↦ M.det) ∘ Units.val)
+  exact (contMDiff_matrix_det_complex n).contMDiff.comp (complexGeneralLinearGroupVal_contMDiff n)
 
 /-- The determinant on `GL(n, ℝ)` is a smooth Lie group homomorphism. This is the owner-level
 bridge from mathlib's canonical monoid homomorphism `Matrix.GeneralLinearGroup.det` to the chapter
@@ -1179,20 +1207,25 @@ theorem contMDiff_conjugationMap (g : G) :
     contMDiff_mul_left
   have hright : ContMDiff I I ∞ (fun h : G ↦ h * g⁻¹) :=
     contMDiff_mul_right
-  simpa [Function.comp, ← mul_assoc] using
-    hright.comp hleft
+  convert hright.comp hleft using 1
+  funext h
+  rfl
 
 /-- Helper: the automorphism `MulAut.conj g` is smooth. -/
 theorem contMDiff_conjugationMulAut (g : G) :
     ContMDiff I I ∞ (MulAut.conj g : G → G) := by
   -- Rewrite the automorphism to the explicit conjugation formula.
-  simpa [MulAut.conj_apply] using contMDiff_conjugationMap g
+  change ContMDiff I I ∞ (fun h : G ↦ g * h * g⁻¹)
+  exact contMDiff_conjugationMap g
 
 /-- Helper: the inverse automorphism of `MulAut.conj g` is smooth. -/
 theorem contMDiff_conjugationMulAut_symm (g : G) :
     ContMDiff I I ∞ ((MulAut.conj g).symm : G → G) := by
   -- The inverse automorphism is conjugation by `g⁻¹`.
-  simpa [MulAut.conj_symm_apply] using contMDiff_conjugationMap g⁻¹
+  change ContMDiff I I ∞ (fun h : G ↦ g⁻¹ * h * g)
+  convert contMDiff_conjugationMap (I := I) g⁻¹ using 1
+  funext h
+  rw [inv_inv]
 
 /-- For `g ∈ G`, conjugation by `g` is a Lie group homomorphism. -/
 def conjugation_lie_hom (I : ModelWithCorners 𝕜 E H) [LieGroup I ∞ G] (g : G) :

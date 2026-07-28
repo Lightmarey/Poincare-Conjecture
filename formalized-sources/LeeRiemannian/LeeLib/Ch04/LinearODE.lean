@@ -2,6 +2,7 @@
 
 import Mathlib.Analysis.ODE.PicardLindelof
 import Mathlib.Analysis.ODE.Gronwall
+import Mathlib.Analysis.ODE.ExistUnique
 
 /-!
 # Existence, uniqueness, and the linear flow map for linear ODEs

@@ -108,7 +108,7 @@ theorem isPrecompactBoundaryModelCoordinateBall_chartPreimageMetricBall
     have hcompactBall : IsCompact (Metric.closedBall c r : Set (EuclideanHalfSpace (m + 1))) := by
       have hambient : IsCompact (Metric.closedBall c.1 r) :=
         isCompact_closedBall (x := c.1) (r := r)
-      simpa [Metric.closedBall, Subtype.dist_eq] using
+      simpa [Metric.closedBall, Subtype.dist_eq] using!
         hclosedHalf.isClosedEmbedding_subtypeVal.isCompact_preimage hambient
     exact hcompactBall.image_of_continuousOn
       (e.continuousOn_symm.mono hclosed)
@@ -149,7 +149,7 @@ theorem isPrecompactBoundaryModelCoordinateHalfBall_chartPreimageMetricBall
     have hcompactBall : IsCompact (Metric.closedBall c r : Set (EuclideanHalfSpace (m + 1))) := by
       have hambient : IsCompact (Metric.closedBall c.1 r) :=
         isCompact_closedBall (x := c.1) (r := r)
-      simpa [Metric.closedBall, Subtype.dist_eq] using
+      simpa [Metric.closedBall, Subtype.dist_eq] using!
         hclosedHalf.isClosedEmbedding_subtypeVal.isCompact_preimage hambient
     exact hcompactBall.image_of_continuousOn
       (e.continuousOn_symm.mono hclosed)
@@ -328,20 +328,20 @@ theorem locallyCompactSpace_of_topologicalManifoldWithBoundary :
 /-- Helper for Proposition 1.40: local path-connectedness transfers from Lee's boundary model to
 any topological manifold with boundary. -/
 theorem locPathConnectedSpace_of_topologicalManifoldWithBoundary :
-    LocPathConnectedSpace M := by
+    LocallyPathConnectedSpace M := by
   cases n with
   | zero =>
       -- In dimension `0`, the boundary model is the Euclidean model `ℝ^0`.
-      exact ChartedSpace.locPathConnectedSpace (EuclideanSpace ℝ (Fin 0)) M
+      exact ChartedSpace.locallyPathConnectedSpace (EuclideanSpace ℝ (Fin 0)) M
   | succ m =>
       -- In positive dimension, the boundary model is the Euclidean half-space.
-      exact ChartedSpace.locPathConnectedSpace (EuclideanHalfSpace (m + 1)) M
+      exact ChartedSpace.locallyPathConnectedSpace (EuclideanHalfSpace (m + 1)) M
 
 /-- Helper for Proposition 1.40: connected components are open once local path-connectedness is
 available on the manifold with boundary. -/
 theorem connectedComponent_isOpen_of_topologicalManifoldWithBoundary (x : M) :
     IsOpen (connectedComponent x) := by
-  letI : LocPathConnectedSpace M :=
+  letI : LocallyPathConnectedSpace M :=
     locPathConnectedSpace_of_topologicalManifoldWithBoundary (n := n) (M := M)
   letI : LocallyConnectedSpace M := inferInstance
   exact isOpen_connectedComponent
@@ -367,12 +367,12 @@ theorem topologicalManifoldWithBoundary_paracompactSpace : ParacompactSpace M :=
 -- spaces are locally path-connected; the property transfers across local homeomorphisms.
 /-- Clause (4) of Proposition 1.40: a topological manifold with boundary is locally
 path-connected. -/
-theorem topologicalManifoldWithBoundaryLocPathConnectedSpace : LocPathConnectedSpace M := by
+theorem topologicalManifoldWithBoundaryLocPathConnectedSpace : LocallyPathConnectedSpace M := by
   -- This is the direct owner-level local-path-connectedness transfer from the model space.
   exact locPathConnectedSpace_of_topologicalManifoldWithBoundary (n := n) (M := M)
 
 /-- Convenience theorem restating the local path-connectedness instance. -/
-theorem topologicalManifoldWithBoundary_locPathConnectedSpace : LocPathConnectedSpace M :=
+theorem topologicalManifoldWithBoundary_locPathConnectedSpace : LocallyPathConnectedSpace M :=
   topologicalManifoldWithBoundaryLocPathConnectedSpace (n := n) (M := M)
 
 /-- The connected component through `x`, regarded as an open subset of the ambient manifold. -/
@@ -386,7 +386,7 @@ def connectedComponentOpens (x : M) : TopologicalSpace.Opens M :=
 connected components. -/
 theorem topologicalManifoldWithBoundary_countable_connectedComponents :
     Countable (ConnectedComponents M) := by
-  letI : LocPathConnectedSpace M :=
+  letI : LocallyPathConnectedSpace M :=
     topologicalManifoldWithBoundary_locPathConnectedSpace (n := n) (M := M)
   letI : LocallyConnectedSpace M := inferInstance
   letI : LindelofSpace M := inferInstance
@@ -411,7 +411,7 @@ theorem connectedComponent_isOpen (x : M) : IsOpen (connectedComponent x) := by
 theorem connectedComponent_connectedSpace (x : M) :
     ConnectedSpace (connectedComponentOpens (n := n) (M := M) x) := by
   -- The subtype on a connected component is connected by the canonical connected-component theorem.
-  simpa [connectedComponentOpens] using
+  simpa [connectedComponentOpens] using!
     (Subtype.connectedSpace
       (show IsConnected (connectedComponent x : Set M) from isConnected_connectedComponent))
 
@@ -483,9 +483,9 @@ omit n in
 /-- Helper for Proposition 1.40: an open subset of a second-countable locally path-connected space
 has countably many connected components. -/
 theorem countableConnectedComponents_of_isOpen [SecondCountableTopology X]
-    [LocPathConnectedSpace X] {U : Set X} (hU : IsOpen U) :
+    [LocallyPathConnectedSpace X] {U : Set X} (hU : IsOpen U) :
     Countable (ConnectedComponents U) := by
-  letI : LocPathConnectedSpace U := hU.locPathConnectedSpace
+  letI : LocallyPathConnectedSpace U := hU.locallyPathConnectedSpace
   letI : LocallyConnectedSpace U := inferInstance
   letI : LindelofSpace U := inferInstance
   letI : DiscreteTopology (ConnectedComponents U) := inferInstance
@@ -739,7 +739,7 @@ omit n in
 /-- Helper for Proposition 1.40: a dense marker can be chosen inside the overlap path-component of
 an overlap point. -/
 theorem existsDenseMarkerJoinedInOverlap {d : Set X} (hdDense : Dense d) {U V : Set X}
-    [LocPathConnectedSpace X] (hU : IsOpen U) (hV : IsOpen V) {z : X} (hz : z ∈ U ∩ V) :
+    [LocallyPathConnectedSpace X] (hU : IsOpen U) (hV : IsOpen V) {z : X} (hz : z ∈ U ∩ V) :
     ∃ y : d, JoinedIn (U ∩ V) z y.1 := by
   let W := pathComponentIn (U ∩ V) z
   have hWOpen : IsOpen W := (hU.inter hV).pathComponentIn z
@@ -766,7 +766,7 @@ theorem segmentChainPath_subpath_homotopic {a z : X} (γ : Path a z) :
       intro t
       -- Split off the first subpath, collapse the tail inductively, then compose adjacent
       -- subpaths back together.
-      simpa [segmentChainPath] using
+      simpa [segmentChainPath] using!
         (((Path.Homotopic.refl (γ.subpath (t 0) (t 1))).hcomp (ih (Fin.tail t))).trans
           ⟨Path.Homotopy.subpathTransSubpath γ (t 0) (t 1) (t (Fin.last (m + 2)))⟩)
 
@@ -817,7 +817,7 @@ omit n in
 elements can be replaced by a realizable dense-marker loop code with the same endpoints. -/
 theorem existsRealizesContractibleBasisLoopCodeDataOfSegmentChain {b : Set (Set X)} {d : Set X}
     (hbBasis : TopologicalSpace.IsTopologicalBasis b)
-    (hbContractible : ∀ s ∈ b, ContractibleSpace s) [LocPathConnectedSpace X]
+    (hbContractible : ∀ s ∈ b, ContractibleSpace s) [LocallyPathConnectedSpace X]
     (hdDense : Dense d) {m : ℕ}
     (U : Fin (m + 1) → { s : Set X // s ∈ b }) {z : Fin (m + 2) → X}
     (σ : (i : Fin (m + 1)) → Path (z i.castSucc) (z i.succ))
@@ -858,10 +858,10 @@ theorem existsRealizesContractibleBasisLoopCodeDataOfSegmentChain {b : Set (Set 
           change ((hy₀.somePath.symm.trans (σ 1)) t) ∈ (UTail 0).1
           rw [Path.trans_apply]
           split_ifs with ht
-          · simpa [Path.symm_apply] using (hy₀.somePath_mem (unitInterval.symm _)).2
+          · simpa [Path.symm_apply] using! (hy₀.somePath_mem (unitInterval.symm _)).2
           · exact hσ 1 _
         · intro i
-          simpa [σTail, UTail] using hσ i.succ.succ t
+          simpa [σTail, UTail] using! hσ i.succ.succ t
       obtain ⟨yTail, r, hrRealizes, hTail⟩ :=
         ih UTail (z := zTail) σTail hσTail
       have hFirstMapsTo : ∀ t, ((σ 0).trans hy₀.somePath) t ∈ (U 0).1 := by
@@ -892,7 +892,7 @@ theorem existsRealizesContractibleBasisLoopCodeDataOfSegmentChain {b : Set (Set 
           (((U, Fin.cons y₀ yTail) :
             contractibleBasisLoopCodeData (X := X) (b := b) d (m + 1))) (q₀.trans r)
         refine ⟨q₀, r, hq₀, ?_, Path.Homotopic.refl _⟩
-        simpa [contractibleBasisLoopCodeTail, UTail] using hrRealizes
+        simpa [contractibleBasisLoopCodeTail, UTail] using! hrRealizes
       · -- Compare the original chain to the realized one by inserting the first bridge, replacing
         -- the first segment inside `U 0`, and reusing the recursive tail comparison.
         have hWhole₁ :
@@ -912,7 +912,7 @@ omit n in
 built from a countable contractible basis. -/
 theorem existsRealizableContractibleBasisLoopCodeOfPath {b : Set (Set X)} {d : Set X}
     (hbBasis : TopologicalSpace.IsTopologicalBasis b)
-    (hbContractible : ∀ s ∈ b, ContractibleSpace s) [LocPathConnectedSpace X]
+    (hbContractible : ∀ s ∈ b, ContractibleSpace s) [LocallyPathConnectedSpace X]
     (hdDense : Dense d)
     {a z : X} (γ : Path a z) :
     ∃ code : contractibleBasisLoopCode (X := X) (b := b) d, ∃ p : Path a z,
@@ -1004,7 +1004,7 @@ omit n in
 fundamental group. -/
 theorem surjectiveRealizableContractibleBasisLoopCode {b : Set (Set X)} {d : Set X}
     (hbBasis : TopologicalSpace.IsTopologicalBasis b)
-    (hbContractible : ∀ s ∈ b, ContractibleSpace s) [LocPathConnectedSpace X]
+    (hbContractible : ∀ s ∈ b, ContractibleSpace s) [LocallyPathConnectedSpace X]
     (hdDense : Dense d) (x : X) :
     Function.Surjective
       (fun code :
@@ -1046,7 +1046,7 @@ omit n in
 /-- Proposition 1.40: a second-countable locally path-connected space with a countable basis of
 contractible opens has countable fundamental group. -/
 theorem countable_fundamentalGroup_of_countable_contractible_basis
-    {X : Type*} [TopologicalSpace X] [SecondCountableTopology X] [LocPathConnectedSpace X]
+    {X : Type*} [TopologicalSpace X] [SecondCountableTopology X] [LocallyPathConnectedSpace X]
     (x : X) {b : Set (Set X)} (hbCountable : b.Countable)
     (hbBasis : TopologicalSpace.IsTopologicalBasis b)
     (hbContractible : ∀ s ∈ b, ContractibleSpace s) :
@@ -1077,7 +1077,7 @@ theorem countable_fundamentalGroup_of_countable_contractible_basis
 /-- Clause (9) of Proposition 1.40: the fundamental group at any basepoint of a topological
 manifold with boundary is countable. -/
 theorem countable_fundamentalGroup (x : M) : Countable (FundamentalGroup M x) := by
-  letI : LocPathConnectedSpace M :=
+  letI : LocallyPathConnectedSpace M :=
     topologicalManifoldWithBoundary_locPathConnectedSpace (n := n) (M := M)
   obtain ⟨b, hbCountable, hbBasis⟩ :=
     exists_countable_precompact_coordinate_ball_half_ball_basis (n := n) (M := M)

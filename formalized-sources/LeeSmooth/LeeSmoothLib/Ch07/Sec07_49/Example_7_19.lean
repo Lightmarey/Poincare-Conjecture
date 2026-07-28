@@ -46,11 +46,11 @@ lemma fourierCharLinear_contMDiff (a : ℝ) :
     ContMDiff 𝓘(ℝ) (𝓡 1) ∞ (fun t : ℝ ↦ 𝐞 (a * t)) := by
   have hphase : ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (fun t : ℝ ↦ (2 * Real.pi * a) * t) := by
     -- The phase function is linear, hence smooth.
-    simpa using
+    simpa using!
       (contMDiff_const.mul contMDiff_id :
         ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (fun t : ℝ ↦ (2 * Real.pi * a) * t))
   -- Compose the smooth circle exponential with the linear phase.
-  simpa [Real.fourierChar_apply', Function.comp, mul_assoc, mul_left_comm, mul_comm] using
+  simpa [Real.fourierChar_apply', Function.comp, mul_assoc, mul_left_comm, mul_comm] using!
     contMDiff_circleExp.comp hphase
 
 /-- Helper for Example 7.19: the linear reparameterization `t ↦ 𝐞 (a t)` is `C^ω` as a map from
@@ -60,11 +60,11 @@ lemma fourierCharLinear_contMDiff_top (a : ℝ) :
   have hphase :
       ContMDiff 𝓘(ℝ) 𝓘(ℝ) (⊤ : WithTop ℕ∞) (fun t : ℝ ↦ (2 * Real.pi * a) * t) := by
     -- The phase function is linear, so it is analytic.
-    simpa using
+    simpa using!
       (contMDiff_const.mul contMDiff_id :
         ContMDiff 𝓘(ℝ) 𝓘(ℝ) (⊤ : WithTop ℕ∞) (fun t : ℝ ↦ (2 * Real.pi * a) * t))
   -- Compose the analytic circle exponential with the analytic linear phase.
-  simpa [Real.fourierChar_apply', Function.comp, mul_assoc, mul_left_comm, mul_comm] using
+  simpa [Real.fourierChar_apply', Function.comp, mul_assoc, mul_left_comm, mul_comm] using!
     (contMDiff_circleExp :
       ContMDiff 𝓘(ℝ) (𝓡 1) (⊤ : WithTop ℕ∞) Circle.exp).comp hphase
 
@@ -203,7 +203,7 @@ lemma torusDiv_contMDiff :
       (fun p : 𝕋^{2} × 𝕋^{2} ↦ p.2 i) :=
     (contMDiff_pi_iff.mp contMDiff_snd) i
   -- Each coordinate is the circle division map `z / w = z * w⁻¹`.
-  simpa using hfst.mul hsnd.inv
+  simpa using! hfst.mul hsnd.inv
 
 /-- Helper for Example 7.19: the two-torus inherits the expected smooth Lie-group structure. -/
 theorem torusLieGroupSmooth :
@@ -227,7 +227,7 @@ group. -/
 private instance multiplicativeRealLieGroup : LieGroup 𝓘(ℝ) ∞ (Multiplicative ℝ) :=
   lieGroup_of_contMDiff_mul_inv <| by
     -- Multiplication in `Multiplicative ℝ` is addition in `ℝ`, so smooth division is subtraction.
-    simpa [Multiplicative, div_eq_mul_inv, sub_eq_add_neg] using
+    simpa [Multiplicative, div_eq_mul_inv, sub_eq_add_neg] using!
       (contMDiff_fst.sub contMDiff_snd :
         ContMDiff (𝓘(ℝ).prod 𝓘(ℝ)) 𝓘(ℝ) ∞ fun p : ℝ × ℝ ↦ p.1 - p.2)
 
@@ -271,7 +271,7 @@ private instance multiplicativeRealLieGroupTop :
     LieGroup 𝓘(ℝ) (⊤ : WithTop ℕ∞) (Multiplicative ℝ) := by
   -- Multiplication in `Multiplicative ℝ` is addition in `ℝ`, so division is subtraction.
   refine lieGroupOfContMDiffMulInvAnyOrder ?_
-  simpa [Multiplicative, div_eq_mul_inv, sub_eq_add_neg] using
+  simpa [Multiplicative, div_eq_mul_inv, sub_eq_add_neg] using!
     (contMDiff_fst.sub contMDiff_snd :
       ContMDiff (𝓘(ℝ).prod 𝓘(ℝ)) 𝓘(ℝ) (⊤ : WithTop ℕ∞)
         fun p : ℝ × ℝ ↦ p.1 - p.2)
@@ -299,7 +299,7 @@ private theorem explicitAngleBranch_contMDiffAt_top {u z : Circle}
         Complex.arg (((u * z : Circle) : ℂ)) :=
     (Complex.arg_contDiffAt_of_mem_slitPlane hz).contMDiffAt
   -- Compose the analytic ambient branch with the analytic circle rotation.
-  simpa [mul_comm, mul_left_comm, mul_assoc] using harg.comp z hmul.contMDiffAt
+  simpa [mul_comm, mul_left_comm, mul_assoc] using! harg.comp z hmul.contMDiffAt
 
 /-- Helper for Example 7.19: if an open arc of the circle misses one point, then it admits an
 analytic angle branch. -/
@@ -315,7 +315,7 @@ private theorem analyticAngleBranch_ofMissingPoint
     · let u : Circle := -c⁻¹
       let g : U → ℂ := fun z ↦ (((u * z : Circle) : ℂ))
       have hg : Continuous g := by
-        simpa [g] using
+        simpa [g] using!
           (continuous_subtype_val.comp (continuous_const.mul continuous_subtype_val))
       have hslit : ∀ z : U, (((u * z : Circle) : ℂ)) ∈ Complex.slitPlane := by
         intro z
@@ -329,7 +329,7 @@ private theorem analyticAngleBranch_ofMissingPoint
         rw [continuous_iff_continuousAt]
         intro z
         exact (Complex.continuousAt_arg (by simpa [g] using hslit z)).comp hg.continuousAt
-      simpa [u, g] using harg.sub continuous_const
+      simpa [u, g] using! harg.sub continuous_const
     · intro z
       -- Exponentiating the branch formula recovers the original circle point.
       have hexp_mul :
@@ -417,7 +417,7 @@ private theorem circleExp_isLocalDiffeomorph_top :
             have hbranch :=
               congrArg (fun f : hθ.openImage → ℝ ↦ f ⟨y, hy⟩) hθ.theta_comp_circleExpOpenImage
             simpa [Function.comp, angleFunction_extension, IsAngleFunction.circleExpOpenImage, hyU]
-              using hbranch
+              using! hbranch
           right_inv' := by
             intro z hz
             by_cases h : z ∈ U
@@ -545,15 +545,15 @@ private theorem finTwoLinearLine_isImmersion_top (a b : ℝ) (ha : a ≠ 0) :
     refine continuous_pi ?_
     intro i
     fin_cases i
-    · simpa using (continuous_const.mul continuous_id : Continuous fun t : ℝ ↦ a * t)
-    · simpa using (continuous_const.mul continuous_id : Continuous fun t : ℝ ↦ b * t)
+    · simpa using! (continuous_const.mul continuous_id : Continuous fun t : ℝ ↦ a * t)
+    · simpa using! (continuous_const.mul continuous_id : Continuous fun t : ℝ ↦ b * t)
   apply Manifold.IsImmersionAtOfComplement.mk_of_continuousAt
     hcont.continuousAt (finTwoLineEquiv a b ha)
     (OpenPartialHomeomorph.refl ℝ) (OpenPartialHomeomorph.refl (Fin 2 → ℝ))
   · simp
   · simp
-  · simpa using (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ)).id_mem_maximalAtlas
-  · simpa using (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ, Fin 2 → ℝ)).id_mem_maximalAtlas
+  · simpa using! (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ)).id_mem_maximalAtlas
+  · simpa using! (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ, Fin 2 → ℝ)).id_mem_maximalAtlas
   · intro x hx
     -- In identity charts, the written-in-charts map is exactly the chosen linear normal form.
     ext i
@@ -588,7 +588,7 @@ diffeomorphism because each circle factor is. -/
 private theorem torusCoordinateExp_isLocalDiffeomorph_top :
     IsLocalDiffeomorph R2Model T2Model (⊤ : WithTop ℕ∞) torusCoordinateExp := by
   -- Package the coordinatewise `Circle.exp` local diffeomorphisms into the torus product map.
-  simpa [torusCoordinateExp] using
+  simpa [torusCoordinateExp] using!
     isLocalDiffeomorph_pi (f := fun _ : Fin 2 ↦ Circle.exp)
       (fun _ : Fin 2 ↦ circleExp_isLocalDiffeomorph_top)
 
@@ -725,7 +725,7 @@ private theorem pullback_chart_mem_maximalAtlas_of_partial_diffeomorph_top
   constructor
   · -- The forward transition is `Φ` written in the source chart `e` and target chart `c`.
     simpa [OpenPartialHomeomorph.trans_assoc,
-      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm] using
+      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm] using!
       writtenIn_partial_diffeomorph_mem_contDiffGroupoid_top
         (I := I) (Φ := Φ) (e := e) (c := c) he hc_max
   · -- The reverse transition is the same chart-written statement for `Φ.symm`.
@@ -872,11 +872,11 @@ private theorem localDiffeomorphAt_selfModel_isImmersionAtOfComplementPUnitTop
     simp [domChart, OpenPartialHomeomorph.restr_toPartialEquiv, Φ.open_source.interior_eq]
   have hdomChart_mem_refl :
       OpenPartialHomeomorph.refl E ∈ IsManifold.maximalAtlas I (⊤ : WithTop ℕ∞) E := by
-    simpa using (contDiffGroupoid (⊤ : WithTop ℕ∞) I).id_mem_maximalAtlas
+    simpa using! (contDiffGroupoid (⊤ : WithTop ℕ∞) I).id_mem_maximalAtlas
   have hdomChart_mem :
       domChart ∈ IsManifold.maximalAtlas I (⊤ : WithTop ℕ∞) E := by
     -- Restrict the ambient identity chart to the source of the local inverse branch.
-    simpa [domChart] using
+    simpa [domChart] using!
       restr_mem_maximalAtlas (contDiffGroupoid (⊤ : WithTop ℕ∞) I) hdomChart_mem_refl
         Φ.open_source
   have hcodChart_mem :
@@ -893,7 +893,8 @@ private theorem localDiffeomorphAt_selfModel_isImmersionAtOfComplementPUnitTop
       have hx_domChart' : Φ.symm (Φ x) ∈ domChart.source := by
         have hleft : Φ.symm.toPartialEquiv (Φ.toPartialEquiv x) = x := by
           simpa using Φ.left_inv hx
-        simpa [hleft] using hx_domChart
+        rw [hleft]
+        exact hx_domChart
       simpa [codChart, OpenPartialHomeomorph.trans_source, PartialEquiv.trans_source,
         PartialEquiv.symm_source, Set.mem_inter_iff, Set.mem_preimage] using
         ⟨Φ.map_source hx, hx_domChart'⟩
@@ -919,13 +920,13 @@ private theorem localDiffeomorphAt_selfModel_isImmersionAtOfComplementPUnitTop
     simpa [hdomChart_target] using hu_domChart_target
   have hdomChart_symm : (domChart.extend I).symm u = I.symm u := by
     have hdomChart_right : domChart.symm (I.symm u) = I.symm u := by
-      simpa [hdomChart_target] using domChart.right_inv hu_domChart_target
+      simpa [hdomChart_target] using! domChart.right_inv hu_domChart_target
     simpa [OpenPartialHomeomorph.extend_coe_symm, Function.comp, hdomChart_right]
   have hcodChart_apply : codChart (Φ (I.symm u)) = I.symm u := by
     have hdomChart_right : domChart (I.symm u) = I.symm u := by
-      simpa [hdomChart_target] using domChart.right_inv hu_domChart_target
+      simpa [hdomChart_target] using! domChart.right_inv hu_domChart_target
     have hleft : Φ.symm.toOpenPartialHomeomorph (Φ (I.symm u)) = I.symm u := by
-      simpa using Φ.left_inv hu_source
+      simpa using! Φ.left_inv hu_source
     simpa [codChart, OpenPartialHomeomorph.coe_trans, Function.comp, hleft] using hdomChart_right
   have hmodel_right : I (I.symm u) = u := by
     rcases hu_range with ⟨v, rfl⟩
@@ -977,9 +978,9 @@ private theorem torusModelLinearEquiv_isImmersion_top :
       ?_ ?_ ?_ ?_ ?_
     · simp
     · simp
-    · simpa using
+    · simpa using!
         (contDiffGroupoid (⊤ : WithTop ℕ∞) (𝓘(ℝ, Fin 2 → ℝ))).id_mem_maximalAtlas
-    · simpa using
+    · simpa using!
         (contDiffGroupoid (⊤ : WithTop ℕ∞)
           (𝓘(ℝ, Fin 2 → EuclideanSpace ℝ (Fin 1)))).id_mem_maximalAtlas
     · intro y hy
@@ -1022,7 +1023,7 @@ analytic immersion. -/
 private theorem torusSlopeCurve_addChar_isImmersion_top (α : ℝ) :
     IsImmersion 𝓘(ℝ) T2Model (⊤ : WithTop ℕ∞) (torusSlopeCurve_addChar α) := by
   -- The multiplicative re-encoding of `ℝ` uses the same transported real manifold structure.
-  simpa [torusSlopeCurve_addChar_apply] using torusSlopeCurve_isImmersion_top α
+  simpa [torusSlopeCurve_addChar_apply] using! torusSlopeCurve_isImmersion_top α
 
 /-- Helper for Example 7.19: the manifold derivative of the torus slope character is injective at
 every point because the smooth Lie-group homomorphism is already an `∞`-immersion. -/
@@ -1034,10 +1035,10 @@ theorem torusSlopeCurve_addChar_mfderiv_injective
     { toMonoidHom := (torusSlopeCurve_addChar α).toMonoidHom
       contMDiff_toFun := by
         -- The bundled additive character already carries the required smoothness.
-        simpa using torusSlopeCurve_addChar_contMDiff α }
+        simpa using! torusSlopeCurve_addChar_contMDiff α }
   have hF_injective : Function.Injective F := by
     -- Irrationality of the slope gives injectivity of the underlying homomorphism.
-    simpa using torusSlopeCurve_addChar_injective α hα
+    simpa using! torusSlopeCurve_addChar_injective α hα
   have hImm : IsImmersion 𝓘(ℝ) T2Model ∞ F := by
     -- Proposition 7.17 packages injective smooth Lie-group homomorphisms as immersions.
     exact injectiveLieGroupHomIsImmersion F hF_injective
@@ -1069,20 +1070,20 @@ private theorem contMDiffConjugatedDivisionTop
         (⊤ : WithTop ℕ∞)
         (fun p : B × B ↦ (Φ.symm p.1, Φ.symm p.2)) := by
     -- The inverse diffeomorphism is analytic on each factor.
-    simpa [Prod.map] using Φ.symm.contMDiff_toFun.prodMap Φ.symm.contMDiff_toFun
+    simpa [Prod.map] using! Φ.symm.contMDiff_toFun.prodMap Φ.symm.contMDiff_toFun
   have hSourceDiv :
       ContMDiff
         ((modelWithCornersSelf ℝ ℝ).prod (modelWithCornersSelf ℝ ℝ))
         (modelWithCornersSelf ℝ ℝ) (⊤ : WithTop ℕ∞)
         (fun p : A × A ↦ p.1 * p.2⁻¹) := by
     -- The source is already an analytic Lie group, so its division map is analytic.
-    simpa [div_eq_mul_inv] using
+    simpa [div_eq_mul_inv] using!
       (contMDiff_fst.mul contMDiff_snd.inv :
         ContMDiff
           ((modelWithCornersSelf ℝ ℝ).prod (modelWithCornersSelf ℝ ℝ))
           (modelWithCornersSelf ℝ ℝ) (⊤ : WithTop ℕ∞)
           (fun p : A × A ↦ p.1 * p.2⁻¹))
-  simpa [Function.comp] using hSourceDiv.comp hSourceChange
+  simpa [Function.comp] using! hSourceDiv.comp hSourceChange
 
 /-- Helper for Example 7.19: multiplicativity of a top-regular Lie-group isomorphism turns the
 conjugated source division law into the actual target division law. -/
@@ -1233,10 +1234,10 @@ theorem torusSlopeCurve_range_has_immersed_lie_subgroup_structure
     { toMonoidHom := (torusSlopeCurve_addChar α).toMonoidHom
       contMDiff_toFun := by
         -- The bundled additive character is already smooth on the underlying real line.
-        simpa using torusSlopeCurve_addChar_contMDiff α }
+        simpa using! torusSlopeCurve_addChar_contMDiff α }
   have hF_injective : Function.Injective F := by
     -- Injectivity is exactly the previously established irrational-slope argument.
-    simpa using torusSlopeCurve_addChar_injective α hα
+    simpa using! torusSlopeCurve_addChar_injective α hα
   let instRangeTop : TopologicalSpace F.toMonoidHom.range :=
     TopologicalSpace.induced (rangeMulEquivOfInjective F hF_injective).symm inferInstance
   let _ : TopologicalSpace F.toMonoidHom.range := instRangeTop
@@ -1261,7 +1262,7 @@ theorem torusSlopeCurve_range_has_immersed_lie_subgroup_structure
                -- so the range inclusion is the formal transport step through `eRange`.
                simpa [F] using
                  rangeCarrierSubtypeVal_isImmersion_top F hF_injective
-                   (by simpa [F] using torusSlopeCurve_addChar_isImmersion_top α) } :
+                   (by simpa [F] using! torusSlopeCurve_addChar_isImmersion_top α) } :
             LieSubgroup.{0, 0, 0, 0, 0} T2Model), ?_⟩
   -- The carrier of the packaged subgroup is the literal image subgroup of the torus slope curve.
   simpa [F] using torusSlopeCurve_addChar_range α

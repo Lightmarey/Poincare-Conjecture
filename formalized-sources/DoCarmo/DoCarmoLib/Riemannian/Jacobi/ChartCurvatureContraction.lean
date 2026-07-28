@@ -117,16 +117,19 @@ theorem continuousOn_chartCurvatureOp (g : RiemannianMetric I M) (α : M) (u : �
     (hmem : ∀ t ∈ Icc a b, u t ∈ interior (extChartAt I α).target) :
     ContinuousOn (chartCurvatureOp (I := I) g α u) (Icc a b) := by
   refine continuousOn_finset_sum _ fun l _ => continuousOn_finset_sum _ fun j _ => ?_
-  refine ContinuousOn.smul ?_ continuousOn_const
+  refine ContinuousOn.smul (M := ℝ) (X := E →L[ℝ] E) ?_
+    (continuousOn_const : ContinuousOn
+      (fun _ : ℝ => (Geodesic.chartCoordFunctional (E := E) j).smulRight
+        (Module.finBasis ℝ E l)) (Icc a b))
   refine continuousOn_finset_sum _ fun i _ => continuousOn_finset_sum _ fun k _ => ?_
   have hcoef : ContinuousOn (fun t => chartCurvatureCoef (I := I) g α i j k l (u t)) (Icc a b) :=
     (chartCurvatureCoef_contDiffOn g α i j k l).continuousOn.comp hu hmem
   have hui : ContinuousOn (fun t => Geodesic.chartCoord (E := E) i (deriv u t)) (Icc a b) := by
     have := (Geodesic.chartCoordFunctional (E := E) i).continuous.comp_continuousOn hu'
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   have huk : ContinuousOn (fun t => Geodesic.chartCoord (E := E) k (deriv u t)) (Icc a b) := by
     have := (Geodesic.chartCoordFunctional (E := E) k).continuous.comp_continuousOn hu'
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   exact (hcoef.mul hui).mul huk
 
 /-- **Math.** Application of the chart curvature operator: `(R(t) w)` expands over the
@@ -236,13 +239,13 @@ theorem frameJacobi_ne_zero_of_nonpos {ι : Type*} [Fintype ι] [DecidableEq ι]
   -- the transferred pair solves the Jacobi ODE over the Euclidean coefficient space
   have hF'V' : IsJacobiPairOn A' 0 b F' V' := by
     refine ⟨fun t ht => ?_, fun t ht => ?_⟩
-    · simpa [hF', hV', Function.comp] using
+    · simpa [hF', hV', Function.comp_def] using
         φ.toContinuousLinearMap.hasFDerivAt.comp_hasDerivWithinAt t (hFV.1 t ht)
     · have h := φ.toContinuousLinearMap.hasFDerivAt.comp_hasDerivWithinAt t (hFV.2 t ht)
       have hEq : φ (-(A t) (F t)) = -(A' t) (F' t) := by
         simp only [hA', hF', ContinuousLinearMap.comp_apply,
           ContinuousLinearEquiv.coe_coe, ContinuousLinearEquiv.symm_apply_apply, map_neg]
-      simpa [hV', hEq, Function.comp] using h
+      simpa [hV', hEq, Function.comp_def] using h
   -- negative semidefiniteness of the transferred coefficient
   have hInner : ∀ (a c : ι → ℝ), inner ℝ (φ a) (φ c) = ∑ i, a i * c i := by
     intro a c

@@ -97,7 +97,8 @@ lemma isClosed_unitaryGroupCarrier (n : ℕ) :
     IsClosed (Matrix.unitaryGroup (Fin n) ℂ : Set (Matrix (Fin n) (Fin n) ℂ)) := by
   let f : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ := fun A ↦ star A * A
   have hf : Continuous f := by
-    simpa [f] using continuous_id.matrix_conjTranspose.matrix_mul continuous_id
+    change Continuous (fun A : Matrix (Fin n) (Fin n) ℂ => A.conjTranspose * A)
+    exact continuous_id.matrix_conjTranspose.matrix_mul continuous_id
   -- A matrix is unitary exactly when `star A * A = 1`.
   rw [show (Matrix.unitaryGroup (Fin n) ℂ : Set (Matrix (Fin n) (Fin n) ℂ)) = f ⁻¹' ({1} : Set _)
       by

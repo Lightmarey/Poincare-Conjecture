@@ -474,7 +474,7 @@ theorem mfderiv_coe_hopfMap_apply (p : sphere (0 : WithLp 2 (ℂ × ℂ)) 1)
     exact h2
   have h4 := DFunLike.congr_fun h3 u
   simpa [mfderiv_eq_fderiv, (hasFDerivAt_hopfMapAmbient (p : WithLp 2 (ℂ × ℂ))).fderiv]
-    using h4
+    using! h4
 
 /-- **Math.** Petersen Example 1.1.5: a tangent vector of `S³` that is
 `g`-orthogonal to the kernel of `DH` has horizontal ambient image. The

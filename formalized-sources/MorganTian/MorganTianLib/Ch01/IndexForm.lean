@@ -284,4 +284,29 @@ theorem exists_indexForm_neg {R : ℝ → F →L[ℝ] F} {a b : ℝ} {y v z w : 
       linarith [this.1, hκabs ▸ this.1]
     exact mul_neg_of_neg_of_pos hcneg this
 
+/-- **Math.** A null direction of a nonnegative index form is orthogonal to
+every direction on which the quadratic form stays nonnegative.  This is the
+polarization step used in the second-variation argument: if `I(y,y) = 0` and
+`I(y + c z, y + c z) ≥ 0` for every real `c`, then `I(y,z) = 0`.
+
+This is deliberately stated at the abstract index-form level.  The geometric
+second-variation theorem still has to supply the nonnegativity hypothesis and
+the weak-to-strong implication from index orthogonality to the Jacobi ODE.
+Blueprint: `claim:second-variation-minimal-geodesic`. -/
+theorem indexForm_cross_eq_zero_of_nonneg
+    {R : ℝ → F →L[ℝ] F} {a b : ℝ} {y v z w : ℝ → F}
+    (hR : ∀ t, ∀ x x' : F, ⟪R t x, x'⟫ = ⟪x, R t x'⟫)
+    (hyy : IntervalIntegrable (indexIntegrand R y v y v) volume a b)
+    (hyz : IntervalIntegrable (indexIntegrand R y v z w) volume a b)
+    (hzz : IntervalIntegrable (indexIntegrand R z w z w) volume a b)
+    (hself : indexForm R a b y v y v = 0)
+    (hnonneg : ∀ c : ℝ,
+      0 ≤ indexForm R a b (y + c • z) (v + c • w)
+        (y + c • z) (v + c • w)) :
+    indexForm R a b y v z w = 0 := by
+  by_contra hcross
+  obtain ⟨c, hneg⟩ :=
+    exists_indexForm_neg hR hyy hyz hzz hself hcross
+  exact (not_lt_of_ge (hnonneg c)) hneg
+
 end MorganTianLib

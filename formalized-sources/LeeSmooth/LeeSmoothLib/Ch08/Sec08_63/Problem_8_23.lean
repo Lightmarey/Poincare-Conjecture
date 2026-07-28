@@ -73,14 +73,14 @@ theorem prod_left_inv
     (v : GroupLieAlgebra (I.prod J) (G × H)) :
     prodFromProd (prodToProd v) = v := by
   -- Applying the explicit inverse of `equivTangentBundleProd` recovers the original tangent vector.
-  simp [prodToProd, prodFromProd]
+  rfl
 
 /-- The forward and inverse tangent-space maps are right inverses at the identity. -/
 theorem prod_right_inv
     (v : GroupLieAlgebra I G × GroupLieAlgebra J H) :
     prodToProd (prodFromProd v) = v := by
   -- The explicit product decomposition at the identity is two-sided.
-  simp [prodToProd, prodFromProd]
+  rfl
 
 /-- The identity tangent-space splitting of a product Lie group is a linear equivalence. -/
 noncomputable def prodLinearEquiv :
@@ -132,7 +132,9 @@ lemma prodMap_inverse_apply
     apply ContinuousLinearMap.inverse_eq
     · ext v <;> simp
     · ext v <;> simp
-  simpa using congrArg (fun F ↦ F u) hInverse
+  rw [congrArg (fun F ↦ F u) hInverse]
+  rcases u with ⟨u₁, u₂⟩
+  simp [Prod.map]
 
 end ContinuousLinearMap
 
@@ -185,11 +187,23 @@ lemma lieBracketWithin_prod_apply
   have hProd₂ :
       HasFDerivWithinAt (fun p : EG × EH ↦ (V₂ p.1, W₂ p.2))
         ((fderivWithin 𝕜 V₂ s x).prodMap (fderivWithin 𝕜 W₂ t y)) (s ×ˢ t) (x, y) :=
-    by simpa using HasFDerivWithinAt.prodMap (p := (x, y)) hV₂' hW₂'
+    by
+      have hfun : Prod.map V₂ W₂ = fun p : EG × EH ↦ (V₂ p.1, W₂ p.2) := by
+        funext p
+        rcases p with ⟨p, q⟩
+        rfl
+      rw [← hfun]
+      exact HasFDerivWithinAt.prodMap (p := (x, y)) hV₂' hW₂'
   have hProd₁ :
       HasFDerivWithinAt (fun p : EG × EH ↦ (V₁ p.1, W₁ p.2))
         ((fderivWithin 𝕜 V₁ s x).prodMap (fderivWithin 𝕜 W₁ t y)) (s ×ˢ t) (x, y) :=
-    by simpa using HasFDerivWithinAt.prodMap (p := (x, y)) hV₁' hW₁'
+    by
+      have hfun : Prod.map V₁ W₁ = fun p : EG × EH ↦ (V₁ p.1, W₁ p.2) := by
+        funext p
+        rcases p with ⟨p, q⟩
+        rfl
+      rw [← hfun]
+      exact HasFDerivWithinAt.prodMap (p := (x, y)) hV₁' hW₁'
   -- Rewrite the product derivative and simplify componentwise.
   simp [VectorField.lieBracketWithin_eq, hProd₂.fderivWithin (hs.prod ht),
     hProd₁.fderivWithin (hs.prod ht)]
@@ -225,8 +239,15 @@ lemma mpullbackWithin_prod_apply_one
     -- The derivative of the product chart inverse splits into the derivatives on the two factors.
     rw [modelWithCornersSelf_prod, ← chartedSpaceSelf_prod, extChartAt_prod]
     simp only [PartialEquiv.prod_coe_symm, hRange]
-    simpa using
-      (mfderivWithin_prodMap
+    have hfun :
+        (fun p : EG × EH ↦
+          ((extChartAt I (1 : G)).symm p.1, (extChartAt J (1 : H)).symm p.2)) =
+          Prod.map (extChartAt I (1 : G)).symm (extChartAt J (1 : H)).symm := by
+      funext p
+      rcases p with ⟨p, q⟩
+      rfl
+    rw [hfun]
+    exact mfderivWithin_prodMap
         (I := 𝓘(𝕜, EG)) (I' := 𝓘(𝕜, EH)) (J := I) (J' := J)
         (s := Set.range I) (t := Set.range J)
         (f := (extChartAt I (1 : G)).symm) (g := (extChartAt J (1 : H)).symm)
@@ -236,7 +257,7 @@ lemma mpullbackWithin_prod_apply_one
         (UniqueDiffWithinAt.uniqueMDiffWithinAt
           (I.uniqueDiffOn _ (extChartAt_target_subset_range (1 : G) hz₁)))
         (UniqueDiffWithinAt.uniqueMDiffWithinAt
-          (J.uniqueDiffOn _ (extChartAt_target_subset_range (1 : H) hz₂))))
+          (J.uniqueDiffOn _ (extChartAt_target_subset_range (1 : H) hz₂)))
   -- Evaluate the inverse derivative on the split tangent vector and simplify each factor.
   let A : EG →L[𝕜] TangentSpace I ((extChartAt I (1 : G)).symm z.1) :=
     mfderivWithin 𝓘(𝕜, EG) I (extChartAt I (1 : G)).symm (Set.range I) z.1
@@ -350,21 +371,10 @@ theorem prodToProd_mlieBracket_prod_apply_one
       (VectorField.lieBracketWithin_prod_apply (𝕜 := 𝕜) (s := Set.range I) (t := Set.range J)
         (x := φG (1 : G)) (y := φH (1 : H)) hU₁ hU₂ hV₁ hV₂
         (ModelWithCorners.uniqueDiffWithinAt_image I) (ModelWithCorners.uniqueDiffWithinAt_image J))
-  have hmfderiv' :
-      mfderiv (I := I.prod J) (I' := 𝓘(𝕜, EG × EH)) φ r =
-        (mfderiv (I := I) (I' := 𝓘(𝕜, EG)) φG (1 : G)).prodMap
-          (mfderiv (I := J) (I' := 𝓘(𝕜, EH)) φH (1 : H)) := by
-    -- The preferred product chart differentiates as the product of the factor charts.
-    dsimp [r, φ, φG, φH]
-    rw [modelWithCornersSelf_prod, ← chartedSpaceSelf_prod]
-    convert
-      (mfderiv_prodMap
-        (I := I) (I' := J) (J := 𝓘(𝕜, EG)) (J' := 𝓘(𝕜, EH))
-        (f := φG) (g := φH) (p := r)
-        (mdifferentiableAt_extChartAt
-          (I := I) (x := (1 : G)) (ChartedSpace.mem_chart_source (1 : G)))
-        (mdifferentiableAt_extChartAt
-          (I := J) (x := (1 : H)) (ChartedSpace.mem_chart_source (1 : H)))) using 1
+  have hφ : (⇑φ : G × H → EG × EH) = Prod.map (⇑φG) (⇑φH) := by
+    funext p
+    rcases p with ⟨g, h⟩
+    simp [φ, φG, φH, r]
   have hprod :
       VectorField.mlieBracket (I.prod J) (VectorField.prod X₁ Y₁) (VectorField.prod X₂ Y₂) r =
         (VectorField.mlieBracket I X₁ X₂ (1 : G), VectorField.mlieBracket J Y₁ Y₂ (1 : H)) := by
@@ -380,23 +390,37 @@ theorem prodToProd_mlieBracket_prod_apply_one
       inferInstanceAs (NormedAddCommGroup EH)
     letI : NormedSpace 𝕜 (TangentSpace 𝓘(𝕜, EH) (φH (1 : H))) :=
       inferInstanceAs (NormedSpace 𝕜 EH)
+    have hmfderiv' :=
+      mfderiv_prodMap
+        (I := I) (I' := J) (J := 𝓘(𝕜, EG)) (J' := 𝓘(𝕜, EH))
+        (f := φG) (g := φH) (p := ((1 : G), (1 : H)))
+        (mdifferentiableAt_extChartAt
+          (I := I) (x := (1 : G)) (ChartedSpace.mem_chart_source (1 : G)))
+        (mdifferentiableAt_extChartAt
+          (I := J) (x := (1 : H)) (ChartedSpace.mem_chart_source (1 : H)))
     -- Rewrite the manifold bracket by the chart pullback formulas and split the inverse
     -- derivative into the two factor derivatives.
     simp only [VectorField.mlieBracket, VectorField.mlieBracketWithin_apply, Set.preimage_univ,
-      Set.univ_inter, φ, φG, φH, r] at hBracket ⊢
-    rw [hBracket, hmfderiv']
-    simpa using
-      (ContinuousLinearMap.prodMap_inverse_apply
+      Set.univ_inter, r] at hBracket ⊢
+    rw [hBracket, hφ]
+    rw [modelWithCornersSelf_prod, ← chartedSpaceSelf_prod]
+    rw [hmfderiv']
+    exact ContinuousLinearMap.prodMap_inverse_apply
         (E₁ := TangentSpace I (1 : G)) (E₂ := TangentSpace J (1 : H))
         (hf := isInvertible_mfderiv_extChartAt (I := I) (x := (1 : G)) (y := (1 : G))
           (mem_extChartAt_source (1 : G)))
         (hg := isInvertible_mfderiv_extChartAt (I := J) (x := (1 : H)) (y := (1 : H))
           (mem_extChartAt_source (1 : H)))
         (u := (VectorField.lieBracketWithin 𝕜 U₁ U₂ (Set.range I) (φG (1 : G)),
-          VectorField.lieBracketWithin 𝕜 V₁ V₂ (Set.range J) (φH (1 : H)))))
+          VectorField.lieBracketWithin 𝕜 V₁ V₂ (Set.range J) (φH (1 : H))))
     
   -- Finally, `prodToProd` just reads off the two tangent-space coordinates at the identity pair.
-  simpa [GroupLieAlgebra.prodToProd, r] using hprod
+  change
+    VectorField.mlieBracket (I.prod J) (VectorField.prod X₁ Y₁)
+        (VectorField.prod X₂ Y₂) r =
+      (VectorField.mlieBracket I X₁ X₂ (1 : G),
+        VectorField.mlieBracket J Y₁ Y₂ (1 : H))
+  exact hprod
 
 section
 
@@ -444,8 +468,15 @@ theorem prodToProd_bracket
   -- Route correction: compute the bracket only at the identity pair, where the Lie algebra lives.
   rw [GroupLieAlgebra.bracket_def, mulInvariantVectorField_prod, mulInvariantVectorField_prod]
   -- The chart-level product formula turns the product bracket into the pair of factor brackets.
-  simpa [GroupLieAlgebra.bracket_def] using
-    prodToProd_mlieBracket_prod_apply_one
+  change
+    prodToProd
+        (VectorField.mlieBracket (I.prod J)
+          (VectorField.prod ((prodToProd v).1)ᴸ ((prodToProd v).2)ᴸ)
+          (VectorField.prod ((prodToProd w).1)ᴸ ((prodToProd w).2)ᴸ)
+          ((1 : G), (1 : H))) =
+      (VectorField.mlieBracket I ((prodToProd v).1)ᴸ ((prodToProd w).1)ᴸ (1 : G),
+        VectorField.mlieBracket J ((prodToProd v).2)ᴸ ((prodToProd w).2)ᴸ (1 : H))
+  exact prodToProd_mlieBracket_prod_apply_one
       (I := I) (J := J)
       (X₁ := ((prodToProd v).1)ᴸ) (X₂ := ((prodToProd w).1)ᴸ)
       (Y₁ := ((prodToProd v).2)ᴸ) (Y₂ := ((prodToProd w).2)ᴸ)

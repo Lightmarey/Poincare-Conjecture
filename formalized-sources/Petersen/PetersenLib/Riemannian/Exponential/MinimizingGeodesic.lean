@@ -319,7 +319,6 @@ theorem exists_radial_of_anchored (g : RiemannianMetric I M')
     have hQv : chartMetricInner (I := I) g q (extChartAt I q q) v v
         = (ℓ * Δ) ^ 2 := by
       have h := congrArg (fun x : ℝ => x ^ 2) hlen
-      simp only [] at h
       rwa [Real.sq_sqrt hQv_nonneg] at h
     have h1 : ‖v‖ ^ 2 ≤ cg * (ℓ * Δ) ^ 2 := by
       have := hGram v
@@ -510,7 +509,6 @@ theorem hasGeodesicEquationAt_of_arclength_edist (g : RiemannianMetric I M')
       chartMetricInner_self_nonneg_of_mem_target (I := I) g q
         (mem_extChartAt_target q) v₁
     have h := congrArg (fun x : ℝ => x ^ 2) hlen₁
-    simp only [] at h
     rw [Real.sq_sqrt hnn] at h
     rw [h, hL₁def]
   have hQ₂ : chartMetricInner (I := I) g q (extChartAt I q q) v₂ v₂
@@ -519,7 +517,6 @@ theorem hasGeodesicEquationAt_of_arclength_edist (g : RiemannianMetric I M')
       chartMetricInner_self_nonneg_of_mem_target (I := I) g q
         (mem_extChartAt_target q) v₂
     have h := congrArg (fun x : ℝ => x ^ 2) hlen₂
-    simp only [] at h
     rw [Real.sq_sqrt hnn] at h
     rw [h, hL₂def]
   have hunit₁ : chartMetricInner (I := I) g q (extChartAt I q q) w₁ w₁ = 1 := by

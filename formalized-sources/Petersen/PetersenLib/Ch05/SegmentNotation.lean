@@ -69,7 +69,8 @@ theorem completeManifold_exists_isSegment_unitSpeed_global (g : RiemannianMetric
     · simp [hγ0]
     · simp only [add_zero, inv_mul_cancel₀ hdne]
       exact hγ1
-    · simpa only [add_zero] using hγc.comp (continuous_const.mul continuous_id)
+    · have hdcont : Continuous (fun _ : ℝ => d⁻¹) := continuous_const
+      exact (hγc.comp (hdcont.mul continuous_id)).congr fun t => by simp
     · simpa only [add_zero] using
         Geodesic.isGeodesic_comp_mul_left (I := I) hγgeo d⁻¹
 

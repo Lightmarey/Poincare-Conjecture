@@ -1253,6 +1253,8 @@ theorem exercise1_6_18 {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'}
       (hsM_cont.sub hsN_cont) hab' (fun u _ => sub_nonneg.mpr (hptle u)) hzero
     have hsMN : sN t = sM t := by
       have := hvanish t ht
+      have hdiff : sM t - sN t = 0 := by
+        simpa only [Pi.sub_apply] using this
       linarith
     have hinner : gN.metricInner (F (c t))
         (mfderiv I I' F (c t) (velocity c t))
@@ -1520,7 +1522,7 @@ theorem arccos_inner_le_arcLength {c : ℝ → E} (hc : ContDiff ℝ ∞ c)
     intro t
     have h1 := ((innerSL ℝ (c a)).hasFDerivAt (x := c t)).comp_hasDerivAt t
       (hcd t).hasDerivAt
-    simpa using h1
+    simpa [hu_def, Function.comp_def] using! h1
   have hu'_cont : Continuous fun t => ⟪c a, deriv c t⟫_ℝ :=
     continuous_const.inner hderiv_cont
   have hu_cont : Continuous u := continuous_const.inner hcd.continuous
@@ -1569,7 +1571,7 @@ theorem arccos_inner_le_arcLength {c : ℝ → E} (hc : ContDiff ℝ ∞ c)
         rw [h] at this
         simp at this
       have hcomp := HasDerivAt.comp t (Real.hasDerivAt_arccos hne1 hne2) h1
-      simpa [Function.comp, hf'_def] using hcomp
+      simpa [Function.comp_def, hf'_def] using! hcomp
     -- the pointwise speed bound `|f_ε'| ≤ |ċ|`
     have hf'_bound : ∀ t, |f' t| ≤ ‖deriv c t‖ := by
       intro t
@@ -2321,10 +2323,10 @@ theorem minkowskiForm_inner_deriv_eq_zero {c : ℝ → F × ℝ}
     η (c t) (deriv c t) = 0 := by
   -- coordinatewise: `η(c, c) = ⟪c₁, c₁⟫ − c₂ c₂` is constant
   have hc1 : HasDerivAt (fun s => (c s).1) (deriv c t).1 t := by
-    simpa using ((ContinuousLinearMap.fst ℝ F ℝ).hasFDerivAt
+    simpa [Function.comp_def] using! ((ContinuousLinearMap.fst ℝ F ℝ).hasFDerivAt
       (x := c t)).comp_hasDerivAt t (hc t).hasDerivAt
   have hc2 : HasDerivAt (fun s => (c s).2) (deriv c t).2 t := by
-    simpa using ((ContinuousLinearMap.snd ℝ F ℝ).hasFDerivAt
+    simpa [Function.comp_def] using! ((ContinuousLinearMap.snd ℝ F ℝ).hasFDerivAt
       (x := c t)).comp_hasDerivAt t (hc t).hasDerivAt
   have hd : HasDerivAt
       (fun s => ⟪(c s).1, (c s).1⟫_ℝ - (c s).2 * (c s).2)
@@ -2378,7 +2380,8 @@ theorem arcosh_neg_minkowskiForm_le_length {c : ℝ → F × ℝ}
     have h1 : HasDerivAt (fun s => η (c a) (c s)) (η (c a) (deriv c t)) t :=
       ((minkowskiForm F ℝ (c a)).hasFDerivAt (x := c t)).comp_hasDerivAt t
         (hcd t).hasDerivAt
-    simpa using h1.neg
+    rw [hu_def]
+    exact h1.neg
   have hu_cont : Continuous u :=
     ((minkowskiForm F ℝ (c a)).continuous.comp hc.continuous).neg
   have hu'_cont : Continuous fun t => -(η (c a) (deriv c t)) :=
@@ -2450,7 +2453,7 @@ theorem arcosh_neg_minkowskiForm_le_length {c : ℝ → F × ℝ}
         (hu_deriv t).add_const ε
       have hcomp := HasDerivAt.comp t
         (Real.hasDerivAt_arcosh (mem_Ioi.mpr (harg_gt t))) h1
-      simpa [Function.comp, hf'_def] using hcomp
+      simpa [Function.comp_def, hf'_def] using! hcomp
     have hf'_bound : ∀ t,
         |f' t| ≤ Real.sqrt (η (deriv c t) (deriv c t)) := by
       intro t
@@ -2959,13 +2962,13 @@ theorem exercise1_6_21_polar {p : 𝕄} (hp : η p p = -1) (hppos : 0 < p.2) :
           (fun y : 𝕄 => Real.arcosh (-(η p y))) x := by
         have hcomp := ContDiffAt.comp x
           (Real.contDiffAt_arcosh (mem_Ioi.mpr hx')) hu_cd
-        simpa [Function.comp] using hcomp
+        simpa [Function.comp_def] using! hcomp
       have hsinh_ne : Real.sinh (Real.arcosh (-(η p x))) ≠ 0 :=
         (Real.sinh_pos_iff.mpr (Real.arcosh_pos hx')).ne'
       have hsinh_cd : ContDiffAt ℝ ∞
           (fun y : 𝕄 => Real.sinh (Real.arcosh (-(η p y)))) x := by
         have hcomp := ContDiffAt.comp x Real.contDiff_sinh.contDiffAt harcosh
-        simpa [Function.comp] using hcomp
+        simpa [Function.comp_def] using! hcomp
       have hsecond : ContDiffAt ℝ ∞ (fun y : 𝕄 =>
           (Real.sinh (Real.arcosh (-(η p y))))⁻¹ • (y - (-(η p y)) • p)) x :=
         (hsinh_cd.inv hsinh_ne).smul

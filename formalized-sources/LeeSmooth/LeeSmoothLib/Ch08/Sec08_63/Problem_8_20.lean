@@ -56,11 +56,12 @@ private theorem problem_8_20_rawX_contMDiff :
   simpa [problem_8_20_rawX, problem_8_20_XCoords] using
     (contDiff_piLp' (2 : ENNReal) fun i ↦ by
       fin_cases i
-      · simpa using (contDiff_const : ContDiff ℝ ∞ fun _ : R3Base ↦ (0 : ℝ))
-      · simpa using
+      · simpa [problem_8_20_rawX, problem_8_20_XCoords] using!
+          (contDiff_const : ContDiff ℝ ∞ fun _ : R3Base ↦ (0 : ℝ))
+      · simpa [problem_8_20_rawX, problem_8_20_XCoords] using!
           ((contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R3Base ↦ p 2)).neg
-      · simpa using
+      · simpa [problem_8_20_rawX, problem_8_20_XCoords] using!
           (contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R3Base ↦ p 1))
 
@@ -88,11 +89,12 @@ private theorem problem_8_20_rawY_contMDiff :
   simpa [problem_8_20_rawY, problem_8_20_YCoords] using
     (contDiff_piLp' (2 : ENNReal) fun i ↦ by
       fin_cases i
-      · simpa using
+      · simpa [problem_8_20_rawY, problem_8_20_YCoords] using!
           (contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R3Base ↦ p 2)
-      · simpa using (contDiff_const : ContDiff ℝ ∞ fun _ : R3Base ↦ (0 : ℝ))
-      · simpa using
+      · simpa [problem_8_20_rawY, problem_8_20_YCoords] using!
+          (contDiff_const : ContDiff ℝ ∞ fun _ : R3Base ↦ (0 : ℝ))
+      · simpa [problem_8_20_rawY, problem_8_20_YCoords] using!
           ((contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R3Base ↦ p 0)).neg)
 
@@ -120,13 +122,14 @@ private theorem problem_8_20_rawZ_contMDiff :
   simpa [problem_8_20_rawZ, problem_8_20_ZCoords] using
     (contDiff_piLp' (2 : ENNReal) fun i ↦ by
       fin_cases i
-      · simpa using
+      · simpa [problem_8_20_rawZ, problem_8_20_ZCoords] using!
           ((contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R3Base ↦ p 1)).neg
-      · simpa using
+      · simpa [problem_8_20_rawZ, problem_8_20_ZCoords] using!
           (contDiff_piLp_apply (2 : ENNReal) :
             ContDiff ℝ ∞ fun p : R3Base ↦ p 0)
-      · simpa using (contDiff_const : ContDiff ℝ ∞ fun _ : R3Base ↦ (0 : ℝ)))
+      · simpa [problem_8_20_rawZ, problem_8_20_ZCoords] using!
+          (contDiff_const : ContDiff ℝ ∞ fun _ : R3Base ↦ (0 : ℝ)))
 
 /-- The vector field `Z = x ∂/∂y - y ∂/∂x` from Problem 8-20, bundled as a smooth vector field on
 `ℝ^3`. -/
@@ -283,7 +286,7 @@ private theorem problem_8_20_fromTangentSpace_mlieBracket
         (fun q ↦ fromTangentSpace q (V q))
         (fun q ↦ fromTangentSpace q (W q)) p := by
   -- On the identity model, the manifold Lie bracket is definitionally the Euclidean one.
-  simpa [VectorField.mlieBracketWithin_univ, VectorField.lieBracketWithin_univ] using
+  simpa [VectorField.mlieBracketWithin_univ, VectorField.lieBracketWithin_univ] using!
     congrFun (VectorField.mlieBracketWithin_eq_lieBracketWithin
       (𝕜 := ℝ) (E := R3Base) (V := V) (W := W) (s := Set.univ)) p
 
@@ -629,7 +632,7 @@ private theorem problem_8_20_from_cross_bijective :
     refine ⟨u, ?_⟩
     apply Subtype.ext
     -- Lifting the ambient witness back to the subtype only forgets the codomain restriction.
-    simpa [problem_8_20_from_cross_apply] using hu
+    simpa [problem_8_20_from_cross_apply] using! hu
 
 /-- Problem 8-20: if `A` is the span of the vector fields
 `X = y ∂/∂z - z ∂/∂y`, `Y = z ∂/∂x - x ∂/∂z`, and `Z = x ∂/∂y - y ∂/∂x` on `ℝ^3`, then `A` is

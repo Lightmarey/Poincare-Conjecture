@@ -39,7 +39,7 @@ lemma problem_6_17_family_isSmoothFamily {φ : ℝ → ℝ} (hφsmooth : ContDif
   -- Rewrite the family as the uncurried map `(s, x) ↦ x * φ (s * x)`.
   rw [IsSmoothFamily]
   -- Smoothness follows from the product projections, multiplication, and composition with `φ`.
-  simpa [Function.uncurry, problem_6_17_family] using
+  simpa [Function.uncurry, problem_6_17_family] using!
     contMDiff_snd.mul (hφsmooth.contMDiff.comp (contMDiff_fst.mul contMDiff_snd))
 
 /-- If `φ(0) = 1`, then the `s = 0` slice of the Problem 6-17 family is the identity map of `ℝ`.
@@ -56,7 +56,7 @@ lemma problem_6_17_family_eq_zero_outside_large_interval {φ : ℝ → ℝ} {s :
     ∃ R : ℝ, 0 < R ∧ ∀ x : ℝ, R ≤ |x| → problem_6_17_family φ s x = 0 := by
   -- First transfer compact support from `φ` to the nonzero slice `x ↦ x * φ (s * x)`.
   have hsliceSupport : HasCompactSupport (problem_6_17_family φ s) := by
-    simpa [problem_6_17_family, smul_eq_mul, Pi.mul_apply] using
+    simpa [problem_6_17_family, smul_eq_mul, Pi.mul_apply] using!
       (hφsupport.comp_smul hs).mul_left (f := fun x : ℝ ↦ x)
   rcases (exists_compact_iff_hasCompactSupport).2 hsliceSupport with ⟨K, hKcompact, hKzero⟩
   rcases hKcompact.isBounded.subset_closedBall (0 : ℝ) with ⟨R, hKR⟩

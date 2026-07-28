@@ -520,7 +520,7 @@ theorem lieDerivativeVectorField_finset_sum_smul {N : ℕ}
   have hsmul_smooth : ∀ j, IsSmoothVectorField (fun q => c j q • V j q) := by
     intro j
     have := (SmoothVectorField.smul (c j) (hc j) ⟨V j, hV j⟩).smooth
-    simpa using this
+    simpa only [IsSmoothVectorField] using! this
   have hpartial : ∀ s : Finset (Fin N),
       IsSmoothVectorField (fun q => ∑ j ∈ s, c j q • V j q) := by
     intro s

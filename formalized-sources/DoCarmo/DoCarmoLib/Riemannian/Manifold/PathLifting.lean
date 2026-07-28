@@ -92,7 +92,6 @@ theorem IsLocalDiffeomorph.contMDiffOn_lift {f : M → M'}
     rw [← e1, e2]
   have hval : g t = (fun y => s (c y)) t := by
     have h := hleft.eq_of_nhds
-    simp only [] at h
     rw [hlift t ht] at h
     simpa using h.symm
   exact hcomp.congr_of_eventuallyEq hev hval

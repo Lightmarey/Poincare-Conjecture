@@ -110,10 +110,10 @@ theorem continuousOn_jacobiCoef (g : RiemannianMetric I M) (α : M) (u : ℝ →
   have hRei : ContinuousOn (fun t => R t (e i t)) (Icc a b) := hR.clm_apply (he i)
   have hcp : ContinuousOn (fun t => Geodesic.chartCoord (E := E) p (R t (e i t))) (Icc a b) := by
     have := (Geodesic.chartCoordFunctional (E := E) p).continuous.comp_continuousOn hRei
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   have hcq : ContinuousOn (fun t => Geodesic.chartCoord (E := E) q (e j t)) (Icc a b) := by
     have := (Geodesic.chartCoordFunctional (E := E) q).continuous.comp_continuousOn (he j)
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   exact ((hG p q).mul hcp).mul hcq
 
 /-- **Math.** The coefficient operator `A(t)` is continuous, hence bounded on compacts —
@@ -213,7 +213,10 @@ theorem exists_jacobiField_frame (g : RiemannianMetric I M) (α : M) (u : ℝ �
     have hVi_at : ∀ i, HasDerivAt (fun r => V r i)
         (-(jacobiCoefOp (I := I) g α u R e t₀) (F t₀) i) t₀ := fun i => by
       have := (ContinuousLinearMap.proj i).hasFDerivAt.comp_hasDerivAt t₀ (hV_at t₀ ht₀)
-      simpa only [Function.comp_def, ContinuousLinearMap.proj_apply] using this
+      change HasDerivAt (fun r => V r i)
+        ((-(jacobiCoefOp (I := I) g α u R e t₀) (F t₀)) i) t₀ at this
+      rw [Pi.neg_apply] at this
+      exact this
     -- discharge the hypotheses of the frame-reduction expansion
     have hf : ∀ i, ∀ᶠ r in 𝓝 t₀, DifferentiableAt ℝ (fun t => F t i) r := fun i =>
       Filter.eventually_of_mem hIoo_nhds fun r hr => (hfi_at i r hr).differentiableAt

@@ -117,7 +117,8 @@ lemma tendsto_exp_quadratic_diff_atBot {A C a b off : ℝ} (hC : 0 < C) (hb : 0 
       ring
     rw [hEq]
     have hrK : Tendsto (fun r : ℝ => r - K) atTop atTop := by
-      simpa using tendsto_atTop_add_const_right atTop (-K) tendsto_id
+      convert tendsto_atTop_add_const_right atTop (-K) tendsto_id using 1
+      rfl
     have h1 : Tendsto (fun r : ℝ => (r - K) ^ 2) atTop atTop :=
       (tendsto_pow_atTop (two_ne_zero)).comp hrK
     have h2 : Tendsto (fun r : ℝ => -d * (r - K) ^ 2) atTop atBot := by
@@ -293,7 +294,6 @@ theorem heat_cauchy_maxPrinciple_smallTime {u : SpaceTime n → ℝ}
       have hle := hzmax (toSpaceTime t y) hcenter_mem
       have hKc : compKernelSpaceTime n y τ (toSpaceTime t y) = (τ - t) ^ (-(n : ℝ) / 2) :=
         compKernelSpaceTime_center
-      simp only at hle
       rw [hKc] at hle
       linarith [hle, hvzM]
     -- 3. let μ → 0
@@ -379,7 +379,8 @@ theorem heat_cauchy_uniqueness_smallTime {u v : SpaceTime n → ℝ} {T A a : �
   intro p hp
   have h1 := hupper p hp
   have h2 := hlower p hp
-  simp only at h1 h2
+  change u p - v p ≤ 0 at h1
+  change v p - u p ≤ 0 at h2
   exact le_antisymm (by linarith) (by linarith)
 
 end EvansLib

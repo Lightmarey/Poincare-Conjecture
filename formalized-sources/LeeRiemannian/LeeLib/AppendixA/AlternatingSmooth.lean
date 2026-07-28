@@ -46,7 +46,7 @@ noncomputable def alternatizeₗ :
   map_smul' c f := by
     ext v
     simp only [alternatization_apply_apply, RingHom.id_apply, ContinuousAlternatingMap.smul_apply,
-      ContinuousMultilinearMap.smul_apply, Finset.smul_sum]
+      _root_.smul_apply, Finset.smul_sum]
     exact Finset.sum_congr rfl fun σ _ => smul_comm _ _ _
 
 @[simp]
@@ -116,7 +116,7 @@ noncomputable def alternatizedCompCLM (f : E →L[𝕜] F) :
 theorem alternatizedCompCLM_eq (f : E →L[𝕜] F) :
     alternatizedCompCLM (ι := ι) (G := G) f
       = ((Fintype.card ι)! : ℕ) • compContinuousLinearMapCLM f := by
-  ext ω
+  ext ω x
   have hco : (ContinuousMultilinearMap.compContinuousLinearMapContinuousMultilinear 𝕜
       (fun _ : ι => E) (fun _ : ι => F) G fun _ => f)
         (toContinuousMultilinearMapCLM (E := F) (F := G) (ι := ι) 𝕜 ω)
@@ -128,7 +128,17 @@ theorem alternatizedCompCLM_eq (f : E →L[𝕜] F) :
           (fun _ : ι => E) (fun _ : ι => F) G fun _ => f)
             (toContinuousMultilinearMapCLM (E := F) (F := G) (ι := ι) 𝕜 ω)) = _
     rw [hco, ContinuousMultilinearMap.alternatizeCLM_toContinuousMultilinearMap]
-  rw [hval, ContinuousLinearMap.smul_apply, compContinuousLinearMapCLM_apply]
+  rw [hval]
+  calc
+    (Fintype.card ι)! • (ω.compContinuousLinearMap f) x =
+        ((Fintype.card ι)! : 𝕜) • (ω.compContinuousLinearMap f) x :=
+      (Nat.cast_smul_eq_nsmul 𝕜 (Fintype.card ι)! _).symm
+    _ = ((((Fintype.card ι)! : 𝕜) • compContinuousLinearMapCLM f) ω) x := by
+      simp only [_root_.smul_apply, ContinuousAlternatingMap.smul_apply,
+        compContinuousLinearMapCLM_apply]
+    _ = (((Fintype.card ι)! : ℕ) • compContinuousLinearMapCLM f) ω x :=
+      congrArg (fun T => T ω x)
+        (Nat.cast_smul_eq_nsmul 𝕜 (Fintype.card ι)! (compContinuousLinearMapCLM f))
 
 theorem contDiff_alternatizedCompCLM {n : WithTop ℕ∞} :
     ContDiff 𝕜 n (fun f : E →L[𝕜] F => alternatizedCompCLM (ι := ι) (G := G) f) := by

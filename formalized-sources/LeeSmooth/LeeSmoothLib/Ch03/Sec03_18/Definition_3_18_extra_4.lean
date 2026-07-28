@@ -80,7 +80,7 @@ theorem coordinateComponent_isCoordinateTangentVector {p : M} (v : TangentSpace 
     change p ∈ (chartAt H x.1).source ∩ (chartAt H y.1).source
     exact ⟨x.2, y.2⟩
   have hchange : ex.coordChangeL 𝕜 ey p = tangentCoordChange I x.1 y.1 p := by
-    simpa [ex, ey] using tangent_coordinates_change hp
+    exact tangent_coordinates_change hp
   calc
     tangentCoordChange I x.1 y.1 p (coordinateComponent v x)
       = ex.coordChangeL 𝕜 ey p (coordinateComponent v x) := by
@@ -117,7 +117,7 @@ def toTangentSpace {p : M} (v : CoordinateTangentVector I p) : TangentSpace I p 
     change p ∈ (chartAt H p).source ∩ (chartAt H y.1).source
     exact ⟨mem_chart_source H p, y.2⟩
   have hchange : ep.coordChangeL 𝕜 ey p = tangentCoordChange I p y.1 p := by
-    simpa [ep, ey] using tangent_coordinates_change hpy
+    exact tangent_coordinates_change hpy
   calc
     TangentSpace.coordinateComponent (toTangentSpace v) y
       = (ey ⟨p, ep.symm p (v x)⟩).2 := by

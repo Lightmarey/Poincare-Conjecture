@@ -197,7 +197,7 @@ theorem cartanHadamardCovering
 do Carmo assembly after installing Lee's metric-space and tangent-bundle
 instances. -/
 def cartanHadamardDiffeomorph
-    [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : Riemannian.RiemannianMetric I M) (p : M)
     (hK : ∀ x : M, ∀ a c : TangentSpace I x,
       0 ≤ g.metricInner x (g.leviCivitaConnection.curvatureOperatorAt x a c c) a) :
@@ -214,7 +214,7 @@ def cartanHadamardDiffeomorph
 /-- **Math.** In the simply connected case, the Cartan--Hadamard
 diffeomorphism has Euclidean source coordinates. -/
 def cartanHadamardDiffeomorph_euclidean
-    [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : Riemannian.RiemannianMetric I M) (p : M)
     (hK : ∀ x : M, ∀ a c : TangentSpace I x,
       0 ≤ g.metricInner x (g.leviCivitaConnection.curvatureOperatorAt x a c c) a) :
@@ -228,7 +228,7 @@ def cartanHadamardDiffeomorph_euclidean
 /-- **Math.** The Lee Cartan--Hadamard diffeomorphism is the exponential map
 itself, viewed on the Hadamard model of the tangent space. -/
 @[simp] theorem cartanHadamardDiffeomorph_coe
-    [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : Riemannian.RiemannianMetric I M) (p : M)
     (hK : ∀ x : M, ∀ a c : TangentSpace I x,
       0 ≤ g.metricInner x (g.leviCivitaConnection.curvatureOperatorAt x a c c) a) :
@@ -284,7 +284,7 @@ theorem cartanHadamardCovering_sectional
 /-- **Math.** The Cartan--Hadamard diffeomorphism under Lee's nonpositive
 sectional-curvature hypothesis. -/
 def cartanHadamardDiffeomorph_sectional
-    [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : Riemannian.RiemannianMetric I M) (p : M)
     (hsec : ∀ x : M, ∀ a c : TangentSpace I x,
       MorganTianLib.sectionalCurvatureAt g g.leviCivitaConnection x a c ≤ 0) :
@@ -298,7 +298,7 @@ def cartanHadamardDiffeomorph_sectional
 /-- **Math.** Euclidean-source form of the Cartan--Hadamard diffeomorphism
 under Lee's nonpositive sectional-curvature hypothesis. -/
 def cartanHadamardDiffeomorph_euclidean_sectional
-    [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : Riemannian.RiemannianMetric I M) (p : M)
     (hsec : ∀ x : M, ∀ a c : TangentSpace I x,
       MorganTianLib.sectionalCurvatureAt g g.leviCivitaConnection x a c ≤ 0) :
@@ -312,7 +312,7 @@ def cartanHadamardDiffeomorph_euclidean_sectional
 /-- **Math.** Anti-vacuity identity for the Lee-facing Cartan--Hadamard
 diffeomorphism: its underlying map is the exponential map. -/
 @[simp] theorem cartanHadamardDiffeomorph_sectional_coe
-    [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : Riemannian.RiemannianMetric I M) (p : M)
     (hsec : ∀ x : M, ∀ a c : TangentSpace I x,
       MorganTianLib.sectionalCurvatureAt g g.leviCivitaConnection x a c ≤ 0) :

@@ -203,7 +203,7 @@ theorem smooth_embedding_range_has_manifold_with_boundary {F : N → M}
       have hu' : u ∈ (hx.domChart.extend I').target := by
         simpa [OpenPartialHomeomorph.extend_target, OpenPartialHomeomorph.trans_target] using hu
       simpa [Function.comp, OpenPartialHomeomorph.extend_coe_symm,
-        OpenPartialHomeomorph.extend_coe] using hx.writtenInCharts hu'
+        OpenPartialHomeomorph.extend_coe] using! hx.writtenInCharts hu'
   -- The topology on `Set.range F` is still the subspace topology, so immersion plus embedding
   -- gives the desired smooth embedding of the subtype inclusion.
   have hSubtype : Manifold.IsSmoothEmbedding I' I (⊤ : WithTop ℕ∞)
@@ -221,7 +221,7 @@ lemma subtype_val_isSmoothEmbedding_of_open_embedding {S : Set M}
   -- The restricted inclusion factors through the open inclusion `U ↪ S` followed by `S ↪ M`.
   refine Manifold.IsSmoothEmbedding.mk ?_ hUemb
   -- Compose the canonical open immersion of `U` into `S` with the ambient immersed inclusion.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     Manifold.IsImmersion.ex416_comp hS (Manifold.IsImmersion.of_opens U)
 
 /-- Helper for Proposition 5.49: a partial equivalence with continuous forward and inverse maps
@@ -299,7 +299,7 @@ lemma immersion_neighborhood_isEmbedding {S : Set M}
   · -- The chosen point lies in the source of the local immersion chart.
     simpa [U, OpenPartialHomeomorph.extend_source] using hp.mem_domChart_source
   · -- Forget the codomain restriction from the chart source back to the ambient manifold.
-    simpa [U, j, Function.comp] using Topology.IsEmbedding.subtypeVal.comp hj_emb
+    simpa [U, j, Function.comp] using! Topology.IsEmbedding.subtypeVal.comp hj_emb
 
 /- Proposition 5.49 (3) is the same owner theorem as Proposition 5.5: proper embedding of a
 subtype is a topological statement, so the manifold-with-boundary structure does not change the

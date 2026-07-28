@@ -109,7 +109,9 @@ theorem mfderiv_warpSmul_apply {c : N → ℝ} {w : N → V} {f : ℝ → ℝ} {
         (mfderiv J 𝓘(ℝ, V) (fun q => f (c q) • w q) p u)
       = f (c p) • NormedSpace.fromTangentSpace _ (mfderiv J 𝓘(ℝ, V) w p u)
         + NormedSpace.fromTangentSpace _ (mfderiv J 𝓘(ℝ, ℝ) (fun q => f (c q)) p u) • w p :=
-    fromTangentSpace_mfderiv_smul_apply hfc hw u
+    by
+      have h := DFunLike.congr_fun (mvfderiv_smul hfc hw) u
+      simpa [mvfderiv, Pi.smul_apply] using! h
   rw [hsmul, hd, add_comm]
 
 variable {E₁ : Type*} [NormedAddCommGroup E₁] [NormedSpace ℝ E₁]

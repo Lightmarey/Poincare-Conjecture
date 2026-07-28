@@ -1,4 +1,5 @@
 import DoCarmoLib.Riemannian.Variation.EnergyFirstDeriv
+import DoCarmoLib.Riemannian.Variation.SegmentAssembly
 
 /-!
 # do Carmo's formula (1): the first variation of energy, assembled
@@ -151,5 +152,108 @@ theorem hasDerivAt_dcEnergy_eq_first_variation
     rw [hsymm t (ht.mpr htm)]
   rw [hrw, hparts] at hE
   exact hE
+
+/-- **Math.** do Carmo Ch. 9, Prop. 2.4, the finite-subdivision assembly step.
+
+Suppose the first-variation formula has been proved separately on every segment
+`[tau i, tau (i+1)]`.  The total energy is their sum near `s0`; differentiating that finite
+sum and telescoping the endpoint pairings gives the outer endpoint terms and the negative
+jump sum in do Carmo's formula (1).
+
+`bulk i` is the integral `integral <V, D/dt (dc/dt)>` on segment `i`; `minus i` and
+`plus i` are the pairings with the left and right velocity limits at subdivision point
+`tau i`.  The remaining hypotheses of the full proposition are precisely what must
+produce the segment formulas and these one-sided values from an arbitrary variation. -/
+theorem hasDerivAt_dcEnergy_eq_piecewise_first_variation
+    {g : RiemannianMetric I M} {f : ℝ × ℝ → M} {tau : ℕ → ℝ} {k : ℕ} {s0 : ℝ}
+    {bulk minus plus : ℕ → ℝ}
+    (hint : ∀ᶠ s in nhds s0, ∀ i < k + 1, IntervalIntegrable
+      (fun t => g.metricInner (f (s, t))
+        (DCVelocity (I := I) (fun u => f (s, u)) t)
+        (DCVelocity (I := I) (fun u => f (s, u)) t))
+      volume (tau i) (tau (i + 1)))
+    (hsegment : ∀ i < k + 1,
+      HasDerivAt
+        (fun s => DCEnergy (I := I) g (fun t => f (s, t)) (tau i) (tau (i + 1)))
+        (2 * ((minus (i + 1) - plus i) - bulk i)) s0) :
+    HasDerivAt
+      (fun s => DCEnergy (I := I) g (fun t => f (s, t)) (tau 0) (tau (k + 1)))
+      (2 * (minus (k + 1) - plus 0
+        - ∑ i ∈ Finset.range k, (plus (i + 1) - minus (i + 1))
+        - ∑ i ∈ Finset.range (k + 1), bulk i)) s0 := by
+  have hsum := hasDerivAt_sum_segments_of_first_variation k
+    (fun i s => DCEnergy (I := I) g (fun t => f (s, t)) (tau i) (tau (i + 1)))
+    bulk minus plus s0 hsegment
+  apply hsum.congr_of_eventuallyEq
+  filter_upwards [hint] with s hs
+  exact dcEnergy_eq_sum_subdivision (I := I) g (fun t => f (s, t)) tau (k + 1) hs
+
+/-- **Math.** do Carmo Ch. 9, Prop. 2.5, the direction
+*geodesic implies critical point of energy*, on a segment with no breakpoint.
+
+This specializes `hasDerivAt_dcEnergy_eq_first_variation`: the covariant
+acceleration of the base curve is zero, and properness makes the variational
+field vanish at both endpoints, so every term in the first-variation formula
+vanishes. -/
+theorem hasDerivAt_dcEnergy_zero_of_geodesic
+    {g : RiemannianMetric I M} {f : ℝ × ℝ → M} {T S DsT DtS : ℝ × ℝ → E}
+    {s₀ a b ε : ℝ} {bound : ℝ → ℝ}
+    (hab : a ≤ b) (hε : 0 < ε)
+    (hvel : ∀ σ t, T (σ, t) = DCVelocity (I := I) (fun τ => f (σ, τ)) t)
+    (hslice : ∀ t ∈ uIoc a b, IsCovariantDerivFieldAlongOn (I := I) g
+      (fun σ => f (σ, t)) (fun σ => T (σ, t)) (fun σ => DsT (σ, t)) (s₀ - ε) (s₀ + ε))
+    (hsdiff : ∀ t ∈ uIoc a b, IsChartDifferentiableOn (I := I)
+      (fun σ => f (σ, t)) (s₀ - ε) (s₀ + ε))
+    (hscont : ∀ t ∈ uIoc a b, ∀ σ ∈ Icc (s₀ - ε) (s₀ + ε),
+      ContinuousAt (fun σ' => f (σ', t)) σ)
+    (hF_meas : ∀ᶠ σ in nhds s₀, AEStronglyMeasurable
+      (fun t => g.metricInner (f (σ, t)) (T (σ, t) : TangentSpace I (f (σ, t))) (T (σ, t)))
+      (volume.restrict (uIoc a b)))
+    (hF_int : IntervalIntegrable
+      (fun t => g.metricInner (f (s₀, t)) (T (s₀, t) : TangentSpace I (f (s₀, t))) (T (s₀, t)))
+      volume a b)
+    (hF'_meas : AEStronglyMeasurable
+      (fun t => 2 * g.metricInner (f (s₀, t))
+        (DsT (s₀, t) : TangentSpace I (f (s₀, t))) (T (s₀, t)))
+      (volume.restrict (uIoc a b)))
+    (h_bound : ∀ t ∈ uIoc a b, ∀ σ ∈ Ioo (s₀ - ε) (s₀ + ε),
+      ‖2 * g.metricInner (f (σ, t)) (DsT (σ, t) : TangentSpace I (f (σ, t))) (T (σ, t))‖
+        ≤ bound t)
+    (hbound_int : IntervalIntegrable bound volume a b)
+    (hsymm : ∀ t ∈ Ioo a b, DsT (s₀, t) = DtS (s₀, t))
+    (hV : IsCovariantDerivFieldAlongOn (I := I) g (fun τ => f (s₀, τ))
+      (fun τ => S (s₀, τ)) (fun τ => DtS (s₀, τ)) a b)
+    (hW : IsCovariantDerivFieldAlongOn (I := I) g (fun τ => f (s₀, τ))
+      (fun τ => T (s₀, τ)) (fun _ => 0) a b)
+    (htdiff : IsChartDifferentiableOn (I := I) (fun τ => f (s₀, τ)) a b)
+    (htcont : ∀ t ∈ Icc a b, ContinuousAt (fun τ => f (s₀, τ)) t)
+    (hint₁ : IntervalIntegrable
+      (fun t => g.metricInner (f (s₀, t)) (DtS (s₀, t) : TangentSpace I (f (s₀, t))) (T (s₀, t)))
+      volume a b)
+    (hint₂ : IntervalIntegrable
+      (fun t => g.metricInner (f (s₀, t)) (S (s₀, t) : TangentSpace I (f (s₀, t))) (0 : E))
+      volume a b)
+    (hSa : S (s₀, a) = 0) (hSb : S (s₀, b) = 0) :
+    HasDerivAt (fun σ => DCEnergy (I := I) g (fun t => f (σ, t)) a b) 0 s₀ := by
+  have hE := hasDerivAt_dcEnergy_eq_first_variation (I := I) (g := g)
+    (f := f) (T := T) (S := S) (DsT := DsT) (DtS := DtS) (DtT := fun _ => 0)
+    hab hε hvel hslice hsdiff hscont hF_meas hF_int hF'_meas h_bound hbound_int
+    hsymm hV hW htdiff htcont hint₁ hint₂
+  have hleft : g.metricInner (f (s₀, a))
+      (S (s₀, a) : TangentSpace I (f (s₀, a))) (T (s₀, a)) = 0 := by
+    rw [hSa]
+    exact g.metricInner_zero_left _ _
+  have hright : g.metricInner (f (s₀, b))
+      (S (s₀, b) : TangentSpace I (f (s₀, b))) (T (s₀, b)) = 0 := by
+    rw [hSb]
+    exact g.metricInner_zero_left _ _
+  have hzero : (∫ t in a..b, g.metricInner (f (s₀, t))
+      (S (s₀, t) : TangentSpace I (f (s₀, t))) (0 : E)) = 0 := by
+    have hz : ∀ t, g.metricInner (f (s₀, t))
+        (S (s₀, t) : TangentSpace I (f (s₀, t))) (0 : E) = 0 :=
+      fun t => g.metricInner_zero_right _ _
+    simp only [hz, intervalIntegral.integral_zero]
+  rw [hleft, hright, hzero] at hE
+  simpa using hE
 
 end Riemannian.Variation

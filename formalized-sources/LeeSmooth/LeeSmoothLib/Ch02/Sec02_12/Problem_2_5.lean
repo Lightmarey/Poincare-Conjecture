@@ -68,7 +68,7 @@ theorem contMDiff_std_to_cubic_of_contDiff {f : ℝ → ℝ} (hf : ContDiff ℝ 
       (cubic_real_line_embedding ∘ std_to_cubic f) := by
     -- The composite is the cubic polynomial applied to `f`, hence ordinarily smooth.
     rw [contMDiff_iff_contDiff]
-    simpa [cubic_real_line_embedding, std_to_cubic, cubicMap, Function.comp] using
+    simpa [cubic_real_line_embedding, std_to_cubic, cubicMap, Function.comp] using!
       ((contDiff_id.pow (3 : ℕ)).comp hf)
   -- The open-embedding API lifts Euclidean smoothness back to manifold smoothness.
   exact ContMDiff.of_comp_isOpenEmbedding
@@ -95,7 +95,7 @@ lemma iteratedDeriv_comp_cubic_eq_zero_of_not_three_dvd {g : ℝ → ℝ} (hg : 
   intro n hn
   have hcubic : ContDiffAt ℝ ∞ cubicMap 0 := by
     -- The cubic map is an ordinary smooth polynomial map.
-    simpa [cubicMap] using
+    simpa [cubicMap] using!
       ((contDiff_id.pow (3 : ℕ)) : ContDiff ℝ ∞ (fun x : ℝ ↦ x ^ (3 : ℕ))).contDiffAt
   have hnle : (n : ℕ∞ω) ≤ (∞ : ℕ∞ω) := by
     exact_mod_cast (show (n : ℕ∞) ≤ (⊤ : ℕ∞) by exact le_top)
@@ -147,10 +147,10 @@ lemma contDiffAt_cubicChart_symm_of_ne_zero {y : ℝ} (hy : y ≠ 0) :
   have hderiv :
       HasDerivAt cubicChart ((3 : ℝ) * cubicChart.symm y ^ (2 : ℕ)) (cubicChart.symm y) := by
     -- The cubic chart has the same derivative as the polynomial `x ↦ x ^ 3`.
-    simpa [cubicChart, cubicMap] using hasDerivAt_pow 3 (cubicChart.symm y)
+    simpa [cubicChart, cubicMap] using! hasDerivAt_pow 3 (cubicChart.symm y)
   have hcubic : ContDiffAt ℝ ∞ cubicChart (cubicChart.symm y) := by
     -- Ordinary polynomial smoothness controls the chart itself.
-    simpa [cubicChart, cubicMap] using
+    simpa [cubicChart, cubicMap] using!
       ((contDiff_id.pow (3 : ℕ)) : ContDiff ℝ ∞ cubicChart).contDiffAt
   exact cubicChart.contDiffAt_symm_deriv hderiv_ne_zero hy_mem hderiv hcubic
 
@@ -271,6 +271,6 @@ theorem contMDiff_cubic_to_std_iff_iteratedDeriv_eq_zero {f : ℝ → ℝ} (hf :
     simpa [cubic_to_std, cubic_chart_symm_to_cubic, cubic_real_line_embedding, Function.comp,
       extChartAt_coe, extChartAt_coe_symm, extChartAt_model_space_eq_id,
       Topology.IsOpenEmbedding.singletonChartedSpace_chartAt_eq,
-      contMDiffWithinAt_iff_contDiffWithinAt] using
+      contMDiffWithinAt_iff_contDiffWithinAt] using!
       (hg.contDiffAt.contDiffWithinAt : ContDiffWithinAt ℝ ∞
         (cubic_to_std f ∘ cubic_chart_symm_to_cubic) Set.univ (cubic_real_line_embedding x))

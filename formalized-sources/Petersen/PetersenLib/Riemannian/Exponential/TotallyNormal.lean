@@ -152,13 +152,13 @@ theorem isGeodesicOn_uniform_flow_segment
     intro s hs
     have h := (ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasDerivAt s
       (hcv s hs)
-    simpa [hcdef, hvdef, geodesicSprayCoord_def] using h
+    simpa [Function.comp_def, hcdef, hvdef, geodesicSprayCoord_def] using h
   have hv : ∀ s ∈ J, HasDerivAt v
       (T • (- chartChristoffelContraction (I := I) g p (v s) (v s) (c s))) s := by
     intro s hs
     have h := (ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasDerivAt s
       (hcv s hs)
-    simpa [hcdef, hvdef, geodesicSprayCoord_def] using h
+    simpa [Function.comp_def, hcdef, hvdef, geodesicSprayCoord_def] using h
   -- confinement of the chart-position component in the chart target
   have hcmem : ∀ s ∈ J, c s ∈ (extChartAt I p).target := fun s hs =>
     (hconf (s * T) (Ioo_subset_Icc_self (hwin s hs))).1

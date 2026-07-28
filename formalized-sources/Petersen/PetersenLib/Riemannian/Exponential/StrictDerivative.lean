@@ -151,16 +151,24 @@ lemma fderiv_geodesicSprayCoord_equilibrium (g : RiemannianMetric I M) (p : M) :
     have h1 : HasDerivAt (fun t : ℝ => (t • w : E)) w 0 := by
       simpa using (hasDerivAt_id (0 : ℝ)).smul_const w
     have hsq : HasDerivAt (fun t : ℝ => t * t) 0 0 := by
-      simpa using (hasDerivAt_id (0 : ℝ)).mul (hasDerivAt_id (0 : ℝ))
+      convert (hasDerivAt_id (0 : ℝ)).mul (hasDerivAt_id (0 : ℝ)) using 1
+      · rfl
+      · exact Module.ext rfl
+      · rfl
+      · norm_num
     have h2 : HasDerivAt (fun t : ℝ =>
         (t * t) • chartChristoffelContraction (I := I) g p w w
           (extChartAt I p p + t • u)) 0 0 := by
       have := hsq.smul hGdiff.hasDerivAt
-      simpa using this
+      convert this using 1
+      · rfl
+      · simp
     have h2' : HasDerivAt (fun t : ℝ =>
         -((t * t) • chartChristoffelContraction (I := I) g p w w
           (extChartAt I p p + t • u))) 0 0 := by
-      simpa using h2.neg
+      convert h2.neg using 1
+      · rfl
+      · simp
     have hpair := h1.prodMk h2'
     exact hpair.congr_of_eventuallyEq
       (Filter.Eventually.of_forall fun t => hcval t)

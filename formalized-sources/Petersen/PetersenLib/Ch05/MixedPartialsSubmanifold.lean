@@ -107,8 +107,7 @@ theorem trivializationAt_symm_eq_mfderiv_extChartAt_symm (α : M) {y : E}
     rw [← extChartAt_source (I := I)]; exact (extChartAt I α).map_target hy
   have h := TangentBundle.symmL_trivializationAt (I := I) (x₀ := α)
     (x := (extChartAt I α).symm y) hsrc
-  rw [show (trivializationAt E (TangentSpace I) α).symm ((extChartAt I α).symm y) a
-        = (trivializationAt E (TangentSpace I) α).symmL ℝ ((extChartAt I α).symm y) a from rfl,
+  rw [← (trivializationAt E (TangentSpace I) α).symmL_apply (R := ℝ) hsrc a,
     h, (extChartAt I α).right_inv hy, ← mfderivWithin_univ]
   congr 2
   simp [ModelWithCorners.range_eq_univ]
@@ -143,6 +142,7 @@ theorem trivializationAt_symm_fderiv_chartRep (Φ : M → M') (hΦ : ContMDiff I
     rfl
   rw [hcomp, ← TangentBundle.continuousLinearMapAt_trivializationAt (I := I') (x₀ := α') hΦb,
     trivializationAt_symm_eq_mfderiv_extChartAt_symm α hy]
+  rw [← (trivializationAt E' (TangentSpace I') α').symmL_apply (R := ℝ) hbase]
   exact (trivializationAt E' (TangentSpace I') α').symmL_continuousLinearMapAt (R := ℝ) hbase _
 
 /-- **Math.** **The chart-level isometry.** An isometric immersion `Φ` reads, in

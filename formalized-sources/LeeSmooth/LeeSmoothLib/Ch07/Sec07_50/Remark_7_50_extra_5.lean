@@ -304,7 +304,7 @@ theorem orbitMapHasConstantRank [FiniteDimensional 𝕜 E'] (p : M) :
         E _ _ H _ G _ _ I _ _ _
         E' _ _ _ H' _ M _ _ J _ _ _ _
         F hF
-  simpa [orbitMapMulActionHom] using hConstRank
+  simpa [orbitMapMulActionHom] using! hConstRank
 
 /-- Helper: the constant-rank level-set theorem equips the stabilizer of
 `p` with the embedded-submanifold structure inherited from the fiber `orbit_map G p ⁻¹' {p}`. -/
@@ -323,7 +323,7 @@ theorem stabilizerEmbeddedData
         ∃ hEmb : IsEmbeddedSubmanifold I K ((MulAction.stabilizer G p : Set G)),
           hEmb.codimension = r := by
   -- Rewrite the level-set owner to the stabilizer subtype before unpacking the theorem output.
-  simpa [preimage_singleton_orbit_map_eq_stabilizer] using
+  simpa [preimage_singleton_orbit_map_eq_stabilizer] using!
     (constant_rank_level_set_has_embedded_submanifold_structure
       (orbitMap_contMDiff p) hRank p)
 
@@ -335,7 +335,7 @@ theorem stabilizerClosed
     IsClosed ((MulAction.stabilizer G p : Set G)) := by
   -- Rewrite the stabilizer as the singleton fiber of the continuous orbit map.
   have hSmooth : ContMDiff I J ∞ (orbit_map G p) := by
-    simpa [orbit_map] using
+    simpa [orbit_map] using!
       ((contMDiff_id : ContMDiff I I ∞ fun g : G ↦ g).smul
         (contMDiff_const : ContMDiff I J ∞ fun _ : G ↦ p))
   rw [← preimage_singleton_orbit_map_eq_stabilizer]
@@ -348,10 +348,10 @@ def stabilizerClosedSubgroup
   { toSubgroup := MulAction.stabilizer G p
     isClosed' := by
       have hSmooth : ContMDiff I J ∞ (orbit_map G p) := by
-        simpa [orbit_map] using
+        simpa [orbit_map] using!
           ((contMDiff_id : ContMDiff I I ∞ fun g : G ↦ g).smul
             (contMDiff_const : ContMDiff I J ∞ fun _ : G ↦ p))
-      simpa [preimage_singleton_orbit_map_eq_stabilizer] using
+      simpa [preimage_singleton_orbit_map_eq_stabilizer] using!
         (isClosed_singleton.preimage hSmooth.continuous :
           IsClosed ((orbit_map G p) ⁻¹' ({p} : Set M))) }
 
@@ -366,7 +366,7 @@ theorem stabilizerQuotient_t2Space
   letI : IsClosed ((MulAction.stabilizer G p : Set G)) :=
     by
       have hSmooth : ContMDiff I J' ∞ (orbit_map G p) := by
-        simpa [orbit_map] using
+        simpa [orbit_map] using!
           ((contMDiff_id : ContMDiff I I ∞ fun g : G ↦ g).smul
             (contMDiff_const : ContMDiff I J' ∞ fun _ : G ↦ p))
       simpa [preimage_singleton_orbit_map_eq_stabilizer] using
@@ -401,7 +401,7 @@ theorem stabilizerEmbeddedClosedData
     exact hEmb
   · -- Closedness comes from identifying the stabilizer with the orbit-map fiber over `p`.
     have hSmooth : ContMDiff I J ∞ (orbit_map G p) := by
-      simpa [orbit_map] using
+      simpa [orbit_map] using!
         ((contMDiff_id : ContMDiff I I ∞ fun g : G ↦ g).smul
           (contMDiff_const : ContMDiff I J ∞ fun _ : G ↦ p))
     simpa [preimage_singleton_orbit_map_eq_stabilizer] using
@@ -491,7 +491,7 @@ theorem continuous_orbitHeadProjection
         fun i : Fin r ↦ x (Fin.castLE hr i) :=
     continuous_pi fun i ↦
       PiLp.continuous_apply 2 (fun _ : Fin m ↦ ℝ) (Fin.castLE hr i)
-  simpa [orbitHeadProjection] using
+  simpa [orbitHeadProjection] using!
     (PiLp.continuous_toLp 2 (fun _ : Fin r ↦ ℝ)).comp hcoord
 
 /-- Helper for Remark 7.50-extra-5: the standard rank-`r` inclusion is a right inverse to the
@@ -2012,7 +2012,7 @@ theorem orbitMapConstantRank_le_sourceFinrank
     {r : ℕ} (hRank : Manifold.HasConstantRank I J (orbit_map G p) r) :
     r ≤ Module.finrank 𝕜 E := by
   let _ : FiniteDimensional 𝕜 (TangentSpace I (1 : G)) := by
-    simpa using (inferInstance : FiniteDimensional 𝕜 E)
+    simpa using! (inferInstance : FiniteDimensional 𝕜 E)
   have hRankAt :
       rankAt I J (orbit_map G p) (1 : G) =
         Module.finrank 𝕜 ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap.range) :=
@@ -2025,7 +2025,7 @@ theorem orbitMapConstantRank_le_sourceFinrank
       Module.finrank 𝕜 ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap.range) ≤
         Module.finrank 𝕜 E := by
     -- The image of the derivative is the range of a linear map out of the source tangent space.
-    simpa using
+    simpa using!
       (LinearMap.finrank_range_le
         ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap))
   omega
@@ -2037,7 +2037,7 @@ theorem orbitMapConstantRank_le_targetFinrank
     {r : ℕ} (hRank : Manifold.HasConstantRank I J (orbit_map G p) r) :
     r ≤ Module.finrank 𝕜 E' := by
   let _ : FiniteDimensional 𝕜 (TangentSpace J (orbit_map G p (1 : G))) := by
-    simpa [orbit_map] using (inferInstance : FiniteDimensional 𝕜 E')
+    simpa [orbit_map] using! (inferInstance : FiniteDimensional 𝕜 E')
   have hRankAt :
       rankAt I J (orbit_map G p) (1 : G) =
         Module.finrank 𝕜 ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap.range) :=
@@ -2050,7 +2050,7 @@ theorem orbitMapConstantRank_le_targetFinrank
       Module.finrank 𝕜 ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap.range) ≤
         Module.finrank 𝕜 E' := by
     -- The derivative image is a submodule of the target tangent space at `p = orbit_map G p 1`.
-    simpa [orbit_map] using
+    simpa [orbit_map] using!
       (Submodule.finrank_le
         ((mfderiv I J (orbit_map G p) (1 : G)).toLinearMap.range))
   omega
@@ -2770,7 +2770,7 @@ theorem fixedLeftTranslation_headProjectionPatch_contDiffOn
         (fun y : EuclideanSpace ℝ (Fin m) ↦ g * hNF.domChart.symm y)
         hNF.domChart.target := by
     -- Compose the smooth chart inverse with fixed left multiplication.
-    simpa [Function.comp] using hLeftMul.comp_contMDiffOn hChartInv
+    simpa [Function.comp] using! hLeftMul.comp_contMDiffOn hChartInv
   have hChart :
       ContMDiffOn
         (𝓘(ℝ, EuclideanSpace ℝ (Fin m)))
@@ -2795,7 +2795,7 @@ theorem fixedLeftTranslation_headProjectionPatch_contDiffOn
     intro y hy
     exact hy.2
   -- Finish by composing with the smooth linear head projection.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     (orbitHeadProjection_isSmoothSubmersion hrm).contMDiff.comp_contMDiffOn hWritten
 
 /-- Helper for Remark 7.50-extra-5: every overlap of the translated identity quotient charts is
@@ -2917,7 +2917,7 @@ theorem ofQuotientStabilizer_isImmersion_originalModel
     IsImmersion (modelWithCornersSelf 𝕜 EQ) J (⊤ : WithTop ℕ∞)
       (MulAction.ofQuotientStabilizer G p) := by
   -- Compose the auxiliary-target immersion with the identity immersion back to the original model.
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     Manifold.IsImmersion.ex416_comp hIdImm hQuotImm
 
 /-- Helper for Remark 7.50-extra-5: an auxiliary target owner on `M` is enough for the quotient

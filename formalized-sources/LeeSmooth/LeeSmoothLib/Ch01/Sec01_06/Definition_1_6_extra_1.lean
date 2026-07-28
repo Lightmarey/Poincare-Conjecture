@@ -20,7 +20,17 @@ lemma contMDiffOn_halfSpace_iff_contDiffOn_image :
         (fun z : EuclideanSpace ℝ (Fin n) ↦ f ((𝓡∂ n).symm z))
         ((𝓡∂ n) '' U) := by
   -- The source has a single global boundary chart, and the Euclidean target chart is the identity.
-  simpa [Function.comp, extChartAt_self_eq, extChartAt_model_space_eq_id] using
+  have hfun :
+      (fun z : EuclideanSpace ℝ (Fin n) ↦ f ((𝓡∂ n).symm z)) =
+        f ∘ (𝓡∂ n).symm := by
+    funext z
+    rfl
+  have himage :
+      ((𝓡∂ n) : EuclideanHalfSpace n → EuclideanSpace ℝ (Fin n)) '' U =
+        (fun z : EuclideanHalfSpace n ↦ (𝓡∂ n) z) '' U := by
+    congr 1
+  rw [hfun, himage]
+  simpa [extChartAt_self_eq, extChartAt_model_space_eq_id] using
     (contMDiffOn_iff_of_subset_source' (I := 𝓡∂ n) (I' := 𝓡 k)
       (x := (0 : EuclideanHalfSpace n))
       (y := (0 : EuclideanSpace ℝ (Fin k)))
@@ -65,7 +75,9 @@ lemma eqOn_halfSpace_preimage_iff_eqOn_range_inter
   · intro h z hz
     rcases hz.2 with ⟨x, rfl⟩
     -- On points coming from the half-space, the inverse chart returns the original subtype point.
-    simpa [ModelWithCorners.left_inv] using h hz.1
+    change g x.1 = f ((𝓡∂ n).symm ((𝓡∂ n) x))
+    rw [ModelWithCorners.left_inv]
+    exact h hz.1
   · intro h z hz
     have hzRange : z.1 ∈ V ∩ Set.range (𝓡∂ n) := by
       refine ⟨hz, ?_⟩

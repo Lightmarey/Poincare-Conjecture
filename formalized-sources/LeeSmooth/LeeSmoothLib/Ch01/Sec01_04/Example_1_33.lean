@@ -98,7 +98,7 @@ theorem realProjectiveChartTransition_target_eq_overlap (n : ℕ) (i j : Fin (n 
   rw [realProjectiveChartOverlap, realProjectiveChartTransitionPartialHomeomorph,
     OpenPartialHomeomorph.trans_target]
   -- Again, the chart target is all of `ℝⁿ`, so this reduces to the reverse overlap condition.
-  simpa [realProjectiveChart] using hmem
+  simpa [realProjectiveChart, realProjectiveChartOverlap] using hmem
 
 /-- The overlap `φ_i (U_i ∩ U_j)` viewed as an open subset of `ℝⁿ`. -/
 def realProjectiveChartOverlapOpens (n : ℕ) (i j : Fin (n + 1)) :
@@ -221,7 +221,7 @@ theorem realProjectiveChartTransition_symm_contMDiff (n : ℕ) (i j : Fin (n + 1
     -- Reversing the indices identifies the inverse transition with the forward transition `j → i`.
     simpa [realProjectiveChartTransitionPartialHomeomorph,
       OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm,
-      realProjectiveChartTransition_target_eq_overlap] using
+      realProjectiveChartTransition_target_eq_overlap] using!
       realProjectiveChartTransition_contDiffOn n j i
   have hy :
       y.1 ∈ (realProjectiveChartTransitionPartialHomeomorph n i j).target := by
@@ -258,7 +258,7 @@ private noncomputable def realProjectiveChartAt (n : ℕ) (x : ℝP[n]) :
 private theorem mem_realProjectiveChartAt_source (n : ℕ) (x : ℝP[n]) :
     x ∈ (realProjectiveChartAt n x).source := by
   let hx := Classical.choose_spec (real_projective_space_has_standard_chart n x)
-  simpa [realProjectiveChartAt] using hx
+  simpa [realProjectiveChartAt] using! hx
 
 private theorem realProjectiveChartAt_mem_atlas (n : ℕ) (x : ℝP[n]) :
     realProjectiveChartAt n x ∈ realProjectiveChartAtlas n := by

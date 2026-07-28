@@ -28,10 +28,12 @@ theorem firstCoordinateMeasurableEquiv_measurePreserving (n : ℕ) :
         (Prod.map (id : ℝ → ℝ) (MeasurableEquiv.toLp 2 (Fin n → ℝ)))
         ((volume : Measure ℝ).prod (volume : Measure (Fin n → ℝ)))
         ((volume : Measure ℝ).prod (volume : Measure (EuclideanSpace ℝ (Fin n)))) := by
-    simpa using
+    simpa only [MeasurableEquiv.coe_toLp] using
       (MeasurePreserving.id (volume : Measure ℝ)).prod
         (PiLp.volume_preserving_toLp (Fin n))
-  simpa [firstCoordinateMeasurableEquiv] using h_tail.comp (h_split.comp h_toPi)
+  simpa [firstCoordinateMeasurableEquiv, MeasurableEquiv.coe_trans,
+    MeasurableEquiv.coe_toLp, MeasurableEquiv.prodCongr, MeasurableEquiv.refl,
+    Measure.volume_eq_prod, Function.comp_def] using h_tail.comp (h_split.comp h_toPi)
 
 end EuclideanSpace
 

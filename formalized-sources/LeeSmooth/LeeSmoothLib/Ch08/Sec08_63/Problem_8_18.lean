@@ -93,7 +93,7 @@ theorem existsUnique_smooth_lift_of_eq_dim_submersion {F : M → N}
       infer_instance
     have hdim_tangent :
         Module.finrank ℝ (TangentSpace I p) = Module.finrank ℝ (TangentSpace J (F p)) := by
-      simpa using hdim
+      exact hdim
     have hsurj : Function.Surjective (mfderiv I J F p) :=
       hFsubm.surjective_mfderiv p
     have hinj : Function.Injective (mfderiv I J F p) :=
@@ -127,7 +127,7 @@ theorem existsUnique_smooth_lift_of_eq_dim_submersion {F : M → N}
       VectorField.f_related_apply hX' p
     have hpull : (mfderiv I J F p).inverse (Y (F p)) = X' p :=
       (ContinuousLinearMap.IsInvertible.inverse_apply_eq (hInv p)).2 hpoint.symm
-    simpa [Xfun, VectorField.mpullback_apply] using hpull.symm
+    exact hpull.symm
 
 omit [FiniteDimensional ℝ E] [FiniteDimensional ℝ E'] [IsManifold I (∞ : ℕ∞ω) M] in
 /-- Helper for Problem 8-18: the affine fiber of admissible lift values
@@ -197,7 +197,7 @@ theorem exists_nonzero_verticalVectorAt_of_ne_dim_submersion {F : M → N}
       Module.finrank ℝ (TangentSpace I p) = Module.finrank ℝ (TangentSpace J (F p)) := by
     simpa using LinearEquiv.finrank_eq e
   have hdim_eq : Module.finrank ℝ E = Module.finrank ℝ E' := by
-    simpa using hdim_tangent
+    exact hdim_tangent
   exact hdim hdim_eq
 
 omit [FiniteDimensional ℝ E] in

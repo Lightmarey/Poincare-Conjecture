@@ -323,7 +323,14 @@ theorem differentiableAt_mixedPartialCoord_snd_slice (g : RiemannianMetric I M) 
   have hsecond := Jacobi.hasDerivAt_chartChristoffelContraction_along (I := I) g α
     (fun t => fderiv ℝ c (s₀, t) v) (fun t => fderiv ℝ c (s₀, t) w)
     (fun t => c (s₀, t)) _ _ _ ha hb hu hmem
-  simpa only [mixedPartialCoord_def] using (hfirst.add hsecond).differentiableAt
+  have hfun : (fun t : ℝ => mixedPartialCoord (I := I) g α c (s₀, t) v w) =
+      (fun t : ℝ => fderiv ℝ (fun z => fderiv ℝ c z w) (s₀, t) v) +
+      fun t : ℝ => Geodesic.chartChristoffelContraction (I := I) g α
+        (fderiv ℝ c (s₀, t) v) (fderiv ℝ c (s₀, t) w) (c (s₀, t)) := by
+    funext t
+    rfl
+  rw [hfun]
+  exact (hfirst.add hsecond).differentiableAt
 
 /-- **Math.** Petersen §6.1, **metric compatibility along the `t`-slice** — the pairing
 step of Thm. 6.1.4:
@@ -795,7 +802,9 @@ theorem secondVariationEnergy_chart (g : RiemannianMetric I M) (α : M)
                   (fderiv ℝ c (0, t) ((1, 0) : ℝ × ℝ)) (c (0, t)))
                 (fderiv ℝ c (0, t) ((0, 1) : ℝ × ℝ)))) from
     intervalIntegral.integral_congr (fun t _ => by ring)]
-  rw [intervalIntegral.integral_add hAK_int hBK_int, hFTC]
+  have hsplit := intervalIntegral.integral_add hAK_int hBK_int
+  simp only [Pi.sub_apply] at hsplit
+  rw [hsplit, hFTC]
 
 end PetersenLib
 

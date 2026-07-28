@@ -244,7 +244,6 @@ theorem frameJacobiComponent {ι : Type*} [Fintype ι] [DecidableEq ι]
     deriv (deriv (f j)) t
         + ∑ i, f i t * chartMetricInner (I := I) g α (u t) (R (e i t)) (e j t) = 0 := by
   have hpair := congrArg (fun V => chartMetricInner (I := I) g α (u t) V (e j t)) hjac
-  simp only at hpair
   rw [chartMetricInner_add_left, chartMetricInner_zero_left,
     chartMetricInner_covariantDerivCoord2_frame g α u f e hf hf2 he hpar horth j,
     chartMetricInner_map_frameCombination_left g α (u t) R (fun i => f i t)

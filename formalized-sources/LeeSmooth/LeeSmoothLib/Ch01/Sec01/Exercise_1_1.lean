@@ -49,7 +49,7 @@ private theorem chartAt_isCoordinateBall [T2Space M] [SecondCountableTopology M]
     (chartAt (EuclideanSpace ℝ (Fin n)) p).IsCoordinateBall := by
   -- The induced manifold structure uses the chart chosen by `h p` as its preferred chart.
   simpa [HasCoordinateBallCharts.toTopologicalManifold, HasCoordinateBallCharts.toChartedSpace,
-    topologicalManifoldOfChartedSpace] using (Classical.choose_spec (h p)).2
+    topologicalManifoldOfChartedSpace] using! (Classical.choose_spec (h p)).2
 
 /-- On a Hausdorff second-countable space, coordinate-ball charts yield some topological-manifold
 structure whose preferred charts are coordinate-ball charts. -/
@@ -87,7 +87,7 @@ private theorem chartAt_target_eq_univ [T2Space M] [SecondCountableTopology M]
     (chartAt (EuclideanSpace ℝ (Fin n)) p).target = Set.univ := by
   -- The induced manifold structure again uses the chosen local witness as `chartAt`.
   simpa [HasEuclideanTargetCharts.toTopologicalManifold, HasEuclideanTargetCharts.toChartedSpace,
-    topologicalManifoldOfChartedSpace] using (Classical.choose_spec (h p)).2
+    topologicalManifoldOfChartedSpace] using! (Classical.choose_spec (h p)).2
 
 /-- On a Hausdorff second-countable space, Euclidean-target charts yield some topological-manifold
 structure whose preferred charts have target all of `ℝ^n`. -/

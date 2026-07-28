@@ -77,10 +77,10 @@ theorem contDiffOn_infty_jacobiCoef {ι : Type*} (g : RiemannianMetric I M) (α 
     have hRei : ContDiffOn ℝ ∞ (fun t => chartCurvatureOp (I := I) g α u t (e i t)) s :=
       hR.clm_apply (he i)
     have := (Geodesic.chartCoordFunctional (E := E) p).contDiff.comp_contDiffOn hRei
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   have hej : ContDiffOn ℝ ∞ (fun t => Geodesic.chartCoord (E := E) q (e j t)) s := by
     have := (Geodesic.chartCoordFunctional (E := E) q).contDiff.comp_contDiffOn (he j)
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   exact (hG.mul hRe).mul hej
 
 /-- **Math.** **`C^∞` smoothness of the Jacobi coefficient operator** `A(t) = (a_{ij}(t))` acting
@@ -168,13 +168,14 @@ theorem norm_sq_jacobi_frame_isLittleO (g : RiemannianMetric I M) (p : M) (u : �
   have hF'cd : ContDiffOn ℝ ∞ F' s :=
     φ.toContinuousLinearMap.contDiff.comp_contDiffOn hFCD
   have hF'V' : ∀ t ∈ s, HasDerivAt F' (V' t) t := fun t ht => by
-    simpa [hF', hV'] using φ.toContinuousLinearMap.hasFDerivAt.comp_hasDerivAt t (hFV t ht)
+    simpa [hF', hV', Function.comp_def] using
+      φ.toContinuousLinearMap.hasFDerivAt.comp_hasDerivAt t (hFV t ht)
   have hV'A' : ∀ t ∈ s, HasDerivAt V' (-(A' t) (F' t)) t := fun t ht => by
     have h := φ.toContinuousLinearMap.hasFDerivAt.comp_hasDerivAt t (hVA t ht)
     have hEq : φ (-(A t) (F t)) = -(A' t) (F' t) := by
       simp only [hA', hF', ContinuousLinearMap.comp_apply, ContinuousLinearEquiv.coe_coe,
         ContinuousLinearEquiv.symm_apply_apply, map_neg]
-    simpa [hV', hEq] using h
+    simpa [hV', hEq, Function.comp_def] using h
   have hF'0 : F' 0 = 0 := by simp only [hF', hF0, map_zero]
   -- apply the abstract analytic core
   have hcore := norm_sq_jacobi_isLittleO_local
