@@ -119,13 +119,6 @@ $d\varphi_{\gamma(t)}J(t)=\widetilde J(t)$, then $J$ is Jacobi if and only if
 $\widetilde J$ is Jacobi.
 \end{proposition}
 
-\begin{exercise}
-\label{exer:prove-local-isometry-invariance}
-\dcref{ch10:10.6}
-\uses{prop:local-isometry-invariance-jacobi-fields}
-Prove the preceding proposition.
-\end{exercise}
-
 \section{Basic Computations with Jacobi Fields}
 
 \subsection{Tangential and Normal Jacobi Fields}
@@ -321,7 +314,7 @@ Let $\check g$ be the unit round metric on $S^{n-1}$ and define
 \begin{lemma}[Polar Form of the Euclidean Metric]
 \label{lem:metric-relation-euclidean}
 \dcref{ch10:10.13}
-\uses{ex:warped-products,prob:warped-product-isometry}
+\uses{ex:warped-products,prop:warped-product-isometry}
 On $\mathbb R^n\setminus\{0\}$, the Euclidean metric $\bar g$ satisfies
 \begin{equation}
 \bar g=dr^2+r^2\hat g. \quad (10.15)
@@ -502,13 +495,14 @@ $d\varphi_q$ preserves inner products, hence $\varphi$ is a local isometry.
 \begin{theorem}[Characterization of Locally Symmetric Spaces]
 \label{thm:characterization-locally-symmetric-spaces}
 \dcref{ch10:10.19}
-\uses{prob:symmetric-space-parallel-curvature,lem:locally-symmetric-cartan}
+\uses{prop:symmetric-space-parallel-curvature,lem:locally-symmetric-cartan}
 
 A Riemannian manifold is locally symmetric if and only if its curvature
 tensor is parallel.
 
 \begin{proof}
-\sketch Problem~7-3 proves that local symmetry implies $\nabla Rm=0$.
+\sketch Proposition~\ref{prop:symmetric-space-parallel-curvature} shows that
+local symmetry implies $\nabla Rm=0$.
 Conversely, fix $p$ and apply
 Lemma~\ref{lem:locally-symmetric-cartan} with $\widetilde p=p$ and
 $A=-\operatorname{Id}_{T_pM}$. Since $Rm_p$ is $4$-linear,
@@ -573,7 +567,7 @@ $\gamma:[a,b]\to M$ asks, for prescribed
 $v\in T_{\gamma(a)}M$ and $w\in T_{\gamma(b)}M$, for a Jacobi field $J$
 satisfying $J(a)=v$ and $J(b)=w$.
 
-\begin{proposition}[The Two-Point Boundary Problem for Jacobi Fields]
+\begin{proposition}[The Two-Point Boundary Value Theorem for Jacobi Fields]
 \label{prop:two-point-boundary-problem}
 \dcref{ch10:10.21}
 \uses{prop:existence-uniqueness-jacobi-fields,cor:jacobi-field-tangent-vectors,prop:critical-points-conjugate}
@@ -939,13 +933,6 @@ $\operatorname{Cut}(p)=\{-p\}$.
 \end{enumerate}
 \end{example}
 
-\begin{exercise}
-\label{exer:verify-cut-loci-claims}
-\dcref{ch10:10.31}
-\uses{ex:cut-loci}
-Verify both cut-locus formulas in the preceding example.
-\end{exercise}
-
 \begin{proposition}[Properties of Cut Times]
 \label{prop:properties-of-cut-times}
 \dcref{ch10:10.32}
@@ -1245,391 +1232,3 @@ contradicting the defining infimum. Hence
 $c\leq\operatorname{inj}(p)\leq b$, proving continuity.
 \end{proof}
 \end{proposition}
-\section{Problems}
-
-\begin{exercise}
-\label{prob:taylor-series-metric-tensor}
-\dcref{ch10:10-1}
-
-Let $(M,g)$ be Riemannian and let $p\in M$. Prove that in normal coordinates
-centered at $p$,
-\[
-g_{ij}(x)
-=\delta_{ij}-\frac13\sum_{k,l}R_{iklj}(p)x^kx^l+O(|x|^3).
-\]
-\emph{Hint.} For a radial geodesic
-$\gamma(t)=(tv^1,\ldots,tv^n)$ and the Jacobi field
-$J(t)=tw^i\partial_i|_{\gamma(t)}$, compute the first four derivatives of
-$|J(t)|^2$ at $t=0$ in two ways.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:area-geodesic-disk}
-\dcref{ch10:10-2}
-\uses{prob:taylor-series-metric-tensor,prob:associated-quadratic-form}
-
-Let $p$ lie in a Riemannian manifold $(M,g)$, let
-$\Pi\subseteq T_pM$ be a $2$-plane, and let
-$S_\Pi$ be the surface obtained by applying $\exp_p$ to $\Pi$. For small
-$r>0$, let $A(r)$ be the induced area of the geodesic disk of radius $r$
-about $p$ in $S_\Pi$. Using Problems~10-1 and~8-21, compute the Taylor
-expansion of $A(r)$ through order $r^4$, and express $\sec(\Pi)$ as a limit
-involving $\pi r^2-A(r)$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:jacobi-fields-constant-curvature}
-\dcref{ch10:10-3}
-\uses{prop:jacobi-constant-curvature}
-
-Extend Proposition~10.12 by finding a basis for all Jacobi fields along a
-geodesic in a constant-curvature manifold, including tangential fields and
-fields that do not vanish at $0$.
-\end{exercise}
-
-\begin{exercise}[Volume formula for spheres]
-\label{prob:volume-formula-spheres}
-\dcref{ch10:10-4}
-
-For $n\geq0$, prove
-\[
-\operatorname{Vol}(S^n(R))=\alpha_nR^n,
-\]
-where
-\[
-\alpha_n=
-\begin{cases}
-\dfrac{2^{2k+1}\pi^kk!}{(2k)!},
-& n=2k,\ k\in\mathbb Z,\\
-\dfrac{2\pi^{k+1}}{k!},
-& n=2k+1,\ k\in\mathbb Z.
-\end{cases}
-\]
-The volume of a compact $0$-manifold is its number of points.
-\begin{enumerate}
-\item[(a)] Reduce to $R=1$.
-\item[(b)] Using Corollary~10.17, prove
-\[
-\operatorname{Vol}(S^{n+1})=\sigma_n\operatorname{Vol}(S^n),
-\qquad
-\sigma_n=\int_0^\pi(\sin r)^n\,dr.
-\]
-\item[(c)] Differentiate $(\sin r)^n\cos r$ to prove
-\[
-\sigma_{n+1}=\frac{n}{n+1}\sigma_{n-1},
-\qquad
-\sigma_n\sigma_{n-1}=\frac{2\pi}{n}.
-\]
-\item[(d)] Complete the proof by induction on $k$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Volume of balls in Euclidean space]
-\label{prob:volume-euclidean-balls}
-\dcref{ch10:10-5}
-\uses{prob:volume-formula-spheres}
-
-For $n\geq1$ and $r>0$, prove that the Euclidean ball satisfies
-\[
-\operatorname{Vol}(B_r(0))=\frac1n\alpha_{n-1}r^n,
-\]
-with $\alpha_{n-1}$ as in Problem~10-4.
-\end{exercise}
-
-\begin{exercise}[Asymptotic volume of geodesic balls]
-\label{prob:asymptotic-volume-geodesic-balls}
-\dcref{ch10:10-6}
-\uses{prob:taylor-series-metric-tensor,prob:associated-quadratic-form}
-
-Let $p$ lie in a Riemannian $n$-manifold. Using Problems~10-1 and~8-21,
-prove that as $r\searrow0$,
-\[
-\operatorname{Vol}(B_r(p))
-=\frac1n\alpha_{n-1}r^n
-\left(
-1-\frac{S(p)r^2}{6(n+2)}+O(r^3)
-\right),
-\]
-where $S(p)$ is scalar curvature and $\alpha_{n-1}$ is as in Problem~10-4.
-\end{exercise}
-
-\begin{exercise}[Nonpositive curvature implies no conjugate points]
-\label{prob:nonpositive-curvature-conjugate-points}
-\dcref{ch10:10-7}
-
-Prove that a Riemannian manifold with nonpositive sectional curvature has no
-conjugate points along any geodesic. \emph{Hint.} For a Jacobi field $J$,
-examine derivatives of $|J(t)|^2$.
-\end{exercise}
-
-\begin{exercise}[Solvability of the two-point boundary problem]
-\label{prob:two-point-boundary-problem}
-\dcref{ch10:10-8}
-\uses{prop:two-point-boundary-problem}
-
-Prove Proposition~10.21 on solvability of the two-point boundary problem.
-\end{exercise}
-
-\begin{exercise}[Normal variation of geodesic between submanifolds]
-\label{prob:normal-variation-submanifolds}
-\dcref{ch10:10-9}
-
-Let $M_1,M_2$ be embedded submanifolds of a Riemannian manifold $(M,g)$.
-Let $\gamma:[a,b]\to M$ be a unit-speed geodesic meeting $M_1$ orthogonally
-at $a$ and $M_2$ orthogonally at $b$. Let
-$\Gamma:K\times[a,b]\to M$ be a normal variation with
-$\Gamma(s,a)\in M_1$ and $\Gamma(s,b)\in M_2$, and let $V$ be its variation
-field. Prove
-\[
-\begin{aligned}
-\left.\frac{d^2}{ds^2}\right|_{s=0}L_g(\Gamma_s)
-&=\int_a^b
-\left(
-|D_tV|^2-Rm(V,\gamma',\gamma',V)
-\right)\,dt\\
-&\quad+\left\langle
-\mathrm{II}_2(V(b),V(b)),\gamma'(b)
-\right\rangle
--\left\langle
-\mathrm{II}_1(V(a),V(a)),\gamma'(a)
-\right\rangle,
-\end{aligned}
-\]
-where $\mathrm{II}_i$ is the second fundamental form of $M_i$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:frankel-geodesic-intersection}
-\dcref{ch10:10-10}
-\uses{prob:normal-variation-submanifolds}
-
-Prove Frankel's theorem [Fra61]: if $(M,g)$ is complete, connected, and has
-positive sectional curvature, and if compact totally geodesic submanifolds
-$M_1,M_2\subseteq M$ satisfy
-\[
-\dim M_1+\dim M_2\geq\dim M,
-\]
-then $M_1\cap M_2\neq\varnothing$.
-\emph{Hint.} Assuming disjointness, choose a shortest geodesic segment between
-$M_1$ and $M_2$ and a parallel field along it tangent to the submanifolds at
-the endpoints. Apply Problem~10-9 to obtain a contradiction.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:jacobi-field-index-form}
-\dcref{ch10:10-11}
-\uses{cor:jacobi-field-index-form,thm:minimizing-geodesic-unit-speed}
-
-Prove Corollary~10.25: $I(V,W)=0$ for every $W$ if and only if $V$ is a
-Jacobi field. \emph{Hint.} Adapt the proof of Theorem~6.4.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:normal-jacobi-minimizes-index}
-\dcref{ch10:10-12}
-
-Let $\gamma:[a,b]\to M$ be a unit-speed geodesic segment with no interior
-conjugate points. Let $J$ be a normal Jacobi field, and let $V$ be a piecewise
-smooth normal field satisfying $V(a)=J(a)$ and $V(b)=J(b)$.
-\begin{enumerate}
-\item[(a)] Prove $I(V,V)\geq I(J,J)$.
-\item[(b)] If additionally $\gamma(b)$ is not conjugate to $\gamma(a)$ along
-$\gamma$, prove that equality holds exactly when $V=J$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:killing-vector-jacobi-field}
-\dcref{ch10:10-13}
-\uses{prob:killing-vector-field,prob:killing-vector-field-properties}
-
-Let $X$ be a Killing vector field on a Riemannian manifold $(M,g)$. Prove that
-$X|_\gamma$ is a Jacobi field along every geodesic segment $\gamma$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:transverse-jacobi-field}
-\dcref{ch10:10-14}
-
-Let $P$ be an embedded submanifold of a Riemannian manifold $M$, and let
-$\gamma:I\to M$ be a geodesic meeting $P$ orthogonally at $t=a$. A Jacobi
-field $J$ along $\gamma$ is \emph{transverse to $P$} if, on every compact
-subinterval containing $a$, it is the variation field of a variation through
-geodesics meeting $P$ orthogonally at $a$.
-\begin{enumerate}
-\item[(a)] Prove that $J(t)=(t-a)\gamma'(t)$ is transverse to $P$.
-\item[(b)] Prove that a normal Jacobi field $J$ is transverse to $P$ if and
-only if
-\[
-J(a)\in T_{\gamma(a)}P,
-\qquad
-D_tJ(a)+W_{\gamma'(a)}(J(a))
-\perp T_{\gamma(a)}P,
-\]
-where $W_{\gamma'(a)}$ is the Weingarten map of $P$ in the direction
-$\gamma'(a)$.
-\item[(c)] If $\dim M=n$, prove that the transverse Jacobi fields form an
-$n$-dimensional subspace of $\mathcal J(\gamma)$ and the transverse normal
-Jacobi fields form an $(n-1)$-dimensional subspace.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Normal Jacobi fields in semigeodetic coordinates]
-\label{prob:jacobi-semigeodetic-transverse}
-\dcref{ch10:10-15}
-\uses{prop:characterizations-semigeodetic-coordinates}
-
-Let $(x^1,\ldots,x^n)$ be semigeodetic coordinates on an open set $U$ in a
-Riemannian $n$-manifold, and let
-\[
-\gamma(t)=(x^1,\ldots,x^{n-1},t)
-\]
-be an $x^n$-coordinate curve. For constants
-$a^1,\ldots,a^{n-1}$, prove that
-\[
-J(t)=\sum_{i=1}^{n-1}
-a^i\frac{\partial}{\partial x^i}\bigg|_{\gamma(t)}
-\]
-is a normal Jacobi field transverse to every level set of $x^n$.
-\end{exercise}
-
-\begin{exercise}[Jacobi fields via Fermi coordinates]
-\label{prob:jacobi-fermi-transverse}
-\dcref{ch10:10-16}
-\uses{prop:fermi-coordinates-properties}
-
-Let $P$ be an embedded $k$-submanifold of a Riemannian $n$-manifold, and let
-$(x^1,\ldots,x^k,v^1,\ldots,v^{n-k})$ be Fermi coordinates on $U_0$. For
-fixed $(x^i,v^j)$, set
-\[
-\gamma(t)=(x^1,\ldots,x^k,tv^1,\ldots,tv^{n-k}).
-\]
-This is a geodesic meeting $P$ orthogonally at $t=0$. Prove that its Jacobi
-fields transverse to $P$ are exactly
-\[
-J(t)
-=\sum_{i=1}^ka^i\frac{\partial}{\partial x^i}\bigg|_{\gamma(t)}
-+\sum_{j=1}^{n-k}tb^j
-\frac{\partial}{\partial v^j}\bigg|_{\gamma(t)}
-\]
-for arbitrary constants $a^1,\ldots,a^k,b^1,\ldots,b^{n-k}$.
-\end{exercise}
-
-\begin{exercise}[Tangent vectors via transverse Jacobi fields]
-\label{prob:tangent-vector-jacobi-normal-neighborhood}
-\dcref{ch10:10-17}
-\uses{prob:jacobi-fermi-transverse}
-
-Let $U$ be a normal neighborhood of an embedded submanifold $P$ in a
-Riemannian manifold. For every $q\in U\setminus P$ and $w\in T_qM$, prove
-that there are a geodesic $\gamma:[0,b]\to U$ and a Jacobi field $J$ such
-that
-\[
-\gamma(0)\in P,\qquad
-\gamma'(0)\perp T_{\gamma(0)}P,\qquad
-\gamma(b)=q,
-\]
-$J$ is transverse to $P$, and $J(b)=w$.
-\emph{Hint.} Use Problem~10-16.
-\end{exercise}
-
-\begin{exercise}[Jacobi field in warped product manifold]
-\label{prob:jacobi-warped-product}
-\dcref{ch10:10-18}
-\uses{prob:geodesic-warped-product}
-
-Let $(M_1,g_1)$ and $(M_2,g_2)$ be Riemannian, let
-$f:M_1\to\mathbb R^+$ be smooth and positive, and consider
-$M_1\times_fM_2$. Fix $q_0\in M_2$, a $g_1$-geodesic
-$\gamma:I\to M_1$, and $w\in T_{q_0}M_2$. The curve
-\[
-\overline\gamma(t)=(\gamma(t),q_0)
-\]
-is a geodesic orthogonal to every $\{\gamma(t)\}\times M_2$. Prove that
-\[
-J(t)=(0,w)\in T_{\gamma(t)}M_1\oplus T_{q_0}M_2
-\]
-is a Jacobi field transverse to every such submanifold.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:focal-point-characterization}
-\dcref{ch10:10-19}
-\uses{prob:transverse-jacobi-field}
-
-Let $P$ be embedded in a Riemannian manifold $(M,g)$. A point $q\in M$ is a
-\emph{focal point} of $P$ if it is a critical value of the normal exponential
-map
-\[
-E:\mathcal E_P\to M.
-\]
-Prove that this holds if and only if there are a geodesic
-$\gamma:[0,b]\to M$ starting normal to $P$ and ending at $q$, and a nonzero
-Jacobi field $J\in\mathcal J(\gamma)$ transverse to $P$ with $J(b)=0$. In
-this case, $q$ is a \emph{focal point of $P$ along $\gamma$}.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:nonpositive-curvature-focal-points}
-\dcref{ch10:10-20}
-\uses{prob:nonpositive-curvature-conjugate-points}
-
-Let $(M,g)$ have nonpositive sectional curvature and let
-$P\subseteq M$ be an embedded totally geodesic submanifold. Prove that $P$
-has no focal points. \emph{Hint.} Use Problem~10-7.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:cut-locus-flat-torus}
-\dcref{ch10:10-21}
-\uses{ex:n-torus-riemannian-submanifold,ex:n-torus-flat-metric}
-
-Determine the cut locus of an arbitrary point of the flat torus
-$\mathbb T^n$ from Examples~2.21 and~7.1.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:cut-locus-homotopy-equivalence}
-\dcref{ch10:10-22}
-
-Let $(M,g)$ be connected and compact, let $p\in M$, and let
-$C=\operatorname{Cut}(p)$. Prove that
-$C$ is homotopy equivalent to $M\setminus\{p\}$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:distance-cut-locus}
-\dcref{ch10:10-23}
-
-Let $(M,g)$ be complete, let $p\in M$, and let
-$q\in\operatorname{Cut}(p)$ satisfy
-\[
-d_g(p,q)=d_g\bigl(p,\operatorname{Cut}(p)\bigr).
-\]
-\begin{enumerate}
-\item[(a)] Prove that either $q$ is conjugate to $p$ along a minimizing
-geodesic, or exactly two minimizing geodesics
-$\gamma_1,\gamma_2:[0,b]\to M$ join $p$ to $q$ and satisfy
-\[
-\gamma_1'(b)=-\gamma_2'(b).
-\]
-\item[(b)] Suppose additionally
-$\operatorname{inj}(p)=\operatorname{inj}(M)$. If $q$ is not conjugate to
-$p$ along any minimizing geodesic, prove that there is a unit-speed closed
-geodesic $\gamma:[0,2b]\to M$ such that
-\[
-\gamma(0)=\gamma(2b)=p,\qquad
-\gamma(b)=q,\qquad
-b=d_g(p,q).
-\]
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:injectivity-radius-exponential}
-\dcref{ch10:10-24}
-
-Let $(M,g)$ be complete and let $p\in M$. Prove that
-$\operatorname{inj}(p)$ is the radius of the largest open ball in $T_pM$ on
-which $\exp_p$ is injective.
-\end{exercise}

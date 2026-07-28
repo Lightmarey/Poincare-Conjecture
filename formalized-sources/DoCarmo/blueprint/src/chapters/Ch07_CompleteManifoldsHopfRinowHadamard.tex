@@ -42,13 +42,13 @@ Let $f:M\to M'$ be a smooth local diffeomorphism that preserves the metric
   ($|df\,v|=|v|$ for all $v$; equivalently $f^*g'=g$). Then $f$ carries geodesics of $g$ to
   geodesics of $g'$: for every continuous $g$-geodesic $\gamma$, the image $f\circ\gamma$ is a
   $g'$-geodesic.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-4-rays-are-geodesics}
 \sketch Metric preservation identifies $g=f^*g'$. The Christoffel transformation law for a local diffeomorphism sends the geodesic operator for $f^*g'$ to the corresponding operator for $g'$, so $f\circ\gamma$ satisfies the geodesic equation whenever $\gamma$ does.
 \end{proof}
-\end{lemma}
 
 \begin{proposition}[Completeness prevents extension]
 
@@ -58,13 +58,13 @@ Let $f:M\to M'$ be a smooth local diffeomorphism that preserves the metric
   \lean{Riemannian.not_isExtendible_of_isGeodesicallyComplete}
   \leanok
 If $M$ is complete then $M$ is non-extendible.
+\end{proposition}
 \begin{proof}
 
   \leanok
   \uses{def:dc-ch7-2-1, def:dc-ch7-2-2, lem:dc-ch7-2-3-geodesic-push, thm:dc-ch3-3-7}
 \sketch If $M$ were isometric to a proper open subset of connected $M'$, choose a boundary point and a normal neighborhood there. A geodesic from the boundary point to an interior point restricts, after reversing parameter, to a geodesic in $M$ that cannot be extended to the boundary time, contradicting completeness.
 \end{proof}
-\end{proposition}
 
 \begin{definition}[distance]
 
@@ -77,16 +77,15 @@ If $M$ is complete then $M$ is non-extendible.
   \leanok
 The \emph{distance} $d(p,q)$ is defined by $d(p,q)=$ infimum of the lengths of all
   curves $f_{p,q}$, where $f_{p,q}$ is a piecewise differentiable curve joining $p$
-  to $q$.
-
-  In the formal presentation, \texttt{piecewiseRiemannianEDist} takes the infimum over explicit
-  finite partitions $(\gamma,n,\tau)$ whose restrictions to the intervals
-  $[\tau_i,\tau_{i+1}]$ are $C^\infty$.  Additivity of length and the triangle inequality show
-  that \texttt{Manifold.riemannianEDist} is a lower bound for every such competitor.  Conversely,
-  a $C^1$ path is subdivided into sufficiently small chart windows and replaced there by the
-  pullbacks of straight chart segments.  Continuity of the chart Gram forms controls the polygon's
-  length arbitrarily closely by the original path length.  Therefore the two infima agree.
+  to $q$. Equivalently, one may take the infimum over curves that are smooth on
+  the subintervals of a finite partition.
 \end{definition}
+\begin{proof}
+\sketch Additivity of length and the triangle inequality give one inequality.
+  Conversely, subdivide a $C^1$ path into small chart windows and replace each
+  piece by the pullback of a straight segment. Continuity of the chart Gram
+  forms makes the polygonal lengths converge to the original length.
+\end{proof}
 
 \begin{lemma}[finiteness of the distance]
 
@@ -96,12 +95,12 @@ The \emph{distance} $d(p,q)$ is defined by $d(p,q)=$ infimum of the lengths of a
   \lean{Manifold.riemannianEDist_ne_top}
   \leanok
 If $M$ is connected, then $d(p,q)<\infty$ for all $p,q\in M$.
+\end{lemma}
 \begin{proof}
 
   \leanok
 \sketch In a chart, nearby points are joined to a fixed point by finite-length coordinate segments, so the set of points at finite distance from $p$ is open. The triangle inequality makes its complement open as well; connectedness implies it is all of $M$.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[short curves stay near their origin]
 
@@ -122,13 +121,13 @@ Let $p\in M$ and let $S$ be a neighborhood of $p$. Then there exists $c>0$
   \lean{Manifold.riemannianEDist_pos}
   \leanok
 If $p\ne q$ then $d(p,q)>0$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-5-chart}
 \sketch Apply the short-curve neighborhood lemma to $S=M\smallsetminus\{q\}$, obtaining $c>0$ such that $d(p,x)<c$ implies $x\in S$. Since $q\notin S$, $d(p,q)\ge c>0$.
 \end{proof}
-\end{lemma}
 
 \begin{proposition}[$d$ is a metric]
 
@@ -141,13 +140,13 @@ With the distance $d$, $M$ is a metric space, that is:
   1. $d(p,r)\le d(p,q)+d(q,r)$,
   2. $d(p,q)=d(q,p)$,
   3. $d(p,q)\ge 0$, and $d(p,q)=0\iff p=q$.
+\end{proposition}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-4-finite, lem:dc-ch7-2-5-pos}
 \sketch Reversal and concatenation of curves give symmetry and the triangle inequality, while constant curves give $d(p,p)=0$ and finiteness follows from \cref{lem:dc-ch7-2-4-finite}. The separation axiom is \cref{lem:dc-ch7-2-5-pos}.
 \end{proof}
-\end{proposition}
 
 \begin{proposition}[topology coincides]
 
@@ -157,12 +156,12 @@ With the distance $d$, $M$ is a metric space, that is:
   \lean{eventually_riemannianEDist_lt, setOf_riemannianEDist_lt_subset_nhds, PseudoEMetricSpace.ofRiemannianMetric}
   \mathlibok
 The topology induced by $d$ on $M$ coincides with the original topology on $M$.
+\end{proposition}
 \begin{proof}
 
   \uses{lem:dc-ch7-2-4-finite, lem:dc-ch7-2-5-chart}
 \sketch Small coordinate segments have arbitrarily small Riemannian length, so metric balls are manifold neighborhoods. The short-curve lemma gives a metric ball inside every manifold neighborhood; hence the two topologies coincide.
 \end{proof}
-\end{proposition}
 
 \begin{corollary}[distance is continuous]
 
@@ -173,16 +172,15 @@ The topology induced by $d$ on $M$ coincides with the original topology on $M$.
   \leanok
 If $p_0\in M$, the function $f:M\to\mathbb{R}$ given by $f(p)=d(p,p_0)$ is
   continuous.
+\end{corollary}
 \begin{proof}
 
   \leanok
   \uses{prop:dc-ch7-2-5, prop:dc-ch7-2-6}
 \sketch The triangle inequality gives $|d(p,p_0)-d(q,p_0)|\le d(p,q)$, so the distance-to-$p_0$ function is $1$-Lipschitz and therefore continuous.
 \end{proof}
-\end{corollary}
 
 \begin{theorem}[Hopf--Rinow equivalences]
-]
   \label{thm:dc-ch7-2-8}
   \dcref{ch7:2.8}
   \uses{def:dc-ch7-2-2, def:dc-ch7-2-4, prop:dc-ch7-2-5}
@@ -200,20 +198,13 @@ e) There exists a sequence of compact subsets $K_n\subset M$, $K_n\subset K_{n+1
 In addition, any of the statements above implies that
 f) For any $q\in M$ there exists a geodesic $\gamma$ joining $p$ to $q$ with
      $\ell(\gamma)=d(p,q)$.
-
-\emph{Standing convention of the chapter.} The manifold $M$ is connected
-(Lean: \texttt{[ConnectedSpace M]}) and $\dim M>0$
-(Lean: \texttt{NeZero (Module.finrank} $\mathbb R$ \texttt{E)}).
-In b), Lean's \texttt{ProperSpace M} formulation is related to the displayed
-statement by \texttt{Metric.isCompact\_iff\_isClosed\_bounded}, together with
-\texttt{Metric.isClosed\_closedBall} and \texttt{Metric.isBounded\_closedBall}.
+\end{theorem}
 \begin{proof}
 
   \leanok
   \uses{cor:dc-ch3-3-9, lem:dc-ch7-2-8-b-to-c, lem:dc-ch7-2-8-a-to-b, lem:dc-ch7-2-8-b-iff-e, lem:dc-ch7-2-8-lipschitz, lem:dc-ch7-2-8-c-to-d}
 \sketch The implication (a)$\Rightarrow$(f) follows by minimizing distance on a small geodesic sphere and extending the minimizing radial segment step by step. Then (a)$\Rightarrow$(b) follows because bounded sets lie in the compact image of a closed tangent ball. Properness implies metric completeness, while a Cauchy sequence along an incomplete geodesic converges and the uniform local geodesic flow extends it, proving (c)$\Rightarrow$(d); (d)$\Rightarrow$(a) is immediate. The compact-exhaustion criterion is equivalent to properness.
 \end{proof}
-\end{theorem}
 
 \begin{lemma}[proper $\Rightarrow$ complete]
 
@@ -221,11 +212,13 @@ statement by \texttt{Metric.isCompact\_iff\_isClosed\_bounded}, together with
   \dcref{ch7:2.8}
   \lean{complete_of_proper}
   \mathlibok
-A metric space in which closed bounded sets are compact is complete. (A
-  Cauchy sequence is bounded, therefore has compact closure, thus contains a
-  convergent subsequence; a Cauchy sequence with a convergent subsequence
-  converges.)
+A metric space in which closed bounded sets are compact is complete.
 \end{lemma}
+\begin{proof}
+\sketch A Cauchy sequence is bounded, so its closure is compact and it has a
+  convergent subsequence. The Cauchy property then forces the whole sequence to
+  converge.
+\end{proof}
 
 \begin{lemma}[properness via divergent compact exhaustions]
 
@@ -237,12 +230,12 @@ Let $X$ be a metric space and $p\in X$. Closed bounded subsets of $X$ are
   compact if and only if there exists a sequence of compact subsets
   $K_n\subset X$ with $K_n\subset K_{n+1}$ and $\bigcup_n K_n=X$, such that
   $q_n\notin K_n$ implies $d(p,q_n)\to\infty$.
+\end{lemma}
 \begin{proof}
 
   \leanok
 \sketch For a proper space, take $K_n$ to be closed balls about $p$ with radii tending to infinity. Conversely, the stated exhaustion makes every bounded set lie in some $K_n$; a closed bounded set is then closed in a compact $K_n$ and is compact.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[geodesics are locally Lipschitz]
 
@@ -262,13 +255,13 @@ Let $M$ be a Riemannian manifold whose distance $d$ is the Riemannian
   speed of $\gamma$ (\cref{lem:dc-ch3-2-1-constspeed}). In particular a
   normalized geodesic satisfies $d(\gamma(s),\gamma(t))\le|s-t|$: geodesics
   are locally Lipschitz.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch3-2-1-constspeed}
 \sketch Geodesics have constant speed and the length of their restriction to $[a,b]$ is $|\gamma'|(b-a)$. Since distance is bounded by curve length, $d(\gamma(a),\gamma(b))\le |\gamma'|(b-a)$.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[transformation law for the Christoffel symbols]
 
@@ -286,12 +279,12 @@ Let $\varphi_\alpha,\varphi_\beta$ be two charts of $M$ whose domains contain a
   $$
   A\,\Gamma^\alpha(v,w)\;=\;\Gamma^\beta(Av,Aw)\;+\;D^2\tau(v,w).
   $$
+\end{lemma}
 \begin{proof}
 
   \leanok
 \sketch Apply the second-order chain rule to the transition map $\tau$ and substitute the coordinate geodesic equation in chart $\alpha$. Rearranging yields the displayed transformation law for the Christoffel contractions.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[the geodesic equation is chart-independent]
 
@@ -310,13 +303,13 @@ Let $\gamma$ be a curve in $M$ continuous at $t_0$ whose foot $\gamma(t_0)$ lies
   equation of \cref{def:dc-ch3-2-1}, read in the chart at the moving foot
   $\gamma(t_0)$, holds if and only if it holds in any fixed chart whose domain
   contains the foot.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-christoffel-transform}
 \sketch Write $u_\beta=\tau\circ u_\alpha$ and use the first and second derivative chain rules together with \cref{lem:dc-ch7-2-8-christoffel-transform}. The differentiability and geodesic-equation conditions therefore transfer between the two chart readings.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[flow solutions are geodesics; uniform local existence]
 
@@ -334,13 +327,13 @@ Let $q\in M$ and let $\zeta=(x,w):J\to\mathbb R^n\times\mathbb R^n$ solve the
   is $C^1$ on the chart image -- every initial datum $(p,v)$ admits, for some
   $b>0$, a continuous geodesic on $(-b,b)$ through $p$ with chart-$p$ velocity
   $v$ at time $0$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-chart-independence, lem:dc-ch3-2-6-reparam}
 \sketch The first-order system $x'=w$, $w'=-\Gamma^q(w,w)(x)$ is equivalent to the coordinate geodesic equation, and chart independence gives the intrinsic equation. Picard--Lindelöf supplies a uniform local solution for every initial state.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[uniqueness of geodesics with given initial data]
 
@@ -355,13 +348,13 @@ Let $M$ be Hausdorff and let $\gamma_1,\gamma_2$ be continuous geodesics on an
   $\gamma_1=\gamma_2$ on $I$. (Hausdorffness is necessary: on the line with two
   origins, two geodesics can agree except at a single time, where they pass
   through the two origins.)
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-chart-independence}
 \sketch In a common chart, both geodesics solve the same smooth first-order geodesic system with identical initial data, so ODE uniqueness gives equality near $t_0$. The coincidence set is open and closed in the connected interval, hence the curves agree on all of $I$.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[local comparison of coordinate and Riemannian norms]
 
@@ -376,12 +369,12 @@ Let $p_0\in M$ and let $G$ be the Gram matrix of $g$ in the chart at $p_0$.
   all $w\in\mathbb R^n$. Moreover, along any geodesic whose foot lies in the chart
   at $p_0$, the Gram reading $\langle u',u'\rangle_{G(u)}$ of the chart velocity
   equals the intrinsic squared speed $\langle\gamma',\gamma'\rangle$.
+\end{lemma}
 \begin{proof}
 
   \leanok
 \sketch Positive-definiteness and continuity of the Gram matrix on a compact chart neighborhood give a uniform comparison $\|w\|^2\le c\langle w,w\rangle_{G(y)}$. Along a geodesic, the coordinate Gram expression equals the intrinsic constant speed by the geodesic equation.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[c $\Rightarrow$ d: complete metrics have global geodesics]
 
@@ -394,13 +387,13 @@ Let $M$ be a Riemannian manifold whose distance is the Riemannian distance of
   $g$ and which is complete as a metric space. Then for every $p\in M$ and
   $v\in T_pM$ there is a geodesic $\gamma:\mathbb R\to M$ with $\gamma(0)=p$ and
   $\gamma'(0)=v$: $M$ is geodesically complete.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-lipschitz, lem:dc-ch7-2-8-flow-geodesic, lem:dc-ch7-2-8-uniqueness, lem:dc-ch7-2-8-gram-bound, lem:dc-ch3-2-6-reparam}
 \sketch If a geodesic stopped at a finite endpoint, the local Lipschitz estimate would make its values a Cauchy family. Metric completeness gives a limit point, and the uniform local flow near that point extends the geodesic past the endpoint. Rescaling handles arbitrary initial velocities.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[a $\Rightarrow$ b: geodesic completeness at a point makes closed balls compact]
 
@@ -414,13 +407,13 @@ Let $M$ be a connected Riemannian manifold whose distance is the Riemannian dist
   generates a geodesic $\gamma:\mathbb R\to M$, defined for all time, with $\gamma(0)=p$ and
   $\gamma'(0)=v$. Then the closed and bounded subsets of $M$ are compact, i.e. $M$ is a
   \emph{proper} metric space.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{def:dc-ch7-2-4, lem:dc-ch7-2-8-step}
 \sketch Geodesic completeness at $p$ makes every bounded set lie in the image under $\exp_p$ of a closed tangent ball. The image is compact, and closed subsets of it are compact; the geodesic-sphere step supplies the required radial continuation to reach any point in the bounded set.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[length of a curve read in one chart]
 
@@ -441,13 +434,13 @@ Let $\gamma:[a,b]\to M$ be a $C^1$ curve whose image lies in the domain of a
   \ell(\gamma)\;=\;\int_a^b \sqrt{\big\langle\dot u(t),\dot u(t)\big\rangle_{G(u(t))}}\,dt ,
   $$
   where $G$ is the Gram matrix of $g$ in the chart at $\alpha$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-gram-bound}
 \sketch The chart differential identifies $\gamma'(t)$ with $\dot u(t)$, so its norm is the Gram norm $\sqrt{\langle\dot u,\dot u\rangle_{G(u)}}$. Integrating this norm gives the stated length formula.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[the metric normal ball]
 
@@ -467,13 +460,13 @@ Let $M$ be a Riemannian manifold whose distance $d$ is the Riemannian
     $q\notin\exp_p\big(B_\varepsilon(0)\big)$ -- the normal ball contains the
     metric ball $B_\delta(p)$.
   \end{enumerate}
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch3-2-9-c1diffeo, lem:dc-ch3-3-6-radius, lem:dc-ch3-3-6-reach, lem:dc-ch3-3-6-rayspeed, lem:dc-ch7-2-8-gram-bound, lem:dc-ch7-2-8-chart-length}
 \sketch The Gauss lemma and the local diffeomorphism properties of $\exp_p$ give radial minimizing geodesics inside a sufficiently small normal ball. Compactness of the unit sphere and the chart length comparison give a positive lower bound for curves that leave this ball.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[exponential rays are geodesics]
 
@@ -491,13 +484,13 @@ Let $p\in M$. There are $\rho>0$ and $b>1$ such that for every $u\in T_pM$
   $\gamma_u(0)=p$ with velocity $u$, is continuous, and satisfies the geodesic
   equation (\cref{def:dc-ch3-2-1}) at every $t\in(-b,b)$. In particular the
   segment $t\in[0,1]$, joining $p$ to $\exp_p u$, is a geodesic segment.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-chart-independence}
 \sketch The radial identity $\exp_p(tu)$ is the geodesic with initial velocity $u$ on a uniform small interval, by the exponential-map construction and chart-independent geodesic equation.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[sphere-minimum decomposition of the distance]
 
@@ -518,13 +511,13 @@ Let $M$ be a Riemannian manifold whose distance $d$ is the Riemannian
   \qquad
   d(x_0,q)\;=\;\min_{x\in S_\delta(p)} d(x,q).
   $$
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-gram-bound, lem:dc-ch7-2-8-chart-length, lem:dc-ch7-2-8-normal-ball-dist}
 \sketch The geodesic sphere $S_\delta(p)$ is compact for small $\delta$, so $x\mapsto d(x,q)$ attains a minimum. Any curve from $p$ to $q$ crosses this sphere; the normal-ball distance formula shows that the first crossing contributes exactly $\delta$, yielding the displayed decomposition.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[the geodesic-sphere step]
 
@@ -542,13 +535,13 @@ Let $M$ be a Riemannian manifold whose distance $d$ is the Riemannian
   \gamma(0)=p,\qquad d\big(p,\gamma(1)\big)=\delta,\qquad
   d(p,q)\;=\;\delta+d\big(\gamma(1),q\big).
   $$
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-ray-geodesic, lem:dc-ch7-2-8-sphere-min}
 \sketch Choose a minimizing point $x_0\in S_\delta(p)$ from \cref{lem:dc-ch7-2-8-sphere-min}. The radial geodesic from $p$ to $x_0$ and the distance decomposition give the stated geodesic segment and equality.
 \end{proof}
-\end{lemma}
 
 \begin{corollary}[compact $\Rightarrow$ complete]
 
@@ -558,13 +551,13 @@ Let $M$ be a Riemannian manifold whose distance $d$ is the Riemannian
   \lean{Riemannian.Geodesic.isGeodesicallyComplete_of_compactSpace}
   \leanok
 If $M$ is compact then $M$ is complete.
+\end{corollary}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-8-c-to-d}
 \sketch A compact metric space is complete. The metric induced by a Riemannian metric agrees with the manifold topology, so compactness of $M$ gives metric completeness and then geodesic completeness by \cref{thm:dc-ch7-2-8}.
 \end{proof}
-\end{corollary}
 
 \begin{lemma}[a metric-preserving inclusion is $1$-Lipschitz for the Riemannian distances]
 
@@ -580,13 +573,13 @@ Let $\iota:N\to M$ be a smooth map which \emph{preserves the metric} -- a local 
   $\langle d\iota_p u,d\iota_p v\rangle_M=\langle u,v\rangle_N$ for all $p\in N$ and all
   $u,v\in T_pN$. Then $\iota$ does not increase the Riemannian distance:
   $d_M(\iota a,\iota b)\le d_N(a,b)$ for all $a,b\in N$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{def:dc-ch7-2-4}
 \sketch Metric preservation makes the length of every piecewise differentiable curve in $N$ equal to the length of its image in $M$. Taking infima over curves gives $d_M(\iota a,\iota b)\le d_N(a,b)$.
 \end{proof}
-\end{lemma}
 
 \begin{corollary}[closed submanifold complete]
 
@@ -597,13 +590,13 @@ Let $\iota:N\to M$ be a smooth map which \emph{preserves the metric} -- a local 
   \leanok
 A closed submanifold of a complete Riemannian manifold is complete in the induced
   metric; in particular, the closed submanifolds of Euclidean space are complete.
+\end{corollary}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-2-10-lipschitz, prop:dc-ch7-2-6}
 \sketch A Cauchy sequence in the closed submanifold is Cauchy in the complete ambient manifold by the preceding Lipschitz estimate, hence converges there. Closedness puts the limit in the submanifold, proving completeness.
 \end{proof}
-\end{corollary}
 
 \section{The Theorem of Hadamard}
 
@@ -618,10 +611,10 @@ Let $M$ be a complete Riemannian manifold, simply connected, with sectional
   curvature $K(p,\sigma)\le 0$ for all $p\in M$ and for all $\sigma\subset T_p(M)$.
   Then $M$ is diffeomorphic to $\mathbb{R}^n$, $n=\dim M$; more precisely,
   $\exp_p:T_pM\to M$ is a diffeomorphism.
+\end{theorem}
 \begin{proof}
 \sketch Nonpositive curvature makes the Jacobi energy strictly positive away from its initial zero, so $d\exp_p$ is everywhere invertible and $\exp_p$ is a local diffeomorphism. The pullback metric on $T_pM$ makes $\exp_p$ metric-preserving; completeness and path lifting make it a covering map. Simple connectedness of $M$ makes the covering bijective, hence $\exp_p$ is a diffeomorphism.
 \end{proof}
-\end{theorem}
 
 \begin{lemma}[the Jacobi energy is convex, and $J$ has no interior zero, when $K\le 0$]
 
@@ -660,12 +653,12 @@ Let $M$ be a complete Riemannian manifold with $K(p,\sigma)\le 0$ for all $p\in 
   and for all $\sigma\subset T_pM$. Then for all $p\in M$ the conjugate locus
   $C(p)=\varnothing$; in particular the exponential map $\exp_p:T_pM\to M$ is a local
   diffeomorphism.
+\end{lemma}
 \begin{proof}
 
   \uses{lem:dc-ch7-3-2-no-conjugate, prop:dc-ch5-3-5}
 \sketch Apply \cref{lem:dc-ch7-3-2-no-conjugate} to every geodesic from $p$. The absence of conjugate points makes the differential of $\exp_p$ an isomorphism at every vector; the inverse function theorem then gives a smooth local diffeomorphism.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[length expansion under a metric-expanding map]
 
@@ -684,13 +677,13 @@ Let $f:M\to N$ be a differentiable map between Riemannian manifolds which
   In particular $d\big(\bar c(a),\bar c(b)\big)\le\ell(f\circ\bar c)$: the
   source distance between the endpoints of a curve is bounded by the length of
   its image.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{def:dc-ch7-2-4}
 \sketch Along a piecewise differentiable curve, $|d(f\circ\bar c)/dt|\ge|d\bar c/dt|$. Integrating yields $\ell(f\circ\bar c)\ge\ell(\bar c)$, and the definition of distance gives the second inequality.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[lifts of finite-length curves are relatively compact]
 
@@ -711,13 +704,13 @@ Let $f:M\to N$ expand the metric ($|df_p(v)|\ge|v|$ for all $p,v$), and let $M$
   so $\bar c(t)$ lies in the closed metric ball $\bar B\big(\bar c(a),\ell(f\circ\bar c)\big)$.
   Consequently the whole image $\bar c([a,b])$ is contained in a single
   \emph{compact} subset $K\subset M$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-3-length-expansion, thm:dc-ch7-2-8}
 \sketch Apply the length estimate to each restriction of the lifted curve. Every lift point lies in the closed ball of radius $\ell(f\circ\bar c)$ about its initial point, which is compact by Hopf--Rinow.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[local liftability of a curve through a local homeomorphism]
 
@@ -737,12 +730,12 @@ Let $f:M\to N$ be a local homeomorphism and $c:[0,1]\to N$ a continuous curve.
       $\delta>0$: the set of parameters over which $c$ lifts starting from a fixed
       initial point is open to the right.
   \end{enumerate}
+\end{lemma}
 \begin{proof}
 
   \leanok
 \sketch A local inverse of $f$ near any point over $c(s)$ lifts $c$ on a small interval. Applying this at the endpoint of a partial lift extends the lift to the right.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[path lifting for a metric-expanding local diffeomorphism]
 
@@ -763,13 +756,13 @@ Moreover any continuous lift of a $C^1$ curve through a local diffeomorphism is
   the endpoints $\bar c(t)$ of a partial lift satisfy
   $d\big(\bar c(0),\bar c(t)\big)\le\ell(c)$ (the estimate that traps the lift in a
   compact ball).
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{thm:dc-ch7-2-8, lem:dc-ch7-3-3-length-expansion, lem:dc-ch7-3-3-relatively-compact-lift, lem:dc-ch7-3-3-local-lift}
 \sketch Start with the local lift and extend it maximally. The length estimate confines its image to a compact ball, so an accumulation point at a finite endpoint exists; local liftability then extends the lift, proving existence on all of $[0,1]$. Local inverses also show any lift of a $C^1$ curve is $C^1$ and satisfy the stated distance bound.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[uniqueness of continuous lifts]
 
@@ -785,13 +778,13 @@ Let $f:M\to N$ be a local diffeomorphism out of a Riemannian manifold $M$ (in
   $\bar c_1=\bar c_2$ on all of $S$. In particular the continuous lift of a $C^1$
   curve $c:[0,1]\to N$ through a chosen point $q$ over $c(0)$, produced by
   \cref{lem:dc-ch7-3-3-path-lifting}, is \emph{unique}.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-3-path-lifting}
 \sketch Two lifts agreeing at one parameter agree on a neighborhood by local injectivity. Their coincidence set is open and closed in the connected parameter domain, so the lifts coincide everywhere.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[finite length of a chart-contained $C^1$ curve]
 
@@ -804,13 +797,13 @@ If $\gamma:[a,b]\to N$ is a $C^1$ curve whose image lies in the source of a sing
   chart of $N$, then its length $\ell(\gamma)$ is finite. Reading the length through
   the chart presents it as $\mathrm{ofReal}\big(\int_a^b\sqrt{\langle\gamma',\gamma'\rangle}\big)$,
   a real number.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{def:dc-ch1-2-9}
 \sketch In a single chart the metric coefficients and the $C^1$ velocity are bounded on the compact parameter interval, so the coordinate length integral is finite.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[closed image; surjectivity onto a connected target]
 
@@ -822,13 +815,13 @@ If $\gamma:[a,b]\to N$ is a $C^1$ curve whose image lies in the source of a sing
 Let $M$ be a complete Riemannian manifold and $f:M\to N$ a local diffeomorphism
   which expands the metric. Then the image $f(M)$ is \emph{closed} in $N$; if $N$ is
   connected and $M$ nonempty, $f$ is \emph{surjective}.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-3-path-lifting, lem:dc-ch7-3-3-chart-length-finite}
 \sketch If $f(x_n)$ converges, join a fixed image point to the limit by a finite-length chart curve and lift its initial segments. The lift remains in a compact ball, hence has an accumulation point whose image is the limit; therefore $f(M)$ is closed. A nonempty closed image in connected $N$ is all of $N$.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[expansion $\Rightarrow$ covering map]
 
@@ -841,12 +834,12 @@ Let $M$ be a complete Riemannian manifold and let $f:M\to N$ be a local
   diffeomorphism onto a Riemannian manifold $N$ which has the following property:
   for all $p\in M$ and for all $v\in T_pM$, we have $|df_p(v)|\ge|v|$. Then $f$ is a
   covering map.
+\end{lemma}
 \begin{proof}
 
   \leanok
 \sketch Path lifting and uniqueness give local trivializations over points in the image; the closed-image result supplies a neighborhood disjoint from the image at points outside it. Thus every point has an evenly covered neighborhood and $f$ is a covering map.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[a covering map onto a simply connected base is a homeomorphism]
 
@@ -857,12 +850,12 @@ Let $M$ be a complete Riemannian manifold and let $f:M\to N$ be a local
 Let $f:E\to X$ be a covering map whose total space $E$ is connected and nonempty,
   and whose base $X$ is simply connected and locally path connected. Then $f$ is a
   homeomorphism; in particular it is bijective.
+\end{lemma}
 \begin{proof}
 
   \leanok
 \sketch Lift the identity of the simply connected base to a global section. It proves surjectivity. The section composed with $f$ and the identity on the connected total space are lifts of the same map agreeing at one point, so uniqueness gives injectivity; an open continuous bijection is a homeomorphism.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[metric-expanding local diffeomorphism onto a simply connected manifold]
 
@@ -874,13 +867,13 @@ Let $f:E\to X$ be a covering map whose total space $E$ is connected and nonempty
 Let $f:M\to N$ be a smooth local diffeomorphism between Riemannian manifolds which
   expands the metric ($|df_p(v)|\ge|v|$ for all $p\in M$ and all $v\in T_pM$), let $M$
   be complete, and let $N$ be simply connected. Then $f$ is a diffeomorphism.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-3, lem:dc-ch7-3-1-covering-simplyconnected}
 \sketch The expansion and completeness hypotheses give a covering map by \cref{lem:dc-ch7-3-3}. The simply connected-base lemma makes it bijective, and a bijective local diffeomorphism is a diffeomorphism.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[the global exponential map of a complete manifold]
 
@@ -896,13 +889,13 @@ Let $M$ be a complete Riemannian manifold and $p\in M$. For every $v\in T_pM$ th
   is traced radially: $\exp_p(cv)=\gamma_v(c)$ for all $c\in\mathbb{R}$, so the curves
   $c\mapsto\exp_p(cv)$ are precisely the geodesics of $M$ issuing from $p$. If moreover $M$
   is connected, then $\exp_p$ is surjective.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{def:dc-ch7-2-2, thm:dc-ch7-2-8}
 \sketch Hopf--Rinow gives a global geodesic for each initial vector, and uniqueness makes $\gamma_v$ and $\exp_p$ well defined. Affine reparametrization gives $\exp_p(cv)=\gamma_v(c)$; minimizing geodesics from $p$ show surjectivity when $M$ is connected.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[the exponential map of a complete manifold is $C^\infty$]
 
@@ -920,13 +913,13 @@ Let $M$ be a complete Riemannian manifold and $p\in M$. For every $v\in T_pM$ th
 Let $M$ be a complete Riemannian manifold and $p\in M$. Then the exponential map
   $\exp_p:T_pM\to M$ is $C^\infty$. This is the smooth dependence of the geodesic flow on its
   initial conditions, specialised to the exponential map.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-expmap-global}
 \sketch Cover the compact image of a geodesic segment by finitely many charts. Smooth local geodesic flows and smooth chart transitions compose to a smooth endpoint map, and the initial velocity enters affinely; this proves smoothness of $\exp_p$ near each vector.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[Hadamard assembly from geodesic completeness at a point]
 
@@ -940,13 +933,13 @@ Let $f:M\to N$ be a smooth local diffeomorphism between Riemannian manifolds whi
   $N$ be simply connected, and suppose $M$ is connected and \emph{geodesically complete at
   some point $o$}: every $v\in T_oM$ generates a geodesic $\gamma:\mathbb R\to M$, defined
   for all time, with $\gamma(0)=o$ and $\gamma'(0)=v$. Then $f$ is a diffeomorphism.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-1-covering-diffeo, lem:dc-ch7-2-8-a-to-b}
 \sketch Completeness at the base point implies properness by \cref{lem:dc-ch7-2-8-a-to-b}, hence metric completeness. The expansion lemma gives a covering map, and the simply connected-base result upgrades it to a diffeomorphism.
 \end{proof}
-\end{lemma}
 
 \subsection{Proof of the Hadamard theorem}
 
@@ -963,13 +956,13 @@ Let $M$ be a Riemannian manifold, $p\in M$, and $f:T_pM\to M$ a smooth local
   identity chart. Then $T_pM$ carries the \emph{pulled-back Riemannian metric} $f^*g$,
   $\langle u,v\rangle^{f^*g}_x=\langle df_x(u),df_x(v)\rangle_{f(x)}$, for which $f$ is a
   local isometry, hence a metric-expander: $|df_x(v)|=|v|$ for all $x,v$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-3-length-expansion}
 \sketch Define $\langle u,v\rangle^{f^*g}_x=\langle df_xu,df_xv\rangle_{f(x)}$. Since $df_x$ is an isomorphism, this is a smooth positive-definite metric and $f$ is a local isometry.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[pole $\Rightarrow$ diffeomorphism]
 
@@ -982,13 +975,13 @@ Let $M$ be a complete, simply connected Riemannian manifold, $p\in M$, and $f:T_
   a smooth local diffeomorphism which is metric-expanding for its own pulled-back metric
   $f^*g$. If the radial lines $s\mapsto sv$ of $T_pM$ are geodesics of $f^*g$, then $f$ is a
   diffeomorphism $T_pM\to M$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-1-assembly, lem:dc-ch7-3-4-pullback-metric}
 \sketch Equip $T_pM$ with $f^*g$. The radial lines are complete geodesics through the origin, so the source is complete at that point; the assembly lemma then makes the metric-preserving local diffeomorphism $f$ a diffeomorphism.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[the poles theorem reduces to the rays being pullback-geodesics]
 
@@ -1006,13 +999,13 @@ Let $M$ be a complete, simply connected Riemannian manifold, $p\in M$, and
   pulled-back metric $f^*g$. If for every $v\in T_pM$ the radial line
   $\gamma_v(s)=s\,v$ is a geodesic of $f^*g$, then $f$ is a diffeomorphism
   $T_pM\to M$.
+\end{lemma}
 \begin{proof}
 
   \leanok
   \uses{lem:dc-ch7-3-4-pole-diffeo}
 \sketch In the identity chart on $T_pM$, $\gamma_v(s)=sv$ has zero second derivative. Thus the geodesic condition is exactly $\Gamma^{f^*g}_{sv}(v,v)=0$; the remaining initial-data conditions are immediate, so the pole lemma applies.
 \end{proof}
-\end{lemma}
 
 \begin{lemma}[$\exp_p$ is a local isometry, so the radial lines are $\exp_p^*g$-geodesics]
 
@@ -1023,13 +1016,13 @@ Let $M$ be a complete, simply connected Riemannian manifold, $p\in M$, and
   \leanok
 For $f=\exp_p$ and the pulled-back metric $\exp_p^*g$ on $T_pM$, every radial line
   $\gamma_v(s)=s\,v$ is a geodesic of $\exp_p^*g$.
+\end{lemma}
 \begin{proof}
 
   \uses{lem:dc-ch7-3-4-pullback-metric, lem:dc-ch7-3-expmap-global}
   \leanok
 \sketch The pullback construction makes $\exp_p$ a local isometry. The image of $s\mapsto sv$ is the geodesic $s\mapsto\exp_p(sv)$, and local isometries reflect geodesics, so the radial line is a geodesic for $\exp_p^*g$.
 \end{proof}
-\end{lemma}
 
 \begin{remark}[poles]
 

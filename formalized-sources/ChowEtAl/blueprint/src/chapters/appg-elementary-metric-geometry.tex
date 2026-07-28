@@ -43,6 +43,7 @@ For a map $f:X\to(Y,d_Y)$, the pullback $f^*d_Y(x,x')=d_Y(f(x),f(x'))$
 is a pseudo-metric on $X$; it is a metric when $f$ is injective.
 \end{proposition}
 \begin{proof}
+\sketch
 Nonnegativity, symmetry, and the triangle inequality are inherited from
 $d_Y$.  If $f$ is injective, $f(x)=f(x')$ implies $x=x'$, so the separation
 axiom also holds.
@@ -65,6 +66,7 @@ parametrization $\beta=\widetilde\beta\circ\phi$ with $\phi$ continuous and
 nondecreasing.
 \end{definition}
 \begin{proof}
+\sketch
 The concatenation axioms give the triangle inequality for $d_{\cL}$.
 Reparametrization by the cumulative partial-length function gives the stated
 arc-length factorization; constant subintervals are collapsed by $\phi$.
@@ -80,6 +82,7 @@ metric obtained this way is called intrinsic, and it is strictly intrinsic when
 the length structure is complete.
 \end{proposition}
 \begin{proof}
+\sketch
 Concatenating paths through an intermediate point proves the triangle
 inequality.  The length-space topology and nonnegativity give finiteness,
 symmetry, and separation in the metric case.
@@ -98,6 +101,7 @@ is a quasi-length structure.  If $d$ is a metric, it is a length structure,
 and $d_{\cL_d}=d$ whenever $d$ is intrinsic.
 \end{proposition}
 \begin{proof}
+\sketch
 Refining partitions proves additivity under concatenation and monotonicity of
 partial variations.  The triangle inequality controls restrictions and linear
 reparametrizations.  The intrinsic identity is the defining equality between
@@ -160,6 +164,7 @@ If $\GH(X,Y)<\epsilon$, there are $2\epsilon$-isometries in both directions.
 Conversely, an $\epsilon$-isometry implies $\GH(X,Y)<2\epsilon$.
 \end{lemma}
 \begin{proof}
+\sketch
 Embed the spaces into a common metric space realizing the Hausdorff distance
 up to $\epsilon$.  Choosing points within $\epsilon$ gives maps with image
 nets and distortion at most $2\epsilon$.  Conversely, the metric obtained by
@@ -240,14 +245,6 @@ $p$ is
 For a Riemannian manifold this cone is $T_p\mathcal M\cong\mathbf E^n$.
 \end{definition}
 
-\begin{remark}[Tangent-cone questions]
-\label{rem:chow-iii-g21-g22-tangent-questions}
-\dcref{appG:G.21--G.22}\group{Metric cones}\source{chow-et-al-ricci-flow-part-iii:page-0418,chow-et-al-ricci-flow-part-iii:page-0419}
-For a boundedly compact subset $S\subset X$, it is natural to ask whether
-$T_pS$ embeds isometrically in $T_pX$, and whether tangent cones exist for
-locally convex subsets of Riemannian manifolds.
-\end{remark}
-
 \begin{proposition}[Rescaling tangent and asymptotic cones]
 \label{prop:chow-iii-g23-g25-cone-rescaling}
 \dcref{appG:G.23,appG:G.25}\group{Metric cones}\source{chow-et-al-ricci-flow-part-iii:page-0419}
@@ -257,6 +254,7 @@ $(T_pX,cd_p)$ or $(AX,cd_{AX})$ is isometric to the original cone for every
 $c>0$.
 \end{proposition}
 \begin{proof}
+\sketch
 Replace the scaling sequence $\alpha_i$ by $c\alpha_i$ (or $\omega_i$ by
 $\omega_i/c$); the two definitions then differ only by the displayed global
 homothety.
@@ -311,6 +309,7 @@ For a Riemannian manifold $(M,g)$, the distance of $g_{\Cone}=r^2g+dr^2$ on
 $M\times(0,\infty)$ agrees with the cone metric.
 \end{proposition}
 \begin{proof}
+\sketch
 The formula is the law-of-cosines distance in the Euclidean comparison sector;
 the triangle inequality follows by concatenating sectors.  For the Riemannian
 claim, minimizing the radial variational integral gives
@@ -376,6 +375,7 @@ Thus every shortest path has a direction and the angle between two shortest
 paths is well-defined.
 \end{definition}
 \begin{proof}
+\sketch
 The monotonicity is the hinge form of Toponogov comparison.  Taking the joint
 limit in the monotone net gives the angle; taking the same path twice gives
 zero.
@@ -422,14 +422,6 @@ curvature is at least $k>0$, then $\diam X\leq\pi/\sqrt{k}$.
 \dcref{appG:G.47}\group{Aleksandrov structure}\source{chow-et-al-ricci-flow-part-iii:page-0428}
 Bishop--Gromov volume comparison extends to Aleksandrov spaces with curvature
 bounded below.
-\end{remark}
-
-\begin{remark}[Riemannian approximation problem]
-\label{rem:chow-iii-g48-riemannian-limits}
-\dcref{appG:G.48}\group{Aleksandrov structure}\source{chow-et-al-ricci-flow-part-iii:page-0428}
-It is open whether every finite-dimensional Aleksandrov space of curvature
-$\geq k$ is a limit of complete Riemannian manifolds with a uniform lower
-sectional-curvature bound (possibly in higher dimensions).
 \end{remark}
 
 \begin{theorem}[Existence of the tangent cone]
@@ -527,10 +519,3 @@ metric extending continuously over $X-S_X$.  The space is approximately twice
 differentiable almost everywhere.  A geodesically complete Aleksandrov space
 is isometric to a $C^{1,\alpha}$ Riemannian metric on a smooth manifold.
 \end{theorem}
-
-\begin{remark}[Further convergence questions]
-\label{rem:chow-iii-g61-further-convergence}
-\dcref{appG:G.61}\group{Aleksandrov structure}\source{chow-et-al-ricci-flow-part-iii:page-0433}
-The behavior of these notions under Gromov--Hausdorff convergence and collapsing
-is a further topic beyond this appendix.
-\end{remark}

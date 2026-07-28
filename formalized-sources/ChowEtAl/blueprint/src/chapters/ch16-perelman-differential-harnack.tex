@@ -1,11 +1,9 @@
-\chapter{Perelman's Differential Harnack Estimate}
+\chapter[16]{Perelman's Differential Harnack Estimate}
 \label{ch:chow-ii-perelman-differential-harnack}
 \dcref{ch16}
 \source{chow-et-al-ricci-flow-part-ii:page-0332}
 
-This chapter develops differential Harnack inequalities for the heat equation
-and for the adjoint heat equation coupled to Ricci flow. We use the backward
-time variable $\tau$ and write $d\mu$ for the Riemannian measure.
+Use backward time \(\tau\) and write \(d\mu\) for the Riemannian measure.
 
 \section{The heat equation}
 
@@ -39,7 +37,7 @@ f(x_2,\tau_2)-f(x_1,\tau_1)\le
 \]
 \end{theorem}
 \begin{proof}
-The Bochner formula applied to the equation in
+\sketch The Bochner formula applied to the equation in
 Definition~\ref{def:chow-ii-ch16-heat-log-density}, followed by the scalar
 maximum principle, gives the differential inequality. Integrating it along a
 space-time path and minimizing the weighted kinetic energy gives the last
@@ -73,7 +71,7 @@ closed manifold with $\operatorname{Rc}\ge0$. Then
 Equivalently, $2\tau\partial_\tau f+\tau|\nabla f|^2+f\le0$.
 \end{theorem}
 \begin{proof}
-For $W=\tau(2\Delta f-|\nabla f|^2)+f-n$, the Bochner formula gives
+\sketch For $W=\tau(2\Delta f-|\nabla f|^2)+f-n$, the Bochner formula gives
 \[
 (\partial_\tau-\Delta)W=-2\langle\nabla f,\nabla W\rangle
  -2\tau\left(\left|\nabla^2f-\frac{g}{2\tau}\right|^2
@@ -118,7 +116,7 @@ In particular, nonnegative Ricci curvature makes $\mathcal W_{\rm lin}$
 nonincreasing.
 \end{theorem}
 \begin{proof}
-Put $\omega=2\Delta f-|\nabla f|^2$ and $W=\sigma\omega+f-n$.
+\sketch Put $\omega=2\Delta f-|\nabla f|^2$ and $W=\sigma\omega+f-n$.
 Bochner's identity gives
 \[
 (\partial_\tau-\Delta)\omega=-2\langle\nabla f,\nabla\omega\rangle
@@ -218,7 +216,7 @@ then, writing $H=(4\pi\tau)^{-n/2}e^{-f}$,
 \]
 \end{theorem}
 \begin{proof}
-For $v_H=(\tau(2\Delta f-|\nabla f|^2)+f-n)H$ one has
+\sketch For $v_H=(\tau(2\Delta f-|\nabla f|^2)+f-n)H$ one has
 \[
 (\partial_\tau-\Delta)v_H=-2\tau\left(\left|\nabla^2f-\frac{g}{2\tau}\right|^2
  +\operatorname{Rc}(\nabla f,\nabla f)\right)H\le0.
@@ -237,7 +235,7 @@ If $\operatorname{Rc}\ge0$ and $\mathcal W_{\rm lin}(f,\tau_0)\ge0$ for the
 heat kernel at some $\tau_0>0$, then $(M,g)$ is isometric to $\mathbb R^n$.
 \end{corollary}
 \begin{proof}
-The two preceding results force $\nabla^2f=(2\tau)^{-1}g$ for
+\sketch The two preceding results force $\nabla^2f=(2\tau)^{-1}g$ for
 $0<\tau\le\tau_0$. Thus $\phi=4\tau f$ satisfies $\nabla^2\phi=2g$;
 its minimum is a pole and $\phi-\min\phi=d^2$. Hence $\Delta d^2=2n$,
 and equality in Bishop--Gromov comparison gives Euclidean space.
@@ -344,7 +342,7 @@ Moreover, for any positive adjoint heat solution $u$,
 \]
 \end{theorem}
 \begin{proof}
-The displayed evolution identity follows by differentiating the adjoint heat
+\sketch The displayed evolution identity follows by differentiating the adjoint heat
 equation and commuting covariant derivatives. Pairing it with a nonnegative
 solution of the conjugate forward heat equation, the adjoint heat parametrix
 and the weak maximum principle imply that the pairing tends to zero at
@@ -395,7 +393,7 @@ H(y,\tau;x,0)\ge(4\pi\tau)^{-n/2}e^{-\ell(y,\tau;x,0)},
 \]
 \end{lemma}
 \begin{proof}
-The difference of the two kernels is an adjoint supersolution with zero
+\sketch The difference of the two kernels is an adjoint supersolution with zero
 distributional initial data. Pairing it with arbitrary nonnegative solutions
 of the conjugate forward heat equation and applying the weak maximum principle
 proves nonnegativity.

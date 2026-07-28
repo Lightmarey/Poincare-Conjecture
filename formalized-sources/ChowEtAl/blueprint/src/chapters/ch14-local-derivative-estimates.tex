@@ -1,10 +1,9 @@
-\chapter{Local Derivative Estimates for Curvature}
+\chapter[14]{Local Derivative Estimates for Curvature}
 \label{ch:chow-ii-local-derivative-estimates}
 
-Throughout this chapter, \(g(t)\) denotes a Ricci flow and all tensor norms,
-covariant derivatives, and metric balls are taken with respect to the indicated
-metric.  We write \(\operatorname{Rm}\) and \(\operatorname{Rc}\) for its
-Riemann and Ricci tensors.
+Let \(g(t)\) be a Ricci flow.  Norms, covariant derivatives, and balls use
+the indicated metric; \(\operatorname{Rm}\) and \(\operatorname{Rc}\) denote
+its Riemann and Ricci tensors.
 
 \section{Metric comparison and cutoff functions}
 
@@ -27,7 +26,7 @@ g(x,t)\le e^{2K_2T}g(x,0).
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-For \(0\ne V\in T_xM\), the Ricci flow equation gives
+\sketch For \(0\ne V\in T_xM\), the Ricci flow equation gives
 \[
 \log\frac{g(t)(V,V)}{g(0)(V,V)}
 =-2\int_0^t\frac{\operatorname{Rc}_{g(s)}(V,V)}{g(s)(V,V)}\,ds.
@@ -72,7 +71,7 @@ and
 \]
 \end{lemma}
 \begin{proof}
-Choose a nonincreasing smooth \(\lambda:[0,\infty)\to[0,1]\), equal to one
+\sketch Choose a nonincreasing smooth \(\lambda:[0,\infty)\to[0,1]\), equal to one
 on \([0,1/2]\) and zero on \([7/8,\infty)\), and set
 \(\kappa(s)=\lambda(s/r)^2\).  It may be chosen so that
 \[
@@ -128,7 +127,7 @@ a cutoff \(\eta\), supported in \(B_{g(0)}(p,r/2^m)\) and equal to one on
 \]
 \end{lemma}
 \begin{proof}
-Apply Lemma~\ref{lem:chow-ii-cutoff-gradient-laplacian-estimates} with the
+\sketch Apply Lemma~\ref{lem:chow-ii-cutoff-gradient-laplacian-estimates} with the
 outer radius \(r/2^m\).  The assumed bound on \(\Theta\), together with
 \(0\le\eta\le1\), turns its final supremum into a constant depending only on
 the displayed parameters.  Absorbing the powers of \(2^m\) into the constant
@@ -158,7 +157,7 @@ then
 \]
 \end{theorem}
 \begin{proof}
-The curvature evolution inequalities have the form
+\sketch The curvature evolution inequalities have the form
 \[
 (\partial_t-\Delta)|\nabla^j\operatorname{Rm}|^2
 \le-2|\nabla^{j+1}\operatorname{Rm}|^2
@@ -189,7 +188,7 @@ If a complete bounded-curvature Ricci flow satisfies \(|\operatorname{Rm}(g(0))|
 then \(|\operatorname{Rm}(g(t))|\le2K\) for \(0\le t\le(16K)^{-1}\).
 \end{lemma}
 \begin{proof}
-The curvature evolution and Kato's inequality give, in the barrier sense,
+\sketch The curvature evolution and Kato's inequality give, in the barrier sense,
 \((\partial_t-\Delta)|\operatorname{Rm}|\le8|\operatorname{Rm}|^2\).  The maximum principle therefore
 compares \(u(t)=\sup_M|\operatorname{Rm}(g(t))|\) with the solution of \(v'=8v^2\),
 \(v(0)=K\).  Thus \(u(t)\le K/(1-8Kt)\), which is at most \(2K\) on the
@@ -210,7 +209,7 @@ principle applies and \(|\operatorname{Rm}(g(0))|\le K\),
 \]
 \end{corollary}
 \begin{proof}
-Lemma~\ref{lem:chow-ii-curvature-doubling-time} bounds the curvature by
+\sketch Lemma~\ref{lem:chow-ii-curvature-doubling-time} bounds the curvature by
 \(2K\) on the stated interval.  Apply
 Theorem~\ref{thm:chow-ii-global-curvature-derivative-estimates} with this
 bound and a fixed dimensionless time parameter.
@@ -265,7 +264,7 @@ on \(B_{g(0)}(p,r/2)\times(0,\tau]\).  If additionally
 to depend only on \(n,\alpha,\beta,\gamma\).
 \end{theorem}
 \begin{proof}
-The standard curvature evolution inequalities imply, for
+\sketch The standard curvature evolution inequalities imply, for
 \[
 F=(16K^2+|\operatorname{Rm}|^2)|\nabla\operatorname{Rm}|^2,
 \]
@@ -328,7 +327,7 @@ If \(\overline B_{g(0)}(p,r)\Subset\mathcal U\) and \(|\operatorname{Rm}|\le K\)
 for \(y\in B_{g(0)}(p,r/2)\) and \(0<t\le\tau\).
 \end{theorem}
 \begin{proof}
-Fix \((y,t)\) and put \(A=r^{-2}+t^{-1}+K\).  After the parabolic rescaling
+\sketch Fix \((y,t)\) and put \(A=r^{-2}+t^{-1}+K\).  After the parabolic rescaling
 by \(A\), the curvature is at most one, the available spatial radius is at
 least one, and the backward time interval has length at least a dimensional
 constant.  The localized Bernstein quantity
@@ -354,7 +353,7 @@ Theorem~\ref{thm:chow-ii-shi-local-first-derivative-estimate},
 on \(B_{g(0)}(p,r/2)\times(0,\tau]\).
 \end{theorem}
 \begin{proof}
-The case \(m=1\) is
+\sketch The case \(m=1\) is
 Theorem~\ref{thm:chow-ii-shi-local-first-derivative-estimate}.  Assume the
 claim through order \(m\), first on successively smaller balls.  Apply
 Lemma~\ref{lem:chow-ii-shi-higher-derivative-quantity} and multiply its
@@ -392,7 +391,7 @@ satisfies
 \]
 \end{lemma}
 \begin{proof}
-For every \(k\), commuting covariant derivatives in the curvature equation
+\sketch For every \(k\), commuting covariant derivatives in the curvature equation
 gives
 \[
 (\partial_t-\Delta)|\nabla^k\operatorname{Rm}|^2
@@ -441,7 +440,7 @@ on \(B_{g(0)}(p,r/2)\times(0,\tau]\).  In particular, derivatives of order
 at most \(\ell\) are uniformly bounded through time zero.
 \end{theorem}
 \begin{proof}
-Induct on \(m\), using the initial bounds when the maximum of the localized
+\sketch Induct on \(m\), using the initial bounds when the maximum of the localized
 quantity occurs at time zero.  Lemma~\ref{lem:chow-ii-modified-shi-derivative-quantity}
 and a cutoff from Lemma~\ref{lem:chow-ii-cutoff-bounded-derivatives} show at a
 positive maximum of \(\eta F_{m,\ell}\) that either
@@ -490,7 +489,7 @@ For \(\widetilde C\) sufficiently large,
 \]
 \end{lemma}
 \begin{proof}
-Set \(a=(m-\ell)_+\) and \(b=(m-\ell+1)_+\).  Apply the commuted curvature
+\sketch Set \(a=(m-\ell)_+\) and \(b=(m-\ell+1)_+\).  Apply the commuted curvature
 inequality used in Lemma~\ref{lem:chow-ii-shi-higher-derivative-quantity} to
 \(t^a|\nabla^m\operatorname{Rm}|^2\) and \(t^b|\nabla^{m+1}\operatorname{Rm}|^2\).  The induction
 hypothesis controls every lower-order product because
@@ -526,7 +525,7 @@ subsequence converges in pointed \(C^{m_0}\) Cheeger--Gromov topology to a
 pointed complete Ricci flow on \([0,T)\).
 \end{theorem}
 \begin{proof}
-Initial derivative and injectivity-radius bounds give pointed
+\sketch Initial derivative and injectivity-radius bounds give pointed
 \(C^{m_0}\) Cheeger--Gromov convergence of a subsequence at time zero.
 Theorem~\ref{thm:chow-ii-shi-estimates-initial-derivative-bounds}, applied on
 each compact time interval, supplies uniform space-time bounds through order
@@ -569,7 +568,7 @@ curvature-operator eigenvalue satisfies
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-The local derivative estimate bounds \(|\nabla\operatorname{Rm}(\cdot,\tau)|\) on the half
+\sketch The local derivative estimate bounds \(|\nabla\operatorname{Rm}(\cdot,\tau)|\) on the half
 ball.  Along a minimizing \(g(\tau)\)-geodesic \(\beta\) from \(p\) to \(x\),
 \[
 \lambda_1(\operatorname{Rm})(x,\tau)
@@ -598,7 +597,7 @@ operator.  If
 on \(B_{g(\tau)}(p,r/2)\).
 \end{lemma}
 \begin{proof}
-Hamilton's trace Harnack inequality makes \(tR(x,t)\) nondecreasing, hence
+\sketch Hamilton's trace Harnack inequality makes \(tR(x,t)\) nondecreasing, hence
 \(R(x,t)\le2K\) for \(t\in[\tau/2,\tau]\) on the terminal ball.  Nonnegative
 curvature operator converts this to \(|\operatorname{Rm}|\le C(n)K\).  Nonnegative Ricci
 curvature makes distances nonincreasing, so the radius-\(r\) ball at time
@@ -625,7 +624,7 @@ of \(u_0\), and upper bounds for \(-\chi\Delta\chi\), \(|\nabla\chi|^2\),
 and \(\chi^2\).
 \end{lemma}
 \begin{proof}
-Direct calculation gives
+\sketch Direct calculation gives
 \[
 (\partial_t-\chi^2\Delta)u^2=-2\chi^2|\nabla u|^2
 \]
@@ -677,7 +676,7 @@ There is \(\delta>0\), depending only on \(g_0\) near
 on \([0,\delta)\).
 \end{proposition}
 \begin{proof}
-Fix a background connection and solve the local Ricci--DeTurck equation
+\sketch Fix a background connection and solve the local Ricci--DeTurck equation
 \[
 \partial_tg_{ij}=-2\chi^2R_{ij}
 +\nabla_i(\chi^2W)_j+\nabla_j(\chi^2W)_i,
@@ -707,7 +706,7 @@ There is \(C(n)>0\) such that, if \((M^n,g_0)\) is complete and
 \]
 \end{theorem}
 \begin{proof}
-Parabolically rescale so that \(\sup|\nabla\chi|^2+K=1\).  The local
+\sketch Parabolically rescale so that \(\sup|\nabla\chi|^2+K=1\).  The local
 Ricci--DeTurck system in the preceding proof then has uniformly bounded
 initial principal coefficients and lower-order coefficients on the compact
 support of \(\chi\).  Its standard interior energy estimates give a
@@ -734,7 +733,7 @@ where \(\nabla^2_{ij}=\tfrac12(\nabla_i\nabla_j+\nabla_j\nabla_i)\) and
 \(\odot\) is the Kulkarni--Nomizu product.
 \end{lemma}
 \begin{proof}
-Differentiating the Levi--Civita connection and then the curvature gives
+\sketch Differentiating the Levi--Civita connection and then the curvature gives
 \[
 \partial_sR_{ijkl}
 =\nabla_i\nabla_\ell h_{jk}+\nabla_j\nabla_kh_{i\ell}

@@ -1,4 +1,4 @@
-\chapter{Estimates of the Heat Equation for Evolving Metrics}
+\chapter[25]{Estimates of the Heat Equation for Evolving Metrics}
 \label{ch:chow-iii-estimates-heat-equation-evolving-metrics}
 \dcref{ch25}
 \source{chow-et-al-ricci-flow-part-iii:page-0326}
@@ -79,7 +79,7 @@ Here \(C_1\) depends only on \(C_0,n,T,\Lambda\), \(C_2\) only on
 \(\sup|Q|\) and \(\sup|\mathcal R|\), and \(C_3\) only on \(n\).
 \end{theorem}
 \begin{proof}
-Choose \(A\geq0\) so that \(Q+A-\mathcal R/(2p)\geq0\) for all
+\sketch Choose \(A\geq0\) so that \(Q+A-\mathcal R/(2p)\geq0\) for all
 \(p\geq1\), and put \(v=e^{-A\tau}u\).  Lemma
 \ref{lem:chow-iii-reverse-poincare}, followed by Proposition
 \ref{prop:chow-iii-local-sobolev-ball}, gives the one-step estimate
@@ -127,7 +127,7 @@ and
 \]
 \end{lemma}
 \begin{proof}
-The subsolution inequality gives
+\sketch The subsolution inequality gives
 \[
  \partial_\tau(v^p)-\Delta(v^p)+p(Q+A)v^p\leq0.
 \]
@@ -160,7 +160,7 @@ smooth compactly supported \(f\) on \(B_{\widetilde g}(x_0,r)\) satisfies
 \]
 \end{proposition}
 \begin{proof}
-Rescale to \(r=1\).  Bishop--Gromov comparison under
+\sketch Rescale to \(r=1\).  Bishop--Gromov comparison under
 \(\Ric\geq-K\) gives a relative isoperimetric inequality on the unit ball,
 with loss at most \(e^{C(n)(1+\sqrt K)}\) and normalization by the ball's
 volume.  Applying that inequality to the level sets of \(|f|\), integrating
@@ -204,7 +204,7 @@ where
 and \(\widehat C_n\) depends only on \(n\).
 \end{lemma}
 \begin{proof}
-Put \(\beta=(n+2)/n\), \(p_i=\beta^{i-1}\), and
+\sketch Put \(\beta=(n+2)/n\), \(p_i=\beta^{i-1}\), and
 \[
  r_i=r\left(1+\frac{\gamma-1}{2^{i-1}}\right).
 \]
@@ -226,17 +226,17 @@ where \(M_i\) is bounded by a fixed geometric factor times a power of
 that of \(B(x_0,r)\), gives the displayed constant.
 \end{proof}
 
-\begin{example}[Exercise 25.7: rescaled nested-cylinder iteration]
+\begin{example}[Rescaled nested-cylinder iteration]
 \label{ex:chow-iii-rescaled-moser-cylinder-iteration}
 \dcref{ch25:25.7}
 \group{Moser Iteration}
 \source{chow-et-al-ricci-flow-part-iii:page-0335}
 \uses{lem:chow-iii-moser-cylinder-iteration}
-Prove Lemma~\ref{lem:chow-iii-moser-cylinder-iteration} using
+For the radii
 \(r_i=r(1+(\gamma-1)2^{1-i})\).
 \end{example}
 \begin{proof}
-For these radii,
+\sketch For these radii,
 \(r_i-r_{i+1}=r(\gamma-1)2^{-i}\).  Spatial and temporal cutoffs therefore
 have squared-gradient and time-derivative bounds
 \(C4^i((\gamma-1)r)^{-2}\).  Substitution in the one-step Sobolev estimate
@@ -276,7 +276,7 @@ dependencies stated in the source: \(C_5\) also depends on
 \(R^{-1}\) and \(R^{-2}\) terms.
 \end{theorem}
 \begin{proof}
-Set \(L=\log u\) and
+\sketch Set \(L=\log u\) and
 \(P=\Delta L+\varepsilon|\nabla L|^2\).  By Corollary
 \ref{cor:chow-iii-harnack-quantity-evolution-inequality},
 \[
@@ -343,8 +343,8 @@ Here \(C_8=C_8(n,K)\), \(C_9=C_9(n,\varepsilon)\), and
 \(C_{10}=C_{10}(n,K,\varepsilon,C')\).
 \end{theorem}
 \begin{proof}
-Use the proof of Theorem~\ref{thm:chow-iii-li-yau-evolving-metrics} with
-\(f(x,\tau)=d_{g(\tau)}(x,p)\).  Outside
+\sketch Apply Theorem~\ref{thm:chow-iii-li-yau-evolving-metrics}'s
+minimum-principle argument with \(f(x,\tau)=d_{g(\tau)}(x,p)\).  Outside
 \(B_{g(\tau)}(p,K^{-1/2})\), Theorem
 \ref{thm:chow-iii-changing-distances} gives, in the barrier sense,
 \[
@@ -370,16 +370,6 @@ only on the indicated moving ball, unlike Theorem
 \ref{thm:chow-iii-li-yau-evolving-metrics}.
 \end{remark}
 
-\begin{example}[Problem 25.11: local estimate for backward Ricci flow]
-\label{ex:chow-iii-local-li-yau-backward-ricci-flow}
-\dcref{ch25:25.11}
-\group{Li--Yau Problems}
-\source{chow-et-al-ricci-flow-part-iii:page-0340}
-Find a Li--Yau differential Harnack estimate for positive solutions of
-heat-type equations coupled to backward Ricci flow using only local bounds on
-the curvature and potential.
-\end{example}
-
 \section{Integrated Harnack inequalities}
 
 \begin{corollary}[Classical-type Harnack inequality for evolving metrics]
@@ -402,7 +392,7 @@ Assume \(\widetilde C_0^{-1}\widetilde g\leq g(\tau)leq
 where \(C_{11}=C_7+\sup_{\mathcal M\times[\tau_1,\tau_2]}Q\).
 \end{corollary}
 \begin{proof}
-Let \(\gamma\) join \(x_1\) to \(x_2\).  Along it, the global differential
+\sketch Let \(\gamma\) join \(x_1\) to \(x_2\).  Along it, the global differential
 estimate and
 \[
  (1-\varepsilon)|\nabla\log u|^2
@@ -444,29 +434,11 @@ where
 \(C_{12}=C_8/R+C_9/R^2+C_{10}+\sup Q\) on the parabolic region.
 \end{corollary}
 \begin{proof}
-Integrate Theorem~\ref{thm:chow-iii-li-yau-ricci-flow} along the prescribed
+\sketch Integrate Theorem~\ref{thm:chow-iii-li-yau-ricci-flow} along the prescribed
 geodesic and complete the square exactly as in Corollary
 \ref{cor:chow-iii-classical-harnack-evolving-metrics}.  The hypothesis keeps
 the path inside the region where the differential estimate holds, and metric
 comparison gives the same energy bound.
-\end{proof}
-
-\begin{example}[Exercise 25.14: integrate the Ricci-flow gradient estimate]
-\label{ex:chow-iii-integrate-ricci-flow-gradient-estimate}
-\dcref{ch25:25.14}
-\group{Integrated Harnack Inequalities}
-\source{chow-et-al-ricci-flow-part-iii:page-0342}
-\uses{thm:chow-iii-li-yau-ricci-flow}
-Derive Corollary~\ref{cor:chow-iii-classical-harnack-ricci-flow} from the
-differential estimate.
-\end{example}
-\begin{proof}
-Along a path \(\gamma\), differentiate \(\log u(\gamma(\tau),\tau)\), insert
-the differential Harnack estimate, and apply
-\(a|X|^2+\langle X,Y\rangle\geq-|Y|^2/(4a)\) with
-\(a=1-\varepsilon\).  Integrating \(1/\tau\) gives the time-ratio factor;
-taking the constant-speed minimizing \(\widetilde g\)-geodesic and applying
-metric comparison gives the Gaussian factor.
 \end{proof}
 
 \begin{remark}[Mean value consequences and adjoint kernels]
@@ -517,7 +489,7 @@ For every \(\varepsilon\in\mathbb R\),
 \]
 \end{lemma}
 \begin{proof}
-The variation of the Laplacian is
+\sketch The variation of the Laplacian is
 \[
  \partial_\tau\Delta=-2\mathcal R_{ij}\nabla_i\nabla_j
  +\bigl(-2g^{ij}\nabla_i\mathcal R_{jk}+\nabla_k\mathcal R\bigr)\nabla_k.
@@ -562,7 +534,7 @@ where
 \]
 \end{corollary}
 \begin{proof}
-Insert the assumed bounds into Lemma
+\sketch Insert the assumed bounds into Lemma
 \ref{lem:chow-iii-harnack-quantity-evolution}.  Peter--Paul gives
 \[
  2(1-\varepsilon)|\Hess L|^2-2\Lambda|\Hess L|

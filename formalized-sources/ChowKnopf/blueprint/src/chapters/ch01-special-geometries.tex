@@ -23,14 +23,6 @@ In dimension $n=3$, the categories TOP, PL, and DIFF all coincide. In this volum
 
 \section*{1. Geometrization of three-manifolds}
 
-\begin{remark}
-\label{ch01-rem-seifert-equivalence}
-\dcref{Remark 1.2}
-\group{three-manifolds}
-\source{chow-knopf-ricci-flow:page-0016}
-Seifert's original definition of a fiber space required the existence of a fiber-preserving diffeomorphism of a tubular neighborhood of each fiber to a neighborhood of a fiber in some quotient of $S^1 \times D^2$ by a cyclic group action. Epstein later showed that if a compact $3$-manifold is foliated by $S^1$ fibers, then each fiber must possess a tubular neighborhood with the prescribed property. Hence the simpler definition given in the text is equivalent to the original.
-\end{remark}
-
 \begin{conjecture}
 \label{ch01-conj-elliptization}
 \dcref{Conjecture 1.3 (Elliptization)}
@@ -55,17 +47,7 @@ Let $\mathcal{N}^3$ be an irreducible orientable closed $3$-manifold of infinite
 A complete proof of the Elliptization Conjecture would imply the Poincar\'e Conjecture, which asserts that any homotopy $3$-sphere is actually a topological $3$-sphere.
 \end{remark}
 
-\begin{remark}
-\label{ch01-rem-hyperbolization-progress}
-\dcref{Remark 1.6}
-\group{three-manifolds}
-\source{chow-knopf-ricci-flow:page-0016}
-Noteworthy progress toward the Hyperbolization Conjecture has come from topology.
-\end{remark}
-
 \section*{2. Model geometries}
-
-The notions of local homogeneity, homogeneity, homogeneous model, and model geometry are introduced here, together with the isotropy group of a model geometry. The basic comparison between locally homogeneous metrics and complete homogeneous spaces is summarized in the propositions below.
 
 \begin{proposition}
 \label{ch01-prop-singer}
@@ -93,7 +75,7 @@ Every model geometry $(\M^n,\G,\G_*)$ may be regarded as a complete homogeneous 
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0017,chow-knopf-ricci-flow:page-0018}
-Choose any $x\in \M^n$ and any scalar product on $T_x\M^n$. Average it over the compact isotropy group to obtain a $\G_x$-invariant scalar product, then transport that scalar product to every other tangent space using transitivity of the $\G$-action. The resulting metric is well defined, smooth, $\G$-invariant, and complete by Proposition~1.8.
+\sketch Choose any $x\in \M^n$ and any scalar product on $T_x\M^n$. Average it over the compact isotropy group to obtain a $\G_x$-invariant scalar product, then transport that scalar product to every other tangent space using transitivity of the $\G$-action. The resulting metric is well defined, smooth, $\G$-invariant, and complete by Proposition~1.8.
 \end{proof}
 
 \begin{proposition}
@@ -127,7 +109,7 @@ If $\Isom(\M^n,g)$ acts transitively on $\M^n$, then all isotropy groups $I_x(\M
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0019}
-Given any $x,y \in \M^n$, choose an isometry $\gamma$ with $\gamma(x)=y$. Conjugation by $\gamma$ defines an isomorphism from $I_x(\M^n,g)$ to $I_y(\M^n,g)$, with inverse given by conjugation by $\gamma^{-1}$.
+\sketch Given any $x,y \in \M^n$, choose an isometry $\gamma$ with $\gamma(x)=y$. Conjugation by $\gamma$ defines an isomorphism from $I_x(\M^n,g)$ to $I_y(\M^n,g)$, with inverse given by conjugation by $\gamma^{-1}$.
 \end{proof}
 
 \begin{remark}
@@ -180,8 +162,6 @@ Let $(\M^3,\G,\G_*)$ be a maximal model geometry represented by at least one com
 
 \section*{4. Analyzing the Ricci flow of homogeneous geometries}
 
-The Ricci flow of a left-invariant metric on a unimodular Lie group is reduced to an ordinary differential system in a Milnor frame. The formulas below record the structure constants, the Levi-Civita connection, and the resulting curvature simplifications.
-
 \begin{lemma}
 \label{ch01-lem-curvature-offdiagonal}
 \dcref{Lemma 1.16}
@@ -192,7 +172,7 @@ Suppose that $\{F_i\}$ is a Milnor frame for a left-invariant metric on a $3$-di
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0023}
-Using the Milnor-frame formulas for $\ad^*$ and the Levi-Civita connection, the mixed curvature component reduces to a product of orthogonal vectors, hence vanishes.
+\sketch Using the Milnor-frame formulas for $\ad^*$ and the Levi-Civita connection, the mixed curvature component reduces to a product of orthogonal vectors, hence vanishes.
 \end{proof}
 
 \section*{5. The Ricci flow of a geometry with maximal isotropy $\SO(3)$}
@@ -207,7 +187,7 @@ For any $\epsilon \in (0,1]$ and any choice of initial data $\epsilon A_0, B_0, 
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0025,chow-knopf-ricci-flow:page-0026}
-After introducing $D=\epsilon A$ and ordering the variables so that $D\le C \le B$, one obtains differential inequalities forcing finite-time extinction and showing that $B,C,D$ stay comparable as $t$ approaches the singular time. This implies asymptotic roundness.
+\sketch After introducing $D=\epsilon A$ and ordering the variables so that $D\le C \le B$, one obtains differential inequalities forcing finite-time extinction and showing that $B,C,D$ stay comparable as $t$ approaches the singular time. This implies asymptotic roundness.
 \end{proof}
 
 \begin{remark}
@@ -228,7 +208,7 @@ There exists a time $T_0>0$ depending only on the initial data $(A_0,B_0,C_0)$ s
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0027}
-The quantities $(AE)$ and $E/(BC)$ satisfy differential inequalities that yield a uniform lower bound for $BC$ on a time interval depending only on the initial data, and this in turn bounds the evolution of $A$ from below. Hence the solution persists on a common interval independent of $\varepsilon$.
+\sketch The quantities $(AE)$ and $E/(BC)$ satisfy differential inequalities that yield a uniform lower bound for $BC$ on a time interval depending only on the initial data, and this in turn bounds the evolution of $A$ from below. Hence the solution persists on a common interval independent of $\varepsilon$.
 \end{proof}
 
 \begin{lemma}
@@ -241,7 +221,7 @@ If $(A_0,B_0,C_0)_\varepsilon$ is a family of initial data parameterized by $\va
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0027,chow-knopf-ricci-flow:page-0028}
-The evolution equation for $F$ has a negative term of size $Q/\varepsilon$ dominating the positive part uniformly on compact time intervals, so $F(t,\varepsilon)$ is forced to zero as $\varepsilon\searrow 0$.
+\sketch The evolution equation for $F$ has a negative term of size $Q/\varepsilon$ dominating the positive part uniformly on compact time intervals, so $F(t,\varepsilon)$ is forced to zero as $\varepsilon\searrow 0$.
 \end{proof}
 
 \section*{6. The Ricci flow of a geometry with isotropy $\SO(2)$}

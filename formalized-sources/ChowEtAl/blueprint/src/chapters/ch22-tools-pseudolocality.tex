@@ -1,11 +1,9 @@
-\chapter{Tools Used in Proof of Pseudolocality}
+\chapter[22]{Tools Used in Proof of Pseudolocality}
 \label{ch:chow-iii-tools-pseudolocality}
 \dcref{ch22}
 \source{chow-et-al-ricci-flow-part-iii:page-0204}
 
-This chapter supplies the point-picking, heat-kernel, local entropy, and
-logarithmic Sobolev tools used in the proof of pseudolocality.  The notation
-\(\mathcal M_\alpha=\{(x,t):|\Rm|(x,t)>\alpha/t\}\) is used throughout.
+Set \(\mathcal M_\alpha=\{(x,t):|\Rm|(x,t)>\alpha/t\}\).
 
 \section{Point picking}
 
@@ -39,7 +37,7 @@ Then there is an \(\alpha\)-large point \((\hat x_0,\hat t_0)\),
 on \(P(\hat x_0,\hat t_0,(epsilon\hat Q)^{-1/2},-(\epsilon\hat Q)^{-1})\).
 \end{lemma}
 \begin{proof}
-If the initial point does not have the asserted property, choose a point in
+\sketch If the initial point does not have the asserted property, choose a point in
 its backward parabolic cylinder with curvature greater than twice the current
 value and iterate.  The curvature grows geometrically while each time step is
 at most half the preceding reciprocal curvature scale, so the times remain in
@@ -69,7 +67,7 @@ There is an \(\alpha\)-large point \((\bar x,\bar t)\), with
 satisfies \(|\Rm|(x,t)\le4|\Rm|(\bar x,\bar t)\).
 \end{claim}
 \begin{proof}
-Starting at \((x_1,t_1)\), choose a later point only when the asserted bound
+\sketch Starting at \((x_1,t_1)\), choose a later point only when the asserted bound
 fails, increasing curvature by a factor greater than four and increasing the
 distance by at most the corresponding curvature scale.  The geometric series
 of scales keeps all points in the stated ball.  A nonterminating sequence would
@@ -118,7 +116,7 @@ whenever \(\bar t-\alpha/(2\bar Q)\le t\le\bar t\) and
 with radius \(A\bar Q^{-1/2}\) as noted in Remark 22.7.
 \end{claim}
 \begin{proof}
-At points which are not \(\alpha\)-large the bound follows from
+\sketch At points which are not \(\alpha\)-large the bound follows from
 \(|\Rm|\le\alpha/t<2\bar Q\).  For \(\alpha\)-large points, the preceding
 lemma places the relevant parabolic cylinder inside the distance-controlled
 region of Claim 1, giving the factor-four estimate.
@@ -140,7 +138,7 @@ Consequently the entire cylinder in Claim 2 lies in the region controlled by
 Claim 1.
 \end{lemma}
 \begin{proof}
-The triangle inequality gives the inclusion at time \(\bar t\).  If it first
+\sketch The triangle inequality gives the inclusion at time \(\bar t\).  If it first
 failed at an earlier time, apply the changing-distances estimate on the
 intervening interval, using the curvature bound from Claim 1 and the
 non-large-point estimate.  The resulting distance decrease is strictly less
@@ -172,7 +170,7 @@ and
 \]
 \end{lemma}
 \begin{proof}
-Local volume comparison and conservation of heat-kernel mass give uniform
+\sketch Local volume comparison and conservation of heat-kernel mass give uniform
 integral bounds.  A Li--Yau estimate (or the parabolic mean-value inequality)
 then gives local upper bounds away from \(\tau=0\); Dirichlet comparison with
 a small constant-curvature ball gives a uniform positive lower bound at the
@@ -188,8 +186,8 @@ Perelman's inequality proves the stated identities.
 \source{chow-et-al-ricci-flow-part-iii:page-0218}
 \uses{lem:chow-iii-heat-kernel-cheeger-gromov}
 The identification of \(H_\infty\) with the minimal positive fundamental
-solution amounts to proving convergence to \(\delta_{x_\infty}\) as
-\(\tau\downarrow0\); this is posed as Mini-Problem 22.11.
+solution requires convergence to \(\delta_{x_\infty}\) as
+\(\tau\downarrow0\).
 \end{remark}
 
 \section{Local entropy}
@@ -213,7 +211,7 @@ in the weak sense,
 \]
 \end{lemma}
 \begin{proof}
-At points where \(\phi'\ne0\), the distance is at least \(b-200n\sqrt t\),
+\sketch At points where \(\phi'\ne0\), the distance is at least \(b-200n\sqrt t\),
 so the distance-Laplacian comparison theorem applies with
 \(K=\alpha/t+2/\epsilon_0^2\).  It gives
 \((\partial_t-\Delta)d_{g(t)}(x,x_0)\ge-100n/\sqrt t\), which cancels the
@@ -255,7 +253,7 @@ If also \(A\le(20\epsilon_0)^{-1}\) and \(R(\cdot,0)\ge-1\) on
 and \(\int\widetilde H\,d\mu_{g(0)}\le1\).
 \end{lemma}
 \begin{proof}
-The adjoint equation and \(\Box^*v\le0\), together with the cutoff
+\sketch The adjoint equation and \(\Box^*v\le0\), together with the cutoff
 subsolution, give a Gronwall inequality for \(\int(-v)h\).  Integrating from
 \(\tilde t\) to zero and using the distance estimate places the negative-entropy
 ball inside the region where \(h=1\).  This proves the first inequality.  Writing
@@ -320,7 +318,7 @@ satisfies
 where \(s_n=\frac n2\log(2\pi)+n\) and \(c_n=n^n\omega_n\).
 \end{theorem}
 \begin{proof}
-Rescale so that the isoperimetric constant is \(c_n\).  Approximate by a
+\sketch Rescale so that the isoperimetric constant is \(c_n\).  Approximate by a
 nonnegative compactly supported \(C^1\) function and perform spherical
 symmetrization: the radial rearrangement \(h\) has the same distribution
 function, while the isoperimetric inequality and co-area formula imply
@@ -361,9 +359,8 @@ satisfies
 with the dimensional constant \(\epsilon_n\) from the source normalization.
 \end{theorem}
 \begin{proof}
-The proof of Theorem~\ref{thm:chow-iii-log-sobolev-isoperimetric} applies
-unchanged because every positive superlevel set of \(\psi\) remains inside
-the ball.
+\sketch Apply Theorem~\ref{thm:chow-iii-log-sobolev-isoperimetric} to the
+positive superlevel sets of \(\psi\), all of which remain inside the ball.
 \end{proof}
 
 \begin{theorem}[Backward uniqueness for solutions of Ricci flow]
@@ -389,7 +386,7 @@ For a complete bounded-curvature Ricci flow,
 for every \(t>0\).
 \end{corollary}
 \begin{proof}
-Backward uniqueness gives \(\operatorname{Isom}(g(t))\subseteq\operatorname{Isom}(g(0))\);
+\sketch Backward uniqueness gives \(\operatorname{Isom}(g(t))\subseteq\operatorname{Isom}(g(0))\);
 forward uniqueness gives the reverse inclusion.
 \end{proof}
 

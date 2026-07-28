@@ -1,11 +1,7 @@
-\chapter{Special Ancient Solutions}
+\chapter[28]{Special Ancient Solutions}
 \label{ch:chow-iv-special-ancient-solutions}
 \dcref{ch28}
 \source{chow-et-al-ricci-flow-part-iv:page-0056}
-
-This chapter studies complete ancient solutions, singularity models, and the
-classification of two-dimensional solutions of finite width.  We use
-\(\Rm\), \(\Rc\), and \(R\) for the curvature, Ricci, and scalar curvatures.
 
 \section{Local estimate for scalar curvature}
 
@@ -21,6 +17,7 @@ flow, then
 \]
 \end{theorem}
 \begin{proof}
+\sketch
 Use a compactly supported cutoff \(S=\eta(\widetilde r/\rho)R\), where
 \(\widetilde r=d_{g(t)}(\mathord\cdot,O)+\frac53(n-1)r_0^{-1}(t-t_0)\),
 and the distance barrier estimate.  At a negative minimum of \(S\), the heat
@@ -45,18 +42,6 @@ If \(g(t)\), \(t\in(-\infty,0]\), is complete and ancient, then
 R\ge0\quad\text{on }\mathcal M\times(-\infty,0].
 \]
 \end{corollary}
-
-\begin{remark}[Problem 28.3 and incomplete example 28.4]
-\label{rem:chow-iv-problem-28-3}
-\dcref{ch28:28.3--28.4}
-\group{Scalar Curvature Estimates}
-\source{chow-et-al-ricci-flow-part-iv:page-0060}
-For a complete positive-curvature solution on a noncompact surface, it is
-open whether \(Q=\partial_t\log R-|\nabla\log R|^2\ge-1/t\).  Incomplete
-ancient solutions with negative scalar curvature are obtained by restricting
-a short-time flow on a modified hyperbolic disk to an interior flat ball and
-extending it constantly for negative times.
-\end{remark}
 
 \begin{theorem}[Ancient three-dimensional solutions have nonnegative sectional curvature]
 \label{thm:chow-iv-ancient-3d-sectional}
@@ -136,27 +121,6 @@ to complete flows on noncompact manifolds.
 Any compact singularity model is a shrinking gradient Ricci soliton.
 \end{theorem}
 
-\begin{remark}[Exercise 28.12 and linear volume growth]
-\label{rem:chow-iv-linear-volume-growth}
-\dcref{ch28:28.12--28.13}
-\group{Singularity Models}
-\source{chow-et-al-ricci-flow-part-iv:page-0062,chow-et-al-ricci-flow-part-iv:page-0063}
-\uses{thm:chow-iv-singularity-models-noncollapsed}
-A compact singularity model cannot be Ricci flat.  A noncompact singularity
-model with \(R\le C\) has at least linear volume growth, obtained by summing
-disjoint balls of radius \(C^{-1/2}\) along a ray.
-\end{remark}
-
-\begin{remark}[Optimistic Conjectures 28.14 and 28.15]
-\label{rem:chow-iv-singularity-conjectures}
-\dcref{ch28:28.14--28.15}
-\group{Singularity Models}
-\source{chow-et-al-ricci-flow-part-iv:page-0063}
-Every noncompact singularity model should have scalar curvature bounded above
-on compact backward-time intervals (hence linear volume growth), and every
-finite-time singular flow should satisfy \(\sup R=\infty\).
-\end{remark}
-
 \begin{lemma}[Criterion for long-time existence under bounded scalar curvature]
 \label{lem:chow-iv-bounded-scalar-criterion}
 \dcref{ch28:28.16}
@@ -165,15 +129,6 @@ finite-time singular flow should satisfy \(\sup R=\infty\).
 If a finite-time singular flow has no Ricci-flat singularity model, then
 \(\sup_{\mathcal M\times[0,T)}R=\infty\).
 \end{lemma}
-
-\begin{remark}[Problems 28.17--28.18]
-\label{rem:chow-iv-asymptotic-cone-problems}
-\dcref{ch28:28.17--28.18}
-\group{Singularity Models}
-\source{chow-et-al-ricci-flow-part-iv:page-0063,chow-et-al-ricci-flow-part-iv:page-0064}
-It is open in general whether asymptotic cones of noncompact singularity
-models are unique; this is conjectured and is proved in dimension three below.
-\end{remark}
 
 \subsection{\texorpdfstring{Singularity models and \(\kappa\)-solutions in dimension three}{Singularity models and Kappa-solutions in dimension three}}
 
@@ -238,18 +193,6 @@ with bounded reduced distance, a subsequence of
 \(\kappa\)-noncollapsed shrinking gradient Ricci soliton with nonnegative
 curvature operator (bounded curvature in dimension three).
 \end{theorem}
-
-\begin{remark}[Problems 28.25--28.26 and volume growth examples]
-\label{rem:chow-iv-volume-growth-problems}
-\dcref{ch28:28.25--28.29}
-\group{Singularity Models}
-\source{chow-et-al-ricci-flow-part-iv:page-0066}
-It is open whether noncompact Type I models are shrinkers, Type II models are
-steady, or a noncompact model can be Ricci flat.  The Bryant soliton has volume
-growth of order \(r^{(n+1)/2}\), while a round cylinder has linear growth;
-the conjectured lower and upper bounds are respectively \(r^{(n+1)/2}\) for
-nonsplitting models and \(r^n\) in general.
-\end{remark}
 
 \begin{theorem}[Asymptotic cones of three-dimensional \(\kappa\)-solutions]
 \label{thm:chow-iv-3d-asymptotic-cone}
@@ -486,15 +429,6 @@ scales, and has positive curvature operator, then it is a shrinking spherical
 space form.
 \end{theorem}
 
-\begin{remark}[Problem: removing noncollapsing]
-\label{rem:chow-iv-remove-kappa-condition}
-\dcref{ch28:28.57}
-\group{Positive Curvature Ancient Solutions}
-\source{chow-et-al-ricci-flow-part-iv:page-0086}
-It is open whether the \(\kappa\)-noncollapsed hypothesis in Theorem 28.56
-can be removed.
-\end{remark}
-
 \begin{theorem}[Compact three-dimensional ancient solutions with pinched Ricci curvature]
 \label{thm:chow-iv-3d-pinched-ricci}
 \dcref{ch28:28.58}
@@ -505,6 +439,7 @@ positive scalar curvature, and \(\Rc\ge cRg\) for some \(c>0\), then it has
 constant positive sectional curvature.
 \end{theorem}
 \begin{proof}
+\sketch
 For the curvature eigenvalues \(\lambda\ge\mu\ge\nu\), set
 \[
  G=\frac{|\mathring{\Rm}|^2}{R^{2-\varepsilon}},\qquad

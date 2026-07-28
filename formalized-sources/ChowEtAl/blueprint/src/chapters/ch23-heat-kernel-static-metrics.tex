@@ -1,8 +1,5 @@
-\chapter{Heat Kernel for Static Metrics}
+\chapter[23]{Heat Kernel for Static Metrics}
 \label{chow-iii-ch23-heat-kernel-static-metrics}
-
-This chapter constructs the heat kernel of a closed Riemannian manifold by a
-parametrix and space-time convolution, and records its short-time expansion.
 
 \section{Fundamental solutions and the parametrix}
 
@@ -53,7 +50,7 @@ fundamental solution $H(x,t;y,u)$ and
 \]
 \end{theorem}
 \begin{proof}
-The construction in Theorem~\ref{thm:chow-iii-ch23-parametrix-heat-kernel}
+\sketch The construction in Theorem~\ref{thm:chow-iii-ch23-parametrix-heat-kernel}
 produces a smooth fundamental solution.  Uniqueness, positivity, and symmetry
 follow from the standard energy and maximum-principle arguments for the heat
 equation on a closed manifold; integrating the equation in $x$ gives the
@@ -144,7 +141,7 @@ The finite solutions are smooth on the injectivity neighborhood and satisfy
 \(\phi_0=\alpha^{-1/2}\).
 \end{lemma}
 \begin{proof}
-Apply the radial Laplacian formula to $E\sum_k\phi_k(t-u)^k$.  Equating each
+\sketch Apply the radial Laplacian formula to $E\sum_k\phi_k(t-u)^k$.  Equating each
 power of $t-u$ gives the displayed ODEs.  Multiplication of the $k$th equation
 by $r^{k-1}\alpha^{1/2}$ gives an exact derivative; integration from the
 diagonal, with finiteness there, yields a smooth solution recursively.
@@ -174,8 +171,9 @@ where $V$ is the initial unit tangent of the minimizing geodesic from $y$ to
 $x$.
 \end{lemma}
 \begin{proof}
-Integrate the exact derivative in the proof of Lemma~\ref{lem:chow-iii-ch23-recursive-odes}
-and substitute $r=\rho r(x)$.
+\sketch Integrate the exact derivative furnished by
+Lemma~\ref{lem:chow-iii-ch23-recursive-odes} and substitute
+$r=\rho r(x)$.
 \end{proof}
 
 \begin{lemma}[Covariant derivatives of the heat error]
@@ -198,7 +196,7 @@ If $N>n/2+k+2\ell$, then the left side equals
 for a smooth covariant tensor $\widetilde F_{k,\ell}$.
 \end{lemma}
 \begin{proof}
-Differentiate $(\Box_xH_N)=E(\Delta_x\phi_N)(t-u)^N$.  Each spatial derivative
+\sketch Differentiate $(\Box_xH_N)=E(\Delta_x\phi_N)(t-u)^N$.  Each spatial derivative
 costs at most one power of $(t-u)^{-1}$ and each time derivative at most two.
 On a finite atlas, boundedness of the coefficients and their derivatives gives
 the asserted uniform estimate and the smooth remainder tensor.
@@ -229,7 +227,7 @@ P_N(x,t;y,u):=\eta(d(x,y))H_N(x,t;y,u).
 For $N>n/2$, $P_N$ is a parametrix.
 \end{proposition}
 \begin{proof}
-The support of $\eta$ lies inside the injectivity neighborhood, so $P_N$ is
+\sketch The support of $\eta$ lies inside the injectivity neighborhood, so $P_N$ is
 smooth.  The product rule gives
 \[
 \Box_xP_N=\eta\Box_xH_N+(\Delta_x\eta)H_N+2\langle\nabla\eta,\nabla H_N\rangle.
@@ -237,7 +235,7 @@ smooth.  The product rule gives
 Near the diagonal the first term tends to zero by Lemma~\ref{lem:chow-iii-ch23-heat-error-derivatives}; away from it every term is exponentially small.  The same argument in the $y$ variable proves continuous extension.  The Gaussian approximate-identity limit follows by normal coordinates and the fact that $\eta=1$ near the diagonal; symmetry gives the second limit.
 \end{proof}
 
-\begin{example}[Exercise 23.13 (Convolution and sum)]
+\begin{example}[Convolution and sum]
 \label{ex:chow-iii-ch23-convolution-sum}
 \dcref{ch23:23.13}
 \group{Parametrix}
@@ -249,7 +247,7 @@ For $\Box_xP_N$ one has
 \]
 \end{example}
 \begin{proof}
-Expand the convolution, use bilinearity and associativity, and pass to the
+\sketch Expand the convolution, use bilinearity and associativity, and pass to the
 limit using the locally uniform absolute convergence established below.
 \end{proof}
 
@@ -267,7 +265,7 @@ For every $k,\ell\ge0$,
 where $G_{k,\ell}$ is smooth and supported in the injectivity neighborhood.
 \end{lemma}
 \begin{proof}
-Inside the region where $\eta=1$ use Lemma~\ref{lem:chow-iii-ch23-heat-error-derivatives}; on the annulus where derivatives of $\eta$ occur the distance is bounded below, so the Gaussian dominates every negative power of $t-u$.  The exterior is identically zero.
+\sketch Inside the region where $\eta=1$ use Lemma~\ref{lem:chow-iii-ch23-heat-error-derivatives}; on the annulus where derivatives of $\eta$ occur the distance is bounded below, so the Gaussian dominates every negative power of $t-u$.  The exterior is identically zero.
 \end{proof}
 
 \section{Convolution construction}
@@ -285,7 +283,7 @@ The operation is bilinear and associative; write $F^{*k}$ for the $k$-fold
 convolution.
 \end{definition}
 \begin{proof}
-Associativity follows by expanding both sides as a triple integral and applying
+\sketch Associativity follows by expanding both sides as a triple integral and applying
 Fubini on the compact manifold, followed by the change of variables
 $(r,s)\leftrightarrow(s-r,t-s)$.
 \end{proof}
@@ -302,7 +300,7 @@ For continuous $G$,
 \]
 \end{lemma}
 \begin{proof}
-Differentiate the defining integral in $t$ and use the upper-endpoint term
+\sketch Differentiate the defining integral in $t$ and use the upper-endpoint term
 from the approximate-identity property of $P_N$; differentiating in $x$ is
 legitimate away from the endpoint and then follows by the estimates in
 Lemma~\ref{lem:chow-iii-ch23-parametrix-error-derivatives}.
@@ -322,7 +320,7 @@ Then $H$ is smooth, independent of $N$, satisfies $\Box_xH=0$, and is the
 unique fundamental solution.
 \end{theorem}
 \begin{proof}
-The convolution estimates below give locally uniform convergence of $G_N$ and
+\sketch The convolution estimates below give locally uniform convergence of $G_N$ and
 of all derivative series after increasing $N$.  Lemma~\ref{lem:chow-iii-ch23-parametrix-convolution-heat-operator} and the convolution-sum identity give
 \(\Box_xH=\Box_xP_N+(\Box_xP_N)*G_N-G_N=0\).  The error term
 \(P_N*G_N\) tends to zero against every continuous test function as $t\searrow u$,
@@ -346,7 +344,7 @@ More precisely, after truncation at $N$, the remainder is
 \(O(t^{N+1-n/2})\) uniformly in $x,y$.
 \end{theorem}
 \begin{proof}
-Take $u_j=\eta(d)\phi_j$ for $j\le N$ and subtract the finite parametrix
+\sketch Take $u_j=\eta(d)\phi_j$ for $j\le N$ and subtract the finite parametrix
 from the representation of $H$.  The convolution estimate in
 Lemma~\ref{lem:chow-iii-ch23-convolution-estimates} bounds the difference by
 \(C\int_0^t(t-s)^{N-n/2}\,ds=O(t^{N+1-n/2})\).
@@ -364,7 +362,7 @@ For $w_N$ the remainder above,
 uniformly as $t\to0$.
 \end{example}
 \begin{proof}
-Differentiate the convolution representation of $w_N$ and use the derivative
+\sketch Differentiate the convolution representation of $w_N$ and use the derivative
 estimates for the parametrix error; the same time integral gains one power of
 $t$.
 \end{proof}
@@ -381,7 +379,7 @@ For $N>n/2$,
 where $q_N$ is smooth on $\mathcal M\times\mathcal M\times[0,\infty)$.
 \end{lemma}
 \begin{proof}
-Use the product formula for $P_N$ and factor the Gaussian with denominator five.
+\sketch Use the product formula for $P_N$ and factor the Gaussian with denominator five.
 The terms containing derivatives of $\eta$ are supported where
 $d(x,y)\ge\operatorname{inj}(g)/4$, hence are flat at $t=0$; all other terms
 contain the factor $t^N$ by the defining equation for $H_N$.
@@ -401,7 +399,7 @@ If $C=\sup|q_N|$ on $\mathcal M^2\times[0,T]$, then
 \]
 \end{lemma}
 \begin{proof}
-The case $k=1$ is Lemma~\ref{lem:chow-iii-ch23-coefficient-structure}.  For
+\sketch The case $k=1$ is Lemma~\ref{lem:chow-iii-ch23-coefficient-structure}.  For
 $k+1$, convolve the induction bound with the $k=1$ bound and use
 \(d(x,z)^2/s+d(z,y)^2/(t-s)\ge d(x,y)^2/t\); the time integral is the beta
 integral and gives the displayed factorial denominator.
@@ -418,7 +416,7 @@ uniformly on $\mathcal M^2\times(0,T]$; the unweighted series converges uniforml
 up to $t=0$.
 \end{corollary}
 \begin{proof}
-Sum the majorant in Lemma~\ref{lem:chow-iii-ch23-convolution-estimates}; it is
+\sketch Sum the majorant in Lemma~\ref{lem:chow-iii-ch23-convolution-estimates}; it is
 \(Ct^{N-n/2}\exp(C\operatorname{Vol}(\mathcal M)t^{N-n/2+1}/(N-n/2+1))\).
 \end{proof}
 
@@ -446,7 +444,7 @@ converges absolutely and uniformly, and equals
 \(\partial_t^\ell\partial_x^mG_N\).
 \end{lemma}
 \begin{proof}
-Differentiate the first factor of each convolution.  The derivative estimate
+\sketch Differentiate the first factor of each convolution.  The derivative estimate
 has time exponent $N-n/2-2\ell-m>-1$; convolving with the majorant in
 Lemma~\ref{lem:chow-iii-ch23-convolution-estimates} yields a factorially summable
 bound, uniformly on compact sets.
@@ -466,7 +464,7 @@ converges uniformly on $\mathcal M^2\times[0,T]$ and equals
 \(\partial_t^\ell\nabla_x^mG_N\).
 \end{lemma}
 \begin{proof}
-In a finite atlas, covariant derivatives are linear combinations of coordinate
+\sketch In a finite atlas, covariant derivatives are linear combinations of coordinate
 derivatives with smooth bounded coefficients, so Lemma~\ref{lem:chow-iii-ch23-convolution-series-derivatives} applies.
 \end{proof}
 
@@ -486,7 +484,7 @@ is continuous, converges uniformly to $f(x,u)$ as $t\searrow u$, and is smooth
 in $(x,t)$ with derivatives obtained by differentiating under the integral.
 \end{lemma}
 \begin{proof}
-Split the integral into a small normal ball and its complement.  The Gaussian
+\sketch Split the integral into a small normal ball and its complement.  The Gaussian
 bound makes the complement exponentially small and the normal-coordinate change
 of variables reduces the ball to the Euclidean approximate identity; dominated
 convergence handles all derivatives.
@@ -505,7 +503,7 @@ For continuous $G$, $P_N*G$ is $C^1$ in $x$ and
 \]
 \end{lemma}
 \begin{proof}
-The first derivative is bounded by
+\sketch The first derivative is bounded by
 \(C(t-s)^{-\alpha}d(x,z)^{2\alpha-n-1}\) for $1/2<\alpha<1$,
 which is integrable in $z$ and $s$.  Difference quotients, split away from and
 near $s=t$, then converge by uniform continuity and this integrable bound.
@@ -525,7 +523,7 @@ $C^2$ at $x$ and
 \]
 \end{lemma}
 \begin{proof}
-The difference between $x$- and $z$-second derivatives of $P_N$ is bounded by
+\sketch The difference between $x$- and $z$-second derivatives of $P_N$ is bounded by
 \(C(1+d^2/(t-s))(t-s)^{-n/2}e^{-d^2/4(t-s)}\), hence is integrable.  Integrate
 the $z$-derivative term by parts; its first derivative satisfies the integrable
 bound used in Lemma~\ref{lem:chow-iii-ch23-first-convolution-derivative}.  Applying
@@ -558,7 +556,7 @@ For continuous $G$,
 \]
 \end{lemma}
 \begin{proof}
-Write the convolution as $\int_0^tJ_N(s,t)\,ds$.  The upper endpoint tends to
+\sketch Write the convolution as $\int_0^tJ_N(s,t)\,ds$.  The upper endpoint tends to
 $G(x,y,t)$ by the approximate-identity lemma, while the difference quotient of
 $J_N$ converges under the integral by the same Gaussian domination.
 \end{proof}
@@ -581,7 +579,7 @@ and hence
 \]
 \end{lemma}
 \begin{proof}
-Insert the normal-coordinate metric expansion into the determinant expansion of
+\sketch Insert the normal-coordinate metric expansion into the determinant expansion of
 Lemma~\ref{lem:chow-iii-ch23-determinant-expansion}, contract curvature indices
 to obtain the Ricci terms, and take the square root.
 \end{proof}
@@ -598,7 +596,7 @@ to obtain the Ricci terms, and take the square root.
 \]
 \end{lemma}
 \begin{proof}
-Use $\Delta r=(n-1)/r+\partial_r\log\alpha$ and
+\sketch Use $\Delta r=(n-1)/r+\partial_r\log\alpha$ and
 \(\Delta r^2=2+2r\Delta r\), then differentiate the expansion for $\alpha$.
 \end{proof}
 
@@ -614,7 +612,7 @@ Use $\Delta r=(n-1)/r+\partial_r\log\alpha$ and
 \]
 \end{lemma}
 \begin{proof}
-Differentiate the normal-coordinate expansion for $\alpha^{1/2}$ and use
+\sketch Differentiate the normal-coordinate expansion for $\alpha^{1/2}$ and use
 \(\Delta f=\alpha^{-1}\partial_i(\alpha g^{ij}\partial_jf)\), together with
 the contracted Bianchi identity.
 \end{proof}
@@ -630,7 +628,7 @@ the contracted Bianchi identity.
 \]
 \end{lemma}
 \begin{proof}
-Insert the expansion of $\Delta\phi_0$ into the integral formula for $\phi_1$;
+\sketch Insert the expansion of $\Delta\phi_0$ into the integral formula for $\phi_1$;
 the substitution $x\mapsto\exp_y(\rho rV)$ replaces $x^r$ by $\rho x^r$ and
 integrating $\rho$ from zero to one gives the coefficient $1/12$.
 \end{proof}
@@ -675,20 +673,11 @@ $O(t^{1/2})$, and for symmetric $A$,
 The corresponding manifold estimates are uniform in the center $y$.
 \end{example}
 \begin{proof}
-Scale $x=\sqrt{4t}\,\widetilde x$ and use rotational invariance; diagonalizing
+\sketch Scale $x=\sqrt{4t}\,\widetilde x$ and use rotational invariance; diagonalizing
 $A$ reduces the last identity to the one-dimensional Gaussian second moment.
 The manifold statements follow by normal coordinates and the heat-kernel
 expansion.
 \end{proof}
-
-\begin{example}[Problem 23.36 (Asymptotic entropy)]
-\label{ex:chow-iii-ch23-entropy-problem}
-\dcref{ch23:23.36}
-\group{Asymptotics}
-\source{chow-et-al-ricci-flow-part-iii:page-0280}
-Determine the asymptotics as $t\to0$ of $-\int_{\mathcal M}fH\,d\mu$ for
-$H=(4\pi t)^{-n/2}e^{-f}$.
-\end{example}
 
 \section{Supplementary tools}
 
@@ -714,7 +703,7 @@ If $A=0$, then
 \]
 \end{lemma}
 \begin{proof}
-Differentiate $\det M$ using
+\sketch Differentiate $\det M$ using
 \( (\det M)'=\det M\operatorname{tr}(M^{-1}M')\) through fourth order and
 compare coefficients in Taylor's formula.  Setting $A=0$ gives the second
 display.
@@ -733,7 +722,7 @@ If $f\in C^1(\mathcal M\times[\alpha,\omega])$ on a noncompact manifold and
 \]
 \end{lemma}
 \begin{proof}
-Uniform convergence makes the tails outside large balls uniformly small.  Apply
+\sketch Uniform convergence makes the tails outside large balls uniformly small.  Apply
 Fubini on each ball and pass to the limit, with the tail estimate controlling
 the error.
 \end{proof}
@@ -762,7 +751,7 @@ If $f\in C^1(\mathcal M\times[\alpha,\omega])$ and both
 \]
 \end{lemma}
 \begin{proof}
-Apply Lemma~\ref{lem:chow-iii-ch23-fubini-noncompact} to $\partial_tf$ and use
+\sketch Apply Lemma~\ref{lem:chow-iii-ch23-fubini-noncompact} to $\partial_tf$ and use
 the fundamental theorem of calculus on each spatial point; uniform convergence
 permits passage to the spatial integral.
 \end{proof}

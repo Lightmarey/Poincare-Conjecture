@@ -69,14 +69,6 @@ $\nabla^\top$ if and only if $\gamma''(t)$ is
 $\overline g^{(r,s)}$-orthogonal to $T_{\gamma(t)}M$ for every $t\in I$.
 \end{proposition}
 
-\begin{exercise}
-\label{exer:prove-geodesic-pseudo-euclidean-submanifold}
-\dcref{ch5:5.4}
-\uses{prop:geodesic-pseudo-euclidean-submanifold}
-
-Prove Proposition~\ref{prop:geodesic-pseudo-euclidean-submanifold}.
-\end{exercise}
-
 \section{Connections on Abstract Riemannian Manifolds}
 
 \section{Metric Connections}
@@ -161,13 +153,6 @@ $D_t\gamma'(t)\perp\gamma'(t)$ for every $t\in I$.
 \item[(b)] If $\gamma$ is a geodesic, then $|\gamma'(t)|$ is constant.
 \end{enumerate}
 \end{corollary}
-
-\begin{exercise}
-\label{exer:prove-corollary-5-6}
-\dcref{ch5:5.7}
-
-Prove Corollary~\ref{cor:metric-connection-norm-geodesic}.
-\end{exercise}
 
 \begin{proposition}
 \label{prop:tangential-connection-compatible-metric}
@@ -279,7 +264,7 @@ compatibility.
 \begin{corollary}[Formulas for the Levi-Civita Connection]
 \label{cor:formulas-levi-civita-connection}
 \dcref{ch5:5.11}
-\uses{prob:torsion-tensor,prop:characterizations-of-metric-connections}
+\uses{prop:torsion-tensor,prop:characterizations-of-metric-connections}
 
 Let $(M,g)$ be a Riemannian or pseudo-Riemannian manifold, possibly with
 boundary, and let $\nabla$ be its Levi-Civita connection.
@@ -513,7 +498,7 @@ $\exp(v)=\gamma_v(1)$.  For $p\in M$, set
 $\mathcal E_p=\mathcal E\cap T_pM$ and write
 $\exp_p=\exp|_{\mathcal E_p}$.  The notation $\exp^G$ is reserved for the Lie
 group exponential; the two exponentials agree in the bi-invariant setting of
-Problem~\ref{prob:lie-group-bi-invariant-metric}, but not in general.
+\cref{prop:lie-group-bi-invariant-metric}, but not in general.
 
 A subset $S$ of a vector space is \emph{star-shaped with respect to} $x\in S$
 if it contains the segment joining $x$ to every point of $S$.
@@ -521,7 +506,7 @@ if it contains the segment joining $x$ to every point of $S$.
 \begin{proposition}[Properties of the Exponential Map]
 \label{prop:exponential-map-properties}
 \dcref{ch5:5.19}
-\uses{prob:lie-group-bi-invariant-metric,thm:geodesic-existence-uniqueness}
+\uses{prop:lie-group-bi-invariant-metric,thm:geodesic-existence-uniqueness}
 
 Let $(M, g)$ be a Riemannian or pseudo-Riemannian manifold, and let
 $\exp: \mathcal{E} \to M$ be its exponential map.
@@ -595,14 +580,6 @@ M & \xrightarrow{\ \varphi\ } & \tilde{M},
 where $\mathcal E_p$ and $\widetilde{\mathcal E}_{\varphi(p)}$ are the
 respective restricted exponential-map domains.
 \end{proposition}
-
-\begin{exercise}
-\label{exer:prove-proposition-5-20}
-\dcref{ch5:5.21}
-\uses{prop:naturality-exponential-map}
-
-Prove Proposition~\ref{prop:naturality-exponential-map}.
-\end{exercise}
 
 \begin{proposition}[Determination of Local Isometries]
 \label{prop:local-isometries-completely-determined}
@@ -1067,12 +1044,6 @@ it lies on the geodesic segment joining them;
 $\varphi\colon\mathbb R^2\to\mathbb R^2$ satisfies $\varphi(S)=S'$.
 \end{itemize}
 
-\begin{exercise}
-\label{exer:hilbert-axioms-euclidean-plane}
-\dcref{ch5:5.29}
-Verify Hilbert's axioms for the Cartesian interpretation above.
-\end{exercise}
-
 Replacing the Euclidean parallel postulate by
 \begin{quote}
 For every line $l$ and point $A\notin l$, at least two distinct lines through
@@ -1081,8 +1052,7 @@ $A$ are parallel to $l$
 gives the hyperbolic parallel postulate. The preceding primitive terms are
 interpreted on $\mathbb H^2$ using maximal geodesics and isometries of any
 hyperbolic metric $g_B$; these axioms do not distinguish radii. The relevant
-axioms for this model are addressed in
-Problem~\ref{prob:hyperbolic-geometry-hilbert-axioms}.
+incidence, congruence, and hyperbolic parallel axioms hold in this model.
 
 The elliptic parallel postulate asserts that no two lines are parallel. Since
 Hilbert's remaining axioms imply the existence of a parallel through any point
@@ -1094,160 +1064,18 @@ in two points. This model is called \emph{double elliptic geometry}.
 \begin{example}
 \label{ex:real-projective-plane-elliptic-geometry}
 \dcref{ch5:5.30}
-\uses{ex:real-projective-space-metric,prob:rp-n-frame-homogeneous,prob:elliptic-geometry-hilbert}
+\uses{ex:real-projective-space-metric,prop:rp-n-frame-homogeneous}
 The real projective plane $\mathbb{RP}^2$ carries a frame-homogeneous metric
-$g$ locally isometric to a round metric on $S^n$ (Example 2.34 and
-Problem 3-2). With points given by elements of $\mathbb{RP}^2$ and lines by
+$g$ locally isometric to a round metric on $S^n$ by Example 2.34 and
+\cref{prop:rp-n-frame-homogeneous}. With points given by elements of
+$\mathbb{RP}^2$ and lines by
 images of maximal geodesics, the incidence postulates and the elliptic parallel
-postulate hold by Problem~\ref{prob:elliptic-geometry-hilbert}. This is
-\emph{single elliptic geometry}.
+postulate hold. This is \emph{single elliptic geometry}.
 \end{example}
-\section{Problems}
+\section{Further Results}
 
-\begin{exercise}
-\label{prob:metric-connections-difference-tensor}
-\dcref{ch5:5-1}
-\uses{prop:difference-tensor}
-
-Let $(M,g)$ be Riemannian or pseudo-Riemannian, let $\nabla$ be its
-Levi-Civita connection, and let $\widetilde\nabla$ be another connection on
-$TM$. If $D$ is their difference tensor and
-\[
-D^\flat(X,Y,Z)=\langle D(X,Y),Z\rangle,
-\]
-show that $\widetilde\nabla$ is compatible with $g$ if and only if
-\[
-D^\flat(X,Y,Z)=-D^\flat(X,Z,Y)
-\]
-for all $X,Y,Z\in\mathfrak X(M)$. Deduce that when $\dim M\geq2$, the metric
-connections form an infinite-dimensional affine space.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:connection-forms-compatibility}
-\dcref{ch5:5-2}
-\uses{prob:connection-1forms-cartan}
-
-Let $\nabla$ be a connection on the tangent bundle of a Riemannian manifold
-$(M,g)$. Show that $\nabla$ is compatible with $g$ if and only if, in every
-local frame $(E_i)$, its connection $1$-forms satisfy
-\[
-g_{jk}\omega_i^k+g_{ik}\omega_j^k=dg_{ij}.
-\]
-Deduce that $(\omega_i^j)$ is skew-symmetric in every local orthonormal frame.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:nonsymmetric-euclidean-connection}
-\dcref{ch5:5-3}
-\uses{prob:connections-difference-tensor}
-
-In standard coordinates on $\mathbb R^3$, define a connection by
-\[
-\Gamma_{12}^3=\Gamma_{23}^1=\Gamma_{31}^2=1,
-\qquad
-\Gamma_{21}^3=\Gamma_{32}^1=\Gamma_{13}^2=-1,
-\]
-with every other coefficient zero. Show that it is Euclidean-metric compatible
-and has the same geodesics as the Euclidean connection, but is not symmetric.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:christoffel-symbols-surface-revolution}
-\dcref{ch5:5-4}
-\uses{ex:surfaces-of-revolution}
-
-Let $C$ be an embedded smooth curve in
-$H=\{(r,z):r>0\}$, and let $S_C\subseteq\mathbb R^3$ be its surface of
-revolution as in Example~2.20. Let $\gamma(t)=(a(t),b(t))$ be a unit-speed
-local parametrization of $C$, and let $X$ be the parametrization in (2.11).
-\begin{enumerate}
-\item[(a)] Compute the Christoffel symbols of the induced metric in
-$(t,\theta)$ coordinates.
-\item[(b)] Show that every meridian is the image of a geodesic on $S_C$.
-\item[(c)] Determine necessary and sufficient conditions for a latitude circle
-to be the image of a geodesic.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:parallel-vector-fields}
-\dcref{ch5:5-5}
-\uses{ex:surfaces-of-revolution,prob:christoffel-symbols-surface-revolution}
-
-A vector field $Y$ on an open subset of a Riemannian manifold is
-\emph{parallel} if $\nabla Y=0$.
-\begin{enumerate}
-\item[(a)] Given $p\in\mathbb R^n$ and $v\in T_p\mathbb R^n$, prove that
-there is a unique parallel vector field $Y$ on $\mathbb R^n$ satisfying
-$Y_p=v$.
-\item[(b)] On the unit sphere, consider
-\[
-X(\varphi,\theta)
-=(\sin\varphi\cos\theta,\sin\varphi\sin\theta,\cos\varphi)
-\]
-and the associated coordinate fields $X_\theta=X_*(\partial_\theta)$ and
-$X_\varphi=X_*(\partial_\varphi)$. Compute
-$\nabla_{X_\theta}X_\varphi$ and $\nabla_{X_\varphi}X_\varphi$, and deduce that
-$X_\varphi$ is parallel along the equator and every meridian
-$\theta=\theta_0$.
-\item[(c)] For $p=(1,0,0)\in S^2$, prove that no neighborhood of $p$ admits
-a parallel vector field $W$ with $W_p=X_\varphi|_p$.
-\item[(d)] Use (a) and (c) to prove that no neighborhood of $p$ in
-$(S^2,\overline g)$ is isometric to an open subset of
-$(\mathbb R^2,\overline g)$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:riemannian-submersion-connection}
-\dcref{ch5:5-6}
-\uses{prop:horizontal-vector-field-properties}
-
-Let $\pi:(\widetilde M,\widetilde g)\to(M,g)$ be a Riemannian submersion, and
-write $\widetilde Z$ for the horizontal lift of $Z\in\mathfrak X(M)$.
-\begin{enumerate}
-\item[(a)] For $X,Y\in\mathfrak X(M)$, prove
-\begin{align*}
-\langle\widetilde X,\widetilde Y\rangle&=\langle X,Y\rangle\circ\pi,\\
-[\widetilde X,\widetilde Y]^H&=\widetilde{[X,Y]},\\
-[\widetilde X,W]&\text{ is vertical whenever $W\in\mathfrak X(\widetilde M)$
-is vertical.}
-\end{align*}
-\item[(b)] If $\widetilde\nabla$ and $\nabla$ are the Levi-Civita connections
-of $\widetilde g$ and $g$, prove
-\begin{equation}
-\widetilde\nabla_{\widetilde X}\widetilde Y
-=\widetilde{\nabla_XY}+\frac12[\widetilde X,\widetilde Y]^V.
-\tag{5.27}
-\end{equation}
-\emph{Hint.} For a horizontal lift $\widetilde Z$ and a vertical field $W$,
-compute the inner products of
-$\widetilde\nabla_{\widetilde X}\widetilde Y$ with $\widetilde Z$ and $W$
-using (5.9).
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:geodesics-product-warped-metrics}
-\label{prob:geodesic-warped-product}
-\dcref{ch5:5-7}
-\uses{ex:warped-products}
-
-Let $(M_1,g_1)$ and $(M_2,g_2)$ be Riemannian manifolds.
-\begin{enumerate}
-\item[(a)] With the product metric on $M_1\times M_2$, prove that
-$\gamma(t)=(\gamma_1(t),\gamma_2(t))$ is a geodesic if and only if each
-$\gamma_i$ is a geodesic in $(M_i,g_i)$.
-\item[(b)] Let $f:M_1\to\mathbb R^+$ be smooth and strictly positive, and
-equip $M_1\times_fM_2$ with the corresponding warped metric. For fixed
-$q_0\in M_2$, prove that $\gamma(t)=(\gamma_1(t),q_0)$ is a warped-product
-geodesic if and only if $\gamma_1$ is a $g_1$-geodesic.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lie-group-bi-invariant-metric}
+\begin{proposition}
+\label{prop:lie-group-bi-invariant-metric}
 \dcref{ch5:5-8}
 \uses{prop:bi-invariant-metric-adjoint,prop:evaluation-map-lie-algebra-isomorphism,prop:properties-of-lie-group-exponential-map}
 
@@ -1255,265 +1083,61 @@ Let $G$ be a Lie group with Lie algebra $\mathfrak g$, and let $g$ be a
 bi-invariant Riemannian metric whose inner product on $\mathfrak g$ is
 $\langle\cdot,\cdot\rangle$.
 \begin{enumerate}
-\item[(a)] Prove that $\operatorname{ad}(X)$ is skew-adjoint for every
+\item[(a)] $\operatorname{ad}(X)$ is skew-adjoint for every
 $X\in\mathfrak g$:
 \[
 \langle\operatorname{ad}(X)Y,Z\rangle
 =-\langle Y,\operatorname{ad}(X)Z\rangle.
 \]
-\emph{Hint.} Differentiate
-$\langle\operatorname{Ad}(\exp^G(tX))Y,
-\operatorname{Ad}(\exp^G(tX))Z\rangle$ at $t=0$ and use
-$\operatorname{Ad}_*=\operatorname{ad}$.
-\item[(b)] For left-invariant vector fields $X,Y$ on $G$, prove
+\item[(b)] For left-invariant vector fields $X,Y$ on $G$,
 $\nabla_XY=\frac12[X,Y]$.
-\item[(c)] Prove that the geodesics starting at the identity are precisely the
+\item[(c)] The geodesics starting at the identity are precisely the
 one-parameter subgroups. Under the canonical identification
-$\mathfrak g\cong T_eG$, deduce that the restricted Riemannian exponential at
-$e$ equals the Lie group exponential $\exp^G:\mathfrak g\to G$.
-\item[(d)] Regard $\mathbb R^+$ as a multiplicative Lie group. Prove that
-$g=r^{-2}dt^2$ is bi-invariant and that the restricted Riemannian exponential
+$\mathfrak g\cong T_eG$, the restricted Riemannian exponential at $e$ equals
+the Lie group exponential $\exp^G:\mathfrak g\to G$.
+\item[(d)] On the multiplicative Lie group $\mathbb R^+$,
+$g=r^{-2}dt^2$ is bi-invariant, and the restricted Riemannian exponential
 at $1$ sends $c\,\partial/\partial t$ to $e^c$.
 \end{enumerate}
-\end{exercise}
+\end{proposition}
 
-\begin{exercise}
-\label{prob:normal-coordinates-chart}
-\dcref{ch5:5-9}
-
-Let $(U,\varphi)$ be a coordinate chart about $p$ in a Riemannian manifold
-$(M,g)$, with $\varphi(p)=0$ and $\varphi(U)$ star-shaped about $0$. Prove
-that it is a normal coordinate chart if and only if
-$g_{ij}(p)=\delta_{ij}$ and
-\[
-x^ix^j\Gamma^k_{ij}(x)=0
-\]
-identically on $U$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:local-isometry-determined-point}
-\dcref{ch5:5-10}
-\uses{prop:local-isometries-completely-determined}
-
-Prove Proposition~\ref{prop:local-isometries-completely-determined}, which
-states that a local isometry is determined by its value and differential at
-one point.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:model-manifolds-isometric-actions}
+\begin{proposition}
+\label{prop:model-manifolds-isometric-actions}
 \dcref{ch5:5-11}
 
 Consider the isometric actions of $E(n)$, $O(n+1)$, and $O^+(n,1)$ on
 $(\mathbb R^n,\overline g)$, $(S^n(R),\overline g_R)$, and
 $(\mathbb H^n(R),\overline g_R)$, respectively.
 \begin{enumerate}
-\item[(a)] Prove
+\item[(a)] The full isometry groups are
 \[
 \operatorname{Iso}(\mathbb R^n,\overline g)=E(n),\qquad
 \operatorname{Iso}(S^n(R),\overline g_R)=O(n+1),\qquad
 \operatorname{Iso}(\mathbb H^n(R),\overline g_R)=O^+(n,1).
 \]
-\item[(b)] In each model, prove that the isotropy group at every point is
+\item[(b)] In each model, the isotropy group at every point is
 isomorphic to $O(n)$.
 \item[(c)] Let $(M,g)$ be one of these three models, let $U\subseteq M$ be
-connected and open, and let $\varphi:U\to M$ be a local isometry. Prove that
+connected and open, and let $\varphi:U\to M$ be a local isometry. Then
 $\varphi$ is the restriction to $U$ of an element of
 $\operatorname{Iso}(M,g)$.
 \end{enumerate}
-\end{exercise}
+\end{proposition}
 
-\begin{exercise}
-\label{prob:lie-group-dimension-bound}
-\dcref{ch5:5-12}
-
-Let a Lie group $G$ act effectively and isometrically on a connected
-$n$-dimensional Riemannian manifold $M$. Prove
-$\dim G\leq n(n+1)/2$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:exterior-derivative-covariant-formula}
+\begin{proposition}
+\label{prop:exterior-derivative-covariant-formula}
 \dcref{ch5:5-13}
 
 Let $(M,g)$ be a Riemannian manifold.
 \begin{enumerate}
-\item[(a)] For every $\eta\in\Omega^1(M)$, prove
+\item[(a)] For every $\eta\in\Omega^1(M)$,
 \[
 d\eta(X,Y)=(\nabla_X\eta)(Y)-(\nabla_Y\eta)(X).
 \]
-\item[(b)] For every $\eta\in\Omega^k(M)$, prove
+\item[(b)] For every $\eta\in\Omega^k(M)$,
 \[
 d\eta=(-1)^k(k+1)\operatorname{Alt}(\nabla\eta),
 \]
 where $\operatorname{Alt}$ is the alternation operator in (B.9).
-\emph{Hint.} Compute at each point in normal coordinates and use the
-coordinate independence of both sides.
 \end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:divergence-laplacian-formulas}
-\dcref{ch5:5-14}
-
-Let $(M,g)$ be a Riemannian manifold, and let $\operatorname{div}$ and
-$\Delta$ denote its divergence and Laplace operators.
-\begin{enumerate}
-\item[(a)] For $X\in\mathfrak X(M)$, prove
-\[
-\operatorname{div}X=\operatorname{tr}(\nabla X),
-\qquad
-\operatorname{div}X=X^i_{;i}
-\]
-when $X=X^iE_i$ in a local frame. \emph{Hint.} It suffices to calculate at
-the origin of normal coordinates.
-\item[(b)] For $u\in C^\infty(M)$, prove
-\[
-\Delta u=\operatorname{tr}_g(\nabla^2u)
-=g^{ij}u_{;ij}=u_{;i}^{\ i}
-\]
-in every local frame.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:eigenfunction-laplacian-inequality}
-\dcref{ch5:5-15}
-\uses{prob:eigenvalues,prob:harmonic-functions}
-
-Let $(M,g)$ be a compact Riemannian $n$-manifold without boundary, and suppose
-$u\in C^\infty(M)$ satisfies $-\Delta u=\lambda u$ for a constant $\lambda$.
-Prove
-\[
-\lambda\int_M|\operatorname{grad}u|^2\,dV_g
-\leq n\int_M|\nabla^2u|^2\,dV_g.
-\]
-\emph{Hint.} Consider $\nabla^2u-\frac1n(\Delta u)g$ and use one of Green's
-identities from Problem~2-23.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:divergence-tensor-fields}
-\dcref{ch5:5-16}
-\uses{prob:divergence-laplacian-formulas,prob:divergence-theorem}
-
-For a smooth tensor field $F$ of any covariant, contravariant, or mixed type on
-a Riemannian manifold, define
-\[
-\operatorname{div}F=\operatorname{tr}_g(\nabla F),
-\]
-where the trace contracts the last two indices. If $F$ is purely
-contravariant, ordinary trace may be used because the penultimate index of
-$\nabla F$ is contravariant.
-
-Let $F$ be a smooth covariant $k$-tensor and $G$ a smooth covariant
-$(k+1)$-tensor on a compact Riemannian manifold $(M,g)$ with boundary. Prove
-\[
-\int_M\langle\nabla F,G\rangle\,dV_g
-=\int_{\partial M}\langle F\otimes N^\flat,G\rangle\,d\widehat V_g
--\int_M\langle F,\operatorname{div}G\rangle\,dV_g,
-\]
-where $\widehat g$ is the metric induced on $\partial M$. Equivalently,
-\[
-\int_M F_{i_1\ldots i_k;j}G^{i_1\ldots i_kj}\,dV_g
-=\int_{\partial M}F_{i_1\ldots i_k}G^{i_1\ldots i_kj}N_j\,dV_{\widehat g}
--\int_MF_{i_1\ldots i_k}G^{i_1\ldots i_kj}_{\ \ \ \ \ \ \ ;j}\,dV_g.
-\]
-\end{exercise}
-
-\begin{exercise}
-\label{prob:tubular-neighborhood-normal-bundle}
-\dcref{ch5:5-17}
-\uses{thm:tubular-neighborhood}
-
-Let $P$ be an embedded submanifold of a Riemannian manifold $(M,g)$. Prove
-that $P$ has a tubular neighborhood diffeomorphic to the total space of its
-normal bundle $NP$, with the zero section mapped to $P$.
-\emph{Hint.} First show that the function $\delta$ in (5.21) can be chosen
-smooth.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:fermi-coordinates}
-\dcref{ch5:5-18}
-\uses{prop:fermi-coordinates-properties}
-
-Prove Proposition~\ref{prop:fermi-coordinates-properties} on the properties of
-Fermi coordinates.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:hyperbolic-geometry-hilbert-axioms}
-\dcref{ch5:5-19}
-
-Using $(\mathbb H^2,\widetilde g)$, construct an interpretation of Hilbert's
-axioms with the hyperbolic parallel postulate in place of the Euclidean one.
-Prove the incidence postulates, congruence postulate (e), and hyperbolic
-parallel postulate in this geometry.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:elliptic-geometry-hilbert}
-\dcref{ch5:5-20}
-\uses{ex:real-projective-plane-elliptic-geometry}
-
-In single elliptic geometry from
-Example~\ref{ex:real-projective-plane-elliptic-geometry}, take points to be
-elements of $\mathbb RP^2$ and lines to be images of maximal geodesics. Prove
-Hilbert's incidence postulates and the elliptic parallel postulate.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:orthonormal-frame-zero-covariant-derivative}
-\dcref{ch5:5-21}
-
-Let $(M,g)$ be Riemannian or pseudo-Riemannian, let $p\in M$, and let
-$(b_1,\ldots,b_n)$ be an orthonormal basis of $T_pM$. Prove that a neighborhood
-of $p$ admits a smooth orthonormal frame $(E_i)$ satisfying
-\[
-E_i|_p=b_i,
-\qquad
-(\nabla E_i)_p=0
-\]
-for every $i$.
-\end{exercise}
-
-\begin{exercise}[Killing vector field]
-\label{prob:killing-vector-field}
-\dcref{ch5:5-22}
-\uses{prop:invariant-tensor-characterization,prop:lie-derivative-tensor-product-rule}
-
-A smooth vector field $X$ on a Riemannian manifold is a \emph{Killing vector
-field} if $\mathcal L_Xg=0$, equivalently if $g$ is invariant under the flow
-of $X$. Prove that $X$ is Killing if and only if the covariant $2$-tensor
-$(\nabla X)^\flat$ is antisymmetric. \emph{Hint.} Use Proposition~B.9.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:holonomy-group}
-\dcref{ch5:5-23}
-
-Let $(M,g)$ be a connected Riemannian manifold and $p\in M$. For each
-admissible loop $\gamma:[a,b]\to M$ based at $p$, let
-$P^\gamma=P^\gamma_{ab}:T_pM\to T_pM$ be parallel transport, and define
-\[
-\operatorname{Hol}(p)
-=\{P^\gamma:\gamma\text{ is an admissible loop based at }p\}
-\subseteq\operatorname{GL}(T_pM).
-\]
-\begin{enumerate}
-\item[(a)] Prove that $\operatorname{Hol}(p)$ is a subgroup of $O(T_pM)$,
-called the \emph{holonomy group} at $p$.
-\item[(b)] Let $\operatorname{Hol}^0(p)$ consist of transports along loops
-path-homotopic to the constant loop. Prove that it is a normal subgroup of
-$\operatorname{Hol}(p)$, called the \emph{restricted holonomy group}.
-\item[(c)] For $p,q\in M$, construct an isomorphism
-$\operatorname{GL}(T_pM)\to\operatorname{GL}(T_qM)$ carrying
-$\operatorname{Hol}(p)$ to $\operatorname{Hol}(q)$.
-\item[(d)] Prove that $M$ is orientable if and only if
-$\operatorname{Hol}(p)\subseteq\operatorname{SO}(T_pM)$ for some $p\in M$.
-\item[(e)] Prove that $g$ is flat if and only if
-$\operatorname{Hol}^0(p)$ is trivial for some $p\in M$.
-\end{enumerate}
-\end{exercise}
+\end{proposition}

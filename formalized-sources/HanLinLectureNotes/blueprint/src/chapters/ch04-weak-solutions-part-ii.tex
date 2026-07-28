@@ -63,21 +63,19 @@ so, for some exponent $a=a(n,q)>0$,
 where $\chi=n/(n-2)>1$ if $n>2$, while any fixed $\chi>1$ may be used
 if $n=2$. Letting $m\to\infty$, setting $\gamma=\beta+2$, and choosing a
 cutoff between $B_r$ and $B_R$ gives the reverse H\"older estimate
-\[
+\begin{equation}
 \|\bar u\|_{L^{\gamma\chi}(B_r)}
 \leq\left(C\frac{(\gamma-1)^a}{(R-r)^2}\right)^{1/\gamma}
 \|\bar u\|_{L^\gamma(B_R)}.
-\tag{1}
-\]
-Iterate (1) with $\gamma_i=2\chi^i$ and
+\end{equation}
+Iterate this reverse H\"older estimate with $\gamma_i=2\chi^i$ and
 $r_i=1/2+2^{-i-1}$. Since $\sum i/\chi^i<\infty$,
-\[
+\begin{equation}
 \sup_{B_{1/2}}u^+
 \leq C\bigl(\|u^+\|_{L^2(B_1)}+\|f\|_{L^q(B_1)}\bigr).
-\tag{2}
-\]
+\end{equation}
 
-For $0<R\leq1$, apply (2) to
+For $0<R\leq1$, apply the preceding $L^2$ bound to
 $\widetilde u(y)=u(Ry)$, whose coefficients and forcing are
 \[
 \widetilde a(y)=a(Ry),\qquad
@@ -85,21 +83,22 @@ $\widetilde u(y)=u(Ry)$, whose coefficients and forcing are
 \widetilde f(y)=R^2f(Ry).
 \]
 This yields, for $p\geq2$,
-\[
+\begin{equation}
 \sup_{B_{R/2}}u^+
 \leq C\left\{R^{-n/p}\|u^+\|_{L^p(B_R)}
 +R^{2-n/q}\|f\|_{L^q(B_R)}\right\}.
-\tag{3}
-\]
+\end{equation}
 Covering $B_{\theta R}$ by balls of radius $(1-\theta)R$ gives the stated
 $\theta$ dependence. If $0<p<2$, interpolate
-$\|u^+\|_{L^2(B_R)}$ between $L^p$ and $L^\infty$ in (3) to obtain
+$\|u^+\|_{L^2(B_R)}$ between $L^p$ and $L^\infty$ in the scaled estimate
+to obtain
 \[
 F(r)\leq\frac12F(R)
 +\frac{C}{(R-r)^{n/p}}\|u^+\|_{L^p(B_1)}
 +C\|f\|_{L^q(B_1)},
 \]
-where $F(t)=\|u^+\|_{L^\infty(B_t)}$. Lemma~4.3 removes the
+where $F(t)=\|u^+\|_{L^\infty(B_t)}$.
+Lemma~\ref{hanlin:weaksol-part2-iteration-lemma} removes the
 $F(R)$ term.
 \end{proof}
 
@@ -197,18 +196,19 @@ forcing term is absorbed by H\"older and Young inequalities provided
 \beta+2\leq\frac{q(n-2)}{n-2q}=\frac{q^*}{\chi}.
 \]
 Thus, for $2\leq\gamma=\beta+2\leq q^*/\chi$ and $0<r<R\leq1$,
-\[
+\begin{equation}
 \|\bar u\|_{L^{\chi\gamma}(B_r)}
 \leq C\left((R-r)^{-2/\gamma}
 \|\bar u\|_{L^\gamma(B_R)}+\|f\|_{L^q(B_1)}\right).
-\tag{1}
-\]
-Finitely iterate (1) through $2,2\chi,2\chi^2,\ldots$ until the exponent
-reaches $q^*/\chi$, and apply (1) once more to obtain the asserted
+\end{equation}
+Finitely iterate the preceding estimate through $2,2\chi,2\chi^2,\ldots$
+until the exponent
+reaches $q^*/\chi$, and apply the reverse H\"older estimate once more to
+obtain the asserted
 $L^{q^*}$ estimate.
 \end{proof}
 
-\section{The H\"older Continuity}
+\section{H\"older Continuity}
 
 Let
 \[
@@ -292,18 +292,20 @@ where $C>0$ depends only on $\epsilon,n$, and $\Lambda/\lambda$.
 \end{theorem}
 \begin{proof}
 \sketch First replace $u$ by $u+\delta$ and later let $\delta\downarrow0$.
-Lemma~4.6 makes $v=(\log u)^-$ a subsolution, so Theorem~4.1 and
-Lemma~4.8 give
-\[
+Lemma~\ref{hanlin:weaksol-part2-convex-composition} makes
+$v=(\log u)^-$ a subsolution, so
+Theorem~\ref{hanlin:weaksol-part2-local-boundedness} and
+Lemma~\ref{hanlin:weaksol-part2-poincare-sobolev-zero-set} give
+\begin{equation}
 \sup_{B_{1/2}}v
 \leq C\left(\int_{B_1}|Dv|^2\right)^{1/2}.
-\tag{1}
-\]
+\end{equation}
 Testing the supersolution inequality with $\zeta^2/u$ yields
 \[
 \int\zeta^2|D\log u|^2\leq C\int|D\zeta|^2.
 \]
-Choose $\zeta=1$ on $B_1$ and supported in $B_2$. Then (1) bounds
+Choose $\zeta=1$ on $B_1$ and supported in $B_2$. The local boundedness
+estimate then controls
 $\sup_{B_{1/2}}(\log u)^-$ uniformly, giving
 $\inf_{B_{1/2}}u\geq e^{-C}$.
 \end{proof}
@@ -323,7 +325,8 @@ one of the sets
 \qquad
 \left\{u\leq\frac{\alpha_1+\beta_1}{2}\right\}
 \]
-has measure at least $|B_1|/2$. Apply Theorem~4.9 to the corresponding
+has measure at least $|B_1|/2$. Apply
+Theorem~\ref{hanlin:weaksol-part2-density-theorem} to the corresponding
 normalized nonnegative solution
 \[
 \frac{2(u-\beta_1)}{\alpha_1-\beta_1}
@@ -368,7 +371,7 @@ where $C$ and $\alpha$ depend only on $n$ and $\Lambda/\lambda$.
 \end{lemma}
 \begin{proof}
 \sketch Scale to $r=1$, subtract the mean of $u$, and use Poincar\'e's
-inequality. Theorem~4.11 gives
+inequality. Theorem~\ref{hanlin:weaksol-part2-degiorgi-holder} gives
 \[
 |u(x)-u(0)|^2\leq C|x|^{2\alpha}\int_{B_1}|Du|^2
 \qquad(|x|\leq1/2).
@@ -453,19 +456,18 @@ where $C$ depends only on $n,p,q,\lambda,\Lambda,\theta$, and $\tau$.
 \sketch Scale to $R=1$. Put $\bar u=u+k>0$, where
 $k=\|f\|_{L^q}$ if $f\not\equiv0$, and set $v=\bar u^{-1}$. Testing $(*)$
 with $\bar u^{-2}\varphi$ shows that $v$ is a nonnegative subsolution with
-a lower-order coefficient bounded in $L^q$. Theorem~4.1 therefore gives
-\[
+a lower-order coefficient bounded in $L^q$.
+Theorem~\ref{hanlin:weaksol-part2-local-boundedness} therefore gives
+\begin{equation}
 \inf_{B_\theta}\bar u
 \geq C\left(\int_{B_\tau}\bar u^{-p}\right)^{-1/p}.
-\tag{1}
-\]
+\end{equation}
 It remains to control positive and negative moments of $\bar u$.
 
 Let $w=\log\bar u$. Testing $(*)$ with $\bar u^{-1}\varphi^2$ gives
-\[
+\begin{equation}
 \int|Dw|^2\varphi^2\leq C\int|D\varphi|^2.
-\tag{2}
-\]
+\end{equation}
 For $B_{2r}(y)\subset B_1$, choose a cutoff supported in $B_{2r}(y)$ and
 equal to one on $B_r(y)$. Then
 \[
@@ -475,27 +477,27 @@ so Poincar\'e's inequality gives
 \[
 \frac1{r^n}\int_{B_r(y)}|w-w_{y,r}|\leq C.
 \]
-Thus $w\in\BMO$, and Theorem~3.5 supplies $p_0>0$ such that
-\[
+Thus $w\in\BMO$, and
+Theorem~\ref{hanlin:weaksol-part1-john-nirenberg} supplies $p_0>0$ such that
+\begin{equation}
 \int_{B_\tau}e^{p_0|w-w_{B_\tau}|}\leq C,
 \qquad
 \left(\int_{B_\tau}\bar u^{-p_0}\right)
 \left(\int_{B_\tau}\bar u^{p_0}\right)\leq C.
-\tag{3}
-\]
-Combining (1) and (3) proves the estimate for $p_0$.
+\end{equation}
+Combining the local boundedness estimate with the moment product proves the
+claim for $p_0$.
 
 For $0<\gamma<1$, test $(*)$ with $\bar u^{\gamma-1}\eta^2$. With
 $z=\bar u^{\gamma/2}$ and $\chi=n/(n-2)$, the energy and Sobolev
 inequalities give, for $0<r<R<1$,
-\[
+\begin{equation}
 \left(\int_{B_r}\bar u^{\gamma\chi}\right)^{1/(\gamma\chi)}
 \leq
 \left(\frac{C}{(1-\gamma)^a(R-r)^2}\right)^{1/\gamma}
 \left(\int_{B_R}\bar u^\gamma\right)^{1/\gamma}.
-\tag{4}
-\]
-Finitely iterating (4) upgrades $p_0$ to every
+\end{equation}
+Finitely iterating this reverse H\"older estimate upgrades $p_0$ to every
 $p<n/(n-2)$. Undoing the scale and letting $k\downarrow0$ when
 $f\equiv0$ proves the theorem.
 \end{proof}
@@ -540,18 +542,20 @@ where $C$ depends only on $n,\lambda,\Lambda$, and $q$.
 \begin{proof}
 \sketch Scale to $R=1$. Put
 $M(r)=\sup_{B_r}u$, $m(r)=\inf_{B_r}u$, and
-$\omega(r)=M(r)-m(r)$. Apply Theorem~4.16 to
+$\omega(r)=M(r)-m(r)$. Apply
+Theorem~\ref{hanlin:weaksol-part2-moser-harnack} to
 $M(r)-u$ and $u-m(r)$ in $B_r$. Adding the two resulting inequalities gives
 \[
 \omega(r/2)\leq\gamma\omega(r)
 +Cr^{2-n/q}\|f\|_{L^q(B_r)}
 \]
-for some $\gamma<1$. Lemma~4.18 yields
+for some $\gamma<1$.
+Lemma~\ref{hanlin:weaksol-part2-oscillation-iteration} yields
 \[
 \omega(\rho)\leq C\rho^\alpha
 \left(\omega(1/2)+\|f\|_{L^q(B_1)}\right).
 \]
-Theorem~4.14 bounds
+Theorem~\ref{hanlin:weaksol-part2-scaled-local-boundedness} bounds
 $\omega(1/2)\leq C(\|u\|_{L^2(B_1)}+\|f\|_{L^q(B_1)})$.
 Rescaling proves the stated estimate.
 \end{proof}
@@ -597,7 +601,8 @@ Suppose $u$ solves a homogeneous equation on $\R^n$:
 If $u$ is bounded, then it is constant.
 \end{corollary}
 \begin{proof}
-\sketch The oscillation argument for Corollary~4.17 gives
+\sketch The oscillation argument for
+Corollary~\ref{hanlin:weaksol-part2-moser-holder} gives
 $\omega(r)\leq\gamma\omega(2r)$ for some $\gamma<1$. Hence
 \[
 \omega(r)\leq\gamma^k\omega(2^kr)\leq C\gamma^k.
@@ -660,7 +665,7 @@ $|u|\leq M$ in $B_1$, and $b$ satisfies the natural growth condition with
 $f\in L^q(B_1)$ for some $q>n/2$. Then, for every $B_R\subset B_1$,
 \[
 \sup_{B_{R/2}}u
-\leq C\left(\sup_{B_{R/2}}u
+\leq C\left(\inf_{B_{R/2}}u
 +R^{2-n/q}\|f\|_{L^q(B_R)}\right),
 \]
 where $C$ depends only on $n,\lambda,\Lambda,M$, and $q$.
@@ -672,32 +677,34 @@ v=\frac{e^{\alpha u}-1}{\alpha}.
 \]
 The natural growth bound and ellipticity imply, for every nonnegative test
 function $\varphi$,
-\[
+\begin{equation}
 \int a_{ij}D_i vD_j\varphi\leq C\int f\varphi,
-\tag{1}
-\]
+\end{equation}
 because the negative term
 $-\alpha a_{ij}D_i uD_j u$ absorbs the quadratic growth. Since $u$ and $v$
-are quantitatively comparable on $[0,M]$, Theorem~4.14 gives
-\[
+are quantitatively comparable on $[0,M]$,
+Theorem~\ref{hanlin:weaksol-part2-scaled-local-boundedness} gives
+\begin{equation}
 \sup_{B_{R/2}}u
 \leq C\left\{
 \left(\frac1{R^n}\int_{B_R}u^p\right)^{1/p}
 +R^{2-n/q}\|f\|_{L^q(B_R)}\right\}.
-\tag{2}
-\]
-Similarly, $w=(1-e^{-\alpha u})/\alpha$ is a supersolution. Theorem~4.15
+\end{equation}
+Similarly, $w=(1-e^{-\alpha u})/\alpha$ is a supersolution.
+Theorem~\ref{hanlin:weaksol-part2-weak-harnack}
 therefore gives, for $0<p<n/(n-2)$,
 \[
 \left(\frac1{R^n}\int_{B_R}u^p\right)^{1/p}
 \leq C\left(
 \inf_{B_{R/2}}u+R^{2-n/q}\|f\|_{L^q(B_R)}\right).
 \]
-Combining this with (2) proves the estimate.
+Combining this with the preceding subsolution estimate proves the claim.
 \end{proof}
 
 \begin{remark}\label{hanlin:weaksol-part2-nonlinear-gradient-estimate}\dcref{Remark 4.22}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0099}\uses{hanlin:weaksol-part2-nonlinear-harnack}
-Taking $\varphi=(u+M)\eta^2$ in (1) gives
+Testing the energy inequality from the proof of
+Lemma~\ref{hanlin:weaksol-part2-nonlinear-harnack} with
+$\varphi=(u+M)\eta^2$ gives
 \[
 \int|Du|^2\eta^2
 \leq C\int(|D\eta|^2+|f|\eta^2),
@@ -721,8 +728,9 @@ $n,\lambda,\Lambda,q,\|u\|_{L^\infty(B_1)}$, and
 $\|f\|_{L^q(B_1)}$.
 \end{corollary}
 \begin{proof}
-\sketch Repeat the oscillation argument for Corollary~4.17, replacing
-Theorem~4.16 by Lemma~4.21.
+\sketch Repeat the oscillation argument for
+Corollary~\ref{hanlin:weaksol-part2-moser-holder}, replacing the linear
+Harnack estimate by Lemma~\ref{hanlin:weaksol-part2-nonlinear-harnack}.
 \end{proof}
 
 \begin{theorem}\label{hanlin:weaksol-part2-nonlinear-gradient-holder}\dcref{Theorem 4.24}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0099,han-lin-lecture-notes:page-0100}\uses{hanlin:weaksol-part1-campanato,hanlin:weaksol-part1-lemma-3-4,hanlin:weaksol-part1-harmonic-lemma,hanlin:weaksol-part1-grad-holder,hanlin:weaksol-part2-nonlinear-gradient-estimate,hanlin:weaksol-part2-nonlinear-holder}
@@ -739,33 +747,34 @@ $\|f\|_{L^q(B_1)}$.
 \end{theorem}
 \begin{proof}
 \sketch It is enough to prove $Du\in L^\infty_{\mathrm{loc}}$, after which
-Theorem~3.11 applies. For $B_r(x_0)\subset B_1$, let
+Theorem~\ref{hanlin:weaksol-part1-grad-holder} applies. For
+$B_r(x_0)\subset B_1$, let
 $w-u\in H^1_0(B_r(x_0))$ solve the frozen-coefficient homogeneous equation
-and put $v=u-w$. The maximum principle and Lemma~3.9 give
-\[
+and put $v=u-w$. The maximum principle and
+Lemma~\ref{hanlin:weaksol-part1-harmonic-lemma} give
+\begin{equation}
 \sup_{B_r(x_0)}|u-w|\leq\osc_{B_r(x_0)}u,
-\tag{1}
-\]
+\end{equation}
 and, for $0<\rho\leq r$,
-\[
+\begin{equation}
 \int_{B_\rho(x_0)}|Du-(Du)_{x_0,\rho}|^2
 \leq C\left\{
 \left(\frac\rho r\right)^{n+2}
 \int_{B_r(x_0)}|Du-(Du)_{x_0,r}|^2
 +\int_{B_r(x_0)}|Dv|^2\right\}.
-\tag{2}
-\]
-Testing the equation for $v$ by $v$ and using (1) yields
-\[
+\end{equation}
+Testing the equation for $v$ by $v$ and using the bound on $u-w$ yields
+\begin{equation}
 \int_{B_r(x_0)}|Dv|^2
 \leq C\left\{
 \bigl(r^{2\alpha}+\osc_{B_r(x_0)}u\bigr)
 \int_{B_r(x_0)}|Du|^2
 +r^{n+2\alpha}\|f\|_{L^q(B_1)}^2\right\}.
-\tag{3}
-\]
-Corollary~4.23 first gives $u\in C^{\delta_0}$ for some $\delta_0>0$.
-Combining (3) with the energy estimate for $w$ and applying Lemma~3.4 gives,
+\end{equation}
+Corollary~\ref{hanlin:weaksol-part2-nonlinear-holder} first gives
+$u\in C^{\delta_0}$ for some $\delta_0>0$. Combining the error estimate
+with the energy estimate for $w$ and applying
+Lemma~\ref{hanlin:weaksol-part1-lemma-3-4} gives,
 for every $\delta<1$,
 \[
 \int_{B_r(x_0)}|Du|^2
@@ -773,12 +782,15 @@ for every $\delta<1$,
 \left(\int_{B_{7/8}}|Du|^2+\|f\|_{L^q(B_1)}^2\right).
 \]
 Thus $u\in C^\delta_{\mathrm{loc}}$ for every $\delta<1$. Choose
-$\delta$ with $3\delta>2$ and $\alpha+\delta>1$. Then (3) gives
+$\delta$ with $3\delta>2$ and $\alpha+\delta>1$. The error estimate gives
 \[
 \int_{B_r(x_0)}|Dv|^2\leq Cr^{n+2\alpha'}
 \]
-for some $\alpha'<\alpha$. Equation (2), Lemma~3.4, and Theorem~3.1 imply
+for some $\alpha'<\alpha$. The comparison estimate,
+Lemma~\ref{hanlin:weaksol-part1-lemma-3-4}, and
+Theorem~\ref{hanlin:weaksol-part1-campanato} imply
 $Du\in C^{\alpha'}_{\mathrm{loc}}$, hence
-$Du\in L^\infty_{\mathrm{loc}}$. Theorem~3.11 upgrades the exponent to
+$Du\in L^\infty_{\mathrm{loc}}$.
+Theorem~\ref{hanlin:weaksol-part1-grad-holder} upgrades the exponent to
 $\alpha$ and gives the stated estimate.
 \end{proof}

@@ -1,11 +1,7 @@
-\chapter{Type I Singularities and Ancient Solutions}
+\chapter[30]{Type I Singularities and Ancient Solutions}
 \label{ch:chow-iv-type-i-singularities-ancient-solutions}
 \dcref{ch30}
 \source{chow-et-al-ricci-flow-part-iv:page-0154}
-
-This chapter develops reduced distance and reduced volume based at a finite
-singular time.  These tools produce shrinking soliton models for Type I
-singularities and describe asymptotic shrinkers of Type I ancient solutions.
 
 \section{Reduced distance of Type A solutions}
 
@@ -102,18 +98,6 @@ uniformly bounded on \(K\times[t_0,\omega_\infty-\varepsilon]\) for all
 sufficiently large \(i\).
 \end{corollary}
 
-\begin{example}[Exercise 30.6: optimizing the test path]
-\label{ex:chow-iv-optimize-type-a-test-path}
-\dcref{ch30:30.6}
-\group{Exercises}
-\source{chow-et-al-ricci-flow-part-iv:page-0159}
-\uses{lem:chow-iv-type-a-l-distance-upper-bound}
-Determine whether the estimate for \(r>1\) can be qualitatively strengthened
-by keeping the test path at \(p_i\) only on
-\([\omega_\infty-\delta,\omega_i]\), with
-\(\delta\in(0,\omega_\infty-t)\) chosen optimally.
-\end{example}
-
 \begin{lemma}[Uniform gradient bounds for \(\widetilde L_i\)]
 \label{lem:chow-iv-type-a-l-distance-gradient-bound}
 \dcref{ch30:30.7}
@@ -144,17 +128,6 @@ Lemma~\ref{lem:chow-iv-type-a-l-distance-gradient-bound},
 \]
 uniformly for all sufficiently large \(i\).
 \end{lemma}
-
-\begin{example}[Exercise 30.9: explicit first-derivative estimates]
-\label{ex:chow-iv-explicit-l-distance-derivative-bounds}
-\dcref{ch30:30.9}
-\group{Exercises}
-\source{chow-et-al-ricci-flow-part-iv:page-0162}
-\uses{lem:chow-iv-type-a-l-distance-gradient-bound,lem:chow-iv-type-a-l-distance-time-bound}
-Derive explicit bounds for \(|\nabla\widetilde L_i|\) and
-\(|\partial_t\widetilde L_i|\) in terms of time and distance from a fixed
-point, analogous to Lemma~\ref{lem:chow-iv-type-a-l-distance-upper-bound}.
-\end{example}
 
 \begin{theorem}[Reduced distance based at the singular time for a sequence of solutions]
 \label{thm:chow-iv-singular-time-reduced-distance-limit}
@@ -448,15 +421,6 @@ any \(t_i\nearrow\omega\), the curvature-scale rescalings
 subconverge to a non-Ricci-flat shrinking gradient Ricci soliton.
 \end{theorem}
 
-\begin{conjecture}[Problem 30.28: Type A shrinker models]
-\label{conj:chow-iv-type-a-nonflat-shrinker-model}
-\dcref{ch30:30.28}
-\group{Open Problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0180}
-Does every Type A singular solution on a closed manifold admit a nonflat
-shrinking gradient Ricci soliton as a singularity model?
-\end{conjecture}
-
 \section{Type I ancient solutions}
 
 For an ancient solution and positive sequences
@@ -478,21 +442,6 @@ bounded-curvature shrinking gradient Ricci soliton.  It is in canonical form,
 \]
 if and only if \(\partial_t f=|\nabla f|^2\).
 \end{lemma}
-
-\begin{example}[Exercise 30.30: normalization in canonical form]
-\label{ex:chow-iv-shrinker-canonical-normalization}
-\dcref{ch30:30.30}
-\group{Exercises}
-\source{chow-et-al-ricci-flow-part-iv:page-0182}
-\uses{lem:chow-iv-shrinker-canonical-form-characterization}
-If \(f\) is normalized by \(R+|\nabla f|^2-f=0\) at time \(-1\), then
-show that
-\[
- R+|\nabla f|^2+\frac ft=0
-\]
-for every \(t<0\).  Indeed, the time derivative of the left-hand side is
-\(-1/t\) times that expression.
-\end{example}
 
 \begin{theorem}[Backward and forward asymptotic shrinkers for Type I ancient solutions]
 \label{thm:chow-iv-type-i-ancient-asymptotic-shrinkers}
@@ -540,15 +489,6 @@ For every complete \(\kappa\)-noncollapsed Type I ancient Ricci flow, some
 backward limit is a nonflat shrinker.
 \end{theorem}
 
-\begin{conjecture}[Problem 30.35: Type II asymptotic shrinkers]
-\label{conj:chow-iv-type-ii-ancient-backward-shrinker}
-\dcref{ch30:30.35}
-\group{Open Problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0186}
-Does every \(\kappa\)-noncollapsed Type II ancient solution have a backward
-asymptotic shrinker?
-\end{conjecture}
-
 \begin{theorem}[Three-dimensional Type II ancient solutions have asymptotic shrinkers]
 \label{thm:chow-iv-three-dimensional-type-ii-asymptotic-shrinker}
 \dcref{ch30:30.36}
@@ -586,20 +526,6 @@ If \((\mathcal M^n,g,X,-1)\) is a complete noncompact shrinking Ricci
 soliton structure with bounded Ricci curvature, then \(X\) is a complete
 vector field.
 \end{lemma}
-
-\begin{example}[Exercise 30.39: evolution of the canonical soliton vector field]
-\label{ex:chow-iv-shrinker-vector-field-evolution}
-\dcref{ch30:30.39}
-\group{Exercises}
-\source{chow-et-al-ricci-flow-part-iv:page-0188}
-\uses{lem:chow-iv-shrinker-vector-field-complete}
-For the canonical family
-\[
- g(t)=-t\,\varphi(t)^*g,
- \qquad X(t)=-t^{-1}\varphi(t)^*X,
-\]
-compute \(\partial_tX(t)\).
-\end{example}
 
 \begin{theorem}[Bounded-curvature shrinkers are gradient and noncollapsed]
 \label{thm:chow-iv-bounded-curvature-shrinker-gradient-noncollapsed}

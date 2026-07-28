@@ -203,14 +203,6 @@ X\langle N_1,N_2\rangle
 for $N_1,N_2\in\Gamma(NM)$ and $X\in\mathfrak X(M)$.
 \end{proposition}
 
-\begin{exercise}
-\label{exer:prove-normal-connection}
-\dcref{ch8:8.7}
-\uses{prop:normal-connection-well-defined}
-
-Prove Proposition~\ref{prop:normal-connection-well-defined}.
-\end{exercise}
-
 Let $F\to M$ be the bundle with fiber
 \[
 F_p=\operatorname{Bil}(T_pM\times T_pM,N_pM).
@@ -221,13 +213,6 @@ For $B\in\Gamma(F)$, define
 =\nabla_X^\perp(B(Y,Z))
 -B(\nabla_XY,Z)-B(Y,\nabla_XZ).
 \]
-
-\begin{exercise}
-\label{exer:connection-in-bundle}
-\dcref{ch8:8.8}
-
-Prove that $\nabla^F$ is a connection on $F$.
-\end{exercise}
 
 \begin{theorem}[The Codazzi Equation]
 \label{thm:codazzi-equation}
@@ -479,13 +464,6 @@ $v_0\in C$, and every maximizer is an eigenvector of $s$ with eigenvalue
 $\lambda_0=\langle sv_0,v_0\rangle$.
 \end{lemma}
 
-\begin{exercise}
-\label{exer:lagrange-multiplier-eigenvector}
-\dcref{ch8:8.15}
-\uses{prop:lagrange-multiplier-rule}
-Prove the preceding lemma using the Lagrange multiplier rule.
-\end{exercise}
-
 \begin{proposition}[Finite-Dimensional Spectral Theorem]
 \label{prop:finite-dimensional-spectral-theorem}
 \dcref{ch8:8.16}
@@ -732,13 +710,6 @@ h_{ij;k}-h_{ik;j}=0. \tag{8.22}
 \end{equation}
 A symmetric $2$-tensor satisfying $Dh=0$ is a \emph{Codazzi tensor}.
 
-\begin{exercise}
-\label{exer:codazzi-tensor-characterization}
-\dcref{ch8:8.20}
-Show that a smooth $2$-tensor $h$ is a Codazzi tensor if and only if both $h$
-and $\nabla h$ are symmetric.
-\end{exercise}
-
 Conversely, (8.19)--(8.20) are locally sufficient: if $g$ is a Riemannian
 metric and $h$ is symmetric and satisfies these equations, then every point
 has a neighborhood admitting an isometric immersion into $\mathbb R^{n+1}$
@@ -789,13 +760,6 @@ R=\frac1{|\gamma''(t_0)|}=\frac1{\kappa(t_0)},
 \]
 gives the required circle and radius.
 \end{proof}
-
-\begin{exercise}
-\label{exer:osculating-circle-uniqueness}
-\dcref{ch8:8.22}
-Complete the preceding proof by establishing uniqueness of the osculating
-circle.
-\end{exercise}
 
 \section{Computations in Euclidean Space}
 
@@ -887,15 +851,6 @@ N=\frac{X_1\times X_2}{|X_1\times X_2|}. \tag{8.26}
 \end{equation}
 
 \section{The Gaussian Curvature of a Surface Is Intrinsic}
-
-\begin{exercise}
-\label{exer:plane-cylinder-isometric}
-\dcref{ch8:8.26}
-Let $M_1=\{z=0\}\subset\mathbb R^3$ and
-$M_2=\{x^2+y^2=1\}\subset\mathbb R^3$.  Show that they are locally
-isometric, although $M_1$ has mean curvature $0$ and $M_2$ has mean curvature
-$\pm\tfrac12$, according to the normal orientation.
-\end{exercise}
 
 \begin{theorem}[Gauss's Theorema Egregium]
 \label{thm:theorema-egregium}
@@ -1002,18 +957,6 @@ The curvature symmetries give
 The denominator is
 $|v|^2|w|^2-\langle v,w\rangle^2=|v\wedge w|^2$.
 \end{proof}
-
-\begin{exercise}
-\label{exer:metric-scaling-sectional-curvature}
-\dcref{ch8:8.30}
-\uses{thm:conformal-transformation-curvature}
-If $\widetilde g=\lambda g$ for a positive constant $\lambda$, use the
-conformal curvature transformation to prove
-\[
-\sec_{\widetilde g}(\Pi)=\lambda^{-1}\sec_g(\Pi)
-\]
-for every tangent $2$-plane $\Pi$.
-\end{exercise}
 
 \begin{proposition}[Sectional Curvature Determines the Curvature Tensor]
 \label{prop:sectional-curvature-determines-curvature-tensor}
@@ -1128,14 +1071,6 @@ For each $c\in\mathbb R$, exactly one of these model families has constant
 sectional curvature $c$, with its radius determined by $|c|^{-1/2}$ when
 $c\ne0$.
 
-\begin{exercise}
-\label{exer:constant-sectional-curvature-rp}
-\dcref{ch8:8.35}
-\uses{ex:real-projective-space-metric}
-Show that the metric on $\mathbb{RP}^n$ from Example 2.34 has constant positive
-sectional curvature.
-\end{exercise}
-
 \begin{proposition}[Metrics of Constant Sectional Curvature]
 \label{prop:constant-sectional-curvature}
 \dcref{ch8:8.36}
@@ -1159,218 +1094,30 @@ R_{ijkl}=c(g_{il}g_{jk}-g_{ik}g_{jl}),
 R_{ij}=(n-1)cg_{ij}.
 \]
 \end{proposition}
-\section{Problems}
+\section{Further Results}
 
-\begin{exercise}
-\label{prob:graph-submanifold-shape}
-\dcref{ch8:8-1}
-\uses{ex:metrics-in-graph-coordinates}
-
-Let $U\subseteq\mathbb R^n$ be open, let $f:U\to\mathbb R$ be smooth, and
-give its graph
-$M=\{(x,f(x)):x\in U\}\subseteq\mathbb R^{n+1}$ the induced metric and upward
-unit normal.
-\begin{enumerate}
-\item[(a)] Compute the graph-coordinate components of the shape operator in
-terms of the partial derivatives of $f$.
-\item[(b)] For $f(x)=|x|^2$, compute all principal curvatures of the resulting
-$n$-dimensional paraboloid.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:hypersurface-defining-function}
-\dcref{ch8:8-2}
-
-Let $(M,g)$ be an embedded Riemannian hypersurface of
-$(\overline M,\overline g)$, let $F$ be a local defining function for $M$, and
-set $N=\operatorname{grad}F/|\operatorname{grad}F|$.
-\begin{enumerate}
-\item[(a)] Prove that the scalar second fundamental form with respect to $N$
-is
-\[
-h(X,Y)=-\frac{\overline\nabla^2F(X,Y)}{|\operatorname{grad}F|}
-\qquad(X,Y\in\mathfrak X(M)).
-\]
-\item[(b)] If $n=\dim M$, prove
-\[
-H=-\frac1n\operatorname{div}_{\overline g}
-\left(\frac{\operatorname{grad}F}{|\operatorname{grad}F|}\right).
-\]
-\emph{Hint.} First prove: if $V$ is a finite-dimensional inner product space,
-$w\in V$ is unit, and $A:V\to V$ maps $w^\perp$ into itself, then
-\[
-\operatorname{tr}(A|_{w^\perp})=\operatorname{tr}B,
-\qquad
-Bx=Ax-\langle x,w\rangle Aw.
-\]
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:surface-revolution-shape-principal-curvatures}
-\dcref{ch8:8-3}
-\uses{ex:surfaces-of-revolution}
-
-Let $C\subseteq\{(r,z):r>0\}$ be an embedded smooth curve, let $S_C$ be its
-surface of revolution, let $\gamma(t)=(a(t),b(t))$ be a unit-speed local
-parametrization of $C$, and let $X$ be the parametrization in (2.11).
-\begin{enumerate}
-\item[(a)] Compute the shape operator and principal curvatures in terms of
-$a,b$, and prove that the principal directions are tangent to the meridians
-and latitude circles.
-\item[(b)] Prove that the Gaussian curvature at $X(t,\theta)$ is
-$-a''(t)/a(t)$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:surface-revolution-constant-gaussian-curvature}
-\dcref{ch8:8-4}
-\uses{cor:local-uniqueness-constant-curvature}
-
-Construct a surface of revolution in $\mathbb R^3$ with constant Gaussian
-curvature $1$ but nonconstant principal curvatures. Together with
-Corollary~10.15, this yields locally isometric nonflat Euclidean hypersurfaces
-with different principal curvatures.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:paraboloid-isotropic-one-point}
-\dcref{ch8:8-5}
-
-For the paraboloid
-$S=\{(x,y,z)\in\mathbb R^3:z=x^2+y^2\}$ with its induced metric, prove that
-$S$ is isotropic at exactly one point.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:geodesic-curvature-non-unit-speed-curve}
-\dcref{ch8:8-6}
-
-Let $\gamma:I\to(M,g)$ be a regular curve in a Riemannian manifold, with no
-unit-speed assumption. Prove
-\[
-\kappa(t)=
-\frac{|\gamma'(t)\times D_t\gamma'(t)|}{|\gamma'(t)|^3},
-\]
-where the numerator uses the norm in (8.27). In Euclidean $\mathbb R^3$,
-deduce
-\[
-\kappa(t)=
-\frac{|\gamma'(t)\times\gamma''(t)|}{|\gamma'(t)|^3}.
-\]
-\end{exercise}
-
-\begin{exercise}
-\label{prob:catenoid-minimal-surface}
-\dcref{ch8:8-7}
-
-For $w>0$, revolve
-$\gamma(t)=(w\cosh(t/w),t)$ about the $z$-axis to obtain the
-\emph{catenoid} $M_w\subseteq\mathbb R^3$. Prove that every $M_w$ is minimal.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:catenoid-boundary-minimal}
-\dcref{ch8:8-8}
-\uses{prob:catenoid-minimal-surface}
-
-For $h>0$, let
-\[
-C_h=\{(x,y,z)\in\mathbb R^3:x^2+y^2=1,\ z=\pm h\}.
-\]
-Let $c>0$ be the unique solution of $c\tanh c=1$ and set
-$h_0=1/\sinh c$. Prove that:
-\begin{enumerate}
-\item if $h<h_0$, exactly two values $0<w_1<w_2$ make the portions of
-$M_{w_i}$ in $|z|\leq h$ minimal surfaces with boundary $C_h$;
-\item if $h=h_0$, exactly one positive $w$ has this property;
-\item if $h>h_0$, no positive $w$ has this property.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:gauss-map}
-\dcref{ch8:8-9}
-
-Let $M\subseteq\mathbb R^{n+1}$ be a Riemannian hypersurface with smooth unit
-normal $N$. Its Gauss map is
-\[
-\nu:M\to S^n,\qquad \nu(p)=N_p.
-\]
-If $\mathring g$ is the round metric on $S^n$, prove
-\[
-\nu^*dV_{\mathring g}=(-1)^nK\,dV_g,
-\]
-where $K$ is the Gaussian curvature of $M$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:product-metric-submanifolds}
-\dcref{ch8:8-10}
-\uses{exer:prove-lemma-2-11,prob:product-metric-curvature}
-
-Let $g=g_1\oplus g_2$ be the product metric on $M_1\times M_2$ from (2.12).
-\begin{enumerate}
-\item[(a)] For $p_i\in M_i$, prove that
-$M_1\times\{p_2\}$ and $\{p_1\}\times M_2$ are totally geodesic.
-\item[(b)] Prove $\sec(\Pi)=0$ whenever
-$\Pi\subseteq T_{(p_1,p_2)}(M_1\times M_2)$ is spanned by
-$v_1\in T_{p_1}M_1$ and $v_2\in T_{p_2}M_2$.
-\item[(c)] Prove that the product has nonnegative sectional curvature when
-both factors do, and nonpositive sectional curvature when both factors do.
-\item[(d)] Suppose $(M_i,g_i)$ has constant sectional curvature $c_i$ and
-$n_i=\dim M_i$. Prove that the product is Einstein exactly when
-\[
-c_1(n_1-1)=c_2(n_2-1),
-\]
-and has constant sectional curvature exactly when
-$n_1=n_2=1$ or $c_1=c_2=0$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:surface-affine-plane-curvature}
-\dcref{ch8:8-11}
-
-Let $M\subseteq\mathbb R^3$ be a smooth surface, let $p\in M$, and let
-$N_p$ be normal to $M$ at $p$. If an affine plane
-$\Pi\subseteq\mathbb R^3$ contains $p$ and is parallel to $N_p$, prove that
-some neighborhood $U$ of $p$ satisfies:
-$M\cap\Pi\cap U$ is a smooth embedded curve in $\Pi$, and the principal
-curvatures of $M$ at $p$ are the minimum and maximum signed Euclidean
-curvatures of these curves as $\Pi$ varies.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:riemannian-immersion-bounded-sectional-curvatures}
-\dcref{ch8:8-12}
-
-Let $\pi:(\widetilde M,\widetilde g)\to(M,g)$ be a Riemannian submersion.
-If every sectional curvature of $(\widetilde M,\widetilde g)$ is at least
-$c$, use O'Neill's formula from Problem~7-14 to prove that every sectional
-curvature of $(M,g)$ is at least $c$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:complex-projective-space-curvature}
+\begin{proposition}
+\label{prop:complex-projective-space-curvature}
 \dcref{ch8:8-13}
+\uses{prop:oneill-formula}
 
 Let $p:S^{2n+1}\to\mathbb{CP}^n$ be the Riemannian submersion of
 Example~2.30. Identify $\mathbb C^{n+1}$ with $\mathbb R^{2n+2}$ using
 $z^j=x^j+iy^j$.
 \begin{enumerate}
-\item[(a)] Prove that
+\item[(a)] The field
 \[
 S=x^j\frac{\partial}{\partial y^j}
 -y^j\frac{\partial}{\partial x^j}
 \]
 is tangent to $S^{2n+1}$ and spans the vertical space $V_z$ at each
 $z\in S^{2n+1}$, with $j$ summed from $1$ to $n+1$.
-\item[(b)] For horizontal vector fields $W,Z$ on $S^{2n+1}$, prove
+\item[(b)] For horizontal vector fields $W,Z$ on $S^{2n+1}$,
 \[
-[W,Z]^V=-d\omega(W,Z)S=2\langle W,JZ\rangle S,
+\begin{gathered}
+[W,Z]^V=-d\omega(W,Z)S\\
+=2\langle W,JZ\rangle S,
+\end{gathered}
 \]
 where
 \[
@@ -1378,22 +1125,26 @@ where
 \]
 and the real-linear orthogonal map $J$ is
 \[
+\begin{gathered}
 J\left(a^j\frac{\partial}{\partial x^j}
-+b^j\frac{\partial}{\partial y^j}\right)
++b^j\frac{\partial}{\partial y^j}\right)\\
 =a^j\frac{\partial}{\partial y^j}
 -b^j\frac{\partial}{\partial x^j}.
+\end{gathered}
 \]
 Thus $J$ is complex multiplication by $i$ and $J^2=-\operatorname{Id}$.
-\item[(c)] Use O'Neill's formula from Problem~7-14 to prove
+\item[(c)] O'Neill's formula gives
 \begin{align*}
-Rm(w,x,y,z)
+&Rm(w,x,y,z)\\
 &=\langle\widetilde w,\widetilde z\rangle
   \langle\widetilde x,\widetilde y\rangle
--\langle\widetilde w,\widetilde y\rangle
+\\
+&\quad-\langle\widetilde w,\widetilde y\rangle
   \langle\widetilde x,\widetilde z\rangle\\
 &\quad-2\langle\widetilde w,J\widetilde x\rangle
   \langle\widetilde y,J\widetilde z\rangle
--\langle\widetilde w,J\widetilde y\rangle
+\\
+&\quad-\langle\widetilde w,J\widetilde y\rangle
   \langle\widetilde x,J\widetilde z\rangle\\
 &\quad+\langle\widetilde w,J\widetilde z\rangle
   \langle\widetilde x,J\widetilde y\rangle
@@ -1401,327 +1152,44 @@ Rm(w,x,y,z)
 for $q\in\mathbb{CP}^n$ and $w,x,y,z\in T_q\mathbb{CP}^n$, where the tilded
 vectors are horizontal lifts to any
 $\widetilde q\in p^{-1}(q)\subseteq S^{2n+1}$.
-\item[(d)] For orthonormal $w,x\in T_q\mathbb{CP}^n$, prove
+\item[(d)] For orthonormal $w,x\in T_q\mathbb{CP}^n$,
 \[
 \sec(w,x)=1+3\langle\widetilde w,J\widetilde x\rangle^2.
 \]
 \end{enumerate}
-\end{exercise}
+\end{proposition}
 
-\begin{exercise}
-\label{prob:einstein-sectional-curvature}
-\dcref{ch8:8-14}
-
-Prove that a Riemannian $3$-manifold is Einstein if and only if it has
-constant sectional curvature.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:homogeneous-isotropic-3-manifold}
-\dcref{ch8:8-15}
-\uses{prob:complex-projective-space-curvature}
-
-Prove that every homogeneous and isotropic Riemannian $3$-manifold has
-constant sectional curvature, and give a counterexample in dimension $4$.
-\emph{Hint.} Use Problem~8-13.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:berger-metric-su2}
-\dcref{ch8:8-16}
-
-For $a>0$, let $g_a$ be the Berger metric on $\operatorname{SU}(2)$ from
-Problem~3-10. Compute the sectional curvatures of the planes spanned by
-$(X,Y)$, $(Y,Z)$, and $(Z,X)$. Prove that when $a\neq1$,
-$(\operatorname{SU}(2),g_a)$ is homogeneous but nowhere isotropic.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lie-group-bi-invariant-metric-ch8}
-\dcref{ch8:8-17}
-
-Let $G$ be a Lie group with a bi-invariant metric $g$.
-\begin{enumerate}
-\item[(a)] For orthonormal $X,Y\in\operatorname{Lie}(G)$, prove
-\[
-\sec(X_p,Y_p)=\frac14|[X,Y]|^2
-\qquad(p\in G),
-\]
-and deduce that all sectional curvatures are nonnegative.
-\item[(b)] Prove that every Lie subgroup of $G$ is totally geodesic.
-\item[(c)] If $G$ is connected, prove that $G$ is flat exactly when it is
-abelian.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:convex-hypersurface}
-\dcref{ch8:8-18}
-
-Let $(M,g)$ be a Riemannian hypersurface in
-$(\overline M,\overline g)$ with unit normal $N$. Assume $M$ is
-\emph{convex with respect to $N$}, meaning
-$h(v,v)\leq0$ for every $v\in TM$. If the ambient sectional curvatures are
-bounded below by $c$, prove that the sectional curvatures of $M$ are also
-bounded below by $c$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lorentz-hypersurface-formulas}
-\dcref{ch8:8-19}
-\uses{thm:fundamental-equations-hypersurface}
-
-Let $(M,g)$ be a Riemannian hypersurface in an $(n+1)$-dimensional Lorentz
-manifold $(\overline M,\overline g)$ with smooth unit normal $N$. Define
-$h$ and $s$ by
-\[
-\mathrm{II}(X,Y)=h(X,Y)N,
-\qquad
-\langle sX,Y\rangle=h(X,Y).
-\]
-Prove the following Lorentzian analogues of Theorem~8.13:
-\begin{enumerate}
-\item[(a)] \emph{Gauss formula:}
-$\overline\nabla_XY=\nabla_XY+h(X,Y)N$.
-\item[(b)] \emph{Gauss formula along a curve:}
-$\overline D_tX=D_tX+h(\gamma',X)N$.
-\item[(c)] \emph{Weingarten equation:}
-$\overline\nabla_XN=sX$.
-\item[(d)] \emph{Gauss equation:}
-\[
-\overline{Rm}(W,X,Y,Z)
-=\left(Rm+\frac12h\owedge h\right)(W,X,Y,Z).
-\]
-\item[(e)] \emph{Codazzi equation:}
-$\overline{Rm}(W,X,Y,N)=-(Dh)(Y,W,X)$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lorentz-einstein-field-equation}
-\dcref{ch8:8-20}
-\uses{prob:lorentz-hypersurface-formulas}
-
-Let $(\overline M,\overline g)$ be an $(n+1)$-dimensional Lorentz manifold
-satisfying
-\[
-\overline{\mathrm{Rc}}-\frac12\overline S\,\overline g
-+\Lambda\overline g=T,
-\]
-where $\Lambda$ is constant and $T$ is a smooth symmetric $2$-tensor. Let
-$(M,g)$ be a Riemannian hypersurface with scalar second fundamental form $h$
-as in Problem~8-19. Prove the Einstein constraint equations
-\[
-S-2\Lambda-|h|_g^2+(\operatorname{tr}_gh)^2=2\rho,
-\]
-\[
-\operatorname{div}h-d(\operatorname{tr}_gh)=J,
-\]
-where $\rho=T(N,N)$ and $J(X)=T(N,X)$. Here $S$ is the scalar curvature of
-$g$, and $\operatorname{div}h$ is the divergence from Problem~5-16. When
-$J=\rho=0$, these are the \emph{vacuum Einstein constraint equations}.
-\end{exercise}
-
-\begin{exercise}[The associated quadratic form]
-\label{prob:associated-quadratic-form}
-\dcref{ch8:8-21}
-
-For a linear endomorphism $A:\mathbb R^n\to\mathbb R^n$, define its
-\emph{associated quadratic form} by $Q(x)=\langle Ax,x\rangle$. Prove
-\[
-\int_{S^{n-1}}Q\,dV_g
-=\frac1n(\operatorname{tr}A)\operatorname{Vol}(S^{n-1}).
-\]
-\emph{Hint.} For $i\neq j$, prove
-$\int_{S^{n-1}}x^ix^j\,dV_g=0$ using the isometry
-\[
-(x^1,\ldots,x^i,\ldots,x^j,\ldots,x^n)
-\longmapsto
-(x^1,\ldots,x^j,\ldots,-x^i,\ldots,x^n).
-\]
-Then compute $\int_{S^{n-1}}(x^i)^2\,dV_g$ from
-$\sum_i(x^i)^2=1$.
-\end{exercise}
-
-\begin{exercise}[Ricci curvature without choice of basis]
-\label{prob:ricci-curvature-without-basis}
-\dcref{ch8:8-22}
-\uses{prob:associated-quadratic-form}
-
-Let $(M,g)$ be a Riemannian $n$-manifold, $p\in M$, and
-$v\in T_pM$ a unit vector. Prove
-\[
-\operatorname{Rc}_p(v,v)
-=\frac{n-1}{\operatorname{Vol}(S^{n-2})}
-\int_{w\in S_v^\perp}\sec(v,w)\,dV_{\widehat g},
-\]
-where $S_v^\perp$ is the sphere of unit vectors in $T_pM$ orthogonal to $v$,
-and $\widehat g$ is induced on it by the flat metric $g_p$.
-\emph{Hint.} Use Problem~8-21.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lie-group-isometric-action-dimension}
-\dcref{ch8:8-23}
-\uses{prob:lie-group-dimension-bound}
-
-Let a Lie group $G$ act effectively and isometrically on a connected
-Riemannian $n$-manifold $(M,g)$. Given the bound
-$\dim G\leq n(n+1)/2$ from Problem~5-12, prove that equality implies constant
-sectional curvature.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:k-point-homogeneous-ch8}
-\dcref{ch8:8-24}
-\uses{prob:k-point-homogeneous}
-
-For a connected Riemannian manifold $(M,g)$, prove:
-\begin{enumerate}
-\item[(a)] homogeneity implies constant scalar curvature;
-\item[(b)] $2$-point homogeneity implies that $g$ is Einstein;
-\item[(c)] $3$-point homogeneity implies constant sectional curvature.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:weyl-tensor-product-metric}
-\dcref{ch8:8-25}
-\uses{prob:product-metric-curvature}
-
-For $i=1,2$, let $(M_i,g_i)$ have dimension $n_i\geq2$ and constant
-sectional curvature $c_i$. On $M=M_1\times M_2$, set
-$g=g_1\oplus g_2$, $n=n_1+n_2$, and $h_i=\pi_i^*g_i$. Prove
-\[
-W=\frac{c_1+c_2}{2(n-1)(n-2)}
-\left(
-n_2(n_2-1)h_1\owedge h_1
--2(n_1-1)(n_2-1)h_1\owedge h_2
-+n_1(n_1-1)h_2\owedge h_2
-\right).
-\]
-Deduce that $(M,g)$ is locally conformally flat if and only if
-$c_2=-c_1$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:weyl-tensor-4d}
-\dcref{ch8:8-26}
-
-Let $(M,g)$ be a Riemannian $4$-manifold, let $p\in M$, and let $(b_i)$ be
-an orthonormal basis of $T_pM$. Prove
-\[
-W_{1221}
-=\frac13(k_{12}+k_{34})
--\frac16(k_{13}+k_{14}+k_{23}+k_{24}),
-\]
-where $k_{ij}$ is the sectional curvature of
-$\operatorname{span}(b_i,b_j)$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:fubini-study-not-conformal-flat}
-\dcref{ch8:8-27}
-\uses{prob:complex-projective-space-curvature,prob:weyl-tensor-4d}
-
-Prove that the Fubini--Study metric on $\mathbb{CP}^2$ is not locally
-conformally flat. \emph{Hint.} Use Problems~8-13 and~8-26.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:hyperbolic-constant-curvature}
-\dcref{ch8:8-28}
-\uses{thm:sectional-curvatures-model-spaces,thm:gauss-equation,prob:lorentz-hypersurface-formulas}
-
-Complete the proof of Theorem~8.34 by proving in two ways that
-$\mathbb H^n(R)$ has constant sectional curvature $-1/R^2$.
-\begin{enumerate}
-\item[(a)] In the hyperboloid model, compute the second fundamental form of
-$\mathbb H^n(R)\subseteq\mathbb R^{n,1}$ at $(0,\ldots,0,R)$ and apply either
-the Gauss equation or Problem~8-19.
-\item[(b)] In the Poincar\'e ball model, use the conformal curvature
-transformation (7.44) to compute the Riemann tensor at the origin.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:curvature-tensors-constant-curvature}
-\dcref{ch8:8-29}
-\uses{prop:constant-sectional-curvature}
-
-Prove Proposition~8.36 on curvature tensors of constant-curvature spaces.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:ricci-tensor-hypersurface}
-\dcref{ch8:8-30}
-
-Let $M\subseteq\mathbb R^{n+1}$ be a hypersurface with induced metric. Prove
-\[
-\mathrm{Rc}(v,w)=\langle nHsv-s^2v,w\rangle,
-\]
-where $H$ and $s$ are its mean curvature and shape operator, and
-$s^2v=s(sv)$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:k-points-hyperbolic-geodesic}
-\dcref{ch8:8-31}
-
-For $1<k\leq n$, prove that any $k$ points of $\mathbb H^n(R)$ lie in a
-totally geodesic $(k-1)$-dimensional submanifold isometric to
-$\mathbb H^{k-1}(R)$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lie-group-fixed-point-geodesic}
-\dcref{ch8:8-32}
-
-Let a Lie group $G$ act smoothly and isometrically on a Riemannian manifold
-$(M,g)$, and let
-\[
-S=\{p\in M:\varphi(p)=p\text{ for every }\varphi\in G\}.
-\]
-Prove that every connected component of $S$ is a smoothly embedded totally
-geodesic submanifold. Different components are allowed to have different
-dimensions.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:curvature-operator}
+\begin{proposition}
+\label{prop:curvature-operator}
 \dcref{ch8:8-33}
-\uses{prob:complex-projective-space-curvature}
+\uses{prop:complex-projective-space-curvature}
 
 Let $(M,g)$ be Riemannian, and let $\Lambda^2(TM)$ be its bundle of
 alternating contravariant $2$-tensors.
 \begin{enumerate}
-\item[(a)] Prove that there is a unique fiber metric on $\Lambda^2(TM)$ whose
+\item[(a)] There is a unique fiber metric on $\Lambda^2(TM)$ whose
 norm satisfies
 \[
 |w\wedge x|^2=|w|^2|x|^2-\langle w,x\rangle^2.
 \]
-\item[(b)] Prove that there is a unique bundle endomorphism
+\item[(b)] There is a unique bundle endomorphism
 $\mathcal R:\Lambda^2(TM)\to\Lambda^2(TM)$ satisfying
 \begin{equation}
-\langle\mathcal R(w\wedge x),y\wedge z\rangle=-Rm(w,x,y,z)
+\begin{aligned}
+&\langle\mathcal R(w\wedge x),y\wedge z\rangle\\
+&=-Rm(w,x,y,z)
+\end{aligned}
 \tag{8.30}
 \end{equation}
 for tangent vectors at a common point. This is the \emph{curvature operator}.
-\item[(c)] Define positive and negative curvature operator by positive and
-negative definiteness of $\mathcal R$. Prove that they imply positive and
-negative sectional curvature, respectively.
+\item[(c)] Positive and negative definiteness of $\mathcal R$ imply positive
+and negative sectional curvature, respectively.
 
 \emph{Sign convention.} The minus sign in (8.30) is required by the curvature
 convention used here; it is omitted when the Riemann tensor is defined with
 the opposite sign.
-\item[(d)] Show that the converse need not hold. On
-$\mathbb{CP}^2$ with the Fubini--Study metric, compute
-\[
-\left\langle
-\mathcal R(w\wedge x+y\wedge z),w\wedge x+y\wedge z
-\right\rangle,
-\]
-where $w,x,y,z$ are orthonormal and their horizontal lifts satisfy
-$\widetilde y=J\widetilde w$ and $\widetilde z=J\widetilde x$.
+\item[(d)] The converse need not hold: the Fubini--Study metric on
+$\mathbb{CP}^2$ has positive sectional curvature, but its curvature operator
+is not positive definite.
 \end{enumerate}
-\end{exercise}
+\end{proposition}

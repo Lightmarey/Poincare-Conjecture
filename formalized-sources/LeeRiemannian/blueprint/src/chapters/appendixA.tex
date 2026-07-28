@@ -112,12 +112,6 @@ is a group homomorphism called the \emph{homomorphism induced by} $F$. If $F$ is
 A topological space $M$ is said to be \emph{simply connected} if it is path-connected and
 for some (hence every) point $p \in M$, the fundamental group $\pi_1(M, p)$ is trivial.
 
-\begin{exercise}
-\label{exer:path-homotopy-simply-connected}
-\dcref{chA:A.7}
-Show that if $M$ is a simply connected topological space and $p, q$ are any two points in $M$, then all paths in $M$ from $p$ to $q$ are path-homotopic.
-\end{exercise}
-
 A continuous map $F: M \to N$ is said to be a \emph{homotopy equivalence} if there is
 a continuous map $G: N \to M$ such that $G \circ F$ and $F \circ G$ are both homotopic to
 identity maps.
@@ -137,12 +131,6 @@ The setting for the study of Riemannian geometry is provided by \emph{smooth man
 
 If $M$ is a topological $n$-manifold with or without boundary, then two coordinate charts $(U, \varphi), (V, \psi)$ for $M$ are said to be \emph{smoothly compatible} if both of the \emph{transition maps} $\psi \circ \varphi^{-1}$ and $\varphi \circ \psi^{-1}$ are smooth where they are defined (on $\varphi(U \cap V)$ and $\psi(U \cap V)$, respectively). Since these maps are inverses of each other, it follows that both transition maps are in fact diffeomorphisms. An \emph{atlas for $M$} is a collection of coordinate charts whose domains cover $M$. It is called a \emph{smooth atlas} if any two charts in the atlas are smoothly compatible. A \emph{smooth structure on $M$} is a smooth atlas that is \emph{maximal}, meaning that it is not properly contained in any larger smooth atlas. A \emph{smooth manifold} is a topological manifold endowed with a specific smooth structure; and similarly, a \emph{smooth manifold with boundary} is a topological manifold with boundary endowed with a smooth structure. (We usually just say ``$M$ is a smooth manifold,'' or ``$M$ is a smooth manifold with boundary,'' with the smooth structure understood from the context.) If $M$ is a set, a \emph{smooth manifold structure on $M$} is a second countable, Hausdorff, locally Euclidean topology together with a smooth structure making it into a smooth manifold.
 
-\begin{exercise}
-\label{exer:maximal-smooth-atlas}
-\dcref{chA:A.9}
-Let $M$ be a topological manifold with or without boundary. Show that every smooth atlas for $M$ is contained in a unique maximal smooth atlas, and two smooth atlases determine the same smooth structure if and only if their union is a smooth atlas.
-\end{exercise}
-
 The manifolds in this book are always assumed to be smooth. As in most parts of differential geometry, the theory still works under weaker differentiability assumptions (such as $k$ times continuously differentiable), but such considerations are usually relevant only when one is treating questions of hard analysis that are beyond our scope.
 
 If $M$ is a smooth manifold with or without boundary, then every coordinate chart in the given maximal atlas is called a \emph{smooth coordinate chart for $M$} or just a \emph{smooth chart}. The set $U$ is called a \emph{smooth coordinate domain}; if its image is an open ball in $\mathbb{R}^n$, it is called a \emph{smooth coordinate ball}. If in addition $\varphi$ extends to a smooth coordinate map $\varphi' : U' \to \mathbb{R}^n$ on an open set $U' \supseteq \overline{U}$ such that $\varphi'(\overline{U})$ is the closure of the open ball $\varphi(U)$ in $\mathbb{R}^n$, then $U$ is called a \emph{regular coordinate ball}. In this case, $\overline{U}$ is diffeomorphic to a closed ball and is thus compact.
@@ -156,7 +144,7 @@ Every smooth manifold has a countable basis of regular coordinate balls.
 
 Given a smooth chart $(U, \varphi)$ for $M$, the component functions of $\varphi$ are called \textbf{local coordinates for $M$}, and are typically written as $(x^1, \ldots, x^n)$, $(x^i)$, or $x$, depending on context. Although, formally speaking, a coordinate chart is a map from an open subset $U \subseteq M$ to $\mathbb{R}^n$, it is common when one is working in the domain of a specific chart to use the coordinate map to \textit{identify} $U$ with its image in $\mathbb{R}^n$, and to identify a point in $U$ with its coordinate representation $(x^1, \ldots, x^n) \in \mathbb{R}^n$.
 
-In this book, we always write coordinates with upper indices, as in $(x^i)$, and expressions with indices are interpreted using the \textbf{Einstein summation convention}: if in some monomial term the same index name appears exactly twice, once as an upper index and once as a lower index, then that term is understood to be summed over all possible values of that index (usually from 1 to the dimension of the space). Thus the expression $a^i v_i$ is to be read as $\sum_i a^i v_i$. As we will see below, index positions for other sorts of objects such as vectors and covectors are chosen whenever possible in such a way that summations that make mathematical sense obey the rule that each repeated index appears once up and once down in each term to be summed. Because of the result of Exercise A.9, to define a smooth structure on a manifold, it suffices to exhibit a single smooth atlas for it. For example, $\mathbb{R}^n$ is a topological $n$-manifold, and it has a smooth atlas consisting of the single chart $(\mathbb{R}^n, \mathrm{Id}_{\mathbb{R}^n})$. More generally, if $V$ is an $n$-dimensional vector space, then every basis $(b_1, \ldots, b_n)$ for $V$ yields a linear \textbf{basis isomorphism} $B: \mathbb{R}^n \to V$ by $B(x^1, \ldots, x^n) = x^i b_i$, whose inverse is a global coordinate chart, and it is easy to check that all such charts are smoothly compatible. Thus every finite-dimensional vector space has a natural smooth structure, which we call its \textbf{standard smooth structure}. We always consider $\mathbb{R}^n$ or any other finite-dimensional vector space to be a smooth manifold with this structure unless otherwise specified.
+In this book, we always write coordinates with upper indices, as in $(x^i)$, and expressions with indices are interpreted using the \textbf{Einstein summation convention}: if in some monomial term the same index name appears exactly twice, once as an upper index and once as a lower index, then that term is understood to be summed over all possible values of that index (usually from 1 to the dimension of the space). Thus the expression $a^i v_i$ is to be read as $\sum_i a^i v_i$. As we will see below, index positions for other sorts of objects such as vectors and covectors are chosen whenever possible in such a way that summations that make mathematical sense obey the rule that each repeated index appears once up and once down in each term to be summed. A single smooth atlas determines a unique maximal smooth structure. For example, $\mathbb{R}^n$ is a topological $n$-manifold, and it has a smooth atlas consisting of the single chart $(\mathbb{R}^n, \mathrm{Id}_{\mathbb{R}^n})$. More generally, if $V$ is an $n$-dimensional vector space, then every basis $(b_1, \ldots, b_n)$ for $V$ yields a linear \textbf{basis isomorphism} $B: \mathbb{R}^n \to V$ by $B(x^1, \ldots, x^n) = x^i b_i$, whose inverse is a global coordinate chart, and it is easy to check that all such charts are smoothly compatible. Thus every finite-dimensional vector space has a natural smooth structure, which we call its \textbf{standard smooth structure}. We always consider $\mathbb{R}^n$ or any other finite-dimensional vector space to be a smooth manifold with this structure unless otherwise specified.
 
 If $M$ is a smooth $n$-manifold with or without boundary and $W \subseteq M$ is an open subset, then $W$ has a natural smooth structure consisting of all smooth charts $(U, \varphi)$ for $M$ such that $U \subseteq W$, so every open subset of a smooth $n$-manifold is a smooth $n$-manifold in a natural way, and similarly for manifolds with boundary. If $M_1, \ldots, M_k$ are smooth manifolds of dimensions $n_1, \ldots, n_k$, respectively, then their Cartesian product $M_1 \times \cdots \times M_k$ has a natural smooth atlas consisting of charts of the form $(U_1 \times \cdots \times U_k, \varphi_1 \times \cdots \times \varphi_k)$, where $(U_i, \varphi_i)$ is a smooth chart for $M_i$; thus the product space is a smooth manifold of dimension $n_1 + \cdots + n_k$.
 
@@ -259,10 +247,6 @@ If $F: M \to N$ is a smooth map and $p$ is any point in $M$, we define a linear 
 \begin{equation}
 dF_p(v)f = v(f \circ F), \quad v \in T_p M.
 \end{equation}
-
-\begin{exercise}\label{exer:differential-well-defined-functorial}\dcref{chA:A.13}
-Given a smooth map $F: M \to N$ and a point $p \in M$, show that $dF_p$ is a well-defined linear map from $T_p M$ to $T_{F(p)} N$. Show that the differential of the identity is the identity, and the differential of a composition is given by $d(G \circ F)_p = dG_{F(p)} \circ dF_p$.
-\end{exercise}
 
 Once we have chosen local coordinates $(x^i)$ for $M$ and $(y^j)$ for $N$, we find by unwinding the definitions that the coordinate representation of the differential is given by the \textbf{Jacobian matrix} of the coordinate representation of $F$, which is its matrix of first-order partial derivatives:
 \begin{equation}
@@ -504,12 +488,16 @@ Coordinates satisfying either of these conditions are called \emph{slice coordin
 
 If $M$ is an immersed submanifold, then Theorem A.16 shows that every point of $M$ has a neighborhood $U$ in $M$ that is embedded in $\bar{M}$, so we can construct slice coordinates for $U$ (but they need not be slice coordinates for $M$).
 
-\begin{exercise}
-\label{exer:extension-smooth-function}
+\begin{proposition}
+\label{prop:extension-smooth-function}
 \dcref{chA:A.23}
 \uses{thm:local-embedding-theorem}
-Suppose $\bar{M}$ is a smooth manifold and $M \subseteq \bar{M}$ is an embedded submanifold. Show that every smooth function $f : M \to \mathbb{R}$ can be extended to a smooth function on a neighborhood of $M$ in $\bar{M}$ whose restriction to $M$ is $f$; and if $M$ is also closed in $\bar{M}$, then the neighborhood can be taken to be all of $\bar{M}$. [Hint: Extend $f$ locally in slice coordinates by letting it be independent of $(x^{n+1},\ldots,x^m)$, and patch together using a partition of unity.]
-\end{exercise}
+Suppose $\bar{M}$ is a smooth manifold and $M \subseteq \bar{M}$ is an
+embedded submanifold. Every smooth function $f:M\to\mathbb{R}$ extends to a
+smooth function on a neighborhood of $M$ in $\bar{M}$ whose restriction to
+$M$ is $f$. If $M$ is closed in $\bar{M}$, the extension can be defined on all
+of $\bar{M}$.
+\end{proposition}
 
 Here is the way that most submanifolds are presented. Suppose $\Phi: \bar{M} \to N$ is any map. Every subset of the form $\Phi^{-1}(\{y\}) \subseteq \bar{M}$ for some $y \in N$ is called a \emph{level set of $\Phi$}, or the \emph{fiber of $\Phi$ over $y$}. The simpler notation $\Phi^{-1}(y)$ is also used for a level set when there is no likelihood of ambiguity.
 
@@ -680,13 +668,6 @@ T_p M = \ker d\Phi_p.
 Let $\tilde{M}$ be a smooth $m$-manifold and $M \subseteq \tilde{M}$ be an embedded hypersurface. Suppose $f \in C^\infty(\tilde{M})$, and $p \in M$ is a point at which $f$ attains a local maximum or minimum value among points in $M$. If $\Phi: U \to \mathbb{R}$ is a local defining function for $M$ on a neighborhood $U$ of $p$, then there is a real number $\lambda$ (called a \textbf{Lagrange multiplier}) such that $df_p = \lambda d\Phi_p$.
 \end{proposition}
 
-\begin{exercise}
-\label{exer:prove-lagrange-multiplier}
-\dcref{chA:A.30}
-\uses{prop:lagrange-multiplier-rule}
-Prove the preceding proposition. [Hint: One way to proceed is to begin by showing that there are smooth functions $x^1, \ldots, x^{m-1}$ on a neighborhood of $p$ such that $(x^1, \ldots, x^{m-1}, \Phi)$ are local slice coordinates for $M$.]
-\end{exercise}
-
 In treating manifolds with boundary, many constructions can be simplified by viewing a manifold with boundary as being embedded in a larger manifold without boundary. Here is one way to do that.
 
 If $M$ is a topological manifold with nonempty boundary, the \emph{double} of $M$ is the quotient space $D(M)$ formed from the disjoint union of two copies of $M$ (say $M_1$ and $M_2$), by identifying each point in $\partial M_1$ with the corresponding point in $\partial M_2$.
@@ -847,12 +828,6 @@ Suppose $\tilde{M}$ is a smooth manifold with or without boundary, and $M \subse
 
 Every smooth section of $E$ restricts to a smooth section of $E|_M$. Conversely, the next exercise shows that in most cases, smooth sections of $E|_M$ extend to smooth sections of $E$, at least locally near $M$.
 
-\begin{exercise}
-\label{exer:smooth-section-extension}
-\dcref{chA:A.35}
-Suppose $\tilde{M}$ is a smooth manifold, $E \to \tilde{M}$ is a smooth vector bundle, and $M \subseteq \tilde{M}$ is an embedded submanifold. Show that every smooth section of the restricted bundle $E|_M$ can be extended to a smooth section of $E$ on a neighborhood of $M$ in $\tilde{M}$; and if $M$ is closed in $\tilde{M}$, the neighborhood can be taken to be all of $\tilde{M}$.
-\end{exercise}
-
 \section{The Tangent Bundle and Vector Fields}
 
 We continue to assume that $M$ is a smooth manifold with or without boundary. In this section, we see how the theory of vector bundles applies to the particular case of the tangent bundle.
@@ -932,12 +907,6 @@ Now suppose $\tilde{M}$ is a smooth manifold with or without boundary and $M \su
 Let $\tilde{M}$ be a smooth manifold and let $M$ be an immersed submanifold with or without boundary in $\tilde{M}$. If $Y_1$ and $Y_2$ are smooth vector fields on $\tilde{M}$ that are tangent to $M$, then $[Y_1, Y_2]$ is also tangent to $M$.
 \end{corollary}
 
-\begin{exercise}
-\label{exer:tangent-vector-field-on-submanifold}
-\dcref{chA:A.41}
-Let $\tilde{M}$ be a smooth manifold with or without boundary and let $M \subseteq \tilde{M}$ be an embedded submanifold with or without boundary. Show that a vector field $X \in \mathfrak{X}(\tilde{M})$ is tangent to $M$ if and only if $(Xf)|_M = 0$ whenever $f \in C^\infty(\tilde{M})$ is a function that vanishes on $M$.
-\end{exercise}
-
 \section{Integral Curves and Flows}
 
 A \emph{curve} in a smooth manifold $M$ (with or without boundary) is a continuous map $\gamma: I \to M$, where $I \subseteq \mathbb{R}$ is some interval. If $\gamma$ is smooth, then for each $t_0 \in I$ we obtain a vector $\gamma'(t_0) = d\gamma_{t_0}(d/dt|_{t_0})$, called the \emph{velocity of $\gamma$ at time $t_0$}. It acts on functions by
@@ -996,12 +965,6 @@ If $\gamma: I \to M$ is a maximal integral curve of $X$ whose domain $I$ has a f
 upper bound $b$, then for every $t_0 \in I$, $\gamma([t_0, b))$ is not contained in any compact
 subset of $M$.
 \end{lemma}
-
-\begin{exercise}
-\label{exer:A.44}
-\dcref{chA:A.44}
-Prove the escape lemma.
-\end{exercise}
 
 \begin{proposition}[Canonical Form for a Vector Field]
 \label{prop:canonical-form-vector-field}
@@ -1065,13 +1028,6 @@ Here are the main properties of covering maps that we need.
 \dcref{chA:A.50}
 A covering map is a proper map if and only if it is finite-sheeted.
 \end{proposition}
-
-\begin{exercise}
-\label{exer:prove-prop-a50}
-\dcref{chA:A.51}
-\uses{prop:covering-proper-finite-sheeted}
-Prove the preceding proposition.
-\end{exercise}
 
 \begin{example}[A Covering of the $n$-Torus]
 \label{ex:covering-n-torus}
@@ -1151,10 +1107,11 @@ Proof. By Theorem A.56, the hypothesis implies that the identity map $\operatorn
 [LeeTM, Cor. 11.31] With $\pi: \tilde{M} \to M$ as in the previous proposition, each fiber of $\pi$ has the same cardinality as the fundamental group of $M$.
 \end{proposition}
 
-\begin{exercise}
-\label{exer:A.62}
+\begin{proposition}
+\label{prop:compact-covering-finite-sheeted}
 \dcref{chA:A.62}
-Suppose $\pi: \tilde{M} \to M$ is a covering map. Show that $\tilde{M}$ is compact if and only if $M$ is compact and $\pi$ is a finite-sheeted covering.
-\end{exercise}
+If $\pi:\tilde M\to M$ is a covering map, then $\tilde M$ is compact if and
+only if $M$ is compact and $\pi$ is finite-sheeted.
+\end{proposition}
 
 We will revisit smooth covering maps at the end of Appendix C.

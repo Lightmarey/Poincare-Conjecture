@@ -139,13 +139,6 @@ Let $V$ be a finite-dimensional vector space. There is a natural (basis-independ
 \]
 \end{proposition}
 
-\begin{exercise}
-\label{exer:prove-multilinear-maps-isomorphism}
-\dcref{chB:B.2}
-\uses{prop:multilinear-maps-tensor-isomorphism}
-Prove Proposition B.1. [Hint: In the special case $k = 0, l = 1$, consider the map $\Phi : \text{End}(V) \to T^{(1,1)}(V)$ defined by letting $\Phi A$ be the $(1, 1)$-tensor defined by $\Phi A(\omega, v) = \omega(Av)$. The general case is similar.]
-\end{exercise}
-
 \noindent We can use the result of Proposition B.1 to define a natural operation called \textit{trace} or \textit{contraction}, which lowers the rank of a tensor by 2. In one special case, it is easy to describe: the operator $\mathrm{tr}: T^{(1,1)}(V) \to \mathbb{R}$ is just the trace of $F$ when it is regarded as an endomorphism of $V$, or in other words the sum of the diagonal entries of any matrix representation of $F$. Since the trace of a linear endomorphism is basis-independent, this is well defined. More generally, we define $\mathrm{tr}: T^{(k+1,l+1)}(V) \to T^{(k,l)}(V)$ by letting $(\mathrm{tr} F)(\omega^1,\ldots,\omega^k, v_1,\ldots,v_l)$ be the trace of the $(1,1)$-tensor
 \[
 F(\omega^1,\ldots,\omega^k,\cdot, v_1,\ldots,v_l) \in T^{(1,1)}(V).
@@ -157,12 +150,6 @@ In terms of a basis, the components of $\mathrm{tr} F$ are
 \]
 
 In other words, just set the last upper and lower indices equal and sum. Even more generally, we can contract a given tensor on any pair of indices as long as one is contravariant and one is covariant. There is no general notation for this operation, so we just describe it in words each time it arises. For example, we can contract the tensor $A$ with components given by (B.6) on its first and second indices to obtain a covariant 1-tensor $B$ whose components are $B_k = A^i_{i k}$.
-
-\begin{exercise}
-\label{exer:trace-well-defined}
-\dcref{chB:B.3}
-Show that the trace on any pair of indices (one upper and one lower) is a well-defined linear map from $T^{(k+1,l+1)}(V)$ to $T^{(k,l)}(V)$.
-\end{exercise}
 
 \section{The Cauchy--Binet Formula}
 
@@ -260,7 +247,7 @@ Expand both minors by the Leibniz formula: the left-hand side becomes
 indices read in $\iota_a \sqcup \iota_b$. Fix $(\pi, \rho)$ and substitute $\sigma = \tau \circ (\pi \oplus \rho)^{-1}$, i.e.\ reindex the outer sum by $\tau = \sigma \circ (\pi \oplus \rho)$, where $\pi \oplus \rho$ is the permutation of $\iota_a \sqcup \iota_b$ acting as $\pi$ on $\iota_a$ and $\rho$ on $\iota_b$. Reindexing the two products by $\pi$ and $\rho$ respectively turns them into $\prod_{i} M_{i\,\tau(i)} \prod_{j} M_{j\,\tau(j)} = \prod_{x \in \iota_a \sqcup \iota_b} M_{x\,\tau(x)}$, and the signs combine as $\operatorname{sgn}(\tau)\operatorname{sgn}(\pi)^2\operatorname{sgn}(\rho)^2 = \operatorname{sgn}(\tau)$. The inner sum is therefore the Leibniz expansion of $\det M^{T} = \det M$, independent of $(\pi, \rho)$, and there are $k!\,l!$ such pairs.
 \end{proof}
 
-Two further counting lemmas concern permutations of a disjoint union $\iota_a \sqcup \iota_b$ with $\#\iota_a = k$ and $\#\iota_b = l$; they drive the collapse of the permutation sums in the characterization of the Hodge star operator (Problem 2-18 of Chapter 2). We say a permutation $\chi$ of $\iota_a \sqcup \iota_b$ \emph{preserves the blocks} if it maps the $\iota_a$-summand into itself, or equivalently the $\iota_b$-summand into itself; the block-preserving permutations are exactly those of the form $\pi \oplus \rho$ with $(\pi, \rho) \in S_{\iota_a} \times S_{\iota_b}$.
+Two further counting lemmas concern permutations of a disjoint union $\iota_a \sqcup \iota_b$ with $\#\iota_a = k$ and $\#\iota_b = l$; they drive the collapse of the permutation sums in the characterization of the Hodge star operator in \cref{prop:hodge-star-operator}. We say a permutation $\chi$ of $\iota_a \sqcup \iota_b$ \emph{preserves the blocks} if it maps the $\iota_a$-summand into itself, or equivalently the $\iota_b$-summand into itself; the block-preserving permutations are exactly those of the form $\pi \oplus \rho$ with $(\pi, \rho) \in S_{\iota_a} \times S_{\iota_b}$.
 
 \begin{lemma}[Block-Permutation Collapse]
 \label{lem:perm-block-collapse}
@@ -354,10 +341,6 @@ As special cases, the \textbf{bundle of covariant $k$-tensors} is denoted by $T^
 
 There are the usual identifications among these bundles that follow from (B.7): for example, $T^1 T M = T^{(1,0)} T M = T M$ and $T^1 T^* M = T^{(0,1)} T M = \Sigma^1 T^* M = T^* M$.
 
-\begin{exercise}\label{exer:tensor-bundle-smooth-vector-bundle}\dcref{chB:B.4}
-Show that each tensor bundle is a smooth vector bundle over $M$, with a local trivialization over every open subset that admits a smooth local frame for $T M$.
-\end{exercise}
-
 A \textit{tensor field} on $M$ is a section of some tensor bundle over $M$ (see p.~383 for the definition of a section of a bundle). A section of $T^1 T^* M = T^{(0,1)} T M$ (a covariant 1-tensor field) is also called a \textit{covector field}. As we do with vector fields, we write the value of a tensor field $F$ at $p \in M$ as $F_p$ or $F|_p$. Because covariant tensor fields are the most common and important tensor fields we work with, we use the following shorthand notation for the space of all smooth covariant $k$-tensor fields:
 \[\mathcal{T}^k(M) = \Gamma(T^k T^* M).\]
 
@@ -374,13 +357,7 @@ F = F^{i_1 \cdots i_k}_{j_1 \cdots j_l} \frac{\partial}{\partial x^{i_1}} \otime
 
 where each coefficient $F^{i_1 \cdots i_k}_{j_1 \cdots j_l}$ is a smooth real-valued function on $U$.
 
-\begin{exercise}\label{exer:smooth-tensor-field-criterion}\dcref{chB:B.5}
-Suppose $F: M \to \mathcal{T}^{(k,l)} T M$ is a rough $(k,l)$-tensor field. Show that $F$ is smooth on an open set $U \subseteq M$ if and only if whenever $\omega^1, \ldots, \omega^k$ are smooth covector fields and $X_1, \ldots, X_l$ are smooth vector fields defined on $U$, the real-valued function $F(\omega^1, \ldots, \omega^k, X_1, \ldots, X_l)$, defined on $U$ by
-\[F(\omega^1, \ldots, \omega^k, X_1, \ldots, X_l)(p) = F_p(\omega^1|_p, \ldots, \omega^k|_p, X_1|_p, \ldots, X_l|_p),\]
-is smooth.
-\end{exercise}
-
-An important property of tensor fields is that they are multilinear over the space of smooth functions. Suppose $F \in \Gamma(\mathcal{T}^{(k,l)} T M)$ is a smooth tensor field. Given smooth covector fields $\omega^1, \ldots, \omega^k \in \mathcal{T}^1(M)$ and smooth vector fields $X_1, \ldots, X_l \in \mathcal{X}(M)$, Exercise B.5 shows that the function $F(\omega^1, \ldots, \omega^k, X_1, \ldots, X_l)$ is smooth, and thus $F$ induces a map
+An important property of tensor fields is that they are multilinear over the space of smooth functions. Suppose $F \in \Gamma(\mathcal{T}^{(k,l)} T M)$ is a smooth tensor field. Given smooth covector fields $\omega^1, \ldots, \omega^k \in \mathcal{T}^1(M)$ and smooth vector fields $X_1, \ldots, X_l \in \mathcal{X}(M)$, the function $F(\omega^1, \ldots, \omega^k, X_1, \ldots, X_l)$ is smooth, and thus $F$ induces a map
 \[
 \tilde{F}: \underbrace{\mathcal{T}^1(M) \times \cdots \times \mathcal{T}^1(M)}_{k \text{ factors}} \times \underbrace{\mathfrak{X}(M) \times \cdots \times \mathfrak{X}(M)}_{l \text{ factors}} \to C^\infty(M).
 \]

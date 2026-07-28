@@ -25,11 +25,7 @@
 \newcommand{\Hess}{\operatorname{Hess}}
 \newcommand{\inj}{\operatorname{inj}}
 \newcommand{\dd}{\,\mathrm{d}}
-
-% Some audited page fragments retain parenthesized math without explicit
-% delimiters.  Keep \mathcal usable in either text or math mode.
-\let\ChowMathcal\mathcal
-\renewcommand{\mathcal}[1]{\ensuremath{\ChowMathcal{#1}}}
+\providecommand{\mathscr}[1]{\mathcal{#1}}
 
 % Horizon metadata is parsed into the DAG and hidden in print output.
 \providecommand{\dcref}[1]{}
@@ -39,3 +35,5 @@
 \providecommand{\github}[1]{}
 \providecommand{\dochome}[1]{}
 \providecommand{\uses}[1]{}
+\providecommand{\sketch}{\emph{Sketch.}\ }
+\providecommand{\href}[2]{#2}

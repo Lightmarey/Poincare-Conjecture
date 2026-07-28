@@ -484,14 +484,14 @@ isometry groups.
   \uses{def:pet-ch1-left-invariant-metric,ex:pet-ch1-sphere}
   There are identifications
   \[
-    SU(2)=\left\{\begin{bsmallmatrix}z&w\\-\bar w&\bar z\end{bsmallmatrix}
+    SU(2)=\left\{\left[\begin{smallmatrix}z&w\\-\bar w&\bar z\end{smallmatrix}\right]
       :|z|^2+|w|^2=1\right\}=S^3(1).
   \]
   The Lie algebra has basis
   \[
     X_1=\operatorname{diag}(i,-i),\quad
-    X_2=\begin{bsmallmatrix}0&1\\-1&0\end{bsmallmatrix},\quad
-    X_3=\begin{bsmallmatrix}0&i\\i&0\end{bsmallmatrix}.
+    X_2=\left[\begin{smallmatrix}0&1\\-1&0\end{smallmatrix}\right],\quad
+    X_3=\left[\begin{smallmatrix}0&i\\i&0\end{smallmatrix}\right].
   \]
   Declaring this left-invariant frame orthonormal gives the round metric on
   $S^3(1)$. Declaring it orthogonal with
@@ -1013,10 +1013,10 @@ quotient metrics explicit.
   Moreover,
   \[
     (t,e^{i\theta_1},e^{i\theta_2})\longmapsto
-    \begin{bsmallmatrix}
+    \left[\begin{smallmatrix}
       \cos t\,e^{i\theta_1}&\sin t\,e^{i\theta_2}\\
       -\sin t\,e^{-i\theta_2}&\cos t\,e^{-i\theta_1}
-    \end{bsmallmatrix}
+    \end{smallmatrix}\right]
   \]
   is an isometry from $S^3(1)$ to $SU(2)$ with the metric of
   \cref{ex:pet-ch1-su2-berger}.
@@ -1527,7 +1527,7 @@ Two norms on linear maps will be distinguished.
   Identify $\mathbb{R}^n$ with the hyperplane $x^{n+1}=R$ in
   $\mathbb{R}^{n+1}$. Then $\operatorname{Iso}(\mathbb{R}^n)$ is represented by
   \[
-    \begin{bsmallmatrix}O&v\\0&1\end{bsmallmatrix},
+    \left[\begin{smallmatrix}O&v\\0&1\end{smallmatrix}\right],
     \qquad O\in O(n),\quad v\in\mathbb{R}^n,
   \]
   and these are precisely the linear maps preserving that hyperplane and the
@@ -1803,13 +1803,13 @@ later chapters.
   Write $q=a+bi+cj+dk=z+wj$ and identify
   \[
     q\longleftrightarrow
-      \begin{bsmallmatrix}z&w\\-\bar w&\bar z\end{bsmallmatrix}.
+      \left[\begin{smallmatrix}z&w\\-\bar w&\bar z\end{smallmatrix}\right].
   \]
   This gives the associative real-bilinear quaternion product. With
   $\bar q=a-bi-cj-dk$,
   \[
     |q|^2=q\bar q=\bar qq=|z|^2+|w|^2
-      =\det\begin{bsmallmatrix}z&w\\-\bar w&\bar z\end{bsmallmatrix},
+      =\det\left[\begin{smallmatrix}z&w\\-\bar w&\bar z\end{smallmatrix}\right],
   \]
   $|pq|=|p||q|$, and $\overline{pq}=\bar q\bar p$. Define
   \[
@@ -1951,9 +1951,9 @@ later chapters.
   \uses{def:pet-ch1-pseudo-riemannian,def:pet-ch1-left-invariant-metric}
   The matrices of $\operatorname{diag}(a^{-1},ab,1)$-type
   \[
-    \begin{bsmallmatrix}
+    \left[\begin{smallmatrix}
       a^{-1}&0&0\\0&ab&\ast\\0&0&1
-    \end{bsmallmatrix},
+    \end{smallmatrix}\right],
     \qquad a>0,\quad b\in\mathbb{R},
   \]
   form a two-dimensional Lie group that admits no bi-invariant

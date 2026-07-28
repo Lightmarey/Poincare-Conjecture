@@ -108,27 +108,31 @@ manifold $M$.
   isometry, and \emph{bi-invariant} if both conditions hold.
 
   A vector field $X$ is left invariant when $dL_xX=X$ for every $x$; it is determined
-  by $X_e$.
+  by $X_e$. The bracket of left-invariant fields is left invariant, so
+  $[X_e,Y_e]=[X,Y]_e$ defines the Lie algebra $\mathcal{G}=T_eG$. Given an inner
+  product on $\mathcal{G}$, the formula
+  $$
+  \langle u,v\rangle_x=
+  \left\langle(dL_{x^{-1}})_x(u),(dL_{x^{-1}})_x(v)\right\rangle_e
+  \qquad\text{(2)}
+  $$
+  defines a left-invariant metric; the right-invariant construction is analogous,
+  and every compact Lie group has a bi-invariant metric. For a bi-invariant metric,
+  $$
+  \langle[U,X],V\rangle=-\langle U,[V,X]\rangle
+  \qquad\text{for }U,V,X\in\mathcal{G}.\tag{3}
+  $$
+  Conversely, a positive bilinear form on $\mathcal{G}$ satisfying (3), extended
+  by (2), gives a bi-invariant metric.
+\end{example}
+\begin{proof}
   \sketch
   For left-invariant $X,Y$,
   $$
   dL_x[X,Y]f=[X,Y](f\circ L_x)=X(dL_xY)f-Y(dL_xX)f=[X,Y]f,
   $$
   so $[X,Y]$ is left invariant. Consequently $[X_e,Y_e]=[X,Y]_e$ defines the Lie
-  algebra $\mathcal{G}=T_eG$. Given an inner product on $\mathcal{G}$, formula
-  $$
-  \langle u,v\rangle_x=
-  \left\langle(dL_{x^{-1}})_x(u),(dL_{x^{-1}})_x(v)\right\rangle_e,
-  \qquad\text{(2)}
-  $$
-  defines a left-invariant metric; the right-invariant construction is analogous.
-  A compact Lie group has a bi-invariant metric.
-
-  If the metric is bi-invariant, then for $U,V,X\in\mathcal{G}$,
-  $$
-  \langle[U,X],V\rangle=-\langle U,[V,X]\rangle.\qquad\text{(3)}
-  $$
-  \sketch
+  algebra $\mathcal{G}=T_eG$. Formula (2) is left invariant by construction.
   For $a\in G$, the inner automorphism $R_{a^{-1}}L_a$ fixes $e$ and has
   differential $\operatorname{Ad}(a)=dR_{a^{-1}}dL_a$. If $x_t$ is the flow of a
   left-invariant $X$, then $L_y\circ x_t=x_t\circ L_y$, hence
@@ -142,9 +146,8 @@ manifold $M$.
   $$
   Bi-invariance gives
   $\langle U,V\rangle=\langle dR_{x_t(e)}U,dR_{x_t(e)}V\rangle$; differentiating at
-  $t=0$ yields (3). Conversely, a positive bilinear form on $\mathcal{G}$ satisfying
-  (3), extended by (2), gives a bi-invariant metric; this converse is not proved here.
-\end{example}
+  $t=0$ yields (3).
+\end{proof}
 
 \begin{proposition}[existence of a left-invariant metric]
   \label{prop:dc-ch1-2-6-leftinv}

@@ -301,11 +301,9 @@ is, by Proposition 2.1, a symmetric bilinear form.
     Riemannian.fderiv_gaussMap_eq_neg_shapeOperatorAt,
     Riemannian.fderiv_gaussMap_mem_sphereTang}
   \leanok
-  \sketch
-  Consider the case in which the codimension of the immersion is $1$, i.e.
-  $f:M^n\to\overline{M}^{n+1}$; $f(M)\subset\overline{M}$ is then called a
-  \emph{hypersurface}. Let $p\in M$ and $\eta\in(T_pM)^\perp$, $|\eta|=1$. Since
-  $S_\eta:T_pM\to T_pM$ is symmetric, there exists an orthonormal basis of
+  An immersion $f:M^n\to\overline{M}^{n+1}$ has image a \emph{hypersurface}.
+  For $p\in M$ and a unit normal $\eta\in(T_pM)^\perp$, the symmetric operator
+  $S_\eta:T_pM\to T_pM$ has an orthonormal basis of
   eigenvectors $\{e_1,\dots,e_n\}$ of $T_pM$ with real eigenvalues
   $\lambda_1,\dots,\lambda_n$, $S_\eta(e_i)=\lambda_i e_i$. If $M$ and $\overline{M}$
   are both orientable and oriented, then $\eta$ is uniquely determined by requiring
@@ -316,21 +314,12 @@ is, by Proposition 2.1, a symmetric bilinear form.
   is the \emph{Gauss-Kronecker curvature} and
   $\frac{1}{n}(\lambda_1+\cdots+\lambda_n)$ the \emph{mean curvature} of $f$.
   
-  When $\overline{M}=\mathbb{R}^{n+1}$, take $N$ a local unit normal extension of
-  $\eta$. Let $S_1^n=\{x\in\mathbb{R}^{n+1};|x|=1\}$ and define the \emph{Gauss spherical
-  mapping} $g:M^n\to S_1^n$ by translating the origin of $N$ to the origin of
-  $\mathbb{R}^{n+1}$, with $g(q)=$ endpoint of the translation of $N(q)$. Since
-  $T_qM$ and $T_{g(q)}S_1^n$ are parallel, we identify them and find
-  
+  When $\overline{M}=\mathbb{R}^{n+1}$, a local unit normal $N$ defines the
+  \emph{Gauss spherical map} $g:M^n\to S_1^n$ by $g(q)=N(q)$. Under the natural
+  identification $T_qM=T_{g(q)}S_1^n$, its differential is
   $$
-  dg_q(x)=\frac{d}{dt}(N\circ c(t))_{t=0}=\overline{\nabla}_x N=(\overline{\nabla}_x N)^T=-S_\eta(x),
+  dg_q(x)=\overline{\nabla}_xN=-S_{N(q)}(x).
   $$
-  
-  where $c:(-\varepsilon,\varepsilon)\to M$ has $c(0)=q$, $c'(0)=x$, using
-  $\langle N,N\rangle=1$. Thus $-S_\eta$ is the derivative of the Gauss spherical
-  mapping.
-
-  Differentiating $\langle N,N\rangle=1$ gives $\langle N(q),dN_q(v)\rangle=0$. Since the normal space is $\mathbb R N(q)$, \cref{prop:dc-ch6-2-3} gives $dg_q(v)=(\overline\nabla_vN)^T=-S_\eta(v)$.
 \end{example}
 
 \begin{remark}[compact hypersurfaces with non-vanishing Gauss-Kronecker curvature]
@@ -793,31 +782,15 @@ is, by Proposition 2.1, a symmetric bilinear form.
     Riemannian.spherePatch_inducedCurvature_inner,
     Riemannian.sphere_sectionalCurvature_one}
   \leanok
-  \sketch
-  The sectional curvature of the unit sphere $S^n\subset\mathbb{R}^{n+1}$ is constant
-  equal to $1$. Orient $S^n$ by the inward pointing unit normal $N(x)=-x$,
-  $|x|=1$. The Gauss mapping is then equal to $(-i)$, $i$ the identity of $S^n$, so
-  the self-adjoint operator associated to $H_N$ has all eigenvalues equal to $1$.
-  Thus every $v\in T_pS^n$ is an eigenvector; by (4) all sectional curvatures of
-  $S^n$ equal $1$.
-
-  Concretely, work in the punctured space $F\setminus\{0\}$ of
-  \cref{lem:dc-ch6-2-8-euclidean-opens}, foliated by the concentric spheres:
-  the sphere through $p$ has tangent space $(\mathbb{R}p)^\perp$ and
-  orthogonal projection $v\mapsto v-\frac{\langle p,v\rangle}{\langle
-  p,p\rangle}p$. Differentiating the tangency identity $\langle x,
-  Y(x)\rangle\equiv0$ of a tangent field along a tangent direction gives the
-  second fundamental form $B(X,Y)=-\frac{\langle X,Y\rangle}{\langle
-  p,p\rangle}\,p$; at $|p|=1$ with inward unit normal $\eta=-p$ this is
-  $H_\eta(x,y)=\langle x,y\rangle$, so $S_\eta=\mathrm{id}$. By Gauss'
-  theorem (\cref{thm:dc-ch6-2-5}) against the flat ambient, the sphere of
-  radius $r$ has constant sectional curvature $\langle
-  p,p\rangle^{-1}=1/r^2$, equal to $1$ on the unit sphere.
-  
-  An immersion $f:M\to\overline{M}$ is \emph{geodesic at} $p\in M$ if for every
-  $\eta\in(T_pM)^\perp$ the second fundamental form $H_\eta$ is identically zero at
-  $p$. An immersion $f$ is \emph{totally geodesic} if it is geodesic for all $p\in M$.
+  The sphere of radius $r$ in Euclidean space has constant sectional curvature
+  $1/r^2$; in particular, the unit sphere has constant sectional curvature $1$.
 \end{example}
+\begin{proof}
+  \sketch
+  With the inward unit normal $\eta=-p/r$, the second fundamental form is
+  $H_\eta(x,y)=\langle x,y\rangle/r$, so $S_\eta=r^{-1}\mathrm{id}$. Gauss'
+  equation against the flat ambient gives sectional curvature $1/r^2$.
+\end{proof}
 
 \begin{definition}[geodesic at a point; totally geodesic immersion]
   \label{def:dc-ch6-2-8-geodesic}
@@ -936,25 +909,26 @@ is, by Proposition 2.1, a symmetric bilinear form.
     Riemannian.DCImmersedPatch.sectionalCurvature_eq_of_isGeodesicAt,
     Riemannian.DCImmersedPatch.inducedCurvatureAt_inner_eq_of_isGeodesicAt}
   \leanok
-  \sketch
   If $B\subset T_pM$ is a normal neighborhood and $\sigma\subset T_pM$ is
-  two-dimensional, then $S=\exp_p(\sigma\cap B)$ is geodesic at $p$. Its
-  second fundamental form therefore vanishes there, and Gauss' formula gives
-
+  two-dimensional, then $S=\exp_p(\sigma\cap B)$ is geodesic at $p$ and
   $$
   K_S(p)=K(p,\sigma).
   $$
-
   More generally, any submanifold geodesic at $p$ has the same sectional
   curvature as the ambient manifold on each tangent plane at $p$.
 \end{remark}
+\begin{proof}
+  \sketch
+  The exponential construction makes the second fundamental form of $S$ vanish
+  at $p$. The equality then follows from Gauss' equation; the same argument
+  applies to any submanifold geodesic at $p$.
+\end{proof}
 
 \begin{remark}[geodesic surfaces and constant sectional curvature]
   \label{rem:dc-ch6-2-9-exp-surface}
   \source{docarmo:page-0148}
   \uses{prop:dc-ch6-2-9}
   \notready
-  \sketch
   When $\exp_p$ is a smooth local diffeomorphism and
   $\exp_p|_{\sigma\cap B}$ is an immersion, the surface
   $S=\exp_p(\sigma\cap B)$ is geodesic at $p$. Linear subspaces and translates
@@ -1213,7 +1187,6 @@ $$
     Riemannian.DCImmersedPatch.hasFlatNormalBundle_iff_shapeOperatorsCommute,
     Riemannian.DCImmersedPatch.eq_of_inner_eq_of_mem_normalSpace}
   \leanok
-  \sketch
   We say the normal bundle of an immersion is \emph{flat} if $R^\perp=0$. Assume the
   ambient space $\overline{M}$ has constant sectional curvature. Then the Ricci
   equation can be written
@@ -1221,21 +1194,9 @@ $$
   $$
   \langle R^\perp(X,Y)\eta,\zeta\rangle=-\langle[S_\eta,S_\zeta]X,Y\rangle.
   $$
-  
-  It follows that $R^\perp=0$ if and only if $[S_\eta,S_\zeta]=0$ for all
+  Thus $R^\perp=0$ if and only if $[S_\eta,S_\zeta]=0$ for all
   $\eta,\zeta$, that is, if and only if for all $p\in M$ there exists a basis of
   $T_pM$ which diagonalizes all of the $S_\eta$ simultaneously.
-  
-  The Gauss and Ricci equations are algebraic relations between the curvatures of
-  the tangent and normal bundles and the second fundamental form. A non-algebraic
-  relation is the Codazzi equation, for which we differentiate the second
-  fundamental form considered as a tensor
-  $B:\mathcal{X}(M)\times\mathcal{X}(M)\times\mathcal{X}(M)^\perp\to\mathbb{R}$,
-  $B(X,Y,\eta)=\langle B(X,Y),\eta\rangle$, with covariant derivative
-  
-  $$
-  (\overline{\nabla}_X B)(Y,Z,\eta)=X(B(Y,Z,\eta))-B(\nabla_X Y,Z,\eta)-B(Y,\nabla_X Z,\eta)-B(Y,Z,\nabla_X^\perp\eta).
-  $$
 \end{remark}
 
 \begin{definition}[the covariant derivative of the second fundamental form]
@@ -1318,7 +1279,6 @@ $$
     Riemannian.DCImmersedPatch.normalCov_eq_zero_of_unit_spanning,
     Riemannian.DCImmersedPatch.codazzi_hypersurface}
   \leanok
-  \sketch
   If the ambient space $\overline{M}$ has constant sectional curvature, the Codazzi
   equation reduces to
   

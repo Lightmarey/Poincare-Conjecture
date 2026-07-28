@@ -643,11 +643,24 @@
   Define $\|(M,g,p)\|_{C^{m,\alpha},r}\le Q$ when a $C^{m+1,\alpha}$ chart
   exists from $\varphi:(B(0,r),0)\subset\mathbb{R}^n\to(U,p)\subset M$ such
   that
-  \begin{align}
-    \text{(n1)}\quad&|D\varphi|\le e^Q\text{ on }B(0,r),\ |D\varphi^{-1}|\le e^Q\text{ on }U,
-    \text{ equivalently }e^{-2Q}\delta_{kl}v^kv^l\le g_{kl}v^kv^l\le e^{2Q}\delta_{kl}v^kv^l\ \forall v\in\mathbb{R}^n,\\
-    \text{(n2)}\quad&r^{|I|+\alpha}\|\partial^Ig_{ij}\|_\alpha\le Q\text{ for all multi-indices }I,\ 0\le|I|\le m.
-  \end{align}
+  \begin{equation}
+    \begin{aligned}
+      \text{(n1)}\quad
+      &|D\varphi|\le e^Q\text{ on }B(0,r),\\
+      &|D\varphi^{-1}|\le e^Q\text{ on }U,\\
+      &e^{-2Q}\delta_{kl}v^kv^l\le g_{kl}v^kv^l,\\
+      &g_{kl}v^kv^l\le e^{2Q}\delta_{kl}v^kv^l,\\
+      &v\in\mathbb{R}^n.
+    \end{aligned}
+  \end{equation}
+  \begin{equation}
+    \begin{aligned}
+      \text{(n2)}\quad
+      &r^{|I|+\alpha}\|\partial^Ig_{ij}\|_\alpha\le Q\\
+      &\text{for every multi-index }I,\\
+      &0\le|I|\le m.
+    \end{aligned}
+  \end{equation}
 \end{definition}
 
 \begin{definition}[global $C^{m,\alpha}$ norm of a manifold]

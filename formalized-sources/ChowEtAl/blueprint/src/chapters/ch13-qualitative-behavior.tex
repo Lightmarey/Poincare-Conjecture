@@ -1,4 +1,4 @@
-\chapter{Qualitative Behavior of Classes of Solutions}
+\chapter[13]{Qualitative Behavior of Classes of Solutions}
 \label{ch:chow-ii-qualitative-behavior}
 
 A parallel-transport invariant family \(\Gamma(x)\) of subsets of the
@@ -21,6 +21,7 @@ For every Ricci flow to which the scalar maximum principle applies,
 preserved and attractive.
 \end{example}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-scalar-wmp}
 Since \(\partial_tR=\Delta R+2|\Ric|^2\geq\Delta R\), the maximum principle
 gives the lower bound.  Under a blow-up by \(Q_i\to\infty\), it becomes
@@ -37,6 +38,7 @@ In dimensions two and three it is equivalent to nonnegative sectional
 curvature.  Positive isotropic curvature is also preserved in every dimension.
 \end{example}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-curvature-operator-preservation}
 The relevant cones are closed, convex, invariant under parallel transport,
 and invariant under the curvature reaction ODE.  The tensor maximum principle
@@ -57,6 +59,7 @@ estimate, if \(\lambda_1<0\) is the least curvature-operator eigenvalue, then
 Consequently nonnegative curvature operator is attractive.
 \end{example}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-hamilton-ivey}
 The inequality is the Hamilton--Ivey estimate.  A negative eigenvalue in a
 smooth blow-up limit would make the logarithmic right-hand side, after
@@ -74,6 +77,7 @@ flow.  In dimension three it is equivalent to nonnegative Ricci curvature;
 strict positivity forces a spherical space form.
 \end{example}
 \begin{proof}
+\sketch
 \uses{prop:chow-ii-ricci-flow-preserves-two-nonnegative,thm:chow-ii-boehm-wilking-convergence}
 The first assertion is the two-nonnegative curvature maximum principle.  In
 dimension three the Ricci eigenvalues are the pairwise curvature-operator
@@ -90,6 +94,7 @@ Nonnegative holomorphic bisectional curvature is preserved by Kähler--Ricci
 flow whenever the maximum principle applies.
 \end{example}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-system-wmp}
 Its Kähler curvature cone is closed, convex, unitary-invariant, and preserved
 by the reaction ODE, so the bundle maximum principle applies.
@@ -105,6 +110,7 @@ eigenvalues of the traceless curvature operator on traceless \((1,1)\)-forms
 is nonnegative, both conditions are preserved by Kähler--Ricci flow.
 \end{example}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-system-wmp}
 The two inequalities form a closed convex unitary-invariant cone, and the
 Kähler curvature reaction ODE points into its tangent cone at each boundary
@@ -121,6 +127,7 @@ orthogonal bisectional curvature is preserved, then Ricci curvature remains
 nonnegative.
 \end{example}
 \begin{proof}
+\sketch
 At a first zero of the least Ricci eigenvalue, its reaction term is a sum of
 orthogonal bisectional curvatures weighted by nonnegative Ricci eigenvalues.
 It and the Laplacian term are nonnegative, so the maximum principle excludes
@@ -152,6 +159,7 @@ For vertical \(U,V\) and horizontal \(X,Y\),
 \]
 \end{example}
 \begin{proof}
+\sketch
 Metric compatibility gives the inner-product identities.  Integrability of
 the vertical distribution and torsion-freeness give \(T_UV=T_VU\).  The
 Koszul formula gives \(A_XY=\tfrac12\mathcal V[X,Y]\), hence skew-symmetry.
@@ -177,6 +185,7 @@ For vertical \(U,V\) and horizontal \(X,Y\),
 \]
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{ex:chow-ii-oneill-tensor-symmetries}
 Decompose all covariant derivatives in the curvature definition into vertical
 and horizontal parts.  The four tensor identities reduce the vertical case
@@ -241,6 +250,7 @@ strictly convex exhaustion and a one-point soul \(p\); the soul of the cover
 is \(\mathcal N_1\times\{p\}\).
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{thm:system-null-space-rigidity}
 Evolve a proper Lipschitz convex Busemann exhaustion on the cover by the heat
 equation.  Convexity and properness persist.  At positive time the null space
@@ -261,6 +271,7 @@ The bounded-curvature Ricci flow starting from the quotient metric on
 positive time.
 \end{corollary}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-persistent-nonnegative-sectional-splitting,rem:chow-ii-oneill-totally-geodesic-fibers}
 Otherwise the simply connected \(TS^2\) would be diffeomorphic to
 \(N^{4-k}\times\mathbb R^k\), which would trivialize the tangent bundle of
@@ -293,6 +304,7 @@ complete bounded-curvature Kähler metrics with nonnegative Ricci curvature
 whose Kähler--Ricci flows immediately acquire mixed Ricci curvature.
 \end{theorem}
 \begin{proof}
+\sketch
 Write \(r=\log\sum|z_i|^2\), let \(P=P(r)\), and set
 \(\varphi=P_r=\sqrt{2e^{kr}/k+m}\), \(m>0\).  Then
 \(\varphi\varphi_r=e^{kr}\), and
@@ -308,18 +320,6 @@ when \(r<k^{-1}\log(km)\).  Thus the radial eigenvalue becomes negative
 immediately while a tangential eigenvalue remains positive.
 \end{proof}
 
-\begin{example}[Problem: attraction of nonnegative Kähler Ricci curvature]
-\label{prob:chow-ii-kahler-ricci-attractive-cone}
-\dcref{ch13:13.16}
-\group{Unpreserved Curvature Conditions}
-\source{chow-et-al-ricci-flow-part-ii:page-0234}
-Determine whether metrics on
-\(\mathbb{CP}^1\hookrightarrow F_k^n\to\mathbb{CP}^{n-1}\), \(0<k<n\),
-can collapse the zero section under Kähler--Ricci flow with the mixed-Ricci
-\(U(n)\)-invariant soliton on \(L_k^n\) as singularity model.  This would
-show that nonnegative Ricci curvature is not attractive.
-\end{example}
-
 \subsection{Compact homogeneous counterexamples}
 
 \begin{theorem}[Böhm--Wilking compact counterexample]
@@ -332,6 +332,7 @@ There are homogeneous metrics with positive sectional curvature on
 eventually have Ricci curvature of mixed sign.
 \end{theorem}
 \begin{proof}
+\sketch
 Write the invariant metric as \(g=x_1Q|_{\mathfrak m_1}\oplus
 x_2Q|_{\mathfrak m_2}\oplus x_3Q|_{\mathfrak m_3}\), normalize
 \(x_1x_2x_3=1\), and put \(\varphi=x_1+x_2\), \(\psi=x_1-x_2\).  For large
@@ -371,6 +372,7 @@ are \(r,C>0\) such that
 \]
 \end{example}
 \begin{proof}
+\sketch
 In a Euclidean chart, Taylor's formula on the segment from \(a\) to \(x\)
 expresses the remainder through derivatives of total order \(m+1\).
 Cauchy--Schwarz, the series bound, and
@@ -393,6 +395,7 @@ Let \((\mathcal N^n,h)\) be closed and flat, and let
 Thus \(f(\cdot,t)\) is real analytic for every \(t>0\).
 \end{proposition}
 \begin{proof}
+\sketch
 \uses{ex:chow-ii-flat-factorial-analyticity-criterion}
 Flatness gives
 \((\partial_t-\Delta)|\nabla^kf|^2=-2|\nabla^{k+1}f|^2\).  Hence
@@ -417,6 +420,7 @@ which all metric components are real analytic, then those charts define a
 real analytic structure and the metric is real analytic in that structure.
 \end{lemma}
 \begin{proof}
+\sketch
 The Christoffel symbols are analytic functions of the metric and its first
 derivatives.  The analytic geodesic ODE therefore has solutions depending
 analytically on their initial data.  Transition maps between normal charts,
@@ -434,6 +438,7 @@ bounded curvature.  For every fixed \(t\in(0,T)\), \(g(t)\) is real analytic
 in the spatial variables.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{lem:chow-ii-normal-coordinate-analytic-atlas,lem:chow-ii-main-factorial-curvature-estimate,lem:chow-ii-normal-coordinate-metric-derivatives,rem:chow-ii-noncompact-analyticity}
 Fix \(t_0>0\) and restart at a slightly earlier positive time.  The factorial
 curvature estimate gives \(|\nabla^k\Rm(g(t_0))|\leq Ck!r^{-k-2}\).  The
@@ -459,6 +464,7 @@ For every covariant \(\ell\)-tensor \(A\),
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 In a normal orthonormal frame, commute \(\nabla_i\) past the two traced
 derivatives.  The first interchange gives \(\ell+1\) curvature actions on
 \(\nabla A\); the second gives another \(\ell\) such actions and \(\ell\)
@@ -495,6 +501,7 @@ If \(T\) is a covariant \(p\)-tensor, \(p\geq1\), then
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 \uses{lem:chow-ii-nabla-laplacian-commutator,rem:chow-ii-differentiable-contraction-count}
 Induct on \(k\).  Differentiate the inductive estimate and add the
 one-derivative commutator on \(\nabla^kT\).  Leibniz' rule splits each old
@@ -526,6 +533,7 @@ If \(T\) is a covariant \(p\)-tensor along Ricci flow, then
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 For \(k=1\), variation of the connection gives
 \((\nabla\partial_t-\partial_t\nabla)T=3p\nabla\Ric*T\).  Differentiate
 inductively.  Leibniz' rule and Pascal's identity combine adjacent
@@ -545,6 +553,7 @@ If \(T\) is a covariant \(p\)-tensor, then
 \]
 \end{corollary}
 \begin{proof}
+\sketch
 \uses{lem:chow-ii-higher-nabla-laplacian-commutator,lem:chow-ii-nabla-time-commutator}
 Subtract the two commutator formulas and put their coefficients over the
 common denominator \((i+2)!(k-i)!\).  Their sum is bounded by the displayed
@@ -567,6 +576,7 @@ There is \(C_n<\infty\) such that
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 \uses{cor:chow-ii-nabla-heat-commutator}
 Apply the commutator estimate to
 \((\partial_t-\Delta)\Rm=(4n+5)\Rm*\Rm\), expand by Leibniz' rule, and
@@ -590,6 +600,7 @@ on \(0\leq t\leq(4C_nK)^{-1}\).  In particular,
 \(|\nabla^k\Rm|(x,t)\leq\frac87(k+1)!Kt^{-k/2}\).
 \end{lemma}
 \begin{proof}
+\sketch
 \uses{lem:chow-ii-curvature-derivative-evolution-inequality,thm:noncompact-scalar-pde-ode-comparison}
 Set \(A_k=t^{k/2}|\nabla^k\Rm|/(k+1)!\),
 \(B_k=t^{(k-1)/2}|\nabla^k\Rm|/k!\),
@@ -620,6 +631,7 @@ The factorial estimates have smaller constants than the direct calculation,
 but the same factorial growth and analyticity conclusion.
 \end{example}
 \begin{proof}
+\sketch
 \uses{lem:chow-ii-main-factorial-curvature-estimate}
 Iteration produces only \(\nabla^i\Rm*\nabla^{k-i}\Rm\); moving-metric and
 connection terms are absorbed into \(\nabla_t\).  The same Pascal estimates
@@ -643,6 +655,7 @@ there are \(C_2(n),C_3(n)\) and \(r_1=r_1(r,n)>0\) such that, when
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 Along radial normal geodesics, the Jacobi equation and Grönwall's inequality
 give the metric comparison.  Differentiate the Jacobi equation \(k\) times.
 The curvature hypothesis and

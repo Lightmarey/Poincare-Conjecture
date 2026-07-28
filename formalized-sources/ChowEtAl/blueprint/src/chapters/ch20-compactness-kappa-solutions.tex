@@ -1,12 +1,7 @@
-\chapter{\texorpdfstring{Compactness of the Space of $\kappa$-Solutions}{Compactness of the Space of Kappa-Solutions}}
+\chapter[20]{\texorpdfstring{Compactness of the Space of $\kappa$-Solutions}{Compactness of the Space of Kappa-Solutions}}
 \label{ch:chow-iii-compactness-kappa-solutions}
 \dcref{ch20}
 \source{chow-et-al-ricci-flow-part-iii:page-0144,page-0145}
-
-This chapter establishes Perelman's compactness theorem for curvature-normalized
-$\kappa$-solutions with Harnack.  The proof rests on the vanishing of the
-asymptotic volume ratio, a quantitative collapsing theorem for almost ancient
-solutions, and curvature control on noncollapsed balls.
 
 \section{Asymptotic scalar curvature and volume ratios}
 
@@ -25,7 +20,7 @@ $n\ge2$, one has
 for every $t\le0$.
 \end{theorem}
 \begin{proof}
-Argue by induction on $n$.  There are no noncompact two-dimensional
+\sketch Argue by induction on $n$.  There are no noncompact two-dimensional
 $\kappa$-solutions with Harnack.  At a fixed time $t_0$, failure of the
 conclusion leaves three cases.
 
@@ -66,7 +61,7 @@ ancient, with nonnegative curvature operator and
 Then $\operatorname{AVR}(g(t))=0$ for every $t\le0$.
 \end{corollary}
 \begin{proof}
-If $\omega_n\operatorname{AVR}(g(t_0))=\kappa_0>0$, Bishop--Gromov
+\sketch If $\omega_n\operatorname{AVR}(g(t_0))=\kappa_0>0$, Bishop--Gromov
 comparison makes $g(t_0)$ $\kappa_0$-noncollapsed at every scale.  The proof
 of Theorem~\ref{thm:chow-iii-kappa-harnack-ascr-avr} uses only this
 time-slice noncollapsing to force zero AVR, a contradiction.
@@ -109,7 +104,7 @@ Then, for all sufficiently large $k$,
 \]
 \end{proposition}
 \begin{proof}
-Otherwise choose $A_k\to\infty$ for which the displayed volume ratios have a
+\sketch Otherwise choose $A_k\to\infty$ for which the displayed volume ratios have a
 fixed positive lower bound.  After rescaling by $Q_k$, Bishop--Gromov and the
 curvature bound give a uniform injectivity radius at $x_k$.  Local Hamilton
 compactness yields a complete, nonflat, bounded-curvature ancient limit with
@@ -161,7 +156,7 @@ $d_{g(t)}(x,x_0)\le r_0/4$,
 \]
 \end{proposition}
 \begin{proof}
-Scale to $r_0=1$.  If the first assertion fails, parabolic point picking
+\sketch Scale to $r_0=1$.  If the first assertion fails, parabolic point picking
 produces points $(y_k,t_k^*)$ with curvature scales tending to infinity and
 uniform curvature bounds on increasingly large backward parabolic
 cylinders.  Bishop--Gromov comparison transfers the assumed unit-ball volume
@@ -226,7 +221,7 @@ For every $\kappa>0$ and $n\ge2$, the collection of $n$-dimensional
 $\kappa$-solutions with Harnack is compact modulo scaling.
 \end{theorem}
 \begin{proof}
-Normalize an arbitrary pointed sequence so that $R(x_k,0)=1$.  One proof
+\sketch Normalize an arbitrary pointed sequence so that $R(x_k,0)=1$.  One proof
 sets
 \[
  A_k=\sup_z R(z,0)d(x_k,z)^2.
@@ -276,7 +271,7 @@ nonspherical-space-form three-dimensional $\kappa$-solutions is precompact
 modulo scaling, although a limit may be spherical.
 \end{corollary}
 \begin{proof}
-The three-dimensional gap theorem supplies one uniform $\kappa_0>0$ for all
+\sketch The three-dimensional gap theorem supplies one uniform $\kappa_0>0$ for all
 members of either union.  Apply Corollary
 \ref{cor:chow-iii-3d-kappa-compactness}.  Noncompactness is preserved in the
 first family; in the second family only precompactness is asserted because a
@@ -346,7 +341,7 @@ uniformly in $k$, or
 uniformly in $k$.
 \end{lemma}
 \begin{proof}
-If both alternatives fail, point picking supplies $w_k$ and $s_k$ with
+\sketch If both alternatives fail, point picking supplies $w_k$ and $s_k$ with
 $Q_ks_k^2\to\infty$, $\alpha_kQ_k\to\infty$, and $R\le2Q_k$ on
 $B(w_k,s_k)\times(-\alpha_k,0]$.  Proposition
 \ref{prop:chow-iii-almost-ancient-large-scale-collapse} makes the volume
@@ -368,7 +363,7 @@ there is $c_0(\kappa,n)>0$ such that
 \]
 \end{claim}
 \begin{proof}
-If the volumes tend to zero, choose $\delta_k\downarrow0$ so that the volume
+\sketch If the volumes tend to zero, choose $\delta_k\downarrow0$ so that the volume
 ratio at radius $\delta_k$ is $\omega_n/2$ and rescale by $\delta_k^{-2}$.
 Proposition~\ref{prop:chow-iii-curvature-estimate-noncollapsed-balls} gives
 curvature bounds on every fixed ball, hence a complete pointed limit.  Its
@@ -393,7 +388,7 @@ $n$-dimensional $\kappa$-solution with Harnack satisfies
 \]
 \end{theorem}
 \begin{proof}
-Otherwise rescale a violating sequence at the chosen space-time points so
+\sketch Otherwise rescale a violating sequence at the chosen space-time points so
 that $R(x_k,0)=1$.  One of $|\nabla R|(x_k,0)$ and
 $|\partial_tR|(x_k,0)$ tends to infinity.  Theorem
 \ref{thm:chow-iii-kappa-harnack-compactness} gives pointed smooth convergence,
@@ -456,7 +451,7 @@ For a noncompact $\kappa$-solution with Harnack and any fixed $p$,
 \]
 \end{corollary}
 \begin{proof}
-Along a unit-speed minimizing geodesic from $p$ to $x$,
+\sketch Along a unit-speed minimizing geodesic from $p$ to $x$,
 $\frac d{ds}R^{-1/2}\le\eta/2$.  Hence
 \[
  R(x,t)\ge
@@ -464,18 +459,6 @@ $\frac d{ds}R^{-1/2}\le\eta/2$.  Hence
 \]
 and the assertion follows after multiplying by the squared distance.
 \end{proof}
-
-\begin{example}[Problem: infinite asymptotic scalar curvature from derivatives]
-\label{prob:chow-iii-kappa-derivatives-infinite-ascr}
-\dcref{ch20:20.22}
-\group{Derivative Applications}
-\source{chow-et-al-ricci-flow-part-iii:page-0173}
-Can the lower bound in Corollary
-\ref{cor:chow-iii-kappa-quadratic-curvature-lower-bound} be strengthened to
-\[
- \liminf_{d_{g(t)}(x,p)\to\infty}R(x,t)d_{g(t)}(x,p)^2=\infty?
-\]
-\end{example}
 
 \begin{corollary}[Scalar curvature along steady-soliton flow lines]
 \label{cor:chow-iii-steady-soliton-flowline-curvature-lower-bound}
@@ -493,7 +476,7 @@ $\dot\sigma=-\nabla f$, then
 In dimension three this implies $R(x)\ge c/(1+d(x,p))$.
 \end{corollary}
 \begin{proof}
-The soliton satisfies trace Harnack, and Theorem
+\sketch The soliton satisfies trace Harnack, and Theorem
 \ref{thm:chow-iii-kappa-scaled-derivative-estimates} gives
 $\langle\nabla R,\nabla f\rangle\le\eta R^2$.  Therefore
 $\frac d{du}R(\sigma(u))^{-1}\le\eta$, which integrates to the result.
@@ -511,39 +494,3 @@ such that
  R(x)\le\frac C{1+d(x,p)}.
 \]
 \end{corollary}
-
-\section{Classification problems and conjectures}
-
-\begin{example}[Problem: rotationally symmetric positive $\kappa$-solutions]
-\label{prob:chow-iii-rotational-kappa-bryant}
-\dcref{ch20:20.25}
-\group{Classification Problems}
-\source{chow-et-al-ricci-flow-part-iii:page-0174}
-Prove that every rotationally symmetric noncompact three-dimensional
-$\kappa$-solution with positive sectional curvature is a constant multiple
-of the Bryant soliton.
-\end{example}
-
-\begin{claim}[Optimistic conjecture in dimension three]
-\label{conj:chow-iii-3d-positive-kappa-classification}
-\dcref{ch20:20.26}
-\group{Classification Conjectures}
-\source{chow-et-al-ricci-flow-part-iii:page-0174}
-The only three-dimensional $\kappa$-solutions with positive sectional
-curvature are round spherical space forms, the Bryant steady soliton, and
-Perelman's spherical $\kappa$-solution on $S^3$ or $\mathbb{RP}^3$.
-\end{claim}
-
-\begin{claim}[Optimistic conjecture in dimension two]
-\label{conj:chow-iii-2d-ancient-classification}
-\dcref{ch20:20.27}
-\group{Classification Conjectures}
-\source{chow-et-al-ricci-flow-part-iii:page-0174,page-0175}
-Every two-dimensional ancient solution with bounded curvature is one of:
-a quotient of $S^2$ or $\mathbb R^2$ with constant nonnegative curvature;
-the cigar steady soliton; or the King--Rosenau ancient solution on $S^2$ or
-$\mathbb{RP}^2$.
-\end{claim}
-
-The source notes that this last conjecture was subsequently proved through
-the classification results of Daskalopoulos, Hamilton, Sesum, and others.

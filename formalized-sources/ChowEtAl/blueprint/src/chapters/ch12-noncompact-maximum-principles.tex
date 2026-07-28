@@ -1,4 +1,4 @@
-\chapter{Weak and Strong Maximum Principles on Noncompact Manifolds}
+\chapter[12]{Weak and Strong Maximum Principles on Noncompact Manifolds}
 \label{ch:noncompact-maximum-principles}
 
 \section{Weak maximum principles for scalar heat-type equations}
@@ -22,6 +22,7 @@ for finite constants $A,B$, then
 \end{theorem}
 
 \begin{proof}
+\sketch
 \source{chow-et-al-ricci-flow-part-ii:page-0168,chow-et-al-ricci-flow-part-ii:page-0169}
 Write $D=\sup u(\cdot,0)$, the case $D=+\infty$ being immediate.  Choose
 $T'\leq T$ with $4BT'<1$ and, for $\delta,\varepsilon>0$, set
@@ -63,6 +64,7 @@ $u_1=u_2$ on $\mathbb R^n\times[0,T]$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{thm:euclidean-heat-wmp-exponential-quadratic-growth}
 Apply Theorem~\ref{thm:euclidean-heat-wmp-exponential-quadratic-growth} to
 $u_1-u_2$ and to $u_2-u_1$.
@@ -104,6 +106,7 @@ on $M\times[0,T]$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:bounded-curvature-distance-like-function}
 \source{chow-et-al-ricci-flow-part-ii:page-0170,chow-et-al-ricci-flow-part-ii:page-0171}
 Take the function supplied by
@@ -149,6 +152,7 @@ e^{\alpha\widetilde d(O,p)}\leq\phi(p,t)
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:bounded-curvature-distance-like-function}
 Let $h$ be given by Lemma~\ref{lem:bounded-curvature-distance-like-function}
 and put $\phi=e^{Bt+\gamma h}$.  Since $g^{-1}\leq\delta^{-1}\widetilde
@@ -162,17 +166,6 @@ Choose $\gamma$ large enough for the required lower growth, then choose $B$
 so that the right side is at least $\beta$.  The two-sided growth of $h$
 gives the upper estimate.
 \end{proof}
-
-\begin{example}[Exercise: constructing the first barrier]
-\label{ex:construct-general-metric-barrier}
-\dcref{ch12:12.8}
-\group{Barrier Functions}
-\uses{lem:general-metric-barrier-supersolution}
-\source{chow-et-al-ricci-flow-part-ii:page-0172}
-The function $\phi=e^{Bt+\gamma h}$ in the preceding proof satisfies the
-claimed differential and growth inequalities after the indicated choices of
-$\gamma$ and $B$.
-\end{example}
 
 \begin{lemma}[Existence of a barrier supersolution, II]
 \label{lem:ricci-flow-barrier-supersolution}
@@ -191,6 +184,7 @@ e^{b(d_{g(t)}(O,x)+1)}.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:ricci-flow-distance-like-function}
 For the function $h$ from Lemma~\ref{lem:ricci-flow-distance-like-function},
 put $\phi=e^{Bt+\alpha h}$.  Choose $\alpha$ for the lower growth and then
@@ -220,6 +214,7 @@ If $u(x,t)\leq e^{\widetilde b(\widetilde d(O,x)+1)}$, then $u\leq0$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{lem:general-metric-barrier-supersolution}
 Set $\widetilde u=e^{-2A\sqrt t}u$.  Then the displayed operator applied to
 $\widetilde u$ is nonpositive wherever $\widetilde u\geq0$.  Let $\phi$ be
@@ -232,7 +227,7 @@ Thus $\widetilde u\leq\varepsilon\phi$ for every $\varepsilon>0$, and letting
 $\varepsilon\downarrow0$ proves the result.
 \end{proof}
 
-\begin{example}[Exercise: an integrable zeroth-order coefficient]
+\begin{example}[Integrable zeroth-order coefficient]
 \label{ex:wmp-integrable-time-coefficient}
 \dcref{ch12:12.11}
 \group{Weak Scalar Maximum Principles}
@@ -243,6 +238,7 @@ $\alpha:(0,T]\to\mathbb R$.
 \end{example}
 
 \begin{proof}
+\sketch
 \uses{thm:complete-manifold-scalar-wmp-barrier}
 Replace $u$ by
 $\exp(-\int_0^t\alpha(s)\,ds)u$.  The new function has no positive
@@ -266,6 +262,7 @@ A^{-1}\widetilde g\leq g(t)\leq A\widetilde g,
 \end{proposition}
 
 \begin{proof}
+\sketch
 \uses{thm:complete-manifold-scalar-wmp-barrier,ex:wmp-integrable-time-coefficient}
 For two such solutions $g,\bar g$, the standard difference computation gives
 \[
@@ -273,7 +270,7 @@ For two such solutions $g,\bar g$, the standard difference computation gives
 |g-\bar g|^2\leq(Ct^{-1/2}+C^2)|g-\bar g|^2.
 \]
 The coefficient is integrable and the difference vanishes initially.
-Exercise~\ref{ex:wmp-integrable-time-coefficient} applied to the nonnegative
+The integrable-coefficient estimate applied to the nonnegative
 function $|g-\bar g|^2$ gives $g=\bar g$.
 \end{proof}
 
@@ -302,6 +299,7 @@ $u(\cdot,0)\leq U(0)$, then $u(x,t)\leq U(t)$ as long as $U$ exists.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{lem:ricci-flow-barrier-supersolution}
 For $v=u-U$ and $\widetilde v=e^{-A_1t}v$, use the barrier $\phi$ from
 Lemma~\ref{lem:ricci-flow-barrier-supersolution}.  If
@@ -336,6 +334,7 @@ functions.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{def:continuous-subharmonic-function}
 The maximum of two continuous subharmonic functions is subharmonic: if a
 harmonic $h$ dominates both on the boundary of a relatively compact domain,
@@ -368,6 +367,7 @@ then $u\leq0$ on $M\times[0,T]$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{thm:evolving-metric-weak-subsolution-wmp}
 Apply Theorem~\ref{thm:evolving-metric-weak-subsolution-wmp} to the constant
 metric family, with $g_*=g$ and $\mathcal H=0$.
@@ -396,6 +396,7 @@ nonpositive.  Consequently bounded weak heat solutions are unique.
 \end{corollary}
 
 \begin{proof}
+\sketch
 \uses{def:negative-quadratic-ricci-lower-bound,thm:static-weak-subsolution-wmp}
 Bishop--Gromov comparison gives $\Vol B(O,r)\leq ae^{br^2}$.  If $|u|\leq C_1$,
 decomposition into unit
@@ -434,6 +435,7 @@ then $u\leq0$ on $M\times[0,T]$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \source{chow-et-al-ricci-flow-part-ii:page-0181,chow-et-al-ricci-flow-part-ii:page-0182,chow-et-al-ricci-flow-part-ii:page-0183}
 It suffices to treat $T\leq(8b)^{-1}$.  For $T_1\leq T$ set
 \[
@@ -493,6 +495,7 @@ positive times.
 \end{corollary}
 
 \begin{proof}
+\sketch
 The absolute value of their difference is a nonnegative heat subsolution;
 apply Theorem~\ref{thm:l1-heat-subsolution-vanishing}.
 \end{proof}
@@ -510,6 +513,7 @@ $u=0$ on $M\times[0,T)$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \source{chow-et-al-ricci-flow-part-ii:page-0184}
 Let $\varphi_r$ be supported in $B(O,2r)$, equal to one on $B(O,r)$, and
 $|\nabla\varphi_r|^2\leq3r^{-2}$.  Multiplying the subsolution inequality by
@@ -522,22 +526,6 @@ $p\varphi_r^2u^{p-1}$ and integrating by parts and in time gives
 \]
 Letting $r\to\infty$ makes the right side vanish and proves $u(T')=0$.
 \end{proof}
-
-\begin{example}[Exercise: the $L^p$ energy inequality]
-\label{ex:derive-lp-heat-energy-inequality}
-\dcref{ch12:12.27}
-\group{Heat Equation Uniqueness}
-\uses{thm:lp-heat-subsolution-vanishing}
-\source{chow-et-al-ricci-flow-part-ii:page-0184}
-The energy inequality in the proof of
-Theorem~\ref{thm:lp-heat-subsolution-vanishing} follows from
-\[
--4\int_Mu^{p/2}\varphi_r\langle\nabla\varphi_r,
-\nabla u^{p/2}\rangle
-\leq\frac{2(p-1)}p\int_M\varphi_r^2|\nabla u^{p/2}|^2
-+\frac{2p}{p-1}\int_Mu^p|\nabla\varphi_r|^2.
-\]
-\end{example}
 
 \section{Mollifying distance functions on Riemannian manifolds}
 
@@ -567,6 +555,7 @@ $f_\varepsilon$ are smooth on their natural domains.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \source{chow-et-al-ricci-flow-part-ii:page-0187,chow-et-al-ricci-flow-part-ii:page-0188}
 On the exponential pullback ball, local isometry and radiality of $\eta$
 identify the two convolution formulas.  After changing variables, the pulled
@@ -600,6 +589,7 @@ $f_\varepsilon\to f$ in $L^p_{\mathrm{loc}}$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:intrinsic-mollification-smooth}
 \source{chow-et-al-ricci-flow-part-ii:page-0189,chow-et-al-ricci-flow-part-ii:page-0190,chow-et-al-ricci-flow-part-ii:page-0191,chow-et-al-ricci-flow-part-ii:page-0192,chow-et-al-ricci-flow-part-ii:page-0193}
 The first assertion follows by bounding the convolution error by the modulus
@@ -630,6 +620,7 @@ C^{-1}(d(O,x)+1)\leq h(x)\leq C(d(O,x)+1),
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:intrinsic-mollification-smooth}
 \source{chow-et-al-ricci-flow-part-ii:page-0194,chow-et-al-ricci-flow-part-ii:page-0195,chow-et-al-ricci-flow-part-ii:page-0196,chow-et-al-ricci-flow-part-ii:page-0197}
 Mollify $f=d(O,\cdot)+2$ at one fixed sufficiently small scale
@@ -681,6 +672,7 @@ $t\in[0,T]$.
 \end{proposition}
 
 \begin{proof}
+\sketch
 \uses{lem:ricci-flow-barrier-supersolution}
 \source{chow-et-al-ricci-flow-part-ii:page-0198,chow-et-al-ricci-flow-part-ii:page-0199,chow-et-al-ricci-flow-part-ii:page-0200}
 Let $\widetilde h$ be the identity positive form on $\mathcal W$ and let
@@ -729,6 +721,7 @@ $\alpha(t)\geq0$ on $[0,T]$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{prop:noncompact-system-preserves-nonnegativity}
 Apply Proposition~\ref{prop:noncompact-system-preserves-nonnegativity} to
 $\mathcal W=T^*M$ and $u=\alpha$.
@@ -753,6 +746,7 @@ and $u(x,0)\in\mathcal K_x$, then $u(x,t)\in\mathcal K_x$ for all $x,t$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{thm:time-dependent-convex-set-maximum-principle}
 Take the constant family $\mathcal K(t)=\mathcal K$ in
 Theorem~\ref{thm:time-dependent-convex-set-maximum-principle}.
@@ -777,6 +771,7 @@ and begins in $\mathcal K(0)$, then it remains in $\mathcal K(t)$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{lem:ricci-flow-barrier-supersolution}
 \source{chow-et-al-ricci-flow-part-ii:page-0201,chow-et-al-ricci-flow-part-ii:page-0202,chow-et-al-ricci-flow-part-ii:page-0203,chow-et-al-ricci-flow-part-ii:page-0204}
 Write $\rho_t(v)=d(v,\mathcal K(t)_x)$ and
@@ -814,17 +809,8 @@ The essential device is to apply the scalar barrier to
 $d(u(x,t),\mathcal K(t)_x)$ rather than to the bundle section $u$ itself.
 \end{remark}
 
-\begin{example}[Exercise: backward-time proof for continuously varying sets]
-\label{ex:backward-time-convex-set-maximum-principle}
-\dcref{ch12:12.37}
-\group{Weak System Maximum Principles}
-\source{chow-et-al-ricci-flow-part-ii:page-0204}
-If $\mathcal K(t)$ varies continuously, $X=0$, and $F$ is independent of time,
-Theorem~\ref{thm:weinberger-hamilton-noncompact-systems} also follows by
-estimating the backward upper derivative of the distance function.
-\end{example}
-
 \begin{proof}
+\sketch
 \uses{lem:ricci-flow-barrier-supersolution}
 \source{chow-et-al-ricci-flow-part-ii:page-0204,chow-et-al-ricci-flow-part-ii:page-0205,chow-et-al-ricci-flow-part-ii:page-0206}
 At a point $(x_0,t_0)$ maximizing
@@ -857,6 +843,7 @@ $\mathcal K(0)$ and avoids $\mathcal A(t)$ remains in $\mathcal K(t)$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{thm:time-dependent-convex-set-maximum-principle}
 Run the proof of
 Theorem~\ref{thm:time-dependent-convex-set-maximum-principle} up to a
@@ -905,6 +892,7 @@ u(x,t)=u(x_0,t_0)qquad ((x,t)\in\overline{S(x_0,t_0)}).
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{thm:euclidean-parabolic-strong-maximum-principle}
 Choose coordinate cylinders along any admissible curve to $(x_0,t_0)$.
 Theorem~\ref{thm:euclidean-parabolic-strong-maximum-principle} makes the
@@ -942,6 +930,7 @@ maximum on $\overline\Omega\times(0,t_0]$.
 \end{corollary}
 
 \begin{proof}
+\sketch
 Every point of $\Omega\times(0,t_0]$ belongs to the closure of the backward
 reachable set of $(x_0,t_0)$; apply
 Theorem~\ref{thm:euclidean-parabolic-strong-maximum-principle}.
@@ -959,6 +948,7 @@ $\Ric=0$ on $M\times(0,t_0]$.  If also $\Rm\geq0$, then $\Rm=0$ there.
 \end{corollary}
 
 \begin{proof}
+\sketch
 Since $R_t=\Delta R+2|\Ric|^2$, the function $-R$ is a subsolution attaining
 its nonnegative maximum zero.  Theorem~\ref{thm:manifold-parabolic-strong-maximum-principle}
 makes $R$ vanish backward in time; its evolution equation then gives
@@ -1009,6 +999,7 @@ $s\leq t_1$.  The analogous statement holds for an attained infimum.
 \end{corollary}
 
 \begin{proof}
+\sketch
 The kernel in Corollary~\ref{cor:euclidean-heat-mean-value-property} is
 nonnegative and has total mass one.  Equality of its weighted average with an
 attained maximum forces equality throughout every contained heat ball.
@@ -1035,6 +1026,7 @@ $u(x,t)>0$ for every $x$ and every $t>0$.
 \end{proposition}
 
 \begin{proof}
+\sketch
 \uses{thm:manifold-parabolic-strong-maximum-principle}
 \source{chow-et-al-ricci-flow-part-ii:page-0211,chow-et-al-ricci-flow-part-ii:page-0212}
 Join $x_0$ to an arbitrary $y$ inside a relatively compact connected smooth
@@ -1074,6 +1066,7 @@ $\phi_k(x,t)>0$ for every $x$ and every $t>0$.
 \end{proposition}
 
 \begin{proof}
+\sketch
 \uses{thm:manifold-parabolic-strong-maximum-principle}
 \source{chow-et-al-ricci-flow-part-ii:page-0213,chow-et-al-ricci-flow-part-ii:page-0214}
 On a relatively compact connecting domain, choose
@@ -1116,6 +1109,7 @@ and
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{prop:system-strong-maximum-principle-eigenvalue-sums}
 \source{chow-et-al-ricci-flow-part-ii:page-0216,chow-et-al-ricci-flow-part-ii:page-0217,chow-et-al-ricci-flow-part-ii:page-0218,chow-et-al-ricci-flow-part-ii:page-0219}
 If $\ell=\sup_x\operatorname{rank}u(x,t_1)$, then
@@ -1182,6 +1176,7 @@ $\Lambda^2T_x^*M$.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{prop:system-strong-maximum-principle-positive-definite,thm:system-null-space-rigidity}
 \source{chow-et-al-ricci-flow-part-ii:page-0221}
 After Uhlenbeck identification, the curvature operator satisfies a system

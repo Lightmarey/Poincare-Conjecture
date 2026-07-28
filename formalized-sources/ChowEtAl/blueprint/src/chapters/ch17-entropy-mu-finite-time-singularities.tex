@@ -1,10 +1,10 @@
-\chapter{Entropy, \texorpdfstring{$\mu$}{mu}-Invariant, and Finite Time Singularities}
+\chapter[17]{Entropy, \texorpdfstring{$\mu$}{mu}-Invariant, and Finite Time Singularities}
 \label{ch:chow-iii-entropy-mu-finite-time-singularities}
 \dcref{ch17}
 \source{chow-et-al-ricci-flow-part-iii:page-0022}
 
-Throughout this chapter, $(\mathcal M^n,g)$ is closed unless explicitly
-stated otherwise.  We write $d\mu=d\mu_g$.
+Unless stated otherwise, \((\mathcal M^n,g)\) is closed and
+\(d\mu=d\mu_g\).
 
 \section{Perelman's entropy and its invariants}
 
@@ -75,7 +75,7 @@ then
 \]
 \end{theorem}
 \begin{proof}
-For
+\sketch For
 $v=[\tau(R+2\Delta f-|\nabla f|^2)+f-n]u$, direct differentiation gives
 \[
  \Box^*v=-2\tau\left|\Ric+\nabla^2f-\frac1{2\tau}g\right|^2u,
@@ -103,7 +103,7 @@ Equivalently, for $w_\tau=(4\pi\tau)^{-n/4}e^{-f_\tau/2}$,
 \]
 \end{lemma}
 \begin{proof}
-Differentiate $\mathcal K(g,w,\tau)$ along variations tangent to the unit
+\sketch Differentiate $\mathcal K(g,w,\tau)$ along variations tangent to the unit
 sphere in $L^2$.  The Lagrange multiplier is the value of $\mathcal K$ at
 the minimizer, hence $\mu(g,\tau)$.  Substituting
 $w=(4\pi\tau)^{-n/4}e^{-f/2}$ gives the first equation.
@@ -138,7 +138,7 @@ $C_s(\mathcal M,\lambda^2g)=C_s(\mathcal M,g)$; if $\lambda\ge1$, then
 $C(a,\lambda^2g)\le C(a,g)$.
 \end{lemma}
 \begin{proof}
-Put $\widetilde g=\lambda^2g$ and
+\sketch Put $\widetilde g=\lambda^2g$ and
 $\widetilde\varphi=\lambda^{-n/2}\varphi$.  The normalized $L^2$ measure is
 unchanged, while both terms in the defining Sobolev inequality acquire the
 factor $\lambda^{-2}$, proving the first identity.  The displayed formula
@@ -158,7 +158,7 @@ For every $\tau>0$,
 \]
 \end{lemma}
 \begin{proof}
-For $\int w^2d\mu=1$, the inequality
+\sketch For $\int w^2d\mu=1$, the inequality
 $w^2\log w^2\ge-e^{-1}$ gives
 \[
  \mathcal K(g,w,\tau)\le \tau\mathcal G(g,w)+e^{-1}\Vol(g)
@@ -179,7 +179,7 @@ If $\lambda(g)\le0$, then
 \]
 \end{corollary}
 \begin{proof}
-Use $\mu(g,\tau)=\mu(cg,c\tau)$ in the preceding lemma with
+\sketch Use $\mu(g,\tau)=\mu(cg,c\tau)$ in the preceding lemma with
 $c=\Vol(g)^{-2/n}$, and use $\lambda(cg)=c^{-1}\lambda(g)\le0$.
 \end{proof}
 
@@ -196,7 +196,7 @@ For every $\tau>0$,
 \]
 \end{lemma}
 \begin{proof}
-Apply Lemma~\ref{lem:chow-iii-ch17-logarithmic-sobolev} with $a=2\tau$
+\sketch Apply Lemma~\ref{lem:chow-iii-ch17-logarithmic-sobolev} with $a=2\tau$
 to a normalized $w$.  In the formula for $\mathcal K$, its gradient term
 cancels the resulting entropy estimate, and
 $\int Rw^2d\mu\ge R_{\min}(g)$.  Take the infimum over $w$.
@@ -214,7 +214,7 @@ If $\tau\ge n/8$, then
 \]
 \end{lemma}
 \begin{proof}
-For $\int w^2d\mu=1$, Jensen's inequality and the $L^2$ Sobolev inequality
+\sketch For $\int w^2d\mu=1$, Jensen's inequality and the $L^2$ Sobolev inequality
 give
 \[
  -\int w^2\log w^2d\mu\ge-n\log C_s(g)
@@ -253,7 +253,7 @@ on $g(0)$ satisfy
 \]
 \end{lemma}
 \begin{proof}
-Entropy monotonicity and the lower bound at scale $n/8+t$ give
+\sketch Entropy monotonicity and the lower bound at scale $n/8+t$ give
 \[
  \mu(g(t),n/8)\ge t\lambda(g(0))
  -\frac n2\log(4\pi(n/8+t))+C(g(0)).
@@ -286,7 +286,7 @@ If a singular closed Ricci flow has $\lambda(g(t))\le0$ throughout, every
 finite-time singularity model is noncompact.
 \end{lemma}
 \begin{proof}
-For a blow-up factor $K_i\to\infty$, the rescaled time-zero volume is
+\sketch For a blow-up factor $K_i\to\infty$, the rescaled time-zero volume is
 $K_i^{n/2}\Vol(g(t_i))$.  The preceding volume lower bound makes this tend
 to infinity.  Smooth convergence to a compact model would instead make it
 converge to that model's finite volume, a contradiction.
@@ -301,7 +301,7 @@ A bounded-curvature noncompact finite-time singularity model has infinite
 volume at every time.
 \end{remark}
 \begin{proof}
-No local collapsing gives a uniform positive lower bound for the volume of
+\sketch No local collapsing gives a uniform positive lower bound for the volume of
 every unit ball.  A maximal disjoint family of fixed smaller balls is
 infinite on a complete noncompact manifold, so their volumes sum to infinity.
 \end{proof}
@@ -317,7 +317,7 @@ then $\lambda(g(t_0))>0$ for some $t_0<T$, and hence
 $\lambda(g(t))>0$ for every $t\in[t_0,T)$.
 \end{corollary}
 \begin{proof}
-The contrapositive of the preceding lemma gives positivity at some time.
+\sketch The contrapositive of the preceding lemma gives positivity at some time.
 Monotonicity of $\lambda$ preserves strict positivity thereafter.
 \end{proof}
 
@@ -331,7 +331,7 @@ Every finite-time singularity model whose underlying manifold is closed is a
 shrinking gradient Ricci soliton.
 \end{theorem}
 \begin{proof}
-Let $g_i(t)=Q_i g(t_i+Q_i^{-1}t)$ converge smoothly to $g_\infty(t)$.
+\sketch Let $g_i(t)=Q_i g(t_i+Q_i^{-1}t)$ converge smoothly to $g_\infty(t)$.
 After translating time, $\lambda(g(t))>0$.  Monotonicity and negativity of
 $\nu$ give a limit $\nu_T=\lim_{t\uparrow T}\nu(g(t))$.
 Smooth convergence and scaling imply $\lambda(g_\infty(t))\ge0$.  Equality
@@ -354,7 +354,7 @@ If $g_i\to g_\infty$ smoothly on a closed manifold and
 $\lambda(g_\infty)>0$, then $\nu(g_i)\to\nu(g_\infty)$.
 \end{lemma}
 \begin{proof}
-At one fixed scale, small-scale negativity and continuity of $\mu$ bound all
+\sketch At one fixed scale, small-scale negativity and continuity of $\mu$ bound all
 $\nu(g_i)$ above by a common negative constant.  The large-scale lower bound
 for $\mu$, together with $\lambda(g_i)\to\lambda(g_\infty)>0$, confines all
 minimizing scales to a common bounded interval away from infinity.  The
@@ -378,7 +378,7 @@ $|g-\widetilde g|_{\widetilde g}\le\delta$, then
 \]
 \end{lemma}
 \begin{proof}
-Let $\widetilde w$ minimize $\mathcal K(\widetilde g,\cdot,\tau)$ and
+\sketch Let $\widetilde w$ minimize $\mathcal K(\widetilde g,\cdot,\tau)$ and
 renormalize it by a constant $c\to1$ in $L^2(g)$.  Comparing
 $\mathcal K(g,c\widetilde w,\tau)$ with
 $\mathcal K(\widetilde g,\widetilde w,\tau)$ reduces the difference to the
@@ -399,7 +399,7 @@ A finite-time singularity model on a closed three-manifold is a shrinking
 spherical space form.
 \end{corollary}
 \begin{proof}
-The preceding theorem makes the model a compact shrinking gradient Ricci
+\sketch The preceding theorem makes the model a compact shrinking gradient Ricci
 soliton.  In dimension three every such soliton has constant positive
 sectional curvature, and hence is a spherical space form.
 \end{proof}
@@ -436,7 +436,7 @@ There is $\bar\tau>0$ such that $\mu(g,\tau)<0$ for every
 $0<\tau<\bar\tau$.
 \end{lemma}
 \begin{proof}
-Run Ricci flow from $g$ to time $\bar\tau$ and use the adjoint heat kernel
+\sketch Run Ricci flow from $g$ to time $\bar\tau$ and use the adjoint heat kernel
 based at $(x_0,\bar\tau)$.  Its entropy tends to zero at the pole, so entropy
 monotonicity gives $\mu(g,\bar\tau)\le0$.  Equality would force
 $\Ric+\nabla^2f-g/(2\tau)=0$ throughout the interval.  Smoothness at the
@@ -457,7 +457,7 @@ For every closed Riemannian manifold,
 \]
 \end{proposition}
 \begin{proof}
-Negativity gives $\limsup\mu\le0$.  If the lower limit were negative, choose
+\sketch Negativity gives $\limsup\mu\le0$.  If the lower limit were negative, choose
 $\tau_i\downarrow0$ with $\mu(g,\tau_i)\le-\varepsilon$ and rescale
 $g_i=(2\tau_i)^{-1}g$.  Smooth entropy minimizers $w_i$ at scale $1/2$
 satisfy a uniform elliptic equation and uniform $W^{1,2}$ and local
@@ -503,7 +503,7 @@ $\mathcal W(g,\cdot,\tau)$ is nonconstant.  If the isometry group of
 $(\mathcal M,g)$ acts transitively, then every such minimizer is nonunique.
 \end{lemma}
 \begin{proof}
-If constant minimizers existed along $\tau_i\downarrow0$, the
+\sketch If constant minimizers existed along $\tau_i\downarrow0$, the
 Euler--Lagrange equation would make $R$ constant and normalization would give
 \[
  \mu(g,\tau_i)=\tau_iR-\frac n2\log(4\pi\tau_i)+\log\Vol(g)-n\to+\infty,
@@ -537,7 +537,7 @@ smooth constrained minimizer $f_\tau$ of $\mathcal W(g,\cdot,\tau)$, and it
 satisfies the entropy Euler--Lagrange equation.
 \end{proposition}
 \begin{proof}
-By scaling take $\tau=1$.  A normalized nonnegative minimizing sequence for
+\sketch By scaling take $\tau=1$.  A normalized nonnegative minimizing sequence for
 $\mathcal K$ is bounded in $W^{1,2}$ by the lower entropy estimate.  Weak
 compactness and Rellich compactness give a nonnegative normalized limit
 $w_\infty$.  Lower semicontinuity of the Dirichlet energy and continuity of
@@ -563,7 +563,7 @@ is continuous in $L^{2(1+\delta)}$, and hence in $W^{1,2}$ on a closed
 manifold.
 \end{lemma}
 \begin{proof}
-The mean value theorem writes the pointwise difference as
+\sketch The mean value theorem writes the pointwise difference as
 $(|w_2|-|w_1|)2a(1+\log a^2)$ with $a$ between $|w_1|$ and $|w_2|$.
 Cauchy--Schwarz applies because
 $|a\log a|\le\max\{e^{-1},(\delta e)^{-1}a^{1+\delta}\}$.
@@ -581,7 +581,7 @@ solution of the entropy minimizer equation at scale one.  If $w(p)=0$, then
 $w$ vanishes in a neighborhood of $p$.
 \end{lemma}
 \begin{proof}
-Let $F(r)$ be the average of $w$ over $S(p,r)$ and $G(r)$ the average of its
+\sketch Let $F(r)$ be the average of $w$ over $S(p,r)$ and $G(r)$ the average of its
 radial derivative.  Smooth polar coordinates give
 $F'(r)\le G(r)+CrF(r)$.  Testing the weak equation against radial functions,
 and applying Jensen's inequality to $x\log x$, gives
@@ -620,7 +620,7 @@ For an entropy minimizer $w_\tau$ on a closed manifold,
 \]
 \end{lemma}
 \begin{proof}
-At a maximum point of $w_\tau$, one has $\Delta w_\tau\le0$.  Substitute
+\sketch At a maximum point of $w_\tau$, one has $\Delta w_\tau\le0$.  Substitute
 this and $R\ge R_{\min}$ into the Euler--Lagrange equation and divide by the
 positive maximum value; solving the resulting inequality for
 $\log w_\tau$ gives the formula.
@@ -659,7 +659,7 @@ $e^{-f}d\mu$ is fixed, then
 \]
 \end{lemma}
 \begin{proof}
-Use the standard variations of scalar curvature, the Laplacian, and squared
+\sketch Use the standard variations of scalar curvature, the Laplacian, and squared
 gradient norm.  The double-divergence and Ricci contractions assemble into
 $L(v,\nabla f)$; the remaining Hessian and Ricci terms are exactly the last
 inner product.
@@ -679,7 +679,7 @@ Under the same variation,
 \]
 \end{lemma}
 \begin{proof}
-Differentiate the modified-scalar formula for $\mathcal F$ and use that
+\sketch Differentiate the modified-scalar formula for $\mathcal F$ and use that
 $e^{-f}d\mu$ is fixed.  Weighted integration by parts makes the integral of
 $L(v,\nabla f)$ equal to the integral of
 $\langle v,\Ric+\nabla^2f\rangle$.
@@ -732,7 +732,7 @@ $(\partial_sg,\partial_sf)=(\beta,\gamma)$, then
 \]
 \end{theorem}
 \begin{proof}
-The curvature evolution and the contracted Bianchi identity for $\alpha$
+\sketch The curvature evolution and the contracted Bianchi identity for $\alpha$
 give
 \[
  \frac14\Box^*(|\Rm|^2e^{-f})
@@ -757,25 +757,4 @@ $\mathcal F_0=-\int f e^{-f}d\mu$, then
  \delta_{(\beta^{(0)},\gamma^{(0)})}\mathcal F_1
  +\delta_{(\beta^{(1)},\gamma^{(1)})}\mathcal F_0=0.
 \]
-\end{remark}
-
-\begin{remark}[Higher-loop monotonicity problem]
-\label{rem:chow-iii-ch17-higher-loop-problem}
-\dcref{ch17:17.32}
-\group{Variation Formulas}
-\source{chow-et-al-ricci-flow-part-iii:page-0056}
-The source asks whether the preceding identities extend to an infinite
-sequence of tensors $\beta^{(k)}$, functions $\gamma^{(k)}$, and functionals
-$\mathcal F_k$ producing a monotonicity formula extending Perelman's entropy.
-\end{remark}
-
-\begin{remark}[Guiding principles for Ricci flow]
-\label{rem:chow-iii-ch17-guiding-principles-problem}
-\dcref{ch17:17.33}
-\group{Further Problems}
-\source{chow-et-al-ricci-flow-part-iii:page-0057}
-The source asks for new guiding principles beyond heat-equation analogies,
-maximum principles, monotonicity, solitons, space-time quantities, and point
-picking, with particular emphasis on localization, weak continuation through
-singularities, higher dimensions, and special geometric structures.
 \end{remark}

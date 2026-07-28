@@ -1,10 +1,8 @@
 \chapter{Basics of Ricci flow}
 \label{chap:flowbasics}
 \label{flowbasics}
- In this chater we introduce the Ricci flow equation due to R.
-Hamilton \cite{Hamilton3MPRC}. For the basic material on the Ricci flow
-equation see \cite{ChowKnopf}.
-
+The Ricci flow equation and its basic theory are as in
+\cite{Hamilton3MPRC,ChowKnopf}.
 \section{The definition of the Ricci flow}
 \quad
 \begin{definition}[Ricci flow equation]\label{def:ricci-flow}
@@ -23,16 +21,13 @@ Ricci flow (or of the solution).
 
 
 
-Let us give a quick indication of what the Ricci flow equation
-means. In harmonic coordinates $(x^1,\ldots,x^n)$ about $p$,
+In harmonic coordinates $(x^1,\ldots,x^n)$ about $p$,
  that is to say coordinates where $\triangle x^i=0$ for all $i$,
 we have
 \[ \Ric_{ij}=\Ric(\frac{\partial}{\partial x^i},\frac{\partial}{\partial x^j})=
 -\frac{1}{2}\triangle g_{ij} + Q_{ij}(g^{-1},\partial g)\]
-where $Q$ is a quadratic form in $g^{-1}$ and $\partial g$, and so in particular is a lower order term
-in the derivatives of $g$. See Lemma 3.32 on page 92 of \cite{ChowKnopf}.
-So, in these coordinates, the Ricci flow equation is actually a heat
-equation  for the Riemannian metric
+where $Q$ is quadratic in $g^{-1}$ and $\partial g$; this local form is
+recorded in Lemma 3.32 of \cite{ChowKnopf}. Thus the equation is a heat equation for $g$,
 \[ \frac{\partial}{\partial t}g =
 \triangle g +2Q(g^{-1},\partial g). \]
 
@@ -117,16 +112,8 @@ ds^2),\ -\infty<t<1$. This is called the {\em standard shrinking
 round cylinder}.
 \end{example}
 
-The standard shrinking round cylinder is a model for evolving
-$\epsilon$-necks. In Chapter~\ref{sectprelim} we introduced the
-notion of an $\epsilon$-neck. In the case of flows in order to take
-smooth geometric limits, it is important to have a stronger version
-of this notion. In this stronger notion, the neck not only exists in
-one time-slice but it exists backwards in the flow for an
-appropriate amount of time and is close to the standard shrinking
-round cylinder on the entire time interval. The existence of
-evolving necks
- is exploited when we study limits of Ricci flows.
+The evolving neck definition is the backward-in-time version of an
+$\epsilon$-neck used for flow limits.
 
 
 \begin{definition}[Evolving $\epsilon$-neck]\label{def:evolving-epsilon-neck}
@@ -180,7 +167,7 @@ is a shrinking soliton if $\lambda>0$.
 \end{claim}
 
 \begin{proof}
-We check that this flow satisfies the Ricci flow equation; from
+\sketch Verify the Ricci flow equation:
 that, the result follows immediately. We have
 \begin{eqnarray*} \frac{\partial g(t)}{\partial t} & = &
 \sigma'(t)\varphi_t^*g(0)+\sigma(t)\varphi_t^*{\mathcal L}_{Y(t)}g(0)\\
@@ -192,9 +179,6 @@ $$\frac{\partial g(t)}{\partial t} = -2\Ric(g(t)).$$
 \end{proof}
 
 
-
-There is one class of shrinking solitons which are of special
-importance to us. These are the gradient shrinking solitons.
 
 \begin{definition}[Gradient shrinking soliton]\label{def:gradient-shrinking-soliton}
 A shrinking soliton $(M,g(t)),\ 0\le t<T$, is said to be a {\em
@@ -215,7 +199,7 @@ that
 $(M,g(t))$ defined for  $0\le t<T.$ \end{proposition}
 
 \begin{proof}
-Since
+\sketch Since
 $${\mathcal L}_{\nabla f}g(0)=2\Hess(f),$$
  Equation~(\ref{GSS}) is the soliton equation,
 Equation~(\ref{soliton}), with the vector field $X$ being the
@@ -230,9 +214,7 @@ generate} a gradient shrinking soliton.
 \end{definition}
 
 
-\section{Local existence and uniqueness}\label{3.3} The following is the
-first basic result in the theory -- local existence and uniqueness for Ricci
-flow in the case of compact manifolds.
+\section{Local existence and uniqueness}\label{3.3}
 
 \begin{theorem}[Local existence and uniqueness (Hamilton)]\label{thm:local-existence-uniqueness}
 \label{compuniq}
@@ -248,25 +230,11 @@ $0$ defined respectively on time intervals $I$ and $I'$. Then these
 flows agree on $I\cap I'$. \end{enumerate}
 \end{theorem}
 
-\smallskip
-
-We remark that the Ricci flow is a weakly parabolic system where
-degeneracy comes from the gauge invariance of the equation under
-diffeomorphisms. Therefore the short-time existence does not come
-from general theory. R. Hamilton's original proof of the short-time
-existence was involved and used the Nash-Moser inverse function
-theorem, \cite{HamiltonIFTNM}. Soon after, DeTurck \cite{DeTurck}
-substantially simplified the short-time existence proof by breaking
-the diffeomorphism invariance of the equation. For the reader's
-convenience, and also because in establishing the uniqueness for
-Ricci flows from the standard solution in Section~\ref{12.4}
-we use a version of this idea
-in the non-compact case, we sketch DeTurck's argument.
-
 \begin{proof}
-Let's sketch the proof due to DeTurck \cite{DeTurck}, cf, Section
-3 of Chapter 3 starting on page 78 of \cite{ChowKnopf} for more details. First, we compute the first variation
-at a Riemannian metric $g$ of minus twice the Ricci curvature tensor in the direction $h$:
+\sketch The DeTurck argument, replacing the Nash--Moser approach
+\cite{HamiltonIFTNM} by gauge breaking \cite{DeTurck}, begins with the first
+variation at a Riemannian metric $g$ of minus twice the Ricci tensor in the direction $h$;
+the construction is the one in \cite{DeTurck} and \cite{ChowKnopf}:
 \begin{align*}
 \delta_g(-2\Ric)(h)=\triangle h-\Sym(\nabla V)+S
 \end{align*}
@@ -313,20 +281,6 @@ Then, direct computation shows that $g(t)=\phi_t^*\bar g(t)$ solves the Ricci fl
 \end{proof}
 
 
-
-In performing surgery at time $T$, we will have an open submanifold $\Omega$ of
-the compact manifold with the following property.  As $t$ approaches $T$ from
-below, the metrics $g(t)|_\Omega$ converge smoothly to a limiting metric $g(T)$
-on $\Omega$. We will `cut away' the rest of the manifold $M\setminus \Omega$
-where the metrics are not converging and glue in a piece $E$ coming from the
-standard solution to form a new compact manifold $M'$. Then we extend the
-Riemannian metric $g(T)$ on $\Omega$ to one defined on $M'=\Omega\cup E$. The
-resulting Riemannian manifold forms the initial manifold at time $T$ for
-continuing the Ricci flow $\tilde g(t)$ on an interval $T\le t<T'$. It is
-important to know that the two Ricci flows $(\Omega,g(t)),\ t\le T$ and
-$(\Omega, \tilde g(t)),\ T\le t<T'$ glue together to make a smooth solution
-spanning across the surgery time $T$. That this is true is a consequence of the
-following elementary result.
 
 \begin{proposition}[Smooth patching of Ricci flows]\label{prop:smooth-patching}
 \label{patch}
@@ -399,7 +353,7 @@ Then for any points $x,y\in M$ the function $d_{g(t)}(x,y)$ is a non-increasing 
 
 
 \begin{proof}
-The Ricci flow equation tells us that non-negative Ricci curvature implies that
+\sketch The Ricci flow equation and non-negative Ricci curvature imply
 $\partial g/\partial t\le 0$. Hence, the length of any tangent vector in $M$, and consequently the length
 of any path in $M$, is a non-increasing function of $t$. Since the distance between points is the infimum
 over all rectifiable paths from $x$ to $y$ of the length of the path, this function is also a non-increasing function
@@ -424,6 +378,8 @@ $$(A')^{-1}\Vol_0(U)\le \Vol_t(U)\le A'\Vol_0(U).$$
 \end{lemma}
 
 \begin{proof}
+\sketch The metric and volume evolution equations give the bounds after
+integrating the curvature estimate.
 \uses{thm:curvature-evolution}
 The Ricci flow equation yields
 $$\frac{d}{dt}\left(\langle v,v\rangle_{g(t)}\right)=-2\Ric(v,v).$$
@@ -467,6 +423,8 @@ The next remark to make is that this frame remains orthonormal:
 \end{claim}
 
 \begin{proof}
+\sketch Differentiate the metric pairing using the frame evolution and
+the Ricci flow equation.
 \begin{eqnarray*}
 \frac{\partial}{\partial t}\langle F_a(t),F_b(t)\rangle_{g(t)} & = & \langle
 \frac{\partial F_a}{\partial t},F_b\rangle + \langle F_b,\frac{\partial
@@ -518,7 +476,7 @@ $$\frac{\partial R_{abcd}}{\partial t} = \triangle R_{abcd} +
 
 
 \begin{proof}
-For a proof see Theorem 2.1 in \cite{Hamiltonharnack}.
+\sketch The formula follows from Theorem 2.1 in \cite{Hamiltonharnack}.
 \end{proof}
 
 Of course, the other way to describe all of this  is to consider the
@@ -563,6 +521,8 @@ fully antisymmetric in the three indices.
 \end{proposition}
 
 \begin{proof}
+\sketch Use the Bianchi identity and expand the curvature products in the
+orthonormal $\wedge^2$ basis.
 \uses{lem:curvature-evolution-frame}
 We work in local coordinates that are orthonormal at
 the point. By the first Bianchi identity $$R_{abcd}+ R_{acdb}+
@@ -656,8 +616,10 @@ shall always work with the forward difference quotients.
 \end{remark}
 
 \begin{proof}
-The first step in the proof is to replace the distance function by
-the length of minimal geodesics. The following is standard.
+\sketch Apply Claim~\ref{claim:geodesic-length-suffices} to the estimate in
+Claim~\ref{claim:minimal-geodesic-time-derivative}.
+
+\end{proof}
 
 \begin{claim}[Geodesic length suffices for distance]\label{claim:geodesic-length-suffices}
 \label{geosuff}
@@ -675,6 +637,11 @@ left-hand side with the $\liminf$ of the forward difference
 quotients of $d_t(x_0,x_1)$ at  $t_0$.
 \end{claim}
 
+\begin{proof}
+\sketch Approximate the distance at nearby times by minimal geodesics at
+$t_0$ and take the lower limit of the forward difference quotients.
+\end{proof}
+
 
 
 The second step in the proof is to estimate the time derivative of a
@@ -690,7 +657,7 @@ $$\frac{d(\ell_t(\gamma))}{dt}\Bigl|_{t=t_0}\Bigr.\ge -2(n-1)
 \end{claim}
 
 \begin{proof}
-Fix a minimal $g(t_0)$-geodesic $\gamma(u)$ from $x_0$ to $x_1$,
+\sketch Fix a minimal $g(t_0)$-geodesic $\gamma(u)$ from $x_0$ to $x_1$,
 parameterized by arc length. We set $d=d_{t_0}(x_0,x_1)$, we set
 $X(u)=\gamma'(u)$, and we take tangent vectors $Y_1,\ldots,Y_{n-1}$
 in $T_{x_0}M$ which together with $X(0)=\gamma'(0)$ form an
@@ -829,10 +796,6 @@ integration on the right-hand side of the above inequality. Thus,
 This completes the proof of Claim~\ref{claim:minimal-geodesic-time-derivative}.
 \end{proof}
 
-Claims~\ref{claim:geodesic-length-suffices} and~\ref{claim:minimal-geodesic-time-derivative} together prove the proposition.
-\end{proof}
-
-
 \begin{corollary}[Distance variation on complete manifolds]\label{cor:distance-variation-complete}
 \label{2ndI.8.3}
 \uses{def:ricci-flow}
@@ -847,6 +810,7 @@ in the sense of forward difference quotients.
 \end{corollary}
 
 \begin{proof}
+\sketch Use the two distance cases and apply the preceding variation bounds.
 \uses{prop:distance-variation-lower-bound,claim:geodesic-length-suffices}
 There are two cases: Case (i): $d_{t_0}(x_0,x_1)\ge
 \sqrt{\frac{6}{K}}$ and Case (ii) $d_{t_0}(x_0,x_1)<
@@ -878,6 +842,7 @@ $$d_a(x_0,x_1)\le d_b(x_0,x_1)+4(n-1)\int_a^b\sqrt{\frac{2K(t)}{3}}dt.$$
 
 
 \begin{proof}
+\sketch Integrate the forward difference-quotient inequality in time.
 \uses{cor:distance-variation-complete,lem:forward-difference-quotient}
 By Corollary~\ref{cor:distance-variation-complete} we have
 \begin{equation}\label{liminf}
@@ -928,7 +893,7 @@ For a proof of this result see Chapter 6.2, starting on page 212, of
 \cite{ChowLuNi}.
 
 We also need higher derivative estimates. These are also due to Shi,
-but they take a slightly different form. (See Theorem 6.9 on page
+but they take a slightly different form; see \cite{Shi1,Shi2}. (See Theorem 6.9 on page
 210 of \cite{ChowLuNi}.)
 
 
@@ -998,33 +963,10 @@ $k\leq l$, then for $y\in B(p,0,r/2)$ and $t\in (0,T]$ we have
 \end{theorem}
 
 
-\begin{remark}[Shi derivative variant comparison]\label{rem:shi-derivative-variant}
-\uses{thm:shi-with-initial-derivatives,thm:shi-first-derivative}
-Clearly, the case $l=0$ of Theorem~\ref{thm:shi-with-initial-derivatives} is Shi's theorem
-(Theorem~\ref{thm:shi-first-derivative}).
-\end{remark}
-
-
-Theorem~\ref{thm:shi-with-initial-derivatives} leads immediately to the following:
-
-\begin{corollary}[C-infinity curvature bounds]\label{cor:ricci-flow-curvature-bounds}
-\label{Cinftybd}
-\uses{thm:shi-with-initial-derivatives}
-Suppose that $(M,g(t)),\ 0\le t\le T$, is a Ricci flow
-with $(M,g(t))$ being complete and with $T<\infty$. Suppose that
-$\Rm(x,0)$ is bounded in the $C^\infty$-topology
-independent of $x\in M$ and suppose that
-$\left\vert\Rm(x,t)\right\vert$ is bounded
-independent of $x\in M$ and $t\in[0,T]$. Then  the operator
-$\Rm(x,t)$  is bounded in the $C^\infty$-topology
-independent of $(x,t)\in M\times [0,T]$.
-\end{corollary}
-
-
- For a proof of Theorem~\ref{thm:shi-derivative-estimates}  see \cite{Shi1, Shi2}. We give the proof of
-a stronger result, Theorem~\ref{thm:shi-with-initial-derivatives}.
-
 \begin{proof}
+\sketch Induct on $k$, use the curvature derivative evolution inequality,
+localize with Proposition~\ref{prop:parabolic-cutoff-function}, and apply
+the maximum principle.
 \uses{prop:parabolic-cutoff-function}
 The first remark is that establishing Theorem~\ref{thm:shi-with-initial-derivatives} for
 one value of $r$ immediately gives it for all $r'\ge 2r$. The reason
@@ -1073,6 +1015,7 @@ and hence will complete the proof of the result.
 above (assuming the inductive hypothesis) is what is accomplished in
 the rest of this proof. The main calculation is the proof of the
 following claim under the inductive hypothesis.
+\end{proof}
 
 \begin{claim}[Function evolution bound]\label{claim:function-evolution-bound}
 \label{Fm}
@@ -1091,8 +1034,13 @@ $$\mathrm{s}(n)=\begin{cases} +1 & \text{if } n>0 \\ 0 & \text{if }n=0 \\ -1&
 \text{if }n<0.\end{cases}$$
 \end{claim}
 
+\begin{proof}
+\sketch The evolution inequality follows by differentiating $F_m$ and
+absorbing lower-order terms using the choice of $C$.
+\end{proof}
 
-Let us assume this claim and use it to prove Theorem~\ref{thm:shi-with-initial-derivatives}. We fix
+\begin{proof}
+\sketch Let us assume this claim and use it to prove Theorem~\ref{thm:shi-with-initial-derivatives}. We fix
 $C=\max\{4A_m^2,1\}$, and consider the resulting function $F_m$. The
 constants $c_1,C_0,C_1$ from Claim~\ref{claim:function-evolution-bound} depend only on $K,\alpha$, and
 $A_1,\ldots,A_m$. Since $r\le \pi/2\sqrt{K}$, and $B(p,0,r)$ has
@@ -1106,6 +1054,7 @@ the exponential mapping is a diffeomorphism onto $B(p,0,r)$. Bounded
 curvature then comes into play in the following crucial proposition,
 which goes back to Shi. The function given in the next proposition allows us to localize
 the computation in the ball $B(p,0,r)$.
+\end{proof}
 
 \begin{proposition}[Parabolic cutoff function]\label{prop:parabolic-cutoff-function}
 \label{etaprop}
@@ -1127,6 +1076,8 @@ all $t\in [0,T]$:
 \end{enumerate}
 \end{proposition}
 
+\begin{proof}
+\sketch
 For a proof of this result see Lemma 6.62 on page 225 of
 \cite{ChowLuNi}.
 
@@ -1239,12 +1190,29 @@ This completes the inductive proof that the result holds for
 $k=m+1$ and hence establishes Theorem~\ref{thm:shi-with-initial-derivatives}, modulo the proof of Claim~\ref{claim:function-evolution-bound}.
 \end{proof}
 
+\begin{remark}[Shi derivative variant comparison]\label{rem:shi-derivative-variant}
+\uses{thm:shi-with-initial-derivatives,thm:shi-first-derivative}
+The case $l=0$ of Theorem~\ref{thm:shi-with-initial-derivatives} is Shi's theorem
+(Theorem~\ref{thm:shi-first-derivative}).
+\end{remark}
+
+\begin{corollary}[C-infinity curvature bounds]\label{cor:ricci-flow-curvature-bounds}
+\label{Cinftybd}
+\uses{thm:shi-with-initial-derivatives}
+Suppose that $(M,g(t)),\ 0\le t\le T$, is a Ricci flow
+with $(M,g(t))$ complete and $T<\infty$, with $\Rm(x,0)$ bounded in
+the $C^\infty$-topology independently of $x$, and with $|\Rm(x,t)|$ bounded
+independently of $(x,t)\in M\times[0,T]$. Then $\Rm(x,t)$ is bounded in the
+$C^\infty$-topology independently of $(x,t)\in M\times[0,T]$.
+\end{corollary}
+
 
 
 
 Now we turn to the proof of Claim~\ref{claim:function-evolution-bound}.
 
-\begin{proof} In this argument we fix
+\begin{proof}
+\sketch In this argument fix
 $(x,t)\in B(p,0,3r/4)\times (0,T]$ and we drop $(x,t)$ from the
 notation. Recall that by Equations (7.4a) and (7.4b) on p. 229 of
 \cite{ChowKnopf}  we have
@@ -1683,5 +1651,3 @@ $P(x,t,r,\Delta t)$, respectively the {\em backward parabolic
 neighborhood} $P(x,t,r,-\Delta t)$.
 See the figure in [Morgan--Tian].
 \end{definition}
-
-

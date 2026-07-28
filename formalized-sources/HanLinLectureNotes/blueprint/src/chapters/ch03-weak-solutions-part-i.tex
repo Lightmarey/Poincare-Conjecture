@@ -20,7 +20,7 @@ a_{ij}(x)\xi_i\xi_j\geq\lambda|\xi|^2
 while $c\in L^{n/2}(\Omega)$ and
 $f\in L^{2n/(n+2)}(\Omega)$.
 
-\section*{3.1. Growth of Local Integrals}
+\section{Growth of Local Integrals}
 
 For $B_r(x)\subset\Omega$ and $u\in L^1(\Omega)$, write
 \[
@@ -94,7 +94,7 @@ where $c$ depends only on $n,\alpha,\Omega$, and $\Omega'$.
 \leq c(n)r^2\int_{B_r(x)}|Du|^2
 \leq c(n)M^2r^{n+2\alpha},
 \]
-so Theorem~3.1 applies.
+so Theorem~\ref{hanlin:weaksol-part1-campanato} applies.
 \end{proof}
 
 \begin{lemma}\label{hanlin:weaksol-part1-lemma-3-3}\dcref{Lemma 3.3}\group{ch03-weak-solutions-part-i}\source{han-lin-lecture-notes:page-0060}
@@ -125,7 +125,7 @@ Consequently, for $0<\rho<r\leq R_0$,
 \leq c(n)\left(\frac{\rho}{r}\right)^n
 \int_{B_r(x_0)}u^2+Mr^\lambda.
 \]
-The iteration of Lemma~3.4 improves this to
+Lemma~\ref{hanlin:weaksol-part1-lemma-3-4} improves this to
 \[
 \int_{B_\rho(x_0)}u^2
 \leq c\left(\frac{\rho}{r}\right)^\lambda
@@ -186,8 +186,15 @@ Then, for every $B_r(x)\subset\Omega$,
 where $p_0,C>0$ depend only on $n$.
 \end{theorem}
 
+\begin{proof}
+\sketch Replace balls by comparable cubes and iterate
+Lemma~\ref{hanlin:weaksol-part1-cz} on the oscillation. The resulting
+geometric superlevel-set decay gives the exponential estimate.
+\end{proof}
+
 \begin{remark}\label{hanlin:weaksol-part1-bmo}\dcref{Remark 3.6}\group{ch03-weak-solutions-part-i}\source{han-lin-lecture-notes:page-0061}
-Functions satisfying the hypothesis of Theorem~3.5 have bounded mean
+Functions satisfying the hypothesis of
+Theorem~\ref{hanlin:weaksol-part1-john-nirenberg} have bounded mean
 oscillation. The inclusion $L^\infty\subset\BMO$ is proper: on $(0,1)$,
 $u(x)=\log x$ belongs to $\BMO$ but not to $L^\infty$.
 \end{remark}
@@ -216,33 +223,7 @@ dyadic cubes has averages below $\alpha$ and diameters tending to zero, so the
 Lebesgue differentiation theorem gives $f\leq\alpha$ almost everywhere.
 \end{proof}
 
-\begin{proof}[Proof of Theorem 3.5]
-\sketch Replace balls by comparable cubes and normalize $M=1$. Apply
-Lemma~3.7 to $|u-u_Q|$ at a fixed level $\alpha>1$. Repeating the
-decomposition inside each selected cube produces disjoint families
-$\{Q_j^{(k)}\}$ such that
-\[
-\sum_j|Q_j^{(k)}|\leq\alpha^{-k}|Q|,
-\qquad
-|u-u_Q|\leq k2^n\alpha
-\quad\text{a.e. on }Q\setminus\bigcup_jQ_j^{(k)}.
-\]
-Hence
-\[
-|\{x\in Q:|u-u_Q|>2^nk\alpha\}|
-\leq\alpha^{-k}|Q|.
-\]
-Choosing $k$ with
-$t\in[2^nk\alpha,2^n(k+1)\alpha)$ gives
-\[
-|\{x\in Q:|u-u_Q|>t\}|
-\leq\alpha|Q|\exp\left(-\frac{\log\alpha}{2^n\alpha}t\right).
-\]
-Rescaling $M$ and integrating this distribution estimate proves the stated
-exponential bound.
-\end{proof}
-
-\section*{3.2. H\"older Continuity of Solutions}
+\section{H\"older Continuity of Solutions}
 
 Assume that $a_{ij}\in L^\infty(B_1)$ is uniformly elliptic:
 \[
@@ -278,6 +259,12 @@ If $c\equiv0$, $\|u\|_{H^1(B_1)}$ may be replaced by
 $\|Du\|_{L^2(B_1)}$.
 \end{theorem}
 
+\begin{proof}
+\sketch Decompose into a frozen-coefficient harmonic part and an error.
+Energy estimates, Corollary~\ref{hanlin:weaksol-part1-cor-3-10}, and the
+Campanato iteration yield the Morrey estimate and H\"older continuity.
+\end{proof}
+
 \begin{lemma}\label{hanlin:weaksol-part1-harmonic-lemma}\dcref{Lemma 3.9}\group{ch03-weak-solutions-part-i}\source{han-lin-lecture-notes:page-0064}
 Let $(a_{ij})$ be constant and satisfy
 \[
@@ -304,11 +291,12 @@ where $C$ depends only on $n$ and $\Lambda/\lambda$.
 \begin{proof}
 \sketch Every derivative of $w$ solves the same constant-coefficient equation;
 the two estimates follow by applying the harmonic derivative estimate of
-Lemma~1.42 to $Dw$.
+Lemma~\ref{hanlin:lemma-constant-coeff-compactness} to $Dw$.
 \end{proof}
 
 \begin{corollary}\label{hanlin:weaksol-part1-cor-3-10}\dcref{Corollary 3.10}\group{ch03-weak-solutions-part-i}\source{han-lin-lecture-notes:page-0065}
-Suppose $w$ is as in Lemma~3.9 and $u\in H^1(B_r(x_0))$. Then, for
+Suppose $w$ is as in Lemma~\ref{hanlin:weaksol-part1-harmonic-lemma} and
+$u\in H^1(B_r(x_0))$. Then, for
 $0<\rho\leq r$,
 \[
 \int_{B_\rho(x_0)}|Du|^2
@@ -327,59 +315,13 @@ and
 where $C$ depends only on $n$ and $\Lambda/\lambda$.
 \end{corollary}
 \begin{proof}
-\sketch Write $v=u-w$. Apply Lemma~3.9 to $w=u-v$ and use
+\sketch Write $v=u-w$. Apply
+Lemma~\ref{hanlin:weaksol-part1-harmonic-lemma} to $w=u-v$ and use
 $|a+b|^2\leq2|a|^2+2|b|^2$, first for $Du$, then after subtracting the
 corresponding averages.
 \end{proof}
 
-\begin{proof}[Proof of Theorem 3.8]
-\sketch For $B_r(x_0)\subset B_1$, let $w-u\in H^1_0(B_r(x_0))$ solve
-the frozen-coefficient homogeneous equation and put $v=u-w$. Testing the
-equation for $v$ by $v$ gives
-\[
-\int_{B_r(x_0)}|Dv|^2\leq C\left\{
-\tau^2(r)\int_{B_r(x_0)}|Du|^2
-+\left(\int_{B_r(x_0)}|c|^n\right)^{2/n}
-\int_{B_r(x_0)}u^2
-+\left(\int_{B_r(x_0)}|f|^{2n/(n+2)}\right)^{(n+2)/n}
-\right\}.
-\]
-Corollary~3.10 and H\"older's inequality therefore yield
-\[
-\begin{aligned}
-\int_{B_\rho(x_0)}|Du|^2\leq C\biggl\{&
-\left[\left(\frac\rho r\right)^n+\tau^2(r)\right]
-\int_{B_r(x_0)}|Du|^2+r^{n-2+2\alpha}\|f\|_{L^q(B_1)}^2\\
-&+\left(\int_{B_r(x_0)}|c|^n\right)^{2/n}
-\int_{B_r(x_0)}u^2\biggr\}.
-\end{aligned}
-\tag{1}
-\]
-If $c=0$, Lemma~3.4 applied to (1) gives
-\[
-\int_{B_\rho(x_0)}|Du|^2
-\leq C\left\{
-\left(\frac\rho r\right)^{n-2+2\alpha}
-\int_{B_r(x_0)}|Du|^2
-+r^{n-2+2\alpha}\|f\|_{L^q(B_1)}^2\right\}.
-\]
-For general $c$, Lemma~3.3 first supplies a power bound for
-$\int_{B_r}u^2$. Substitution in (1), followed alternately by Lemmas~3.4
-and~3.3, raises that power by two at each step. After finitely many steps,
-\[
-\int_{B_\rho(x_0)}|Du|^2
-\leq C\left\{
-\left[\left(\frac\rho r\right)^n+\tau^2(r)\right]
-\int_{B_r(x_0)}|Du|^2
-+r^{n-2+2\alpha}
-\bigl(\|f\|_{L^q(B_1)}^2+\|u\|_{H^1(B_1)}^2\bigr)
-\right\}.
-\]
-A final application of Lemma~3.4 gives the asserted Morrey estimate, and
-Corollary~3.2 gives $u\in C^\alpha$.
-\end{proof}
-
-\subsection*{3.3. H\"older Continuity of Gradients}
+\section{H\"older Continuity of Gradients}
 
 Continue to assume uniform ellipticity and $(\ast)$ as above.
 
@@ -398,8 +340,10 @@ $|a_{ij}|_{C^\alpha}$, and $|c|_{L^q}$.
 \end{theorem}
 \begin{proof}
 \sketch Use the frozen-coefficient decomposition $u=v+w$ from the proof of
-Theorem~3.8. Corollary~3.10 gives, for $0<\rho\leq r$,
-\[
+Theorem~\ref{hanlin:weaksol-part1-holder-sol}.
+Corollary~\ref{hanlin:weaksol-part1-cor-3-10} gives, for
+$0<\rho\leq r$,
+\begin{equation}
 \begin{aligned}
 \int_{B_\rho(x_0)}|Du-(Du)_{x_0,\rho}|^2
 \leq C\biggl\{&
@@ -410,9 +354,8 @@ Theorem~3.8. Corollary~3.10 gives, for $0<\rho\leq r$,
 \int_{B_r(x_0)}u^2
 +\left(\int_{B_r(x_0)}|f|^{2n/(n+2)}\right)^{(n+2)/n}
 \biggr\}.
-\tag{1}
 \end{aligned}
-\]
+\end{equation}
 Since $\alpha=1-n/q$,
 \[
 \left(\int_{B_r}|f|^{2n/(n+2)}\right)^{(n+2)/n}
@@ -421,7 +364,9 @@ Since $\alpha=1-n/q$,
 \left(\int_{B_r}|c|^n\right)^{2/n}
 \leq r^{2\alpha}\|c\|_{L^q(B_1)}^2.
 \]
-For constant $a_{ij}$ and $c=0$, Lemma~3.4 applied directly to (1) gives
+For constant $a_{ij}$ and $c=0$,
+Lemma~\ref{hanlin:weaksol-part1-lemma-3-4} applied to the preceding estimate
+gives
 the required Campanato estimate. If $c=0$ and
 $\tau(r)\leq Cr^\alpha$, the companion energy estimate first yields, for
 every small $\delta>0$,
@@ -430,17 +375,19 @@ every small $\delta>0$,
 \leq Cr^{n-2\delta}
 \left(\|f\|_{L^q(B_1)}^2+\|Du\|_{L^2(B_1)}^2\right).
 \]
-Substitution in (1) gives $Du\in C^{\alpha-\delta}_{\mathrm{loc}}$, hence a
-local $L^\infty$ bound for $Du$. Substituting that bound back into (1) and
-applying Lemma~3.4 gives exponent $\alpha$.
+Substitution in the oscillation estimate gives
+$Du\in C^{\alpha-\delta}_{\mathrm{loc}}$, hence a local $L^\infty$ bound
+for $Du$. Substituting that bound back into the same estimate and
+applying Lemma~\ref{hanlin:weaksol-part1-lemma-3-4} gives exponent $\alpha$.
 
-In the general case, the same bootstrap, with Lemma~3.3 controlling
+In the general case, the same bootstrap, with
+Lemma~\ref{hanlin:weaksol-part1-lemma-3-3} controlling
 $\int_{B_r}u^2$, yields
 \[
 \sup_{B_{3/4}}|u|^2+\sup_{B_{3/4}}|Du|^2
 \leq C\left(\|f\|_{L^q(B_1)}^2+\|u\|_{H^1(B_1)}^2\right).
 \]
-Equation (1) then reduces to
+The oscillation estimate then reduces to
 \[
 \int_{B_\rho(x_0)}|Du-(Du)_{x_0,\rho}|^2
 \leq C\left\{
@@ -449,7 +396,8 @@ Equation (1) then reduces to
 +r^{n+2\alpha}
 \left(\|f\|_{L^q}^2+\|u\|_{H^1}^2\right)\right\}.
 \]
-Lemma~3.4 and Theorem~3.1 complete the proof.
+Lemma~\ref{hanlin:weaksol-part1-lemma-3-4} and
+Theorem~\ref{hanlin:weaksol-part1-campanato} complete the proof.
 \end{proof}
 
 \begin{example}\label{hanlin:weaksol-part1-example-3-12}\dcref{Example 3.12}\group{ch03-weak-solutions-part-i}\source{han-lin-lecture-notes:page-0072}
@@ -470,6 +418,7 @@ weak solution and is smooth away from the origin, but
 $\lim_{|x|\to0}D_{11}u=\infty$, so $u\notin C^2(B_R)$. No classical
 solution with these boundary data exists: if $v$ were one, then $u-v$ would
 be bounded and harmonic on $B_R\setminus\{0\}$, hence would extend
-harmonically across the origin by Theorem~1.28, contradicting the divergence
+harmonically across the origin by
+Theorem~\ref{hanlin:thm-removable-singularity}, contradicting the divergence
 of $D_{11}u$.
 \end{example}

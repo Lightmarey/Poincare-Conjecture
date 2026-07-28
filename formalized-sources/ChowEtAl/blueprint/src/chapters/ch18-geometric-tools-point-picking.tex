@@ -1,10 +1,9 @@
-\chapter{Geometric Tools and Point Picking Methods}
+\chapter[18]{Geometric Tools and Point Picking Methods}
 \label{ch:chow-iii-geometric-tools-point-picking}
 
-Throughout, \(d_g\), \(B_g(x,r)\), and \(L_g\) denote distance, metric balls,
-and length for the metric \(g\).  For a time-dependent metric, let
-\(\mathcal Z(t_0)\) be the compact set of unit-speed \(g(t_0)\)-minimizing
-geodesics from \(x_0\) to \(x\).
+Write \(d_g\), \(B_g(x,r)\), and \(L_g\) for distance, balls, and length.
+For a time-dependent metric, \(\mathcal Z(t_0)\) is the compact set of
+unit-speed \(g(t_0)\)-minimizing geodesics from \(x_0\) to \(x\).
 
 \section{Estimates for changing distances}
 
@@ -22,7 +21,7 @@ sense of the lower forward derivative,
 \]
 \end{lemma}
 \begin{proof}
-For a fixed \(\eta\in\mathcal Z(t_0)\), comparison with its length at nearby
+\sketch For a fixed \(\eta\in\mathcal Z(t_0)\), comparison with its length at nearby
 times and the first variation formula give the upper bound.  Conversely,
 choose minimizing geodesics \(\eta_i\) at times \(t_0+h_i\), where
 \(h_i\downarrow0\).  Compactness of \(\mathcal Z(t_0)\) gives a subsequence
@@ -45,20 +44,9 @@ If \(g(t)\) is a complete Ricci flow, then
 \]
 \end{corollary}
 \begin{proof}
-Substitute \(\partial_tg=-2\Ric\) in
+\sketch Substitute \(\partial_tg=-2\Ric\) in
 Lemma~\ref{lem:chow-iii-forward-distance-derivative}.
 \end{proof}
-
-\begin{example}[Problem: dependence on the minimizing geodesic]
-\label{ex:chow-iii-distance-derivative-any-minimizer}
-\dcref{ch18:18.3}
-\group{Changing Distances}
-\source{chow-et-al-ricci-flow-part-iii:page-0063}
-Determine whether, under Ricci flow, the formula in
-Corollary~\ref{cor:chow-iii-forward-distance-derivative-ricci-flow} equals
-\(-\int_\gamma\Ric(\gamma',\gamma')\,\dd s\) for every
-\(\gamma\in\mathcal Z(t_0)\).
-\end{example}
 
 \begin{lemma}[Backward lower derivative of the distance function]
 \label{lem:chow-iii-backward-distance-derivative}
@@ -74,7 +62,7 @@ lower backward derivative,
 \]
 \end{lemma}
 \begin{proof}
-For every \(g(t_0)\)-minimizing geodesic \(\eta\), one has
+\sketch For every \(g(t_0)\)-minimizing geodesic \(\eta\), one has
 \(L_{g(t)}(\eta)\ge d_{g(t)}(x,x_0)\) for earlier times and equality at
 \(t_0\).  Taking the lower backward derivative and applying the first
 variation formula for length gives the asserted inequality for each \(\eta\);
@@ -110,7 +98,7 @@ Let \((\mathcal M^n,g)\) be complete, let \(x\ne x_0\), and let
 in the barrier sense.
 \end{lemma}
 \begin{proof}
-Vary \(\gamma\) through paths whose endpoint moves by the exponential map at
+\sketch Vary \(\gamma\) through paths whose endpoint moves by the exponential map at
 \(x\), using variation fields \(\zeta E_i\), where the \(E_i\) are parallel
 orthonormal fields normal to \(\gamma'\).  Their lengths define a smooth upper
 barrier for distance.  Summing the second variation formula over the
@@ -146,7 +134,7 @@ in the barrier sense.  If the same Ricci bound holds on the union of the
 \]
 \end{theorem}
 \begin{proof}
-Choose a minimizing geodesic realizing the appropriate one-sided distance
+\sketch Choose a minimizing geodesic realizing the appropriate one-sided distance
 derivative.  In Lemma~\ref{lem:chow-iii-distance-laplacian-upper-bound}, take
 \(\zeta(s)=s/r_0\) on \([0,r_0]\) and \(1\) thereafter.  Integrating
 \((n-1)K(1-s^2/r_0^2)+(n-1)r_0^{-2}\) gives the first estimate.  For two
@@ -174,7 +162,7 @@ In particular, for \(r=K^{-1/2}\) this is at most
 \(\frac{10}{3}(n-1)\sqrt K\).
 \end{proposition}
 \begin{proof}
-Use in the index form the piecewise linear test function which rises from
+\sketch Use in the index form the piecewise linear test function which rises from
 zero to one over the initial segment of length \(r\), stays one, and falls to
 zero over the final segment of length \(r\).  Stability says the sum of the
 normal index forms is nonnegative.  Rearranging and integrating the endpoint
@@ -236,7 +224,7 @@ If \((\mathcal M^n,g,O)\) is complete and noncompact with
 \]
 \end{proposition}
 \begin{proof}
-Choose \(y_i\) with \(R(y_i)\to\infty\), and maximize
+\sketch Choose \(y_i\) with \(R(y_i)\to\infty\), and maximize
 \(R(x)d(x,\partial B(y_i,2))^2\) on \(B(y_i,2)\).  If \(x_i\) is a maximizer,
 set \(r_i=\frac12d(x_i,\partial B(y_i,2))\).  Maximality gives the factor-four
 bound and \(R(x_i)r_i^2\ge R(y_i)\).  Properness of scalar curvature along the
@@ -259,7 +247,7 @@ are disjoint balls \(B(x_i,r_i)\), with \(r_i\in(0,1]\) and
 \]
 \end{proposition}
 \begin{proof}
-Choose \(y_i\) so that \(R(y_i)\varepsilon_i^2\to\infty\), maximize
+\sketch Choose \(y_i\) so that \(R(y_i)\varepsilon_i^2\to\infty\), maximize
 \(R(x)d(x,\partial B(y_i,1))^2\), and write the maximizing boundary distance
 as \(\widetilde r_i\).  Set
 \[
@@ -298,7 +286,7 @@ Let \((\mathcal N_k^n,h_k,O_k)\) be complete pointed manifolds with
 \]
 \end{lemma}
 \begin{proof}
-Maximize
+\sketch Maximize
 \(F_k(w)=R_{h_k}(w)(D+1-d_{h_k}(w,O_k))^2\) on the compact closed ball.
 At a maximizer \(w_k\), set
 \(s_k=(1-2^{-1/2})(D+1-d(w_k,O_k))\).  The hypothesis forces
@@ -367,7 +355,7 @@ complete nonflat product of a bounded nonnegatively curved
 \((n-1)\)-dimensional solution and a line.
 \end{theorem}
 \begin{proof}
-The trace Harnack inequality propagates the curvature bound backward in time,
+\sketch The trace Harnack inequality propagates the curvature bound backward in time,
 and the injectivity-radius hypothesis gives smooth pointed compactness.  The
 two divergence assumptions make the limit complete and nonflat.  Choose
 successive \(x_i\) so that minimizing geodesics from \(O\) approach a ray and
@@ -401,7 +389,7 @@ bounded nonnegatively curved \((n-1)\)-dimensional \(\kappa\)-solution and a
 line.
 \end{corollary}
 \begin{proof}
-Theorem~\ref{thm:chow-iii-point-picking-infinite-ascr} provides the required
+\sketch Theorem~\ref{thm:chow-iii-point-picking-infinite-ascr} provides the required
 centers and scales.  Noncollapsing supplies the injectivity-radius estimate,
 so Theorem~\ref{thm:chow-iii-dimension-reduction-two} applies.  Noncollapsing
 passes to smooth pointed limits and to the product factor.
@@ -462,7 +450,7 @@ If \(A_1(\sigma)>1\), then for every \(A\in(1,A_1(\sigma)]\) there is
 and \((y,t)\in\mathcal N_{B,C}\).
 \end{lemma}
 \begin{proof}
-Starting at \((y_1,t_1)\), replace \((y_i,t_i)\) by an admissible point of
+\sketch Starting at \((y_1,t_1)\), replace \((y_i,t_i)\) by an admissible point of
 more than twice its scalar curvature whenever the conclusion fails.  The
 curvatures then grow geometrically.  Consequently the accumulated spatial
 displacement is less than
@@ -493,7 +481,7 @@ Then \(R(y,t)\le2R(y_*,t_*)\) on
 \]
 \end{proposition}
 \begin{proof}
-If a violating point existed, it would lie in \(\mathcal N_{B,C}\).  Follow
+\sketch If a violating point existed, it would lie in \(\mathcal N_{B,C}\).  Follow
 the distance from that point to \(p\) backward until it first reaches half the
 allowed spatial margin.  On this interval all endpoint balls used by
 Theorem~\ref{thm:chow-iii-changing-distances} have scalar curvature at most
@@ -550,15 +538,6 @@ every embedded \(\varepsilon(n)\)-neck bounds a smooth \(n\)-ball in
 \(\mathcal N\).
 \end{lemma}
 
-\begin{example}[Conjecture: smooth Schoenflies in dimension four]
-\label{ex:chow-iii-smooth-schoenflies-four}
-\dcref{ch18:18.29}
-\group{Necks}
-\source{chow-et-al-ricci-flow-part-iii:page-0084}
-Every smoothly embedded three-sphere in \(\mathbb R^4\) bounds a smooth
-four-ball.
-\end{example}
-
 \begin{lemma}[Diameter of a Busemann level through a neck]
 \label{lem:chow-iii-busemann-level-diameter-neck}
 \dcref{ch18:18.30}
@@ -576,7 +555,7 @@ Let \((\mathcal N^n,h)\) be complete, noncompact, and positively curved; let
 \]
 \end{lemma}
 \begin{proof}
-Lemma~\ref{lem:chow-iii-neck-center-bounds-ball} separates the neck into an
+\sketch Lemma~\ref{lem:chow-iii-neck-center-bounds-ball} separates the neck into an
 inner compact side and an outer side.  Cylinder closeness and Toponogov
 comparison imply that \(b_\gamma<b_0\) beyond a fixed distance on the inner
 side and \(b_\gamma>b_0\) beyond that distance on the outer side.  Thus the
@@ -600,11 +579,10 @@ then the Busemann function of every ray is bounded below and attains its
 minimum.
 \end{lemma}
 \begin{proof}
-In the proof of Lemma~\ref{lem:chow-iii-busemann-level-diameter-neck}, the
-union of the inner component and the neck has compact closure, while the
-Busemann function on its complement is strictly greater than its value at a
-point of the center sphere.  Hence its global infimum is achieved on that
-compact closure.
+\sketch Lemma~\ref{lem:chow-iii-busemann-level-diameter-neck} gives a compact
+closure for the union of the inner component and the neck, while the Busemann
+function on its complement exceeds its value at a center-sphere point.  Its
+global infimum is therefore achieved on that compact set.
 \end{proof}
 
 \begin{remark}[The neck hypothesis is essential]
@@ -632,7 +610,7 @@ embedded \(\varepsilon(n)\)-necks with center points \(y_1,y_2\).  If
 \]
 \end{proposition}
 \begin{proof}
-The neck separation inequalities give \(b_\gamma(y_1)<b_\gamma(y_2)\).
+\sketch The neck separation inequalities give \(b_\gamma(y_1)<b_\gamma(y_2)\).
 Sharafutdinov monotonicity for the convex Busemann function then gives
 \(\operatorname{diam}b_\gamma^{-1}(b_\gamma(y_1))\le
 \operatorname{diam}b_\gamma^{-1}(b_\gamma(y_2))\).  Applying the lower and
@@ -691,7 +669,7 @@ Then at time \(r_0^2\), the flow is weakly \(\kappa(n,A)\)-noncollapsed below
 scale \(r_0\) at every point of \(B_{g(r_0^2)}(x_0,Ar_0)\).
 \end{theorem}
 \begin{proof}
-Scale to \(r_0=1\), reverse time, and base reduced distance and reduced volume
+\sketch Scale to \(r_0=1\), reverse time, and base reduced distance and reduced volume
 at a candidate point \(x\in B_{g(1)}(x_0,A)\).  If a radius \(r\le1\) has
 curvature at most \(r^{-2}\), write
 \(\kappa=\Vol_{g(1)}B_{g(1)}(x,r)/r^n\).  The standard reduced-volume estimate
@@ -747,7 +725,7 @@ with \(r_0=1\), there is \(c_4(n,A)<\infty\) such that
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-The curvature bound gives \(|\Ric|\le n-1\); integrating
+\sketch The curvature bound gives \(|\Ric|\le n-1\); integrating
 \(|\partial_tg(W,W)|\le2(n-1)g(W,W)\) proves the first assertion, and applying
 it along minimizing geodesics proves the second.
 
@@ -783,33 +761,3 @@ Lemma~\ref{lem:chow-iii-localized-reduced-distance-control} are interpreted
 using upper support functions and the corresponding barrier maximum
 principle.
 \end{remark}
-
-\begin{example}[Problem: general point picking]
-\label{ex:chow-iii-general-point-picking}
-\dcref{ch18:18.40}
-\group{Notes and Problems}
-\source{chow-et-al-ricci-flow-part-iii:page-0097}
-Formulate general point-picking results for a metric space \(S\), an objective
-function \(f:S\to\mathbb R\), and a reference function
-\(\phi:S\to\mathbb R\), encompassing the spatial and space-time methods of
-this chapter.
-\end{example}
-
-\begin{example}[Exercise: trivial pointed limits after rescaling]
-\label{ex:chow-iii-trivial-limits-rescaling}
-\dcref{ch18:18.41}
-\group{Notes and Problems}
-\source{chow-et-al-ricci-flow-part-iii:page-0097}
-For every sequence of pointed Riemannian manifolds
-\((\mathcal M_i^n,g_i,O_i)\), there are \(K_i\to\infty\) such that
-\((\mathcal M_i^n,K_ig_i,O_i)\) converges to pointed Euclidean space.
-\end{example}
-\begin{proof}
-Choose a normal-coordinate radius \(\rho_i>0\) at \(O_i\) on which the metric
-and its first \(i\) derivatives are within \(1/i\) of the Euclidean metric
-after identifying \(T_{O_i}\mathcal M_i\) with \(\mathbb R^n\).  Choose
-\(K_i\ge i\) so large that every fixed-radius ball in \(K_ig_i\) lies inside
-that normal-coordinate ball and the rescaled curvature derivatives through
-order \(i\) are at most \(1/i\).  A diagonal argument then gives smooth
-pointed convergence to \((\mathbb R^n,g_{\mathrm{Euc}},0)\).
-\end{proof}

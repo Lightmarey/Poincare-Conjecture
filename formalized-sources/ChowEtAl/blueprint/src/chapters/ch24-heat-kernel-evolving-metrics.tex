@@ -1,4 +1,4 @@
-\chapter{Heat Kernel for Evolving Metrics}
+\chapter[24]{Heat Kernel for Evolving Metrics}
 \label{ch:chow-iii-heat-kernel-evolving-metrics}
 \dcref{ch24}
 \source{chow-et-al-ricci-flow-part-iii:page-0286}
@@ -92,7 +92,7 @@ have unique finite solutions along radial geodesics.  They satisfy
 \]
 \end{lemma}
 \begin{proof}
-Multiplication by the integrating factor
+\sketch Multiplication by the integrating factor
 \[
  r_\tau^k\alpha_\tau^{1/2}
  \exp\!\left(-\frac12\int_0^{r_\tau}\partial_\tau r_\tau(\gamma(s))\,ds\right)
@@ -135,7 +135,7 @@ If \(\lvert\mathcal R_{ij}\rvert\le C\), then, away from the cut locus,
 \]
 \end{lemma}
 \begin{proof}
-The first variation formula gives
+\sketch The first variation formula gives
 \(
  \partial_\tau L_{g(\tau)}(\gamma)
  =\int_\gamma\mathcal R_\tau(\dot\gamma,\dot\gamma),ds
@@ -159,16 +159,6 @@ For \(k,\ell\ge0\), on the uniform injectivity neighborhood,
 If \(N>n/2+k+2\ell\), the left side has the corresponding smooth
 Gaussian-factor representation up to the diagonal.
 \end{lemma}
-
-\begin{claim}[Exercise: prove the error derivative estimate]
-\label{clm:chow-iii-error-derivative-exercise}
-\dcref{ch24:24.9}
-\group{Local Parametrix}
-\source{chow-et-al-ricci-flow-part-iii:page-0293}
-\uses{lem:chow-iii-approximate-kernel-error-derivatives}
-Prove Lemma~\ref{lem:chow-iii-approximate-kernel-error-derivatives} by
-differentiating the Gaussian error representation.
-\end{claim}
 
 Choose a cutoff \(\widetilde\eta\) supported where \(d_\tau(x,y)<2\rho\),
 equal to one where \(d_\tau(x,y)\le\rho\), with
@@ -249,7 +239,7 @@ Whenever the relevant integrals are defined, space-time convolution is
 associative.
 \end{lemma}
 \begin{proof}
-Fubini's theorem identifies both bracketings with the integral over
+\sketch Fubini's theorem identifies both bracketings with the integral over
 \(v<\rho<\sigma<\tau\), after relabeling the two intermediate points.
 \end{proof}
 
@@ -311,16 +301,6 @@ termwise.  Consequently
 \]
 is a smooth fundamental solution.
 \end{lemma}
-
-\begin{claim}[Exercise: complete the fundamental-solution construction]
-\label{clm:chow-iii-fundamental-solution-exercise}
-\dcref{ch24:24.20}
-\group{Convolution Series}
-\source{chow-et-al-ricci-flow-part-iii:page-0299}
-\uses{lem:chow-iii-parametrix-convolution-derivatives}
-Complete the details proving that the convolution series is a fundamental
-solution of \(L_{x,\tau}u=0\) for the evolving metric.
-\end{claim}
 
 \section{Heat-kernel asymptotics}
 
@@ -458,16 +438,6 @@ heat kernel the quantity \(W\) defined from its logarithmic density satisfies
 \]
 \end{lemma}
 
-\begin{claim}[Problem: prove the Ricci-flow characterization]
-\label{clm:chow-iii-prove-ricci-flow-characterization}
-\dcref{ch24:24.29}
-\group{Ricci Flow Characterization}
-\source{chow-et-al-ricci-flow-part-iii:page-0310}
-\uses{clm:chow-iii-heat-kernel-characterizes-ricci-flow,lem:chow-iii-adjoint-parametrix-ricci-asymptotics}
-Prove Claim~\ref{clm:chow-iii-heat-kernel-characterizes-ricci-flow} by
-passing from the parametrix expansion to the heat kernel and normalizing (f).
-\end{claim}
-
 \section{Dirichlet and noncompact heat kernels}
 
 \begin{theorem}[Existence and uniqueness of Dirichlet heat kernel]
@@ -500,7 +470,7 @@ the interior, of
 \]
 \end{lemma}
 \begin{proof}
-Extend the metric and potential across the double and let \(\widetilde H\) be
+\sketch Extend the metric and potential across the double and let \(\widetilde H\) be
 the resulting closed-manifold heat kernel.  Represent solutions by the normal
 single-layer potential
 \[
@@ -546,16 +516,6 @@ nontangential boundary limit
 \]
 \end{lemma}
 
-\begin{claim}[Exercise: prove the jump relation]
-\label{clm:chow-iii-boundary-jump-exercise}
-\dcref{ch24:24.34}
-\group{Boundary Layer Potentials}
-\source{chow-et-al-ricci-flow-part-iii:page-0314}
-\uses{lem:chow-iii-boundary-jump-relation}
-Prove Lemma~\ref{lem:chow-iii-boundary-jump-relation} by isolating the
-near-diagonal singularity of the normal derivative.
-\end{claim}
-
 \begin{lemma}[Normal derivative estimate on a hypersurface]
 \label{lem:chow-iii-normal-heat-kernel-derivative}
 \dcref{ch24:24.35}
@@ -574,17 +534,6 @@ For \(x,y\in\mathcal N\), \(0\le\sigma<\tau\le T\), and a unit normal
 It is consequently bounded by
 \(C(\tau-\sigma)^{-n/2}e^{-d_\tau^2/(6(\tau-\sigma))}\).
 \end{lemma}
-
-\begin{claim}[Exercise: prove the normal derivative estimate]
-\label{clm:chow-iii-normal-derivative-exercise}
-\dcref{ch24:24.36}
-\group{Boundary Layer Potentials}
-\source{chow-et-al-ricci-flow-part-iii:page-0317,chow-et-al-ricci-flow-part-iii:page-0318}
-\uses{lem:chow-iii-normal-heat-kernel-derivative}
-Prove Lemma~\ref{lem:chow-iii-normal-heat-kernel-derivative} using the
-quadratic normal variation of squared distance along a hypersurface and the
-time variation of its unit normal.
-\end{claim}
 
 \begin{remark}[Integrability of the first boundary kernel]
 \label{rem:chow-iii-first-boundary-kernel-integrable}
@@ -632,7 +581,7 @@ unique smooth minimal positive fundamental solution
 \(H_{\mathcal M}(x,\tau;y,v)\).
 \end{theorem}
 \begin{proof}
-For an exhaustion \(\Omega_i\Subset\Omega_{i+1}\), the maximum principle gives
+\sketch For an exhaustion \(\Omega_i\Subset\Omega_{i+1}\), the maximum principle gives
 \(0<H_{\Omega_i}\le H_{\Omega_{i+1}}\).  The mass bound below and a local
 parabolic mean-value inequality make the monotone limit finite on compact
 subsets; local derivative estimates make it smooth.  It has the delta initial
@@ -654,7 +603,7 @@ exhaustion index,
 \]
 \end{lemma}
 \begin{proof}
-Differentiate the integral, use the heat equation and the nonpositive outward
+\sketch Differentiate the integral, use the heat equation and the nonpositive outward
 normal derivative on \(\partial\Omega_i\), and bound the potential and volume
 evolution terms.  Gronwall's inequality and the limiting mass \(1\) at
 \(\tau=v\) give a bound depending only on \(T\) and the uniform coefficient

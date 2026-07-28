@@ -6,22 +6,22 @@
   \dcref{ch13:1.1}
   Let $M^n$ be a compact simply connected Riemannian manifold, whose sectional
   curvature $K$ satisfies
-  
+
   $$
   0<hK_{\max}<K\leq K_{\max}.\qquad(1)
   $$
-  
+
   Then if $h=1/4$, $M$ is homeomorphic to a sphere.
-  
+
   The number $h$ is the pinching constant. Rescaling the metric gives the equivalent
   normalization
-  
+
   $$
   0<h<K\leq 1.\qquad(1')
   $$
-  
+
   In even dimension the non-strict bound
-  
+
   $$
   0<1/4\leq K\leq1,\tag{2}
   $$
@@ -31,9 +31,44 @@
   space. In odd dimensions (2) still implies the conclusion. For $n=2,3$, positive
   sectional curvature suffices for a compact simply connected manifold to be
   homeomorphic to $S^n$.
-  
+
   Unless otherwise stated, manifolds are complete and geodesics are normalized.
 \end{theorem}
+\begin{proof}
+  \sketch
+  Let $p,q\in M$ with $\operatorname{diam}M=d(p,q)$. Let $D_1$,
+  $D_2$ be the subsets of $M$ formed by all geodesic segments $\overline{pm}$ and
+  $\overline{qn}$ respectively, with $m,n$ from \cref{lem:dc-ch13-4-3}. By continuity of $m$, $D_1,D_2$ are closed; we claim $D_1\cup D_2=M$ and
+  $\partial D_1=\partial D_2=D_1\cap D_2$. Indeed, for $r\in M$, by \cref{lem:dc-ch13-4-2} either
+  $d(p,r)<\rho$ or $d(q,r)<\rho$; in the first case, since $d(p,C_m(p))\geq\pi>\rho$,
+  there is a unique minimizing $\gamma$ through $p,r$ and a unique $m$ on $\gamma$ with
+  $d(p,m)=d(q,m)<\rho$, and $r\in\overline{pm}=D_1$ if $d(p,r)<d(q,r)$, $r\in\partial D_1$
+  if $d(p,r)=d(q,r)$ (then $r=m$), and $r\in D_2$ if $d(p,r)>d(q,r)$; so
+  $r\in D_1\cup D_2$, and $r\in D_1\cap D_2$ forces $d(p,r)=d(q,r)$, $r=m=n$.
+
+  Define $\varphi:S^n\to M^n$ as follows. Associate to a fixed $N\in S^n$ the point
+  $p$, and to its antipode $S$ the point $q$. Choose a linear isometry
+  $i:T_NS^n\to T_pM$. For each $e$ in the equator $E$ of $S^n$ relative to $N$, take
+  the geodesic $\gamma(s)$ of $S^n$, $0\leq s\leq\pi$, with $\gamma(0)=N$,
+  $\gamma(\pi/2)=e$; let $m$ be the point of \cref{lem:dc-ch13-4-3} on the geodesic of $M$ through
+  $p$ with velocity $i\gamma'(0)$. Define
+
+  $$
+  \varphi(\gamma(s))=\exp_p\!\Big(s\tfrac{2}{\pi}d(p,m)\,(i\circ\gamma'(0))\Big),\quad 0<s\leq\tfrac{\pi}{2},
+  $$
+
+  $$
+  \varphi(\gamma(s))=\exp_q\!\Big(\big(2-\tfrac{2s}{\pi}\big)d(q,m)\,V\Big),\quad\tfrac{\pi}{2}\leq s<\pi,
+  $$
+
+  where $V$ is the unit tangent at $q$ of the unique minimizing geodesic from $q$ to
+  $m$. Then $\varphi$ maps the closed northern hemisphere bijectively onto $D_1$, the
+  closed southern hemisphere bijectively onto $D_2$, and $E$ onto
+  $\partial D_1=\partial D_2=D_1\cap D_2$. By uniqueness of $m,n$ (\cref{lem:dc-ch13-4-3}),
+  $\varphi$ is continuous; since $M=D_1\cup D_2$, $\varphi$ is surjective; since
+  $D_1\cap D_2=\partial D_1=\varphi(E)$, $\varphi$ is injective. As $S^n$ is compact,
+  $\varphi$ is a homeomorphism.
+\end{proof}
 
 \section{The cut locus}
 
@@ -56,7 +91,7 @@ point exists along every geodesic from $p$; the converse holds by
     $\gamma$,
   (b) or there exists a geodesic $\sigma\neq\gamma$ from $p$ to $\gamma(t_0)$ such
     that $\ell(\sigma)=\ell(\gamma)$.
-  
+
   Conversely, if (a) or (b) holds, then there exists $\tilde t\in(0,t_0]$ such that
   $\gamma(\tilde t)$ is the cut point of $p$ along $\gamma$.
 \end{proposition}
@@ -135,14 +170,14 @@ point exists along every geodesic from $p$; the converse holds by
   \label{cor:dc-ch13-2-8}
   \dcref{ch13:2.8}
   If $q\in M-C_m(p)$, there exists a unique minimizing geodesic joining $p$ to $q$.
-  
+
   \cref{cor:dc-ch13-2-8} shows that $\exp_p$ is injective on the open ball $B_r(p)$ if and only
   if $r\leq d(p,C_m(p))$. For this reason
-  
+
   $$
   i(M)=\inf_{p\in M}d(p,C_m(p))
   $$
-  
+
   is called the \emph{injectivity radius of $M$}. Moreover, $M-C_m(p)$ is
   homeomorphic to an open Euclidean ball.
 \end{corollary}
@@ -268,6 +303,41 @@ point exists along every geodesic from $p$; the converse holds by
   Let $M^n$, $n\geq 3$, be a simply connected, compact Riemannian manifold with
   $1/4<K\leq 1$. Then $i(M)\geq\pi$.
 \end{proposition}
+\begin{proof}
+  \sketch
+  Suppose $i(M)<\pi$. By \cref{prop:dc-ch13-2-13} there is a
+  closed geodesic $\gamma$ of length $\ell=\ell(\gamma)<2\pi$. By \cref{cor:dc-ch11-2-10} the conjugate points to $\gamma(0)$ along $\gamma$ are discrete; choose
+  $\varepsilon>0$ with: (1) $\gamma(\ell-\varepsilon)$ not conjugate to $p=\gamma(0)$;
+  (2) $\exp_p$ a diffeomorphism on $B_{2\varepsilon}(p)$;
+  (3) $3\varepsilon<2\pi-\pi/\sqrt{\bar K}$, $\bar K=\inf_M K$;
+  (4) $3\varepsilon<2\pi-\ell$; (5) $5\varepsilon<2\pi$. By Sard's Theorem pick a
+  regular value $q\in B_\varepsilon(\gamma(\ell-\varepsilon))$ of $\exp_p$, with
+  $q=\gamma_1(t)$ a geodesic from $p$, $3\varepsilon<\ell(\gamma_1)<\ell$. A
+  minimizing geodesic $\gamma_o$ from $p$ to $q$ has
+  $\ell(\gamma_o)\leq d(p,\gamma(\ell-\varepsilon))+d(\gamma(\ell-\varepsilon),q)\leq 2\varepsilon$,
+  so $\gamma_o\neq\gamma_1$.
+
+  Consider $\Omega_{p,q}^c$ (\cref{rem:dc-ch11-2-12}) and its finite-dimensional
+  approximation $B$. Since $q$ is a regular value, all critical points in
+  $\Omega_{p,q}^c$ are non-degenerate. As $M$ is simply connected, there is a homotopy
+  $\gamma_s$ between $\gamma_o$ and $\gamma_1$ fixing $p,q$; deforming into $B$ and
+  applying the index-zero/one variant of \cref{lem:dc-ch13-3-3}, for all
+  $\delta>0$ the larger-length curve
+  $\bar\gamma$ of the deformed $\bar\gamma_s$ satisfies $\ell(\bar\gamma)<a+\delta$,
+  $a=\max\{\ell(\gamma_o),\ell(\gamma_1),\ell(\sigma)\}$, with $\sigma$ the largest
+  geodesic of index $<2$. Put $\delta=\varepsilon$. Here $\ell(\gamma_o)\leq2\varepsilon$
+  and $\ell(\gamma_1)<\ell<2\pi-3\varepsilon$ by (4). To estimate $\ell(\sigma)$, apply
+  \cref{lem:dc-ch13-3-2} with $\bar M$ a sphere of curvature $\bar K=\inf_M K>1/4$, getting
+  $\operatorname{index}\bar\sigma\leq\operatorname{index}\sigma<2$. Since $\bar\sigma$
+  is a geodesic on $S^n$, the Morse Index Theorem gives: if
+  $\ell(\sigma)>\pi/\sqrt{\bar K}$ then $\operatorname{index}\bar\sigma\geq2$;
+  therefore by (3) $\ell(\sigma)\leq\pi/\sqrt{\bar K}<2\pi-3\varepsilon$. Hence by (5)
+  $\ell(\bar\gamma)<a+\varepsilon<2\pi-3\varepsilon+\varepsilon=2\pi-2\varepsilon$.
+  On the other hand, the closed-geodesic estimate gives in the
+  homotopy a curve $\bar\gamma_{s_o}$ with $\ell(\gamma_o)+\ell(\bar\gamma_{s_o})\geq2\pi$,
+  so $\ell(\bar\gamma)\geq2\pi-\ell(\gamma_o)\geq2\pi-2\varepsilon$, contradicting
+  $\ell(\bar\gamma)<2\pi-2\varepsilon$. Thus $i(M)<\pi$ is untenable.
+\end{proof}
 
 \begin{lemma}[Index comparison]
   \label{lem:dc-ch13-3-2}
@@ -333,42 +403,10 @@ The integer $\lambda$ is the index of the non-degenerate critical point $p$.
   $\bar\gamma_1$ off $L$ within $H$ fixing endpoints; the gradient flow then retracts
   into $M^{c_1-\varepsilon}$. Proceeding inductively yields
   $\bar\gamma\subset M^{a+\delta}$.
-  
+
   If $f^{-1}([a,b])$ contains critical points of index zero or one and $c$ is the
   largest value among them, the same argument gives
   $\bar\gamma([0,1])\subset M^{c+\delta}$.
-  
-  \emph{Proof of \cref{prop:dc-ch13-3-1}.} Suppose $i(M)<\pi$. By \cref{prop:dc-ch13-2-13} there is a
-  closed geodesic $\gamma$ of length $\ell=\ell(\gamma)<2\pi$. By \cref{cor:dc-ch11-2-10} the conjugate points to $\gamma(0)$ along $\gamma$ are discrete; choose
-  $\varepsilon>0$ with: (1) $\gamma(\ell-\varepsilon)$ not conjugate to $p=\gamma(0)$;
-  (2) $\exp_p$ a diffeomorphism on $B_{2\varepsilon}(p)$;
-  (3) $3\varepsilon<2\pi-\pi/\sqrt{\bar K}$, $\bar K=\inf_M K$;
-  (4) $3\varepsilon<2\pi-\ell$; (5) $5\varepsilon<2\pi$. By Sard's Theorem pick a
-  regular value $q\in B_\varepsilon(\gamma(\ell-\varepsilon))$ of $\exp_p$, with
-  $q=\gamma_1(t)$ a geodesic from $p$, $3\varepsilon<\ell(\gamma_1)<\ell$. A
-  minimizing geodesic $\gamma_o$ from $p$ to $q$ has
-  $\ell(\gamma_o)\leq d(p,\gamma(\ell-\varepsilon))+d(\gamma(\ell-\varepsilon),q)\leq 2\varepsilon$,
-  so $\gamma_o\neq\gamma_1$.
-  
-  Consider $\Omega_{p,q}^c$ (\cref{rem:dc-ch11-2-12}) and its finite-dimensional
-  approximation $B$. Since $q$ is a regular value, all critical points in
-  $\Omega_{p,q}^c$ are non-degenerate. As $M$ is simply connected, there is a homotopy
-  $\gamma_s$ between $\gamma_o$ and $\gamma_1$ fixing $p,q$; deforming into $B$ and
-  applying the index-zero/one variant above, for all $\delta>0$ the larger-length curve
-  $\bar\gamma$ of the deformed $\bar\gamma_s$ satisfies $\ell(\bar\gamma)<a+\delta$,
-  $a=\max\{\ell(\gamma_o),\ell(\gamma_1),\ell(\sigma)\}$, with $\sigma$ the largest
-  geodesic of index $<2$. Put $\delta=\varepsilon$. Here $\ell(\gamma_o)\leq2\varepsilon$
-  and $\ell(\gamma_1)<\ell<2\pi-3\varepsilon$ by (4). To estimate $\ell(\sigma)$, apply
-  \cref{lem:dc-ch13-3-2} with $\bar M$ a sphere of curvature $\bar K=\inf_M K>1/4$, getting
-  $\operatorname{index}\bar\sigma\leq\operatorname{index}\sigma<2$. Since $\bar\sigma$
-  is a geodesic on $S^n$, the Morse Index Theorem gives: if
-  $\ell(\sigma)>\pi/\sqrt{\bar K}$ then $\operatorname{index}\bar\sigma\geq2$;
-  therefore by (3) $\ell(\sigma)\leq\pi/\sqrt{\bar K}<2\pi-3\varepsilon$. Hence by (5)
-  $\ell(\bar\gamma)<a+\varepsilon<2\pi-3\varepsilon+\varepsilon=2\pi-2\varepsilon$. On
-  the closed-geodesic estimate gives in the
-  homotopy a curve $\bar\gamma_{s_o}$ with $\ell(\gamma_o)+\ell(\bar\gamma_{s_o})\geq2\pi$,
-  so $\ell(\bar\gamma)\geq2\pi-\ell(\gamma_o)\geq2\pi-2\varepsilon$, contradicting
-  $\ell(\bar\gamma)<2\pi-2\varepsilon$. Thus $i(M)<\pi$ is untenable.
 \end{proof}
 
 \begin{proposition}[Even-dimensional injectivity-radius estimate]
@@ -442,11 +480,11 @@ In what follows, whether $\dim M$ is even or odd plays no role.
   Let $M^n$ be a compact, simply connected Riemannian manifold whose sectional
   curvature satisfies $\tfrac14<\delta\leq K\leq 1$, and let $p,q\in M$ with
   $d(p,q)=\operatorname{diam}(M)$. Then
-  
+
   $$
   M=B_\rho(p)\cup B_\rho(q),
   $$
-  
+
   where $B_r(p)$ denotes the open geodesic ball of radius $r$ and center $p$, and
   $\rho$ is such that $\pi/(2\sqrt\delta)<\rho<\pi$.
 \end{lemma}
@@ -508,38 +546,4 @@ In what follows, whether $\dim M$ is even or odd plays no role.
   \uses{thm:dc-ch13-1-1, lem:dc-ch13-4-2, lem:dc-ch13-4-3}
   By its uniqueness, the point $m$ depends continuously on the (initial direction of
   the) geodesic which contains it.
-  
-  \sketch
-  Let $p,q\in M$ with $\operatorname{diam}M=d(p,q)$. Let $D_1$,
-  $D_2$ be the subsets of $M$ formed by all geodesic segments $\overline{pm}$ and
-  $\overline{qn}$ respectively, with $m,n$ from \cref{lem:dc-ch13-4-3}. By continuity of $m$, $D_1,D_2$ are closed; we claim $D_1\cup D_2=M$ and
-  $\partial D_1=\partial D_2=D_1\cap D_2$. Indeed, for $r\in M$, by \cref{lem:dc-ch13-4-2} either
-  $d(p,r)<\rho$ or $d(q,r)<\rho$; in the first case, since $d(p,C_m(p))\geq\pi>\rho$,
-  there is a unique minimizing $\gamma$ through $p,r$ and a unique $m$ on $\gamma$ with
-  $d(p,m)=d(q,m)<\rho$, and $r\in\overline{pm}=D_1$ if $d(p,r)<d(q,r)$, $r\in\partial D_1$
-  if $d(p,r)=d(q,r)$ (then $r=m$), and $r\in D_2$ if $d(p,r)>d(q,r)$; so
-  $r\in D_1\cup D_2$, and $r\in D_1\cap D_2$ forces $d(p,r)=d(q,r)$, $r=m=n$.
-  
-  Define $\varphi:S^n\to M^n$ as follows. Associate to a fixed $N\in S^n$ the point
-  $p$, and to its antipode $S$ the point $q$. Choose a linear isometry
-  $i:T_NS^n\to T_pM$. For each $e$ in the equator $E$ of $S^n$ relative to $N$, take
-  the geodesic $\gamma(s)$ of $S^n$, $0\leq s\leq\pi$, with $\gamma(0)=N$,
-  $\gamma(\pi/2)=e$; let $m$ be the point of \cref{lem:dc-ch13-4-3} on the geodesic of $M$ through
-  $p$ with velocity $i\gamma'(0)$. Define
-  
-  $$
-  \varphi(\gamma(s))=\exp_p\!\Big(s\tfrac{2}{\pi}d(p,m)\,(i\circ\gamma'(0))\Big),\quad 0<s\leq\tfrac{\pi}{2},
-  $$
-  
-  $$
-  \varphi(\gamma(s))=\exp_q\!\Big(\big(2-\tfrac{2s}{\pi}\big)d(q,m)\,V\Big),\quad\tfrac{\pi}{2}\leq s<\pi,
-  $$
-  
-  where $V$ is the unit tangent at $q$ of the unique minimizing geodesic from $q$ to
-  $m$. Then $\varphi$ maps the closed northern hemisphere bijectively onto $D_1$, the
-  closed southern hemisphere bijectively onto $D_2$, and $E$ onto
-  $\partial D_1=\partial D_2=D_1\cap D_2$. By uniqueness of $m,n$ (\cref{lem:dc-ch13-4-3}),
-  $\varphi$ is continuous; since $M=D_1\cup D_2$, $\varphi$ is surjective; since
-  $D_1\cap D_2=\partial D_1=\varphi(E)$, $\varphi$ is injective. As $S^n$ is compact,
-  $\varphi$ is a homeomorphism.
 \end{remark}

@@ -15,7 +15,7 @@ Let $(\mathcal M^n,g)$ be a complete Riemannian manifold, let $p\in\mathcal M^n$
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0300}
-This is the standard Gauss lemma for the exponential map.
+\sketch This is the standard Gauss lemma for the exponential map.
 \end{proof}
 
 \begin{corollary}[Gradient of the radial distance]
@@ -32,7 +32,7 @@ For sufficiently small $\epsilon>0$, on $\exp_p(B(\vec 0,\epsilon))\setminus\{p\
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0301, chow-knopf-ricci-flow:page-0302}
-Decompose an arbitrary tangent vector into radial and orthogonal parts and apply the Gauss lemma to show that the distance function has derivative $1$ in the radial direction and vanishing derivative in orthogonal directions.
+\sketch Decompose an arbitrary tangent vector into radial and orthogonal parts and apply the Gauss lemma to show that the distance function has derivative $1$ in the radial direction and vanishing derivative in orthogonal directions.
 \end{proof}
 
 \section*{B.2. Conjugate points}
@@ -77,7 +77,7 @@ Let $(\mathcal M^n,g)$ be complete and let $\{\Gamma_i\}$ be a sequence of nonde
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0303, chow-knopf-ricci-flow:page-0304}
-If $q_\infty$ were not conjugate to $p_\infty$, then the inverse function theorem would give a neighborhood on which the exponential map is injective for all nearby basepoints and tangent vectors. For sufficiently large $i$, this would force the two distinct geodesic segments of $\Gamma_i$ joining the same endpoints to have the same initial vector, a contradiction.
+\sketch If $q_\infty$ were not conjugate to $p_\infty$, then the inverse function theorem would give a neighborhood on which the exponential map is injective for all nearby basepoints and tangent vectors. For sufficiently large $i$, this would force the two distinct geodesic segments of $\Gamma_i$ joining the same endpoints to have the same initial vector, a contradiction.
 \end{proof}
 
 \begin{remark}[Failure in varying manifolds]
@@ -134,7 +134,7 @@ Let $(\mathcal M^n,g)$ be complete and connected. A point $q$ is conjugate to $p
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0305}
-The Jacobi field obtained by varying the initial velocity of a geodesic gives the forward direction, and the converse is immediate from the characterization of critical points of the exponential map.
+\sketch The Jacobi field obtained by varying the initial velocity of a geodesic gives the forward direction, and the converse is immediate from the characterization of critical points of the exponential map.
 \end{proof}
 
 \begin{lemma}[The Jacobi equation]
@@ -164,7 +164,7 @@ where $a,b\in\mathbb R$ and $\langle J_0,T\rangle\equiv 0$.
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0306}
-The component of $J$ along the geodesic direction has vanishing second derivative, so it must be affine in the arclength parameter.
+\sketch The component of $J$ along the geodesic direction has vanishing second derivative, so it must be affine in the arclength parameter.
 \end{proof}
 
 \begin{definition}[Normal bundle]
@@ -175,24 +175,6 @@ The component of $J$ along the geodesic direction has vanishing second derivativ
 If $l:\Sigma^k\hookrightarrow \mathcal M^n$ is an immersion, the normal bundle $N\Sigma^k$ is the subbundle of $l^*T\mathcal M^n$ whose fiber at $p\in\Sigma^k$ consists of vectors orthogonal to $l_*(T_p\Sigma^k)$.
 \end{definition}
 
-\begin{example}[Trivial normal bundle in codimension $0$]
-\label{appb-ex-normal-bundle-codim-zero}
-\dcref{Example B.16}
-\group{local-comparison-geometry}
-\uses{appb-def-normal-bundle}
-\source{chow-knopf-ricci-flow:page-0306}
-If $\Sigma^n=\mathcal M^n$, then $N\Sigma^n$ is naturally identified with $\Sigma^n$ and the normal exponential map is the identity.
-\end{example}
-
-\begin{example}[Normal bundle of a point]
-\label{appb-ex-normal-bundle-point}
-\dcref{Example B.17}
-\group{local-comparison-geometry}
-\uses{appb-def-normal-bundle}
-\source{chow-knopf-ricci-flow:page-0306}
-If $\Sigma^0=\{p\}$, then $N\{p\}=T_p\mathcal M^n$ and the normal exponential map is the ordinary exponential map $\exp_p$.
-\end{example}
-
 \begin{definition}[Focal point]
 \label{appb-def-focal-point}
 \dcref{Definition B.18}
@@ -201,15 +183,6 @@ If $\Sigma^0=\{p\}$, then $N\{p\}=T_p\mathcal M^n$ and the normal exponential ma
 \source{chow-knopf-ricci-flow:page-0306}
 If $l:\Sigma^k\hookrightarrow\mathcal M^n$ is an immersion, a point $q\in\mathcal M^n$ is a focal point of $l(\Sigma^k)$ if it is a critical value of the normal exponential map $\exp_{\mid N\Sigma^k}$.
 \end{definition}
-
-\begin{example}[Unique focal point of a Euclidean sphere]
-\label{appb-ex-euclidean-sphere-focal-point}
-\dcref{Example B.19}
-\group{local-comparison-geometry}
-\uses{appb-def-focal-point}
-\source{chow-knopf-ricci-flow:page-0306}
-For the round sphere $S_r^{n-1}(p)\subset\mathbb R^n$, the unique focal point is the center $p$.
-\end{example}
 
 \section*{B.4. The Rauch comparison theorem}
 
@@ -242,7 +215,7 @@ Under an upper sectional curvature bound by $K>0$, the exponential map is an imm
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0307}
-This is the standard consequence of Rauch comparison for the model sphere of constant curvature $K$.
+\sketch This is the standard consequence of Rauch comparison for the model sphere of constant curvature $K$.
 \end{proof}
 
 \section*{B.5. The Laplacian comparison theorem}
@@ -437,6 +410,11 @@ If $(\mathcal M^n,g)$ is complete, noncompact, has positive sectional curvature,
 \]
 \end{theorem}
 
+\begin{proof}
+\source{chow-knopf-ricci-flow:page-0327, chow-knopf-ricci-flow:page-0328}
+\sketch Assuming the injectivity radius bound fails, one produces a short smooth geodesic loop in a compact totally convex Busemann sublevel set and then contradicts minimality by a second variation argument along a minimizing geodesic from the loop to a point on a ray.
+\end{proof}
+
 \begin{definition}[Proper geodesic $k$-gon]
 \label{appb-def-proper-geodesic-k-gon}
 \dcref{Definition B.66}
@@ -474,10 +452,5 @@ If $\beta\in\Lambda$ minimizes total length, then $\beta$ is a smooth geodesic l
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0327, chow-knopf-ricci-flow:page-0328}
-If a minimizing polygon were not smooth at a vertex, a one-parameter shortening deformation would have negative first variation, contradicting minimality.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{appb-thm-inj-radius-positive-curvature}]
-\source{chow-knopf-ricci-flow:page-0327, chow-knopf-ricci-flow:page-0328}
-Assuming the injectivity radius bound fails, one produces a short smooth geodesic loop in a compact totally convex Busemann sublevel set and then contradicts minimality by a second variation argument along a minimizing geodesic from the loop to a point on a ray.
+\sketch If a minimizing polygon were not smooth at a vertex, a one-parameter shortening deformation would have negative first variation, contradicting minimality.
 \end{proof}

@@ -242,14 +242,6 @@ $a<b$.
 Every minimizing admissible curve segment is locally minimizing.
 \end{lemma}
 
-\begin{exercise}
-\label{exer:prove-minimizing-lemma}
-\dcref{ch6:6.7}
-\uses{lem:minimizing-curves-locally-minimizing}
-
-Prove the preceding lemma.
-\end{exercise}
-
 If $\exp_p$ maps $B_\varepsilon(0)\subset T_pM$ diffeomorphically onto its
 image, that image is an \emph{open geodesic ball}.  If
 $\overline B_\varepsilon(0)$ lies in an open set on which $\exp_p$ is a
@@ -333,7 +325,7 @@ Therefore $\langle w,\partial_r|_q\rangle
 \begin{corollary}[Gradient of Radial Distance]
 \label{cor:gradient-radial-distance}
 \dcref{ch6:6.10}
-\uses{prob:gradient-characterization}
+\uses{prop:gradient-characterization}
 
 On a geodesic ball $U$ centered at $p$,
 $\operatorname{grad}r=\partial_r$ on $U\setminus\{p\}$.
@@ -343,7 +335,8 @@ $\operatorname{grad}r=\partial_r$ on $U\setminus\{p\}$.
 \sketch
 The Gauss lemma makes $\partial_r$ orthogonal to the level sets of $r$ and
 gives $|\partial_r|^2=1$.  Directly from (6.4)--(6.5),
-$\partial_r(r)=1$.  The gradient characterization from Problem 2-10 now
+$\partial_r(r)=1$.  The gradient characterization in
+\cref{prop:gradient-characterization} now
 implies $\operatorname{grad}r=\partial_r$.
 \end{proof}
 
@@ -817,13 +810,6 @@ geodesic segment $\gamma\colon[a,b]\to M$ satisfying
 \gamma'(a)=\gamma'(b).
 \]
 
-\begin{exercise}
-\label{exer:closed-geodesic-periodic-extension}
-\dcref{ch6:6.26}
-A geodesic segment is closed if and only if it extends to a periodic geodesic
-defined on all of $\mathbb R$.
-\end{exercise}
-
 A continuous path $\sigma\colon[0,1]\to M$ is a \emph{loop} if
 $\sigma(0)=\sigma(1)$. Loops $\sigma_0$ and $\sigma_1$ are \emph{freely
 homotopic} if there is a homotopy $H\colon[0,1]^2\to M$ such that
@@ -835,14 +821,6 @@ H(0,t)=H(1,t)&\quad\text{for all }t\in[0,1]. \tag{6.12}
 This is an equivalence relation. Its classes are the \emph{free homotopy
 classes}; the class of constant loops is the \emph{trivial free homotopy
 class}.
-
-\begin{exercise}
-\label{exer:trivial-free-homotopy-identity}
-\dcref{ch6:6.27}
-Let $M$ be connected and $x\in M$. A loop based at $x$ lies in the trivial
-free homotopy class if and only if it represents the identity in
-$\pi_1(M,x)$.
-\end{exercise}
 
 \begin{proposition}[Existence of Closed Geodesics]
 \label{prop:existence-closed-geodesics}
@@ -872,14 +850,6 @@ $d_g(x,S)\leq d_g(x,y)+d_g(y,S)$.
 \item The function $x\mapsto d_g(x,S)$ is continuous on $M$.
 \end{enumerate}
 \end{lemma}
-
-\begin{exercise}
-\label{exer:prove-distance-lemma}
-\dcref{ch6:6.30}
-\uses{lem:distance-triangle-inequality-and-continuity}
-
-Prove Lemma~\ref{lem:distance-triangle-inequality-and-continuity}.
-\end{exercise}
 
 \begin{theorem}
 \label{thm:distance-to-subset-unit-gradient}
@@ -1043,14 +1013,6 @@ satisfies
 \]
 \end{corollary}
 
-\begin{exercise}
-\label{exer:prove-local-distance-corollary}
-\dcref{ch6:6.36}
-\uses{cor:local-distance-smooth-level-sets}
-
-Prove Corollary~\ref{cor:local-distance-smooth-level-sets}.
-\end{exercise}
-
 \section{Distance Functions for Embedded Submanifolds}
 
 Let $P$ be an embedded $k$-dimensional submanifold of a Riemannian
@@ -1131,7 +1093,7 @@ because $x'(0)$ is tangent to $P$ and $v_0$ is normal to $P$.
 \begin{corollary}[Assume the hypotheses of Theorem~6.38]
 \label{cor:distance-function-local-properties}
 \dcref{ch6:6.39}
-\uses{thm:gauss-lemma-submanifolds,thm:small-geodesic-ball-convex,lem:exponential-map-implies-completeness,prob:gradient-characterization,prop:fermi-coordinates-properties,thm:smooth-local-distance-function}
+\uses{thm:gauss-lemma-submanifolds,thm:small-geodesic-ball-convex,lem:exponential-map-implies-completeness,prop:gradient-characterization,prop:fermi-coordinates-properties,thm:smooth-local-distance-function}
 
 \begin{enumerate}
 \item[(a)] On $U\setminus P$, $\partial_r=\operatorname{grad}r$.
@@ -1364,491 +1326,28 @@ curve is a unit-speed normal geodesic. These semigeodesic coordinates are
 \emph{polar Fermi coordinates}; polar normal coordinates are the case
 $P=\{p\}$.
 \end{example}
-\section{Problems}
+\section{Further Results}
 
-\begin{exercise}
-\label{prob:connected-riemannian-1-manifold-structure}
-\dcref{ch6:6-1}
-
-Let $M$ be a nonempty connected Riemannian $1$-manifold.  Show that a
-noncompact $M$ is isometric to an open Euclidean interval, while a compact
-$M$ is isometric to a circle
-$S^1(R)=\{x\in\mathbb R^2:|x|=R\}$ with its induced metric, for some $R>0$.
-\begin{enumerate}
-\item[(a)] If $\gamma:I\to M$ is a maximal unit-speed geodesic, show that its
-image is open and closed and hence $\gamma$ is surjective.
-\item[(b)] If $\gamma$ is injective, show that it is an isometry from $I$ with
-the Euclidean metric onto $M$.
-\item[(c)] If $\gamma(t_1)=\gamma(t_2)$ for $t_1\ne t_2$ and
-$\gamma'(t_1)=\gamma'(t_2)$, show that $\gamma$ is periodic and descends to a
-global isometry from a suitable circle onto $M$.
-\item[(d)] Exclude the remaining case
-$\gamma(t_1)=\gamma(t_2)$ and $\gamma'(t_1)=-\gamma'(t_2)$.  For
-$t_0=(t_1+t_2)/2$, set
-\[
-\alpha(t)=\gamma(t_0+t),\qquad \beta(t)=\gamma(t_0-t).
-\]
-Use geodesic uniqueness to show $\alpha=\beta$ on their common domain,
-contradicting injectivity of $\gamma$ near $t_0$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:round-metric-distance-sphere}
+\begin{proposition}
+\label{prop:round-metric-distance-sphere}
 \dcref{ch6:6-2}
 
 Let $n\in\mathbb Z_{>0}$ and $R>0$.
 \begin{enumerate}
-\item[(a)] For $p,q\in S^n(R)$ with the round metric, prove
+\item[(a)] For $p,q\in S^n(R)$ with the round metric,
 \[
 d_{\bar g_R}(p,q)=R\arccos\frac{\langle p,q\rangle}{R^2},
 \]
 where the inner product is Euclidean.
-\item[(b)] Prove that $(S^n(R),d_{\bar g_R})$ has diameter $\pi R$.
+\item[(b)] The metric space $(S^n(R),d_{\bar g_R})$ has diameter $\pi R$.
 \end{enumerate}
-\end{exercise}
+\end{proposition}
 
-\begin{exercise}
-\label{prob:poincare-ball-distance-formula}
-\dcref{ch6:6-3}
-\uses{prob:sphere-hyperbolic-scaling,prob:poincare-disk}
-
-For $n\in\mathbb Z_{>0}$ and $R>0$, prove that the distance in the Poincare
-ball model $(\mathbb B^n(R),\bar g_R)$ is
-\[
-d_{\bar g_R}(p,q)=R\operatorname{arcosh}\left(1+
-\frac{2R^2|p-q|^2}{(R^2-|p|^2)(R^2-|q|^2)}\right),
-\]
-with Euclidean norm on $\mathbb R^n$.  Hint: use Problem 3-5 to reduce to
-$R=1$, rotate to $n=2$, and use the action in Problem 3-8 to move $p$ to the
-origin.
-\end{exercise}
-
-\begin{exercise}[Metric and Riemannian distance]
-\label{prob:distance-determines-metric}
-\dcref{ch6:6-4}
-
-Let $(M,g)$ be connected and Riemannian.
-\begin{enumerate}
-\item[(a)] For every smooth $\gamma:(-\varepsilon,\varepsilon)\to M$, prove
-\[
-|\gamma'(0)|_g=\lim_{t\searrow0}\frac{d_g(\gamma(0),\gamma(t))}{t}.
-\]
-\item[(b)] If $g$ and $\widetilde g$ induce the same distance on every pair of
-points, prove $g=\widetilde g$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Geodesic Balls Are Geodesically Convex]
-\label{prob:geodesic-ball-convexity}
-\dcref{ch6:6-5}
-\uses{thm:small-geodesic-ball-convex}
-
-Establish Theorem~\ref{thm:small-geodesic-ball-convex} through the following
-steps.  Fix $p\in M$ and a uniformly normal neighborhood $W$.
-\begin{enumerate}
-\item[(a)] For $\varepsilon>0$ with $B_{3\varepsilon}(p)\subseteq W$, define
-\[
-W_\varepsilon=\{(q,v,t)\in TM\times\mathbb R:q\in B_\varepsilon(p),
-v\in T_qM,\ |v|=1,\ |t|<2\varepsilon\}
-\]
-and
-\[
-f(q,v,t)=d_g(p,\exp_q(tv))^2.
-\]
-Prove that $f$ is smooth.  Hint: use normal coordinates centered at $p$.
-\item[(b)] For sufficiently small $\varepsilon$, prove
-$\partial^2f/\partial t^2>0$ on $W_\varepsilon$.  Compute $f(p,v,t)$ and
-use continuity, verifying that the choice of $\varepsilon$ is independent of
-$v$.
-\item[(c)] If $q_1,q_2\in B_\varepsilon(p)$ and $\gamma$ is a minimizing
-geodesic segment from $q_1$ to $q_2$, show that
-$d_g(p,\gamma(t))$ attains its maximum at an endpoint.
-\item[(d)] Prove that $B_\varepsilon(p)$ is geodesically convex.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Convexity Radius Is Continuous]
-\label{prob:convexity-radius-continuous}
-\dcref{ch6:6-6}
-
-For a Riemannian manifold $(M,g)$, define
-\[
-\operatorname{conv}(x)=\sup\{\varepsilon>0:\text{a geodesically convex
-geodesic ball of radius }\varepsilon\text{ is centered at }x\}.
-\]
-Prove that $\operatorname{conv}(x)$ is continuous as a function of $x$.
-\end{exercise}
-
-\begin{exercise}[Characterization of Metric Isometry]
-\label{prob:metric-isometry-characterization}
-\label{prob:exponential-distance-limit}
-\dcref{ch6:6-7}
-\uses{prop:isometry-invariance-riemannian-distance,prob:distance-preserving-map-linear-isometry}
-
-For connected Riemannian manifolds, a Riemannian isometry is a diffeomorphism
-pulling one Riemannian metric back to the other, while a metric isometry is a
-distance-preserving homeomorphism.
-Assume $(M,g)$ and $(\widetilde M,\widetilde g)$ are connected Riemannian
-manifolds and $\varphi:M\to\widetilde M$ is a metric isometry.  Prove:
-\begin{enumerate}
-\item[(a)] For $p\in M$ and $v,w\in T_pM$,
-\[
-\lim_{t\searrow0}\frac{d_g(\exp_p(tv),\exp_p(tw))}{t}=|v-w|_g.
-\]
-Hint: use the Taylor expansion of $g$ in normal coordinates on a convex
-geodesic ball centered at $p$.
-\item[(b)] $\varphi$ maps geodesics to geodesics.
-\item[(c)] For each $p$, there are an open ball $B_\varepsilon(0)\subset T_pM$
-and a continuous $\psi:B_\varepsilon(0)\to T_{\varphi(p)}\widetilde M$ such that
-$\psi(0)=0$ and
-\[
-\exp_{\varphi(p)}\psi(v)=\varphi(\exp_pv)
-\]
-for all $v$ in the ball.
-\item[(d)] Show that
-$|\psi(v)-\psi(w)|_{\widetilde g}=|v-w|_g$ on $B_\varepsilon(0)$, and use
-Problem 2-2 to conclude that $\psi$ is the restriction of a linear isometry.
-\item[(e)] Show that $\varphi$ is smooth near $p$ and $d\varphi_p=\psi$.
-\item[(f)] Conclude that $\varphi$ is a Riemannian isometry.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:limit-isometry}
-\dcref{ch6:6-8}
-
-Let $(M,g)$ and $(\widetilde M,\widetilde g)$ be connected, not necessarily
-complete, Riemannian manifolds.  If Riemannian isometries
-$\varphi_i:M\to\widetilde M$ converge pointwise to $\varphi:M\to\widetilde M$,
-prove that $\varphi$ is a Riemannian isometry.  Hint: after proving that
-$\varphi$ is a local isometry, prove surjectivity by taking
-$y\in\overline{\varphi(M)}$, choosing $x$ with $\varphi(x)$ in a uniformly
-normal neighborhood of $y$, and finding a convergent sequence
-$(x_i,v_i)\in TM$ with
-$\varphi_i(x_i)=\varphi(x)$ and $\varphi_i(\exp_{x_i}v_i)=y$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:distance-complete-metric}
-\dcref{ch6:6-9}
-\uses{prob:distance-disconnected-riemannian}
-
-Let $M$ be a possibly disconnected Riemannian manifold.  Given a distance
-function inducing its topology and restricting to the Riemannian distance on
-each component, prove that if every component is geodesically complete then
-the distance can be chosen complete.  If $M$ has infinitely many components,
-also construct such a distance that is not complete.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:completeness-divergence}
-\dcref{ch6:6-10}
-
-A curve $\gamma:[0,b)\to M$ with $0<b\leq\infty$ \emph{diverges to infinity}
-if for every compact $K\subseteq M$ there is $T<b$ such that
-$\gamma(t)\notin K$ for $t>T$.  Prove that a connected Riemannian manifold is
-complete if and only if every regular curve diverging to infinity has infinite
-length.  For noncompact domains, length is the supremum over compact
-subintervals.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:submanifold-distance-inequality}
-\dcref{ch6:6-11}
-
-Let $(M,g)$ be connected and Riemannian, let $P\subseteq M$ be a connected
-embedded submanifold, and let $\bar g$ be its induced metric.
-\begin{enumerate}
-\item[(a)] Prove $d_{\bar g}(p,q)\geq d_g(p,q)$ for $p,q\in P$.
-\item[(b)] If $(M,g)$ is complete and $P$ is closed in $M$, prove that
-$(P,\bar g)$ is complete.
-\item[(c)] Give a complete $(M,g)$ and a connected embedded $P$ that is
-complete but not closed in $M$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:geodesic-completeness}
-\dcref{ch6:6-12}
-
-Let $(M,g)$ be connected and Riemannian.
-\begin{enumerate}
-\item[(a)] If some $\delta>0$ makes every maximal unit-speed geodesic starting
-at any $p$ defined on $(-\delta,\delta)$, prove that $M$ is complete.
-\item[(b)] Prove that positive or infinite injectivity radius implies
-completeness.
-\item[(c)] Prove that every homogeneous Riemannian manifold is complete.
-\item[(d)] Give a complete connected Riemannian manifold with zero injectivity
-radius.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lie-group-exp-surjective}
-\dcref{ch6:6-13}
-\uses{prob:lie-group-bi-invariant-metric}
-
-For a connected compact Lie group $G$, prove that its Lie-group exponential
-map is surjective.  Hint: use Problem 5-8.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:compact-complete-characterization}
-\dcref{ch6:6-14}
-
-Let $(M,g)$ be connected and Riemannian.
-\begin{enumerate}
-\item[(a)] Prove that $M$ is complete if and only if its compact subsets are
-exactly its closed and bounded subsets.
-\item[(b)] Prove that $M$ is compact if and only if it is complete and bounded.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:onion-skin-geodesics}
-\dcref{ch6:6-15}
-
-Let $S$ be the unit $2$-sphere with its poles removed, let
-$M=(0,\pi)\times\mathbb R$, and define
-\[
-q(\varphi,\theta)=(\sin\varphi\cos\theta,\sin\varphi\sin\theta,
-\cos\varphi),
-\qquad g=q^*\bar g.
-\]
-Prove that $(M,g)$ has diameter $\pi$ but contains infinitely long properly
-embedded geodesics.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:inj-radius-diffeomorphism}
-\dcref{ch6:6-16}
-
-Let $(M,g)$ be complete and connected with positive or infinite injectivity
-radius.  Let $\rho=\operatorname{inj}(M)\in(0,\infty]$,
-\[
-T^\rho M=\{v\in TM:|v|<\rho\},
-\qquad
-D^\rho=\{(p,q)\in M\times M:d_g(p,q)<\rho\},
-\]
-and $E:T^\rho M\to D^\rho$ be
-$E(x,v)=(x,\exp_xv)$.
-\begin{enumerate}
-\item[(a)] Prove that $E$ is a diffeomorphism.
-\item[(b)] If $F,G:B\to M$ are continuous and
-$d_g(F(x),G(x))<\operatorname{inj}(M)$ for every $x\in B$, use (a) to prove
-that $F$ and $G$ are homotopic.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:closed-geodesic-free-homotopy}
-\dcref{ch6:6-17}
-\uses{prop:existence-closed-geodesics,prop:path-homotopy-contains-minimizing-geodesic}
-
-Prove Proposition~\ref{prop:existence-closed-geodesics}.  Use
-Proposition~\ref{prop:path-homotopy-contains-minimizing-geodesic} to represent
-the free homotopy class by a geodesic loop.  Show that loop lengths have a
-positive infimum, choose loops approaching it, and prove that a subsequence
-converges uniformly to a closed geodesic.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:k-point-homogeneous}
-\dcref{ch6:6-18}
-\uses{prob:inj-radius-diffeomorphism,prob:geodesic-completeness}
-
-A connected Riemannian manifold is $k$-point \emph{homogeneous} if any two
-ordered $k$-tuples $(p_1,\ldots,p_k)$ and $(q_1,\ldots,q_k)$ with
-$d_g(p_i,p_j)=d_g(q_i,q_j)$ admit an isometry sending $p_i$ to $q_i$ for every
-$i$.  Prove that $(M,g)$ is $2$-point homogeneous if and only if it is
-isotropic.  Hint: for isotropic $M$, obtain homogeneity from midpoints of
-sufficiently short geodesic segments, then use Problem 6-12(c) for
-completeness.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:symmetric-space-homogeneous}
-\dcref{ch6:6-19}
-\uses{prob:k-point-homogeneous}
-
-Prove that every Riemannian symmetric space is homogeneous.  Hint: proceed as
-in Problem 6-18.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:extendible}
-\dcref{ch6:6-20}
-
-A connected Riemannian manifold is \emph{extendible} if it is isometric to a
-proper open subset of a larger connected Riemannian manifold.
-\begin{enumerate}
-\item[(a)] Prove that every complete connected Riemannian manifold is
-nonextendible.
-\item[(b)] Give a nonextendible connected Riemannian manifold that is not
-complete.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:ray-definition}
-\dcref{ch6:6-21}
-
-Let $(M,g)$ be complete, connected, and noncompact.  A \emph{ray} is a
-geodesic $\gamma:[0,\infty)\to M$ whose every restriction to $[0,b]$ is
-minimizing.  Prove that every $p\in M$ is the initial point of a ray.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:manifold-boundary-complete}
-\dcref{ch6:6-22}
-
-Let $(M,g)$ be connected with boundary.  Prove that $(M,d_g)$ is complete if
-and only if every geodesic $\gamma:[0,b)\to M$ that cannot extend to any
-$[0,b')$ with $b'>b$ converges to a point of $\partial M$ as $t\nearrow b$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:energy-functional}
-\dcref{ch6:6-23}
-
-For an admissible $\gamma:[a,b]\to M$, define the energy
-\[
-E(\gamma)=\frac12\int_a^b|\gamma'(t)|^2\,dt.
-\]
-It is not reparametrization invariant.
-\begin{enumerate}
-\item[(a)] Prove that $\gamma$ is critical for $E$ under proper variations if
-and only if it is a geodesic, hence has constant speed.
-\item[(b)] Prove that an energy-minimizing admissible curve is
-length-minimizing.
-\item[(c)] Prove that a length-minimizing admissible curve is energy-minimizing
-if and only if it has constant speed.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:killing-vector-field-properties}
-\dcref{ch6:6-24}
-\uses{prob:killing-vector-field}
-
-Let $X\in\mathfrak X(M)$ be a Killing field, $\mathcal L_Xg=0$, as in
-Problem 5-22.
-\begin{enumerate}
-\item[(a)] Prove that if $X$ is normal to a geodesic at one point, it is normal
-along the entire geodesic.
-\item[(b)] If $X$ vanishes at $p$, prove that it is tangent to every geodesic
-sphere centered at $p$.
-\item[(c)] Prove that a Killing field on an odd-dimensional manifold cannot
-have an isolated zero.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:distance-function-submersion}
-\dcref{ch6:6-25}
-
-If $f:M\to\mathbb R$ is a smooth local distance function on a Riemannian
-manifold, prove that $f$ is a Riemannian submersion.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:geodesic-to-closed-subset}
-\dcref{ch6:6-26}
-
-Let $(M,g)$ be complete and connected and let $S\subseteq M$ be closed.
-\begin{enumerate}
-\item[(a)] For every $p\in M\setminus S$, show that there is a geodesic
-segment from $p$ to a point of $S$ whose length is $d_g(p,S)$.
-\item[(b)] If $S$ is properly embedded, show that every such segment meets $S$
-orthogonally.
-\item[(c)] Give a counterexample to (a) when $S$ is not closed.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:smooth-function-equals-distance}
-\dcref{ch6:6-27}
-
-Let $(M,g)$ be complete and connected, let $S\subseteq M$ be closed, and let
-$f:M\to\mathbb R$ be continuous and nonnegative with $f^{-1}(0)=S$, smooth on
-$M\setminus S$, and satisfying $|\operatorname{grad}f|=1$ there.  Prove
-$f(x)=d_g(x,S)$ for every $x\in M$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:isometry-group-acts-properly}
+\begin{proposition}
+\label{prop:isometry-group-acts-properly}
 \dcref{ch6:6-28}
 
 Let $(M,g)$ be complete, connected, and $n$-dimensional, and assume its
 isometry group is a Lie group acting smoothly.  If $G$ is a closed subgroup of
-$\operatorname{Iso}(M)$, prove that its action is proper.  Suppose
-$\varphi_m\in G$, $p_m\to p_0$, and $\varphi_m(p_m)\to q_0$.
-\begin{enumerate}
-\item[(a)] Prove $\varphi_m(p_0)\to q_0$.
-\item[(b)] For a geodesic ball $B_r(p_0)$, choose $0<\varepsilon<r$, an
-orthonormal basis $\{b_1,\ldots,b_n\}$ of $T_{p_0}M$, and
-$p_i=\exp_{p_0}(\varepsilon b_i)$.  Prove that a linear isometry
-$A:T_{p_0}M\to T_{q_0}M$ and a subsequence $\varphi_{m_j}$ exist with
-\[
-\varphi_{m_j}(p_i)\to\exp_{q_0}(\varepsilon A b_i)
-\]
-for each $i$.  Hint: use Proposition 5.20.
-\item[(c)] Prove that some $\varphi\in G$ satisfies
-$\varphi_{m_j}(x)\to\varphi(x)$ for every $x\in M$.
-\item[(d)] Define
-\[
-F:G\to M^{n+1},\qquad F(\psi)=(\psi(p_0),\psi(p_1),\ldots,\psi(p_n)).
-\]
-Prove that $F$ is continuous, injective, and closed, hence a homeomorphism
-onto its image, and conclude that $\varphi_{m_j}\to\varphi$ in $G$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:parallel-vector-field}
-\dcref{ch6:6-29}
-
-Suppose a Riemannian $n$-manifold admits a nonzero parallel vector field $X$.
-For every $p\in M$, prove that some neighborhood of $p$ is isometric to
-$N\times I$, where $N$ is a Riemannian $(n-1)$-manifold and $I\subset\mathbb R$
-is an open Euclidean interval.  Hint: show that $X^\flat$ is closed and
-compute $\mathcal L_Xg$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:volume-geodesic-ball}
-\dcref{ch6:6-30}
-
-For a geodesic ball $B_\varepsilon(p)$ in a Riemannian $n$-manifold, prove,
-for $0<\delta<\varepsilon$,
-\[
-\operatorname{Vol}(\overline{B_\delta(p)})
-=\int_0^\delta\operatorname{Area}(\partial B_r(p))\,dr,
-\]
-where the area is computed with the induced metric.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:tubular-neighborhood-volume}
-\dcref{ch6:6-31}
-\uses{prob:volume-geodesic-ball}
-
-Let $P$ be a compact embedded submanifold of a Riemannian $n$-manifold, and
-let $U$ be an $\varepsilon$-tubular neighborhood.  For $0<\delta<\varepsilon$,
-set
-\[
-U_\delta=\{x\in U:d_g(x,P)\leq\delta\},
-\qquad
-P_\delta=\{x\in U:d_g(x,P)=\delta\}.
-\]
-\begin{enumerate}
-\item[(a)] Prove that $U_\delta$ is a regular domain and $P_\delta$ is a
-compact embedded submanifold for every $\delta\in(0,\varepsilon)$.
-\item[(b)] Prove the tubular analogue of Problem 6-30:
-\[
-\operatorname{Vol}(U_\delta)=\int_0^\delta\operatorname{Area}(P_r)\,dr,
-\]
-where $\operatorname{Area}(P_r)$ uses the induced metric.
-\end{enumerate}
-\end{exercise}
+$\operatorname{Iso}(M)$, then its action on $M$ is proper.
+\end{proposition}

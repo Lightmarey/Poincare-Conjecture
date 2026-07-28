@@ -96,10 +96,12 @@ real-valued functions on $M$.
   \[
     \frac{D}{dt}(Y\circ u)=(\nabla_{\dot u}Y)(u).
   \]
+\end{lemma}
+\begin{proof}
   \sketch
   The chain rule gives $(Y\circ u)'=DY(u)\dot u$, and the Christoffel terms in
   the two expressions coincide.
-\end{lemma}
+\end{proof}
 
 \begin{lemma}[formula (10): the Koszul reduction on a coordinate frame]
   \label{lem:dc-ch2-2-2-c-formula10}
@@ -117,7 +119,8 @@ real-valued functions on $M$.
     \qquad
     \nabla_{X_i}X_j=\sum_m\Gamma^m_{ij}X_m.\tag{10}
   \]
-  \begin{proof}
+  \end{lemma}
+\begin{proof}
     \leanok
     \sketch
     Apply the Koszul formula (9) from \cref{lem:dc-ch2-3-6-koszul} with
@@ -128,7 +131,6 @@ real-valued functions on $M$.
     This proves the inner-product identity. Since the $X_k(p)$ form a basis and
     the metric is nondegenerate, it also proves the vector identity.
   \end{proof}
-\end{lemma}
 
 \begin{lemma}[property (c): chart-Christoffel bridge to the abstract connection]
   \label{lem:dc-ch2-2-2-c-bridge}
@@ -144,7 +146,8 @@ real-valued functions on $M$.
   \[
     \nabla_{X_i}X_j=\sum_m\Gamma^m_{ij}X_m.
   \]
-  \begin{proof}
+  \end{lemma}
+\begin{proof}
     \leanok
     \sketch
     Extend the coordinate frame fields globally without changing their germs at
@@ -155,7 +158,6 @@ real-valued functions on $M$.
     Christoffel symbols, establishing property (c) of
     \cref{prop:dc-ch2-2-2}.
   \end{proof}
-\end{lemma}
 
 \begin{remark}[Remark 2.3]
   \label{rem:dc-ch2-2-3}
@@ -246,11 +248,13 @@ real-valued functions on $M$.
     \dot V=-\Gamma(\dot u,V)(u),\qquad V(a)=V_0.
   \]
   It suffices that $u$ is $C^1$ and the Christoffel symbols are continuous.
+\end{lemma}
+\begin{proof}
   \sketch
   By \cref{lem:dc-ch2-2-6-coeff}, this is a linear ODE
   $\dot V=A(t)V$ with continuous bounded coefficients. Local existence and a
   finite subdivision of $[a,b]$ give a global solution.
-\end{lemma}
+\end{proof}
 
 \begin{lemma}[uniqueness of parallel transport]
   \label{lem:dc-ch2-2-6-unique}
@@ -260,11 +264,13 @@ real-valued functions on $M$.
   \leanok
   Two parallel coordinate vector fields along the same coordinate curve on
   $[a,b]$ that agree at $a$ agree throughout $[a,b]$.
+\end{lemma}
+\begin{proof}
   \sketch
   Their difference solves the homogeneous linear system (2) with zero initial
   value. The Lipschitz estimate from \cref{lem:dc-ch2-2-6-coeff} and
   Grönwall's inequality imply that it vanishes.
-\end{lemma}
+\end{proof}
 
 \begin{lemma}[parallel transport is a linear isomorphism]
   \label{lem:dc-ch2-2-6-transport}
@@ -279,11 +285,13 @@ real-valued functions on $M$.
   \]
   where $V$ is the parallel field with $V(a)=V_0$, is a linear isomorphism.
   Its inverse is parallel transport along the reversed curve.
+\end{lemma}
+\begin{proof}
   \sketch
   Existence and uniqueness make the map well-defined. Superposition for the
   linear system (2) gives linearity, and backward uniqueness gives injectivity
   and the stated inverse.
-\end{lemma}
+\end{proof}
 
 \section{Riemannian connections}
 

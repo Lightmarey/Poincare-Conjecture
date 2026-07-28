@@ -1,4 +1,4 @@
-\chapter{Noncompact Hyperbolic Limits}
+\chapter[33]{Noncompact Hyperbolic Limits}
 \label{ch:chow-iv-noncompact-hyperbolic-limits}
 \dcref{ch33}
 \source{chow-et-al-ricci-flow-part-iv:page-0234}
@@ -191,6 +191,7 @@ for every \(k\).
 \end{proposition}
 
 \begin{proof}
+\sketch
 Cheeger--Gromov convergence supplies almost-isometric embeddings of the larger
 truncation \(\mathcal H_{A/2}\).  The CMC sweep-out produces, in every end, a
 CMC torus of area \(A\); these tori bound a domain converging smoothly to
@@ -218,6 +219,7 @@ holds throughout; either \(\beta=\omega\), or equality holds in the bound at
 \end{proposition}
 
 \begin{proof}
+\sketch
 Openness follows by continuing the CMC boundary tori with the sweep-out theorem
 and then applying the near-identity harmonic-map theorem to their bounded
 domains.  For closedness, the metric bound controls \(dF\) and its inverse.
@@ -255,6 +257,7 @@ extends to an immortal almost hyperbolic piece.
 \end{proposition}
 
 \begin{proof}
+\sketch
 Otherwise, choose terminal times at which the continuation estimate first
 becomes an equality.  Compactness of pointed normalized Ricci flows produces a
 new finite-volume hyperbolic limit.  The terminal parametrizations converge
@@ -275,6 +278,7 @@ A hyperbolic limit having the minimum number of cusp ends among all elements of
 \end{theorem}
 
 \begin{proof}
+\sketch
 Apply immortality at truncation levels \(1/k\).  A volume-packing argument
 selects a subsequence whose pieces intersect at later starting times.  The
 small-flat-torus lemma forces the coarser truncations to be nested inside the
@@ -297,6 +301,7 @@ hyperbolic cusp region.
 \end{lemma}
 
 \begin{proof}
+\sketch
 An almost isometry carries the torus to one with the same uniform bounds and
 small area in the limiting finite-volume hyperbolic manifold.  The
 corresponding hyperbolic cusp result places it in a maximal cusp, whose inverse
@@ -316,26 +321,13 @@ their common interval of existence.
 \end{lemma}
 
 \begin{proof}
+\sketch
 Every sufficiently small boundary torus of either piece lies in a cusp region
 of the other whenever the pieces meet.  The standard product structure of
 finite-volume hyperbolic ends orders the corresponding truncation tori.  The
 ordering gives both inclusions, and continuity prevents it from changing
 without a boundary contact, where the same cusp argument applies again.
 \end{proof}
-
-\begin{claim}[Exercise 33.20: collapse improves to zero]
-\label{ex:chow-iv-collapsed-complement-injectivity-zero}
-\dcref{ch33:33.20}
-\group{Stability of hyperbolic limits}
-\source{chow-et-al-ricci-flow-part-iv:page-0258}
-\uses{prop:chow-iv-hyperbolic-collapsed-decomposition}
-For the finite family of stable hyperbolic pieces in the decomposition,
-\[
- \max_{x\in\mathcal M\setminus\bigcup_{a=0}^N\mathcal M_{a,A_a(t)}(t)}
- \operatorname{inj}_{g(t)}(x)\longrightarrow0
- \quad\text{as }t\to\infty.
-\]
-\end{claim}
 
 \section{Incompressibility of boundary tori}
 
@@ -351,6 +343,7 @@ incompressible in \(\mathcal M\).
 \end{theorem}
 
 \begin{proof}
+\sketch
 It is incompressible on the hyperbolic side.  If it were compressible on the
 complementary side, the least area \(A_{\mathfrak T_A}(t)\) below would be
 positive, while for every \(\varepsilon\in(0,2\pi)\) its upper right derivative
@@ -404,6 +397,7 @@ large times,
 \end{proposition}
 
 \begin{proof}
+\sketch
 The Meeks--Yau theorem supplies a least-area embedded disk normal to the torus.
 If its boundary length is at most the prescribed multiple of its area,
 Lemma~\ref{lem:chow-iv-area-decay-short-boundary} gives the result.  In the
@@ -452,6 +446,7 @@ be the normal velocity of that boundary.  For all sufficiently large \(t_0\),
 \end{lemma}
 
 \begin{proof}
+\sketch
 Use the disk at \(t_0\) to construct smoothly varying comparison disks ending
 on the moving tori.  The normalized Ricci-flow variation of their area is the
 interior metric variation plus the boundary velocity term.  Expressing the
@@ -476,6 +471,7 @@ large times a minimizing disk \(D(t)\) satisfies
 \end{lemma}
 
 \begin{proof}
+\sketch
 The average and minimum scalar curvatures tend to \(-6\), so the interior term
 in the first-variation bound is at most
 \(-(1-\varepsilon)A_{\mathfrak T_A}\).  In an exact cusp the relevant boundary
@@ -496,6 +492,7 @@ embedded loops.
 \end{lemma}
 
 \begin{proof}
+\sketch
 On the inverse image of the collar, compose the disk embedding with projection
 to \([a,b)\).  Sard's theorem makes almost every \(z\) a regular value.  Its
 preimage is then a compact one-manifold without boundary, hence a finite union
@@ -565,6 +562,7 @@ sufficiently large times and for \(0<\bar\rho\le\rho_{A,B}(t)\),
 \end{lemma}
 
 \begin{proof}
+\sketch
 The coarea formula bounds the area swept out by the disk below by
 \(\int L\).  Replace an innermost essential intersection loop by the normal
 annulus over it; minimality bounds the disk area by this comparison annulus.
@@ -623,6 +621,7 @@ Assume the boundary length is larger than
 \end{lemma}
 
 \begin{proof}
+\sketch
 Choose a regular depth minimizing \(e^{-\rho}L(\rho)\) on the interval.  Coarea,
 the assumed lower bound for \(L(0)\), and the preceding area estimate give
 \((e^{\rho^*}-e^{\rho^\#})e^{-\rho_\diamond}L(\rho_\diamond)
@@ -656,6 +655,7 @@ loop \(S\) represent the same fundamental-group element, then a geodesic loop
 \end{lemma}
 
 \begin{proof}
+\sketch
 Quotient the universal cover \(\mathbb R^2\) by the deck translation
 represented by \(L\).  This is a flat cylinder of circumference
 \(\operatorname{Length}(L)\).  The lift of \(S\) lies in a band of width at most
@@ -679,6 +679,7 @@ alternative holds, every area-minimizing disk satisfies
 \end{proposition}
 
 \begin{proof}
+\sketch
 At the depth supplied by the short-loop lemma, replace an essential
 intersection loop by a shortest geodesic in its flat torus.  Join the two by
 the flat-torus annulus and extend the geodesic back along normal cusp rays to
@@ -704,6 +705,7 @@ and all sufficiently large times at which
 \end{lemma}
 
 \begin{proof}
+\sketch
 Choose the boundary-length bound in Proposition~\ref{prop:chow-iv-minimizing-disk-boundary-small}
 to be \(\varepsilon/3\), and substitute it into the minimizing-disk evolution
 inequality.  Its negative area term may be discarded; after decreasing

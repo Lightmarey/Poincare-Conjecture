@@ -24,15 +24,6 @@ For every inner product and $v,w\in V$,
 \sketch Expanding both terms by bilinearity and symmetry gives $\langle v+w,v+w\rangle=\langle v,v\rangle+2\langle v,w\rangle+\langle w,w\rangle$ and $\langle v-w,v-w\rangle=\langle v,v\rangle-2\langle v,w\rangle+\langle w,w\rangle$; subtraction and division by $4$ yield the formula.
 \end{proof}
 
-\begin{exercise}
-\label{exer:polarization-proof}
-\lean{LeeLib.Ch02.real_inner_eq_inner_add_add_self_sub_inner_sub_sub_self_div_four}
-\leanok
-\uses{lem:polarization-identity}
-\dcref{ch2:2.2}
-Prove the preceding lemma.
-\end{exercise}
-
 For nonzero $v,w$, their angle is the unique $\theta\in[0,\pi]$ with
 \[
 \cos\theta=\frac{\langle v,w\rangle}{|v||w|}.
@@ -120,15 +111,6 @@ g=\sum_\alpha\psi_\alpha g_\alpha,
 \]
 extending each summand by zero outside $\operatorname{supp}\psi_\alpha$. Local finiteness gives a smooth tensor. At $p$, the nonzero weights form a finite convex combination of inner products, hence give an inner product by Lemma \ref{lem:convex-inner-products}; Lemma \ref{lem:posdef-coercive} supplies the usual finite-dimensional topology.
 \end{proof}
-
-\begin{exercise}[Use a partition of unity to prove the preceding proposition]
-\label{exer:partition-unity-proof}
-\lean{LeeLib.Ch02.exists_riemannianMetric}
-\leanok
-\uses{prop:existence-riemannian-metric}
-\dcref{ch2:2.5}
-Use a partition of unity to prove the preceding proposition.
-\end{exercise}
 
 The same definition applies to manifolds with boundary. We use ``metric'' for a Riemannian metric. For $v,w\in T_pM$, write $\langle v,w\rangle_g=g_p(v,w)$ and $|v|_g=\langle v,v\rangle_g^{1/2}$, omitting the subscript when clear.
 
@@ -219,14 +201,15 @@ If $M$ and $\widetilde M$ have equal dimension and $\varphi:M\to\widetilde M$ is
 \sketch Lemma \ref{lem:metric-preserving-immersion} makes $d\varphi_p$ injective; equal finite dimensions make it invertible. The inverse function theorem, Theorem \ref{thm:inverse-function-theorem-manifolds}, then gives a local diffeomorphism at every $p$.
 \end{proof}
 
-\begin{exercise}
-\label{exer:characterize-local-isometry}
+\begin{proposition}
+\label{prop:characterize-local-isometry}
 \dcref{ch2:2.7}
 \lean{LeeLib.Ch02.isLocalIsometry_iff_isMetricPreserving}
 \leanok
 \uses{def:local-isometry,def:metric-preserving,def:isometry,lem:metric-preserving-equidim-local-diffeomorphism}
-For equal-dimensional Riemannian manifolds, prove that a smooth map is a local isometry if and only if it preserves the metric.
-\end{exercise}
+For equal-dimensional Riemannian manifolds, a smooth map is a local isometry
+if and only if it preserves the metric.
+\end{proposition}
 \begin{proof}
 \leanok
 \uses{def:local-isometry,lem:metric-preserving-equidim-local-diffeomorphism}
@@ -333,11 +316,6 @@ UTM=\{(p,v)\in TM:|v|_g=1\}.\tag{2.10}
 \dcref{ch2:2.9}
 If $(M,g)$ is a Riemannian manifold with or without boundary, then $UTM$ is a smooth properly embedded codimension-$1$ submanifold with boundary in $TM$, with $\partial(UTM)=\pi^{-1}(\partial M)$. It is connected exactly when $M$ is connected, and compact exactly when $M$ is compact.
 \end{proposition}
-\begin{exercise}
-\label{exer:orthonormal-frames-proposition}
-\dcref{ch2:2.10}
-Use local orthonormal frames to prove the preceding proposition.
-\end{exercise}
 
 \section{Methods for Constructing Riemannian Metrics}
 
@@ -360,15 +338,6 @@ Let $(\widetilde M,\widetilde g)$ be Riemannian with or without boundary, let $M
 \]
 If $dF_p$ is injective, positivity of $\widetilde g$ gives positivity of the pullback. Conversely, a vector in $\ker dF_p$ would have positive pullback norm but also zero pullback norm, so the kernel is trivial.
 \end{proof}
-
-\begin{exercise}
-\label{exer:prove-lemma-2-11}
-\lean{LeeLib.Ch02.pullbackForm_posDef_iff_immersion}
-\leanok
-\dcref{ch2:2.12}
-\uses{lem:pullback-immersion-metric}
-Prove Lemma \ref{lem:pullback-immersion-metric}.
-\end{exercise}
 
 \begin{definition}[The metric induced by an immersion]
 \label{def:induced-metric}
@@ -394,12 +363,6 @@ For $n>0$, the unit sphere $S^n\subseteq\mathbb R^{n+1}$ carries the round (stan
 \uses{def:riemannian-metric,lem:partial-frame-extension,lem:pushforward-smooth,lem:ambient-tangent-bundle-riemannian,prop:existence-orthonormal-frames,lem:pullback-immersion-metric}
 If $(\widetilde M,\widetilde g)$ has no boundary and $M\subseteq\widetilde M$ is an embedded smooth submanifold with or without boundary, then for every $p\in M$ some ambient neighborhood of $p$ has a smooth orthonormal frame whose first $\dim M$ members are tangent to $M$.
 \end{proposition}
-\begin{exercise}
-\label{exer:gram-schmidt-adapted-frame}
-\dcref{ch2:2.15}
-\uses{prop:adapted-orthonormal-frames,prop:slice-coordinates,prop:existence-orthonormal-frames}
-Prove Proposition \ref{prop:adapted-orthonormal-frames} using Gram--Schmidt on a coordinate frame in slice coordinates.
-\end{exercise}
 
 For a vector bundle $V\to B$, a local $k$-frame means $k$ smooth sections linearly independent in every fibre (not necessarily spanning). For an immersion, adapted frames live in the ambient pullback bundle of Lemma \ref{lem:ambient-tangent-bundle-riemannian}.
 
@@ -542,12 +505,6 @@ whose fibres are the projections onto tangent and normal spaces. In an adapted o
 \dcref{ch2:2.17}
 If $(M,g)$ is a smooth Riemannian manifold with boundary, $N\partial M$ is a smooth rank-$1$ bundle over $\partial M$ and has a unique smooth outward-pointing unit normal field.
 \end{proposition}
-\begin{exercise}
-\label{exer:prove-outward-normal}
-\dcref{ch2:2.18}
-\uses{prop:induced-orientation-boundary}
-Prove the preceding proposition; use the boundary-orientation construction preceding Proposition B.17.
-\end{exercise}
 
 For a local parametrization $X:U\to\widetilde M$ of an immersed $n$-submanifold in $\mathbb R^m$, where $U\subseteq\mathbb R^n$ (or $U\subseteq\mathbb R^n_+$ at the boundary),
 \[
@@ -596,12 +553,6 @@ and for unit-speed $\gamma$ this is $dt^2+a(t)^2d\theta^2$. For the semicircle $
 The covering map $X:\mathbb R^n\to\mathbb T^n$ restricts locally to parametrizations whose induced metric is Euclidean in the coordinates $(u^i)$; hence the induced metric on $\mathbb T^n$ is flat.
 \end{example}
 
-\begin{exercise}
-\label{exer:verify-surface-revolution-examples}
-\dcref{ch2:2.22}
-\uses{ex:metrics-in-graph-coordinates,ex:surfaces-of-revolution,ex:n-torus-riemannian-submanifold}
-Verify the claims in Examples 2.19--2.21.
-\end{exercise}
 \section{Riemannian Products}
 
 For Riemannian manifolds $(M_1,g_1)$ and $(M_2,g_2)$, identify
@@ -659,14 +610,20 @@ because both summands are nonnegative and a nonzero component gives a strictly p
 For Riemannian manifolds $(M_1,g_1)$ and $(M_2,g_2)$, the \emph{product metric} on $M_1\times M_2$ is the metric (2.12). It is symmetric, positive definite by Lemma \ref{lem:product-form-positive-definite}, and smooth by (2.12') and Lemma \ref{lem:smooth-tensor-field-add}, since each pullback summand is smooth.
 \end{definition}
 
-\begin{exercise}[Induced Metric on $T^n$]
-\label{exer:product-metric-torus}
+\begin{proposition}[Induced Metric on $T^n$]
+\label{prop:product-metric-torus}
 \lean{LeeLib.Ch02.circleMetric, LeeLib.Ch02.torusMetric, LeeLib.Ch02.torusEmbedding_preservesMetric}
 \leanok
 \dcref{ch2:2.23}
 \uses{def:product-metric,def:induced-metric}
-Show that the induced metric on $T^n$ from Exercise 2.21 equals the product of the usual induced metrics on the factors $S^1\subseteq\mathbb R^2$. In the formalized case $n=2$, $T^2=S^1\times S^1$: \lean{LeeLib.Ch02.circleMetric} is the round metric on $S^1\subseteq\mathbb C$, \lean{LeeLib.Ch02.torusMetric} is their product metric, and \lean{LeeLib.Ch02.torusEmbedding_preservesMetric} identifies it with the metric induced by the $L^2$-embedding into $\mathbb R^4$.
-\end{exercise}
+The metric on $T^n=(S^1)^n$ induced by its standard product embedding equals
+the product of the usual induced metrics on the factors
+$S^1\subseteq\mathbb R^2$. In the formalized case $n=2$,
+$T^2=S^1\times S^1$: \lean{LeeLib.Ch02.circleMetric} is the round metric on
+$S^1\subseteq\mathbb C$, \lean{LeeLib.Ch02.torusMetric} is their product
+metric, and \lean{LeeLib.Ch02.torusEmbedding_preservesMetric} identifies it
+with the metric induced by the $L^2$-embedding into $\mathbb R^4$.
+\end{proposition}
 
 For a strictly positive smooth $f:M_1\to\mathbb R^+$, define the warped form on $M_1\times M_2$ by
 \begin{equation}
@@ -721,11 +678,17 @@ If $f\equiv1$, the warped product metric is $g_1\oplus g_2$.
 \begin{example}[Warped Products]
 \label{ex:warped-products}
 \dcref{ch2:2.24}
-\uses{ex:surfaces-of-revolution,REF:ch2-3,def:warped-product,prop:warped-product-constant-one}
+\uses{ex:surfaces-of-revolution,def:warped-product,prop:warped-product-constant-one}
 \begin{enumerate}
 \item[(a)] $f\equiv1$ gives the product metric by Proposition \ref{prop:warped-product-constant-one}.
-\item[(b)] If $H=\{(r,z):r>0\}$, $C\subset H$ is an embedded smooth curve with its induced Euclidean metric, and $S_C$ is the corresponding surface of revolution, then with the standard metric on $S^1$ and $f(r,z)=r$, Problem 2-3 identifies $S_C$ isometrically with $C\times_fS^1$.
-\item[(c)] For the standard coordinate $\rho$ on $\mathbb R^+$, $(\rho,\omega)\mapsto\rho\omega$ is an isometry from $\mathbb R^+\times_\rho S^{n-1}$ to $\mathbb R^n\setminus\{0\}$ with its Euclidean metric (Problem 2-4).
+\item[(b)] If $H=\{(r,z):r>0\}$, $C\subset H$ is an embedded smooth curve
+with its induced Euclidean metric, and $S_C$ is the corresponding surface of
+revolution, then with the standard metric on $S^1$ and $f(r,z)=r$, the surface
+$S_C$ is isometric to $C\times_fS^1$.
+\item[(c)] For the standard coordinate $\rho$ on $\mathbb R^+$, the map
+$(\rho,\omega)\mapsto\rho\omega$ is an isometry from
+$\mathbb R^+\times_\rho S^{n-1}$ to $\mathbb R^n\setminus\{0\}$ with its
+Euclidean metric.
 \end{enumerate}
 \end{example}
 
@@ -910,14 +873,16 @@ For $x\in\tilde M$ and $v\in H_x$, there is $X\in\mathfrak X(M)$ whose horizonta
 \sketch Extend $d\pi_xv$ to a smooth field $X$ on $M$ using Lemma \ref{lem:vector-field-extension-point}. Its lift satisfies $\tilde X_x=L_x(d\pi_xv)=v$ because $v$ is horizontal and $L_x$ is the inverse of $d\pi_x$ on $H_x$.
 \end{proof}
 
-\begin{exercise}
-\label{exer:horizontal-vector-field-not-lift}
+\begin{proposition}
+\label{prop:horizontal-vector-field-not-lift}
 \lean{LeeLib.Ch02.horizontalNonLiftField_mem_horizontalSpace, LeeLib.Ch02.not_isHorizontalLift_horizontalNonLiftField}
 \leanok
 \dcref{ch2:2.26}
 \uses{def:horizontal-space,def:horizontal-lift-tangent,ex:riemannian-submersions}
-For $\pi:\mathbb R^2\to\mathbb R$, $\pi(x,y)=x$, show that $\tilde W=y\partial_x$ is horizontal but is not the horizontal lift of any vector field on $\mathbb R$.
-\end{exercise}
+For $\pi:\mathbb R^2\to\mathbb R$, $\pi(x,y)=x$, the field
+$\tilde W=y\partial_x$ is horizontal but is not the horizontal lift of any
+vector field on $\mathbb R$.
+\end{proposition}
 
 \begin{example}[Riemannian Submersions]
 \label{ex:riemannian-submersions}
@@ -1058,7 +1023,7 @@ For a submersion of $(\tilde M,\tilde g)$ and $x_0\in\tilde M$, the family $L_x:
 \dcref{ch2:2.28}
 \lean{LeeLib.Ch02.existsUnique_isRiemannianSubmersion_metric}
 \leanok
-\uses{REF:ch2-6,prop:riemannian-submersion-metric-unique,lem:submersion-inner-congr,prop:local-section-manifold,def:riemannian-submersion,lem:bilinear-comp-of-family-smooth,lem:horizontal-lift-in-coordinates-smooth}
+\uses{prop:riemannian-submersion-metric-unique,lem:submersion-inner-congr,prop:local-section-manifold,def:riemannian-submersion,lem:bilinear-comp-of-family-smooth,lem:horizontal-lift-in-coordinates-smooth}
 Let $(\tilde M,\tilde g)$ be Riemannian, let $\pi:\tilde M\to M$ be a surjective smooth submersion, and let $G$ act on $\tilde M$. If the action is isometric, vertical, and transitive on fibers, then a unique Riemannian metric on $M$ makes $\pi$ a Riemannian submersion.
 \end{theorem}
 
@@ -1202,16 +1167,13 @@ The action of $\Gamma=\{\pm1\}$ on $S^n$ is smooth, free, proper, and isometric.
 \begin{example}[The Open Möbius Band]
 \label{ex:open-mobius-band}
 \dcref{ch2:2.35}
-\uses{REF:ch2-8}
-The open Möbius band is $M=\mathbb R^2/\mathbb Z$ for the action $n\cdot(x,y)=(x+n,(-1)^ny)$. This action is smooth, free, proper, and isometric, so $M$ has a flat metric for which the quotient map is a Riemannian covering (Problem 2-8).
+\uses{prop:riemannian-quotient-metric}
+The open Möbius band is $M=\mathbb R^2/\mathbb Z$ for the action
+$n\cdot(x,y)=(x+n,(-1)^ny)$. This action is smooth, free, proper, and
+isometric, so $M$ has a flat metric for which the quotient map is a Riemannian
+covering.
 \end{example}
 
-\begin{exercise}
-\label{exer:torus-covering}
-\dcref{ch2:2.36}
-\uses{ex:n-torus-riemannian-submanifold}
-For the induced metric on $T^n\subseteq\mathbb R^{2n}$, show that the map $X:\mathbb R^n\to T^n$ of Example 2.21 is a Riemannian covering.
-\end{exercise}
 \section{Basic Constructions on Riemannian Manifolds}
 
 Throughout this section, $M$ is a smooth manifold, possibly with boundary.
@@ -1775,16 +1737,16 @@ specified when used. For a covariant $2$-tensor,
 In an orthonormal frame this equals the ordinary matrix trace; in a general frame
 it need not.
 
-\begin{exercise}
-\label{exer:inverse-metric-ambiguity}
+\begin{proposition}
+\label{prop:inverse-metric-ambiguity}
 \lean{LeeLib.Ch02.RiemannianMetric.innerDual_dualCoframe}
 \leanok
 \dcref{ch2:2.38}
 \uses{def:dual-coframe,def:frame-matrix,def:sharp-map}
-Let $g$ be a Riemannian metric and $(E_i)$ a local frame. Prove that the components
-of the contravariant tensor $g^{\sharp\sharp}$ are exactly the entries $(g^{ij})$ of
-the inverse matrix to $(g_{ij})$.
-\end{exercise}
+Let $g$ be a Riemannian metric and $(E_i)$ a local frame. The components of
+the contravariant tensor $g^{\sharp\sharp}$ are exactly the entries $(g^{ij})$
+of the inverse matrix to $(g_{ij})$.
+\end{proposition}
 
 \section{Inner Products of Tensors}
 
@@ -1805,21 +1767,21 @@ Equivalently,
 \langle\omega,\eta\rangle=\omega_i\eta^i=\omega^j\eta_j.
 \]
 
-\begin{exercise}
-\label{exer:orthonormal-frames-and-coframes}
+\begin{proposition}
+\label{prop:orthonormal-frames-and-coframes}
 \lean{LeeLib.Ch02.RiemannianMetric.tfae_orthonormal_frame_coframe}
 \leanok
 \dcref{ch2:2.39}
-\uses{exer:inverse-metric-ambiguity,def:dual-coframe,def:sharp-map,def:frame-matrix}
+\uses{prop:inverse-metric-ambiguity,def:dual-coframe,def:sharp-map,def:frame-matrix}
 Let $(M,g)$ be a Riemannian manifold, possibly with boundary, let $(E_i)$ be a
-local frame, and let $(e^i)$ be its dual coframe. Prove that the following are
+local frame, and let $(e^i)$ be its dual coframe. The following are
 equivalent:
 \begin{enumerate}
 \item[(a)] $(E_i)$ is orthonormal.
 \item[(b)] $(e^i)$ is orthonormal.
 \item[(c)] $(e^i)^\sharp=E_i$ for every $i$.
 \end{enumerate}
-\end{exercise}
+\end{proposition}
 
 A \emph{smooth fiber metric} on a smooth vector bundle $E\to M$ is a fiberwise
 inner product for which $\langle\sigma,\tau\rangle$ is smooth whenever $\sigma$ and
@@ -2173,12 +2135,14 @@ In the preceding situation, $(d\varphi_x(E_i|_x))$ is a basis of $T_{\varphi(x)}
 \sketch It is an orthonormal, hence linearly independent, family of $n=\dim T_{\varphi(x)}\widetilde M$ vectors.
 \end{proof}
 
-\begin{exercise}\label{exer:isometry-preserves-volume-form}\dcref{ch2:2.42}
+\begin{proposition}\label{prop:isometry-preserves-volume-form}\dcref{ch2:2.42}
 \lean{LeeLib.Ch02.IsMetricPreserving.pullbackAlternating_volumeForm}
 \leanok
 \uses{def:pullback-alternating,def:volume-form-pointwise,prop:volume-form-uniqueness,prop:volume-form-value-one,lem:orthonormal-pushforward,lem:push-basis}
-If $\varphi:(M,g)\to(\widetilde M,\widetilde g)$ is an orientation-preserving isometry of oriented Riemannian manifolds, prove $\varphi^*dV_{\widetilde g}=dV_g$.
-\end{exercise}
+If $\varphi:(M,g)\to(\widetilde M,\widetilde g)$ is an orientation-preserving
+isometry of oriented Riemannian manifolds, then
+$\varphi^*dV_{\widetilde g}=dV_g$.
+\end{proposition}
 
 \begin{proof}
 \leanok
@@ -2753,12 +2717,14 @@ for every local orthonormal frame $(E_i)$.
 \sketch Take the family of Definition \ref{def:riemannian-density-pointwise}; Proposition \ref{prop:density-transformation-law} makes each fibre a density and Proposition \ref{prop:density-smooth} makes the family smooth. Proposition \ref{prop:density-value-one} gives (2.18) and positivity. For uniqueness, evaluate any competing density on a local orthonormal frame and apply Proposition \ref{prop:density-uniqueness-pointwise} fibrewise.
 \end{proof}
 
-\begin{exercise}\label{exer:riemannian-density-formula}\dcref{ch2:2.45}
+\begin{proposition}\label{prop:riemannian-density-formula}\dcref{ch2:2.45}
 \lean{LeeLib.Ch02.densityL_eq_abs_wedgeCovectors}
 \leanok
 \uses{prop:riemannian-density,def:density-vector-space}
-Show that, for any local orthonormal coframe, $\mu=|\varepsilon^1\wedge\cdots\wedge\varepsilon^n|$. Pointwise, both sides equal $|\det[\langle E_i,v_j\rangle]|$ on each $T_xM$.
-\end{exercise}
+For every local orthonormal coframe,
+$\mu=|\varepsilon^1\wedge\cdots\wedge\varepsilon^n|$. Pointwise, both sides
+equal $|\det[\langle E_i,v_j\rangle]|$ on each $T_xM$.
+\end{proposition}
 
 On any Riemannian manifold, the density is defined without orientation; when an orientation exists it is $|dV_g|$. Thus compactly supported smooth functions can be integrated against $dV_g$ interpreted as a density on nonorientable manifolds or as the corresponding volume form on orientable ones.
 
@@ -2791,7 +2757,13 @@ For Euclidean $\mathbb R^n$ with standard coordinates these reduce to
 \]
 \end{proposition}
 
-\sketch See Problem 2-21.
+\begin{proof}
+\sketch In oriented coordinates, insert
+$dV_g=\sqrt{\det g}\,dx^1\wedge\cdots\wedge dx^n$ into the defining equation
+for divergence and differentiate. Substituting
+$\operatorname{grad}u=g^{ij}(\partial_j u)\partial_i$ gives the Laplacian
+formula. The Euclidean identities follow from $g_{ij}=\delta_{ij}$.
+\end{proof}
 \section{Lengths and Distances}
 
 Throughout, $(M,g)$ is Riemannian with or without boundary. A curve is a continuous map $\gamma:I\to M$ from an interval; a curve segment has compact domain. Smoothness is understood in the category of manifolds with boundary, and $\gamma$ is regular when $\gamma'(t)\ne0$ everywhere.
@@ -2859,13 +2831,6 @@ In particular, length is invariant under local isometries.
 \end{proof}
 
 Propositions \ref{prop:length-additive}, \ref{prop:length-reparam-invariant}, and \ref{prop:length-isometry-invariant} are the three parts of Proposition 2.47.
-
-\begin{exercise}[Prove Proposition 2.47]
-\label{exer:prove-prop-247}
-\leanok
-\dcref{ch2:2.48}
-\uses{prop:length-additive,prop:length-reparam-invariant,prop:length-isometry-invariant}
-\end{exercise}
 
 For admissible $\gamma:[a,b]\to M$, its arc-length function is
 \[
@@ -3053,14 +3018,6 @@ d_{\widetilde g}(\varphi(x),\varphi(y))=d_g(x,y),
 \sketch Lemma \ref{lem:metric-preserving-distance-le} gives one inequality for $\varphi$. Lemma \ref{lem:isometry-symm} makes $\varphi^{-1}$ an isometry, and the same inequality for $\varphi^{-1}$ gives the reverse bound.
 \end{proof}
 
-\begin{exercise}
-\label{exer:prove-isometry-invariance}
-\leanok
-\dcref{ch2:2.52}
-\uses{prop:isometry-invariance-riemannian-distance}
-Prove the preceding proposition.
-\end{exercise}
-
 \begin{proposition}[Linear Isometries of Euclidean Space]
 \label{prop:euclidean-linear-isometry-distance}
 \lean{LeeLib.Ch02.isIsometry_euclideanMetric_riemannianEDist}
@@ -3079,7 +3036,7 @@ d_{\bar g}(e(x),e(y))=|x-y|,
 \end{proof}
 
 Local isometries need not preserve global Riemannian distance.
-\uses{prob:local-isometry-distance}
+\uses{prop:local-isometry-distance}
 
 \begin{lemma}[Smoothness of the Energy Function]
 \label{lem:metric-energy-smooth}
@@ -3296,14 +3253,6 @@ $\widetilde q(e_i)(e_j)=q_{ij}$, so $(q_{ij})$ is the matrix of $\widetilde q$,
 proving the equivalence with (c).
 \end{proof}
 
-\begin{exercise}
-\label{exer:prove-nondegenerate-equivalent}
-\leanok
-\dcref{ch2:2.57}
-\uses{lem:nondegenerate-symmetric-bilinear}
-Prove Lemma \ref{lem:nondegenerate-symmetric-bilinear}.
-\end{exercise}
-
 \begin{proof}
 \leanok
 \sketch This is the preceding lemma.
@@ -3319,14 +3268,14 @@ $\langle v,w\rangle=0$, and the conventional indefinite norm is
 \]
 A nonzero vector may be null, so this function is not a norm in the usual sense.
 
-\begin{exercise}
-\label{exer:polarization-scalar-product}
+\begin{proposition}
+\label{prop:polarization-scalar-product}
 \lean{LeeLib.Ch02.BilinForm.IsSymm.inner_eq_apply_add_sub_apply_sub_div_four}
 \leanok
 \dcref{ch2:2.58}
-\uses{exer:polarization-proof}
-Prove that the polarization identity (2.2) holds for every scalar product.
-\end{exercise}
+\uses{lem:polarization-identity}
+The polarization identity (2.2) holds for every scalar product.
+\end{proposition}
 
 \begin{proof}
 \leanok
@@ -3409,13 +3358,6 @@ Together with $\dim S+\dim S^\perp=\dim V$, trivial intersection is equivalent t
 $(S^\perp)^\perp=S$ proves (b)$\Leftrightarrow$(d).
 \end{proof}
 
-\begin{exercise}\label{exer:preceding-lemma-nondegenerate}
-\leanok
-\dcref{ch2:2.61}
-\uses{lem:nondegenerate-subspace}
-Prove Lemma \ref{lem:nondegenerate-subspace}.
-\end{exercise}
-
 \begin{proof}
 \leanok
 \sketch This is the preceding lemma.
@@ -3433,7 +3375,7 @@ nondegenerate basis $(v_1,\ldots,v_n)$ of $V$.
 
 \begin{proof}
 \leanok
-\uses{lem:nondegenerate-subspace,lem:orthogonal-complement,exer:polarization-scalar-product}
+\uses{lem:nondegenerate-subspace,lem:orthogonal-complement,prop:polarization-scalar-product}
 \sketch Put $S=\operatorname{span}(v_1,\ldots,v_k)$. Then
 $V=S\oplus S^\perp$, and $S^\perp$ is nonzero and nondegenerate. It contains a
 vector $v_{k+1}$ with $q(v_{k+1},v_{k+1})\ne0$: otherwise polarization would make
@@ -4239,28 +4181,11 @@ orthonormal vector fields, which form a frame in each $n$-dimensional tangent
 space.
 \end{proof}
 
-\begin{exercise}
-\label{exer:prove-orthonormal-frames}
-\leanok
-\dcref{ch2:2.67}
-\uses{prop:orthonormal-frames-pseudo-riemannian}
-Prove Proposition \ref{prop:orthonormal-frames-pseudo-riemannian}.
-\end{exercise}
-
 \begin{proof}
 \leanok
 \uses{prop:orthonormal-frames-pseudo-riemannian}
 \sketch This is the preceding proposition.
 \end{proof}
-
-\begin{exercise}
-\label{exer:product-pseudo-riemannian}
-\dcref{ch2:2.68}
-\uses{def:pseudo-riemannian-metric,def:pseudo-metric-has-signature,def:product-metric}
-If $(M_i,g_i)$ has signature $(r_i,s_i)$ for $i=1,2$, prove that
-$(M_1\times M_2,g_1\oplus g_2)$ has signature
-$(r_1+r_2,s_1+s_2)$.
-\end{exercise}
 
 For $r,s\geq0$, the \emph{pseudo-Euclidean space} $\mathbb R^{r,s}$ is
 $\mathbb R^{r+s}$ with coordinates
@@ -5370,22 +5295,15 @@ A Finsler metric on a smooth manifold is a continuous $F:TM\to\mathbb R$, smooth
 % \ref{prop:pseudo-riemannian-hypersurface-signature}
 % \ref{prop:pseudo-riemannian-hypersurface-signature}
 % \ref{prop:sylvesters-law-inertia}
-\section{Problems}
+\section{Further Results}
 
-\begin{exercise}\label{prob:riemannian-1-manifold-flat}\dcref{ch2:2-1}
-Every Riemannian $1$-manifold is flat.
-\end{exercise}
-
-\begin{exercise}\label{prob:distance-preserving-map-linear-isometry}\dcref{ch2:2-2}
+\begin{proposition}\label{prop:distance-preserving-map-linear-isometry}\dcref{ch2:2-2}
 \lean{LeeLib.Ch01.exists_linearIsometryEquiv_of_dist_eq}
 \leanok
-Let $V,W$ be finite-dimensional real inner product spaces of equal dimension. If $F:V\to W$ satisfies $F(0)=0$ and $|F(x)-F(y)|=|x-y|$ for all $x,y$, prove that $F$ is a linear isometry.
-\end{exercise}
-
-\begin{exercise}\label{prob:surface-of-revolution-warped-product}\dcref{ch2:2-3}
-\uses{ex:warped-products}
-For a smooth embedded curve $C\subseteq H$ as in Example 2.24(b), prove that the induced metric on its surface of revolution $S_C$ is isometric to the warped product $C\times_aS^1$, where $a(r,z)=r$ is the distance to the $z$-axis.
-\end{exercise}
+Let $V,W$ be finite-dimensional real inner product spaces of equal dimension.
+If $F:V\to W$ satisfies $F(0)=0$ and
+$|F(x)-F(y)|=|x-y|$ for all $x,y$, then $F$ is a linear isometry.
+\end{proposition}
 
 \begin{definition}[The open submanifold metric]
 \label{def:open-submanifold-metric}
@@ -5444,12 +5362,14 @@ d\Phi_{(r,\omega)}(a,w)=a\omega+r\,d\iota_\omega(w).
 \sketch Differentiate the two factors separately: the radial map contributes $a\omega$ and the fixed-radius scaling contributes $r,d\iota_\omega(w)$.
 \end{proof}
 
-\begin{exercise}\label{prob:warped-product-isometry}\dcref{ch2:2-4}
+\begin{proposition}\label{prop:warped-product-isometry}\dcref{ch2:2-4}
 \lean{LeeLib.Ch02.isMetricPreserving_polarMap}
 \leanok
 \uses{ex:warped-products,def:polar-map,lem:mfderiv-polar-map,lem:sphere-tangent-orthogonal-radius,def:metric-preserving,def:open-submanifold-metric,prop:warped-product-constant-one}
-For $\rho(r)=r$, prove that $\Phi:\mathbb R^+\times_\rho S^{n-1}\to\mathbb R^n\setminus\{0\}$, $\Phi(\rho,\omega)=\rho\omega$, is an isometry.
-\end{exercise}
+For $\rho(r)=r$, the map
+$\Phi:\mathbb R^+\times_\rho S^{n-1}\to\mathbb R^n\setminus\{0\}$,
+$\Phi(\rho,\omega)=\rho\omega$, is an isometry.
+\end{proposition}
 
 \begin{proof}
 \leanok
@@ -5462,54 +5382,30 @@ aa'+ar\langle\omega,d\iota(w')\rangle+a'r\langle d\iota(w),\omega\rangle+r^2\lan
 by Lemma \ref{lem:sphere-tangent-orthogonal-radius}; this is the warped metric. The map is bijective with inverse $x\mapsto(|x|,x/|x|)$.
 \end{proof}
 
-\begin{exercise}\label{prob:horizontal-vector-fields}\dcref{ch2:2-5}
-\lean{LeeLib.Ch02.exists_horizontalLift_eq}
-\leanok
-\uses{prop:horizontal-lift-of-vector-field,prop:horizontal-lift-realizes-horizontal-vector}
-Prove parts (b) and (c) of Proposition 2.25 on horizontal vector fields.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:riemannian-metric-submersion}
-\lean{LeeLib.Ch02.existsUnique_isRiemannianSubmersion_metric}
-\leanok
-\dcref{ch2:2-6}
-\uses{thm:group-action-riemannian-submersion}
-Prove Theorem 2.28: a surjective smooth submersion with an isometric, vertical, fiber-transitive group action has a unique base metric making it a Riemannian submersion.
-\end{exercise}
-
-\begin{exercise}\label{prob:grassmann-stiefel-manifolds}\dcref{ch2:2-7}
+\begin{proposition}\label{prop:grassmann-stiefel-manifolds}\dcref{ch2:2-7}
 For $0\le k\le n$, let $G_k(\mathbb R^n)$ be the Grassmannian and let $V_k(\mathbb R^n)$ be the set of orthonormal ordered $k$-frames, viewed as matrices in $M(n\times k,\mathbb R)$.
 \begin{enumerate}
-\item[(a)] Prove that $V_k(\mathbb R^n)$ is a smooth submanifold of dimension $k(2n-k-1)/2$ (the Stiefel manifold), using $A\mapsto A^TA$.
-\item[(b)] Prove that the span map $\pi:V_k(\mathbb R^n)\to G_k(\mathbb R^n)$ is a surjective smooth submersion.
-\item[(c)] With the induced Euclidean metric on $V_k(\mathbb R^n)$, prove that the right $O(k)$-action is isometric, vertical, and fiber-transitive. Deduce the unique Riemannian-submersion metric on $G_k(\mathbb R^n)$.
+\item[(a)] $V_k(\mathbb R^n)$ is a smooth submanifold of dimension
+$k(2n-k-1)/2$ (the Stiefel manifold).
+\item[(b)] The span map $\pi:V_k(\mathbb R^n)\to G_k(\mathbb R^n)$ is a
+surjective smooth submersion.
+\item[(c)] With the induced Euclidean metric on $V_k(\mathbb R^n)$, the right
+$O(k)$-action is isometric, vertical, and fiber-transitive. Consequently,
+$G_k(\mathbb R^n)$ carries a unique metric making $\pi$ a Riemannian
+submersion.
 \end{enumerate}
-\end{exercise}
+\end{proposition}
 
-\begin{exercise}\label{prob:mobius-band-metric}\dcref{ch2:2-8}
-\uses{ex:open-mobius-band}
-Prove that the $\mathbb Z$-action $n\cdot(x,y)=(x+n,(-1)^ny)$ is smooth, free, proper, and isometric, and deduce the flat Riemannian covering metric on the open Möbius band.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:gradient-orthogonal-level-sets}
-\lean{LeeLib.Ch02.innerAt_grad_mfderiv_regularLevelSetIncl_eq_zero}
-\leanok
-\dcref{ch2:2-9}
-\uses{prop:regular-level-set-hypersurface,prop:gradient-normal-regular-part,lem:gradient-nonvanishing-regular-part}
-Prove Proposition 2.37: the gradient is orthogonal to every regular level set.
-\end{exercise}
-
-\begin{exercise}\label{prob:gradient-characterization}\dcref{ch2:2-10}
+\begin{proposition}\label{prop:gradient-characterization}\dcref{ch2:2-10}
 \lean{LeeLib.Ch02.eq_grad_iff_of_forall_ne_zero}
 \leanok
 \uses{def:gradient,def:regular-set,lem:gradient-characterization,lem:transversal-representative-eq-gradient}
-Let $(M,g)$ be Riemannian, $f\in C^\infty(M)$, and let $X$ be nowhere zero. Prove
+Let $(M,g)$ be Riemannian, $f\in C^\infty(M)$, and let $X$ be nowhere zero.
+Then
 \[
 X=\operatorname{grad}f\quad\Longleftrightarrow\quad Xf=|X|_g^2\text{ and }X\perp\text{ every regular level set of }f.
 \]
-\end{exercise}
+\end{proposition}
 
 \begin{proof}
 \leanok
@@ -5528,45 +5424,6 @@ If $v\in T_pM$ is nonzero, $\langle v,v\rangle_g=df_p(v)$, and $\langle v,w\rang
 \leanok
 \sketch Since $df_p(v)>0$, for arbitrary $w$ set $t=df_p(w)/df_p(v)$. Then $w-tv\in\ker df_p$, so orthogonality gives $\langle v,w\rangle_g=t\langle v,v\rangle_g=df_p(w)$, which characterizes the gradient.
 \end{proof}
-
-\begin{exercise}\label{prob:inner-products-tensor-bundles}\dcref{ch2:2-11}
-\uses{prop:inner-products-of-tensors}
-Prove Proposition 2.40 on inner products of tensor bundles.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:riemannian-volume-form-existence}
-\lean{LeeLib.Ch02.RiemannianMetric.riemannian_volumeForm}
-\leanok
-\dcref{ch2:2-12}
-\uses{prop:riemannian-volume-form}
-Prove Proposition 2.41 on existence and uniqueness of the Riemannian volume form.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:hypersurface-volume-form}
-\lean{LeeLib.Ch02.exists_isSmoothOrientation_iff_exists_isSmoothNormalField}
-\leanok
-\dcref{ch2:2-13}
-\uses{prop:hypersurface-volume-form,prop:hypersurface-volume-form-formula,prop:hypersurface-volume-form-if,prop:hypersurface-volume-form-only-if}
-Prove Proposition 2.43 on the volume form of a Riemannian hypersurface.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:covering-volume-form}
-\dcref{ch2:2-14}
-If compact connected Riemannian manifolds $\widetilde M,M$ are related by a $k$-sheeted Riemannian covering $\pi:\widetilde M\to M$, prove $\operatorname{Vol}(\widetilde M)=k\operatorname{Vol}(M)$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:warped-product-volume-form}
-\dcref{ch2:2-15}
-If $(M_i,g_i)$ are oriented of dimensions $k_i$, $f:M_1\to\mathbb R^+$ is smooth, and $g=g_1\oplus f^2g_2$ on $M_1\times_fM_2$, prove
-\[
-dV_g=f^{k_2}dV_{g_1}\wedge dV_{g_2},
-\]
-with all factors pulled back by the projections.
-\end{exercise}
 
 \begin{definition}
 \label{def:inner-k-covectors}
@@ -5768,29 +5625,6 @@ The fibre metric is the unique family of bilinear forms satisfying the determina
 \sketch The preceding lemmas give the identity, inner-product properties, smoothness, and pointwise uniqueness.
 \end{proof}
 
-\begin{exercise}
-\label{prob:fiber-metric-exterior-powers}
-\lean{LeeLib.Ch02.RiemannianMetric.riemannian_fiberMetric_forms, LeeLib.Ch02.RiemannianMetric.innerFormsAt_self_pos, LeeLib.Ch02.RiemannianMetric.innerFormsAt_comm, LeeLib.Ch02.RiemannianMetric.contMDiff_innerFormsAt}
-\leanok
-\uses{prop:fiber-metric-forms,prop:inner-k-covectors-unique,prop:inner-k-covectors-frame-independent,lem:inner-k-covectors-posdef}
-\dcref{ch2:2-16}
-For $k=1,\ldots,n$, prove the unique fibre metric on $\Lambda^kT^*M$ satisfying
-\[
-\langle\omega^1\wedge\cdots\wedge\omega^k,\eta^1\wedge\cdots\wedge\eta^k\rangle_g=\det(\langle\omega^i,\eta^j\rangle_g). \tag{2.26}
-\]
-\end{exercise}
-
-\begin{exercise}
-\label{prob:inner-products-k-forms}
-\dcref{ch2:2-17}
-\uses{prob:fiber-metric-exterior-powers,prop:inner-products-of-tensors}
-Let $\langle\cdot,\cdot\rangle$ be the metric of Problem 2-16 and $\langle\! \langle\cdot,\cdot\rangle\! \rangle$ the restricted covariant-tensor metric. Prove
-\[
-\langle\cdot,\cdot\rangle_g=\frac1{k!}\langle\! \langle\cdot,\cdot\rangle\! \rangle_g
-\]
-for the determinant wedge convention, and $\langle\! \langle\cdot,\cdot\rangle\! \rangle_g=k!\langle\cdot,\cdot\rangle_g$ for the Alt convention.
-\end{exercise}
-
 \begin{definition}[The Wedge Product of Alternating Tensors]
 \label{def:wedge-alternating-forms}
 \lean{LeeLib.Ch02.wedgeSum, LeeLib.Ch02.wedge}
@@ -5982,23 +5816,18 @@ For an oriented $n$-dimensional inner product space and a $k$-covector,
 \sketch The second classical block order differs from the mirrored order by the block-swap rotation, whose sign is $(-1)^{k(n-k)}$. Combine this comparison with Proposition \ref{prop:hodge-star-involution}.
 \end{proof}
 
-\begin{exercise}\label{prob:hodge-star-operator}\dcref{ch2:2-18}
+\begin{proposition}\label{prop:hodge-star-operator}\dcref{ch2:2-18}
 \lean{LeeLib.Ch02.RiemannianMetric.riemannian_hodgeStar, LeeLib.Ch02.RiemannianMetric.contMDiff_hodgeStarAt, LeeLib.Ch02.RiemannianMetric.hodgeStarAt_add, LeeLib.Ch02.RiemannianMetric.hodgeStarAt_smul}
 \leanok
-\uses{prop:hodge-star-pointwise,prop:hodge-star-graded,prop:hodge-star-degree-zero,prop:hodge-star-involution,prop:hodge-star-classical-involution,prob:fiber-metric-exterior-powers}
-For an oriented Riemannian $n$-manifold, construct the unique smooth Hodge star $*:\Lambda^kT^*M\to\Lambda^{n-k}T^*M$ satisfying
+\uses{prop:hodge-star-pointwise,prop:hodge-star-graded,prop:hodge-star-degree-zero,prop:hodge-star-involution,prop:hodge-star-classical-involution,prop:fiber-metric-forms}
+For an oriented Riemannian $n$-manifold, there is a unique smooth Hodge star
+$*:\Lambda^kT^*M\to\Lambda^{n-k}T^*M$ satisfying
 \[
 \omega\wedge {*}\eta=\langle\omega,\eta\rangle_gdV_g.
 \]
-Prove $*f=fdV_g$ for $k=0$ and $*^2\omega=(-1)^{k(n-k)}\omega$.
-\end{exercise}
-
-\begin{exercise}\label{prob:hodge-star-euclidean}\dcref{ch2:2-19}
-\lean{LeeLib.Ch02.hodgeStar_basisFun_single, LeeLib.Ch02.hodgeStar_basisFun_pair}
-\leanok
-\uses{prop:hodge-star-euclidean-single,prop:hodge-star-euclidean-pair}
-For Euclidean $\mathbb R^n$ with standard orientation, compute $*dx^i$ and, when $n=4$, $*(dx^i\wedge dx^j)$.
-\end{exercise}
+It satisfies $*f=fdV_g$ for $k=0$ and
+$*^2\omega=(-1)^{k(n-k)}\omega$.
+\end{proposition}
 
 \begin{lemma}[A Wedge with a Repeated Covector Vanishes]
 \label{lem:wedge-covectors-repeat-zero}
@@ -6125,113 +5954,20 @@ The self-dual forms are $e^0\wedge e^1+e^2\wedge e^3$, $e^0\wedge e^2-e^1\wedge 
 \sketch Apply the six coordinate star identities termwise.
 \end{proof}
 
-\begin{exercise}\label{prob:self-dual-anti-self-dual}\dcref{ch2:2-20}
-\lean{LeeLib.Ch02.existsUnique_selfDual_add_antiSelfDual, LeeLib.Ch02.selfDual_add_e01_e23, LeeLib.Ch02.selfDual_sub_e02_e13, LeeLib.Ch02.selfDual_add_e03_e12, LeeLib.Ch02.antiSelfDual_sub_e01_e23, LeeLib.Ch02.antiSelfDual_add_e02_e13, LeeLib.Ch02.antiSelfDual_sub_e03_e12}
-\leanok
-\uses{prop:self-dual-decomposition,prop:self-dual-euclidean}
-Prove the unique self-dual/anti-self-dual decomposition on an oriented Riemannian $4$-manifold and determine both subspaces on Euclidean $\mathbb R^4$.
-\end{exercise}
-
-\begin{exercise}\label{prob:divergence-laplacian-formulas-ch2}\dcref{ch2:2-21}
-Prove Proposition 2.46 on coordinate formulas for divergence and the Laplacian.
-\uses{prop:coordinate-representations-divergence-laplacian}
-\end{exercise}
-
-\begin{exercise}\label{prob:divergence-theorem}\dcref{ch2:2-22}
-For compact Riemannian $M$ with boundary, prove
-\[
-\int_M(\operatorname{div}X)dV_g=\int_{\partial M}\langle X,N\rangle_gd\bar g
-\]
-and $\operatorname{div}(uX)=u\operatorname{div}X+\langle\operatorname{grad}u,X\rangle_g$, then derive the integration-by-parts identity.
-\uses{prop:orientation-covering-theorem}
-\end{exercise}
-
-\begin{exercise}\label{prob:harmonic-functions}\dcref{ch2:2-23}
-For compact Riemannian $M$, prove Green's identities. Deduce uniqueness of harmonic functions with fixed boundary values, constancy of harmonic functions on connected closed $M$, and $\int_M\Delta u\,dV_g=0$ in the closed case.
-\end{exercise}
-
-\begin{exercise}\label{prob:eigenvalues}\dcref{ch2:2-24}
-For compact boundaryless $M$, prove that $0$ is an eigenvalue of $-\Delta$, all others are positive, and eigenfunctions for distinct eigenvalues are $L^2$-orthogonal.
-\end{exercise}
-
-\begin{exercise}\label{prob:dirichlet-neumann-eigenvalues}\dcref{ch2:2-25}
-For compact connected $M$ with boundary, prove that Dirichlet eigenvalues are positive, while $0$ is the only nonpositive Neumann eigenvalue.
-\end{exercise}
-
-\begin{exercise}[Dirichlet's Principle]
-\label{prob:dirichlet-principle}
-\dcref{ch2:2-26}
-\uses{prob:divergence-theorem}
-For compact connected Riemannian $M$ with nonempty boundary, prove that $u$ is harmonic iff it minimizes $\int_M|\operatorname{grad}u|^2dV_g$ among smooth functions with the same boundary values.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:curl-vector-field}
-\dcref{ch2:2-27}
-For an oriented Riemannian $3$-manifold, define $\beta(X)=X\lrcorner dV_g$ and $\operatorname{curl}X=\beta^{-1}d(X^b)$. Prove that $\beta$ is a smooth bundle isomorphism, the standard grad--curl--divergence diagram commutes, $\operatorname{curl}(\operatorname{grad}f)=0$, and $\operatorname{div}(\operatorname{curl}X)=0$; compute curl in Euclidean coordinates.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:hodge-star-exterior-derivative}
-\dcref{ch2:2-28}
-For an oriented Riemannian manifold, prove
-\[
-X\lrcorner dV_g=*(X^b),\qquad \operatorname{div}X=*d*(X^b),
-\]
-and in dimension $3$, $\operatorname{curl}X=(*d(X^b))^\#$.
-\uses{prob:hodge-star-operator,prob:curl-vector-field}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:codifferential-operator}
-\dcref{ch2:2-29}
-For compact oriented Riemannian $M$, define $d^*\omega=(-1)^{n(k+1)+1}*d*\omega$ on $k$-forms ($k\ge1$) and $d^*=0$ on $0$-forms. Prove $d^*d^*=0$, that $(\omega,\eta)=\int_M\langle\omega,\eta\rangle_gdV_g$ is an inner product, and $(d^*\omega,\eta)=(\omega,d\eta)$.
-\end{exercise}
-
-\begin{exercise}\label{prob:distance-disconnected-riemannian}\dcref{ch2:2-30}
-For a possibly disconnected Riemannian manifold, construct a distance inducing its topology and restricting to the Riemannian distance on each component.
-\end{exercise}
-
-\begin{exercise}\label{prob:local-isometry-distance}\dcref{ch2:2-31}
+\begin{proposition}\label{prop:local-isometry-distance}\dcref{ch2:2-31}
 \lean{LeeLib.Ch02.IsLocalIsometry.riemannianEDist_le}
 \leanok
-For connected Riemannian manifolds and a local isometry $\varphi:M\to\widetilde M$, prove $d_{\widetilde g}(\varphi(x),\varphi(y))\le d_g(x,y)$ and give an example where equality fails.
-\end{exercise}
+For connected Riemannian manifolds and a local isometry
+$\varphi:M\to\widetilde M$,
+$d_{\widetilde g}(\varphi(x),\varphi(y))\le d_g(x,y)$. Equality need not hold.
+\end{proposition}
 
-\begin{exercise}\label{prob:arc-length-integral}\dcref{ch2:2-32}
+\begin{proposition}\label{prop:arc-length-integral}\dcref{ch2:2-32}
 For a smooth curve $\gamma:[a,b]\to M$ and continuous $f$, define
 \[
 \int_\gamma f\,ds=\int_a^bf(t)|\gamma'(t)|_g\,dt.
 \]
-Prove invariance under diffeomorphic reparametrization, and for an embedded curve identify this integral with integration over its image using the induced volume element.
-\end{exercise}
-
-\begin{exercise}\label{prob:sylvesters-law-inertia}\dcref{ch2:2-33}
-\leanok
-\uses{prop:sylvesters-law-inertia}
-Prove Proposition 2.65 (Sylvester's law of inertia).
-\end{exercise}
-
-\begin{exercise}\label{prob:lorentz-metric-existence}\dcref{ch2:2-34}
-\lean{LeeLib.Ch02.exists_isLorentzMetric_iff_exists_isRankOneDistribution}
-\leanok
-\uses{thm:lorentz-metrics}
-Prove Theorem 2.69 on existence of Lorentz metrics:
-
-\begin{enumerate}
-\item[(a)] If $D \subseteq TM$ is a rank-one distribution and $g$ is Riemannian, choose local $g$-orthonormal frames $(E_i)$ with $E_1$ spanning $D$ and dual coframes $(\varepsilon^i)$. Show that
-\[
--(\varepsilon^1)^2+(\varepsilon^2)^2+\cdots+(\varepsilon^n)^2
-\]
-is independent of the choice of frame.
-
-\item[(b)] If $g$ is Lorentz and $g_0$ is Riemannian, show that for each $p\in M$ the function $v\mapsto g(v,v)$ on the $g_0$-unit sphere in $T_pM$ has exactly two antipodal minimizers $v_0,-v_0$. Use Lagrange multipliers to obtain $g(v_0,w)=\lambda(p)g_0(v_0,w)$ for all $w\in T_pM$, with $\lambda(p)<0$. The required smooth eigendirection follows from the fact that, for smooth symmetric $A:U\to GL(n,\mathbb R)$ on an open $U\subseteq\mathbb R^n$ with exactly one negative eigenvalue at each point, there are smooth $\lambda:U\to(-\infty,0)$ and $X:U\to\mathbb R^n\setminus\{0\}$ satisfying $A(x)X(x)=\lambda(x)X(x)$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}\label{prob:level-sets-pseudo-riemannian}\dcref{ch2:2-35}
-\lean{LeeLib.Ch02.hasSignature_pseudoPullbackMetric_levelSet_of_pseudoGrad_pos, LeeLib.Ch02.hasSignature_pseudoPullbackMetric_levelSet_of_pseudoGrad_neg, LeeLib.Ch02.form_pseudoGrad_mfderiv_levelSet_val_eq_zero}
-\leanok
-\uses{cor:pseudo-riemannian-embedding-criterion}
-Prove Corollary 2.71 on level sets in pseudo-Riemannian manifolds.
-\end{exercise}
+This integral is invariant under diffeomorphic reparametrization. For an
+embedded curve it agrees with integration over the image using the induced
+volume element.
+\end{proposition}

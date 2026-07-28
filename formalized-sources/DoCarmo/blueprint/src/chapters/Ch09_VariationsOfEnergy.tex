@@ -871,10 +871,8 @@
   \label{rem:dc-ch9-2-9}
   \dcref{ch9:2.9}
   \uses{prop:dc-ch9-2-8}
-  \sketch
-  If the variation is not proper, the first term at the beginning of \cref{prop:dc-ch9-2-8}
-  need not be zero. Taking this with the corresponding terms at $i=0$ and $i=k+1$ of
-  the second member of (4), we obtain
+  If the variation is not proper, the endpoint terms in the second-variation
+  formula need not vanish, and the formula becomes
 
   $$
   \frac{1}{2}E''(0)=-\int_0^a\Big\langle V(t),\frac{D^2 V}{dt^2}+R\Big(\frac{d\gamma}{dt},V\Big)\frac{d\gamma}{dt}\Big\rangle dt-\sum_{i=1}^k\Big\langle V(t_i),\frac{DV}{dt}(t_i^+)-\frac{DV}{dt}(t_i^-)\Big\rangle
@@ -920,12 +918,10 @@
   \label{rem:dc-ch9-2-10}
   \dcref{ch9:2.10}
   \uses{prop:dc-ch9-2-8, rem:dc-ch9-2-9}
-  \sketch
-  It is often convenient to write (5) using, on each interval where $V$ is
-  differentiable,
+  On each interval where $V$ is differentiable,
   $\frac{d}{dt}\langle V,\frac{DV}{dt}\rangle=\langle V,\frac{D^2 V}{dt^2}\rangle+\langle\frac{DV}{dt},\frac{DV}{dt}\rangle$.
-  Taking a geodesic $\gamma:[0,a]\to M$ and a partition
-  $0=t_0<t_1<\cdots<t_{k+1}=a$, this gives
+  For a geodesic $\gamma:[0,a]\to M$ and a partition
+  $0=t_0<t_1<\cdots<t_{k+1}=a$, formula (5) is
 
   $$
   \frac{1}{2}E''(0)=\int_0^a\{\langle V',V'\rangle-\langle R(\gamma',V)\gamma',V\rangle\}dt-\Big\langle\frac{D}{ds}\frac{\partial f}{\partial s},\gamma'\Big\rangle(0,0)+\Big\langle\frac{D}{ds}\frac{\partial f}{\partial s},\gamma'\Big\rangle(0,a).
@@ -1325,26 +1321,7 @@
   $M$ if $n$ is even, and reverses it if $n$ is odd. Then $f$ has a fixed point, i.e.,
   there exists $p\in M$ with $f(p)=p$.
 \end{theorem}
-\begin{lemma}[invariant vector of an orthogonal map]
-  \label{lem:dc-ch9-3-8}
-  \dcref{ch9:3.8}
-  \lean{Riemannian.Variation.exists_fixed_vector_of_det_eq}
-  \leanok
-  Let $A$ be an orthogonal linear transformation of $\mathbf{R}^{n-1}$ and suppose
-  that $\det A=(-1)^n$. Then $A$ fixes a non-zero vector of
-  $\mathbf{R}^{n-1}$.
-\end{lemma}
 \begin{proof}
-  \leanok
-  \sketch
-  Since $A$ is orthogonal, $A-I=A(I-A^{T})$. Taking determinants in dimension
-  $n-1$ gives
-  $$
-  \det(A-I)=\det(A)(-1)^{n-1}\det(A-I)=-\det(A-I).
-  $$
-  Hence $\det(A-I)=0$, so $1$ is an eigenvalue of $A$.
-\end{proof}
-\begin{proof}[Proof of \cref{thm:dc-ch9-3-7}]
   \proves{thm:dc-ch9-3-7}
   \uses{rem:dc-ch9-2-9, lem:dc-ch9-3-8, lem:dc-ch9-2-2-schwarz}
   \sketch
@@ -1381,7 +1358,7 @@
   $$
 
   where in the last equality we use the hypothesis on $f$ and the fact that $P$
-  preserves orientation. From the lemma, $A$ leaves a vector invariant. Let $e_1(t)$
+  preserves orientation. By \cref{lem:dc-ch9-3-8}, $A$ leaves a vector invariant. Let $e_1(t)$
   be a unit parallel field along $\gamma$ such that, for each $t$, $e_1(t)$ belongs to
   the orthogonal complement of $\gamma'(t)$ and $e_1(0)$ is invariant by $A$. Let
   $\beta(s)$, $s\in(-\varepsilon,\varepsilon)$, be a geodesic such that $\beta(0)=p$ and
@@ -1411,6 +1388,25 @@
   $(\ell(c))^2\le\ell E(c)<\ell E(\gamma)=\ell(\gamma)^2$. Since the curves in the
   variation join $q$ to $f(q)$, we obtain a contradiction to the fact that
   $d(p,f(p))$ is a minimum.
+\end{proof}
+\begin{lemma}[invariant vector of an orthogonal map]
+  \label{lem:dc-ch9-3-8}
+  \dcref{ch9:3.8}
+  \lean{Riemannian.Variation.exists_fixed_vector_of_det_eq}
+  \leanok
+  Let $A$ be an orthogonal linear transformation of $\mathbf{R}^{n-1}$ and suppose
+  that $\det A=(-1)^n$. Then $A$ fixes a non-zero vector of
+  $\mathbf{R}^{n-1}$.
+\end{lemma}
+\begin{proof}
+  \leanok
+  \sketch
+  Since $A$ is orthogonal, $A-I=A(I-A^{T})$. Taking determinants in dimension
+  $n-1$ gives
+  $$
+  \det(A-I)=\det(A)(-1)^{n-1}\det(A-I)=-\det(A-I).
+  $$
+  Hence $\det(A-I)=0$, so $1$ is an eigenvalue of $A$.
 \end{proof}
 \begin{remark}[Conformal Synge--Weinstein theorem]
   \label{rem:dc-ch9-3-9}

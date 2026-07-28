@@ -4,14 +4,18 @@
 
 The basic linear and quasilinear second-order equations are, respectively,
 
-\begin{equation}\label{gt.eq1.1}\dcref{(1.1)}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
-(1.1)\qquad Lu \equiv a^{ij}(x)D_{ij}u+b^i(x)D_i u+c(x)u=f(x),\qquad i,j=1,2,\dots,n,
+\dcref{ch1:1.1}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
+\begin{equation}\label{gt.eq1.1}
+\tag{1.1}
+Lu \equiv a^{ij}(x)D_{ij}u+b^i(x)D_i u+c(x)u=f(x),\qquad i,j=1,2,\dots,n,
 \end{equation}
 
 and
 
-\begin{equation}\label{gt.eq1.2}\dcref{(1.2)}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
-(1.2)\qquad Qu \equiv a^{ij}(x,u,Du)D_{ij}u+b(x,u,Du)=0.
+\dcref{ch1:1.2}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
+\begin{equation}\label{gt.eq1.2}
+\tag{1.2}
+Qu \equiv a^{ij}(x,u,Du)D_{ij}u+b(x,u,Du)=0.
 \end{equation}
 
 Here $Du=(D_1u,\dots,D_nu)$, $D_i u=\partial u/\partial x_i$, and
@@ -22,13 +26,15 @@ $\gamma$ of its largest to smallest eigenvalue is bounded.
 
 The model linear equations are Laplace's equation
 
-\begin{equation}\label{gt.eq1.3}\dcref{(1.3)}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
+\dcref{ch1:1.3}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
+\begin{equation}\label{gt.eq1.3}
 \Delta u = \sum D_{ii}u = 0
 \end{equation}
 
 and Poisson's equation $\Delta u=f$. The minimal-surface equation
 
-\begin{equation}\label{gt.eq1.4}\dcref{(1.4)}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
+\dcref{ch1:1.4}\group{chapter-1}\source{gilbarg-trudinger:page-0014}
+\begin{equation}\label{gt.eq1.4}
 \sum D_i\!\left(D_i u/(1+|Du|^2)^{1/2}\right)=0
 \end{equation}
 
@@ -42,8 +48,10 @@ subharmonic functions combines the maximum principle with barriers controlling
 boundary behavior. Newtonian-potential estimates for a solution of
 $\Delta u=f$ give, for $0<\alpha<1$ and $\Omega'\Subset\Omega$,
 
-\begin{equation}\label{gt.eq1.5}\dcref{(1.3)}\group{chapter-1}\source{gilbarg-trudinger:page-0015}
-(1.3)\qquad \|u\|_{C^{2,\alpha}(\bar{\Omega}')} \leq C\!\left(\sup_{\Omega}|u|+\|f\|_{C^{\alpha}(\bar{\Omega})}\right).
+\dcref{ch1:1.3}\group{chapter-1}\source{gilbarg-trudinger:page-0015}
+\begin{equation}\label{gt.eq1.5}
+\tag{1.3}
+\|u\|_{C^{2,\alpha}(\bar{\Omega}')} \leq C\!\left(\sup_{\Omega}|u|+\|f\|_{C^{\alpha}(\bar{\Omega})}\right).
 \end{equation}
 
 This is the content of Theorems 4.6 and 4.8. Here $C$ depends only on $\alpha$,
@@ -74,14 +82,16 @@ regular oblique derivative problem.
 
 For coefficients of lower regularity, consider the divergence-form operator
 
-\begin{equation}\label{gt.eq1.6}\dcref{(1.6)}\group{chapter-1}\source{gilbarg-trudinger:page-0017}
+\dcref{ch1:1.6}\group{chapter-1}\source{gilbarg-trudinger:page-0017}
+\begin{equation}\label{gt.eq1.6}
 L'u \equiv D_i(a^{ij}(x)D_j u + b^i(x)u) + c^i(x)D_i u + d(x)u.
 \end{equation}
 
 If $a^{ij}$, $b^i$, and $c^i$ are bounded and measurable and $g$ is integrable,
 a function $u\in W^{1,2}(\Omega)$ is a weak solution of $L'u=g$ when
 
-\begin{equation}\label{gt.eq1.7}\dcref{(1.4)}\group{chapter-1}\source{gilbarg-trudinger:page-0017}
+\dcref{ch1:1.4}\group{chapter-1}\source{gilbarg-trudinger:page-0017}
+\begin{equation}\label{gt.eq1.7}
 \int_{\Omega} \bigl[(a^{ij}D_j u+b^i u)D_i v-(c^i D_i u+d u)v\bigr]\,dx
 =-\int_{\Omega} g v\,dx
 \end{equation}
@@ -92,7 +102,10 @@ For boundary data $\varphi\in W^{1,2}(\Omega)$, the weak Dirichlet condition is
 $u-\varphi\in W_0^{1,2}(\Omega)$. If the least eigenvalue of $[a^{ij}]$ is
 bounded away from zero,
 
-\begin{equation}\label{gt.eq1.8}\dcref{(1.5)}\group{chapter-1}\source{gilbarg-trudinger:page-0017}
+\dcref{ch1:1.5}
+\group{chapter-1}
+\source{gilbarg-trudinger:page-0017}
+\begin{equation}\label{gt.eq1.8}
 D_i b^i+d\leq 0
 \end{equation}
 
@@ -105,7 +118,7 @@ $W_0^{1,2}(\Omega)$.
 Additional coefficient regularity places weak solutions in higher $W^{k,2}$
 spaces (Theorems 8.8 and 8.10); Sobolev embedding then makes them classical when
 the hypotheses are strong enough. Boundary regularity promotes interior estimates
-to global ones (Theorems 8.13 and 8.14). For quasilinear equations, one bootstraps
+to global ones. For quasilinear equations, one bootstraps
 by substituting the current weak solution into the coefficients of an associated
 linear equation, improving its regularity, and iterating. Harnack inequalities
 obtained by Moser iteration from integral test-function estimates give the
@@ -128,8 +141,10 @@ $1<p<\infty$ (Theorems 9.11 and 9.13) yield the strong Dirichlet theory
 
 Besides \eqref{gt.eq1.2}, the nonlinear theory treats divergence-form operators
 
-\begin{equation}\label{gt.eq1.9}\dcref{(1.6)}\group{chapter-1}\source{gilbarg-trudinger:page-0018}
-(1.6)\qquad Qu \equiv \diver A(x, u, Du) + B(x, u, Du),
+\dcref{ch1:1.6}\group{chapter-1}\source{gilbarg-trudinger:page-0018}
+\begin{equation}\label{gt.eq1.9}
+\tag{1.6}
+Qu \equiv \diver A(x, u, Du) + B(x, u, Du),
 \end{equation}
 
 where $A$ is vector-valued and $B$ scalar-valued on
@@ -158,7 +173,8 @@ bounds, without coefficient regularity assumptions; quasiconformal and
 divergence-form methods provide the corresponding estimates. For the elliptic
 equation
 
-\begin{equation}\label{gt.eq1.10}\dcref{(1.7)}\group{chapter-1}\source{gilbarg-trudinger:page-0019}
+\dcref{ch1:1.7}\group{chapter-1}\source{gilbarg-trudinger:page-0019}
+\begin{equation}\label{gt.eq1.10}
 au_{xx}+2bu_{xy}+cu_{yy}=0,
 \end{equation}
 
@@ -197,7 +213,8 @@ minimal-surface equation are linear (Corollary 16.19).
 
 Fully nonlinear equations have the form
 
-\begin{equation}\label{gt.eq1.11}\dcref{(1.8)}\group{chapter-1}\source{gilbarg-trudinger:page-0020}
+\dcref{ch1:1.8}\group{chapter-1}\source{gilbarg-trudinger:page-0020}
+\begin{equation}\label{gt.eq1.11}
 F[u] = F(x,u,Du,D^2u) = 0.
 \end{equation}
 
@@ -215,7 +232,7 @@ nonlinear class.
 
 \bigskip
 
-\begin{notation}\label{gt.not.basic-notation}\dcref{Basic Notation}\group{chapter-1}\source{gilbarg-trudinger:page-0022,gilbarg-trudinger:page-0023}
+\begin{notation}\label{gt.not.basic-notation}\dcref{ch1:basic-notation}\group{chapter-1}\source{gilbarg-trudinger:page-0022,gilbarg-trudinger:page-0023}
 \noindent\textbf{Basic Notation}
 
 \begin{description}

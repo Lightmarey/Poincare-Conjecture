@@ -187,14 +187,13 @@ $\varphi\colon M\to\widetilde M$ is a local isometry, then
 \varphi^*\widetilde{\operatorname{Rm}}=\operatorname{Rm}.
 \]
 \end{proposition}
-
-\begin{exercise}
-\label{exer:prove-curvature-isometry}
-\dcref{ch7:7.7}
-\uses{prop:curvature-isometry-invariant}
-Prove the local-isometry invariance asserted in
-Proposition~\ref{prop:curvature-isometry-invariant}.
-\end{exercise}
+\begin{proof}
+\sketch
+The differential of a local isometry intertwines the two Levi--Civita
+connections by uniqueness of the torsion-free metric connection. Applying
+this identity twice shows that it intertwines the curvature endomorphisms;
+pairing with the preserved metrics gives the displayed pullback identity.
+\end{proof}
 
 \section{Flat Manifolds}
 
@@ -235,12 +234,6 @@ Thus $\nabla_{\partial_i}V$ is parallel along the $x^{k+1}$-lines and vanishes
 where they meet $M_k$, so it vanishes on $M_{k+1}$. At $k=n$, $V$ is parallel
 on the entire cube.
 \end{proof}
-
-\begin{exercise}
-\label{exer:constructed-vector-field-smooth}
-\dcref{ch7:7.9}
-Prove that the vector field constructed in the preceding lemma is smooth.
-\end{exercise}
 
 \begin{theorem}
 \label{thm:flatness-iff-zero-curvature}
@@ -582,14 +575,12 @@ R_{ij}=R_{kij}^{\,k}=R^k{}_{ikj}
 =-R^k{}_{kij}=-R_{ikj}^{\,k}.
 \]
 \end{lemma}
-
-\begin{exercise}
-\label{exer:ricci-symmetries-proof}
-\dcref{ch7:7.16}
-\uses{lem:ricci-symmetries}
-
-Prove Lemma~\ref{lem:ricci-symmetries} from the curvature-tensor symmetries.
-\end{exercise}
+\begin{proof}
+\sketch
+Contract the first and fourth indices in the skew symmetries and pair
+symmetry of the Riemann tensor. The first Bianchi identity then identifies
+the two possible contractions and gives symmetry in the remaining indices.
+\end{proof}
 
 Define the \emph{traceless Ricci tensor} by
 \[
@@ -658,7 +649,7 @@ In components,
 \begin{proposition}[Contracted Bianchi Identities]
 \label{prop:contracted-bianchi-identities}
 \dcref{ch7:7.18}
-\uses{lem:ricci-symmetries,prop:connection-on-tensor-bundles,prop:musical-isomorphisms-commute,prob:exterior-derivative-covariant-formula}
+\uses{lem:ricci-symmetries,prop:connection-on-tensor-bundles,prop:musical-isomorphisms-commute,prop:exterior-derivative-covariant-formula}
 
 On a Riemannian or pseudo-Riemannian manifold,
 \[
@@ -1159,13 +1150,12 @@ $\widetilde g=e^{2f}g$, then $\widetilde C=C$.
 The Cotton tensor of every locally conformally flat $3$-manifold vanishes
 identically.
 \end{corollary}
-
-\begin{exercise}
-\label{exer:prove-cotton-tensor-vanishes}
-\dcref{ch7:7.36}
-\uses{cor:cotton-tensor-vanishes-conformally-flat}
-Prove the preceding corollary.
-\end{exercise}
+\begin{proof}
+\sketch
+In conformally flat coordinates the metric is conformal to a flat metric,
+whose Cotton tensor vanishes. Conformal invariance in dimension three then
+gives the result.
+\end{proof}
 
 \begin{theorem}[Weyl--Schouten]
 \label{thm:weyl-schouten}
@@ -1261,233 +1251,69 @@ $\nabla\xi=A(\xi)$, and expansion of the assumed compatibility identity is
 Every Riemannian $1$-manifold is flat.  Every Riemannian or
 pseudo-Riemannian $2$-manifold is locally conformally flat; the corresponding
 local conformal charts are called \emph{isothermal coordinates}.
-\section{Problems}
 
-\begin{exercise}
-\label{prob:curvature-multilinearity-in-functions}
-\dcref{ch7:7-1}
-\uses{prop:curvature-multilinearity}
-Establish the missing $C^\infty(M)$-linearity in the third vector argument of
-the curvature endomorphism:
-\[
-R(X,Y)(fZ)=fR(X,Y)Z
-\]
-for all smooth vector fields $X,Y,Z$ and all $f\in C^\infty(M)$.
-\end{exercise}
+\section{Further Curvature Results}
 
-\begin{exercise}
-\label{prob:curvature-coordinate-formula}
-\dcref{ch7:7-2}
-\uses{prop:curvature-tensor-components}
-Derive the coordinate formula for the curvature tensor stated in
-Proposition~\ref{prop:curvature-tensor-components}.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:symmetric-space-parallel-curvature}
+\begin{proposition}[Locally symmetric spaces have parallel curvature]
+\label{prop:symmetric-space-parallel-curvature}
 \dcref{ch7:7-3}
-Show that every Riemannian locally symmetric space has parallel curvature
-tensor:
+Every Riemannian locally symmetric space has parallel curvature tensor:
 \[
 \nabla\operatorname{Rm}=0.
 \]
-\end{exercise}
+\end{proposition}
+\begin{proof}
+\sketch
+At each point $p$, the local geodesic symmetry is an isometry fixing $p$ with
+differential $-\operatorname{Id}$. It preserves $\nabla\operatorname{Rm}$ by
+local-isometry invariance, while its differential acts by $-1$ on this
+covariant $5$-tensor. Hence $(\nabla\operatorname{Rm})_p=0$.
+\end{proof}
 
-\begin{exercise}
-\label{prob:ricci-in-normal-coordinates}
-\dcref{ch7:7-4}
-Let $(M,g)$ be Riemannian or pseudo-Riemannian, and let $(x^i)$ be normal
-coordinates centered at $p\in M$. Prove that at $p$,
-\[
-R_{ijkl}=\frac12\left(
-\partial_j\partial_lg_{ik}
-+\partial_i\partial_kg_{jl}
--\partial_i\partial_lg_{jk}
--\partial_j\partial_kg_{il}
-\right).
-\]
-\end{exercise}
-
-\begin{exercise}
-\label{prob:cartan-second-structure-equation}
-\dcref{ch7:7-5}
-\uses{prob:connection-1forms-cartan}
-Let $\nabla$ be the Levi-Civita connection of a Riemannian or
-pseudo-Riemannian manifold $(M,g)$, and let $\omega_i{}^j$ be its connection
-1-forms in a local frame $(E_i)$. For the dual coframe $(e^i)$, define the
-\emph{curvature 2-forms} by
-\[
-\Omega_i{}^j=\frac12R_{kli}{}^j e^k\wedge e^l.
-\]
-Prove Cartan's second structure equation:
-\[
-\Omega_i{}^j=d\omega_i{}^j-\omega_i{}^k\wedge\omega_k{}^j.
-\]
-\emph{Hint.} Expand $R(E_k,E_l)E_i$ using $\nabla$ and $\omega_i{}^j$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:product-metric-curvature}
+\begin{proposition}[Curvature of a product metric]
+\label{prop:product-metric-curvature}
 \dcref{ch7:7-6}
-\uses{exer:prove-lemma-2-11}
-Let $(M_1,g_1)$ and $(M_2,g_2)$ be Riemannian manifolds, and give
-$M_1\times M_2$ the product metric $g=g_1\oplus g_2$ from (2.12). If
-$\pi_i\colon M_1\times M_2\to M_i$ are the projections, prove
+\uses{lem:pullback-immersion-metric}
+Let $(M_1,g_1)$ and $(M_2,g_2)$ be Riemannian manifolds, give
+$M_1\times M_2$ the product metric $g=g_1\oplus g_2$, and write
+$\pi_i\colon M_1\times M_2\to M_i$ for the projections. Then
 \begin{align*}
 \operatorname{Rm}&=\pi_1^*\operatorname{Rm}_1+\pi_2^*\operatorname{Rm}_2,\\
 \operatorname{Rc}&=\pi_1^*\operatorname{Rc}_1+\pi_2^*\operatorname{Rc}_2,\\
-S&=\pi_1^*S_1+\pi_2^*S_2,
+S&=\pi_1^*S_1+\pi_2^*S_2.
 \end{align*}
-where $\operatorname{Rm}_i$, $\operatorname{Rc}_i$, and $S_i$ are the Riemann,
-Ricci, and scalar curvatures of $(M_i,g_i)$.
-\end{exercise}
+\end{proposition}
+\begin{proof}
+\sketch
+The Levi--Civita connection of the product metric splits into the pullbacks of
+the two factor connections. Its curvature therefore has no mixed terms and
+is the sum of the pulled-back factor curvatures. Taking the metric traces gives
+the Ricci and scalar-curvature identities.
+\end{proof}
 
-\begin{exercise}[Bochner's formula]
-\label{prob:bochner-formula}
-\dcref{ch7:7-7}
-\uses{prob:divergence-laplacian-formulas,thm:ricci-identities}
-Let $(M,g)$ be Riemannian and let $u\in C^\infty(M)$. Using (5.29) and
-(7.21), prove
-\[
-\Delta\left(\frac12|\operatorname{grad}u|^2\right)
-=|\nabla^2u|^2
-+\left\langle\operatorname{grad}(\Delta u),\operatorname{grad}u\right\rangle
-+\operatorname{Rc}(\operatorname{grad}u,\operatorname{grad}u).
-\]
-\end{exercise}
-
-\begin{exercise}[Lichnerowicz's Theorem]
-\label{prob:lichnerowicz-theorem}
-\dcref{ch7:7-8}
-\uses{prob:harmonic-functions,prob:eigenfunction-laplacian-inequality,prob:bochner-formula}
-Let $(M,g)$ be a compact Riemannian $n$-manifold. Suppose there is a constant
-$\kappa>0$ such that
-\[
-\operatorname{Rc}(v,v)\geq\kappa|v|^2
-\]
-for every tangent vector $v$. Then every positive Laplace--Beltrami eigenvalue
-$\lambda$ on $M$ satisfies
-\[
-\lambda\geq\frac{n\kappa}{n-1}.
-\]
-\emph{Hint.} Use Problems 2-23(c), 5-15, and 7-7.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:kulkarni-nomizu-properties}
-\dcref{ch7:7-9}
-\uses{lem:kulkarni-nomizu-properties}
-Prove parts (e) and (f) of
-Lemma~\ref{lem:kulkarni-nomizu-properties} for the Kulkarni--Nomizu product.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:cotton-tensor-conformal}
-\dcref{ch7:7-10}
-\uses{prop:conformal-invariance-cotton-dim3}
-Prove the conformal invariance of the Cotton tensor in dimension $3$ asserted
-by Proposition~\ref{prop:conformal-invariance-cotton-dim3}.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:conformal-laplacian-yamabe}
-\dcref{ch7:7-11}
-Let $(M,g)$ be a Riemannian manifold of dimension $n>2$. Define its
-\emph{conformal Laplacian} $L\colon C^\infty(M)\to C^\infty(M)$ by
-\[
-Lu=-\frac{4(n-1)}{n-2}\Delta u+Su,
-\]
-where $\Delta$ is the Laplace--Beltrami operator and $S$ is the scalar
-curvature. If $\widetilde g=e^{2f}g$ for $f\in C^\infty(M)$ and
-$\widetilde L$ is the conformal Laplacian of $\widetilde g$, prove that
-\[
-e^{\frac{n+2}{2}f}\widetilde Lu
-=L\left(e^{\frac{n-2}{2}f}u\right)
-\]
-for every $u\in C^\infty(M)$.
-
-Deduce that a metric $\widetilde g$ conformal to $g$ has constant scalar
-curvature $\lambda$ if and only if
-\[
-\widetilde g=\varphi^{4/(n-2)}g
-\]
-for a smooth positive solution $\varphi$ of the \emph{Yamabe equation}
-\begin{equation}
-L\varphi=\lambda\varphi^{\frac{n+2}{n-2}}. \tag{7.59}
-\end{equation}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:flat-connection}
-\dcref{ch7:7-12}
-Let $M$ be smooth and let $\nabla$ be a connection on $TM$. Define
-\[
-R(X,Y)Z
-=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z,
-\]
-and call $\nabla$ \emph{flat} when $R\equiv0$. Prove that the following are
-equivalent:
-\begin{enumerate}
-\item[(a)] The connection $\nabla$ is flat.
-\item[(b)] Every $p\in M$ has a neighborhood carrying a parallel local frame.
-\item[(c)] For all $p,q\in M$, parallel transport along an admissible curve
-segment from $p$ to $q$ depends only on its path-homotopy class.
-\item[(d)] For every $p\in M$, there is a neighborhood $U$ such that, for
-every admissible curve $\gamma\colon[a,b]\to U$ with
-$\gamma(a)=\gamma(b)=p$, the parallel transport map
-$P_{ab}\colon T_pM\to T_pM$ is the identity.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:lie-group-curvature}
-\dcref{ch7:7-13}
-\uses{prob:lie-group-bi-invariant-metric}
-Let $G$ be a Lie group with a bi-invariant metric. For all left-invariant
-vector fields $X,Y,Z$ on $G$, prove
-\[
-R(X,Y)Z=\frac14[Z,[X,Y]].
-\]
-\end{exercise}
-
-\begin{exercise}[O'Neill's formula]
-\label{prob:oneill-formula}
+\begin{proposition}[O'Neill's curvature formula]
+\label{prop:oneill-formula}
 \dcref{ch7:7-14}
-\uses{prob:riemannian-submersion-connection}
-Let $\pi\colon(\widetilde M,\widetilde g)\to(M,g)$ be a Riemannian
-submersion. With the notation and results of Problem 5-6, prove
-\begin{align*}
-\operatorname{Rm}(W,X,Y,Z)\circ\pi
-&=\widetilde{\operatorname{Rm}}(\widetilde W,\widetilde X,
-  \widetilde Y,\widetilde Z)
--\frac12\left\langle[\widetilde W,\widetilde X]^V,
-  [\widetilde Y,\widetilde Z]^V\right\rangle\\
-&\quad-\frac14\left\langle[\widetilde W,\widetilde Y]^V,
-  [\widetilde X,\widetilde Z]^V\right\rangle
-+\frac14\left\langle[\widetilde W,\widetilde Z]^V,
-  [\widetilde X,\widetilde Y]^V\right\rangle.
-\end{align*}
-\end{exercise}
-
-\begin{exercise}
-\label{prob:pseudo-riemannian-2d}
-\dcref{ch7:7-15}
-\uses{prop:canonical-form-vector-field}
-Let $(M,g)$ be a two-dimensional pseudo-Riemannian manifold of signature
-$(1,1)$, and let $p\in M$.
-\begin{enumerate}
-\item[(a)] Construct a smooth local frame $(E_1,E_2)$ near $p$ such that
+\uses{def:riemannian-submersion,prop:horizontal-lift-of-vector-field}
+Let $\pi:(\widetilde M,\widetilde g)\to(M,g)$ be a Riemannian submersion,
+let $W,X,Y,Z$ be vector fields on $M$, and let
+$\widetilde W,\widetilde X,\widetilde Y,\widetilde Z$ be their horizontal
+lifts. Set
+$A_{UV}=[\widetilde U,\widetilde V]^V$ and
+$\widetilde R=\widetilde{\operatorname{Rm}}(
+\widetilde W,\widetilde X,\widetilde Y,\widetilde Z)$. Then
 \[
-g(E_1,E_1)=g(E_2,E_2)=0.
+\begin{gathered}
+\operatorname{Rm}(W,X,Y,Z)\circ\pi\\
+=\widetilde R-\frac12\langle A_{WX},A_{YZ}\rangle\\
+\quad-\frac14\langle A_{WY},A_{XZ}\rangle\\
+\quad+\frac14\langle A_{WZ},A_{XY}\rangle.
+\end{gathered}
 \]
-\item[(b)] Construct smooth coordinates $(x,y)$ near $p$ and a smooth positive
-function $f$ such that
-\[
-(dx)^2-(dy)^2=fg.
-\]
-\emph{Hint.} Use Proposition A.45 to find coordinates $(t,u)$ with
-$E_1=\partial/\partial t$ and coordinates $(v,w)$ with
-$E_2=\partial/\partial v$, then set $x=u+w$ and $y=u-w$.
-\item[(c)] Prove that $(M,g)$ is locally conformally flat.
-\end{enumerate}
-\end{exercise}
+\end{proposition}
+\begin{proof}
+\sketch Decompose the Levi--Civita derivatives of horizontal lifts into their
+horizontal and vertical parts, substitute those decompositions into the
+curvature definition, and use metric compatibility. The vertical bracket
+terms combine with coefficients $-\frac12$, $-\frac14$, and $\frac14$.
+\end{proof}

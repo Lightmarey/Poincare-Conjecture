@@ -1,4 +1,4 @@
-\chapter{Closed Manifolds with Positive Curvature}
+\chapter[11]{Closed Manifolds with Positive Curvature}
 \label{ch:chow-ii-closed-positive-curvature}
 
 Throughout this chapter, \(E=\mathbb R^n\) is Euclidean space,
@@ -58,6 +58,7 @@ is the space of algebraic curvature operators.  We write
   Consequently \(\#\) is symmetric, bilinear, and \(O(n)\)-equivariant.
 \end{lemma}
 \begin{proof}
+\sketch
   Expand both brackets in structure constants.  The coefficient of
   \(\phi^\eta\psi^\theta\) is
   \(\tfrac12c_\eta^{\gamma\delta}c_\theta^{\alpha\beta}
@@ -108,6 +109,7 @@ is the space of algebraic curvature operators.  We write
   geometrically nonnegative operator.
 \end{lemma}
 \begin{proof}
+\sketch
   Two-nonnegativity permits at most one negative eigenvalue and gives
   \(-\mu_1\le\mu_2\).  Also
   \(\operatorname{tr}(R)\ge\mu_1+\mu_2+(N-2)\mu_2\ge(N-2)\mu_2\), proving
@@ -136,6 +138,7 @@ is the space of algebraic curvature operators.  We write
   nonnegative.
 \end{lemma}
 \begin{proof}
+\sketch
   Diagonalize \(A\), with eigenvalues \(\rho_i\ge0\), and diagonalize
   \(A_0\), with eigenvalues \(\lambda_i\).  On \(e_i\wedge e_j\), the three
   operators in the first assertion have eigenvalues
@@ -160,6 +163,7 @@ is the space of algebraic curvature operators.  We write
   The cone \(\mathcal C\) is preserved by \(\dot R=Q(R)\).
 \end{proposition}
 \begin{proof}
+\sketch
   Diagonalize a boundary point \(R\), with eigenvalues
   \(\mu_1\le\cdots\le\mu_N\) and eigenvectors \(\omega_\alpha\).  It suffices
   to prove \(Q(R)_{\alpha\alpha}+Q(R)_{\beta\beta}\ge0\) whenever
@@ -187,6 +191,7 @@ is the space of algebraic curvature operators.  We write
   two-nonnegative has two-nonnegative curvature operator at every later time.
 \end{proposition}
 \begin{proof}
+\sketch
   Uhlenbeck's bundle identification converts the curvature equation into
   \((\partial_t-\Delta)\operatorname{Rm}=Q(\operatorname{Rm})\).  The fiberwise
   cone corresponding to \(\mathcal C\) is closed, convex, invariant under
@@ -208,6 +213,7 @@ is the space of algebraic curvature operators.  We write
   two-positive everywhere at every later time.
 \end{proposition}
 \begin{proof}
+\sketch
   Let \(u=\mu_1+\mu_2\ge0\).  On a relatively compact domain, compare the
   curvature operator with
   \(\operatorname{Rm}+(\varepsilon e^{At}-f)I\), where
@@ -239,6 +245,7 @@ is the space of algebraic curvature operators.  We write
   curvature operators.
 \end{proposition}
 \begin{proof}
+\sketch
   Pull the vector field back to \(\mathcal C\).  It is
   \(X_{a,b}=Q+D_{a,b}\).  The first summand is tangent by
   \ref{prop:chow-ii-ode-preserves-two-nonnegative}; the second is
@@ -282,6 +289,7 @@ is the space of algebraic curvature operators.  We write
   algebraic curvature operators.
 \end{theorem}
 \begin{proof}
+\sketch
   For \(0\le b\le1/2\), put
   \[
   p_1(b)=\frac{(n-2)b^2}{1+(n-2)b^2},\quad
@@ -324,6 +332,7 @@ is the space of algebraic curvature operators.  We write
   two-nonnegative algebraic curvature operators.
 \end{corollary}
 \begin{proof}
+\sketch
   Let \(\bar b\) be as in
   \ref{prop:chow-ii-preserved-stretched-two-nonnegative-cones} and intersect
   every cone of the family in
@@ -364,6 +373,7 @@ is the space of algebraic curvature operators.  We write
   \(s\in[\varepsilon,1)\).
 \end{theorem}
 \begin{proof}
+\sketch
   Intersect all closed convex invariant \(O(n)\)-sets satisfying the two
   inclusions; call the minimal intersection \(F\).  It is preserved because
   every set in the intersection is preserved.  Suppose
@@ -399,6 +409,7 @@ is the space of algebraic curvature operators.  We write
   constant positive sectional curvature.
 \end{theorem}
 \begin{proof}
+\sketch
   \uses{cor:chow-ii-pinching-family-two-nonnegative,thm:chow-ii-generalized-pinching-set,prop:chow-ii-ricci-flow-preserves-two-nonnegative}
   Compactness and strict two-positivity place the initial curvature operators
   in a bounded slice of \(C(\varepsilon)\) for some member of the pinching
@@ -444,6 +455,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{lemma}
 \begin{proof}
+\sketch
   The first two assertions follow directly from the definition.  Expanding
   the inner product of \((A\wedge B)(e_i\wedge e_j)\) with
   \(e_k\wedge e_\ell\) gives the displayed formula, which is unchanged when
@@ -462,6 +474,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{proposition}
 \begin{proof}
+\sketch
   Every endomorphism is uniquely the sum of a skew-adjoint and a
   self-adjoint endomorphism, and every self-adjoint endomorphism is uniquely
   the sum of its trace-free part and a scalar multiple of the identity.
@@ -497,6 +510,7 @@ is the space of algebraic curvature operators.  We write
   orthogonally.
 \end{lemma}
 \begin{proof}
+\sketch
   The pair symmetries of a member of \(S^2(\Lambda^2E)\) show directly that
   \(b(R)\) is alternating in all four entries.  If \(R\) is already a
   four-form, cyclic permutation of its first three entries has positive sign,
@@ -516,6 +530,7 @@ is the space of algebraic curvature operators.  We write
   \(A\wedge\operatorname{id}\) and \(A\wedge A\) belong to \(\mathcal A_n\).
 \end{lemma}
 \begin{proof}
+\sketch
   Substitute the component formula of
   \ref{lem:chow-ii-symmetric-wedge-properties} into the cyclic sum defining
   \(b\).  Every term cancels with the term obtained by the symmetry of \(A\),
@@ -551,6 +566,7 @@ is the space of algebraic curvature operators.  We write
     =\tfrac{n-2}{2}A+\tfrac{\operatorname{tr}(A)}2\operatorname{id}\).
 \end{lemma}
 \begin{proof}
+\sketch
   Contract the first and third indices in the component formula of
   \ref{lem:chow-ii-symmetric-wedge-properties}.  The four resulting terms
   are respectively \(A\operatorname{tr}(B)\), \(-AB\),
@@ -569,6 +585,7 @@ is the space of algebraic curvature operators.  We write
   \(\operatorname{Rc}:\mathcal A_n\to S^2(E)\).
 \end{lemma}
 \begin{proof}
+\sketch
   If \(\operatorname{id}\wedge A=0\), the scalar trace of
   \ref{lem:chow-ii-ricci-contraction-wedge} gives
   \((n-1)\operatorname{tr}(A)=0\), and the same formula then gives
@@ -595,6 +612,7 @@ is the space of algebraic curvature operators.  We write
   and \(R_W\in\ker\operatorname{Rc}\).
 \end{lemma}
 \begin{proof}
+\sketch
   By \ref{lem:chow-ii-wedge-embedding-ricci-adjoint}, the orthogonal
   complement of the image of \(A\mapsto\operatorname{id}\wedge A\) is
   \(\ker\operatorname{Rc}\).  Split \(S^2(E)\) into its scalar and trace-free
@@ -617,6 +635,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{corollary}
 \begin{proof}
+\sketch
   By \ref{lem:chow-ii-ricci-contraction-wedge},
   \(\operatorname{Rc}(A\wedge A)=-A^2\).  Insert this contraction and its
   trace into \ref{lem:chow-ii-algebraic-curvature-decomposition}.
@@ -636,6 +655,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{proposition}
 \begin{proof}
+\sketch
   In an orthonormal frame the tensor evolution is
   \((\partial_t-\Delta)R_{abcd}
   =2(B_{abcd}-B_{badc}+B_{acbd}-B_{adbc})\), where
@@ -663,6 +683,7 @@ is the space of algebraic curvature operators.  We write
   In particular, \(\ker\operatorname{Rc}\) is invariant under \(Q\).
 \end{corollary}
 \begin{proof}
+\sketch
   Expanding \(R^2+R^\#\) by the same component calculation as in
   \ref{prop:chow-ii-curvature-operator-evolution} shows first that its cyclic
   Bianchi sum vanishes.  Contracting its first and third indices, and then
@@ -713,6 +734,7 @@ is the space of algebraic curvature operators.  We write
   \(C\) is preserved by \(\dot R=X_{a,b}(R)\).
 \end{lemma}
 \begin{proof}
+\sketch
   A curve \(R(t)\) solves \(\dot R=Q(R)\) precisely when
   \(\ell_{a,b}^{-1}R(t)\) solves \(\dot S=X_{a,b}(S)\).  Since
   \(R(t)\in\ell_{a,b}(C)\) is equivalent to
@@ -733,6 +755,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{lemma}
 \begin{proof}
+\sketch
   In an orthonormal basis, the intrinsic sharp formula gives
   \[
   (R\#I)_{abcd}=\frac12(r_{ac}\delta_{bd}-r_{ad}\delta_{bc}
@@ -763,6 +786,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{lemma}
 \begin{proof}
+\sketch
   Write \(R=\bar\lambda I/(n-1)+R_0\), where
   \(R_0=2\operatorname{id}\wedge\operatorname{Rc}_0/(n-2)\).  By
   \ref{lem:chow-ii-sharp-identity-formula}, the scalar and mixed terms in
@@ -797,6 +821,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{corollary}
 \begin{proof}
+\sketch
   Project the formula of \ref{lem:chow-ii-quadratic-zero-weyl} to the Weyl
   summand, then apply \ref{lem:chow-ii-ricci-contraction-wedge} and use
   \(\operatorname{Rc}_0^2=(\operatorname{Rc}_0^2)_0+\sigma\operatorname{id}\).
@@ -834,6 +859,7 @@ is the space of algebraic curvature operators.  We write
   \]
 \end{theorem}
 \begin{proof}
+\sketch
   \uses{lem:chow-ii-sharp-identity-formula,lem:chow-ii-quadratic-zero-weyl,cor:chow-ii-trace-free-square-wedge-decomposition}
   Polarizing \(D\), \ref{lem:chow-ii-sharp-identity-formula} shows that its
   mixed term with a Weyl operator vanishes; hence \(D(R+W)=D(R)\) for
@@ -875,6 +901,7 @@ is the space of algebraic curvature operators.  We write
   \ref{thm:chow-ii-conjugation-defect-formula} to \(e_i\).
 \end{corollary}
 \begin{proof}
+\sketch
   In the chosen basis, each of
   \(\operatorname{Rc}_0\wedge\operatorname{Rc}_0\),
   \(\operatorname{Rc}\wedge\operatorname{Rc}\),

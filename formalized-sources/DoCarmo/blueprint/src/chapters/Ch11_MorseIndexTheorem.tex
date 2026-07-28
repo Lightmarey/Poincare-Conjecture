@@ -35,6 +35,16 @@ Let $\gamma:[0,a]\to M^n$ be a geodesic and let
   $0<t<a$, conjugate to $\gamma(0)$ along $\gamma$, with each point counted
   according to its multiplicity.
 \end{theorem}
+\begin{proof}
+  \sketch
+  For $t\in[0,a]$, let $i(t)$ be the index of the index form on
+  $\gamma|_{[0,t]}$. By \cref{cor:dc-ch11-2-6}, \cref{lem:dc-ch11-2-7}, and
+  \cref{lem:dc-ch11-2-8}, $i$ is zero near the origin, left-continuous, and its
+  jump at $t$ equals the nullity of $I_t$. By \cref{cor:dc-ch11-2-4}, this nullity
+  is the multiplicity of the conjugate point $\gamma(t)$; away from conjugate
+  points it is zero. Thus $i(a)$ is the sum of the multiplicities of all conjugate
+  points in $(0,a)$, proving \cref{thm:dc-ch11-2-2}.
+\end{proof}
 
 \begin{proposition}[Null space of the index form]
   \label{prop:dc-ch11-2-3}
@@ -166,14 +176,6 @@ preserves its form when $\bar t>t$.
   $i(t+\varepsilon)\geq i(t)+d$.
 \end{proof}
 
-\begin{proof}
-  \sketch
-  By the preceding lemmas, $i$ is zero near the origin, left-continuous, and its
-  jump at $t$ equals the nullity of $I_t$. By \cref{cor:dc-ch11-2-4}, this nullity
-  is the multiplicity of the conjugate point $\gamma(t)$; away from conjugate
-  points it is zero. Thus $i(a)$ is the sum of the multiplicities of all conjugate
-  points in $(0,a)$, proving \cref{thm:dc-ch11-2-2}.
-\end{proof}
 
 \begin{corollary}[Jacobi's criterion]
   \label{cor:dc-ch11-2-9}

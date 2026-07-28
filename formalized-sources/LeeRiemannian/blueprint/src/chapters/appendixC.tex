@@ -72,7 +72,7 @@ If $\mathfrak{g}$ is a Lie algebra, a \textbf{Lie subalgebra} of $\mathfrak{g}$ 
 \item[(c)] Similarly, the space $\mathfrak{gl}(n, \mathbb{C})$ of $n \times n$ complex matrices is a $2n^2$-dimensional (real) Lie algebra under the commutator bracket, isomorphic to the Lie algebra of $\operatorname{GL}(n, \mathbb{C})$ [LeeSM, Prop.\ 8.48].
 \item[(d)] The space $\mathfrak{o}(n)$ of skew-symmetric $n \times n$ real matrices is a Lie subalgebra of $\mathfrak{gl}(n, \mathbb{R})$, isomorphic to the Lie algebra of $O(n)$ [LeeSM, Example 8.47].
 \item[(e)] If $V$ is a vector space, the space $\mathfrak{gl}(V)$ of all linear maps from $V$ to itself is a Lie algebra under the commutator bracket $[A, B] = A \circ B - B \circ A$. In case $V$ is finite-dimensional, $\mathfrak{gl}(V)$ is isomorphic to the Lie algebra of the Lie group $\operatorname{GL}(V)$.
-\item[(f)] A Lie algebra in which all brackets are zero is called an \textbf{abelian Lie algebra}. Every vector space can be made into an abelian Lie algebra by defining all brackets to be zero. The Lie algebra of a connected Lie group is abelian if and only if the group is abelian (see [LeeSM, Problems 8-25 and 20-7]).
+\item[(f)] A Lie algebra in which all brackets are zero is called an \textbf{abelian Lie algebra}. Every vector space can be made into an abelian Lie algebra by defining all brackets to be zero. The Lie algebra of a connected Lie group is abelian if and only if the group is abelian.
 \end{enumerate}
 \end{example}
 
@@ -182,13 +182,6 @@ If $M$ is a smooth manifold, an action by a group $G$ on $M$ is said to be an \t
 \dcref{chC:C.12}
 Group actions provide an important way to construct Lie groups out of other Lie groups. Suppose $H$ and $N$ are Lie groups and $\theta : H \times N \to N$ is a smooth left action of $H$ on $N$ by automorphisms of $N$, meaning that for each $h \in H$, the map $\theta_h : N \to N$ given by $\theta_h(n) = h \cdot n$ is a Lie group automorphism. The \textit{semidirect product of $H$ and $N$} determined by $\theta$, denoted by $N \rtimes_\theta H$, is the Lie group whose underlying manifold is the Cartesian product $N \times H$, and whose group multiplication is $(n,h)(n',h') = (n\theta_h(n'),hh')$.
 \end{example}
-
-\begin{exercise}
-\label{exer:semidirect-product-verification}
-\dcref{chC:C.13}
-\uses{ex:semidirect-products}
-Verify that $N \rtimes_\theta H$ is indeed a Lie group with the multiplication defined above, and with $(e,e)$ identity and $(n,h)^{-1} = (\theta_{h^{-1}}(n^{-1}),h^{-1})$.
-\end{exercise}
 
 Now suppose $G$ is a Lie group, and $M$ and $N$ are smooth manifolds endowed with $G$-actions (on the left, say). A map $F : M \to N$ is said to be \textit{equivariant} with respect to the given $G$ actions if $F(\varphi \cdot x) = \varphi \cdot F(x)$ for all $\varphi \in G$ and $x \in M$.
 

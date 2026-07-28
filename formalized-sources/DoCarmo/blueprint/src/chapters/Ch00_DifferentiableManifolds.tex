@@ -171,7 +171,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   which is independent of $\alpha$ and equals
   $d\varphi_p(v)=\big(\frac{\partial y_i}{\partial x_j}\big)(x_j'(0))$. Thus
   $d\varphi_p$ is linear with matrix $\big(\frac{\partial y_i}{\partial x_j}\big)$
-  in the associated bases. $\square$
+  in the associated bases.
 \end{proof}
 
 \begin{definition}[differential]
@@ -308,7 +308,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   $\tilde V=W_1\cap U_1$, $V=\mathbf{x}_1(\tilde V)$, the restriction
   $\mathbf{x}_2\circ\tilde\varphi\circ\mathbf{x}_1^{-1}:V\to\varphi(V)$ is a
   diffeomorphism, hence an embedding. This is the normal-form argument of
-  \cref{lem:dc-ch0-3-7-normalform}. $\square$
+  \cref{lem:dc-ch0-3-7-normalform}.
 
 \end{proof}
 
@@ -333,7 +333,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   around $\varphi(p)$, a homeomorphism onto its image. The subspace topology on $U$ is
   therefore induced by $\varphi$ (each factor induces its topology, and inducing maps
   compose), and $\varphi\,|\,U$ is injective because the chart, the linear inclusion, and
-  the codomain chart are each injective. An injective inducing map is an embedding. $\square$
+  the codomain chart are each injective. An injective inducing map is an embedding.
 \end{proof}
 
 \begin{lemma}[local immersion normal form in normed spaces]
@@ -355,7 +355,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   open neighborhood of $(q,0)$ onto an open subset of $F$. The slice inclusion
   $u\mapsto(u,0)$ is a topological embedding, and $g$ agrees with $\mathrm{Ext}\circ(u\mapsto(u,0))$
   near $q$; being a composite of an embedding with a homeomorphism onto its image, $g$ is a
-  topological embedding on a neighborhood of $q$. $\square$
+  topological embedding on a neighborhood of $q$.
 \end{proof}
 
 \section{Other examples of manifolds. Orientation}
@@ -420,7 +420,10 @@ Throughout, ``differentiable'' means $C^\infty$.
   $\mathbf{x}:U\to M^k$, $\mathbf{y}:V\to M^k$ are two parametrizations with
   $\mathbf{x}(U)\cap\mathbf{y}(V)=W\neq\phi$ then
   $h=\mathbf{x}^{-1}\circ\mathbf{y}:\mathbf{y}^{-1}(W)\to\mathbf{x}^{-1}(W)$ is a
-  diffeomorphism.
+  diffeomorphism. Consequently, $M^k$ is a differentiable manifold of dimension
+  $k$, and the inclusion $i:M^k\subset\mathbb{R}^n$ is an embedding.
+\end{example}
+\begin{proof}
   \sketch
   $h$ is a homeomorphism (composition of homeomorphisms). For
   $r\in\mathbf{y}^{-1}(W)$, $q=h(r)$, write
@@ -432,11 +435,9 @@ Throughout, ``differentiable'' means $C^\infty$.
   the inverse function theorem $F^{-1}$ exists and is differentiable on a
   neighborhood $Q$ of $\mathbf{x}(q)$; choosing $R$ with $\mathbf{y}(R)\subset Q$,
   $h\,|\,R=F^{-1}\circ\mathbf{y}\,|\,R$ is differentiable, hence $h$ is, and
-  similarly $h^{-1}$. $\square$ By \cref{ex:dc-ch0-3-6}, $M^k$ is a differentiable
-  manifold of dimension $k$ and the inclusion
-  $i:M^k\subset\mathbb{R}^n$ is an embedding, i.e. $M^k$ is a submanifold of
-  $\mathbb{R}^n$.
-\end{example}
+  similarly $h^{-1}$. The final assertion follows from
+  \cref{ex:dc-ch0-3-6}.
+\end{proof}
 
 \begin{example}[inverse image of a regular value]
   \label{ex:dc-ch0-4-3}
@@ -464,7 +465,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   $V=\varphi^{-1}(K^{m+k})\cap Q$, $\varphi$ maps $V$ diffeomorphically onto
   $K^m\times K^k$, and $\mathbf{x}:K^k\to V$,
   $\mathbf{x}(x_1,\dots,x_k)=\varphi^{-1}(a_1,\dots,a_m,x_1,\dots,x_k)$, satisfies
-  (a),(b) of \cref{ex:dc-ch0-4-2}. Hence $F^{-1}(a)$ is a regular surface. $\square$
+  (a),(b) of \cref{ex:dc-ch0-4-2}. Hence $F^{-1}(a)$ is a regular surface.
 \end{proof}
 
 \begin{definition}[orientable manifold; orientation]
@@ -589,7 +590,8 @@ Throughout, ``differentiable'' means $C^\infty$.
   \dcref{ch0:5.2}
   \leanok
   Let $X,Y$ be differentiable vector fields on $M$. Then there exists a unique
-  vector field $Z$ such that $Zf=(XY-YX)f$ for all $f\in\mathcal{D}$.
+  differentiable vector field $Z$ such that $Zf=(XY-YX)f$ for all
+  $f\in\mathcal{D}$. This field is the \emph{bracket} $[X,Y]=XY-YX$.
   Existence, uniqueness, and smoothness are isolated in
   \cref{lem:dc-ch0-5-2-commutator,lem:dc-ch0-5-2-unique,lem:dc-ch0-5-2-smooth};
   the structural identities are treated in \cref{lem:dc-ch0-5-3-antisymm,lem:dc-ch0-5-3-jacobi}.
@@ -614,8 +616,8 @@ Throughout, ``differentiable'' means $C^\infty$.
   
   proving uniqueness. For existence, define $Z_\alpha$ on each
   $\mathbf{x}_\alpha(U_\alpha)$ by this expression; by uniqueness $Z_\alpha=Z_\beta$
-  on overlaps, so $Z$ is defined over all of $M$. $\square$ The field $Z$ is the
-  \emph{bracket} $[X,Y]=XY-YX$; it is differentiable.
+  on overlaps, so $Z$ is defined over all of $M$. The coordinate formula shows
+  that it is differentiable.
 \end{proof}
 
 \begin{lemma}[existence characterization: the bracket acts as the commutator of derivations]
@@ -625,7 +627,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   \leanok
   \uses{lem:dc-ch0-5-2}
   Let $X,Y$ be smooth vector fields on a boundaryless manifold $M$ and $f$ a smooth
-  real function. Then the bracket field $[X,Y]=\texttt{mlieBracket}$ acts on $f$ as the
+  real function. Then the bracket field $[X,Y]$ acts on $f$ as the
   commutator of the derivations $X$ and $Y$:
   $$
   [X,Y]f = X(Yf)-Y(Xf), \qquad\text{i.e.}\qquad
@@ -639,7 +641,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   In a chart around $p$, the boundaryless hypothesis identifies the model set with the
   model space. Pull back $X,Y$ to this chart and apply the Euclidean commutator identity
   $\mathrm{d}f([V,W])=\mathrm{d}(\mathrm{d}f\,W)(V)-\mathrm{d}(\mathrm{d}f\,V)(W)$;
-  the chain rule transports the result back to $M$. $\square$
+  the chain rule transports the result back to $M$.
 \end{proof}
 
 \begin{lemma}[uniqueness: a vector field is determined by its action on functions]
@@ -660,10 +662,10 @@ Throughout, ``differentiable'' means $C^\infty$.
   $\mathrm{d}f_p(v)=0$ for every $f$ differentiable at $p$, then $v=0$
   (apply it to $Z_1(p)-Z_2(p)$ using linearity of $\mathrm{d}f_p$). For a
   continuous linear functional $L$ on the model space $E$, the coordinate function
-  $f_L=L\circ\mathbf{x}$ (post-composing the chart $\mathbf{x}=\texttt{extChartAt}$)
+  $f_L=L\circ\mathbf{x}$
   is differentiable at $p$, and since $\mathrm{d}\mathbf{x}_p=\mathrm{id}$ on
   $T_pM$ one has $\mathrm{d}(f_L)_p(v)=L(v)$. Thus $L(v)=0$ for all such $L$, and
-  continuous functionals separate points of a normed space, so $v=0$. $\square$
+  continuous functionals separate points of a normed space, so $v=0$.
 \end{proof}
 
 \begin{lemma}[smoothness of the bracket field]
@@ -803,16 +805,17 @@ Throughout, ``differentiable'' means $C^\infty$.
   $[[X,Y],Z]=XYZ-YXZ-ZXY+ZYX$ and
   $[X,[Y,Z]]+[Y,[Z,X]]=XYZ-XZY-YZX+ZYX+YZX-YXZ-ZXY+XZY$; the second members
   agree, and (c) follows using (a). For (d),
-  $[fX,gY]=fX(gY)-gY(fX)=fgXY+fX(g)Y-gfYX-gY(f)X=fg[X,Y]+fX(g)Y-gY(f)X$. $\square$
-  
-  For a differentiable vector field $X$ and $p\in M$, there exist a neighborhood $U$
-  of $p$, an interval
-  $(-\delta,\delta)$, and a differentiable $\varphi:(-\delta,\delta)\times U\to M$
-  such that $t\mapsto\varphi(t,q)$ is the unique curve with
-  $\frac{\partial\varphi}{\partial t}=X(\varphi(t,q))$ and $\varphi(0,q)=q$. A curve
-  $\alpha$ with $\alpha'(t)=X(\alpha(t))$, $\alpha(0)=q$, is a \emph{trajectory} of $X$;
-  $\varphi_t(q)=\varphi(t,q)$, $\varphi_t:U\to M$, is the \emph{local flow} of $X$.
+  $[fX,gY]=fX(gY)-gY(fX)=fgXY+fX(g)Y-gfYX-gY(f)X=fg[X,Y]+fX(g)Y-gY(f)X$.
 \end{proof}
+
+For a differentiable vector field $X$ and $p\in M$, there exist a neighborhood
+$U$ of $p$, an interval $(-\delta,\delta)$, and a differentiable map
+$\varphi:(-\delta,\delta)\times U\to M$ such that $t\mapsto\varphi(t,q)$ is the
+unique curve with
+$\frac{\partial\varphi}{\partial t}=X(\varphi(t,q))$ and $\varphi(0,q)=q$. A
+curve $\alpha$ with $\alpha'(t)=X(\alpha(t))$, $\alpha(0)=q$, is a
+\emph{trajectory} of $X$, and $\varphi_t(q)=\varphi(t,q)$ is the \emph{local
+flow} of $X$.
 
 \begin{proposition}[bracket as Lie derivative along the flow]
   \label{prop:dc-ch0-5-4}
@@ -838,9 +841,6 @@ Throughout, ``differentiable'' means $C^\infty$.
   $$
   \lim_{t\to0}\frac1t[Y-d\varphi_t Y]f(\varphi_t p)=\lim_{t\to0}\frac{(Yf)(\varphi_t p)-Yf(p)}{t}-(Yg(0,p))=(X(Yf))(p)-(Y(Xf))(p)=([X,Y]f)(p).
   $$
-
-  $\square$
-
 \end{proof}
 
 \begin{lemma}[Hadamard-type lemma from calculus]
@@ -863,26 +863,23 @@ Throughout, ``differentiable'' means $C^\infty$.
   domination bound coming from continuity of $\frac{\partial h}{\partial t}$ on the
   compact set swept by $s\in[0,1]$ and $q$ in a closed ball), and
   $g(0,q)=\int_0^1\frac{\partial h}{\partial t}(0,q)\,ds=\frac{\partial h}{\partial t}(0,q)$.
-  $\square$
-
-  A manifold need not be Hausdorff or have a countable coordinate basis. For a
-  connected manifold these two conditions are equivalent to existence of a
-  differentiable partition of unity (\cref{thm:dc-ch0-5-6}). Whitney's theorem gives,
-  for an $n$-manifold with both conditions, an immersion into $\mathbb{R}^{2n}$ and
-  an embedding into $\mathbb{R}^{2n+1}$; for $n>1$ the bounds refine to
-  $\mathbb{R}^{2n-1}$ and $\mathbb{R}^{2n}$, respectively (see [Hi]).
-  
-  A family of open sets $V_\alpha\subset M$ with $\bigcup_\alpha V_\alpha=M$ is
-  \emph{locally finite} if every $p\in M$ has a neighborhood $W$ with $W\cap V_\alpha\neq\phi$
-  for only finitely many indices. The \emph{support} of $f:M\to\mathbb{R}$ is the
-  closure of $\{f\neq0\}$. A family $\{f_\alpha\}$ of differentiable
-  $f_\alpha:M\to\mathbb{R}$ is a \emph{differentiable partition of unity} if:
-  (1) $f_\alpha\ge0$ and $\mathrm{supp}\,f_\alpha\subset$ a coordinate neighborhood
-  $V_\alpha=\mathbf{x}_\alpha(U_\alpha)$ of a differentiable structure;
-  (2) $\{V_\alpha\}$ is locally finite;
-  (3) $\sum_\alpha f_\alpha(p)=1$ for all $p\in M$.
-  The partition is \emph{subordinate to the covering} $\{V_\alpha\}$.
 \end{proof}
+
+A manifold need not be Hausdorff or have a countable coordinate basis. For a
+connected manifold these two conditions are equivalent to existence of a
+differentiable partition of unity (\cref{thm:dc-ch0-5-6}). Whitney's theorem
+gives, for an $n$-manifold with both conditions, an immersion into
+$\mathbb{R}^{2n}$ and an embedding into $\mathbb{R}^{2n+1}$; for $n>1$ the
+bounds refine to $\mathbb{R}^{2n-1}$ and $\mathbb{R}^{2n}$, respectively.
+
+A family of open sets $V_\alpha\subset M$ with $\bigcup_\alpha V_\alpha=M$ is
+\emph{locally finite} if every $p\in M$ has a neighborhood $W$ meeting only
+finitely many $V_\alpha$. The \emph{support} of $f:M\to\mathbb{R}$ is the
+closure of $\{f\neq0\}$. A family $\{f_\alpha\}$ of differentiable functions is
+a \emph{differentiable partition of unity} if $f_\alpha\ge0$, each support lies
+in a coordinate neighborhood $V_\alpha$, the family $\{V_\alpha\}$ is locally
+finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
+\emph{subordinate} to $\{V_\alpha\}$.
 
 \begin{theorem}[existence of partitions of unity]
   \label{thm:dc-ch0-5-6}

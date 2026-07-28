@@ -1,60 +1,17 @@
-\chapter{A comparison geometry approach to the Ricci
-flow}\label{chap:comparison-geometry}
+\chapter{A comparison geometry approach to the Ricci flow}\label{chap:comparison-geometry}
 \label{lengthfn}
 
-In this section we discuss Perelman's notions, introduced in
-\cite{Perelman1}, of the ${\mathcal L}$-length in the context of generalized Ricci flows. This is a
-functional defined on paths in space-time parameterized by backward
-time, denoted $\tau$. The ${\mathcal L}$-length is the analogue in
-this context of the energy for paths in a Riemannian manifold. We
-derive the associated Euler-Lagrange equation for the ${\mathcal
-L}$-length; the critical paths are then ${\mathcal
-L}$-geodesics. Using ${\mathcal
-L}$-geodesics we define the ${\mathcal L}$-exponential
-mapping. We derive the
-${\mathcal L}$-Jacobi equation
-and relate ${\mathcal L}$-Jacobi fields to the differential of the ${\mathcal L}$-exponential
-mapping. There is the analogue of the interior of the cut locus. It
-is the open subset, depending on the parameter $\tau$, of the
-tangent space of initial vectors for ${\mathcal L}$-geodesics which
-are minimizing out to time $\tau$ and at which the ${\mathcal
-L}$-geodesic map is a local diffeomorphism at time $\tau$. The
-difference between this situation and that of geodesics in a
-Riemannian manifold is that there is such an open set in the tangent
-space for each positive $\tau$. The analogue of the fact that, for
-ordinary geodesics, the interior of the cut locus in the tangent
-space is star-shaped from the origin is that the open set of `good'
-initial conditions at $\tau$ is contained the open subset of `good'
-initial conditions at time $\tau'$ for any $\tau'<\tau$. All of
-these results are local and are established in the context of
-generalized Ricci flows. In the next section we consider the case of
-ordinary Ricci flows, where we are able to extend our results over
-the entire manifold.
-
-There are two applications of this theory in our study. In
-Section~\ref{noncoll} we use the theory of ${\mathcal L}$-geodesics and the
-associated notion of reduced volume to establish non-collapsing results. These
-are crucial when we wish to take blow-up limits in studying singularities in
-Ricci flows and Ricci flows with surgery. The second application will be in
-Section~\ref{kappasect} to $\kappa$-solutions (ancient, $\kappa$-non-collapsed
-solutions of bounded non-negative curvature). Here the second-order
-inequalities on the length function that we establish in this section are used
-to prove the existence of an asymptotic soliton for any $\kappa$-solution. This
-asymptotic soliton is important for giving qualitative results on
-$\kappa$-solutions.
+For an $n$-dimensional generalized Ricci flow, this chapter develops
+Perelman's ${\mathcal L}$-geometry: critical curves, the
+${\mathcal L}$-exponential map, reduced length, and reduced volume
+\cite{Perelman1}.
 
 
 \section{${\mathcal L}$-length and ${\mathcal L}$-geodesics}
 
-The running assumption throughout this section is that we have an
-$n$-dimensional generalized Ricci flow $({\mathcal M},G)$. In
-particular, the space-time ${\mathcal M}$ is a smooth manifold of
-dimension $n+1$ whose boundary lies at the initial and final times
-(if they exist). Recall that its tangent bundle naturally decomposes
-as the direct sum of the sub-line bundle spanned by the vector field
-$\chi$ and the horizontal tangent bundle, denoted ${\mathcal
-HT}{\mathcal M}$. We also fix a time $T$ in the time interval of
-definition of the flow distinct from the initial time.
+Fix an $n$-dimensional generalized Ricci flow $({\mathcal M},G)$ and
+a time $T$ distinct from its initial time. Write
+$T{\mathcal M}=\langle\chi\rangle\oplus {\mathcal HT}{\mathcal M}$.
 
 
 \begin{definition}[Parameterized by backward time]\label{def:parameterized-by-backward-time}
@@ -150,6 +107,7 @@ along $\gamma$.
 \end{remark}
 
 \begin{proof}
+\sketch
 \uses{def:l-length,def:ricci-flow}
 First, let us suppose that the
 generalized Ricci flow is an ordinary Ricci flow $(M,g(t))$. Let
@@ -247,6 +205,7 @@ $\tau_2$).
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{def:l-geodesic}
 Since the ODE in Equation~(\ref{reparam})  is non-singular even at
 zero, it follows that $A(s)$ is a smooth function of $s$ in a
@@ -288,6 +247,7 @@ first-order derivative at $\tau_2$.
 
 
 \begin{proof}
+\sketch
 \uses{lem:l-length-euler-lagrange}
 Given a family $\gamma(\tau,u)$ of ${\mathcal L}$-geodesics, then
 from Lemma~\ref{lem:l-length-euler-lagrange} we have
@@ -340,6 +300,7 @@ limit.
 
 
 \begin{proof}
+\sketch
 \uses{def:l-jacobi-field}
 We use the variable $s=\sqrt{\tau}$, and let $A(s)$ be the
 horizontal component of $d\gamma/ds$. Then differentiating the
@@ -406,6 +367,7 @@ X(\tau_2,u_1,0)\rangle|_{u_1=0}\\
 
 
 \begin{proof}
+\sketch
 \uses{lem:l-length-euler-lagrange}
 According to Equation~(\ref{variation}) we have
 \begin{eqnarray*}
@@ -459,6 +421,7 @@ and $Y_2$.
 \end{corollary}
 
 \begin{proof}
+\sketch
 \uses{lem:l-length-second-variation-formula}
 Given $Y_1$ and $Y_2$ along $\gamma$ we construct a two-parameter
 family of curves parameterized by backward time as follows. Let
@@ -496,7 +459,8 @@ are equal, the corollary follows.
 Now we are in a position to establish Proposition~\ref{prop:l-length-second-variation}.
 
 
-\begin{proof}(Of Proposition~\ref{prop:l-length-second-variation})
+\begin{proof}
+\sketch
 \uses{lem:l-length-second-variation-formula,cor:l-jacobi-bilinear-symmetric,def:l-geodesic-minimizing}
 From the equation in Lemma~\ref{lem:l-length-second-variation-formula}, the equality of the second variation
 of ${\mathcal L}$-length at $u=0$ and the integral is immediate from the fact
@@ -570,6 +534,7 @@ L$ is a smooth function.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:l-length-euler-lagrange}
 The tangent vector in space-time of  the ${\mathcal L}$-geodesic
 $\gamma$ is the vector field $-\chi+X_\gamma(\tau)$ along $\gamma$,
@@ -604,6 +569,7 @@ the limits as $\tau\rightarrow 0$.
 
 
 \begin{proof}
+\sketch
 \uses{def:l-jacobi-field}
 Let $Z(u)$ be a curve in ${\mathcal D}_x^{\bar\tau}$ with $Z(0)=Z$.
 Let $\gamma_u$ be the ${\mathcal L}$-geodesic starting at $x$ with
@@ -616,8 +582,9 @@ complete the proof in the case when $\tau_1>0$ we need only see that
 $\nabla_X\widetilde Y(\tau_1)=\nabla_Y\widetilde X(\tau_1)$. This is clear
 since, as we have already seen, $[\widetilde X,\widetilde Y]=0$.
 
-  When $\tau_1=0$, we complete the
-argument using the following claim.
+  When $\tau_1=0$, the substitution $s=\sqrt\tau$ gives the stated
+limit identity.
+\end{proof}
 
 \begin{claim}[Tangential limit commutes with the Jacobi limit]\label{claim:l-exp-tau-derivative-limit}
 If $\tau_1=0$, then
@@ -625,10 +592,9 @@ $$\frac{\partial}{\partial u}\left(\lim_{\tau\rightarrow 0}\sqrt{\tau}X(\tau,u)\
 \lim_{\tau\rightarrow 0}\sqrt{\tau}\frac{d}{d\tau}Y(\tau).$$
 \end{claim}
 
-\begin{proof} This follows immediately by changing variables,
+\begin{proof}
+\sketch This follows by the substitution $s=\sqrt{\tau}$.
 replacing $\tau$ by $s=\sqrt{\tau}$.
-\end{proof}
-This completes the proof of Lemma~\ref{lem:l-exponential-differential}.
 \end{proof}
 
 \subsection{Positivity of the second variation at a minimizing
@@ -655,6 +621,7 @@ with equality if and only if $Y=0$.
 \end{corollary}
 
 \begin{proof}
+\sketch
 \uses{prop:l-length-second-variation,lem:l-exponential-differential}
 According to Proposition~\ref{prop:l-length-second-variation} the second variation  in the
 $Y$-direction is non-negative and vanishes if and only if $Y$ is an ${\mathcal
@@ -687,6 +654,7 @@ Y)\rangle.$$
 
 
 \begin{proof}
+\sketch
 \uses{lem:l-exponential-differential}
 Since ${\mathcal D}^{\tau}_x$ is an open subset of $T_x(M_{T-\tau_1})$, it
 follows that for any $\widetilde Y\in T_x(M_{T-\tau_1})$ there is a
@@ -731,6 +699,7 @@ neighborhood of $Z$ in $T_xM_{T-\tau_1}$ to $M_{T-\tau}$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:l-exponential-differential}
 Fix $x$ and $Z$ as in the statement of the lemma. To establish the result it
 suffices to prove that there is $\delta>0$ such that $d_Z{\mathcal L}\mathrm{exp}_x^{\tau}$ is an isomorphism for all $\tau_1<\tau<\tau_1+\delta$. By
@@ -868,6 +837,7 @@ $$L_x\circ {\mathcal L}\exp_x|_{\widetilde{\mathcal U}_x}
 
 
 \begin{proof}
+\sketch
 \uses{def:l-injectivity-set}
 We consider the differential of ${\mathcal L}\exp_x$ at any
  $(Z,\tau)\in\widetilde {\mathcal U}_x$. By construction
@@ -933,6 +903,7 @@ T_xM_{T-\tau_1}$.
 
 
 \begin{proof}
+\sketch
 \uses{lem:l-exponential-local-diffeomorphism,lem:l-exponential-differential,prop:l-length-second-variation}
 For $Z\in \widetilde{\mathcal U}_x(\bar\tau')$,
  we shall show that:
@@ -1006,6 +977,7 @@ image of  $\gamma|_{(\tau_2,\bar\tau]}$.
 \end{proposition}
 
 \begin{proof}
+\sketch
 \uses{def:l-jacobi-field,prop:l-length-second-variation}
 It suffices to show that the differential of ${\mathcal L}\mathrm{exp}_{q_2}^\tau$ is an isomorphism for all $\tau\in
 (\tau_2,\bar\tau]$. If this is not the case, then there is a
@@ -1042,6 +1014,7 @@ q)-\sqrt{\bar\tau}\left(R( q)+|X(\bar\tau)|^2\right).
 
 
 \begin{proof}
+\sketch
 \uses{cor:l-length-gradient}
 By definition and the Fundamental Theorem of Calculus, we have
 $$\frac{d}{d\tau}L_x(\gamma(\tau))= \sqrt{\tau}\left(R(\gamma(\tau))+|X(\tau)|^2\right).$$
@@ -1118,6 +1091,7 @@ Then
 \end{claim}
 
 \begin{proof}
+\sketch
 We can break $\frac{\partial}{\partial\tau}\langle \nabla_{X}Y,Y\rangle $ into
 two parts: the first  assumes that the metric is constant and the second deals
 with the variation with $\tau$ of the metric. The first contribution is the
@@ -1168,6 +1142,7 @@ Proposition~\ref{prop:l-length-second-variation-general}.
 
 
 \begin{proof}
+\sketch
 \uses{lem:l-length-second-variation-formula,lem:l-jacobi-equation,claim:covariant-derivative-inner-product-formula}
 According to Lemma~\ref{lem:l-length-second-variation-formula} we have
 $$\frac{d^2}{du^2}{\mathcal L}_{u=0}=2\sqrt{\bar
@@ -1340,6 +1315,7 @@ Y(\bar\tau)).$$
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{cor:l-length-gradient}
 Let $\gamma(\tau,u)$ be a one-parameter family of ${\mathcal
 L}$-geodesics emanating from $x$ with $\gamma(u,0)$ being the
@@ -1388,6 +1364,7 @@ $$\frac{1}{2\sqrt{\bar\tau}(\sqrt{\bar\tau}-\sqrt{\tau_1})}|Y(\bar\tau)|^2
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:l-length-hessian-jacobi-formula}
 From the definition of an adapted vector field  $Y(\tau)$  we have
 \begin{equation*}
@@ -1407,6 +1384,7 @@ Now we are ready to begin the proof of Proposition~\ref{prop:l-length-hessian-in
 
 
 \begin{proof}
+\sketch
 \uses{lem:l-geodesic-family-existence,prop:l-length-second-variation-general,cor:l-length-gradient,lem:adapted-vector-field-norm,prop:l-length-second-variation}
 Let $\tilde\gamma(\tau,u)$ be a family  of curves with
 $\gamma(\tau,0)=\gamma_Z$ and with $\frac{\partial}{\partial
@@ -1535,29 +1513,6 @@ at $u=v=0$ agrees with the second derivative of the length of the
 original family $\widetilde \gamma$ in the $u$-direction.
 
 
-\begin{claim}[Mixed second partials vanish]\label{claim:mixed-partials-vanish}
-\uses{lem:l-length-second-variation-formula}
-$$\frac{\partial}{\partial v}\frac{\partial}{\partial w}{\mathcal L}(\mu)|_{u=v=0}=
-\frac{\partial}{\partial w}\frac{\partial}{\partial v}{\mathcal
-L}(\mu)|_{v=w=0}=0.$$
-\end{claim}
-
-
-\begin{proof}
-Of course, the second partial derivatives are equal. According to
-Lemma~\ref{lem:l-length-second-variation-formula} we have
-$$\frac{\partial}{\partial v}\frac{\partial}{\partial w}{\mathcal L}(\mu)|_{v=w=0}
-=2\sqrt{\bar\tau} \widetilde Y'(\bar\tau)\langle \widetilde
-W(\bar\tau),X(\bar\tau)\rangle-\int_{\tau_1}^{\bar\tau}2\sqrt{\tau}\langle
-\Jac(\widetilde Y'),W\rangle d\tau.$$ Since $W(\bar\tau)=0$ and
-since $\nabla_{\widetilde Y'}(\widetilde W)=\nabla_W(\widetilde
-Y')$, we see that the boundary term in the above expression
-vanishes. The integral vanishes since $\widetilde Y'$ is an
-${\mathcal L}$-Jacobi field.
-\end{proof}
-
-
-
 If Inequality~(\ref{Hessin}) is an equality, then
 $$\frac{\partial^2}{\partial v^2}{\mathcal L}(\mu)|_{u=v=0}=\frac{\partial^2}{\partial u^2}{\mathcal
 L}(\mu)|_{u=v=0}.$$ We write $\partial/\partial u=\partial/\partial
@@ -1589,6 +1544,24 @@ the adapted vector field $Y(\tau)$ is also an ${\mathcal L}$-Jacobi
 field.
 \end{proof}
 
+
+\begin{claim}[Mixed second partials vanish]\label{claim:mixed-partials-vanish}
+\uses{lem:l-length-second-variation-formula}
+$$\frac{\partial}{\partial v}\frac{\partial}{\partial w}{\mathcal L}(\mu)|_{u=v=0}=
+\frac{\partial}{\partial w}\frac{\partial}{\partial v}{\mathcal
+L}(\mu)|_{v=w=0}=0.$$
+\end{claim}
+\begin{proof}
+\sketch Of course, the second partial derivatives are equal. According to
+Lemma~\ref{lem:l-length-second-variation-formula} we have
+$$\frac{\partial}{\partial v}\frac{\partial}{\partial w}{\mathcal L}(\mu)|_{v=w=0}
+=2\sqrt{\bar\tau} \widetilde Y'(\bar\tau)\langle \widetilde
+W(\bar\tau),X(\bar\tau)\rangle-\int_{\tau_1}^{\bar\tau}2\sqrt{\tau}\langle
+\Jac(\widetilde Y'),W\rangle d\tau.$$ Since $W(\bar\tau)=0$ and
+since $\nabla_{\widetilde Y'}(\widetilde W)=\nabla_W(\widetilde
+Y')$, the boundary term vanishes. The integral vanishes since
+$\widetilde Y'$ is an ${\mathcal L}$-Jacobi field.
+\end{proof}
 
 \subsection{Inequalities for $\triangle L_x^{\bar\tau}$}
 
@@ -1629,6 +1602,7 @@ $$\Ric+\frac{1}{2\sqrt{\bar\tau}}\Hess(L_x^{\bar\tau})
 
 
 \begin{proof}
+\sketch
 \uses{prop:l-length-hessian-inequality,lem:adapted-jacobi-hessian-relation}
 Choose an orthonormal basis $\{Y_{\alpha}\}$ for
 $T_q(M_{T-\bar\tau})$. For each $\alpha$, extend $\{Y_{\alpha}\}$ to
@@ -1658,38 +1632,6 @@ Inequality~(\ref{Hessineq1}) over $\alpha$ gives
 To establish Inequality~(\ref{lineq}) it remains to prove the
 following claim.
 
-\begin{claim}[Summed $H(X,Y_\alpha)$ formula]\label{claim:h-sum-formula}
-\label{Hclaim}
-\uses{prop:l-length-hessian-inequality}
-$$\sum_\alpha
-H(X,Y_\alpha)=\frac{(\sqrt{\tau}-\sqrt{\tau_1})^2}{(\sqrt{\bar\tau}-\sqrt{\tau_1})^2}H(X).$$
-\end{claim}
-
-
-\begin{proof}
-\uses{lem:div-ricci-scalar-curvature,thm:curvature-evolution}
-To prove the claim we sum Equation~(\ref{Heqn}) giving
-\begin{eqnarray*}
-I^2(\tau) \sum_{\alpha}H(X,Y_{\alpha}) &= & \sum_\alpha
-H(X,W_\alpha)
-\\
-& = & -\triangle R + 2\Ric(X,X) - 4\langle \nabla R,X\rangle
-+4\sum_{\alpha}(\nabla_{W_\alpha} \Ric)(W_{\alpha},X) \\ & &
--2\sum_{\alpha}\Ric_{\tau}( W_{\alpha},W_{\alpha})  +2|\Ric|^{2} -\frac{1}{\tau}R.
-\end{eqnarray*}
-
-Taking the trace of the second Bianchi identity, we get
-$$\sum_{\alpha}(\nabla_{W_\alpha}
-\Ric)(W_{\alpha},X) =\frac{1}{2}\langle \nabla R,X\rangle .$$ In addition
-by~(\ref{Revol}), recalling that $\partial R/\partial\tau=-\partial R/\partial
-t$, we have
-$$\frac{\partial R}{\partial \tau} = -\triangle R - 2|\Ric|^{2}.$$
-On the other hand, $$\frac{\partial R}{\partial\tau} =
-\partial(g^{ij}R_{ij})/\partial{\tau}= -2|\Ric|^{2} + \sum_{\alpha}\frac{\partial\Ric}{\partial\tau}(W_{\alpha}, W_{\alpha}),$$ and so
-$\sum_{\alpha}\frac{\partial\Ric}{\partial\tau}(W_{\alpha},W_{\alpha}) = -\triangle R$. Putting
-all this together gives
-$$I^2(\tau)\sum_{\alpha}H(X,Y_{\alpha})= H(X).$$
-\end{proof}
 
 Clearly, Inequality~(\ref{lineq}) follows immediately from
 Inequality~(\ref{triLinequ}) and the claim. The last statement of
@@ -1698,6 +1640,30 @@ Proposition~\ref{prop:l-length-hessian-inequality} and Lemma~\ref{lem:adapted-ja
 the proof of Proposition~\ref{prop:l-length-laplacian-inequality}.
 \end{proof}
 
+
+\begin{claim}[Summed $H(X,Y_\alpha)$ formula]\label{claim:h-sum-formula}
+\label{Hclaim}
+\uses{prop:l-length-hessian-inequality}
+$$\sum_\alpha
+H(X,Y_\alpha)=\frac{(\sqrt{\tau}-\sqrt{\tau_1})^2}{(\sqrt{\bar\tau}-\sqrt{\tau_1})^2}H(X).$$
+\end{claim}
+\begin{proof}
+\sketch
+\uses{lem:div-ricci-scalar-curvature,thm:curvature-evolution}
+To prove the claim we sum Equation~(\ref{Heqn}) giving
+\begin{eqnarray*}
+I^2(\tau) \sum_{\alpha}H(X,Y_{\alpha}) &= & \sum_\alpha H(X,W_\alpha)
+\\
+& = & -\triangle R + 2\Ric(X,X) - 4\langle \nabla R,X\rangle
++4\sum_{\alpha}(\nabla_{W_\alpha} \Ric)(W_{\alpha},X) \\ & &
+-2\sum_{\alpha}\Ric_{\tau}( W_{\alpha},W_{\alpha}) +2|\Ric|^{2} -\frac{1}{\tau}R.
+\end{eqnarray*}
+Taking the trace of the second Bianchi identity gives
+$$\sum_{\alpha}(\nabla_{W_\alpha}\Ric)(W_{\alpha},X)=\frac{1}{2}\langle\nabla R,X\rangle.$$ By~(\ref{Revol}),
+$\partial R/\partial\tau=-\triangle R-2|\Ric|^2$, while differentiating
+$R=g^{ij}R_{ij}$ gives $\sum_\alpha\partial_\tau\Ric(W_\alpha,W_\alpha)=-\triangle R$.
+Thus $I^2(\tau)\sum_\alpha H(X,Y_\alpha)=H(X)$.
+\end{proof}
 
 \section{Reduced length}\label{sect:redln}
 
@@ -1773,6 +1739,7 @@ Equation~(\ref{Kequat}) vanishes.
 
 
 \begin{proof}
+\sketch
 \uses{prop:l-length-laplacian-inequality}
 Using the ${\mathcal L}$-geodesic equation and the definition of $H$ we have
 \begin{eqnarray*}
@@ -1828,6 +1795,7 @@ K}_{\tau_1}^{\bar\tau}(\gamma_Z)}{2\sqrt{\bar\tau}(\sqrt{\bar\tau}-\sqrt{\tau_1}
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:l-length-tau-derivative,cor:l-length-gradient,lem:reduced-length-k-formula,prop:l-length-laplacian-inequality}
  It follows immediately from Equation~(\ref{Ltaueqn}) that
 $$\frac{\partial l_x}{\partial \tau}=R-\frac{1}{2}(R+|X|^2)-\frac{l_x}{2\tau}.$$
@@ -1868,6 +1836,7 @@ R(q)-\frac{l_x(q)}{\bar\tau}+\frac{K^{\bar\tau}(\gamma_Z)}{2\bar\tau^{3/2}}
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{lem:reduced-length-differential-inequalities}
 This is immediate from the formulas in the previous lemma.
 \end{proof}
@@ -1933,6 +1902,7 @@ l(Z,\tau)}{2\tau}.$$
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{def:reduced-length-tangential}
 By the Fundamental Theorem of Calculus
 $$\frac{\partial}{\partial\tau}\widetilde L(Z,\tau)=\sqrt{\tau}\left(R(\gamma_z(\tau))+|X(\tau)|^2\right).$$
@@ -1951,6 +1921,7 @@ l(Z,\tau)=-\frac{K^\tau(\gamma_Z)}{2\tau^{\frac{3}{2}}}.$$
 \end{corollary}
 
 \begin{proof}
+\sketch
 \uses{lem:reduced-length-tangential-tau-derivative,lem:reduced-length-k-formula}
 This is immediate from Lemma~\ref{lem:reduced-length-tangential-tau-derivative} and Lemma~\ref{lem:reduced-length-k-formula} (after the
 latter is rewritten using $\widetilde L$ instead of $L_x$).
@@ -2070,7 +2041,8 @@ $$|l_x(y)-l_x(\iota(b,t'))|\le C\sqrt{d_{t}(y,b)^2+|t-t'|^2}.$$
 Before proving Proposition~\ref{prop:reduced-length-lipschitz-precise}, let us show how it implies
 Proposition~\ref{prop:reduced-length-lipschitz}.
 
-\begin{proof} (that Proposition~\ref{prop:reduced-length-lipschitz-precise} implies
+\begin{proof}
+\sketch
 Proposition~\ref{prop:reduced-length-lipschitz})
 \uses{prop:reduced-length-lipschitz-precise,def:l-parabolic-neighborhood}
 Suppose given $\epsilon>0$, $A$, $\nu(A)$ and $F$ as in
@@ -2123,6 +2095,7 @@ where $C_1=e^{2C_0\bar\tau}$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{def:l-geodesic}
 The geodesic equation in terms of the variable $s$,
 Equation~(\ref{reparam}), gives
@@ -2168,6 +2141,7 @@ $$\max_{\tau}\left(\sqrt{\tau}|X_\gamma(\tau)|\right)\le C_2.$$
 \end{corollary}
 
 \begin{proof}
+\sketch
 \uses{lem:l-geodesic-min-max-estimate}
 From the definition
 ${\mathcal L}(\gamma)=\int_{\sqrt{\tau_1}}^{\sqrt{\bar\tau}}
@@ -2215,6 +2189,7 @@ $$l(\gamma_1)\le  l(\gamma)+C_3\sqrt{d_{t_0}(y,b)^2+|t_0-t'|^2}.$$
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{cor:l-geodesic-speed-bound}
 Let $C_2$ be the constant depending on $C_0$, $l_0$, $\epsilon$, and
 $\bar\tau_0$ from Corollary~\ref{cor:l-geodesic-speed-bound}, and set
@@ -2235,24 +2210,7 @@ $\alpha<\sqrt{2}\delta_2<\epsilon/4$, so that the norm of the Ricci
 curvature is bounded by $C'$ on
 $\iota(B(y,t_0,\epsilon)\times(t_1,t_0+2\alpha))$.
 
-\begin{claim}[${\mathcal L}$-geodesic endpoint stays close to the ball]\label{claim:l-geodesic-endpoint-close-to-ball}
-\label{6.66}
-\uses{cor:l-geodesic-speed-bound}
-$\gamma(\tau_1)\in \widetilde P(y,\epsilon,\epsilon)$ and writing
-$\gamma(\tau_1)=\iota(c,t_1)$ we have $d_{t_0}(c,b)\le
-(4C'+1)\alpha$.
-\end{claim}
 
-\begin{proof}
-Since $|X_\gamma(\tau)|\le C'$ for all $\tau\in
-[\bar\tau-2\alpha,\bar\tau]$, and  $\delta_2\le \delta_0/4$, it
-follows that $2\alpha\le \delta_0$ and hence that
-$|X_\gamma(\tau)|_{g(t_0)}\le 2C'$ for all  $\tau\in
-[\bar\tau-2\alpha,\bar\tau]$. Since $\gamma(\bar\tau)=y$, this
-implies that
-$$d_{t_0}(y,c)\le 4C'\alpha.$$
-The claim then follows from the triangle inequality.
-\end{proof}
 
 Now let $\overline\mu\colon [\bar\tau-2\alpha,T-t']\to
 B(y,t_0,\epsilon)$ be a shortest $g(t_0)$-geodesic from $c$ to $b$,
@@ -2263,6 +2221,37 @@ for all $\tau\in [\bar\tau-2\alpha,T-t']$. Then the concatenation
 $\gamma_1=\gamma|_{[\tau_1,\bar\tau-2\alpha]}*\mu$ is a path
 parameterized by backward time from $x$ to $\iota(b,t')$.
 
+
+
+
+
+On the other hand, since $R\ge -3C_0$ in $P(y,\epsilon,\epsilon)$
+and $|X|^2\ge 0$, we see that
+$${\mathcal L}(\gamma|_{[\tau_1,\bar\tau-2\alpha]})\le {\mathcal L}(\gamma)
++ 6C_0\alpha\sqrt{\bar\tau_0}.$$  Together with the previous claim
+this establishes Lemma~\ref{lem:reduced-length-upper-bound-nearby}.
+\end{proof}
+
+\begin{claim}[${\mathcal L}$-geodesic endpoint stays close to the ball]\label{claim:l-geodesic-endpoint-close-to-ball}
+\label{6.66}
+\uses{cor:l-geodesic-speed-bound}
+$\gamma(\tau_1)\in \widetilde P(y,\epsilon,\epsilon)$ and writing
+$\gamma(\tau_1)=\iota(c,t_1)$ we have $d_{t_0}(c,b)\le
+(4C'+1)\alpha$.
+\end{claim}
+
+\begin{proof}
+\sketch
+Since $|X_\gamma(\tau)|\le C'$ for all $\tau\in
+[\bar\tau-2\alpha,\bar\tau]$, and  $\delta_2\le \delta_0/4$, it
+follows that $2\alpha\le \delta_0$ and hence that
+$|X_\gamma(\tau)|_{g(t_0)}\le 2C'$ for all  $\tau\in
+[\bar\tau-2\alpha,\bar\tau]$. Since $\gamma(\bar\tau)=y$, this
+implies that
+$$d_{t_0}(y,c)\le 4C'\alpha.$$
+The claim then follows from the triangle inequality.
+\end{proof}
+
 \begin{claim}[${\mathcal L}$-length of the concatenated path]\label{claim:l-length-concatenation-bound}
 \uses{claim:l-geodesic-endpoint-close-to-ball}
 There is a constant $C'_1$ depending only on
@@ -2271,6 +2260,7 @@ $$l(\gamma_1)\le l(\gamma|_{[\tau_1,\bar\tau-2\alpha]})+C'_1\alpha$$
 \end{claim}
 
 \begin{proof}
+\sketch
 First notice that since $\bar\tau=T-t_0$ and $|t'-t_0|\le \alpha$ we have
 $(T-t')-(\bar\tau-2\alpha)=2\alpha+(t'-t_0)\ge \alpha$. According to
 Claim~\ref{claim:l-geodesic-endpoint-close-to-ball} this implies that the $g(t_0)$-speed of $\mu$ is at most
@@ -2282,15 +2272,6 @@ $T-t'\le \bar\tau+\epsilon<2\bar\tau\le 2\bar\tau_0$. This completes the proof
 of the claim.
 \end{proof}
 
-
-
-On the other hand, since $R\ge -3C_0$ in $P(y,\epsilon,\epsilon)$
-and $|X|^2\ge 0$, we see that
-$${\mathcal L}(\gamma|_{[\tau_1,\bar\tau-2\alpha]})\le {\mathcal L}(\gamma)
-+ 6C_0\alpha\sqrt{\bar\tau_0}.$$  Together with the previous claim
-this establishes Lemma~\ref{lem:reduced-length-upper-bound-nearby}.
-\end{proof}
-
 This is a one-sided inequality which says that the nearby values of
 $l_x$ are bounded above in terms of  $l_x(y)$, the curvature bounds,
 and the distance in space-time from $y$. In order to complete the
@@ -2299,7 +2280,8 @@ the opposite direction. This requires reversing the roles of the
 points.
 
 
-\begin{proof}(of Proposition~\ref{prop:reduced-length-lipschitz-precise})
+\begin{proof}
+\sketch
 \uses{lem:reduced-length-upper-bound-nearby}
 Let $\delta_2$ and $C_3$ be the constants given by
 Lemma~\ref{lem:reduced-length-upper-bound-nearby} associated to $\epsilon/2$, $\bar\tau_0$, $C_0$,
@@ -2320,19 +2302,7 @@ $\epsilon'=\epsilon/4$. Then set $C=\max(2C_3',C_3)$.
 
 Let $z=\iota(b,t')\in \widetilde P(y,\delta,\delta)$.
 
-\begin{claim}[The parabolic ball stays inside $B(y,t_0,\epsilon)$]\label{claim:parabolic-ball-containment}
-For $\delta$ sufficiently small (how small depending on $\delta_2$
-and $\delta'_2$) we have $B(z,t',\epsilon/4)\subset
-B(y,t_0,\epsilon)$.
-\end{claim}
 
-\begin{proof}
-Since $|t_0-t'|<\delta\le \delta_2$, and by construction
-$\delta_2<\delta_0$, it follows  that for any $c\in
-B(y,t_0,\epsilon)$ we have $d_{t'}(b,c)\le 2d_{t_0}(b,c)$. Since
-$d_{t_0}(y,b)<\delta\le \epsilon/4$, the result is immediate from
-the triangle inequality.
-\end{proof}
 
  By
 the above and the fact that $ \delta\le\epsilon/4$, the sectional
@@ -2354,15 +2324,7 @@ $$l_x(w)\le l_x(z)+C'_3\sqrt{d_{t'}(b,c)^2+|t-t'|^2}.$$
 
 The proof is then completed by showing the following:
 
-\begin{claim}[$y$ lies in the parabolic neighborhood of $z$]\label{claim:point-in-parabolic-neighborhood}
-$y\in \widetilde P(z,\delta_2',\delta'_2)$.
-\end{claim}
 
-\begin{proof}
-By construction $|t'-t_0|<\delta\le \delta_2'$. Also,
-$d_{t_0}(y,b)<\delta\le \delta'_2/2$. Since $d_{t_0}\le 2d_{t'}$, we
-have $d_{t'}(y,b)< \delta'_2$ the claim is then immediate.
-\end{proof}
 
 It follows immediately that \begin{eqnarray*} l_x(y) & \le &
 l_x(z)+C'_3\sqrt{d_{t'}(b,y)^2+|t_0-t'|^2} \\ & \le & l_x(z)+2
@@ -2371,6 +2333,32 @@ l_x(z)+C\sqrt{d_{t_0}(b,y)^2+|t_0-t'|^2}.
 \end{eqnarray*}
 
 This completes the proof of Proposition~\ref{prop:reduced-length-lipschitz-precise}.
+\end{proof}
+
+\begin{claim}[The parabolic ball stays inside $B(y,t_0,\epsilon)$]\label{claim:parabolic-ball-containment}
+For $\delta$ sufficiently small (how small depending on $\delta_2$
+and $\delta'_2$) we have $B(z,t',\epsilon/4)\subset
+B(y,t_0,\epsilon)$.
+\end{claim}
+
+\begin{proof}
+\sketch
+Since $|t_0-t'|<\delta\le \delta_2$, and by construction
+$\delta_2<\delta_0$, it follows  that for any $c\in
+B(y,t_0,\epsilon)$ we have $d_{t'}(b,c)\le 2d_{t_0}(b,c)$. Since
+$d_{t_0}(y,b)<\delta\le \epsilon/4$, the result is immediate from
+the triangle inequality.
+\end{proof}
+
+\begin{claim}[$y$ lies in the parabolic neighborhood of $z$]\label{claim:point-in-parabolic-neighborhood}
+$y\in \widetilde P(z,\delta_2',\delta'_2)$.
+\end{claim}
+
+\begin{proof}
+\sketch
+By construction $|t'-t_0|<\delta\le \delta_2'$. Also,
+$d_{t_0}(y,b)<\delta\le \delta'_2/2$. Since $d_{t_0}\le 2d_{t'}$, we
+have $d_{t'}(y,b)< \delta'_2$ the claim is then immediate.
 \end{proof}
 
 \begin{corollary}[Full measure of the injectivity set]\label{cor:reduced-length-full-measure}
@@ -2390,12 +2378,29 @@ open subset of full measure in $A\cap M_{T-\tau}$.
 
 \begin{proof}
 \uses{cor:l-geodesic-speed-bound}
+\sketch
 Since ${\mathcal U}_x(\tau)$ is an open subset of $M_{T-\tau}$, the complement
 of $\nu(A)\cap{\mathcal U}_x(\tau)$ in $\nu(A)\cap M_{T-\tau}$ is a closed
 subset of $\nu(A)\cap M_{T-\tau}$. Since there is a minimizing ${\mathcal
 L}$-geodesic to every point of $\nu(A)\cap M_{T-\tau}$, the ${\mathcal
 L}$-exponential map ${\mathcal L}\exp^\tau_x$ is onto $\nu(A)\cap
 M_{T-\tau}$.
+
+
+
+ According to the next claim, the first subset given in Claim~\ref{claim:complement-injectivity-set-two-types} is contained in the
+set of points of $\nu(A)\cap M_{T-\tau}$ where $L_x^\tau$ is
+non-differentiable. Since $L_x^\tau$ is a locally Lipschitz function on
+$\nu(A)$, this subset is of measure zero in $\nu(A)$; see Rademacher's Theorem
+on p. 81 of \cite{EvansGariepy}. The second set is of measure zero by Sard's
+theorem. This proves, modulo the next claim, that ${\mathcal U}_x(\tau)\cap A$
+is full measure in $A\cap M_{T-\tau}$.
+
+
+
+
+This completes the proof of the Corollary~\ref{cor:reduced-length-full-measure}.
+\end{proof}
 
 \begin{claim}[Complement of the injectivity set falls into two types]\label{claim:complement-injectivity-set-two-types}
 \label{twosets}
@@ -2411,6 +2416,7 @@ M_{T-\tau}$.
 
 \begin{proof}
 \uses{cor:l-geodesic-speed-bound}
+\sketch
 Suppose that $q\in \nu(A)\cap M_{T-\tau}$ is not contained in ${\mathcal U}_x$.
 Let $\gamma_Z$ be a minimal ${\mathcal L}$-geodesic  from $x$ to $q$. If the
 differential of ${\mathcal L}\exp_x$ is not an isomorphism at $Z$, then
@@ -2442,15 +2448,6 @@ L}$-geodesics are unique minimizing ${\mathcal L}$-geodesics and completing the
 proof of the claim.
 \end{proof}
 
- According to the next claim, the first subset given in Claim~\ref{claim:complement-injectivity-set-two-types} is contained in the
-set of points of $\nu(A)\cap M_{T-\tau}$ where $L_x^\tau$ is
-non-differentiable. Since $L_x^\tau$ is a locally Lipschitz function on
-$\nu(A)$, this subset is of measure zero in $\nu(A)$; see Rademacher's Theorem
-on p. 81 of \cite{EvansGariepy}. The second set is of measure zero by Sard's
-theorem. This proves, modulo the next claim, that ${\mathcal U}_x(\tau)\cap A$
-is full measure in $A\cap M_{T-\tau}$.
-
-
 \begin{claim}[Two distinct minimizing geodesics give non-differentiability]\label{claim:l-length-nondifferentiable-at-multiple-geodesics}
 \uses{lem:l-length-tilde-gradient}
 Let $z\in M_{T-\tau}$. Suppose that there is a neighborhood of $z$ in
@@ -2463,7 +2460,8 @@ $L^\tau_x$ is non-differentiable at $z$.
 \end{claim}
 
 \begin{proof}
- Suppose that
+\sketch
+Suppose that
 $\gamma_{Z_0}|_{[0,\tau]}$ is an ${\mathcal L}$-minimal ${\mathcal L}$-geodesic
 and that $d_{Z_0}{\mathcal L}\exp_x^\tau$ is an isomorphism. Then use
 ${\mathcal L}\exp_x^{\tau}$ to identify a neighborhood of $Z_0\in T_xM$
@@ -2479,9 +2477,6 @@ the minimum of two smooth functions $L_{Z_0}$ and $L_{Z_1}$. We have
 $L_{Z_0}(z)=L_{Z_1}(z)=L_x^\tau(z)$,  and furthermore, $L_{Z_0}$ and $L_{Z_1}$
 have distinct gradients at $z$. It follows that $L_x^{\tau}$ is not smooth at
 $z$.
-\end{proof}
-
-This completes the proof of the Corollary~\ref{cor:reduced-length-full-measure}.
 \end{proof}
 
 
@@ -2517,6 +2512,7 @@ of ${\mathcal L}\exp_x^{\tau}$ at $Z\in T_xM_T$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 This is simply the change of variables formula for integration.
 \end{proof}
 
@@ -2570,6 +2566,7 @@ Notice that $|Z|_G^2=|\sqrt{Q^{-1}}Z|^2_{G'}$.
 \end{remark}
 
 \begin{proof}
+\sketch
 It is clear that $\beta(0)=x$ and that $\beta$ is parameterized by
 backward time in $({\mathcal M}',G')$. Because of the scaling of
 space and time by $Q$, we have $R_{G'}=R_G/Q$ and
@@ -2621,6 +2618,7 @@ $$(\tau')^{-n/2}e^{-\tilde l'(\sqrt{Q^{-1}}Z,\tau')}{\mathcal J}'(\sqrt{Q^{-1}}Z
 
 \begin{proof}
 \uses{cor:l-exponential-rescaling-identity,lem:l-length-rescaling}
+\sketch
 It follows from the first equation in Corollary~\ref{cor:l-exponential-rescaling-identity} that
 $$J(\iota){\mathcal J}(Z,\tau)=J(\sqrt{Q^{-1}}){\mathcal
 J}'(\sqrt{Q^{-1}}Z,\tau'),$$ where $J(\iota)$ is the Jacobian
@@ -2682,6 +2680,7 @@ where the convergence is uniform on each compact subset of $T_xM_T$.
 
 \begin{proof}
 \uses{lem:reduced-volume-integrand-scale-invariance,claim:reduced-volume-integrand-euclidean,lem:l-length-rescaling}
+\sketch
 First notice that since $T$ is greater than the initial time of ${\mathcal M}$,
 there is $\epsilon>0$, and an embedding $\rho\colon B(x,T,\epsilon)\times
 [T-\epsilon,T]\to {\mathcal M}$ compatible with time  and the vector field. By
@@ -2760,6 +2759,7 @@ U}_x(\tau)$.
 
 \begin{proof}
 \uses{prop:reduced-volume-integrand-limit,lem:l-geodesic-min-max-estimate,def:l-exponential-map}
+\sketch
 According to the last result, given $R<\infty$, for all $\delta>0$ sufficiently
 small the ball of radius $R$ centered at the origin in $T_xM_T$ is contained in
 ${\mathcal D}_x^\delta$, in the domain of definition of ${\mathcal L}\mathrm{exp}_x^\delta$ as given in Definition~\ref{def:l-exponential-map}, and ${\mathcal L}\mathrm{exp}_x$ is a diffeomorphism on this subset. We shall show that if $\delta>0$ is
@@ -2822,6 +2822,7 @@ function of $\tau$ for all $0<\tau\le \bar\tau$.
 
 \begin{proof}
 \uses{lem:reduced-volume-pullback}
+\sketch
 Fix $\tau_0\in (0,\bar\tau]$. To prove the theorem we shall show
 that for any $0<\tau<\tau_0$ we have $\widetilde V_x(A_\tau)\ge
 \widetilde V_x(A_{\tau_0})$. Let $\widetilde A_{\tau_0}\subset
@@ -2842,6 +2843,12 @@ follows from:
 
 
 
+
+
+As we have already seen, this proposition implies
+ Theorem~\ref{thm:reduced-volume-monotone}, and hence the proof of this theorem is complete.
+\end{proof}
+
 \begin{proposition}[Pointwise monotonicity of the reduced-volume integrand]\label{prop:reduced-volume-integrand-monotone}
 \label{fmonotone}
 \uses{def:reduced-length-tangential,prop:reduced-volume-integrand-limit}
@@ -2859,6 +2866,7 @@ subset of $T_xM_T$.
 
 \begin{proof}
 \uses{lem:l-length-hessian-jacobi-formula,prop:l-length-hessian-inequality,prop:l-length-laplacian-inequality,cor:reduced-length-tangential-k-derivative,prop:reduced-volume-integrand-limit,claim:h-sum-formula}
+\sketch
  First, we analyze the Jacobian
 ${\mathcal J}(Z,\tau)$. We know that $\mathcal{L}\exp_x^{\tau}$
 is smooth in a neighborhood of $Z$. Choose a basis
@@ -2916,10 +2924,6 @@ proposition. The limit statement as $\tau\rightarrow 0$ is contained
 in Proposition~\ref{prop:reduced-volume-integrand-limit}.
 \end{proof}
 
-As we have already seen, this proposition implies
- Theorem~\ref{thm:reduced-volume-monotone}, and hence the proof of this theorem is complete.
-\end{proof}
-
 Notice that we have established the following:
 
 
@@ -2933,6 +2937,7 @@ reduced volume  $\widetilde V_x(A)$ is at most $(4\pi)^{n/2}$.
 
 \begin{proof}
 \uses{thm:reduced-volume-monotone}
+\sketch
 Let $\widetilde A\subset \widetilde {\mathcal U}_x(\tau)$ be the pre-image
 of $A$. We have seen that
 $$\widetilde V_x(A)=\int_{A}\tau^{-n/2}e^{-l(q,\tau)}dq=\int_{\widetilde
@@ -2943,8 +2948,3 @@ $\tau$ whose limit as $\tau\rightarrow 0$ is the restriction of
 $2^ne^{-|Z|^2}$ to $\widetilde A$. The result is immediate from
 Lebesgue dominated convergence.
 \end{proof}
-
-
-
-
-

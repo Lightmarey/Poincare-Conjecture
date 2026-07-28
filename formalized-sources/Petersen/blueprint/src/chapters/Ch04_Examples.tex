@@ -1147,11 +1147,11 @@ algebra; biinvariance is characterized by the adjoint action.
   \label{ex:pet-ch4-hyperbolic-lie-group}
   \lean{PetersenLib.hyperbolicPlaneAsLieGroup}
   \uses{def:pet-ch4-left-invariant-metric-lie}
-  On $G=\Big\{\begin{bsmallmatrix}\alpha&\beta\\0&1\end{bsmallmatrix}:\alpha>0,\beta\in\mathbb{R}\Big\}$
+  On $G=\Big\{\left[\begin{smallmatrix}\alpha&\beta\\0&1\end{smallmatrix}\right]:\alpha>0,\beta\in\mathbb{R}\Big\}$
   (whose first row identifies $G$ with the upper half-plane), with Lie algebra
-  $\mathfrak g=\Big\{\begin{bsmallmatrix}a&b\\0&0\end{bsmallmatrix}\Big\}$,
-  $X=\begin{bsmallmatrix}1&0\\0&0\end{bsmallmatrix}$,
-  $Y=\begin{bsmallmatrix}0&1\\0&0\end{bsmallmatrix}$, so $[X,Y]=Y$: declaring
+  $\mathfrak g=\Big\{\left[\begin{smallmatrix}a&b\\0&0\end{smallmatrix}\right]\Big\}$,
+  $X=\left[\begin{smallmatrix}1&0\\0&0\end{smallmatrix}\right]$,
+  $Y=\left[\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right]$, so $[X,Y]=Y$: declaring
   $X,Y$ orthonormal makes $G$ have constant curvature $-1$.
 \end{example}
 \begin{proof}
@@ -1166,9 +1166,9 @@ algebra; biinvariance is characterized by the adjoint action.
   \label{prop:pet-ch4-hyperbolic-lie-group-not-biinvariant}
   \lean{PetersenLib.hyperbolicLieGroupNotBiinvariant}
   \uses{ex:pet-ch4-hyperbolic-lie-group,prop:pet-ch4-biinvariant-criterion}
-  For $g=\begin{bsmallmatrix}\alpha&\beta\\0&1\end{bsmallmatrix}\in G$,
-  $\mathrm{Ad}_g\big(\begin{bsmallmatrix}a&b\\0&0\end{bsmallmatrix}\big)
-  =\begin{bsmallmatrix}a&-a\beta+b\alpha\\0&0\end{bsmallmatrix}=aX+(-a\beta+b\alpha)Y$;
+  For $g=\left[\begin{smallmatrix}\alpha&\beta\\0&1\end{smallmatrix}\right]\in G$,
+  $\mathrm{Ad}_g\big(\left[\begin{smallmatrix}a&b\\0&0\end{smallmatrix}\right]\big)
+  =\left[\begin{smallmatrix}a&-a\beta+b\alpha\\0&0\end{smallmatrix}\right]=aX+(-a\beta+b\alpha)Y$;
   this is not orthonormal-basis-preserving unless $\beta=0,\alpha=1$, so the
   metric on $G$ is not biinvariant (equivalently, the left-invariant fields
   $X,Y$ are not Killing fields).
@@ -1275,7 +1275,7 @@ degeneration under the Hopf fibration.
   \label{prop:pet-ch4-berger-adjoint-action}
   \lean{PetersenLib.bergerSphereAdjointAction}
   \uses{ex:pet-ch4-general-berger-metric,prop:pet-ch4-biinvariant-criterion}
-  For $g=\begin{bsmallmatrix}z&w\\-\bar w&\bar z\end{bsmallmatrix}\in SU(2)$,
+  For $g=\left[\begin{smallmatrix}z&w\\-\bar w&\bar z\end{smallmatrix}\right]\in SU(2)$,
   \[
     \mathrm{Ad}_gX_1=(|z|^2-|w|^2)X_1-2\mathrm{Re}(w\bar z)X_2-2\mathrm{Im}(w\bar z)X_3,
   \]
@@ -1294,7 +1294,7 @@ degeneration under the Hopf fibration.
   \uses{prop:pet-ch4-berger-adjoint-action}
   \sketch
   Conjugate each matrix $X_i$ by
-  $g=\begin{bsmallmatrix}z&w\\-\bar w&\bar z\end{bsmallmatrix}$ and use
+  $g=\left[\begin{smallmatrix}z&w\\-\bar w&\bar z\end{smallmatrix}\right]$ and use
   $|z|^2+|w|^2=1$; expansion in the basis $X_1,X_2,X_3$ gives the three stated
   formulas. Their coefficient matrix is orthogonal when the three basis
   directions have equal length. If the lengths differ, its generic mixing of
@@ -1905,7 +1905,7 @@ sectional and Ricci curvature formulas.
   \uses{rem:pet-ch4-ex-23}
   For $dr^2+\rho^2(r)\big(\phi^2(r)(\sigma^1)^2+(\sigma^2)^2+(\sigma^3)^2\big)$
   and the $(1,1)$-tensor represented (in the orthonormal frame) by the block
-  matrix $\begin{bsmallmatrix}0&-1&0&0\\1&0&0&0\\0&0&0&-1\\0&0&1&0\end{bsmallmatrix}$,
+  matrix $\left[\begin{smallmatrix}0&-1&0&0\\1&0&0&0\\0&0&0&-1\\0&0&1&0\end{smallmatrix}\right]$,
   which defines a Hermitian structure: (1) show this structure is Kähler
   (parallel) iff $\dot\rho=\phi$. (2) Find the scalar curvature of such
   metrics. (3) Show there are scalar-flat metrics on all $2$-dimensional
@@ -1959,7 +1959,7 @@ sectional and Ricci curvature formulas.
   $e_1\wedge e_2\pm e_3\wedge e_4$, $e_1\wedge e_3\pm e_4\wedge e_2$,
   $e_1\wedge e_4\pm e_2\wedge e_3$ lie in the $\pm1$ eigenspaces
   $\Lambda^\pm TM$ of $*$. (3) Deduce the block decomposition
-  $\mathfrak R=\begin{bsmallmatrix}A&D\\B&C\end{bsmallmatrix}$ with
+  $\mathfrak R=\left[\begin{smallmatrix}A&D\\B&C\end{smallmatrix}\right]$ with
   $A=W^++\tfrac{\mathrm{scal}}{12}I$, $C=W^-+\tfrac{\mathrm{scal}}{12}I$,
   $D=B^*$; find these decompositions for the doubly warped metrics
   $dr^2+\rho^2(r)d\theta^2+\phi^2(r)ds_2^2$ on $I\times S^1\times S^2$ and

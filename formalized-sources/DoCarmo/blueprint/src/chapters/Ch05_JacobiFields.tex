@@ -3,34 +3,6 @@
 
 \section{The Jacobi equation}
 
-Let $p\in M$, let $v\in T_pM$ lie in the domain of $\exp_p$, and identify
-$T_v(T_pM)$ with $T_pM$. If $v(s)$ is a curve with $v(0)=v$ and $v'(0)=w$, set
-$f(t,s)=\exp_p(tv(s))$. Then
-
-$$
-(d\exp_p)_v w=\frac{\partial f}{\partial s}(1,0),\qquad
-(d\exp_p)_{tv}(tw)=\frac{\partial f}{\partial s}(t,0).
-$$
-
-\sketch
-For each fixed $s$, the curve $t\mapsto f(t,s)$ is geodesic. Commuting the
-covariant derivatives in the variation gives
-
-$$
-0=\frac{D}{\partial s}\Big(\frac{D}{\partial t}\frac{\partial f}{\partial t}\Big)
-=\frac{D}{\partial t}\frac{D}{\partial s}\frac{\partial f}{\partial t}
--R\Big(\frac{\partial f}{\partial s},\frac{\partial f}{\partial t}\Big)\frac{\partial f}{\partial t}
-=\frac{D}{\partial t}\frac{D}{\partial t}\frac{\partial f}{\partial s}
-+R\Big(\frac{\partial f}{\partial t},\frac{\partial f}{\partial s}\Big)\frac{\partial f}{\partial t}.
-$$
-
-Thus $J(t)=\frac{\partial f}{\partial s}(t,0)$ along
-$\gamma(t)=\exp_p(tv)$ satisfies
-
-$$
-\frac{D^2 J}{dt^2}+R(\gamma'(t),J(t))\gamma'(t)=0.\qquad(1)
-$$
-
 \begin{definition}[Jacobi field]
   \label{def:dc-ch5-2-1}
   \dcref{ch5:2.1}
@@ -39,13 +11,37 @@ $$
   \uses{lem:dc-ch5-2-1-parallel-frame, lem:dc-ch5-2-1-ode, lem:dc-ch5-2-1-frame-reduction,
     lem:dc-ch5-2-1-frame-existence, lem:dc-ch5-2-1-real-curvature}
   Let $\gamma:[0,a]\to M$ be a geodesic in $M$. A vector field $J$ along $\gamma$ is
-  a \emph{Jacobi field} if it satisfies (1) on $[0,a]$.
+  a \emph{Jacobi field} if it satisfies
+  $$
+  \frac{D^2 J}{dt^2}+R(\gamma'(t),J(t))\gamma'(t)=0.\tag{1}
+  $$
+  on $[0,a]$.
+
+  If $p\in M$, $v\in T_pM$ lies in the domain of $\exp_p$, and we identify
+  $T_v(T_pM)$ with $T_pM$, let $v(s)$ satisfy $v(0)=v$, $v'(0)=w$, and set
+  $f(t,s)=\exp_p(tv(s))$. Then the variational field
+  $J(t)=\frac{\partial f}{\partial s}(t,0)$ is Jacobi and
+  $$
+  (d\exp_p)_v w=\frac{\partial f}{\partial s}(1,0),\qquad
+  (d\exp_p)_{tv}(tw)=\frac{\partial f}{\partial s}(t,0).
+  $$
 
   A Jacobi field is uniquely determined by $J(0)$ and $\frac{DJ}{dt}(0)$, and
   every pair of initial values occurs. Consequently, if $n=\dim M$, the space
   of Jacobi fields along $\gamma$ has dimension $2n$.
-
+\end{definition}
+\begin{proof}
   \sketch
+  For each fixed $s$, the curve $t\mapsto f(t,s)$ is geodesic. Commuting the
+  covariant derivatives in the variation gives
+  $$
+  0=\frac{D}{\partial s}\Big(\frac{D}{\partial t}\frac{\partial f}{\partial t}\Big)
+  =\frac{D}{\partial t}\frac{D}{\partial t}\frac{\partial f}{\partial s}
+  +R\Big(\frac{\partial f}{\partial t},\frac{\partial f}{\partial s}\Big)
+    \frac{\partial f}{\partial t},
+  $$
+  which is (1) for $J=\partial f/\partial s$.
+
   In a parallel orthonormal frame $e_1(t),\dots,e_n(t)$, write
   
   $$
@@ -62,7 +58,7 @@ $$
   
   Standard existence and uniqueness for this second-order linear system gives
   the claim.
-\end{definition}
+\end{proof}
 
 \begin{lemma}[parallel orthonormal frame along a geodesic, coordinate form]
   \label{lem:dc-ch5-2-1-parallel-frame}
@@ -76,12 +72,14 @@ $$
   Along a geodesic $\gamma:[0,a]\to M$, every orthonormal basis of
   $T_{\gamma(0)}M$ extends uniquely to a parallel orthonormal frame
   $e_1(t),\dots,e_n(t)$.
+\end{lemma}
+\begin{proof}
 
   \sketch
   Extend the initial basis by parallel transport. The inner products
   $\langle e_i,e_j\rangle$ are constant by
   \cref{lem:dc-ch2-3-1-coord}, hence remain equal to $\delta_{ij}$.
-\end{lemma}
+\end{proof}
 
 \begin{lemma}[Jacobi system in a parallel frame: existence and uniqueness]
   \label{lem:dc-ch5-2-1-ode}
@@ -113,6 +111,8 @@ $$
   $J=\sum_i f_i e_i$ is Jacobi if and only if
   $f_j''+\sum_i a_{ij}f_i=0$ for every $j$, where
   $a_{ij}=\langle R(\gamma',e_i)\gamma',e_j\rangle$.
+\end{lemma}
+\begin{proof}
 
   \sketch
   Since $\frac{De_i}{dt}=0$, the Leibniz rule of
@@ -124,7 +124,7 @@ $$
   Pairing the Jacobi equation with $e_j$ extracts
   $f_j''+\sum_i a_{ij}f_i$. Conversely, expansion in the frame gives
   $\frac{D^2J}{dt^2}+R(\gamma',J)\gamma'=\sum_j\big(f_j''+\sum_i a_{ij}f_i\big)e_j$.
-\end{lemma}
+\end{proof}
 
 \begin{lemma}[existence and uniqueness of a Jacobi field by its initial data, frame form]
   \label{lem:dc-ch5-2-1-frame-existence}
@@ -174,11 +174,13 @@ $$
     +\sum_s\big(\Gamma^s_{ik}\Gamma^l_{js}-\Gamma^s_{jk}\Gamma^l_{is}\big),
   $$
   with the coefficients of \cref{rem:dc-ch4-2-6}.
+\end{lemma}
+\begin{proof}
 
   \sketch
   These coefficients are smooth, so the operator field is continuous along $\gamma$. Hence
   \cref{lem:dc-ch5-2-1-frame-existence} applies to the intrinsic Jacobi equation.
-\end{lemma}
+\end{proof}
 
 \begin{remark}[standard tangential Jacobi fields]
   \label{rem:dc-ch5-2-2}
@@ -191,11 +193,13 @@ $$
   parallel and nowhere zero for a nonconstant geodesic, while the latter
   vanishes exactly at $t=0$. Jacobi fields orthogonal to $\gamma'$ will be called
   \emph{normal Jacobi fields}.
+\end{remark}
+\begin{proof}
 
   \sketch
   The assertions follow from $\nabla_{\gamma'}\gamma'=0$ and
   $R(\gamma',\gamma')\gamma'=0$.
-\end{remark}
+\end{proof}
 
 \begin{example}[Jacobi fields on manifolds of constant curvature]
   \label{ex:dc-ch5-2-3}
@@ -226,6 +230,8 @@ $$
   $$
   J(t)=\begin{cases}\dfrac{\sin(t\sqrt{K})}{\sqrt{K}}\,w(t),&\text{if }K>0,\\[1ex] t\,w(t),&\text{if }K=0,\\[1ex]\dfrac{\sinh(t\sqrt{-K})}{\sqrt{-K}}\,w(t),&\text{if }K<0,\end{cases}
   $$
+\end{example}
+\begin{proof}
   
 
   \sketch
@@ -239,7 +245,7 @@ $$
   Thus $R(\gamma',J)\gamma'=KJ$. Since $w$ is parallel, substituting
   $J=h w$ reduces (2) to $h''+Kh=0$, whose normalized solutions are the three
   displayed functions.
-\end{example}
+\end{proof}
 
 \begin{lemma}[constant curvature: the pointwise $(0,4)$ form, coordinate form]
   \label{lem:dc-ch5-2-3-const-form}
@@ -264,12 +270,14 @@ $$
   unit-speed geodesic $\gamma$, then
   $R(\gamma',J)\gamma'=K_0J$. Consequently the Jacobi equation is
   $D^2J/dt^2+K_0J=0$.
+\end{lemma}
+\begin{proof}
 
   \sketch
   Pair $R(\gamma',J)\gamma'$ with an arbitrary vector and apply
   \cref{lem:dc-ch5-2-3-const-form}; the unit-speed and orthogonality hypotheses
   leave $K_0\langle J,\cdot\rangle$.
-\end{lemma}
+\end{proof}
 
 \begin{proposition}[Jacobi fields from exponential-map variations]
   \label{prop:dc-ch5-2-4}
@@ -347,6 +355,8 @@ $$
   |J(t)|^2=\langle w,w\rangle t^2
   -\tfrac13\langle w,A(0)w\rangle t^4+o(t^4),\qquad t\to0.
   $$
+\end{lemma}
+\begin{proof}
 
   \sketch
   The frame equation is $f''=-A(t)f$. For
@@ -359,7 +369,7 @@ $$
   Taylor's theorem with Peano remainder yields the expansion. Moreover,
   $\langle w,A(0)w\rangle
   =\langle R(\gamma'(0),w)\gamma'(0),w\rangle$.
-\end{lemma}
+\end{proof}
 
 \begin{lemma}[$C^\infty$ smoothness of the parallel frame and the Jacobi coefficient]
   \label{lem:dc-ch5-2-7-frame-smooth}
@@ -374,13 +384,15 @@ $$
   A(t)=\big(\langle R(\gamma',e_i)\gamma',e_j\rangle\big)_{ij}
   $$
   is smooth in $t$.
+\end{lemma}
+\begin{proof}
 
   \sketch
   In coordinates the parallel-transport equation is the linear ODE
   $\dot e_i=-\Gamma(\dot u,e_i)(u)$. Its coefficients are smooth, so its
   solutions are smooth. The assertion for $A$ follows from
   \cref{lem:dc-ch5-2-1-real-curvature}.
-\end{lemma}
+\end{proof}
 
 \begin{proposition}[fourth-order norm expansion for exponential variations]
   \label{prop:dc-ch5-2-7}
@@ -477,12 +489,14 @@ $$
   \sqrt{g(t)}=t-\tfrac{c}{2}\,t^3+o(t^3),\qquad t\to 0^+.
   $$
   The one-sided limit is necessary because $\sqrt{t^2}=|t|$.
+\end{lemma}
+\begin{proof}
 
   \sketch
   Put $p(t)=t-\tfrac c2t^3$. Then $g-p^2=o(t^4)$ and
   $\sqrt g-p=(g-p^2)/(\sqrt g+p)$. For sufficiently small $t>0$, the denominator
   is at least $t/2$, so the quotient is $o(t^3)$.
-\end{lemma}
+\end{proof}
 
 \begin{corollary}[norm expansion and sectional curvature]
   \label{cor:dc-ch5-2-10}
@@ -547,6 +561,8 @@ $$
   If $\dim M=n$, the Jacobi fields along $\gamma$ that vanish at $0$ form an
   $n$-dimensional space. A conjugate point along a nonconstant geodesic has
   multiplicity at most $n-1$.
+\end{remark}
+\begin{proof}
 
   \sketch
   The initial-derivative map $J\mapsto J'(0)$ identifies this space with
@@ -554,7 +570,7 @@ $$
   independent exactly when the vectors $J_i'(0)$ are. At a positive endpoint,
   the field $t\gamma'(t)$ of \cref{rem:dc-ch5-2-2} does not vanish, so the kernel
   of endpoint evaluation is a proper subspace and has dimension at most $n-1$.
-\end{remark}
+\end{proof}
 
 \begin{example}[conjugate points in positive constant curvature]
   \label{ex:dc-ch5-3-3}
@@ -568,6 +584,8 @@ $$
   $\gamma(\pi/\sqrt{K_0})$ is conjugate to $\gamma(0)$ with multiplicity $n-1$.
   In particular, on the unit sphere $S^n$, the antipode $\gamma(\pi)$ has
   multiplicity $n-1$ along every unit-speed geodesic from $\gamma(0)$.
+\end{example}
+\begin{proof}
 
   \sketch
   For each $w_0\perp\gamma'(0)$, let $w$ be its parallel translate along
@@ -578,7 +596,7 @@ $$
   is Jacobi and vanishes at both endpoints. These fields form an
   $(n-1)$-dimensional family, while \cref{rem:dc-ch5-3-2} gives the reverse
   bound on multiplicity.
-\end{example}
+\end{proof}
 
 \begin{definition}[conjugate locus]
   \label{def:dc-ch5-3-4}
@@ -654,11 +672,13 @@ $$
   If $\langle J,\gamma'\rangle(t_1)=\langle J,\gamma'\rangle(t_2)$, $t_1,t_2\in[0,a]$,
   $t_1\neq t_2$, then $\langle J,\gamma'\rangle$ does not depend on $t$; in
   particular, if $J(0)=J(a)=0$, then $\langle J,\gamma'\rangle(t)\equiv 0$.
+\end{corollary}
+\begin{proof}
 
   \sketch
   An affine function taking the same value at two distinct times has zero
   slope. If $J$ vanishes at both endpoints, that constant value is zero.
-\end{corollary}
+\end{proof}
 
 \begin{corollary}[normal Jacobi fields with zero initial value]
   \label{cor:dc-ch5-3-8}
@@ -672,13 +692,15 @@ $$
   $\langle J'(0),\gamma'(0)\rangle=0$ if and only if
   $\langle J(t),\gamma'(t)\rangle=0$ for every $t$. If $\dim M=n$ and $\gamma$
   is nonconstant, the space of such Jacobi fields has dimension $n-1$.
+\end{corollary}
+\begin{proof}
 
   \sketch
   By \cref{prop:dc-ch5-3-6}, the pairing is
   $t\langle J'(0),\gamma'(0)\rangle$. Under the identification
   $J\mapsto J'(0)$, the normal fields form the hyperplane
   $\gamma'(0)^\perp\subset T_{\gamma(0)}M$.
-\end{corollary}
+\end{proof}
 
 \begin{proposition}[Jacobi field with prescribed nonconjugate endpoints]
   \label{prop:dc-ch5-3-9}
@@ -722,6 +744,8 @@ $$
   $\mathcal{J}^\perp$. If $\gamma(t)$, $t\in(0,a]$, is not conjugate to $\gamma(0)$,
   then $\{J_1(t),\dots,J_{n-1}(t)\}$ is a basis for the orthogonal complement
   $\{\gamma'(t)\}^\perp\subset T_{\gamma(t)}M$ of $\gamma'(t)$.
+\end{corollary}
+\begin{proof}
 
   \sketch
   By \cref{cor:dc-ch5-3-8}, evaluation at $t$ sends
@@ -729,4 +753,4 @@ $$
   map injective by \cref{prop:dc-ch5-3-5}. Both spaces have dimension $n-1$,
   so it is an isomorphism and carries any basis of $\mathcal J^\perp$ to the
   displayed basis.
-\end{corollary}
+\end{proof}

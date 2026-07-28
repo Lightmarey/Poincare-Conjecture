@@ -1,18 +1,6 @@
 \chapter{Bounded curvature at bounded distance}
 \label{chap:bounded-curvature-bounded-distance}
-This chapter is
-devoted to Perelman's result about bounded curvature at bounded
-distance for blow-up limits. Crucial to the argument is that each
-member of the sequence of generalized Ricci flows has curvature
-pinched toward positive and also has strong canonical neighborhoods.
-
-
 \section{Pinching toward positive: the definitions}\label{10.1}
-
-In this section we give the definition of what it means for a
-generalized Ricci flow to have curvature pinched toward
-positive. This is the
-obvious generalization of the corresponding notion for Ricci flows.
 
 \begin{definition}[Curvature pinched toward positive]
 \label{def:curvature-pinched-toward-positive}
@@ -35,24 +23,16 @@ $0<X(x)$.
 \end{enumerate}
 \end{definition}
 
-According to Theorem~\ref{pincha} if $(M,g(t)),\ 0\le a\le t<T$, is
-Ricci flow with $M$  a compact three-manifold, and if the two
-conditions given in the definition hold at the initial time $a$,
-then they hold for all $t\in [a,T)$. In particular, if $a=0$ and if
-$|\Rm(p,0)|\le 1$ for all $p\in M$, then the curvature of the
-flow is pinched toward positive.
-
-Next we fix $\epsilon_0>0$ sufficiently small such that for any
+Theorem~\ref{pincha} gives preservation of these inequalities for
+compact three-dimensional Ricci flows. In particular, if
+$|\Rm(p,0)|\le 1$ initially, the flow is pinched toward positive.
+Fix $\epsilon_0>0$ sufficiently small such that for any
 $0<\epsilon\le \epsilon_0$ all the results of the Appendix hold for
 $2\epsilon$ and $\alpha=10^{-2}$, and Proposition~\ref{narrows}
 holds for $2\epsilon$.
 
 
 \section{The statement of the theorem}
-
-Here is the statement of the main theorem of this chapter, the
-theorem that establishes bounded curvature at bounded distance for
-blow-up limits.
 
 \begin{theorem}[Bounded curvature at bounded distance]
 \label{thm:bounded-curvature-bounded-distance}
@@ -91,50 +71,20 @@ have:
 \item[(3)] $d(x_n,y_n)< A_0R(x_n)^{-1/2}$,
 \item[(4)] $$\lim_{n\rightarrow\infty}\frac{R(y_n)}{R(x_n)}=\infty.$$
 \end{enumerate}
-For the rest of this chapter we assume that such a sequence of
-generalized Ricci flows exists. We shall eventually derive a
-contradiction.
-
-Let us sketch how the argument goes. We show that there is a
-(partial) geometric blow-up limit of the sequence $({\mathcal
-M}_n,G_n)$ based at the $x_n$. We shall see that the following hold
-for this limit. It is an incomplete manifold $U_\infty$
-diffeomorphic to $S^2\times (0,1)$ with the property that the
-diameter of $U_\infty$ is finite and the curvature goes to infinity
-at one end of $U_\infty$, an end denoted ${\mathcal E}$, while
-remaining bounded at the other end. (The non-compact manifold in
-question is diffeomorphic to $S^2\times (0,1)$ and, consequently, it
-has two ends.)
- Every point of $U_\infty$
-sufficiently close to ${\mathcal E}$ is the center of a
-$2\epsilon$-neck in $U_\infty$. In fact, there is a partial
-geometric limiting flow on $U_\infty$ so that these points are
-centers of evolving $2\epsilon$-necks. Having constructed this
-incomplete blow-up limit of the original sequence we then consider
-further blow-up limits about the end ${\mathcal E}$, the end where
-the scalar curvature goes to infinity. On the one hand, a direct
-argument shows that a sequence of rescalings of $U_\infty$ around
-points converging to the end ${\mathcal E}$ converge in the
-Gromov-Hausdorff sense to a cone. On the other hand, a slightly
-different sequence of rescalings at the same points converges
-geometrically to a limiting non-flat Ricci flow. Since both limits
-are non-degenerate three-dimensional spaces, we show that the ratio
-of the rescaling factors used to construct them converges to a
-finite, non-zero limit. This means that the two limits differ only
-by an overall constant factor. That is to say the geometric blow-up
-limit is isometric to an open subset of a non-flat cone. This
-contradicts Hamilton's result (Theorem~\ref{nocones}) which says
-that it is not possible to flow under the Ricci flow to an open
-subset of a non-flat cone. Now we carry out all the steps in this
-argument.
+The sequence above is fixed for the contradiction argument. Its
+rescaled limit is an incomplete finite-diameter manifold
+$U_\infty\cong S^2\times(0,1)$ with curvature bounded at one end and
+unbounded at the other end ${\mathcal E}$; points sufficiently near
+${\mathcal E}$ are centers of evolving $2\epsilon$-necks. Rescaling
+near ${\mathcal E}$ gives both a cone limit and a non-flat smooth
+Ricci-flow limit. Their scale ratio is bounded above and below, so
+the latter is an open subset of a non-flat cone, contradicting
+Theorem~\ref{nocones}.
 
 \section{The incomplete geometric limit}\label{sectincomp}
 
-We fix a sequence $({\mathcal M}_n,G_n,x_n)$ of generalized Ricci
-flows as above. The first step  is to shift and rescale this
-sequence of generalized Ricci flows so that we can form an
-(incomplete) geometric limit which will be a tube of finite length
-with scalar curvature going to infinity at one end.
+Fix $({\mathcal M}_n,G_n,x_n)$ as above and shift and rescale it to
+form the incomplete geometric limit.
 
 We shift the time parameter of $({\mathcal M}_n,G_n)$ by $-{\bf
 t}(x_n)$. We change notation and denote these shifted flows by
@@ -205,6 +155,7 @@ $z_n$ to $y_n$.
 \end{claim}
 
 \begin{proof}
+\sketch
 This is clear in the third case since $X_n$ is a closed manifold.
 
 Let us consider the first case. There are $\epsilon$-necks $N(z_n)$
@@ -277,6 +228,7 @@ $\epsilon$-neck in the flow $({\mathcal M}'_n,G'_n)$.
 \end{claim}
 
 \begin{proof}
+\sketch
 The first item is clear since, for all $n$, the geodesic $\gamma_n$
 has $G_n$-length at most $A_0Q_n^{-1/2}$ and hence $G'_n$-length at
 most $A_0$. Suppose that we have a $(C,\epsilon)$-cap ${\mathcal C}$
@@ -408,6 +360,7 @@ $N(z_n')$ centered at $z'_n$.
 \end{claim}
 
 \begin{proof}
+\sketch
 The curvature on  $N(z'_n)$ is bounded independent of $n$. Consider
 a point $w$ near the end of $N(z'_n)$ that separates $y_n'$ from
 $z_n'$. It is also the center of a strong $\epsilon$-neck $N(w)$. By
@@ -432,6 +385,7 @@ the curvature on $\operatorname{Reg}_\delta(U_n,g'_n)$.
 \end{claim}
 
 \begin{proof}
+\sketch
 To prove this it suffices to show that given $\delta>0$ there is
 $A<A_1$ such that $\operatorname{Reg}_\delta(U_n,g'_n)\subset B(z'_n,A)$ for
 all $n$ sufficiently large. Of course, if we establish this for
@@ -536,7 +490,49 @@ $U_\infty$ under the diffeomorphism $\psi$.
 The proof of this proposition occupies the rest of
 Chapter~\ref{sectincomp}.
 
+\begin{claim}[Points of $W^+_\infty$ are neck centers]
+\label{claim:points-in-Wplus-are-neck-centers}
+Any point $q\in W^+_\infty$ is the center of a $2\epsilon$-neck in
+$U_\infty$.
+\end{claim}
 \begin{proof}
+\sketch The approximating necks have uniform regular curvature bounds,
+so smooth convergence produces a centered $2\epsilon$-neck at $q$.
+\end{proof}
+
+\begin{claim}[Curvature bounded at one end, unbounded at the other]
+\label{claim:curvature-bounded-one-end-infinite-other}
+The curvature is bounded in a neighborhood of one end of $U_\infty$
+and goes to infinity at the other end.
+\end{claim}
+\begin{proof}
+\sketch The bounded end is the limit of negative neck halves, while
+neck scales tend to zero along the other end.
+\end{proof}
+
+\begin{claim}[Existence of a backward flowline]
+\label{claim:flowline-exists-for-x}
+For each $x\in U_n\subset M_n$ there is a flowline $\{x\}\times
+(-R(x)^{-1},0]$ in ${\mathcal M}_n$, and its scalar curvature is at
+most $R(x)$.
+\end{claim}
+\begin{proof}
+\sketch A strong $\epsilon$-neck centered at $x$ supplies the flowline
+and the curvature bound.
+\end{proof}
+
+\begin{claim}[Non-negativity of the limiting curvature]
+\label{claim:limiting-flow-nonnegative-curvature}
+The curvature of the generalized Ricci flow on ${\mathcal
+U}_\infty$ is non-negative.
+\end{claim}
+\begin{proof}
+\sketch Rescaling Equation~\ref{weakerpos} and using $Q_n\to\infty$
+gives non-negative limiting curvature by Theorem~\ref{blowupposcurv}.
+\end{proof}
+
+\begin{proof}
+\sketch
 Let $V_1\subset V_2 \subset \cdots \subset U_\infty$ be the open
 subsets and $\varphi_n\colon V_n\to U_n$ be the maps having all the
 properties stated in Definition~\ref{smoothconv} so as to exhibit
@@ -573,13 +569,6 @@ where the curvature is bounded (and where, in fact, the curvature is
 close to $R(z_\infty)$) and the other, denoted $W^+_\infty$, where
 it is unbounded.
 
-\begin{claim}[Points of $W^+_\infty$ are neck centers]
-\label{claim:points-in-Wplus-are-neck-centers}
-Any point $q\in W^+_\infty$ is the center of a $2\epsilon$-neck in
-$U_\infty$.
-\end{claim}
-
-\begin{proof}
 Fix a point $q\in W^+_\infty$.
  For all $n$ sufficiently large denote by $q_n=\varphi_n(q)$.
  Then for all $n$ sufficiently large, $q_n\in W^+_n$ and
@@ -602,7 +591,6 @@ $n$ sufficiently large $R(y_n')>>R(q_n))$, and hence
  that for all $n$
  sufficiently large $\varphi_n^{-1}(N_m)$ contains a $2\epsilon$-neck in $U_\infty$ centered
  at $q$.
-\end{proof}
 
 
 It now follows from Proposition~\ref{Xcontainedin} that $W^+_\infty$
@@ -624,13 +612,6 @@ along their common boundary. It follows immediately that $U_\infty$
 is diffeomorphic to $S^2\times (0,1)$.
 
 
-\begin{claim}[Curvature bounded at one end, unbounded at the other]
-\label{claim:curvature-bounded-one-end-infinite-other}
-The curvature is bounded in a neighborhood of one end of $U_\infty$
-and goes to infinity at the other end.
-\end{claim}
-
-\begin{proof}
  A neighborhood of one end of $U_\infty$, the end $\overline W^-_\infty$,
  is the limit of the
  negative halves of $\epsilon$-necks centered at $z_n'$.
@@ -644,7 +625,6 @@ $\epsilon$-neck in $U_\infty$. The only way this is possible is if
 the scales of these $\epsilon$-necks are converging to zero as $k$
 goes to infinity. This is equivalent to the statement that $R(x_k)$
 tends to $\infty$ as $k$ goes to infinity.
-\end{proof}
 
 
 The next step in the proof of Proposition~\ref{prop:incomplete-limit-tube-properties} is to extend
@@ -655,20 +635,9 @@ of the point at time zero.
 
 
 
-\begin{claim}[Existence of a backward flowline]
-\label{claim:flowline-exists-for-x}
-For each $x\in U_n\subset M_n$ there is a flowline $\{x\}\times
-(-R(x)^{-1},0]$ in ${\mathcal M}_n$. Furthermore, the scalar
-curvature at any point of this flow line is less than or equal to
-the scalar curvature at $x$.
-\end{claim}
-
-
-\begin{proof}
 Since $x\in U_n\subset T_n$, there is a strong $\epsilon$-neck in
 ${\mathcal M}_n$ centered at $x$. Both statements follow immediately
 from that.
-\end{proof}
 
 
 Let $X\subset U_\infty$ be an open submanifold with compact closure
@@ -690,24 +659,13 @@ ${\mathcal U}_\infty$.
 
 
 
-\begin{claim}[Non-negativity of the limiting curvature]
-\label{claim:limiting-flow-nonnegative-curvature}
- The curvature of the generalized Ricci flow on ${\mathcal
-U}_\infty$ is non-negative.
-\end{claim}
-
-\begin{proof}
  This claim follows from the fact that the
 original sequence $({\mathcal M}_n,G_n)$ consists of generalized
 flows whose curvatures are pinched toward positive in the weak sense
 given in Equation~\ref{weakerpos} and the fact that $Q_n\rightarrow
 \infty$ as $n\rightarrow \infty$. (See Theorem~\ref{blowupposcurv}.)
-\end{proof}
 
-This completes the proof that all the properties claimed in
-Proposition~\ref{prop:incomplete-limit-tube-properties} hold for the geometric limit
-$(U_\infty,g_\infty,z_\infty)$. This  completes the proof of that
-proposition. \end{proof}
+\end{proof}
 
 
 
@@ -715,10 +673,7 @@ proposition. \end{proof}
 
 \section{Cone limits near the end ${\mathcal E}$ for rescalings of $U_\infty$}\label{GromHaus}
 
-The next step is to study the nature  of the limit $U_\infty$ given
-in Proposition~\ref{prop:incomplete-limit-tube-properties}. We shall show that an appropriate
-blow-up limit (limit in the Gromov-Hausdorff sense) around the end
-is a cone.
+We study rescalings of $U_\infty$ near ${\mathcal E}$.
 
 Let $(X,d_X)$ be a metric space. Recall that the  cone on $X$,
 denoted $C(X)$, is the quotient space $X\times [0,\infty)$ under the
@@ -774,6 +729,7 @@ U_\infty$ with $R(x)\ge 2Q_\infty$.
 \end{claim}
 
 \begin{proof}
+\sketch
 Fix $x$ with $R(x)\ge 2Q_\infty$ and fix a $2\epsilon$-neck $N_x$
 centered at $x$. Let $S_x^2$ be the central $2$-sphere of this neck.
 Take a sequence of points $q_n$ tending to the end ${\mathcal E}$,
@@ -806,6 +762,7 @@ distance (see Section~\ref{ENDS}) from $x$ to ${\mathcal E}$.
 
 
 \begin{proof}
+\sketch
 The implication in (1) in one direction is clear: If $\gamma$ is a
 ray from $x$ to the end ${\mathcal E}$, and for some $y\in \gamma$
 the segment on $\gamma$ from $x$ to $y$ is not minimizing, then
@@ -867,6 +824,7 @@ inequality.
 
 
 \begin{proof}
+\sketch
 From the definitions it is clear that $d(x,y)+d(y,{\mathcal E})\ge
 d(x,{\mathcal E})$, and symmetrically, reversing the roles of $x$
 and $y$. The remaining inequality that we must establish is the
@@ -898,6 +856,7 @@ There is more than one direction at ${\mathcal E}$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 Take a minimal geodesic ray $\gamma$ from a point $x$ limiting to
 the end and let $y$ be a point closer to ${\mathcal E}$ than $x$ and
 not lying on $\gamma$. Then a minimal geodesic ray from $y$ to
@@ -953,6 +912,7 @@ $\mu'$, then $\theta(\gamma,\mu)=\theta(\gamma',\mu')$.
 
 
 \begin{proof}
+\sketch
 By restricting $\gamma$ and $\mu$ to slightly smaller rays, we can
 assume that each is the unique shortest ray from its endpoint to the
 end ${\mathcal E}$. Let $x$, resp., $y$ be the endpoint of $\gamma$,
@@ -1000,6 +960,7 @@ $$\theta(\gamma,\mu)+\theta(\mu,\nu)\ge \theta(\gamma,\nu).$$
 
 
 \begin{proof}
+\sketch
 \uses{cor:unique-shortest-subray,cor:angle-comparison}
 By Corollary~\ref{cor:unique-shortest-subray}, after replacing
 $\gamma, \mu,\nu$ by
@@ -1044,6 +1005,7 @@ homeomorphic to a ray.
 
 
 \begin{proof}
+\sketch
 \uses{lem:multiple-directions-at-end}
 By construction $(C_{\mathcal E},g_{\mathcal E})$ is a metric cone.
 That it is not homeomorphic to a ray follows immediately from
@@ -1068,6 +1030,7 @@ $$d_{g_\infty}(x,y)\le d_{g_{\mathcal E}}(x',y').$$
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{def:angle-between-directions-theta,lem:theta-monotone-convergence}
 By the definition of the cone metric we have
 $$d_{g_{\mathcal E}}(x',y')=a^2+b^2-2ab\,\cos(\theta(\gamma,\mu)).$$
@@ -1095,6 +1058,7 @@ $$d_{\lambda g_\infty}(x,y)\le d_{g_{\mathcal E}}(x'_\lambda,y'_\lambda).$$
 
 
 \begin{proof}
+\sketch
 \uses{lem:cone-distance-upper-bound}
 This is immediate by applying the previous lemma to the rescaled
 manifold $(U_\infty,\lambda g_\infty)$, and noticing that rescaling
@@ -1111,6 +1075,7 @@ $j'$ with $j\not=j'$ such that $\theta(\ell_j,\ell_{j'})<\delta$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 Let $K$ be such that, given $K$ points in the central $2$-sphere of
 any $2\epsilon$-tube of scale $1$, at least two are within distance
 $\delta/2$ of each other. Now suppose that we have $K$ directions
@@ -1180,6 +1145,7 @@ from the cone point in the open cone.
 
 
 \begin{proof}
+\sketch
 \uses{cor:directions-space-compact-net,cor:rescaled-cone-distance-bound,lem:theta-monotone-convergence}
 It suffices to prove that given any subsequence of the original
 sequence, the result holds for a further subsequence. So let us
@@ -1343,6 +1309,7 @@ by positive constants.
 
 
 \begin{proof}
+\sketch
 First of all, since there is a $2\epsilon$-neck centered at $x_n$,
 by Proposition~\ref{S2intersection} we see that the distance
 $\lambda_n^{-1/2}$ from $x_n$ to ${\mathcal E}$ is at least

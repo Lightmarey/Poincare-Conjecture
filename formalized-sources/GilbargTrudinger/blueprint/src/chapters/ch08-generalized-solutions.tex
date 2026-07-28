@@ -1,2425 +1,1661 @@
-% PDF page 190
-\source{gilbarg-trudinger:page-0190}
+\chapter{Generalized Solutions and Regularity}
 
-\[
-(8.4)\qquad \Lop(u,v)=F(v)=\int_{\Omega} \left(f^i D_i v-gv\right)\,dx \qquad \forall v\in C_0^1(\Omega).
-\]
+\begin{definition}[Divergence-form operator and generalized solution]
+\label{gt-def-8-divergence-form-generalized-solution}
+\dcref{ch8:8.1--8.4}
+\group{ch08-generalized-solutions}
+Let $\Omega\subset\mathbb R^n$ be a domain, and let $a^{ij},b^i,c^i,d$ be
+measurable. Set
+\begin{equation}
+Lu=D_i(a^{ij}D_j u+b^iu)+c^iD_i u+du.
+\tag{8.1}
+\end{equation}
+For weakly differentiable $u$ for which the following integral is defined, put
+\begin{equation}
+\Lop(u,v)=\int_\Omega\bigl((a^{ij}D_j u+b^iu)D_i v
+ -(c^iD_i u+du)v\bigr)\,dx.
+\tag{8.2}
+\end{equation}
+The assertions $Lu=0$, $Lu\geq0$, and $Lu\leq0$ hold in the generalized sense
+when $\Lop(u,v)=0$, $\Lop(u,v)\leq0$, and $\Lop(u,v)\geq0$, respectively, for
+every nonnegative $v\in C_0^1(\Omega)$. If $f^i,g\in L^1_{\mathrm{loc}}(\Omega)$,
+then $u$ is a generalized solution of
+\begin{equation}
+Lu=g+D_if^i
+\tag{8.3}
+\end{equation}
+when
+\begin{equation}
+\Lop(u,v)=\int_\Omega(f^iD_iv-gv)\,dx
+\qquad\forall v\in C_0^1(\Omega).
+\tag{8.4}
+\end{equation}
+\end{definition}
 
-As above we see that classical solutions of (8.3) are also generalized solutions and
-that a $C^2(\Omega)$ generalized solution is also a classical solution when the coefficients of
-$L$ are sufficiently smooth.
+\begin{remark}[Classical and generalized solutions]
+\label{gt-rem-8-classical-generalized-equivalence}
+\dcref{ch8:8.1--8.4}
+\group{ch08-generalized-solutions}
+Classical solutions satisfy these generalized identities whenever the integrals
+are defined. Conversely, a $C^2$ generalized solution is classical when the
+coefficients needed to expand the divergence terms are sufficiently regular.
+\end{remark}
 
-Our plan is to study the generalized Dirichlet problem for the equation (8.3).
-The sense in which this problem is naturally posed depends on the coefficients of
-$L$. We shall assume throughout that $L$ is strictly elliptic in $\Omega$; that is, there exists a
-positive number $\lambda$ such that
+\begin{convention}[Ellipticity and coefficient bounds]
+\label{gt-conv-8-ellipticity-coefficient-bounds}
+\dcref{ch8:8.5--8.6}
+\group{ch08-generalized-solutions}
+Unless stated otherwise, $L$ is strictly elliptic and has bounded coefficients:
+there are $\lambda>0$, $\Lambda>0$, and $\nu\geq0$ such that
+\begin{equation}
+a^{ij}(x)\xi_i\xi_j\geq\lambda|\xi|^2
+\qquad(x\in\Omega,\ \xi\in\mathbb R^n),
+\tag{8.5}
+\end{equation}
+and, for every $x\in\Omega$,
+\begin{equation}
+\sum_{i,j}|a^{ij}(x)|^2\leq\Lambda^2,
+\qquad
+\lambda^{-2}\sum_i(|b^i(x)|^2+|c^i(x)|^2)
+ +\lambda^{-1}|d(x)|\leq\nu^2.
+\tag{8.6}
+\end{equation}
+\end{convention}
 
-\[
-(8.5)\qquad a^{ij}(x)\xi_i\xi_j\geq \lambda |\xi|^2,\qquad \forall x\in\Omega,\ \xi\in\mathbb{R}^n.
-\]
+\begin{definition}[Generalized Dirichlet problem]
+\label{gt-def-8-generalized-dirichlet-problem}
+\dcref{ch8:8.3--8.4}
+\group{ch08-generalized-solutions}
+For $\varphi\in W^{1,2}(\Omega)$, a generalized solution $u\in W^{1,2}(\Omega)$
+of (8.3) has boundary value $\varphi$ when
+$u-\varphi\in W_0^{1,2}(\Omega)$.
+\end{definition}
 
-We also assume (unless stated otherwise) that $L$ has bounded coefficients; that is
-for some constants $\Lambda$ and $\nu\geq 0$ we have for all $x\in\Omega$
-
-\[
-(8.6)\qquad \sum |a^{ij}(x)|^2\leq \Lambda^2,\qquad \lambda^{-2}\sum\left(|b^i(x)|^2+|c^i(x)|^2\right)+\lambda^{-1}|d(x)|\leq \nu^2.
-\]
-
-We point out however that a satisfactory theory can still be developed if these
-conditions are relaxed [TR 7]. A function $u$ belonging to the Sobolev space
-$W^{1,2}(\Omega)$ will then be called a solution of the generalized Dirichlet problem:
-\[
-Lu=g+D_if^i,\ u=\varphi\ \text{on }\partial\Omega,\ \text{if }u\text{ is a generalized solution of equation (8.3), }\varphi\in
-W^{1,2}(\Omega)\text{ and }u-\varphi\in W_0^{1,2}(\Omega).
-\]
-
-The functions $v\in C_0^1(\Omega)$ that occur in the formulations (8.2) and (8.4) are often
-referred to as test functions. Note that by condition (8.6) we have
-
-\[
-(8.7)\qquad |\Lop(u,v)|\leq \int_{\Omega}\left\{|a^{ij}D_j uD_iv|+|b^i uD_iv|+|c^i vD_i u|+|duv|\right\}\,dx
-\]
-\[
-\qquad\qquad\leq C\|u\|_{W^{1,2}(\Omega)}\|v\|_{W^{1,2}(\Omega)}\qquad \text{by Schwarz's inequality}
-\]
-
-Hence for fixed $u\in W^{1,2}(\Omega)$, the mapping $v\to \Lop(u,v)$ is a bounded linear functional on $W_0^{1,2}(\Omega)$. Consequently the validity of the relations (8.2) for $v\in C_0^1(\Omega)$
-implies their validity for $v\in W_0^{1,2}(\Omega)$.
-
-The estimate (8.7) is also significant from the point of view of the existence
-theory for (8.3) as it shows that the operator $L$ defines through (8.2) a bounded bi-
-linear form on each of the Hilbert spaces $W^{1,2}(\Omega)$, $W_0^{1,2}(\Omega)$. For fixed $u\in W^{1,2}(\Omega)$,
-Lu may be defined as an element of the dual space of $W_0^{1,2}(\Omega)$ by setting $\Lop u(v)=$
-$\Lop(u,v),\ v\in W_0^{1,2}(\Omega)$. By virtue of the Riesz representation theorem, $W_0^{1,2}(\Omega)$ may
-be identified with its dual, and consequently the operator $L$ induces a mapping
-$W^{1,2}(\Omega)\to W_0^{1,2}(\Omega)$. As we shall show presently, the solvability of the Dirichlet
-problem for equation (8.3) is readily reduced to the invertibility of this mapping.
-
-The alternative approach to the linear Dirichlet problem described above is by
-no means the only important contribution of this chapter. The pointwise estimates
-developed in Sections 8.6, 8.9 and 8.10 are crucial for the subsequent development
-of the theory of quasilinear equations in Part II. For the purposes of this applica-
-tion, the reader need only consider $C^1(\overline{\Omega})$ subsolutions or supersolutions of equa-
-tion (8.3) and moreover take $b^i=c^i=d=0$ in (8.1), that is $\nu=0$ in (8.6).
-
-
-% PDF page 191
-\source{gilbarg-trudinger:page-0191}
-
-\begin{quote}
-\textbf{8.1. The Weak Maximum Principle}
-\end{quote}
+\begin{proposition}[Boundedness of the weak form]
+\label{gt-prop-8-bounded-weak-form}
+\dcref{ch8:8.7}
+\group{ch08-generalized-solutions}
+Under (8.6),
+\begin{equation}
+\begin{split}
+|\Lop(u,v)|
+&\leq\int_\Omega\bigl(|a^{ij}D_juD_iv|+|b^iuD_iv|
+ +|c^ivD_iu|+|duv|\bigr)\,dx\\
+&\leq C\|u\|_{W^{1,2}(\Omega)}\|v\|_{W^{1,2}(\Omega)}.
+\end{split}
+\tag{8.7}
+\end{equation}
+Thus (8.2) and (8.4) extend from $C_0^1(\Omega)$ to
+$W_0^{1,2}(\Omega)$, and $u\mapsto\Lop(u,\cdot)$ defines a bounded map
+$W^{1,2}(\Omega)\to W_0^{1,2}(\Omega)^*$.
+\end{proposition}
+\begin{proof}
+\sketch Apply Cauchy--Schwarz to each term and use the coefficient bounds (8.6),
+then use the density of $C_0^1(\Omega)$ in $W_0^{1,2}(\Omega)$.
+\end{proof}
 
 \section*{8.1. The Weak Maximum Principle}
 
-The classical weak maximum principle, Theorem 3.1, has a natural extension to operators in divergence form. In order to formulate it, we require a notion of inequality at the boundary for functions in the Sobolev space $W^{1,2}(\Omega)$. Namely, let us say that $u \in W^{1,2}(\Omega)$ satisfies $u \le 0$ on $\partial \Omega$ if its positive part $u^{+} = \max \{u, 0\} \in W_{0}^{1,2}(\Omega)$. If $u$ is continuous in a neighborhood of $\partial \Omega$, then $u$ satisfies $u \le 0$ on $\partial \Omega$ if the inequality holds in the classical pointwise sense. Other definitions of inequality at $\partial \Omega$ follow naturally. For example: $u \ge 0$ on $\partial \Omega$ if $-u \le 0$ on $\partial \Omega$; $u \le v \in W^{1,2}(\Omega)$ on $\partial \Omega$ if $u-v \le 0$ on $\partial \Omega$;
-
+\begin{definition}[Sobolev boundary inequalities]
+\label{gt-def-8-sobolev-boundary-inequalities}
+\dcref{ch8:8.1}
+\group{ch08-generalized-solutions}
+For $u,v\in W^{1,2}(\Omega)$, write $u\leq0$ on $\partial\Omega$ when
+$u^+\in W_0^{1,2}(\Omega)$, and write $u\leq v$ there when
+$(u-v)^+\in W_0^{1,2}(\Omega)$. Define the reversed inequalities by negation and
 \[
-\sup_{\partial \Omega} u = \inf \{k \mid u \le k \text{ on } \partial \Omega,\, k \in \mathbb{R}\}; \qquad
-\inf_{\partial \Omega} u = -\sup_{\partial \Omega} (-u).
+\sup_{\partial\Omega}u=
+\inf\{k\in\mathbb R:u\leq k\text{ on }\partial\Omega\},
+\qquad
+\inf_{\partial\Omega}u=-\sup_{\partial\Omega}(-u).
 \]
+For functions continuous near the boundary, this agrees with the pointwise notion.
+\end{definition}
 
-For the classical weak maximum principle of Corollary 3.2, we imposed the condition that the coefficient of $u$ in (3.1) is non-positive. The corresponding quantity in (8.1) is $D_i b^i + d$ but since the derivatives $D_i b^i$ need not exist as functions, the non-positivity of this term must be interpreted in a generalized sense, that is, we assume
-
-\begin{equation}\tag{8.8}
-\int_{\Omega} (d v - b^i D_i v)\,dx \le 0 \qquad \forall v \ge 0,\, v \in C_0^1(\Omega).
-\end{equation}
-
-Since $b^i$ and $d$ are bounded, inequality (8.8) will continue to hold for all non-negative $v \in W_0^{1,1}(\Omega)$.
-
-We can now state the following weak maximum principle.
-
-\begin{theorem}[Weak maximum principle]\label{gt-thm-8-1-weak-maximum-principle}\dcref{8.1}\group{ch08-generalized-solutions}\source{gilbarg-trudinger:page-0191}
-\emph{Let $u \in W^{1,2}(\Omega)$ satisfy $Lu \ge 0$ ($\le 0$) in $\Omega$. Then}
-
-\begin{equation}\tag{8.9}
-\sup_{\Omega} u \le \sup_{\partial \Omega} u^{+} \qquad \bigl(\inf_{\Omega} u \ge \inf_{\partial \Omega} u^{-}\bigr).
-\end{equation}
-
-\emph{Proof.} If $u \in W^{1,2}(\Omega)$, $v \in W_0^{1,2}(\Omega)$ we have $uv \in W_0^{1,1}(\Omega)$ and $D(uv) = vDu + uDv$ (Problem 7.4). We may then write the inequality $\mathcal{L}(u,v) \le 0$ in the form
-
-\[
-\int_{\Omega} \{a^{ij} D_j u D_i v - (b^i + c^i)v D_i u\}\,dx \le \int_{\Omega} \{d u v - b^i D_i(uv)\}\,dx \le 0
-\]
-
-for all $v \ge 0$ such that $uv \ge 0$, (by (8.8)). Hence, by the coefficient bounds (8.6), we have
-
-\begin{equation}\tag{8.10}
-\int_{\Omega} a^{ij} D_j u D_i v\,dx \le 2\lambda \int_{\Omega} v |Du|\,dx
-\end{equation}
-
-for all $v \ge 0$ such that $uv \ge 0$. In the special case $b^i + c^i = 0$, the proof is immediate by taking $v = \max \{u - l, 0\}$ where $l = \sup_{\partial \Omega} u^{+}$. For the general case, we choose $k$ to
-
-
-% PDF page 192
-\source{gilbarg-trudinger:page-0192}
-
-satisfy $l \le k < \sup_{\Omega} u$, and we set $v = (u-k)^+$. (If no such $k$ exists we are done.) By the chain rule, Theorem 7.8, we have $v \in W_0^{1,2}(\Omega)$ and
-
-\[
-Du =
-\begin{cases}
-Du & \text{for } u>k \quad (\text{i.e.\ for } v \ne 0),\\
-0 & \text{for } u \le k \quad (\text{i.e.\ for } v = 0).
-\end{cases}
-\]
-
-Consequently we obtain from (8.10)
-
-\[
-\int_{\Omega} a^{ij}D_jvD_iv\,dx \le 2\lambda \int_{\Gamma} v|Dv|\,dx,
-\qquad \Gamma = \supp Dv \subset \supp v,
-\]
-
-and hence by the strict ellipticity of $L$, (8.5),
-
-\[
-\int_{\Omega} |Dv|^2\,dx \le 2\nu \int_{\Gamma} v|Dv|\,dx \le 2\nu \,\|v\|_{2;\Gamma}\,\|Dv\|_2,
-\]
-
-so that
-
-\[
-\|Dv\|_2 \le 2\nu \,\|v\|_{2;\Gamma}
-\]
-
-Let us now apply the Sobolev inequality, Theorem 7.10, for $n \ge 3$, to obtain
-
-\[
-\|v\|_{2n/(n-2)} \le C\|v\|_{2;\Gamma} \le C|\supp Dv|^{1/n}\|v\|_{2n/(n-2)}
-\]
-
-where $C = C(n,\nu)$, so that
-
-\[
-|\supp Dv| \ge C^{-n}.
-\]
-
-In the case $n=2$, an inequality of the same form with $C=C(n,\nu,|\Omega|)$ also follows from the Sobolev inequality by replacing $2n/(n-2)$ by any number greater than $2$.
-Since these inequalities are independent of $k$ they must hold as $k$ tends to $\sup_{\Omega} u$.
-
-That is, the function $u$ must attain its supremum in $\Omega$ on a set of positive measure, where at the same time $Du = 0$ (by Lemma 7.7). This contradiction of the preceding inequality implies $\sup_{\Omega} u \le l$.
-
-The uniqueness of solutions of the generalized Dirichlet problem for equation (8.3) is an immediate consequence of Theorem 8.1.
-
-\end{theorem}
-
-\begin{corollary}[Uniqueness in $W_0^{1,2}$]\label{gt-cor-8-2-uniqueness-zero}\dcref{8.2}\group{ch08-generalized-solutions}\source{gilbarg-trudinger:page-0192}
-\noindent\textbf{Corollary 8.2.}\ \ $u \in W_0^{1,2}(\Omega)$ satisfy $Lu=0$ in $\Omega$. Then $u=0$ in $\Omega$.
-\end{corollary}
-
-\medskip
-
-For alternative conditions to inequality (8.8), the reader is referred to Problem 8.1; see also [TR 11].
-
-
-% PDF page 193
-\source{gilbarg-trudinger:page-0193}
-
-8.2. Solvability of the Dirichlet Problem
-
-8.2. Solvability of the Dirichlet Problem
-
-The main objective of this section is the following existence result.
-
-\begin{theorem}[Solvability of the generalized Dirichlet problem]\label{gt-thm-8-3-solvability-generalized-dirichlet}\dcref{8.3}\group{ch08-generalized-solutions}\source{gilbarg-trudinger:page-0193}
-\emph{Let the operator $L$ satisfy conditions (8.5), (8.6) and (8.8). Then for $\varphi \in W^{1,2}(\Omega)$ and $g,\, f^i \in L^2(\Omega)$, $i=1,\ldots,n$, the generalized Dirichlet problem,}
-\[
-Lu=g+D_i f^i \text{ in } \Omega, \, u=\varphi \text{ on } \partial\Omega
-\]
-\emph{is uniquely solvable.}
-\end{theorem}
-
-Proof. \ \ Theorem 8.3 will be derived as a byproduct of a Fredholm alternative for the operator $L$. Let us first reduce the Dirichlet problem to the case of zero boundary values. Setting $w=u-\varphi$, we obtain from (8.3)
-
-\[
-\begin{aligned}
-Lw &= Lu-L\varphi \\
-&= g-c^i D_i\varphi-d\varphi + D_i\bigl(f^i-a^{ij}D_j\varphi-b^i\varphi\bigr) \\
-&= \hatg + D_i \hatf^{\,i}
-\end{aligned}
-\]
-
-and from our conditions on $L$ and $\varphi$, we clearly have $\hatg,\, \hatf^{\,i} \in L^2(\Omega)$, $i=1,\ldots,n$
-and $w \in W^{1,2}_0(\Omega)$. Therefore it suffices to prove Theorem 8.3 for the case $\varphi \equiv 0$.
-
-Let us write $\Hv = W^{1,2}_0(\Omega)$, $g=(g,f^1,\ldots,f^n)$ and
-\[
-F(v) = -\int_{\Omega} (gv-f^i D_i v)\,dx
-\]
-for $v \in \Hv$. Then since
-\[
-|F(v)| \le \|g\|_2 \|v\|_{W^{1,2}(\Omega)}
-\]
-we have $F \in \Hv^{*}$. If the bilinear form $\Qop$ defined by (8.2) were coercive on $\Hv$ as well
-as bounded, we could conclude immediately the unique solvability of the Dirichlet
-problem for $L$ from Theorem 5.8. Related to the coercivity of $\Qop$ is the following.
-
-\begin{lemma}[Coercivity estimate]\label{gt-lem-8-4-coercivity-estimate}\dcref{8.4}\group{ch08-generalized-solutions}\source{gilbarg-trudinger:page-0193}
-\emph{Let $L$ satisfy conditions (8.5) and (8.6). Then}
-
+\begin{convention}[Weak nonpositivity of the zeroth-order term]
+\label{gt-conv-8-weak-zeroth-order-sign}
+\dcref{ch8:8.8}
+\group{ch08-generalized-solutions}
+The generalized sign condition corresponding to $D_ib^i+d\leq0$ is
 \begin{equation}
-\Qop(u,u) \ge \frac{\lambda}{2}\int_{\Omega} |Du|^2\,dx - \lambda v^2 \int_{\Omega} u^2\,dx.
+\int_\Omega(dv-b^iD_iv)\,dx\leq0
+\qquad\forall v\in C_0^1(\Omega),\quad v\geq0.
+\tag{8.8}
+\end{equation}
+Under (8.6), it also holds for nonnegative $v\in W_0^{1,1}(\Omega)$.
+\end{convention}
+
+\begin{theorem}[Weak maximum principle]
+\label{gt-thm-8-1-weak-maximum-principle}
+\dcref{ch8:8.1}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), and (8.8). If $u\in W^{1,2}(\Omega)$ satisfies
+$Lu\geq0$ (respectively, $Lu\leq0$), then
+\begin{equation}
+\sup_\Omega u\leq\sup_{\partial\Omega}u^+,
+\qquad
+\left(\text{respectively, }\inf_\Omega u\geq\inf_{\partial\Omega}u^-\right).
+\tag{8.9}
+\end{equation}
+\end{theorem}
+\begin{proof}
+\sketch It suffices to treat the subsolution case. Put
+$l=\sup_{\partial\Omega}u^+$ and test with $v=(u-k)^+$ for
+$l\leq k<\sup_\Omega u$. Condition (8.8), applied to $uv$, removes the
+zeroth-order contribution, while ellipticity and (8.6) give
+\begin{equation}
+\tag{8.10}
+\int_\Omega a^{ij}D_j uD_i v\,dx
+\leq2\lambda\int_\Omega v|Du|\,dx.
+\end{equation}
+This yields an estimate of
+$\|Dv\|_2$ by $\|v\|_{L^2(\supp Dv)}$. Sobolev and H\"older inequalities then
+force $|\supp Dv|$ to have a positive lower bound independent of $k$. Letting
+$k\uparrow\sup_\Omega u$ contradicts the vanishing of $Du$ on the top level set.
+Apply the result to $-u$ for the supersolution statement.
+\end{proof}
+
+\begin{corollary}[Uniqueness in $W_0^{1,2}$]
+\label{gt-cor-8-2-uniqueness-zero}
+\dcref{ch8:8.2}
+\group{ch08-generalized-solutions}
+If $u\in W_0^{1,2}(\Omega)$ and $Lu=0$ in $\Omega$, then $u=0$ in $\Omega$.
+\end{corollary}
+\begin{proof}
+\sketch Apply Theorem 8.1 to $u$ and $-u$.
+\end{proof}
+
+\section*{8.2. Solvability of the Dirichlet Problem}
+
+\begin{theorem}[Solvability of the generalized Dirichlet problem]
+\label{gt-thm-8-3-solvability-generalized-dirichlet}
+\dcref{ch8:8.3}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), and (8.8). For every $\varphi\in W^{1,2}(\Omega)$ and
+$g,f^i\in L^2(\Omega)$, the problem
+\[
+Lu=g+D_if^i\quad\text{in }\Omega,
+\qquad u=\varphi\quad\text{on }\partial\Omega
+\]
+has a unique generalized solution.
+\end{theorem}
+\begin{proof}
+\sketch Set $w=u-\varphi$ and absorb $L\varphi$ into
+$\hat g=g-c^iD_i\varphi-d\varphi$ and
+$\hat f^i=f^i-a^{ij}D_j\varphi-b^i\varphi$, reducing to zero boundary data.
+For sufficiently large $\sigma_0$, Lemma 8.4 makes the form of
+$L_{\sigma_0}=L-\sigma_0$ coercive. The equation is then a compact perturbation
+of the invertible operator $L_{\sigma_0}$ by Lemma 8.5. The Fredholm alternative
+and Corollary 8.2 give existence and uniqueness.
+\end{proof}
+
+\begin{lemma}[Coercivity estimate]
+\label{gt-lem-8-4-coercivity-estimate}
+\dcref{ch8:8.4}
+\group{ch08-generalized-solutions}
+If $L$ satisfies (8.5) and (8.6), then
+\begin{equation}
+\Qop(u,u)\geq\frac{\lambda}{2}\int_\Omega|Du|^2\,dx
+-\lambda\nu^2\int_\Omega u^2\,dx.
 \tag{8.11}
 \end{equation}
-
-Proof. \ \[
-\Qop(u,u)=\int_{\Omega}\bigl(a^{ij}D_i u D_j u +(b^i-c^i)uD_i u-du^2\bigr)\,dx
-\]
-\[
-\ge \int_{\Omega}\left(\lambda |Du|^2-\frac{\lambda}{2}|Du|^2-\lambda v^2u^2\right)\,dx \quad \text{by Schwarz's inequality,}
-\]
-\[
-=\frac{\lambda}{2}\int_{\Omega}|Du|^2\,dx-\lambda v^2\int_{\Omega}u^2\,dx.\quad \square
-\]
 \end{lemma}
+\begin{proof}
+\sketch Expand $\Qop(u,u)$, use ellipticity on the principal term, and absorb
+$(b^i-c^i)uD_iu$ by Young's inequality and (8.6).
+\end{proof}
 
-
-% PDF page 194
-\source{gilbarg-trudinger:page-0194}
-
-% Page-local macros used on this page.
-
-
-For $\sigma \in \mathbb{R}$, let us now define the operators $L_\sigma$ by $L_\sigma u = Lu - \sigma u$. By Lemma 8.4 we see that the associated forms $\Lcal_\sigma$ will be coercive if either $\sigma$ is sufficiently large or $|\Omega|$ is sufficiently small. To proceed further, we define an imbedding $I : \Hcal \to \Hcal^*$ by
-
+\begin{lemma}[Compact embedding]
+\label{gt-lem-8-5-compact-embedding}
+\dcref{ch8:8.5}
+\group{ch08-generalized-solutions}
+For $\Hcal=W_0^{1,2}(\Omega)$, the map $I:\Hcal\to\Hcal^*$ defined by
 \begin{equation}
+Iu(v)=\int_\Omega uv\,dx
 \tag{8.12}
-Iu(v) = \int_\Omega uv \, dx,\qquad v \in \Hcal.
 \end{equation}
-
-Then we have
-
-\begin{lemma}[Compact embedding]\label{gt-lem-8-5-compact-embedding}\dcref{8.5}\group{ch08-generalized-solutions}\source{gilbarg-trudinger:page-0194}
-\textit{The mapping $I$ is compact.}
-
-\textit{Proof.} We may write $I = I_1 I_2$ where $I_2 : \Hcal \to L^2(\Omega)$ is the natural imbedding and $I_1 : L^2(\Omega) \to \Hcal^*$ is given by (8.12). By the compactness result, Theorem 7.22, $I_2$ is compact (also if $p = n = 2$) and, since $I_1$ is clearly continuous, it follows that $I$ is compact. $\square$
+is compact.
 \end{lemma}
+\begin{proof}
+\sketch Factor $I$ through the compact embedding
+$W_0^{1,2}(\Omega)\hookrightarrow L^2(\Omega)$ and the continuous map
+$L^2(\Omega)\to W_0^{1,2}(\Omega)^*$ induced by the $L^2$ pairing.
+\end{proof}
 
-To proceed further we choose $\sigma_0$ so that the form $\Lcal_{\sigma_0}$ is bounded and coercive on the Hilbert space $\Hcal$. The equation $Lu = F$ for $u \in \Hcal$, $F \in \Hcal^*$ is then equivalent to the equation
-
-\[
-L_{\sigma_0}u + \sigma_0 Iu = F.
-\]
-
-By Theorem 5.8, $L_{\sigma_0}^{-1}$ is a continuous, one-to-one mapping of $\Hcal^*$ onto $\Hcal$ and so, applying it to the above equation, we obtain the equivalent equation
-
+Define $L_\sigma=L-\sigma$. For a coercive shift $\sigma_0$, the zero-boundary
+equation is equivalently
 \begin{equation}
+u+\sigma_0L_{\sigma_0}^{-1}Iu=L_{\sigma_0}^{-1}F.
 \tag{8.13}
-u + \sigma_0 L_{\sigma_0}^{-1} Iu = L_{\sigma_0}^{-1}F.
 \end{equation}
-
-The mapping $T = -\sigma_0 L_{\sigma_0}^{-1} I$ is compact by Lemma 8.5 and hence by the Fredholm alternative, Theorem 5.3, the existence of a function $u \in \Hcal$ satisfying equation (8.13) is a consequence of the uniqueness in $\Hcal$ of the trivial solution of the equation $Lu = 0$. Theorem 8.3 thus follows by the uniqueness result, Corollary 8.2. $\square$
-
-A description of the spectral behavior of the operator $L$ follows from Theorem 5.11. For let us define the formal adjoint $L^*$ of $L$ by
-
+The formal adjoint is
 \begin{equation}
+L^*u=D_i(a^{ij}D_ju-c^iu)-b^iD_iu+du.
 \tag{8.14}
-L^*u = D_i(a^{ij}D_j u - c^i u) - b^i D_i u + du.
 \end{equation}
 
-Since $\Lcal^*(u,v) = \Lcal(v,u)$ for $u, v \in \Hcal = W_0^{1,2}(\Omega)$ it follows that $L^*$ is also the adjoint of $L$ in the Hilbert space $\Hcal$. By replacing $L$ with $L_\sigma$ in the above argument, we see that the equation $L_\sigma u = F$ will be equivalent to the equation $u + (\sigma_0 - \sigma)L_{\sigma_0}^{-1} Iu = L_{\sigma_0}^{-1}F$ and that the adjoint $T_\sigma^*$ of the compact mapping $T_\sigma = (\sigma_0 - \sigma)L_{\sigma_0}^{-1} I$ is given by $T_\sigma^* = (\sigma_0 - \sigma)(L_{\sigma_0}^*)^{-1} I$. We can then apply Theorem 5.11 to obtain the following result.
-
-\textbf{Theorem 8.6.} Let the operator $L$ satisfy conditions (8.5) and (8.6). Then there exists a countable, discrete set $\Sigma \subset \mathbb{R}$ such that if $\sigma \notin \Sigma$, the Dirichlet problems, $L_\sigma u,$
-
-
-% PDF page 195
-\source{gilbarg-trudinger:page-0195}
-
-$L_{\sigma}^{*}u=g+D_i f^i$, $u=\varphi$ on $\partial\Omega$, are uniquely solvable for arbitrary $g$, $f^i\in L^2(\Omega)$ and $\varphi\in W^{1,2}(\Omega)$. If $\sigma\in\Sigma$, then the subspaces of solutions of the homogeneous problems, $L_{\sigma}u$, $L_{\sigma}^{*}u=0$, $u=0$ on $\partial\Omega$ are of positive, finite dimension and the problem $L_{\sigma}u=g+D_i f^i$, $u=\varphi$ on $\partial\Omega$ is solvable if and only if
-
+\begin{theorem}[Fredholm alternative]
+\label{gt-thm-8-6-fredholm-alternative}
+\dcref{ch8:8.6}
+\group{ch08-generalized-solutions}
+Assume (8.5) and (8.6). There is a countable discrete set
+$\Sigma\subset\mathbb R$ such that, if $\sigma\notin\Sigma$, the Dirichlet
+problems for $L_\sigma$ and $L_\sigma^*$ are uniquely solvable for arbitrary
+$g,f^i\in L^2(\Omega)$ and $\varphi\in W^{1,2}(\Omega)$. If
+$\sigma\in\Sigma$, the homogeneous kernels of $L_\sigma$ and $L_\sigma^*$
+with zero boundary values have positive finite dimension, and
+$L_\sigma u=g+D_if^i$, $u=\varphi$ on $\partial\Omega$, is solvable exactly when
 \begin{equation}
+\int_\Omega\bigl((g-c^iD_i\varphi-d\varphi+\sigma\varphi)v
+ -(f^i-a^{ij}D_j\varphi-b^i\varphi)D_iv\bigr)\,dx=0
 \tag{8.15}
-\int_{\Omega}\bigl\{(g-c^iD_i\varphi-d\varphi+\sigma\varphi)v-(f^i-a^{ij}D_j\varphi-b^i\varphi)D_iv\bigr\}\,dx=0
 \end{equation}
+for every $v\in W_0^{1,2}(\Omega)$ satisfying $L_\sigma^*v=0$. If (8.8)
+also holds, then $\Sigma\subset(-\infty,0)$.
+\end{theorem}
+\begin{proof}
+\sketch For a coercive shift $L_{\sigma_0}$, rewrite the equation as
+$u+(\sigma_0-\sigma)L_{\sigma_0}^{-1}Iu=L_{\sigma_0}^{-1}F$. Lemma 8.5
+makes the perturbation compact, and its Hilbert-space adjoint is
+$(\sigma_0-\sigma)(L_{\sigma_0}^*)^{-1}I$. Apply the Fredholm alternative,
+including its orthogonality criterion. The maximum principle excludes
+nonnegative exceptional shifts.
+\end{proof}
 
-for all $v$ satisfying $L_{\sigma}^{*}v=0$, $v=0$ on $\partial\Omega$. Furthermore if condition (8.8) holds, then $\Sigma\subset(-\infty,0)$.
-
-The operator $G_{\sigma}:\Hv^{*}\to\Hv$ given by $G_{\sigma}=L_{\sigma}^{-1}$ for $\sigma\notin\Sigma$ is called the Green's operator for the Dirichlet problem for $L_{\sigma}$. By Theorem 5.3, $G_{\sigma}$ is a bounded linear operator on $\Hv^{*}$, consequently we have the following apriori estimate.
-
-\medskip
-
-\noindent\textbf{Corollary 8.7.} \
-\emph{Let $u\in W^{1,2}(\Omega)$ satisfy $L_{\sigma}u=g+D_i f^i$, $u=\varphi$ on $\partial\Omega$ with $\sigma\notin\Sigma$.
-Then there exists a constant $C$ depending only on $L$, $\sigma$ and $\Omega$ such that}
-
+\begin{corollary}[Resolvent estimate]
+\label{gt-cor-8-7-resolvent-estimate}
+\dcref{ch8:8.7}
+\group{ch08-generalized-solutions}
+If $\sigma\notin\Sigma$ and $u\in W^{1,2}(\Omega)$ solves
+$L_\sigma u=g+D_if^i$ with $u=\varphi$ on $\partial\Omega$, then
 \begin{equation}
+\|u\|_{W^{1,2}(\Omega)}
+\leq C\left(\|g\|_2+\sum_i\|f^i\|_2
++\|\varphi\|_{W^{1,2}(\Omega)}\right),
 \tag{8.16}
-\|u\|_{W^{1,2}(\Omega)}\le C(\|g\|_2+\|\varphi\|_{W^{1,2}(\Omega)}).
 \end{equation}
+where $C$ depends only on $L$, $\sigma$, and $\Omega$.
+\end{corollary}
+\begin{proof}
+\sketch The Green operator $G_\sigma=L_\sigma^{-1}:\Hcal^*\to\Hcal$ is bounded.
+\end{proof}
 
-It follows from Theorem 8.6 that Theorem 8.3 remains valid if we replace $b^i$ by $-c^i$ in the condition (8.8).
-
-\bigskip
+\begin{remark}[Adjoint sign condition for solvability]
+\label{gt-rem-8-adjoint-sign-solvability}
+\dcref{ch8:8.3}
+\group{ch08-generalized-solutions}
+Theorem 8.3 also remains valid when condition (8.8) is replaced by its adjoint
+version obtained by replacing $b^i$ with $-c^i$.
+\end{remark}
 
 \section*{8.3. Differentiability of Weak Solutions}
 
-The rest of this chapter is largely devoted to regularity considerations. We shall study in this section the existence of higher order weak derivatives of weak solutions of equation (8.3). With the aid of the differentiability results derived below, we shall deduce existence theorems for the classical Dirichlet problem from Theorem 8.3. In later sections we shall treat pointwise properties of weak solutions, such as the strong maximum principle and H\"older continuity. Our first regularity result provides conditions under which weak solutions of the equation $Lu=f$ are twice weakly differentiable.
-
-\medskip
-
-\noindent\textbf{Theorem 8.8.} \
-\emph{Let $u\in W^{1,2}(\Omega)$ be a weak solution of the equation $Lu=f$ in $\Omega$ where $L$ is strictly elliptic in $\Omega$, the coefficients $a^{ij}$, $b^i$, $i, j=1,\ldots,n$ are uniformly Lipschitz continuous in $\Omega$, the coefficients $c^i$, $d$, $i=1,\ldots,n$ are essentially bounded in $\Omega$ and the function $f$ is in $L^2(\Omega)$. Then for any subdomain $\Omega'\Subset\Omega$, we have $u\in W^{2,2}(\Omega')$ and}
-
+\begin{theorem}[Interior $W^{2,2}$ regularity]
+\label{gt-thm-8-8-interior-w22}
+\dcref{ch8:8.8}
+\group{ch08-generalized-solutions}
+Let $u\in W^{1,2}(\Omega)$ solve $Lu=f$. Assume strict ellipticity,
+$a^{ij},b^i\in C^{0,1}(\Omega)$ uniformly, $c^i,d\in L^\infty(\Omega)$, and
+$f\in L^2(\Omega)$. Then $u\in W^{2,2}(\Omega')$ for every
+$\Omega'\Subset\Omega$, with
 \begin{equation}
+\|u\|_{W^{2,2}(\Omega')}
+\leq C\bigl(\|u\|_{W^{1,2}(\Omega)}+\|f\|_{L^2(\Omega)}\bigr),
 \tag{8.17}
-\|u\|_{W^{2,2}(\Omega')}\le C(\|u\|_{W^{1,2}(\Omega)}+\|f\|_{L^2(\Omega)}).
 \end{equation}
-
-\emph{for $C=C(n,\lambda,K,d')$, where $\lambda$ is given by (8.5),}
-
-\[
-K=\max\{\|a^{ij}\|_{C^{0,1}(\overline\Omega)},\|c^i,d\|_{L^\infty(\Omega)}\}\quad \text{and}\quad d'=\operatorname{dist}(\Omega',\partial\Omega).
-\]
-
-
-% PDF page 196
-\source{gilbarg-trudinger:page-0196}
-
-Furthermore $u$ satisfies the equation
-
+where $C=C(n,\lambda,K,d')$ and $d'=\dist(\Omega',\partial\Omega)$.
+Moreover,
 \begin{equation}
-Lu = a^{ij}\Dij u + (D_j a^{ij} + b^i + c^i)\Di u + (D_i b^i + d)u = f
+Lu=a^{ij}D_{ij}u+(D_ja^{ij}+b^i+c^i)D_iu+(D_ib^i+d)u=f
 \tag{8.18}
 \end{equation}
-
-almost everywhere in $\Omega$.
-
-\medskip
-
-\noindent\textit{Proof.} From the integral identity (8.4) we have
-
+almost everywhere.
+\end{theorem}
+\begin{proof}
+\sketch Move the lower-order terms to an $L^2$ function in the weak identity.
+Thus
 \begin{equation}
-\int_{\Omega} a^{ij} D_j u\, D_i v\, dx = \int_{\Omega} g v\, dx \qquad \forall v \in C_0^1(\Omega)
 \tag{8.19}
+\int_\Omega a^{ij}D_j uD_i v\,dx=\int_\Omega gv\,dx,
+\qquad v\in C_0^1(\Omega),
 \end{equation}
-
-where $g \in L^2(\Omega)$ is given by
-
+where
 \begin{equation}
- g = (b^i + c^i)D_i u + (D_i b^i + d)u - f.
 \tag{8.20}
+g=(b^i+c^i)D_i u+(D_i b^i+d)u-f.
 \end{equation}
+Test its difference quotient in direction $e_k$ against
+$\eta^2\Delta_k^hu$. Ellipticity, the Lipschitz coefficient bounds, and Young's
+inequality give an $h$-uniform local $L^2$ bound for $D\Delta_k^hu$.
+The difference-quotient criterion yields $Du\in W^{1,2}_{\mathrm{loc}}$, and
+integration by parts gives (8.18) almost everywhere.
+\end{proof}
 
-For $|2h| < \dist(\supp v, \partial\Omega)$, let us replace $v$ by its difference quotient $\Delta^{-h}v = \Delta_k^{-h}v$
-for some $k$, $1 \le k \le n$. We then obtain
+\begin{theorem}[Strong Dirichlet solvability]
+\label{gt-thm-8-9-strong-dirichlet-solvability}
+\dcref{ch8:8.9}
+\group{ch08-generalized-solutions}
+Let
+\begin{equation}
+Lu=a^{ij}D_{ij}u+b^iD_iu+cu
+\tag{8.21}
+\end{equation}
+be strictly elliptic, with
+$a^{ij}\in C^{0,1}(\Omega)$, $b^i,c\in L^\infty(\Omega)$, and $c\leq0$.
+For every $f\in L^2(\Omega)$ and $\varphi\in W^{1,2}(\Omega)$ there is a unique
+$u\in W^{1,2}(\Omega)\cap W^{2,2}_{\mathrm{loc}}(\Omega)$ such that
+$Lu=f$ and $u-\varphi\in W_0^{1,2}(\Omega)$.
+\end{theorem}
+\begin{proof}
+\sketch Rewrite the nondivergence operator in divergence form, apply Theorem 8.3,
+and invoke Theorem 8.8 for interior second derivatives.
+\end{proof}
 
-\[
-\int_{\Omega} \Da{h}(a^{ij}D_j u)D_i v\, dx = -\int_{\Omega} a^{ij} D_j u\, D_i\Daim{h}v\, dx
-\]
-\[
-= -\int_{\Omega} g\, \Daim{h}v\, dx.
-\]
+\begin{remark}[Continuous principal coefficients]
+\label{gt-rem-8-continuous-principal-coefficients}
+\dcref{ch8:8.9}
+\group{ch08-generalized-solutions}
+For sufficiently smooth $\partial\Omega$ and $\varphi\in W^{2,2}(\Omega)$,
+the same conclusion holds with only $a^{ij}\in C^0(\overline\Omega)$; this is
+the later global result cited as Theorem 9.15 in the baseline.
+\end{remark}
 
-Since
+\begin{example}[Failure with discontinuous principal coefficients]
+\label{gt-ex-8-discontinuous-principal-nonuniqueness}
+\dcref{ch8:8.22}
+\group{ch08-generalized-solutions}
+Let $B=B_1(0)$, $0<\lambda<1$, and
+$b=-1+(n-1)/(1-\lambda)$. If $n>2(2-\lambda)>2$, then
+\begin{equation}
+\Delta u+b\frac{x_ix_j}{|x|^2}D_{ij}u=0
+\tag{8.22}
+\end{equation}
+has the distinct solutions $u_1(x)=1$ and $u_2(x)=|x|^\lambda$ in
+$W^{2,2}(B)$, with equal boundary values. Thus Theorem 8.9 need not remain
+unique for merely $L^\infty$ principal coefficients.
+\end{example}
 
-\[
-\Da{h}(a^{ij}D_j u)(x) = a^{ij}(x+he_k)\, \Da{h}D_j u(x) + \Da{h}a^{ij}(x)D_j u(x)
-\]
+\begin{theorem}[Higher interior differentiability]
+\label{gt-thm-8-10-higher-interior-regularity}
+\dcref{ch8:8.10}
+\group{ch08-generalized-solutions}
+Let $k\geq1$, and let $u\in W^{1,2}(\Omega)$ solve $Lu=f$. Assume strict
+ellipticity, $a^{ij},b^i\in C^{k,1}(\overline\Omega)$,
+$c^i,d\in C^{k-1,1}(\overline\Omega)$, and $f\in W^{k,2}(\Omega)$.
+Then $u\in W^{k+2,2}(\Omega')$ for every $\Omega'\Subset\Omega$, and
+\begin{equation}
+\|u\|_{W^{k+2,2}(\Omega')}
+\leq C\bigl(\|u\|_{W^{1,2}(\Omega)}+\|f\|_{W^{k,2}(\Omega)}\bigr),
+\tag{8.24}
+\end{equation}
+where $C=C(n,\lambda,K,d',k)$ with the stated coefficient norms absorbed in $K$.
+\end{theorem}
+\begin{proof}
+\sketch Differentiating the weak identity gives
+\begin{equation}
+\tag{8.23}
+\int_\Omega a^{ij}D_{jk}uD_i v\,dx
+=\int_\Omega D_k\widehat g\,v\,dx
+\qquad(v\in C_0^1(\Omega)).
+\end{equation}
+Thus each $D_ku$ solves an equation of the
+same type with $L^2_{\mathrm{loc}}$ data; iterate Theorem 8.8 and its estimate.
+\end{proof}
 
-we then have
+\begin{corollary}[Interior smoothness]
+\label{gt-cor-8-11-interior-smoothness}
+\dcref{ch8:8.11}
+\group{ch08-generalized-solutions}
+If the coefficients of a strictly elliptic $L$ and the datum $f$ are in
+$C^\infty(\Omega)$, then every weak solution $u\in W^{1,2}(\Omega)$ of $Lu=f$
+belongs to $C^\infty(\Omega)$.
+\end{corollary}
+\begin{proof}
+\sketch Combine Theorem 8.10 with Sobolev embedding at successively higher orders.
+\end{proof}
 
-\[
-\int_{\Omega} a^{ij}(x+he_k)D_j\Da{h}u\,D_i v\,dx = -\int_{\Omega}(\barg\cdot Dv + g\,\Daim{h}v)\,dx
-\]
+\section*{8.4. Global Regularity}
 
-where $\barg = (\bar g^1,\ldots,\bar g^n)$ and $\bar g^i = \Da{h}a^{ij}D_j u$. Using (8.20) and Lemma 7.23, we can then estimate
-
-\[
-\int_{\Omega} a^{ij}(x+he_k)D_j\Da{h}u\,D_i v\,dx \le (\|\barg\|_2 + \|g\|_2)\|Dv\|_2
-\]
-\[
-\le (C(n)K\|u\|_{W^{1,2}(\Omega)} + \|f\|_2)\|Dv\|_2.
-\]
-
-
-% PDF page 197
-\source{gilbarg-trudinger:page-0197}
-
-\setcounter{page}{185}
-\noindent\textbf{8.3. Differentiability of Weak Solutions}\hfill 185
-
-\bigskip
-
-\noindent To proceed further let us take a function $\eta \in C_0^1(\Omega)$, satisfying $0 \le \eta \le 1$, and set
-$v=\eta^2\, \Delta^h u$. We then obtain, using (8.5) and the Schwarz inequality,
-
-\[
-\lambda \int_{\Omega} \abs{\eta D \Delta^h u}^2\, dx \le \int_{\Omega} \eta^2 a^{ij}(x+h e_k)\, \Delta^h D_i u\, \Delta^h D_j u\, dx
-\]
-
-\[
-= \int_{\Omega} a^{ij}(x+h e_k) D_j \Delta^h u \bigl(D_i v - 2 \Delta^h u\, D_i \eta\bigr)\, dx
-\]
-
-\[
-\le (C(n)K\norm{u}{W^{1,2}(\Omega)}+\norm{f}{2})(\norm{\eta D \Delta^h u}{2}+2\norm{\Delta^h u\, D\eta}{2})
-\]
-
-\[
-\qquad + C(n)K\norm{\eta D \Delta^h u}{2}\, \norm{\Delta^h u\, D\eta}{2}.
-\]
-
-\noindent It then follows (with the help of Young's inequality (7.6)) that
-
-\[
-\norm{\eta \Delta^h Du}{2} \le C(\norm{u}{W^{1,2}(\Omega)}+\norm{f}{2}+\norm{\Delta^h u\, D\eta}{2})
-\]
-
-\[
-\le C(1+\sup_{\Omega}\abs{D\eta})(\norm{u}{W^{1,2}(\Omega)}+\norm{f}{2})
-\]
-
-\noindent by Lemma 7.23, where $C=C(n,\lambda,K)$. The function $\eta$ may now be chosen as a
-cut-off function such that $\eta=1$ on $\Omega' \subset \subset \Omega$ and $\abs{D\eta}\le 2/d'$, where $d'=\operatorname{dist}(\partial\Omega,\Omega')$. By Lemma 7.24 we obtain $Du \in W^{1,2}(\Omega')$ for any $\Omega' \subset \subset \Omega$, so that
-$u \in W^{2}(\Omega)$ and the estimate (8.17) holds. Finally, we have $Lu \in L^2_{\operatorname{loc}}(\Omega)$ and clearly
-the integral identity (8.4) implies that $Lu=f$ almost everywhere in $\Omega$. \hfill $\square$
-
-\bigskip
-
-\noindent We note here (see Problem 8.2) that in the estimate (8.17), the quantity
-$\norm{u}{W^{1,2}(\Omega)}$ may be replaced by $\norm{u}{L^2(\Omega)}$.
-The following general existence result for the Dirichlet problem for elliptic
-equations of the form
-
-\[
-\text{(8.21)} \qquad Lu = a^{ij}(x)D_{ij}u + b^i(x)D_i u + c(x)u = f
-\]
-
-\noindent can now be concluded from Theorems 8.3 and 8.8.
-
-\bigskip
-
-\noindent\textbf{Theorem 8.9.} \textit{Let the operator $L$ be strictly elliptic in $\Omega$ and have coefficients
-$a^{ij} \in C^{0,1}(\Omega)$, $b^i$, $c \in L^\infty(\Omega)$, $c \le 0$. Then for arbitrary $f \in L^2(\Omega)$ and $\varphi \in W^{1,2}(\Omega)$,
-there exists a unique function $u \in W^{1,2}(\Omega) \cap W^{2,2}_{\operatorname{loc}}(\Omega)$ satisfying $Lu=f$ in $\Omega$ and
-$u-\varphi \in W^{1,2}_0(\Omega)$.}
-
-\bigskip
-
-\noindent Theorem 8.9 continues to hold for sufficiently smooth $\partial\Omega$ with $\varphi \in W^{2,2}(\Omega)$ if
-we assume only that the principal coefficients $a^{ij}$ are in $C^0(\bar{\Omega})$ (see Theorem 9.15).
-However, the uniqueness result will break down if the hypotheses are further
-weakened to allow discontinuous $a^{ij} \in L^\infty(\Omega)$, as is evidenced by the equation
-
-\[
-\text{(8.22)} \qquad \Delta u + b\,\frac{x_i x_j}{\lvert x\rvert^2} D_{ij}u = 0,\qquad b=-1+\frac{n-1}{1-\lambda},\qquad 0<\lambda<1.
-\]
-
-
-% PDF page 198
-\source{gilbarg-trudinger:page-0198}
-
-which has for $n>2(2-\lambda)>2$ the two solutions $u_1(x)=1$, $u_2(x)=|x|^\lambda\in W^{2,2}(B)$ and agreeing on $\partial B$, where $B$ is the unit ball, $B_1(0)$.
-
-Further differentiability of weak solutions can be deduced readily from the proof of Theorem 8.8. For, suppose that we strengthen the smoothness conditions on the coefficients by assuming $a^{ij},\ b^i\in C^{1,1}(\overline{\Omega}),\ c^i,\ d\in C^{0,1}(\overline{\Omega}),$ together with $f\in W^{1,2}(\Omega)$. Then, replacing $v$ by $D_k v$ for some $k$, $1\leq k\leq n$, in the identity (8.19), we obtain on integration by parts
-
-\[
-(8.23)\qquad \int_\Omega a^{ij}D_{jk}u\,D_i v\,dx=\int_\Omega D_k\hat{g}\,v\,dx \qquad \forall v\in C_0^1(\Omega),
-\]
-
-and since $u\in W^{2,2}_{\mathrm{loc}}(\Omega)$, we have $D_k\hat{g}\in L^2_{\mathrm{loc}}(\Omega)$. Hence $D_k u\in W^{2,2}_{\mathrm{loc}}(\Omega)$. By a straightforward induction argument, we can then conclude the following extension of Theorem 8.8.
-
-\textbf{Theorem 8.10.} \textit{Let $u\in W^{1,2}(\Omega)$ be a weak solution of the equation $Lu=f$ in $\Omega$ where $L$ is strictly elliptic in $\Omega$, the coefficients $a^{ij},\ b^i\in C^{k,1}(\overline{\Omega})$, the coefficients $c^i,\ d\in C^{k-1,1}(\overline{\Omega})$ and the function $f\in W^{k,2}(\Omega)$, $k\geq 1$. Then for any subdomain $\Omega'\Subset\Omega$, we have $u\in W^{k+2,2}(\Omega')$ and}
-
-\[
-(8.24)\qquad \norm{u}_{W^{k+2,2}(\Omega')}\leq C\bigl(\norm{u}_{W^{1,2}(\Omega)}+\norm{f}_{W^{k,2}(\Omega)}\bigr)
-\]
-
-\textit{for $C=C(n,\lambda,K,d',k)$, where $K=\max\{\norm{a^{ij},b^i}_{C^{k,1}(\overline{\Omega})},\ \norm{c^i,d}_{C^{k-1,1}(\overline{\Omega})}\}$.}
-
-By the Sobolev imbedding theorem, Corollary 7.11, we now obtain from Theorem 8.10,
-
-\textbf{Corollary 8.11.} \textit{Let $u\in W^{1,2}(\Omega)$ be a weak solution of the strictly elliptic equation $Lu=f$ in $\Omega$ and suppose that the functions $a^{ij},\ b^i,\ c^i,\ d,\ f$ are in $C^\infty(\Omega)$. Then also $u\in C^\infty(\Omega)$.}
-
-\textbf{8.4. Global Regularity}
-
-Under appropriate smoothness conditions on the boundary $\partial\Omega$ the preceding interior regularity results can be extended to all of $\Omega$. We first derive the global analogue of Theorem 8.8.
-
-\textbf{Theorem 8.12.} \textit{Let us assume, in addition to the hypotheses of Theorem 8.8, that $\partial\Omega$ is of class $C^2$ and that there exists a function $\varphi\in W^{2,2}(\Omega)$ for which $u-\varphi\in W_0^{1,2}(\Omega)$. Then we have also $u\in W^{2,2}(\Omega)$ and}
-
-\[
-(8.25)\qquad \norm{u}_{W^{2,2}(\Omega)}\leq C\bigl(\norm{u}_{L^2(\Omega)}+\norm{f}_{L^2(\Omega)}+\norm{\varphi}_{W^{2,2}(\Omega)}\bigr)
-\]
-
-\textit{where $C=C(n,\lambda,K,\partial\Omega)$.}
-
-
-% PDF page 199
-\source{gilbarg-trudinger:page-0199}
-
-\noindent\textbf{Proof.}
-Replacing $u$ by $u-\varphi$, we see that there is no loss of generality in assuming
-$\varphi\equiv 0$ and hence $u\in W_0^{1,2}(\Omega)$. Also by Lemma 8.4 we can estimate
-
+\begin{theorem}[Global $W^{2,2}$ regularity]
+\label{gt-thm-8-12-global-w22}
+\dcref{ch8:8.12}
+\group{ch08-generalized-solutions}
+In addition to the hypotheses of Theorem 8.8, suppose
+$\partial\Omega\in C^2$ and $u-\varphi\in W_0^{1,2}(\Omega)$ for some
+$\varphi\in W^{2,2}(\Omega)$. Then $u\in W^{2,2}(\Omega)$ and
+\begin{equation}
+\|u\|_{W^{2,2}(\Omega)}\leq C\bigl(\|u\|_{L^2(\Omega)}
+ +\|f\|_{L^2(\Omega)}+\|\varphi\|_{W^{2,2}(\Omega)}\bigr),
+\tag{8.25}
+\end{equation}
+where $C=C(n,\lambda,K,\partial\Omega)$.
+\end{theorem}
+\begin{proof}
+\sketch Subtract $\varphi$ and use the coercivity estimate to control the
+$W^{1,2}$ norm:
 \begin{equation}
 \tag{8.26}
-\|u\|_{W^{1,2}(\Omega)}\le C(\|u\|_2+\|f\|_2)
+\|u\|_{W^{1,2}(\Omega)}
+\leq C(\|u\|_2+\|f\|_2).
 \end{equation}
+Flatten the boundary by $C^2$ charts. Tangential difference
+quotients give every second derivative except the double normal derivative,
+which (8.18) controls directly. Combine finitely many boundary charts with the
+interior estimate.
+\end{proof}
 
-where $C=C(n,\lambda,K)$. Since $\partial\Omega\in C^2$, there exists for each point
-$x_0\in\partial\Omega$, a ball $B=B(x_0)$ and a one-to-one mapping $\psi$ from $B$
-onto an open set $D\subset\mathbb R^n$ such that $\psi(B\cap\Omega)=\mathbb R_+^n=
-\{x\in\mathbb R^n\mid x_n>0\}$, $\psi(B\cap\partial\Omega)\subset\partial\mathbb R_+^n$
-and $\psi\in C^2(B)$, $\psi^{-1}\in C^2(D)$. Let $B_R(x_0)\subset B$ and set
-$B^+=B_R(x_0)\cap\Omega$, $D'=\psi(B_R(x_0))$, $D^+=\psi(B^+)$. Under the mapping
-$\psi$ the equation $Lu=f$ in $B^+$ is transformed to an equation of the same form
-in $D^+$ (see page 97). The constants $\lambda$, $K$ for the transformed equation
-can be estimated in terms of the mapping $\psi$ and their values for the original
-equation. Furthermore, since $u\in W_0^{1,2}(\Omega)$, the transformed solution
-$v=u\circ\psi^{-1}\in W^{1,2}(D^+)$ and satisfies $\eta v\in W_0^{1,2}(D^+)$ for
-all $\eta\in C_0^1(D')$. Accordingly, let us now suppose that $u\in W^{1,2}(D^+)$
-satisfies $Lu=f$ in $D^+$ and $\eta u\in W_0^{1,2}(D^+)$ for any $\eta\in C_0^1(D')$.
-Then for $|h|<\operatorname{dist}(\operatorname{supp.}\,\eta,\partial D')$ and
-$1\le k\le n-1$, we have $\eta^2\Delta_k^h u\in W_0^{1,2}(D^+)$. Consequently the
-proof of Theorem 8.8 will apply and we can conclude that $D_{ij}u\in
-L^2(\psi(B_\rho\cap\Omega))$ for any $\rho<R$, provided $i$ or $j\ne n$. The
-remaining second derivative $D_{nn}u$ can be estimated directly from the equation
-(8.18). Hence, returning to the original domain $\Omega$ with the mapping
-$\psi^{-1}\in C^2$ we obtain that $u\in W^{2,2}(B_\rho\cap\Omega)$. Since $x_0$ is
-an arbitrary point of $\partial\Omega$ and $u\in W^{2,2}_{\operatorname{loc}}(\Omega)$
-by Theorem 8.8, we infer that $u\in W^{2,2}(\Omega)$. Finally by choosing a finite
-number of points $x^{(i)}\in\partial\Omega$ such that the balls $B_\rho(x^{(i)})$
-cover $\partial\Omega$, we obtain the estimate (8.25) from (8.17) and (8.26).
-$\square$
-
-Note that the conditions, $u\in W^{2,2}(D^+)$, $\eta u\in W_0^{1,2}(D^+)$ for
-$\eta\in C_0^1(D')$, imply that also $\eta D_k u\in W_0^{1,2}(D^+)$ provided
-$1\le k\le n-1$. Namely, by Lemma 7.23 we have $\eta \Delta_k^h u\in W_0^{1,2}(D^+)$
-and
-
-\[
-\|\eta \Delta_k^h u\|_{W^{1,2}(D^+)}\le \|\eta\|_{C^1(D^+)}\,\|u\|_{W^{2,2}(D^+)}
-\]
-
-for sufficiently small $h$. It follows, by Theorem 5.12, that there exists a
-sequence $\{\eta \Delta_k^h u\}$ converging weakly in the Hilbert space
-$W_0^{1,2}(D^+)$. The limit of this sequence is clearly the function $\eta D_k u$.
-Further global regularity of solutions of the equation $Lu=f$ then follows in the
-same manner as Theorem 8.10 from Theorem 8.8. Accordingly we have the following
-extension of Theorems 8.10 and 8.11.
-
-\textbf{Theorem 8.13.} \emph{Let us assume in addition to the hypotheses of Theorem
-8.10, that $\partial\Omega\in C^{k+2}$ and that there exists a function
-$\varphi\in W^{k+2,2}(\Omega)$ for which $u-\varphi\in W_0^{1,2}(\Omega)$.
-Then we have also $u\in W^{k+2,2}(\Omega)$ and}
-
+\begin{theorem}[Higher global regularity]
+\label{gt-thm-8-13-higher-global-regularity}
+\dcref{ch8:8.13}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.10, also assume
+$\partial\Omega\in C^{k+2}$ and
+$u-\varphi\in W_0^{1,2}(\Omega)$ for some
+$\varphi\in W^{k+2,2}(\Omega)$. Then $u\in W^{k+2,2}(\Omega)$ and
 \begin{equation}
+\|u\|_{W^{k+2,2}(\Omega)}\leq C\bigl(\|u\|_{L^2(\Omega)}
+ +\|f\|_{W^{k,2}(\Omega)}+\|\varphi\|_{W^{k+2,2}(\Omega)}\bigr).
 \tag{8.27}
-\|u\|_{W^{k+2,2}(\Omega)}\le C\bigl(\|u\|_{L^2(\Omega)}+\|f\|_{W^{k,2}(\Omega)}+\|\varphi\|_{W^{k+2,2}(\Omega)}\bigr)
 \end{equation}
-
-\emph{where $C=C(n,\lambda,K,k,\partial\Omega)$. If the functions $a^{ij}$, $b^i$,
-$c^i$, $d$, $f$ and $\varphi$ belong to $C^\infty(\overline{\Omega})$ and
-$\partial\Omega$ is of class $C^\infty$, then the solution $u$ is also in
-$C^\infty(\overline{\Omega})$.}
-
-% PDF page 200
-\source{gilbarg-trudinger:page-0200}
-
-\section*{8. Generalized Solutions and Regularity}
-
-Combining Theorems 8.3 and 8.13, we have an existence theorem for the classical Dirichlet problem for equation (8.21) that was previously obtained in Chapter 6 (see Theorems 6.14 and 6.19).
-
-\begin{theorem}[8.14]
-Let the operator $L$ (given by (8.21)) be strictly elliptic in $\Omega$ and have $C^\infty(\overline{\Omega})$ coefficients with $c \le 0$ in $\Omega$. Then if $\partial \Omega \in C^\infty$, there exists a unique solution $u \in C^\infty(\overline{\Omega})$ of the Dirichlet problem, $Lu=f$, $u=\varphi$ on $\partial \Omega$ for arbitrary $f$, $\varphi \in C^\infty(\overline{\Omega})$.
+Here $C=C(n,\lambda,K,k,\partial\Omega)$. If the coefficients, $f$, $\varphi$,
+and $\partial\Omega$ are smooth, then $u\in C^\infty(\overline\Omega)$.
 \end{theorem}
+\begin{proof}
+\sketch Iterate the tangential differentiation and normal recovery argument from
+Theorem 8.12, then apply Sobolev embedding in the smooth case.
+\end{proof}
 
-The existence theorems of Chapter 6 can now be obtained from Theorem 8.14 by approximation arguments. Of course we still require the apriori estimates of Chapter 6 to guarantee the convergence of the approximating solutions.
+\begin{theorem}[Smooth classical Dirichlet problem]
+\label{gt-thm-8-14-smooth-classical-dirichlet}
+\dcref{ch8:8.14}
+\group{ch08-generalized-solutions}
+Let $Lu=a^{ij}D_{ij}u+b^iD_iu+cu$ be strictly elliptic with
+$C^\infty(\overline\Omega)$ coefficients and $c\leq0$. If
+$\partial\Omega\in C^\infty$, then for arbitrary
+$f,\varphi\in C^\infty(\overline\Omega)$ the Dirichlet problem
+$Lu=f$, $u=\varphi$ has a unique solution in $C^\infty(\overline\Omega)$.
+\end{theorem}
+\begin{proof}
+\sketch Combine Theorem 8.3 with Theorem 8.13.
+\end{proof}
 
-\subsection*{8.5. Global Boundedness of Weak Solutions}
+\section*{8.5. Global Boundedness of Weak Solutions}
 
-We derive here results asserting the global boundedness of $W^{1,2}(\Omega)$ solutions of equation (8.3) that are bounded on $\partial \Omega$. An interesting feature of the test function techniques to be used is that they depend not so much on the linearity of the operator $L$ but rather on a nonlinear structure satisfied by $L$. To be more explicit, let us write (8.3) in the form
-
+For
 \begin{equation}
-    D_i A^i(x,u,Du)+B(x,u,Du)=0
-    \tag{8.28}
+D_iA^i(x,u,Du)+B(x,u,Du)=0.
+\tag{8.28}
 \end{equation}
-
-where
-
+Here
 \begin{equation}
-    A^i(x,z,p)=a^{ij}(x)p_j+b^i(x)z-f^i(x),
-    \qquad
-    B(x,z,p)=c^i(x)p_i+d(x)z-g(x),
-    \tag{8.29}
+A^i(x,z,p)=a^{ij}p_j+b^iz-f^i,
+\qquad B(x,z,p)=c^ip_i+dz-g.
+\tag{8.29}
 \end{equation}
-
-for $(x,z,p)\in \Omega\times \mathbb{R}\times \mathbb{R}^n$.
-
-A weakly differentiable function $u$ is then called a weak subsolution (supersolution, solution) of equation (8.28) in $\Omega$ if the functions $A^i(x,u,Du)$ and $B(x,u,Du)$ are locally integrable and
-
+a weak subsolution (respectively, supersolution or solution) is a weakly
+differentiable $u$ such that
 \begin{equation}
-    \int_\Omega \bigl(D_i v\,A^i(x,u,Du)-vB(x,u,Du)\bigr)\,dx \le (\ge,=)\,0
-    \tag{8.30}
+\int_\Omega(D_ivA^i(x,u,Du)-vB(x,u,Du))\,dx\leq0
+\quad(\text{respectively, }\geq0\text{ or }=0)
+\tag{8.30}
 \end{equation}
+for all nonnegative $v\in C_0^1(\Omega)$.
 
-for all $v \ge 0$, $v \in C_0^1(\Omega)$.
-
-Writing $b=(b^1,\ldots,b^n)$, $c=(c^1,\ldots,c^n)$, $f=(f^1,\ldots,f^n)$ and using condition (8.5) and the Schwarz inequality, we have the estimates
-
+The basic structural estimates are
 \begin{equation}
-    p_iA^i(x,z,p)\ge \frac{\lambda}{2}|p|^2-\frac{1}{\lambda}\bigl(|b z|^2+|f|^2\bigr)
-    \tag{8.31}
+p_iA^i(x,z,p)\geq\frac\lambda2|p|^2
+-\frac1\lambda(|bz|^2+|f|^2),
+\qquad
+|B(x,z,p)|\leq|c|\,|p|+|dz|+|g|.
+\tag{8.31}
 \end{equation}
 
-\begin{equation*}
-    |B(x,z,p)|\le |c|\,|p|+|d z|+|g|.
-\end{equation*}
-
-% PDF page 201
-\source{gilbarg-trudinger:page-0201}
-% No page-local nonstandard macros needed.
-
-Equation (8.3) is accordingly said to satisfy the structural inequalities (8.31). For our purposes below, we may even simplify the form of these inequalities by writing
-
-\begin{equation}\tag{8.32}
-\bar z = |z| + k,\qquad
-\bar b = \lambda^{-2} (|b|^2 + |c|^2 + k^{-2}|f|^2) + \lambda^{-1} (|d| + k^{-1}|g|)
+For $k>0$, set
+\begin{equation}
+\bar z=|z|+k,
+\qquad
+\bar b=\lambda^{-2}(|b|^2+|c|^2+k^{-2}|f|^2)
+ +\lambda^{-1}(|d|+k^{-1}|g|).
+\tag{8.32}
+\end{equation}
+The ellipticity and coefficient bounds imply, for $0<\varepsilon<1$,
+\begin{equation}
+p_iA^i(x,z,p)\geq\frac\lambda2(|p|^2-2\bar b\bar z^2),
+\qquad
+|zB(x,z,p)|\leq\frac\lambda2
+\left(\varepsilon|p|^2+\frac{\bar b}{\varepsilon}\bar z^2\right).
+\tag{8.33}
 \end{equation}
 
-for some $k>0$. We obtain then, for any $0 < \epsilon < 1$,
-
-\begin{equation}\tag{8.33}
-p_i A^i(x,z,p) \ge \frac{\lambda}{2} \bigl(|p|^2 - 2\bar b \bar z^2\bigr),
+\begin{theorem}[Global boundedness]
+\label{gt-thm-8-15-global-boundedness}
+\dcref{ch8:8.15}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), $f^i\in L^q(\Omega)$, and
+$g\in L^{q/2}(\Omega)$ for some $q>n$. If
+$u\in W^{1,2}(\Omega)$ is a subsolution with $u\leq0$ on $\partial\Omega$, then
+\begin{equation}
+\sup_\Omega u\leq C(\|u^+\|_2+k),
+\qquad
+k=\lambda^{-1}(\|f\|_q+\|g\|_{q/2}),
+\tag{8.34}
 \end{equation}
-
-\begin{equation*}
-|zB(x,z,p)| \le \frac{\lambda}{2}\left(\epsilon |p|^2 + \frac{\bar b}{\epsilon}\bar z^2\right).
-\end{equation*}
-
-We now prove:
-
-\textbf{Theorem 8.15.} \textit{Let the operator $L$ satisfy conditions (8.5), (8.6) and suppose that $f^i \in L^q(\Omega)$, $i = 1,\ldots,n$, $g \in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a $W^{1,2}(\Omega)$ subsolution (supersolution) of equation (8.3) in $\Omega$ satisfying $u \le 0$ ($\ge 0$) on $\partial\Omega$, we have}
-
-\begin{equation}\tag{8.34}
-\sup_{\Omega} u(-u) \le C(\|u^+(u^-)\|_2 + k)
+where $C=C(n,\nu,q,|\Omega|)$. The corresponding supersolution estimate follows
+by replacing $u$ with $-u$.
+\end{theorem}
+\begin{proof}
+\sketch Put $w=u^++k$ and, for a truncated power $H$, test with
+\begin{equation}
+\tag{8.35}
+v=G(w)=\int_k^w|H'(s)|^2\,ds.
 \end{equation}
-
-\textit{where $k = \lambda^{-1}(\|f\|_q + \|g\|_{q/2})$ and $C = C(n,\nu,q,|\Omega|)$.}
-
-\textit{Proof.} We assume that $u$ is a subsolution of (8.3). For $\beta \ge 1$ and $N > k$, let us define a function $H \in C^1[k,\infty)$ by setting $H(z) = z^\beta - k^\beta$ for $z \in [k,N]$ and taking $H$ to be linear for $z \ge N$. Let us next set $w = \bar u = u^+ + k$ and take
-
-\begin{equation}\tag{8.35}
-v = G(w) = \int_k^w |H'(s)|^2\,ds
+The structural inequalities and Sobolev's inequality give
+\begin{equation}
+\tag{8.36}
+\|H(w)\|_{2\widehat n/(\widehat n-2)}
+\leq C\|wH'(w)\|_{2q/(q-2)}.
 \end{equation}
-
-in the integral inequality (8.30). By the chain rule, Theorem 7.8, $v$ is a legitimate test function in (8.30) and on substitution we obtain, using the structure (8.33),
-
-\begin{equation*}
-\int_{\Omega} |Dw|^2 G'(w)\,dx \le \int_{\Omega} \left(\bar b\,G'(w)w^2 + \frac{2}{\lambda} G(w)|B(x,u,Du)|\right)\,dx
-\end{equation*}
-\begin{equation*}
-\le \epsilon \int_{\Omega} G'(w)|Dw|^2\,dx + \left(1 + \frac{1}{\epsilon}\right)\int_{\Omega} \bar b\,G'(w)w^2\,dx
-\end{equation*}
-
-since $G(s) \le sG'(s)$ and $Du = Dw$ when $v = G(w) > 0$. Hence, taking $\epsilon = \frac12$, we obtain
-
-\begin{equation*}
-\int_{\Omega} G'(w)|Dw|^2\,dx \le 6 \int_{\Omega} \bar b\,G'(w)w^2\,dx,
-\end{equation*}
-
-% PDF page 202
-\source{gilbarg-trudinger:page-0202}
-% No page-local nonstandard macros needed.
-
-that is, by (8.35),
-
-\begin{equation*}
-\int_{\Omega} |DH(w)|^2\,dx \le 6 \int_{\Omega} \bar b\,|H'(w)w|^2\,dx.
-\end{equation*}
-
-Since $H(w)\in W_0^{1,2}(\Omega)$, we may apply the Sobolev inequality (7.26) and the Hölder
-inequality to obtain
-
-\begin{equation*}
-\|H(w)\|_{2\hat n/(\hat n-2)} \le C\left(\int_{\Omega} \bar b(H'(w)w)^2\,dx\right)^{1/2}
- \le C\|\bar b\|_{q/2}^{1/2}\|H'(w)w\|_{2q/(q-2)}
-\end{equation*}
-
-where $\hat n=n$ for $n>2$, $2<\hat n<q$, $C=C(n)$ for $n>2$, and $C=C(\hat n,|\Omega|)$ for $n=2$. It is
-clear that the structure (8.33) and consequently the above estimate continue to
-hold for $k=0$ provided in (8.32) the terms involving $f$ and $g$ are set equal to zero.
-Choosing $k$ as in the statement of the theorem, we thus have
-
-\begin{equation}\tag{8.36}
-\|H(w)\|_{2\hat n/(\hat n-2)} \le C\|wH'(w)\|_{2q/(q-2)}
+After removing the truncation,
+\begin{equation}
+\tag{8.37}
+\|w\|_{\beta\chi q^*}\leq(C\beta)^{1/\beta}\|w\|_{\beta q^*},
+\qquad q^*=\frac{2q}{q-2},\quad \chi>1.
 \end{equation}
+Iterate with $\beta=\chi^m$, pass to $L^\infty$, and interpolate down to $L^2$.
+\end{proof}
 
-where $C=C(n,\nu,|\Omega|)$. To proceed further, we recall the definition of $H$ and let
-$N\to\infty$ in the estimate (8.36). It follows then, for any $\beta\ge 1$, that the inclusion
-$w\in L^{2\beta q/(q-2)}(\Omega)$ implies the stronger inclusion, $w\in L^{2\beta\hat n/(\hat n-2)}(\Omega)$, and moreover,
-setting $q^*=2q/(q-2)$, $\chi=\hat n(q-2)/q(\hat n-2)>1$, we obtain
-
-\begin{equation}\tag{8.37}
-\|w\|_{\beta\chi q^*}\le (C\beta)^{1/\beta}\|w\|_{\beta q^*}.
+\begin{remark}[Nonzero constant boundary bound]
+\label{gt-rem-8-constant-boundary-bound}
+\dcref{ch8:8.38}
+\group{ch08-generalized-solutions}
+If $u\leq l$ on $\partial\Omega$, the same argument applied to $u-l$ gives
+\begin{equation}
+\sup_\Omega u\leq C(\|u\|_2+\bar k+|l|),
+\qquad
+\bar k=k+\lambda^{-1}|l|(\|b\|_q+\|d\|_{q/2}).
+\tag{8.38}
 \end{equation}
+The supersolution statement is obtained by negation, and solutions satisfy the
+corresponding estimate for $|u|$.
+\end{remark}
 
-The result is now obtained by iteration of the estimate (8.37). Namely, by induc-
-tion, we may assume $w\in\bigcap_{1\le p<\infty}L^p(\Omega)$. Let us take $\beta=\chi^m$, $m=0,1,2,\ldots,$ so that by
-(8.37)
-
-\begin{equation*}
-\|w\|_{\chi^N q^*}\le \prod_{0}^{N-1}(C\chi^m)^{\chi^{-m}}\|w\|_{q^*}
-\end{equation*}
-\begin{equation*}
-\le C\chi^\tau\|w\|_{q^*},\qquad \sigma=\sum_{0}^{N-1}\chi^{-m},\qquad \tau=\sum_{0}^{N-1} m\chi^{-m}
-\end{equation*}
-\begin{equation*}
-\le C\|w\|_{q^*}
-\end{equation*}
-
-where $C=C(n,\nu,q,|\Omega|)$. Letting $N\to\infty$, we therefore obtain
-
-\begin{equation*}
-\sup_{\Omega} w \le C\|w\|_{q^*},
-\end{equation*}
-
-whence by the interpolation inequality (7.10) we have
-
-\begin{equation*}
-\sup_{\Omega} w \le C\|w\|_2.
-\end{equation*}
-
-% PDF page 203
-\source{gilbarg-trudinger:page-0203}
-
-\pagestyle{empty}
-
-
-
-\vspace{1em}
-
-The desired estimate (8.34) follows from the definition $w=u^{+}+k$. The result for
-supersolutions is obtained by replacing $u$ with $-u$. \hfill $\square$
-
-\vspace{1.5em}
-
-The above technique of iteration of $L^{p}$ norms was introduced by Moser [MJ 1].
-The proof of Theorem 8.15 may also be effected by other choices of test functions;
-(see [LU 4] or [ST 4]).
-
-\vspace{1.5em}
-
-Let us now suppose that in the statement of Theorem 8.5 the hypothesis $u\leq 0$
-on $\partial\Omega$ is generalized to $u\leq l$ on $\partial\Omega$ for some constant $l$. Then, since $L(u-l)=$
-$Lu-Ll=Lu-l(D_{i}b^{i}+d)$, the conclusion of the theorem will hold for the function
-$u-l$ with $k$ replaced by $\bar{k}=k+\lambda^{-1}l(\norm{b}_{q}+\norm{d}_{q/2})$. That is, a subsolution (super-
-solution) $u$ of (8.3) will satisfy an estimate
-
-\vspace{0.5em}
-
-\[
-(8.38)\qquad \sup_{\Omega} u(-u)\leq C(\norm{u}_{2}+\bar{k}+|l|)
-\]
-
-\vspace{0.5em}
-
-where as before $k=\lambda^{-1}(\norm{f}_{q}+\norm{g}_{q/2})$ and $C=C(n,v,q,|\Omega|)$. In particular, if $u$ is a
-solution then (8.38) holds for $|u|$.
-
-\vspace{0.5em}
-
-We propose next to derive an estimate for $\sup_{\Omega} u$ independent of $\norm{u}_{2}$, that is, an
-apriori bound which extends the weak maximum principle, Theorem 8.1. From the
-estimate (8.16), $\norm{u}_{2}$ can be bounded independently of $u$ for solutions of (8.3)
-provided $L$ is one-to-one. This is the case, for example, if (8.8) holds. This bound
-may be extended to subsolutions through the weak maximum principle and the
-existence theorem, Theorem 8.3. For, if $u$ is a subsolution of (8.3), and (8.8) holds,
-we may define a function $v$ to be the solution of the generalized Dirichlet problem
-$Lv=g+D_{i}f^{i},\ v=u$ on $\partial\Omega$. By Theorem 8.1, $u\leq v$ in $\Omega$ and hence $\norm{u^{+}}_{2}\leq \norm{v}_{2}$. We
-therefore have an estimate
-
-\vspace{0.5em}
-
-\[
-\sup_{\Omega} u\leq \sup_{\partial\Omega} u^{+}+Ck
-\]
-
-\vspace{0.5em}
-
-for subsolutions of (8.3), where $C$ is a constant independent of $u$. However, we now
-show that this result can be derived from the nonlinear structure (8.31) without
-use of the linear existence theory and, moreover, that the constant $C$ is determined
-by the same quantities as in the estimate (8.34).
-
-\vspace{1.5em}
-
-\noindent\textbf{Theorem 8.16.} \textit{Let the operator $L$ satisfy conditions (8.5), (8.6) and (8.8), and
-suppose that $f^{i}\in L^{q}(\Omega),\ i=1,\ldots,n,$ $g\in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a
-$W^{1,2}(\Omega)$ subsolution (supersolution) of equation (8.3) we have}
-
-\vspace{0.5em}
-
-\[
-(8.39)\qquad \sup_{\Omega} u(-u)\leq \sup_{\partial\Omega} u^{+}(u^{-})+Ck
-\]
-
-\vspace{0.5em}
-
-\textit{where $k=\lambda^{-1}(\norm{f}_{q}+\norm{g}_{q/2})$ and $C=C(n,v,q,|\Omega|)$.}
-
-
-% PDF page 204
-\source{gilbarg-trudinger:page-0204}
-\noindent\emph{Proof.} Let us suppose that $u$ is a subsolution of (8.3). By the assumption (8.8), $l=\sup u^+$ is a supersolution and hence there is no loss of generality in assuming
-$l=0$. Proceeding as in the proof of Theorem 8.1, we have
-\begin{equation}\tag{8.40}
-\int_{\Omega}\bigl(a^{ij}D_j u\,D_i v-(b^i+c^i)vD_i u\bigr)\,dx\leq \int_{\Omega}(f^iD_i v-gv)\,dx
+\begin{theorem}[Global a priori maximum bound]
+\label{gt-thm-8-16-global-apriori-bound}
+\dcref{ch8:8.16}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.15 and condition (8.8), every subsolution
+(respectively, supersolution) satisfies
+\begin{equation}
+\sup_\Omega u\leq\sup_{\partial\Omega}u^++Ck
+\qquad
+\left(\text{respectively, }-\inf_\Omega u\leq
+\sup_{\partial\Omega}u^-+Ck\right),
+\tag{8.39}
 \end{equation}
-for all non-negative $v$ in $W^{1,2}_0(\Omega)$ such that $uv\leq 0$. The weak inequality (8.40) clearly satisfies a structure condition (8.31) with $b^i=d=0$ and with $c$ replaced by $b+c$. Let us assume $k>0$ and put $M=\sup_{\Omega}u^+$. In (8.40) we then choose the test function
-\[
-v=\frac{u^+}{M+k-u^+}\in W^{1,2}_0(\Omega)
-\]
-and obtain, using (8.31),
-\begin{align*}
-\frac{\lambda}{2}\int_{\Omega}\frac{|Du^+|^2\,dx}{(M+k-u^+)^2}
-&\leq \frac{1}{M+k}\int_{\Omega}\left(\frac{|b+c|\,|Du^+|}{M+k-u^+}\right.\\
-&\qquad\left.+\frac{u^+|g|}{M+k-u^+}
-+\frac{(M+k)|f|^2}{2\lambda(M+k-u^+)^2}\right)\,dx.
-\end{align*}
-Consequently, by the definition of $k$, we have
-\[
-\int_{\Omega}\frac{|Du^+|^2\,dx}{(M+k-u^+)^2}\leq C+\frac{2}{\lambda}\int_{\Omega}\frac{|b+c|\,|Du^+|}{M+k-u^+}\,dx,\qquad C=C(|\Omega|).
-\]
-Let us now define
-\[
-w=\log\frac{M+k}{M+k-u^+},
-\]
-so that from the Schwarz inequality we obtain
-\begin{align*}
-\int_{\Omega}|Dw|^2\,dx&\leq C\bigl(1+\lambda^{-2}\int_{\Omega}|b+c|^2\,dx\bigr)\\
-&\leq C(\nu,|\Omega|),
-\end{align*}
-and hence, by the Sobolev inequality (7.26),
-\begin{equation}\tag{8.41}
+where $k$ and $C=C(n,\nu,q,|\Omega|)$ are as above.
+\end{theorem}
+\begin{proof}
+\sketch Subtract the boundary supremum. The weak inequality becomes
+\begin{equation}
+\tag{8.40}
+\int_\Omega\bigl(a^{ij}D_j uD_i v-(b^i+c^i)vD_i u\bigr)\,dx
+\leq\int_\Omega(f^iD_i v-gv)\,dx
+\end{equation}
+for admissible nonnegative $v$. Set $M=\sup_\Omega u^+$ and test with
+$u^+/(M+k-u^+)$. This bounds the
+$W^{1,2}$ norm of $w=\log((M+k)/(M+k-u^+))$. A second transformed test shows
+\begin{equation}
+\tag{8.41}
 \|w\|_2\leq C(n,\nu,|\Omega|).
 \end{equation}
+It also gives the weak inequality
+\begin{equation}
+\tag{8.42}
+\int_\Omega\bigl(a^{ij}D_jwD_i\eta-(b^i+c^i)\eta D_iw\bigr)\,dx
+\leq\int_\Omega(\widehat g\eta+\widehat f^iD_i\eta)\,dx,
+\end{equation}
+where
+$\widehat g=|g|/k+|f|^2/(2\lambda k^2)$ and
+$\widehat f^i=f^i/(M+k-u^+)$. Thus $w$ is a subsolution with uniformly
+controlled data.
+Theorem 8.15 bounds
+$\sup w$, hence $(M+k)/k$, uniformly. Apply the same argument to $-u$.
+\end{proof}
 
-% PDF page 205
-\source{gilbarg-trudinger:page-0205}
-\begin{flushleft}
-8.5. Global Boundedness of Weak Solutions \hfill 193
-\end{flushleft}
+\begin{remark}[Adjoint sign maximum bound]
+\label{gt-rem-8-adjoint-sign-maximum-bound}
+\dcref{ch8:8.16}
+\group{ch08-generalized-solutions}
+Theorem 8.16 also holds with the adjoint sign condition obtained by replacing
+$b^i$ with $-c^i$ in (8.8).
+\end{remark}
 
-The proof is completed by showing that $w$ is also a subsolution of an equation of the
-form (8.3). Letting $\eta \in C_0^1(\Omega)$ satisfy $\eta \ge 0$, $\eta w \ge 0$ in $\Omega$, we substitute in (8.40)
-the test function
+\section*{8.6. Local Properties of Weak Solutions}
 
-\[
- v = \frac{\eta}{(M+k-u^+)}.
-\]
-
-Then we obtain
-
-\[
-\int_{\Omega} (a^{ij}D_jwD_i\eta + \eta a^{ij}D_iwD_jw - (b^i+c^i)\eta D_iw)\,dx
-\le \int_{\Omega} \left( \frac{-\eta g}{(M+k-u^+)} + \frac{(D_i\eta+\eta D_iw)f^i}{(M+k-u^+)} \right)\,dx.
-\]
-
-Therefore
-
-\[
-\int_{\Omega} (a^{ij}D_jwD_i\eta - (b^i+c^i)\eta D_iw)\,dx + \lambda \int_{\Omega} \eta |Dw|^2\,dx
-\]
-\[
-\le \int_{\Omega} \left\{ \left( \frac{|g|}{k} + \frac{\eta^2}{2\lambda k^2} \right)\eta + \frac{f^iD_i\eta}{(M+k-u^+)} \right\}\,dx + \frac{\lambda}{2} \int_{\Omega} \eta |Dw|^2\,dx
-\]
-
-and consequently
-
-\[
-(8.42)\qquad \int_{\Omega} (a^{ij}D_jwD_i\eta - (b^i+c^i)\eta D_iw)\,dx \le \int_{\Omega} (\hat g\eta + \hat f^i D_i\eta)\,dx
-\]
-
-where $\hat g = |g|/k + |\eta|^2/(2\lambda k^2)$, $\hat f^i = f^i/(M+k-u^+)$, and evidently $\|\hat g\|_{q/2} \le 2\lambda$, $\|\hat f\|_{q} \le \lambda$.
-Hence we can apply Theorem 8.15 to obtain
-
-\[
-\sup_{\Omega} w \le C(1+\|w\|_2),\qquad C = C(n,\nu,q,|\Omega|)
-\]
-\[
-\le C \quad \text{by (8.41).}
-\]
-
-Therefore $(M+k)/k \le C$ and from this the desired estimate (8.39) follows. The
-result for supersolutions is obtained by replacing $u$ with $-u$. $\square$
-
-Theorem 8.16 can be viewed as the generalized version of the classical a priori
-estimate, Theorem 3.7. We remark that the result is still valid if $b^i$ is replaced by
-$-c^i$ in condition (8.8); (see Theorem 9.7). Furthermore, it is clear from the above
-proof that the boundedness of the coefficients $b^i$, $c^i$ and $d$ can be replaced by the
-condition $b \in L^{q/2}(\Omega)$, $q>n$.
-
-% PDF page 206
-\source{gilbarg-trudinger:page-0206}
-\begin{flushleft}
-8.6. Local Properties of Weak Solutions
-\end{flushleft}
-
-We shift our attention now from global to local behavior. Denoting the matrix
-$[a^{ij}(x)]$ by $a(x)$, $x \in \Omega$, we add an additional structural inequality to (8.31) and
-(8.33), namely
-
-\[
-(8.43)\qquad |A(x,z,p)|\leq |a|\,|p|+|bz|+|f|.
-\]
-
-By dividing equation (8.3) by the constant $\lambda/2$, we can assume that $\lambda=2$ in the
-structural inequalities. Collecting these inequalities together under this assumption,
-we thus have,
-
-\[
-|A(x,z,p)|\leq |a|\,|p|+2\bar b^{1/2}\bar z,
-\]
-\[
-(8.44)\qquad p\cdot A(x,z,p)\geq |p|^2-2\bar b\,\bar z^2,
-\]
-\[
-|\bar z B(x,z,p)|\leq \epsilon|p|^2+\frac{1}{\epsilon}\bar B\,\bar z^2,
-\]
-
-for any $0<\epsilon\leq 1$, where $\bar z$ and $\bar b$ are defined by (8.32) with $\lambda=2$. For the develop-
-ment of the local results, we define the quantity $k$ by
-
-\[
-(8.45)\qquad k=k(R)=\hat\lambda^{-1}\bigl(R^\delta\|f\|_{q}+R^{2\delta}\|g\|_{q/2}\bigr)
-\]
-
-where $R>0$ and $\delta=1-n/q$. We shall establish a local analogue of Theorem 8.15,
-namely:
-
-\noindent\textbf{Theorem 8.17.} \emph{Let the operator $L$ satisfy conditions (8.5), (8.6) and suppose that
-$f^i\in L^q(\Omega)$, $i=1,\ldots,n$, $g\in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a $W^{1,2}(\Omega)$ sub-
-solution (supersolution) of equation (8.3) in $\Omega$, we have, for any ball $B_{2R}(y)\subset\Omega$ and
-$p>1$,}
-
-\[
-(8.46)\qquad \sup_{B_R(y)} u^{+}\leq C\bigl(R^{-n/p}\|u^{+}\|_{L^p(B_{2R}(y))}+k(R)\bigr)
-\]
-
-\emph{where $C=C(n,\Lambda/\lambda,\nu R,q,p)$.}
-
-The crucial result in our development of local properties of weak solutions and
-the subsequent nonlinear theory will be the following \emph{weak Harnack inequality} for
-supersolutions.
-
-\noindent\textbf{Theorem 8.18.} \emph{Let the operator $L$ satisfy conditions (8.5), (8.6) and suppose that
-$f^i\in L^q(\Omega)$, $g\in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a $W^{1,2}(\Omega)$ supersolution of
-equation (8.3) in $\Omega$, non-negative in a ball $B_{4R}(y)\subset\Omega$ and $1\leq p<n/(n-2)$, we have}
-
-\[
-(8.47)\qquad R^{-n/p}\|u\|_{L^p(B_{2R}(y))}\leq C\bigl(\inf_{B_R(y)}u+k(R)\bigr)
-\]
-
-\emph{where $C=C(n,\Lambda/\lambda,\nu R,q,p)$.}
-
-% PDF page 207
-\source{gilbarg-trudinger:page-0207}
-
-
-\begin{quote}
-\textbf{8.6. Local Properties of Weak Solutions}
-\end{quote}
-
-In the following we shall abbreviate $B_R(y)=B_R$ for any $R$, the center $y$ to be understood. For the case in Theorem 8.17 when $u$ is a bounded, non-negative subsolution, it is convenient to prove Theorems 8.17 and 8.18 jointly. The full strength of Theorem 8.17 can then be obtained by varying the test functions used. The essence of this idea has already been demonstrated in the proof of Theorem 8.15. Accordingly, it is left to the reader to make the necessary extension of our proof below. Broadly speaking, the scheme of the joint proof follows the Moser iteration method (see [MJ 2]) introduced in the previous section combined with the John-Nirenberg result (Theorem 7.21), which is employed to bridge a vital gap in the iteration scheme. The test functions are again constructed from power functions but in order to establish Theorem 8.18 the exponents of these powers must be unrestricted real numbers. The detailed proof now follows.
-
-We assume initially that $R=1$ and $k>0$. The general case is later recovered through a simple coordinate transformation: $x \mapsto x/R$, and by letting $k$ tend to zero. Let us define, for $\beta\neq 0$ and non-negative $\eta\in C_0^1(B_4)$, the test function
-
-\begin{equation}\tag{8.48}
-v=\eta^2\bar u^\beta \qquad (\bar u=u+k).
+Besides (8.31)--(8.33), the local arguments use
+\begin{equation}
+|A(x,z,p)|\leq|a|\,|p|+|bz|+|f|.
+\tag{8.43}
+\end{equation}
+After dividing by $\lambda/2$, these inequalities may be written
+\begin{equation}
+\begin{gathered}
+|A(x,z,p)|\leq|a|\,|p|+2\bar b^{1/2}\bar z,
+\qquad p\cdot A(x,z,p)\geq|p|^2-2\bar b\bar z^2,\\
+|\bar zB(x,z,p)|\leq\varepsilon|p|^2
++\varepsilon^{-1}\bar b\bar z^2
+\qquad(0<\varepsilon\leq1).
+\end{gathered}
+\tag{8.44}
 \end{equation}
 
-By the chain and product rules, $v$ is a valid test function in (8.30) and also
-
-\begin{equation}\tag{8.49}
-Dv=2\eta D\eta\,\bar u^\beta+\beta\eta^2\bar u^{\beta-1}Du,
+For a radius $R>0$ and $q>n$, write
+\begin{equation}
+k(R)=\lambda^{-1}\bigl(R^\delta\|f\|_q+R^{2\delta}\|g\|_{q/2}\bigr),
+\qquad \delta=1-\frac nq.
+\tag{8.45}
 \end{equation}
 
-so that by substitution into (8.30) we obtain
-
-\begin{equation}\tag{8.50}
-\beta\int_{\Omega}\eta^2\bar u^{\beta-1}Du\cdot A(x,u,Du)\,dx
-+2\int_{\Omega}\eta D\eta\cdot A(x,u,Du)\bar u^\beta\,dx
--\int_{\Omega}\eta^2\bar u^\beta B(x,u,Du)\,dx
+\begin{theorem}[Local boundedness]
+\label{gt-thm-8-17-local-boundedness}
+\dcref{ch8:8.17}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), $f^i\in L^q(\Omega)$, and
+$g\in L^{q/2}(\Omega)$ for some $q>n$. If $u\in W^{1,2}(\Omega)$ is a
+subsolution, then for every $B_{2R}(y)\subset\Omega$ and $p>1$,
+\begin{equation}
+\sup_{B_R(y)}u^+\leq C\left(R^{-n/p}\|u^+\|_{L^p(B_{2R}(y))}+k(R)\right),
+\tag{8.46}
 \end{equation}
+where $C=C(n,\Lambda/\lambda,\nu R,q,p)$. The supersolution version follows by
+replacing $u$ with $-u$.
+\end{theorem}
+\begin{proof}
+\sketch After scaling to $R=1$, use the test
+$\eta^2(u^++k)^\beta$ with $\beta>0$. The structural estimates give a Caccioppoli
+inequality for $(u^++k)^{(\beta+1)/2}$. Sobolev iteration on nested balls raises
+the integrability exponent to infinity, producing (8.46); rescaling restores $R$.
+\end{proof}
 
-\[
-\le 0 \qquad \text{if }u\text{ is a subsolution,}
-\]
-\[
-\ge 0 \qquad \text{if }u\text{ is a supersolution.}
-\]
-
-Using the structural inequalities (8.44), we can estimate, for any $0<\varepsilon\le 1$,
-
-\begin{align}
-\eta^2\bar u^{\beta-1}Du\cdot A(x,u,Du) &\ge \eta^2\bar u^{\beta-1}|Du|^2-2b\eta^2\bar u^{\beta+1},\\
-|\eta D\eta\cdot A(x,u,Du)\bar u^\beta|
-&\le |a|\eta |D\eta|\bar u^\beta|Du|+2b^{1/2}\eta|D\eta|\bar u^{\beta+1}\nonumber\\
-&\le \frac{\varepsilon}{2}\eta^2\bar u^{\beta-1}|Du|^2+\left(1+\frac{|a|^2}{2\varepsilon}\right)|D\eta|^2\bar u^{\beta+1}\nonumber\\
-&\qquad +b\eta^2\bar u^{\beta+1},\tag{8.51}
-\end{align}
-
-\[
-|\eta^2\bar u^\beta B(x,u,Du)|\le \varepsilon\eta^2\bar u^{\beta-1}|Du|^2+\frac{1}{\varepsilon}b\eta^2\bar u^{\beta+1}.
-\]
-
-% PDF page 208
-\source{gilbarg-trudinger:page-0208}
-
-
-We assume henceforth that $\beta>0$ if $u$ is a subsolution and $\beta<0$ if $u$ is a super-solution. By choosing $\varepsilon=\min\{1,|\beta|/4\}$, we then obtain from (8.50) and (8.51)
-
-\begin{equation}\tag{8.52}
-\int_{\Omega}\eta^2\bar u^{\beta-1}|\Du|^2\,dx \le C(|\beta|)\int_{\Omega}\bigl(b\eta^2+(1+|a|^2)| D\eta|^2\bigr)\bar u^{\beta+1}\,dx,
+\begin{theorem}[Weak Harnack inequality]
+\label{gt-thm-8-18-weak-harnack}
+\dcref{ch8:8.18}
+\group{ch08-generalized-solutions}
+Under the coefficient and data hypotheses of Theorem 8.17, let $u$ be a
+supersolution that is nonnegative in $B_{4R}(y)\subset\Omega$. For
+$1\leq p<n/(n-2)$,
+\begin{equation}
+R^{-n/p}\|u\|_{L^p(B_{2R}(y))}
+\leq C\left(\inf_{B_R(y)}u+k(R)\right),
+\tag{8.47}
 \end{equation}
-
-where $C(|\beta|)$ is bounded if $|\beta|$ is bounded away from zero. It is now convenient to introduce a function $w$ defined by
-
-\[
-w=
-\begin{cases}
-\bar u^{(\beta+1)/2} & \text{if } \beta\neq -1,\\
-\log \bar u & \text{if } \beta=-1.
-\end{cases}
-\]
-
-Letting $\gamma=\beta+1$, we may rewrite (8.52)
-
-\begin{equation}\tag{8.53}
-\int_{\Omega}|\eta Dw|^2\,dx \le
-\begin{cases}
-C(|\beta|)\gamma^2\int_{\Omega}\bigl(b\eta^2+(1+|a|^2)| D\eta|^2\bigr)w^2\,dx & \text{if } \beta\neq -1,\\[1.2ex]
-C\int_{\Omega}\bigl(b\eta^2+(1+|a|^2)| D\eta|^2\bigr)\,dx & \text{if } \beta=-1.
+where $C=C(n,\Lambda/\lambda,\nu R,q,p)$.
+\end{theorem}
+\begin{proof}
+\sketch Scale first to $R=1$, put $\bar u=u+k$, and use, for a cutoff
+$\eta$ and $\beta\ne0$,
+\begin{equation}
+\tag{8.48}
+v=\eta^2\bar u^\beta,
+\end{equation}
+whose derivative is
+\begin{equation}
+\tag{8.49}
+Dv=2\eta D\eta\,\bar u^\beta
++\beta\eta^2\bar u^{\beta-1}Du.
+\end{equation}
+Substitution in the weak inequality gives
+\begin{equation}
+\tag{8.50}
+\beta\int\eta^2\bar u^{\beta-1}Du\cdot A
++2\int\eta D\eta\cdot A\,\bar u^\beta
+-\int\eta^2\bar u^\beta B\ \begin{cases}\leq0,&u\text{ subsolution},\\
+\geq0,&u\text{ supersolution}.
 \end{cases}
 \end{equation}
-
-The desired iteration process can now be developed from the first part of (8.53).
-For from the Sobolev inequality (7.26) we have
-
-\[
-\|\eta w\|_{L^{2\nhat/(\nhat-2)}}^2\le C\int_{\Omega}\bigl(|\eta Dw|^2+|w D\eta|^2\bigr)\,dx
-\]
-
-where $\nhat=n$ for $n>2$, $2<\nhat<q$ and $C=C(\nhat)$. Using the Hölder inequality (7.7)
-followed by the interpolation inequality (7.10), we obtain, for any $\varepsilon>0$,
-
-\[
-\int_{\Omega}b(\eta w)^2\,dx\le \|b\|_{q/2}\|\eta w\|_{2q/(q-2)}^2
-\]
-
-\[
-\le \|b\|_{q/2}\bigl(\varepsilon\|\eta w\|_{2\nhat/(\nhat-2)}+\varepsilon^{-\sigma}\|w\|_2\bigr)^2
-\]
-
-where $\sigma=\nhat/(q-\nhat)$. Hence, by substitution into (8.53) and appropriate choice of
-$\varepsilon$, we obtain
-
-\begin{equation}\tag{8.54}
-\|\eta w\|_{L^{2\nhat/(\nhat-2)}} \le C(1+|\gamma|)^{\sigma+1}\|(\eta+| D\eta|)w\|_2
+For $0<\varepsilon\leq1$, the structural terms satisfy
+\begin{equation}
+\tag{8.51}
+|\eta D\eta\cdot A\,\bar u^\beta|
+\leq\frac\varepsilon2\eta^2\bar u^{\beta-1}|Du|^2
++\left(1+\frac{|a|^2}{2\varepsilon}\right)|D\eta|^2\bar u^{\beta+1}
++b\eta^2\bar u^{\beta+1}.
 \end{equation}
-
-where $C=C(\nhat,\Lambda,\nu,q,|\beta|)$ is bounded when $|\beta|$ is bounded away from zero.
-It is now desirable to specify the cut-off function $\eta$ more precisely. Let $r_1,r_2$ be such
-that $1\le r_1<r_2\le 3$ and set $\eta=1$ in $B_{r_1}$, $\eta=0$ in $\Omega-B_{r_2}$ with $|D\eta|\le 2/(r_2-r_1)$.
-Writing $\chi=\nhat/(\nhat-2)$ we then have from (8.54)
-
-\begin{equation}\tag{8.55}
-\|w\|_{L^{2\chi}(B_{r_1})}\le \frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}\|w\|_{L^2(B_{r_2})}.
+Taking $\varepsilon=\min(1,|\beta|/4)$ yields
+\begin{equation}
+\tag{8.52}
+\int\eta^2\bar u^{\beta-1}|Du|^2
+\leq C(|\beta|)\int
+\bigl(b\eta^2+(1+|a|^2)|D\eta|^2\bigr)\bar u^{\beta+1}.
 \end{equation}
-
-% PDF page 209
-\source{gilbarg-trudinger:page-0209}
-
-
-\setcounter{page}{197}
-
-\subsection*{8.6. Local Properties of Weak Solutions}
-
-For $r<4$ and $p\neq 0$, let us now introduce the quantities
-
-\begin{equation}\tag{8.56}
-\Phi(p,r)=\left(\int_{B_r} |\bar u|^p\,dx\right)^{1/p}.
+With $\gamma=\beta+1$ and
+$w=\bar u^{\gamma/2}$ for $\gamma\ne0$, while $w=\log\bar u$ for
+$\gamma=0$, this becomes
+\begin{equation}
+\tag{8.53}
+\int|\eta Dw|^2\leq
+\begin{cases}
+C(|\beta|)\gamma^2\int
+(b\eta^2+(1+|a|^2)|D\eta|^2)w^2,&\gamma\ne0,\\
+C\int(b\eta^2+(1+|a|^2)|D\eta|^2),&\gamma=0.
+\end{cases}
 \end{equation}
-
-By Problem 7.1, we have
-
-\[
-\Phi(\infty,r)=\lim_{p\to\infty}\Phi(p,r)=\sup_{B_r}\bar u,
-\]
-
-and
-
-\[
-\Phi(-\infty,r)=\lim_{p\to -\infty}\Phi(p,r)=\inf_{B_r}\bar u.
-\]
-
-From inequality (8.55), we now obtain
-
-\begin{equation}\tag{8.57}
-\Phi(\gamma r_1,r_1)\le \left(\frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}\right)^{2/|\gamma|}
-\Phi(\gamma,r_2)
-\quad \text{if } \gamma>0
+Sobolev, H\"older, and interpolation inequalities give
+\begin{equation}
+\tag{8.54}
+\|\eta w\|_{2\widehat n/(\widehat n-2)}
+\leq C(1+|\gamma|)^{\sigma+1}
+\|(\eta+|D\eta|)w\|_2,
 \end{equation}
-\[
-\Phi(\gamma,r_2)\le \left(\frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}\right)^{2/|\gamma|}
-\Phi(\gamma r_1,r_1)
-\quad \text{if } \gamma<0.
-\]
-
-These inequalities can now be iterated to yield the desired estimates. For example,
-when $u$ is a subsolution we have $\beta>0$ and $\gamma>1$. Hence, taking $p>1$, we set $\gamma=
-\gamma_m=\chi^m p$ and $r_m=1+2^{-m}$, $m=0,1,\dots$, so that, by inequality (8.57),
-
-\[
-\Phi(\chi^m p,1)\le (C\chi)^{2(1+\sigma)2^m\chi^{m-1}}\Phi(p,2)
-\]
-\[
-=C\Phi(p,2), \qquad C=C(\hat n,\Lambda,\nu,q,p).
-\]
-
-Consequently, letting $m\to\infty$, we have
-
-\begin{equation}\tag{8.58}
-\sup_{B_1}\bar u\le C\|\bar u\|_{L^p(B_2)}.
+where $\sigma=\widehat n/(q-\widehat n)$. For cutoffs between
+$B_{r_1}$ and $B_{r_2}$,
+\begin{equation}
+\tag{8.55}
+\|w\|_{2\chi;B_{r_1}}
+\leq\frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}
+\|w\|_{2;B_{r_2}},
+\qquad\chi=\frac{\widehat n}{\widehat n-2}.
 \end{equation}
-
-and, by means of the transformation : $x\to x/R$, the estimate (8.46) is established.
-For the case when $u$ is a supersolution, that is when $\beta<0$ and $\gamma<1$, we may prove
-in a similar manner, for any $p,p_0$ such that $0<p_0<p<\chi$,
-
-\begin{equation}\tag{8.59}
-\Phi(p,2)\le C\Phi(p_0,3)
+Introduce
+\begin{equation}
+\tag{8.56}
+\Phi(p,r)=\left(\int_{B_r}|\bar u|^p\,dx\right)^{1/p}.
 \end{equation}
-\[
-\Phi(-p_0,3)\le C\Phi(-\infty,1), \qquad C=C(\hat n,\Lambda,q,p,p_0).
-\]
-
-The conclusion of Theorem 8.18 will thus follow if we can show that, for some
-$p_0>0$,
-
-\begin{equation}\tag{8.60}
-\Phi(p_0,3)\le C\Phi(-p_0,3).
+Then (8.55) is
+\begin{equation}
+\tag{8.57}
+\begin{aligned}
+\Phi(\chi\gamma,r_1)&\leq
+\left(\frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}\right)^{2/|\gamma|}
+\Phi(\gamma,r_2),&&\gamma>0,\\
+\Phi(\gamma,r_2)&\leq
+\left(\frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}\right)^{2/|\gamma|}
+\Phi(\chi\gamma,r_1),&&\gamma<0.
+\end{aligned}
 \end{equation}
-
-
-% PDF page 210
-\source{gilbarg-trudinger:page-0210}
-
-\pagestyle{empty}
-
-
-In order to establish (8.60) we turn to the second of the estimates (8.53). Let
-$B_{2r}$ be any ball of radius $2r$, lying in $B_4 (= B_4(y))$, and choose the cut-off function
-$\eta$ so that $\eta \equiv 1$ in $B_r$, $\eta \equiv 0$ in $\Omega - B_4$ and $|D\eta| \le 2/r$. From (8.53), with the aid of
-the H\"older inequality (7.7), we then obtain
-
-\[
-\int_{B_r} |Dw|\,dx \le Cr^{n/2}\left(\int_{B_r} |Dw|^2\,dx\right)^{1/2}
-\le Cr^{n-1}, \qquad C = C(n, A, \nu).
+Positive iteration gives
+\begin{equation}
+\tag{8.58}
+\sup_{B_1}\bar u\leq C\|\bar u\|_{L^p(B_2)},
+\end{equation}
+while negative iteration gives, for $0<p_0<p<\chi$,
+\begin{equation}
+\tag{8.59}
+\Phi(p,2)\leq C\Phi(p_0,3),
+\qquad\Phi(-p_0,3)\leq C\Phi(-\infty,1).
+\end{equation}
+It remains to bridge the moments:
+\begin{equation}
+\tag{8.60}
+\Phi(p_0,3)\leq C\Phi(-p_0,3).
+\end{equation}
+For $w=\log\bar u$, the second line of (8.53) implies on every
+$B_{2r}\subset B_4$
+\begin{equation}
 \tag{8.61}
-\]
+\int_{B_r}|Dw|\,dx\leq Cr^{n-1}.
+\end{equation}
+John--Nirenberg gives (8.60). Rescale and let the auxiliary positive $k$
+decrease to $k(R)$.
+\end{proof}
 
-Hence, by Theorem 7.21, there exists a constant $p_0 > 0$ depending on $n, A$ and $\nu$ such
-that, for
-\[
-w_0 = \frac{1}{|B_3|}\int_{B_3} w\,dx,
-\]
-we have
-\[
-\int_{B_3} e^{p_0|w-w_0|}\,dx \le C(n, A, \nu),
-\]
-and thus
-\[
-\int_{B_3} e^{p_0w}\,dx \int_{B_3} e^{-p_0w}\,dx \le C\, e^{p_0w_0}e^{-p_0w_0} = C.
-\]
+\section*{8.7. The Strong Maximum Principle}
 
-Recalling the definition of $w$, we obtain the estimate (8.60) and consequently
-Theorem 8.18 with $R = 1$ and $k > 0$. The full result then follows by means of the
-transformation: $x \mapsto x/R$ and by letting $k$ tend to zero. $\square$
-
-The strong maximum principle for subsolutions of the equation $Lu = 0$, the
-Harnack inequality for solutions of $Lu = 0$ and the local H\"older continuity of
-solutions of equation (8.3) may all be derived as consequences of the weak Harnack
-inequality. We treat these interesting local results in turn.
-
-\bigskip
-
-\noindent\textbf{8.7. The Strong Maximum Principle}
-
-\medskip
-
-\noindent\textbf{Theorem 8.19.} \textit{Let the operator $L$ satisfy conditions (8.5), (8.6) and (8.8) and let
-$u \in W^{1,2}(\Omega)$ satisfy $Lu \ge 0$ in $\Omega$. Then, if for some ball $B \subset\subset \Omega$ we have}
-
-\[
+\begin{theorem}[Strong maximum principle]
+\label{gt-thm-8-19-strong-maximum-principle}
+\dcref{ch8:8.19}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), and (8.8), and let $u\in W^{1,2}(\Omega)$ satisfy
+$Lu\geq0$. If some ball $B\Subset\Omega$ satisfies
+\begin{equation}
+\sup_Bu=\sup_\Omega u\geq0,
 \tag{8.62}
-\sup_B u = \sup_\Omega u \ge 0,
-\]
+\end{equation}
+then $u$ is constant in $\Omega$. If this constant is nonzero, equality holds in
+(8.8).
+\end{theorem}
+\begin{proof}
+\sketch On a concentric ball compactly contained in $\Omega$, apply Theorem 8.18
+with $p=1$ to the nonnegative supersolution $M-u$, where $M=\sup_\Omega u$.
+Its infimum vanishes, so $u=M$ on a larger ball. Propagate this equality through
+the connected domain. Substitution of a nonzero constant gives equality in (8.8).
+\end{proof}
 
-\textit{the function $u$ must be constant in $\Omega$ and equality holds in (8.8) when $u \not\equiv 0$.}
+\section*{8.8. The Harnack Inequality}
 
+\begin{theorem}[Harnack inequality]
+\label{gt-thm-8-20-harnack}
+\dcref{ch8:8.20}
+\group{ch08-generalized-solutions}
+Assume (8.5) and (8.6). If $u\in W^{1,2}(\Omega)$ is nonnegative and
+$Lu=0$, then for every $B_{4R}(y)\subset\Omega$,
+\begin{equation}
+\sup_{B_R(y)}u\leq C\inf_{B_R(y)}u,
+\tag{8.63}
+\end{equation}
+where $C=C(n,\Lambda/\lambda,\nu R)$. One may take
+$C\leq C_0^{\Lambda/\lambda+\nu R}$ with $C_0=C_0(n)$.
+\end{theorem}
+\begin{proof}
+\sketch Apply Theorem 8.17 to control the supremum by a positive $L^p$ norm, and
+Theorem 8.18 to control that norm by the infimum.
+\end{proof}
 
-% PDF page 211
-\source{gilbarg-trudinger:page-0211}
-
-\pagestyle{empty}
-
-
-\textbf{Proof.} Writing $B=B_R(y)$, there is no loss of generality in assuming $B_{4R}(y)\subset\Omega$.
-Let $M=\sup_B u$ and apply the weak Harnack inequality (8.47) with $p=1$ to the
-supersolution $v=M-u$. We obtain thus
-
-\[
-R^{-n}\int_{B_{2R}} (M-u)\,dx \le C\inf_B (M-u)=0.
-\]
-
-Consequently $u\equiv M$ in $B_{2R}$ and by an argument similar to that of Theorem 2.2,
-we obtain $u\equiv M$ in $\Omega$. $\square$
-
-Theorem 8.19 shows that in an appropriately generalized sense, a subsolution
-of $Lu=0$ cannot possess an interior positive maximum. For continuous subsolutions
-the statement reduces to the usual classical one. Note that the strong minimum
-principle for supersolutions of $Lu=0$ will follow immediately by replacement
-of $u$ with $-u$, and that the weak maximum principle, Theorem 8.1, for $C^0(\Omega)$
-subsolutions is a direct consequence.
-
-\bigskip
-
-\centerline{\textbf{8.8.\ The Harnack Inequality}}
-
-By combining Theorems 8.17 and 8.18, we obtain the full Harnack inequality.
-
-\medskip
-
-\noindent\textbf{Theorem 8.20.} \textit{Let the operator $L$ satisfy conditions (8.5) and (8.6), and let
-$u\in W^{1,2}(\Omega)$ satisfy $u\ge 0$ in $\Omega$ and $Lu=0$ in $\Omega$. Then for any ball $B_{4R}(y)\subset\Omega$, we have}
-
-\[
-(8.63)\qquad \sup_{B_R(y)} u \le C \inf_{B_R(y)} u
-\]
-
-\noindent\textit{where $C=C(n, A/\lambda, \nu R)$.}
-
-\medskip
-
-Examination of the dependence of the constants $C$ on $A$ in the estimates (8.54)
-and (8.61) shows that the constant $C$ in (8.63) can be estimated by
-
-\[
-C\le C_0^{(A/\lambda+\nu R)}, \qquad C_0=C_0(n).
-\]
-
-When the matrix $a$ is symmetric this estimate may be refined even further; (see
-Problem 8.3). By an argument similar to that of Theorem 2.5, we can deduce from
-Theorem 8.20 the following form of the Harnack inequality.
-
-\medskip
-
-\noindent\textbf{Corollary 8.21.} \textit{Let $L$ and $u$ satisfy the hypotheses of Theorem 8.20. Then for any
-$\Omega' \subset \subset \Omega$, we have}
-
-\[
-(8.64)\qquad \sup_{\Omega'} u \le C \inf_{\Omega'} u
-\]
-
-\noindent\textit{where $C=C(n, A/\lambda, \nu, \Omega', \Omega)$.}
-
-
-% PDF page 212
-\source{gilbarg-trudinger:page-0212}
+\begin{corollary}[Harnack inequality on compact subdomains]
+\label{gt-cor-8-21-harnack-subdomain}
+\dcref{ch8:8.21}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.20, every $\Omega'\Subset\Omega$ satisfies
+\begin{equation}
+\sup_{\Omega'}u\leq C\inf_{\Omega'}u,
+\tag{8.64}
+\end{equation}
+where $C=C(n,\Lambda/\lambda,\nu,\Omega',\Omega)$.
+\end{corollary}
+\begin{proof}
+\sketch Join points of $\Omega'$ by a finite chain of interior balls and iterate
+Theorem 8.20.
+\end{proof}
 
 \section*{8.9. H\"older Continuity}
 
-The following result is basic to the theory of second order quasilinear equations.
-Indeed, its discovery by De Giorgi [DG I] and Nash [NA] for operators of the
-form $Lu = D_i(a^{ij}(x)D_j u)$ essentially opened up the theory of quasilinear equations
-in more than two variables.
-
-\medskip
-
-\noindent\textbf{Theorem 8.22.} \emph{Let the operator $L$ satisfy conditions (8.5), (8.6), and suppose that
-$f^i \in L^q(\Omega)$, $i=1,\dots,n$, $g \in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a $W^{1,2}(\Omega)$ solution of
-equation (8.3) in $\Omega$, it follows that $u$ is locally H\"older continuous in $\Omega$, and for any
-ball $B_0 = B_{R_0}(y) \subset \Omega$ and $R \le R_0$ we have}
-
-\[
-\tag{8.65}
-\operatorname{osc}_{B_{R}(y)} u \le C R^{\alpha}\bigl(R_0^{-\alpha}\sup_{B_0}|u| + k\bigr)
-\]
-
-\noindent \emph{where $C = C(n,\Lambda/\lambda,\nu,q,R_0)$ and $\alpha = \alpha(n,\Lambda/\lambda,\nu R_0,q)$ are positive constants, and
-$k = \lambda^{-1}(\|f\|_q + \|g\|_{q/2}).$}
-
-\medskip
-
-\noindent\emph{Proof.} We may assume without loss of generality that $R \le R_0/4$. Let us write
-$M_0 = \sup_{B_0}|u|$, $M_4 = \sup_{B_{4R}} u$, $m_4 = \inf_{B_{4R}} u$, $M_1 = \sup_{B_R} u$, $m_1 = \inf_{B_R} u$. Then we have
-
-\[
-L(M_4-u)= M_4(D_i b^i + d)-D_i f^i-g
-\]
-\[
-L(u-m_4)= -m_4(D_i b^i + d)+D_i f^i+g.
-\]
-
-\noindent Hence, if we set
-
-\[
-k(R)= \lambda^{-1}R^{\delta}(\|f\|_q+M_0\|b\|_q)+\lambda^{-1}R^{2\delta}(\|g\|_{q/2}+M_0\|d\|_{q/2}),
-\]
-\[
-\delta = 1-n/q
-\]
-
-\noindent and apply the weak Harnack inequality (8.47) with $p=1$ to the functions $M_4-u$,
-$u-m_4$ in $B_{4R}$, we obtain
-
-\[
-R^{-n}\int_{B_{2R}} (M_4-u)\,dx \le C(M_4-M_1+k(R)),
-\]
-
-\[
-R^{-n}\int_{B_{2R}} (u-m_4)\,dx \le C(m_1-m_4+k(R)).
-\]
-
-\noindent Hence by addition,
-
-\[
-M_4-m_4 \le C(M_4-m_4+m_1-M_1+k(R))
-\]
-
-% PDF page 213
-\source{gilbarg-trudinger:page-0213}
-
-so that, writing
-
-\[
-\omega(R)=\osc_{B_R} u=M_1-m_1,
-\]
-
-we have
-
-\[
-\omega(R)\le \gamma\omega(4R)+k(R)
-\]
-
-where $\gamma=1-C^{-1}$, $C=C(n,\Lambda/\lambda,\nu R_0,q)$. The following simple lemma then implies the desired result. $\square$
-
-\medskip
-
-\noindent\textbf{Lemma 8.23.} \textit{Let $\omega$ be a non-decreasing function on an interval $(0,R_0]$ satisfying, for all $R\le R_0$, the inequality}
-
+\begin{theorem}[Interior oscillation estimate]
+\label{gt-thm-8-22-interior-holder}
+\dcref{ch8:8.22}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), $f^i\in L^q(\Omega)$, and
+$g\in L^{q/2}(\Omega)$ for some $q>n$. If $u\in W^{1,2}(\Omega)$ solves
+(8.3), then $u$ is locally H\"older continuous. For
+$B_0=B_{R_0}(y)\subset\Omega$ and $R\leq R_0$,
 \begin{equation}
-\omega(\tau R)\le \gamma\omega(R)+\sigma(R)
+\osc_{B_R(y)}u\leq CR^\alpha
+\left(R_0^{-\alpha}\sup_{B_0}|u|+k\right),
+\qquad k=\lambda^{-1}(\|f\|_q+\|g\|_{q/2}),
+\tag{8.65}
+\end{equation}
+where $C=C(n,\Lambda/\lambda,\nu,q,R_0)$ and
+$\alpha=\alpha(n,\Lambda/\lambda,\nu R_0,q)>0$.
+\end{theorem}
+\begin{proof}
+\sketch Apply the weak Harnack inequality to
+$M_{4R}-u$ and $u-m_{4R}$. Adding the resulting estimates gives
+$\omega(R)\leq\gamma\omega(4R)+k(R)$ for the oscillation $\omega$ and a fixed
+$0<\gamma<1$. Lemma 8.23 converts this decay recurrence into (8.65).
+\end{proof}
+
+\begin{lemma}[Iteration of an oscillation inequality]
+\label{gt-lem-8-23-oscillation-iteration}
+\dcref{ch8:8.23}
+\group{ch08-generalized-solutions}
+Let $\omega$ and $\sigma$ be nondecreasing on $(0,R_0]$, and suppose
+\begin{equation}
+\omega(\tau R)\leq\gamma\omega(R)+\sigma(R)
 \tag{8.66}
 \end{equation}
-
-\textit{where $\sigma$ is also non-decreasing and $0<\gamma,\tau<1$. Then, for any $\mu\in(0,1)$ and $R\le R_0$, we have}
-
+for $0<\gamma,\tau<1$. For every $0<\mu<1$ and $R\leq R_0$,
 \begin{equation}
-\omega(R)\le C\!\left(\left(\frac{R}{R_0}\right)^{\alpha}\omega(R_0)+\sigma\!\left(R^{\mu}R_0^{1-\mu}\right)\right)
+\omega(R)\leq C\left(
+\left(\frac R{R_0}\right)^\alpha\omega(R_0)
++\sigma(R^\mu R_0^{1-\mu})\right),
 \tag{8.67}
 \end{equation}
+where $C=C(\gamma,\tau)$ and $\alpha=\alpha(\gamma,\tau,\mu)>0$.
+\end{lemma}
+\begin{proof}
+\sketch Iterate (8.66) from an intermediate radius $R_1$ to obtain geometric
+decay plus $\sigma(R_1)/(1-\gamma)$. Choose
+$R_1=R^\mu R_0^{1-\mu}$ and compare $R$ with adjacent powers of $\tau R_1$.
+\end{proof}
 
-\textit{where $C=C(\gamma,\tau)$ and $\alpha=\alpha(\gamma,\tau,\mu)$ are positive constants.}
-
-\medskip
-
-\noindent\textit{Proof.} Let us fix initially some number $R_1\le R_0$. Then for any $R\le R_1$ we have
-
-\[
-\omega(\tau R)\le \gamma\omega(R)+\sigma(R_1)
-\]
-
-since $\sigma$ is non-decreasing. We now iterate this inequality to get, for any positive integer $m$,
-
-\[
-\omega(\tau^m R_1)\le \gamma^m\omega(R_1)+\sigma(R_1)\sum_{i=0}^{m-1}\gamma^i
-\]
-
-\[
-\le \gamma^m\omega(R_0)+\frac{\sigma(R_1)}{1-\gamma}.
-\]
-
-For any $R\le R_1$, we can choose $m$ such that
-
-\[
-\tau^m R_1<R\le \tau^{m-1}R_1.
-\]
-
-Hence
-
-\[
-\omega(R)\le \omega(\tau^{m-1}R_1)
-\]
-
-\[
-\le \gamma^{m-1}\omega(R_0)+\frac{\sigma(R_1)}{1-\gamma}
-\]
-
-\[
-\le \frac{1}{\gamma}\left(\frac{R}{R_1}\right)^{\log\gamma/\log\tau}\omega(R_0)+\frac{\sigma(R_1)}{1-\gamma}.
-\]
-
-
-% PDF page 214
-\source{gilbarg-trudinger:page-0214}
-
-Now let $R_1 = R_0^{1-\mu} R^\mu$ so that we have from the preceding
-\[
-\omega(R) \le \frac{1}{\gamma} \left( \frac{R}{R_0} \right)^{(1-\mu)(\log \gamma / \log \tau)} \omega(R_0) + \frac{\sigma\bigl(R_0^{1-\mu} R^\mu\bigr)}{1-\gamma}.
-\]
-
-Theorem 8.22 follows by choosing $\mu$ such that $(1-\mu)\,\log \gamma / \log \tau < \mu\delta$. An alternative proof based on Theorem 8.17 rather than Theorem 8.18 is outlined in Problem 8.6.
-
-By combining Theorems 8.17 and 8.22 we have the following interior H"older estimate for weak solutions of equation (8.3).
-
-\textbf{Theorem 8.24.} \textit{Let the operator $L$ satisfy conditions (8.5) and (8.6), and suppose that $f^i \in L^q(\Omega)$, $i = 1,\dots,n$, $g \in L^{q/2}(\Omega)$ for some $q>n$. Then, if $u \in W^{1,2}(\Omega)$ satisfies equation (8.3) in $\Omega$, we have for any $\Omega' \Subset \Omega$ the estimate}
-
+\begin{theorem}[Interior H\"older norm estimate]
+\label{gt-thm-8-24-interior-holder-norm}
+\dcref{ch8:8.24}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.22, for every $\Omega'\Subset\Omega$,
 \begin{equation}
+\|u\|_{C^\alpha(\overline{\Omega'})}
+\leq C(\|u\|_{L^2(\Omega)}+k),
 \tag{8.68}
-\|u\|_{C^\alpha(\bar\Omega')} \le C(\|u\|_{L^2(\Omega)} + k),
 \end{equation}
+where $d'=\dist(\Omega',\partial\Omega)$,
+$C=C(n,\Lambda/\lambda,\nu,q,d')$,
+$\alpha=\alpha(n,\Lambda/\lambda,\nu d')>0$, and
+$k=\lambda^{-1}(\|f\|_q+\|g\|_{q/2})$.
+\end{theorem}
+\begin{proof}
+\sketch Use Theorem 8.22 with radius comparable to $d'$ and Theorem 8.17 to
+bound the local supremum by the global $L^2$ norm and the data.
+\end{proof}
 
-\textit{where $C = C(n,\Lambda/\lambda,\nu,q,d')$, $d' = \operatorname{dist}(\Omega',\partial\Omega)$, $\alpha = \alpha(n,\Lambda/\lambda,\nu d') > 0$ and $k = \lambda^{-1}(\|f\|_q + \|g\|_{q/2})$.}
-
-\textit{Proof.} The estimate (8.68) follows by taking $R_0 = d'$ in Theorem 8.22 and using Theorem 8.17 to estimate $\sup |u|$. $\square$
-
-\textit{Remark.} It is clear from the above proofs that the constants $C$ in estimates (8.46), (8.47) and (8.63) are non-decreasing with respect to the argument $\nu R$, the constant $C$ in (8.65) is non-decreasing with respect to $R_0$, the constants $\alpha$ in (8.65) and (8.68) are non-increasing with respect to the arguments $\nu R_0$ and $\nu d'$ respectively. When $\nu = 0$, the constants $C$ in (8.46), (8.47) and (8.63) and $\alpha$ in (8.65) and (8.68) will be independent of $R$, $R_0$ and $d'$ and hence independent of the domains involved in the assertions of Theorems 8.17, 8.18, 8.20, 8.22 and 8.24.
+\begin{remark}[Dependence of local-estimate constants]
+\label{gt-rem-8-local-constant-dependence}
+\dcref{ch8:8.46--8.68}
+\group{ch08-generalized-solutions}
+The constants in (8.46), (8.47), and (8.63) are nondecreasing in $\nu R$;
+the constant in (8.65) is nondecreasing in $R_0$; and the exponents in
+(8.65) and (8.68) are nonincreasing in $\nu R_0$ and $\nu d'$, respectively.
+When $\nu=0$, these constants and exponents are independent of the displayed
+radius and hence of the corresponding domains.
+\end{remark}
 
 \section*{8.10. Local Estimates at the Boundary}
 
-Our previous definition of inequality of $W^{1,2}(\Omega)$ functions on the boundary $\partial\Omega$ can be generalized in the following way. Let $T$ be any subset of $\overline{\Omega}$ and $u$ be a $W^{1,2}(\Omega)$ function. Then we shall say $u \le 0$ on $T$ in the sense of $W^{1,2}(\Omega)$ if $u^+$ is the limit in $W^{1,2}(\Omega)$ of a sequence of functions in $C_0^1(\overline{\Omega} - T)$. One sees that if $u$ is continuous on $T$, this definition is satisfied if $u \le 0$ on $T$ in the usual sense. When $T = \partial\Omega$, this definition coincides with our earlier one in Section 8.1. Other definitions of inequality on $T$ will follow as previously indicated there. We shall establish the following extensions of Theorems 8.17 and 8.18.
+\begin{definition}[Sobolev inequality on a boundary portion]
+\label{gt-def-8-boundary-portion-inequality}
+\dcref{ch8:8.25--8.26}
+\group{ch08-generalized-solutions}
+For $T\subset\overline\Omega$ and $u\in W^{1,2}(\Omega)$, write $u\leq0$ on
+$T$ when $u^+$ is a $W^{1,2}(\Omega)$ limit of functions in
+$C_0^1(\overline\Omega\setminus T)$. The other inequalities are defined as in
+Section 8.1. This agrees with pointwise ordering for continuous functions and
+with the earlier definition when $T=\partial\Omega$.
+\end{definition}
 
-\textbf{Theorem 8.25.} \textit{Let the operator $L$ satisfy (8.5), (8.6) and suppose that $f^i \in L^q(\Omega)$, $i = 1,\dots,n$, $g \in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a $W^{1,2}(\Omega)$ subsolution of equation (8.3) in $\Omega$, we have for any $y \in \mathbb{R}^n$, $R>0$ and $p>1$,}
-
+\begin{theorem}[Boundary local boundedness]
+\label{gt-thm-8-25-boundary-local-boundedness}
+\dcref{ch8:8.25}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.17, let $u$ be a subsolution. For
+$y\in\mathbb R^n$, $R>0$, and $p>1$, set
+\[
+M=\sup_{\partial\Omega\cap B_{2R}(y)}u^+,
+\qquad
+u_M^+(x)=
+\begin{cases}
+\max\{u(x),M\},&x\in\Omega,\\
+M,&x\notin\Omega.
+\end{cases}
+\]
+Then
 \begin{equation}
+\sup_{B_R(y)}u_M^+
+\leq C\left(R^{-n/p}\|u_M^+\|_{L^p(B_{2R}(y))}+k(R)\right),
 \tag{8.69}
-\sup_{B_R(y)} u_M^+ \le C\bigl(R^{-n/p}\|u_M^+\|_{L^p(B_{2R}(y))} + k(R)\bigr)
 \end{equation}
-
-% PDF page 215
-\source{gilbarg-trudinger:page-0215}
-
-
-where
-
-\[
-M = \sup_{\partial\Omega \cap B_{2R}} u^{+},
-\]
-
-\[
-u^{+}_{M}(x)=
-\begin{cases}
-\sup \{u(x), M\}, & x \in \Omega,\\
-M, & x \notin \Omega,
-\end{cases}
-\]
-
-and $k$ is given by (8.45), $C = C(n,\Lambda/\lambda,\nu R,q,p)$.
-
-\textbf{Theorem 8.26.} \textit{Let the operator $L$ satisfy conditions (8.5), (8.6) and suppose that
-$f^i \in L^q(\Omega)$, $g \in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a $W^{1,2}(\Omega)$ supersolution of
-equation (8.3) in $\Omega$ and is non-negative in $\Omega \cap B_{4R}(y)$ for some ball $B_{4R}(y)\subset \mathbb{R}^n$,
-we have, for any $p$ such that $1 \le p < n/(n-2)$,}
-
-\begin{equation}
-R^{-n/p}\|u^{-}_{m}\|_{L^p(B_{2R}(y))} \le C\left(\inf_{B_R(y)} u^{-}_{m} + k(R)\right)
-\tag{8.70}
-\end{equation}
-
-where
-
-\[
-m = \inf_{\partial\Omega \cap B_{4R}} u,
-\]
-
-\[
-u^{-}_{m}(x)=
-\begin{cases}
-\inf \{u(x), m\}, & x \in \Omega,\\
-m, & x \notin \Omega,
-\end{cases}
-\]
-
-and $C = C(n,\Lambda/\lambda,\nu R,q,p)$.
-
-\textit{Proof.} A reduction to the proof of Theorems 8.17 and 8.18 is made as follows. We
-set $\bar{u}=u^{+}_{m}+k$ if $u$ is a subsolution and $\bar{u}=u^{-}_{m}+k$ if $u$ is a supersolution. Then as
-test functions in the integral inequalities (8.30) we choose
-
-\begin{equation}
-v=\eta^2
-\begin{cases}
-\bar{u}^{\beta}-(M+k)^{\beta} & \text{if } \beta>0,\\
-\bar{u}^{\beta}-(m+k)^{\beta} & \text{if } \beta<0,
-\end{cases}
-\tag{8.71}
-\end{equation}
-
-where $\eta \in C^1_0(B_{4R})$ is to be further specified. Since the structure (8.44) holds in the
-support of $v$, for $\bar{z}=\bar{u}$ and $p=Du$, and since $v \le \eta^2\bar{u}^{\beta}$, we arrive again at the estimate
-(8.52) for $\bar{u}$. The desired estimates (8.69) and (8.70) are then obtained as in the
-proof of Theorems 8.17 and 8.18. \(\square\)
-
-A global continuity result cannot be derived from Theorem 8.26 unless some
-restriction is placed on the domain $\Omega$. We shall say that $\Omega$ satisfies an \textit{exterior cone
-condition} at a point $x_0 \in \partial\Omega$ if there exists a finite right circular cone $V = V_{x_0}$ with
-vertex $x_0$ such that $\overline{\Omega} \cap V_{x_0} = x_0$. An exterior cone condition is clearly satisfied
-wherever an exterior sphere condition holds. We now have the following extension
-of the Hölder estimate (8.65).
-
-\textbf{Theorem 8.27.} \textit{Let the operator $L$ satisfy conditions (8.5), (8.6) and suppose that
-$f^i \in L^q(\Omega)$, $i=1,\ldots,n$, $g \in L^{q/2}(\Omega)$ for some $q>n$. Then if $u$ is a $W^{1,2}(\Omega)$ solution of}
-
-
-% PDF page 216
-\source{gilbarg-trudinger:page-0216}
-\providecommand{\osc}{\operatorname{osc}}
-\providecommand{\diam}{\operatorname{diam}}
-equation (8.3) in $\Omega$ and $\Omega$ satisfies an exterior cone condition at a point $x_0 \in \partial\Omega$, we have for any $0 < R \le R_0$, and $B_0 = B_{R_0}(x_0)$,
-
-\begin{equation*}
-\tag{8.72}
-\osc_{\Omega \cap B_R} u \le C\{R^\alpha(R_0^{-\alpha}\sup_{\Omega \cap B_0}|u| + k) + \sigma(\sqrt{RR_0})\}
-\end{equation*}
-
-where $\sigma(R) = \osc_{\partial\Omega \cap B_R(x_0)} u$, and $C = C(n,\Lambda/\lambda,\nu,q,R_0,V_{x_0})$,
-
-$\alpha = \alpha(n,\Lambda/\lambda,\nu R_0,q,V_{x_0})$ are positive constants.
-
-In the following we shall abbreviate $\Omega \cap B_R(x_0) = \Omega_R$ for any $R$, $\partial\Omega \cap B_R(x_0) = (\partial\Omega)_R$, the point $x_0 \in \partial\Omega$ to be understood.
-
-\textit{Proof.} We follow the proof of Theorem 8.22. Assume initially that $R \le \inf\{R_0/4,\mathrm{height}\ V_{x_0}\}$ and write $M_0 = \sup_{\Omega_{R_0}}|u|$, $M_4 = \sup_{\Omega_{4R}} u$, $m_4 = \inf_{\Omega_{4R}} u$, $M_1 = \sup_{\Omega_R} u$, $m_1 = \inf_{\Omega_R} u$.
-
-Then, applying the estimate (8.70) to each of the functions $M_4-u$, $u-m_4$ in $B_{4R}(x_0)$, we obtain
-
-\[
-(M_4-M)\frac{|B_{2R}(x_0)-\Omega|}{R^n} \le R^{-n}\int_{B_{2R}(x_0)} (M_4-u)_{M_4-M}\,dx
-\]
-
-\[
-\le C(M_4-M_1+k(R))
-\]
-
-\[
-(m-m_4)\frac{|B_{2R}(x_0)-\Omega|}{R^n} \le R^{-n}\int_{B_{2R}(x_0)} (u-m_4)_{m-m_4}\,dx
-\]
-
-\[
-\le C(m_1-m_4+k(R))
-\]
-
-where $M = \sup_{\Omega_{4R}}u$, $m = \inf_{\Omega_{4R}}u$. Using the exterior cone condition we thus have
-
-\[
-M_4-M \le C(M_4-M_1+k(R))
-\]
-
-\[
-m-m_4 \le C(m_1-m_4+k(R))
-\]
-
-so that by addition we get
-
-\[
-\osc_{\Omega_R} u \le \gamma\,\osc_{\Omega_{4R}}u + k(R) + \osc_{(\partial\Omega)_{4R}}u,
-\]
-
-where $\gamma = 1-1/C$, $C = C(n,\Lambda/\lambda,\nu R_0,q,V_{x_0})$. The estimate (8.72) then follows from Lemma 8.23. $\square$
-
-If the hypotheses of Theorem 8.27 are satisfied and $\sigma(R) \to 0$ as $R \to 0$, then the estimate (8.72) implies that $u(x_0) = \lim_{x \to x_0} u(x)$ is well defined. The following global continuity result then follows immediately from Theorems 8.22 and 8.27.
-
-% PDF page 217
-\source{gilbarg-trudinger:page-0217}
-
-\noindent \textbf{Corollary 8.28.} \emph{In addition to the hypotheses of Theorem 8.27, let us assume that $\Omega$ satisfies an exterior cone condition at every point $x_0 \in \partial\Omega$ and that}
-\[
-\osc_{\partial\Omega \cap B_R(x_0)} u \to 0
-\]
-\emph{as $R \to 0$ for all $x_0 \in \partial\Omega$. Then the function $u$ is uniformly continuous in $\Omega$.}
-
-\medskip
-
-A uniform H\"older estimate may also be obtained from Theorem 8.27 if the domain $\Omega$ is further restricted. Namely, let us say that $\Omega$ satisfies a \emph{uniform exterior cone condition on $T \subset \partial\Omega$} if $\Omega$ satisfies an exterior cone condition at every $x_0 \in T$ and the cones $V_{x_0}$ are all congruent to some fixed cone $V$. We can then assert the following extension of Theorem 8.24.
-
-\medskip
-
-\noindent \textbf{Theorem 8.29.} \emph{Let the operator $L$ satisfy conditions (8.5), (8.6), let $f^i \in L^q(\Omega)$, $i = 1,\dots,n$, $g \in L^{q/2}(\Omega)$ for some $q > n$, and suppose that $\Omega$ satisfies a uniform exterior cone condition on a boundary portion $T$. Then if $u \in W^{1,2}(\Omega)$ satisfies equation (8.3) in $\Omega$ and there exist constants $K,\alpha_0 > 0$ such that}
-\[
-\osc_{\partial\Omega \cap B_R(x_0)} u \le K R^{\alpha_0} \qquad \forall x_0 \in T,\ R > 0,
-\]
-\emph{it follows that $u \in C^\alpha(\Omega \cup T)$ for some $\alpha > 0$ and, for any $\Omega' \Subset \Omega \cup T$,}
-\begin{equation}
-\|u\|_{C^\alpha(\Omega')} \le C(\sup_{\Omega} |u| + K + k)
-\tag{8.73}
-\end{equation}
-\emph{where $\alpha = \alpha(n, \Lambda/\lambda, \nu d', V, q, \alpha_0)$, $C = C(n, \Lambda/\lambda, \nu, V, q, \alpha_0, d')$,}
-\[
-d' = \dist(\Omega',\, \partial\Omega - T) \quad \text{and} \quad k = \lambda^{-1}(\|f\|_q + \|g\|_{q/2}).
-\]
-\emph{If $\Omega' = \Omega$, $d'$ is to be replaced by diam $\Omega$.}
-
-\medskip
-
-\noindent \textbf{Proof.} \emph{Let $y \in \Omega'$, $\delta = \dist(y, \partial\Omega) < d'$. By Theorem 8.22 with $R_0 = \delta$, we have for any $x \in B_\delta$}
-\[
-\frac{|u(x) - u(y)|}{|x - y|^\alpha} \le C(\delta^{-\alpha}\sup_{B_\delta}|u| + k).
-\]
-\emph{Now choose $x_0 \in \partial\Omega$ such that $|x_0 - y| = \delta$. By the estimate (8.72) with $R = 2\delta$, $R_0 = 2d'$, we then obtain}
-\[
-\delta^{-\alpha}\osc_{B_\delta} u \le \delta^{-\alpha}\osc_{\Omega_{2\delta}} u \le C(\sup_{\Omega}|u| + k + K)
-\]
-\emph{provided $2\alpha \le \alpha_0$. Hence for any $x \in B_\delta(y)$, we have (taking $u(x_0) = 0$)}
-\begin{equation}
-\frac{|u(x) - u(y)|}{|x - y|^\alpha} \le C(\sup_{\Omega}|u| + k + K).
-\tag{8.74}
-\end{equation}
-
-% PDF page 218
-\source{gilbarg-trudinger:page-0218}
-
-By applying the estimate (8.72) again, with $R=2|x-y|$, $R_0=2d'$, we see that (8.74)
-will also hold for $d' \ge |x-y| \ge \delta$. \square
-
-\medskip
-
-In effect, the preceding theorem combines separate H\"older estimates in the
-interior and on the boundary into a partially interior or a global H\"older estimate.
-Note that if $u,v \in W^{1,2}(\Omega)$ and $u-v \in W^{1,2}_0(\Omega)$, then
-\[
-\osc_{\partial\Omega \cap B_R(y)} u \to 0 \quad \text{as } R \to 0 \text{ for all } y \in \partial\Omega
-\]
-provided $v \in C^0(\overline{\Omega})$, and
-\[
-\osc_{\partial\Omega \cap B_R(y)} u \le K R^{\alpha_0} \quad \text{for all } y \in \partial\Omega,\ R>0
-\]
-provided $v \in C^{\alpha_0}(\overline{\Omega})$. The remark following the proof of Theorem 8.24 is of course also
-pertinent with regard to the constants $C$ in estimates (8.69), (8.70) and $\alpha$ in estimates
-(8.72) and (8.73).
-
-An existence theorem for equation (8.3) for continuous boundary values follows
-from Theorem 8.3 and Corollary 8.28.
-
-\begin{theorem}[8.30]
-Let the operator $L$ satisfy conditions (8.5), (8.6), (8.8) and $f^i \in L^q(\Omega)$,
-$g \in L^{q/2}(\Omega)$ for some $q>n$, and suppose that $\Omega$ satisfies an exterior cone condition at
-each point of $\partial\Omega$. Then for $\varphi \in C^0(\partial\Omega)$, there exists a unique function $u \in W^{1,2}_{\mathrm{loc}}(\Omega)\cap$
-$C^0(\overline{\Omega})$ satisfying $Lu=g+D_i f^i$ in $\Omega$, $u=\varphi$ on $\partial\Omega$.
+where $C=C(n,\Lambda/\lambda,\nu R,q,p)$.
 \end{theorem}
-
 \begin{proof}
-Let $\{\varphi_m\}$ be a sequence in $C^1(\overline{\Omega})$ converging uniformly to $\varphi$ on $\partial\Omega$. By
-Theorem 8.3 and Corollary 8.28 there exists a sequence $\{u_m\}$ in $W^{1,2}(\Omega)\cap C^0(\overline{\Omega})$
-such that $Lu_m=g+D_i f^i$ in $\Omega$ and $u_m=\varphi_m$ on $\partial\Omega$. By Theorem 8.1, we have
-\[
-\sup_{\Omega}|u_{m_1}-u_{m_2}|\le \sup_{\partial\Omega}|\varphi_{m_1}-\varphi_{m_2}| \to 0
-\qquad \text{as } m_1,m_2 \to \infty,
-\]
-so that $\{u_m\}$ converges uniformly to a function $u \in C^0(\overline{\Omega})$ satisfying $u=\varphi$ on $\partial\Omega$.
-Furthermore by the estimate (8.52) we then have, for any $\Omega' \Subset \Omega$,
-\[
-\int_{\Omega'} |D(u_{m_1}-u_{m_2})|^2\,dx \to 0 \qquad \text{as } m_1,m_2 \to \infty.
-\]
-
-Consequently $u \in W^{1,2}_{\mathrm{loc}}(\Omega)$ and satisfies equation (8.3) in $\Omega$. The uniqueness of the
-solution $u$ follows by applying Theorem 8.1 in domains $\Omega' \Subset \Omega$. \square
+\sketch Extend the boundary truncation by the constant $M$ and use the positive
+power tests from Theorem 8.17 after subtracting their boundary value. Their
+support lies where the structural inequalities apply, so the same iteration gives
+(8.69).
 \end{proof}
 
-\medskip
-
-\noindent \textbf{The Wiener Criterion.} If we make no restriction on the domain $\Omega$ in the hypotheses
-of Theorem 8.30, then we would obtain from the above procedure a bounded
-function $u \in C^0(\Omega)\cap W^{1,2}_{\mathrm{loc}}(\Omega)$ such that $Lu=g+D_i f^i$ in $\Omega$; in addition $u(x)\to$
-$\varphi(x_0)$ as $x\to x_0 \in \partial\Omega$ if $\Omega$ satisfies an exterior cone condition at $x_0$. Any point
-$x_0 \in \partial\Omega$ where $u(x)\to \varphi(x_0)$ for arbitrary choice of $\varphi$, $g$, $f^i$ is called a \textit{regular point}
-for the operator $L$. Using the methods in [HR] or [LSW], one can show that the
-regular points for $L$ coincide with those for the Laplacian as defined in Chapter 2.
-The barrier considerations of Chapter 6 are also applicable here. Note also, that it
-
-
-% PDF page 219
-\source{gilbarg-trudinger:page-0219}
-
-\begin{quote}
-follows from the proof of Theorem 8.27 that the exterior cone condition can be
-relaxed to the condition
-\end{quote}
-
-\begin{equation}\tag{8.75}
-\liminf_{R \to 0} \frac{\left|B_R(x_0)-\Omega\right|}{R^n} > 0.
+\begin{theorem}[Boundary weak Harnack inequality]
+\label{gt-thm-8-26-boundary-weak-harnack}
+\dcref{ch8:8.26}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.18, let $u$ be a supersolution nonnegative in
+$\Omega\cap B_{4R}(y)$. Put
+\[
+m=\inf_{\partial\Omega\cap B_{4R}(y)}u,
+\qquad
+u_m^-(x)=
+\begin{cases}
+\min\{u(x),m\},&x\in\Omega,\\
+m,&x\notin\Omega.
+\end{cases}
+\]
+For $1\leq p<n/(n-2)$,
+\begin{equation}
+R^{-n/p}\|u_m^-\|_{L^p(B_{2R}(y))}
+\leq C\left(\inf_{B_R(y)}u_m^-+k(R)\right),
+\tag{8.70}
 \end{equation}
-
-\noindent More generally, by further development of the techniques of this section, we can
-establish the sufficiency of the Wiener criterion (2.37) for regular points. To ac-
-complish this, we first prove estimates similar to the weak Harnack inequalities,
-Theorems 8.18 and 8.26, but involving the gradient of the supersolution $u$. Let us
-consider first the interior case and suppose accordingly that the hypotheses of
-Theorem 8.18 are satisfied. It is then evident from the proof of Theorem 8.18 (in
-particular (8.52)) that, along with (8.47), we may also obtain the estimate
-
-\begin{equation*}
-\left(
-R^{2-n}\int_{B_{2R}} (\bar u)^{-p}\, |Du|^2\,dx
-\right)^{1/(2-p)}
-\le C \left(\inf_{B_R} u + k(R)\right)
-\end{equation*}
-
-\noindent for $1<p<n/(n-2)$ and $C=C(n,\Lambda/\lambda,\nu R,q,p)$. But then by Hölder's inequality,
-
-\begin{equation}\tag{8.76}
-R^{1-n}\int_{B_{2R}} |Du|
-\le \left(R^{-n}\int_{B_{2R}} (\bar u)^p\right)^{1/2}
-\left(R^{2-n}\int_{B_{2R}} (\bar u)^{-p}|Du|^2\right)^{1/2}
+where $C=C(n,\Lambda/\lambda,\nu R,q,p)$.
+\end{theorem}
+\begin{proof}
+\sketch Use negative-power tests for $u_m^-+k$, subtracting the constant boundary
+value so the tests vanish in the Sobolev sense. Together with the positive
+boundary truncation, the shared test is
+\begin{equation}
+\tag{8.71}
+v=\eta^2
+\begin{cases}
+\bar u^\beta-(M+k)^\beta,&\beta>0,\\
+\bar u^\beta-(m+k)^\beta,&\beta<0.
+\end{cases}
 \end{equation}
+The proof of Theorem 8.18 then
+applies unchanged.
+\end{proof}
 
-\begin{equation*}
-\le C\left(\inf_{B_R} u + k(R)\right)
-\end{equation*}
+\begin{definition}[Exterior cone condition]
+\label{gt-def-8-exterior-cone-condition}
+\dcref{ch8:8.27}
+\group{ch08-generalized-solutions}
+The domain $\Omega$ satisfies an exterior cone condition at
+$x_0\in\partial\Omega$ when a finite right circular cone $V_{x_0}$ with vertex
+$x_0$ satisfies $\overline\Omega\cap V_{x_0}=\{x_0\}$. It satisfies a uniform
+exterior cone condition on $T\subset\partial\Omega$ when these cones may be
+chosen congruent to one fixed cone.
+\end{definition}
 
-\noindent where $C=C(n,\Lambda/\lambda,\nu R,q)$ if $p$ is fixed, say $p=n/(n-1)$.
-If we assume in addition the hypotheses of Theorem 8.26 and consider its proof,
-we see that $u$ may be replaced by $u_m$ in (8.76), and hence
-
-\begin{equation}\tag{8.77}
-R^{1-n}\int_{\Omega \cap B_{2R}} |Du_m|
-\le C\left(\inf_{\Omega\cap B_R} u_m + k(R)\right)
+\begin{theorem}[Boundary oscillation estimate]
+\label{gt-thm-8-27-boundary-oscillation}
+\dcref{ch8:8.27}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.22, suppose $\Omega$ has an exterior cone at
+$x_0\in\partial\Omega$. For $B_0=B_{R_0}(x_0)$ and $0<R\leq R_0$,
+\begin{equation}
+\osc_{\Omega\cap B_R(x_0)}u
+\leq C\left(R^\alpha
+\left(R_0^{-\alpha}\sup_{\Omega\cap B_0}|u|+k\right)
++\sigma(\sqrt{RR_0})\right),
+\tag{8.72}
 \end{equation}
+where $\sigma(r)=\osc_{\partial\Omega\cap B_r(x_0)}u$ and $C,\alpha>0$
+depend only on $n,\Lambda/\lambda,\nu,q,R_0$, and the cone $V_{x_0}$ as in
+the baseline statement.
+\end{theorem}
+\begin{proof}
+\sketch Apply Theorem 8.26 to $M_{4R}-u$ and $u-m_{4R}$. The exterior cone gives
+a scale-independent lower bound for the relative measure outside $\Omega$,
+producing an oscillation recurrence with an additional boundary-oscillation
+term. Lemma 8.23 yields (8.72).
+\end{proof}
 
-\noindent where $C=C(n,\Lambda/\lambda,\nu R,q)$. To proceed further, let us fix a cutoff function
-$\eta \in C_0^1(B_{2R})$ such that $0\le \eta \le 1$, $\eta=1$ on $B_R$, $|D\eta|\le 2/R$, and then insert
-$v=\eta^2(m-u_m)$ as a test function in (8.30), noting that
-
+\begin{corollary}[Uniform continuity up to the boundary]
+\label{gt-cor-8-28-uniform-boundary-continuity}
+\dcref{ch8:8.28}
+\group{ch08-generalized-solutions}
+In addition to the hypotheses of Theorem 8.27, suppose the exterior cone
+condition holds at every boundary point and
 \[
-m=\sup_{B_{2R}} u_m \qquad \text{if } B_{4R}\cap \partial\Omega \ne \emptyset,
+\osc_{\partial\Omega\cap B_R(x_0)}u\longrightarrow0
+\qquad(R\downarrow0)
 \]
+for every $x_0\in\partial\Omega$. Then $u$ is uniformly continuous in $\Omega$.
+\end{corollary}
+\begin{proof}
+\sketch Combine the boundary modulus from Theorem 8.27 with the interior
+H\"older estimate of Theorem 8.22 and compactness of $\partial\Omega$.
+\end{proof}
 
-\noindent which will be assumed in the following. Normalizing $R=1$ and using the con-
-ditions (8.5), (8.6), we obtain
-
+\begin{theorem}[H\"older estimate on a boundary portion]
+\label{gt-thm-8-29-boundary-holder}
+\dcref{ch8:8.29}
+\group{ch08-generalized-solutions}
+Assume the hypotheses of Theorem 8.22 and a uniform exterior cone condition on
+$T\subset\partial\Omega$. If constants $K,\alpha_0>0$ satisfy
 \[
-\int_{B_2} \eta^2 |Du_m|^2\,dx \le C(m+k)\int_{B_2} (\bar u + |D\bar u|)\,dx.
+\osc_{\partial\Omega\cap B_R(x_0)}u\leq KR^{\alpha_0}
+\qquad(x_0\in T,\ R>0),
 \]
+then $u\in C^\alpha(\Omega\cup T)$ for some $\alpha>0$, and every
+$\Omega'\Subset\Omega\cup T$ satisfies
+\begin{equation}
+\|u\|_{C^\alpha(\Omega')}
+\leq C(\sup_\Omega|u|+K+k),
+\tag{8.73}
+\end{equation}
+with $d'=\dist(\Omega',\partial\Omega\setminus T)$ and the dependence of
+$C,\alpha$ on $n,\Lambda/\lambda,\nu,V,q,\alpha_0,d'$ stated in the baseline.
+For $\Omega'=\Omega$, replace $d'$ by $\diam\Omega$.
+\end{theorem}
+\begin{proof}
+\sketch Use Theorem 8.22 on the ball whose radius is the distance to the boundary.
+Theorem 8.27 controls its oscillation by the global supremum, the data, and the
+boundary H\"older modulus. In particular,
+\begin{equation}
+\tag{8.74}
+\frac{|u(x)-u(y)|}{|x-y|^\alpha}
+\leq C(\sup_\Omega|u|+k+K)
+\end{equation}
+whenever $x$ lies in the ball centred at $y$ of radius
+$\dist(y,\partial\Omega)$. Applying the boundary estimate again when two points
+are farther apart than that radius produces a uniform seminorm.
+\end{proof}
 
-% PDF page 220
-\source{gilbarg-trudinger:page-0220}
-\providecommand{\osc}{\operatorname{osc}}
-\providecommand{\chi}{\operatorname{\chi}}
+\begin{remark}[Boundary oscillation from Sobolev trace data]
+\label{gt-rem-8-boundary-oscillation-trace}
+\dcref{ch8:8.29}
+\group{ch08-generalized-solutions}
+If $u-v\in W_0^{1,2}(\Omega)$ and $v\in C^0(\overline\Omega)$, then the boundary
+oscillation of $u$ tends to zero at every boundary point. If
+$v\in C^{\alpha_0}(\overline\Omega)$, it satisfies a uniform bound of order
+$R^{\alpha_0}$.
+\end{remark}
 
-\setcounter{section}{8}
-\setcounter{subsection}{10}
-\noindent 8.10.\ Local Estimates at the Boundary \hfill 208
-
-\medskip
-
-Hence, writing
-
+\begin{theorem}[Continuous Dirichlet data under an exterior cone condition]
+\label{gt-thm-8-30-continuous-dirichlet-cone}
+\dcref{ch8:8.30}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), (8.8), $f^i\in L^q(\Omega)$, and
+$g\in L^{q/2}(\Omega)$ for some $q>n$. If $\Omega$ has an exterior cone at every
+boundary point, then for every $\varphi\in C^0(\partial\Omega)$ there is a unique
 \[
-w=\eta u_m^-
+u\in W^{1,2}_{\mathrm{loc}}(\Omega)\cap C^0(\overline\Omega)
 \]
+satisfying $Lu=g+D_if^i$ in $\Omega$ and $u=\varphi$ on $\partial\Omega$.
+\end{theorem}
+\begin{proof}
+\sketch Approximate $\varphi$ uniformly by traces of $C^1(\overline\Omega)$
+functions and solve the corresponding generalized Dirichlet problems by
+Theorem 8.3. The maximum principle makes the solutions uniformly Cauchy;
+Corollary 8.28 gives boundary continuity, and the local energy estimate gives
+$W^{1,2}_{\mathrm{loc}}$ convergence. Pass to the weak equation. Local use of
+Theorem 8.1 gives uniqueness.
+\end{proof}
 
-and using (8.70) and (8.77), we have
+\begin{definition}[Regular boundary point]
+\label{gt-def-8-regular-boundary-point}
+\dcref{ch8:8.75}
+\group{ch08-generalized-solutions}
+A point $x_0\in\partial\Omega$ is regular for $L$ if every solution constructed
+from continuous boundary data and admissible $f^i,g$ converges to its prescribed
+boundary value as $x\to x_0$. The local density condition
+\begin{equation}
+\liminf_{R\downarrow0}\frac{|B_R(x_0)\setminus\Omega|}{R^n}>0
+\tag{8.75}
+\end{equation}
+is sufficient by the proof of Theorem 8.27.
+\end{definition}
 
-\[
-\int_{B_2}|Dw|^2\le C(m+k)\int_{B_2}(\bar u+|D\bar u|)\,dx
-\]
+\begin{remark}[Operator independence of regular points]
+\label{gt-rem-8-regular-points-laplacian}
+\dcref{ch8:8.31}
+\group{ch08-generalized-solutions}
+Under the chapter's ellipticity and coefficient hypotheses, the regular points
+for $L$ coincide with the regular points for the Laplacian.
+\end{remark}
 
-\[
-\le C(m+k)\left(\inf_{B_1}u_m^-+k\right).
-\]
-
-Consequently, for general $R$ we have the estimate
-
+\begin{theorem}[Continuous Dirichlet data under the Wiener condition]
+\label{gt-thm-8-31-continuous-dirichlet-wiener}
+\dcref{ch8:8.31}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), (8.8), $f^i\in L^q(\Omega)$, and
+$g\in L^{q/2}(\Omega)$ for some $q>n$. If the Wiener condition (2.37) holds at
+every point of $\partial\Omega$, then for each $\varphi\in C^0(\partial\Omega)$
+there is a unique
+$u\in W^{1,2}_{\mathrm{loc}}(\Omega)\cap C^0(\overline\Omega)$ satisfying
+$Lu=g+D_if^i$ and $u=\varphi$ on $\partial\Omega$.
+\end{theorem}
+\begin{proof}
+\sketch The negative-power estimate underlying Theorem 8.18 also controls
+the gradient through
+\begin{equation}
+\tag{8.76}
+R^{1-n}\int_{B_{2R}}|Du|
+\leq\left(R^{-n}\int_{B_{2R}}\bar u^p\right)^{1/2}
+\left(R^{2-n}\int_{B_{2R}}\bar u^{-p}|Du|^2\right)^{1/2}
+\leq C(\inf_{B_R}u+k(R)).
+\end{equation}
+For the boundary truncation this becomes
+\begin{equation}
+\tag{8.77}
+R^{1-n}\int_{\Omega\cap B_{2R}}|Du_m|
+\leq C(\inf_{\Omega\cap B_R}u_m+k(R)).
+\end{equation}
+With a cutoff $\eta$ and $w=\eta u_m^-$, an energy test gives
 \begin{equation}
 \tag{8.78}
-R^{2-n}\int_{B_{2R}}|Dw|^2\le C(m+k)\left(\inf_{B_R}u_m^-+k(R)\right).
+R^{2-n}\int_{B_{2R}}|Dw|^2
+\leq C(m+k)(\inf_{B_R}u_m^-+k(R)).
 \end{equation}
-
-We now recall from (2.36) that the capacity of the set $B_R-\Omega$ is given by
-
+The variational characterization is
 \begin{equation}
 \tag{8.79}
-\operatorname{cap}(B_R-\Omega)=\inf_{v\in K}\int |Dv|^2,
-\end{equation}
-
-where
-
-\[
-K=\{v\in C_0^1(\mathbb{R}^n)\,|\, v=1\ \text{ on }\ B_R-\Omega\}.
-\]
-
-Since $u_m^-=m$ on $B_R-\Omega$ and $C_0^1(B_{2R})$ is dense in $W_0^{1,2}(B_{2R})$, and using the fact that
-\[
-\operatorname{cap}(B_R-\Omega)\le CR^{n-2},
-\]
-we obtain from (8.78),
-
-\begin{equation}
-\tag{8.80}
-mR^{2-n}\operatorname{cap}(B_R-\Omega)\le C\inf_{B_R}(u_m^-+k(R)).
-\end{equation}
-
-Hence, if $u$ is a solution of equation (8.3) in $\Omega$ and $y=x_0\in\partial\Omega$, we obtain, with the notation in the proof of Theorem 8.27,
-
-\[
-(M_4-M)\chi(R)\le C(M_4-M_1+k(R))
-\]
-
-\[
-(m-m_4)\chi(R)\le C(m_1-m_4+k(R)),
-\]
-
-where
-
-\[
-\chi(R)=R^{2-n}\operatorname{cap}(B_R-\Omega).
-\]
-
-Thus, by addition, we obtain the oscillation estimate
-
-\begin{equation}
-\tag{8.81}
-\osc_{\Omega_R}u\le \left(1-\frac{\chi(R)}{C}\right)\osc_{\Omega_{4R}}u+\frac{\chi(R)}{C}\osc_{(\partial\Omega)_{4R}}u+k(R).
-\end{equation}
-
-
-% PDF page 221
-\source{gilbarg-trudinger:page-0221}
-
-We leave it to the reader to check that if (2.37) holds for $\lambda = 1/4$, then an estimate for the modulus of continuity of $u$ at $x_0$ is determined by iteration of (8.81), in an argument similar to that in Lemma 8.23 (Problem 8.8). We can thus state the following extension of Theorem 8.30.
-
-\begin{theorem}[8.31]
-Let the operator $L$ satisfy conditions (8.5), (8.6), (8.8) and $f^i \in L^q(\Omega)$, $g \in L^{q/2}(\Omega)$ for some $q > n$, and suppose that the Wiener condition (2.37) holds at each point of $\partial\Omega$. Then for $\varphi \in C^0(\partial\Omega)$, there exists a unique function $u \in W^{1,2}_{\mathrm{loc}}(\Omega) \cap C^0(\bar{\Omega})$ satisfying $Lu = g + D_i f^i$ in $\Omega$, $u = \varphi$ on $\partial\Omega$.
-\end{theorem}
-
-Finally, to conclude this section we remark that the results of Sections 8.6 to 8.10 are still valid when the condition (8.6) on the coefficients $b$, $c$ and $d$ is replaced by $b$, $c \in L^q(\Omega)$, $d \in L^{q/2}(\Omega)$, $q > n$. Setting
-
-\[
-b = \lambda^{-2}(|b|^2 + |c|^2) + \lambda^{-1} d,
+\operatorname{cap}(B_R\setminus\Omega)
+=\inf_{v\in\mathcal K}\int|Dv|^2,
 \qquad
-v^2 = \|b\|_{q/2}
-\]
-
-we then need to replace the quantity $vR$ by $vR^\delta$ in the estimates of Theorems 8.17 to 8.29. It is also possible in certain of the preceding local results to weaken both the uniform and the strict ellipticity of the operator $L$; (see [TR 4, 7], [FKS]).
-
-\medskip
-
-\noindent 8.11. \ Hölder Estimates for the First Derivatives
-
-\medskip
-
-When the principal coefficients in (8.3) are Hölder continuous, the existence and regularity theory can be patterned after the Schauder theory of Chapter 6, and yields similar results. The starting point is again Poisson's equation, in the form
-
-\begin{equation}
-\tag{8.82}
-\Delta u = g + D_i f^i.
+\mathcal K=\{v\in C_0^1(\mathbb R^n):v=1\text{ on }B_R\setminus\Omega\}.
 \end{equation}
-
-If $g$, $f \in L^\infty(\Omega)$ and $f \in C^\alpha(\Omega)$ for some $\alpha \in (0,1)$, it is easily shown that the Newtonian potential of the right-hand side, given by
-
-\[
-w(x) = \int_\Omega \Gamma(x-y)g(y)\,dy + \int_\Omega D_i\Gamma(x-y)f^i(y)\,dy,
-\]
-
-is a weak solution of (8.82) and consequently the estimates of Section 4.5 will apply to weak solutions of (8.82); (see Problem 7.20). In particular, we recall the interior and boundary estimates (4.45) and (4.46). The considerations of Lemma 6.1 show that the same estimates hold for weak solutions of
-
-\[
-L_0u \equiv A^{ij}D_{ij}u = g + D_i f^i,
-\]
-
-where $L_0$ is a constant coefficient elliptic operator.
-
-
-% PDF page 222
-\source{gilbarg-trudinger:page-0222}
-
-
-
-We can now apply the perturbation technique of Section 6.1 to the equation
-
+Combining (8.77)--(8.79) gives
 \begin{equation}
-Lu = g + D_i f^i,
+mR^{2-n}\operatorname{cap}(B_R\setminus\Omega)
+\leq C\inf_{B_R}(u_m^-+k(R)).
+\tag{8.80}
+\end{equation}
+Writing $\chi(R)=R^{2-n}\operatorname{cap}(B_R\setminus\Omega)$ yields
+\begin{equation}
+\osc_{\Omega\cap B_R}u
+\leq\left(1-\frac{\chi(R)}C\right)\osc_{\Omega\cap B_{4R}}u
++\frac{\chi(R)}C\osc_{\partial\Omega\cap B_{4R}}u+k(R).
+\tag{8.81}
+\end{equation}
+The Wiener divergence condition forces this iteration to inherit the continuous
+boundary modulus. Existence and uniqueness then follow by the approximation
+argument of Theorem 8.30.
+\end{proof}
+
+\begin{remark}[Integrable lower-order coefficients]
+\label{gt-rem-8-integrable-lower-order-coefficients}
+\dcref{ch8:8.17--8.31}
+\group{ch08-generalized-solutions}
+The conclusions of Sections 8.6--8.10 remain valid if the boundedness part of
+(8.6) for $b,c,d$ is replaced by
+$b,c\in L^q(\Omega)$ and $d\in L^{q/2}(\Omega)$ with $q>n$. With
+\[
+\mathfrak b=\lambda^{-2}(|b|^2+|c|^2)+\lambda^{-1}|d|,
+\qquad \nu^2=\|\mathfrak b\|_{q/2},
+\]
+replace $\nu R$ in Theorems 8.17--8.29 by $\nu R^\delta$,
+$\delta=1-n/q$.
+\end{remark}
+
+\section*{8.11. H\"older Estimates for the First Derivatives}
+
+The constant-coefficient starting point is
+\begin{equation}
+\Delta u=g+D_if^i.
+\tag{8.82}
+\end{equation}
+For $g,f\in L^\infty(\Omega)$ and $f\in C^\alpha(\Omega)$, its Newtonian
+potential
+\[
+w(x)=\int_\Omega\Gamma(x-y)g(y)\,dy
++\int_\Omega D_i\Gamma(x-y)f^i(y)\,dy
+\]
+is a weak solution. Consider now
+\begin{equation}
+Lu=g+D_if^i.
 \tag{8.83}
 \end{equation}
-
-where $L$ is given by (8.1). For any point $x_0 \in \Omega$, we ``freeze'' the coefficients $a^{ij}$ at $x_0$ and rewrite the equation as
-
+Freeze the principal coefficients at $x_0$:
 \begin{equation}
-a^{ij}(x_0)D_{ij}u = D_i\{(a^{ij}(x_0) - a^{ij}(x))D_j u - b^i(x)u\}
- - c^i(x)D_i u - d(x)u + g + D_i f^i
-= G(x) + D_i F^i(x),
+\begin{split}
+a^{ij}(x_0)D_{ij}u
+&=D_i\bigl((a^{ij}(x_0)-a^{ij}(x))D_ju-b^iu+f^i\bigr)\\
+&\quad-c^iD_iu-du+g=G+D_iF^i.
+\end{split}
 \tag{8.84}
 \end{equation}
-
-where
-
-\[
-F^i(x) = (a^{ij}(x_0) - a^{ij}(x))D_j u - b^i(x)u + f^i(x)
-\]
-\[
-G(x) = -c^i(x)D_i u - d(x)u + g(x).
-\]
-
-With $x_0$ fixed, this equation is of the form (8.82) with $f^i = F^i$, $g = G$.
-Let us assume in the following that $L$ is strictly elliptic, satisfying (8.5), the coefficients $a^{ij}$, $b^i \in C^{\alpha}(\overline{\Omega})$, $c^i$, $d$, $g \in L^{\infty}(\Omega)$, and $f \in C^{\alpha}(\overline{\Omega})$. Suppose
-
+Assume in this section that $0<\alpha<1$, $L$ satisfies (8.5),
+$a^{ij},b^i\in C^\alpha(\overline\Omega)$,
+$c^i,d,g\in L^\infty(\Omega)$, $f\in C^\alpha(\overline\Omega)$, and
 \begin{equation}
-\max_{i,j=1,\dots,n}\bigl\{|a^{ij}, b^i|_{0,\alpha;\Omega}, |c^i, d|_{0,\Omega}\bigr\} \le K.
+\max_{i,j}\{|a^{ij},b^i|_{0,\alpha;\Omega},|c^i,d|_{0;\Omega}\}\leq K.
 \tag{8.85}
 \end{equation}
 
-Then we assert the following interior and global estimates:
-
-\textbf{Theorem 8.32.} \textit{Let $u \in C^{1,\alpha}(\Omega)$ be a weak solution of (8.83) in a bounded domain $\Omega$.
-Then for any subdomain $\Omega' \Subset \Omega$ we have}
-
+\begin{theorem}[Interior gradient H\"older estimate]
+\label{gt-thm-8-32-interior-gradient-holder}
+\dcref{ch8:8.32}
+\group{ch08-generalized-solutions}
+If $u\in C^{1,\alpha}(\Omega)$ is a weak solution of
+$Lu=g+D_if^i$ in a bounded domain, then for every $\Omega'\Subset\Omega$,
 \begin{equation}
-|u|_{1,\alpha;\Omega'} \le C(|u|_{0;\Omega} + |g|_{0;\Omega} + |f|_{0,\alpha;\Omega}),
+|u|_{1,\alpha;\Omega'}
+\leq C(|u|_{0;\Omega}+|g|_{0;\Omega}+|f|_{0,\alpha;\Omega}),
 \tag{8.86}
 \end{equation}
+where $C=C(n,\lambda,K,\dist(\Omega',\partial\Omega))$.
+\end{theorem}
+\begin{proof}
+\sketch Apply the constant-coefficient interior estimate to (8.84). On sufficiently
+small balls, the H\"older oscillation of $a^{ij}$ absorbs the term containing $Du$;
+cover and interpolate to obtain (8.86).
+\end{proof}
 
-\textit{for $C = C(n,\lambda,K,d')$, where $\lambda$ is given by (8.5), $K$ by (8.85) and $d' = \dist(\Omega', \partial\Omega)$.}
-
-\textbf{Theorem 8.33.} \textit{Let $u \in C^{1,\alpha}(\overline{\Omega})$ be a weak solution of (8.83) in a $C^{1,\alpha}$ domain $\Omega$, satisfying $u = \varphi$ on $\partial\Omega$, where $\varphi \in C^{1,\alpha}(\overline{\Omega})$. Then we have}
-
+\begin{theorem}[Global gradient H\"older estimate]
+\label{gt-thm-8-33-global-gradient-holder}
+\dcref{ch8:8.33}
+\group{ch08-generalized-solutions}
+If $\Omega$ is $C^{1,\alpha}$, $u\in C^{1,\alpha}(\overline\Omega)$ solves
+$Lu=g+D_if^i$, and $u=\varphi$ on $\partial\Omega$ for
+$\varphi\in C^{1,\alpha}(\overline\Omega)$, then
 \begin{equation}
-|u|_{1,\alpha} \le C(|u|_0 + |\varphi|_{1,\alpha} + |g|_0 + |f|_{0,\alpha}).
+|u|_{1,\alpha}
+\leq C(|u|_0+|\varphi|_{1,\alpha}+|g|_0+|f|_{0,\alpha}),
 \tag{8.87}
 \end{equation}
+where $C=C(n,\lambda,K,\partial\Omega)$.
+\end{theorem}
+\begin{proof}
+\sketch Flatten the boundary by $C^{1,\alpha}$ charts, apply the corresponding
+constant-coefficient boundary estimate to (8.84), absorb the coefficient
+oscillation locally, and combine a finite boundary cover with Theorem 8.32.
+\end{proof}
 
-\textit{for $C = C(n,\lambda,K,\partial\Omega)$, where $\lambda$ and $K$ are as above.}
-
-The proof of these results is essentially the same as that of Theorems 6.1 and 6.6, but is based now on the estimates (4.45) and (4.46), applied to (8.84). We note that the proof of (8.87), which is reduced to the boundary estimate (4.46), requires a preliminary flattening of the boundary. Since the hypotheses concerning (8.83) are invariant under $C^{1,\alpha}$ mappings, it suffices that the domain $\Omega$ be of class $C^{1,\alpha}$, and thus Theorem 8.33 is stated for domains and boundary values in this class. The dependence on $\partial\Omega$ of the constant $C$ in (8.87) is through the $C^{1,\alpha}$ norms of the mappings that flatten the boundary.
-
-
-% PDF page 223
-\source{gilbarg-trudinger:page-0223}
-
-\begin{flushleft}
-8.11. Hölder Estimates for the First Derivatives
-\end{flushleft}
-
-The global estimate in Theorem 8.33 leads directly to the basic existence
-theorem for (8.83).
-
-\textbf{Theorem 8.34.} \ \emph{Let $\Omega$ be a $C^{1,\alpha}$ domain and $L$ an operator satisfying (8.5), (8.8) and (8.85) with $K < \infty$. Let $g \in L^\infty(\Omega)$, $f^i \in C^\alpha(\overline{\Omega})$ and $\varphi \in C^{1,\alpha}(\overline{\Omega})$. Then the generalized Dirichlet problem}
-
-\begin{equation}
-Lu = g + D_i f^i \quad \text{in } \Omega,\qquad u = \varphi \quad \text{on } \partial\Omega
-\end{equation}
-
-\emph{is uniquely solvable in $C^{1,\alpha}(\overline{\Omega})$.}
-
-\emph{Proof.} Argument by approximation. Let $L_k$ be a sequence of operators with sufficiently smooth (say $C^2(\overline{\Omega})$) coefficients $a_k^{ij}$, $b_k^i$, $c_k^i$, $d_k$, such that $a_k^{ij} \to a^{ij}$, $b_k^i \to b^i$ uniformly in $\Omega$ and $c_k^i \to c^i$, $d_k \to d$ in $L^1$ as $k \to \infty$; it can be assumed that the approximating coefficients also satisfy (8.5), (8.8) and (8.85). In addition, let $f_k^i$, $g_k$, $\varphi_k \in C^3(\overline{\Omega})$, and as $k \to \infty$ let $f_k^i \to f^i$ with $\lvert f_k^i \rvert_{0,\alpha} \leq c \lvert f^i \rvert_{0,\alpha}$, $\varphi_k \to \varphi$ with $\lvert \varphi_k \rvert_{1,\alpha} \leq c \lvert \varphi \rvert_{1,\alpha}$, and $g_k \to g$ in $L^1(\Omega)$ with $\lvert g_k \rvert_{0,\Omega} \leq c \lVert g \rVert_{0,\Omega}$. Finally, let $\{\Omega_k\}$ be a sequence of $C^{2,\alpha}$ domains exhausting $\Omega$, such that $\partial\Omega_k \to \partial\Omega$ and the surfaces $\partial\Omega_k$ are uniformly in $C^{1,\alpha}$, (see Problem 6.9).
-
-Under these assumptions, the smooth approximating Dirichlet problems
-
-\begin{equation}
-L_k u = g_k + D_i f_k^i \quad \text{in } \Omega_k,\qquad u = \varphi_k \quad \text{on } \partial\Omega_k
-\end{equation}
-
-have unique $C^{2,\alpha}(\overline{\Omega_k})$ solutions satisfying the $C^{1,\alpha}$ estimate (8.87). Since Theorem 8.16 implies
-
+\begin{theorem}[$C^{1,\alpha}$ Dirichlet solvability]
+\label{gt-thm-8-34-c1alpha-dirichlet}
+\dcref{ch8:8.34}
+\group{ch08-generalized-solutions}
+Let $\Omega$ be $C^{1,\alpha}$ and suppose $L$ satisfies (8.5), (8.8), and
+(8.85). For $g\in L^\infty(\Omega)$,
+$f^i\in C^\alpha(\overline\Omega)$, and
+$\varphi\in C^{1,\alpha}(\overline\Omega)$, the generalized Dirichlet problem
 \[
-\lvert u_k \rvert_{0} \leq \sup_{\partial\Omega} \lvert u_k \rvert + C(\lvert g_k \rvert_{0} + \lvert f_k \rvert_{0}),
+Lu=g+D_if^i\quad\text{in }\Omega,
+\qquad u=\varphi\quad\text{on }\partial\Omega
 \]
+has a unique solution in $C^{1,\alpha}(\overline\Omega)$.
+\end{theorem}
+\begin{proof}
+\sketch Approximate the coefficients, data, boundary values, and domain by smooth
+objects while preserving ellipticity, (8.8), and uniform H\"older bounds. Solve the
+smooth problems. Theorem 8.16 controls the uniform norm and Theorem 8.33 gives
+a uniform $C^{1,\alpha}$ bound. Compactness and passage through the weak identity
+give a limit solution; Theorem 8.1 gives uniqueness even in the associated
+$W^{1,2}$ Dirichlet class.
+\end{proof}
 
-we infer the uniform $C^{1,\alpha}$ estimate
+\begin{corollary}[$W^{1,2}$ solutions satisfy the global gradient estimate]
+\label{gt-cor-8-35-w12-global-gradient-estimate}
+\dcref{ch8:8.35}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.33, if $u\in W^{1,2}(\Omega)$ solves (8.83)
+and $u-\varphi\in W_0^{1,2}(\Omega)$, then $u\in C^{1,\alpha}(\overline\Omega)$
+and satisfies (8.87).
+\end{corollary}
+\begin{proof}
+\sketch Theorem 8.16 first bounds $u$. For a sufficiently large $\sigma>0$,
+Theorem 8.34 solves the shifted equation
+$(L-\sigma)v=g+D_if^i-\sigma u$ in $C^{1,\alpha}$. Uniqueness for the shifted
+problem gives $v=u$, and Theorem 8.33 applies.
+\end{proof}
 
+\begin{corollary}[Local and partial-boundary gradient regularity]
+\label{gt-cor-8-36-partial-boundary-gradient-regularity}
+\dcref{ch8:8.36}
+\group{ch08-generalized-solutions}
+Let $T$ be a possibly empty $C^{1,\alpha}$ portion of $\partial\Omega$. If
+$u\in W^{1,2}(\Omega)$ solves (8.83) and $u=0$ on $T$ in the Sobolev sense,
+then $u\in C^{1,\alpha}(\Omega\cup T)$ and, for every
+$\Omega'\Subset\Omega\cup T$,
 \begin{equation}
-\lvert u_k \rvert_{1,\alpha;\Omega_k}
-\leq C(\lvert \varphi_k \rvert_{1,\alpha;\Omega_k} + \lvert g_k \rvert_{0;\Omega_k} + \lvert f_k \rvert_{0,\alpha;\Omega_k})
-\leq C(\lvert \varphi \rvert_{1,\alpha;\Omega} + \lvert g \rvert_{0,\Omega} + \lvert f \rvert_{0,\alpha;\Omega})
-\end{equation}
-
-where the constant $C$ is independent of $k$. Letting $k \to \infty$ in the weak form of (8.83), we obtain in the limit a (unique) $C^{1,\alpha}(\overline{\Omega})$ weak solution $u$ of (8.88), which also satisfies (8.90). This solution is also unique within the larger class of $W^{1,2}(\Omega)$ functions for which $u - \varphi \in W_0^{1,2}(\Omega)$, by virtue of Theorem 8.1. $\square$
-
-The estimate (8.87), which was stated for weak $C^{1,\alpha}$ solutions, can now be seen to hold for $W^{1,2}(\Omega)$ solutions under the same hypotheses. Let $u \in W^{1,2}(\Omega)$ be a solution of (8.83) satisfying the hypotheses of Theorem 8.33, with $u - \varphi \in W_0^{1,2}(\Omega)$; then $u$ is bounded (by Theorem 8.16) and for a sufficiently large positive constant $\sigma$, $u$ is also the unique $C^{1,\alpha}(\overline{\Omega})$ solution $v$ of the generalized Dirichlet problem
-
-\[
-(L - \sigma)v = g + D_i f^i - \sigma u \quad \text{in } \Omega
-\]
-
-\[
-v = \varphi \quad \text{on } \partial\Omega.
-\]
-
-% PDF page 224
-\source{gilbarg-trudinger:page-0224}
-
-
-
-Thus, we have:
-
-\medskip
-
-\textbf{Corollary 8.35.} \textit{Under the hypotheses of Theorem 8.33, if $u \in W^{1,2}(\Omega)$ and $u-\varphi \in W^{1,2}_0(\Omega)$, the same conclusion (8.87) remains valid.}
-
-\medskip
-
-Local $C^{1,\alpha}$ regularity can be derived similarly by first approximating the solution $u$ by smooth functions. In fact, we have the following extension of Corollary 8.35, the details of which are left to the reader.
-
-\medskip
-
-\textbf{Corollary 8.36.} Let $T$ be a (possibly empty) $C^{1,\alpha}$ boundary portion of a domain $\Omega$, and suppose $u \in W^{1,2}(\Omega)$ is a weak solution of (8.83) such that $u = 0$ on $T$ (in the sense of $W^{1,2}(\Omega)$). Then $u \in C^{1,\alpha}(\Omega \cup T)$, and for any $\Omega' \Subset \Omega \cup T$ we have
-
-\begin{equation}
+|u|_{1,\alpha;\Omega'}
+\leq C(|u|_{0;\Omega}+|g|_{0;\Omega}+|f|_{0,\alpha;\Omega}),
 \tag{8.91}
-\lvert u \rvert_{1,\alpha;\Omega'} \le C(\lvert u \rvert_{0;\Omega} + \lvert g \rvert_{0;\Omega} + \lvert f \rvert_{0,\alpha;\Omega})
 \end{equation}
+where $C=C(n,\lambda,K,d')$ and
+$d'=\dist(\Omega',\partial\Omega\setminus T)$. If $u=\varphi$ on $T$ for
+$\varphi\in C^{1,\alpha}(\overline\Omega)$, add
+$|\varphi|_{1,\alpha;\Omega}$ to the right-hand side.
+\end{corollary}
+\begin{proof}
+\sketch Localize the approximation argument for Corollary 8.35, using interior
+charts away from $T$ and flattened boundary charts along $T$. For nonzero data,
+apply the zero-boundary statement to $u-\varphi$.
+\end{proof}
 
-\textit{for $C = C(n,\lambda,K,d')$ where $\lambda$ and $K$ are as in Theorem 8.32 and now $d' =$ dist$(\Omega', \partial\Omega - T)$.}
+\begin{remark}[Integrable scalar datum]
+\label{gt-rem-8-integrable-scalar-datum}
+\dcref{ch8:8.32--8.36}
+\group{ch08-generalized-solutions}
+The conclusions of this section remain valid with
+$g\in L^p(\Omega)$, $p=n/(1-\alpha)$, when the $L^p$ norm of $g$ replaces its
+supremum norm in the estimates.
+\end{remark}
 
-\medskip
+\section*{8.12. The Eigenvalue Problem}
 
-In this result, if $\varphi \in C^{1,\alpha}(\bar{\Omega})$ and $u = \varphi$ on $T$ (in the sense of $W^{1,2}(\Omega)$), then $\lvert \varphi \rvert_{1,\alpha;\Omega}$ appears in the right member. This is seen by simply replacing $u$ by $u-\varphi$ and applying (8.91).
-
-\medskip
-
-\textit{Remark.} \ In all the results of this section, if $g \in L^q(\Omega)$, $p = n/(1-\alpha)$, the same conclusions are valid provided $\lVert g \rVert_{p;\Omega}$ replaces $\lvert g \rvert_{0;\Omega}$ throughout. The corresponding proofs are essentially unchanged; (see Remark at the end of Section 4.5).
-
-\bigskip
-
-\noindent 8.12. \ The Eigenvalue Problem
-
-\medskip
-
-The Fredholm theory, as expressed by Theorem 8.6, guarantees that an elliptic operator of the form (8.1) will have at most a countable set of eigenvalues. We prove directly in this section that a self-adjoint operator has eigenvalues and consider some of their basic properties. Although the existence of eigenvalues follows from standard functional analysis, we consider it worthwhile to go through the demonstration of existence for the special case under consideration.
-
-Let us now suppose that the operator $L$ is self-adjoint so that it can be written as
-
+Assume here that $L$ is self-adjoint:
 \[
-Lu = D_i(a^{ij}D_j u + b^i u) - b^i D_i u + cu
+Lu=D_i(a^{ij}D_ju+b^iu)-b^iD_iu+cu,
+\qquad a^{ij}=a^{ji}.
 \]
-
-where $[a^{ij}]$ is symmetric. The associated quadratic form on $H = W^{1,2}_0(\Omega)$ is then given by
-
+On $H=W_0^{1,2}(\Omega)$ define
 \[
-\mathcal{L}(u,u) = \int_\Omega (a^{ij}D_i u D_j u + 2b^i u D_i u + cu^2)\,dx.
+\Lop(u,u)=\int_\Omega(a^{ij}D_iuD_ju+2b^iuD_iu+cu^2)\,dx,
+\qquad
+J(u)=\frac{\Lop(u,u)}{\|u\|_2^2}\quad(u\neq0).
 \]
-
-
-% PDF page 225
-\source{gilbarg-trudinger:page-0225}
-
-\[
-J(u)=\frac{\mathcal{L}(u,u)}{(u,u)}, \qquad u\neq 0,\quad u\in H,
-\]
-
-is called the Rayleigh quotient of $L$. We commence by studying the variational
-problem of minimizing $J$. First, it is clear by Lemma 8.4 that $J$ is bounded from
-below, so that we may define
-
+The first variational value and its Euler equation are
 \begin{equation}
-\sigma=\inf_H J.
+\sigma_1=\inf_{u\in H\setminus\{0\}}J(u),
 \tag{8.92}
 \end{equation}
-
-We claim now that $\sigma$ is the minimum eigenvalue of $L$ on $H$, that is, there exists a
-nontrivial function $u\in H$ such that
-
 \begin{equation}
-Lu+\sigma u=0,
+Lu+\sigma_1u=0.
 \tag{8.93}
 \end{equation}
 
-and $\sigma$ is the smallest number for which this is possible. To show this we choose a
-minimizing sequence $\{u_m\}\subset H$ such that $\|u_m\|_2=1$ and $J(u_m)\to \sigma$. By (8.5) and
-(8.6), we have that $\{u_m\}$ is bounded in $H$, and hence by the compactness of the
-imbedding $H\to L^2(\Omega)$ (Theorem 7.22), a subsequence, which we take as $\{u_m\}$ itself,
-converges in $L^2(\Omega)$ to a function $u$ with $\|u\|_2=1$. Since $Q(u)=\mathcal{L}(u,u)$ is quadratic
-we also have for any $l,m$
-
-\[
-Q\!\left(\frac{u_l-u_m}{2}\right)+Q\!\left(\frac{u_l+u_m}{2}\right)
-=\frac{1}{2}\bigl(Q(u_m)+Q(u_l)\bigr)
-\]
-
-so that
-
-\[
-Q\!\left(\frac{u_l-u_m}{2}\right)\le \frac{1}{2}\bigl(Q(u_m)+Q(u_l)\bigr)-\sigma\left\|\frac{u_l+u_m}{2}\right\|_2^2\to 0
-\quad \text{as } m,l\to\infty.
-\]
-
-Again using Lemma 8.4, we see that $\{u_m\}$ is a Cauchy sequence in $H$. Hence $u_m\to u$
-in $H$, and moreover $Q(u)=\sigma$. The verification of the Euler equation (8.93) is
-standard in the calculus of variations: It follows by setting
-
-\[
-f(t)=J(u+tv)
-\]
-
-for $v\in H$ and calculating
-
-\[
-f'(0)=2\bigl(\mathcal{L}(u,v)-\sigma (u,v)\bigr)=0.
-\]
-
-The number $\sigma$ is easily seen to be the minimum eigenvalue since any smaller eigen-
-value would contradict the formula (8.92). If we arrange the eigenvalues of $L$ in
-increasing order $\sigma_1,\sigma_2,\ldots$, and designate their corresponding eigenspaces by
-$V_1,V_2,\ldots$, we may characterize the higher eigenvalues of $L$ through the formula
-
+\begin{theorem}[Variational spectrum]
+\label{gt-thm-8-37-variational-spectrum}
+\dcref{ch8:8.37}
+\group{ch08-generalized-solutions}
+If the self-adjoint operator $L$ satisfies (8.5) and (8.6), then it has a
+countably infinite discrete sequence of eigenvalues $\Sigma=\{\sigma_m\}$.
+Writing $V_j$ for the eigenspace of $\sigma_j$, they are characterized by
 \begin{equation}
-\sigma_m=\inf \{J(u)\mid u\neq 0,\quad (u,v)=0\ \forall v\in \{V_1,\ldots,V_{m-1}\}\}.
+\sigma_m=\inf\left\{J(u):u\in H\setminus\{0\},\
+(u,v)_{L^2}=0\ \forall v\in V_1\oplus\cdots\oplus V_{m-1}\right\},
 \tag{8.94}
 \end{equation}
+and their eigenfunctions form a complete system in $L^2(\Omega)$.
+\end{theorem}
+\begin{proof}
+\sketch Lemma 8.4 bounds $J$ below. Normalize a minimizing sequence for
+$\sigma_1=\inf_HJ$ in $L^2$. Coercivity bounds it in $H$, compact embedding
+gives strong $L^2$ convergence, and the parallelogram identity plus Lemma 8.4
+upgrades it to strong convergence in $H$. The Euler equation is
+$Lu+\sigma_1u=0$. Repeat on the orthogonal complements of the preceding
+eigenspaces. Compactness makes each eigenspace finite-dimensional, sends the
+eigenvalues to infinity, and proves completeness.
+\end{proof}
 
-% PDF page 226
-\source{gilbarg-trudinger:page-0226}
+\begin{remark}[Eigenfunction regularity]
+\label{gt-rem-8-eigenfunction-regularity}
+\dcref{ch8:8.37}
+\group{ch08-generalized-solutions}
+The preceding regularity results imply that every eigenfunction belongs to
+$L^\infty(\Omega)\cap C^\alpha(\Omega)$ for some $\alpha>0$, is H\"older
+continuous up to the boundary under the hypotheses of Theorem 8.29, and is
+smooth in $\Omega$ when the coefficients are smooth.
+\end{remark}
 
+\begin{theorem}[Simplicity of the first eigenvalue]
+\label{gt-thm-8-38-simple-positive-first-eigenfunction}
+\dcref{ch8:8.38}
+\group{ch08-generalized-solutions}
+Under the hypotheses of Theorem 8.37, the least eigenvalue is simple and has a
+positive eigenfunction.
+\end{theorem}
+\begin{proof}
+\sketch If $u$ minimizes the Rayleigh quotient, then $|u|$ does also. The Harnack
+inequality makes $|u|$ positive almost everywhere. Every first eigenfunction
+therefore has one sign; two linearly independent such eigenfunctions would yield
+orthogonal first eigenfunctions, which is impossible. Hence the first eigenspace
+is one-dimensional.
+\end{proof}
 
-The solvability of these variational problems is established essentially as in the case
-$m=1$ and, furthermore, the process (8.94) is seen to exhaust all possible eigenvalues
-of $L$, the resulting eigenfunctions forming a complete set in $L^2(\Omega)$. We can therefore
-assert:
+\section*{Mixed Boundary Problems}
 
-\medskip
-
-\textbf{Theorem 8.37.} \textit{Let $L$ be a self-adjoint operator satisfying (8.5) and (8.6). Then $L$ has
-a countably infinite discrete set of eigenvalues, $\Sigma=\{\sigma_m\}$, given by (8.94), whose
-eigenfunctions span $H$.}
-
-\medskip
-
-Solutions of the Dirichlet problem for $L$ can now be represented by eigenfunc-
-tion expansions according to standard procedures; (e.g., see [CH]). We may also
-apply the preceding regularity considerations of this chapter to eigenfunctions. In
-particular, they belong to $L^\infty(\Omega)\cap C^\alpha(\Omega)$ for some $\alpha>0$, by virtue of Theorems
-8.15 and 8.24; and to $C^\alpha(\overline{\Omega})$ if $\Omega$ is sufficiently smooth (Theorem 8.29). If the coef-
-ficients of $L$ belong to $C^\infty(\Omega)$, then so also will the eigenfunctions (Corollary 8.11).
-To complete this section we observe a special property of the minimum
-eigenvalue $\sigma_1$.
-
-\medskip
-
-\textbf{Theorem 8.38.} \textit{Let $L$ be a self-adjoint operator satisfying (8.5) and (8.6). Then the
-minimum eigenvalue is simple and has a positive eigenfunction.}
-
-\medskip
-
-\textit{Proof.} \ If $u$ is an eigenfunction of $\sigma_1$, then it follows from the formula (8.92) that $|u|$
-is one also. But then by the Harnack inequality, Theorem 8.21, we must have $|u|$
-positive (a.e.) in $\Omega$ and hence $\sigma_1$ has a positive eigenfunction. This argument also
-shows that the eigenfunctions of $\sigma_1$ are either positive or negative and hence it is
-impossible that two of them are orthogonal, whence $V_1$ must be one-dimensional
-and $\sigma_1$ simple. $\Box$
-
-\bigskip
-
-\noindent \textbf{Notes}
-
-\medskip
-
-The Hilbert space or variational approach to the Dirichlet problem for linear,
-elliptic equations can be traced back as far as the works of Hilbert [HI] and
-Lebesgue [LE] for Laplace's equation. During this century it has been developed
-by many authors including, in particular, Friedrichs [FD 1, 2] and G\aa rding [GA].
-The reader is referred to the books [AG], [BS] and [FR] for further discussion.
-The generalized Dirichlet problem, which we treat in Section 8.2, was also con-
-sidered by Ladyzhenskaya and Ural'tseva [LU 4] and Stampacchia [ST 4, 5].
-These authors derived the Fredholm alternative, Theorem 8.6, but their existence
-and uniqueness results were restricted by smallness or coercivity conditions. The
-weak maximum principle, Theorem 8.1, although a simple consequence of the
-weak Harnack inequality in [TR 1], appears to have been first noted in the
-literature by Chicco [CI 1]; (see also [HH]). We have followed the proof of
-Trudinger [TR 7] which has the advantage of being readily extended to non-
-uniformly elliptic equations. Given the Fredholm alternative, the existence result,
-Theorem 8.3, is an immediate consequence of the weak maximum principle.
-
-
-% PDF page 227
-\source{gilbarg-trudinger:page-0227}
-
-Higher order differentiability theorems for weak solutions, as in Sections 8.3
-and 8.4, were proved by various authors including Friedrichs [FD 2], Browder
-[BW 1], Lax [LX] and Nirenberg [NI 1, 2]; see also [AG], [BS] and [FR].
-The global bound, Theorem 8.15, appears in the works [LU 4] and [ST 4, 5]
-and is an extension of an earlier version by Stampacchia [ST 1, 2]. Our proof,
-through the Moser iteration technique, follows that of Serrin [SE 2]. The a priori
-bound, Theorem 8.16, is due to Trudinger [TR 7].
-The local pointwise estimates, which comprise the rest of Chapter 8, all stem
-from the pioneering work of De Giorgi [DG 1], where the special cases of Theorems
-8.17 and 8.22 for equations of the form
-
-\[
-(8.95)\qquad Lu = D_i(a^{ij}(x)D_j u)=0
-\]
-
-were established; (see also Nash [NA]). De Giorgi's work was extended to linear
-equations, of the form treated here, by Morrey [MY 4], Stampacchia [ST 3] and
-to quasilinear equations in divergence form by Ladyzhenskaya and Ural'tseva [LU
-2]. An interesting new proof of De Giorgi's result was proposed by Moser [MJ 1].
-This proof can also be extended to more general classes of equations (see [LU 4]),
-and indeed could have been employed by us to derive Theorems 8.22, 8.24, as well
-as the boundary estimate, Theorem 8.29, (see Problem 8.6). A Harnack inequality
-for weak solutions of equation (8.95) was established by Moser [MJ 2] and extended
-to quasilinear equations in divergence form by Serrin [SE 2] and Trudinger [TR 1].
-We have based our treatment of local estimates in Theorems 8.18, 8.26 on the weak
-Harnack inequality derived in [TR 1]. We note here that, in the case of equations in
-two variables, the Hölder estimate and Harnack inequality can be deduced by
-simpler methods; see [MY 3], [BN] and Problem 8.5. For sharp results in the case
-of two variables see [PS] and [WI 3]. In Section 8.10, the treatment of Theorems
-8.25 to 8.30 follows [TR 1] while the proof of the sufficiency of the Wiener criterion
-is adapted from Gariepy and Ziemer [GZ 2].
-The methods and results of Sections 8.1 and 8.2 can be extended to treat other
-boundary value problems. In particular, we can consider a generalized version of
-the mixed boundary value problem
-
-\[
-Lu = D_i f^i + g \qquad \text{in } \Omega
-\]
-\[
-(8.96)\qquad u=\varphi_1 \qquad \text{on } \partial\Omega-\Gamma
-\]
-\[
-Nu=a^{ij}(x)v_iD_j u+b^i(x)v_i u+\sigma(x)u=\varphi_2 \qquad \text{on } \Gamma
-\]
-
-where $\Gamma$ is a relatively open $C^1$ portion of $\partial\Omega$, and $v=(v_1,\ldots,v_n)$ is the outer
-normal to $\partial\Omega$ on $\Gamma$. For $\varphi_1\in W^{1,2}(\Omega)$ and $\sigma,\varphi_2\in L^2(\Gamma)$, a function $u\in W^{1,2}(\Omega)$
-is called a generalized solution of the boundary value problem (8.96) if $u-\varphi_1\in$
-$W^{1,2}_0(\Omega\cup\Gamma)$ and
-
-\[
-(8.97)\qquad \mathcal{Q}(u,v)=\int_{\Omega}(f^iD_i v-gv)\,dx+\int_{\Gamma}(\varphi_2-f^i v_i-\sigma u)v\,ds,
-\]
-
-% PDF page 228
-\source{gilbarg-trudinger:page-0228}
-for all $v\in W^{1,2}_0(\Omega\cup\Gamma)$. Here $W^{1,2}_0(\Omega\cup\Gamma)$ denotes the closure of $C^1_0(\Omega\cup\Gamma)$ in $W^{1,2}(\Omega)$. We again obtain a weak maximum principle; namely, if conditions (8.5), (8.6) hold, together with the inequality (cf. (8.8))
-
+\begin{definition}[Generalized mixed boundary problem]
+\label{gt-def-8-generalized-mixed-boundary-problem}
+\dcref{ch8:8.96--8.97}
+\group{ch08-generalized-solutions}
+Let $\Gamma$ be a relatively open $C^1$ portion of $\partial\Omega$, let
+$\nu=(\nu_1,\ldots,\nu_n)$ be the exterior unit normal on $\Gamma$, and put
+$\Gamma_D=\partial\Omega\setminus\Gamma$. Consider
 \begin{equation}
+\begin{aligned}
+Lu&=D_if^i+g &&\text{in }\Omega,\\
+u&=\varphi_1 &&\text{on }\Gamma_D,\\
+Nu:=a^{ij}\nu_iD_ju+b^i\nu_i u+\sigma u&=\varphi_2
+&&\text{on }\Gamma.
+\end{aligned}
+\tag{8.96}
+\end{equation}
+Write $W_0^{1,2}(\Omega\cup\Gamma)$ for the closure of
+$C_0^1(\Omega\cup\Gamma)$ in $W^{1,2}(\Omega)$. For
+$\varphi_1\in W^{1,2}(\Omega)$ and $\sigma,\varphi_2\in L^2(\Gamma)$, a
+generalized solution is a function $u\in W^{1,2}(\Omega)$ such that
+$u-\varphi_1\in W_0^{1,2}(\Omega\cup\Gamma)$ and
+\begin{equation}
+\Qop(u,v)=\int_\Omega(f^iD_iv-gv)\,dx
++\int_\Gamma(\varphi_2-f^i\nu_i-\sigma u)v\,ds
+\tag{8.97}
+\end{equation}
+for every $v\in W_0^{1,2}(\Omega\cup\Gamma)$.
+\end{definition}
+
+\begin{theorem}[Weak maximum principle for mixed boundary data]
+\label{gt-thm-8-mixed-boundary-maximum-principle}
+\dcref{ch8:8.98}
+\group{ch08-generalized-solutions}
+Assume (8.5), (8.6), and
+\begin{equation}
+\int_\Omega(dv-b^iD_iv)\,dx-\int_\Gamma\sigma v\,ds\leq0
+\quad\forall v\geq0,\quad v\in C_0^1(\Omega\cup\Gamma).
 \tag{8.98}
-\int_{\Omega}(dv-b^iD_iv)\,dx-\int_{\Gamma}\sigma v\,ds\le 0 \qquad \forall v\ge 0,\ v\in C^1_0(\Omega\cup\Gamma),
 \end{equation}
+If $u\in W^{1,2}(\Omega)$ satisfies
+\[
+\Lop(u,v)+\int_\Gamma\sigma uv\,ds\leq0
+\]
+for every nonnegative $v\in W_0^{1,2}(\Omega\cup\Gamma)$, then either
+\[
+\sup_\Omega u\leq\sup_{\Gamma_D}u^+
+\]
+or $u$ is a positive constant.
+\end{theorem}
+\begin{proof}
+\sketch Repeat the truncation argument of Theorem 8.1 with test functions
+vanishing on $\Gamma_D$. Condition (8.98) controls the interior and conormal
+zeroth-order terms. The only exceptional case left by the support-measure
+argument is a positive constant.
+\end{proof}
 
-then any function $u\in W^{1,2}(\Omega)$, satisfying $\mathcal{L}(u,v)+\int_{\Gamma}\sigma uv\,ds\le 0$ for all non-negative $v\in W^{1,2}_0(\Omega\cap\Gamma)$, must either satisfy $\sup_{\Omega}u\le \sup_{\Gamma}u^+$ or be a positive constant.
+\begin{corollary}[Uniqueness for the mixed problem]
+\label{gt-cor-8-mixed-boundary-uniqueness}
+\dcref{ch8:8.98}
+\group{ch08-generalized-solutions}
+Generalized solutions of (8.96) are unique if at least one of the following holds:
+$\Gamma\neq\partial\Omega$, $\sigma+\nu_i b^i$ does not vanish identically on
+$\Gamma$, or $L1\not\equiv0$. If all three conditions fail, any two solutions
+differ by a constant. The associated existence statement follows from the same
+Fredholm reduction as in Section 8.2, subject to the corresponding compatibility
+condition when constants lie in the kernel.
+\end{corollary}
+\begin{proof}
+\sketch Apply the mixed maximum principle to the difference of two solutions.
+The three displayed conditions exclude its constant alternative. The Fredholm
+argument uses $W_0^{1,2}(\Omega\cup\Gamma)$ in place of
+$W_0^{1,2}(\Omega)$.
+\end{proof}
 
-It follows then that generalized solutions of (8.96) are unique provided either $\Gamma\neq \partial\Omega$, $\sigma+\gamma_i b^i\neq 0$ on $\Gamma$, or $L1\neq 0$. If all of these last three conditions are fulfilled, then generalized solutions of (8.96) must only differ by a constant. An analogue of the existence theorem, Theorem 8.2, can again be concluded from a Fredholm alternative. Maximum principles for mixed boundary value problems are treated in the papers [CI 3] and [TR 11]; in the latter work the above assertions are derived for a general class of non-uniformly elliptic equations.
+\section*{Selected Further Consequences}
 
-Finally, we remark that through an approach of Campanato, depending on certain integral characterizations of Hölder spaces, the Schauder theory may be derived directly from the Hilbert space theory and thereby independently of the potential theory of Chapter 4; (see [CM 2], [GT 4]).
-
-\paragraph{Problems}
-
-\textbf{8.1.} Show that in the weak maximum principle, Theorem 8.1, provided $u\le 0$ on $\partial\Omega$, condition (8.8) can be replaced by either the condition
-
+\begin{proposition}[Alternative hypotheses for the weak maximum principle]
+\label{gt-prop-8-alternative-maximum-hypotheses}
+\dcref{ch8:8.1}
+\group{ch08-generalized-solutions}
+In Theorem 8.1, when $u\leq0$ on $\partial\Omega$, condition (8.8) may be
+replaced by either
 \begin{equation}
+\int_\Omega(dv+c^iD_iv)\,dx\leq0
+\qquad\forall v\geq0,\quad v\in C_0^1(\Omega),
 \tag{8.99}
-\int_{\Omega}(dv+c^iD_iv)\,dx\le 0 \qquad \forall v\ge 0,\ v\in C^1_0(\Omega),
 \end{equation}
-
-or the condition
-
+or the almost-everywhere block-matrix condition
 \begin{equation}
-\tag{8.100}
 \begin{bmatrix}
-a & b\\
--c & -d
-\end{bmatrix}\ge 0 \qquad \text{a.e. }(\Omega);\ \text{(see Theorem 10.7)}
+a&b\\
+-c&-d
+\end{bmatrix}\geq0.
+\tag{8.100}
 \end{equation}
+\end{proposition}
+\begin{proof}
+\sketch For (8.99), use the adjoint form of the truncation computation. Under
+(8.100), the combined principal, first-order, and zeroth-order terms in that
+computation form a nonnegative quadratic expression.
+\end{proof}
 
-\textbf{8.2.} Let $u\in W^{1,2}(\Omega)$ be a weak solution of the equation $Lu=g+D_i f^i$ in $\Omega$, where $L$ satisfies the conditions (8.5), (8.6) and $g,f^i\in L^2(\Omega)$, $i=1,\ldots,n$. Show that for any subdomain $\Omega'\subset\subset\Omega$, we have
-
+\begin{proposition}[Interior energy estimate]
+\label{gt-prop-8-interior-energy-estimate}
+\dcref{ch8:8.2}
+\group{ch08-generalized-solutions}
+If $u\in W^{1,2}(\Omega)$ solves $Lu=g+D_if^i$, where (8.5), (8.6) hold and
+$g,f^i\in L^2(\Omega)$, then every $\Omega'\Subset\Omega$ satisfies
 \begin{equation}
+\|u\|_{W^{1,2}(\Omega')}
+\leq C(\|u\|_2+\|f\|_2+\|g\|_2),
 \tag{8.101}
-\|u\|_{W^{1,2}(\Omega')}\le C(\|u\|_2+\|f\|_2+\|g\|_2)
 \end{equation}
+where
+$C=C(n,\Lambda/\lambda,\nu,\dist(\Omega',\partial\Omega))$.
+\end{proposition}
+\begin{proof}
+\sketch Test the weak equation against $\eta^2u$ for a cutoff supported a
+controlled distance from the boundary. Ellipticity and Young's inequality absorb
+the gradient terms; the cutoff derivative produces the stated distance dependence.
+\end{proof}
 
-where $C=C(n,\Lambda/\lambda,\nu,d')$, $d'=\operatorname{dist}(\Omega',\partial\Omega)$.
-
-% PDF page 229
-\source{gilbarg-trudinger:page-0229}
-
-Problems
-
-8.3. Show that if the matrix $a=[a^{ij}]$ is symmetric then the constant $C$ in the
-Harnack inequality, Theorem 8.20, can be estimated by
+\begin{proposition}[Symmetric-coefficient Harnack constant]
+\label{gt-prop-8-symmetric-harnack-constant}
+\dcref{ch8:8.3}
+\group{ch08-generalized-solutions}
+If $[a^{ij}]$ is symmetric, the constant in Theorem 8.20 may be chosen so that
 \[
-C \leq C_0(\sqrt{\Lambda/\lambda+\sqrt{R}}), \qquad C_0 = C_0(n).
+C\leq C_0^{\sqrt{\Lambda/\lambda+\nu R}},
+\qquad C_0=C_0(n).
 \]
+\end{proposition}
 
-8.4. Using Theorem 8.8 and regularization, (as in Section 7.2), show that Theorem
-3.9 is valid for functions $u \in W^{1,2}(\Omega)$. Hence, by considering the function
+\begin{proposition}[Sobolev extension and sharpness of the Poisson estimate]
+\label{gt-prop-8-sobolev-poisson-sharpness}
+\dcref{ch8:8.4}
+\group{ch08-generalized-solutions}
+\uses{gt-ch3-poisson}
+The conclusion of Theorem~\ref{gt-ch3-poisson} remains valid for weak
+$W^{1,2}(\Omega)$ solutions of Poisson's equation with bounded right-hand side.
+In
 \[
-u(x, y) = |xy|\, \log (|x| + |y|),
+\Omega=\{(x,y)\in\mathbb R^2:|x|+|y|<1\},
 \]
-in the domain
+the function
 \[
-\Omega = \{(x, y) \in \mathbb{R}^2 \mid |x| + |y| < 1\} \subset \mathbb{R}^2,
+u(x,y)=|xy|\log(|x|+|y|)
 \]
-demonstrate the sharpness of Theorem 3.9.
+shows that the logarithmic modulus in that theorem is sharp.
+\end{proposition}
+\begin{proof}
+\sketch Regularize the weak solution on compact subdomains, apply
+Theorem~\ref{gt-ch3-poisson} to the regularizations, and pass to the limit using
+Theorem 8.8. Direct differentiation of the displayed planar example gives the
+borderline logarithmic modulus.
+\end{proof}
 
-8.5. (a) Let $u$ be a function in $C^1(B_R(0))$, $B_R(0) \subset \mathbb{R}^2$, and write for $0 < r < R$,
+\begin{lemma}[Planar circle-oscillation estimate]
+\label{gt-lem-8-planar-circle-oscillation}
+\dcref{ch8:8.5(a)}
+\group{ch08-generalized-solutions}
+Let $u\in C^1(B_R(0))$, where $B_R(0)\subset\mathbb R^2$, and set
 \[
-\omega(r) = \osc_{\partial B_r} u,
+\omega(r)=\osc_{\partial B_r}u,
+\qquad
+D(r)=\int_{B_r}|Du|^2\,dx.
 \]
+If $\omega$ is nondecreasing, then, for $0<r<R$,
 \[
-D(r) = \int_{B_r} |Du|^2\, dx
+\omega(r)\leq\sqrt{\frac{\pi D(R)}{\log(R/r)}}.
 \]
-where $B_r = B_r(0)$. If $\omega$ is non-decreasing, show that for $0 < r < R$,
+\end{lemma}
+\begin{proof}
+\sketch Bound the oscillation on almost every circle by the tangential
+Dirichlet energy and Cauchy--Schwarz. Integrate the resulting lower bound for
+$D'(s)$ over $r<s<R$ and use monotonicity of $\omega$.
+\end{proof}
+
+\begin{lemma}[Capacity controlled by measure]
+\label{gt-lem-8-capacity-measure}
+\dcref{ch8:8.7}
+\group{ch08-generalized-solutions}
+For every bounded measurable $\Omega\subset\mathbb R^n$,
 \[
-\omega(r) \leq \sqrt{\pi D(R)/\log(R/r)}.
+|\Omega|^{1-2/n}\leq\gamma(n)\,\capop\Omega,
 \]
+where $\gamma(n)$ is the constant in the Sobolev inequality (7.26) for $p=2$.
+\end{lemma}
+\begin{proof}
+\sketch Apply the Sobolev inequality to each compactly supported function that
+is at least one on $\Omega$, then take the infimum of its Dirichlet energy.
+\end{proof}
 
-(b) Prove the Harnack inequality for divergence structure equations in two
-variables:
-\[
-Lu = D_i(a^{ij}D_j u) + b^i D_i u = 0, \qquad i, j = 1, 2
-\]
-satisfying conditions (8.5) and (8.6), as follows. If the solution $u$ is positive in
-the disc $B_R(0) \subset \mathbb{R}^2$, show that the Dirichlet integral of the function $v = \log u$ is
-bounded in every disc $B_r(0)$, $0 < r < R$, in terms of $\Lambda/\lambda$, $\nu$, $r$ and $R$. (See the case
-$\beta = -1$ in the proof of Theorem 8.18.) Apply the weak maximum principle,
-Theorem 8.1, and part (a) to obtain the result
-\[
-C^{-1}u(0) \leq u(x) \leq C u(0)
-\]
-for $|x| \leq R/2$, where $C = C(\lambda, \Lambda, R.)$ (Cf. [BN].)
-
-8.6. (a) Using the hypotheses and notation of Theorem 8.22, show that the
-functions
-\[
-w_1 = \log \frac{M_4 - m_4 + k(R)}{2(M_4 - u) + k(R)},
-\]
-\[
-w_2 = \log \frac{M_4 - m_4 + k(R)}{2(u - m_4) + k(R)}
-\]
-
-
-% PDF page 230
-\source{gilbarg-trudinger:page-0230}
-
-are subsolutions in $B_{4R}$ of equations with structures similar to equation (8.3). (Cf.\ the proof of Theorem 8.16).
-
-(b) By applying Theorem 8.17 to the functions $w_1, w_2$ in part (a), using the Poincar\'e inequality (7.45) and the case $\beta=-1$ in the proof of Theorem 8.18, give an alternative proof of the H\"older estimate (Theorem 8.22). Note that one of the functions $w_1, w_2$ is nonpositive on a set $S$ such that $|S|\geq \frac{1}{2}|B_{4R}|$.
-
-\bigskip
-
-\noindent\textbf{8.7.} Let $\Omega$ be a bounded measurable set in $\mathbb{R}^n$. Prove that
-
-\[
-|\Omega|^{1-2/n}\leq \gamma(n)\,\capop \Omega,
-\]
-
-where $\gamma(n)$ is the constant in the Sobolev inequality (7.26) when $p=2$.
-
-\bigskip
-
-\noindent\textbf{8.8.} Prove that (8.81) implies a modulus of continuity at the boundary point $x_0$.
-
-\bigskip
-
-\noindent\textbf{8.9.} Using Theorem 8.16, show that the existence and uniqueness theorem, Theorem 8.3, holds for unbounded domains $\Omega$ with finite measure. (Note that the compactness results of Theorem 7.22 do not necessarily hold for such domains [AD].)
-
-
-% PDF page 231
-\source{gilbarg-trudinger:page-0231}
-
-Chapter 9
-
-Strong Solutions
-
-Until now in this work we have concentrated on either weak or classical solutions
-of second-order elliptic equations; a weak solution need only be once weakly
-differentiable while a classical solution must be at least twice continuously differ-
-entiable. The formulation of the weak solution concept depended on the operator
-$L$ under consideration having a ``divergence form'' while the concept of classical
-solution made sense for operators with completely arbitrary coefficients. In this
-chapter our concern is with the intermediate situation of strong solutions. For
-operators in the general form
-
-\[
-(9.1)\qquad Lu = a^{ij}(x)D_{ij}u + b^i(x)D_i u + c(x)u
-\]
-
-with coefficients $a^{ij}, b^i, c$, where $i, j = 1, \dots, n$, defined on a domain $\Omega \subset \mathbb{R}^n$ and a
-function $f$ on $\Omega$, a strong solution of the equation
-
-\[
-(9.2)\qquad Lu = f
-\]
-
-is a twice weakly differentiable function on $\Omega$ satisfying the equation (9.2) almost
-everywhere in $\Omega$. The attachment of such a solution to prescribed boundary values
-on $\partial\Omega$ in the Dirichlet problem may be considered in a generalized sense analogous
-to that in Chapter 8 or in the classical sense of Chapter 6, where they are taken on
-continuously. With the aid of a regularity argument, we have already derived in
-Chapter 8 an existence theorem (Theorem 8.9) for strong solutions that are not
-necessarily classical. In this case, the boundary values are assumed in the gener-
-alized sense. However, the results of Section 8.10, in particular, Theorem 8.30,
-provide conditions for the continuous assumption of boundary values.
-
-    This chapter can be viewed as consisting of two strands. The first is the develop-
-ment of a theory of solutions in Sobolev spaces $W^{2,p}(\Omega)$, $p > 1$ analogous to the
-Schauder theory in the H\"older spaces $C^{2,\alpha}(\overline{\Omega})$; this theory is generally known as the
-``$L^p$ theory'' and the relevant $L^p$ estimates are themselves of great importance in
-elliptic theory. The other strand is analogous to our work in Chapters 3 and 8 on
-maximum principles and local properties of solutions, and the pointwise estimates
-established in Section 9.7 will also be important in Part II, in particular for the
-treatment of fully nonlinear equations in Chapter 17. The natural solution space for
-these considerations is the Sobolev space $W^{2,n}(\Omega)$ and, indeed, the combination of
-the two strands in this chapter facilitates an attractive theory in this space.
+\begin{theorem}[Finite-measure unbounded domains]
+\label{gt-thm-8-finite-measure-unbounded-dirichlet}
+\dcref{ch8:8.9}
+\group{ch08-generalized-solutions}
+The existence and uniqueness conclusion of Theorem 8.3 remains valid when
+$\Omega$ is unbounded but has finite measure.
+\end{theorem}
+\begin{proof}
+\sketch Theorem 8.16 supplies the a priori control needed to replace the compact
+embedding used in the bounded-domain Fredholm proof. Exhaust $\Omega$ by
+bounded subdomains, solve there, and pass to a weak limit; the maximum principle
+gives uniqueness.
+\end{proof}

@@ -1,11 +1,11 @@
-\chapter{Solutions to Selected Exercises}
+\chapter{Supplementary Mathematical Results}
 \label{app:chow-iii-selected-exercise-solutions}
 \dcref{appJ}
 \source{chow-et-al-ricci-flow-part-iii:page-0518,chow-et-al-ricci-flow-part-iii:page-0519,chow-et-al-ricci-flow-part-iii:page-0520,chow-et-al-ricci-flow-part-iii:page-0521,chow-et-al-ricci-flow-part-iii:page-0522}
 
-\section{Exercises from the Ricci-flow chapters}
+\section{Ricci-flow results}
 
-\begin{proposition}[Solution to Exercise 22.2]
+\begin{proposition}[Point-picking doubling lemma]
 \label{prop:chow-iii-appj-solution-22-2}
 \dcref{appJ:22.2}
 \group{Point picking}
@@ -29,6 +29,7 @@ throughout
 (\epsilon\widehat Q)^{-1/2},-(\epsilon\widehat Q)^{-1})\).
 \end{proposition}
 \begin{proof}
+\sketch
 Set \(H=TQ/8\).  If the current point \((x_{j-1},t_{j-1})\) does not
 have the required curvature control, choose a point in its backward
 parabolic cylinder for which
@@ -53,7 +54,7 @@ have \(Q_j\to\infty\), contrary to the assumed uniform curvature bound on
 condition is precisely the asserted local curvature estimate.
 \end{proof}
 
-\begin{proposition}[Solution to Exercise 22.5]
+\begin{proposition}[Point-picking selection lemma]
 \label{prop:chow-iii-appj-solution-22-5}
 \dcref{appJ:22.5}
 \group{Point picking}
@@ -80,6 +81,7 @@ whenever \((x,t)\in\mathcal S\), \(0<t\leq\bar t\), and
 \]
 \end{proposition}
 \begin{proof}
+\sketch
 Starting with \((x_1,t_1)\), if the desired conclusion fails at
 \((x_m,t_m)\), choose \((x_{m+1},t_{m+1})\in\mathcal S\) such that
 \[
@@ -108,7 +110,7 @@ first stopping index the stated factor-four bound is exactly the stopping
 condition.
 \end{proof}
 
-\begin{proposition}[Solution to Exercise 22.18]
+\begin{proposition}[Symmetrization layer-cake identity]
 \label{prop:chow-iii-appj-solution-22-18}
 \dcref{appJ:22.18}
 \group{Logarithmic Sobolev}
@@ -124,6 +126,7 @@ with vanishing boundary terms.  Then
 \]
 \end{proposition}
 \begin{proof}
+\sketch
 The co-area formula gives
 \[
  F(t)=\int_t^\infty\left(\int_{\{h=s\}}|\nabla h|^{-1}\,d\sigma\right)ds,
@@ -141,7 +144,7 @@ formula once more, yields
 \]
 \end{proof}
 
-\begin{proposition}[Solution to Exercise 25.7]
+\begin{proposition}[Nested-cylinder Moser estimate]
 \label{prop:chow-iii-appj-solution-25-7}
 \dcref{appJ:25.7}
 \group{Moser iteration}
@@ -163,6 +166,7 @@ where
 and \(\widehat C_n\) depends only on \(n\).
 \end{proposition}
 \begin{proof}
+\sketch
 Set
 \[
  r_i=r\left(1+\frac{\gamma-1}{2^{i-1}}\right).
@@ -204,9 +208,9 @@ produce the factor \((\gamma-1)^{-n/4}\), the power
 factors.  Letting \(i\to\infty\) proves the estimate.
 \end{proof}
 
-\section{Exercises from the geometric appendices}
+\section{Metric-geometric results}
 
-\begin{proposition}[Solution to Exercise G.3: Pullback metric]
+\begin{proposition}[Pullback pseudometric]
 \label{prop:chow-iii-appj-solution-g-3}
 \dcref{appJ:G.3}
 \group{Metric spaces}
@@ -217,6 +221,7 @@ For a map \(f:X\to(Y,d_Y)\), the function
 is a metric if \(f\) is injective.
 \end{proposition}
 \begin{proof}
+\sketch
 The function is nonnegative and symmetric because \(d_Y\) is.  For any
 three points \(x_1,x_2,x_3\in X\),
 \[
@@ -228,7 +233,7 @@ by the triangle inequality in \(Y\).  Finally, if \(f\) is injective and
 \((f^*d_Y)(x_1,x_2)>0\).
 \end{proof}
 
-\begin{example}[Example of a solution to Exercise G.24: Nonuniqueness of tangent-type cone limits]
+\begin{example}[Nonunique tangent-cone limits]
 \label{ex:chow-iii-appj-solution-g-24}
 \dcref{appJ:G.24}
 \group{Metric cones}
@@ -244,6 +249,7 @@ There is a connected compact intrinsic metric space \((X,d)\) with a point
 in pointed Gromov--Hausdorff distance.
 \end{example}
 \begin{proof}
+\sketch
 In the \((r,z)\)-half-plane let
 \[
  \begin{split}
@@ -282,7 +288,7 @@ approximations give the two asserted pointed Gromov--Hausdorff limits, which
 are not isometric.
 \end{proof}
 
-\begin{example}[Solution to Exercise H.44: Example H.34 revisited]
+\begin{example}[Normalized gradient curve on a square]
 \label{ex:chow-iii-appj-solution-h-44}
 \dcref{appJ:H.44}
 \group{Integral curves}
@@ -294,6 +300,7 @@ coordinate axis to the nearer diagonal \(y=x\) or \(y=-x\), and then follows
 that diagonal to the origin.
 \end{example}
 \begin{proof}
+\sketch
 Since \(f(x,y)=1-\max\{|x|,|y|\}\), in each region
 \(|x|>|y|\) or \(|y|>|x|\) the gradient points parallel to the coordinate
 axis which decreases the larger absolute coordinate.  The normalized-gradient
@@ -304,7 +311,7 @@ normalized integral curve stays on the diagonal and moves toward the origin.
 The origin is the maximum set of \(f\), so this curve is maximal.
 \end{proof}
 
-\begin{example}[Solution to Exercise I.14]
+\begin{example}[Unbounded Busemann function]
 \label{ex:chow-iii-appj-solution-i-14}
 \dcref{appJ:I.14}
 \group{Busemann geometry}
@@ -314,6 +321,7 @@ There is a complete noncompact Riemannian surface of positive sectional
 curvature carrying a ray whose Busemann function is unbounded below.
 \end{example}
 \begin{proof}
+\sketch
 Fix \(\alpha\in(\pi,2\pi)\) and let \(S^1_\alpha\) be the circle of length
 \(\alpha\).  Choose opposite points \(\theta_1,\theta_2\), so
 \(d(\theta_1,\theta_2)=\alpha/2\), and put
@@ -345,7 +353,7 @@ cone, and then letting \(s/r\to\infty\).  Thus the Busemann function on the
 smooth complete positively curved surface is unbounded below.
 \end{proof}
 
-\begin{proposition}[Solution to Exercise I.38]
+\begin{proposition}[Toponogov radial estimate]
 \label{prop:chow-iii-appj-solution-i-38}
 \dcref{appJ:I.38}
 \group{Critical point theory}
@@ -359,6 +367,7 @@ Under the notation and hypotheses in the proof of Lemma I.37, if
 \]
 \end{proposition}
 \begin{proof}
+\sketch
 Consider the hinge at \(x_i\) formed by the minimizing geodesic from \(x_i\)
 to \(x\) and the chosen minimizing geodesic from \(x_i\) to the basepoint.
 Its angle \(\theta_i\) satisfies

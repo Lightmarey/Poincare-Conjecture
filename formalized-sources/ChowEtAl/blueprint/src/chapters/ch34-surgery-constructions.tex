@@ -1,12 +1,7 @@
-\chapter{Constant Mean Curvature Surfaces and Harmonic Maps by IFT}
+\chapter[34]{Constant Mean Curvature Surfaces and Harmonic Maps by IFT}
 \label{ch:chow-iv-cmc-surfaces-harmonic-maps-ift}
 \dcref{ch34}
 \source{chow-et-al-ricci-flow-part-iv:page-0278}
-
-This chapter uses the implicit function theorem to construct constant mean
-curvature hypersurfaces and harmonic maps near canonical models.  It concludes
-with a rigidity statement which replaces an almost isometry of a sufficiently
-large hyperbolic truncation by a genuine isometry.
 
 \section{Constant mean curvature hypersurfaces}
 
@@ -36,6 +31,7 @@ one-parameter family of smooth \(g\)-CMC hypersurfaces.  They are
 \((a+\varepsilon_0,b-\varepsilon_0)\times\mathcal V\).
 \end{proposition}
 \begin{proof}
+\sketch
 For a mean-zero function \(\varphi\) on \(\mathcal V\), set
 \[
  \Phi(g,r,\varphi,c)=H_g(\mathcal V_{r+\varphi})+c.
@@ -71,16 +67,6 @@ nonzero derivative in the \(r\)-direction, so the area constraint supplies a
 second implicit-function argument.
 \end{remark}
 
-\begin{remark}[Foliation question]
-\label{rem:chow-iv-cmc-sweepout-foliation-question}
-\dcref{ch34:34.3}
-\group{Constant Mean Curvature Hypersurfaces}
-\source{chow-et-al-ricci-flow-part-iv:page-0280}
-\uses{prop:chow-iv-cmc-sweepout-almost-hyperbolic-cusp}
-The sweep-out should in fact be a foliation; this stronger conclusion is not
-needed for the Ricci-flow applications.
-\end{remark}
-
 \begin{claim}[Foliation by CMC cusp graphs]
 \label{clm:chow-iv-cmc-cusp-graphs-foliate}
 \dcref{ch34:34.4}
@@ -106,6 +92,7 @@ hypersurfaces which are close to the standard slices and sweep out
 \([a+\varepsilon,b-\varepsilon]\times S^{n-1}\).
 \end{proposition}
 \begin{proof}
+\sketch
 For a cylindrical slice, \(\Rc(\partial_r,\partial_r)=0\) and
 \(\mathrm{II}=0\).  Thus the derivative of
 \(\Phi(g,r,\varphi,c)=H_g(\mathcal S_{r+\varphi})+c\) in the mean-zero graph
@@ -134,6 +121,7 @@ close to the identity in \(C^{2,\alpha}\) is an isometry.  If \(n=2\), every
 such map is a conformal diffeomorphism.
 \end{proposition}
 \begin{proof}
+\sketch
 Parametrize maps near the identity uniquely as \(\Phi(f,\sigma)\), with \(f\)
 an isometry and \(\sigma\) orthogonal to Killing fields when \(n\ge3\).  After
 identifying the pulled-back map-Laplacian using the two metrics, its value is
@@ -168,6 +156,7 @@ Killing vector fields if \(n\ge3\), and is the space dual to the conformal
 Killing vector fields if \(n=2\).
 \end{lemma}
 \begin{proof}
+\sketch
 For every vector field \(W\) on a closed manifold, integration by parts and
 commutation of derivatives give Yano's identity
 \[
@@ -197,6 +186,7 @@ is mapped diffeomorphically onto a neighborhood of the identity in
 statement holds with conformal diffeomorphisms and conformal Killing fields.
 \end{lemma}
 \begin{proof}
+\sketch
 At \((\operatorname{id},0)\), the derivative is
 \((\tau,\nu)\mapsto\tau+\nu\).  The Killing fields and their \(L^2\)-orthogonal
 complement form the whole section space, so this derivative is an isomorphism.
@@ -219,6 +209,7 @@ field \(X\) on \((M,g)\),
 For \(n=2\), the same is true for every conformal Killing field.
 \end{lemma}
 \begin{proof}
+\sketch
 Naturality gives \((F^{-1})_*\Delta_{g,h}F=\Delta_{g,F^*h}\operatorname{id}\).
 Writing \(\widetilde g=F^*h\), direct calculation yields
 \[
@@ -274,6 +265,7 @@ the identity.  For a smoothly varying family \(\widetilde g(t)\), the maps
 \(F(t)\) vary smoothly as well.
 \end{proposition}
 \begin{proof}
+\sketch
 For diffeomorphisms preserving the boundary, form the pulled-back
 map-Laplacian together with the tangential component of \(F_*N\).  Its zero set
 is precisely the set of harmonic maps satisfying the normal boundary
@@ -314,6 +306,7 @@ for every \(V\in W^{1,2}_{\top}(TM)\).  Equivalently, \(U\) weakly solves
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 The trace theorem makes \(I\) bounded.  Since \(-\Rc\) is uniformly positive
 and \(-\mathrm{II}\) is nonnegative, \(I(U,U)\ge\delta\|U\|_{W^{1,2}}^2\).
 The right-hand side is a bounded functional by Cauchy--Schwarz and the trace
@@ -331,6 +324,7 @@ Under the hypotheses of Lemma~\ref{lem:chow-iv-linearized-harmonic-boundary-weak
 if \(Q\) and \(f\) are smooth, then the unique weak solution is smooth.
 \end{lemma}
 \begin{proof}
+\sketch
 In boundary normal coordinates, the principal interior symbol is
 \[
  A(\xi)\operatorname{id}_{TM},
@@ -362,6 +356,7 @@ For every \(U\in C^{2,\alpha}(TM)\) with \(U_\perp=0\) on \(\partial M\),
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 The complementing boundary condition gives the usual estimate with an
 additional \(C^0\)-term.  Interpolation bounds the \(C^2\)-norm by a small
 multiple of the top Hölder seminorm plus the \(C^0\)-norm, and compactness gives
@@ -386,6 +381,7 @@ from tangent-boundary \(C^{2,\alpha}\) vector fields to
 \(C^\alpha(TM)\times C^{1,\alpha}(T\partial M)\) is an isomorphism.
 \end{lemma}
 \begin{proof}
+\sketch
 For smooth data, weak existence and regularity give a smooth solution.  Approximate
 arbitrary Hölder data by smooth data.  The Schauder estimate makes the associated
 solutions Cauchy in \(C^{2,\alpha}\), so their limit solves the prescribed
@@ -425,6 +421,7 @@ and \(\widetilde\nu\) be the same-side unit normals for metrics \(g\) and
 \end{align*}
 \end{lemma}
 \begin{proof}
+\sketch
 Choose adapted coordinates with \(N=\{x^n=0\}\).  Solving the orthogonality
 equations expresses the unnormalized normal rationally in the metric
 coefficients and the inverse tangential metric; normalization then proves the
@@ -448,6 +445,7 @@ metrics, then
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 Use the Gauss formula
 \(\nabla^N_XY=\nabla_XY+\mathrm{II}(X,Y)\nu\) for both metrics.  Expanding the
 two intrinsic curvature tensors in terms of these connections and applying
@@ -491,6 +489,7 @@ there is an isometry \(I:(\mathcal H,h)\to
 In particular, the two complete hyperbolic manifolds are isometric.
 \end{theorem}
 \begin{proof}
+\sketch
 First fill every image boundary torus which is not a standard truncating torus
 by the compact solid torus or ball-side component it bounds.  The resulting
 compact submanifold has boundary in the boundary of the target truncation.  If

@@ -146,6 +146,35 @@ projects:
       Foundations of Ricci flow: parabolic estimates, compactness, Perelman's
       entropy, and curvature pinching in three dimensions.
 
+  # GTM 218 is not Riemannian geometry proper — it is the prerequisite volume the
+  # rest is stated on. It sits in this section rather than its own because the
+  # shelf reads as one geometry stack; the heading says so.
+  - name: Smooth Manifolds
+    root: formalized-sources/LeeSmooth
+    category: Riemannian Geometry
+    author: John M. Lee
+    book_title: Introduction to Smooth Manifolds
+    image: site/img/leesmooth.jpg
+    image_alt: Cover of Lee, Introduction to Smooth Manifolds (Springer GTM 218, 2nd ed.)
+    image_fit: contain
+    tag: Textbook
+    blurb: >
+      Smooth-manifold foundations: charts and atlases, tangent and vector
+      bundles, and vector fields.
+
+  - name: Riemannian Geometry
+    root: formalized-sources/LeeRiemannian
+    category: Riemannian Geometry
+    author: John M. Lee
+    book_title: Introduction to Riemannian Manifolds
+    image: site/img/leeriemannian.jpg
+    image_alt: Cover of Lee, Introduction to Riemannian Manifolds (Springer GTM 176, 2nd ed.)
+    image_fit: contain
+    tag: Textbook
+    blurb: >
+      Riemannian metrics, connections and geodesics, curvature, and the
+      comparison theorems of Riemannian geometry.
+
   - name: Riemannian Geometry
     root: formalized-sources/DoCarmo
     category: Riemannian Geometry
@@ -172,34 +201,6 @@ projects:
       Curvature and examples, geodesics and distance, Killing fields, and the
       convergence and finiteness theorems.
 
-  - name: Riemannian Geometry
-    root: formalized-sources/LeeRiemannian
-    category: Riemannian Geometry
-    author: John M. Lee
-    book_title: Introduction to Riemannian Manifolds
-    image: site/img/leeriemannian.jpg
-    image_alt: Cover of Lee, Introduction to Riemannian Manifolds (Springer GTM 176, 2nd ed.)
-    image_fit: contain
-    tag: Textbook
-    blurb: >
-      Riemannian metrics, connections and geodesics, curvature, and the
-      comparison theorems of Riemannian geometry.
-
-  # GTM 218 is not Riemannian geometry proper — it is the prerequisite volume the
-  # rest is stated on. It sits in this section rather than its own because the
-  # shelf reads as one geometry stack; the heading says so.
-  - name: Smooth Manifolds
-    root: formalized-sources/LeeSmooth
-    category: Riemannian Geometry
-    author: John M. Lee
-    book_title: Introduction to Smooth Manifolds
-    image: site/img/leesmooth.jpg
-    image_alt: Cover of Lee, Introduction to Smooth Manifolds (Springer GTM 218, 2nd ed.)
-    image_fit: contain
-    tag: Textbook
-    blurb: >
-      Smooth-manifold foundations: charts and atlases, tangent and vector
-      bundles, and vector fields.
 
   - name: Finite Propagation Speed and Kernel Estimates
     root: formalized-sources/CheegerGromovTaylor

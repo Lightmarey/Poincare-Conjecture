@@ -2,36 +2,13 @@
 \label{chap:convergence-results}
 
 
-The most obvious notion of smooth convergence of Riemannian
-manifolds is the $C^\infty$-version of Cheeger-Gromov compactness:
-We have a sequence of Riemannian metrics $g_n$ on a fixed smooth
-manifold $M$ converging uniformly on compact subsets of $M$ in the
-$C^\infty$-topology to a limit metric $g_\infty$. There is also a
-version of this compactness for based, complete Riemannian
-manifolds. The most common starts with a sequence of based complete
-Riemannian manifolds $(M_n,g_n,x_n)$, typically of unbounded
-diameter. Then a geometric limit is a based complete
-$(M_\infty,g_\infty,x_\infty)$ so that for every $R<\infty$ the
-metric balls $B(x_n,R)\subset M_n$ converge uniformly in the
-$C^\infty$-topology to the metric ball $B(x_\infty,R)\subset
-M_\infty$. This allows the topology to change -- even if all the
-$M_n$ are diffeomorphic, $M_\infty$ can have a different topological
-type; for example the $M_n$ could all be compact and $M_\infty$
-could be non-compact.
-
-But we also need to be able to deal with incomplete limits. In the
-case of incomplete limits, the basic idea remains the same, but it
-requires some care to give a definition of a geometric limit that
-makes it unique up to canonical isometry. One must somehow impose
-conditions that imply that the limit eventually fills up most of
-each of the manifolds in the sequence.
+This chapter records geometric, Gromov--Hausdorff, and blow-up
+convergence results for Riemannian manifolds and Ricci flows, including
+the splitting result at infinity.
 
 
 
 \section{Geometric convergence of Riemannian manifolds}
-
-Above we referred to filling up `most' of the manifold. The measure of most of
-the manifold is in terms of the $\delta$-regular points as defined below.
 
 \begin{definition}[$\delta$-regular point]\label{def:delta-regular-point}
 \label{deltareg}
@@ -48,9 +25,6 @@ subset of $\delta$-regular points in $(U,g)$. For any $x\in \operatorname{Reg}_\
 connected component of $\operatorname{Reg}_\delta(U,g)$ containing $x$.
 \end{definition}
 
-Intuitively, the $\delta$-regular points of $(U,g)$ are at distance
-at least $\delta$ from the boundary on $U$.
-
 
 \begin{lemma}[Regular points form a closed set]\label{lem:reg-delta-closed}
 \uses{def:delta-regular-point}
@@ -58,6 +32,7 @@ at least $\delta$ from the boundary on $U$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 Suppose that $p_n$ converges to $p$ as $n$ tends to $\infty$ and
 suppose that $p_n\in \operatorname{Reg}_\delta(U,g)$ for all $n$. Fix
 $r'<\delta$ and consider the
@@ -68,9 +43,6 @@ closure.
 
 
 
-
-Now we are ready for the basic definition of geometric convergence
-of Riemannian manifolds.
 
 \begin{definition}[Geometric limit of Riemannian manifolds]\label{def:geometric-limit}
 \label{smoothconv}
@@ -127,10 +99,6 @@ distance from the boundary of $U_\ell$.
 
 
 
-Notice that if the $(U_k,g_k)$ have uniformly bounded volume by, say, $V$, then
-any geometric limit has volume $\le V$.
-
-
 \begin{lemma}[Uniqueness of geometric limits]\label{lem:geometric-limit-uniqueness}
 \uses{def:geometric-limit}
 The geometric limit of a sequence $(U_k,g_k,x_k)$ is unique up to
@@ -138,6 +106,7 @@ based isometry.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{def:geometric-limit,def:delta-regular-point}
 Suppose that we have two geometric limits
 $(U_\infty,g_\infty,x_\infty)$ and
@@ -197,8 +166,6 @@ isometry $U_\infty\to U'_\infty$.
 
 
 
-Here is the basic existence result.
-
 \begin{theorem}[Existence of geometric limits]\label{thm:geometric-limit-existence}
 \label{basicconv}
 \uses{def:delta-regular-point}
@@ -230,36 +197,8 @@ geometric limit of the sequence $\{(U_k,g_k,x_k)\}_{k=1}^\infty$.
 
 
 
-
-
-
-
-Before giving the proof of this result, we begin with a standard
-lemma.
-
-\begin{lemma}[Convergence of balls in Gaussian coordinates]\label{lem:gaussian-coordinates-convergence}
-Suppose that we have a sequence of $n$-dimensional balls $(B_k,h_k)$
-of radius $r$ in Riemannian $n$-manifolds. Suppose that for each
-$\ell$ there is a constant $C(\ell)$ such that for every $k$, we
-have $|\nabla ^\ell \Rm(h_k)|\le C(\ell)$ throughout $B_k$.
-Suppose also that for each $n$ the exponential mapping from the
-tangent space at the center of $B_k$ induces a diffeomorphism from a
-ball in the tangent space onto $B_k$. Then choosing an isometric
-identification of the tangent spaces at the central points of the
-$B_k$ with $\Ar^n$ and pulling back the metrics $h_k$ via the
-exponential mapping to metrics $\tilde h_k$ on the ball $B$ of
-radius $r$ in $\Ar^n$ gives us a family of metrics on $B$ that,
-after passing to a subsequence, converge in the $C^\infty$-topology,
-uniformly on compact subsets of $B$,  to a limit.
-\end{lemma}
-
-The basic point in proving this lemma is to `find the right gauge,' which in
-this case means find local coordinates so that the metric tensor is controlled
-by the curvature. The correct local coordinates are the Gaussian coordinates
-centered at the center of the ball.
-
-
-\begin{proof}(of the theorem).
+\begin{proof}
+\sketch
 \uses{thm:volume-injectivity-radius,def:delta-regular-point,def:geometric-limit,lem:gaussian-coordinates-convergence}
 Fix $R<\infty$ and $\delta>0$. Let
 $$X(\delta,R)=B(x_k,R)\cap
@@ -331,9 +270,21 @@ have maps $\varphi_k\colon V_k\to U_k$ so that (2a) in the definition of
 geometric limits holds. Condition (2b) clearly holds by construction.
 \end{proof}
 
-Now let us turn to complete Riemannian manifolds, where the result
-is the $C^\infty$-version of the classical Cheeger-Gromov
-compactness.
+\begin{lemma}[Convergence of balls in Gaussian coordinates]\label{lem:gaussian-coordinates-convergence}
+Suppose that we have a sequence of $n$-dimensional balls $(B_k,h_k)$
+of radius $r$ in Riemannian $n$-manifolds. Suppose that for each
+$\ell$ there is a constant $C(\ell)$ such that for every $k$, we
+have $|\nabla ^\ell \Rm(h_k)|\le C(\ell)$ throughout $B_k$.
+Suppose also that for each $n$ the exponential mapping from the
+tangent space at the center of $B_k$ induces a diffeomorphism from a
+ball in the tangent space onto $B_k$. Then choosing an isometric
+identification of the tangent spaces at the central points of the
+$B_k$ with $\Ar^n$ and pulling back the metrics $h_k$ via the
+exponential mapping to metrics $\tilde h_k$ on the ball $B$ of
+radius $r$ in $\Ar^n$ gives us a family of metrics on $B$ that,
+after passing to a subsequence, converge in the $C^\infty$-topology,
+uniformly on compact subsets of $B$, to a limit.
+\end{lemma}
 
 \begin{lemma}[Complete partial limits are geometric limits]\label{lem:partial-limit-complete-is-limit}
 \uses{def:geometric-limit}
@@ -347,6 +298,7 @@ manifold. Then this partial geometric limit is a geometric limit.
 
 
 \begin{proof}
+\sketch
 \uses{def:geometric-limit,def:delta-regular-point}
 Since the balls $B(x_\infty,R)$ have compact closure in $U_\infty$
 and since
@@ -354,9 +306,6 @@ $$\operatorname{Reg}_\delta(U_\infty,g_\infty,x_\infty)=U_\infty$$ for
 every $\delta>0$, it is easy to see that the extra condition, (2b), in
 Definition~\ref{def:geometric-limit} is automatic in this case.
 \end{proof}
-
-Now as an immediate corollary of Theorem~\ref{thm:geometric-limit-existence} we have the
-following.
 
 \begin{theorem}[Geometric convergence for complete manifolds]\label{thm:manifold-convergence-complete-limit}
 \label{mfdconv}
@@ -378,6 +327,7 @@ for all $k$ sufficiently large.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{thm:bishop-gromov,thm:geometric-limit-existence}
 By the curvature bounds, it follows from the Bishop-Gromov theorem
 (Theorem~\ref{thm:bishop-gromov}) that for each $A<\infty$ there is a uniform bound
@@ -406,6 +356,7 @@ is a complete Riemannian manifold.
 \end{corollary}
 
 \begin{proof}
+\sketch
 \uses{thm:bishop-gromov,thm:volume-injectivity-radius,thm:manifold-convergence-complete-limit}
 Let $A=\max(\delta^{-2},C(0,\delta))$, where $C(0,\delta)$ is the constant
 given in the second condition in Theorem~\ref{thm:manifold-convergence-complete-limit}. Rescale, replacing the
@@ -467,6 +418,7 @@ $(M_k,g_k,x_k)$. This limit is a complete Riemannian manifold.
 
 
 \begin{proof}
+\sketch
 \uses{thm:manifold-convergence-complete-limit,thm:shi-derivative-estimates,cor:manifold-convergence-volume-noncollapsed}
 The first condition in Theorem~\ref{thm:manifold-convergence-complete-limit} holds by our first
 assumption. It is immediate from Shi's theorem (Theorem~\ref{thm:shi-derivative-estimates})
@@ -476,11 +428,6 @@ is then immediate from Corollary~\ref{cor:manifold-convergence-volume-noncollaps
 
 
 \section{Geometric convergence of Ricci flows}
-
- In this section we extend this notion of geometric convergence for based
- Riemannian manifolds in the obvious way to geometric convergence of based
- Ricci flows. Then we give Hamilton's theorem about the existence of
- such geometric limits.
 
 
 
@@ -509,10 +456,6 @@ family of metrics $g_\infty(t)$ on $M_\infty\times (-T,0]$.
 \end{definition}
 
 
-Notice that the restriction to the $0$ time-slices of a partial
-geometric limit of generalized Ricci flows is a partial geometric
-limit of the $0$ time-slices.
-
 \begin{definition}[Geometric limit Ricci flow]\label{def:geometric-limit-ricci-flow}
 \uses{def:partial-geometric-limit-ricci-flow,def:geometric-limit}
 For $0<T\le \infty$, if $(M_\infty,g_\infty(t),x_\infty),\ -T<t\le 0$, is a
@@ -523,13 +466,10 @@ limit is a {\em geometric limit  Ricci flow defined on the time interval
 $(-T,0]$}.
 \end{definition}
 
-Again Shi's theorem, together with a computation of Hamilton, allows us to form
-geometric limits of generalized Ricci flows. We have the following result due
-originally to Hamilton \cite{Hamiltonlimits}.
-
 \begin{proposition}[Existence of partial geometric limit flows]\label{prop:partial-flow-limit-existence}
 \label{partialflowlimit}
 \uses{def:geometric-limit,def:compatible-embedding,def:generalized-ricci-flow}
+Hamilton's compactness construction is summarized in \cite{Hamiltonlimits}.
 Fix constants $-\infty\le T'\le 0\le T\le \infty$ and suppose that $T'<T$. Let
 $\{({\mathcal M}_k,G_k,x_k)\}_{k=1}^\infty$ be a sequence of based generalized
 Ricci flows. Suppose that ${\bf t}(x_k)=0$ for all $k$, and denote by
@@ -549,6 +489,7 @@ Ricci flow $g_\infty(t)$ defined for $t\in (T',T)$.
 \end{proposition}
 
 \begin{proof}
+\sketch
 \uses{thm:shi-derivative-estimates,def:compatible-embedding}
  Suppose that we have a partial geometric limit of the
 time-zero slices as stated in the proposition. Fix a compact subset $K\subset
@@ -604,6 +545,7 @@ $(M_\infty,g_\infty(t))$ is complete.
 
 
 \begin{proof}
+\sketch
 \uses{thm:ricci-flow-slice-convergence,prop:partial-flow-limit-existence}
 By Theorem~\ref{thm:ricci-flow-slice-convergence} there is a geometric limit $(M_\infty,g_\infty(0))$
 of the $0$ time-slices, and the limit  is a complete Riemannian manifold. Then
@@ -626,6 +568,7 @@ time $T$.
 \end{corollary}
 
 \begin{proof}
+\sketch
 \uses{thm:shi-derivative-estimates,prop:smooth-patching,def:geometric-limit}
  Take a sequence $t_n\rightarrow T$ and consider the
 sequence of Riemannian manifolds $(V,g(t_n))$. By Shi's theorem and the fact
@@ -647,8 +590,7 @@ smoothly with the flow on $[0,T]$ by Proposition~\ref{prop:smooth-patching}.
 
 \section{Gromov-Hausdorff convergence}
 
-Let us begin with the notion of the Gromov-Hausdorff distance between based
-metric spaces of finite diameter. Let $Z$ be a metric space. We define the
+Let $Z$ be a metric space. Define the
 Hausdorff distance between subsets of $Z$ as follows: $d^Z_H(X,Y)$ is the
 infimum of all $\delta\ge 0$ such that $X$ is contained in the
 $\delta$-neighborhood of $Y$ and $Y$ is contained in the $\delta$-neighborhood
@@ -662,10 +604,6 @@ $D_{GH}((X,x),(Y,y))$, to be the infimum of $D_H^Z(f(X),g(Y))$ over all triples
 $((Z,z),f,g)$ where $(Z,z)$ is a pointed metric space and $f\colon (X,x)\to
 (Z,z)$ and $g\colon (Y,y)\to (Z,z)$ are base-point preserving isometries.
 
-
-To see that $D_{GH}$ is a distance function we must establish the
-triangle inequality. For this it is convenient to introduce
-$\delta$-nets in metric spaces.
 
 \begin{definition}[$\delta$-net]\label{def:delta-net}
 \label{epsnet}
@@ -689,6 +627,7 @@ The Gromov-Hausdorff distance satisfies the triangle inequality.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{def:delta-net}
 Suppose that $D_{GH}((X,x),(Y,y))=a$ and $D_{GH}((Y,y),(Z,z))=b$.
 Fix any $\delta>0$. Then there is a metric $d_1$ on $X\vee Y$ such
@@ -711,13 +650,6 @@ $X\vee Z$ with the property that the $(a+b+3\delta)$-neighborhood of
 $X$ is all of $X\vee Z$ and likewise for $Z$. Since we can do this
 for any $\delta>0$, we conclude that $D_{GH}((X,x),(Z,z))\le a+b$.
 \end{proof}
-
-Thus, the Gromov-Hausdorff distance is a pseudo-metric. In fact, the
-restriction of the Gromov-Hausdorff distance to complete metric
-spaces of bounded diameter is a metric. We shall not establish this
-result, though we prove below closely related results about the
-uniqueness of Gromov-Hausdorff limits.
-
 
 
 \begin{definition}[Gromov--Hausdorff convergence (bounded diameter)]\label{def:gromov-hausdorff-convergence}
@@ -759,19 +691,9 @@ $d(f_k(\ell_k),g_k(\ell))\rightarrow 0$ as $i\rightarrow\infty$.
 
 
 
-Notice that, with a different realization sequence for the
-convergence, a sequence $\ell_k\in X_k$ can converge to a different
-point of $Y$. Also notice that, given a realization sequence for the
-convergence, every $y\in Y$ is the limit of some sequence $x_k\in
-X_k$, a sequence $x_k\in X_k$ has at most one limit in $Y$, and if
-$Y$ is compact then every sequence $x_k\in X_k$ has a subsequence
-converging to a point of $Y$. Lastly, notice that under any
-realization sequence for the convergence, the base points $x_k$
-converge to the base point $y$.
-
-
 \begin{lemma}[Net characterization of Gromov--Hausdorff convergence]\label{lem:gromov-hausdorff-net-characterization}
 \uses{def:gromov-hausdorff-convergence,def:delta-net}
+The characterization is Proposition 3.5 of \cite{Gromov}.
 Let $(X_k,x_k)$ be a sequence of metric spaces whose diameters are uniformly
 bounded. Then the $(X_k,x_k)$ converge in the Gromov-Hausdorff
 sense to $(X,x)$ if and only if the
@@ -784,10 +706,6 @@ $X$.
 \end{lemma}
 
 
-For a proof see Proposition 3.5 on page 36 of \cite{Gromov}.
-
-
-
 \begin{lemma}[Uniqueness of compact Gromov--Hausdorff limits]\label{lem:gromov-hausdorff-limit-uniqueness-compact}
 \uses{def:gromov-hausdorff-convergence}
 Let $(X_k,x_k)$ be a sequence of  based metric spaces whose diameters are
@@ -798,6 +716,7 @@ Then $(Y,y)$ is isometric to $(Y',y')$.
 
 
 \begin{proof}
+\sketch
 \uses{def:gromov-hausdorff-convergence,lem:gromov-hausdorff-triangle-inequality}
 By the triangle inequality for Gromov-Hausdorff distance, it follows
 from the hypothesis of the lemma that $D_{GH}((Y,y),(Y',y'))=0$. Fix
@@ -828,10 +747,6 @@ extract a limit $\psi\colon (Y,y)\to (Y',y')$. Clearly, this limit
 is an isometry.
 \end{proof}
 
-Now let us consider the more general case of spaces of not
-necessarily bounded diameter. It turns out that the above definition
-is too restrictive when applied to such spaces. Rather one takes:
-
 \begin{definition}[Gromov--Hausdorff convergence (unbounded diameter)]\label{def:gromov-hausdorff-convergence-unbounded}
 \uses{def:gromov-hausdorff-convergence}
 For  based metric spaces $(X_k,x_k)$ (not necessarily of finite
@@ -842,10 +757,6 @@ that the sequence of balls $B(x_k,r+\delta_k)$ in $(X_k,x_k)$
 converges in the Gromov-Hausdorff sense to the ball $B(y,r)$ in $Y$.
 \end{definition}
 
-Thus, a sequence of cylinders $S^{n-1}\times \Ar$ with any base points and with
-the radii of the cylinders going to zero has the real line as Gromov-Hausdorff
-limit.
-
 \begin{lemma}[Uniqueness of locally compact Gromov--Hausdorff limits]\label{lem:gromov-hausdorff-limit-uniqueness-locally-compact}
 \uses{def:gromov-hausdorff-convergence-unbounded,lem:gromov-hausdorff-limit-uniqueness-compact}
 Let $(X_k,x_k)$ be a sequence of locally compact metric spaces. Suppose that
@@ -855,6 +766,7 @@ isometry $(Y,y)\to (Y',y')$.
 \end{lemma}
 
 \begin{proof}
+\sketch
 \uses{lem:gromov-hausdorff-limit-uniqueness-compact}
 We show that for each $r<\infty$ there is an isometry between the
 closed balls $\overline{B(y,r)}$ and $\overline{B(y',r)}$. By the
@@ -887,9 +799,6 @@ limit.
 
 \subsection{Precompactness}
 
-There is a fundamental compactness result due to Gromov. We begin
-with a definition.
-
 \begin{definition}[Length space]\label{def:length-space}
 A {\sl length space} is a connected metric space
 $(X,d)$ such that for any two points $x,y$ there is a rectifiable
@@ -904,6 +813,7 @@ $\delta$-balls in $X$ that can be contained in $B(x,R)$.
 \begin{theorem}[Gromov's precompactness theorem]\label{thm:gromov-hausdorff-precompactness}
 \label{GHcompact}
 \uses{def:length-space,def:gromov-hausdorff-convergence-unbounded}
+This is Gromov's precompactness theorem \cite{Gromov}.
 Suppose that $(X_k,x_k)$ is a sequence of based length spaces. Then
 there is a based length space $(X,x)$ that is the limit in the
 Gromov-Hausdorff sense of a subsequence of the $(X_k,x_k)$ if for
@@ -913,9 +823,6 @@ sequence $(X_k,x_k)$ has a Gromov-Hausdorff limit, then for every
 $\delta>0$ and $R<\infty$ the $N(\delta,R,X_k)$ are bounded
 independent of $k$.
 \end{theorem}
-
-For a proof of this result see Proposition 5.2 on page 63 of
-\cite{Gromov}.
 
 \subsection{The Tits cone}
 
@@ -958,6 +865,7 @@ $S_\infty(M,p)$ is a compact space.
 \end{claim}
 
 \begin{proof}
+\sketch
 Let $\{[\gamma_n]\}_n$ be a sequence of points in $S_\infty(M,p)$. We show that
 there is a subsequence with a limit point. By passing to a subsequence we can
 arrange that the unit tangent vectors to the $\gamma_n$ at $p$ converge to a
@@ -999,6 +907,7 @@ T}(M,p)$ with base point the cone point.
 \end{proposition}
 
 \begin{proof}
+\sketch
 \uses{thm:length-comparison}
 Let $c$ be the cone point of ${\mathcal T}(M,p)$, and denote by $d$ the
 distance function on ${\mathcal T}(M,p)$. Consider the ball $B(c,R)\subset
@@ -1102,6 +1011,7 @@ curvature.
 \end{theorem}
 
 \begin{proof}
+\sketch
 \uses{def:blow-up-limit}
 Let us consider the case of the geometric limit of the zero time-slice first.
 Let $( M_\infty,g_\infty(0),x_\infty)$ be a blow-up limit of the zero
@@ -1144,6 +1054,7 @@ of Ricci flows has non-negative curvature.
 
 
 \begin{proof}
+\sketch
 \uses{thm:blow-up-limit-nonnegative-curvature,thm:pinching-toward-positive-curvature}
 According to Theorem~\ref{pinch} the hypotheses imply that for every $k$ the
 Ricci flow $(M_k,g_k(t))$ has curvature pinched toward positive. From this, the
@@ -1184,6 +1095,7 @@ $M_\infty=N\times \Ar$ with the property that $\ell$ is $\{x\}\times
 
 
 \begin{proof}
+\sketch
 \uses{thm:length-comparison,lem:minimizing-line-implies-product}
 Let $d_n$ be the distance from $p$ to $x_n$. Consider minimizing
 geodesic arcs $\gamma_n$ from $p$ to $x_n$. By passing to a

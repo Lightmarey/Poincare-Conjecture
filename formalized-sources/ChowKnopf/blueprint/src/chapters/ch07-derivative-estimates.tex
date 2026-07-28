@@ -21,7 +21,7 @@ then
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0240, chow-knopf-ricci-flow:page-0241, chow-knopf-ricci-flow:page-0242, chow-knopf-ricci-flow:page-0243, chow-knopf-ricci-flow:page-0244}
-The proof is by induction on \(m\). For \(m=1\), the evolution equation for \(|\nabla \Rm|^2\) has the form
+\sketch The proof is by induction on \(m\). For \(m=1\), the evolution equation for \(|\nabla \Rm|^2\) has the form
 \[
 \partial_t |\nabla \Rm|^2=\Delta |\nabla \Rm|^2-2|\nabla^2\Rm|^2+\Rm*(\nabla\Rm)^{*2}.
 \]
@@ -65,7 +65,7 @@ If \(g_0\) is a smooth metric on a compact manifold \(\mathcal M^n\), the unique
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0237}
-If the curvature remained bounded on a finite maximal interval, then Theorem~\dcref{Theorem 7.1} would control all curvature derivatives on a short time interval near the terminal time. Standard short-time existence then extends the flow past \(T\), contradicting maximality. Hence finite-time breakdown forces curvature blow-up.
+\sketch If the curvature remained bounded on a finite maximal interval, then Theorem~\dcref{Theorem 7.1} would control all curvature derivatives on a short time interval near the terminal time. Standard short-time existence then extends the flow past \(T\), contradicting maximality. Hence finite-time breakdown forces curvature blow-up.
 \end{proof}
 
 \begin{corollary}[Uniform derivative bounds for bounded-curvature sequences]
@@ -89,7 +89,7 @@ In particular, for any \(t_0\in(0,c/K)\), there is a constant \(C_m'=C_m'(m,n,K,
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0237}
-Apply the long-time existence criterion after first using the minimal existence time estimate of Corollary~\dcref{Corollary 7.7}, which gives a uniform time interval \([0,c/K]\) depending only on \(n\). Then Theorem~\dcref{Theorem 7.1} gives the derivative estimates on that interval. The final bound on \([t_0,c/K]\) is immediate because \(t^{-m/2}\) is uniformly bounded there.
+\sketch Apply the long-time existence criterion after first using the minimal existence time estimate of Corollary~\dcref{Corollary 7.7}, which gives a uniform time interval \([0,c/K]\) depending only on \(n\). Then Theorem~\dcref{Theorem 7.1} gives the derivative estimates on that interval. The final bound on \([t_0,c/K]\) is immediate because \(t^{-m/2}\) is uniformly bounded there.
 \end{proof}
 
 \section*{2. Proving the global estimates}
@@ -118,7 +118,7 @@ for a constant \(C\) depending only on \(n\).
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0238}
-Differentiate the \((4,0)\)-curvature evolution equation from Chapter~6. The terms from differentiating the inverse metric cancel exactly with the Ricci terms in the curvature evolution, leaving the displayed formula. The inequality follows because the full contraction of two curvature tensors is bounded by a dimensional constant times \(|\Rm|^3\).
+\sketch Differentiate the \((4,0)\)-curvature evolution equation from Chapter~6. The terms from differentiating the inverse metric cancel exactly with the Ricci terms in the curvature evolution, leaving the displayed formula. The inequality follows because the full contraction of two curvature tensors is bounded by a dimensional constant times \(|\Rm|^3\).
 \end{proof}
 
 \begin{corollary}[Doubling-time estimate]
@@ -139,7 +139,7 @@ M(t)\le 2M(0)
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0239}
-By Lemma~\dcref{Lemma 7.4}, \(M(t)\) is locally Lipschitz and satisfies an upper differential inequality of the form
+\sketch By Lemma~\dcref{Lemma 7.4}, \(M(t)\) is locally Lipschitz and satisfies an upper differential inequality of the form
 \[
 \frac{dM}{dt}\le \frac{C}{2}M^2
 \]
@@ -168,7 +168,7 @@ If \((\mathcal M^n,g_0)\) is a Riemannian manifold such that \(|\Rm[g_0]|_{g_0}\
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0239}
-Apply Corollary~\dcref{Corollary 7.5} to the maximal solution starting at \(g_0\). The curvature bound can double only after time \(c/K\), so the solution cannot break down before that time.
+\sketch Apply Corollary~\dcref{Corollary 7.5} to the maximal solution starting at \(g_0\). The curvature bound can double only after time \(c/K\), so the solution cannot break down before that time.
 \end{proof}
 
 \section*{3. The Compactness Theorem}
@@ -199,5 +199,5 @@ of the Ricci flow existing for \(t\in(\alpha,\omega)\), with the same curvature 
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0244, chow-knopf-ricci-flow:page-0245}
-The source states the compactness theorem and records its convergence conclusion, but defers the detailed proof to a successor volume. The statement is included here as part of the chapter's consequences of the derivative estimates.
+\sketch The source states the compactness theorem and records its convergence conclusion, but defers the detailed proof to a successor volume. The statement is included here as part of the chapter's consequences of the derivative estimates.
 \end{proof}

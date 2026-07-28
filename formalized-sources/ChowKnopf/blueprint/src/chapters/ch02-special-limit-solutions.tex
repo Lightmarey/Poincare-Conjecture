@@ -49,7 +49,7 @@ is a Ricci soliton.
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0036}
-If \(g(t)=\sigma(t)\psi_t^*g_0\) is self-similar, then differentiating at
+\sketch If \(g(t)=\sigma(t)\psi_t^*g_0\) is self-similar, then differentiating at
 \(t=0\) gives
 \[
 -2\Rc(g_0)=\sigma'(0)g_0+\mathcal L_{Y(0)}g_0,
@@ -70,9 +70,7 @@ calculation.
 
 \section*{2. Eternal solutions}
 
-An eternal solution exists for all \(t\in(-\infty,\infty)\). Such solutions are
-expected to be highly rigid because they experience no finite-time
-concentration of curvature in either time direction.
+An eternal solution is defined for all \(t\in(-\infty,\infty)\).
 
 \subsection*{2.1. The cigar soliton}
 
@@ -103,7 +101,7 @@ gradient Ricci soliton of positive curvature on \(\R^2\).
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0039,chow-knopf-ricci-flow:page-0040,chow-knopf-ricci-flow:page-0041}
-Write a rotationally symmetric metric as \(g=ds^2+\varphi(s)^2\,d\theta^2\).
+\sketch Write a rotationally symmetric metric as \(g=ds^2+\varphi(s)^2\,d\theta^2\).
 Using the orthonormal frame \(e_1=\partial_s\), \(e_2=\varphi^{-1}\partial_\theta\),
 the connection satisfies \(\omega^2_1=\varphi'(s)\,d\theta\), so the curvature is
 \(K=-\varphi''/\varphi\). For a radial potential \(f=f(s)\), the steady gradient
@@ -130,15 +128,6 @@ For the cigar soliton, the potential may be taken as
 \(X=-\nabla f=-\tanh(as)\,\partial_s\).
 \end{remark}
 
-\begin{remark}
-\label{ch02-rem-cigar-negative-curvature-exercise}
-\dcref{Exercise 2.9}
-\group{eternal-solutions}
-\source{chow-knopf-ricci-flow:page-0041}
-The negative-curvature analog of the cigar is obtained by solving the same
-rotationally symmetric soliton ODE with \(K<0\).
-\end{remark}
-
 \subsection*{2.2. The Rosenau solution}
 
 \begin{lemma}
@@ -158,7 +147,7 @@ on \((-\omega,\omega)\times S^n\) extends smoothly to \(S^{n+1}\) if and only if
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0042,chow-knopf-ricci-flow:page-0043}
-The endpoint conditions are exactly those ensuring that, after changing to arc
+\sketch The endpoint conditions are exactly those ensuring that, after changing to arc
 length \(s\) and then to Euclidean coordinates \((x,y)\) near a pole, the metric
 has a smooth even expansion in the radial variable. The vanishing of the
 specified derivatives is equivalent to smooth extendibility across the pole.
@@ -179,7 +168,7 @@ defines an ancient solution on \(S^2\) if and only if \(\alpha=1\) and
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0046,chow-knopf-ricci-flow:page-0047}
-The conformal-factor evolution equation reduces the Ricci flow condition to the
+\sketch The conformal-factor evolution equation reduces the Ricci flow condition to the
 identity \(2\beta\lambda=\alpha\). The smooth extension across the poles is
 checked using Lemma~2.10 with \(\varphi=\psi=\sqrt{u}\): the distance to the
 poles is finite, the conformal factor vanishes at the ends, and the slope
@@ -194,16 +183,6 @@ explicit decay of derivatives. Substituting then gives \(\beta=\frac1{2\lambda}\
 \source{chow-knopf-ricci-flow:page-0047}
 The Rosenau solution is Type II and, when viewed infinitely far back in time
 near either pole, limits to the cigar soliton.
-\end{remark}
-
-\begin{remark}
-\label{ch02-rem-rosenau-singularity-model}
-\dcref{Remark 2.14}
-\group{eternal-solutions}
-\source{chow-knopf-ricci-flow:page-0047}
-The Rosenau solution is relevant as a possible dimension-reduction limit of a
-three-manifold singularity, although Perelman's no-local-collapsing theorem
-rules out that scenario for finite-time singularities.
 \end{remark}
 
 \section*{4. Immortal solutions}
@@ -232,7 +211,7 @@ formula in the text.
 
 \begin{proof}
 \source{chow-knopf-ricci-flow:page-0048,chow-knopf-ricci-flow:page-0049,chow-knopf-ricci-flow:page-0050}
-For the ansatz \(g(t)=t(f(r)^2dr^2+r^2d\theta^2)\), direct computation of the
+\sketch For the ansatz \(g(t)=t(f(r)^2dr^2+r^2d\theta^2)\), direct computation of the
 Christoffel symbols and Ricci tensor shows that the modified flow equation
 \(\partial_t g=-2\Rc+\mathcal L_X g\), with
 \(X=\frac{r}{tf(r)}\partial_r\), is equivalent to the single ODE
@@ -562,40 +541,3 @@ If the limiting growth parameter \(\rho(T)\) is finite, then the comparison
 function \(v=\psi_s\) dominates the linear subsolution \(\underline v\) on the
 interior region up to time \(T\).
 \end{lemma}
-
-\section*{6. The degenerate neckpinch}
-
-The final part of the chapter is heuristic. It explains how a one-parameter
-family of symmetric dumbbells should transition from a neckpinch to a round
-extinction, with the intermediate parameter producing a degenerate neckpinch
-and a slowly forming singularity.
-
-\begin{remark}
-\label{ch02-rem-degenerate-neckpinch-picture}
-\dcref{Problem 2.47}
-\group{degenerate-neckpinch}
-\source{chow-knopf-ricci-flow:page-0075,chow-knopf-ricci-flow:page-0076,chow-knopf-ricci-flow:page-0077,chow-knopf-ricci-flow:page-0078}
-The expected transition between neckpinch and spherical extinction suggests
-that a parameter value exists at which the Ricci flow forms a Type IIa
-singularity, i.e. a slowly forming singularity.
-\end{remark}
-
-\begin{remark}
-\label{ch02-rem-typei-typeiia}
-\dcref{Remark 2.47}
-\group{degenerate-neckpinch}
-\source{chow-knopf-ricci-flow:page-0077,chow-knopf-ricci-flow:page-0078}
-A finite-time singularity is called Type I, or rapidly forming, when
-\((T-t)\sup|\Rm|\) stays bounded; it is called Type IIa, or slowly forming, when
-\((T-t)\sup|\Rm|\) is unbounded.
-\end{remark}
-
-\begin{remark}
-\label{ch02-rem-slowly-forming-meaning}
-\dcref{Notes and commentary}
-\group{degenerate-neckpinch}
-\source{chow-knopf-ricci-flow:page-0079}
-No example of a slowly forming singularity on a compact manifold was known at
-the time of the source; a rigorous example on \(\R^2\) had recently been
-constructed.
-\end{remark}

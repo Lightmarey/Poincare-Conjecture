@@ -1,1418 +1,519 @@
 \chapter{Viscosity Solutions}
 
-\begin{center}
-CHAPTER 5
+\section{Alexandroff Maximum Principle}
 
-\vspace{1em}
-
-\Large \textbf{Viscosity Solutions}
-\end{center}
-
-We develop viscosity solutions for uniformly elliptic equations and derive the Alexandroff estimate, Harnack and $C^\alpha$ bounds, Schauder estimates, and $W^{2,p}$ estimates.
-
-\vspace{1em}
-
-\begin{center}
-\textbf{5.1. Alexandroff Maximum Principle}
-\end{center}
-
-Suppose that $\Omega$ is a bounded and connected domain in $\mathbb{R}^n$ and that $a_{ij}\in C(\Omega)$ satisfies
-
+Fix a bounded connected domain $\Omega\subset\R^n$, $f\in C(\Omega)$,
+and continuous coefficients satisfying
 \[
-\lambda |\xi|^2 \le a_{ij}(x)\xi_i\xi_j \le \Lambda |\xi|^2 \qquad \text{for any } x\in \Omega \text{ and any } \xi\in\mathbb{R}^n,
+\lambda|\xi|^2\leq a_{ij}(x)\xi_i\xi_j\leq\Lambda|\xi|^2.
 \]
+Write $Lu=a_{ij}D_{ij}u$.
 
-for some positive constants $\lambda$ and $\Lambda$. Consider the operator $L$ in $\Omega$ defined by
-
-\[
-Lu \equiv a_{ij}(x)D_{ij}u,
-\]
-
-for $u\in C^2(\Omega)$.
-
-If $u\in C^2(\Omega)$ satisfies $Lu\le0$ and $L\varphi>0$, then
-
-\[
-L(u-\varphi) < 0 \qquad \text{in } \Omega.
-\]
-
-Thus a local minimum of $u-\varphi$ at $x_0$ implies
-
-\[
-L\varphi(x_0)\le 0.
-\]
-
-This is the touching interpretation used below; assume $f\in C(\Omega)$.
-
-
-
-\begin{definition}\label{hanlin:ch05-def-5-1}\dcref{Definition 5.1}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102} $u \in C(\Omega)$ is a viscosity supersolution (resp. subsolution) of
-$Lu = f$ in $\Omega$ if, for any $x_0 \in \Omega$ and any function $\varphi \in C^2(\Omega)$ such that $u - \varphi$ has a
-local minimum (resp. maximum) at $x_0$, there holds
-\[
-L\varphi(x_0) \le f(x_0) \qquad (\text{resp. } L\varphi(x_0) \ge f(x_0)).
-\]
-We say that $u$ is a viscosity solution if it is a viscosity subsolution and a viscosity
-supersolution.
+\begin{definition}\label{hanlin:ch05-def-5-1}\dcref{Definition 5.1}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}
+A function $u\in C(\Omega)$ is a viscosity supersolution of $Lu=f$ if
+every $\varphi\in C^2(\Omega)$ touching $u$ from below at
+$x_0\in\Omega$ satisfies $L\varphi(x_0)\leq f(x_0)$. It is a viscosity
+subsolution if every such test touching from above satisfies
+$L\varphi(x_0)\geq f(x_0)$. A viscosity solution has both properties.
 \end{definition}
 
-\begin{remark}\label{hanlin:ch05-rem-5-2}\dcref{Remark 5.2}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}\uses{hanlin:ch05-def-5-1} By an approximation, we may replace the $C^2$ function $\varphi$ by a
-quadratic polynomial $Q$.
+\begin{remark}\label{hanlin:ch05-rem-5-2}\dcref{Remark 5.2}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}\uses{hanlin:ch05-def-5-1}
+It is equivalent in Definition~\ref{hanlin:ch05-def-5-1} to use quadratic
+test polynomials.
 \end{remark}
 
-\begin{remark}\label{hanlin:ch05-rem-5-3}\dcref{Remark 5.3}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}\uses{hanlin:ch05-def-5-1} The above analysis shows that a classical supersolution is a viscosity
-supersolution. It is straightforward to prove that a $C^2$ viscosity supersolution
-is a classical supersolution. Similar statements hold for subsolutions and solutions.
-
+\begin{remark}\label{hanlin:ch05-rem-5-3}\dcref{Remark 5.3}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}\uses{hanlin:ch05-def-5-1}
+Classical supersolutions are viscosity supersolutions, and a $C^2$ viscosity
+supersolution is classical. The analogous equivalence holds for subsolutions
+and solutions.
 \end{remark}
-\medskip
-
-
-For a $C^2$ test function at $x_0$, uniform ellipticity gives
+\begin{definition}\label{hanlin:ch05-def-5-4}\dcref{Definition 5.4}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}
+Fix $0<\lambda\leq\Lambda$ and $f\in C(\Omega)$. A function
+$u\in C(\Omega)$ belongs to $S^+(\lambda,\Lambda,f)$ if every
+$\varphi\in C^2(\Omega)$ touching it from below at $x_0$ satisfies
 \[
-\sum_{i,j=1}^n a_{ij}(x_0)D_{ij}\varphi(x_0) \le 0
+\lambda\sum_{e_i>0}e_i+\Lambda\sum_{e_i<0}e_i\leq f(x_0),
 \]
+where the $e_i$ are the eigenvalues of $D^2\varphi(x_0)$. It belongs to
+$S^-(\lambda,\Lambda,f)$ if every test touching from above satisfies
 \[
-\Longleftrightarrow \sum_{k=1}^n \alpha_k e_k \le 0 \text{ with } \lambda \le \alpha_k \le \Lambda,\, e_k = e_k(D^2\varphi(x_0))
+\Lambda\sum_{e_i>0}e_i+\lambda\sum_{e_i<0}e_i\geq f(x_0).
 \]
-\[
-\Longleftrightarrow \sum_{e_i>0} \alpha_i e_i + \sum_{e_i<0} \alpha_i e_i \le 0
-\]
-\[
-\Longleftrightarrow \sum_{e_i>0} \alpha_i e_i \le \sum_{e_i<0} \alpha_i(-e_i),
-\]
-Consequently,
-\[
-\lambda \sum_{e_i>0} e_i \le \Lambda \sum_{e_i<0} (-e_i),
-\]
-where $e_1,\ldots,e_n$ are the eigenvalues of $D^2\varphi(x_0)$.
-
-\begin{definition}\label{hanlin:ch05-def-5-4}\dcref{Definition 5.4}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102} Suppose $f$ is a continuous function in $\Omega$ and that $\lambda$ and $\Lambda$
-are two positive constants. We define $u \in C(\Omega)$ to belong to $S^+(\lambda,\Lambda,f)$ (resp.
-$S^-(\lambda,\Lambda,f)$) if, for any $x_0 \in \Omega$ and any function $\varphi \in C^2(\Omega)$ such that $u - \varphi$ has a
-local minimum (resp. maximum) at $x_0$, there holds
-\[
-\lambda \sum_{e_i>0} e_i(x_0) + \Lambda \sum_{e_i<0} e_i(x_0) \le f(x_0)
-\]
-\[
-(\text{resp. } \Lambda \sum_{e_i>0} e_i(x_0) + \lambda \sum_{e_i<0} e_i(x_0) \ge f(x_0)),
-\]
-where $e_1(x_0),\cdots,e_n(x_0)$ are eigenvalues of the Hessian matrix $D^2\varphi(x_0)$.
-
-
-Set $S(\lambda,\Lambda,f)=S^+(\lambda,\Lambda,f)\cap S^-(\lambda,\Lambda,f)$.
+Set $S(\lambda,\Lambda,f)=S^+(\lambda,\Lambda,f)\cap
+S^-(\lambda,\Lambda,f)$.
 \end{definition}
 
 
 
 
-\begin{remark}\label{hanlin:ch05-rem-5-5}\dcref{Remark 5.5}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0103}\uses{hanlin:ch05-def-5-4} Any viscosity supersolutions of
+\begin{remark}\label{hanlin:ch05-rem-5-5}\dcref{Remark 5.5}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0103}\uses{hanlin:ch05-def-5-4}
+If
 \[
-a_{ij}D_{ij}u=f \quad \text{in }\Omega
+a_{ij}D_{ij}u=f\quad\text{in }\Omega
 \]
-belong to the class $S^+(\lambda,\Lambda,f)$, if
-\[
-\lambda |\xi|^2 \le a_{ij}(x)\xi_i\xi_j \le \Lambda |\xi|^2
-\qquad \text{for any } x\in\Omega \text{ and any } \xi\in\mathbf{R}^n.
-\]
-
-These classes also contain viscosity solutions of fully nonlinear uniformly elliptic equations.
-
+is uniformly elliptic with constants $\lambda,\Lambda$, then its viscosity
+supersolutions lie in $S^+(\lambda,\Lambda,f)$. These extremal classes also
+contain viscosity solutions of fully nonlinear uniformly elliptic equations.
 \end{remark}
-\begin{example}\label{hanlin:ch05-ex-5-6}\dcref{Example 5.6}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0103}\uses{hanlin:ch05-def-5-4} For any two positive constants $\lambda \le \Lambda$, let $A$ be a symmetric matrix whose eigenvalues belong to $[\lambda,\Lambda]$, i.e.,
-\[
-\lambda |\xi|^2 \le A_{ij}\xi_i\xi_j \le \Lambda |\xi|^2
-\qquad \text{for any } \xi\in\mathbf{R}^n.
-\]
 
-Denote by $\mathcal{A}_{\lambda,\Lambda}$ the class of all such matrices. For any symmetric matrix $M$, we define the Pucci's extremal operators
+\begin{example}\label{hanlin:ch05-ex-5-6}\dcref{Example 5.6}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0103}\uses{hanlin:ch05-def-5-4}
+Let $\mathcal A_{\lambda,\Lambda}$ be the symmetric matrices $A$ satisfying
 \[
-\mathcal{M}^-(M)=\mathcal{M}^-(\lambda,\Lambda,M)=\inf_{A\in\mathcal{A}_{\lambda,\Lambda}} A_{ij}M_{ij},
+\lambda|\xi|^2\leq A_{ij}\xi_i\xi_j\leq\Lambda|\xi|^2.
 \]
+For symmetric $M$, define
 \[
-\mathcal{M}^+(M)=\mathcal{M}^+(\lambda,\Lambda,M)=\sup_{A\in\mathcal{A}_{\lambda,\Lambda}} A_{ij}M_{ij}.
+\mathcal M^-(M)=\inf_{A\in\mathcal A_{\lambda,\Lambda}}A_{ij}M_{ij},
+\qquad
+\mathcal M^+(M)=\sup_{A\in\mathcal A_{\lambda,\Lambda}}A_{ij}M_{ij}.
 \]
-
-Pucci's equations are given by
+If $e_1,\dots,e_n$ are the eigenvalues of $M$, then
 \[
-\mathcal{M}^-(\lambda,\Lambda,M)=f, \qquad \mathcal{M}^+(\lambda,\Lambda,M)=g,
+\mathcal M^-(M)=\lambda\sum_{e_i>0}e_i+\Lambda\sum_{e_i<0}e_i,
+\qquad
+\mathcal M^+(M)=\Lambda\sum_{e_i>0}e_i+\lambda\sum_{e_i<0}e_i.
 \]
-for continuous functions $f$ and $g$ in $\Omega$. It is easy to see
+Thus $u\in S^+(\lambda,\Lambda,f)$ exactly when
 \[
-\mathcal{M}^-(\lambda,\Lambda,M)=\lambda\sum_{e_i>0} e_i+\Lambda\sum_{e_i<0} e_i,
+\mathcal M^-(D^2u)\leq f
 \]
+in the viscosity sense. For symmetric $M,N$,
 \[
-\mathcal{M}^+(\lambda,\Lambda,M)=\Lambda\sum_{e_i>0} e_i+\lambda\sum_{e_i<0} e_i,
+\mathcal M^-(M)+\mathcal M^-(N)
+\leq\mathcal M^-(M+N)
+\leq\mathcal M^+(M)+\mathcal M^-(N)
+\leq\mathcal M^+(M+N)
+\leq\mathcal M^+(M)+\mathcal M^+(N).
 \]
-where $e_1,\dots,e_n$ are eigenvalues of $M$. Therefore $u\in S^+(\lambda,\Lambda,f)$ if and only if
-\[
-\mathcal{M}^-(\lambda,\Lambda,D^2u)\le f
-\]
-in the viscosity sense, i.e., for any $\varphi\in C^2(\Omega)$ such that $u-\varphi$ has a local minimum at $x_0\in\Omega$ there holds
-\[
-\mathcal{M}^-(\lambda,\Lambda,D^2\varphi(x_0))\le f(x_0).
-\]
-
-By the definition of $\mathcal{M}^-$ and $\mathcal{M}^+$, it is easy to check for any two symmetric matrices $M$ and $N$
-\[
-\mathcal{M}^-(M)+\mathcal{M}^-(N)\le \mathcal{M}^-(M+N)\le \mathcal{M}^+(M)+\mathcal{M}^-(N)
-\le \mathcal{M}^+(M+N)\le \mathcal{M}^+(M)+\mathcal{M}^+(N).
-\]
-We use this subadditivity estimate below.
-
 \end{example}
 
-For continuous $v$ on an open convex $\Omega$, define its convex envelope by
+For continuous $v$ on an open convex set $\Omega$, write
 \[
-\Gamma(v)(x)=\sup_L\{L(x);\, L\le v \text{ in }\Omega,\, L \text{ is an affine function}\},
+\Gamma(v)(x)=\sup\{L(x):L\text{ affine and }L\leq v\text{ in }\Omega\}.
 \]
-The contact set is
+Its contact set is $\{x\in\Omega:v(x)=\Gamma(v)(x)\}$.
+
+\begin{lemma}\label{hanlin:ch05-lem-5-7}\dcref{Lemma 5.7}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0104}
+Let $u\in C^{1,1}(B_1)$ satisfy $u\geq0$ on $\partial B_1$, and let
+$\Gamma_u$ be the convex envelope of $-u^-=\min\{u,0\}$. Then
 \[
-\{v=\Gamma(v)\}=\{x\in\Omega; v(x)=\Gamma(v)(x)\}
+\sup_{B_1}u^-
+\leq c(n)\left(\int_{B_1\cap\{u=\Gamma_u\}}\det D^2u\right)^{1/n}.
 \]
-
-
-
-and its points are contact points.
-
-\medskip
-
-
-The classical Alexandroff estimate is:
-
-\medskip
-
-\begin{lemma}\label{hanlin:ch05-lem-5-7}\dcref{Lemma 5.7}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0104} \emph{Suppose $u$ is a $C^{1,1}$ function in $B_1$ with $u \ge 0$ on $\partial B_1$. Then}
-\[
-\sup_{B_1} u^- \le c\left(\int_{B_1\cap\{u=\Gamma_u\}} \det D^2u\right)^{\frac{1}{n}},
-\]
-\emph{where $\Gamma_u$ is the convex envelope of $-u^- = \min\{u,0\}$ and $c$ is a positive constant depending only on $n$.}
 \end{lemma}
 
-\medskip
-
-
-\noindent Now we state a version for viscosity solutions.
-
-\medskip
-
-\begin{theorem}\label{hanlin:ch05-thm-5-8}\dcref{Theorem 5.8}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0104,han-lin-lecture-notes:page-0105}\uses{hanlin:ch05-def-5-4,hanlin:ch05-lem-5-7} \emph{Suppose $u$ belongs to $S^+(\lambda,\Lambda,f)$ in $B_1$ with $u \ge 0$ on $\partial B_1$ for some $f\in C(\Omega)$. Then}
+\begin{theorem}\label{hanlin:ch05-thm-5-8}\dcref{Theorem 5.8}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0104,han-lin-lecture-notes:page-0105}\uses{hanlin:ch05-def-5-4,hanlin:ch05-lem-5-7}
+Suppose $u\in S^+(\lambda,\Lambda,f)$ in $B_1$, $u\geq0$ on
+$\partial B_1$, and $f\in C(\Omega)$. If $\Gamma_u$ is the convex envelope
+of $-u^-$, then
 \[
-\sup_{B_1} u^- \le c\left(\int_{B_1\cap\{u=\Gamma_u\}} (f^+)^n\right)^{\frac{1}{n}},
+\sup_{B_1}u^-
+\leq c\left(\int_{B_1\cap\{u=\Gamma_u\}}(f^+)^n\right)^{1/n},
 \]
-\emph{where $\Gamma_u$ is the convex envelope of $-u^- = \min\{u,0\}$ and $c$ is a positive constant depending only on $n,\lambda$ and $\Lambda$.}
+where $c$ depends only on $n,\lambda$, and $\Lambda$.
 \end{theorem}
 
-\medskip
+\begin{proof}
+\sketch Viscosity touching tests control the Hessian of $\Gamma_u$ on the
+contact set. Apply Lemma~\ref{hanlin:ch05-lem-5-7} to the resulting
+determinant bound.
+\end{proof}
 
-\textbf{Proof.} \sketch The argument proves $\Gamma_u\in C^{1,1}(B_1)$ and, at every contact point $x_0$,
-\[
-(1)\hspace{7em} f(x_0)\ge 0,
-\]
-and
-\[
-(2)\hspace{4.5em} L(x)\le \Gamma_u(x)\le L(x)+C\{f(x_0)+\varepsilon(x)\}|x-x_0|^2
-\]
-for some affine function $L$ and any $x$ close to $x_0$, where $\varepsilon(x)\to 0$ as $x\to x_0$ and $C$
-is a positive constant depending only on $n,\lambda$ and $\Lambda$. We then obtain by (2)
-\[
-\det D^2\Gamma_u(x)\le C(f(x))^n \qquad \text{for a.e. } x\in\{u=\Gamma_u\}.
-\]
+\section{Harnack Inequality and \Calpha Bounds}
 
-Apply Lemma 5.7 to $\Gamma_u$. At a contact point, translate so $x_0=0$ and subtract a supporting plane so that $u\ge0$ and $u(0)=0$.
-
-Testing with $h(x)=-\varepsilon|x|^2/2$ gives
-\[
--n\Lambda\varepsilon\le f(0).
-\]
-
-Letting $\varepsilon\to0$ proves (1). For (2), prove
-\[
-0\le \Gamma_u(x)\le C(n,\lambda,\Lambda)\{f(0)+\varepsilon(x)\}|x|^2 \qquad \text{for any } x\in B_1,
-\]
-with $\varepsilon(x)\to0$; set $w=\Gamma_u$ and
-\[
-C_r=\frac{1}{r^2}\max_{B_r} w.
-\]
-
-
-Convexity yields, after rotating, for $x=(x',r)$,
-
-\[
-w(x',r)\geq w(0,\cdots,0,r)=C_r r^2 \qquad \text{for any } x=(x',r)\in B_1.
-\]
-
-Take a positive number $N$ to be determined and set
-
-\[
-R_r=\{(x',x_n);|x'|\leq Nr, |x_n|\leq r\}.
-\]
-
-Set, for $b>0$,
-
-\[
-h(x)=(x_n+r)^2-b|x'|^2.
-\]
-
-Then we have
-
-\begin{align*}
-\text{(i)}\ & \text{for } x_n=-r,\ h\leq 0;\\
-\text{(ii)}\ & \text{for } |x'|=Nr,\ h\leq (4-bN^2)r^2\leq 0 \text{ if we take } b=4/N^2;\\
-\text{(iii)}\ & \text{for } x_n=r,\ h=4r^2-b|x'|^2\leq 4r^2.
-\end{align*}
-
-With $b=4/N^2$, set
-
-\[
-\tilde h(x)=\frac{C_r}{4}h(x)=\frac{C_r}{4}\left\{(x_n+r)^2-\frac{4}{N^2}|x'|^2\right\},
-\]
-
-Then $\tilde h\leq u$ on $\partial R_r$ and its lowered translate touches $u$ inside. Since the eigenvalues of $D^2\tilde h$ are $C_r/2,-2C_r/N^2,\ldots,-2C_r/N^2$, the viscosity inequality gives
-
-\[
-\lambda \frac{C_r}{2}-2\Lambda(n-1)\frac{C_r}{N^2}\leq \max_{R_r} f.
-\]
-
-Choose $N=N(n,\lambda,\Lambda)$ large to obtain
-
-\[
-C_r\leq \frac{4}{\lambda}\max_{R_r} f,
-\]
-
-or
-
-\[
-\max_{B_r} w\leq \frac{4}{\lambda}r^2\max_{R_r} f.
-\]
-
-Since $\max_{R_r}f\to f(0)$, the proof is complete. \hfill$\square$
-
-Let $Q_1$ be subdivided dyadically; $\tilde Q$ denotes the predecessor of $Q$.
-
-\medskip
-
-\begin{lemma}\label{hanlin:ch05-lem-5-9}\dcref{Lemma 5.9}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0105,han-lin-lecture-notes:page-0106}\uses{hanlin:weaksol-part1-cz} \textit{Let $A\subset B\subset Q_1$ be measurable sets such that}
+\begin{lemma}\label{hanlin:ch05-lem-5-9}\dcref{Lemma 5.9}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0105,han-lin-lecture-notes:page-0106}\uses{hanlin:weaksol-part1-cz}
+Let $A\subset B\subset Q_1$ be measurable and let $\delta\in(0,1)$.
+Assume
 \begin{itemize}
-\item[(i)] $|A|<\delta$ for some $\delta\in(0,1)$;
-\item[(ii)] for any dyadic cube $Q$, $|A\cap Q|\geq \delta|Q|$ implies $\tilde Q\subset B$ for the predecessor $\tilde Q$ of $Q$.
+\item[(i)] $|A|<\delta$;
+\item[(ii)] if a dyadic cube $Q$ satisfies $|A\cap Q|\geq\delta|Q|$,
+then its predecessor $\widetilde Q$ lies in $B$.
 \end{itemize}
-\textit{Then}
-
-\[
-|A|\leq \delta|B|.
-\]
+Then $|A|\leq\delta|B|$.
 \end{lemma}
 
+\begin{proof}
+\sketch Apply Lemma~\ref{hanlin:weaksol-part1-cz} to $\chi_A$ and sum
+the predecessor-cube estimates inside $B$.
+\end{proof}
 
-Proof. \sketch Apply the Calderon--Zygmund decomposition to $\chi_A$ to obtain dyadic cubes $Q^j$ with
 
+
+\begin{theorem}\label{hanlin:ch05-thm-5-10}\dcref{Theorem 5.10}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0107}\uses{hanlin:ch05-lem-5-12}
+If $u\in\Sclass(\lambda,\Lambda,f)$ in $\B_1$, $u\geq0$, and
+$f\in C(\B_1)$, then
 \[
-A \subset \bigcup_j Q^j \text{ except for a set of measure zero,}
+\sup_{\B_{1/2}}u
+\leq c\left(\inf_{\B_{1/2}}u+\|f\|_{L^n(\B_1)}\right),
 \]
-
-\[
-\delta \leq \frac{|A\cap Q^j|}{|Q^j|} < 2^n\delta,
-\]
-
-and
-
-\[
-\frac{|A\cap \Qtilde^j|}{|\Qtilde^j|} < \delta,
-\]
-
-for any predecessor $\Qtilde^j$ of $Q^j$. By the assumption (ii), we have $\Qtilde^j \subset B$ for each $j$.
-Hence, we obtain
-
-\[
-A \subset \bigcup_j \Qtilde^j \subset B.
-\]
-
-We relabel $\{\Qtilde^j\}$ so that they are nonoverlapping. Therefore, we get
-
-\[
-|A| \leq \sum_i |A\cap \Qtilde^i| \leq \delta \sum_i |\Qtilde^i| \leq \delta |B|.
-\]
-
-The predecessor cubes are disjoint after relabeling, so the displayed estimate follows.
-
-\medskip
-
-
-\noindent\textbf{5.2. The Harnack Inequality}
-
-The Harnack estimate is:
-
-\medskip
-
-\begin{theorem}\label{hanlin:ch05-thm-5-10}\dcref{Theorem 5.10}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0107}\uses{hanlin:ch05-lem-5-12} \textit{Suppose $u$ belongs to $\Sclass(\lambda,\Lambda,f)$ in $\B_1$ for some $f\in C(\B_1)$ with $u\geq 0$ in $\B_1$. Then}
-
-\[
-\sup_{\B_{1/2}} u \leq c\left\{\inf_{\B_{1/2}} u + \|f\|_{L^n(\B_1)}\right\},
-\]
-
-\textit{where $c$ is a positive constant depending only on $n$, $\lambda$ and $\Lambda$.}
+where $c$ depends only on $n,\lambda$, and $\Lambda$.
 \end{theorem}
-
-The corresponding interior Hölder estimate follows from this theorem.
-
-\medskip
-
-\begin{corollary}\label{hanlin:ch05-cor-5-11}\dcref{Corollary 5.11}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106}\uses{hanlin:ch05-thm-5-10} \textit{Suppose $u$ belongs to $\Sclass(\lambda,\Lambda,f)$ in $\B_1$ for some $f\in C(\B_1)$. Then $u\in C^\alpha(\B_1)$, for some $\alpha\in (0,1)$ depending only on $n$, $\lambda$ and $\Lambda$. Moreover,}
-
+\begin{proof}
+\sketch After scaling to $Q_{4\sqrt n}$, normalize by
 \[
-|u(x)-u(y)| \leq c|x-y|^\alpha \left\{\sup_{\B_1} |u| + \|f\|_{L^n(\B_1)}\right\} \qquad \text{for any } x,y\in \B_{1/2},
+u_\delta=
+\frac{u}{\inf_{Q_{1/4}}u+\delta+
+\varepsilon_0^{-1}\|f\|_{L^n(Q_{4\sqrt n})}}.
 \]
+Lemma~\ref{hanlin:ch05-lem-5-12} applies to $u_\delta$. Let
+$\delta\downarrow0$ and cover $B_{1/2}$ by scaled cubes.
+\end{proof}
 
-\textit{where $c$ is a positive constant depending only on $n$, $\lambda$ and $\Lambda$.}
+\begin{corollary}\label{hanlin:ch05-cor-5-11}\dcref{Corollary 5.11}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106}\uses{hanlin:ch05-thm-5-10}
+If $u\in\Sclass(\lambda,\Lambda,f)$ in $\B_1$ with $f\in C(\B_1)$,
+then $u\in\Calpha(\B_1)$ for some $\alpha\in(0,1)$ depending only on
+$n,\lambda$, and $\Lambda$, and
+\[
+|u(x)-u(y)|\leq c|x-y|^\alpha
+\left(\sup_{\B_1}|u|+\|f\|_{L^n(\B_1)}\right)
+\qquad(x,y\in\B_{1/2}),
+\]
+where $c$ has the same parameter dependence.
 \end{corollary}
+\begin{proof}
+\sketch On each ball, apply Theorem~\ref{hanlin:ch05-thm-5-10} to the
+nonnegative functions obtained by subtracting $u$ from its supremum and its
+infimum from $u$. This contracts the oscillation up to the scaled $L^n$ norm
+of $f$; iteration on concentric balls gives the stated exponent and estimate.
+\end{proof}
 
-We use the following cube normalization.
-
-\medskip
-
-\begin{lemma}\label{hanlin:ch05-lem-5-12}\dcref{Lemma 5.12}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0109,han-lin-lecture-notes:page-0110,han-lin-lecture-notes:page-0111}\uses{hanlin:ch05-lem-5-13,hanlin:ch05-lem-5-14} \textit{Suppose $u$ belongs to $\Sclass(\lambda,\Lambda,f)$ in $Q_{4\sqrt{n}}$ for some $f\in C(Q_{4\sqrt{n}})$, with $u\geq 0$ in $Q_{4\sqrt{n}}$. Then there exist two positive constants $\varepsilon_0$ and $C$, depending only on $n$, $\lambda$ and $\Lambda$, such that, if $\inf_{Q_{1/4}} u \leq 1$ and $\|f\|_{L^n(Q_{4\sqrt{n}})} \leq \varepsilon_0$, then $\sup_{Q_{1/4}} u \leq C$.}
+\begin{lemma}\label{hanlin:ch05-lem-5-12}\dcref{Lemma 5.12}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0109,han-lin-lecture-notes:page-0110,han-lin-lecture-notes:page-0111}\uses{hanlin:ch05-lem-5-13,hanlin:ch05-lem-5-14}
+There are $\varepsilon_0,C>0$, depending only on $n,\lambda,\Lambda$,
+such that the following holds. If
+$u\in\Sclass(\lambda,\Lambda,f)$ in $Q_{4\sqrt n}$, $u\geq0$,
+$f\in C(Q_{4\sqrt n})$, and
+\[
+\inf_{Q_{1/4}}u\leq1,
+\qquad
+\|f\|_{L^n(Q_{4\sqrt n})}\leq\varepsilon_0,
+\]
+then $\sup_{Q_{1/4}}u\leq C$.
 \end{lemma}
 
-To deduce Theorem 5.10, for $u \in \Splus(\lambda,\Lambda,f)$ on $Q_{4\sqrt n}$ set, for $\delta>0$,
+\begin{proof}
+\sketch Combine Lemma~\ref{hanlin:ch05-lem-5-13} with the distribution
+decay in Lemma~\ref{hanlin:ch05-lem-5-14}. A point-selection iteration
+would otherwise produce an unbounded sequence inside the controlled cube.
+\end{proof}
 
+\begin{lemma}\label{hanlin:ch05-lem-5-13}\dcref{Lemma 5.13}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0107,han-lin-lecture-notes:page-0108}\uses{hanlin:ch05-def-5-4,hanlin:ch05-thm-5-8}
+There are $\varepsilon_0>0$, $\mu\in(0,1)$, and $M>1$, depending
+only on $n,\lambda,\Lambda$, such that if
+$u\in\Splus(\lambda,\Lambda,f)$ in $B_{2\sqrt n}$,
+$f\in C(B_{2\sqrt n})$, and
 \[
-u_{\delta}=\frac{u}{\inf_{Q_{1/4}} u+\delta+\frac{1}{\varepsilon_{0}}\|f\|_{L^{n}(Q_{4\sqrt{n}})}}.
+u\geq0,\qquad \inf_{Q_3}u\leq1,\qquad
+\|f\|_{L^n(B_{2\sqrt n})}\leq\varepsilon_0,
 \]
-
-Lemma 5.12 applied to $u_\delta$, followed by $\delta\to0$, gives
-
-\[
-\sup_{Q_{1/4}} u \leq C\left\{\inf_{Q_{1/4}} u+\|f\|_{L^{n}(Q_{4\sqrt{n}})}\right\}.
-\]
-
-The ball estimate follows by covering. Lemma 5.12 uses the next measure estimate.
-
-\medskip
-
-\begin{lemma}\label{hanlin:ch05-lem-5-13}\dcref{Lemma 5.13}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0107,han-lin-lecture-notes:page-0108}\uses{hanlin:ch05-def-5-4,hanlin:ch05-thm-5-8} \emph{Suppose $u$ belongs to $\Splus(\lambda,\Lambda,f)$ in $B_{2\sqrt{n}}$ for some $f \in C(B_{2\sqrt{n}})$.
-Then there exist constants $\varepsilon_{0} > 0$, $\mu \in (0,1)$ and $M > 1$, depending only on $n$, $\lambda$
-and $\Lambda$, such that if}
-
-\[
-\begin{array}{ll}
-(1) & u \geq 0 \text{ in } B_{2\sqrt{n}},\\
-& \inf_{Q_{3}} u \leq 1,\\
-& \|f\|_{L^{n}(B_{2\sqrt{n}})} \leq \varepsilon_{0},
-\end{array}
-\]
-
-\emph{then}
-
-\[
-|\{u \leq M\} \cap Q_{1}| > \mu.
-\]
+then $|\{u\leq M\}\cap Q_1|>\mu$.
 \end{lemma}
 
-\medskip
+\begin{proof}
+\sketch Add a concave barrier and apply
+Theorem~\ref{hanlin:ch05-thm-5-8} to its convex envelope. The contact set
+is contained in a fixed sublevel set of $u$.
+\end{proof}
 
-
-\noindent\textbf{Proof.} \sketch Choose a barrier $g$ concave outside $Q_1$ and set $w=u+g$.
-
-Since $B_{1/4}\subset B_{1/2}\subset Q_1\subset Q_3\subset B_{2\sqrt n}$, define
-
+\begin{lemma}\label{hanlin:ch05-lem-5-14}\dcref{Lemma 5.14}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0108,han-lin-lecture-notes:page-0109}\uses{hanlin:ch05-lem-5-9,hanlin:ch05-lem-5-13}
+There are $\varepsilon_0,\varepsilon,C>0$, depending only on
+$n,\lambda,\Lambda$, such that if
+$u\in\Splus(\lambda,\Lambda,f)$ in $B_{2\sqrt n}$,
+$f\in C(B_{2\sqrt n})$, and
 \[
-g(x)=-M\left(1-\frac{|x|^{2}}{4n}\right)^{\beta},
+u\geq0,\qquad \inf_{Q_3}u\leq1,\qquad
+\|f\|_{L^n(B_{2\sqrt n})}\leq\varepsilon_0,
 \]
-
-with $\beta$ large and choose $M$ so that
-
+then, for every $t>0$,
 \[
-(2)\qquad g=0 \text{ on } \partial B_{2\sqrt{n}} \text{ and } g \leq -2 \text{ in } Q_{3}.
-\]
-
-For sufficiently large $\beta$,
-
-\[
-(3)\qquad w \in \Splus(\lambda,\Lambda,f) \quad \text{in } B_{2\sqrt{n}} \setminus Q_{1}.
-\]
-
-If $w-\varphi$ has a local minimum at $x_0$, then $u-(\varphi-g)$ does too, and
-
-\[
-\Mminus(\lambda,\Lambda,D^{2}\varphi(x_{0})-D^{2}g(x_{0})) \leq f(x_{0}),
-\]
-
-or
-
-\[
-\Mminus(\lambda,\Lambda,D^{2}\varphi(x_{0}))+\Mminus(\lambda,\Lambda,-D^{2}g(x_{0})) \leq f(x_{0}),
-\]
-
-By Pucci subadditivity, choose $\beta$ so that
-
-\[
-\Mminus(\lambda,\Lambda,-D^{2}g(x_{0})) \geq 0 \qquad \text{for any } x_{0} \in B_{2\sqrt{n}} \setminus B_{1/4}.
-\]
-
-
-Indeed,
-\[
-D_{ij}g(x)=\frac{M}{2n}\beta\Bigl(1-\frac{|x|^2}{4n}\Bigr)^{\beta-1}\delta_{ij}
--\frac{M}{(2n)^2}\beta(\beta-1)\Bigl(1-\frac{|x|^2}{4n}\Bigr)^{\beta-2}x_i x_j.
-\]
-At $x=(|x|,0,\ldots,0)$, the eigenvalues of $-D^2g$ are
-\[
-\frac{M}{2n}\beta\Bigl(1-\frac{|x|^2}{4n}\Bigr)^{\beta-2}
-\Bigl(\frac{2\beta-1}{4n}|x|^2-1\Bigr),
-\]
-with multiplicity one, and
-\[
--\frac{M}{2n}\beta\Bigl(1-\frac{|x|^2}{4n}\Bigr)^{\beta-1},
-\]
-with multiplicity $n-1$. For $|x|\ge1/4$, the first is positive and the others negative for large $\beta$; writing them as $e^+$ and $e^-$ gives
-\[
-\M^-(\lambda,\Lambda,-D^2g(x))=\lambda e^+(x)+(n-1)\Lambda e^-(x)
-\]
-\[
-=\frac{M}{2n}\beta\Bigl(1-\frac{|x|^2}{4n}\Bigr)^{\beta-2}
-\left\{\lambda\left(\frac{2\beta-1}{4n}|x|^2-1\right)-(n-1)\Lambda\left(1-\frac{|x|^2}{4n}\right)\right\}\geq 0,
-\]
-for $\beta=\beta(n,\lambda,\Lambda)$. Thus
-\[
- w\in\Splus(\lambda,\Lambda,f+\eta) \quad \text{in } B_{2\sqrt n}
-\]
-for some $\eta\in C_0^\infty(Q_1)$ and $0\leq \eta\leq C(n,\lambda,\Lambda)$.
-Apply Theorem 5.8 to $w$; (1)--(2) imply $\inf_{Q_3}w\le-1$ and $w\ge0$ on the boundary, hence
-\[
-1\leq C\left(\int_{B_{2\sqrt n}\cap\{w=\Gamma_w\}} (|f|+\eta)^n\right)^{\frac1n}
-\]
-\[
-\leq C\|f\|_{L^n(B_{2\sqrt n})}+C|\{w=\Gamma_w\}\cap Q_1|^{\frac1n}.
-\]
-For $\varepsilon_0$ small,
-\[
-\frac12\leq C|\{w=\Gamma_w\}\cap Q_1|^{\frac1n}\leq C|\{u\leq M\}\cap Q_1|^{\frac1n},
-\]
-because contact points satisfy $w\le0$ and hence $u\le-g\le M$.
-
-Next, we prove the power decay of distribution functions.
-
-\begin{lemma}\label{hanlin:ch05-lem-5-14}\dcref{Lemma 5.14}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0108,han-lin-lecture-notes:page-0109}\uses{hanlin:ch05-lem-5-9,hanlin:ch05-lem-5-13} \textit{Suppose $u$ belongs to $\Splus(\lambda,\Lambda,f)$ in $B_{2\sqrt n}$ for some $f\in C(B_{2\sqrt n})$.
-Then there exist positive constants $\varepsilon_0$, $\varepsilon$ and $C$, depending only on $n,\lambda$ and $\Lambda$, such
-that if}
-\[
-\tag{1}
-\begin{aligned}
-&u\geq 0 \text{ in } B_{2\sqrt n},\\
-&\inf_{Q_3} u\leq 1,\\
-&\|f\|_{L^n(B_{2\sqrt n})}\leq \varepsilon_0,
-\end{aligned}
-\]
-\textit{then}
-\[
-|\{u\geq t\}\cap Q_1|\leq Ct^{-\varepsilon}\text{ for any } t>0.
+|\{u\geq t\}\cap Q_1|\leq Ct^{-\varepsilon}.
 \]
 \end{lemma}
 
+\begin{proof}
+\sketch Lemmas~\ref{hanlin:ch05-lem-5-9} and
+\ref{hanlin:ch05-lem-5-13} give geometric decay of dyadic superlevel sets.
+Reparameterizing the levels yields the power estimate.
+\end{proof}
 
-\textsc{Proof.} \sketch Under (1), prove
-\begin{equation}\tag{2}
-\left|\{u>M^k\}\cap Q_1\right|\leq (1-\mu)^k \text{ for } k=1,2,\ldots,
-\end{equation}
-where $M$ and $\mu$ are as in Lemma 5.13.
 
-The case $k=1$ is Lemma 5.13. Assuming the claim for $k-1$, set
+
+For bounded $\Omega$, continuous $u$, and $M>0$, let
+$\Gm{M}{u,\Omega}$ be the points admitting a touching paraboloid from
+below of opening $M$, and let $\Gp{M}{u,\Omega}$ be defined analogously
+from above. Set
 \[
-A=\{u>M^k\}\cap Q_1,\qquad B=\{u>M^{k-1}\}\cap Q_1.
-\]
-Lemma 5.9 yields
-\begin{equation}\tag{3}
-|A|\leq (1-\mu)|B|.
-\end{equation}
-Here $A\subset B\subset Q_1$ and $|A|\le1-\mu$. If $Q=Q_r(x_0)\subset Q_1$ satisfies
-\begin{equation}\tag{4}
-|A\cap Q|>(1-\mu)|Q|,
-\end{equation}
-then $\tilde Q=Q_{3r}(x_0)$ lies in $B$. Otherwise choose $\tilde x\in\tilde Q$ with $u(\tilde x)\le M^{k-1}$ and rescale by
-\[
-x=x_0+ry \qquad \text{for any } y\in Q_1 \text{ and } x\in Q=Q_r(x_0),
-\]
-and the function
-\[
-\tilde{u}(y)=\frac{1}{M^{k-1}}u(x).
-\]
-Then $\tilde u\ge0$, $\inf_{Q_3}\tilde u\le1$, and $\tilde u\in S^+(\lambda,\Lambda,\tilde f)$ with
-\[
-\tilde{f}(y)=\frac{r^2}{M^{k-1}}f(x) \qquad \text{for any } y\in B_{2\sqrt{n}},
-\]
-and hence
-\[
-\|\tilde{f}\|_{L^n(B_{2\sqrt{n}})}
-\leq \frac{r}{M^{k-1}}\|f\|_{L^n(B_{2\sqrt{n}})}
-\leq \|f\|_{L^n(B_{2\sqrt{n}})}\leq \varepsilon_0.
-\]
-Lemma 5.13 gives
-\[
-\mu<\left|\{\tilde{u}(y)\leq M\}\cap Q_1\right|=r^{-n}\left|\{u(x)\leq M^k\}\cap Q\right|.
-\]
-Thus $|Q\cap A^c|>\mu|Q|$, contradicting (4), and (3) follows.
-\hfill$\square$
-
-\textsc{Proof of Lemma 5.12.} \sketch Choose $\theta>1$ and $M_0$ depending only on $n,\lambda,\Lambda$. If $u(x_0)=P>M_0$ at $x_0\in B_{1/4}$, construct $x_k\in B_{1/2}$ with
-\[
-u(x_k)\geq \theta^k P \qquad \text{for } k=0,1,2,\ldots.
-\]
-The resulting unbounded sequence contradicts boundedness, so $\sup_{B_{1/4}}u\le M_0$.
-
-Choose $r$ from the distribution decay so that $\{u>P/2\}$ occupies at most half of $Q_r(x_0)$, and seek $x_1\in Q_{4\sqrt n r}(x_0)$ with $u(x_1)\ge\theta P$.
-
-Note $\inf_{Q_3}u\leq \inf_{Q_{1/4}}u\leq 1$. Hence Lemma 5.14 implies
-\[
-|\{u>\tfrac{P}{2}\}\cap Q_1|\leq C\left(\tfrac{P}{2}\right)^{-\varepsilon}.
-\]
-
-Choose $r$ with $r^{n/2}\ge C(P/2)^{-\varepsilon}$ and $r\le1/4$, so $Q_r(x_0)\subset Q_1$ and
-
-\[
-(1)\qquad \frac{1}{|Q_r(x_0)|}|\{u > P/2\}\cap Q_r(x_0)| \le \frac{1}{2}.
-\]
-
-Take $\theta>1$ close to $1$. If $u\le\theta P$ on $Q_{4\sqrt n r}(x_0)$, rescale by
-
-\[
-x = x_0 + ry \qquad \text{for any } y \in Q_{4\sqrt{n}} \text{ and } x \in Q_{4\sqrt{n}r}(x_0),
-\]
-
-and the function
-
-\[
-\tilde u(y) = \frac{\theta P - u(x)}{(\theta - 1)P}.
-\]
-
-Then $\tilde u\ge0$, $\tilde u(0)=1$, and $\tilde u\in\mathcal S^+(\lambda,\Lambda,\tilde f)$ with
-
-\[
-\tilde f(y) = -\frac{r^2}{(\theta-1)P}f(x) \qquad \text{for any } y \in B_{2\sqrt{n}},
-\]
-
-and hence
-
-\[
-\|\tilde f\|_{L^n(B_{2\sqrt{n}})} \le \frac{r}{(\theta-1)P}\|f\|_{L^n(B_{2\sqrt{n}r}(x_0))} \le \varepsilon_0,
-\]
-
-provided $r\le(\theta-1)P$. Since $u\le P/2$ is equivalent to $\tilde u\ge(\theta-1/2)/(\theta-1)$, Lemma 5.14 gives
-
-\[
-\frac{1}{|Q_r(x_0)|}|\{u \le P/2\}\cap Q_r(x_0)|
-= |\{\tilde u \ge \tfrac{\theta - 1/2}{\theta - 1}\}\cap Q_1| \le C\left(\frac{\theta - 1/2}{\theta - 1}\right)^{-\varepsilon} < \frac{1}{2},
-\]
-
-for $\theta$ close enough to $1$, contradicting (1). Hence
-
-\[
-u(x_0)=P \qquad \text{for an } x_0 \in B_{1/4},
-\]
-
-then
-
-\[
-u(x_1) \ge \theta P \qquad \text{for an } x_1 \in Q_{4\sqrt{n}r}(x_0) \subset B_{2nr}(x_0),
-\]
-
-provided
-
-\[
-C(n,\lambda,\Lambda)P^{- \varepsilon/n} \le r \le (\theta - 1)P.
-\]
-
-with constants depending only on $n,\lambda,\Lambda$. Choose $P$
-such that $P \ge \left(\frac{C}{\theta-1}\right)^{\frac{n}{n+\varepsilon}}$ and then take $r = CP^{-\varepsilon/n}$.
-Iteration gives a sequence $\{x_k\}$ with
-$k = 1,2,\cdots,$
-
-\[
-u(x_k) \ge \theta^k P \qquad \text{for an } x_k \in B_{2nr_k}(x_{k-1}),
-\]
-
-where
-
-\[
-r_k = C(\theta^{k-1}P)^{-\varepsilon/n} = C\theta^{-(k-1)\varepsilon/n}P^{-\varepsilon/n}.
-\]
-
-
-The condition $\sum2nr_k<1/4$ is ensured by choosing $M_0$ so that
-that
-\[
-M_0^{\varepsilon/n}\ge 8nC\sum_{k=1}^{\infty}\theta^{-(k-1)\varepsilon/n}
-\quad\text{and}\quad
-M_0\ge \left(\frac{C}{\theta-1}\right)^{\!n/(n+\varepsilon)},
-\]
-and taking $P>M_0$.
-
-For the $W^{2,p}$ argument, define the following paraboloid contact sets for bounded $\Omega$ and continuous $u$.
-Let $\Omega$ be a bounded domain and $u$ be a continuous function in $\Omega$. We define
-for $M>0$
-\[
-\Gm{M}{u,\Omega}=\{x_0\in\Omega;\ \text{there exists an affine function }L\text{ such that}
-\]
-\[
-L(x)-\frac{M}{2}|x-x_0|^2\le u(x)\text{ for }x\in\Omega\text{ with equality at }x_0\},
-\]
-\[
-\Gp{M}{u,\Omega}=\{x_0\in\Omega;\ \text{there exists an affine function }L\text{ such that}
-\]
-\[
-L(x)+\frac{M}{2}|x-x_0|^2\ge u(x)\text{ for }x\in\Omega\text{ with equality at }x_0\},
-\]
-\[
-\G{M}{u,\Omega}=\Gp{M}{u,\Omega}\cap\Gm{M}{u,\Omega}.
-\]
-
-We also define
-\[
+\G{M}{u,\Omega}=\Gm{M}{u,\Omega}\cap\Gp{M}{u,\Omega},
+\qquad
 \Am{M}{u,\Omega}=\Omega\setminus\Gm{M}{u,\Omega},
-\qquad
-\Ap{M}{u,\Omega}=\Omega\setminus\Gp{M}{u,\Omega},
-\qquad
-\A{M}{u,\Omega}=\Omega\setminus\G{M}{u,\Omega}.
 \]
+with analogous notation $\Ap{M}{u,\Omega}$ and
+$\A{M}{u,\Omega}=\Omega\setminus\G{M}{u,\Omega}$.
 
-Thus $\Gm{M}{}$ and $\Gp{M}{}$ record lower and upper paraboloid contacts; decay of $|\A{M}{u,\Omega}|$ controls $D^2u$.
-
-\begin{lemma}\label{hanlin:ch05-lem-5-15}\dcref{Lemma 5.15}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0111,han-lin-lecture-notes:page-0112,han-lin-lecture-notes:page-0113,han-lin-lecture-notes:page-0114}\uses{hanlin:ch05-lem-5-9,hanlin:ch05-lem-5-16} \textit{Suppose that $\Omega$ is a bounded domain with $B_{6\sqrt{n}}\subset\Omega$ and that $u$
-belongs to $S^+(\lambda,\Lambda,f)$ in $B_{6\sqrt{n}}$ for some $f\in C(B_{6\sqrt{n}})$. Then there exist positive
-constants $\delta_0$, $\mu$ and $C$, depending only on $n$, $\lambda$ and $\Lambda$, such that, if $|u|\le 1$ in $\Omega$ and
-$\|f\|_{L^n(B_{6\sqrt{n}})}\le \delta_0$, there holds}
+\begin{lemma}\label{hanlin:ch05-lem-5-15}\dcref{Lemma 5.15}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0111,han-lin-lecture-notes:page-0112,han-lin-lecture-notes:page-0113,han-lin-lecture-notes:page-0114}\uses{hanlin:ch05-lem-5-9,hanlin:ch05-lem-5-16}
+Let $B_{6\sqrt n}\subset\Omega$ with $\Omega$ bounded. There are
+$\delta_0,\mu,C>0$, depending only on $n,\lambda,\Lambda$, such that if
+$u\in S^+(\lambda,\Lambda,f)$ in $B_{6\sqrt n}$,
+$f\in C(B_{6\sqrt n})$, $|u|\leq1$ in $\Omega$, and
+$\|f\|_{L^n(B_{6\sqrt n})}\leq\delta_0$, then
 \[
-|\A{t}{u,\Omega}\cap \Qone|\le Ct^{-\mu}\quad\text{for any }t>0.
+|\Am{t}{u,\Omega}\cap Q_1|\leq Ct^{-\mu}\qquad(t>0).
 \]
-
-\textit{If, in addition, $u\in S(\lambda,\Lambda,f)$ in $B_{6\sqrt{n}}$, there holds}
+If also $u\in S(\lambda,\Lambda,f)$ in $B_{6\sqrt n}$, then
 \[
-|\A{t}{u,\Omega}\cap \Qone|\le Ct^{-\mu}\quad\text{for any }t>0.
+|\A{t}{u,\Omega}\cap Q_1|\leq Ct^{-\mu}\qquad(t>0).
 \]
 \end{lemma}
 
-In the proof of Lemma 5.15, we need the maximal functions of local integrable
-functions. For any $g\in L^1_{\mathrm{loc}}(\mathbb{R}^n)$, we define
+\begin{proof}
+\sketch Lemma~\ref{hanlin:ch05-lem-5-16} supplies a uniform contact-set
+gain. Iterate the complementary bad-set estimate over dyadic cubes and use
+the same argument for $-u$ to obtain the two-sided conclusion.
+\end{proof}
+
+\begin{lemma}\label{hanlin:ch05-lem-5-16}\dcref{Lemma 5.16}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0112}\uses{hanlin:ch05-lem-5-13,hanlin:ch05-thm-5-8}
+Let $B_{6\sqrt n}\subset\Omega$ with $\Omega$ bounded, and suppose
+$u\in S^+(\lambda,\Lambda,f)$ in $B_{6\sqrt n}$ with
+$f\in C(B_{6\sqrt n})$. There are $\sigma\in(0,1)$, $\delta_0>0$,
+and $M>1$, depending only on $n,\lambda,\Lambda$, such that
 \[
-m(g)(x)=\sup_{r>0}\frac{1}{|Q_r(x)|}\int_{Q_r(x)}|g|.
+\|f\|_{L^n(B_{6\sqrt n})}\leq\delta_0,\qquad
+\Gm{1}{u,\Omega}\cap Q_3\neq\emptyset
 \]
-
-The maximal operator $m$ is of weak type $(1,1)$ and of strong type $(p,p)$ for $1<p\leq$
-$\infty$, i.e.,
-
-\[
-|\{x\in\mathbb{R}^n;m(g)(x)\geq t\}|\leq \frac{c_1(n)}{t}\|g\|_{L^1(\mathbb{R}^n)} \qquad \text{for any } t>0
-\]
-\[
-\|m(g)\|_{L^p(\mathbb{R}^n)}\leq c_2(n,p)\|g\|_{L^p(\mathbb{R}^n)} \qquad \text{for } 1<p\leq \infty.
-\]
-
-Lemma 5.16 supplies the measure-growth step for Lemma 5.15.
-
-\begin{lemma}\label{hanlin:ch05-lem-5-16}\dcref{Lemma 5.16}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0112}\uses{hanlin:ch05-lem-5-13,hanlin:ch05-thm-5-8} \textit{Suppose that $\Omega$ is a bounded domain with $B_{6\sqrt{n}}\subset \Omega$ and that $u$ belongs to $\mathcal{S}^+(\lambda,\Lambda,f)$ in $B_{6\sqrt{n}}$ for some $f\in C(B_{6\sqrt{n}})$. Then there exist constants $0<\sigma<1$, $\delta_0>0$ and $M>1$, depending only on $n$, $\lambda$ and $\Lambda$, such that, if $\|f\|_{L^n(B_{6\sqrt{n}})}\leq \delta_0$ and $G_1^-(u,\Omega)\cap Q_3
-\neq \phi$, then}
-
-\[
-|G_M^-(u,\Omega)\cap Q_1|\geq 1-\sigma.
-\]
+implies $|\Gm{M}{u,\Omega}\cap Q_1|\geq1-\sigma$.
 \end{lemma}
 
-\textsc{Proof.} \sketch Since $G_1^-(u,\Omega)\cap Q_3
-\neq \phi$, there is an affine function $L_1$ such that
-\[
-v\geq P_1 \qquad \text{in } \Omega \text{ with equality at some point in } Q_3,
-\]
-where
-\[
-v(x)=\frac{u(x)}{2n}+L_1(x) \qquad \text{and} \qquad P_1(x)=1-\frac{|x|^2}{4n}.
-\]
-Then $v\ge0$ on $B_{2\sqrt n}$ and $\inf_{Q_3}v\le1$. Using the barrier from Lemma 5.13 for $w=v+g$ gives
-\[
-|\{w=\Gamma_w\}\cap Q_1|\geq 1-\sigma,
-\]
-for some $\sigma\in(0,1)$ if $\delta_0$ is small. For a suitable $M>1$,
-\[
-\{w=\Gamma_w\}\cap Q_1\subset G_M^-(u,\Omega)\cap Q_1.
-\]
-Let $x_0\in \{w=\Gamma_w\}\cap Q_1$ and take an affine function $L_2$ with $L_2<0$ on $\partial B_{2\sqrt{n}}$ and
-\[
-L_2\leq \Gamma_w\leq v+g \qquad \text{in } B_{2\sqrt{n}} \text{ with equality at } x_0.
-\]
-It follows
-\[
-(1)\qquad P_2\leq L_2-g\leq v \qquad \text{in } B_{2\sqrt{n}} \text{ with equality at } x_0,
-\]
-for a concave paraboloid $P_2$ of opening $M_0$, a positive constant depending only on
-$n$, $\lambda$ and $\Lambda$.
-
-Outside $B_{2\sqrt n}$, note that $P_2<-g=0=P_1$ on
-$\partial B_{2\sqrt{n}}$ and that $P_2(x_0)=v(x_0)\geq P_1(x_0)$ with $x_0\in Q_1\subset B_{2\sqrt{n}}$. If we take
-$M_0>1/(2n)$, then $\{P_2-P_1\geq 0\}$ is convex. We conclude $P_2-P_1<0$ in $\mathbb{R}^n\setminus B_{2\sqrt{n}}$.
-Hence, we have $P_2\leq P_1\leq v$ in $\Omega\setminus B_{2\sqrt{n}}$. By (1) and the definition of $v$, we get
-\[
-x_0\in G_{2nM_0}(u,\Omega)\cap Q_1 \text{ with } 2nM_0>1.
-\]
-\hfill$\square$
-
-\textsc{Proof of Lemma 5.15.} \sketch Assume $B_{6\sqrt n}\subset\Omega$, $u\in\mathcal S^+(\lambda,\Lambda,f)$, and
-\[
-(1)\qquad |u|_{L^\infty(\Omega)}\leq 1,\qquad \|f\|_{L^n(B_{6\sqrt{n}})}\leq \delta_0.
-\]
-We prove that there exist constants $M>1$ and $0<\gamma<1$, depending only on $n$, $\lambda$
-and $\Lambda$, such that
-\[
-|A_{M^k}^-(u,\Omega)\cap Q_1|\leq \gamma^k \qquad \text{for any } k=0,1,\cdots .
-\]
+\begin{proof}
+\sketch Combine the barrier construction of
+Lemma~\ref{hanlin:ch05-lem-5-13} with
+Theorem~\ref{hanlin:ch05-thm-5-8} to enlarge the lower contact set.
+\end{proof}
 
 
-\noindent\textit{Step 1.} There exist constants $M>1$ and $0<\sigma<1$ such that
-\begin{equation}
-\tag{2}
-\left|G_M^-(u,\Omega)\cap Q_1\right|\ge 1-\sigma.
-\end{equation}
-The bound $\|u\|_{L^\infty(\Omega)}\le1$ implies
+\begin{remark}\label{hanlin:ch05-rem-5-17}\dcref{Remark 5.17}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0114}\uses{hanlin:ch05-lem-5-15}
+For $u\in S(\lambda,\Lambda,f)$, polynomial decay of
 \[
-G_c^-(u,\Omega)\cap Q_3
-\neq \varnothing,
+\mu(t)=|A_t(u,\Omega)\cap Q_1|
 \]
-for $c=c(n)$. Apply Lemma 5.16 to $u/c$ and adjust $\delta_0,M,\sigma$.
-
-
-\noindent\textit{Step 2.} Extend $f$ by zero outside $B_{6\sqrt n}$ and, for $k\ge0$, set
-\[
-A=A_{M^{-(k+1)}}^-(u,\Omega)\cap Q_1,
-\]
-\[
-B=\left(A_{M^{-k}}^-(u,\Omega)\cap Q_1\right)\cup\{x\in Q_1;m(f^n)(x)\ge (c_1M^k)^n\},
-\]
-for some $c_1>0$ to be determined. Then we claim
-\[
-|A|\le \sigma|B|,
-\]
-with the same $M,\sigma$; here $m$ is the maximal operator.
-
-Lemma 5.9 applies: $|A|\le\sigma$ by Step 1. If $Q=Q_r(x_0)\subset Q_1$ satisfies
-\begin{equation}
-\tag{3}
-\left|A_{M^{-(k+1)}}^-(u,\Omega)\cap Q\right|=\left|A\cap Q\right|>\sigma|Q|,
-\end{equation}
-then $\widetilde Q=Q_{3r}(x_0)$ lies in $B$. Otherwise choose $\widetilde x$ with
-\[
-\widetilde x\in G_{M^{-k}}^-(u,\Omega)\cap \widetilde Q,
-\]
-and
-\[
-\sup_{r>0}\frac{1}{|Q_r(\widetilde x)|}\int_{Q_r(\widetilde x)}|f|^n\le (c_1M^k)^n.
-\]
-Consider the transformation
-\[
-x=x_0+ry\qquad\text{for any }y\in Q_1\text{ and }x\in Q=Q_r(x_0),
-\]
-and the function
-\[
-\widetilde u(y)=\frac{1}{r^2M^k}u(x).
-\]
-Then $B_{6\sqrt n}\subset\widetilde\Omega$ and $\widetilde u\in\mathcal S^+(\lambda,\Lambda,\widetilde f)$ with
-\[
-\widetilde f(y)=\frac{1}{M^k}f(x)\qquad\text{for any }y\in B_{6\sqrt n}.
-\]
-By the choice of $\widetilde x$, we have
-\[
-G_1^-(\widetilde u,\widetilde\Omega)\cap Q_3
-\neq \varnothing.
-\]
-Since $B_{6\sqrt n r}(x_0)\subset Q_{15\sqrt n r}(\widetilde x)$, there holds
-\[
-\|\widetilde f\|_{L^n(B_{6\sqrt n})}\le \frac{1}{rM^k}\|f\|_{L^n(Q_{15\sqrt n r}(\widetilde x))}\le c(n)c_1\le \delta_0,
-\]
-if we take $c_1$ small enough, depending only on $n$, $\lambda$ and $\Lambda$.
-
-Thus Lemma 5.16 applies to $\tilde u$ on $\widetilde\Omega$ and gives
-\[
-\lvert G_M^-(\tilde u,\tilde\Omega)\cap Q_1\rvert \geq 1-\sigma,
-\]
-\[
-\text{or}
-\]
-\[
-\lvert G_{M^{k+1}}^-(u,\Omega)\cap Q\rvert > (1-\sigma)\lvert Q\rvert.
-\]
-
-This contradicts (3), proving the claim and allowing Lemma 5.9.
-
-\emph{Step 3.} Define, for $k\ge0$,
-\[
-\alpha_k = \lvert A_{M^k}(u,\Omega)\cap Q_1\rvert,
-\]
-\[
-\beta_k = \lvert\{x\in Q_1 : m(f^n)(x)\geq (c_1M^k)^n\}\rvert.
-\]
-Step 2 gives $\alpha_{k+1}\le\sigma(\alpha_k+\beta_k)$ and hence
-\[
-\alpha_k \leq \sigma^k + \sum_{i=0}^{k-1}\sigma^{k-i}\beta_i.
-\]
-
-Since $\lVert f^n\rVert_{L^1}\leq \delta_0^n$ and the maximal operator is of the weak type $(1,1)$, we conclude
-\[
-\beta_k \leq c(n)\delta_0^n(c_1M^k)^{-n} = CM^{-nk},
-\]
-where $C$ is a positive constant depending only on $n$, $\lambda$ and $\Lambda$. This implies
-\[
-\sum_{i=0}^{k-1}\sigma^{k-i}\beta_i \leq C\sum_{i=0}^{k-1}\sigma^{k-i}M^{-ni}\leq Ck\gamma_0^k,
-\]
-with $\gamma_0 = \max\{\sigma,M^{-n}\}<1$. Therefore, we obtain for $k$ large
-\[
-\alpha_k \leq \sigma^k + Ck\gamma_0^k \leq (1+Ck)\gamma_0^k \leq \gamma^k,
-\]
-for some constant $\gamma\in(0,1)$, depending only on $n$, $\lambda$ and $\Lambda$. This finishes the
-proof.
-
-\[
-\square
-\]
-
-\begin{remark}\label{hanlin:ch05-rem-5-17}\dcref{Remark 5.17}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0114}\uses{hanlin:ch05-lem-5-15} Polynomial decay of
-\[
-\mu(t) = \lvert A_t(u,\Omega)\cap Q_1\rvert
-\]
-for $u\in\mathcal S(\lambda,\Lambda,f)$ implies $D^2u\in L^p(Q_1)$ for small $p>0$ depending only on $n,\lambda,\Lambda$; large $p$ requires faster decay.
+implies $D^2u\in L^p(Q_1)$ for sufficiently small $p>0$, depending only
+on $n,\lambda,\Lambda$. Larger exponents require faster decay.
 \end{remark}
 
-\begin{center}
-\textbf{5.3. Schauder Estimates}
-\end{center}
+\section{Schauder Estimates}
 
-Assume in this section that $a_{ij}\in C(B_1)$ satisfies
+Throughout this section, $a_{ij},f\in C(B_1)$ and
 \[
-\lambda |\xi|^2 \leq a_{ij}(x)\xi_i\xi_j \leq \Lambda |\xi|^2 \qquad \text{for any }x\in B_1\text{ and any }\xi\in \mathbb R^n,
+\lambda|\xi|^2\leq a_{ij}(x)\xi_i\xi_j\leq\Lambda|\xi|^2.
 \]
-for positive $\lambda,\Lambda$, and that $f\in C(B_1)$.
 
-\begin{lemma}\label{hanlin:ch05-lem-5-18}\dcref{Lemma 5.18}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0115}\uses{hanlin:ch05-thm-5-8,hanlin:ch05-cor-5-11,hanlin:lemma-holder-boundary} Suppose $u \in C(B_1)$ is a viscosity solution of
+\begin{lemma}\label{hanlin:ch05-lem-5-18}\dcref{Lemma 5.18}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0115}\uses{hanlin:ch05-thm-5-8,hanlin:ch05-cor-5-11,hanlin:lemma-holder-boundary}
+Let $u\in C(B_1)$ solve
 \[
-a_{ij}D_{ij}u=f \qquad \text{in } B_1,
+a_{ij}D_{ij}u=f\quad\text{in }B_1,
 \]
-with $|u| \leq 1$ in $B_1$. Assume for some $0<\varepsilon<1/16$,
+in the viscosity sense, with $|u|\leq1$. If $0<\varepsilon<1/16$ and
 \[
-\|a_{ij}-a_{ij}(0)\|_{L^n(B_{3/4})}\leq \varepsilon.
+\|a_{ij}-a_{ij}(0)\|_{L^n(B_{3/4})}\leq\varepsilon,
 \]
-Then there exists a function $h \in C(\overline{B_{3/4}})$, with $a_{ij}(0)D_{ij}h=0$ in $B_{3/4}$ and $|h|\leq 1$ in $B_{3/4}$, such that
+then some $h\in C(\overline{B_{3/4}})$ satisfies
+\[
+a_{ij}(0)D_{ij}h=0,\qquad |h|\leq1\quad\text{in }B_{3/4},
+\]
+and
 \[
 \|u-h\|_{L^\infty(B_{1/2})}\leq C\{\varepsilon^\gamma+\|f\|_{L^n(B_1)}\},
 \]
-where $C$ and $\gamma\in(0,1)$ are constants depending only on $n$, $\lambda$ and $\Lambda$.
+where $C>0$ and $\gamma\in(0,1)$ depend only on $n,\lambda,\Lambda$.
 \end{lemma}
 
-Proof. \sketch Solve for $h\in C(\overline{B_{3/4}})\cap C^\infty(B_{3/4})$ with
-\[
-a_{ij}(0)D_{ij}h=0 \qquad \text{in } B_{3/4}
-\]
-\[
-h=u \qquad \text{on } \partial B_{3/4}.
-\]
-The maximum principle gives $|h|\le1$. Since $u\in S(\lambda,\Lambda,f)$, Corollary 5.11 gives
-\[
-\|u\|_{C^\alpha(\overline{B_{3/4}})}\leq C\{1+\|f\|_{L^n(B_1)}\},
-\]
-and Lemma 1.36 gives
-\[
-\|h\|_{C^{\alpha/2}(\overline{B_{3/4}})}\leq C\|u\|_{C^\alpha(\overline{B_{3/4}})}\leq C\{1+\|f\|_{L^n(B_1)}\}.
-\]
-Since $u-h=0$ on $\partial B_{3/4}$, for $0<\delta<1/4$,
-\[
-\tag{1}
-\|u-h\|_{L^\infty(\partial B_{3/4-\delta})}\leq C\delta^{\alpha/2}\{1+\|f\|_{L^n(B_1)}\}.
-\]
-Interior estimates give
-\[
-\tag{2}
-\|D^2 h\|_{L^\infty(B_{3/4-\delta})}\leq C\delta^{\alpha/2-2}\{1+\|f\|_{L^n(B_1)}\}.
-\]
-Indeed, applying the interior $C^2$ estimate to $h-h(x_1)$ on $B_\delta(x_0)$ gives
-\[
-|D^2 h(x_0)|\leq C\delta^{-2}\sup_{B_\delta(x_0)}|h-h(x_1)|\leq C\delta^{-2}\delta^{\alpha/2}\{1+\|f\|_{L^n(B_1)}\}.
-\]
-Moreover, $u-h$ solves
-\[
-a_{ij}D_{ij}(u-h)=f-(a_{ij}-a_{ij}(0))D_{ij}h\equiv F \qquad \text{in } B_{3/4}.
-\]
-Theorem 5.8 and (1)--(2) imply
-\begin{align*}
-\|u-h\|_{L^\infty(B_{3/4-\delta})}
-&\leq \|u-h\|_{L^\infty(\partial B_{3/4-\delta})}+C\|F\|_{L^n(B_{3/4-\delta})}\\
-&\leq \|u-h\|_{L^\infty(\partial B_{3/4-\delta})}+C\|D^2 h\|_{L^\infty(B_{3/4-\delta})}\|a_{ij}-a_{ij}(0)\|_{L^n(B_{3/4})}+C\|f\|_{L^n(B_1)}\\
-&\leq C(\delta^{\alpha/2}+\delta^{\alpha/2-2}\varepsilon)\{1+\|f\|_{L^n(B_1)}\}+C\|f\|_{L^n(B_1)}.
-\end{align*}
-Take $\delta=\varepsilon^{1/2}$ and $\gamma=\alpha/4$. $\square$
+\begin{proof}
+\sketch Solve the frozen-coefficient Dirichlet problem with boundary data
+$u$. Corollary~\ref{hanlin:ch05-cor-5-11} and
+Lemma~\ref{hanlin:lemma-holder-boundary} control the boundary discrepancy on a
+slightly smaller ball, while interior estimates control $D^2h$. Apply
+Theorem~\ref{hanlin:ch05-thm-5-8} to $u-h$, whose right-hand side is
+$f-(a_{ij}-a_{ij}(0))D_{ij}h$, and optimize the boundary-layer width.
+\end{proof}
 
-Define pointwise $L^n$ Hölder continuity as follows.
 
-\begin{definition}\label{hanlin:ch05-def-5-19}\dcref{Definition 5.19}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0116} A function $g$ is Hölder continuous at $0$ with exponent $\alpha$ in
-$L^n$-sense if
+\begin{definition}\label{hanlin:ch05-def-5-19}\dcref{Definition 5.19}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0116}
+A function $g$ is $L^n$-Hölder continuous at $0$ with exponent $\alpha$ if
 \[
-[g]_{C^\alpha_{L^n}}(0)\equiv \sup_{0<r<1}\frac{1}{r^\alpha}\left(\frac{1}{|B_r|}\int_{B_r}|g-g(0)|^n\right)^{1/n}<\infty.
+[g]_{C^\alpha_{L^n}}(0)
+:=\sup_{0<r<1}r^{-\alpha}
+\left(\frac1{|B_r|}\int_{B_r}|g-g(0)|^n\right)^{1/n}<\infty.
 \]
 \end{definition}
 
-The Schauder estimate is:
-
-\begin{theorem}\label{hanlin:ch05-thm-5-20}\dcref{Theorem 5.20}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0116,han-lin-lecture-notes:page-0117,han-lin-lecture-notes:page-0118}\uses{hanlin:ch05-def-5-19,hanlin:ch05-lem-5-18} Suppose $u\in C(B_1)$ is a viscosity solution of
+\begin{theorem}\label{hanlin:ch05-thm-5-20}\dcref{Theorem 5.20}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0116,han-lin-lecture-notes:page-0117,han-lin-lecture-notes:page-0118}\uses{hanlin:ch05-def-5-19,hanlin:ch05-lem-5-18}
+Let $u\in C(B_1)$ solve
 \[
-a_{ij}D_{ij}u=f \qquad \text{in } B_1.
+a_{ij}D_{ij}u=f\quad\text{in }B_1
 \]
-Assume $\{a_{ij}\}$ is Hölder continuous at $0$ with exponent $\alpha$ in $L^n$-sense for some
-$\alpha\in(0,1)$. If $f$ is Hölder continuous at $0$ with exponent $\alpha$ in $L^n$-sense, then $u$ is
-$C^{2,\alpha}$ at $0$. Moreover, there exists a polynomial $P$ of degree $2$ such that
+in the viscosity sense. If $a_{ij}$ and $f$ are $L^n$-Hölder at $0$ with
+the same exponent $\alpha\in(0,1)$, then there is a quadratic polynomial
+$P$ such that
 \[
-|u-P|_{L^\infty(B_r(0))}\le Cr^{2+\alpha} \qquad \text{for any } 0<r<1,
+\|u-P\|_{L^\infty(B_r)}\leq Cr^{2+\alpha}\qquad(0<r<1),
 \]
 \[
 |P(0)|+|DP(0)|+|D^2P(0)|\le C_*,
 \]
-and
 \[
 C_*\le C\{|u|_{L^\infty(B_1)}+|f(0)|+[f]_{C^\alpha_{L^n}}(0)\},
 \]
-where $C$ is a positive constant depending only on $n,\lambda,\Lambda,\alpha$ and $[a_{ij}]_{C^\alpha_{L^n}}(0)$.
+where $C$ depends only on $n,\lambda,\Lambda,\alpha$ and
+$[a_{ij}]_{C^\alpha_{L^n}}(0)$. In particular, $u$ is $C^{2,\alpha}$ at
+$0$.
 \end{theorem}
 
-Proof. \sketch Subtract $b_{ij}x_ix_jf(0)/2$, where $a_{ij}(0)b_{ij}=1$, to reduce to $f(0)=0$. Scale so that $[a_{ij}]_{C^\alpha_{L^n}}(0)$ is small, and normalize using
-\[
-\frac{u}{|u|_{L^\infty(B_1)}+\frac{1}{\delta}[f]_{C^\alpha_{L^n}}(0)},
-\]
-we may assume $|u|_{L^\infty(B_1)}\le 1$ and $[f]_{C^\alpha_{L^n}}(0)\le \delta$.
+\begin{proof}
+\sketch Subtract a quadratic that accounts for $f(0)$, then normalize the
+solution and the coefficient oscillation. Iterating
+Lemma~\ref{hanlin:ch05-lem-5-18} on geometrically shrinking balls produces
+quadratics whose constant, linear, and Hessian coefficients form convergent
+sequences. Their limit is $P$, and rescaling gives the $r^{2+\alpha}$ error
+and coefficient bounds.
+\end{proof}
 
-It suffices to prove that for $\delta=\delta(n,\lambda,\Lambda,\alpha)>0$, if
-\[
-a_{ij}D_{ij}u=f \qquad \text{in } B_1,
-\]
-with
-\[
-|u|_{L^\infty(B_1)}\le 1,\qquad [a_{ij}]_{C^\alpha_{L^n}}(0)\le \delta,
-\]
-\[
-\left(\frac{1}{|B_r|}\int_{B_r}|f|^n\right)^{1/n}\le \delta r^\alpha \qquad \text{for any } 0<r<1,
-\]
-then there exists a polynomial $P$ of degree $2$ such that
-\[
-(1)\qquad |u-P|_{L^\infty(B_r(0))}\le Cr^{2+\alpha} \qquad \text{for any } 0<r<1,
-\]
-and
-\[
-(2)\qquad |P(0)|+|DP(0)|+|D^2P(0)|\le C,
-\]
-where $C$ is a positive constant depending only on $n,\lambda,\Lambda$ and $\alpha$.
 
-Choose $\mu\in(0,1)$ and quadratic polynomials
+\begin{theorem}\label{hanlin:ch05-thm-5-21}\dcref{Theorem 5.21}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0118}\uses{hanlin:ch05-thm-5-20}
+Let $u\in C(B_1)$ be a viscosity solution of
 \[
-P_k(x)=a_k+b_k\cdot x+\frac12 x^tC_kx,
+a_{ij}D_{ij}u=f\quad\text{in }B_1.
 \]
-
-such that for any $k = 0,1,2,\cdots,$
+For each $\alpha\in(0,1)$ there is $\theta>0$, depending only on
+$n,\lambda,\Lambda,\alpha$, such that if
 \[
-a_{ij}(0)D_{ij}P_k = 0,
+\left(\frac1{|B_r|}\int_{B_r}|a_{ij}-a_{ij}(0)|^n\right)^{1/n}
+\leq\theta\qquad(0<r\leq1),
 \]
-\begin{equation}\tag{3}
-\lvert u - P_k\rvert_{L^\infty(B_{\mu^k})} \le \mu^{k(2+\alpha)},
-\end{equation}
-and
-\begin{equation}\tag{4}
-\lvert a_k - a_{k-1}\rvert + \mu^{k-1}\lvert b_k - b_{k-1}\rvert + \mu^{2(k-1)}\lvert C_k - C_{k-1}\rvert \le C\mu^{(k-1)(2+\alpha)},
-\end{equation}
-where $P_0 = P_{-1} = 0$, and $C$ is a positive constant depending only on $n,\lambda,\Lambda$ and $\alpha$.
-
-The estimates (3)--(4) imply convergence of $a_k,b_k,C_k$. The limiting polynomial
+then an affine function $L$ satisfies
 \[
-p(x) = a_\infty + b_\infty \cdot x + \frac{1}{2}x^t C_\infty x
-\]
-satisfies
-\[
-\lvert P_k(x) - p(x)\rvert \le C\bigl(\lvert x\rvert^2\mu^{\alpha k} + \lvert x\rvert\mu^{(\alpha+1)k} + \mu^{(\alpha+2)k}\bigr) \le C\mu^{(2+\alpha)k},
-\]
-for any $\lvert x\rvert \le \mu^k$. Hence, we have for $\lvert x\rvert \le \mu^k$
-\[
-\lvert u(x) - p(x)\rvert \le \lvert u(x)-P_k(x)\rvert + \lvert P_k(x)-p(x)\rvert \le C\mu^{(2+\alpha)k},
-\]
-and hence
-\[
-\lvert u(x)-p(x)\rvert \le C\lvert x\rvert^{2+\alpha} \qquad \text{for any } x \in B_1.
-\]
-
-For the induction step, assume (3)--(4) through $k=l$ and define
-\[
-\tilde{u}(y) = \frac{1}{\mu^{l(2+\alpha)}}\bigl(u - P_l\bigr)(\mu^l y) \qquad \text{for any } y \in B_1.
-\]
-Then $\tilde{u} \in C(B_1)$ is a viscosity solution of
-\[
-\tilde{a}_{ij}D_{ij}\tilde{u} = \tilde{f} \qquad \text{in } B_1,
-\]
-with
-\[
-\tilde{a}_{ij}(y) = \frac{1}{\mu^{l\alpha}}a_{ij}(\mu^l y),
+\|u-L\|_{L^\infty(B_r)}\leq C_*r^{1+\alpha}\qquad(0<r<1),
 \]
 \[
-\tilde{f}(y) = \frac{1}{\mu^{l\alpha}}\bigl(f(\mu^l y) - a_{ij}(\mu^l y)D_{ij}P_k\bigr).
-\]
-
-The hypotheses of Lemma 5.18 follow from
-\[
-\lVert \tilde{a}_{ij} - \tilde{a}_{ij}(0)\rVert_{L^n(B_1)} \le \frac{1}{\mu^{l\alpha}}\lVert a_{ij} - a_{ij}(0)\rVert_{L^n(B_{\mu^l})} \le [a_{ij}]_{C^\alpha_{L^n}(0)} \le \delta,
-\]
-and
-\[
-\lVert \tilde{f}\rVert_{L^n(B_1)} \le \frac{1}{\mu^{l\alpha}}\lVert f\rVert_{L^n(B_{\mu^l})} + \frac{1}{\mu^{l\alpha}}\sup \lvert D^2P_l\rvert \,\lVert a_{ij} - a_{ij}(0)\rVert_{L^n(B_{\mu^l})} \le \delta + C\delta,
-\]
-using
-\[
-\lvert D^2P_l\rvert \le \sum_{k=1}^l \lvert D^2P_k - D^2P_{k-1}\rvert \le \sum_{k=1}^l \mu^{(k-1)\alpha} \le C.
-\]
-Taking $\varepsilon=C(n,\lambda,\Lambda)\delta$, Lemma 5.18 supplies $h$ with $\tilde a_{ij}(0)D_{ij}h=0$, $|h|\le1$, and
-\[
-\lVert \tilde{u} - h\rVert_{L^\infty(B_{1/2})} \le C(\varepsilon^\gamma + \varepsilon) \le 2C\varepsilon^\gamma.
-\]
-
-For $\tilde P(y)=h(0)+Dh(0)+y^tD^2h(0)y/2$, interior estimates give
-\[
-\lvert \tilde{u} - \tilde{P}\rvert_{L^\infty(B_\mu)} \le \lvert \tilde{u} - h\rvert_{L^\infty(B_\mu)} + \lvert h - \tilde{P}\rvert_{L^\infty(B_\mu)} \le 2C\varepsilon^\gamma + C\mu^3 \le \mu^{2+\alpha},
-\]
-after choosing $\mu$ and then $\varepsilon$ sufficiently small. Rescaling gives
-\[
-\lvert u(x) - P_l(x) - \mu^{l(2+\alpha)}\tilde{P}(\mu^{-l}x)\rvert \le \mu^{(l+1)(2+\alpha)} \qquad \text{for any } x \in B_{\mu^{l+1}}.
-\]
-Define
-\[
-P_{k+1}(x) = P_k(x) + \mu^{l(2+\alpha)}\tilde{P}(\mu^{-l}x).
-\]
-Then (3)--(4) follow. $\square$
-
-The same iteration gives the following Cordes--Nirenberg estimate.
-
-\begin{theorem}\label{hanlin:ch05-thm-5-21}\dcref{Theorem 5.21}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0118}\uses{hanlin:ch05-thm-5-20} \emph{Suppose $u \in C(B_1)$ is a viscosity solution of}
-\[
-a_{ij}D_{ij}u = f \qquad \text{in } B_1.
-\]
-\emph{Then for any $\alpha \in (0,1)$, there exists a $\theta > 0$, depending only on $n,\lambda,\Lambda$ and $\alpha$, such that if}
-\[
-\left(\frac{1}{\lvert B_r\rvert}\int_{B_r}\lvert a_{ij} - a_{ij}(0)\rvert^n\right)^{\frac{1}{n}} \le \theta \qquad \text{for any } 0 < r \le 1,
-\]
-\emph{then $u$ is $C^{1,\alpha}$ at $0$; that is, there exists an affine function $L$ such that}
-\[
-\lvert u - L\rvert_{L^\infty(B_r(0))} \le C_*r^{1+\alpha} \qquad \text{for any } 0 < r < 1,
+|L(0)|+|DL(0)|\leq C_*,
 \]
 \[
-\lvert L(0)\rvert + \lvert DL(0)\rvert \le C_*,
+C_*\leq C\left(\|u\|_{L^\infty(B_1)}+
+\sup_{0<r<1}r^{1-\alpha}
+\left(\frac1{|B_r|}\int_{B_r}|f|^n\right)^{1/n}\right),
 \]
-\emph{and}
-\[
-C_* \le C\left\{\lvert u\rvert_{L^\infty(B_1)} + \sup_{0<r<1} r^{1-\alpha}\left(\frac{1}{\lvert B_r\rvert}\int_{B_r}\lvert f\rvert^n\right)^{\frac{1}{n}}\right\},
-\]
-\emph{where $C$ is a positive constant depending only on $n,\lambda,\Lambda$ and $\alpha$.}
+where $C$ depends only on $n,\lambda,\Lambda,\alpha$. Thus $u$ is
+$C^{1,\alpha}$ at $0$.
 \end{theorem}
 
-\textbf{5.4. $W^{2,p}$ Estimates}
+\section{\Wtwop Estimates}
 
-Assume in this section that $a_{ij}\in C(B_1)$ satisfies
+Assume in this section that $a_{ij},f\in C(B_1)$ and
 \[
-\lambda\lvert\xi\rvert^2 \le a_{ij}(x)\xi_i\xi_j \le \Lambda\lvert\xi\rvert^2 \qquad \text{for any } x \in B_1 \text{ and any } \xi \in \mathbb{R}^n,
-\]
-for positive $\lambda,\Lambda$, and that $f\in C(B_1)$.
-
-\begin{theorem}\label{hanlin:ch05-thm-5-22}\dcref{Theorem 5.22}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0118,han-lin-lecture-notes:page-0119}\uses{hanlin:ch05-lem-5-23} \emph{Suppose $u \in C(B_1)$ is a viscosity solution of}
-\[
-a_{ij}D_{ij}u = f \qquad \text{in } B_1.
-\]
-\emph{Then for any $p \in (n,\infty)$, there exists an $\epsilon > 0$, depending only on $n,\lambda,\Lambda$ and $p$, such that if}
-\[
-\left(\frac{1}{\lvert B_r(x_0)\rvert}\int_{B_r(x_0)}\lvert a_{ij} - a_{ij}(x_0)\rvert^n\right)^{\frac{1}{n}} \le \epsilon \qquad \text{for any } B_r(x_0) \subset B_1,
+\lambda|\xi|^2\leq a_{ij}(x)\xi_i\xi_j\leq\Lambda|\xi|^2.
 \]
 
-then $u \in W^{2,p}_{\mathrm{loc}}(B_1)$. Moreover,
-
+\begin{theorem}\label{hanlin:ch05-thm-5-22}\dcref{Theorem 5.22}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0118,han-lin-lecture-notes:page-0119}\uses{hanlin:ch05-lem-5-23}
+Let $p>n$ and let $u\in C(B_1)$ be a viscosity solution of
 \[
-\|u\|_{W^{2,p}(B_{1/2})} \leq C\{|u|_{L^\infty(B_1)} + \|f\|_{L^p(B_1)}\},
+a_{ij}D_{ij}u=f\quad\text{in }B_1.
 \]
-
-where $C$ is a positive constant depending only on $n$, $\lambda$, $\Lambda$ and $p$.
-\end{theorem}
-
-It suffices to prove the normalized form below.
-
-\begin{lemma}\label{hanlin:ch05-lem-5-23}\dcref{Lemma 5.23}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0121,han-lin-lecture-notes:page-0122}\uses{hanlin:ch05-lem-5-15,hanlin:ch05-lem-5-24} Suppose $u \in C(B_{8\sqrt{n}})$ is a viscosity solution of
+There is $\varepsilon>0$, depending only on $n,\lambda,\Lambda,p$, such
+that if
 \[
-a_{ij}D_{ij}u = f \qquad \text{in } B_{8\sqrt{n}}.
+\left(\frac1{|B_r(x_0)|}\int_{B_r(x_0)}
+|a_{ij}-a_{ij}(x_0)|^n\right)^{1/n}\leq\varepsilon
 \]
-
-Then for any $p \in (n,\infty)$, there exist positive constants $\varepsilon$ and $C$, depending only on
-$n$, $\lambda$, $\Lambda$ and $p$, such that if
-\[
-\|u\|_{L^\infty(B_{8\sqrt{n}})} \leq 1, \qquad \|f\|_{L^p(B_{8\sqrt{n}})} \leq \varepsilon,
-\]
+for every $B_r(x_0)\subset B_1$, then $u\in W^{2,p}_{\mathrm{loc}}(B_1)$
 and
 \[
-\left(\frac{1}{|B_r(x_0)|}\int_{B_r(x_0)} |a_{ij}-a_{ij}(x_0)|^n\right)^{1/n} \leq \varepsilon
-\qquad \text{for any } B_r(x_0) \subset B_{8\sqrt{n}},
+\|u\|_{W^{2,p}(B_{1/2})}
+\leq C\left(\|u\|_{L^\infty(B_1)}+\|f\|_{L^p(B_1)}\right),
 \]
-then $u \in W^{2,p}(B_1)$ and $\|u\|_{W^{2,p}(B_1)} \leq C$.
+where $C$ depends only on $n,\lambda,\Lambda,p$.
+\end{theorem}
+\begin{proof}
+\sketch Normalize $u$ and $f$ on balls compactly contained in $B_1$,
+apply Lemma~\ref{hanlin:ch05-lem-5-23}, and cover $B_{1/2}$ by finitely
+many such balls.
+\end{proof}
+
+\begin{lemma}\label{hanlin:ch05-lem-5-23}\dcref{Lemma 5.23}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0121,han-lin-lecture-notes:page-0122}\uses{hanlin:ch05-lem-5-15,hanlin:ch05-lem-5-24}
+For each $p>n$ there are $\varepsilon,C>0$, depending only on
+$n,\lambda,\Lambda,p$, with the following property. If
+$u\in C(B_{8\sqrt n})$ solves
+\[
+a_{ij}D_{ij}u=f\quad\text{in }B_{8\sqrt n}
+\]
+in the viscosity sense and
+\[
+\|u\|_{L^\infty(B_{8\sqrt n})}\leq1,\qquad
+\|f\|_{L^p(B_{8\sqrt n})}\leq\varepsilon,
+\]
+\[
+\left(\frac1{|B_r(x_0)|}\int_{B_r(x_0)}
+|a_{ij}-a_{ij}(x_0)|^n\right)^{1/n}\leq\varepsilon
+\]
+for every $B_r(x_0)\subset B_{8\sqrt n}$, then
+$u\in W^{2,p}(B_1)$ and $\|u\|_{W^{2,p}(B_1)}\leq C$.
 \end{lemma}
 
-For bounded $\Omega$ and continuous $u$, define
-\[
-G_M(u,\Omega) = \{x_0 \in \Omega;\ \text{there exists an affine function } L \text{ such that}
-\]
-\[
-L(x) - \frac{M}{2}|x-x_0|^2 \leq u(x) \leq L(x) + \frac{M}{2}|x-x_0|^2
-\]
-\[
-\text{for } x \in \Omega \text{ with equality at } x_0\},
-\]
-\[
-A_M(u,\Omega) = \Omega \setminus G_M(u,\Omega).
-\]
+\begin{proof}
+\sketch Lemma~\ref{hanlin:ch05-lem-5-24} gives a uniform gain in the
+measure of contact points. Iterate this gain over dyadic cubes and integrate
+the distribution function of the minimal paraboloid opening.
+\end{proof}
 
-Set
+Equivalently, $x_0\in G_M(u,\Omega)$ when some affine $L$ satisfies,
+for all $x\in\Omega$,
 \[
-\theta(x) = \theta(u,\Omega)(x) = \inf\{M; x \in G_M(u,\Omega)\} \in [0,\infty]
-\qquad \text{for } x \in \Omega.
+L(x)-\frac M2|x-x_0|^2\leq u(x)
+\leq L(x)+\frac M2|x-x_0|^2,
 \]
-
-For $p\in(1,\infty]$, $\theta\in L^p(\Omega)$ implies
-$D^2u \in L^p(\Omega)$ and
+with equality at $x_0$. Define
 \[
-\|D^2u\|_{L^p(\Omega)} \leq 2\|\theta\|_{L^p(\Omega)}.
+\theta(u,\Omega)(x)=\inf\{M:x\in G_M(u,\Omega)\}\in[0,\infty].
 \]
-
-Its distribution function is
+For $p\in(1,\infty]$, if $\theta\in L^p(\Omega)$, then
+$D^2u\in L^p(\Omega)$ and
 \[
-\mu_\theta(t) = |\{x \in \Omega; \theta(x) > t\}| \qquad \text{for any } t>0.
+\|D^2u\|_{L^p(\Omega)}\leq2\|\theta\|_{L^p(\Omega)}.
+\]
+Moreover,
+\[
+|\{x:\theta(x)>t\}|\leq|A_t(u,\Omega)|\qquad(t>0).
 \]
 
-It satisfies
+\begin{lemma}\label{hanlin:ch05-lem-5-24}\dcref{Lemma 5.24}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0120,han-lin-lecture-notes:page-0121}\uses{hanlin:ch05-lem-5-15,hanlin:ch05-lem-5-18}
+Let $\Omega$ be bounded with $B_{8\sqrt n}\subset\Omega$, and let
+$u\in C(\Omega)$ solve
 \[
-\mu_\theta(t) \leq |A_t(u,\Omega)| \qquad \text{for any } t>0.
+a_{ij}D_{ij}u=f\quad\text{in }B_{8\sqrt n}
 \]
-
-Thus it remains to estimate $|A_t(u,\Omega)|$.
-
-\begin{lemma}\label{hanlin:ch05-lem-5-24}\dcref{Lemma 5.24}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0120,han-lin-lecture-notes:page-0121}\uses{hanlin:ch05-lem-5-15,hanlin:ch05-lem-5-18} Suppose that $\Omega$ is a bounded domain with $B_{8\sqrt{n}} \subset \Omega$ and that
-$u \in C(\Omega)$ is a viscosity solution of
+in the viscosity sense. For every $\varepsilon_0\in(0,1)$ there are
+$M>1$, depending only on $n,\lambda,\Lambda$, and $\varepsilon\in(0,1)$,
+depending additionally on $\varepsilon_0$, such that
 \[
-a_{ij}D_{ij}u = f \qquad \text{in } B_{8\sqrt{n}}.
+\|f\|_{L^n(B_{8\sqrt n})}\leq\varepsilon,
+\qquad
+\|a_{ij}-a_{ij}(0)\|_{L^n(B_{7\sqrt n})}\leq\varepsilon,
 \]
-
-Then for any $\varepsilon_0 \in (0,1)$, there exist an $M>1$, depending only on $n$, $\lambda$ and $\Lambda$, and
-an $\varepsilon \in (0,1)$, depending only on $n$, $\lambda$, $\Lambda$ and $\varepsilon_0$, such that if
 \[
-(1) \qquad \|f\|_{L^n(B_{8\sqrt{n}})} \leq \varepsilon,\qquad \|a_{ij}-a_{ij}(0)\|_{L^n(B_{7\sqrt{n}})} \leq \varepsilon,
+G_1(u,\Omega)\cap Q_3\neq\emptyset
 \]
-
-and
-
-(2)
-
+imply
 \[
-G_1(u,\Omega)\cap Q_3\neq \emptyset,
-\]
-
-then
-
-\[
-|G_M(u,\Omega)\cap Q_1|\ge 1-\varepsilon_0.
+|G_M(u,\Omega)\cap Q_1|\geq1-\varepsilon_0.
 \]
 \end{lemma}
 
+\begin{proof}
+\sketch Normalize using the unit supporting paraboloid, compare with the
+frozen-coefficient solution from Lemma~\ref{hanlin:ch05-lem-5-18}, and
+apply Lemma~\ref{hanlin:ch05-lem-5-15} to the difference.
+\end{proof}
 
-\noindent\textbf{Proof.} \sketch Let $x_1\in G_1(u,\Omega)\cap Q_3$ and choose affine $L$ such that
-\[
--\frac12|x-x_1|^2\le u(x)-L(x)\le \frac12|x-x_1|^2 \qquad \text{in }\Omega.
-\]
 
-After replacing $(u-L)/c$ by $u$ for $c=c(n)$, assume
 
-\[
-(3)\qquad |u|\le 1 \qquad \text{in }B_{6\sqrt n},
-\]
-
-and hence
-
-\[
-(4)\qquad -|x|^2\le u(x)\le |x|^2 \qquad \text{for any }x\in \Omega\setminus B_{6\sqrt n}.
-\]
-
-Solve
-\[
-a_{ij}(0)D_{ij}h=0 \qquad \text{in }B_{7\sqrt n}
-\]
-\[
-h=u \qquad \text{on }\partial B_{7\sqrt n}.
-\]
-
-Lemma 5.18 yields
-
-\[
-(5)\qquad |u-h|_{L^\infty(B_{6\sqrt n})}\le C\{\varepsilon^\gamma+\|f\|_{L^n(B_{6\sqrt n})}\},
-\]
-
-and
-
-\[
-(6)\qquad \|h\|_{C^2(B_{6\sqrt n})}\le C,
-\]
-
-Extend $h$ continuously to $\Omega$ with $h=u$ outside $B_{7\sqrt n}$ and $|h|\le1$. Then $|u-h|\le2$ and (4) gives
-
-\[
--2-|x|^2\le h(x)\le 2+|x|^2 \qquad \text{for any }x\in \Omega\setminus \bar B_{6\sqrt n}.
-\]
-
-For $N=N(n,\lambda,\Lambda)$,
-
-\[
-(7)\qquad Q_1\subset G_N(h,\Omega).
-\]
-
-Set
-
-\[
-w=\frac{\min\{1,\delta_0\}}{2C\varepsilon^\gamma}(u-h),
-\]
-
-with $\delta_0$ from Lemma 5.15. Applying that lemma gives
-
-\[
-|A_t(w,\Omega)\cap Q_1|\le Ct^{-\mu} \qquad \text{for any }t>0.
-\]
-
-Therefore
-
-\[
-|A_s(u-h,\Omega)\cap Q_1|\le C\varepsilon^\gamma s^{-\mu} \qquad \text{for any }s>0.
-\]
-
-Hence
-
-\[
-|G_N(u-h,\Omega)\cap Q_1|\ge 1-C_1\varepsilon^\gamma\ge 1-\varepsilon_0,
-\]
-
-for $\varepsilon$ sufficiently small; combining with (7),
-
-\[
-|G_{2N}(u,\Omega)\cap Q_1|\ge 1-\varepsilon_0.
-\]
-
-This proves Lemma 5.24.
-
-\hfill$\square$
-
-\begin{remark}\label{hanlin:ch05-rem-5-25}\dcref{Remark 5.25}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0121}\uses{hanlin:ch05-lem-5-24} In fact, we proved Lemma 5.24 with the assumption (2) replaced
-by (3).
+\begin{remark}\label{hanlin:ch05-rem-5-25}\dcref{Remark 5.25}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0121}\uses{hanlin:ch05-lem-5-24}
+The conclusion of Lemma~\ref{hanlin:ch05-lem-5-24} remains valid if the
+contact hypothesis $G_1(u,\Omega)\cap Q_3\neq\emptyset$ is replaced by
+$|u|\leq1$ in $B_{8\sqrt n}$.
 \end{remark}
-
-\textbf{Proof of Lemma 5.23.} \sketch \textit{Step 1.} For any $\varepsilon_0\in(0,1)$, choose $M>1$,
-depending only on $n$, $\lambda$ and $\Lambda$, and an $\varepsilon\in(0,1)$, depending only on $n$, $\lambda$, $\Lambda$ and $\varepsilon_0$,
-such that, under the assumptions of Lemma 5.23, there holds
-
-\[
-(1)\qquad |G_M(u,B_{8\sqrt n})\cap Q_1|\ge 1-\varepsilon_0.
-\]
-
-Here $M$ is independent of $\varepsilon_0$; Lemma 5.24 with $\Omega=B_{8\sqrt n}$ gives (1).
-
-\textit{Step 2.} We set, for $k=0,1,\cdots$,
-
-\[
-A=A_{M^{k+1}}(u,B_{8\sqrt n})\cap Q_1,
-\]
-\[
-B=\bigl(A_{M^k}(u,B_{8\sqrt n})\cap Q_1\bigr)\cup \{x\in Q_1;m(f^n)(x)\ge (c_1M^k)^n\},
-\]
-
-for some $c_1>0$ to be determined, depending only on $n$, $\lambda$, $\Lambda$ and $\varepsilon_0$. Then there
-holds
-
-\[
-|A|\le \varepsilon_0|B|.
-\]
-
-The proof is the same dyadic argument as Lemma 5.15.
-
-\textit{Step 3.} Choose $\varepsilon_0$ so that
-
-\[
-\varepsilon_0M^p=\frac12,
-\]
-
-where $M$, depending only on $n$, $\lambda$ and $\Lambda$, is as in Step 1. Hence the constants $\varepsilon$ and
-$c_1$ depend only on $n$, $\lambda$, $\Lambda$ and $p$. Define for $k=0,1,\cdots$,
-
-\[
-\alpha_k=|A_{M^k}(u,B_{8\sqrt n})\cap Q_1|,
-\]
-
-\[
-\beta_k=|\{x\in Q_1;m(f^n)(x)\ge (c_1M^k)^n\}|.
-\]
-
-Then Step 2 implies $\alpha_{k+1}\le \varepsilon_0(\alpha_k+\beta_k)$ for any $k=0,1,\cdots$. Hence, by an iteration
-we have
-
-\[
-\alpha_k\le \varepsilon_0^k+\sum_{i=1}^{k-1}\varepsilon_0^{k-i}\beta_i.
-\]
-
-Since $f^n\in L^{p/n}$ and the maximal operator is of strong type $(p,p)$, we conclude
-that $m(f^n)\in L^{p/n}$ and
-
-\[
-\|m(f^n)\|_{L^{p/n}}\le C\|f\|_{L^p}^n\le C.
-\]
-
-Then the definition of $\beta_k$ implies
-
-\[
-\sum_{k\ge 0}M^{pk}\beta_k\le C.
-\]
-
-As before, we set
-
-\[
-\theta(x)=\theta(u,B_{1/2})(x)=\inf\{M;x\in G_M(u,B_{1/2})\}\in[0,\infty]\qquad \text{for }x\in B_{1/2},
-\]
-
-and
-
-\[
-\mu_\theta(t)=|\{x\in B_{1/2};\ \theta(x)>t\}|\qquad \text{for any }t>0.
-\]
-
-It remains to show
-
-\[
-\|\theta\|_{L^p(B_{1/2})}\le C.
-\]
-
-Since
-
-\[
-\mu_\theta(t)\le |A_t(u,B_{1/2})|\le |A_t(u,B_{8\sqrt n})\cap Q_1|\qquad \text{for any }t>0.
-\]
-
-It suffices to prove, with the definition of $\alpha_k$, that
-
-\[
-\sum_{k\ge 1}M^{pk}\alpha_k\le C.
-\]
-
-In fact, we have
-
-\[
-\sum_{k\ge 1}M^{pk}\alpha_k\le \sum_{k\ge 1}(\varepsilon_0M^p)^k+\sum_{k\ge 1}\sum_{i=0}^{k-1}\varepsilon_0^{k-i}M^{p(k-i)}M^{pi}\beta_i
-\]
-
-\[
-\le \sum_{k\ge 1}2^{-k}+\Bigl(\sum_{i\ge 0}M^{pi}\beta_i\Bigr)\Bigl(\sum_{j\ge 1}2^{-j}\Bigr)\le C.
-\]
-
-This proves Lemma 5.23 and hence Theorem 5.22.
-
-\hfill$\square$

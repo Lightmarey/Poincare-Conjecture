@@ -2,1303 +2,554 @@
 
 \section{Mean Value Properties}
 
-Throughout this section, $\Omega\subset\mathbb{R}^n$ is a connected domain and
-$\omega_n$ is the surface measure of the unit sphere.
+Throughout, $\Omega\subset\mathbb R^n$ is a connected domain and $\omega_n$
+denotes the surface measure of the unit sphere.
 
 \begin{definition}\label{hanlin:def-mean-value-properties}\dcref{Definition 1.1}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0007}
-For $u \in C(\Omega)$, the spherical mean value property is
+For $u\in C(\Omega)$, the spherical and ball mean value properties are,
+respectively,
 \[
-u(x) = \frac{1}{\omega_n r^{n-1}} \int_{\partial B_r(x)} u(y)\, d\sigma_y \qquad \text{for any } B_r(x) \subset \Omega;
+ u(x)=\frac{1}{\omega_n r^{n-1}}\int_{\partial B_r(x)}u\,d\sigma,
+ \qquad
+ u(x)=\frac{n}{\omega_n r^n}\int_{B_r(x)}u\,dy,
 \]
-and the ball mean value property is
-\[
-u(x) = \frac{n}{\omega_n r^n} \int_{B_r(x)} u(y)\, dy \qquad \text{for any } B_r(x) \subset \Omega,
-\]
+for every ball $B_r(x)\subset\Omega$.
 \end{definition}
 
 \begin{remark}\label{hanlin:remark-mean-value-equivalent}\dcref{Remark 1.2}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0007}
-The two properties are equivalent: integration in $r$ of
+The two identities in Definition~\ref{hanlin:def-mean-value-properties} are
+equivalent: integrate the spherical identity in $r$, or differentiate the ball
+identity, using
 \[
-u(x)r^{n-1} = \frac{1}{\omega_n} \int_{\partial B_r(x)} u(y)\, d\sigma_y,
+u(x)r^{n-1}=\frac1{\omega_n}\int_{\partial B_r(x)}u\,d\sigma,
+\qquad
+u(x)r^n=\frac n{\omega_n}\int_{B_r(x)}u\,dy.
 \]
-gives the ball identity, while differentiation in $r$ of
-\[
-u(x)r^n = \frac{n}{\omega_n} \int_{B_r(x)} u(y)\, dy,
-\]
-gives the spherical identity.
 \end{remark}
 
 \begin{remark}\label{hanlin:remark-mean-value-equivalent-forms}\dcref{Remark 1.3}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0007}
-After scaling to the unit ball, the equivalent identities are
+After scaling to the unit ball, the same formulas read
 \[
-u(x) = \frac{1}{\omega_n} \int_{|y|=1} u(x + ry)\, d\sigma_y \qquad \text{for any } B_r(x) \subset \Omega;
-\]
-and
-\[
-u(x) = \frac{n}{\omega_n} \int_{|y| \le 1} u(x + ry)\, dy \qquad \text{for any } B_r(x) \subset \Omega.
+u(x)=\frac1{\omega_n}\int_{|\omega|=1}u(x+r\omega)\,d\sigma_\omega,
+\qquad
+u(x)=\frac n{\omega_n}\int_{|y|\le1}u(x+ry)\,dy.
 \]
 \end{remark}
 
 \begin{theorem}\label{hanlin:thm-mean-value-max}\dcref{Theorem 1.4}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0008}\uses{hanlin:def-mean-value-properties}
-If $u \in C(\overline{\Omega})$ satisfies the mean value property in $\Omega$,
-then its maximum and minimum occur only on $\partial\Omega$, unless $u$ is constant.
+If $u\in C(\overline\Omega)$ has the mean value property in $\Omega$, then a
+maximum or minimum in the interior forces $u$ to be constant; otherwise both
+extrema are attained on $\partial\Omega$.
 \end{theorem}
-
 \begin{proof}
-\sketch It suffices to consider the maximum. Set
-\[
-\Sigma = \{ x \in \Omega;\ u(x) = M \equiv \max_{\Omega} u \} \subset \Omega.
-\]
-$\Sigma$ is relatively closed. If $x_0\in\Sigma$ and
-$\overline{B_r}(x_0)\subset\Omega$, then
-\[
-M = u(x_0) = \frac{n}{\omega_n r^n}\int_{B_r(x_0)} u(y)\,dy \leq M \frac{n}{\omega_n r^n}\int_{B_r(x_0)} dy = M.
-\]
-Equality of the average with the upper bound forces $u=M$ on $B_r(x_0)$.
-Thus $\Sigma$ is also open, and connectedness gives $\Sigma=\Omega$ whenever an
-interior maximum occurs. Apply the same argument to $-u$ for the minimum.
+\sketch For an interior maximum $M$, the set $\Sigma=\{u=M\}$ is relatively
+closed. At $x_0\in\Sigma$, the ball mean value identity and $u\le M$ imply
+equality in an average bound, hence $u=M$ on every ball compactly contained in
+$\Omega$. Thus $\Sigma$ is open, and connectedness gives $\Sigma=\Omega$.
+Apply the same argument to $-u$ for minima.
 \end{proof}
 
 \begin{definition}\label{hanlin:def-harmonic}\dcref{Definition 1.5}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0008}
-A function $u \in C^2(\Omega)$ is harmonic if $\Delta u = 0$ in $\Omega$.
+A function $u\in C^2(\Omega)$ is harmonic when $\Delta u=0$ in $\Omega$.
 \end{definition}
 
 \begin{theorem}\label{hanlin:thm-harmonic-mean-value}\dcref{Theorem 1.6}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0008}\uses{hanlin:def-mean-value-properties,hanlin:def-harmonic}
-Every harmonic $u\in C^2(\Omega)$ satisfies the mean value property in $\Omega$.
+Every harmonic $u\in C^2(\Omega)$ satisfies the mean value properties.
 \end{theorem}
-
 \begin{proof}
-\sketch For $B_r(x)\subset\Omega$ and $0<\rho<r$, the divergence theorem gives
+\sketch Apply the divergence theorem on $B_\rho(x)$ to obtain
 \[
-\int_{B_\rho(x)} \Delta u(y)\,dy = \int_{\partial B_\rho}\frac{\partial u}{\partial \nu}\,d\sigma = \rho^{n-1}\int_{|\omega|=1}\frac{\partial u}{\partial \rho}(x+\rho\omega)\,d\sigma_\omega
+\int_{B_\rho(x)}\Delta u=\rho^{n-1}\frac d{d\rho}
+\int_{|\omega|=1}u(x+\rho\omega)\,d\sigma_\omega.
 \]
-\begin{equation}
-= \rho^{n-1}\frac{\partial}{\partial \rho}\int_{|\omega|=1} u(x+\rho\omega)\,d\sigma_\omega.
-\end{equation}
-Since $\Delta u=0$,
-\[
-\frac{\partial}{\partial \rho}\int_{|\omega|=1} u(x+\rho\omega)\,d\sigma_\omega = 0.
-\]
-Integrating in $\rho$ from $0$ to $r$ gives
-\[
-\int_{|\omega|=1} u(x+r\omega)\,d\sigma_\omega = \int_{|\omega|=1} u(x)\,d\sigma_\omega = u(x)\omega_n,
-\]
-or
-\[
-u(x) = \frac{1}{\omega_n}\int_{|\omega|=1} u(x+r\omega)\,d\sigma_\omega = \frac{1}{\omega_n r^{n-1}}\int_{\partial B_r(x)} u(y)\,d\sigma_y.
-\]
-which is the spherical, hence also the ball, mean value identity.
+The left side vanishes, so the spherical integral is independent of $\rho$.
+Its limit at $\rho=0$ is $\omega_nu(x)$, giving the spherical identity; the
+ball identity follows from Remark~\ref{hanlin:remark-mean-value-equivalent}.
 \end{proof}
 
 \begin{remark}\label{hanlin:remark-mvp-not-smooth}\dcref{Remark 1.7}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0008}\uses{hanlin:thm-harmonic-mean-value}
-The mean value property assumes only continuity, but it implies the smoothness
-required for harmonicity.
+The mean value property is stated for continuous functions, but it itself
+implies the regularity needed for harmonicity.
 \end{remark}
 
 \begin{theorem}\label{hanlin:thm-mean-value-harmonic}\dcref{Theorem 1.8}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0008}\uses{hanlin:def-mean-value-properties,hanlin:thm-harmonic-mean-value}
-If $u \in C(\Omega)$ has the mean value property in $\Omega$, then $u$ is smooth
-and harmonic in $\Omega$.
+If $u\in C(\Omega)$ has the mean value property, then $u\in C^\infty(\Omega)$
+and $\Delta u=0$.
 \end{theorem}
-
 \begin{proof}
-\sketch Choose a radial $\varphi\in C_0^\infty(B_1)$ with unit integral,
-$\varphi(x)=\psi(|x|)$, so that
-\[
-\omega_n \int_0^1 r^{n-1}\psi(r)\,dr = 1.
-\]
-For $\varphi_\epsilon(z)=\epsilon^{-n}\varphi(z/\epsilon)$ and
-$\epsilon<\operatorname{dist}(x,\partial\Omega)$, polar coordinates and the
-mean value property give
-\[
-\int_\Omega u(y)\varphi_\epsilon(y-x)\,dy
-= \int_\Omega u(x+y)\varphi_\epsilon(y)\,dy
-= \frac{1}{\epsilon^n}\int_{|y|<\epsilon} u(x+y)\varphi\!\left(\frac{y}{\epsilon}\right)\,dy
-\]
-\[
-= \int_{|y|<1} u(x+\epsilon y)\varphi(y)\,dy
-\]
-\[
-= \int_0^1 r^{n-1}\,dr \int_{\partial B_1} u(x+\epsilon rw)\varphi(rw)\,d\sigma_w
-\]
-\[
-= \int_0^1 \psi(r)r^{n-1}\,dr \int_{|w|=1} u(x+\epsilon rw)\,d\sigma_w
-\]
-\[
-= u(x)\omega_n \int_0^1 \psi(r)r^{n-1}\,dr = u(x),
-\]
-Consequently,
-\[
-u(x)=(\varphi_\epsilon * u)(x) \qquad \text{for any } x \in \Omega_\epsilon = \{y \in \Omega;\ d(y,\partial\Omega)>\epsilon\}.
-\]
-Thus $u$ is smooth. The differentiated spherical mean identity gives, for every
-$B_r(x)\subset\Omega$,
-\[
-\int_{B_r(x)} \Delta u = r^{n-1}\frac{\partial}{\partial r}\int_{|w|=1} u(x+rw)\,d\sigma_w = r^{n-1}\frac{\partial}{\partial r}(\omega_n u(x)) = 0.
-\]
-Hence $\Delta u=0$ in $\Omega$.
+\sketch Let $\varphi\in C_0^\infty(B_1)$ be radial with integral one and set
+$\varphi_\varepsilon(z)=\varepsilon^{-n}\varphi(z/\varepsilon)$. For
+$\varepsilon<\operatorname{dist}(x,\partial\Omega)$, polar coordinates and
+the mean value identity give $(\varphi_\varepsilon*u)(x)=u(x)$. Hence $u$ is
+smooth by convolution. Differentiating the spherical identity and applying the
+divergence theorem yields $\int_{B_r(x)}\Delta u=0$ for every admissible ball,
+so $\Delta u=0$.
 \end{proof}
 
 \begin{remark}\label{hanlin:remark-mvp-harmonic-smooth}\dcref{Remark 1.9}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0009}\uses{hanlin:thm-mean-value-max,hanlin:thm-harmonic-mean-value,hanlin:thm-mean-value-harmonic}
-Harmonic functions are smooth, satisfy the mean value property, and obey the
-maximum principle. Thus the bounded-domain Dirichlet problem
+The preceding results give smoothness, the mean value property, and the maximum
+principle for harmonic functions. Thus the bounded-domain Dirichlet problem
+has at most one solution. On unbounded domains uniqueness can fail: on
+$\{|x|>1\}$ the zero-boundary harmonic functions
 \[
-\Delta u = f \text{ in } \Omega
+u(x)=\log|x|\ (n=2),\qquad u(x)=|x|^{2-n}-1\ (n\ge3)
 \]
-\[
-u=\varphi \text{ on } \partial\Omega,
-\]
-has at most one solution for $f\in C(\Omega)$ and
-$\varphi\in C(\partial\Omega)$. Uniqueness can fail on unbounded domains. For
-\[
-\Delta u = 0 \text{ in } \Omega
-\]
-\[
-u=0 \text{ on } \partial\Omega.
-\]
-on $\Omega=\{x\in\mathbb{R}^n:|x|>1\}$, a nonzero solution is
-\[
-u(x)=
-\begin{cases}
-\log |x| & \text{for } n=2;\\
-|x|^{2-n}-1 & \text{for } n\ge 3.
-\end{cases}
-\]
-It diverges at infinity for $n=2$ and is bounded for $n\ge3$. On the upper
-half-space $\{x_n>0\}$, $u(x)=x_n$ is a nonzero unbounded solution.
+are nonzero, and $u(x)=x_n$ is a nonzero solution on the upper half-space.
 \end{remark}
 
 \begin{lemma}\label{hanlin:lemma-interior-gradient-1}\dcref{Lemma 1.10}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0010}\uses{hanlin:thm-harmonic-mean-value}
-If $u \in C(\overline{B_R(x_0)})$ is harmonic in $B_R(x_0)$, then
+If $u\in C(\overline{B_R(x_0)})$ is harmonic in $B_R(x_0)$, then
 \[
-|Du(x_0)| \le \frac{n}{R} \max_{\overline{B_R(x_0)}} |u|.
+|Du(x_0)|\le\frac nR\max_{\overline{B_R(x_0)}}|u|.
 \]
 \end{lemma}
-
 \begin{proof}
-\sketch Each $D_{x_i}u$ is harmonic. Its mean value identity and the divergence
-theorem give
+\sketch For any unit vector $e$, the directional derivative $D_eu$ is harmonic.
+Its ball mean value formula and the divergence theorem give
 \[
-D_{x_i}u(x_0) = \frac{n}{\omega_n R^n}\int_{B_R(x_0)} D_{x_i}u(y)dy = \frac{n}{\omega_n R^n}\int_{\partial B_R(x_0)} u(y)\,\nu_i\,d\sigma_y,
+D_eu(x_0)=\frac n{\omega_nR^n}\int_{\partial B_R(x_0)}u\,(e\cdot\nu)\,d\sigma,
 \]
-and therefore
-\[
-|D_{x_i}u(x_0)| \le \frac{n}{\omega_n R^n}\max_{\partial B_R(x_0)} |u| \cdot \omega_n R^{n-1} \le \frac{n}{R}\max_{\overline{B_R(x_0)}} |u|.
-\]
+and hence $|D_eu(x_0)|\le nR^{-1}\max|u|$. Take $e$ parallel to $Du(x_0)$.
 \end{proof}
 
 \begin{lemma}\label{hanlin:lemma-interior-gradient-2}\dcref{Lemma 1.11}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0010}\uses{hanlin:thm-harmonic-mean-value}
-If $u \in C(\overline{B_R(x_0)})$ is nonnegative and harmonic in $B_R(x_0)$,
-then
+If $u\ge0$ is harmonic in $B_R(x_0)$ and continuous on its closure, then
 \[
-|Du(x_0)| \le \frac{n}{R}u(x_0).
+|Du(x_0)|\le\frac nR u(x_0).
 \]
 \end{lemma}
-
 \begin{proof}
-\sketch The divergence theorem, nonnegativity, and the mean value property give
-\[
-|D_{x_i}u(x_0)| \le \frac{n}{\omega_n R^n}\int_{\partial B_R(x_0)} u(y)\,d\sigma_y = \frac{n}{R}u(x_0),
-\]
+\sketch Use the boundary formula from Lemma~\ref{hanlin:lemma-interior-gradient-1},
+replace $|\nu_i|$ by $1$, and use nonnegativity together with the mean value
+identity for the boundary integral.
 \end{proof}
 
 \begin{corollary}\label{hanlin:corollary-liouville}\dcref{Corollary 1.12}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0010}\uses{hanlin:lemma-interior-gradient-2}
-A harmonic function on $\mathbb{R}^n$ bounded above or below is constant.
+A harmonic function on $\mathbb R^n$ that is bounded above or bounded below is
+constant.
 \end{corollary}
-
 \begin{proof}
-\sketch After adding a constant and possibly changing sign, assume $u\ge0$.
-Apply Lemma 1.11 in $B_R(x)$ and let $R\to\infty$ to obtain $Du(x)=0$.
+\sketch Add a constant and change sign if necessary so that $u\ge0$. Apply
+Lemma~\ref{hanlin:lemma-interior-gradient-2} on arbitrarily large balls centered
+at a fixed point and let their radii tend to infinity; then $Du=0$ everywhere.
 \end{proof}
 
 \begin{lemma}\label{hanlin:lemma-higher-derivative-estimate}\dcref{Lemma 1.13}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0010}\uses{hanlin:lemma-interior-gradient-1}
-If $u \in C(\overline{B_R(x_0)})$ is harmonic in $B_R(x_0)$, then for every
-multi-index $\alpha$ with $|\alpha|=m$,
+If $u$ is harmonic in $B_R(x_0)$ and continuous on the closure, then for every
+multi-index $\alpha$ of order $m$,
 \[
-|D^\alpha u(x_0)| \le \frac{n^m e^{m-1}m!}{R^m}\max_{\overline{B_R(x_0)}} |u|.
+|D^\alpha u(x_0)|\le\frac{n^m e^{m-1}m!}{R^m}
+\max_{\overline{B_R(x_0)}}|u|.
 \]
 \end{lemma}
-
 \begin{proof}
-\sketch Induct on $m$, with $m=1$ given by Lemma 1.10. For
-$r=(1-\theta)R$ and $0<\theta<1$, apply that lemma to an $m$th derivative:
-\[
-|D^{m+1}u(x_0)| \le \frac{n}{r}\max_{\overline{B_r(x_0)}} |D^m u|.
-\]
-The induction hypothesis on the concentric ball of radius $R-r$ gives
-\[
-\max_{\overline{B_r(x_0)}} |D^m u| \le \frac{n^m \cdot e^{m-1} \cdot m!}{(R-r)^m}\max_{\overline{B_R(x_0)}} |u|.
-\]
-Thus
-\[
-|D^{m+1}u(x_0)| \le \frac{n^{m+1}e^{m-1}m!}{R^{m+1}\theta^m(1-\theta)}\max_{\overline{B_R(x_0)}} |u|
-= \frac{n^{m+1}e^{m-1}m!}{R^{m+1}\theta^m(1-\theta)}\max_{\overline{B_R(x_0)}} |u|.
-\]
-Choosing $\theta=m/(m+1)$ gives
-\[
-\frac{1}{\theta^m(1-\theta)}=\left(1+\frac{1}{m}\right)^m(m+1)<e(m+1).
-\]
-The multi-index estimate follows from
-$\alpha_1!\cdots\alpha_n!\le |\alpha|!$.
+\sketch Induct on $m$. Apply Lemma~\ref{hanlin:lemma-interior-gradient-1} to an
+$m$th derivative on a concentric smaller ball, use the induction estimate on
+the remaining radius, and choose $\theta=m/(m+1)$ in the radius split. The
+factor $\theta^{-m}(1-\theta)^{-1}<e(m+1)$, and
+$\alpha_1!\cdots\alpha_n!\le m!$ gives the stated multi-index bound.
 \end{proof}
 
 \begin{theorem}\label{hanlin:thm-harmonic-analytic}\dcref{Theorem 1.14}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0011}\uses{hanlin:lemma-higher-derivative-estimate}
-Every harmonic function is analytic.
+Every harmonic function is real analytic.
 \end{theorem}
-
 \begin{proof}
-\sketch Fix $B_{2R}(x)\subset\Omega$ and $|h|\le R$. Taylor's formula gives
-\[
-u(x+h)=u(x)+\sum_{i=1}^{m-1}\frac{1}{i!}\left[\left(h_1\frac{\partial}{\partial x_1}+\cdots+h_n\frac{\partial}{\partial x_n}\right)^i u\right](x)+R_m(h),
-\]
-where
-\[
-R_m(h)=\frac{1}{m!}\left[\left(h_1\frac{\partial}{\partial x_1}+\cdots+h_n\frac{\partial}{\partial x_n}\right)^m u\right](x_1+\theta h_1,\ldots,x_n+\theta h_n),
-\]
-for some $\theta\in(0,1)$. Lemma 1.13 bounds the remainder by
-\[
-|R_m(h)|\le \frac{1}{m!}|h|^m\cdot n^m\cdot \frac{n^m e^{m-1}m!}{R^m}\max_{\overline{B_{2R}(x)}} |u|
-\le \left(\frac{|h|n^2e}{R}\right)^m \max_{\overline{B_{2R}(x)}} |u|.
-\]
-Hence $R_m(h)\to0$ whenever $|h|n^2e<R/2$.
+\sketch Taylor-expand in a ball $B_{2R}(x)$. Lemma~\ref{hanlin:lemma-higher-derivative-estimate}
+bounds the order-$m$ remainder by a geometric factor
+$((n^2e)|h|/R)^m\max_{B_{2R}(x)}|u|$, which tends to zero for sufficiently small
+$|h|$. Thus the Taylor series converges to $u$ locally.
 \end{proof}
 
 \begin{theorem}\label{hanlin:thm-harnack}\dcref{Theorem 1.15}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0011}\uses{hanlin:thm-harmonic-mean-value}
-If $u$ is nonnegative and harmonic in $\Omega$, then for every compact
-$K\subset\Omega$,
+If $u\ge0$ is harmonic in $\Omega$, then for every compact $K\subset\Omega$ there
+is $C=C(\Omega,K)$ such that
 \[
-\frac{1}{C}u(y)\le u(x)\le Cu(y)\quad \text{for any } x,y\in K,
+C^{-1}u(y)\le u(x)\le Cu(y)\qquad(x,y\in K).
 \]
-where $C>0$ depends only on $\Omega$ and $K$.
 \end{theorem}
-
 \begin{proof}
-\sketch The mean value property gives, whenever $B_{4R}(x_0)\subset\Omega$,
-\[
-\frac{1}{c}u(y)\le u(x)\le cu(y)\quad \text{for any } x,y\in B_R(x_0),
-\]
-where $c$ is a positive constant depending only on $n$.
-Cover $K$ by a chain of $N$ such balls with
-$4R<\operatorname{dist}(K,\partial\Omega)$; iteration gives $C=c^N$.
+\sketch The mean value formula compares values at any two points in one ball
+$B_R$ whose fourfold enlargement lies in $\Omega$, with a factor depending
+only on $n$. Connect points of $K$ by a finite chain of such balls and iterate
+the local comparison.
 \end{proof}
 
-Integration by parts shows that every harmonic $u$ satisfies
+For later use, integration by parts gives
 \[
-\int_{\Omega} u\Delta\varphi = 0 \qquad \text{for any $\varphi\in C_0^2(\Omega)$.}
+\int_\Omega u\,\Delta\varphi=0\qquad(\varphi\in C_0^2(\Omega))
 \]
-The converse follows next.
+for every harmonic $u$.
 
 \begin{theorem}\label{hanlin:thm-distributional-harmonic}\dcref{Theorem 1.16}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0012}\uses{hanlin:thm-mean-value-harmonic}
-Suppose $u\in C(\Omega)$ satisfies
-\begin{equation}
-\int_{\Omega} u\Delta\varphi = 0 \qquad \text{for any $\varphi\in C_0^2(\Omega)$}.
-\tag{1}
-\end{equation}
-Then $u$ is harmonic in $\Omega$.
+If $u\in C(\Omega)$ satisfies
+\[
+\int_\Omega u\,\Delta\varphi=0\qquad(\varphi\in C_0^2(\Omega)),
+\]
+then $u$ is harmonic in $\Omega$.
 \end{theorem}
-
 \begin{proof}
-\sketch First establish, for every $B_r(x)\subset\Omega$,
-\begin{equation}
-r\int_{\partial B_r(x)} u(y)\,d\sigma_y = n\int_{B_r(x)} u(y)\,dy.
-\tag{2}
-\end{equation}
-This identity implies
-\[
-\frac{d}{dr}\left(\frac{1}{\omega_n r^{n-1}}\int_{\partial B_r(x)} u(y)\,d\sigma_y\right)
-= \frac{n}{\omega_n}\frac{d}{dr}\left(\frac{1}{r^n}\int_{B_r(x)} u(y)\,dy\right)
-\]
-\[
-= \frac{n}{\omega_n}\left\{\frac{n}{r^{n+1}}\int_{B_r(x)} u(y)\,dy + \frac{1}{r^n}\int_{\partial B_r(x)} u(y)\,d\sigma_y\right\}=0.
-\]
-Therefore
-\[
-\frac{1}{\omega_n r^{n-1}}\int_{\partial B_r(x)} u(y)\,dS_y = \text{const.}
-\]
-The constant tends to $u(x)$ as $r\to0$, so
-\[
-u(x)=\frac{1}{\omega_n r^{n-1}}\int_{\partial B_r(x)} u(y)\,dS_y
-\qquad \text{for any $B_r(x)\subset\Omega$.}
-\]
-To prove (2) for $n\ge3$, translate to $x=0$ and set
-\[
-\varphi(y,r)=
-\begin{cases}
-(|y|^2-r^2)^n & |y|\le r\\
-0 & |y|>r,
-\end{cases}
-\]
-and then for $k=2,3,\ldots,n$
-\[
-\varphi_k(y,r)=(|y|^2-r^2)^{n-k}\bigl(2(n-k+1)|y|^2+n(|y|^2-r^2)\bigr)
-\qquad \text{for $|y|\le r$.}
-\]
-Direct calculation gives $\varphi(\cdot,r)\in C_0^2(\Omega)$ and
-\[
-\Delta_y\varphi(y,r)=
-\begin{cases}
-2n\varphi_2(y,r) & |y|\le r\\
-0 & |y|>r.
-\end{cases}
-\]
-Hypothesis (1) yields
-\[
-\int_{B_r(0)} u(y)\varphi_2(y,r)\,dy = 0.
-\]
-If, for some $2\le k\le n-1$,
-\begin{equation}
-\int_{B_r} u(y)\varphi_k(y,r)\,dy = 0,
-\tag{3}
-\end{equation}
-then
-(4)
-\begin{equation*}
-\int_{B_r} u(y)\varphi_{k+1}(y,r)\,dy = 0.
-\end{equation*}
-differentiate (3) in $r$ to obtain
-\begin{equation*}
-\int_{\partial B_r} u(y)\varphi_k(y,r)\,dy + \int_{B_r} u(y)\frac{\partial \varphi_k}{\partial r}(y,r)\,dy = 0.
-\end{equation*}
-Because $\varphi_k=0$ on $\partial B_r$ for $2\le k<n$,
-\begin{equation*}
-\int_{B_r} u(y)\frac{\partial \varphi_k}{\partial r}(y,r)\,dy = 0.
-\end{equation*}
-and (4) follows from
-\begin{equation*}
-\frac{\partial \varphi_k}{\partial r}(y,r) = (-2r)(n-k+1)\varphi_{k+1}(y,r).
-\end{equation*}
-At $k=n-1$ this gives
-\begin{equation*}
-\int_{B_r} u(y)\bigl((n+2)|y|^2 - nr^2\bigr)\,dy = 0.
-\end{equation*}
-One more differentiation in $r$ proves (2).
+\sketch Test the distributional equation with compactly supported radial
+functions in a ball. Differentiating the resulting identities in the radius
+shows that the spherical mean of $u$ is constant in the radius; its limit at
+zero is $u(x)$, so $u$ has the mean value property. Theorem~\ref{hanlin:thm-mean-value-harmonic}
+then gives harmonicity. (For the explicit test-function induction, use powers
+of $|y|^2-r^2$ and differentiate successively in $r$.)
 \end{proof}
 
 \section{Fundamental Solutions}
 
 A radial harmonic function $u(x)=v(|x-a|)$ satisfies
-\begin{equation*}
-v'' + \frac{n-1}{r}v' = 0,
-\end{equation*}
-and therefore
-\begin{equation*}
-v(r) =
+$v''+(n-1)v'/r=0$. Hence $v=c_1+c_2\log r$ for $n=2$ and
+$v=c_3+c_4r^{2-n}$ for $n\ge3$. Normalizing the outward flux to one gives
+\[
+\Gamma(a,x)=
 \begin{cases}
-c_1 + c_2 \log r & n = 2,\\
-c_3 + c_4 r^{2-n} & n \ge 3,
+ (2\pi)^{-1}\log|a-x|,&n=2,\\
+ [\omega_n(2-n)]^{-1}|a-x|^{2-n},&n\ge3.
 \end{cases}
-\end{equation*}
-The flux normalization
-\begin{equation*}
-\int_{\partial B_r} \frac{\partial u}{\partial r}\, d\sigma = 1 \qquad \text{for any } r > 0.
-\end{equation*}
-determines the fundamental solution
-\begin{equation*}
-\Gamma(a,x) =
-\begin{cases}
-\frac{1}{2\pi}\log |a - x| & \text{for } n = 2,\\
-\frac{1}{\omega_n(2-n)}|a - x|^{2-n} & \text{for } n \ge 3.
-\end{cases}
-\end{equation*}
-For fixed $a$, it has a singularity at $a$, is harmonic elsewhere,
-\begin{equation*}
-\Delta_x \Gamma(a,x) = 0 \qquad \text{for any } x \ne a,
-\end{equation*}
-and satisfies
-\begin{equation*}
-\int_{\partial B_r(a)} \frac{\partial \Gamma}{\partial n_x}(a,x)\, d\sigma_x = 1 \qquad \text{for any } r > 0.
-\end{equation*}
+\]
+For $x\ne a$, $\Delta_x\Gamma(a,x)=0$, and
+$\int_{\partial B_r(a)}\partial_{n_x}\Gamma\,d\sigma_x=1$.
 
 \begin{theorem}\label{hanlin:thm-green-identity}\dcref{Theorem 1.17}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0014}
-Suppose $\Omega$ is a bounded domain in $\mathbb{R}^n$ and that
-$u \in C^1(\overline{\Omega}) \cap C^2(\Omega)$. Then for any $a \in \Omega$
+If $\Omega$ is bounded and $u\in C^1(\overline\Omega)\cap C^2(\Omega)$, then
+for $a\in\Omega$
 \[
-u(a) = \int_{\Omega} \Gamma(a,x)\Delta u(x)\,dx
-- \int_{\partial \Omega}
-\left(\Gamma(a,x)\frac{\partial u}{\partial n_x}(x)
-- u(x)\frac{\partial \Gamma}{\partial n_x}(a,x)\right)\,d\sigma_x.
+u(a)=\int_\Omega\Gamma(a,x)\Delta u(x)\,dx-
+\int_{\partial\Omega}\left(\Gamma(a,x)\partial_{n_x}u(x)-u(x)\partial_{n_x}\Gamma(a,x)\right)d\sigma_x.
 \]
 \end{theorem}
-
-\begin{remark}\label{hanlin:remark-green-identity}\dcref{Remark 1.18}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0014}
-\leavevmode
-\begin{enumerate}
-\item[(i)] For any $a \in \Omega$, $\Gamma(a,\cdot)$ is integrable in $\Omega$ although it has a singularity.
-\item[(ii)] For $a \notin \overline{\Omega}$, the expression in the right hand side is zero.
-\item[(iii)] By letting $u=1$, we have
-\[
-\int_{\partial \Omega}\frac{\partial \Gamma}{\partial n_x}(a,x)\,d\sigma_x = 1
-\qquad \text{for any $a \in \Omega$.}
-\]
-\end{enumerate}
-\end{remark}
-
 \begin{proof}
-\sketch Apply Green's formula to $u$ and $\Gamma(a,\cdot)$ on
-$\Omega\setminus B_r(a)$:
-\[
-\int_{\Omega \setminus B_r(a)} (\Gamma \Delta u - u\Delta \Gamma)\,dx
-= \int_{\partial\Omega}
-\left(\Gamma\frac{\partial u}{\partial n} - u\frac{\partial \Gamma}{\partial n}\right)\,d\sigma_x
-- \int_{\partial B_r(a)}
-\left(\Gamma\frac{\partial u}{\partial n} - u\frac{\partial \Gamma}{\partial n}\right)\,d\sigma_x.
-\]
-Since $\Delta\Gamma=0$ away from $a$, let $r\to0$ to obtain
-\[
-\int_{\Omega}\Gamma \Delta u\,dx
-= \int_{\partial\Omega}\left(\Gamma\frac{\partial u}{\partial n} - u\frac{\partial \Gamma}{\partial n}\right)\,d\sigma_x
-- \lim_{r\to 0}\int_{\partial B_r(a)}
-\left(\Gamma\frac{\partial u}{\partial n} - u\frac{\partial \Gamma}{\partial n}\right)\,d\sigma_x.
-\]
-For $n\ge3$, the two inner-boundary terms satisfy
-\[
-\left|\int_{\partial B_r(a)} \Gamma \frac{\partial u}{\partial n}\,d\sigma\right|
-= \left|\frac{1}{(2-n)\omega_n}r^{2-n}\int_{\partial B_r(a)}\frac{\partial u}{\partial n}\,d\sigma\right|
-\leq \frac{r}{n-2}\sup_{\partial B_r(a)}|Du| \to 0 \qquad \text{as } r\to 0,
-\]
-and
-\[
-\int_{\partial B_r(a)}u\frac{\partial \Gamma}{\partial n}\,dS
-= \frac{1}{\omega_n r^{n-1}}\int_{\partial B_r(a)}u\,dS \to u(a) \qquad \text{as } r\to 0.
-\]
-The logarithmic case $n=2$ has the same limits.
+\sketch Apply Green's identity on $\Omega\setminus B_r(a)$ and let $r\downarrow0$.
+The singular flux of $\Gamma$ contributes $u(a)$, while the other inner-boundary
+term vanishes; the logarithmic case is analogous.
 \end{proof}
 
-\begin{remark}\label{hanlin:remark-local-green-gradient}\dcref{Remark 1.19}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0014}\uses{hanlin:thm-green-identity}
-Let $u\in C(\overline{B_1})$ be harmonic in $B_1$. For $0<r<R<1$, choose
-$\varphi\in C_0^\infty(B_R)$ with $\varphi=1$ on $B_r$ and
-$0\le\varphi\le1$. Applying local Green's identity to $u$ and
-$\varphi\Gamma(a,\cdot)$ gives
+\begin{remark}\label{hanlin:remark-green-identity}\dcref{Remark 1.18}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0014}
+The singularity of $\Gamma(a,\cdot)$ is integrable. If $a\notin\overline\Omega$,
+the right side of Theorem~\ref{hanlin:thm-green-identity} is zero. Setting
+$u\equiv1$ gives
 \[
-u(a) = - \int_{r<|x|<R} u(x)\,\Delta_x(\varphi(x)\Gamma(a,x))\,dx
-\qquad \text{for any } a \in B_r.
+\int_{\partial\Omega}\partial_{n_x}\Gamma(a,x)\,d\sigma_x=1\qquad(a\in\Omega).
 \]
-Consequently,
-\[
-\sup_{B_{1/2}} |u|
-\leq c\left(\int_{B_1}|u|^p\right)^{\frac{1}{p}},
-\]
-and
-
-\[
-\sup_{B_{1/2}} |Du| \leq c \max_{B_1} |u|,
-\]
-
-where $c$ depends only on $n$.
 \end{remark}
 
-For a bounded $\Omega$, Theorem 1.17 gives, for $x\in\Omega$,
-
+\begin{remark}\label{hanlin:remark-local-green-gradient}\dcref{Remark 1.19}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0014}\uses{hanlin:thm-green-identity}
+Applying a cutoff version of Theorem~\ref{hanlin:thm-green-identity} to a
+harmonic $u$ on $B_1$ yields the local estimates
 \[
-u(x) = \int_{\Omega} \Gamma(x,y)\Delta u(y)\,dy - \int_{\partial \Omega} \left(\Gamma(x,y)\frac{\partial u}{\partial n_y}(y) - u(y)\frac{\partial \Gamma}{\partial n_y}(x,y)\right)\,d\sigma_y.
+\sup_{B_{1/2}}|u|\le c\|u\|_{L^p(B_1)},\qquad
+\sup_{B_{1/2}}|Du|\le c\|u\|_{L^\infty(B_1)},
 \]
+with $c$ depending only on $n$ (and $p$ in the first estimate).
+\end{remark}
 
-For the Dirichlet problem
-
+For the Dirichlet problem $\Delta u=f$ in $\Omega$, $u=\varphi$ on
+$\partial\Omega$, add to $\Gamma$ the harmonic correction $\Phi(x,\cdot)$
+with boundary data $-\Gamma(x,\cdot)$. The Green function
+$G=\Gamma+\Phi$ then satisfies
 \[
-(\ast)\qquad
-\begin{cases}
-\Delta u = f & \text{in } \Omega \\
-u = \varphi & \text{on } \partial \Omega
-\end{cases}
+u(x)=\int_\Omega G(x,y)f(y)\,dy+
+\int_{\partial\Omega}\varphi(y)\partial_{n_y}G(x,y)\,d\sigma_y,
 \]
-
-with $f\in C(\overline\Omega)$ and $\varphi\in C(\partial\Omega)$, adjust the
-fundamental solution to remove the unknown boundary term.
-
-For fixed $x\in\Omega$, set
-
-\[
-\gamma(x,y) = \Gamma(x,y) + \Phi(x,y),
-\]
-
-where $\Phi(x,\cdot)\in C^2(\overline\Omega)$ is harmonic in $\Omega$. Then
-
-\[
-u(x) = \int_{\Omega} \gamma(x,y)\Delta u(y)\,dy - \int_{\partial \Omega} \left(\gamma(x,y)\frac{\partial u}{\partial n_y}(y) - u(y)\frac{\partial \gamma}{\partial n_y}(x,y)\right)\,d\sigma_y,
-\]
-
-because $\Phi(x,\cdot)$ is harmonic. Choose
-$\Phi(x,\cdot)\in C^1(\overline\Omega)\cap C^2(\Omega)$ with
-
-\[
-\begin{cases}
-\Delta_y \Phi(x,y) = 0 & \text{for } y \in \Omega \\
-\Phi(x,y) = -\Gamma(x,y) & \text{for } y \in \partial \Omega.
-\end{cases}
-\]
-
-Writing $G=\Gamma+\Phi$, the Green representation is
-
-\[
-(**)\qquad
-u(x) = \int_{\Omega} G(x,y)f(y)\,dy + \int_{\partial \Omega} \varphi(y)\frac{\partial G}{\partial n_y}(x,y)\,d\sigma_y.
-\]
-
-For fixed $x$, $G(x,\cdot)$ is defined on $\overline\Omega$; uniqueness follows from
-the maximum principle.
+and is uniquely determined by the maximum principle.
 
 \begin{lemma}\label{hanlin:lemma-green-symmetric}\dcref{Lemma 1.20}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0015,han-lin-lecture-notes:page-0016}\uses{hanlin:thm-green-identity}
 The Green function is symmetric: $G(x,y)=G(y,x)$ for distinct $x,y\in\Omega$.
 \end{lemma}
-
 \begin{proof}
-\sketch For distinct $x_1,x_2$, set $G_i(y)=G(x_i,y)$ and apply Green's formula
-on $\Omega\setminus(B_r(x_1)\cup B_r(x_2))$:
-\[
-\int_{\Omega\setminus B_r(x_1)\cup B_r(x_2)}
-(G_1\Delta G_2-G_2\Delta G_1)
-=\int_{\partial\Omega}\left(G_1\frac{\partial G_2}{\partial n}-G_2\frac{\partial G_1}{\partial n}\right)\dd\sigma
-\]
-\[
--\int_{\partial B_r(x_1)}\left(G_1\frac{\partial G_2}{\partial n}-G_2\frac{\partial G_1}{\partial n}\right)\dd\sigma
--\int_{\partial B_r(x_2)}\left(G_1\frac{\partial G_2}{\partial n}-G_2\frac{\partial G_1}{\partial n}\right)\dd\sigma.
-\]
-The outer boundary term vanishes. Replacing each $G_i$ near its pole by
-$\Gamma$ and letting $r\to0$ gives
-\[
-\int_{\partial B_r(x_1)}\left(G_1\frac{\partial G_2}{\partial n}-G_2\frac{\partial G_1}{\partial n}\right)\dd\sigma
-+\int_{\partial B_r(x_2)}\left(G_1\frac{\partial G_2}{\partial n}-G_2\frac{\partial G_1}{\partial n}\right)\dd\sigma=0.
-\]
-The limiting inner-boundary identity is
-\[
-\int_{\partial B_r(x_1)}\left(\Gamma\frac{\partial G_2}{\partial n}-G_2\frac{\partial \Gamma}{\partial n}\right)\dd\sigma
-+\int_{\partial B_r(x_2)}\left(G_1\frac{\partial \Gamma}{\partial n}-\Gamma\frac{\partial G_1}{\partial n}\right)\dd\sigma=0.
-\]
-Indeed,
-\[
-\int_{\partial B_r(x_1)}\Gamma\frac{\partial G_2}{\partial n}\dd\sigma\to 0,\qquad
-\int_{\partial B_r(x_2)}\Gamma\frac{\partial G_1}{\partial n}\dd\sigma\to 0
-\qquad \text{as }r\to 0,
-\]
-and
-\[
-\int_{\partial B_r(x_1)}G_2\frac{\partial \Gamma}{\partial n}\dd\sigma\to G_2(x_1),\qquad
-\int_{\partial B_r(x_2)}G_1\frac{\partial \Gamma}{\partial n}\dd\sigma\to G_1(x_2)
-\qquad \text{as }r\to 0.
-\]
-Thus $G_2(x_1)=G_1(x_2)$.
+\sketch Apply Green's identity to $G(x_1,\cdot)$ and $G(x_2,\cdot)$ on the
+domain with small balls about both poles removed. The outer boundary term is
+zero. Replacing each pole term by the normalized fundamental solution and
+letting the radii tend to zero gives $G(x_1,x_2)=G(x_2,x_1)$.
 \end{proof}
 
 \begin{proposition}\label{hanlin:prop-green-sign}\dcref{Proposition 1.21}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0016}\uses{hanlin:thm-mean-value-max}
-Let $G$ be the Green's function on $\Omega$. Then for any $x,y\in\Omega$
-with $x\neq y$
+For the Green function and $x\ne y$,
 \[
-0>G(x,y)>\Gamma(x,y)\qquad \text{for }n\ge 3,
+0>G(x,y)>\Gamma(x,y)\quad(n\ge3),
 \]
+while for $n=2$,
 \[
-0>G(x,y)>\Gamma(x,y)-\frac{1}{2\pi}\log \diam(\Omega)\qquad \text{for }n=2.
+0>G(x,y)>\Gamma(x,y)-(2\pi)^{-1}\log\operatorname{diam}(\Omega).
 \]
 \end{proposition}
 \begin{proof}
-\sketch Fix $x$ and write $G(y)=G(x,y)$. Since $G(y)\to-\infty$ as $y\to x$,
-choose $r$ with $G<0$ on $\partial B_r(x)$. The maximum principle gives $G<0$
-outside this ball. Write
-\[
-G(x,y)=\Gamma(x,y)+\Phi(x,y),
-\]
-where $\Phi$ is harmonic and
-\[
-\Delta \Phi=0 \qquad \text{in }\Omega
-\]
-\[
-\Phi=-\Gamma \qquad \text{on }\partial\Omega.
-\]
-For $n\ge3$,
-\[
-\Gamma(x,y)=\frac{1}{(2-n)\omega_n}|x-y|^{2-n}<0 \qquad \text{for } y\in\partial\Omega,
-\]
-the boundary values of $\Phi$ are positive, hence $\Phi>0$ in $\Omega$.
-For $n=2$, we have
-\[
-\Gamma(x,y)=\frac{1}{2\pi}\log |x-y|\le \frac{1}{2\pi}\log \diam(\Omega)\qquad \text{for } y\in\partial\Omega.
-\]
-
-The same argument in dimension two gives
-$\Phi>-(2\pi)^{-1}\log\diam(\Omega)$.
+\sketch The maximum principle applied away from a small pole gives $G<0$.
+Writing $G=\Gamma+\Phi$, the boundary values of the harmonic correction are
+positive for $n\ge3$ and bounded below by $-(2\pi)^{-1}\log\operatorname{diam}(\Omega)$
+for $n=2$; apply the maximum principle to $\Phi$.
 \end{proof}
 
 \begin{theorem}\label{hanlin:thm-green-ball}\dcref{Theorem 1.22}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0017}
-The Green function of $B_R\subset\mathbb{R}^n$ is, for $n\ge3$,
-
+For $x,y\in B_R$ the Green function is
 \[
-G(x,y)=\frac{1}{(2-n)\omega_n}\left(|x-y|^{2-n}-\left|\frac{R}{|x|}x-\frac{|x|}{R}y\right|^{2-n}\right);
-\]
-
-and, for $n=2$,
-
-\[
-G(x,y)=\frac{1}{2\pi}\left(\log |x-y|-\log \left|\frac{R}{|x|}x-\frac{|x|}{R}y\right|\right).
+G(x,y)=\begin{cases}
+[(2-n)\omega_n]^{-1}\left(|x-y|^{2-n}-\left|\frac R{|x|}x-\frac{|x|}{R}y\right|^{2-n}\right),&n\ge3,\\
+(2\pi)^{-1}\left(\log|x-y|-\log\left|\frac R{|x|}x-\frac{|x|}{R}y\right|\right),&n=2.
+\end{cases}
 \]
 \end{theorem}
-
 \begin{proof}
-\sketch For $0<|x|<R$, invert $x$ through $\partial B_R$:
-\[
-X=\frac{R^2}{|x|^2}x.
-\]
-For $|y|=R$, similarity gives
-\[
-\frac{|x|}{R}=\frac{R}{|X|}=\frac{|y-x|}{|y-X|},
-\]
-which implies
-\begin{equation}
-|y-x|=\frac{|x|}{R}|y-X|=\left|\frac{|x|}{R}y-\frac{R}{|x|}x\right|
-\qquad \text{for any } y\in \partial B_R.
-\tag{1}
-\end{equation}
-Thus the following harmonic correction cancels the boundary values for $n\ge3$:
-\[
-G(x,y)=\frac{1}{(2-n)\omega_n}\left(\frac{1}{|x-y|^{n-2}}-\left(\frac{R}{|x|}\right)^{n-2}\frac{1}{|y-X|^{n-2}}\right).
-\]
-The logarithmic formula follows by the same inversion identity.
+\sketch Invert $x$ through $\partial B_R$ at $X=R^2x/|x|^2$. For $|y|=R$,
+$|y-x|=(|x|/R)|y-X|$, so the displayed reflected singularity cancels the
+boundary value while leaving the pole at $x$.
 \end{proof}
 
 \begin{corollary}\label{hanlin:cor-green-normal-derivative}\dcref{Corollary 1.23}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0017}\uses{hanlin:thm-green-ball}
-If $G$ is the Green function in $B_R$, then
+For $x\in B_R$ and $y\in\partial B_R$,
 \[
-\frac{\partial G}{\partial n_y}(x,y)=\frac{R^2-|x|^2}{\omega_n R|x-y|^n}
-\qquad \text{for any } x\in B_R \text{ and } y\in \partial B_R.
+\partial_{n_y}G(x,y)=\frac{R^2-|x|^2}{\omega_nR|x-y|^n}.
 \]
 \end{corollary}
 \begin{proof}
-\sketch For $n\ge3$ and $X=R^2x/|x|^2$,
-\[
-G(x,y)=\frac{1}{(2-n)\omega_n}\left(|x-y|^{2-n}-\left(\frac{R}{|x|}\right)^{n-2}|y-X|^{2-n}\right),
-\]
-and differentiation in $y_i$ gives
-\[
-D_{y_i}G(x,y)=-\frac{1}{\omega_n}\left(\frac{x_i-y_i}{|x-y|^n}-\left(\frac{R}{|x|}\right)^{n-2}\frac{X_i-y_i}{|X-y|^n}\right)
-=\frac{y_i}{\omega_n R}\frac{R^2-|x|^2}{|x-y|^n},
-\]
-by (1) in Theorem 1.22. Since $n_i=y_i/R$ on $\partial B_R$,
-\[
-\frac{\partial G}{\partial n_y}(x,y)=\sum_{i=1}^n n_iD_{y_i}G(x,y)=\frac{1}{\omega_n R}\frac{R^2-|x|^2}{|x-y|^n}.
-\]
+\sketch Differentiate the formula in Theorem~\ref{hanlin:thm-green-ball} and use
+$n_y=y/R$ together with the inversion identity on the boundary.
 \end{proof}
 
-The Poisson kernel $K(x,y)=\partial_{n_y}G(x,y)$ from Corollary 1.23 has the
-properties
-\begin{align*}
-\text{(K1)}\quad &K(x,y) \text{ is smooth for } x\neq y.\\
-\text{(K2)}\quad &K(x,y)>0 \text{ for } |x|<R \text{ and } |y|=R.\\
-\text{(K3)}\quad &\text{For any fixed } |x_0|=R,\ \lim_{x\to x_0,\,|x|<R}K(x,y)=0 \text{ uniformly in } y \text{ for }\\
-&|y-x_0|>\delta>0.\\
-\text{(K4)}\quad &\Delta_x K(x,y)=0 \text{ for } |x|<R \text{ and } |y|=R.\\
-\text{(K5)}\quad &\int_{|y|=R}K(x,y)dS_y=1 \text{ for any } |x|<R.
-\end{align*}
-(K1)--(K3) follow from the explicit kernel, and (K4) from harmonicity of $G$ in
-$x$. Formula $(**)$ gives, for harmonic $u\in C^2(\overline{B_R})$,
-\[
-u(x)=\int_{\partial B_R}K(x,y)u(y)d\sigma_y \qquad \text{for any } |x|<R.
-\]
-Taking $u\equiv1$ proves (K5).
+Let $K(x,y)=\partial_{n_y}G(x,y)$ on $B_R\times\partial B_R$. The explicit
+formula gives smoothness off the diagonal, positivity, vanishing near a fixed
+boundary point away from that point, and $\Delta_xK=0$; integrating the Green
+representation for $u\equiv1$ gives $\int_{\partial B_R}K(x,y)\,d\sigma_y=1$.
 
 \begin{theorem}\label{hanlin:thm-poisson-dirichlet}\dcref{Theorem 1.24}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0018}\uses{hanlin:cor-green-normal-derivative}
 For $\varphi\in C(\partial B_R)$, define
-\begin{equation}
-u(x)=\int_{\partial B_R}K(x,y)\varphi(y)d\sigma_y \qquad \text{for any } |x|<R
-\tag{1}
-\end{equation}
-Then $u$ is smooth in $B_R$, continuous on $\overline{B_R}$, and satisfies
 \[
-\left\{
-\begin{aligned}
-\Delta u &= 0 \qquad \text{in } \Omega\\
-u &= \varphi \qquad \text{on } \partial \Omega.
-\end{aligned}
-\right.
+u(x)=\int_{\partial B_R}K(x,y)\varphi(y)\,d\sigma_y,\qquad |x|<R.
 \]
+Then $u$ is smooth and harmonic in $B_R$, continuous on $\overline{B_R}$, and
+$u=\varphi$ on $\partial B_R$.
 \end{theorem}
-
 \begin{proof}
-\sketch Properties (K1) and (K4) give smoothness and harmonicity. For
-$x_0\in\partial B_R$, (K5) gives
-\[
-u(x)-\varphi(x_0)=\int_{|y|=R}K(x,y)(\varphi(y)-\varphi(x_0))d\sigma_y=I_1+I_2,
-\]
-where
-\[
-I_1=\int_{|y-x_0|<\delta,\,|y|=R}\cdots,\qquad
-I_2=\int_{|y-x_0|>\delta,\,|y|=R}\cdots.
-\]
-Given $\varepsilon>0$, continuity of $\varphi$ permits $\delta>0$ such that
-\[
-|\varphi(y)-\varphi(x_0)|<\varepsilon \qquad \text{for } |y-x_0|<\delta,\ |y|=R.
-\]
-Then $|I_1|\le\varepsilon$ by (K2) and (K5). With
-$M=\sup_{\partial B_R}|\varphi|$, property (K3) supplies $\delta'>0$ such that
-\[
-K(x,y)\le \frac{\varepsilon}{2M\omega_n R^{n-1}} \qquad \text{for } |x-x_0|<\delta',\ |y-x_0|>\delta.
-\]
-Thus $|I_2|<\varepsilon$, and
-\[
-|u(x)-\varphi(x_0)|<2\varepsilon \qquad for any |x-x_0|<\delta',\ |x|<R.
-\]
-so $u$ is continuous at $x_0$.
+\sketch Smoothness and harmonicity follow from the kernel properties. For
+boundary continuity, split the integral near and away from a boundary point;
+continuity of $\varphi$ controls the near part and uniform kernel decay controls
+the far part. The normalization $\int K=1$ completes the limit.
 \end{proof}
 
 \begin{remark}\label{hanlin:remark-poisson-mean-value}\dcref{Remark 1.25}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0019}\uses{hanlin:thm-poisson-dirichlet}
-At $x=0$, the Poisson formula reduces to
+At the center, the Poisson formula is the spherical mean value formula:
 \[
-u(0) = \frac{1}{\omega_n R^{n-1}} \int_{\partial B_R} u(y)\,d\sigma_y.
+u(0)=\frac1{\omega_nR^{n-1}}\int_{\partial B_R}u\,d\sigma.
 \]
 \end{remark}
 
 \begin{lemma}\label{hanlin:lemma-harnack-ball}\dcref{Lemma 1.26}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0019}\uses{hanlin:thm-poisson-dirichlet}
-Suppose $u$ is harmonic in $B_R(x_0)$ and $u \ge 0$. Then
+If $u\ge0$ is harmonic in $B_R(x_0)$ and $r=|x-x_0|<R$, then
 \[
-\left(\frac{R}{R+r}\right)^{n-2}\frac{R-r}{R+r}u(x_0) \le u(x) \le \left(\frac{R}{R-r}\right)^{n-2}\frac{R+r}{R-r}u(x_0),
+\left(\frac R{R+r}\right)^{n-2}\frac{R-r}{R+r}u(x_0)
+\le u(x)\le
+\left(\frac R{R-r}\right)^{n-2}\frac{R+r}{R-r}u(x_0).
 \]
-where $r = |x-x_0| < R$.
 \end{lemma}
-
 \begin{proof}
-\sketch Translate to $x_0=0$. The Poisson formula gives
-\[
-u(x) = \frac{1}{\omega_n R}\int_{\partial B_R}\frac{R^2-|x|^2}{|y-x|^n}u(y)\,d\sigma_y.
-\]
-Using $R-|x|\le|y-x|\le R+|x|$ on $\partial B_R$ gives
-\[
-\frac{1}{\omega_n R}\cdot\frac{R-|x|}{R+|x|}\left(\frac{1}{R+|x|}\right)^{n-2}\int_{\partial B_R}u(y)\,d\sigma_y \le u(x)
-\]
-\[
-\le \frac{1}{\omega_n R}\cdot\frac{R+|x|}{R-|x|}\left(\frac{1}{R-|x|}\right)^{n-2}\int_{\partial B_R}u(y)\,d\sigma_y.
-\]
-The mean value identity
-\[
-u(0) = \frac{1}{\omega_n R^{n-1}}\int_{\partial B_R}u(y)\,d\sigma_y.
-\]
+\sketch Translate to $x_0=0$, insert the Poisson kernel, and use
+$R-r\le|y-x|\le R+r$ on $\partial B_R$. Replace the boundary integral by
+$\omega_nR^{n-1}u(0)$ via the mean value formula.
 \end{proof}
 
 \begin{corollary}\label{hanlin:corollary-liouville-poisson}\dcref{Corollary 1.27}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0019}\uses{hanlin:lemma-harnack-ball}
-If $u$ is a harmonic function in $\mathbb{R}^n$ and bounded above or below, then $u \equiv \mathrm{const}$.
+A harmonic function on $\mathbb R^n$ bounded above or below is constant.
 \end{corollary}
-
 \begin{proof}
-\sketch After adding a constant and changing sign if needed, assume $u\ge0$.
-For $R>|x|$, Lemma 1.26 gives
-\[
-\left(\frac{R}{R+|x|}\right)^{n-2}\frac{R-|x|}{R+|x|}u(0) \le u(x) \le \left(\frac{R}{R-|x|}\right)^{n-2}\frac{R+|x|}{R-|x|}u(0).
-\]
-Letting $R\to\infty$ yields $u(x)=u(0)$.
+\sketch Normalize to $u\ge0$ and apply Lemma~\ref{hanlin:lemma-harnack-ball} on
+$B_R(0)$ for fixed $x$. Let $R\to\infty$; both comparison factors tend to one.
 \end{proof}
 
 \begin{theorem}\label{hanlin:thm-removable-singularity}\dcref{Theorem 1.28}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0019,han-lin-lecture-notes:page-0020}\uses{hanlin:thm-mean-value-max}
-Suppose $u$ is harmonic in $B_R \setminus \{0\}$ and satisfies
+If $u$ is harmonic on $B_R\setminus\{0\}$ and
 \[
-u(x)=
-\begin{cases}
-o(\log |x|), & n=2 \\
-o(|x|^{2-n}), & n\ge 3
-\end{cases}
-\quad\text{as } |x|\to 0.
+u(x)=\begin{cases}o(\log|x|),&n=2,\\o(|x|^{2-n}),&n\ge3,\end{cases}
+\quad |x|\to0,
 \]
-Then $u$ can be defined at $0$ so that it is $C^2$ and harmonic in $B_R$.
+then $u$ extends across $0$ as a $C^2$ harmonic function.
 \end{theorem}
-
 \begin{proof}
-\sketch Assume $u$ is continuous on $0<|x|\le R$, and let $v$ solve
-\[
-\left\{
-\begin{aligned}
-\Delta v &= 0 \text{ in } B_R \\
-v &= u \text{ on } \partial B_R.
-\end{aligned}
-\right.
-\]
-Set $w=v-u$ and $M_r=\max_{\partial B_r}|w|$. For $n\ge3$,
-\[
-|w(x)| \le M_r \cdot \frac{r^{n-2}}{|x|^{n-2}} \text{ on } \partial B_r.
-\]
-The maximum principle applied to $w$ and $|x|^{2-n}$ on
-$B_R\setminus B_r$ gives
-\[
-|w(x)| \le M_r \cdot \frac{r^{n-2}}{|x|^{n-2}} \text{ for any } x \in B_R \setminus B_r,
-\]
-Moreover,
-\[
-M_r = \max_{\partial B_r} |v - u| \le \max_{\partial B_r} |v| + \max_{\partial B_r} |u| \le M + \max_{\partial B_r} |u|,
-\]
-where $M=\max_{\partial B_R}|u|$. Hence for fixed $x\ne0$,
-\[
-|w(x)| \le \frac{r^{n-2}}{|x|^{n-2}} M + \frac{1}{|x|^{n-2}} r^{n-2} \max_{\partial B_r} |u| \to 0 \text{ as } r \to 0.
-\]
-Thus $w=0$ away from the origin. The case $n=2$ is identical with the logarithmic
-barrier.
+\sketch Let $v$ be the harmonic extension of the boundary data on $\partial B_R$.
+For $w=v-u$, compare $|w|$ on $B_R\setminus B_r$ with the harmonic barriers
+$M_rr^{n-2}|x|^{2-n}$ ($n\ge3$) or the logarithmic barrier ($n=2$), where
+$M_r=\max_{\partial B_r}|w|$. The assumed little-$o$ decay makes the barrier
+tend to zero for each fixed $x\ne0$, so $w=0$ and $u=v$ away from the pole.
 \end{proof}
 
-\section*{1.3. Maximum Principles}
+\section{Maximum Principles}
 
 \begin{theorem}\label{hanlin:thm-subharmonic-max}\dcref{Theorem 1.29}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0020}
-If $u \in C^2(B_1)\cap C(\bar B_1)$ and $\Delta u\ge0$ in $B_1$, then
+If $u\in C^2(B_1)\cap C(\overline{B_1})$ and $\Delta u\ge0$, then
 \[
-\sup_{B_1} u \le \sup_{\partial B_1} u.
+\sup_{B_1}u\le\sup_{\partial B_1}u.
 \]
 \end{theorem}
-
 \begin{proof}
-\sketch Set $u_\varepsilon=u+\varepsilon|x|^2$. Then
-\[
-\Delta u_\varepsilon = \Delta u + 2n \varepsilon \ge 2n \varepsilon > 0.
-\]
-Since $\Delta u_\varepsilon>0$, it has no interior maximum, so
-\[
-\sup_{B_1} u_\varepsilon \le \sup_{\partial B_1} u_\varepsilon.
-\]
-As $|x|=1$ on the boundary,
-\[
-\sup_{B_1} u \le \sup_{B_1} u_\varepsilon \le \sup_{\partial B_1} u + \varepsilon.
-\]
-Let $\varepsilon\to0$.
+\sketch For $\varepsilon>0$ set $u_\varepsilon=u+\varepsilon|x|^2$; then
+$\Delta u_\varepsilon>0$, so $u_\varepsilon$ has no interior maximum. Compare
+its boundary and interior suprema and let $\varepsilon\downarrow0$.
 \end{proof}
 
 \begin{corollary}\label{hanlin:corollary-comparison-principle}\dcref{Corollary 1.30}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0021}\uses{hanlin:thm-subharmonic-max}
-Suppose $u,v \in C^2(B_1)\cap C(\overline{B}_1)$ satisfy
-\[
-\Delta u \ge \Delta v \quad \text{in } B_1
-\]
-\[
-u \le v \quad \text{on } \partial B_1.
-\]
-Then $u \le v$ in $B_1$.
+If $u,v\in C^2(B_1)\cap C(\overline{B_1})$ satisfy $\Delta u\ge\Delta v$ in
+$B_1$ and $u\le v$ on $\partial B_1$, then $u\le v$ in $B_1$.
 \end{corollary}
 
 \begin{remark}\label{hanlin:remark-maxprin-domain}\dcref{Remark 1.31}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0021}\uses{hanlin:thm-subharmonic-max,hanlin:corollary-comparison-principle}
-Theorem 1.29 and Corollary 1.30 hold on any bounded domain.
+Theorem~\ref{hanlin:thm-subharmonic-max} and Corollary~\ref{hanlin:corollary-comparison-principle}
+remain valid on every bounded domain, with the corresponding boundary.
 \end{remark}
 
 \begin{theorem}\label{hanlin:thm-interior-gradient}\dcref{Theorem 1.32}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0021}\uses{hanlin:thm-subharmonic-max}
-If $u$ is harmonic in $B_1$, then
+For harmonic $u$ in $B_1$,
 \[
-\sup_{B_{1/2}} |Du| \le c\sup_{\partial B_1} |u|,
+\sup_{B_{1/2}}|Du|\le c\sup_{\partial B_1}|u|,
+\qquad
+|u(x)-u(y)|\le c|x-y|^\alpha\sup_{\partial B_1}|u|
 \]
-where $c$ is a positive constant depending only on $n$.
+for $x,y\in B_{1/2}$ and $0\le\alpha\le1$, where $c=c(n)$.
 \end{theorem}
-
-In particular, for $\alpha\in[0,1]$,
-\[
-|u(x)-u(y)| \le c|x-y|^\alpha \sup_{\partial B_1} |u| \qquad \text{for any } x,y \in B_{1/2},
-\]
-where $c$ is a positive constant depending only on $n$.
-
 \begin{proof}
-\sketch Direct calculation gives
-\[
-\Delta(|Du|^2) = 2\sum_{i,j=1}^n (D_{ij}u)^2 + 2\sum_{i=1}^n D_i u D_i(\Delta u) = 2\sum_{i,j=1}^n (D_{ij}u)^2,
-\]
-so $|Du|^2$ is subharmonic. For $\varphi\in C_0^1(B_1)$,
-\[
-\Delta(\varphi|Du|^2) = (\Delta\varphi)|Du|^2 + 4\sum_{i,j=1}^n D_i\varphi D_j u D_{ij}u + 2\varphi\sum_{i,j=1}^n (D_{ij}u)^2.
-\]
-
-Take $\varphi=\eta^2$ with $\eta=1$ on $B_{1/2}$. Cauchy's inequality gives
-\[
-\Delta(\eta^2|Du|^2)
-\]
-\[
-=2\eta \Delta\eta |Du|^2 + 2|D\eta|^2|Du|^2 + 8\eta \sum_{i,j=1}^n D_i\eta D_j u D_{ij}u + 2\eta^2 \sum_{i,j=1}^n (D_{ij}u)^2
-\]
-\[
-\ge \bigl(2\eta\Delta\eta - 6|D\eta|^2\bigr)|Du|^2 \ge -C|Du|^2,
-\]
-for a constant $C=C(\eta)$. Also
-\[
-\Delta(u^2) = 2|Du|^2 + 2u\Delta u = 2|Du|^2,
-\]
-since $u$ is harmonic. Choosing $\alpha$ large enough gives
-\[
-\Delta(\eta^2|Du|^2 + \alpha u^2) \ge 0.
-\]
-Theorem 1.29 then yields the estimate.
+\sketch $|Du|^2$ is subharmonic since
+$\Delta|Du|^2=2\sum_{i,j}(D_{ij}u)^2$. Apply Theorem~\ref{hanlin:thm-subharmonic-max}
+to a cutoff multiple of $|Du|^2$ plus a sufficiently large multiple of $u^2$.
+The gradient bound gives the Hölder estimate (with a larger constant).
 \end{proof}
 
 \begin{lemma}\label{hanlin:lemma-log-gradient}\dcref{Lemma 1.33}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0022}
-If $u$ is positive and harmonic in $B_1$, then
+If $u>0$ is harmonic in $B_1$, then
 \[
-\sup_{B_{\frac{1}{2}}} |D \log u| \le c,
+\sup_{B_{1/2}}|D\log u|\le c(n).
 \]
-where $c$ is a positive constant depending only on $n$.
 \end{lemma}
-
 \begin{proof}
-\sketch Set $v=\log u$ and $w=|Dv|^2$. Then
-\[
-\Delta v = -|Dv|^2.
-\]
-
-and
-\[
-\Delta w + 2 \sum_{i=1}^n D_i v D_i w = 2 \sum_{i,j=1}^n (D_{ij}v)^2.
-\]
-
-Moreover,
-\begin{equation}
-\sum_{i,j=1}^n (D_{ij}v)^2 \ge \sum_{i=1}^n (D_{ii}v)^2 \ge \frac{1}{n}(\Delta v)^2 = \frac{|Dv|^4}{n} = \frac{w^2}{n}.
-\tag{1}
-\end{equation}
-
-For nonnegative $\varphi\in C_0^1(B_1)$, Cauchy's inequality yields
-\begin{align*}
-\Delta(\varphi w) + 2 \sum_{i=1}^n D_i v D_i(\varphi w)
-&= 2\varphi \sum_{i,j=1}^n (D_{ij}v)^2 + 4 \sum_{i,j=1}^n D_i\varphi D_j v D_{ij}v + 2w \sum_{i=1}^n D_i\varphi D_i v + (\Delta\varphi)w \\
-&\ge \varphi \sum_{i,j=1}^n (D_{ij}v)^2 - 2|D\varphi||Dv|^3 - \left(|\Delta\varphi| + C\frac{|D\varphi|^2}{\varphi}\right)|Dv|^2,
-\end{align*}
-Choose $\varphi=\eta^4$; then $|D\varphi|^2/\varphi$ is bounded and (1) gives
-\begin{align*}
-\Delta(\eta^4 w) + 2 \sum_{i=1}^n D_i v D_i(\eta^4 w)
-&\ge \frac{1}{n}\eta^4 |Dv|^4 - Cn^3|D\eta||Dv|^3 - 4n^2(n\Delta\eta + C|D\eta|^2)|Dv|^2 \\
-&\ge \frac{1}{n}\eta^4 |Dv|^4 - Cn^3|Dv|^3 - C\eta^2|Dv|^2,
-\end{align*}
-for $C=C(n,\eta)$, and hence
-\[
-\Delta(\eta^4 w) + 2 \sum_{i=1}^n D_i v D_i(\eta^4 w) \ge \frac{1}{n}\eta^4 w^2 - C,
-\]
-for $C=C(n,\eta)$.
-
-At an interior maximum $x_0$ of $\eta^4w$,
-\[
-\Delta(\eta^4 w) \le 0 \quad \text{at } x_0.
-\]
-Hence
-\[
-\eta^4 w^2(x_0) \le C(n,\eta).
-\]
-If $w(x_0)\ge1$ this bounds $\eta^4w(x_0)$ by $C(n)$; otherwise it is at most
-$1$. Hence
-\[
-\eta^4 w \le C(n,\eta) \quad \text{in } B_1.
-\]
+\sketch Set $v=\log u$ and $w=|Dv|^2$. Then $\Delta v=-w$ and
+$\Delta w+2Dv\cdot Dw=2|D^2v|^2\ge2w^2/n$. Applying the maximum principle to
+$\eta^4w$ for a cutoff $\eta$ equal to one on $B_{1/2}$ yields a uniform bound.
 \end{proof}
 
 \begin{corollary}\label{hanlin:corollary-harnack-ball}\dcref{Corollary 1.34}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0023}\uses{hanlin:lemma-log-gradient}
-If $u$ is nonnegative and harmonic in $B_1$, then
+If $u\ge0$ is harmonic in $B_1$, then
 \[
-u(x_1) \le c u(x_2) \text{ for any } x_1, x_2 \in B_{\frac{1}{2}},
+u(x_1)\le c(n)u(x_2)\qquad(x_1,x_2\in B_{1/2}).
 \]
-where $c$ is a positive constant depending only on $n$.
 \end{corollary}
-
 \begin{proof}
-\sketch Assume $u>0$. For $x_1,x_2\in B_{1/2}$, integrate Lemma 1.33 along
-the segment joining them:
-\[
-\log \frac{u(x_1)}{u(x_2)} \le |x_1 - x_2| \int_0^1 |D \log u(tx_2 + (1 - t)x_1)|\,dt \le C|x_1 - x_2|.
-\]
+\sketch For $u>0$, integrate the bound in Lemma~\ref{hanlin:lemma-log-gradient}
+along the segment joining $x_1$ and $x_2$; the zero case follows by continuity.
 \end{proof}
 
 \begin{theorem}\label{hanlin:thm-hopf}\dcref{Theorem 1.35}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0023,han-lin-lecture-notes:page-0024}\uses{hanlin:thm-subharmonic-max,hanlin:corollary-harnack-ball}
-Suppose $u \in C(\bar{B}_1)$ is a harmonic function in $B_1$. If $u(x) < u(x_0)$ for any $x \in \bar{B}_1$ and some $x_0 \in \partial B_1$, then
+If $u\in C(\overline{B_1})$ is harmonic in $B_1$ and has a strict maximum at
+$x_0\in\partial B_1$, then
 \[
-\frac{\partial u}{\partial n}(x_0) \ge c(u(x_0) - u(0)),
+\partial_nu(x_0)\ge c(n)\bigl(u(x_0)-u(0)\bigr).
 \]
-where $c$ is a positive constant depending only on $n$.
 \end{theorem}
-
 \begin{proof}
-\sketch Let
-\[
-v(x) = e^{-\alpha |x|^2} - e^{-\alpha}.
-\]
-Then
-\[
-\Delta v(x) = e^{-\alpha |x|^2}(-2\alpha n + 4\alpha^2|x|^2) > 0 \text{ for any } |x| \ge \frac{1}{2},
-\]
-for $\alpha\ge2n+1$, so $v$ is subharmonic on
-\[
-A = B_1 \setminus B_{\frac{1}{2}}.
-\]
-Now define for $\varepsilon > 0$
-\[
-h_\varepsilon(x) = u(x) - u(x_0) + \varepsilon v(x).
-\]
-Then $h_\varepsilon$ is subharmonic in $A$, is negative on the inner boundary for
-$\varepsilon>0$ small, and vanishes at $x_0$. The maximum principle gives
-\[
-\frac{\partial h_\varepsilon}{\partial n}(x_0) \ge 0,
-\]
-or
-\[
-\frac{\partial u}{\partial n}(x_0) \ge -\varepsilon \frac{\partial v}{\partial n}(x_0) = 2\alpha \varepsilon e^{-\alpha} > 0.
-\]
-Set $w=u(x_0)-u>0$. Corollary 1.34 gives
-\[
-\inf_{B_{\frac{1}{2}}} w \ge c w(0),
-\]
-or
-\[
-\max_{B_{\frac{1}{2}}} u \le u(x_0) - c(u(x_0) - u(0)),
-\]
-with $c=c(n)$. Choose
-\[
-\varepsilon = \delta c\bigl(u(x_0)-u(0)\bigr),
-\]
-for $\delta=\delta(n)$ small.
+\sketch On the annulus $B_1\setminus\overline{B_{1/2}}$ use the subharmonic
+barrier $v=e^{-\alpha|x|^2}-e^{-\alpha}$ and apply the maximum principle to
+$u-u(x_0)+\varepsilon v$. Corollary~\ref{hanlin:corollary-harnack-ball} supplies a
+uniform gap on $B_{1/2}$; choosing $\varepsilon$ proportional to that gap and
+differentiating the boundary comparison gives the normal derivative bound.
 \end{proof}
 
 \begin{lemma}\label{hanlin:lemma-holder-boundary}\dcref{Lemma 1.36}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0024,han-lin-lecture-notes:page-0025}\uses{hanlin:corollary-comparison-principle,hanlin:thm-interior-gradient}
-If $u \in C(\overline{B_1})$ is harmonic in $B_1$, $u=\varphi$ on $\partial B_1$,
-and $\varphi \in C^\alpha(\partial B_1)$ for $0<\alpha<1$, then
-$u \in C^{\alpha/2}(\overline{B_1})$ and
+If $u\in C(\overline{B_1})$ is harmonic in $B_1$, has boundary data
+$\varphi\in C^\alpha(\partial B_1)$ with $0<\alpha<1$, then
+$u\in C^{\alpha/2}(\overline{B_1})$ and
 \[
-\|u\|_{C^{\alpha/2}(\overline{B_1})} \le c\|\varphi\|_{C^\alpha(\partial B_1)},
+\|u\|_{C^{\alpha/2}(\overline{B_1})}\le c(n,\alpha)\|\varphi\|_{C^\alpha(\partial B_1)}.
 \]
-where $c$ is a positive constant depending only on $n$ and $\alpha$.
 \end{lemma}
-
 \begin{proof}
-\sketch The maximum principle gives
-\[
-\inf_{\partial B_1}\varphi \le u \le \sup_{\partial B_1}\varphi \qquad \text{in } B_1.
-\]
-For $x_0\in\partial B_1$, first prove
-\begin{equation}\tag{1}
-\sup_{x \in B_1}\frac{|u(x)-u(x_0)|}{|x-x_0|^{\alpha/2}}
-\le 2^{\alpha/2}\sup_{x \in \partial B_1}\frac{|\varphi(x)-\varphi(x_0)|}{|x-x_0|^\alpha}.
-\end{equation}
-The lemma follows from (1) by comparing points according to their boundary
-distance.
-
-For $x,y\in B_1$, set $d_x=\operatorname{dist}(x,\partial B_1)$ and
-$d_y = \operatorname{dist}(y,\partial B_1)$, and assume $d_y \le d_x$. Take
-$x_0,y_0\in\partial B_1$ with $|x-x_0|=d_x$ and $|y-y_0|=d_y$. If
-$|x-y|\le d_x/2$, apply the scaled Theorem 1.32 to $u-u(x_0)$ in
-$B_{d_x}(x)$ and use (1):
-\[
-\frac{d_x^{\alpha/2}|u(x)-u(y)|}{|x-y|^{\alpha/2}}
-\le C\bigl|u-u(x_0)\bigr|_{L^\infty(B_{d_x}(x))}
-\le C d_x^{\alpha/2}\|\varphi\|_{C^\alpha(\partial B_1)}.
-\]
-Therefore
-\[
-|u(x)-u(y)| \le C|x-y|^{\alpha/2}\|\varphi\|_{C^\alpha(\partial B_1)}.
-\]
-
-If $d_y\le d_x\le2|x-y|$, then (1) gives
-\[
-|u(x)-u(y)| \le |u(x)-u(x_0)| + |u(x_0)-u(y_0)| + |u(y_0)-u(y)|
-\]
-\[
-\le C\bigl(d_x^{\alpha/2} + |x_0-y_0|^{\alpha/2} + d_y^{\alpha/2}\bigr)\|\varphi\|_{C^\alpha(\partial B_1)}
-\]
-\[
-\le C|x-y|^{\alpha/2}\|\varphi\|_{C^\alpha(\partial B_1)},
-\]
-since $|x_0-y_0| \le d_x + |x-y| + d_y \le 5|x-y|$.
-
-To prove (1), take $B_1 = B_1((1,0,\dots,0))$, $x_0=0$, and $\varphi(0)=0$. Set
-$K=\sup_{x\in \partial B_1}|\varphi(x)|/|x|^\alpha$. Note $|x|^2=2x_1$ for $x\in \partial B_1$.
-Then
-\[
-\varphi(x) \le K|x|^\alpha \le 2^{\alpha/2}Kx_1^{\alpha/2}\qquad \text{for any }x\in\partial B_1.
-\]
-Define $v(x)=2^{\alpha/2}Kx_1^{\alpha/2}$ in $B_1$. Then we have
-\[
-\Delta v(x)=2^{\alpha/2}K\cdot \frac{\alpha}{2}\left(\frac{\alpha}{2}-1\right)x_1^{\alpha/2-2}<0
-\qquad \text{in }B_1.
-\]
-Corollary 1.30 implies
-\[
-u(x)\le v(x)=2^{\alpha/2}Kx_1^{\alpha/2}\le 2^{\alpha/2}K|x|^{\alpha/2}
-\qquad \text{for any }x\in B_1.
-\]
-
-Applying the same argument to $-u$ gives
-\[
-|u(x)| \le 2^{\alpha/2}K|x|^{\alpha/2}\qquad \text{for any }x\in B_1.
-\]
-This proves (1).
+\sketch Compare $u-u(x_0)$ with the barrier
+$C|x-x_0|^{\alpha/2}$ at each boundary point using Corollary~\ref{hanlin:corollary-comparison-principle}.
+For interior points, if their boundary distances are comparable to their
+separation use the boundary estimate; otherwise apply the scaled gradient
+estimate from Theorem~\ref{hanlin:thm-interior-gradient}. Combining the two cases
+gives the global $C^{\alpha/2}$ bound.
 \end{proof}
 
-\subsection*{1.4. Energy Methods}
+\section{Energy Methods}
 
-In this section, assume $a_{ij}\in C(B_1)$ satisfies
+Assume $a_{ij}\in C(B_1)$ is uniformly elliptic:
 \[
-\lambda |\xi|^2 \le a_{ij}(x)\xi_i\xi_j \le \Lambda |\xi|^2\qquad \text{for any }x\in B_1\text{ and }\xi\in\mathbb{R}^n,
+\lambda|\xi|^2\le a_{ij}(x)\xi_i\xi_j\le\Lambda|\xi|^2,
 \]
-for $\lambda,\Lambda>0$, and let $u\in C^1(B_1)$ satisfy
+and $u\in C^1(B_1)$ satisfies
 \[
-\int_{B_1} a_{ij}\D_i u\D_j \varphi = 0\qquad \text{for any }\varphi\in C_0^1(B_1).
+\int_{B_1}a_{ij}D_i uD_j\varphi=0\qquad(\varphi\in C_0^1(B_1)).
 \]
-For $a_{ij}=\delta_{ij}$ this includes harmonic functions.
 
 \begin{lemma}\label{hanlin:lemma-caccioppoli}\dcref{Lemma 1.37}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0025}
-If $u\in C^1(B_1)$ satisfies
+Under these hypotheses, every $\eta\in C_0^1(B_1)$ satisfies
 \[
-\int_{B_1} a_{ij}\D_i u\D_j \varphi = 0\qquad \text{for any }\varphi\in C_0^1(B_1).
+\int_{B_1}\eta^2|Du|^2\le c(\lambda,\Lambda)\int_{B_1}|D\eta|^2u^2.
 \]
-then every $\eta\in C_0^1(B_1)$ satisfies
-\[
-\int_{B_1} \eta^2|\D u|^2 \le c\int_{B_1} |\D\eta|^2 u^2,
-\]
-with $c=c(\lambda,\Lambda)$.
 \end{lemma}
-
 \begin{proof}
-\sketch Test with $\varphi=\eta^2u$ and use ellipticity:
-\[
-\lambda \int_{B_1} \eta^2|\D u|^2 \le \Lambda \int_{B_1} \eta|u||\D\eta||\D u|.
-\]
-Young's inequality gives the stated bound.
+\sketch Test the weak equation with $\eta^2u$. Ellipticity bounds the main term,
+and Cauchy's inequality absorbs one half of it, leaving the stated estimate.
 \end{proof}
 
 \begin{corollary}\label{hanlin:cor-caccioppoli-balls}\dcref{Corollary 1.38}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0025}\uses{hanlin:lemma-caccioppoli}
-If $u$ is as in Lemma 1.37, then for $0\le r<R\le1$,
+For $0\le r<R\le1$,
 \[
-\int_{B_r} |\D u|^2 \le \frac{C}{(R-r)^2}\int_{B_R} u^2,
+\int_{B_r}|Du|^2\le\frac{C(\lambda,\Lambda)}{(R-r)^2}\int_{B_R}u^2.
 \]
-where $C=C(\lambda,\Lambda)$.
 \end{corollary}
-
 \begin{proof}
-\sketch Choose $\eta=1$ on $B_r$, supported in $B_R$, with
-$|\D\eta|\le2(R-r)^{-1}$, and apply Lemma 1.37.
+\sketch Choose a cutoff equal to one on $B_r$, supported in $B_R$, and with
+$|D\eta|\le2/(R-r)$; apply Lemma~\ref{hanlin:lemma-caccioppoli}.
 \end{proof}
 
 \begin{corollary}\label{hanlin:cor-energy-decay}\dcref{Corollary 1.39}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0025,han-lin-lecture-notes:page-0026}\uses{hanlin:lemma-caccioppoli}
-If $u$ is as in Lemma 1.37, then for $0<R\le1$,
+There is $\theta=\theta(n,\lambda,\Lambda)\in(0,1)$ such that, for $0<R\le1$,
 \[
-\int_{B_{R/2}} u^2 \le \theta \int_{B_R} u^2,
+\int_{B_{R/2}}u^2\le\theta\int_{B_R}u^2,
+\qquad
+\int_{B_{R/2}}|Du|^2\le\theta\int_{B_R}|Du|^2.
 \]
-\emph{and}
-\[
-\int_{B_{R/2}} |\D u|^2 \le \theta \int_{B_R} |\D u|^2,
-\]
-where $\theta\in(0,1)$ depends only on $n,\lambda,\Lambda$.
 \end{corollary}
-
 \begin{proof}
-\sketch Choose $\eta\in C_0^1(B_R)$ with $\eta=1$ on $B_{R/2}$ and
-$|D\eta|\le2R^{-1}$. Lemma 1.37 and Poincare's inequality yield
-\[
-\int_{B_R} |D(\eta u)|^2 \le C \int_{B_R} |D\eta|^2 u^2 \le \frac{C}{R^2} \int_{B_R \setminus B_{R/2}} u^2,
-\]
-since $D\eta = 0$ in $B_{R/2}$. Hence, by the Poincar\'e inequality, we get
-\[
-\int_{B_{R/2}} (\eta u)^2 \le C R^2 \int_{B_R} |D(\eta u)|^2.
-\]
-
-Therefore we obtain
-\[
-\int_{B_{R/2}} u^2 \le C \int_{B_R \setminus B_{R/2}} u^2,
-\]
-and hence
-\[
-(C + 1) \int_{B_{R/2}} u^2 \le C \int_{B_R} u^2.
-\]
-
-For the second inequality, observe that Lemma 1.37 holds for $u - a$ for an arbitrary constant $a$. Then as before, we have
-\[
-\int_{B_R} \eta^2 |Du|^2 \le C \int_{B_R} |D\eta|^2 (u - a)^2 \le \frac{C}{R^2} \int_{B_R \setminus B_{R/2}} (u - a)^2.
-\]
-The Poincar\'e inequality implies with $a = |B_R \setminus B_{R/2}|^{-1} \int_{B_R \setminus B_{R/2}} u$
-\[
-\int_{B_R \setminus B_{R/2}} (u - a)^2 \le c(n) R^2 \int_{B_R \setminus B_{R/2}} |Du|^2.
-\]
-Hence we obtain
-\[
-\int_{B_{R/2}} |Du|^2 \le C \int_{B_R \setminus B_{R/2}} |Du|^2,
-\]
-and hence
-\[
-(C + 1) \int_{B_{R/2}} |Du|^2 \le C \int_{B_R} |Du|^2.
-\]
-
+\sketch A cutoff in Lemma~\ref{hanlin:lemma-caccioppoli}, followed by Poincare's
+inequality on the annulus $B_R\setminus B_{R/2}$, gives the first contraction.
+Apply the same argument to $u-a$, choosing $a$ as the annular average, to get
+the gradient contraction.
 \end{proof}
 
 \begin{remark}\label{hanlin:remark-finite-energy-liouville}\dcref{Remark 1.40}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0026}\uses{hanlin:cor-energy-decay}
-Corollary 1.39 implies that a harmonic function on $\mathbb{R}^n$ with finite
-$L^2$ norm is zero, while finite Dirichlet energy forces it to be constant.
+Iterating Corollary~\ref{hanlin:cor-energy-decay} shows that a harmonic function
+on $\mathbb R^n$ with finite $L^2$ norm vanishes, while finite Dirichlet energy
+forces it to be constant.
 \end{remark}
 
 \begin{remark}\label{hanlin:remark-iterated-energy-decay}\dcref{Remark 1.41}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0026}\uses{hanlin:lemma-caccioppoli,hanlin:cor-energy-decay}
-Iterating Corollary 1.39, for $u$ as in Lemma 1.37 and $0<\rho<r\le1$,
+For $0<\rho<r\le1$, iteration gives
 \[
-\int_{B_\rho} u^2 \le C \left(\frac{\rho}{r}\right)^\mu \int_{B_r} u^2,
+\int_{B_\rho}u^2\le C(\rho/r)^\mu\int_{B_r}u^2,\qquad
+\int_{B_\rho}|Du|^2\le C(\rho/r)^\mu\int_{B_r}|Du|^2,
 \]
-and
-\[
-\int_{B_\rho} |Du|^2 \le C \left(\frac{\rho}{r}\right)^\mu \int_{B_r} |Du|^2,
-\]
-for some $\mu>0$ depending only on $n$, $\lambda$, and $A$. The second exponent
-may be chosen in $(n-2,n)$; harmonic functions admit stronger estimates.
+for some $\mu>0$ depending only on $n,\lambda,\Lambda$ (the gradient exponent
+may be chosen in $(n-2,n)$).
 \end{remark}
 
 \begin{lemma}\label{hanlin:lemma-constant-coeff-compactness}\dcref{Lemma 1.42}\group{harmonic-functions}\source{han-lin-lecture-notes:page-0027,han-lin-lecture-notes:page-0028}\uses{hanlin:cor-caccioppoli-balls}
-Suppose $\{a_{ij}\}$ is a constant positive definite matrix with
+Let $(a_{ij})$ be a constant positive definite matrix with
 \[
-\lambda |\xi|^2 \le a_{ij}\xi_i\xi_j \le \Lambda |\xi|^2 \qquad \text{for any } \xi \in \mathbb{R}^n,
+\lambda|\xi|^2\le a_{ij}\xi_i\xi_j\le\Lambda|\xi|^2,
 \]
-for some constants $0 < \lambda \le \Lambda$. Suppose $u \in C^1(B_1)$ satisfies
-\begin{equation}
-\int_{B_1} a_{ij}D_i u D_j \varphi = 0 \qquad \text{for any } \varphi \in C_0^1(B_1).
-\end{equation}
-Then for any $0 < \rho \le r$
-\begin{equation}
-\int_{B_\rho} |u|^2 \le c \left(\frac{\rho}{r}\right)^n \int_{B_r} |u|^2,
-\end{equation}
-and
-\begin{equation}
-\int_{B_\rho} |u-u_\rho|^2 \le c \left(\frac{\rho}{r}\right)^{n+2} \int_{B_r} |u-\bar{u}_r|^2,
-\end{equation}
-where $c$ is a positive constant depending only on $\lambda$ and $\Lambda$ and $\bar{u}_r$ denotes the average
-of $u$ in $B_r$.
+and let $u\in C^1(B_1)$ solve the associated weak equation. For
+$0<\rho\le r\le1$,
+\[
+\int_{B_\rho}|u|^2\le c(\rho/r)^n\int_{B_r}|u|^2,
+\qquad
+\int_{B_\rho}|u-u_\rho|^2\le c(\rho/r)^{n+2}\int_{B_r}|u-\bar u_r|^2,
+\]
+where $c=c(\lambda,\Lambda)$, and $u_\rho$ and $\bar u_r$ denote the averages
+of $u$ on $B_\rho$ and $B_r$, respectively.
 \end{lemma}
-
 \begin{proof}
-\sketch By scaling, take $r=1$ and $0<\rho\le1/2$. It suffices to prove
-\[
-\lVert u \rVert_{L^\infty(B_{1/2})}^2 + \lVert Du \rVert_{L^\infty(B_{1/2})}^2 \le c \int_{B_1} |u|^2,
-\]
-with $c=c(\lambda,\Lambda)$. This implies
-\[
-\int_{B_\rho} |u|^2 \le \rho^n \lVert u \rVert_{L^\infty(B_{1/2})}^2 \le c\rho^n \int_{B_1} |u|^2,
-\]
-and
-\[
-\int_{B_\rho} |u-\bar{u}_\rho|^2 \le \int_{B_\rho} |u-u(0)|^2 \le \rho^{n+2}\lVert Du \rVert_{L^\infty(B_{1/2})}^2 \le c\rho^{n+2}\int_{B_1} |u|^2.
-\]
-Since $u-u_1$ also solves (1), replacement by $u-u_1$ gives
-\[
-\int_{B_\rho} |u-\bar{u}_\rho|^2 \le c\rho^{n+2}\int_{B_1} |u-u_1|^2.
-\]
-
-For the claimed bound, rotate to diagonalize $(a_{ij})$. Equation (1) becomes
-(1) becomes
-\[
-\sum_{i=1}^n \lambda_i D_{ii}u = 0,
-\]
-with $\lambda\le\lambda_i\le\Lambda$. There is
-$r_0=r_0(\lambda,\Lambda)\in(0,1/2)$ such that, for $x_0\in B_{1/2}$,
-\[
-\left\{x; \frac{|x_i-x_{0i}|}{\sqrt{\lambda_i}} < r_0 \right\}
-\]
-lies in $B_1$. Under the change of variables
-\[
-x_i \mapsto y_i = \frac{x_i}{\sqrt{\lambda_i}},
-\]
-and
-\[
-v(y)=u(x).
-\]
-$v$ is harmonic in $\{y:\sum_i\lambda_i y_i^2<1\}$. Interior estimates on
-\[
-\{y;|y-y_0|<r_0\},
-\]
-give
-\[
-|v(y_0)|^2+|Dv(y_0)|^2 \le c \int_{B_{r_0}(y_0)} v^2 \le c \int_{\{\sum_{i=1}^n \lambda_i y_i^2<1\}} v^2,
-\]
-with $c=c(\lambda,\Lambda)$. Transforming back gives
-\[
-|u(x_0)|^2+|Du(x_0)|^2 \le c \int_{|x|<1} u^2.
-\]
-
-Alternatively, derivatives of $u$ also solve (1), so iterating Corollary 1.38 gives
-\[
-\|u\|_{H^k(B_{1/2})} \le c\|u\|_{L^2(B_1)},
-\]
-Choosing $k=[n/2]+1$ and using Sobolev embedding yields
-\[
-\|u\|_{L^\infty(B_{1/2})}+\|Du\|_{L^\infty(B_{1/2})} \le c\|u\|_{L^2(B_1)}.
-\]
+\sketch Scale to $r=1$. Caccioppoli estimates applied successively to the
+constant-coefficient equation give local $H^k$ bounds from the $L^2$ norm;
+Sobolev embedding yields uniform bounds for $u$ and $Du$ on $B_{1/2}$. Integrate
+these bounds over $B_\rho$ and apply the same argument to $u-\bar u_r$ for the
+oscillation estimate. Scaling restores the powers of $\rho/r$.
 \end{proof}

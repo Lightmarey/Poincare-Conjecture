@@ -250,7 +250,7 @@ $|\kappa_N|$.  The sign is positive when the curve bends toward $\Omega$.
 \begin{theorem}[The Gauss--Bonnet Formula]
 \label{thm:gauss-bonnet-formula}
 \dcref{ch9:9.3}
-\uses{prob:arc-length-integral,thm:rotation-index-theorem,lem:rotation-index-plus-one}
+\uses{prop:arc-length-integral,thm:rotation-index-theorem,lem:rotation-index-plus-one}
 Let $\gamma$ be a positively oriented curved polygon in an oriented
 Riemannian $2$-manifold, with interior $\Omega$ and exterior angles
 $\varepsilon_1,\ldots,\varepsilon_k$.  Then
@@ -460,7 +460,7 @@ $K\equiv0$ or $K$ takes both positive and negative values.
 \begin{corollary}
 \label{cor:curvature-determines-cover}
 \dcref{ch9:9.9}
-\uses{cor:gaussian-curvature-and-topology,exer:A.62,prop:fiber-cardinality-fundamental-group}
+\uses{cor:gaussian-curvature-and-topology,prop:compact-covering-finite-sheeted,prop:fiber-cardinality-fundamental-group}
 Let $(M,g)$ be a compact Riemannian $2$-manifold with Gaussian curvature $K$.
 \begin{enumerate}
 \item[(a)] If $K>0$ everywhere, then the universal covering manifold is
@@ -513,178 +513,3 @@ The Hopf conjecture asserts that a compact even-dimensional manifold admitting
 a metric of strictly positive sectional curvature has positive Euler
 characteristic. It holds in dimensions $2$ and $4$ and remains open in higher
 dimensions; see \cite[p. 320]{Pet16}.
-\section{Problems}
-
-\begin{exercise}[Geodesic polygons with nonpositive curvature]
-\label{prob:geodesic-polygons-negative-curvature}
-\dcref{ch9:9-1}
-\uses{thm:gauss-bonnet-formula}
-
-Let $(M,g)$ be an oriented Riemannian $2$-manifold with Gaussian curvature
-$K\leq0$. Prove that no geodesic polygon has exactly $0$, $1$, or $2$
-ordinary vertices. When the curvature hypothesis is removed, construct an
-example for each of these three vertex counts.
-\end{exercise}
-
-\begin{exercise}[Angle excess formula]
-\label{prob:angle-excess-formula}
-\dcref{ch9:9-2}
-\uses{thm:gauss-bonnet-formula}
-
-For a geodesic polygon $\gamma$ with $n$ vertices and interior angles
-$\theta_1,\ldots,\theta_n$, define its \emph{angle excess} by
-\[
-E(\gamma)=\sum_{i=1}^n\theta_i-(n-2)\pi.
-\]
-If $(M,g)$ has constant Gaussian curvature $K$, prove that every geodesic
-polygon satisfies
-\[
-E(\gamma)=K\,\operatorname{Area}(\Omega),
-\]
-where $\Omega$ is the region it bounds.
-\end{exercise}
-
-\begin{exercise}[Gauss--Bonnet formula on a sphere]
-\label{prob:gauss-bonnet-sphere}
-\dcref{ch9:9-3}
-\uses{thm:gauss-bonnet-formula}
-
-For $h\in(-R,R)$, let
-\[
-C_h=S^2(R)\cap\{z=h\},
-\qquad
-\Omega=S^2(R)\cap\{z>h\}.
-\]
-Compute the signed geodesic curvature of $C_h$ and verify the Gauss--Bonnet
-formula for $\Omega$.
-\end{exercise}
-
-\begin{exercise}[Gauss--Bonnet theorem on the torus]
-\label{prob:gauss-bonnet-torus}
-\dcref{ch9:9-4}
-\uses{thm:gauss-bonnet-theorem}
-
-Let $T\subseteq\mathbb R^3$ be obtained by revolving
-$(r-2)^2+z^2=1$ about the $z$-axis. Compute its Gaussian curvature and verify
-the Gauss--Bonnet theorem directly.
-\end{exercise}
-
-\begin{exercise}[Smooth triangulation of 2-manifolds]
-\label{prob:triangulation-2manifold}
-\dcref{ch9:9-5}
-
-Prove that every compact smooth $2$-manifold has a smooth triangulation.
-\begin{enumerate}
-\item[(a)] Reduce the result to finding finitely many convex geodesic polygons
-whose interiors cover $M$, each contained in a uniformly normal convex
-geodesic ball. Here a curved polygon is convex when its union with its
-interior is geodesically convex.
-\item[(b)] Using Theorem~6.17, find points $v_1,\ldots,v_k$ and
-$\varepsilon>0$ such that each $B_{3\varepsilon}(v_i)$ is uniformly normal
-and geodesically convex, while the balls $B_\varepsilon(v_i)$ cover $M$.
-\item[(c)] For every $i$, construct a convex geodesic polygon in
-$B_{3\varepsilon}(v_i)$ whose interior contains $B_\varepsilon(v_i)$.
-\emph{Hint.} Choose sufficiently close vertices on the circle of radius
-$2\varepsilon$ about $v_i$.
-\item[(d)] Complete the triangulation from these polygons.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}[Embedded submanifold cannot be nonpositively curved]
-\label{prob:embedded-submanifold-positive-curvature}
-\dcref{ch9:9-6}
-
-Let $M\subseteq\mathbb R^3$ be a compact embedded Riemannian
-$2$-submanifold. Prove that its Gaussian curvature cannot satisfy
-$K\leq0$ everywhere. \emph{Hint.} Examine a point maximizing the distance
-from the origin.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:similar-triangles-congruent}
-\dcref{ch9:9-7}
-
-Let $M$ be either $S^2(R)$ or $\mathbb H^2(R)$, where $R>0$. Suppose two
-geodesic triangles have equal corresponding interior angles and proportional
-corresponding side lengths. Prove that an isometry of $M$ maps one triangle
-to the other.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:compact-lie-groups-isomorphic}
-\dcref{ch9:9-8}
-\uses{prob:lie-group-bi-invariant-metric,thm:gauss-bonnet-theorem}
-
-Use the Gauss--Bonnet theorem to prove that every compact connected
-$2$-dimensional Lie group is isomorphic to $S^1\times S^1$.
-\emph{Hint.} Use Problem~8-17.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:ideal-triangles-hyperbolic}
-\dcref{ch9:9-9}
-\uses{thm:gauss-bonnet-formula}
-
-\begin{enumerate}
-\item[(a)] Find the least upper bound of the areas of geodesic triangles in
-$\mathbb H^2(R)$.
-\item[(b)] Distinct maximal geodesics in $\mathbb H^2$ are
-\emph{asymptotically parallel} if they admit unit-speed parametrizations
-$\gamma_1,\gamma_2:\mathbb R\to\mathbb H^2$ for which
-$d_g(\gamma_1(t),\gamma_2(t))$ remains bounded as $t\to+\infty$ or as
-$t\to-\infty$. An \emph{ideal triangle} is bounded by three distinct maximal
-geodesics that are pairwise asymptotically parallel. Prove that every ideal
-triangle has the same finite area, compute that area, and justify all limiting
-arguments.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}[The Gauss--Bonnet theorem for surfaces with boundary]
-\label{prob:gauss-bonnet-with-boundary}
-\dcref{ch9:9-10}
-\uses{thm:gauss-bonnet-formula,thm:gauss-bonnet-theorem}
-
-Let $(M,g)$ be a compact Riemannian $2$-manifold with boundary and a smooth
-triangulation such that each curved triangle meets $\partial M$ either in
-nothing, one vertex, or one edge. Prove
-\[
-\int_MK\,dA+\int_{\partial M}\kappa_N\,ds=2\pi\chi(M),
-\]
-where $\kappa_N$ is the signed geodesic curvature of $\partial M$ with
-respect to the inward unit normal $N$.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:cylinder-metric-gaussian-curvature}
-\dcref{ch9:9-11}
-
-Let $g$ be a Riemannian metric on $S^1\times[0,1]$ for which both boundary
-curves are totally geodesic. Prove that its Gaussian curvature is either
-identically zero or assumes both positive and negative values. Construct
-examples of both alternatives.
-\end{exercise}
-
-\begin{exercise}
-\label{prob:plane-curve-classification}
-\dcref{ch9:9-12}
-\uses{thm:plane-curve-classification}
-
-Prove the plane-curve classification theorem, Theorem~1.5.
-\emph{Hint.} Show that every smooth unit-speed plane curve
-$\gamma(t)=(x(t),y(t))$ satisfies
-\[
-\gamma''(t)=\kappa_N(t)N(t),
-\qquad
-N(t)=(-y'(t),x'(t)).
-\]
-\end{exercise}
-
-\begin{exercise}
-\label{prob:einstein-manifold-euler-characteristic}
-\dcref{ch9:9-13}
-\uses{eq:chern-gauss-bonnet-4d}
-
-Use the four-dimensional Chern--Gauss--Bonnet formula (9.14) to prove that a
-compact $4$-dimensional Einstein manifold has positive Euler characteristic
-unless it is flat.
-\end{exercise}

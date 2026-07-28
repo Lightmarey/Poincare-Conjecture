@@ -1,4 +1,4 @@
-\chapter{Noncompact Gradient Ricci Solitons}
+\chapter[27]{Noncompact Gradient Ricci Solitons}
 \label{ch:chow-iv-noncompact-gradient-ricci-solitons}
 \dcref{ch27}
 \source{chow-et-al-ricci-flow-part-iv:page-0022}
@@ -49,19 +49,6 @@ and
 \]
 \end{definition}
 
-\begin{claim}[Conjugation of the weighted Schrodinger operator (Exercise 27.1)]
-\label{ex:chow-iv-weighted-conjugation}
-\dcref{ch27:27.1}
-\group{Weighted geometry}
-\source{chow-et-al-ricci-flow-part-iv:page-0024}
-\uses{def:chow-iv-weighted-operators}
-For every smooth $\varphi$,
-\[
-\left(\Delta_f-\frac14R_f\right)\varphi
-=e^{f/2}\left(\Delta-\frac14R\right)(e^{-f/2}\varphi).
-\]
-\end{claim}
-
 \begin{theorem}[Lower bound for scalar curvature of GRS (Theorem 27.2)]
 \label{thm:chow-iv-scalar-curvature-lower-bound}
 \dcref{ch27:27.2}
@@ -72,6 +59,7 @@ If $(\mathcal M^n,g,f,\varepsilon)$ is complete, then $R\ge0$ for a shrinker
 or steady soliton, and $R\ge-n/2$ for an expander.
 \end{theorem}
 \begin{proof}
+\sketch
 Use a radial cutoff $\Phi_c=\eta(r/c)R$ in the differential inequality for
 $\Delta_fR$.  The cutoff satisfies
 $\eta''-2(\eta')^2/\eta\ge-\mathrm{const}$; the weighted distance comparison
@@ -210,15 +198,6 @@ If $O_1,O_2$ are minimum points of a complete normalized shrinker, then
 $d(O_1,O_2)\le35n/8+\sqrt{2n}$.
 \end{corollary}
 
-\begin{claim}[Potential functions of expanders (Problem 27.14)]
-\label{prob:chow-iv-expander-potential}
-\dcref{ch27:27.14}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0033}
-What is the best qualitative estimate for $f$ on expanders?  With $\Rc>0$ one
-has the quadratic upper bound $f\le-d(x,\widetilde O)^2/4+C$.
-\end{claim}
-
 \begin{lemma}[Quadratic upper bound for scalar curvature (Lemma 27.15)]
 \label{lem:chow-iv-scalar-quadratic-upper}
 \dcref{ch27:27.15}
@@ -241,24 +220,6 @@ If $R(x)\le\alpha(d(x,\widetilde O)+C)^2$ for some $\alpha<1/4$, then the
 shrinker has finite topological type; in particular bounded $R$ suffices.
 \end{corollary}
 
-\begin{claim}[Critical quadratic threshold (Problem 27.17)]
-\label{prob:chow-iv-critical-growth}
-\dcref{ch27:27.17}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0034}
-Can the hypothesis $\alpha<1/4$ in Corollary~\ref{cor:chow-iv-finite-topological-type}
-be removed?
-\end{claim}
-
-\begin{conjecture}[Optimistic curvature conjecture (Conjecture 27.18)]
-\label{conj:chow-iv-bounded-curvature-conjecture}
-\dcref{ch27:27.18}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0034}
-Every complete noncompact shrinker has scalar, Ricci, and sectional curvature
-bounded above.
-\end{conjecture}
-
 \begin{theorem}[Four-dimensional curvature control (Theorem 27.19)]
 \label{thm:chow-iv-four-dimensional-curvature}
 \dcref{ch27:27.19}
@@ -277,25 +238,6 @@ For every $\delta>0$ on a normalized noncompact shrinker, outside a compact set
 each $x$ has a point $y\in B_x(\delta)$ satisfying
 $R(y)\le C(n,\delta)(d(y,O)+1)$, where $O$ minimizes $f$.
 \end{lemma}
-
-\begin{conjecture}[Elliptic Harnack estimate (Conjecture 27.21)]
-\label{conj:chow-iv-elliptic-harnack}
-\dcref{ch27:27.21}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0035}
-There is a universal constant such that $d(x,y)\le1$ implies
-$R(x)\le\mathrm{const}\,R(y)$ on every complete noncompact shrinker.
-\end{conjecture}
-
-\begin{claim}[Harnack implies finite topological type (Exercise 27.22)]
-\label{ex:chow-iv-harnack-topology}
-\dcref{ch27:27.22}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0035}
-\uses{conj:chow-iv-elliptic-harnack,cor:chow-iv-finite-topological-type}
-Show that the elliptic Harnack estimate implies the hypothesis needed for finite
-topological type.
-\end{claim}
 
 \begin{proposition}[Pinched expander curvature decay (Proposition 27.23)]
 \label{prop:chow-iv-expander-curvature-decay}
@@ -433,14 +375,6 @@ $P'(c)\le0$ for $c\ge(n+2)/2$ and
 $2^n\omega_n\operatorname{AVR}(g)=\lim_{c\to\infty}P(c)$.
 \end{theorem}
 
-\begin{claim}[AVR upper bound one (Problem 27.34)]
-\label{prob:chow-iv-avr-one}
-\dcref{ch27:27.34}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0042}
-Must every shrinker satisfy $\operatorname{AVR}(g)\le1$?
-\end{claim}
-
 \begin{proposition}[Characterization of positive AVR (Proposition 27.35)]
 \label{prop:chow-iv-positive-avr}
 \dcref{ch27:27.35}
@@ -475,32 +409,6 @@ The products $(\mathcal N^k,h)\times\mathbb R^{n-k}$ with $\Rc_h=h/2$ have
 $R=k/2$ and volume growth of order $(1+r)^{n-k}$.
 \end{remark}
 
-\begin{claim}[Compact factors (Question 27.38)]
-\label{ques:chow-iv-compact-factor}
-\dcref{ch27:27.38}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0043}
-Does a positive scalar lower bound force a compact factor of the corresponding
-dimension on a simply connected shrinker?
-\end{claim}
-
-\begin{claim}[Positive AVR and finite ASCR (Question 27.39)]
-\label{ques:chow-iv-positive-avr-finite-ascr}
-\dcref{ch27:27.39}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0043}
-Does positive AVR imply finite ASCR for a complete noncompact shrinker?
-\end{claim}
-
-\begin{claim}[Euclidean growth without a line factor (Question 27.40)]
-\label{ques:chow-iv-euclidean-growth-no-line}
-\dcref{ch27:27.40}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0043}
-Does a simply connected shrinker without an $\mathbb R$ factor have Euclidean
-volume growth?
-\end{claim}
-
 \begin{theorem}[Bakry--Emery volume comparison (Theorem 27.41)]
 \label{thm:chow-iv-bakry-emery-comparison}
 \dcref{ch27:27.41}
@@ -528,16 +436,6 @@ Every complete normalized noncompact shrinker satisfies
 If $O$ minimizes $f$, the factor is at most $e^{n/2}$.
 \end{theorem}
 
-\begin{claim}[Monotone radial density (Exercise 27.43)]
-\label{ex:chow-iv-radial-density-monotone}
-\dcref{ch27:27.43}
-\group{Volume growth}
-\source{chow-et-al-ricci-flow-part-iv:page-0046}
-\uses{thm:chow-iv-euclidean-volume-growth}
-Show that $\left(J(r)/(e^{f(O)}r^{n-1})\right)^r$ is nonincreasing and tends to
-one as $r\downarrow0$.
-\end{claim}
-
 \begin{remark}[Sharper volume bounds at a scalar minimum (Remark 27.44)]
 \label{rem:chow-iv-volume-at-scalar-minimum}
 \dcref{ch27:27.44}
@@ -545,18 +443,6 @@ one as $r\downarrow0$.
 \source{chow-et-al-ricci-flow-part-iv:page-0046}
 If $O$ minimizes both $R$ and $f$, then $\operatorname{Vol}B_O(r)\le\omega_nr^n$.
 \end{remark}
-
-\begin{claim}[Second monotone density (Exercise 27.45)]
-\label{ex:chow-iv-second-radial-density}
-\dcref{ch27:27.45}
-\group{Volume growth}
-\source{chow-et-al-ricci-flow-part-iv:page-0046}
-The expression
-\[
-\frac{e^{r^2/12-f(r)+(2/r)\int_0^rf}}{r^{n-1}}J(r)
-\]
-is nonincreasing and tends to $e^{f(O)}$ at the origin.
-\end{claim}
 
 \section{Logarithmic Sobolev inequality}
 
@@ -698,12 +584,3 @@ $\operatorname{AVR}(g)=0$.
 There are complete noncompact four-dimensional Ricci-flat (hyper-K\"ahler and
 asymptotically locally Euclidean) manifolds with positive AVR.
 \end{remark}
-
-\begin{claim}[Splitting problem for nonnegative-Ricci shrinkers (Problem 27.56)]
-\label{prob:chow-iv-shrinker-splitting}
-\dcref{ch27:27.56}
-\group{Open problems}
-\source{chow-et-al-ricci-flow-part-iv:page-0053}
-Does every noncompact shrinker with $\Rc\ge0$ split as a product of a compact
-shrinker and Euclidean space?
-\end{claim}

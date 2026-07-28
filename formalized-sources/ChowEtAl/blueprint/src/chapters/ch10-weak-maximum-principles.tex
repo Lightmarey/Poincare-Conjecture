@@ -1,11 +1,7 @@
-\chapter{Weak Maximum Principles for Scalars, Tensors, and Systems}
+\chapter[10]{Weak Maximum Principles for Scalars, Tensors, and Systems}
 \label{chow-ii-ch10-weak-maximum-principles}
 \dcref{ch10}
 \source{chow-et-al-ricci-flow-part-ii:page-0028}
-
-This chapter records weak maximum principles for scalar functions, symmetric
-two-tensors, and sections of vector bundles, together with the convex-geometric
-tools used in their proofs and several analytic variants.
 
 \section{Scalar and tensor principles}
 
@@ -32,6 +28,7 @@ If $Lu\le Lv$ on $M\times[0,T]$ and $u(\cdot,0)\le v(\cdot,0)$, then
 \(u\le v\) on $M\times[0,T]$.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{def:chow-ii-semilinear-heat-operator}
 Choose $L_0$ larger than the Lipschitz constant of $F$ on the compact range of
 $u$ and $v$, and put $w=e^{-L_0t}(u-v)$.  If $w$ had a positive maximum at
@@ -52,6 +49,7 @@ If $Lu\le0$ and $u(\cdot,0)\le c$, then, while the solution $\phi$ of
 \(\phi'=F(\phi,t),\ \phi(0)=c\) exists, one has $u(x,t)\le\phi(t)$.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-scalar-comparison}
 The function $v(x,t)=\phi(t)$ satisfies $Lv=0$ and $u(\cdot,0)\le v(\cdot,0)$.
 Apply the comparison theorem.
@@ -64,11 +62,12 @@ Apply the comparison theorem.
 \source{chow-et-al-ricci-flow-part-ii:page-0030}
 \uses{thm:chow-ii-scalar-wmp}
 If $Lu=0$ and $c_1\le u(\cdot,0)\le c_2$, then the ODE solutions
-\(\phi_i'=F(\phi_i,t)$, $\phi_i(0)=c_i$, satisfy
+\(\phi_i'=F(\phi_i,t)\), \(\phi_i(0)=c_i\), satisfy
 \(\phi_1(t)\le u(x,t)\le\phi_2(t)\).
 \end{theorem}
 \begin{proof}
 \uses{thm:chow-ii-scalar-wmp}
+\sketch
 Apply the scalar principle to $u$ for the upper bound and to $-u$ with the
 reversed comparison for the lower bound.
 \end{proof}
@@ -84,6 +83,7 @@ x(t)\le\max\{(C_1\alpha t)^{-1/\alpha},C_2\}.
 \]
 \end{example}
 \begin{proof}
+\sketch
 On every interval where $x\ge C_2$, differentiation gives
 \((x^{-\alpha})'=-\alpha x^{-1-\alpha}x'\ge C_1\alpha\).  Integrating until
 the first time $x=C_2$ yields the displayed estimate; after that time the
@@ -114,6 +114,7 @@ where $\beta$ is locally Lipschitz and satisfies the null-eigenvector condition.
 If $\alpha(0)\ge0$, then $\alpha(t)\ge0$ for all later times.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{def:chow-ii-null-eigenvector}
 Assume positivity fails and let $t_0$ be the first time at which the minimum
 eigenvalue reaches zero.  At a minimizing point choose a unit null eigenvector
@@ -174,6 +175,7 @@ $\lambda_1\ge\cdots\ge\lambda_r$, every set of the form
 is invariant under parallel translation.
 \end{lemma}
 \begin{proof}
+\sketch
 Parallel translation preserves the fiber metric and carries eigensections to
 eigensections with the same eigenvalues.  Thus the displayed spectral condition
 is unchanged along every parallel lift.
@@ -189,6 +191,7 @@ The cone of self-adjoint tensors with all eigenvalues nonnegative is parallel
 invariant.
 \end{corollary}
 \begin{proof}
+\sketch
 \uses{lem:chow-ii-spectral-invariance}
 Use $G(\lambda)=-\min_a\lambda_a$ in the spectral criterion.
 \end{proof}
@@ -205,6 +208,7 @@ $\mathcal K_x$, then every solution of the bundle heat equation starting in
 $\mathcal K$ remains in $\mathcal K$.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{def:chow-ii-bundle-heat-equation}
 Suppose the conclusion fails and let $t_0$ be the first exit time.  In the fiber
 at a point of maximal distance from $\mathcal K$, choose the nearest point $v$
@@ -224,6 +228,7 @@ maximal distance $s$ satisfies $d^+s/dt\le Cs$ with $s(0)=0$, a contradiction.
 For a closed Ricci flow, nonnegative curvature operator is preserved.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-system-wmp,cor:chow-ii-nonnegative-tensor-cone}
 After Uhlenbeck's bundle identification, the curvature operator obeys
 \[
@@ -246,6 +251,7 @@ $\mathcal K_x(t)$ for later times, then the bundle heat equation carries
 $\mathcal K(0)$ into $\mathcal K(t)$.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-system-wmp}
 Use the distance $s(t)=\max_xd(u(x,t),\mathcal K_x(t))$.  At a first positive
 distance, nearest-point support covectors and radial parallel extension give the
@@ -267,6 +273,7 @@ R\ge|\nu|\bigl(\log|\nu|+\log(1+t)-3\bigr).
 \]
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-time-dependent-system-wmp}
 The set of curvature operators satisfying the scalar lower bound
 $R\ge-3/(1+t)$ and, when $\nu\le-1/(1+t)$, the displayed logarithmic bound is
@@ -290,6 +297,7 @@ R\ge|\nu|\bigl(\log|\nu|+\log(C^{-1}+t)-3\bigr).
 \]
 \end{corollary}
 \begin{proof}
+\sketch
 Apply the normalized estimate after parabolic rescaling by $C$ and undo the
 scaling of curvature and time.
 \end{proof}
@@ -309,6 +317,7 @@ that
 and, wherever $R\ge3e^6$, the additive constant may be omitted.
 \end{corollary}
 \begin{proof}
+\sketch
 Set $\psi(s)=s(\log s-3)$ on $(e^3,\infty)$ and let $\psi^{-1}$ be its
 inverse.  The Hamilton--Ivey inequality gives the assertion with
 $\phi(s)=\psi^{-1}(s)/s$ above $3e^6$ and $\phi=0$ below it.  Monotonicity and
@@ -328,6 +337,7 @@ $\mathcal A(t)$, then every bundle heat solution starting in $\mathcal K(0)$
 and avoiding $\mathcal A(t)$ remains in $\mathcal K(t)$.
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{prop:chow-ii-avoidance-ode}
 Assume an exit while the PDE solution stays a positive distance from the
 avoidance track.  On the compact interval up to the first exit, the nearest-point
@@ -354,6 +364,7 @@ $(x,t)\in M\times[\tau,T)$ such that
 \]
 \end{theorem}
 \begin{proof}
+\sketch
 \uses{thm:chow-ii-hamilton-ivey,thm:chow-ii-system-avoidance-wmp}
 Apply the avoidance principle to the Hamilton--Ivey set intersected with
 \[
@@ -388,6 +399,7 @@ If $f$ is right upper and left lower semicontinuous, $f(0)\le c$, and
 $d^+f/dt\le0$ whenever $f>c$, then $f\le c$.
 \end{lemma}
 \begin{proof}
+\sketch
 \uses{def:chow-ii-dini-derivatives}
 For $\varepsilon>0$ set $f_\varepsilon=f-\varepsilon(1+t)$.  If it first exceeded
 $c$, the one-sided difference quotients at the first crossing would give
@@ -404,6 +416,7 @@ If $d^+f/dt\le0$ then $f$ is nonincreasing.  If $f(0)\le0$ and
 $d^+f/dt\le Cf$ whenever $f>0$, then $f\le0$.
 \end{corollary}
 \begin{proof}
+\sketch
 Apply the lemma to $f-f(t_0)$ for monotonicity, and to $e^{-Ct}f$ for the
 exponential assertion.
 \end{proof}
@@ -421,6 +434,7 @@ $f(t)=\max_Sg(\cdot,t)$ is locally Lipschitz and
 \]
 \end{lemma}
 \begin{proof}
+\sketch
 Choose maximizing points at times $t+h_j$ and pass to a convergent subsequence.
 The mean-value theorem gives the upper bound by a maximizer at time $t$; fixing
 any maximizer at $t$ gives the reverse bound.  Compactness also gives local
@@ -437,6 +451,7 @@ If $\partial_tu\le\Delta_{g(t)}u$ on a closed manifold, then
 $u(x,t)\le\max_xu(x,0)$.
 \end{corollary}
 \begin{proof}
+\sketch
 At a spatial maximizer, $\Delta u\le0$.  The spatial-maximum lemma gives
 $d^+f/dt\le0$ for $f(t)=\max_xu(x,t)$, and the monotonicity corollary applies.
 \end{proof}
@@ -452,6 +467,7 @@ parallel-invariant fibers and the ODE $U'=F(U)$ preserves it, then
 $u_t=\Delta u+F(u)$ preserves $\mathcal K(t)$.
 \end{theorem}
 \begin{proof}
+\sketch
 Let $s(t)=\max_xd(u(x,t),\mathcal K_x(t))$.  The distance is convex and its
 nearest-point support covector annihilates the Laplacian contribution by the
 second derivative test and parallel invariance.  Comparing the ODE trajectory
@@ -472,6 +488,7 @@ and the hyperplane perpendicular to the joining segment separates the point
 from the set.
 \end{lemma}
 \begin{proof}
+\sketch
 Existence follows from coercivity of distance on a closed set.  If two nearest
 points existed, their midpoint would be strictly closer by the parallelogram
 identity.  The same identity plus compactness proves continuity.  For the
@@ -504,6 +521,7 @@ The supremum is attained; the distance is convex and $C^1$ off $\mathcal J$,
 with gradient the unit vector from the nearest point to $W$.
 \end{lemma}
 \begin{proof}
+\sketch
 The separating half-space from the nearest-point lemma gives one support
 attaining the distance, while every supporting half-space gives a value no
 larger than the distance.  A supremum of affine functions is convex.  Uniqueness
@@ -522,6 +540,7 @@ The ODE $U'=F(U,t)$ preserves a closed convex set $\mathcal J$ iff
 at $V$.
 \end{proposition}
 \begin{proof}
+\sketch
 If the inequality fails, the derivative of $\ell(U(t))$ at the boundary points
 outward.  Conversely, for $s(t)=d(U(t),\mathcal J)$, the distance-support formula
 and local Lipschitz continuity give $d^+s/dt\le Cs$ whenever $s>0$; since
@@ -548,6 +567,7 @@ to a subsequence.
 If every $\mathcal J(t)$ is convex, then $D_{(V,t)}\mathcal L$ is convex.
 \end{lemma}
 \begin{proof}
+\sketch
 Take approximating vectors for two directions and form their convex combinations;
 convexity of $\mathcal J(t+h_i)$ gives the required approximation.
 \end{proof}
@@ -562,6 +582,7 @@ The ODE preserves every $\mathcal J(t)$ iff
 \(F(V,t)\in D_{(V,t)}\mathcal L\) at every boundary point of the closed track.
 \end{proposition}
 \begin{proof}
+\sketch
 Necessity follows by taking difference quotients of an ODE trajectory.  For
 sufficiency, if an ODE trajectory exits, use the first exit interval and its
 distance to $\mathcal J(t)$.  Closedness gives left lower semicontinuity and right
@@ -581,6 +602,7 @@ hits $\mathcal A(t)$, then it suffices to require the forward-direction conditio
 only on $\partial\mathcal L\setminus\mathcal A\mathcal L$.
 \end{proposition}
 \begin{proof}
+\sketch
 On an interval where the trajectory avoids $\mathcal A$, closedness gives a
 positive distance from its compact image to the avoidance track.  The proof of
 the moving-set criterion then applies on a shorter interval, forcing zero
@@ -603,6 +625,7 @@ e^{-K_1t}\int u^2e^\xi\,d\mu_t
 is nonincreasing.
 \end{proposition}
 \begin{proof}
+\sketch
 Differentiate under the integral, use $\partial_td\mu_t=-(\operatorname{tr}_gh)d\mu_t$,
 the differential inequality for $\xi$, and integrate by parts.  The result is
 \[
@@ -621,6 +644,7 @@ For $\xi=0$, the weighted energy is nonincreasing; zero initial $L^2$ norm
 forces $u\equiv0$.
 \end{corollary}
 \begin{proof}
+\sketch
 Apply the proposition with $\xi=0$ and use nonnegativity of the integrand.
 \end{proof}
 
@@ -635,6 +659,7 @@ compact exhaustions whenever the approximating solutions converge in $C^2$ on
 compact subsets.
 \end{corollary}
 \begin{proof}
+\sketch
 Apply the compact estimate on each exhaustion domain, then use $C^2$ convergence
 on compact sets and monotone convergence for the nonnegative integrands.
 \end{proof}
@@ -650,6 +675,7 @@ $-\xi_t+\frac12|\nabla\xi|^2\le0$, the corresponding backward weighted $L^2$ ene
 is nondecreasing in forward time.
 \end{proposition}
 \begin{proof}
+\sketch
 Differentiate the backward weight, integrate by parts, and complete the square:
 the derivative is $2e^{-K_1(T_0-t)}\int|\nabla(ve^{\xi/2})|^2d\mu_t\ge0$.
 \end{proof}
@@ -694,6 +720,7 @@ For uniformly equivalent metrics, a weak solution satisfies
 \]
 \end{corollary}
 \begin{proof}
+\sketch
 Test the weak equation by $u$, use uniform metric equivalence and
 $2ab\le a^2+b^2$, and integrate the resulting differential inequality.
 \end{proof}
@@ -712,6 +739,7 @@ $f\in L^{n+2p}_{n+2+p}$ and $p>n+2$, then
 \]
 \end{theorem}
 \begin{proof}
+\sketch
 Test the weak inequality with truncated powers $(u-k)_+^q$, apply the parabolic
 Sobolev inequality, and iterate the resulting level-set estimate with the
 De Giorgi exponents.  The iteration drives the measure of every superlevel
@@ -733,6 +761,7 @@ domain, then
 \]
 \end{theorem}
 \begin{proof}
+\sketch
 Subtract the boundary supremum and consider the upper concave envelope.  Its
 gradient image contains the gradient ball of radius $\sup u/\operatorname{diam}(\Omega)$.
 The area formula on the contact set and arithmetic--geometric mean give
@@ -755,6 +784,7 @@ $W^{2,1}_{n+1,\mathrm{loc}}$ subsolution obeys the parabolic ABP bound
 \]
 \end{theorem}
 \begin{proof}
+\sketch
 The parabolic contact set maps under the space-time gradient map onto a set
 whose Jacobian is controlled by $(f^+/\mathcal D^*)^{n+1}$.  The determinant
 bound and Holder's inequality give the stated power of the diameter; integrating
@@ -775,6 +805,7 @@ T_1=\min\{T,A^{-1}\log(K/k)\}.
 \]
 \end{proposition}
 \begin{proof}
+\sketch
 Let $m(t)=\max_{\Omega_t}u$.  Before the first time $m$ reaches $K$, the scalar
 maximum principle applied to $u_t-a^{ij}\nabla_i\nabla_ju\le Au$ gives
 $m(t)\le ke^{At}$.  This is $<K$ for $t<T_1$, contradiction.
@@ -792,6 +823,7 @@ background metric for a time depending only on the desired error, dimension,
 and curvature bound, independently of the domain.
 \end{proposition}
 \begin{proof}
+\sketch
 The DeTurck equation has principal part $g^{pq}\bar\nabla_p\bar\nabla_qg_{ij}$.
 Apply the elementary variant to $\psi=\sum_i\lambda_i^m$, where $\lambda_i$ are
 the background-relative eigenvalues.  The differentiated equation and

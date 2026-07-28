@@ -1,4 +1,4 @@
-\chapter{Bounds for the Heat Kernel for Evolving Metrics}
+\chapter[26]{Bounds for the Heat Kernel for Evolving Metrics}
 \label{ch:chow-iii-heat-kernel-bounds-evolving-metrics}
 \dcref{ch26}
 \source{chow-et-al-ricci-flow-part-iii:page-0354}
@@ -34,7 +34,7 @@ evolving manifold, then
 \]
 \end{lemma}
 \begin{proof}
-Expand \(L,L^*\), use the evolution of the volume form, and integrate the
+\sketch Expand \(L,L^*\), use the evolution of the volume form, and integrate the
 two Laplacian terms by parts.  The integrand becomes
 \(\frac d{d\tau}\int_{\mathcal M}AB\,d\mu_{g(\tau)}\).
 \end{proof}
@@ -61,7 +61,7 @@ On a closed manifold, for \(0\le \rho<v\le T\),
 \]
 \end{lemma}
 \begin{proof}
-Apply Duhamel's identity to \(H(\cdot,\tau;z,\rho)\) and
+\sketch Apply Duhamel's identity to \(H(\cdot,\tau;z,\rho)\) and
 \(H^*(\cdot,\tau;y,v)\), then let the two intermediate times tend to
 \(\rho\) and \(v\).
 \end{proof}
@@ -93,7 +93,7 @@ If \(C_1=\sup_{\mathcal M\times[0,T]}|\mathcal R-Q|<\infty\), then
 \]
 \end{lemma}
 \begin{proof}
-Differentiate the integral, use \(LH=0\), and apply Gronwall to
+\sketch Differentiate the integral, use \(LH=0\), and apply Gronwall to
 \(I'=\int(\mathcal R-Q)H\).
 \end{proof}
 
@@ -136,7 +136,7 @@ For \(0\le v<\tau<\rho\le T\),
 \]
 \end{lemma}
 \begin{proof}
-The derivative with respect to the intermediate time vanishes by the forward
+\sketch The derivative with respect to the intermediate time vanishes by the forward
 and adjoint equations.  Let the intermediate time tend to \(v\).
 \end{proof}
 
@@ -174,7 +174,7 @@ the source, such that
 \]
 \end{lemma}
 \begin{proof}
-The outward normal derivative of the positive Dirichlet kernel is
+\sketch The outward normal derivative of the positive Dirichlet kernel is
 nonpositive, giving the upper differential inequality.  For the lower bound,
 integrate against a time-dependent cutoff supported away from the boundary;
 uniform bounds for its time derivative and Laplacian yield the result.
@@ -232,7 +232,7 @@ If \(C_1=\sup|\mathcal R-Q|\), then
 \]
 \end{lemma}
 \begin{proof}
-The upper bound follows by exhausting \(\mathcal M\) with Dirichlet kernels.
+\sketch The upper bound follows by exhausting \(\mathcal M\) with Dirichlet kernels.
 For the lower bound, integrate against distance cutoffs whose Laplacians tend
 uniformly to zero, then let the cutoff radius tend to infinity.
 \end{proof}
@@ -263,7 +263,7 @@ For \(0\le v<\rho<\tau\le T\),
 \]
 \end{lemma}
 \begin{proof}
-Use the identity on an exhaustion by Dirichlet domains.  Monotone convergence
+\sketch Use the identity on an exhaustion by Dirichlet domains.  Monotone convergence
 gives one inequality; convergence on each compact subset gives the other.
 \end{proof}
 
@@ -288,7 +288,7 @@ Under the hypotheses of the evolving-metric mean value inequality, there is
 \]
 \end{lemma}
 \begin{proof}
-Apply the parabolic mean value inequality at radius \(\sqrt{\tau-v}/2\),
+\sketch Apply the parabolic mean value inequality at radius \(\sqrt{\tau-v}/2\),
 then use the uniform \(L^1\) bound.  Apply the adjoint version for the estimate
 in the second variable.
 \end{proof}
@@ -351,7 +351,7 @@ dependence specified in the source, satisfy
 \]
 \end{lemma}
 \begin{proof}
-After replacing (u) by \(e^{-C_0\tau}u\), multiply its equation by a
+\sketch After replacing (u) by \(e^{-C_0\tau}u\), multiply its equation by a
 Davies weight \(e^\xi u\), where
 \(\xi=-\rho_R^2/(2\widetilde C_0(\sigma-\tau))\).  The inequality
 \(\xi_\tau+|\nabla\xi|^2/2\le0\) makes the weighted \(L^2\) norm
@@ -387,7 +387,7 @@ and the analogous estimate obtained by integrating in \(y\) with measure
 \(d\mu_{g(v)}\) and the volume centered at \(x\).
 \end{lemma}
 \begin{proof}
-Apply Lemma~\ref{lem:chow-iii-weighted-l2-heat-estimate} to Dirichlet kernels
+\sketch Apply Lemma~\ref{lem:chow-iii-weighted-l2-heat-estimate} to Dirichlet kernels
 on an exhaustion.  The rough pointwise bound and the mass bound provide the
 unweighted \(L^2\) hypothesis.  Bishop--Gromov comparison makes the ball-volume
 function ((4,A))-regular.  Pass to the exhaustion limit.
@@ -419,7 +419,7 @@ source, such that
 \]
 \end{theorem}
 \begin{proof}
-Split the semigroup identity at \(\rho=(\tau+v)/2\), distribute half the
+\sketch Split the semigroup identity at \(\rho=(\tau+v)/2\), distribute half the
 Gaussian distance between its two factors, and apply Cauchy--Schwarz and the
 two weighted \(L^2\) estimates.
 \end{proof}
@@ -440,7 +440,7 @@ For constants \(C,D<\infty\),
 \]
 \end{corollary}
 \begin{proof}
-Near the diagonal use the rough bound.  Off the diagonal use the two-volume
+\sketch Near the diagonal use the rough bound.  Off the diagonal use the two-volume
 bound and Bishop--Gromov comparison to absorb the volume ratio into a weaker
 Gaussian.
 \end{proof}
@@ -470,7 +470,7 @@ as \(A\to\infty\), and likewise after interchanging the two space variables
 and integrating with \(d\mu_{g(v)}\).
 \end{lemma}
 \begin{proof}
-Integrate the one-volume Gaussian upper bound in polar shells.  Relative
+\sketch Integrate the one-volume Gaussian upper bound in polar shells.  Relative
 volume comparison gives at most exponential linear growth, which is dominated
 uniformly by the Gaussian tail.
 \end{proof}
@@ -502,7 +502,7 @@ There exists \(c>0\) such that
 \]
 \end{lemma}
 \begin{proof}
-The Li--Yau Harnack inequality compares the diagonal value at time \(\tau\)
+\sketch The Li--Yau Harnack inequality compares the diagonal value at time \(\tau\)
 with values on a parabolic-scale ball at the midpoint time.  Integrate that
 comparison and apply Corollary~\ref{cor:chow-iii-heat-kernel-local-mass-lower-bound}.
 \end{proof}
@@ -527,7 +527,7 @@ Equivalently, after changing constants, one may use the geometric mean of
 the two reciprocal volumes.
 \end{theorem}
 \begin{proof}
-Apply the Li--Yau Harnack inequality between \((x,\tau)\) and the diagonal
+\sketch Apply the Li--Yau Harnack inequality between \((x,\tau)\) and the diagonal
 point (\(y,(\tau+v)/2\)), then insert the diagonal lower bound.  Repeat with
 (x,y) interchanged and combine the two estimates.
 \end{proof}
@@ -547,7 +547,7 @@ For a complete static Riemannian manifold, its heat kernel satisfies
 for bounded \(U_1,U_2\subset\mathcal M\).
 \end{theorem}
 \begin{proof}
-Split the kernel at (t/2).  For
+\sketch Split the kernel at (t/2).  For
 \(u_i(z,t)=\int_{U_i}H(z,y,t)\,d\mu(y)\), use Cauchy--Schwarz with the
 weights \(e^{d(z,U_i)^2/(2t)}\).  Their weighted \(L^2\) norms decrease by
 the Davies monotonicity calculation and converge at time zero to
@@ -564,15 +564,6 @@ Davies' estimate gives an alternative proof of pointwise upper bounds on
 complete manifolds satisfying a parabolic mean value inequality.
 \end{remark}
 
-\begin{claim}[Ricci-flow Davies estimate problem]
-\label{clm:chow-iii-ricci-flow-davies-estimate-problem}
-\dcref{ch26:26.34}
-\group{Heat Kernel Upper Bounds}
-\source{chow-et-al-ricci-flow-part-iii:page-0384}
-\uses{thm:chow-iii-davies-double-integral-upper-bound}
-Find a Ricci-flow analogue of Davies' double integral estimate.
-\end{claim}
-
 \section{Heat balls and space-time mean value properties}
 
 \begin{theorem}[Mean value property for harmonic functions on \(\mathbb E^n\)]
@@ -587,7 +578,7 @@ If \(\Delta u=0\) in \(\Omega\subset\mathbb R^n\), then
 whenever \(B(O,r)\subset\Omega\).
 \end{theorem}
 \begin{proof}
-Differentiate the average in (r).  Two integrations by parts using
+\sketch Differentiate the average in (r).  Two integrations by parts using
 \(\Delta|x|^2=2n\) show that its derivative vanishes; its limit at zero is
 (u(O)).
 \end{proof}
@@ -678,7 +669,7 @@ small \(r>0\), \(E_r(x_0,t_0)\) is relatively compact and
 \]
 \end{theorem}
 \begin{proof}
-The diagonal hypothesis yields a Gaussian off-diagonal bound, hence compact
+\sketch The diagonal hypothesis yields a Gaussian off-diagonal bound, hence compact
 heat-ball slices and finite integrals.  The coarea formula and
 \(\psi_{r,t}+\Delta\psi_r=-|\nabla\psi_r|^2\) give
 \[
@@ -702,7 +693,7 @@ Under the hypotheses of Theorem~\ref{thm:chow-iii-riemannian-heat-mean-value-pro
 \]
 \end{theorem}
 \begin{proof}
-Apply the space-time divergence theorem to
+\sketch Apply the space-time divergence theorem to
 \(uH\partial_t+u\nabla H-H\nabla u\) on truncated heat balls and let the
 top time tend to zero.
 \end{proof}
@@ -810,7 +801,7 @@ noncompact \((\mathcal M^n,g)\) with \( |\sec(g)|\le K\), and every
 \]
 \end{proposition}
 \begin{proof}
-Start from a smooth (u) with \(|u-d(\cdot,O)|\le1\) and
+\sketch Start from a smooth (u) with \(|u-d(\cdot,O)|\le1\) and
 \(|\nabla u|\le2\), and evolve it by the static heat kernel.  Gaussian
 heat-kernel bounds and volume comparison show that the evolved function stays
 within a uniform constant of (u).  The Karp--Li maximum principle applied
