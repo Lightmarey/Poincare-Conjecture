@@ -21,6 +21,8 @@ instead of introducing a parallel formalization.
 
 open scoped ContDiff Manifold Topology
 
+set_option backward.isDefEq.respectTransparency false
+
 noncomputable section
 
 namespace Riemannian
@@ -156,7 +158,9 @@ theorem isInducing_extend_restrict (c : OpenPartialHomeomorph Mm Hm) :
     c.toHomeomorphSourceTarget.isInducing
   have hIm : Topology.IsInducing (Im : Hm → Em) := Im.isClosedEmbedding.isEmbedding.isInducing
   have hdom : Topology.IsInducing (c.source.restrict c) := by
-    have h2 := hval.comp hhom; convert h2 using 1
+    have h2 := hval.comp hhom
+    convert h2 using 1
+    rfl
   have heq : c.source.restrict (c.extend Im) = (Im : Hm → Em) ∘ (c.source.restrict c) := rfl
   rw [heq]; exact hIm.comp hdom
 
@@ -202,6 +206,7 @@ theorem isEmbedding_restrict_of_isImmersionAt (h : IsImmersionAt Im In n f p) :
       IsInducing.subtypeVal
     have := hval.comp hf'ind
     convert this using 1
+    rfl
   rw [Topology.isEmbedding_iff]
   refine ⟨hind, ?_⟩
   -- Injectivity: `equiv`, the inclusion and the chart are all injective.
@@ -299,10 +304,12 @@ theorem isEmbedding_restrict_of_hasFDerivAt_injective
       φ.toHomeomorphSourceTarget.isInducing
     have hc := hval.comp hhom
     convert hc using 1
+    rfl
   -- Assemble: `V₀.restrict (φ ∘ incl)` is inducing and injective, hence an embedding.
   have hcomp_ind : IsInducing (fun u : ↥V₀ => φ (incl u.1)) := by
     have := hφind.comp hι.toIsInducing
     convert this using 1
+    rfl
   have hinj : Function.Injective (fun u : ↥V₀ => φ (incl u.1)) := by
     intro a b hab
     have he : incl a.1 = incl b.1 := φ.injOn (hmaps a) (hmaps b) hab
@@ -435,9 +442,7 @@ theorem DCLieBracket_leibniz (f g : M → ℝ)
   rw [hlhs, hrhs, VectorField.mlieBracket_smul_left hfd hX,
     VectorField.mlieBracket_smul_right hgd hY]
   rw [show ((g • Y.toFun) p) = g p • Y.toFun p from rfl]
-  simp only [map_smul, mvfderiv, ContinuousLinearMap.comp_apply,
-    ContinuousLinearMap.coe_comp', Function.comp_apply,
-    ContinuousLinearMap.coe_coe]
+  simp only [map_smul, mvfderiv, ContinuousLinearMap.comp_apply]
   module
 
 /-- The Lie bracket of two smooth vector fields is itself differentiable as a
@@ -810,7 +815,7 @@ private theorem comp_smulRight_one_apply {F G : Type*}
     [AddCommGroup G] [Module ℝ G] [TopologicalSpace G] (A : F →L[ℝ] G) (v : F) :
     (A.comp ((1 : ℝ →L[ℝ] ℝ).smulRight v)) (1 : ℝ) = A v := by
   rw [ContinuousLinearMap.comp_apply, ContinuousLinearMap.smulRight_apply,
-    ContinuousLinearMap.one_apply, one_smul]
+    one_apply_eq_self, one_smul]
 
 omit [CompleteSpace E] [IsManifold I ∞ M] [I.Boundaryless] in
 /-- `DCApply` unfolds definitionally to the raw tangent action `mfderiv f q (Z q)` (the
@@ -1028,9 +1033,9 @@ theorem DCLieBracket_flow_slope_right (X Y : SmoothVectorField I M) {f : M → �
   -- `HasDerivAt G ((sd (1,0)) (0,vY)) 0`
   have hGderiv : HasDerivAt G (sd ((1 : ℝ), (0 : E)) ((0 : ℝ), vY)) 0 := by
     have h := (hPf.comp (0 : ℝ) hγ).hasDerivAt
-    simpa [ContinuousLinearMap.comp_apply, ContinuousLinearMap.prod_apply,
+    simpa [Function.comp_def, ContinuousLinearMap.comp_apply, ContinuousLinearMap.prod_apply,
       ContinuousLinearMap.apply_apply, ContinuousLinearMap.id_apply,
-      ContinuousLinearMap.zero_apply, hGdef] using h
+      zero_apply, hGdef] using h
   -- identify the derivative with the target via symmetry + the inner time-partial
   have hQ0 : (fun z : E => fderiv ℝ Ψ ((0 : ℝ), z) ((1 : ℝ), (0 : E)))
       =ᶠ[𝓝 c] (fun z : E => DCApply f X.toFun ((extChartAt I p).symm z)) := by
@@ -1054,17 +1059,20 @@ theorem DCLieBracket_flow_slope_right (X Y : SmoothVectorField I M) {f : M → �
     rw [hasMFDerivAt_iff_hasFDerivAt] at hcompz
     have hderivz := hcompz.hasDerivAt
     -- the derivative value at 0 is `df(X)` by the integral-curve equation (as in L1)
-    have hHD : HasDerivAt (fun t => f (φ t ((extChartAt I p).symm z)))
-        (DCApply f X.toFun ((extChartAt I p).symm z)) 0 := by
+    have hHD : deriv (fun t => f (φ t ((extChartAt I p).symm z))) 0 =
+        DCApply f X.toFun ((extChartAt I p).symm z) := by
       rw [DCApply_eq_mfderiv]
-      convert hderivz using 1
+      change deriv (f ∘ fun t => φ t ((extChartAt I p).symm z)) 0 = _
+      rw [hderivz.deriv]
       rw [hφ.flow_zero]
-      exact (comp_smulRight_one_apply _ _).symm
+      exact comp_smulRight_one_apply
+        (F := TangentSpace I ((extChartAt I p).symm z)) (G := ℝ) _ _
     calc fderiv ℝ Ψ ((0 : ℝ), z) ((1 : ℝ), (0 : E))
         = deriv (fun t => Ψ (t, z)) 0 := by
-          simpa [ContinuousLinearMap.comp_apply, ContinuousLinearMap.prod_apply,
-            ContinuousLinearMap.id_apply, ContinuousLinearMap.zero_apply] using hslice.deriv.symm
-      _ = DCApply f X.toFun ((extChartAt I p).symm z) := hHD.deriv
+          simpa [Function.comp_def, ContinuousLinearMap.comp_apply,
+            ContinuousLinearMap.prod_apply, ContinuousLinearMap.id_apply, zero_apply] using
+            hslice.deriv.symm
+      _ = DCApply f X.toFun ((extChartAt I p).symm z) := hHD
   -- assemble `HasDerivAt G target 0` by symmetry of the mixed second partial
   have htarget : sd ((1 : ℝ), (0 : E)) ((0 : ℝ), vY)
       = DCApply (DCApply f X.toFun) Y.toFun p := by
@@ -1476,6 +1484,65 @@ theorem DCManifoldAxioms_of_partitionOfUnity
   ⟨t2Space_of_partitionOfUnity ρ hopen hT2 hsub,
     DCSecondCountable_of_partitionOfUnity ρ hopen hsc hlf hsub⟩
 
+omit [CompleteSpace E] in
+/-- **do Carmo Ch.0, Thm. 5.6 (connected-component form).**  For a fixed
+locally finite cover by open Hausdorff sigma-compact sets, a subordinate smooth
+partition of unity exists exactly when the connected manifold has the Hausdorff
+and second-countability axioms. -/
+theorem DCPartitionOfUnity_iff_manifoldAxioms
+    [FiniteDimensional ℝ E] [PreconnectedSpace M] [SecondCountableTopology H]
+    {ι : Type*} {V : ι → Set M}
+    (hopen : ∀ i, IsOpen (V i)) (hsc : ∀ i, IsSigmaCompact (V i))
+    (hT2 : ∀ i, T2Space (V i)) (hlf : LocallyFinite V)
+    (hcov : ⋃ i, V i = Set.univ) :
+    (∃ ρ : DCSmoothPartitionOfUnity (I := I) (M := M) ι Set.univ,
+        ρ.IsSubordinate V) ↔
+      (T2Space M ∧ SecondCountableTopology M) := by
+  constructor
+  · rintro ⟨ρ, hsub⟩
+    exact DCManifoldAxioms_of_partitionOfUnity ρ hopen hsc hT2 hlf hsub
+  · rintro ⟨hHaus, hSecond⟩
+    letI : T2Space M := hHaus
+    letI : SecondCountableTopology M := hSecond
+    letI : LocallyCompactSpace M := Manifold.locallyCompact_of_finiteDimensional I
+    exact DCSmoothPartitionOfUnity.exists_isSubordinate
+      (I := I) (M := M) isClosed_univ V hopen (by simpa using hcov.ge)
+
+omit [CompleteSpace E] in
+/-- **do Carmo Ch.0, Thm. 5.6 (componentwise fixed-cover form).**  The ambient
+manifold need not be connected.  For a point `p` whose connected component is
+given as an open subset, a subordinate smooth partition on that component is
+equivalent to the Hausdorff and second-countability axioms for the component.
+
+The cover and partition in this statement are intentionally component-local:
+no global second-countability claim (or assembly of partitions from different
+components) is made.  `TopologicalSpace.Opens` supplies the inherited charted
+space and manifold structures, while `Subtype.preconnectedSpace` supplies the
+connectedness hypothesis needed by the fixed-cover theorem above. -/
+theorem DCPartitionOfUnity_iff_manifoldAxioms_on_connectedComponent
+    [FiniteDimensional ℝ E] [SecondCountableTopology H]
+    (p : M) (hcomp : IsOpen (connectedComponent p))
+    {ι : Type*}
+    {V : ι → Set (⟨connectedComponent p, hcomp⟩ : TopologicalSpace.Opens M)}
+    (hopen : ∀ i, IsOpen (V i)) (hsc : ∀ i, IsSigmaCompact (V i))
+    (hT2 : ∀ i, T2Space (V i)) (hlf : LocallyFinite V)
+    (hcov : ⋃ i, V i = Set.univ) :
+    (∃ ρ : DCSmoothPartitionOfUnity
+        (I := I) (M := (⟨connectedComponent p, hcomp⟩ : TopologicalSpace.Opens M))
+        ι Set.univ, ρ.IsSubordinate V) ↔
+      (T2Space (⟨connectedComponent p, hcomp⟩ : TopologicalSpace.Opens M) ∧
+        SecondCountableTopology (⟨connectedComponent p, hcomp⟩ : TopologicalSpace.Opens M)) := by
+  let C : TopologicalSpace.Opens M := ⟨connectedComponent p, hcomp⟩
+  letI : PreconnectedSpace C := Subtype.preconnectedSpace (by
+    change IsPreconnected (connectedComponent p)
+    exact isPreconnected_connectedComponent)
+  change
+    (∃ ρ : DCSmoothPartitionOfUnity (I := I) (M := C) ι Set.univ,
+        ρ.IsSubordinate V) ↔
+      (T2Space C ∧ SecondCountableTopology C)
+  exact DCPartitionOfUnity_iff_manifoldAxioms
+    (I := I) (M := C) hopen hsc hT2 hlf hcov
+
 /-! ### §2 (Thm. 2.10): the inverse function theorem on manifolds
 
 do Carmo's Theorem 2.10 states that if `dφ_p` is an isomorphism then `φ` is a local
@@ -1551,7 +1618,9 @@ theorem isInducing_extChartAt_source_restrict
   have hval : Topology.IsInducing (Subtype.val : ↥(chartAt H x).target → H) :=
     Topology.IsInducing.subtypeVal
   have hsource_ind : Topology.IsInducing ((chartAt H x).source.restrict (chartAt H x)) := by
-    have h2 := hval.comp hhom; convert h2 using 1
+    have h2 := hval.comp hhom
+    convert h2 using 1
+    rfl
   have hincl : Topology.IsEmbedding
       (fun z : ↥(extChartAt I x).source => (⟨z.1, hsrc z⟩ : ↥(chartAt H x).source)) :=
     Topology.IsEmbedding.subtypeVal.codRestrict (chartAt H x).source hsrc
@@ -1559,6 +1628,7 @@ theorem isInducing_extChartAt_source_restrict
     I.isClosedEmbedding.isEmbedding.isInducing
   have hcomp := (hI.comp hsource_ind).comp hincl.toIsInducing
   convert hcomp using 1
+  rfl
 
 section InverseFunctionTheorem
 

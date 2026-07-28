@@ -981,7 +981,6 @@ theorem quaternionHopfLeft_inner_deriv_algebra (p q u₁ u₂ v₁ v₂ : ℍ[�
         _ = u₂ * ((‖q‖ ^ 2 : ℝ) : ℍ[ℝ]) * star v₂ := by rw [quaternion_star_mul_self]
         _ = ((‖q‖ ^ 2 : ℝ) : ℍ[ℝ]) * (u₂ * star v₂) := quaternion_coe_mid _ _ _
     have h := congrArg (fun z : ℍ[ℝ] => z.re) (eL.symm.trans (e.trans eR))
-    simp only at h
     rw [quaternion_re_coe_mul, quaternion_re_coe_mul] at h
     exact h
   have key3 : (S * star S').re = ‖q‖ ^ 2 * B := by
@@ -1278,7 +1277,7 @@ private theorem isRiemannianSubmersion_sphere_of_ambient
             (mfderiv (𝓡 n) 𝓘(ℝ, X) ((↑) : sphere (0 : X) 1 → X) x) := by
       rw [← h1, hfun]; exact h2
     have h4 := DFunLike.congr_fun h3 u
-    simpa [mfderiv_eq_fderiv, (hderiv (x : X)).fderiv] using h4
+    simpa [mfderiv_eq_fderiv, (hderiv (x : X)).fderiv] using! h4
   -- a tangent vector orthogonal to `ker DF` has horizontal ambient image
   have hhoriz : ∀ (x : sphere (0 : X) 1) (u : TangentSpace (𝓡 n) x),
       (∀ w : TangentSpace (𝓡 n) x, mfderiv (𝓡 n) (𝓡 m) F x w = 0 →
@@ -1700,7 +1699,7 @@ theorem biinvariantMetric_adGenerator_skew (g : RiemannianMetric I G)
   -- `E` (whose normed instances are available) and let defeq carry the arguments.
   have hskew := curveIsometry_generator_skew (V := E) (g.metricToDual 1)
     (fun t => adjointMap I (φ t)) A hderiv hρ0 hiso X Y
-  simpa only [RiemannianMetric.metricToDual_apply] using hskew
+  simpa only [RiemannianMetric.metricToDual_apply] using! hskew
 
 /-- **Math.** Petersen Exercise 1.6.24 (3): for a bi-invariant metric the
 adjoint action `ad_U = [U, ·]` of the Lie algebra on itself is
@@ -1834,7 +1833,7 @@ theorem mfderiv_mul_left_inv_mul_left (x : G) (w : TangentSpace I (1 : G)) :
   rw [hfun, mfderiv_id] at hcomp
   have := congrArg
     (fun T : TangentSpace I (1 : G) →L[ℝ] TangentSpace I (1 : G) => T w) hcomp
-  simpa using this.symm
+  simpa using! this.symm
 
 /-- **Math.** The differential of left translation by `x⁻¹` at `x` is
 surjective (with explicit section `d(L_x)_e`); together with
@@ -2106,6 +2105,7 @@ theorem sl_traceForm_nondegenerate (n : ℕ) (X : sl (Fin n) ℝ)
       ((X : Matrix (Fin n) (Fin n) ℝ) * (Y : Matrix (Fin n) (Fin n) ℝ)).trace = 0) :
     X = 0 := by
   classical
+  letI : LieRing (Matrix (Fin n) (Fin n) ℝ) := LieRing.ofAssociativeRing
   have hXt : (X : Matrix (Fin n) (Fin n) ℝ)ᵀ ∈ sl (Fin n) ℝ := by
     rw [← LieSubalgebra.mem_toSubmodule]
     exact LinearMap.mem_ker.mpr

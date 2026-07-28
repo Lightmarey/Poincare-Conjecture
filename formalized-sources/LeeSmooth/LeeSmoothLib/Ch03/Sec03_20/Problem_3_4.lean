@@ -81,10 +81,9 @@ lemma tangentBundle_circle_prodLie_left_inv (p : TangentBundle (𝓡 1) Circle) 
   have hpoint : g⁻¹ * g = (1 : Circle) := by
     simp
   rw [hpoint] at hcomp
-  simpa [ContinuousLinearMap.comp_apply] using
-    congrArg
-      (fun f : TangentSpace (𝓡 1) g →L[ℝ] TangentSpace (𝓡 1) g ↦ f v)
-      hcomp
+  change ((mfderiv% (g * ·) (1 : Circle)).comp (mfderiv% (g⁻¹ * ·) g)) v = v
+  exact congrArg
+    (fun f : TangentSpace (𝓡 1) g →L[ℝ] TangentSpace (𝓡 1) g ↦ f v) hcomp
 
 /-- Helper for Problem 3-4: left-translating a Lie algebra vector and pulling it back again
 returns the original Lie algebra vector. -/
@@ -109,11 +108,10 @@ lemma tangentBundle_circle_prodLie_right_inv (q : Circle × GroupLieAlgebra (�
     have hpoint : g * (1 : Circle) = g := by
       simp
     rw [hpoint] at hcomp
-    simpa [ContinuousLinearMap.comp_apply] using
-      congrArg
-        (fun f : TangentSpace (𝓡 1) (1 : Circle) →L[ℝ] TangentSpace (𝓡 1) (1 : Circle) ↦
-          f v)
-        hcomp
+    change ((mfderiv% (g⁻¹ * ·) g).comp (mfderiv% (g * ·) (1 : Circle))) v = v
+    exact congrArg
+      (fun f : TangentSpace (𝓡 1) (1 : Circle) →L[ℝ]
+        TangentSpace (𝓡 1) (1 : Circle) ↦ f v) hcomp
 
 /-- Helper for Problem 3-4: the left-translation trivialization map
 `(g, w) ↦ d(L_g)_1 w` is smooth. -/
@@ -126,8 +124,9 @@ lemma contMDiff_tangentBundle_circle_prodLie_invFun :
   -- The zero vector over the moving base point is the zero section pulled back along `Prod.fst`.
   have sfg :
       ContMDiff ((𝓡 1).prod 𝓘(ℝ, TangentSpace (𝓡 1) (1 : Circle))) (𝓡 1).tangent ∞ fg := by
-    simpa [fg, Bundle.zeroSection] using
-      ((Bundle.contMDiff_zeroSection ℝ (TangentSpace (𝓡 1))).comp contMDiff_fst)
+    change ContMDiff ((𝓡 1).prod 𝓘(ℝ, TangentSpace (𝓡 1) (1 : Circle)))
+      (𝓡 1).tangent ∞ (Bundle.zeroSection _ _ ∘ Prod.fst)
+    exact (Bundle.contMDiff_zeroSection ℝ (TangentSpace (𝓡 1))).comp contMDiff_fst
   let fv : Circle × GroupLieAlgebra (𝓡 1) Circle → TangentBundle (𝓡 1) Circle :=
     fun q ↦ (⟨1, q.2⟩ : TangentBundle (𝓡 1) Circle)
   -- A vector in the identity fiber is smooth as a map into the total space because the base is
@@ -141,7 +140,9 @@ lemma contMDiff_tangentBundle_circle_prodLie_invFun :
     let h1 : (1 : Circle) ∈ e.baseSet := FiberBundle.mem_baseSet_trivializationAt' (1 : Circle)
     let L : TangentSpace (𝓡 1) (1 : Circle) →L[ℝ] EuclideanSpace ℝ (Fin 1) :=
       (e.linearEquivAt ℝ (1 : Circle) h1).toContinuousLinearMap
-    simpa [fv, e, L, h1] using (L.contMDiffAt.comp q0 contMDiffAt_snd)
+    convert (L.contMDiffAt.comp q0 contMDiffAt_snd) using 1
+    funext x
+    simp [fv, e, L]
   let F₁ : Circle × GroupLieAlgebra (𝓡 1) Circle →
       TangentBundle (𝓡 1) Circle × TangentBundle (𝓡 1) Circle := fun q ↦ (fg q, fv q)
   have S₁ :
@@ -207,9 +208,10 @@ lemma contMDiff_tangentBundle_circle_prodLie_toFun :
     fun p ↦ (⟨p.1, 0⟩ : TangentBundle (𝓡 1) Circle)
   -- The zero vector over the bundle projection is the zero section pulled back along `proj`.
   have sfg : ContMDiff (𝓡 1).tangent (𝓡 1).tangent ∞ fg := by
-    simpa [fg, Bundle.zeroSection] using
-      ((Bundle.contMDiff_zeroSection ℝ (TangentSpace (𝓡 1))).comp
-        (Bundle.contMDiff_proj (TangentSpace (𝓡 1))))
+    change ContMDiff (𝓡 1).tangent (𝓡 1).tangent ∞
+      (Bundle.zeroSection _ _ ∘ Bundle.TotalSpace.proj)
+    exact (Bundle.contMDiff_zeroSection ℝ (TangentSpace (𝓡 1))).comp
+      (Bundle.contMDiff_proj (TangentSpace (𝓡 1)))
   let F₁ : TangentBundle (𝓡 1) Circle →
       TangentBundle (𝓡 1) Circle × TangentBundle (𝓡 1) Circle := fun p ↦ (fg p, p)
   have S₁ : ContMDiff (𝓡 1).tangent ((𝓡 1).tangent.prod (𝓡 1).tangent) ∞ F₁ :=
@@ -223,9 +225,11 @@ lemma contMDiff_tangentBundle_circle_prodLie_toFun :
   let diffMap : Circle × Circle → Circle := fun z ↦ z.1⁻¹ * z.2
   have hdiff : ContMDiff ((𝓡 1).prod (𝓡 1)) (𝓡 1) ∞ diffMap := by
     -- The difference map is the product of inversion and multiplication.
-    simpa [diffMap] using
-      (contMDiff_mul (𝓡 1) ∞).comp
-        (((contMDiff_inv (𝓡 1) ∞).comp contMDiff_fst).prodMk contMDiff_snd)
+    change ContMDiff ((𝓡 1).prod (𝓡 1)) (𝓡 1) ∞
+      ((fun p : Circle × Circle ↦ p.1 * p.2) ∘
+        fun z : Circle × Circle ↦ (z.1⁻¹, z.2))
+    exact (contMDiff_mul (𝓡 1) ∞).comp
+      (((contMDiff_inv (𝓡 1) ∞).comp contMDiff_fst).prodMk contMDiff_snd)
   let F₃ : TangentBundle ((𝓡 1).prod (𝓡 1)) (Circle × Circle) → TangentBundle (𝓡 1) Circle :=
     tangentMap ((𝓡 1).prod (𝓡 1)) (𝓡 1) diffMap
   have S₃ : ContMDiff (((𝓡 1).prod (𝓡 1)).tangent) (𝓡 1).tangent ∞ F₃ := by
@@ -286,8 +290,13 @@ lemma contMDiff_tangentBundle_circle_prodLie_toFun :
           fun x : TangentBundle (𝓡 1) Circle ↦ mfderiv% (x.1⁻¹ * ·) x.1 x.2 := by
       funext x
       simpa [e, Lsymm, h1]
-    convert (Lsymm.contMDiffAt.comp p0 hG0.2) using 1
-    exact hcoord.symm
+    have hcomp := Lsymm.contMDiffAt.comp p0 hG0.2
+    change ContMDiffAt (𝓡 1).tangent 𝓘(ℝ, TangentSpace (𝓡 1) (1 : Circle)) ∞
+      (fun x : TangentBundle (𝓡 1) Circle ↦
+        Lsymm ((e (⟨1, mfderiv% (x.1⁻¹ * ·) x.1 x.2⟩ :
+          TangentBundle (𝓡 1) Circle)).2)) p0 at hcomp
+    rw [hcoord] at hcomp
+    exact hcomp
   -- Combine the smooth base projection with the smooth identity-fiber coordinate.
   exact (Bundle.contMDiff_proj (TangentSpace (𝓡 1))).prodMk hfiber
 

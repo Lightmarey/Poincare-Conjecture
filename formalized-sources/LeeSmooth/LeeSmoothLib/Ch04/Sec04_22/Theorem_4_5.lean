@@ -76,8 +76,9 @@ lemma writtenInExtChartAt_contDiffOn_of_contMDiff
         ((extChartAt I p).target ∩
           (f ∘ (extChartAt I p).symm) ⁻¹' (extChartAt J (f p)).source) := by
     -- This is the standard image-of-source-intersection formula for a partial equivalence.
-    simpa [s, Function.comp, extChartAt_target, extChartAt_coe_symm] using
-      (extChartAt I p).image_source_inter_eq' (f ⁻¹' (extChartAt J (f p)).source)
+    convert (extChartAt I p).image_source_inter_eq'
+      (f ⁻¹' (extChartAt J (f p)).source) using 1 <;>
+      ext x <;> rfl
   -- Rewriting the chart image into the natural chart domain gives the desired ordinary statement.
   rw [himage] at hchart
   simpa using hchart
@@ -88,9 +89,8 @@ lemma isOpen_setOf_isInvertible :
     IsOpen {A : E →L[𝕜] F | A.IsInvertible} := by
   -- The predicate `IsInvertible` is definitionally the range of the coercion from
   -- continuous linear equivalences.
-  simpa [ContinuousLinearMap.IsInvertible] using
-    (ContinuousLinearEquiv.isOpen :
-      IsOpen (Set.range (fun e : E ≃L[𝕜] F => (e : E →L[𝕜] F))))
+  change IsOpen (Set.range (fun e : E ≃L[𝕜] F => (e : E →L[𝕜] F)))
+  exact ContinuousLinearEquiv.isOpen
 
 /-- Helper for Theorem 4.5: shrink a chart-domain neighborhood so that the derivative stays
 invertible on the whole smaller open set. -/
@@ -390,6 +390,7 @@ lemma isLocalDiffeomorphAt_of_writtenInExtChartAt
       (I := I) (J := J) (f := f) (p := p) hpΨ hsource htarget hEq
   exact ⟨Φ, hpΦ, hΦ⟩
 
+set_option backward.isDefEq.respectTransparency false in
 /-- Helper for Theorem 4.5: at an interior point, the total derivative of the preferred chart
 representative agrees with the manifold derivative. -/
 lemma writtenInExtChartAt_fderiv_eq_mfderiv_of_isInteriorPoint
@@ -420,6 +421,7 @@ lemma writtenInExtChartAt_fderiv_isInvertible_of_isInteriorPoint
   rw [writtenInExtChartAt_fderiv_eq_mfderiv_of_isInteriorPoint (I := I) (J := J) hp hmd]
   exact hfp
 
+set_option backward.isDefEq.respectTransparency false in
 /-- Helper for Theorem 4.5: choose the chart-side derivative witness required by the ordinary
 inverse function theorem from the invertible manifold derivative. -/
 lemma writtenInExtChartAt_hasFDerivAt_of_isInteriorPoint_choose
@@ -462,9 +464,10 @@ theorem isLocalDiffeomorphAt_of_contMDiffAt_mfderiv_isInvertible
   have hΩ_source :
       (f ∘ (extChartAt I p).symm) ⁻¹' (extChartAt J (f p)).source ∈ nhds a := by
     -- The common chart domain is also a neighborhood because `f p` lies in the target chart source.
-    simpa [a, Function.comp] using
-      (extChartAt_preimage_mem_nhds (I := I) (x := p)
-        ((hf.contMDiffAt.continuousAt).preimage_mem_nhds (extChartAt_source_mem_nhds (I := J) (f p))))
+    convert extChartAt_preimage_mem_nhds (I := I) (x := p)
+      ((hf.contMDiffAt.continuousAt).preimage_mem_nhds
+        (extChartAt_source_mem_nhds (I := J) (f p))) using 1 <;>
+      ext x <;> rfl
   have hΩ : Ω ∈ nhds a := by
     -- The source proof shrinks inside the intersection of the preferred source and target charts.
     exact Filter.inter_mem hΩ_target hΩ_source

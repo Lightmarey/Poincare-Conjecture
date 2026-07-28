@@ -159,6 +159,12 @@ def curvatureOperator : ⋀[ℝ]^2 V →ₗ[ℝ] ⋀[ℝ]^2 V →ₗ[ℝ] ℝ :=
   simp only [Matrix.cons_val_zero, Matrix.cons_val_one, curvBilinOuter_apply,
     alternatingMapLinearEquiv_apply_ιMulti, curvInnerAlt, bilinToAlt2_apply, curvBilinInner_apply]
 
+/-- **Math.** ASCII-named facade for the defining curvature-operator identity.
+Blueprint: `def:curvature-operator`. -/
+theorem curvatureOperator_iMulti (x y z t : V) :
+    curvatureOperator hB (ιMulti ℝ 2 ![x, y]) (ιMulti ℝ 2 ![z, t]) = B x y z t :=
+  curvatureOperator_ιMulti hB x y z t
+
 /-- **Math.** The curvature operator is a **symmetric** bilinear form,
 `Rm(φ,ψ) = Rm(ψ,φ)`, reflecting the pair-swap symmetry
 `R_{ijkl} = R_{klij}` of the curvature tensor.

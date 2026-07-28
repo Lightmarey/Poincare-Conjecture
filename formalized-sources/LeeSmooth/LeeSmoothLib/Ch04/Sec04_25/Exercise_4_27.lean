@@ -14,7 +14,8 @@ open scoped Manifold ContDiff
 -- `ContMDiff` closure theorem for powers of smooth maps.
 theorem cubicMap_contMDiff :
     ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ cubicMap := by
-  simpa [cubicMap] using ((contMDiff_id : ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ fun x : ℝ ↦ x).pow 3)
+  change ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (fun x : ℝ ↦ x ^ (3 : ℕ))
+  exact (contMDiff_id : ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ fun x : ℝ ↦ x).pow 3
 
 /-- The cubic map is a topological submersion of `ℝ`. -/
 -- Proof sketch: reuse the upstream owner chain

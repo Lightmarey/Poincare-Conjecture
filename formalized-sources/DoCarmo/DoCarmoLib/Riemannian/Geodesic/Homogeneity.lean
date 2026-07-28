@@ -92,7 +92,8 @@ theorem IsMIntegralCurveOn.fiberScaling_comp_mul
     exact (fiberScalingLinearMap (E := E) a).map_smul r
       ((a • geodesicVectorFieldChart (I := I) g α) (f (a * t)))
   convert hcomp using 1
-  exact hderiv.symm
+  · rfl
+  · exact hderiv.symm
 
 end IntegralCurveTransform
 

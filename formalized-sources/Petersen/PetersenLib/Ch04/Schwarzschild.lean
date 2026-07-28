@@ -244,7 +244,7 @@ theorem schwarzschildRicciFlat (n : ℕ) (hn : 4 ≤ n) (ρ₀ : ℝ) (hρ₀ : 
         ((((2 : ℤ) - n : ℤ) : ℝ) * ρ r ^ ((2 : ℤ) - n - 1) * deriv ρ r) r := by
       have hz := hasDerivAt_zpow ((2 : ℤ) - n) (ρ r) (Or.inl (hρ r).ne')
       have hc := hz.comp r (hρdiff r).hasDerivAt
-      simpa [Function.comp] using hc
+      simpa [Function.comp_def] using! hc
     rw [(h1.const_mul (ρ₀ ^ (n - 2))).deriv,
       show (2 : ℤ) - n - 1 = (1 : ℤ) - n by ring]
     push_cast

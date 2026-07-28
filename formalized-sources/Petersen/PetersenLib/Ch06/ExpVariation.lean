@@ -120,7 +120,9 @@ theorem variationField_expVariation (g : RiemannianMetric I M) (c : ℝ → M)
   -- `variationField` is exactly that derivative, read at the base point
   rw [variationField_eq, hbase]
   simp only [expVariation, expMap_eq]
-  simpa [Function.comp] using hcomp.deriv
+  change (deriv (fun s : ℝ =>
+    extChartAt I (c t) (Exponential.expMap (I := I) g (c t) (s • V t))) 0 : E) = V t
+  simpa [Function.comp_def] using hcomp.deriv
 
 end PetersenLib
 

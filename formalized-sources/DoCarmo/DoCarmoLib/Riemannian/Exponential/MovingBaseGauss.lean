@@ -399,7 +399,13 @@ theorem gauss_surface_computation_at (g : RiemannianMetric I M) (p : M)
     intro t ht
     have h := (hmain t ht).sub
       (hasDerivAt_mul_const (chartMetricInner (I := I) g p (y) v w))
-    simpa using h
+    change HasDerivAt
+      ((fun τ : ℝ => chartMetricInner (I := I) g p
+        (c ((τ, (0 : ℝ)) : ℝ × ℝ))
+        (Q ((τ, (0 : ℝ)) : ℝ × ℝ)) (P ((τ, (0 : ℝ)) : ℝ × ℝ))) -
+        fun τ : ℝ => τ * chartMetricInner (I := I) g p y v w) 0 t
+    rw [sub_self] at h
+    exact h
   have hFcont : ContinuousOn (fun τ : ℝ =>
       chartMetricInner (I := I) g p (c ((τ, (0 : ℝ)) : ℝ × ℝ))
         (Q ((τ, (0 : ℝ)) : ℝ × ℝ)) (P ((τ, (0 : ℝ)) : ℝ × ℝ))
@@ -640,7 +646,9 @@ theorem chartMetricInner_self_pos_of_mem_target (g : RiemannianMetric I M) (p : 
       = cle.symm v := by
     rw [show (trivializationAt E (TangentSpace I) p).symm ((extChartAt I p).symm y) v
           = (trivializationAt E (TangentSpace I) p).symmL ℝ
-              ((extChartAt I p).symm y) v from rfl,
+              ((extChartAt I p).symm y) v from
+            (Bundle.Trivialization.symmL_apply (R := ℝ)
+              (trivializationAt E (TangentSpace I) p) hbaseSet v).symm,
       ← Trivialization.symm_continuousLinearEquivAt_eq
           (trivializationAt E (TangentSpace I) p) hbaseSet]
   rw [hid]

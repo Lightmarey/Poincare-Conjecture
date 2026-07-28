@@ -256,10 +256,12 @@ smooth. -/
 theorem lie_group_conjugation_contMDiff :
     ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1 * p.2 * p.1⁻¹) := by
   -- Compose the smooth product map with inversion on the first factor.
-  simpa [mul_assoc] using
+  convert
     ((contMDiff_fst : ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1)).mul
       (contMDiff_snd : ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.2))).mul
-      ((contMDiff_fst : ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1)).inv)
+      ((contMDiff_fst : ContMDiff (I.prod I) I ∞ (fun p : G × G ↦ p.1)).inv) using 1
+  funext p
+  simp [mul_assoc]
 
 end ConjugationSmoothAction
 

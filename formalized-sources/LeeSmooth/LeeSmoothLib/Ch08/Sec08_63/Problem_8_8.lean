@@ -283,7 +283,7 @@ theorem linearIndependent_mfderiv_of_injective
     -- Apply the standard linear-independence transport lemma in the aliased spelling.
     exact hlin.map' L hker
   -- Unfold the aliases once to recover the original family.
-  simpa [L, v, Function.comp] using hmap
+  simpa [L, v, Function.comp] using! hmap
 
 /-- Helper for Problem 8-8: the pushed-forward tangent family agrees with the sedenionic
 obstruction family at the obstruction point. -/

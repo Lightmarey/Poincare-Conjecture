@@ -152,7 +152,7 @@ lemma norm_evalCLM_comp_sub_evalCLM_comp_le (hT : (0:ℝ) < T)
       D v u - intervalPrimitive hT.le β u = v := by
     intro u
     have h := congrArg (fun φ : C(Set.Icc (0:ℝ) T, E) => φ u) (hD v)
-    simpa using h
+    simpa [hβ_def] using h
   have hsub : D v t - D v s
       = ∫ τ in (s:ℝ)..(t:ℝ), β (Set.projIcc 0 T hT.le τ) := by
     have e1 : D v t = v + intervalPrimitive hT.le β t := by
@@ -394,8 +394,12 @@ theorem exists_localFlow_hasStrictFDerivAt_uncurry
       (fun B : C(Set.Icc (0 : ℝ) T, E) →L[ℝ] C(Set.Icc (0 : ℝ) T, E) =>
         B (constE v)) hval
     rw [hDmap_unit x hx]
+    have hconst :
+        (ContinuousLinearMap.const ℝ (Set.Icc (0 : ℝ) T)) v =
+          ContinuousMap.const (Set.Icc (0 : ℝ) T) v := by
+      rfl
     simpa [ContinuousLinearMap.sub_apply, sub_eq_iff_eq_add, hJPdef,
-      hconstEdef] using h
+      hconstEdef, hconst] using h
   -- `Dmap` is continuous on the open flow ball
   have hDmapcont : ContinuousOn Dmap (ball z₀ r) := by
     intro x hx
@@ -577,7 +581,12 @@ theorem exists_localFlow_hasStrictFDerivAt_uncurry
         (hfs.continuousOn.continuousWithinAt hZΩ).continuousAt (hΩ.mem_nhds hZΩ)
       have hsmul : Continuous (fun v : E => (1 : ℝ →L[ℝ] ℝ).smulRight v) := by
         have := (ContinuousLinearMap.smulRightL ℝ ℝ E (1 : ℝ →L[ℝ] ℝ)).continuous
-        convert this using 1
+        have hfun : (fun v : E => (1 : ℝ →L[ℝ] ℝ).smulRight v) =
+            ⇑(ContinuousLinearMap.smulRightL ℝ ℝ E (1 : ℝ →L[ℝ] ℝ)) := by
+          funext v
+          rfl
+        rw [hfun]
+        exact this
       exact (hsmul.continuousAt).comp (hfat.comp hZat)
     have h := hasStrictFDerivAt_uncurry_coprod_curried (f := Z) (f₁ := Dx)
       (f₂ := fun x t => (1 : ℝ →L[ℝ] ℝ).smulRight (f (Z x t))) (u := p)

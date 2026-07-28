@@ -87,7 +87,8 @@ lemma hasDerivAt_integral_mul_hasCompactSupport
   · have hc : Continuous (fun y => K' s₀ y) := by
       have := hK'cont.comp_continuous (continuous_const.prodMk continuous_id)
         (fun y => ⟨hs₀, Set.mem_univ _⟩)
-      simpa using this
+      convert this using 1
+      rfl
     exact (hc.mul hg).aestronglyMeasurable
   · refine Filter.Eventually.of_forall (fun y s' hs' => ?_)
     show ‖K' s' y * g y‖ ≤ (tsupport g).indicator (fun _ => C') y
@@ -177,9 +178,16 @@ lemma heatKernelSpatial_hasDerivAt_time {n : ℕ} {t : ℝ} (ht : 0 < t)
       simpa using (hasDerivAt_id t).const_mul (4 : ℝ)
     have hdiv : HasDerivAt (fun s : ℝ => ‖x‖ ^ 2 / (4 * s)) (-(‖x‖ ^ 2) / (4 * t ^ 2)) t := by
       have := (hasDerivAt_const t (‖x‖ ^ 2)).div h4s (by positivity)
-      convert this using 1; field_simp; ring
+      convert this using 1
+      · exact AddCommGroup.ext rfl
+      · exact Module.ext rfl
+      · rfl
+      · field_simp
+        ring
     have := (hlog.const_mul (-(n : ℝ) / 2)).sub hdiv
-    convert this using 1; field_simp; ring
+    convert this using 1 <;> try rfl
+    field_simp
+    ring
   have hev : (fun s => heatKernelSpatial n s x)
       =ᶠ[nhds t] fun s => Real.exp (-(n : ℝ) / 2 * Real.log (4 * Real.pi * s) - ‖x‖ ^ 2 / (4 * s)) := by
     filter_upwards [isOpen_Ioi.eventually_mem (show t ∈ Set.Ioi (0 : ℝ) from ht)] with s hs
@@ -264,15 +272,24 @@ lemma heatKernelSpatial_line_deriv1 {n : ℕ} {t : ℝ} (ht : 0 < t)
       have h := ((hasDerivAt_id s).const_mul (2 : ℝ)).mul_const (z j); simpa using h
     have e2 : HasDerivAt (fun s : ℝ => s ^ 2) (2 * s) s := by simpa using hasDerivAt_pow 2 s
     have hnum : HasDerivAt (fun s : ℝ => ‖z‖^2 + 2*s*(z j) + s^2) (2*(z j) + 2*s) s := by
-      have h := ((hasDerivAt_const s (‖z‖^2)).add e1).add e2; simpa using h
+      have h := ((hasDerivAt_const s (‖z‖^2)).add e1).add e2
+      convert h using 1
+      · exact AddCommGroup.ext rfl
+      · exact Module.ext rfl
+      · rfl
+      · ring
     exact hnum.neg.div_const (4*t)
   rw [hfun]
   have hd := (hQ.exp).const_mul ((4 * Real.pi * t) ^ (-(n:ℝ)/2))
   convert hd using 1
-  rw [show heatKernelSpatial n t (z + s • EuclideanSpace.single j (1:ℝ))
-      = (4 * Real.pi * t) ^ (-(n:ℝ)/2) * Real.exp (-(‖z‖^2 + 2*s*(z j) + s^2)/(4*t)) by
-        rw [heatKernelSpatial, norm_add_smul_single_sq]]
-  field_simp; ring
+  · exact AddCommGroup.ext rfl
+  · exact Module.ext rfl
+  · rw [show heatKernelSpatial n t (z + s • EuclideanSpace.single j (1:ℝ))
+        = (4 * Real.pi * t) ^ (-(n:ℝ)/2) *
+            Real.exp (-(‖z‖^2 + 2*s*(z j) + s^2)/(4*t)) by
+          rw [heatKernelSpatial, norm_add_smul_single_sq]]
+    field_simp
+    ring
 
 /-- **Second derivative of the heat kernel along the `eⱼ`-line.** Its value at `s = 0`
 is `Φ · (zⱼ²/4t² − 1/2t) = (∂ⱼ² Φ(·,t))(z)` (`heatKernelSpatial_partial_sq`). -/
@@ -285,10 +302,18 @@ lemma heatKernelSpatial_line_deriv2 {n : ℕ} {t : ℝ} (ht : 0 < t)
   have ht0 : (t:ℝ) ≠ 0 := ht.ne'
   have hL : HasDerivAt (fun s : ℝ => -(z j + s) / (2 * t)) (-1 / (2 * t)) s := by
     have h := (((hasDerivAt_const s (z j)).add (hasDerivAt_id s)).neg).div_const (2 * t)
-    convert h using 1; ring
+    convert h using 1
+    · exact AddCommGroup.ext rfl
+    · exact Module.ext rfl
+    · rfl
+    · ring
   have hmul := (heatKernelSpatial_line_deriv1 ht z j s).mul hL
   convert hmul using 1
-  field_simp; ring
+  · exact AddCommGroup.ext rfl
+  · exact Module.ext rfl
+  · rfl
+  · field_simp
+    ring
 
 /-- Continuity of the spatial line kernel `(s,y) ↦ Φ((x−y)+s·eⱼ, t)` (fixed `t`). -/
 lemma continuous_heatLineKernel {n : ℕ} (t : ℝ) (x : EuclideanSpace ℝ (Fin n)) (j : Fin n) :

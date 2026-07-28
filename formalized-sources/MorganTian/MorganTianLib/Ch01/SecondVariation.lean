@@ -229,7 +229,13 @@ theorem metricAlong_christoffelCurvature_antisymm
         (hu.fderiv_right (m := 1) (by norm_num)).clm_apply contDiffAt_const
       exact this.differentiableAt (by norm_num)
     have h4 : DifferentiableAt ℝ X p := hX.differentiableAt (by norm_num)
-    simpa [covDerivAlong_def] using h1.add ((h2.clm_apply h3).clm_apply h4)
+    have hfun : covDerivAlong Γ u X d =
+        (fun q => fderiv ℝ X q d) +
+          fun q => Γ (u q) (fderiv ℝ u q d) (X q) := by
+      funext q
+      rfl
+    rw [hfun]
+    exact h1.add ((h2.clm_apply h3).clm_apply h4)
   -- second derivative of `A`, expanded by compatibility twice
   have hsecond : ∀ d d' : P, fderiv ℝ (fun q => fderiv ℝ A q d) p d'
       = G (u p) (covDerivAlong Γ u (covDerivAlong Γ u V d) d' p) (W p)
@@ -393,7 +399,13 @@ theorem secondVariation_energyDensity
         (hu2.fderiv_right (m := 1) (by norm_num)).clm_apply contDiffAt_const
       exact this.differentiableAt (by norm_num)
     have h4 : DifferentiableAt ℝ Z p := hZ.differentiableAt (by norm_num)
-    simpa [covDerivAlong_def] using h1.add ((h2.clm_apply h3).clm_apply h4)
+    have hfun : covDerivAlong Γ u Z d =
+        (fun q => fderiv ℝ Z q d) +
+          fun q => Γ (u q) (fderiv ℝ u q d) (Z q) := by
+      funext q
+      rfl
+    rw [hfun]
+    exact h1.add ((h2.clm_apply h3).clm_apply h4)
   -- ### Step 1: the first variation, valid near `p`
   have hGev : ∀ᶠ q in 𝓝 p, DifferentiableAt ℝ G (u q) := by
     have h : ∀ᶠ x in 𝓝 (u p), DifferentiableAt ℝ G x := by

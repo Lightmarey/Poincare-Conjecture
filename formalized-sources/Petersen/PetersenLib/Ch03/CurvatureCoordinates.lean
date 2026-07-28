@@ -385,7 +385,8 @@ theorem AffineConnection.cov_finsetSum_smul_field (D : AffineConnection I M)
       simp
   | insert a s ha ih =>
       have hterm : ∀ m, IsSmoothVectorField (fun q => f m q • V m q) := fun m => by
-        simpa using (SmoothVectorField.smul (f m) (hf m) ⟨V m, hV m⟩).smooth
+        simpa [IsSmoothVectorField] using!
+          (SmoothVectorField.smul (f m) (hf m) ⟨V m, hV m⟩).smooth
       have hsum : IsSmoothVectorField (fun q => ∑ m ∈ s, f m q • V m q) :=
         isSmoothVectorField_finsetSum s _ hterm
       have e : (fun q => ∑ m ∈ insert a s, f m q • V m q)
@@ -438,7 +439,7 @@ private theorem leviCivita_cov_cov_chartFrameField
   -- the frame combination field
   have hterm : ∀ m, IsSmoothVectorField
       (fun q => γ m q • ⇑(chartFrameField (I := I) p m) q) := fun m => by
-    simpa using
+    simpa [IsSmoothVectorField] using!
       (SmoothVectorField.smul (γ m) (hγsmooth m) (chartFrameField (I := I) p m)).smooth
   have hW : IsSmoothVectorField
       (fun q => ∑ m, γ m q • ⇑(chartFrameField (I := I) p m) q) :=

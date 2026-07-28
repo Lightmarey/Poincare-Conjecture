@@ -25,13 +25,15 @@ structure IsLocalParametrization (S : ImmersedSubmanifold I M) {k : ℕ}
   exists_lift :
     ∃ F : U → S.domain, X = S.inclusion ∘ F ∧ Topology.IsOpenEmbedding F
 
-/-- A local parametrization provides its factorization through the immersed submanifold as an
-instance-level fact. -/
-instance instFactExistsLift
+omit [IsManifold I (⊤ : WithTop ℕ∞) M] in
+/-- A local parametrization packages its factorization through the immersed submanifold as a
+`Fact`. -/
+theorem instFactExistsLift
     {S : ImmersedSubmanifold I M} {k : ℕ}
     {U : Opens (EuclideanSpace ℝ (Fin k))} {X : U → M}
-    (_hX : IsLocalParametrization S U X) :
-    Fact (∃ F : U → S.domain, X = S.inclusion ∘ F ∧ Topology.IsOpenEmbedding F) := sorry
+    (hX : IsLocalParametrization S U X) :
+    Fact (∃ F : U → S.domain, X = S.inclusion ∘ F ∧ Topology.IsOpenEmbedding F) :=
+  ⟨hX.exists_lift⟩
 
 /-- A smooth local parametrization is a local parametrization whose lift to the manifold underlying
 `S` is smooth. -/

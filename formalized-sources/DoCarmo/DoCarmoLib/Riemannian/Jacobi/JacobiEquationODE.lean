@@ -87,10 +87,10 @@ theorem isJacobiPairOn_of_isSolOn {A : ℝ → E →L[ℝ] E} {a b : ℝ} {Y : �
   refine ⟨fun t ht => ?_, fun t ht => ?_⟩
   · have := ((ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasFDerivWithinAt t
       (h t ht).hasFDerivWithinAt).hasDerivWithinAt
-    simpa using this
+    simpa [Function.comp_def] using this
   · have := ((ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasFDerivWithinAt t
       (h t ht).hasFDerivWithinAt).hasDerivWithinAt
-    simpa using this
+    simpa [Function.comp_def] using this
 
 /-- The companion operator is bounded pointwise by `max 1 ‖A t‖`. -/
 theorem opNorm_jacobiCompanion_le {A : ℝ → E →L[ℝ] E} (t : ℝ) {C : ℝ}
@@ -134,7 +134,8 @@ theorem exists_nnnorm_bound_jacobiCompanion {A : ℝ → E →L[ℝ] E} {a b : �
   obtain ⟨C, hC⟩ := isCompact_Icc.exists_bound_of_continuousOn hcont
   refine ⟨⟨max 1 C, le_trans zero_le_one (le_max_left _ _)⟩, fun t ht => ?_⟩
   rw [← NNReal.coe_le_coe]
-  simpa only [coe_nnnorm, NNReal.coe_mk] using opNorm_jacobiCompanion_le t (hC t ht)
+  change ‖jacobiCompanion A t‖ ≤ max 1 C
+  exact opNorm_jacobiCompanion_le t (hC t ht)
 
 /-- **Existence (do Carmo `def:dc-ch5-2-1`).** For continuous curvature
 coefficient `A` on `[a,b]` and any initial data `(f₀, v₀)` there is a Jacobi

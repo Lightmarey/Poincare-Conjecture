@@ -78,11 +78,15 @@ theorem semicircle_ambient_hasDerivAt (e : Fin n) (m u : E) (r s : ℝ) :
   have hc : Real.cosh s ≠ 0 := (Real.cosh_pos s).ne'
   have hA : HasDerivAt (fun t => r * Real.sinh t / Real.cosh t) (r / (Real.cosh s) ^ 2) s := by
     have h := ((Real.hasDerivAt_sinh s).const_mul r).div (Real.hasDerivAt_cosh s) hc
-    convert h using 2
-    linear_combination -r * Real.cosh_sq_sub_sinh_sq s
+    convert h using 1 <;> try rfl
+    field_simp [hc]
+    rw [Real.cosh_sq_sub_sinh_sq]
+    ring
   have hB : HasDerivAt (fun t => r / Real.cosh t) (-(r * Real.sinh s) / (Real.cosh s) ^ 2) s := by
     have h := (hasDerivAt_const s r).div (Real.hasDerivAt_cosh s) hc
-    convert h using 1; field_simp; ring
+    convert h using 1 <;> try rfl
+    field_simp
+    ring
   exact ((hA.smul_const u).add (hB.smul_const _)).const_add m
 
 /-! ## The classification: every geodesic of `Hⁿ` is a vertical line or a semicircle -/

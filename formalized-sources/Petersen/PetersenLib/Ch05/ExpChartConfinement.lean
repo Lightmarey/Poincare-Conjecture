@@ -79,8 +79,8 @@ variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M
 `z : TM` is outside `(chartAt H p).source`, then the field is `0` at `z`.
 
 This is immediate from the construction: the field is defined by applying
-`Trivialization.symm` of the trivialization of `T(TM)` at `⟨p, 0⟩`, and
-`Trivialization.symm` is `0` outside the `baseSet`, which
+`Trivialization.symmL` of the trivialization of `T(TM)` at `⟨p, 0⟩`, and
+`Trivialization.symmL` is `0` outside the `baseSet`, which
 `geodesicChartDomain_eq_trivBaseSet` identifies with the set of `z` whose foot
 lies in `(chartAt H p).source`.
 
@@ -94,7 +94,7 @@ theorem geodesicVectorFieldChart_eq_zero_of_notMem (g : RiemannianMetric I M) (p
     geodesicVectorFieldChart (I := I) g p z = 0 := by
   have hz' : z ∉ geodesicChartDomain (I := I) (M := M) p := hz
   rw [geodesicChartDomain_eq_trivBaseSet (I := I) (M := M) p] at hz'
-  exact Trivialization.symm_apply_of_notMem _ hz' _
+  exact Trivialization.symmL_apply_of_notMem _ hz' _
 
 end Geodesic
 

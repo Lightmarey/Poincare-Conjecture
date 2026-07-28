@@ -1,5 +1,6 @@
 import DoCarmoLib.Riemannian.Connection.ChartChristoffel
 import DoCarmoLib.Riemannian.Manifold.DoCarmoCh8HyperbolicManifold
+import Mathlib.Algebra.Group.Ext
 
 /-!
 # Chart Christoffel symbols of the hyperbolic metric (do Carmo Ch. 8 §3)
@@ -171,7 +172,10 @@ theorem hyperbolic_partialDeriv_chartGramOnE (e : Fin n) (α : ↥(upperHalfSpac
       simpa using hasDerivAt_pow 2 (y e)
     have h2 := h1.inv (pow_ne_zero 2 hye)
     convert h2 using 1
-    field_simp
+    · exact AddCommGroup.ext rfl
+    · exact Module.ext rfl
+    · rfl
+    · field_simp [hye]
   have hcf := hsq.comp_hasFDerivAt y hproj
   have hprod : HasFDerivAt (fun z : E => ((z e) ^ 2)⁻¹ * finBasisGram (n := n) l j) _ y :=
     hcf.mul_const (finBasisGram (n := n) l j)

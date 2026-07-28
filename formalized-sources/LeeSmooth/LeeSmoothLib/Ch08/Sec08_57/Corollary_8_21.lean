@@ -34,7 +34,7 @@ theorem pushforward_apply_comp_eq
     mfderiv% f (F p) ((F _* X) (F p)) =
       mfderiv% (f.comp (F : C^∞⟮I, M; J, N⟯)) p (X p) := by
   symm
-  simpa using
+  simpa using!
     (f_related_iff_mfderiv_comp_eq F.contMDiff).1
       (f_related_pushforward_of_diffeomorph F X) p f f.contMDiff.contMDiffAt
 

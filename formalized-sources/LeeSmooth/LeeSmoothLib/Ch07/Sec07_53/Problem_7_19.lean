@@ -421,10 +421,10 @@ private theorem kernelCoordinateLieIsoOfExplicitSection
     intro k l
     have hkKer : φ k.1 = 1 := k.2
     have hk : (ΦG.symm k.1).2 = 1 := by
-      simpa [φ] using hkKer
+      simpa [φ] using! hkKer
     have hlKer : φ l.1 = 1 := l.2
     have hl : (ΦG.symm l.1).2 = 1 := by
-      simpa [φ] using hlKer
+      simpa [φ] using! hlKer
     -- Kernel elements have trivial `H`-coordinate, so the first coordinate multiplies directly.
     calc
       F (k * l) = (ΦG.symm (k.1 * l.1)).1 := rfl
@@ -455,7 +455,7 @@ private theorem kernelCoordinateLieIsoOfExplicitSection
       -- Read semidirect coordinates by composing the kernel inclusion with `ΦG.symm`.
       exact ΦG.symm.contMDiff_toFun.comp (kernelSubtype_contMDiff φ)
     -- The desired kernel-coordinate map is the first projection of those semidirect coordinates.
-    simpa [F] using contMDiff_fst.comp hCoords
+    simpa [F] using! contMDiff_fst.comp hCoords
   have hFinv_smooth :
       ContMDiff
         I_N
@@ -478,7 +478,7 @@ private theorem kernelCoordinateLieIsoOfExplicitSection
     intro k
     have hkKer : φ k.1 = 1 := k.2
     have hk : (ΦG.symm k.1).2 = 1 := by
-      simpa [φ] using hkKer
+      simpa [φ] using! hkKer
     -- Kernel elements have semidirect coordinates `(n, 1)`, so the explicit inverse recovers `k`.
     apply Subtype.ext
     calc
@@ -631,7 +631,7 @@ lemma splitConjugate_mem_ker
     φ (ψ h * k.1 * (ψ h)⁻¹) = φ (ψ h) * (φ k.1 * (φ (ψ h))⁻¹) := by
       simp [mul_assoc]
     _ = h * (1 * h⁻¹) := by
-      simpa [hsplit h] using congrArg (fun x ↦ h * (x * h⁻¹)) k.2
+      simpa [hsplit h] using! congrArg (fun x ↦ h * (x * h⁻¹)) k.2
     _ = 1 := by simp
 
 /-- Helper for Problem 7-19: conjugation by the split section `ψ h` restricts to a kernel
@@ -713,7 +713,7 @@ private theorem splitKernelConjugationKernelSmooth
           ∞
           (fun p : H × φ.toMonoidHom.ker ↦ (p.2 : G)) := by
       -- Read the kernel factor through the canonical subtype inclusion.
-      simpa using
+      simpa using!
         (kernelSubtype_contMDiff φ).comp
           (contMDiff_snd :
             ContMDiff
@@ -722,7 +722,7 @@ private theorem splitKernelConjugationKernelSmooth
               ∞
               fun p : H × φ.toMonoidHom.ker ↦ p.2)
     -- The ambient conjugation formula is smooth before codomain restriction.
-    simpa [ambient, mul_assoc] using hSection.mul (hKernel.mul hSection.inv)
+    simpa [ambient, mul_assoc] using! hSection.mul (hKernel.mul hSection.inv)
   have hMem : ∀ p : H × φ.toMonoidHom.ker, ambient p ∈ φ.toMonoidHom.ker := by
     intro p
     exact splitConjugate_mem_ker φ ψ hsplit p.1 p.2
@@ -787,7 +787,7 @@ private theorem transportedSplitActionSmooth
         ∞
         (fun p : H × N ↦ splitKernelConjugationMulAut φ ψ hsplit p.1 (e.symm p.2)) := by
     -- Feed the kernel-side smooth action with the transported pair `(h, e.symm n)`.
-    simpa [Function.comp] using (splitKernelConjugationKernelSmooth φ ψ hsplit).comp hInput
+    simpa [Function.comp] using! (splitKernelConjugationKernelSmooth φ ψ hsplit).comp hInput
   -- Postcompose the kernel-side action with the Lie-group isomorphism `e : ker φ ≃ N`.
   let hE := e.contMDiff_toFun
   exact hE.comp hKernel
@@ -841,7 +841,7 @@ private theorem splitSemidirectProductWitness
       ContMDiff (I_H.prod I_N) I_N ∞
         (fun p : H × N ↦ θ p.1 p.2) := by
     -- Transport the smooth kernel conjugation action through the kernel-coordinate isomorphism.
-    simpa [θ] using transportedSplitActionSmooth φ ψ hsplit e
+    simpa [θ] using! transportedSplitActionSmooth φ ψ hsplit e
   let _ : Group (N × H) := semidirectProductGroup θ
   let _ : LieGroup (I_N.prod I_H) ∞ (N × H) := semidirectProductLieGroup θ hθ
   let Ffun : N × H → G := fun p ↦ ((e.symm p.1 : φ.toMonoidHom.ker) : G) * ψ p.2
@@ -896,7 +896,7 @@ private theorem splitSemidirectProductWitness
           (fun p : N × H ↦ ((e.symm p.1 : φ.toMonoidHom.ker) : G)) := by
       let hSymm := e.symm.contMDiff_toFun
       -- The kernel coordinate is smooth after composing `e.symm` with the kernel inclusion.
-      simpa using
+      simpa using!
         (kernelSubtype_contMDiff φ).comp
           (hSymm.comp
             (contMDiff_fst :
@@ -910,7 +910,7 @@ private theorem splitSemidirectProductWitness
       -- The split section contributes the smooth `H`-factor.
       exact ψ.contMDiff_toFun.comp contMDiff_snd
     -- The forward witness is the product of the kernel factor and the split section.
-    simpa [Ffun] using hKernel.mul hSection
+    simpa [Ffun] using! hKernel.mul hSection
   have hResidual_ambient :
       ContMDiff I_G I_G ∞ (fun g : G ↦ g * (ψ (φ g))⁻¹) := by
     have hSection :
@@ -918,7 +918,7 @@ private theorem splitSemidirectProductWitness
       -- The chosen section is smooth after precomposing with `φ`.
       exact ψ.contMDiff_toFun.comp φ.contMDiff_toFun
     -- The ambient residual is a smooth product with the inverse split section.
-    simpa using contMDiff_id.mul hSection.inv
+    simpa using! contMDiff_id.mul hSection.inv
   have hResidual_subtype :
       ContMDiff
         I_G
@@ -940,7 +940,7 @@ private theorem splitSemidirectProductWitness
       -- Postcompose the smooth kernel residual with the kernel-coordinate Lie-group isomorphism.
       exact e.contMDiff_toFun.comp hResidual_subtype
     -- Pair the transported residual with the original quotient map `φ`.
-    simpa [Finv] using hFirst.prodMk φ.contMDiff_toFun
+    simpa [Finv] using! hFirst.prodMk φ.contMDiff_toFun
   have hForward_rightInv : ∀ g : G, Ffun (Finv g) = g := by
     intro g
     -- Evaluating the forward map on the explicit inverse collapses to the residual factorization.

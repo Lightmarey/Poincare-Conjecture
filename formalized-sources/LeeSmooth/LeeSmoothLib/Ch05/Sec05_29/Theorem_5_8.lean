@@ -139,7 +139,7 @@ private theorem restricted_local_normal_form_image_subset_zero_slice
         (hNF.codChart.restr W) yS.1 =
           LocalNormalFormAPI.rank_normal_form k n k (hNF.domChart yS) := by
       simpa [hyLeftInv, Function.comp] using hNF.eqOn hyTarget
-    simpa [hcoord, rank_normal_form_self_eq_euclidean_slice_inclusion_zero hk] using
+    simpa [hcoord, rank_normal_form_self_eq_euclidean_slice_inclusion_zero hk] using!
       (euclidean_slice_inclusion_tail hk
         (fun _ : Fin (n - k) ↦ (0 : ℝ))
         (hNF.domChart yS) i)
@@ -193,7 +193,7 @@ private theorem zero_tail_projection_mem_ball
                 ∑ i : Fin (n - k),
                   (euclidean_slice_inclusion hk (fun _ : Fin (n - k) ↦ (0 : ℝ)) zProj).ofLp
                     (euclidean_slice_tail_coordinate hk i) ^ 2 := by
-              simpa [a, f, cast_first_coordinates, euclidean_slice_tail_coordinate] using
+              simpa [a, f, cast_first_coordinates, euclidean_slice_tail_coordinate] using!
                 (Fin.sum_univ_add (f := f))
         _ =
               (∑ i : Fin k, zProj.ofLp i ^ 2) +
@@ -583,7 +583,7 @@ private theorem centered_zero_slice_restricted_image_eq_zero_slice
         modelWithCornersSelf_coe_symm] using hcoord_eq huTarget
     refine ⟨e1.map_source hyRestr_e1, ?_⟩
     -- The explicit zero-tail formula forces all tail coordinates to vanish.
-    simpa [e1, centered_zero_slice_restricted_chart, hcoord] using
+    simpa [e1, centered_zero_slice_restricted_chart, hcoord] using!
       (euclidean_slice_inclusion_tail hk
         (fun _ : Fin (n - k) ↦ (0 : ℝ)) u)
   · intro hz
@@ -653,7 +653,7 @@ private theorem centered_zero_slice_restricted_image_eq_zero_slice
       exact ⟨hyCodSource, ⟨hyW0, hyV0⟩⟩
     refine ⟨yS.1, ⟨yS.2, hyRestr⟩, ?_⟩
     -- The witness `yS` maps to `z` under the restricted codomain chart.
-    simpa using hyCoord
+    simpa using! hyCoord
 
 /-- Helper for Theorem 5.8: the restricted centered ambient chart is the smooth slice chart
 promised by Lee's forward implication. -/

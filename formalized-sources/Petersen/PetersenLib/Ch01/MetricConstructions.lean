@@ -69,7 +69,7 @@ def productForm (g₁ : RiemannianMetric I₁ M₁) (g₂ : RiemannianMetric I�
 theorem productForm_symm (g₁ : RiemannianMetric I₁ M₁) (g₂ : RiemannianMetric I₂ M₂)
     (p : M₁ × M₂) (u v : TangentSpace (I₁.prod I₂) p) :
     productForm g₁ g₂ p u v = productForm g₁ g₂ p v u := by
-  simp only [productForm, ContinuousLinearMap.add_apply]
+  simp only [productForm, add_apply]
   rw [pullbackForm_symm, pullbackForm_symm (F := Prod.snd)]
 
 /-- **Math.** The product form is positive definite: for `u ≠ 0` either
@@ -86,7 +86,7 @@ theorem productForm_self_pos (g₁ : RiemannianMetric I₁ M₁) (g₂ : Riemann
     rw [pullbackForm_apply, hsnd]; exact g₂.metricInner_self_nonneg _ _
   have hor : u.1 ≠ 0 ∨ u.2 ≠ 0 := by
     rw [← not_and_or]; exact fun h => hu (Prod.ext h.1 h.2)
-  simp only [productForm, ContinuousLinearMap.add_apply]
+  simp only [productForm, add_apply]
   rcases hor with h1 | h2
   · have hp1 : 0 < pullbackForm (I := I₁.prod I₂) g₁ Prod.fst p u u := by
       rw [pullbackForm_apply, hfst]; exact g₁.metricInner_self_pos _ _ h1
@@ -130,7 +130,7 @@ theorem productMetric_apply (g₁ : RiemannianMetric I₁ M₁) (g₂ : Riemanni
   have hsnd : ∀ w : TangentSpace (I₁.prod I₂) p,
       mfderiv (I₁.prod I₂) I₂ Prod.snd p w = w.2 := fun w => by rw [mfderiv_snd]; rfl
   show productForm g₁ g₂ p u v = _
-  simp only [productForm, ContinuousLinearMap.add_apply, pullbackForm_apply, hfst, hsnd]
+  simp only [productForm, add_apply, pullbackForm_apply, hfst, hsnd]
 
 end ProductMetric
 
@@ -174,10 +174,12 @@ theorem mfderiv_mul_left_inv_injective (x : G) :
     have hcomp : ((x * ·) ∘ (x⁻¹ * ·)) = (id : G → G) := by
       funext y; simp [mul_inv_cancel_left]
     rw [hcomp, mfderiv_id]
-  refine Function.LeftInverse.injective
-    (g := mfderiv I I (x * ·) (x⁻¹ * x)) fun u => ?_
-  have := congrArg (fun T : TangentSpace I x →L[ℝ] TangentSpace I x => T u) key
-  simpa using this
+  intro u v huv
+  have hu := congrArg (fun T : TangentSpace I x →L[ℝ] TangentSpace I x => T u) key
+  have hv := congrArg (fun T : TangentSpace I x →L[ℝ] TangentSpace I x => T v) key
+  have huv' := congrArg (mfderiv I I (x * ·) (x⁻¹ * x)) huv
+  simp only [ContinuousLinearMap.id_apply] at hu hv
+  exact hu.symm.trans (huv'.trans hv)
 
 omit [IsManifold I ∞ G] [LieGroup I ∞ G] in
 /-- **Math.** The left-invariant form is symmetric when the seed form `b` is. -/
@@ -266,7 +268,9 @@ theorem leftInvariantForm_contMDiff (b : E →L[ℝ] E →L[ℝ] ℝ) :
       rfl
     have hcoeS : (sT.symm x : E → TangentSpace I x)
         = ⇑(sT.continuousLinearEquivAt ℝ x hx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]
+      funext y
+      exact (Trivialization.symmL_apply sT hx y).symm
     rw [hDu, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
   rw [hRHS, hB]
   have htrivM : trivializationAt ℝ (Bundle.Trivial G ℝ) x₀ = Bundle.Trivial.trivialization G ℝ :=

@@ -16,11 +16,15 @@ lemma cubicMap_surjective : Function.Surjective cubicMap := by
   -- The odd cubic polynomial tends to `+∞` at `+∞` and to `-∞` at `-∞`.
   refine Continuous.surjective ?_ ?_ ?_
   · -- Continuity is immediate from the continuity of powers.
-    simpa [cubicMap] using (continuous_id.pow (3 : ℕ) : Continuous fun x : ℝ ↦ x ^ (3 : ℕ))
+    rw [show cubicMap = (id ^ (3 : ℕ) : ℝ → ℝ) by
+      funext x
+      rfl]
+    exact continuous_id.pow (3 : ℕ)
   · -- Positive cubic growth gives the `atTop` behavior.
-    simpa only [cubicMap] using
-      (tendsto_pow_atTop (n := 3) (by norm_num : (3 : ℕ) ≠ 0) :
-        Tendsto (fun x : ℝ ↦ x ^ (3 : ℕ)) atTop atTop)
+    rw [show cubicMap = (fun x : ℝ ↦ x ^ (3 : ℕ)) by
+      funext x
+      rfl]
+    exact tendsto_pow_atTop (n := 3) (by norm_num : (3 : ℕ) ≠ 0)
   · -- Rewriting `x^3` as `-((-x)^3)` transfers the previous limit to `atBot`.
     have hpow :
         Tendsto (fun x : ℝ ↦ (-x) ^ (3 : ℕ)) atBot atTop := by
@@ -114,7 +118,11 @@ theorem cubicChart_symm_not_contDiffAt_zero :
   have hcube :
       HasDerivAt (fun y : ℝ ↦ (cubicChart.symm y) ^ (3 : ℕ))
         ((3 : ℝ) * cubicChart.symm 0 ^ (2 : ℕ) * deriv cubicChart.symm 0) 0 := by
-    simpa using hderiv.pow (3 : ℕ)
+    rw [show (fun y : ℝ ↦ (cubicChart.symm y) ^ (3 : ℕ)) =
+        (cubicChart.symm ^ (3 : ℕ) : ℝ → ℝ) by
+      funext y
+      rfl]
+    exact hderiv.pow (3 : ℕ)
   have hid :
       HasDerivAt (fun y : ℝ ↦ y)
         ((3 : ℝ) * cubicChart.symm 0 ^ (2 : ℕ) * deriv cubicChart.symm 0) 0 := by
@@ -125,7 +133,10 @@ theorem cubicChart_symm_not_contDiffAt_zero :
     refine hid.congr_deriv ?_
     simp [cubicChart_symm_zero]
   have hId : HasDerivAt (fun y : ℝ ↦ y) 1 0 := by
-    simpa using hasDerivAt_id 0
+    rw [show (fun y : ℝ ↦ y) = id by
+      funext y
+      rfl]
+    exact hasDerivAt_id 0
   have : (0 : ℝ) = 1 := hid_zero.unique hId
   norm_num at this
 

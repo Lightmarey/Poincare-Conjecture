@@ -2,6 +2,7 @@ import DoCarmoLib.Riemannian.Exponential.RayODE
 import DoCarmoLib.Riemannian.Geodesic.SymmetryLemma
 import DoCarmoLib.Riemannian.Geodesic.CovariantDerivative
 import DoCarmoLib.Riemannian.Geodesic.HopfRinow.MetricBridge
+import Mathlib.Algebra.Group.Ext
 
 set_option maxSynthPendingDepth 3
 
@@ -123,7 +124,12 @@ theorem hasDerivAt_chartMetricInner_quadratic (g : RiemannianMetric I M) (α : M
     have h := ((hasDerivAt_id (0 : ℝ)).mul (hasDerivAt_id (0 : ℝ))).mul_const
       (chartMetricInner (I := I) g α y d d)
     simpa using h
-  simpa using h1.add h2
+  convert h1.add h2 using 1
+  · exact AddCommGroup.ext rfl
+  · exact Module.ext rfl
+  · funext s
+    rfl
+  · simp
 
 end ChartMetricInnerAlgebra
 
@@ -489,7 +495,11 @@ theorem gauss_surface_computation (g : RiemannianMetric I M) (p : M)
     intro t ht
     have h := (hmain t ht).sub
       (hasDerivAt_mul_const (chartMetricInner (I := I) g p (extChartAt I p p) v w))
-    simpa using h
+    convert h using 1
+    · exact AddCommGroup.ext rfl
+    · exact Module.ext rfl
+    · rfl
+    · simp
   have hFcont : ContinuousOn (fun τ : ℝ =>
       chartMetricInner (I := I) g p (c ((τ, (0 : ℝ)) : ℝ × ℝ))
         (Q ((τ, (0 : ℝ)) : ℝ × ℝ)) (P ((τ, (0 : ℝ)) : ℝ × ℝ))

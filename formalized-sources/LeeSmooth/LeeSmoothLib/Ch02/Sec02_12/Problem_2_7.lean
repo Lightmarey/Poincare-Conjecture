@@ -204,7 +204,7 @@ lemma exists_linearlyIndependent_smooth_family [T2Space M] (p : M) (n : ℕ) (hn
     functions_linearIndependent_of_pairwise_disjoint_support
       (f := fun i x ↦ f i x) (by simpa [f] using hsupport_disjoint) hsupport_nonempty
   exact LinearIndependent.of_comp (ContMDiffMap.coeFnLinearMap (𝕜 := ℝ) (I := I) (N := M)
-    (V := ℝ)) (by simpa using hfun)
+    (V := ℝ)) (by simpa using! hfun)
 
 end FiniteDimensional
 

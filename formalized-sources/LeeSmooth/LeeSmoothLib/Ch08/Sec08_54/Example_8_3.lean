@@ -46,8 +46,8 @@ theorem euler_vector_field_smooth :
   -- Reduce manifold smoothness on the model space to ordinary smoothness of the vector field.
   rw [contMDiff_vectorSpace_iff_contDiff]
   -- The Euler field is definitionally the identity map on the model vector space.
-  simpa [euler_vector_field] using
-    (contDiff_id : ContDiff ℝ ∞ (fun x : EuclideanSpace ℝ (Fin n) ↦ x))
+  change ContDiff ℝ ∞ (fun x : EuclideanSpace ℝ (Fin n) ↦ x)
+  exact contDiff_id
 
 /-- Example 8.3 (3): the Euler vector field vanishes at the origin. -/
 theorem euler_vector_field_at_origin :

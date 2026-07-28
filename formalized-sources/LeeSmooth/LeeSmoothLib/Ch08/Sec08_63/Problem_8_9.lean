@@ -40,8 +40,12 @@ theorem problem_8_9_related_value
   have hpush :
       (fderiv ℝ cubicMap x : ℝ → ℝ) 1 =
         fromTangentSpace (cubicMap x) (Y (cubicMap x)) := by
-    simpa [cubicMap, example_8_17_d_dt] using
-      congrArg (NormedSpace.fromTangentSpace (cubicMap x)) (VectorField.f_related_apply hY x)
+    have h := congrArg (NormedSpace.fromTangentSpace (cubicMap x))
+      (VectorField.f_related_apply hY x)
+    rw [mfderiv_eq_fderiv] at h
+    change (fderiv ℝ cubicMap x : ℝ → ℝ) 1 =
+      fromTangentSpace (cubicMap x) (Y (cubicMap x)) at h
+    exact h
   calc
     fromTangentSpace (cubicMap x) (Y (cubicMap x))
         = (fderiv ℝ cubicMap x : ℝ → ℝ) 1 := hpush.symm
@@ -79,7 +83,8 @@ theorem problem_8_9_no_smooth_related_vector_field :
     -- coordinate function, and on the model space `ℝ` the trivialization is the identity.
       rw [Bundle.contMDiffAt_section 0] at hY0
       simpa [trivializationAt_model_space_apply] using hY0
-    simpa [g] using hYcoordRaw
+    change ContMDiffAt 𝓘(ℝ) 𝓘(ℝ) ∞ (fun q : ℝ ↦ Y q) 0
+    exact hYcoordRaw
   have hg :
       ContDiffAt ℝ 2 g 0 := by
     have htwo_le_inf : (2 : ℕ∞ω) ≤ ∞ := by
@@ -87,9 +92,8 @@ theorem problem_8_9_no_smooth_related_vector_field :
     exact hYcoordMDiffAt.contDiffAt.of_le htwo_le_inf
   have hcubicInf :
       ContDiffAt ℝ ∞ cubicMap 0 := by
-    simpa [cubicMap] using
-      (((contDiff_id : ContDiff ℝ ∞ fun x : ℝ ↦ x).pow 3).contDiffAt :
-        ContDiffAt ℝ ∞ (fun x : ℝ ↦ x ^ (3 : ℕ)) 0)
+    change ContDiffAt ℝ ∞ (fun x : ℝ ↦ x ^ (3 : ℕ)) 0
+    simpa only [id_eq] using ((contDiff_id (E := ℝ)).pow 3).contDiffAt
   have hcubic :
       ContDiffAt ℝ 2 cubicMap 0 := by
     have htwo_le_inf : (2 : ℕ∞ω) ≤ ∞ := by

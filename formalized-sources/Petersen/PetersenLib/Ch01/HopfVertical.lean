@@ -215,7 +215,7 @@ theorem hasDerivAt_hopfCurveAmbient (z : sphere (0 : 𝔼) 1) :
   have h2 : HasDerivAt (fun θ : ℝ => Complex.exp ((θ : ℂ) * Complex.I)) Complex.I 0 := by
     simpa using hasDerivAt_ofReal_mul_I.cexp
   have h3 := (smulRightCL (z : 𝔼)).hasFDerivAt.comp_hasDerivAt (0 : ℝ) h2
-  simpa [Function.comp_def, hopfCurveAmbient] using h3
+  simpa [Function.comp_def, hopfCurveAmbient] using! h3
 
 theorem contMDiff_hopfCurve (z : sphere (0 : 𝔼) 1) :
     ContMDiff 𝓘(ℝ, ℝ) (𝓡 (2 * n + 1)) ∞ (hopfCurve z) :=

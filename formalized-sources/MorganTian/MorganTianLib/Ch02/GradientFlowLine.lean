@@ -240,7 +240,7 @@ theorem comp_eq_add_mul_of_bochner
       hgeo hcont hinit u
     have h₂ : HasDerivAt (fun s : ℝ => c₁ * s) c₁ u := by
       simpa using (hasDerivAt_id u).const_mul c₁
-    simpa using h₁.sub h₂
+    convert h₁.sub h₂ using 1 <;> first | rfl | exact (sub_self c₁).symm
   have hconst := is_const_of_deriv_eq_zero
     (fun u => (hder u).differentiableAt) (fun u => (hder u).deriv) t 0
   have : f (γ t) - c₁ * t = f (γ 0) - c₁ * 0 := hconst

@@ -40,7 +40,7 @@ theorem figureEightCurveMap_branch_velocity_annihilates_vanishing_functions
         (curve_velocity 𝓘(ℝ, ℝ × ℝ) figureEightCurveMap 0) = 0 := by
     rw [hcurve_velocity]
     exact hcomp_deriv.symm.trans hconst_deriv
-  simpa [mfderiv_eq_fderiv] using hgoal
+  simpa [mfderiv_eq_fderiv] using! hgoal
 
 /-- Problem 5-20 (2): at the same ambient self-intersection point of the immersed figure-eight,
 the velocity vector of the branch through parameter `0` is not tangent to the other branch

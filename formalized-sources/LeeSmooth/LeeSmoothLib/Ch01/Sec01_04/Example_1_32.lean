@@ -176,9 +176,9 @@ lemma split_at_coordinate_symm_continuous {k : ℕ} (i : Fin (k + 1)) :
     rcases eq_or_ne j i with rfl | hj
     · simpa using continuous_snd
     · rcases Fin.exists_succAbove_eq hj with ⟨j', rfl⟩
-      simpa using (continuous_apply j').comp hremove
+      simpa using! (continuous_apply j').comp hremove
   -- Finally transport the reinserted tuple back to Euclidean space.
-  simpa [split_at_coordinate] using
+  simpa [split_at_coordinate] using!
     ((EuclideanSpace.equiv (Fin (k + 1)) ℝ).symm.toHomeomorph.continuous_toFun).comp hinsert
 
 /-- Helper for Example 1.32: the coordinate split is a linear equivalence, so the fixed-coordinate
@@ -576,7 +576,7 @@ lemma split_at_coordinate_symm_line_hasFDerivAt {k : ℕ} (i : Fin (k + 1))
           (split_at_coordinate_continuousLinearEquiv i).symm
           (split_at_coordinate_continuousLinearEquiv i).symm.toContinuousLinearMap (x, t₀))
   -- Compose the inverse split with the right-coordinate line and rewrite the linear derivative.
-  simpa [Function.comp, split_at_coordinate_symm_comp_inr_eq_coordinate_insertion] using
+  simpa [Function.comp, split_at_coordinate_symm_comp_inr_eq_coordinate_insertion] using!
     hsymm.comp t₀ hpair
 
 /-- Helper for Example 1.32: restricting an ambient map to the affine line that varies only the
@@ -659,7 +659,7 @@ theorem graph_coordinate_chart_of_continuous_apply
     graph_coordinate_chart_of_continuous V hV ψ hψ hVne p = p.1.1 := by
   -- The extra subtype inclusion just forgets the proof that the first coordinate lies in `V`.
   rw [graph_coordinate_chart_of_continuous, OpenPartialHomeomorph.trans_apply]
-  simpa using graph_coordinates_apply V ψ hψ p
+  simpa using! graph_coordinates_apply V ψ hψ p
 
 /-- Helper for Example 1.32: the inverse continuous graph chart sends `x ∈ V` to `(x, ψ x)`. -/
 theorem graph_coordinate_chart_of_continuous_symm_apply
@@ -678,7 +678,7 @@ theorem graph_coordinate_chart_of_continuous_symm_apply
       (graph_coordinate_chart_of_continuous V hV ψ hψ hVne).right_inv hxTarget
   have hfst : q.1.1 = x := by
     -- The graph chart forgets everything except the retained base point.
-    simpa [q] using
+    simpa [q] using!
       (graph_coordinate_chart_of_continuous_apply V hV ψ hψ hVne q).trans hchart
   have hsnd : q.1.2 = ψ x := by
     -- The second coordinate is forced by the graph equation once the first coordinate is known.
@@ -767,7 +767,7 @@ theorem regular_level_set_patch_chart_of_local_graph_apply {k : ℕ}
       (split_at_coordinate i q.1.1).1 := by
   -- After identifying the patch with the graph, the chart is just `graph_coordinate_chart`.
   rw [regular_level_set_patch_chart_of_local_graph, OpenPartialHomeomorph.trans_apply]
-  simpa using graph_coordinate_chart_of_continuous_apply V hV ψ hψ hVne
+  simpa using! graph_coordinate_chart_of_continuous_apply V hV ψ hψ hVne
     ((regular_level_set_patch_homeomorph_to_graph i V N ψ hgraph hparamN) q)
 
 /-- Helper for Example 1.32: the inverse patch chart reinserts the fixed branch value as the
@@ -803,7 +803,7 @@ theorem regular_level_set_patch_chart_of_local_graph_symm_apply {k : ℕ}
   have hfst :
       (split_at_coordinate i q.1.1).1 = x := by
     -- The patch chart still reads off the retained split coordinates.
-    simpa [q] using
+    simpa [q] using!
       (regular_level_set_patch_chart_of_local_graph_apply i V N ψ hN hV hψ hVne hgraph
         hparamN q).trans hchart
   have hsplit :
@@ -974,7 +974,7 @@ lemma regular_level_set_split_pullback_right_fderiv_eq {k : ℕ}
       simpa [hsymm_apply] using (hΦy.differentiableAt one_ne_zero).hasFDerivAt
     -- Differentiate `Φ` after transporting product coordinates back to the ambient space by the
     -- inverse split linear equivalence.
-    simpa [hsymm_apply] using
+    simpa [hsymm_apply] using!
       (hΦsplit.comp (split_at_coordinate i y)
         ((split_at_coordinate_continuousLinearEquiv i).symm.hasFDerivAt :
           HasFDerivAt
@@ -1060,7 +1060,7 @@ lemma hasFDerivAt_prod_fst_of_right_invertible {k : ℕ}
     ((hFq.of_le (by simp : (1 : ℕ∞ω) ≤ ∞)).differentiableAt one_ne_zero).hasFDerivAt
   -- Pair the derivative of `F` with the fixed first projection and rewrite it as the chosen
   -- continuous linear equivalence.
-  simpa [prod_fst_fderiv_equiv_of_right_invertible] using hFderiv.prodMk hasFDerivAt_fst
+  simpa [prod_fst_fderiv_equiv_of_right_invertible] using! hFderiv.prodMk hasFDerivAt_fst
 
 /-- Helper for Example 1.32: the implicit-function step should produce an explicit local graph
 description of the level set near `p`. -/
@@ -1102,7 +1102,7 @@ lemma regular_level_set_exists_local_graph_data {k : ℕ}
     have hsplit : ContDiffAt ℝ 1 (fun v : EuclideanSpace ℝ (Fin k) × ℝ ↦
         (split_at_coordinate i).symm v) u := by
       exact ((split_at_coordinate_symm_contDiff i).contDiffAt).of_le (by simp)
-    simpa [F, u] using hΦp.comp u hsplit
+    simpa [F, u] using! hΦp.comp u hsplit
   let φu := (hFu.hasStrictFDerivAt one_ne_zero).implicitFunctionDataOfProdDomain hif
   let eu := φu.toOpenPartialHomeomorph
   let W : Set (EuclideanSpace ℝ (Fin k) × ℝ) := split_at_coordinate i '' N₀
@@ -1157,7 +1157,7 @@ lemma regular_level_set_exists_local_graph_data {k : ℕ}
     have hsymmOn : ContinuousOn (fun x : EuclideanSpace ℝ (Fin k) ↦ eu.symm (σ x)) V :=
       (eu.continuousOn_invFun.mono fun z hz ↦ hz.2).comp (continuous_const.prodMk continuous_id).continuousOn
         hσ_maps
-    simpa [ψ, σ, Function.comp] using continuous_snd.comp_continuousOn hsymmOn
+    simpa [ψ, σ, Function.comp] using! continuous_snd.comp_continuousOn hsymmOn
   refine ⟨i, V, N, ψ, hV, hN, hpN, hψ, ?_, ?_⟩
   · intro y hyN
     -- On the ambient patch `N`, the level set equation is equivalent to the fixed-branch graph
@@ -1302,7 +1302,7 @@ lemma regular_level_set_exists_local_smooth_graph_data {k : ℕ}
     have hsplit :
         ContDiffAt ℝ ∞ (fun v : EuclideanSpace ℝ (Fin k) × ℝ ↦ (split_at_coordinate i).symm v) u :=
       (split_at_coordinate_symm_contDiff i).contDiffAt
-    simpa [F, u] using hΦp.comp u hsplit
+    simpa [F, u] using! hΦp.comp u hsplit
   have hFu1 : ContDiffAt ℝ 1 F u := hFu.of_le (by simp : (1 : ℕ∞ω) ≤ ∞)
   let φu := (hFu1.hasStrictFDerivAt one_ne_zero).implicitFunctionDataOfProdDomain hif
   let eu := φu.toOpenPartialHomeomorph
@@ -1359,7 +1359,7 @@ lemma regular_level_set_exists_local_smooth_graph_data {k : ℕ}
     have hsymmOn : ContinuousOn (fun x : EuclideanSpace ℝ (Fin k) ↦ eu.symm (σ x)) V :=
       (eu.continuousOn_invFun.mono fun z hz ↦ hz.2).comp (continuous_const.prodMk continuous_id).continuousOn
         hσ_maps
-    simpa [ψ, σ, Function.comp] using continuous_snd.comp_continuousOn hsymmOn
+    simpa [ψ, σ, Function.comp] using! continuous_snd.comp_continuousOn hsymmOn
   have hψsmooth : ContDiffOn ℝ ∞ ψ V := by
     rw [contDiffOn_infty]
     intro m x hxV
@@ -1376,7 +1376,7 @@ lemma regular_level_set_exists_local_smooth_graph_data {k : ℕ}
       -- Rewrite `F` at `q` back to the ambient point `y` where `Φ` is already smooth.
       have hΦq : ContDiffAt ℝ ∞ Φ ((split_at_coordinate i).symm q) := by
         simpa [hsymm_q] using hΦy
-      simpa [F, hsymm_q] using
+      simpa [F, hsymm_q] using!
         hΦq.comp q ((split_at_coordinate_symm_contDiff i).contDiffAt)
     have hInvertible :
         (fderiv ℝ F q ∘L ContinuousLinearMap.inr ℝ (EuclideanSpace ℝ (Fin k)) ℝ).IsInvertible := by
@@ -1387,7 +1387,7 @@ lemma regular_level_set_exists_local_smooth_graph_data {k : ℕ}
     have heu_deriv :
         HasFDerivAt eu ((prod_fst_fderiv_equiv_of_right_invertible F q hInvertible : _ →L[ℝ] _)) q := by
       -- The forward chart is exactly `v ↦ (F v, v.1)` at the derivative level.
-      simpa [eu, φu, F, ImplicitFunctionData.toOpenPartialHomeomorph_apply] using
+      simpa [eu, φu, F, ImplicitFunctionData.toOpenPartialHomeomorph_apply] using!
         hasFDerivAt_prod_fst_of_right_invertible hFq hInvertible
     have heu : ContDiffAt ℝ m eu q := by
       -- The same explicit formula gives finite-order smoothness of the forward chart.
@@ -1397,7 +1397,7 @@ lemma regular_level_set_exists_local_smooth_graph_data {k : ℕ}
         exact WithTop.coe_le_coe.2 (OrderTop.le_top (α := ℕ∞) (m : ℕ∞))
       have hpairm : ContDiffAt ℝ m (fun v : EuclideanSpace ℝ (Fin k) × ℝ ↦ (F v, v.1)) q :=
         hpair.of_le hm
-      simpa [eu, φu, F, ImplicitFunctionData.toOpenPartialHomeomorph_apply] using hpairm
+      simpa [eu, φu, F, ImplicitFunctionData.toOpenPartialHomeomorph_apply] using! hpairm
     have hsymm :
         ContDiffAt ℝ m (fun x' : EuclideanSpace ℝ (Fin k) ↦ eu.symm (σ x')) x := by
       -- Compose `eu.symm` with the slice map `x' ↦ (c, x')`.
@@ -1408,7 +1408,7 @@ lemma regular_level_set_exists_local_smooth_graph_data {k : ℕ}
             (contDiff_id : ContDiff ℝ m (fun x' : EuclideanSpace ℝ (Fin k) ↦ x'))).contDiffAt
       exact (eu.contDiffAt_symm hzT.2 heu_deriv heu).comp x hσ
     have hψAt : ContDiffAt ℝ m ψ x := by
-      simpa [ψ, σ, Function.comp] using (contDiffAt_snd.comp x hsymm)
+      simpa [ψ, σ, Function.comp] using! (contDiffAt_snd.comp x hsymm)
     exact hψAt.contDiffWithinAt
   refine ⟨⟨i, V, N, ψ, hV, hN, hpN, hψ, hψsmooth, ?_, ?_⟩⟩
   · intro y hyN
@@ -1640,15 +1640,15 @@ lemma regular_level_set_normalized_transition_contDiffOn {k : ℕ}
   have hsplitBack :
       ContDiffOn ℝ ∞ (fun x : EuclideanSpace ℝ (Fin k) ↦ (split_at_coordinate d.i).symm (x, d.ψ x)) S := by
     -- Reinsert the distinguished coordinate by the smooth inverse split map.
-    simpa [Function.comp] using (split_at_coordinate_symm_contDiff d.i).comp_contDiffOn hgraphMap
+    simpa [Function.comp] using! (split_at_coordinate_symm_contDiff d.i).comp_contDiffOn hgraphMap
   have hsplitForward :
       ContDiffOn ℝ ∞
         (fun x : EuclideanSpace ℝ (Fin k) ↦
           split_at_coordinate d'.i ((split_at_coordinate d.i).symm (x, d.ψ x))) S := by
     -- Then change from `d.i`-split coordinates to `d'.i`-split coordinates.
-    simpa [Function.comp] using (split_at_coordinate_contDiff d'.i).comp_contDiffOn hsplitBack
+    simpa [Function.comp] using! (split_at_coordinate_contDiff d'.i).comp_contDiffOn hsplitBack
   -- Finally project to the retained coordinates of the target chart.
-  simpa [S, Function.comp] using contDiff_fst.comp_contDiffOn hsplitForward
+  simpa [S, Function.comp] using! contDiff_fst.comp_contDiffOn hsplitForward
 
 /-- Helper for Example 1.32: the transition between two explicit local graph charts is smooth on
 its whole source because it is a composition of the graph map, the split inverse, the split map,

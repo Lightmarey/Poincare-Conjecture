@@ -240,7 +240,7 @@ theorem contMDiffAt_consNormal {Y : Fin (finrank ℝ E) → (x : M) → TangentS
   simp only [consNormal]
   rcases Fin.eq_zero_or_eq_succ (finCongr hdim j) with h | ⟨i, h⟩
   · rw [h]
-    simpa using hN
+    simpa only [IsSmoothNormalAt, Fin.cons_zero] using hN
   · rw [h]
     simp only [Fin.cons_succ]
     exact contMDiffAt_pushforward (f := f) (X := Y i) (hY.contMDiffAt hu hx₀ i)

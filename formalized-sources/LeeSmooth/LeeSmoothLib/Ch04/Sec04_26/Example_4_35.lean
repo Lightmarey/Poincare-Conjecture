@@ -236,7 +236,7 @@ noncomputable def angleFunction_partialDiffeomorph {U : TopologicalSpace.Opens C
         have hbranch :=
           congrArg (fun f : hθ.openImage → ℝ ↦ f ⟨y, hy⟩) hθ.theta_comp_circleExpOpenImage
         simpa [Function.comp, angleFunction_extension, IsAngleFunction.circleExpOpenImage, hyU]
-          using hbranch
+          using! hbranch
       right_inv' := by
         intro z hz
         -- On the target open set, the branch evaluates to a genuine angle for `z`.
@@ -445,7 +445,7 @@ theorem sphereToRealProjectiveSpace_continuous (n : ℕ) :
         (Projectivization.mk' ℝ :
           {v : E // v ≠ 0} → RealProjectiveSpace n) := by
     -- The projectivization quotient map is continuous by construction.
-    simpa [Projectivization.mk'] using
+    simpa [Projectivization.mk'] using!
       (continuous_quotient_mk' :
         Continuous
           (@Quotient.mk'
@@ -512,7 +512,7 @@ theorem sphereToRealProjectiveSpace_chart_lift_vector_continuous (n : ℕ) (i : 
   have hchart :
       Continuous fun x : realProjectiveChartDomain n i ↦ realProjectiveChart n i x := by
     -- Restrict the standard projective chart to its source subtype.
-    simpa [continuousOn_iff_continuous_restrict] using
+    simpa [continuousOn_iff_continuous_restrict] using!
       (realProjectiveChart n i).continuousOn_toFun
   have hOfLp :
       Continuous (WithLp.ofLp : EuclideanSpace ℝ (Fin n) → (Fin n → ℝ)) :=
@@ -530,7 +530,7 @@ theorem sphereToRealProjectiveSpace_chart_lift_vector_continuous (n : ℕ) (i : 
       (continuous_const.finInsertNth i hOfLp)
   have hInv : Continuous (realProjectiveChartInvVector n i) := by
     -- Converting the inserted coordinate function back to Euclidean space is continuous.
-    simpa [realProjectiveChartInvVector] using hToLp.comp hinsert
+    simpa [realProjectiveChartInvVector] using! hToLp.comp hinsert
   exact hInv.comp hchart
 
 /-- Helper for Example 4.35: the normalized positive chart lift is continuous on each standard
@@ -545,7 +545,7 @@ theorem sphereToRealProjectiveSpace_chart_unit_lift_continuous (n : ℕ) (i : Fi
     exact norm_ne_zero_iff.mpr (sphereToRealProjectiveSpace_chart_lift_vector_ne_zero n i x)
   -- Package the continuous normalized ambient vector into the sphere subtype.
   refine Continuous.subtype_mk ?_ (fun x ↦ (sphereToRealProjectiveSpace_chart_unit_lift n i x).2)
-  simpa [sphereToRealProjectiveSpace_chart_unit_lift] using
+  simpa [sphereToRealProjectiveSpace_chart_unit_lift] using!
     hscale.smul (sphereToRealProjectiveSpace_chart_lift_vector_continuous n i)
 
 /-- Helper for Example 4.35: the normalized chart lift has positive `i`th coordinate. -/
@@ -756,10 +756,10 @@ theorem sphereToRealProjectiveSpace_signed_lift_continuous (n : ℕ) (i : Fin (n
     Continuous (sphereToRealProjectiveSpace_signed_lift n i σ) := by
   fin_cases σ
   · -- The positive branch is the normalized chart lift.
-    simpa [sphereToRealProjectiveSpace_signed_lift] using
+    simpa [sphereToRealProjectiveSpace_signed_lift] using!
       sphereToRealProjectiveSpace_chart_unit_lift_continuous n i
   · -- The negative branch is obtained by composing with the antipodal map.
-    simpa [sphereToRealProjectiveSpace_signed_lift] using
+    simpa [sphereToRealProjectiveSpace_signed_lift] using!
       continuous_neg.comp (sphereToRealProjectiveSpace_chart_unit_lift_continuous n i)
 
 /-- Helper for Example 4.35: pulling the signed sheet over a chart back along the corresponding
@@ -890,7 +890,7 @@ theorem coordinatewise_circle_exp_isSmoothCoveringMap (n : ℕ) :
   refine ⟨Manifold.IsSmoothCoveringMap.isCoveringMap_pi (π := fun _ : Fin n ↦ Circle.exp)
       fun _ ↦ circle_exp_isSmoothCoveringMap.isCoveringMap, ?_, ?_⟩
   · -- Surjectivity is coordinatewise because each circle point has a real angle lift.
-    simpa using Function.Surjective.piMap
+    simpa using! Function.Surjective.piMap
       (fun _ : Fin n ↦ circle_exp_isSmoothCoveringMap.surjective)
   · -- The product of the local circle branches is again a local diffeomorphism.
     simpa using isLocalDiffeomorph_pi (f := fun _ : Fin n ↦ Circle.exp)

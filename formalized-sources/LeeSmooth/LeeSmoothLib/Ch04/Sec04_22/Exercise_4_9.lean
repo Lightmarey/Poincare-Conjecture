@@ -96,14 +96,18 @@ section SourceBoundary
 
 variable (n : ℕ) [NeZero n]
 
+set_option backward.isDefEq.respectTransparency false in
 /-- Helper for Exercise 4.9: the manifold derivative of the half-space inclusion is the identity
 at every point of the half-space model. -/
 lemma euclidean_half_space_inclusion_mfderiv_eq_id (p : EuclideanHalfSpace n) :
     mfderiv (𝓡∂ n) (𝓡 n) (EuclideanHalfSpace.inclusion n) p =
       ContinuousLinearMap.id ℝ (TangentSpace (𝓡∂ n) p) := by
   -- The inclusion is the model-with-corners map itself, so its derivative is the model identity.
-  simpa [EuclideanHalfSpace.inclusion] using ((𝓡∂ n).hasMFDerivAt (x := p)).mfderiv
+  change mfderiv (𝓡∂ n) (𝓡 n) (𝓡∂ n) p =
+    ContinuousLinearMap.id ℝ (TangentSpace (𝓡∂ n) p)
+  simpa using ((𝓡∂ n).hasMFDerivAt (x := p)).mfderiv
 
+set_option backward.isDefEq.respectTransparency false in
 /-- Exercise 4.9 (4): Proposition 4.8 (2) fails if the source manifold is allowed to have
 boundary; the canonical inclusion `ℍ^n ↪ ℝ^n` is a same-dimensional smooth immersion, but it is
 not a local diffeomorphism. -/
@@ -117,6 +121,7 @@ theorem euclidean_half_space_inclusion_is_immersion_not_local_diffeomorph :
   intro p
   rw [euclidean_half_space_inclusion_mfderiv_eq_id (n := n) p]
   intro x y hxy
-  simpa using hxy
+  change x = y at hxy
+  exact hxy
 
 end SourceBoundary

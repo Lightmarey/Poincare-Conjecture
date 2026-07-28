@@ -53,12 +53,12 @@ theorem simplyConnectedSpace_prod {A : Type*} [TopologicalSpace A] [SimplyConnec
       projLeft (⟦p⟧ : Path.Homotopic.Quotient x y) =
         projLeft (⟦q⟧ : Path.Homotopic.Quotient x y) := by
     -- The left coordinate paths agree because the left factor is simply connected.
-    simpa using Quotient.sound (hA.2 (p.map continuous_fst) (q.map continuous_fst))
+    exact Quotient.sound (hA.2 (p.map continuous_fst) (q.map continuous_fst))
   have hsnd :
       projRight (⟦p⟧ : Path.Homotopic.Quotient x y) =
         projRight (⟦q⟧ : Path.Homotopic.Quotient x y) := by
     -- The right coordinate paths agree for the same reason.
-    simpa using Quotient.sound (hB.2 (p.map continuous_snd) (q.map continuous_snd))
+    exact Quotient.sound (hB.2 (p.map continuous_snd) (q.map continuous_snd))
   have hp :
       (⟦p⟧ : Path.Homotopic.Quotient x y) =
         prod (projLeft (⟦p⟧ : Path.Homotopic.Quotient x y))
@@ -107,8 +107,8 @@ omit [LieGroup I ∞ G] [ConnectedSpace G] in
 /-- Helper for Theorem 7.7: the multiplication on `G` lifts to the universal cover after fixing a
 point over `1`. -/
 theorem existsLiftedMultiplicationAtIdentity {Gtilde : Type*} [TopologicalSpace Gtilde]
-    [ChartedSpace H Gtilde] [SimplyConnectedSpace Gtilde] [LocPathConnectedSpace Gtilde]
-    [LocPathConnectedSpace (Gtilde × Gtilde)]
+    [ChartedSpace H Gtilde] [SimplyConnectedSpace Gtilde] [LocallyPathConnectedSpace Gtilde]
+    [LocallyPathConnectedSpace (Gtilde × Gtilde)]
     {π0 : Gtilde → G} (hπ0 : Manifold.IsUniversalSmoothCoveringMap I I π0)
     [IsTopologicalGroup G] (etilde : Gtilde) (h_etilde : π0 etilde = 1) :
     ∃ μ : C(Gtilde × Gtilde, Gtilde), μ (etilde, etilde) = etilde ∧
@@ -127,14 +127,16 @@ theorem existsLiftedMultiplicationAtIdentity {Gtilde : Type*} [TopologicalSpace 
   intro p
   -- The lift equation records that `μ` projects to the base multiplication.
   have hμ_comp' : π0 ∘ μ = fun q : Gtilde × Gtilde ↦ π0 q.1 * π0 q.2 := by
-    simpa [mBase] using hμ.2
+    convert hμ.2 using 1
+    funext q
+    rfl
   exact congrFun hμ_comp' p
 
 omit [LieGroup I ∞ G] [ConnectedSpace G] in
 /-- Helper for Theorem 7.7: inversion on `G` lifts to the universal cover after fixing a point
 over `1`. -/
 theorem existsLiftedInversionAtIdentity {Gtilde : Type*} [TopologicalSpace Gtilde]
-    [ChartedSpace H Gtilde] [SimplyConnectedSpace Gtilde] [LocPathConnectedSpace Gtilde]
+    [ChartedSpace H Gtilde] [SimplyConnectedSpace Gtilde] [LocallyPathConnectedSpace Gtilde]
     {π0 : Gtilde → G} (hπ0 : Manifold.IsUniversalSmoothCoveringMap I I π0)
     [IsTopologicalGroup G] (etilde : Gtilde) (h_etilde : π0 etilde = 1) :
     ∃ ι : C(Gtilde, Gtilde), ι etilde = etilde ∧ ∀ x, π0 (ι x) = (π0 x)⁻¹ := by
@@ -151,7 +153,9 @@ theorem existsLiftedInversionAtIdentity {Gtilde : Type*} [TopologicalSpace Gtild
   intro x
   -- The lift equation records that `ι` projects to inversion on the base.
   have hι_comp' : π0 ∘ ι = fun y : Gtilde ↦ (π0 y)⁻¹ := by
-    simpa [iBase] using hι.2
+    convert hι.2 using 1
+    funext y
+    rfl
   exact congrFun hι_comp' x
 
 omit [ConnectedSpace G] in
@@ -160,8 +164,8 @@ the Lie-group structure on `G` lifts to `Gtilde`, and `π0` becomes a smooth gro
 theorem existsLieGroupStructureOfUniversalSmoothCovering {Gtilde : Type uGtilde}
     [TopologicalSpace Gtilde] [ChartedSpace H Gtilde]
     [IsManifold I (⊤ : WithTop ℕ∞) Gtilde] [IsRCLikeNormedField 𝕜]
-    [LocPathConnectedSpace Gtilde]
-    [LocPathConnectedSpace (Gtilde × Gtilde)] {π0 : Gtilde → G}
+    [LocallyPathConnectedSpace Gtilde]
+    [LocallyPathConnectedSpace (Gtilde × Gtilde)] {π0 : Gtilde → G}
     (hπ0 : Manifold.IsUniversalSmoothCoveringMap I I π0) :
     ∃ (_ : Group Gtilde) (_ : LieGroup I ∞ Gtilde)
       (π : ContMDiffMonoidMorphism I I ∞ Gtilde G),
@@ -221,15 +225,18 @@ theorem existsLieGroupStructureOfUniversalSmoothCovering {Gtilde : Type uGtilde}
   have h_one_mul : ∀ x : Gtilde, 1 * x = x := by
     intro x
     -- The left-identity lift is the identity map on the cover.
-    simpa [leftIdentityLift] using congrFun hleftIdentity_eq x
+    change μ (etilde, x) = x
+    exact congrFun hleftIdentity_eq x
   have h_mul_assoc : ∀ x y z : Gtilde, (x * y) * z = x * (y * z) := by
     intro x y z
     -- Associativity follows from equality of the two lifted triple products.
-    simpa [leftAssocLift, rightAssocLift] using congrFun hleftAssoc_eq ((x, y), z)
+    change μ (μ (x, y), z) = μ (x, μ (y, z))
+    exact congrFun hleftAssoc_eq ((x, y), z)
   have h_inv_mul_cancel : ∀ x : Gtilde, x⁻¹ * x = 1 := by
     intro x
     -- The left-inverse lift is forced to be the constant map at the identity.
-    simpa [leftInverseLift, unitLift] using congrFun hleftInverse_eq x
+    change μ (ι x, x) = etilde
+    exact congrFun hleftInverse_eq x
   let instGroup : Group Gtilde := Group.ofLeftAxioms h_mul_assoc h_one_mul h_inv_mul_cancel
   let _ : Group Gtilde := instGroup
   -- Next transport smoothness of the lifted operations through the covering local diffeomorphism.
@@ -260,21 +267,25 @@ theorem existsLieGroupStructureOfUniversalSmoothCovering {Gtilde : Type uGtilde}
     contMDiff_ofCoverComp hπ0Smooth ι.continuous hιCompContMDiff
   have hcontMDiff_mul : ContMDiff (I.prod I) I ∞ fun p : Gtilde × Gtilde ↦ p.1 * p.2 := by
     -- The transported multiplication is definitionally the lifted map `μ`.
-    simpa using hμContMDiff
+    change ContMDiff (I.prod I) I ∞ (μ : Gtilde × Gtilde → Gtilde)
+    exact hμContMDiff
   have hcontMDiff_inv : ContMDiff I I ∞ fun x : Gtilde ↦ x⁻¹ := by
     -- The transported inverse is definitionally the lifted map `ι`.
-    simpa using hιContMDiff
+    change ContMDiff I I ∞ (ι : Gtilde → Gtilde)
+    exact hιContMDiff
   let instLieGroup : LieGroup I ∞ Gtilde :=
     { contMDiff_mul := hcontMDiff_mul
       contMDiff_inv := hcontMDiff_inv }
   let _ : LieGroup I ∞ Gtilde := instLieGroup
   have hπ_map_one : π0 (1 : Gtilde) = 1 := by
     -- The chosen basepoint `etilde` becomes the identity element on the cover.
-    simpa using h_etilde
+    change π0 etilde = 1
+    exact h_etilde
   have hπ_map_mul : ∀ x y : Gtilde, π0 (x * y) = π0 x * π0 y := by
     intro x y
     -- The lifted multiplication was defined to project to multiplication on `G`.
-    simpa using hμ_comp (x, y)
+    change π0 (μ (x, y)) = π0 x * π0 y
+    exact hμ_comp (x, y)
   let π : ContMDiffMonoidMorphism I I ∞ Gtilde G :=
     { toMonoidHom :=
         { toFun := π0
@@ -283,7 +294,8 @@ theorem existsLieGroupStructureOfUniversalSmoothCovering {Gtilde : Type uGtilde}
       contMDiff_toFun := hπ0ContMDiff }
   have hπ : Manifold.IsUniversalSmoothCoveringMap I I π := by
     -- Packaging `π0` as a smooth monoid morphism does not change the underlying covering map.
-    simpa [π] using hπ0
+    change Manifold.IsUniversalSmoothCoveringMap I I π0
+    exact hπ0
   exact ⟨instGroup, instLieGroup, π, hπ⟩
 
 omit [Group G] [LieGroup I ∞ G] [ConnectedSpace G] in
@@ -294,16 +306,16 @@ theorem chartedSpaceLocPathConnectedSpace
     {ES : Type*} [NormedAddCommGroup ES] [NormedSpace 𝕜' ES]
     {HS : Type*} [TopologicalSpace HS] {J : ModelWithCorners 𝕜' ES HS}
     {S : Type*} [TopologicalSpace S] [ChartedSpace HS S] :
-    LocPathConnectedSpace S := by
+    LocallyPathConnectedSpace S := by
   -- First transport local path connectedness from the convex model range to the model space.
   letI : RCLike 𝕜' := IsRCLikeNormedField.rclike 𝕜'
   letI : NormedSpace ℝ ES := NormedSpace.restrictScalars ℝ 𝕜' ES
-  letI : LocPathConnectedSpace HS := by
-    letI : LocPathConnectedSpace (Set.range J) := J.convex_range.locPathConnectedSpace
+  letI : LocallyPathConnectedSpace HS := by
+    letI : LocallyPathConnectedSpace (Set.range J) := J.convex_range.locallyPathConnectedSpace
     let e : HS ≃ₜ Set.range J := J.isClosedEmbedding.toHomeomorph
-    exact e.isOpenEmbedding.locPathConnectedSpace
+    exact e.isOpenEmbedding.locallyPathConnectedSpace
   -- Then the charted-space atlas propagates that local path connectedness to the manifold.
-  exact ChartedSpace.locPathConnectedSpace HS S
+  exact ChartedSpace.locallyPathConnectedSpace HS S
 
 -- Lee's theorem is stated for real Lie groups, so the public theorem is specialized to `ℝ`.
 -- The later proof can combine the universal smooth covering manifold with the lifted group
@@ -332,8 +344,8 @@ theorem exists_universal_covering_group
   let _ : ChartedSpace HReal Gtilde := instCharted
   let _ : IsManifold IReal (⊤ : WithTop ℕ∞) Gtilde := instManifold
   -- The lifting theorem needs local path connectedness on the cover and its product.
-  let _ : LocPathConnectedSpace Gtilde := chartedSpaceLocPathConnectedSpace (J := IReal)
-  let _ : LocPathConnectedSpace (Gtilde × Gtilde) :=
+  let _ : LocallyPathConnectedSpace Gtilde := chartedSpaceLocPathConnectedSpace (J := IReal)
+  let _ : LocallyPathConnectedSpace (Gtilde × Gtilde) :=
     chartedSpaceLocPathConnectedSpace (J := IReal.prod IReal)
   -- Apply the internal lifting theorem to endow the universal cover with the Lie-group structure.
   obtain ⟨instGroup, instLieGroup, π, hπ⟩ :=

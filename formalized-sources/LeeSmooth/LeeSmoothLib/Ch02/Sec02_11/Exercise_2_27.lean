@@ -37,7 +37,7 @@ theorem not_exists_supported_contMDiffMap_extension_Ioi_zero :
         tsupport F ⊆ Set.Ioi (0 : ℝ) := by
   rintro ⟨F, hF, hsupport⟩
   have h0 : (0 : ℝ) ∈ tsupport F :=
-    zero_mem_tsupport_of_eqOn_const_Ioi_zero one_ne_zero (by simpa using hF)
+    zero_mem_tsupport_of_eqOn_const_Ioi_zero one_ne_zero (by simpa using! hF)
   have : (0 : ℝ) ∈ Set.Ioi (0 : ℝ) := hsupport h0
   have : False := by
     simp at this

@@ -81,11 +81,11 @@ theorem continuous_chartMetricInner_fixedBase (g : RiemannianMetric I M) (α : M
   rw [hfun]
   refine continuous_finsetSum _ (fun i _ => continuous_finsetSum _ (fun j _ => ?_))
   have hci : Continuous (fun w : E => Geodesic.chartCoord (E := E) i w) := by
-    simpa only [Geodesic.chartCoordFunctional_apply] using
-      (Geodesic.chartCoordFunctional (E := E) i).continuous
+    exact (Geodesic.chartCoordFunctional (E := E) i).continuous.congr fun w =>
+      Geodesic.chartCoordFunctional_apply i w
   have hcj : Continuous (fun w : E => Geodesic.chartCoord (E := E) j w) := by
-    simpa only [Geodesic.chartCoordFunctional_apply] using
-      (Geodesic.chartCoordFunctional (E := E) j).continuous
+    exact (Geodesic.chartCoordFunctional (E := E) j).continuous.congr fun w =>
+      Geodesic.chartCoordFunctional_apply j w
   exact (continuous_const.mul hci).mul hcj
 
 /-- **Math.** The `g`-ball of radius `ε`, read in chart-`α` fibre coordinates, is an open
@@ -338,7 +338,8 @@ theorem exists_local_uniformCInftyDiffeo (g : RiemannianMetric I M) (x : M) :
       h0J hivp h1J
     show geodesicMaximalCurve (I := I) g q v 1
         = (extChartAt I x).symm ((Z ((y, T⁻¹ • cq v) : E × E) T).1)
-    simpa only [one_mul] using h
+    simpa only [one_mul, hydef, hcqdef, tangentCoordChange_def,
+      TangentBundle.trivializationAt_apply, extChartAt] using h
   -- the flow endpoint lands in the chart target
   have htgt : ∀ w : E, ‖w‖ < δ → gy w ∈ (extChartAt I x).target := by
     intro w hw

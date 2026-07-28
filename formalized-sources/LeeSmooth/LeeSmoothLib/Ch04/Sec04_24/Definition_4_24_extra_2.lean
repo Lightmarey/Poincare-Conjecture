@@ -30,7 +30,7 @@ theorem continuous (hf : IsTopologicalImmersion f) : Continuous f := by
   exact hcontOn.continuousAt hs
 
 /-- A topological immersion is continuous. -/
-instance (hf : IsTopologicalImmersion f) : Continuous f := hf.continuous
+theorem continuous_instance (hf : IsTopologicalImmersion f) : Continuous f := hf.continuous
 
 end IsTopologicalImmersion
 

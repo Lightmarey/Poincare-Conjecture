@@ -1160,7 +1160,7 @@ theorem exercise3_4_2 (D : RiemannianConnection I g) {f : M → ℝ}
     have hkey := hessianGrad_eq D hf hgradf p (extendTangentVector p w).smooth
     rw [extendTangentVector_apply, directionalDerivative_apply,
       extendTangentVector_apply, h] at hkey
-    simpa using hkey
+    simpa only [g.metricInner_zero_left, mul_zero, zero_apply] using hkey
   · intro h
     have hzero : ∀ v : TangentSpace I p,
         g.metricInner p (D.cov p (gradient g f p) (gradient g f)) v = 0 := by

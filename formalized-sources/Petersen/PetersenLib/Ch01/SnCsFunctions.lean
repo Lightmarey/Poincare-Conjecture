@@ -1,5 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Analysis.ODE.ExistUnique
 import Mathlib.Analysis.ODE.Gronwall
 import Mathlib.Data.Real.Sqrt
 

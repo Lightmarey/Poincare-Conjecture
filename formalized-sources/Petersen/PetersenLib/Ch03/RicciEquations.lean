@@ -141,7 +141,7 @@ theorem isSmoothVectorField_shapeTangentField (D : AffineConnection I M)
     simp only [shapeTangentField, shapeTangent, normalCovField, normalCov,
       AffineConnection.covField_apply]
   rw [← e]
-  simpa using hsub
+  simpa [IsSmoothVectorField] using! hsub
 
 /-! ## The core split lemma (analogue of `cov_cov_metricInner_split`) -/
 

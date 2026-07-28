@@ -380,7 +380,7 @@ theorem uniformExtensionProp_step (g : RiemannianMetric I M) [T2Space M]
       have hv₁ : HasDerivAt (fun u => extChartAt I (γ s) (γ₀ (u - s)))
           (deriv (Geodesic.chartLocalCurve (I := I) γ s) s) s := by
         have h := hγ₀s.2.2.1
-        simpa using h
+        simpa using! h
       have hfun : Geodesic.chartLocalCurve (I := I) (fun t => γ₀ (t - s)) s
           = fun u => extChartAt I (γ s) (γ₀ (u - s)) := by
         funext u

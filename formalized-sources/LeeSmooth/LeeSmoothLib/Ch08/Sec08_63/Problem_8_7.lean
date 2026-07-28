@@ -382,7 +382,7 @@ theorem problem_8_7_vectorField_contDiff (i : Fin 7) :
   let L : 𝕆 →L[ℝ] 𝕆 :=
     LinearMap.toContinuousLinearMap (octonionRightMulLinear (problem_8_7_basisVec i))
   -- Right multiplication by a fixed octonion is linear, hence smooth in finite dimensions.
-  simpa [L, problem_8_7_vectorField, octonionRightMulLinear_apply] using L.contDiff
+  simpa [L, problem_8_7_vectorField, octonionRightMulLinear_apply] using! L.contDiff
 
 /-- Helper: the ambient inner product of `Q` with `Eᵢ Q` vanishes. -/
 theorem problem_8_7_vectorField_innerZero (i : Fin 7) (Q : unitOctonionSphere) :
@@ -458,7 +458,7 @@ theorem problem_8_7_vectorField_linearIndependent (Q : unitOctonionSphere) :
     -- Left multiplication by a unit octonion is injective, so its kernel is trivial.
     exact LinearMap.ker_eq_bot.mpr (octonionLeftMul_injective_of_unitSphere Q)
   -- The ambient frame is the image of the fixed imaginary basis under this injective linear map.
-  simpa [L, problem_8_7_vectorField, Function.comp, octonionMulBilinear_apply] using
+  simpa [L, problem_8_7_vectorField, Function.comp, octonionMulBilinear_apply] using!
     problem_8_7_basisVec_linearIndependent.map' L hker
 
 /-- The intrinsic octonionic frame is pointwise linearly independent on the unit sphere. -/
@@ -470,7 +470,7 @@ theorem problem_8_7_frame_linearIndependent (Q : unitOctonionSphere) :
   have hambient :
       LinearIndependent ℝ (fun i : Fin 7 ↦ WithLp.toLp 2 (problem_8_7_vectorField i (Q : 𝕆))) := by
     -- Transport ambient independence from `𝕆` to the `WithLp` model of the sphere.
-    simpa [WithLp.linearEquiv_symm_apply] using
+    simpa [WithLp.linearEquiv_symm_apply] using!
       (problem_8_7_vectorField_linearIndependent Q).map'
         ((WithLp.linearEquiv 2 ℝ 𝕆).symm.toLinearMap) (by simp)
   have hSubtype : LinearIndependent ℝ ambientSubtype := by
@@ -479,9 +479,9 @@ theorem problem_8_7_frame_linearIndependent (Q : unitOctonionSphere) :
       -- The subtype inclusion is injective, so independence can be checked in the ambient space.
       exact LinearMap.ker_eq_bot.mpr Subtype.val_injective
     exact (inc.linearIndependent_iff hker).mp <|
-      by simpa [ambientSubtype, inc, Function.comp] using hambient
+      by simpa [ambientSubtype, inc, Function.comp] using! hambient
   -- Finally transport the orthogonal-complement basis through the tangent-space equivalence.
-  simpa [problem_8_7_frame, ambientSubtype, Function.comp] using
+  simpa [problem_8_7_frame, ambientSubtype, Function.comp] using!
     hSubtype.map' (problem_8_7_tangentOrthogonalEquiv Q).symm.toLinearMap (by simp)
 
 /-- Helper for Problem 8-7: the ambient octonionic right-multiplication field remains smooth after
@@ -493,10 +493,10 @@ private theorem problem_8_7_ambientVectorFieldOnSphere_contMDiff (i : Fin 7) :
   let eInv : 𝕆 ≃L[ℝ] 𝕆₂ := e.symm
   have hOfLp : ContDiff ℝ ∞ (fun Q : 𝕆₂ ↦ WithLp.ofLp Q) := by
     -- Use the canonical `WithLp` continuous linear equivalence for products.
-    simpa [e] using e.toContinuousLinearMap.contDiff
+    simpa [e] using! e.toContinuousLinearMap.contDiff
   have hToLp : ContDiff ℝ ∞ (fun Q : 𝕆 ↦ WithLp.toLp 2 Q) := by
     -- Its inverse is the canonical inclusion back into the `WithLp` model.
-    simpa [eInv, e] using eInv.toContinuousLinearMap.contDiff
+    simpa [eInv, e] using! eInv.toContinuousLinearMap.contDiff
   have hAmbient :
       ContMDiff 𝓘(ℝ, 𝕆₂) 𝓘(ℝ, 𝕆₂) ∞
         (fun Q : 𝕆₂ ↦ WithLp.toLp 2 (problem_8_7_vectorField i (WithLp.ofLp Q))) := by
@@ -504,7 +504,7 @@ private theorem problem_8_7_ambientVectorFieldOnSphere_contMDiff (i : Fin 7) :
     rw [contMDiff_iff_contDiff]
     exact hToLp.comp ((problem_8_7_vectorField_contDiff i).comp hOfLp)
   -- Compose the ambient model-space field with the smooth sphere inclusion.
-  simpa using hAmbient.comp contMDiff_coe_sphere
+  simpa using! hAmbient.comp contMDiff_coe_sphere
 
 /-- Helper for Problem 8-7: in the preferred tangent-bundle trivialization at `Q₀`, the
 intrinsic octonionic frame is read by differentiating the fixed preferred chart at the current
@@ -685,12 +685,12 @@ private theorem problem_8_7_localSphereRetraction_contMDiffAt_of_ne
     have hSphere : ∀ w, f w ∈ unitOctonionSphere := by
       intro w
       exact stereoInvFunAux_mem (problem_8_7_negBase_norm_eq_one Q₀) w.2
-    simpa [f, stereoInvFun] using ContMDiff.codRestrict_sphere hAux.contMDiff hSphere
+    simpa [f, stereoInvFun] using! ContMDiff.codRestrict_sphere hAux.contMDiff hSphere
   have hRetU :
       ContMDiff 𝓘(ℝ, 𝕆₂) (𝓡 7) ∞ (fun y : U ↦ problem_8_7_localSphereRetraction Q₀ y) := by
     -- Compose the smooth stereographic chart on the regular neighborhood with the smooth inverse
     -- stereographic parametrization of the sphere.
-    simpa [problem_8_7_localSphereRetraction] using hInv.comp hStereoU
+    simpa [problem_8_7_localSphereRetraction] using! hInv.comp hStereoU
   have hRetAt :
       ContMDiffAt 𝓘(ℝ, 𝕆₂) (𝓡 7) ∞
         (fun y : U ↦ problem_8_7_localSphereRetraction Q₀ y) ⟨x, hx⟩ :=
@@ -751,7 +751,7 @@ private theorem problem_8_7_localSphereRetraction_mfderiv_apply_ambientField_of_
           (problem_8_7_localSphereRetraction Q₀ ∘ ((↑) : unitOctonionSphere → 𝕆₂)) Q =
         mfderiv (𝓡 7) (𝓡 7) id Q :=
       hLocalEq.mfderiv_eq
-    simpa [mfderiv_id] using congrArg (fun L ↦ L (problem_8_7_frame i Q)) hmf
+    simpa [mfderiv_id] using! congrArg (fun L ↦ L (problem_8_7_frame i Q)) hmf
   -- Replace the inclusion derivative by the already normalized ambient octonion field.
   have hAmbient :
       mfderiv 𝓘(ℝ, 𝕆₂) (𝓡 7) (problem_8_7_localSphereRetraction Q₀) (Q : 𝕆₂)
@@ -797,10 +797,10 @@ private theorem problem_8_7_retractionChartRep_contMDiffAt
         (fun x : 𝕆₂ ↦ WithLp.toLp 2 (problem_8_7_vectorField i (WithLp.ofLp x))) := by
     have hOfLp : ContDiff ℝ ∞ (fun x : 𝕆₂ ↦ WithLp.ofLp x) := by
       -- The canonical `WithLp` equivalence gives a smooth identification back to `𝕆`.
-      simpa using ((WithLp.linearEquiv 2 ℝ 𝕆).toContinuousLinearMap.contDiff)
+      simpa using! ((WithLp.linearEquiv 2 ℝ 𝕆).toContinuousLinearMap.contDiff)
     have hToLp : ContDiff ℝ ∞ (fun x : 𝕆 ↦ WithLp.toLp 2 x) := by
       -- The inverse equivalence packages the ambient octonion coordinates back into `𝕆₂`.
-      simpa using (((WithLp.linearEquiv 2 ℝ 𝕆).symm.toContinuousLinearMap).contDiff)
+      simpa using! (((WithLp.linearEquiv 2 ℝ 𝕆).symm.toContinuousLinearMap).contDiff)
     -- The ambient octonion field is smooth on the model vector space itself.
     rw [contMDiff_iff_contDiff]
     exact hToLp.comp ((problem_8_7_vectorField_contDiff i).comp hOfLp)
@@ -808,7 +808,7 @@ private theorem problem_8_7_retractionChartRep_contMDiffAt
       ContMDiffAt 𝓘(ℝ, 𝕆₂) (𝓘(ℝ, 𝕆₂)).tangent ∞ (T% Y) (Q₀ : 𝕆₂) := by
     -- On the vector-space model, tangent-bundle coordinates of `Y` are exactly the ambient field.
     rw [Bundle.contMDiffAt_section (Q₀ : 𝕆₂)]
-    simpa [Y] using hAmbientField.contMDiffAt
+    simpa [Y] using! hAmbientField.contMDiffAt
   have hAmbientAt := contMDiffAt_mfderiv_applyField hComposite hY
   have hCoe :
       ContMDiffAt (𝓡 7) 𝓘(ℝ, 𝕆₂) ∞ ((↑) : unitOctonionSphere → 𝕆₂) Q₀ := by
@@ -819,7 +819,7 @@ private theorem problem_8_7_retractionChartRep_contMDiffAt
   -- Route correction: differentiate the genuine stereographic retraction instead of trying to
   -- invert the forward ambient coordinate map by hand. The chart map is bundled into the
   -- retraction here so the codomain is again a vector space.
-  simpa [g, Y, Function.comp] using hAmbientAt.comp Q₀ hCoe
+  simpa [g, Y, Function.comp] using! hAmbientAt.comp Q₀ hCoe
 
 /-- Helper for Problem 8-7: the fixed-base ambient coordinate map sends tangent coordinates in the
 preferred chart at `Q₀` to ambient `𝕆₂` coordinates through the derivative of the sphere
@@ -862,10 +862,10 @@ private theorem problem_8_7_frameAmbientCoordMap_eq_trivializationComposition
     TangentBundle.continuousLinearMapAt_model_space]
   change (1 : 𝕆₂ →L[ℝ] 𝕆₂)
       ((mfderiv (𝓡 7) 𝓘(ℝ, 𝕆₂) ((↑) : unitOctonionSphere → 𝕆₂) Q)
-        (((trivializationAt (EuclideanSpace ℝ (Fin 7)) (TangentSpace (𝓡 7)) Q₀).symm Q) v)) =
+        (((trivializationAt (EuclideanSpace ℝ (Fin 7)) (TangentSpace (𝓡 7)) Q₀).symmL ℝ Q) v)) =
     (mfderiv (𝓡 7) 𝓘(ℝ, 𝕆₂) ((↑) : unitOctonionSphere → 𝕆₂) Q)
-      (((trivializationAt (EuclideanSpace ℝ (Fin 7)) (TangentSpace (𝓡 7)) Q₀).symm Q) v)
-  simp
+      (((trivializationAt (EuclideanSpace ℝ (Fin 7)) (TangentSpace (𝓡 7)) Q₀).symmL ℝ Q) v)
+  exact one_apply_eq_self _
 
 /-- Helper for Problem 8-7: on the preferred-chart source of `Q₀`, applying the fixed-base ambient
 coordinate map to the intrinsic frame coordinates recovers the explicit ambient octonion field. -/
@@ -907,8 +907,7 @@ private theorem problem_8_7_frameAmbientCoordMap_apply_frameChartRep
     -- Applying the inverse fiber coordinate map to the trivialized vector recovers the original
     -- tangent vector.
     rw [hTrivApply]
-    simpa [e] using
-      (e.symmL_continuousLinearMapAt hQBase (problem_8_7_frame i Q))
+    exact e.symmL_continuousLinearMapAt hQBase (problem_8_7_frame i Q)
   let x :
       EuclideanSpace ℝ (Fin 7) :=
     NormedSpace.fromTangentSpace (extChartAt (𝓡 7) Q₀ Q)
@@ -920,7 +919,7 @@ private theorem problem_8_7_frameAmbientCoordMap_apply_frameChartRep
       problem_8_7_frameAmbientCoordMap Q₀ Q x =
         ((mfderiv (𝓡 7) 𝓘(ℝ, 𝕆₂) ((↑) : unitOctonionSphere → 𝕆₂) Q).comp
           (e.symmL ℝ Q)) x := by
-    simpa [e, x] using
+    simpa [e, x] using!
       congrArg (fun L : EuclideanSpace ℝ (Fin 7) →L[ℝ] 𝕆₂ ↦ L x)
         (problem_8_7_frameAmbientCoordMap_eq_trivializationComposition Q₀ Q)
   have hStep2 :

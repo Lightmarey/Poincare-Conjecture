@@ -146,12 +146,12 @@ theorem problem_8_10_F_contMDiff :
   let toR2 : (Fin 2 → ℝ) ≃L[ℝ] R2 :=
     (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 2 ↦ ℝ)).symm
   have h0 : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun p : problem_8_10_M ↦ (p : R2) 0) := by
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       ((PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 0).contDiff.contMDiff.comp
         (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞
           (Subtype.val : problem_8_10_M → R2)))
   have h1 : ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun p : problem_8_10_M ↦ (p : R2) 1) := by
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       ((PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1).contDiff.contMDiff.comp
         (contMDiff_subtype_val : ContMDiff (𝓡 2) (𝓡 2) ∞
           (Subtype.val : problem_8_10_M → R2)))
@@ -163,7 +163,7 @@ theorem problem_8_10_F_contMDiff :
     intro i
     fin_cases i
     · -- The first coordinate is the product `x * y`.
-      simpa [problem_8_10_F_apply] using h0.mul h1
+      simpa [problem_8_10_F_apply] using! h0.mul h1
     · -- The second coordinate is the quotient `y / x`, smooth because `x > 0` on the source.
       have hdiv :
           ContMDiff (𝓡 2) 𝓘(ℝ) ∞ (fun p : problem_8_10_M ↦ (p : R2) 1 / (p : R2) 0) := by
@@ -312,7 +312,7 @@ private theorem problem_8_10_forward_ambient_deriv_on_X (p : problem_8_10_M) :
   let proj1 : R2 →L[ℝ] ℝ := PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1
   have hx0 : (p : R2) 0 ≠ 0 := ne_of_gt p.property.1
   have h0 : HasFDerivAt (fun q : R2 ↦ q 0) proj0 (p : R2) := by
-    simpa [proj0] using
+    simpa [proj0, Function.comp_def] using!
       (PiLp.hasFDerivAt_apply
         (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (f := (p : R2)) 0)
   have h1 : HasFDerivAt (fun q : R2 ↦ q 1) proj1 (p : R2) := by
@@ -323,20 +323,20 @@ private theorem problem_8_10_forward_ambient_deriv_on_X (p : problem_8_10_M) :
       HasFDerivAt (fun q : R2 ↦ (q 0)⁻¹)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((p : R2) 0 ^ 2)⁻¹)).comp proj0) (p : R2) := by
     -- Differentiate the reciprocal of the first coordinate at the source point.
-    simpa [proj0] using
+    simpa [proj0, Function.comp_def] using!
       (hasFDerivAt_inv (𝕜 := ℝ) (x := (p : R2) 0) hx0).comp (p : R2) h0
   have hFirst :
       HasFDerivAt (fun q : R2 ↦ problem_8_10_FAmbient q 0)
         (((p : R2) 1) • proj0 + ((p : R2) 0) • proj1) (p : R2) := by
     -- The first coordinate is the product `(x, y) ↦ xy`.
-    simpa [problem_8_10_FAmbient, proj0, proj1, add_comm, add_left_comm, add_assoc] using
+    simpa [problem_8_10_FAmbient, proj0, proj1, add_comm, add_left_comm, add_assoc] using!
       h0.mul h1
   have hSecond :
       HasFDerivAt (fun q : R2 ↦ problem_8_10_FAmbient q 1)
         (((p : R2) 1) • ((ContinuousLinearMap.toSpanSingleton ℝ (-((p : R2) 0 ^ 2)⁻¹)).comp proj0) +
           ((p : R2) 0)⁻¹ • proj1) (p : R2) := by
     -- Rewrite `y / x` as `y * x⁻¹` and differentiate product-wise.
-    simpa [problem_8_10_FAmbient, div_eq_mul_inv, proj0, proj1] using h1.mul hInv
+    simpa [problem_8_10_FAmbient, div_eq_mul_inv, proj0, proj1] using! h1.mul hInv
   let f' : Fin 2 → R2 →L[ℝ] ℝ := fun i =>
     match i with
     | 0 => ((p : R2) 1) • proj0 + ((p : R2) 0) • proj1
@@ -359,7 +359,7 @@ private theorem problem_8_10_forward_ambient_deriv_on_X (p : problem_8_10_M) :
       HasFDerivAt problem_8_10_FAmbient
         (toR2.toContinuousLinearMap.comp (ContinuousLinearMap.pi f')) (p : R2) := by
     -- Transport the derivative from product coordinates back to the `PiLp` model space `R2`.
-    simpa [toR2, Function.comp] using (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
+    simpa [toR2, Function.comp] using! (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
   have hFAmbientMDiff : MDifferentiableAt (𝓡 2) (𝓡 2) problem_8_10_FAmbient (p : R2) := by
     exact hAmbient.hasMFDerivAt.mdifferentiableAt
   have hNeZero : (∞ : ℕ∞ω) ≠ 0 := by
@@ -393,7 +393,7 @@ private theorem problem_8_10_forward_ambient_deriv_on_X (p : problem_8_10_M) :
       simp [f', proj0, proj1]
       field_simp [hx0]
       ring
-  simpa [problem_8_10_XAmbient, mfderiv_eq_fderiv] using hEval
+  simpa [problem_8_10_XAmbient, mfderiv_eq_fderiv] using! hEval
 
 /-- Helper for Problem 8-10: differentiating the ambient coordinate formula of `F` along
 `problem_8_10_Y` yields the target-coordinate vector `(uv, -v^2)` at `F(p)`. -/
@@ -407,7 +407,7 @@ private theorem problem_8_10_forward_ambient_deriv_on_Y (p : problem_8_10_M) :
   let proj1 : R2 →L[ℝ] ℝ := PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1
   have hx0 : (p : R2) 0 ≠ 0 := ne_of_gt p.property.1
   have h0 : HasFDerivAt (fun q : R2 ↦ q 0) proj0 (p : R2) := by
-    simpa [proj0] using
+    simpa [proj0, Function.comp_def] using!
       (PiLp.hasFDerivAt_apply
         (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (f := (p : R2)) 0)
   have h1 : HasFDerivAt (fun q : R2 ↦ q 1) proj1 (p : R2) := by
@@ -418,20 +418,20 @@ private theorem problem_8_10_forward_ambient_deriv_on_Y (p : problem_8_10_M) :
       HasFDerivAt (fun q : R2 ↦ (q 0)⁻¹)
         ((ContinuousLinearMap.toSpanSingleton ℝ (-((p : R2) 0 ^ 2)⁻¹)).comp proj0) (p : R2) := by
     -- Differentiate the reciprocal of the first coordinate at the source point.
-    simpa [proj0] using
+    simpa [proj0, Function.comp_def] using!
       (hasFDerivAt_inv (𝕜 := ℝ) (x := (p : R2) 0) hx0).comp (p : R2) h0
   have hFirst :
       HasFDerivAt (fun q : R2 ↦ problem_8_10_FAmbient q 0)
         (((p : R2) 1) • proj0 + ((p : R2) 0) • proj1) (p : R2) := by
     -- The first coordinate is the product `(x, y) ↦ xy`.
-    simpa [problem_8_10_FAmbient, proj0, proj1, add_comm, add_left_comm, add_assoc] using
+    simpa [problem_8_10_FAmbient, proj0, proj1, add_comm, add_left_comm, add_assoc] using!
       h0.mul h1
   have hSecond :
       HasFDerivAt (fun q : R2 ↦ problem_8_10_FAmbient q 1)
         (((p : R2) 1) • ((ContinuousLinearMap.toSpanSingleton ℝ (-((p : R2) 0 ^ 2)⁻¹)).comp proj0) +
           ((p : R2) 0)⁻¹ • proj1) (p : R2) := by
     -- Rewrite `y / x` as `y * x⁻¹` and differentiate product-wise.
-    simpa [problem_8_10_FAmbient, div_eq_mul_inv, proj0, proj1] using h1.mul hInv
+    simpa [problem_8_10_FAmbient, div_eq_mul_inv, proj0, proj1] using! h1.mul hInv
   let f' : Fin 2 → R2 →L[ℝ] ℝ := fun i =>
     match i with
     | 0 => ((p : R2) 1) • proj0 + ((p : R2) 0) • proj1
@@ -454,7 +454,7 @@ private theorem problem_8_10_forward_ambient_deriv_on_Y (p : problem_8_10_M) :
       HasFDerivAt problem_8_10_FAmbient
         (toR2.toContinuousLinearMap.comp (ContinuousLinearMap.pi f')) (p : R2) := by
     -- Transport the derivative from product coordinates back to the `PiLp` model space `R2`.
-    simpa [toR2, Function.comp] using (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
+    simpa [toR2, Function.comp] using! (toR2.comp_hasFDerivAt_iff.2 hAmbientPi)
   have hFAmbientMDiff : MDifferentiableAt (𝓡 2) (𝓡 2) problem_8_10_FAmbient (p : R2) := by
     exact hAmbient.hasMFDerivAt.mdifferentiableAt
   have hNeZero : (∞ : ℕ∞ω) ≠ 0 := by
@@ -491,7 +491,7 @@ private theorem problem_8_10_forward_ambient_deriv_on_Y (p : problem_8_10_M) :
         -((((problem_8_10_F p : problem_8_10_M) : R2) 1) ^ (2 : ℕ))
       simp [f', proj0, proj1, problem_8_10_F_apply]
       field_simp [hx0]
-  simpa [problem_8_10_YAmbient, mfderiv_eq_fderiv] using hEval
+  simpa [problem_8_10_YAmbient, mfderiv_eq_fderiv] using! hEval
 
 /-- Helper for Problem 8-10: the canonical pushforward of a vector field by
 `problem_8_10_diffeomorph` is `problem_8_10_F`-related to the original field. -/

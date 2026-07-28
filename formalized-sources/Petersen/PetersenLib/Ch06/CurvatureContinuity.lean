@@ -59,7 +59,7 @@ theorem continuousOn_chartCurvatureContraction2_comp {X : Type*} [TopologicalSpa
       ContinuousOn (fun x => Geodesic.chartCoord (E := E) k' (z x)) S := by
     intro k' z hz
     have := (Geodesic.chartCoordFunctional (E := E) k').continuous.comp_continuousOn hz
-    simpa using this
+    exact this.congr fun x _ => Geodesic.chartCoordFunctional_apply k' (z x)
   exact ((((Jacobi.chartCurvatureCoef_contDiffOn (I := I) g α i j k l).continuousOn.comp
     hy hmem').mul (hcoord i u hu)).mul (hcoord j v hv)).mul (hcoord k w hw)
 

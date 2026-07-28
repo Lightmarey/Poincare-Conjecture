@@ -61,7 +61,7 @@ open Riemannian.Geodesic Riemannian.Exponential
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
   [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
   {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
-  {M : Type*} [MetricSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
+  {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 
 /-! ### The chart-level parallel-transport certificate -/
 

@@ -43,13 +43,15 @@ lemma matrixDet_differentiableAt (n : ℕ) (X : Matrix (Fin n) (Fin n) ℝ) :
         { toMultilinearMap :=
             (Matrix.detRowAlternating : (Fin n → ℝ) [⋀^(Fin n)]→ₗ[ℝ] ℝ).toMultilinearMap
           cont := by
-            simpa [Matrix.det] using
-              (Continuous.matrix_det
-                (A := fun M : Matrix (Fin n) (Fin n) ℝ ↦ M) continuous_id) }
+            change Continuous
+              (fun M : Matrix (Fin n) (Fin n) ℝ ↦ Matrix.det M)
+            exact Continuous.matrix_det continuous_id }
       map_eq_zero_of_eq' :=
         (Matrix.detRowAlternating : (Fin n → ℝ) [⋀^(Fin n)]→ₗ[ℝ] ℝ).map_eq_zero_of_eq' }
   -- The determinant is a continuous alternating map in the rows, hence differentiable.
-  simpa [Matrix.det] using detContinuous.differentiable X
+  change DifferentiableAt ℝ
+    (detContinuous : Matrix (Fin n) (Fin n) ℝ → ℝ) X
+  exact detContinuous.differentiable X
 
 /-- Helper for Problem 7-4: along the affine line `t ↦ X + t • B` through an invertible matrix,
 the determinant has derivative `det X * trace (X⁻¹ * B)` at `t = 0`. -/
@@ -135,7 +137,7 @@ theorem generalLinear_det_fderiv_apply (n : ℕ) (X : GL (Fin n) ℝ)
     fderiv ℝ Matrix.det (X : Matrix (Fin n) (Fin n) ℝ) B =
         lineDeriv ℝ Matrix.det (X : Matrix (Fin n) (Fin n) ℝ) B := by
       symm
-      simpa using hdet.lineDeriv_eq_fderiv (v := B)
+      exact hdet.lineDeriv_eq_fderiv (v := B)
     _ = (X : Matrix (Fin n) (Fin n) ℝ).det *
           ((((X⁻¹ : GL (Fin n) ℝ) : Matrix (Fin n) (Fin n) ℝ) * B).trace) :=
       hline.lineDeriv

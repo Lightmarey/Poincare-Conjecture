@@ -31,8 +31,8 @@ lemma chartLinearTest_contMDiffAt
     {F : M → N} (p : M) (ℓ : E' →L[ℝ] ℝ) :
     ContMDiffAt J 𝓘(ℝ) (∞ : ℕ∞ω) (fun q : N ↦ ℓ (extChartAt J (F p) q)) (F p) := by
   -- The chart is smooth at its center, and continuous linear maps are smooth everywhere.
-  simpa [Function.comp] using
-    (ℓ.contMDiffAt.comp (F p) (contMDiffAt_extChartAt (I := J) (x := F p)))
+  change ContMDiffAt J 𝓘(ℝ) (∞ : ℕ∞ω) (ℓ ∘ extChartAt J (F p)) (F p)
+  exact ℓ.contMDiffAt.comp (F p) (contMDiffAt_extChartAt (I := J) (x := F p))
 
 /-- Helper for Proposition 8.16: differentiating a chart-linear test function evaluates the
 chart pushforward of the input tangent vector under the chosen linear functional. -/
@@ -41,14 +41,15 @@ lemma chartLinearTest_mfderiv_apply
     mfderiv% (fun q : N ↦ ℓ (extChartAt J (F p) q)) (F p) v =
       ℓ (mfderiv% (extChartAt J (F p)) (F p) v) := by
   -- Apply the chain rule to the chart-linear composition and simplify the linear derivative.
-  simpa [Function.comp, mfderiv_eq_fderiv, ContinuousLinearMap.fderiv] using
-    (mfderiv_comp_apply (x := F p)
-      (g := ℓ)
-      (f := extChartAt J (F p))
+  change mfderiv% (ℓ ∘ extChartAt J (F p)) (F p) v =
+    ℓ (mfderiv% (extChartAt J (F p)) (F p) v)
+  rw [mfderiv_comp_apply (x := F p)
       (ℓ.contMDiffAt.mdifferentiableAt (by simp : (∞ : ℕ∞ω) ≠ 0))
       ((contMDiffAt_extChartAt (I := J) (x := F p)).mdifferentiableAt
         (by simp : (∞ : ℕ∞ω) ≠ 0))
-      v)
+      v]
+  rw [mfderiv_eq_fderiv, ContinuousLinearMap.fderiv]
+  rfl
 
 /-- Helper for Proposition 8.16: if two tangent vectors at `F p` have the same preferred-chart
 pushforward, then the tangent vectors themselves are equal. -/
@@ -98,14 +99,16 @@ lemma chartPushforward_eq_of_testFunctions
     have hleft :
         mfderiv% (fun x ↦ (fun q : N ↦ ℓ (extChartAt J (F p) q)) (F x)) p (X p) =
           mfderiv% (fun q : N ↦ ℓ (extChartAt J (F p) q)) (F p) (mfderiv I J F p (X p)) := by
-      simpa [Function.comp] using
-        (mfderiv_comp_apply (x := p)
+      change mfderiv% ((fun q : N ↦ ℓ (extChartAt J (F p) q)) ∘ F) p (X p) =
+        mfderiv% (fun q : N ↦ ℓ (extChartAt J (F p) q)) (F p)
+          (mfderiv I J F p (X p))
+      exact mfderiv_comp_apply (x := p)
           (g := fun q : N ↦ ℓ (extChartAt J (F p) q))
           (f := F)
           ((chartLinearTest_contMDiffAt (J := J) p ℓ).mdifferentiableAt
             (by simp : (∞ : ℕ∞ω) ≠ 0))
           (hF.contMDiffAt.mdifferentiableAt (by simp : (∞ : ℕ∞ω) ≠ 0))
-          (X p))
+          (X p)
     exact hleft.symm.trans htest
   have hzero :
       ℓ w = 0 := by
@@ -158,9 +161,10 @@ theorem f_related_iff_mfderiv_comp_eq
     calc
       mfderiv% (fun x ↦ f (F x)) p (X p)
           = mfderiv% f (F p) (mfderiv I J F p (X p)) := by
-              simpa [Function.comp] using
-                mfderiv_comp_apply p (hf.mdifferentiableAt (by simp))
-                  (hF.contMDiffAt.mdifferentiableAt (by simp)) (X p)
+              change mfderiv% (f ∘ F) p (X p) =
+                mfderiv% f (F p) (mfderiv I J F p (X p))
+              exact mfderiv_comp_apply p (hf.mdifferentiableAt (by simp))
+                (hF.contMDiffAt.mdifferentiableAt (by simp)) (X p)
       _ = mfderiv% f (F p) (Y (F p)) := by
             rw [VectorField.f_related_apply hRelated p]
   · intro hTest

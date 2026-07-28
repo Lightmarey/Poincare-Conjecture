@@ -240,8 +240,8 @@ lemma problem1LineWithTwoOrigins_continuous_xCoord :
     Continuous problem1LineWithTwoOriginsXCoord := by
   -- The prequotient coordinate map is continuous and constant on equivalence classes.
   have hf : Continuous (fun p : problem1LineWithTwoOriginsPoint => p.1.1) := by
-    simpa using (continuous_fst.comp continuous_subtype_val)
-  simpa [problem1LineWithTwoOriginsXCoord] using
+    simpa using! (continuous_fst.comp continuous_subtype_val)
+  simpa [problem1LineWithTwoOriginsXCoord] using!
     (Continuous.quotient_liftOn' (s := problem1LineWithTwoOriginsSetoid)
       (f := fun p : problem1LineWithTwoOriginsPoint => p.1.1) hf fun _ _ h => h.1)
 
@@ -256,7 +256,7 @@ lemma problem1LineWithTwoOrigins_continuous_upper_branch :
     exact
       (show Continuous fun x : ℝ => ((x, (1 : ℝ)) : ℝ × ℝ) by continuity).subtype_mk
         fun _ => Or.inl rfl
-  simpa [problem1LineWithTwoOriginsUpperBranch] using continuous_quotient_mk'.comp hinc
+  simpa [problem1LineWithTwoOriginsUpperBranch] using! continuous_quotient_mk'.comp hinc
 
 /-- Helper for Problem 1-1: the lower branch is a continuous map into the quotient. -/
 lemma problem1LineWithTwoOrigins_continuous_lower_branch :
@@ -269,7 +269,7 @@ lemma problem1LineWithTwoOrigins_continuous_lower_branch :
     exact
       (show Continuous fun x : ℝ => ((x, (-1 : ℝ)) : ℝ × ℝ) by continuity).subtype_mk
         fun _ => Or.inr rfl
-  simpa [problem1LineWithTwoOriginsLowerBranch] using continuous_quotient_mk'.comp hinc
+  simpa [problem1LineWithTwoOriginsLowerBranch] using! continuous_quotient_mk'.comp hinc
 
 /-- Helper for Problem 1-1: the quotient preimage of the upper chart domain is an elementary
 open subset of the two-line model. -/
@@ -513,10 +513,10 @@ lemma problem1LineWithTwoOrigins_origins_nhds_inter
     simpa [V'] using hV.preimage problem1LineWithTwoOrigins_continuous_lower_branch
   have h0U : (0 : ℝ) ∈ U' := by
     simpa [U', problem1LineWithTwoOriginsUpperBranch, problem1LineWithTwoOriginsUpperOrigin]
-      using hUpper
+      using! hUpper
   have h0V : (0 : ℝ) ∈ V' := by
     simpa [V', problem1LineWithTwoOriginsLowerBranch, problem1LineWithTwoOriginsLowerOrigin]
-      using hLower
+      using! hLower
   -- Open neighborhoods of `0` contain metric balls around `0`.
   obtain ⟨εU, hεU_pos, hεU⟩ := Metric.mem_nhds_iff.1 (hU'.mem_nhds h0U)
   obtain ⟨εV, hεV_pos, hεV⟩ := Metric.mem_nhds_iff.1 (hV'.mem_nhds h0V)

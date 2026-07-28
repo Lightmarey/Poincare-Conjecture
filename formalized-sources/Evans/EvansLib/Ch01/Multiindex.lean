@@ -344,7 +344,6 @@ private lemma sum_piFinset_update_cons {M : Type*} [AddCommMonoid M]
       rw [Finset.mem_product] at hp
       rw [Fintype.mem_piFinset]
       intro k
-      dsimp only
       rw [maskExp_cons i l, Function.update_apply, Function.update_apply]
       by_cases hk : k = i
       · rw [if_pos hk, if_pos hk]; exact hp.2
@@ -457,7 +456,7 @@ private lemma foldr_partial_mul_aux {u v : EuclideanSpace ℝ (Fin n) → ℝ}
         = (partialDeriv i)^[α i - j] (l.foldr (fun k g => (partialDeriv k)^[α k - γ₀ k] g) v) := by
       rw [List.foldr_cons, Function.update_apply, if_pos rfl,
         foldr_partial_congr l (fun k => α k - Function.update γ₀ i j k) (fun k => α k - γ₀ k)
-          (fun k hk => by dsimp only; rw [hagree k hk]) v]
+          (fun k hk => by rw [hagree k hk]) v]
     rw [hc, hU, hV]
     ring
 

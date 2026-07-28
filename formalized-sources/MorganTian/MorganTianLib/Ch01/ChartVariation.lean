@@ -98,7 +98,17 @@ theorem hasDerivAt_chartVariation_fst (hc₀' : HasDerivAt ĉ₀ (Ŷ τ₀) 0)
   have h :=
     ((h1.add (h2.const_smul ((τ₁ - t) / (τ₁ - τ₀)))).add
       (h3.const_smul ((t - τ₀) / (τ₁ - τ₀))))
-  simpa [chartVariation] using h
+  have hfun :
+      (fun s : ℝ => chartVariation τ₀ τ₁ ŷ Ŷ ĉ₀ ĉ₁ (s, t)) =
+        ((fun s : ℝ => ŷ t + s • Ŷ t) +
+            ((τ₁ - t) / (τ₁ - τ₀)) •
+              (fun s : ℝ => ĉ₀ s - ŷ τ₀ - s • Ŷ τ₀)) +
+          ((t - τ₀) / (τ₁ - τ₀)) •
+            (fun s : ℝ => ĉ₁ s - ŷ τ₁ - s • Ŷ τ₁) := by
+    funext s
+    rfl
+  rw [hfun]
+  simpa using h
 
 /-- **Math.** The family is differentiable at `(s, t)` as soon as the four one-variable data are:
 it is built from `ŷ`, `Ŷ` (evaluated at the time `t`) and `ĉ₀`, `ĉ₁` (evaluated at the variation

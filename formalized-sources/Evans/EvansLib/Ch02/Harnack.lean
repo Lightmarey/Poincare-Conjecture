@@ -50,6 +50,7 @@ def ballChainGraph (Z : Set (EuclideanSpace ℝ (Fin n))) (ρ : ℝ)
     (ball (z : EuclideanSpace ℝ (Fin n)) ρ ∩ ball (w : EuclideanSpace ℝ (Fin n)) ρ ∩
       V).Nonempty
   symm := by
+    constructor
     rintro z w ⟨hne, v, ⟨hvz, hvw⟩, hvV⟩
     exact ⟨hne.symm, v, ⟨hvw, hvz⟩, hvV⟩
   loopless := ⟨fun _ h => h.1 rfl⟩

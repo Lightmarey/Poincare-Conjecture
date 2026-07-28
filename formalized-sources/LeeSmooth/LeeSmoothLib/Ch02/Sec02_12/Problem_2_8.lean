@@ -58,7 +58,7 @@ theorem realProjectiveAffineOpen_dense :
         ((isOpen_compl_singleton : IsOpen ({(0 : E)}ᶜ : Set E)).isOpenMap_subtype_val)
   have hq_cont : Continuous q := by
     -- The projectivization map is the quotient projection on nonzero representatives.
-    simpa [q, Projectivization.mk'] using
+    simpa [q, Projectivization.mk'] using!
       (continuous_quotient_mk' :
         Continuous (@Quotient.mk' { v : E // v ≠ 0 } (projectivizationSetoid ℝ E)))
   have hq_surj : Function.Surjective q := by
@@ -73,7 +73,7 @@ theorem realProjectiveAffineOpen_dense :
     constructor
     · rintro ⟨v, hv, rfl⟩
       -- A representative with nonzero last coordinate lands in the last affine chart domain.
-      simpa [q, s, realProjectiveAffineOpen] using
+      simpa [q, s, realProjectiveAffineOpen] using!
         (realProjectiveChartDomain_mk n (Fin.last n) v.1 v.2).2 hv
     · intro hx
       refine ⟨⟨x.rep, x.rep_nonzero⟩, ?_, ?_⟩
@@ -218,7 +218,7 @@ theorem complexProjectiveAffineOpen_dense :
         ((isOpen_compl_singleton : IsOpen ({(0 : E)}ᶜ : Set E)).isOpenMap_subtype_val)
   have hq_cont : Continuous q := by
     -- The projectivization map is the quotient projection on nonzero representatives.
-    simpa [q, Projectivization.mk'] using
+    simpa [q, Projectivization.mk'] using!
       (continuous_quotient_mk' :
         Continuous (@Quotient.mk' { v : E // v ≠ 0 } (projectivizationSetoid ℂ E)))
   have hq_surj : Function.Surjective q := by
@@ -233,7 +233,7 @@ theorem complexProjectiveAffineOpen_dense :
     constructor
     · rintro ⟨v, hv, rfl⟩
       -- A representative with nonzero last coordinate lands in the last affine chart domain.
-      simpa [q, s, complexProjectiveAffineOpen] using
+      simpa [q, s, complexProjectiveAffineOpen] using!
         (complexProjectiveChartDomain_mk n (Fin.last n) v.1 v.2).2 hv
     · intro hx
       refine ⟨⟨x.rep, x.rep_nonzero⟩, ?_, ?_⟩

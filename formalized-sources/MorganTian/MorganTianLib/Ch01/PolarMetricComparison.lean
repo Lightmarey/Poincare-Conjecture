@@ -196,7 +196,7 @@ theorem expDifferential_metricInner_le_of_not_conjugate
   -- `d(exp_p)_{r·u}(Z) = Y_Z(1) = K(r)`
   have hDZ : D Z = chartVectorRep (I := I) γ ζ K r := by
     have h := hjac (fun s => K (r * s)) (fun s => r • DK (r * s)) hJ hJ0
-    rw [hDJ0] at h
+    rw [show r • DK (r * 0) = Z from hDJ0] at h
     rw [h]
     simp [chartVectorRep_apply, hsmul]
   -- the chart Gram form of `d(exp_p)_{r·u}(Z)` is the intrinsic `|K(r)|²_g`

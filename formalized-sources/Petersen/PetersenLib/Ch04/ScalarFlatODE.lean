@@ -98,13 +98,18 @@ theorem firstOrder_of_scalarFlatRotSymODE {n : ℕ} {ρ : ℝ → ℝ} (hn : 3 �
     have h1 : HasDerivAt (fun s => ρ s ^ (n - 2))
         ((n - 2 : ℕ) * ρ r ^ (n - 3) * deriv ρ r) r := by
       have := ((hρdiff r).hasDerivAt).pow (n - 2)
-      convert this using 2
+      change HasDerivAt (ρ ^ (n - 2)) _ _
+      exact this
     have h2 : HasDerivAt (fun s => (deriv ρ s) ^ 2 - 1)
         (2 * deriv ρ r * deriv (deriv ρ) r) r := by
       have := ((hρ'diff r).hasDerivAt).pow 2
       simpa using (this.sub_const 1)
-    have := h1.mul h2
-    convert this using 1
+    have hmul : HasDerivAt F
+        ((n - 2 : ℕ) * ρ r ^ (n - 3) * deriv ρ r * ((deriv ρ r) ^ 2 - 1) +
+          ρ r ^ (n - 2) * (2 * deriv ρ r * deriv (deriv ρ) r)) r := by
+      rw [hF]
+      exact h1.mul h2
+    refine hmul.congr_deriv ?_
     have heq := h r
     have hne : ρ r ≠ 0 := (hρ r).ne'
     have hdd : deriv (deriv ρ) r = -((n - 2 : ℝ) / 2 * ((deriv ρ r) ^ 2 - 1) / ρ r) := by

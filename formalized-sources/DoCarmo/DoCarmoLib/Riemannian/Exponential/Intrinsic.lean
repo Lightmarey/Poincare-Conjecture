@@ -305,8 +305,8 @@ theorem zero_mem_expDomainIntrinsic (g : RiemannianMetric I M) (p : M) :
   refine ⟨fun _ : ℝ ↦ p, Set.univ, isOpen_univ, isPreconnected_univ,
     mem_univ 0, mem_univ 1, rfl, ?_, continuous_const.continuousOn,
     (isGeodesic_const (I := I) g p).isGeodesicOn Set.univ⟩
-  simpa [chartReading] using
-    (hasDerivAt_const (x := (0 : ℝ)) (c := extChartAt I p p))
+  change HasDerivAt (fun _ : ℝ => extChartAt I p p) 0 0
+  exact hasDerivAt_const (x := (0 : ℝ)) (c := extChartAt I p p)
 
 /-- **Math.** The intrinsic exponential map sends the zero tangent vector to
 its base point. -/
@@ -317,8 +317,8 @@ its base point. -/
     isOpen_univ isPreconnected_univ (mem_univ 0) (mem_univ 1) ?_
   refine ⟨rfl, ?_, continuous_const.continuousOn,
     (isGeodesic_const (I := I) g p).isGeodesicOn Set.univ⟩
-  simpa [chartReading] using
-    (hasDerivAt_const (x := (0 : ℝ)) (c := extChartAt I p p))
+  change HasDerivAt (fun _ : ℝ => extChartAt I p p) 0 0
+  exact hasDerivAt_const (x := (0 : ℝ)) (c := extChartAt I p p)
 
 /-- **Math.** **Intrinsic radial endpoint identity.** If the intrinsic geodesic with
 initial data `(p,v)` is defined at time `t`, then the geodesic with initial data

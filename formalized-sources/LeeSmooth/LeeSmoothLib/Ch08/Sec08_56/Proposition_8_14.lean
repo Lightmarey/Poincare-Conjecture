@@ -93,10 +93,10 @@ private lemma contMDiff_apply_of_contMDiffVectorField
   have hFiber :
       ContMDiff I.tangent 𝓘(ℝ) ∞
         (fun z : TangentBundle I M ↦ (tangentMap I 𝓘(ℝ) f z).2) := by
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       (contMDiff_snd_tangentBundle_modelSpace ℝ 𝓘(ℝ)).comp hTangent
   -- Pull the smooth tangent-bundle map back along the smooth section `T% X`.
-  simpa [VectorField.apply_def, tangentMap_snd, Function.comp] using hFiber.comp hX
+  simpa [VectorField.apply_def, tangentMap_snd, Function.comp] using! hFiber.comp hX
 
 /-- Helper for Proposition 8.14: smoothness on an open subset is equivalent to smoothness on the
 corresponding open subtype. -/
@@ -175,7 +175,7 @@ private lemma mpullback_apply_restrict_eq
       mfderiv I 𝓘(ℝ) (fun y : U ↦ f y.1) x (XU x) =
         mfderiv I 𝓘(ℝ) f x.1 (mfderiv I I (Subtype.val : U → M) x (XU x)) := by
     -- Differentiate the restricted function by the chain rule.
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       (mfderiv_comp_apply (x := x) (g := f) (f := (Subtype.val : U → M)) hf hsub (XU x))
   -- Cancel the derivative of the inclusion against the pulled-back vector field.
   change mfderiv I 𝓘(ℝ) (fun y : U ↦ f y.1) x (XU x) = VectorField.apply X f x.1
@@ -258,14 +258,14 @@ private lemma exists_open_nhds_contMDiffOn_apply_of_forall_smooth_apply
           mfderiv I 𝓘(ℝ) (fun z : U ↦ fRestrict z) y =
             mfderiv I 𝓘(ℝ) f y :=
         hEqEvent.mfderiv_eq
-      simpa [fRestrict, VectorField.apply_def] using
+      simpa [fRestrict, VectorField.apply_def] using!
         (congrArg (fun L => L ((mpullback I I (Subtype.val : U → M) X) y)) hMfderivEq).symm
     -- Rewrite the restricted global function back to the ambient global apply.
     exact hLocalEq.trans <|
       by simpa [fRestrict] using mpullback_apply_restrict_eq (I := I) (U := U) X F y
   have hGlobal :
       ContMDiff I 𝓘(ℝ) ∞ (fun y : U ↦ VectorField.apply X F y.1) := by
-    simpa [Function.comp] using (hApply F).comp contMDiff_subtype_val
+    simpa [Function.comp] using! (hApply F).comp contMDiff_subtype_val
   refine ⟨V, hVopen, hxV, ?_⟩
   -- On the chosen neighborhood, the local apply agrees with the restriction of a global smooth
   -- apply, so the local apply is smooth there as well.
@@ -301,7 +301,7 @@ theorem roughVectorField_smooth_iff_forall_smooth_apply_smooth
       have hcoordOn :
           ContMDiffOn I 𝓘(ℝ) ∞ (fun y : M ↦ ℓi (extChartAt I p y)) (U : Set M) := by
         -- Compose the local chart with the chosen scalar coordinate functional.
-        simpa [ℓi, Function.comp] using
+        simpa [ℓi, Function.comp] using!
           ℓi.contMDiff.comp_contMDiffOn
             (contMDiffOn_extChartAt (I := I) (n := ∞) (x := p))
       let coordFunction : C^∞⟮I, U; 𝓘(ℝ), ℝ⟯ :=
@@ -349,7 +349,7 @@ theorem roughVectorField_smooth_iff_forall_smooth_apply_smooth
               mfderiv I 𝓘(ℝ) (fun y : M ↦ ℓi (extChartAt I p y)) q.1
                 (mfderiv I I (Subtype.val : U → M) q (XU q)) := by
           -- Differentiate the chart coordinate through the open-subtype inclusion.
-          simpa [Function.comp] using
+          simpa [Function.comp] using!
             (mfderiv_comp_apply
               (x := q)
               (g := fun y : M ↦ ℓi (extChartAt I p y))
@@ -359,7 +359,7 @@ theorem roughVectorField_smooth_iff_forall_smooth_apply_smooth
             mfderiv I 𝓘(ℝ) (fun y : M ↦ ℓi (extChartAt I p y)) q.1 (X q.1) =
               ℓi (mfderiv I 𝓘(ℝ, E) (extChartAt I p) q.1 (X q.1)) := by
           -- Then differentiate the scalar coordinate through the extended chart itself.
-          simpa [Function.comp] using
+          simpa [Function.comp] using!
             (mfderiv_comp_apply
               (x := q.1)
               (g := ℓi)
@@ -402,7 +402,9 @@ theorem roughVectorField_smooth_iff_forall_smooth_apply_smooth
       -- Reassemble the chart representative from its finite family of scalar coordinates.
       have hCompose :
           ContMDiff I 𝓘(ℝ, E) ∞ (fun q : U ↦ eCoord.symm (eCoord (chartRep q))) := by
-        convert eCoord.symm.toContinuousLinearMap.contMDiff.comp hPi using 1
+        change ContMDiff I 𝓘(ℝ, E) ∞
+          (eCoord.symm ∘ fun q : U ↦ eCoord (chartRep q))
+        exact eCoord.symm.toContinuousLinearMap.contMDiff.comp hPi
       exact hCompose.congr fun q ↦ (eCoord.symm_apply_apply (chartRep q)).symm
     have hChartRepOn :
         ContMDiffOn I 𝓘(ℝ, E) ∞

@@ -70,10 +70,10 @@ theorem hasDerivAt_inner_div_norm {V V' : ℝ → E} {w : E} {s : ℝ}
   have hden : HasDerivAt (fun u => ‖V u‖) (⟪V' s, V s⟫ / ‖V s‖) s :=
     hasDerivAt_norm_of_ne_zero hdV hne
   have h := hnum.div hden hpos.ne'
-  convert h using 1
-  rw [real_inner_self_eq_norm_sq]
-  field_simp
-  ring
+  exact h.congr_deriv (by
+    rw [real_inner_self_eq_norm_sq]
+    field_simp
+    ring)
 
 /-- **Math.** **Vector-valued Sturm comparison** — the parallel-frame core of
 `lem:conjugate-sturm`. Fix `K ≥ 0` and `T` with `√K·T < π`. Let
@@ -235,7 +235,11 @@ theorem tendsto_norm_div_self_of_hasDerivWithinAt {V : ℝ → E} {v₀ : E}
     Tendsto (fun t => ‖V t‖ / t) (𝓝[>] 0) (𝓝 ‖v₀‖) := by
   have hs' : Tendsto (slope V 0) (𝓝[>] 0) (𝓝 v₀) := by
     have h := hasDerivWithinAt_iff_tendsto_slope.mp hd
-    rwa [Ici_diff_left] at h
+    have hset : Ici (0 : ℝ) \ {0} = Ioi 0 := by
+      ext x
+      simp [lt_iff_le_and_ne]
+    rw [hset] at h
+    exact h
   have hnorm : Tendsto (fun t => ‖slope V 0 t‖) (𝓝[>] 0) (𝓝 ‖v₀‖) := hs'.norm
   refine hnorm.congr' ?_
   filter_upwards [eventually_mem_nhdsWithin] with t (ht : (0 : ℝ) < t)

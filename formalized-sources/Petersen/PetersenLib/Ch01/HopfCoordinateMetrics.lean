@@ -186,12 +186,12 @@ theorem sphereAsWarpedProductWithLp (p : ℝ × sphere (0 : E) 1)
   have hcos : HasDerivAt (fun r : ℝ => Real.cos (2 * r) / 2) (-Real.sin (2 * p.1)) p.1 := by
     have h := ((Real.hasDerivAt_cos (2 * p.1)).comp p.1
       ((hasDerivAt_id p.1).const_mul 2)).div_const 2
-    convert h using 1
+    convert! h using 1
     ring
   have hsin : HasDerivAt (fun r : ℝ => Real.sin (2 * r) / 2) (Real.cos (2 * p.1)) p.1 := by
     have h := ((Real.hasDerivAt_sin (2 * p.1)).comp p.1
       ((hasDerivAt_id p.1).const_mul 2)).div_const 2
-    convert h using 1
+    convert! h using 1
     ring
   have h₁ : MDifferentiableAt (𝓘(ℝ, ℝ).prod (𝓡 n)) 𝓘(ℝ, ℝ)
       (fun q : ℝ × sphere (0 : E) 1 => Real.cos (2 * q.1) / 2) p :=

@@ -26,8 +26,22 @@ lemma affine_model_curve_velocity_within (x₀ w : E) {J : Set ℝ}
     simpa [one_smul] using
       (((hasDerivAt_id (0 : ℝ)).smul_const w).const_add x₀).hasDerivWithinAt
   -- Then rewrite the manifold velocity in the vector-space model to the ordinary derivative.
-  simpa [curve_velocityWithin, mfderivWithin_eq_fderivWithin, ← fderivWithin_derivWithin] using
-    hη.derivWithin hJ.uniqueDiffWithinAt
+  unfold curve_velocityWithin
+  rw [mfderivWithin_eq_fderivWithin]
+  convert hη.derivWithin hJ.uniqueDiffWithinAt using 1 <;> rfl
+
+/-- Helper for Proposition 3.23: affine curves in a normed real vector space are smooth in the
+manifold sense. -/
+lemma affine_model_curve_contMDiff (x₀ w : E) :
+    ContMDiff 𝓘(ℝ) (𝓘(ℝ, E)) ∞ (fun t : ℝ ↦ x₀ + t • w) := by
+  have ht : ContMDiff 𝓘(ℝ) 𝓘(ℝ) ∞ (fun t : ℝ ↦ t) := contMDiff_id
+  have hw : ContMDiff 𝓘(ℝ) (𝓘(ℝ, E)) ∞ (fun _ : ℝ ↦ w) := contMDiff_const
+  have htw : ContMDiff 𝓘(ℝ) (𝓘(ℝ, E)) ∞ (fun t : ℝ ↦ t • w) := by
+    convert ht.smul hw using 1
+    ext t
+    rfl
+  have hx₀ : ContMDiff 𝓘(ℝ) (𝓘(ℝ, E)) ∞ (fun _ : ℝ ↦ x₀) := contMDiff_const
+  exact hx₀.add htw
 
 /-- Helper for Proposition 3.23: if a tangent vector in the Euclidean model is viewed as an
 ordinary vector in the model space, the affine model curve with that direction has the same
@@ -48,9 +62,8 @@ lemma uniqueMDiffWithinAt_Ico_zero {ε : ℝ} (hε : 0 < ε) :
   have hIci : UniqueMDiffWithinAt 𝓘(ℝ) (Set.Ici (0 : ℝ)) (0 : ℝ) :=
     (uniqueDiffWithinAt_Ici (0 : ℝ)).uniqueMDiffWithinAt
   -- Intersect `Ici 0` with the ordinary neighborhood `(-∞, ε)`.
-  simpa [Set.Ico, Set.Ici, Set.Iio, and_left_comm, and_assoc] using
-    (hIci.inter (Iio_mem_nhds hε) :
-      UniqueMDiffWithinAt 𝓘(ℝ) ((Set.Ici (0 : ℝ)) ∩ Set.Iio ε) (0 : ℝ))
+  change UniqueMDiffWithinAt 𝓘(ℝ) (Set.Ici (0 : ℝ) ∩ Set.Iio ε) (0 : ℝ)
+  exact hIci.inter (Iio_mem_nhds hε)
 
 /-- Helper for Proposition 3.23: the left half-interval `(-ε, 0]` has unique manifold
 differentential at `0`. -/
@@ -60,9 +73,10 @@ lemma uniqueMDiffWithinAt_Ioc_zero {ε : ℝ} (hε : 0 < ε) :
   have hIic : UniqueMDiffWithinAt 𝓘(ℝ) (Set.Iic (0 : ℝ)) (0 : ℝ) :=
     (uniqueDiffWithinAt_Iic (0 : ℝ)).uniqueMDiffWithinAt
   -- Intersect `Iic 0` with the ordinary neighborhood `(-ε, ∞)`.
-  simpa [Set.Ioc, Set.Ioi, Set.Iic, Set.inter_comm, and_comm, and_left_comm, and_assoc] using
-    (hIic.inter (Ioi_mem_nhds (by linarith : (-ε : ℝ) < 0)) :
-      UniqueMDiffWithinAt 𝓘(ℝ) ((Set.Iic (0 : ℝ)) ∩ Set.Ioi (-ε)) (0 : ℝ))
+  rw [show Set.Ioc (-ε) 0 = Set.Iic 0 ∩ Set.Ioi (-ε) by
+    ext x
+    simp [and_comm]]
+  exact hIic.inter (Ioi_mem_nhds (by linarith : (-ε : ℝ) < 0))
 
 /-- Helper for Proposition 3.23: a neighborhood of `x₀` contains the affine line
 `t ↦ x₀ + t • w` on some symmetric interval around `0`. -/
@@ -72,7 +86,7 @@ lemma affine_line_mapsTo_symmetric_interval_of_mem_nhds (x₀ w : E) {s : Set E}
   let η : ℝ → E := fun t ↦ x₀ + t • w
   -- Pull the target neighborhood back along the affine line to get a neighborhood of `0`.
   have hη_cont : Continuous η := by
-    simpa [η] using continuous_const.add (continuous_id.smul continuous_const)
+    fun_prop
   have hs0 : s ∈ nhds (η 0) := by
     simpa [η] using hs
   have hpre : η ⁻¹' s ∈ nhds (0 : ℝ) := by
@@ -143,7 +157,8 @@ lemma extChartAt_velocity_after_chart
   have hchart_eq_eta :
       curve_velocityWithin (𝓘(ℝ, E)) ((extChartAt I p) ∘ γ) J 0 =
         curve_velocityWithin (𝓘(ℝ, E)) η J 0 := by
-    simpa [curve_velocityWithin] using
+    unfold curve_velocityWithin
+    convert
       DFunLike.congr_fun
         (mfderivWithin_congr_of_mem
           (I := 𝓘(ℝ)) (I' := 𝓘(ℝ, E)) (s := J) (x := 0)
@@ -152,7 +167,7 @@ lemma extChartAt_velocity_after_chart
             dsimp [γ, Function.comp]
             exact (extChartAt I p).right_inv (hη_target ht))
           h0)
-        (show TangentSpace (𝓘(ℝ, ℝ)) (0 : ℝ) from (1 : ℝ))
+        (show TangentSpace (𝓘(ℝ, ℝ)) (0 : ℝ) from (1 : ℝ)) using 1 <;> rfl
   have hfinal :
       mfderiv I (𝓘(ℝ, E)) (extChartAt I p) (γ 0) (curve_velocityWithin I γ J 0) =
         curve_velocityWithin (𝓘(ℝ, E)) η J 0 := by
@@ -246,10 +261,7 @@ lemma exists_open_interval_curve_with_velocity_of_isInteriorPoint
   have hη_smooth :
       ContMDiffOn 𝓘(ℝ) (𝓘(ℝ, E)) ∞ η J := by
     -- The coordinate curve is the affine line from Lee's proof, so it is smooth on every set.
-    simpa [η, x₀, J] using
-      ((contDiff_const.add (contDiff_id.smul contDiff_const)).contMDiff.contMDiffOn :
-        ContMDiffOn 𝓘(ℝ) (𝓘(ℝ, E)) ∞
-          (fun t : ℝ ↦ x₀ + t • w) J)
+    simpa only [η] using (affine_model_curve_contMDiff x₀ w).contMDiffOn
   have hη_velocity :
       curve_velocityWithin (𝓘(ℝ, E)) η J 0 =
         mfderiv I (𝓘(ℝ, E)) (extChartAt I p) p v := by
@@ -355,10 +367,7 @@ lemma exists_one_sided_curve_with_velocity_of_isBoundaryPoint
       ContMDiffOn 𝓘(ℝ) (𝓘(ℝ, EuclideanSpace ℝ (Fin (k + 1)))) ∞ η J := by
     -- Lee's coordinate curve is the same affine line as in the interior case, hence smooth on
     -- every interval choice used below.
-    simpa [η, x₀] using
-      ((contDiff_const.add (contDiff_id.smul contDiff_const)).contMDiff.contMDiffOn :
-        ContMDiffOn 𝓘(ℝ) (𝓘(ℝ, EuclideanSpace ℝ (Fin (k + 1)))) ∞
-          (fun t : ℝ ↦ x₀ + t • w) J)
+    simpa only [η] using (affine_model_curve_contMDiff x₀ w).contMDiffOn
   have htarget_of_safe {y : EuclideanSpace ℝ (Fin (k + 1))}
       (hy_safe : y ∈ (extChartAt I p).target ∪ (Set.range I)ᶜ)
       (hy_range : y ∈ Set.range I) :

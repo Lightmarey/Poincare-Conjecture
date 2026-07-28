@@ -90,10 +90,7 @@ theorem chartBasisVecFiber_eq_tangentCoordChange (α : M) {x : M}
     (hx : x ∈ (chartAt H α).source) (i : Fin (Module.finrank ℝ E)) :
     (chartBasisVecFiber (I := I) α i x : E)
       = tangentCoordChange I α x x ((Module.finBasis ℝ E) i) := by
-  rw [chartBasisVecFiber,
-    show (trivializationAt E (TangentSpace I) α).symm x ((Module.finBasis ℝ E) i)
-        = (trivializationAt E (TangentSpace I) α).symmL ℝ x ((Module.finBasis ℝ E) i) from rfl,
-    TangentBundle.symmL_trivializationAt_eq_core hx]
+  rw [chartBasisVecFiber, TangentBundle.symmL_trivializationAt_eq_core hx]
   rfl
 
 end Tensor
@@ -172,7 +169,8 @@ private theorem leviCivita_cov_cov_chartFrame_of_mem (g : RiemannianMetric I M) 
   have hVγ : ∀ m, ∀ q ∈ V, γ m q = Γ m q := fun m q hq => (hV q hq).1 m
   -- smoothness bookkeeping
   have hterm : ∀ m, IsSmoothVectorField (fun q => γ m q • ⇑(Z m) q) := fun m => by
-    simpa using (SmoothVectorField.smul (γ m) (hγsmooth m) (Z m)).smooth
+    simpa [IsSmoothVectorField] using!
+      (SmoothVectorField.smul (γ m) (hγsmooth m) (Z m)).smooth
   have hW : IsSmoothVectorField (fun q => ∑ m, γ m q • ⇑(Z m) q) :=
     isSmoothVectorField_finsetSum Finset.univ _ hterm
   have hcovjk : IsSmoothVectorField

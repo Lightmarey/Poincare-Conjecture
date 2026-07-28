@@ -104,7 +104,7 @@ lemma complex_projective_line_eval_numerator_of_second_coord_zero (p : Polynomia
   -- Rewrite to the canonical representative `[(v₀), 0]`, then use the homogenization formula.
   rw [complex_projective_line_vector_eq_of_second_coord_zero v h1]
   rw [Polynomial.toTupleMvPolynomial_zero_eq]
-  simpa using complex_projective_line_homogenize_eval_at_infinity p ((v : CVec) 0)
+  simpa using! complex_projective_line_homogenize_eval_at_infinity p ((v : CVec) 0)
 
 /-- Helper for Problem 2-9: the evaluated homogeneous pair is never the zero vector. -/
 lemma complex_projective_line_polynomial_tuple_ne_zero (p : Polynomial ℂ)
@@ -345,7 +345,7 @@ lemma complex_projective_line_polynomial_tuple_continuous (p : Polynomial ℂ) :
     exact continuous_pi fun i : Fin 2 ↦
       (MvPolynomial.continuous_eval (p := p.toTupleMvPolynomial i)).comp hval
   -- Transport the coordinatewise statement back through the Euclidean-space equivalence.
-  simpa [complex_projective_line_polynomial_tuple] using
+  simpa [complex_projective_line_polynomial_tuple] using!
     (EuclideanSpace.equiv (Fin 2) ℂ).symm.continuous.comp hcoord
 
 /-- Helper for Problem 2-9: the lifted polynomial map is continuous, since it descends from the
@@ -359,12 +359,12 @@ lemma complex_projective_line_polynomial_map_continuous (p : Polynomial ℂ) :
   have hf : Continuous f := by
     -- The quotient projection is continuous, so composing it with the continuous tuple map stays
     -- continuous.
-    simpa [f, Projectivization.mk'] using
+    simpa [f, Projectivization.mk'] using!
       (continuous_quotient_mk'.comp <|
         Continuous.subtype_mk (complex_projective_line_polynomial_tuple_continuous p)
           (fun v ↦ complex_projective_line_polynomial_tuple_ne_zero p v))
   -- `complex_projective_line_polynomial_map` is exactly the quotient lift of `f`.
-  simpa [complex_projective_line_polynomial_map, f] using
+  simpa [complex_projective_line_polynomial_map, f] using!
     hf.quotient_lift fun a b hab ↦ by
       rcases hab with ⟨t, h⟩
       exact complex_projective_line_polynomial_respects_projective_classes p a b (t : ℂ) h.symm
@@ -463,7 +463,7 @@ lemma complex_projective_line_north_chart_denominator_zero (p : Polynomial ℂ) 
   -- The chart-`0` inverse at the origin is the infinity representative `[1, 0]`.
   rw [complex_projective_line_chart_zero_invVector_eq_infinity_vector,
     Polynomial.toTupleMvPolynomial_zero_eq]
-  simpa using complex_projective_line_homogenize_eval_at_infinity p (1 : ℂ)
+  simpa using! complex_projective_line_homogenize_eval_at_infinity p (1 : ℂ)
 
 /-- Helper for Problem 2-9: the north-chart denominator is nonzero at the origin for a nonzero
 polynomial. -/
@@ -527,7 +527,7 @@ lemma complex_projective_line_single_contDiff :
     ext i
     simp [PiLp.smul_apply]
   rw [hsingle_eq]
-  simpa using
+  simpa using!
     (contDiff_id.smul
       (contDiff_const : ContDiff ℝ ∞ fun _ : ℂ ↦
         (EuclideanSpace.single (0 : Fin 1) (1 : ℂ) : EuclideanSpace ℂ (Fin 1))))
@@ -543,7 +543,7 @@ lemma complex_projective_line_south_local_model_contDiff (p : Polynomial ℂ) :
     contDiff_piLp_apply (𝕜 := ℝ) (p := (2 : ENNReal)) (E := fun _ : Fin 1 ↦ ℂ) (i := 0)
   have hscalar : ContDiff ℝ ∞ (fun u : EuclideanSpace ℂ (Fin 1) ↦ p.eval (u 0)) := by
     -- Polynomial evaluation is complex-smooth, hence also real-smooth after restricting scalars.
-    simpa using
+    simpa using!
       ((Polynomial.contDiff_aeval (R := ℂ) (𝕜 := ℂ) p (∞)).restrict_scalars ℝ).comp happly
   exact complex_projective_line_single_contDiff.comp hscalar
 
@@ -564,7 +564,7 @@ lemma complex_projective_line_south_image_mem_chart_one (p : Polynomial ℂ) {x 
       (complexProjectiveChart 1 (Fin.last 1)).source := by
   let u : EuclideanSpace ℂ (Fin 1) := complexProjectiveChart 1 (Fin.last 1) x
   have hxsource : x ∈ (complexProjectiveChart 1 (Fin.last 1)).source := by
-    simpa [complexProjectiveAffineOpen] using hx
+    simpa [complexProjectiveAffineOpen] using! hx
   have hxeq : x = G (u 0) := by
     -- Write `x` through the fixed affine chart and identify the inverse chart with `G`.
     calc
@@ -589,7 +589,7 @@ lemma complex_projective_line_south_branch_contMDiffAt (p : Polynomial ℂ) {x :
   have he : e ∈ IsManifold.maximalAtlas Icp1 ∞ (ℂP[1]) :=
     complex_projective_line_chart_mem_maximalAtlas (Fin.last 1)
   have hxsource : x ∈ e.source := by
-    simpa [e, complexProjectiveAffineOpen] using hx
+    simpa [e, complexProjectiveAffineOpen] using! hx
   have hy : complex_projective_line_polynomial_map p x ∈ e.source := by
     simpa [e] using complex_projective_line_south_image_mem_chart_one p hx
   -- Route correction: package the affine branch entirely in the fixed last chart, then replace
@@ -697,7 +697,7 @@ lemma complex_projective_line_north_image_mem_chart_zero (p : Polynomial ℂ) (h
             complexProjectiveChartInvVector_ne_zero 1 0 0⟩ 0 ≠ 0 := by
     rw [complex_projective_line_tuple_first_coord]
     exact complex_projective_line_north_chart_denominator_ne_zero p hp
-  simpa using
+  simpa using!
     (complexProjectiveChartDomain_mk 1 0
       (complex_projective_line_polynomial_tuple p
         ⟨complexProjectiveChartInvVector 1 0 0, complexProjectiveChartInvVector_ne_zero 1 0 0⟩)
@@ -727,7 +727,7 @@ lemma complex_projective_line_north_local_model_contDiffAt_zero (p : Polynomial 
     have hreverse : ContDiff ℝ ∞ (fun u : ℂ ↦ p.reverse.eval u) := by
       simpa using
         ((Polynomial.contDiff_aeval (R := ℂ) (𝕜 := ℂ) p.reverse (∞)).restrict_scalars ℝ)
-    simpa using hreverse.contDiffAt.comp 0 happly
+    simpa using! hreverse.contDiffAt.comp 0 happly
   have hden_ne :
       p.reverse.eval ((0 : EuclideanSpace ℂ (Fin 1)) 0) ≠ 0 := by
     -- At the chart origin this scalar denominator is the nonzero leading coefficient.
@@ -741,7 +741,7 @@ lemma complex_projective_line_north_local_model_contDiffAt_zero (p : Polynomial 
       -- Over `ℝ`, division in `ℂ` is handled as multiplication by the inverse denominator.
       simpa [div_eq_mul_inv] using hnum.mul (hden.inv hden_ne)
   -- Reinsert the scalar quotient into the unique Euclidean coordinate.
-  simpa [complex_projective_line_north_denominator_eq_reverse_eval] using
+  simpa [complex_projective_line_north_denominator_eq_reverse_eval] using!
     (complex_projective_line_single_contDiff.contDiffAt.comp 0 hquot)
 
 /-- Helper for Problem 2-9: the point at infinity sees the polynomial map through the north chart
@@ -756,7 +756,7 @@ lemma complex_projective_line_north_branch_contMDiffAt_infinity (p : Polynomial 
     complex_projective_line_chart_mem_maximalAtlas 0
   have hxsource : x ∈ e.source := by
     -- The north chart inverse is defined at every affine coordinate, in particular at `0`.
-    simpa [e, x] using complexProjectiveChart_symm_mem_domain 1 0
+    simpa [e, x] using! complexProjectiveChart_symm_mem_domain 1 0
       (0 : EuclideanSpace ℂ (Fin 1))
   have hy : complex_projective_line_polynomial_map p x ∈ e.source := by
     simpa [e, x] using complex_projective_line_north_image_mem_chart_zero p hp

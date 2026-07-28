@@ -56,7 +56,7 @@ theorem mfderivMulAtIdentityPair_apply
       (v := (X, Y))
       hMul
   rw [mulRight_eq_id, oneMul_eq_id] at happly
-  simpa using happly
+  simpa using! happly
 
 /-- Helper for Problem 8-25: the derivative of `g ↦ (g, g⁻¹)` at the identity packages the
 identity derivative with the derivative of inversion. -/
@@ -75,7 +75,7 @@ lemma pairWithInvMfderiv_apply
   have happly := congrArg
     (fun F : TangentSpace I (1 : G) →L[𝕜] TangentSpace (I.prod I) ((1 : G), (1 : G)⁻¹) ↦ F X)
     hmfderiv
-  simpa using happly
+  simpa using! happly
 
 /-- Helper for Problem 8-25: differentiating `g ↦ g * g⁻¹` at the identity gives zero. -/
 lemma mulInvCompositeMfderiv_apply_eq_zero
@@ -116,7 +116,7 @@ lemma mfderivMulAtIdentityInv_apply
       (X, mfderiv% (fun g : G ↦ g⁻¹) (1 : G) X) = X + invMfderivAtIdentity (I := I) X := by
   -- Rewrite the codomain point using `inv_one` and reuse the identity-pair computation.
   rw [inv_one]
-  simpa [invMfderivAtIdentity_eq] using
+  simpa [invMfderivAtIdentity_eq] using!
     (mfderivMulAtIdentityPair_apply (I := I) X (invMfderivAtIdentity (I := I) X))
 
 /-- Helper for Problem 8-25: the derivative of inversion at the identity is negation on
@@ -235,7 +235,7 @@ theorem inversionPullback_mulInvariantVectorField_isLeftInvariant
       (by
         simpa using
           (contMDiffAt_mul_left (I := I) (n := minSmoothness 𝕜 3) (a := g) (b := x)).mdifferentiableAt
-            hNonzero)
+            hNonzero |>.mdifferentiableWithinAt)
       (by simp)
       (uniqueMDiffWithinAt_univ I)
       (by
@@ -249,7 +249,7 @@ theorem inversionPullback_mulInvariantVectorField_isLeftInvariant
       (by
         simpa using
           (contMDiffAt_mul_right (I := I) (n := minSmoothness 𝕜 3) (a := g⁻¹) (b := x⁻¹)).mdifferentiableAt
-            hNonzero)
+            hNonzero |>.mdifferentiableWithinAt)
       (by simp)
       (uniqueMDiffWithinAt_univ I)
       (by
@@ -354,7 +354,7 @@ private theorem productLieCoords_left_inv
     (v : GroupLieAlgebra (I.prod I) (G × G)) :
     productLieCoordsInv (I := I) (G := G) (productLieCoords (I := I) (G := G) v) = v := by
   -- The explicit inverse of `equivTangentBundleProd` recovers the original tangent vector.
-  simp [productLieCoords, productLieCoordsInv]
+  simp [productLieCoords, productLieCoordsInv, equivTangentBundleProd]
 
 /-- Helper for Problem 8-25: the product tangent-space splitting reads back the chosen factor
 coordinates. -/
@@ -362,7 +362,7 @@ private theorem productLieCoords_right_inv
     (v : GroupLieAlgebra I G × GroupLieAlgebra I G) :
     productLieCoords (I := I) (G := G) (productLieCoordsInv (I := I) (G := G) v) = v := by
   -- The explicit product decomposition at the identity pair is two-sided.
-  simp [productLieCoords, productLieCoordsInv]
+  simp [productLieCoords, productLieCoordsInv, equivTangentBundleProd]
 
 /-- Helper for Problem 8-25: the inverse of a product of invertible continuous linear maps acts
 componentwise. -/
@@ -384,7 +384,7 @@ private lemma prodMap_inverse_apply
     apply ContinuousLinearMap.inverse_eq
     · ext v <;> simp
     · ext v <;> simp
-  simpa using congrArg (fun F ↦ F u) hInverse
+  simpa using! congrArg (fun F ↦ F u) hInverse
 
 /-- Helper for Problem 8-25: split vector fields on `G × G` pair the two factor fields. -/
 private def productSplitVectorField
@@ -427,11 +427,11 @@ private lemma lieBracketWithin_productSplit_apply
   have hProd₂ :
       HasFDerivWithinAt (fun p : E × E ↦ (V₂ p.1, W₂ p.2))
         ((fderivWithin 𝕜 V₂ s x).prodMap (fderivWithin 𝕜 W₂ t y)) (s ×ˢ t) (x, y) := by
-    simpa using HasFDerivWithinAt.prodMap (p := (x, y)) hV₂' hW₂'
+    simpa using! HasFDerivWithinAt.prodMap (p := (x, y)) hV₂' hW₂'
   have hProd₁ :
       HasFDerivWithinAt (fun p : E × E ↦ (V₁ p.1, W₁ p.2))
         ((fderivWithin 𝕜 V₁ s x).prodMap (fderivWithin 𝕜 W₁ t y)) (s ×ˢ t) (x, y) := by
-    simpa using HasFDerivWithinAt.prodMap (p := (x, y)) hV₁' hW₁'
+    simpa using! HasFDerivWithinAt.prodMap (p := (x, y)) hV₁' hW₁'
   simp [VectorField.lieBracketWithin_eq, hProd₂.fderivWithin (hs.prod ht),
     hProd₁.fderivWithin (hs.prod ht)]
 
@@ -467,7 +467,7 @@ private lemma mpullbackWithin_productSplit_apply_one
     -- The derivative of the product chart inverse splits into the derivatives on the two factors.
     rw [modelWithCornersSelf_prod, ← chartedSpaceSelf_prod, extChartAt_prod]
     simp only [PartialEquiv.prod_coe_symm, hRange]
-    simpa using
+    simpa using!
       (mfderivWithin_prodMap
         (I := 𝓘(𝕜, E)) (I' := 𝓘(𝕜, E)) (J := I) (J' := I)
         (s := Set.range I) (t := Set.range I)
@@ -600,12 +600,12 @@ private theorem productLieCoords_mlieBracket_split_apply_one
     -- The preferred product chart differentiates as the product of the factor charts.
     dsimp [r, φ, φG]
     rw [modelWithCornersSelf_prod, ← chartedSpaceSelf_prod]
-    convert
+    simpa using!
       (mfderiv_prodMap
         (I := I) (I' := I) (J := 𝓘(𝕜, E)) (J' := 𝓘(𝕜, E))
         (f := φG) (g := φG) (p := r)
         (mdifferentiableAt_extChartAt (I := I) (x := (1 : G)) (ChartedSpace.mem_chart_source (1 : G)))
-        (mdifferentiableAt_extChartAt (I := I) (x := (1 : G)) (ChartedSpace.mem_chart_source (1 : G)))) using 1
+        (mdifferentiableAt_extChartAt (I := I) (x := (1 : G)) (ChartedSpace.mem_chart_source (1 : G))))
   have hprod :
       VectorField.mlieBracket (I.prod I)
         (productSplitVectorField (I := I) X₁ Y₁)
@@ -622,7 +622,7 @@ private theorem productLieCoords_mlieBracket_split_apply_one
     simp only [VectorField.mlieBracket, VectorField.mlieBracketWithin_apply, Set.preimage_univ,
       Set.univ_inter, φ, φG, r] at hBracket ⊢
     rw [hBracket, hmfderiv']
-    simpa using
+    simpa using!
       (prodMap_inverse_apply
         (𝕜 := 𝕜)
         (E₁ := TangentSpace I (1 : G)) (E₂ := TangentSpace I (1 : G))
@@ -635,7 +635,7 @@ private theorem productLieCoords_mlieBracket_split_apply_one
         (u := (VectorField.lieBracketWithin 𝕜 U₁ U₂ (Set.range I) (φG (1 : G)),
           VectorField.lieBracketWithin 𝕜 V₁ V₂ (Set.range I) (φG (1 : G)))))
   -- Finally, `productLieCoords` just reads off the two tangent-space coordinates at the identity.
-  simpa [productLieCoords, r] using hprod
+  exact congrArg (productLieCoords (I := I) (G := G)) hprod
 
 /-- Helper for Problem 8-25: the invariant product field on `G × G` splits into the invariant
 fields of the two identity coordinates. -/
@@ -675,7 +675,7 @@ private theorem productLieCoords_bracket
   -- Rewrite the invariant product fields into split form and apply the restored 8-23 bridge.
   rw [GroupLieAlgebra.bracket_def]
   rw [productMulInvariantVectorField_eq_split, productMulInvariantVectorField_eq_split]
-  simpa [productLieCoords_right_inv] using
+  simpa [productLieCoords_right_inv] using!
     (productLieCoords_mlieBracket_split_apply_one
       (I := I)
       (X₁ := mulInvariantVectorField A₁) (X₂ := mulInvariantVectorField A₂)
@@ -724,7 +724,8 @@ private theorem contMDiffAt_productShear
       ContMDiffAt (I.prod I) I (minSmoothness 𝕜 3)
         (fun q : G × G ↦ q.1 * q.2) p := by
     simpa using (contMDiff_mul I (minSmoothness 𝕜 3)).contMDiffAt (x := p)
-  simpa [productShear] using hMul.prodMk (contMDiffAt_snd : ContMDiffAt (I.prod I) I _ Prod.snd p)
+  simpa [productShear] using!
+    hMul.prodMk (contMDiffAt_snd : ContMDiffAt (I.prod I) I _ Prod.snd p)
 
 /-- Helper for Problem 8-25: the unshear map is `C^(minSmoothness 𝕜 3)` at every point. -/
 private theorem contMDiffAt_productUnshear
@@ -737,8 +738,8 @@ private theorem contMDiffAt_productUnshear
     exact (contMDiff_inv I (minSmoothness 𝕜 3)).contMDiffAt.comp p contMDiffAt_snd
   have hFirst :
       ContMDiffAt (I.prod I) I (minSmoothness 𝕜 3) (fun q : G × G ↦ q.1 * q.2⁻¹) p := by
-    simpa using (contMDiffAt_fst : ContMDiffAt (I.prod I) I _ Prod.fst p).mul hInvSnd
-  simpa [productUnshear] using
+    simpa using! (contMDiffAt_fst : ContMDiffAt (I.prod I) I _ Prod.fst p).mul hInvSnd
+  simpa [productUnshear] using!
     hFirst.prodMk (contMDiffAt_snd : ContMDiffAt (I.prod I) I _ Prod.snd p)
 
 /-- Helper for Problem 8-25: product coordinates turn the derivative of a product-valued map at
@@ -767,7 +768,7 @@ private lemma productLieCoords_mfderiv_prodMk_apply
       productLieCoords (I := I) (G := G)
         (F (productLieCoordsInv (I := I) (G := G) (A, B))))
     hderiv
-  simpa [productLieCoords, productLieCoordsInv] using happly
+  simpa [productLieCoords, productLieCoordsInv] using! happly
 
 /-- Helper for Problem 8-25: the derivative of the shear map at `((1, 1))` acts on product Lie
 coordinates by `(A, B) ↦ (A + B, B)`. -/
@@ -802,13 +803,13 @@ private theorem productShearMfderivAtIdentity_apply
                 (productLieCoordsInv (I := I) (G := G) (A, B)),
               mfderiv (I := I.prod I) (I' := I) Prod.snd ((1 : G), (1 : G))
                 (productLieCoordsInv (I := I) (G := G) (A, B))) by
-            simpa [productShear] using
+            simpa [productShear] using!
               productLieCoords_mfderiv_prodMk_apply (I := I) (G := G) hMul mdifferentiableAt_snd A B]
       ext
-      · simpa using mfderivMulAtIdentityPair_apply (I := I) A B
+      · simpa using! mfderivMulAtIdentityPair_apply (I := I) A B
       · rw [mfderiv_snd]
         have hright := congrArg Prod.snd (productLieCoords_right_inv (I := I) (G := G) (A, B))
-        simpa [productLieCoords] using hright
+        simpa [productLieCoords] using! hright
 
 /-- Helper for Problem 8-25: the derivatives of `productShear` and `productUnshear` are inverse
 continuous linear maps at corresponding points. -/
@@ -898,7 +899,7 @@ private theorem productUnshearMfderivAtIdentity_apply
           ((mfderiv (I := I.prod I) (I' := I.prod I) productShear ((1 : G), (1 : G)))
             (productLieCoordsInv (I := I) (G := G) (A - B, B))) =
         productLieCoordsInv (I := I) (G := G) (A - B, B) := by
-    simpa [ContinuousLinearMap.comp_apply] using hCompApply
+    simpa [ContinuousLinearMap.comp_apply] using! hCompApply
   calc
     mfderiv (I := I.prod I) (I' := I.prod I) productUnshear ((1 : G), (1 : G))
         (productLieCoordsInv (I := I) (G := G) (A, B))
@@ -1015,7 +1016,7 @@ private theorem mpullback_productShear_mulInvariantVectorField
     have hShear_e : productShear e = e := by
       simp [e, productShear]
     have hValueAtIdentity : mulInvariantVectorField V e = V := by
-      simpa [e] using
+      simpa [e] using!
         (mulInvariantVectorField_apply_one (I := I.prod I) (G := G × G) V)
     rw [VectorField.mpullback_apply, hShear_e, hValueAtIdentity]
     apply (hInv.inverse_apply_eq).2
@@ -1027,7 +1028,7 @@ private theorem mpullback_productShear_mulInvariantVectorField
       = mulInvariantVectorField
           ((VectorField.mpullback (I.prod I) (I.prod I) productShear
             (mulInvariantVectorField V)) e) := by
-              simpa [e] using
+              simpa [e] using!
                 (left_invariant_rough_vector_field_eq_mulInvariantVectorField
                   (I := I.prod I) (G := G × G)
                   (X := VectorField.mpullback (I.prod I) (I.prod I) productShear
@@ -1083,7 +1084,7 @@ private theorem productShearBracketApplyOne_eq_zero
             (mulInvariantVectorField (productLieCoordsInv (I := I) (G := G) (0, Y))) e) =
           (0, 0) := by
       -- The product bracket is componentwise, so the mixed coordinates vanish.
-      simpa [GroupLieAlgebra.bracket_def] using
+      simpa [GroupLieAlgebra.bracket_def] using!
         (productLieCoords_bracket (I := I) (G := G) X 0 0 Y)
     have hZero :
         VectorField.mlieBracket (I.prod I)
@@ -1091,7 +1092,7 @@ private theorem productShearBracketApplyOne_eq_zero
           (mulInvariantVectorField (productLieCoordsInv (I := I) (G := G) (0, Y))) e = 0 := by
       -- Convert the zero coordinate computation back to the original tangent vector.
       have := congrArg (productLieCoordsInv (I := I) (G := G)) hCoords
-      simpa [productLieCoords_left_inv, productLieCoordsInv, e] using this
+      simpa [productLieCoords_left_inv, productLieCoordsInv, e] using! this
     simpa [sub_eq_add_neg] using hZero
   have hInv :
       (mfderiv (I := I.prod I) (I' := I.prod I) productShear e).IsInvertible :=
@@ -1112,13 +1113,13 @@ instance instIsLieAbelian_of_commGroup :
     have hZero :
         ⁅productLieCoordsInv (I := I) (G := G) (X, 0),
           productLieCoordsInv (I := I) (G := G) (Y, Y)⁆ = 0 := by
-      simpa [GroupLieAlgebra.bracket_def] using
+      simpa [GroupLieAlgebra.bracket_def] using!
         productShearBracketApplyOne_eq_zero (I := I) (G := G) X Y
     have hCoords :
         productLieCoords (I := I) (G := G)
           ⁅productLieCoordsInv (I := I) (G := G) (X, 0),
             productLieCoordsInv (I := I) (G := G) (Y, Y)⁆ = (0, 0) := by
-      simpa [productLieCoords] using
+      simpa [productLieCoords] using!
         congrArg (productLieCoords (I := I) (G := G)) hZero
     have hPair : (⁅X, Y⁆, (0 : GroupLieAlgebra I G)) = (0, 0) := by
       -- In product coordinates, the second component is `⁅0, Y⁆ = 0`.
@@ -1153,9 +1154,9 @@ instance instIsLieAbelian_of_addCommGroup :
       simpa [Multiplicative] using (inferInstance : IsManifold I (minSmoothness 𝕜 3) G)
     letI : LieGroup I (minSmoothness 𝕜 3) (Multiplicative G) := by
       refine { contMDiff_mul := ?_, contMDiff_inv := ?_ }
-      · simpa [Multiplicative] using
+      · simpa [Multiplicative] using!
           (contMDiff_add I (n := minSmoothness 𝕜 3) (G := G))
-      simpa [Multiplicative] using
+      simpa [Multiplicative] using!
         (LieAddGroup.contMDiff_neg (I := I) (n := minSmoothness 𝕜 3) (G := G))
     simpa using
       (GroupLieAlgebra.instIsLieAbelian_of_commGroup

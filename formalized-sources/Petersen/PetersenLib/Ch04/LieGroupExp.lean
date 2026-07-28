@@ -245,6 +245,6 @@ theorem lieAlgebraExpMapUnits_adjointAction (g : Rˣ) (X : R) (t : ℝ) :
     lieAlgebraExpMapUnits (adjointActionOfLieGroup g X) t
       = g * lieAlgebraExpMapUnits X t * g⁻¹ := by
   refine Units.ext ?_
-  simpa using adjointExpRelation g X t
+  simpa using! adjointExpRelation g X t
 
 end PetersenLib

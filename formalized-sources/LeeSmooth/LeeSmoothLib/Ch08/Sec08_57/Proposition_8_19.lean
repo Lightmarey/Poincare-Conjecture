@@ -37,7 +37,7 @@ by
   refine ⟨e, ?_⟩
   simpa [e] using
     (F.symm.mfderivToContinuousLinearEquiv_coe (by simp) :
-      ↑(F.symm.mfderivToContinuousLinearEquiv (by simp) q) = mfderiv J I F.symm q).symm
+      ↑(F.symm.mfderivToContinuousLinearEquiv (by simp) q) = mfderiv J I F.symm q)
 
 /- Lee's pushforward vector field `F_* X` is `F`-related to `X`. -/
 omit [IsManifold I (∞ : ℕ∞ω) M] [IsManifold J (∞ : ℕ∞ω) N] in
@@ -87,11 +87,13 @@ theorem contMDiff_pushforward_of_diffeomorph
     funext q
     have hrelated :=
       VectorField.f_related_apply (f_related_pushforward_of_diffeomorph F X) (F.symm q)
-    refine Bundle.TotalSpace.ext (F.apply_symm_apply q) ?_
-    refine heq_of_eq ?_
-    convert hrelated using 1
-    simpa using
-      congrArg (((F _* X) : ∀ q : N, TangentSpace J q)) (F.apply_symm_apply q).symm
+    change
+      (Bundle.TotalSpace.mk (F (F.symm q))
+          ((mfderiv I J F (F.symm q)) (X (F.symm q))) : TangentBundle J N) =
+        Bundle.TotalSpace.mk q (((F _* X) : ∀ q : N, TangentSpace J q) q)
+    rw [F.apply_symm_apply q] at hrelated ⊢
+    exact congrArg
+      (fun v : TangentSpace J q ↦ (Bundle.TotalSpace.mk q v : TangentBundle J N)) hrelated
   exact hcomp.congr fun q ↦ (congrFun hpush q).symm
 
 omit [IsManifold I (∞ : ℕ∞ω) M] [IsManifold J (∞ : ℕ∞ω) N] in

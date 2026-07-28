@@ -121,7 +121,13 @@ theorem hasDerivAt_chartMetricInner_quadratic (g : RiemannianMetric I M) (α : M
     have h := ((hasDerivAt_id (0 : ℝ)).mul (hasDerivAt_id (0 : ℝ))).mul_const
       (chartMetricInner (I := I) g α y d d)
     simpa using h
-  simpa using h1.add h2
+  change HasDerivAt
+    ((fun s : ℝ => chartMetricInner (I := I) g α y a a
+        + s * (chartMetricInner (I := I) g α y a d
+          + chartMetricInner (I := I) g α y d a))
+      + fun s : ℝ => s * s * chartMetricInner (I := I) g α y d d)
+    (chartMetricInner (I := I) g α y a d + chartMetricInner (I := I) g α y d a) 0
+  simpa only [add_zero] using h1.add h2
 
 end ChartMetricInnerAlgebra
 
@@ -487,7 +493,16 @@ theorem gauss_surface_computation (g : RiemannianMetric I M) (p : M)
     intro t ht
     have h := (hmain t ht).sub
       (hasDerivAt_mul_const (chartMetricInner (I := I) g p (extChartAt I p p) v w))
-    simpa using h
+    simpa only [show (fun τ : ℝ =>
+        chartMetricInner (I := I) g p (c ((τ, (0 : ℝ)) : ℝ × ℝ))
+          (Q ((τ, (0 : ℝ)) : ℝ × ℝ)) (P ((τ, (0 : ℝ)) : ℝ × ℝ))
+        - τ * chartMetricInner (I := I) g p (extChartAt I p p) v w)
+      = ((fun τ : ℝ =>
+          chartMetricInner (I := I) g p (c ((τ, (0 : ℝ)) : ℝ × ℝ))
+            (Q ((τ, (0 : ℝ)) : ℝ × ℝ)) (P ((τ, (0 : ℝ)) : ℝ × ℝ)))
+        - fun τ : ℝ =>
+          τ * chartMetricInner (I := I) g p (extChartAt I p p) v w) by rfl,
+      sub_self] using h
   have hFcont : ContinuousOn (fun τ : ℝ =>
       chartMetricInner (I := I) g p (c ((τ, (0 : ℝ)) : ℝ × ℝ))
         (Q ((τ, (0 : ℝ)) : ℝ × ℝ)) (P ((τ, (0 : ℝ)) : ℝ × ℝ))

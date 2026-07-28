@@ -3,6 +3,7 @@ import DoCarmoLib.Riemannian.Jacobi.MetricOrthoBasis
 import DoCarmoLib.Riemannian.Jacobi.JacobiConstantCurvatureConjugate
 import DoCarmoLib.Riemannian.Jacobi.CartanExpNormTransfer
 import DoCarmoLib.Riemannian.Jacobi.CartanExpNormTransferGeneral
+import DoCarmoLib.Riemannian.Jacobi.CartanChartWindow
 
 /-!
 # do Carmo Ch. 8, §2 — E. Cartan's frames and `φ_t`, as an explicit construction
@@ -443,5 +444,84 @@ theorem metricInner_mfderiv_eq_of_semiconjugacy_of_curvatureFormAt_of_isLocalDif
     (not_isConjugatePointAt_globalGeodesic_of_isLocalDiffeomorphAt g hg p hnormal)
     (not_isConjugatePointAt_globalGeodesic_of_isLocalDiffeomorphAt g' hg' p' hnormal')
     f hfd hsemi u u'
+
+/-! ### Supplying the common outer chart window -/
+
+/-- **Math.** **The variable-curvature transfer from chart containment on `[0,1]`.**
+Suppose each of the two radial geodesics stays in one fixed chart source on `[0,1]`. Then
+there is a common outer window `[a',b']`, with `a' < 0 < 1 < b'`, on which both chart
+containment statements hold. On that window, E. Cartan's curvature-matching hypothesis for
+`cartanPhi` implies that the semiconjugacy preserves the metric at the endpoint.
+
+The common window is obtained by widening the two chart-source preimages separately with
+`exists_window_of_mem_chartAt_source`, then intersecting the resulting intervals. The final
+implication is the assembled transfer
+`metricInner_mfderiv_eq_of_semiconjugacy_of_curvatureFormAt_of_isLocalDiffeomorphAt`.
+
+This theorem deliberately assumes the two fixed charts. It connects the topological widening
+result to the Cartan transfer, but does not assert the generally false claim that an arbitrary
+compact geodesic is contained in one chart; the finite chart-chain alternative remains separate.
+-/
+theorem exists_common_chart_window_metricInner_mfderiv_eq_of_semiconjugacy_of_curvatureFormAt_of_isLocalDiffeomorphAt
+    (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M]
+    (g' : RiemannianMetric I' M') (hg' : g'.IsRiemannianDist) [CompleteSpace M']
+    (α : M) (α' : M') (p : M) (p' : M') (v : E)
+    (i : E ≃L[ℝ] E)
+    (hi : ∀ u w : E, g'.metricInner p' (i u) (i w) = g.metricInner p u w)
+    (hsrc01 : ∀ t ∈ Icc (0 : ℝ) 1,
+      globalGeodesic (I := I) g hg p v t ∈ (chartAt H α).source)
+    (hsrcbar01 : ∀ t ∈ Icc (0 : ℝ) 1,
+      globalGeodesic (I := I') g' hg' p' (i v) t ∈ (chartAt H' α').source)
+    (hnormal : IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞
+      (fun w : E => expMapGlobal (I := I) g hg p w) v)
+    (hnormal' : IsLocalDiffeomorphAt 𝓘(ℝ, E) I' ∞
+      (fun w : E => expMapGlobal (I := I') g' hg' p' w) (i v))
+    (f : M → M')
+    (hfd : MDifferentiableAt I I' f (expMapGlobal (I := I) g hg p v))
+    (hsemi : ∀ᶠ w : E in nhds v, f (expMapGlobal (I := I) g hg p w)
+      = expMapGlobal (I := I') g' hg' p' (i w))
+    (u u' : TangentSpace I (expMapGlobal (I := I) g hg p v)) :
+    ∃ (a' b' : ℝ) (ha' : a' < 0) (hb' : (1 : ℝ) < b'),
+      (∀ t ∈ Icc a' b',
+        globalGeodesic (I := I) g hg p v t ∈ (chartAt H α).source) ∧
+      (∀ t ∈ Icc a' b',
+        globalGeodesic (I := I') g' hg' p' (i v) t ∈ (chartAt H' α').source) ∧
+      ((∀ t ∈ Icc a' b',
+        ∀ x y z w : TangentSpace I (globalGeodesic (I := I) g hg p v t),
+        g.leviCivitaConnection.curvatureFormAt g
+            (globalGeodesic (I := I) g hg p v t) x y z w
+          = g'.leviCivitaConnection.curvatureFormAt g'
+              (globalGeodesic (I := I') g' hg' p' (i v) t)
+              (cartanPhi (E := E) (I := I) (I' := I') g hg g' hg' p p' v i ha' hb' t x)
+              (cartanPhi (E := E) (I := I) (I' := I') g hg g' hg' p p' v i ha' hb' t y)
+              (cartanPhi (E := E) (I := I) (I' := I') g hg g' hg' p p' v i ha' hb' t z)
+              (cartanPhi (E := E) (I := I) (I' := I') g hg g' hg' p p' v i ha' hb' t w)) →
+        g.metricInner (expMapGlobal (I := I) g hg p v) u u'
+          = g'.metricInner (f (expMapGlobal (I := I) g hg p v))
+              (mfderiv I I' f (expMapGlobal (I := I) g hg p v) u)
+              (mfderiv I I' f (expMapGlobal (I := I) g hg p v) u')) := by
+  obtain ⟨a, b, ha, hb, hsrc⟩ :=
+    exists_window_of_mem_chartAt_source (continuous_globalGeodesic g hg p v) α hsrc01
+  obtain ⟨abar, bbar, habar, hbbar, hsrcbar⟩ :=
+    exists_window_of_mem_chartAt_source (continuous_globalGeodesic g' hg' p' (i v)) α'
+      hsrcbar01
+  let a' := max a abar
+  let b' := min b bbar
+  have ha' : a' < 0 := max_lt ha habar
+  have hb' : (1 : ℝ) < b' := lt_min hb hbbar
+  have hsrc' : ∀ t ∈ Icc a' b',
+      globalGeodesic (I := I) g hg p v t ∈ (chartAt H α).source := by
+    intro t ht
+    exact hsrc t ⟨le_trans (le_max_left _ _) ht.1, le_trans ht.2 (min_le_left _ _)⟩
+  have hsrcbar' : ∀ t ∈ Icc a' b',
+      globalGeodesic (I := I') g' hg' p' (i v) t ∈ (chartAt H' α').source := by
+    intro t ht
+    exact hsrcbar t
+      ⟨le_trans (le_max_right _ _) ht.1, le_trans ht.2 (min_le_right _ _)⟩
+  refine ⟨a', b', ha', hb', hsrc', hsrcbar', fun hcurv => ?_⟩
+  exact
+    metricInner_mfderiv_eq_of_semiconjugacy_of_curvatureFormAt_of_isLocalDiffeomorphAt
+      g hg g' hg' α α' p p' v i hi ha' hb' hsrc' hsrcbar' hcurv hnormal hnormal'
+      f hfd hsemi u u'
 
 end Riemannian.Jacobi

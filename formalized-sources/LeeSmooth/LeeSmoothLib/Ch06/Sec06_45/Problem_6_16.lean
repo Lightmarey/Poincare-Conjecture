@@ -271,13 +271,13 @@ lemma continuousAt_sliceMfderivInCoordinates
         ContMDiff ((IS.prod I).prod I) (IS.prod I) ∞
           (fun q : (S × N) × N ↦ (q.1.1, q.2)) :=
       contMDiff_fst.fst.prodMk contMDiff_snd
-    simpa [f, Function.comp, Function.uncurry] using hF.contMDiff.comp hProj
+    simpa [f, Function.comp, Function.uncurry] using! hF.contMDiff.comp hProj
   have hCoords :
       ContMDiffAt (IS.prod I) 𝓘(𝕜, E →L[𝕜] E') 0
         (inTangentCoordinates I J Prod.snd (Function.uncurry F)
           (fun p ↦ mfderiv I J (F p.1) p.2) p0) p0 := by
     -- `ContMDiffAt.mfderiv` records continuity of the fixed-coordinate derivative family.
-    simpa [f, Function.uncurry] using
+    simpa [f, Function.uncurry] using!
       hSmooth.contMDiffAt.mfderiv f Prod.snd contMDiffAt_snd
         (by simp : (0 : WithTop ℕ∞) + 1 ≤ ∞)
   exact hCoords.continuousAt
@@ -319,11 +319,11 @@ lemma injective_sliceMfderiv_iff_inTangentCoordinates
   calc
     Function.Injective (mfderiv I J (F p.1) p.2) ↔
         Function.Injective (B.comp (mfderiv I J (F p.1) p.2)) := by
-          simpa [B] using
+          simpa [B] using!
             (Function.Injective.of_comp_iff hB.bijective.1
               (mfderiv I J (F p.1) p.2)).symm
     _ ↔ Function.Injective ((B.comp (mfderiv I J (F p.1) p.2)).comp C) := by
-          simpa [C] using
+          simpa [C] using!
             (Function.Injective.of_comp_iff'
               (B.comp (mfderiv I J (F p.1) p.2)) hC.bijective).symm
 
@@ -363,11 +363,11 @@ lemma surjective_sliceMfderiv_iff_inTangentCoordinates
   calc
     Function.Surjective (mfderiv I J (F p.1) p.2) ↔
         Function.Surjective (B.comp (mfderiv I J (F p.1) p.2)) := by
-          simpa [B] using
+          simpa [B] using!
             (Function.Surjective.of_comp_iff' hB.bijective
               (mfderiv I J (F p.1) p.2)).symm
     _ ↔ Function.Surjective ((B.comp (mfderiv I J (F p.1) p.2)).comp C) := by
-          simpa [C] using
+          simpa [C] using!
             (Function.Surjective.of_comp_iff
               (B.comp (mfderiv I J (F p.1) p.2)) hC.bijective.2).symm
 
@@ -683,7 +683,7 @@ lemma surjectiveComp_iff_range_sup_ker_eq_top
   have hdom :
       Function.Surjective (B.toLinearMap.domRestrict A.range) ↔
         A.range ⊔ B.ker = ⊤ := by
-    simpa using (LinearMap.surjective_domRestrict_iff hB)
+    simpa only [codisjoint_iff] using (LinearMap.surjective_domRestrict_iff hB)
   constructor
   · intro hComp
     -- A preimage for `B ∘ A` immediately gives a preimage for the domain restriction of `B`.
@@ -774,7 +774,7 @@ lemma chartExtend_mfderiv_left_inverse
       MDifferentiableAt J 𝓘(𝕜, E') (e.extend J) p := by
     -- Maximal-atlas charts are differentiable at every source point.
     exact
-      (contMDiffAt_extend he_one hp).mdifferentiableAt
+      (OpenPartialHomeomorph.contMDiffAt_extend he_one hp).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hrange :
       MDifferentiableWithinAt 𝓘(𝕜, E') J (e.extend J).symm (Set.range J) (e.extend J p) :=
@@ -823,10 +823,12 @@ lemma chartExtend_mfderiv_injective
     simpa [Linv] using congrArg Linv hw
   have hw₁ :
       ((Linv.comp (mfderiv J 𝓘(𝕜, E') (e.extend J) p)) w₁) = w₁ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₁) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₁) hleft
   have hw₂ :
       ((Linv.comp (mfderiv J 𝓘(𝕜, E') (e.extend J) p)) w₂) = w₂ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₂) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₂) hleft
   have hw₁' : w₁ = Linv (mfderiv J 𝓘(𝕜, E') (e.extend J) p w₁) := by
     simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using hw₁.symm
   have hw₂' : Linv (mfderiv J 𝓘(𝕜, E') (e.extend J) p w₂) = w₂ := by
@@ -956,8 +958,16 @@ lemma immersionComplementCoordinates_levelSetOn
       (hImm.domChart.extend JX).map_source hqDomExt
     -- On points of the submanifold, the complement coordinates in the immersion normal form vanish.
     have hcoords := congrArg tail (hImm.writtenInCharts hqTarget)
-    simpa [Φ, tail, Function.comp, ContinuousLinearMap.comp_apply,
-      OpenPartialHomeomorph.extend_coe, OpenPartialHomeomorph.extend_coe_symm, hqDom] using hcoords
+    simp only [Function.comp_apply] at hcoords
+    rw [(hImm.domChart.extend JX).left_inv hqDomExt] at hcoords
+    have hzero :
+        tail (hImm.equiv ((hImm.domChart.extend JX) qX, (0 : K))) = 0 := by
+      change
+        (hImm.equiv.symm
+          (hImm.equiv ((hImm.domChart.extend JX) qX, (0 : K)))).2 = 0
+      rw [hImm.equiv.symm_apply_apply]
+    change tail ((hImm.codChart.extend J) q) = 0
+    simpa [qX] using hcoords.trans hzero
   have hMem_of_phi_eq_zero :
       ∀ {q : M}, q ∈ U → Φ q = 0 → q ∈ X := by
     intro q hqU hqPhi
@@ -971,7 +981,7 @@ lemma immersionComplementCoordinates_levelSetOn
     have hqXDom :
         qX ∈ hImm.domChart.source := by
       have hqXDomExt : qX ∈ (hImm.domChart.extend JX).source := by
-        simpa [OpenPartialHomeomorph.extend_source] using
+        simpa [OpenPartialHomeomorph.extend_source] using!
           (hImm.domChart.extend JX).map_target hqFrontTarget
       simpa [hImm.domChart.extend_source] using hqXDomExt
     have hqXCod : ((qX : X) : M) ∈ hImm.codChart.source :=
@@ -1002,7 +1012,7 @@ lemma immersionComplementCoordinates_levelSetOn
           hImm.equiv.symm ((hImm.codChart.extend J) q) = (qFront, (0 : K)) := by
         apply Prod.ext
         · rfl
-        · simpa [Φ, qFront, tail, front, Function.comp, ContinuousLinearMap.comp_apply] using hqPhi
+        · simpa [Φ, qFront, tail, front, Function.comp, ContinuousLinearMap.comp_apply] using! hqPhi
       calc
         (hImm.codChart.extend J) q =
             hImm.equiv (hImm.equiv.symm ((hImm.codChart.extend J) q)) := by
@@ -1031,7 +1041,8 @@ lemma immersionComplementCoordinates_levelSetOn
   · -- The complement-coordinate map is a linear projection of the ambient chart coordinates.
     have hChartSmooth :
         ContMDiffOn J 𝓘(𝕜, E') ∞ (hImm.codChart.extend J) U := by
-      exact (contMDiffOn_extend hImm.codChart_mem_maximalAtlas).mono hU_cod
+      exact (OpenPartialHomeomorph.contMDiffOn_extend
+        hImm.codChart_mem_maximalAtlas).mono hU_cod
     simpa [Φ, Function.comp] using tail.contDiff.contMDiff.comp_contMDiffOn hChartSmooth
   · intro p q hpX hpU hqU
     have hpZero : Φ p = 0 := hPhi_eq_zero_of_mem hpX hpU
@@ -1045,7 +1056,8 @@ lemma immersionComplementCoordinates_levelSetOn
     have hChartDiff :
         MDifferentiableAt J 𝓘(𝕜, E') (hImm.codChart.extend J) p := by
       exact
-        (contMDiffAt_extend hImm.codChart_mem_maximalAtlas hpCod).mdifferentiableAt
+        (OpenPartialHomeomorph.contMDiffAt_extend
+          hImm.codChart_mem_maximalAtlas hpCod).mdifferentiableAt
           (by simp : (∞ : ℕ∞ω) ≠ 0)
     have hTailDiff :
         MDifferentiableAt 𝓘(𝕜, E') 𝓘(𝕜, K) tail ((hImm.codChart.extend J) p) := by
@@ -1054,7 +1066,8 @@ lemma immersionComplementCoordinates_levelSetOn
     have hTailSurj : Function.Surjective tail := by
       intro k
       refine ⟨hImm.equiv (0, k), ?_⟩
-      simp [tail]
+      change (hImm.equiv.symm (hImm.equiv (0, k))).2 = k
+      rw [hImm.equiv.symm_apply_apply]
     have hChartSurj :
         Function.Surjective (mfderiv J 𝓘(𝕜, E') (hImm.codChart.extend J) p) :=
       chartExtend_mfderiv_surjective hImm.codChart_mem_maximalAtlas hpCod
@@ -1219,7 +1232,7 @@ lemma definingComposite_isSmoothFamilyOnProductPatch
   have hRestrictF :
       ContMDiff (IS.prod I) J ∞ (fun p : Us × Oy ↦ F p.1.1 p.2.1) := by
     -- Restrict the original smooth family to the chosen product patch.
-    simpa [Function.uncurry] using hF.contMDiff.comp hProdIncl
+    simpa [Function.uncurry] using! hF.contMDiff.comp hProdIncl
   have hCodRestrict :
       ContMDiff (IS.prod I) J ∞
         (fun p : Us × Oy ↦ (⟨F p.1.1 p.2.1, hImg p⟩ : Uo)) := by
@@ -1244,7 +1257,7 @@ lemma definingComposite_isSmoothFamilyOnProductPatch
   change
     ContMDiff (IS.prod I) 𝓘(𝕜, K) ∞
       (fun p : Us × Oy ↦ Φ (F p.1.1 p.2.1))
-  simpa [Function.comp] using hDefRestrict.comp hCodRestrict
+  simpa [Function.comp] using! hDefRestrict.comp hCodRestrict
 
 omit [BoundarylessManifold I N] [BoundarylessManifold J M] in
 /-- Helper for compact-source stability: on the source of a local defining map, the derivative of the slice
@@ -1307,7 +1320,7 @@ lemma surjective_restrictSliceCompositeMfderiv_iff
   have hAmbientDiff :
       MDifferentiableAt I 𝓘(𝕜, K) (fun z : N ↦ Φ (F s z)) y.1 := by
     -- Differentiate the ambient slice composite directly by the chain rule.
-    simpa [Function.comp] using hΦDiff.comp y.1 hSliceDiff
+    simpa [Function.comp] using! hΦDiff.comp y.1 hSliceDiff
   have hSubtypeDiff :
       MDifferentiableAt I I (Subtype.val : Oy → N) y := by
     -- The open-subset inclusion is smooth, hence differentiable.
@@ -1356,7 +1369,7 @@ lemma surjective_restrictSliceCompositeMfderiv_iff
     simpa [A, Φopen, e] using hinv
   -- Surjectivity is unchanged after composing on the right with the bijective inclusion
   -- derivative.
-  simpa [hComp, A, B] using
+  simpa [hComp, A, B] using!
     (Function.Surjective.of_comp_iff B hAInv.bijective.2)
 
 omit [BoundarylessManifold I N] [BoundarylessManifold J M] in
@@ -1527,7 +1540,7 @@ lemma isOpen_setOf_sliceTransverseAt
       have hOpen : IsOpen (Xᶜ) := hXclosed.isOpen_compl
       have hx0' : F p0.1 p0.2 ∈ Xᶜ := by
         simpa using hx0
-      simpa [Function.uncurry, Set.mem_setOf_eq] using
+      simpa [Function.uncurry, Set.mem_setOf_eq] using!
         hCont.continuousAt.preimage_mem_nhds (hOpen.mem_nhds hx0')
     refine Filter.mem_of_superset hOutside ?_
     intro p hp
@@ -1566,17 +1579,17 @@ lemma isClosed_setOf_exists_eqOnCompacts
   have hLeftCont :
       Continuous fun q : S × (K × L) ↦ F q.1 ((q.2.1 : K) : N) := by
     -- Compose the smooth family with the left witness projection.
-    simpa [Function.comp, Function.uncurry] using hUncurryCont.comp hLeftArg
+    simpa [Function.comp, Function.uncurry] using! hUncurryCont.comp hLeftArg
   have hRightCont :
       Continuous fun q : S × (K × L) ↦ F q.1 ((q.2.2 : L) : N) := by
     -- Compose the smooth family with the right witness projection.
-    simpa [Function.comp, Function.uncurry] using hUncurryCont.comp hRightArg
+    simpa [Function.comp, Function.uncurry] using! hUncurryCont.comp hRightArg
   have hWitnessesClosed : IsClosed witnesses := by
     -- Equality in the Hausdorff target is the preimage of the diagonal under the paired evaluation.
     let evalPair : S × (K × L) → M × M :=
       fun q ↦ (F q.1 ((q.2.1 : K) : N), F q.1 ((q.2.2 : L) : N))
     have hEvalPair : Continuous evalPair := hLeftCont.prodMk hRightCont
-    simpa [witnesses, evalPair] using isClosed_diagonal.preimage hEvalPair
+    simpa [witnesses, evalPair] using! isClosed_diagonal.preimage hEvalPair
   have hImageClosed : IsClosed (Prod.fst '' witnesses) :=
     isClosedMap_fst_of_compactSpace _ hWitnessesClosed
   have hImageEq :
@@ -1606,7 +1619,8 @@ lemma chartedSpace_locallyConnectedSpace (J : ModelWithCorners ℝ E' H') :
     LocallyConnectedSpace M := by
   -- First transfer local path connectedness from the convex chart-model range to the chart model.
   letI : LocallyConnectedSpace H' := by
-    letI : LocPathConnectedSpace (Set.range J) := J.convex_range.locPathConnectedSpace
+    letI : LocallyPathConnectedSpace (Set.range J) :=
+      J.convex_range.locallyPathConnectedSpace
     let e : H' ≃ₜ Set.range J := J.isClosedEmbedding.toHomeomorph
     exact e.locallyConnectedSpace
   -- Then push the local connectedness through the manifold atlas.
@@ -1668,16 +1682,16 @@ lemma isClosed_setOf_exists_eqOnCompactPairs
   have hLeftCont :
       Continuous fun r : S × K ↦ F r.1 ((r.2 : N × N).1) := by
     -- Compose the family evaluation with the first compact-pair projection.
-    simpa [Function.comp, Function.uncurry] using hUncurryCont.comp hLeftArg
+    simpa [Function.comp, Function.uncurry] using! hUncurryCont.comp hLeftArg
   have hRightCont :
       Continuous fun r : S × K ↦ F r.1 ((r.2 : N × N).2) := by
     -- Compose the family evaluation with the second compact-pair projection.
-    simpa [Function.comp, Function.uncurry] using hUncurryCont.comp hRightArg
+    simpa [Function.comp, Function.uncurry] using! hUncurryCont.comp hRightArg
   have hWitnessesClosed : IsClosed witnesses := by
     -- Equality in the Hausdorff target is the diagonal preimage of the paired evaluation map.
     let evalPair : S × K → M × M := fun r ↦ (F r.1 ((r.2 : N × N).1), F r.1 ((r.2 : N × N).2))
     have hEvalPair : Continuous evalPair := hLeftCont.prodMk hRightCont
-    simpa [witnesses, evalPair] using isClosed_diagonal.preimage hEvalPair
+    simpa [witnesses, evalPair] using! isClosed_diagonal.preimage hEvalPair
   have hImageClosed : IsClosed (Prod.fst '' witnesses) :=
     isClosedMap_fst_of_compactSpace _ hWitnessesClosed
   have hImageEq :
@@ -1765,7 +1779,7 @@ lemma parametricGraphMfderivInjective_of_sliceMfderivInjective
         (mfderiv (IS.prod I) IS Prod.fst (s, x)).prod
           (mfderiv (IS.prod I) J (Function.uncurry F) (s, x)) := by
     -- Differentiate the graph into its parameter part and family-value part.
-    simpa [Γ] using
+    simpa [Γ] using!
       (mfderiv_prodMk
         mdifferentiableAt_fst
         (hF.contMDiff.mdifferentiableAt (by simp : (∞ : ℕ∞ω) ≠ 0)))
@@ -1811,7 +1825,7 @@ lemma localSliceInjectivePatch_of_sliceMfderivInjective
   let Γ : S × N → S × M := fun p ↦ (p.1, F p.1 p.2)
   have hΓCont : ContMDiff (IS.prod I) (IS.prod J) ∞ Γ := by
     -- The graph is the pair of the parameter projection and the uncurried family.
-    simpa [Γ] using contMDiff_fst.prodMk hF.contMDiff
+    simpa [Γ] using! contMDiff_fst.prodMk hF.contMDiff
   let V : TopologicalSpace.Opens (S × N) :=
     ⟨{p : S × N | Function.Injective (mfderiv I J (F p.1) p.2)},
       isOpen_setOf_sliceInjectiveMfderiv hF⟩
@@ -2044,7 +2058,7 @@ lemma surjectiveSlice_near_s0_of_diffeomorphBase
     -- Each chosen representative stays in its connected component under a small parameter change.
     have hUncurryCont : Continuous (Function.uncurry F) := hF.contMDiff.continuous
     have hCont : Continuous fun s : S ↦ F s (sample c) := by
-      simpa [Function.comp, Function.uncurry, sample] using
+      simpa [Function.comp, Function.uncurry, sample] using!
         hUncurryCont.comp (continuous_id.prodMk continuous_const)
     simpa [Ucomp] using
       (show IsOpen (connectedComponent (rep c)) from isOpen_connectedComponent).preimage hCont
@@ -2122,7 +2136,7 @@ lemma isSmoothEmbedding_of_mem_diffeomorphRange
     ⟨(Manifold.is_immersion_iff_forall_injective_mfderiv Φ.contMDiff_toFun).2 ?_,
       Φ.toHomeomorph.isEmbedding⟩
   intro x
-  simpa using (Φ.mfderivToContinuousLinearEquiv (by simp) x).injective
+  simpa using! (Φ.mfderivToContinuousLinearEquiv (by simp) x).injective
 
 omit [BoundarylessManifold I N] [BoundarylessManifold J M] in
 /-- Helper lemma: near a parameter where the slice is a diffeomorphism, nearby slices

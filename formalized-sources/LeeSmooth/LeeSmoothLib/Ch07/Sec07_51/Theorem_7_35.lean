@@ -154,8 +154,8 @@ theorem subtype_isEmbedding_of_isClosed (S : LieSubgroupI)
   have hClosedEmb :
       Topology.IsEmbedding (Subtype.val : closedCarrierSubgroup I S hS_closed → G) :=
     hS_closed.isClosedEmbedding_subtypeVal.isEmbedding
-  simpa [subtypeVal_factor_through_closedCarrier] using
-    hClosedEmb.comp hFactorOpenEmb.isEmbedding
+  rw [subtypeVal_factor_through_closedCarrier I S hS_closed]
+  exact hClosedEmb.comp hFactorOpenEmb.isEmbedding
 
 /-- Helper for Theorem 7.35: every Lie group is boundaryless, because a left translation moves one
 interior chart point to any prescribed point. -/
@@ -287,7 +287,7 @@ theorem contMDiff_toSubtype
   let x' : E' := e.extend K x
   have hcontFun : Continuous fS := by
     refine hEmb.isEmbedding.isInducing.continuous_iff.2 ?_
-    simpa [fS, Function.comp] using hF.continuous
+    simpa [fS, Function.comp] using! hF.continuous
   have hcont : ContinuousAt fS x := hcontFun.continuousAt
   have hx : x ∈ e.source := mem_chart_source H' x
   have hy : fS x ∈ hImm.domChart.source := hImm.mem_domChart_source
@@ -298,11 +298,12 @@ theorem contMDiff_toSubtype
           ContDiffWithinAt 𝕜 (∞ : ℕ∞ω)
             ((hImm.domChart.extend (modelWithCornersSelf 𝕜 S.ModelSpace)) ∘ fS ∘
               (e.extend K).symm) (Set.range K) x' := by
-    simpa [fS, e, x', Set.preimage_univ, Set.univ_inter] using
-      (@contMDiffWithinAt_iff_of_mem_maximalAtlas
-        𝕜 _ E' _ _ H' _ K M _ _ S.ModelSpace _ _ S.ModelSpace _ (modelWithCornersSelf 𝕜 S.ModelSpace)
-        S.carrier _ _ e hImm.domChart fS Set.univ (∞ : ℕ∞ω) _ _ x)
-        (IsManifold.chart_mem_maximalAtlas x) hImm.domChart_mem_maximalAtlas hx hy
+    simpa [fS, e, x', Set.preimage_univ, Set.univ_inter] using!
+      (contMDiffWithinAt_iff_of_mem_maximalAtlas
+        (I := K) (I' := modelWithCornersSelf 𝕜 S.ModelSpace)
+        (e := e) (e' := hImm.domChart) (f := fS)
+        (s := Set.univ) (x := x) (n := ∞)
+        (IsManifold.chart_mem_maximalAtlas x) hImm.domChart_mem_maximalAtlas hx hy)
   rw [ContMDiffAt, hchartSubtype, continuousWithinAt_univ]
   refine ⟨hcont, ?_⟩
   have hchartAmbient :
@@ -310,10 +311,11 @@ theorem contMDiff_toSubtype
         ContinuousWithinAt F Set.univ x ∧
           ContDiffWithinAt 𝕜 (∞ : ℕ∞ω)
             ((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) (Set.range K) x' := by
-    simpa [e, x', Set.preimage_univ, Set.univ_inter] using
-      (@contMDiffWithinAt_iff_of_mem_maximalAtlas
-        𝕜 _ E' _ _ H' _ K M _ _ E _ _ HG _ I G _ _ e hImm.codChart F Set.univ (∞ : ℕ∞ω) _ _ x)
-        (IsManifold.chart_mem_maximalAtlas x) hImm.codChart_mem_maximalAtlas hx hy'
+    simpa [e, x', Set.preimage_univ, Set.univ_inter] using!
+      (contMDiffWithinAt_iff_of_mem_maximalAtlas
+        (I := K) (I' := I) (e := e) (e' := hImm.codChart) (f := F)
+        (s := Set.univ) (x := x) (n := ∞)
+        (IsManifold.chart_mem_maximalAtlas x) hImm.codChart_mem_maximalAtlas hx hy')
   have hambient :
       ContDiffWithinAt 𝕜 (∞ : ℕ∞ω)
         ((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) (Set.range K) x' := by
@@ -322,7 +324,7 @@ theorem contMDiff_toSubtype
   have hsymm : ContDiff 𝕜 (∞ : ℕ∞ω) eSymm := by
     simpa [eSymm] using eSymm.contDiff
   have hproj : ContDiff 𝕜 (∞ : ℕ∞ω) (fun v ↦ (eSymm v).1) := by
-    simpa [eSymm] using contDiff_fst.comp hsymm
+    simpa [eSymm] using! contDiff_fst.comp hsymm
   have hprojWithin :
       ContDiffWithinAt 𝕜 (∞ : ℕ∞ω) (fun v ↦ (eSymm v).1) Set.univ
         (((hImm.codChart.extend I) ∘ F ∘ (e.extend K).symm) x') :=

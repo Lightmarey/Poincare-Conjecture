@@ -95,6 +95,7 @@ theorem chartFrame_chartVectorRep {γ : ℝ → M} {α : M} {τ : ℝ}
       (chartVectorRep (I := I) γ α V τ),
     trivializationAt_symm_eq_tangentCoordChange (I := I) α hsrc,
     chartVectorRep_apply, tangentCoordChange_readback (I := I) hsrc]
+  exact hsrc
 
 /-! ### The along-curve curvature bridge -/
 

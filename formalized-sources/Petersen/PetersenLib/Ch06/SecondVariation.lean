@@ -316,7 +316,17 @@ theorem hasDerivAt_mixedPartialCoord_fst_slice (g : RiemannianMetric I M) (α : 
     (fun s => fderiv ℝ c (s, t) ((1, 0) : ℝ × ℝ))
     (fun s => fderiv ℝ c (s, t) ((0, 1) : ℝ × ℝ))
     (fun s => c (s, t)) _ _ _ ha hb hu hmem
-  simpa only [mixedPartialCoord_def] using hfirst.add hsecond
+  have hfun : (fun s : ℝ =>
+      mixedPartialCoord (I := I) g α c (s, t) ((1, 0) : ℝ × ℝ) ((0, 1) : ℝ × ℝ)) =
+      (fun s : ℝ =>
+        fderiv ℝ (fun y => fderiv ℝ c y ((0, 1) : ℝ × ℝ)) (s, t) ((1, 0) : ℝ × ℝ)) +
+      fun s : ℝ => Geodesic.chartChristoffelContraction (I := I) g α
+        (fderiv ℝ c (s, t) ((1, 0) : ℝ × ℝ))
+        (fderiv ℝ c (s, t) ((0, 1) : ℝ × ℝ)) (c (s, t)) := by
+    funext s
+    rfl
+  rw [hfun]
+  exact hfirst.add hsecond
 
 /-- **Math.** Petersen Thm. 6.1.4 (`thm:pet-ch6-synge-second-variation`), the **second
 differentiation under the integral**:
@@ -482,7 +492,7 @@ theorem contDiffOn_chartChristoffelContraction_comp {X : Type*}
       ContDiffOn ℝ n (fun x => Geodesic.chartCoord (E := E) k' (w x)) S := by
     intro k' w hw
     have := (Geodesic.chartCoordFunctional (E := E) k').contDiff.comp_contDiffOn hw
-    simpa using this
+    simpa only [Function.comp_def, Geodesic.chartCoordFunctional_apply] using this
   have hΓ0 : ContDiffOn ℝ n (chartChristoffel (I := I) g α i j k ∘ y) S :=
     ContDiffOn.comp ((chartChristoffel_contDiffOn_interior (I := I) g α i j k).of_le hn)
       hy hmaps

@@ -1,3 +1,4 @@
+import DoCarmoLib.Riemannian.Variation.Basic
 import DoCarmoLib.Riemannian.Jacobi.JacobiManifold
 import DoCarmoLib.Riemannian.Jacobi.JacobiChartTransfer
 
@@ -49,9 +50,8 @@ files use — see `Jacobi/PairJacobiField.lean`).
   localization into a single chart on a subinterval.
 * `IsJacobiFieldOn.isCovariantDerivSolOn` /
   `IsJacobiFieldAlongOn.isCovariantDerivFieldAlongOn` — the Jacobi bridges: a Jacobi
-  field is an instance of the general predicate.  (The parallel case is **not**
-  bridged here; see the note below on the `[MetricSpace M]` / `[TopologicalSpace M]`
-  mismatch.)
+  field is an instance of the general predicate.  The corresponding parallel-field
+  bridge is in `Variation/ParallelCovariantField.lean`.
 * `IsCovariantDerivFieldAlongOn.hasDerivAt_metricInner` — **metric compatibility /
   the Leibniz rule** `d/dt ⟨V, W⟩ = ⟨DV, W⟩ + ⟨V, DW⟩` at the manifold level (do
   Carmo Ch. 2, Prop. 3.2).  This is the analytic workhorse behind every Ch. 9
@@ -149,13 +149,8 @@ end IsCovariantDerivSolOn
 /-! ### The Jacobi chart certificate is a special case
 
 A Jacobi field's *first* equation is exactly `∇J = DJ`; its second equation
-constrains `DJ` further.
-
-The parallel case `DV = 0` is **not** bridged here, and no such bridge exists yet
-anywhere: `ParallelFieldAlong.lean` is stated over `[MetricSpace M]`, which cannot
-be mixed into this file's more general `[TopologicalSpace M]` block without
-creating a topology diamond.  Generalizing `ParallelFieldAlong.lean` to
-`[TopologicalSpace M]` is the prerequisite for one. -/
+constrains `DJ` further.  A parallel field is the case `DV = 0`; that bridge is
+proved in `Variation/ParallelCovariantField.lean`. -/
 
 /-- **Math.** A Jacobi field's first equation *is* the statement that `DJ` is the
 covariant derivative of `J`: `∇J = DJ`.  Definitional. -/

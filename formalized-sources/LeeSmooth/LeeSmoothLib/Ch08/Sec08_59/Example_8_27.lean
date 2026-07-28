@@ -47,12 +47,11 @@ theorem fderiv_xMulYAddOne_apply (p v : R3) :
         (p 0 • (PiLp.proj 2 (fun _ : Fin 3 ↦ ℝ) 1 : R3 →L[ℝ] ℝ) +
           (p 1 + 1) • (PiLp.proj 2 (fun _ : Fin 3 ↦ ℝ) 0 : R3 →L[ℝ] ℝ)) p := by
     -- Apply the scalar product rule and normalize the linear-map summands.
-    simpa [smul_add, add_comm, add_left_comm, add_assoc, mul_comm, mul_left_comm, mul_assoc] using
-      hx.mul hy
+    change HasFDerivAt ((fun q : R3 ↦ q 0) * fun q : R3 ↦ q 1 + 1) _ p
+    exact hx.mul hy
   rw [hmul.fderiv]
   -- Evaluating the derivative linear map on `v` yields the advertised formula.
-  simp only [ContinuousLinearMap.add_apply, ContinuousLinearMap.smul_apply, PiLp.proj_apply,
-    smul_eq_mul]
+  simp only [add_apply, smul_apply, PiLp.proj_apply, smul_eq_mul]
   ring
 
 /-- Helper for Example 8.27: the derivative of a coordinate projection picks out the matching
@@ -95,7 +94,8 @@ theorem example_8_27_lie_bracket :
     simpa [y] using
       (PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 3 ↦ ℝ) p 1).differentiableAt
   have hz : DifferentiableAt ℝ z p := by
-    simpa [z] using hx.mul (hy.add_const 1)
+    change DifferentiableAt ℝ (x * fun q : R3 ↦ y q + 1) p
+    exact hx.mul (hy.add_const 1)
   have he1 : DifferentiableAt ℝ e1 p := by
     simp [e1]
   have he2 : DifferentiableAt ℝ e2 p := by
@@ -103,11 +103,14 @@ theorem example_8_27_lie_bracket :
   have he3 : DifferentiableAt ℝ e3 p := by
     simp [e3]
   have hxE1 : DifferentiableAt ℝ xE1 p := by
-    simpa [xE1] using hx.smul he1
+    change DifferentiableAt ℝ (x • e1) p
+    exact hx.smul he1
   have hyE3 : DifferentiableAt ℝ yE3 p := by
-    simpa [yE3] using hy.smul he3
+    change DifferentiableAt ℝ (y • e3) p
+    exact hy.smul he3
   have hzE3 : DifferentiableAt ℝ zE3 p := by
-    simpa [zE3] using hz.smul he3
+    change DifferentiableAt ℝ (z • e3) p
+    exact hz.smul he3
   rw [hX, hY]
   rw [VectorField.lieBracket_add_left (hV := hxE1.add he2) (hV₁ := hzE3)]
   rw [VectorField.lieBracket_add_left (hV := hxE1) (hV₁ := he2)]

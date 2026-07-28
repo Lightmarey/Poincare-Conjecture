@@ -184,7 +184,7 @@ theorem exists_movingBase_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
         (fun a : ℝ => (Z ((y, T⁻¹ • u) : E × E) (a * T)).1)
         (T • (Z ((y, T⁻¹ • u) : E × E) (t * T)).2) t := by
       have hfst := (ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasDerivAt t hcomp
-      simpa [geodesicSprayCoord_def] using hfst
+      simpa [geodesicSprayCoord_def, Function.comp_def] using hfst
     have hev : (fun a : ℝ => f (a • u)) =ᶠ[𝓝 t]
         (fun a : ℝ => (Z ((y, T⁻¹ • u) : E × E) (a * T)).1) := by
       have hopen : IsOpen {a : ℝ | |a| < b} := isOpen_lt continuous_abs continuous_const
@@ -276,7 +276,7 @@ theorem exists_movingBase_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
           (Z ((y, T⁻¹ • u) : E × E) (t * T)).2
           (Z ((y, T⁻¹ • u) : E × E) (t * T)).1)) t := by
       have h := (ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasDerivAt t hcomp
-      simpa [geodesicSprayCoord_def] using h
+      simpa [geodesicSprayCoord_def, Function.comp_def] using h
     have h₂ : HasDerivAt
         (fun t' : ℝ => T • (Z ((y, T⁻¹ • u) : E × E) (t' * T)).2)
         (T • (T • (- Geodesic.chartChristoffelContraction (I := I) g p

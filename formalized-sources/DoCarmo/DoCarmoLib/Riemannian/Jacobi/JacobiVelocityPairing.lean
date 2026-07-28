@@ -226,7 +226,9 @@ theorem chartMetricInner_jacobi_velocity_affine
       simpa using ((hasDerivAt_id t).sub_const a).const_mul (Pd a) |>.add_const (P a)
     have : HasDerivAt Q 0 t := by
       have hQeq : Q = fun t => P t - (Pd a * (t - a) + P a) := by funext s; rw [hQ_def]; ring
-      rw [hQeq]; simpa using hPderiv.sub hlin
+      rw [hQeq]
+      change HasDerivAt (P - fun t => Pd a * (t - a) + P a) 0 t
+      simpa only [sub_self] using hPderiv.sub hlin
     exact this.deriv
   have hQ_diff : DifferentiableOn ℝ Q (interior (Icc a b)) := by
     rw [interior_Icc]; intro t ht

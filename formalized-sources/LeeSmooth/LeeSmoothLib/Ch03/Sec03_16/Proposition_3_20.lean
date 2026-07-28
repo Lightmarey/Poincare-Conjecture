@@ -130,12 +130,12 @@ lemma tangent_bundle_opens_trivializationAt_eq_toProd
         (id : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℝ (Fin n))
         ((trivializationAt (EuclideanSpace ℝ (Fin n)) (TangentSpace I) x) p) := by
     -- Expanding the bundle chart shows it is the trivialization followed by the base inclusion.
-    simpa [q, Function.comp, TopologicalSpace.Opens.chartAt_eq, prodChartedSpace_chartAt] using
-      congrArg
-        (fun e : OpenPartialHomeomorph (TangentBundle I U)
-          (ModelProd H (EuclideanSpace ℝ (Fin n))) ↦ e p)
-        (FiberBundle.chartedSpace_chartAt
-          (F := EuclideanSpace ℝ (Fin n)) (E := TangentSpace I) (HB := H) (x := q))
+    have h := congrArg
+      (fun e : OpenPartialHomeomorph (TangentBundle I U)
+        (ModelProd H (EuclideanSpace ℝ (Fin n))) => e p)
+      (FiberBundle.chartedSpace_chartAt
+        (F := EuclideanSpace ℝ (Fin n)) (E := TangentSpace I) (HB := H) (x := q))
+    exact h.trans (by rfl)
   have hprod :
       (chartAt (ModelProd H (EuclideanSpace ℝ (Fin n))) q :
         TangentBundle I U → ModelProd H (EuclideanSpace ℝ (Fin n))) p =
@@ -253,8 +253,9 @@ lemma tangent_bundle_opens_to_prod_contMDiff_field :
       (show TangentBundle I U → U × EuclideanSpace ℝ (Fin n) from
         TotalSpace.toProd U (EuclideanSpace ℝ (Fin n))) := by
   -- This wrapper only matches the exact field elaboration expected in the diffeomorphism record.
-  simpa [TangentBundle, TotalSpace.toProd]
-    using tangent_bundle_opens_to_prod_contMDiff (I := I) U
+  change ContMDiff I.tangent (I.prod 𝓘(ℝ, EuclideanSpace ℝ (Fin n))) ∞
+    (fun p : TangentBundle I U => (p.1, p.2))
+  exact tangent_bundle_opens_to_prod_contMDiff (I := I) U
 
 /-- Helper for Proposition 3.20: the inverse trivialization lemma, stated with the exact function
 type expected by the diffeomorphism structure fields. -/

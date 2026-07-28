@@ -59,7 +59,7 @@ private theorem realProjectiveNormalizedSpherePoint_continuous (n : ℕ) :
       exact norm_ne_zero_iff.mpr v.2
   -- Multiplying by this continuous scale gives the normalized vector field.
   refine Continuous.subtype_mk ?_ (fun v ↦ realProjectiveNormalizedSphereVector_mem_sphere n v)
-  simpa [realProjectiveNormalizedSpherePoint, realProjectiveNormalizedSphereVector] using
+  simpa [realProjectiveNormalizedSpherePoint, realProjectiveNormalizedSphereVector] using!
     hscale.smul continuous_subtype_val
 
 /-- Helper for Exercise 1.6: projectively equivalent nonzero vectors determine the same antipodal
@@ -129,7 +129,7 @@ private theorem realProjectiveToSphereQuotient_continuous (n : ℕ) :
           (MulAction.orbitRel realProjectiveSignGroup (realProjectiveSphere n))))
   -- The formula is explicit on nonzero representatives, so continuity is checked upstairs.
   refine hq.continuous_iff.mpr ?_
-  simpa [q, realProjectiveToSphereQuotient, Function.comp] using
+  simpa [q, realProjectiveToSphereQuotient, Function.comp] using!
     hmk.comp (realProjectiveNormalizedSpherePoint_continuous n)
 
 /-- Helper for Exercise 1.6: a point on the unit sphere is nonzero in the ambient vector space. -/
@@ -148,7 +148,7 @@ private theorem sphereQuotientToRealProjectiveSpace_wellDefined (n : ℕ)
   rcases h with ⟨z, hz⟩
   apply (mk_eq_mk_iff' ℝ _ _ _ _).2
   refine ⟨(z : ℝ), ?_⟩
-  simpa using congrArg (fun x : realProjectiveSphere n => (x : realProjectiveAmbient n)) hz
+  simpa using! congrArg (fun x : realProjectiveSphere n => (x : realProjectiveAmbient n)) hz
 
 /-- Helper for Exercise 1.6: forgetting the chosen unit representative defines a map from the
 antipodal sphere quotient to projective space. -/
@@ -177,7 +177,7 @@ private theorem sphereQuotientToRealProjectiveSpace_continuous (n : ℕ) :
         (fun x ↦ realProjectiveSpherePoint_ne_zero n x)
   -- The formula is explicit on the sphere, so continuity is checked upstairs.
   refine hq.continuous_iff.mpr ?_
-  simpa [q, sphereQuotientToRealProjectiveSpace, Function.comp, Projectivization.mk'_eq_mk] using
+  simpa [q, sphereQuotientToRealProjectiveSpace, Function.comp, Projectivization.mk'_eq_mk] using!
     hmk.comp hrep
 
 /-- Helper for Exercise 1.6: a unit sphere point is fixed by the normalization procedure. -/
@@ -212,7 +212,7 @@ private theorem real_projective_sphere_quotient_inverse (n : ℕ) :
     -- A sphere representative stays fixed after projectivizing and re-normalizing.
     refine Quotient.inductionOn q ?_
     intro x
-    simpa [sphereQuotientToRealProjectiveSpace, realProjectiveToSphereQuotient] using
+    simpa [sphereQuotientToRealProjectiveSpace, realProjectiveToSphereQuotient] using!
       congrArg (realProjectiveSphereQuotientMk n)
         (realProjectiveNormalizedSpherePoint_of_sphere n x)
 

@@ -131,7 +131,7 @@ theorem frameRead_eq_smul_jacobi
     rw [smul_smul, mul_inv_cancel₀ hrne, one_smul]
   have hDZ : D Z = chartVectorRep (I := I) γ ζ K r := by
     have h := hjac (fun s => K (r * s)) (fun s => r • DK (r * s)) hJ hJ0
-    rw [hDJ0] at h
+    rw [show r • DK (r * 0) = Z from hDJ0] at h
     rw [h]
     simp [chartVectorRep_apply, hsmul]
   have hread : tangentCoordChange I ζ (γ r) (γ r) (D Z) = K r := by

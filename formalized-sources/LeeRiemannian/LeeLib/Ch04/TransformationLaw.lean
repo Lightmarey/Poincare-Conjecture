@@ -66,7 +66,7 @@ theorem connectionCoeff_transformation_law
   have hAmd : ∀ r, MDiffAt (fun y => hs.coeff r y (s' j y)) x := fun r =>
     (IsLocalFrameOn.contMDiffAt_coeff hs hu hx (hs'.contMDiffAt hu hx j) r).mdifferentiableAt hn0
   have hYmd : MDiffAt (T% (fun y => ∑ r, hs.coeff r y (s' j y) • s r y)) x :=
-    MDifferentiableAt.sum_section (fun r => (hAmd r).smul_section (hsr r))
+    MDifferentiableAt.sum_section (fun r _ => (hAmd r).smul_section (hsr r))
   have hsj' : MDiffAt (T% (s' j)) x := (hs'.contMDiffAt hu hx j).mdifferentiableAt hn0
   -- `Ẽ_j` agrees with its `E`-frame expansion near `x` (locality)
   have hev : ∀ᶠ y in 𝓝 x, s' j y = (fun y => ∑ r, hs.coeff r y (s' j y) • s r y) y := by

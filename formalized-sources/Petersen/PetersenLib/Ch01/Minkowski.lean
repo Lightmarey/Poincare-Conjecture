@@ -47,7 +47,7 @@ theorem constantForm_contMDiff (B : F →L[ℝ] F →L[ℝ] ℝ) :
         (fun x : F ↦ TangentSpace 𝓘(ℝ, F) x →L[ℝ] TangentSpace 𝓘(ℝ, F) x →L[ℝ] ℝ))) := by
   intro x
   rw [contMDiffAt_section]
-  convert contMDiffAt_const (c := B)
+  convert! contMDiffAt_const (c := B)
   ext v w
   simp [hom_trivializationAt_apply, ContinuousLinearMap.inCoordinates, TangentSpace]
 
@@ -146,10 +146,14 @@ theorem pullbackPseudoForm_contMDiff (gN : PseudoRiemannianMetric I' M') {F : M 
       rfl
     have hcoeT : (tT.symm (F x) : E' → TangentSpace I' (F x))
         = ⇑(tT.continuousLinearEquivAt ℝ (F x) hfx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]
+      funext y
+      exact (Trivialization.symmL_apply tT hfx y).symm
     have hcoeS : (sT.symm x : E → TangentSpace I x)
         = ⇑(sT.continuousLinearEquivAt ℝ x hx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]
+      funext y
+      exact (Trivialization.symmL_apply sT hx y).symm
     rw [hDu, hcoeT, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
   rw [hRHS, hG]
   have htrivM' : trivializationAt ℝ (Bundle.Trivial M' ℝ) (F x₀)
@@ -255,7 +259,8 @@ theorem minkowskiMetric_index (x : F₁ × F₂) :
     intro v hv hvne
     let v' : F₁ × F₂ := v
     have hv1 : v'.1 = 0 := by
-      simpa [Submodule.snd, Submodule.mem_comap] using hv
+      change v.1 = 0 at hv
+      exact hv
     have hv2 : v'.2 ≠ 0 := by
       intro h2
       exact hvne (Prod.ext hv1 h2)

@@ -200,11 +200,11 @@ theorem isJacobiFieldOn_of_isSolOn {g : RiemannianMetric I M} {α : M}
   hasDerivWithinAt_fst t ht := by
     have := (ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasDerivWithinAt t
       (h t ht)
-    simpa using this
+    simpa [Function.comp_def] using this
   hasDerivWithinAt_snd t ht := by
     have := (ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasDerivWithinAt t
       (h t ht)
-    simpa using this
+    simpa [Function.comp_def] using this
 
 /-- **Math.** **Existence of Jacobi fields along a coordinate curve** with
 prescribed initial position and covariant derivative `(J a, ∇J a) = (J₀, DJ₀)`
@@ -487,7 +487,7 @@ theorem continuousOn_chartCurvatureEndo_comp
   have h4 := (hG.clm_apply hu').clm_comp (happE.clm_comp hG)
   refine (((h1.sub h2).add h3).sub h4).congr fun t _ => ?_
   rw [chartCurvatureEndo_eq]
-  simp only [Pi.add_apply]
+  rfl
 
 /-- **Math.** Continuity of the covariant pair coefficient along a `C¹` curve
 over the interior of the chart target. -/

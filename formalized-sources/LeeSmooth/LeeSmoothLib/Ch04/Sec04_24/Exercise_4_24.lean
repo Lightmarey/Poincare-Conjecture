@@ -18,8 +18,9 @@ noncomputable def oscillatingCurveMap : ℝ → ℝ × ℝ :=
 /-- Helper for Exercise 4.24: in Euclidean coordinates the oscillating curve is `C^∞`. -/
 lemma oscillatingCurveMap_contDiff : ContDiff ℝ ∞ oscillatingCurveMap := by
   -- The first coordinate is `exp`, while the second is `sin ∘ exp ∘ (-)`.
-  simpa [oscillatingCurveMap] using
-    (Real.contDiff_exp).prodMk (Real.contDiff_sin.comp (Real.contDiff_exp.comp contDiff_id.neg))
+  change ContDiff ℝ ∞ (fun t : ℝ ↦ (Real.exp t, Real.sin (Real.exp (-t))))
+  exact (Real.contDiff_exp).prodMk
+    (Real.contDiff_sin.comp (Real.contDiff_exp.comp contDiff_id.neg))
 
 /-- Helper for Exercise 4.24: the Euclidean smoothness statement is the manifold smoothness
 statement for the standard models on `ℝ` and `ℝ × ℝ`. -/
@@ -44,7 +45,15 @@ lemma oscillatingCurveMap_isEmbedding : IsEmbedding oscillatingCurveMap := by
     Real.expOrderIso.toHomeomorph.isEmbedding
   -- Composing the graph embedding with the exponential homeomorphism gives the curve.
   have hcomp : IsEmbedding (fun t : ℝ ↦ (Real.exp t, Real.sin (1 / Real.exp t))) := by
-    simpa [graphMap, Function.comp, one_div] using hgraph.comp hexp
+    have hcomp' := hgraph.comp hexp
+    have hfun :
+        (graphMap (Set.Ioi (0 : ℝ)) (fun x : ℝ ↦ Real.sin (x⁻¹)) ∘
+            (fun t : ℝ ↦ (Real.expOrderIso.toHomeomorph t : Set.Ioi (0 : ℝ)))) =
+          (fun t : ℝ ↦ (Real.exp t, Real.sin (1 / Real.exp t))) := by
+      funext t
+      ext <;> simp [graphMap, Function.comp_def, Real.coe_expOrderIso_apply, one_div]
+    rw [hfun] at hcomp'
+    exact hcomp'
   have hEq : (fun t : ℝ ↦ (Real.exp t, Real.sin (1 / Real.exp t))) = oscillatingCurveMap := by
     funext t
     simp [oscillatingCurveMap, Real.exp_neg, one_div]
@@ -226,7 +235,9 @@ lemma oscillatingStraighteningInverse_contDiffOn :
     refine Real.contDiff_exp.contDiffOn.comp ?_ fun _ _ ↦ Set.mem_univ _
     simpa using (contDiff_fst.contDiffOn.neg : ContDiffOn ℝ ∞ (fun p : ℝ × ℝ ↦ -p.1) Set.univ)
   -- Pair the smooth coordinate expressions to obtain the smooth inverse.
-  simpa [oscillatingStraighteningInverse] using hexp.prodMk (hsnd.add hsine)
+  change ContDiffOn ℝ ∞
+    (fun p : ℝ × ℝ ↦ (Real.exp p.1, p.2 + Real.sin (Real.exp (-p.1)))) Set.univ
+  exact hexp.prodMk (hsnd.add hsine)
 
 /-- Helper for Exercise 4.24: the straightening chart lies in the smooth groupoid. -/
 lemma oscillating_straightening_mem_contDiffGroupoid :
@@ -284,7 +295,9 @@ lemma oscillatingCurveMap_isImmersion :
     oscillatingStraightening
   · simpa using Set.mem_univ t
   · simpa [oscillatingStraightening_source] using oscillatingCurveMap_mem_halfPlane t
-  · simpa using (contDiffGroupoid ∞ 𝓘(ℝ)).id_mem_maximalAtlas
+  · change OpenPartialHomeomorph.refl ℝ ∈
+      (contDiffGroupoid ∞ 𝓘(ℝ)).maximalAtlas ℝ
+    exact (contDiffGroupoid ∞ 𝓘(ℝ)).id_mem_maximalAtlas
   · exact oscillating_straightening_mem_maximalAtlas
   · intro x hx
     -- The written-in-charts identity is exactly the normalization `t ↦ (t, 0)`.

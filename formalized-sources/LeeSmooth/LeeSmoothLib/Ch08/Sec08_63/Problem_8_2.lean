@@ -54,9 +54,8 @@ lemma hasDerivAt_radialCurve
   have hcomp :
       HasFDerivAt (fun t : ℝ ↦ f (t • x))
         ((fderiv ℝ f x).comp (ContinuousLinearMap.toSpanSingleton ℝ x)) 1 := by
-    simpa [Function.comp] using
-      (HasFDerivAt.comp (f := fun t : ℝ ↦ t • x) (g := f) (x := 1)
-        hfdAt hsmul.hasFDerivAt)
+    change HasFDerivAt (f ∘ fun t : ℝ ↦ t • x) _ 1
+    exact HasFDerivAt.comp 1 hfdAt hsmul.hasFDerivAt
   simpa [ContinuousLinearMap.toSpanSingleton_apply] using hcomp.hasDerivAt
 
 /-- Helper for Problem 8-2: near `t = 1`, positive homogeneity rewrites the radial curve as the

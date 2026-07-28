@@ -39,8 +39,8 @@ theorem figureEightCurve_satisfies_lemniscate_equation (t : Set.Ioo (-Real.pi) R
 -- first coordinate and with the identity in the second coordinate, then use product smoothness.
 theorem figureEightCurveMap_contDiff : ContDiff ℝ ∞ figureEightCurveMap := by
   -- Each coordinate is a smooth sine composition, and the pair is smooth componentwise.
-  simpa [figureEightCurveMap] using
-    ((Real.contDiff_sin.comp (contDiff_const.mul contDiff_id)).prodMk Real.contDiff_sin)
+  change ContDiff ℝ ∞ (fun t : ℝ ↦ (Real.sin (2 * t), Real.sin t))
+  exact (Real.contDiff_sin.comp (contDiff_const.mul contDiff_id)).prodMk Real.contDiff_sin
 
 /-- Helper for Example 4.19: the ambient figure-eight parametrization has derivative
 `(2 cos (2t), cos t)` at every real parameter. -/
@@ -48,7 +48,7 @@ theorem figureEightCurveMap_hasDerivAt (t : ℝ) :
     HasDerivAt figureEightCurveMap (2 * Real.cos (2 * t), Real.cos t) t := by
   -- Differentiate each coordinate separately and combine the resulting derivatives.
   have hfst : HasDerivAt (fun s : ℝ ↦ Real.sin (s * 2)) (2 * Real.cos (2 * t)) t := by
-    simpa [two_mul, mul_comm, mul_left_comm, mul_assoc] using
+    simpa only [Function.comp_def, two_mul, mul_comm, mul_left_comm, mul_assoc] using
       (Real.hasDerivAt_sin (t * 2)).comp t (hasDerivAt_mul_const (2 : ℝ))
   have hsnd : HasDerivAt (fun s : ℝ ↦ Real.sin s) (Real.cos t) t := Real.hasDerivAt_sin t
   -- The derivative of the product map is the pair of coordinate derivatives.
@@ -156,7 +156,8 @@ theorem figureEightCurveMap_fderiv_ne_zero (t : Set.Ioo (-Real.pi) Real.pi) :
   have hfderiv :
       fderiv ℝ figureEightCurveMap t =
         (1 : ℝ →L[ℝ] ℝ).smulRight (2 * Real.cos (2 * (t : ℝ)), Real.cos (t : ℝ)) := by
-    simpa using (figureEightCurveMap_hasDerivAt (t : ℝ)).hasFDerivAt.fderiv
+    simpa only [ContinuousLinearMap.smulRight_one_eq_toSpanSingleton] using
+      (figureEightCurveMap_hasDerivAt (t : ℝ)).hasFDerivAt.fderiv
   intro hzero
   have hvec_zero : (2 * Real.cos (2 * (t : ℝ)), Real.cos (t : ℝ)) = (0, 0) := by
     have happly : (fderiv ℝ figureEightCurveMap t) 1 = 0 := by simpa [hzero]

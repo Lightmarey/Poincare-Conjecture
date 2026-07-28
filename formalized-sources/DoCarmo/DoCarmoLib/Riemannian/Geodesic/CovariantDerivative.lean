@@ -146,7 +146,9 @@ theorem lipschitzWith_neg_chartChristoffelContraction (g : RiemannianMetric I M)
     LipschitzWith ‖chartChristoffelContractionRight (I := I) g α v y‖₊
       (fun w => -Geodesic.chartChristoffelContraction (I := I) g α v w y) := by
   have h := (chartChristoffelContractionRight (I := I) g α v y).lipschitz.neg
-  simpa only [chartChristoffelContractionRight_apply] using h
+  change LipschitzWith ‖chartChristoffelContractionRight (I := I) g α v y‖₊
+    (-⇑(chartChristoffelContractionRight (I := I) g α v y))
+  exact h
 
 omit [InnerProductSpace ℝ E] [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** do Carmo Ch. 2, Prop. 2.6 (uniqueness half): **uniqueness of parallel
@@ -720,9 +722,10 @@ theorem covariantDerivCoord_unique (g : RiemannianMetric I M) (α : M) (u : ℝ 
   -- derivative of a component: `(c k)' = k-th coordinate of V'`
   have hderiv_ck : ∀ k t, deriv (c k) t = Geodesic.chartCoord (E := E) k (deriv V t) := by
     intro k t
-    have hd : HasDerivAt (c k) (Geodesic.chartCoordFunctional (E := E) k (deriv V t)) t := by
-      simpa only [hc_def, Function.comp_def] using
-        (Geodesic.chartCoordFunctional (E := E) k).hasFDerivAt.comp_hasDerivAt t (hV t).hasDerivAt
+    have hd := (Geodesic.chartCoordFunctional (E := E) k).hasFDerivAt.comp_hasDerivAt t
+      (hV t).hasDerivAt
+    rw [hc_def]
+    change deriv (⇑(Geodesic.chartCoordFunctional (E := E) k) ∘ V) t = _
     rw [hd.deriv, Geodesic.chartCoordFunctional_apply]
   -- each summand `F k s = V^k(s) • e_k`
   have hFks : ∀ k s, F k s = Geodesic.chartCoord (E := E) k (V s) • Module.finBasis ℝ E k := by

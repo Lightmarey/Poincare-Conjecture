@@ -60,7 +60,7 @@ lemma mem_torus_model_source_iff
       rw [Set.mem_pi] at hx_source_mem
       exact hx_source_mem
     have hx_source : ∀ i, ((𝓡 1).symm (x i)) ∈ (e i).source := by
-      simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using
+      simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using!
         fun i ↦ hx_source_mem' i (by simp)
     have hx_range_mem : x ∈ Set.pi Set.univ (fun i ↦ Set.range (𝓡 1)) := hx.2
     have hx_range : ∀ i, x i ∈ Set.range (𝓡 1) := by
@@ -71,7 +71,7 @@ lemma mem_torus_model_source_iff
     constructor
     · have hx_source :
           ∀ i, ((ModelWithCorners.pi (fun _ : Fin 2 ↦ 𝓡 1)).symm x) i ∈ (e i).source := by
-        simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using fun i ↦ (hx i).1
+        simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using! fun i ↦ (hx i).1
       have hx_source_mem' :
           ∀ i ∈ Set.univ,
             ((ModelWithCorners.pi (fun _ : Fin 2 ↦ 𝓡 1)).symm x) i ∈ (e i).source := by
@@ -89,7 +89,7 @@ lemma mem_torus_model_source_iff
 /-- Helper for Problem 4-12: each coordinate projection on the torus model space is smooth. -/
 lemma contDiffOn_torus_model_proj (i : Fin 2) (s : Set (Fin 2 → EuclideanSpace ℝ (Fin 1))) :
     ContDiffOn ℝ (∞ : ℕ∞ω) (fun x : Fin 2 → EuclideanSpace ℝ (Fin 1) ↦ x i) s := by
-  simpa using
+  simpa using!
     ((((ContinuousLinearMap.proj (R := ℝ) i) :
       (Fin 2 → EuclideanSpace ℝ (Fin 1)) →L[ℝ] EuclideanSpace ℝ (Fin 1)).contDiff).contDiffOn :
       ContDiffOn ℝ (∞ : ℕ∞ω)
@@ -108,7 +108,7 @@ lemma torus_contDiffGroupoid_pi
     intro i
     have hi :=
       (mem_groupoid_of_pregroupoid (PG := contDiffPregroupoid (∞ : ℕ∞ω) (𝓡 1))).1 (he i)
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       (show ContDiffOn ℝ (∞ : ℕ∞ω) ((𝓡 1) ∘ e i ∘ (𝓡 1).symm)
           ((𝓡 1).symm ⁻¹' (e i).source ∩ Set.range (𝓡 1)) from by
             simpa [contDiffPregroupoid] using hi.1).comp
@@ -118,7 +118,7 @@ lemma torus_contDiffGroupoid_pi
     intro i
     have hi :=
       (mem_groupoid_of_pregroupoid (PG := contDiffPregroupoid (∞ : ℕ∞ω) (𝓡 1))).1 (he i)
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       (show ContDiffOn ℝ (∞ : ℕ∞ω) ((𝓡 1) ∘ (e i).symm ∘ (𝓡 1).symm)
           ((𝓡 1).symm ⁻¹' ((e i).symm).source ∩ Set.range (𝓡 1)) from by
             simpa [contDiffPregroupoid] using hi.2).comp
@@ -152,7 +152,7 @@ local instance torus_product_isManifold :
           ((OpenPartialHomeomorph.pi f').symm.trans (OpenPartialHomeomorph.pi g')).source ∩
         Set.range ↑(ModelWithCorners.pi (fun _ : Fin 2 ↦ 𝓡 1)))
   rw [open_partial_homeomorph_pi_symm_trans_pi]
-  simpa using hpi
+  simpa using! hpi
 
 /-- The standard torus map on `𝕋² = S¹ × S¹`, written in circle coordinates. -/
 def torus_of_revolution_map : 𝕋^{2} → R3 :=
@@ -276,9 +276,9 @@ theorem torus_of_revolution_immersion_contMDiff :
             (contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (i := 1)))
       simpa using h1.mul h0
     · -- The third coordinate is the smooth sine of the second Euclidean coordinate.
-      simpa using Real.contDiff_sin.comp
+      simpa using! Real.contDiff_sin.comp
         (contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) (i := 1))
-  simpa [torus_of_revolution_immersion] using hExplicit
+  simpa [torus_of_revolution_immersion] using! hExplicit
 
 /-- Helper for Problem 4-12: the first coordinate of the ambient torus parametrization has the
 expected derivative. -/
@@ -293,7 +293,7 @@ lemma torus_of_revolution_first_coord_hasFDerivAt (p : R2) :
       HasFDerivAt (fun q : R2 ↦ Real.cos (q 0))
         (-(Real.sin (p 0) • (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 0 : R2 →L[ℝ] ℝ))) p := by
     -- Differentiate the first angular coordinate through the Euclidean projection.
-    simpa using
+    simpa using!
       (Real.hasDerivAt_cos (p 0)).comp_hasFDerivAt p
         (PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) p 0)
   have h1 :
@@ -306,7 +306,7 @@ lemma torus_of_revolution_first_coord_hasFDerivAt (p : R2) :
         (2 : ℝ)
   -- Apply the product rule and normalize the scalar factors into the advertised order.
   simpa [smul_add, smul_smul, neg_smul, add_comm, add_left_comm, add_assoc, mul_comm,
-    mul_left_comm, mul_assoc] using h0.mul h1
+    mul_left_comm, mul_assoc] using! h0.mul h1
 
 /-- Helper for Problem 4-12: the second coordinate of the ambient torus parametrization has the
 expected derivative. -/
@@ -321,7 +321,7 @@ lemma torus_of_revolution_second_coord_hasFDerivAt (p : R2) :
       HasFDerivAt (fun q : R2 ↦ Real.sin (q 0))
         (Real.cos (p 0) • (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 0 : R2 →L[ℝ] ℝ)) p := by
     -- Differentiate the first angular coordinate through the Euclidean projection.
-    simpa using
+    simpa using!
       (Real.hasDerivAt_sin (p 0)).comp_hasFDerivAt p
         (PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) p 0)
   have h1 :
@@ -334,7 +334,7 @@ lemma torus_of_revolution_second_coord_hasFDerivAt (p : R2) :
         (2 : ℝ)
   -- Apply the product rule and reorder the two summands to match the statement.
   simpa [smul_add, smul_smul, neg_smul, add_comm, add_left_comm, add_assoc, mul_comm,
-    mul_left_comm, mul_assoc] using h0.mul h1
+    mul_left_comm, mul_assoc] using! h0.mul h1
 
 /-- Helper for Problem 4-12: the third coordinate of the ambient torus parametrization has the
 expected derivative. -/
@@ -343,7 +343,7 @@ lemma torus_of_revolution_third_coord_hasFDerivAt (p : R2) :
       (fun q : R2 ↦ Real.sin (q 1))
       (Real.cos (p 1) • (PiLp.proj 2 (fun _ : Fin 2 ↦ ℝ) 1 : R2 →L[ℝ] ℝ)) p := by
   -- This is the one-variable sine derivative composed with the second coordinate projection.
-  simpa using
+  simpa using!
     (Real.hasDerivAt_sin (p 1)).comp_hasFDerivAt p
       (PiLp.hasFDerivAt_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 2 ↦ ℝ) p 1)
 
@@ -409,7 +409,7 @@ theorem torus_of_revolution_immersion_fderiv_apply (p v : R2) :
         (((PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 3 ↦ ℝ)).symm.toContinuousLinearMap).comp
           (ContinuousLinearMap.pi ![L0, L1, L2])) p := by
     -- Compose the tuple derivative with the fixed linear equivalence `WithLp.toLp`.
-    simpa [torus_of_revolution_immersion] using htoLp.comp p hpi
+    simpa [torus_of_revolution_immersion] using! htoLp.comp p hpi
   rw [hImm.fderiv]
   -- Compare the coordinate tuple first, then transport it back with `WithLp.toLp`.
   have htuple :
@@ -575,7 +575,7 @@ lemma torus_of_revolution_map_mfderiv_injective_at_cover (x : R2) :
       Function.Injective
         ((mfderiv T2Model (𝓡 3) torus_of_revolution_map (standardTorusCovering 2 x)).comp
           (mfderiv (𝓡 2) T2Model (standardTorusCovering 2) x)) := by
-    simpa [torus_of_revolution_map_mfderiv_comp_cover x] using himm
+    simpa [torus_of_revolution_map_mfderiv_comp_cover x] using! himm
   -- Surjectivity of the covering derivative lets injectivity descend to the torus derivative.
   exact injective_of_comp_right hcomp (standard_torus_covering_mfderiv_surjective x)
 

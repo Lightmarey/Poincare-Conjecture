@@ -53,11 +53,11 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- **Math.** The $i$-th pointwise tangent vector of the chart-local
 frame attached to $\alpha$: image of the $i$-th model-space basis vector
-under `(trivializationAt E (TangentSpace I) α).symm b` on the base set,
-junk off it. Smooth on `(chartAt H α).source`. -/
+under `(trivializationAt E (TangentSpace I) α).symmL ℝ b` on the base set,
+zero off it. Smooth on `(chartAt H α).source`. -/
 def chartBasisVecFiber (α : M) (i : Fin (Module.finrank ℝ E)) (b : M) :
     TangentSpace I b :=
-  (trivializationAt E (TangentSpace I) α).symm b ((Module.finBasis ℝ E) i)
+  (trivializationAt E (TangentSpace I) α).symmL ℝ b ((Module.finBasis ℝ E) i)
 
 /-- **Math.** Section-form packaging of `chartBasisVecFiber α i` as
 `M → TotalSpace E _`. -/
@@ -83,7 +83,7 @@ lemma trivializationAt_chartBasisVec_snd
       = (Module.finBasis ℝ E) i := by
   have h := (trivializationAt E (TangentSpace I) α).apply_mk_symm hb
     ((Module.finBasis ℝ E) i)
-  simpa [chartBasisVecFiber] using congrArg Prod.snd h
+  simpa [chartBasisVecFiber, Bundle.Trivialization.symmL_apply _ hb] using congrArg Prod.snd h
 
 /-- **Math.** The chart-basis tangent-bundle section is smooth on the
 base set of the trivialization at $\alpha$. -/
@@ -120,6 +120,7 @@ lemma chartBasisFamily_apply (α : M) {b : M}
       chartBasisVecFiber (I := I) α i b := by
   unfold chartBasisFamily chartBasisVecFiber
   rw [Module.Basis.map_apply]
+  rw [Bundle.Trivialization.symmL_apply _ hb]
   rfl
 
 /-- **Math.** The chart-basis family is linearly independent at each

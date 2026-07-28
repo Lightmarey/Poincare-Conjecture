@@ -89,7 +89,7 @@ theorem homogeneous_map_respects_projective_classes {n k : ℕ}
     (hxy : mk ℝ x hx = mk ℝ y hy) :
     mk ℝ (P ⟨x, hx⟩ : RVec k) (P ⟨x, hx⟩).2 =
       mk ℝ (P ⟨y, hy⟩ : RVec k) (P ⟨y, hy⟩).2 := by
-  simpa using congrArg (projectivizationMap P hP.respectsProjectiveClasses) hxy
+  simpa using! congrArg (projectivizationMap P hP.respectsProjectiveClasses) hxy
 
 /-- Helper for Problem 2-6: each standard affine chart of `ℝPⁿ` already lies in the smooth
 maximal atlas. -/
@@ -110,7 +110,7 @@ lemma continuous_projectivizationMap {n k : ℕ}
     Continuous (projectivizationMap P hP) := by
   let q : puncturedEuclidean k → ℝP[k] := Projectivization.mk' ℝ
   have hq : Continuous q := by
-    simpa [q, Projectivization.mk'] using
+    simpa [q, Projectivization.mk'] using!
       (continuous_quotient_mk' :
         Continuous
           (@Quotient.mk'
@@ -118,12 +118,12 @@ lemma continuous_projectivizationMap {n k : ℕ}
             (projectivizationSetoid ℝ (RVec k))))
   have hmk :
       Continuous (fun x : puncturedEuclidean n ↦ mk ℝ (P x : RVec k) (P x).2) := by
-    simpa [q, Projectivization.mk'_eq_mk] using hq.comp hCont
+    simpa [q, Projectivization.mk'_eq_mk] using! hq.comp hCont
   -- Descend the continuous representative-level map through the projectivization quotient.
-  simpa [projectivizationMap, Projectivization.lift] using
+  simpa [projectivizationMap, Projectivization.lift] using!
     hmk.quotient_lift fun a b hab ↦ by
       rcases (show ∃ c : ℝˣ, c • (b : RVec n) = (a : RVec n) from by
-        simpa [projectivizationSetoid, MulAction.orbitRel_apply, MulAction.mem_orbit_iff] using hab)
+        simpa [projectivizationSetoid, MulAction.orbitRel_apply, MulAction.mem_orbit_iff] using! hab)
         with ⟨c, hc⟩
       exact hP a b c hc.symm
 
@@ -200,7 +200,7 @@ lemma projectivizationMap_chart_representative_contDiff {n k : ℕ}
       ((ContMDiff.subtypeVal_comp_iff (I := 𝓡 n) (I' := 𝓡 (k + 1))
         (U := puncturedEuclidean k) (f := P ∘ f)).2 hcomp)
   -- On standard Euclidean models, manifold smoothness is ordinary `ContDiff`.
-  simpa [f, Function.comp] using hval.contDiff
+  simpa [f, Function.comp] using! hval.contDiff
 
 /-- Helper for Problem 2-6: each affine coordinate quotient in the target chart is smooth within
 the model range once the denominator coordinate is nonzero at the base point. -/
@@ -283,7 +283,7 @@ lemma projectivizationMap_chart_expression_eventuallyEq {n k : ℕ}
   let e' := realProjectiveChart k j
   let x' : EuclideanSpace ℝ (Fin n) := (e.extend (𝓡 n)) x
   have hxsource : x ∈ e.source := by
-    simpa [e] using hx
+    simpa [e] using! hx
   have htarget_mem : (e.extend (𝓡 n)).target ∈ nhdsWithin x' (Set.range (𝓡 n)) := by
     -- The extended source-chart target is the canonical neighborhood where the chart formula holds.
     simpa [e, x'] using (e.extend_target_mem_nhdsWithin (I := 𝓡 n) hxsource)
@@ -311,9 +311,9 @@ lemma contMDiffAt_projectivizationMap_of_chart_pair {n k : ℕ}
   have he' : e' ∈ IsManifold.maximalAtlas (𝓡 k) ∞ (ℝP[k]) :=
     realProjectiveChart_mem_maximalAtlas k j
   have hxsource : x ∈ e.source := by
-    simpa [e] using hx
+    simpa [e] using! hx
   have hysource : projectivizationMap P hP x ∈ e'.source := by
-    simpa [e'] using hy
+    simpa [e'] using! hy
   -- Route correction: reduce manifold smoothness to one fixed chart pair, then replace the chart
   -- conjugate by the explicit quotient local model from homogeneous coordinates.
   rw [ContMDiffAt, contMDiffWithinAt_iff_of_mem_maximalAtlas
@@ -337,7 +337,7 @@ lemma contMDiffAt_projectivizationMap_of_chart_pair {n k : ℕ}
     -- condition in homogeneous coordinates.
     simpa [x0, realProjectiveChart_symm_apply] using
       (realProjectiveChartDomain_mk k j (P x0 : RVec k) (P x0).2).1 <| by
-        simpa [x0] using
+        simpa [x0] using!
           (show projectivizationMap P hP (mk ℝ (x0 : RVec n) x0.2) ∈
               realProjectiveChartDomain k j from by
             simpa [x0, realProjectiveChart_symm_apply] using hy_chart)

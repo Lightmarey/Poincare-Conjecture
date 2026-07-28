@@ -76,7 +76,7 @@ theorem transportReactionSolution_char_deriv {g : EuclideanℝN n → ℝ} (b : 
     rw [hfun]; simpa using (hasDerivAt_id (0 : ℝ)).const_add (p 0)
   have hE := (hcoord.const_mul (-c)).exp
   have hprod := hE.mul hW
-  convert hprod using 1
+  convert hprod using 1 <;> try rfl
   simp only [zero_smul, add_zero, transportReactionSolution]
   ring
 

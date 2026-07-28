@@ -3,6 +3,7 @@
    here independently and is engineering support, not a blueprint node. -/
 import Mathlib.Analysis.ODE.PicardLindelof
 import Mathlib.Analysis.ODE.Gronwall
+import Mathlib.Analysis.ODE.ExistUnique
 
 /-!
 # Global existence for linear ODEs with continuous coefficient

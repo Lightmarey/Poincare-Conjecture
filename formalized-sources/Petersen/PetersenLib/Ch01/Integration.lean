@@ -98,7 +98,8 @@ theorem integrateOnRiemannianManifold_eq_setIntegral_of_dense [MeasurableSpace M
     integrateOnRiemannianManifold g μ f = ∫ x in O, f x ∂μ := by
   have hae : ∀ᵐ x ∂μ, x ∈ O := by
     rw [ae_iff]
-    simpa using hO_null
+    rw [show {x | x ∉ O} = Oᶜ by rfl]
+    exact hO_null
   rw [integrateOnRiemannianManifold]
   conv_lhs => rw [← Measure.restrict_eq_self_of_ae_mem hae]
 
@@ -143,7 +144,7 @@ theorem integrateOnRiemannianManifold_eq_sum_smoothPartitionOfUnity
         rw [integrateOnRiemannianManifold]
         exact integral_congr_ae (Filter.Eventually.of_forall hpt)
     _ = ∑ i, ∫ x, ρ i x * f x ∂μ :=
-        integral_finset_sum _ fun i _ =>
+        integral_finsetSum _ fun i _ =>
           SmoothPartitionOfUnity.integrable_mul ρ hf i
 
 /-- **Math.** Petersen §1.2 (integration in local charts): if the finite

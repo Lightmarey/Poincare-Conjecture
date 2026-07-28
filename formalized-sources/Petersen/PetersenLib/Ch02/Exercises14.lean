@@ -55,6 +55,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimension
   {G : Type*} [Group G] [TopologicalSpace G] [ChartedSpace H G]
   [IsManifold I ∞ G] [LieGroup I ∞ G]
 
+set_option backward.defeqAttrib.useBackward true in
 /-- C^∞ smoothness of the left-invariant field (mathlib's proof adapted from
 `minSmoothness 𝕜 2` to `∞`). -/
 theorem contMDiff_mulInvariantVectorField_infty (v : GroupLieAlgebra I G) :
@@ -76,7 +77,7 @@ theorem contMDiff_mulInvariantVectorField_infty (v : GroupLieAlgebra I G) :
     apply ContMDiff.contMDiff_tangentMap _ (m := ∞) le_rfl
     exact contMDiff_mul I ∞
   let S := (S₃.comp S₂).comp S₁
-  convert S with g
+  convert! S with g
   · simp [F₁, F₂, F₃, fg, fv]
   · simp only [comp_apply, tangentMap, F₃, F₂, F₁, fg, fv]
     rw [mfderiv_prod_eq_add_apply ((contMDiff_mul I ∞).mdifferentiableAt (by simp))]
@@ -215,14 +216,15 @@ theorem dirTangent_mul {f g : G → ℝ} {p : G} (hf : MDifferentiableAt I 𝓘(
 theorem isSmoothVectorField_add {X Y : Π x : G, TangentSpace I x}
     (hX : IsSmoothVectorField X) (hY : IsSmoothVectorField Y) :
     IsSmoothVectorField (fun q => X q + Y q) := by
-  simpa using ((⟨X, hX⟩ : SmoothVectorField I G) + ⟨Y, hY⟩).smooth
+  simpa [IsSmoothVectorField] using!
+    ((⟨X, hX⟩ : SmoothVectorField I G) + ⟨Y, hY⟩).smooth
 
 theorem isSmoothVF_finsetSum {ι : Type*} (s : Finset ι)
     (F : ι → Π x : G, TangentSpace I x) (hF : ∀ i, IsSmoothVectorField (F i)) :
     IsSmoothVectorField (fun q => ∑ i ∈ s, F i q) := by
   classical
   induction s using Finset.induction_on with
-  | empty => simpa using (0 : SmoothVectorField I G).smooth
+  | empty => simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I G).smooth
   | insert a s ha ih =>
       have h : IsSmoothVectorField (fun q => F a q + ∑ i ∈ s, F i q) :=
         isSmoothVectorField_add (hF a) ih
@@ -343,7 +345,7 @@ theorem liCov_liVec_eq_zero (w : E) (p : G) (v : TangentSpace I p) :
 theorem cov_zeroField (D : AffineConnection I G) (p : G) (v : TangentSpace I p) :
     D.cov p v (fun q : G => (0 : TangentSpace I q)) = 0 := by
   have h0 : IsSmoothVectorField (fun q : G => (0 : TangentSpace I q)) := by
-    simpa using (0 : SmoothVectorField I G).smooth
+    simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I G).smooth
   have h := D.add_field p v h0 h0
   have e : (fun q : G => (0 : TangentSpace I q) + 0) = fun q : G => (0 : TangentSpace I q) := by
     funext q; simp

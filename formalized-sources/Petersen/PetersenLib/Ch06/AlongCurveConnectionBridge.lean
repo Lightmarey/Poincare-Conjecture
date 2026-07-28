@@ -183,7 +183,8 @@ theorem derivAlongCurve_eq_leviCivita_cov (g : RiemannianMetric I M) {c : ℝ �
   -- the extended field `W' = Σ_a γ_a Z_a`, smooth, and equal to `W` near `c t`
   set W' : Π x : M, TangentSpace I x := fun q => ∑ a, γ a q • (⇑(Z a) q) with hW'def
   have hterm : ∀ a, IsSmoothVectorField (fun q => γ a q • (⇑(Z a) q)) := fun a => by
-    simpa using (SmoothVectorField.smul (γ a) (hγsmooth a) (Z a)).smooth
+    simpa [IsSmoothVectorField] using!
+      (SmoothVectorField.smul (γ a) (hγsmooth a) (Z a)).smooth
   have hW' : IsSmoothVectorField W' := isSmoothVectorField_finsetSum Finset.univ _ hterm
   obtain ⟨V, hVsub, hVopen, hctV⟩ := eventually_nhds_iff.mp
     ((eventually_all.mpr (fun a => hγev a)).and

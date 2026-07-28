@@ -723,7 +723,7 @@ lemma ex416_codomain_straightening_model_contDiff {x : M} {Ff : Type*}
       ext p
       simp [xi, rho, ex416_middle_change_prod_chart, PartialEquiv.trans_source]
     have hcomp' : ContDiffOn 𝕜 n (xi ∘ hg.equiv) (hg.equiv ⁻¹' xi.source) := by
-      simpa [Function.comp, hpre] using hcomp
+      simpa only [Function.comp_def, hpre] using hcomp
     exact (hg.equiv.contDiffOn_comp_iff (f := xi) (s := xi.source)).1 hcomp'
   · -- The same conjugation argument gives smoothness of the inverse on the target.
     have hcomp :
@@ -742,7 +742,7 @@ lemma ex416_codomain_straightening_model_contDiff {x : M} {Ff : Type*}
       ext p
       simp [xi, rho, ex416_middle_change_prod_chart, PartialEquiv.trans_target]
     have hcomp' : ContDiffOn 𝕜 n (xi.symm ∘ hg.equiv) (hg.equiv ⁻¹' xi.target) := by
-      simpa [Function.comp, hpre] using hcomp
+      simpa only [Function.comp_def, hpre] using hcomp
     exact (hg.equiv.contDiffOn_comp_iff (f := xi.symm) (s := xi.target)).1 hcomp'
 
 /-- Helper for Exercise 4.16: a model-space open partial homeomorphism belongs to the
@@ -871,7 +871,12 @@ lemma ex416_transport_subtype_homeomorph_to_chart_change
     (eK.toOpenPartialHomeomorph.trans chiRange).transHomeomorph eK.symm
   refine ⟨chi, ?_, ?_⟩
   · -- The transported source is exactly the pullback of `chiRange.source` along `eK`.
-    simpa [chi, eK, OpenPartialHomeomorph.trans_source] using hy0
+    have heK : eK y0 = (⟨K y0, ⟨y0, rfl⟩⟩ : Set.range (K : H'' → G)) := by
+      rfl
+    have hsource : eK y0 ∈ chiRange.source := by
+      rw [heK]
+      exact hy0
+    simpa [chi, OpenPartialHomeomorph.trans_source] using hsource
   · intro y hy
     have hyRange : eK y ∈ chiRange.source := by
       -- Reinterpret source membership on the ambient side as source membership for `chiRange`.
@@ -882,7 +887,7 @@ lemma ex416_transport_subtype_homeomorph_to_chart_change
         exact congrArg Subtype.val (eK.apply_symm_apply (chiRange (eK y)))
       _ = xi (K y) := by
         -- The transported subtype chart was chosen to agree with the ambient map `xi`.
-        simpa [eK] using hEqRange hyRange
+        simpa [eK, ex416_codomain_model_range_homeomorph] using hEqRange hyRange
 
 /-- Helper for Exercise 4.16: once the subtype-level straightening on `Set.range K` has been
 upgraded to a `K`-partial diffeomorphism in the transported singleton chart, writing it back in
@@ -913,7 +918,12 @@ lemma ex416_writtenIn_range_straightening_to_chart_change
     simpa [chi, eRange] using hchiRange_mem
   refine ⟨chi, hchi_mem, ?_, ?_⟩
   · -- The transported source membership is exactly the subtype source membership for `chiRange`.
-    simpa [chi, eRange, eK, OpenPartialHomeomorph.trans_source] using hy0
+    have heK : eK y0 = (⟨K y0, ⟨y0, rfl⟩⟩ : Set.range (K : H'' → G)) := by
+      rfl
+    have hsource : eK y0 ∈ chiRange.source := by
+      rw [heK]
+      exact hy0
+    simpa [chi, eRange, OpenPartialHomeomorph.trans_source] using hsource
   · intro y hy
     have hyRange : (eK y : Set.range (K : H'' → G)) ∈ chiRange.source := by
       -- Read source membership for `chi` back across the transported range chart.
@@ -931,9 +941,9 @@ lemma ex416_writtenIn_range_straightening_to_chart_change
               rfl
     calc
       K (chi y) = ((chiRange (eK y) : Set.range (K : H'' → G)).1) := by
-        simpa [eK] using congrArg Subtype.val htransport
+        simpa [eK, ex416_codomain_model_range_homeomorph] using congrArg Subtype.val htransport
       _ = xi (K y) := by
-        simpa [eK] using hEqRange hyRange
+        simpa [eK, ex416_codomain_model_range_homeomorph] using hEqRange hyRange
 
 /-- Helper for Exercise 4.16: a point in the source of an extended coordinate change already maps
 into the target of the second extended chart. -/
@@ -1152,8 +1162,8 @@ lemma ex416_exists_restr_chart_into_codomain_source {x : M}
     simpa [OpenPartialHomeomorph.restr_source, hV_open.interior_eq] using
       show x ∈ domChart0.source ∩ V from ⟨hx_domChart0, hxV⟩
   · -- Restricting a maximal-atlas chart to an open neighborhood stays in the maximal atlas.
-    simpa using
-      restr_mem_maximalAtlas (contDiffGroupoid n I) hdomChart0_mem hV_open
+    rw [IsManifold.mem_maximalAtlas_iff]
+    exact restr_mem_maximalAtlas (contDiffGroupoid n I) hdomChart0_mem hV_open
 
 /-- Helper for Exercise 4.16: once the codomain-model straightening has been transported to a local
 chart change `chi` on `H''`, postcomposing `hg.codChart` with `chi` gives the codomain chart
@@ -1280,8 +1290,8 @@ lemma ex416_straightened_writtenInCharts_on_final_restr {x : M} {Ff : Type*} [No
       show x ∈ domChart0.source ∩ V from ⟨hx_domChart0, hxV⟩
   have hdomChart1_mem : domChart1 ∈ IsManifold.maximalAtlas I n M := by
     -- Restricting the source chart preserves maximal-atlas membership.
-    simpa [domChart1] using
-      restr_mem_maximalAtlas (contDiffGroupoid n I) hdomChart0_mem hV_open
+    rw [IsManifold.mem_maximalAtlas_iff]
+    exact restr_mem_maximalAtlas (contDiffGroupoid n I) hdomChart0_mem hV_open
   refine IsImmersionAtOfComplement.mk_of_continuousAt
     (hg.ex416_continuousAt.comp hf.ex416_continuousAt) equivTot domChart1 codChart1
     hx_domChart1 hgf_codChart1 hdomChart1_mem hcodChart1_mem ?_
@@ -1399,8 +1409,8 @@ lemma ex416_aligned_codomain_straightening_on_restr {x : M} {Ff : Type*}
   have hy_hg_source : y ∈ hg.domChart.source := (hW_sub hy_sourceW.2).2
   have hy_chart_value :
       (hf.codChart.extend J) y = v := by
-    simpa [OpenPartialHomeomorph.extend_coe, Function.comp, hy_restr_source, hy_sourceW.1] using
-      ((hf.codChart.restr W).extend J).right_inv hv
+    change (hf.codChart.extend J) y = v
+    simpa [y] using ((hf.codChart.restr W).extend J).right_inv hv
   have hv_theta_source :
       v ∈ θ.source := by
     -- The actual overlap point `y` lies in both middle charts, so its `hf`-coordinate lies in
@@ -1549,8 +1559,8 @@ theorem ex416_comp {x : M} {Ff : Type*} [NormedAddCommGroup Ff] [NormedSpace �
     simpa [domChart0, OpenPartialHomeomorph.restr] using hx_domChart0'
   have hdomChart0_mem : domChart0 ∈ IsManifold.maximalAtlas I n M := by
     -- Restricting the source chart preserves maximal-atlas membership.
-    simpa [domChart0] using
-      restr_mem_maximalAtlas (contDiffGroupoid n I) hf.domChart_mem_maximalAtlas hV_open
+    rw [IsManifold.mem_maximalAtlas_iff]
+    exact restr_mem_maximalAtlas (contDiffGroupoid n I) hf.domChart_mem_maximalAtlas hV_open
   let assocEquiv : (E × (Ff × Fg)) ≃L[𝕜] ((E × Ff) × Fg) :=
     (LinearIsometryEquiv.prodAssoc 𝕜 E Ff Fg).symm.toContinuousLinearEquiv
   let equivTot : (E × (Ff × Fg)) ≃L[𝕜] G :=
@@ -1632,16 +1642,6 @@ theorem ex416_comp {x : M} {Ff : Type*} [NormedAddCommGroup Ff] [NormedSpace �
           simp [equivTot, assocEquiv]
 
 end IsImmersionAtOfComplement
-
-namespace IsImmersionAt
-
-/-- Helper for Exercise 4.16: forgetting the explicit complement preserves the pointwise
-continuity consequence of immersion. -/
-lemma continuousAt {x : M} (h : IsImmersionAt I J n f x) :
-    ContinuousAt f x :=
-  IsImmersionAtOfComplement.ex416_continuousAt h.isImmersionAtOfComplement_complement
-
-end IsImmersionAt
 
 namespace IsImmersion
 

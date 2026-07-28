@@ -327,12 +327,12 @@ lemma partialDiffeomorph_of_writtenInExtend
         -- Compose the source chart with the model branch and then with the inverse target chart.
         rw [hΓ_source]
         simpa [Γ, Function.comp_assoc] using
-          hmid_to.comp' (contMDiffOn_extend (I := I) (n := (∞ : ℕ∞ω)) hdomChart)
+          hmid_to.comp' (domChart.contMDiffOn_extend (I := I) (n := (∞ : ℕ∞ω)) hdomChart)
       contMDiffOn_invFun := by
         -- Apply the same chart-composition argument to the inverse branch.
         rw [hΓ_target]
         simpa [Γ, Function.comp_assoc] using
-          hmid_inv.comp' (contMDiffOn_extend (I := J) (n := (∞ : ℕ∞ω)) hcodChart) }
+          hmid_inv.comp' (codChart.contMDiffOn_extend (I := J) (n := (∞ : ℕ∞ω)) hcodChart) }
   refine ⟨Φ, ?_, ?_⟩
   · -- The base point belongs to the transported source because its source-chart image lies in `Ψ`.
     rw [show Φ.source = Γ.source by rfl, hΓ_source]
@@ -512,20 +512,14 @@ theorem isLocalDiffeomorph_of_eq_finrank {F : M → N}
     infer_instance
   have h_dim_tangent :
       Module.finrank ℝ (TangentSpace I p) = Module.finrank ℝ (TangentSpace J (F p)) := by
-    simpa using h_dim
+    change Module.finrank ℝ E = Module.finrank ℝ E'
+    exact h_dim
   have hsurj : Function.Surjective (mfderiv I J F p) :=
     hF.surjective_mfderiv p
   have hinj : Function.Injective (mfderiv I J F p) :=
     (LinearMap.injective_iff_surjective_of_finrank_eq_finrank h_dim_tangent).mpr hsurj
   have hInv : (mfderiv I J F p).IsInvertible :=
-    by
-      let e : TangentSpace I p ≃L[ℝ] TangentSpace J (F p) :=
-        ContinuousLinearEquiv.ofBijective (mfderiv I J F p) (LinearMap.ker_eq_bot.2 hinj)
-          (LinearMap.range_eq_top.2 hsurj)
-      refine ⟨e, ?_⟩
-      simpa [e] using
-        (ContinuousLinearEquiv.coe_ofBijective (mfderiv I J F p)
-          (LinearMap.ker_eq_bot.2 hinj) (LinearMap.range_eq_top.2 hsurj))
+    ContinuousLinearMap.isInvertible_of_bijective hinj hsurj
   -- The inverse function theorem applies because boundaryless manifolds have no boundary points.
   exact isLocalDiffeomorphAt_of_contMDiffAt_mfderiv_isInvertible
     (I := I) (J := J) (n := ∞) (by simp) BoundarylessManifold.isInteriorPoint hF.contMDiff hInv
@@ -579,14 +573,7 @@ theorem is_local_diffeomorph_iff_is_immersion_and_is_smooth_submersion {F : M �
   have hsurj : Function.Surjective (mfderiv I_m I_n F p) :=
     hFsubm.surjective_mfderiv p
   have hInv : (mfderiv I_m I_n F p).IsInvertible :=
-    by
-      let e : TangentSpace I_m p ≃L[ℝ] TangentSpace I_n (F p) :=
-        ContinuousLinearEquiv.ofBijective (mfderiv I_m I_n F p) (LinearMap.ker_eq_bot.2 hinj)
-          (LinearMap.range_eq_top.2 hsurj)
-      refine ⟨e, ?_⟩
-      simpa [e] using
-        (ContinuousLinearEquiv.coe_ofBijective (mfderiv I_m I_n F p)
-          (LinearMap.ker_eq_bot.2 hinj) (LinearMap.range_eq_top.2 hsurj))
+    ContinuousLinearMap.isInvertible_of_bijective hinj hsurj
   -- At Euclidean-model points the source manifold is boundaryless, so the inverse function theorem
   -- upgrades pointwise invertibility of `mfderiv` to a local diffeomorphism.
   exact isLocalDiffeomorphAt_of_contMDiffAt_mfderiv_isInvertible

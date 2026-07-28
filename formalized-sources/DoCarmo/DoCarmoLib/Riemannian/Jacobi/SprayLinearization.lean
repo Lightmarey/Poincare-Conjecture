@@ -177,7 +177,9 @@ theorem isJacobiFieldOn_of_variational (g : RiemannianMetric I M) (α : M)
         (deriv u t) ((W t).1) ((W t).2)
       rwa [show ((W t).1, (W t).2) = W t from rfl] at h3
     rw [h2] at h1
-    simpa using h1
+    convert h1 using 1
+    · rfl
+    · rfl
   -- the second component has derivative given by the spray linearization
   have hηval : ∀ t ∈ Icc a b, HasDerivWithinAt (fun s => (W s).2)
       (-(fderiv ℝ (chartChristoffelBilin (I := I) g α) (u t) ((W t).1)
@@ -201,7 +203,9 @@ theorem isJacobiFieldOn_of_variational (g : RiemannianMetric I M) (α : M)
         (deriv u t) ((W t).1) ((W t).2)
       rwa [show ((W t).1, (W t).2) = W t from rfl] at h3
     rw [h2] at h1
-    simpa using h1
+    convert h1 using 1
+    · rfl
+    · rfl
   -- the derivative of the Γ-corrector `t ↦ Γ_{u t}(u̇ t, ξ t)`
   have hcorr : ∀ t ∈ Icc a b, HasDerivWithinAt
       (fun s => chartChristoffelBilin (I := I) g α (u s) (deriv u s)

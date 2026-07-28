@@ -13,6 +13,8 @@ open scoped Manifold
 open scoped Matrix.Norms.L2Operator
 open VectorField
 
+attribute [local instance 100] LieRing.ofAssociativeRing
+
 local notation "Vec" n => Fin n → ℝ
 local notation "End" n => (Vec n) →L[ℝ] Vec n
 local notation "Mat" n => Matrix (Fin n) (Fin n) ℝ
@@ -144,12 +146,22 @@ theorem generalLinearGroupMulInvariant_apply
       ext h
       rfl
     rw [hEq]
-    simpa [ContinuousLinearMap.id_apply] using
-      congrArg (fun f : (LieGL n) →L[ℝ] End n ↦ f A)
-        (HasMFDerivAt.mfderiv (generalLinearGroup_leftMulToAmbient_hasMFDerivAt (n := n) g))
+    change
+      ((mfderiv (I n) (𝓘(ℝ, End n))
+          (fun h : GL n ↦ (g : End n) * (h : End n)) (1 : GL n)) A : End n) =
+        (g : End n) * (show End n from A)
+    have h := congrArg (fun f : (LieGL n) →L[ℝ] End n ↦ f A)
+      (HasMFDerivAt.mfderiv (generalLinearGroup_leftMulToAmbient_hasMFDerivAt (n := n) g))
+    change
+      ((mfderiv (I n) (𝓘(ℝ, End n))
+          (fun h : GL n ↦ (g : End n) * (h : End n)) (1 : GL n)) A : End n) =
+        (g : End n) * (show End n from A) at h
+    exact h
   -- The derivative of the inclusion is the identity, so the tangent vector itself is `g * A`.
-  simpa [valMap, generalLinearGroup_val_mfderiv_eq_id (n := n) (g := g)] using
-    hcomp.trans hambient
+  rw [generalLinearGroup_val_mfderiv_eq_id (n := n) (g := g)] at hcomp
+  change (show End n from mulInvariantVectorField A g) =
+    (g : End n) * (show End n from A)
+  exact hcomp.trans hambient
 
 /-- Helper for Proposition 8.41: pulling back the ambient right-multiplication field along the
 inclusion `GL n → End n` leaves the same explicit formula. -/
@@ -185,14 +197,14 @@ theorem generalLinearGroupBracketAtOne_eq_ambientLieBracket
     -- hence differentiable as a vector field.
     ((contMDiffAt_vectorSpace_iff_contDiffAt (V := fun X : End n ↦ X * A) (x := (1 : End n))).2
       (by
-        simpa using ((((ContinuousLinearMap.mul ℝ (End n)).flip A).contDiff (n := 1)).contDiffAt
-          (x := (1 : End n))))).mdifferentiableAt one_ne_zero
+        exact (((ContinuousLinearMap.mul ℝ (End n)).flip A).contDiff (n := 1)).contDiffAt
+          (x := (1 : End n)))).mdifferentiableAt one_ne_zero
   have hB :=
     -- The same linearity argument applies to the second field.
     ((contMDiffAt_vectorSpace_iff_contDiffAt (V := fun X : End n ↦ X * B) (x := (1 : End n))).2
       (by
-        simpa using ((((ContinuousLinearMap.mul ℝ (End n)).flip B).contDiff (n := 1)).contDiffAt
-          (x := (1 : End n))))).mdifferentiableAt one_ne_zero
+        exact (((ContinuousLinearMap.mul ℝ (End n)).flip B).contDiff (n := 1)).contDiffAt
+          (x := (1 : End n)))).mdifferentiableAt one_ne_zero
   have hval :
       ContMDiffAt (I n) (𝓘(ℝ, End n)) (minSmoothness ℝ 2)
         (fun g : GL n ↦ (g : End n)) (1 : GL n) := by
@@ -300,9 +312,9 @@ def generalLinearGroupLieEquivContinuousEnd
   -- Route correction: the missing content is exactly the commutator computation above.
   map_lie' := by
     intro A B
-    simpa using
-      congrArg (fun X : LieGL n ↦ (show End n from X))
-        (generalLinearGroupBracket_eq_commutator (n := n) A B)
+    rw [LieRing.of_associative_ring_bracket]
+    exact congrArg (fun X : LieGL n ↦ (show End n from X))
+      (generalLinearGroupBracket_eq_commutator (n := n) A B)
   left_inv := by
     intro A
     rfl

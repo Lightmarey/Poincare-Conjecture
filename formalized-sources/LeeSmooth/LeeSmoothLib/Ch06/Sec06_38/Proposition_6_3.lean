@@ -164,8 +164,8 @@ theorem volume_halfSpace_graph_eq_zero_of_measurableSet_of_continuous
     · simpa [EuclideanHalfSpace.inclusion] using
         (MeasurableEmbedding.subtype_coe hhalf_meas).measurable
     · intro s hs
-      simpa [EuclideanHalfSpace.inclusion] using
-        (MeasurableEmbedding.subtype_coe hhalf_meas).measurableSet_image.2 hs
+      change MeasurableSet ((fun x : EuclideanHalfSpace n => x.1) '' s)
+      exact (MeasurableEmbedding.subtype_coe hhalf_meas).measurableSet_image.2 hs
   have hA_subtype : MeasurableSet A := by
     simpa using hhalf_embed.measurableSet_image.mp hA
   have hi :

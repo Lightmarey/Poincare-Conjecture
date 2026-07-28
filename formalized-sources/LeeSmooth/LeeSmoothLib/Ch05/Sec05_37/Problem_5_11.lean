@@ -477,7 +477,7 @@ lemma quadratic_difference_left_ambient_fderiv_ne_zero (t : ℝ) :
       fderiv ℝ quadratic_difference_left_ambient t =
         ContinuousLinearMap.toSpanSingleton ℝ (1, -1) := by
     -- Evaluate the one-variable derivative coordinatewise.
-    simpa [quadratic_difference_left_ambient] using
+    simpa [quadratic_difference_left_ambient] using!
       (((hasDerivAt_id t).add_const 1).prodMk (((hasDerivAt_id t).add_const 1).neg)).hasFDerivAt.fderiv
   intro hzero
   have happly : (fderiv ℝ quadratic_difference_left_ambient t) 1 = 0 := by
@@ -500,7 +500,7 @@ lemma quadratic_difference_right_ambient_fderiv_ne_zero (t : ℝ) :
       fderiv ℝ quadratic_difference_right_ambient t =
         ContinuousLinearMap.toSpanSingleton ℝ (1, -1) := by
     -- Evaluate the translated affine derivative coordinatewise.
-    simpa [quadratic_difference_right_ambient] using
+    simpa [quadratic_difference_right_ambient] using!
       (((hasDerivAt_id t).sub_const 1).prodMk (((hasDerivAt_id t).sub_const 1).neg)).hasFDerivAt.fderiv
   intro hzero
   have happly : (fderiv ℝ quadratic_difference_right_ambient t) 1 = 0 := by
@@ -523,7 +523,7 @@ lemma quadratic_difference_middle_scalar_real_hasDerivAt (t : ℝ)
       ((1 + t ^ 2) / (1 - t ^ 2) ^ 2) t := by
   have hnum : HasDerivAt (fun x : ℝ ↦ x) 1 t := hasDerivAt_id t
   have hden : HasDerivAt (fun x : ℝ ↦ 1 - x ^ 2) (-2 * t) t := by
-    simpa [pow_two, mul_comm, mul_left_comm, mul_assoc] using
+    simpa [pow_two, mul_comm, mul_left_comm, mul_assoc] using!
       (hasDerivAt_const t (c := (1 : ℝ))).sub ((hasDerivAt_id t).pow 2)
   have hden_ne : 1 - t ^ 2 ≠ 0 := by
     intro hzero
@@ -538,7 +538,7 @@ lemma quadratic_difference_middle_scalar_real_hasDerivAt (t : ℝ)
   have hquot :
       HasDerivAt quadratic_difference_middle_scalar_real
         ((1 * (1 - t ^ 2) - t * (-2 * t)) / (1 - t ^ 2) ^ 2) t := by
-    simpa [quadratic_difference_middle_scalar_real] using hnum.div hden hden_ne
+    simpa [quadratic_difference_middle_scalar_real] using! hnum.div hden hden_ne
   convert hquot using 1 <;> ring
 
 /-- Helper for Problem 5-11: the middle rational coordinate change has nonzero derivative on the
@@ -551,7 +551,7 @@ lemma quadratic_difference_middle_scalar_real_fderiv_ne_zero (t : quadratic_diff
       fderiv ℝ quadratic_difference_middle_scalar_real (t : ℝ) =
         (1 : ℝ →L[ℝ] ℝ).smulRight
           ((1 + (t : ℝ) ^ 2) / (1 - (t : ℝ) ^ 2) ^ 2) := by
-    simpa using hderiv.hasFDerivAt.fderiv
+    simpa using! hderiv.hasFDerivAt.fderiv
   intro hzero
   have happly : (fderiv ℝ quadratic_difference_middle_scalar_real (t : ℝ)) 1 = 0 := by
     simpa [hzero]
@@ -593,7 +593,7 @@ lemma quadratic_difference_middle_ambient_mfderiv_injective (t : quadratic_diffe
           (((1 + (t : ℝ) ^ 2) / (1 - (t : ℝ) ^ 2) ^ 2),
             ((1 + (t : ℝ) ^ 2) / (1 - (t : ℝ) ^ 2) ^ 2)) := by
     -- Differentiate the two equal diagonal coordinates simultaneously.
-    simpa [quadratic_difference_middle_ambient] using
+    simpa [quadratic_difference_middle_ambient] using!
       (hscalar.prodMk hscalar).hasFDerivAt.fderiv
   have hNonzero : mfderiv 𝓘(ℝ) 𝓘(ℝ, Plane) quadratic_difference_middle_ambient (t : ℝ) ≠ 0 := by
     rw [mfderiv_eq_fderiv]
@@ -1254,7 +1254,7 @@ lemma quadratic_difference_left_branch_contMDiff_top :
     (f := quadratic_difference_left_ambient) (x := t)).2 ?_
   rw [contMDiffAt_iff_contDiffAt]
   -- The left branch is affine in the ambient real coordinate.
-  simpa [quadratic_difference_left_ambient] using
+  simpa [quadratic_difference_left_ambient] using!
     (contDiffAt_id.add contDiffAt_const).prodMk (contDiffAt_const.sub contDiffAt_id)
 
 /-- Helper for Problem 5-11: the rational diagonal branch is smooth on the punctured source
@@ -1282,10 +1282,10 @@ lemma quadratic_difference_middle_branch_contMDiff_top :
     have hsq : ContDiffAt ℝ ∞ (fun x : ℝ ↦ x ^ 2) (t : ℝ) := by
       simpa using (contDiffAt_id : ContDiffAt ℝ ∞ (fun x : ℝ ↦ x) (t : ℝ)).pow 2
     -- The middle scalar map is a quotient with nonvanishing denominator on the cut source.
-    simpa [quadratic_difference_middle_scalar_real] using
+    simpa [quadratic_difference_middle_scalar_real] using!
       (contDiffAt_id.div (contDiffAt_const.sub hsq) hden_ne)
   -- Pair the scalar map with itself to obtain the ambient diagonal branch.
-  simpa [quadratic_difference_middle_ambient] using hscalar.prodMk hscalar
+  simpa [quadratic_difference_middle_ambient] using! hscalar.prodMk hscalar
 
 /-- Helper for Problem 5-11: the right affine branch is smooth on the cut source. -/
 lemma quadratic_difference_right_branch_contMDiff_top :
@@ -1297,7 +1297,7 @@ lemma quadratic_difference_right_branch_contMDiff_top :
     (f := quadratic_difference_right_ambient) (x := t)).2 ?_
   rw [contMDiffAt_iff_contDiffAt]
   -- The right branch is affine in the ambient real coordinate as well.
-  simpa [quadratic_difference_right_ambient] using
+  simpa [quadratic_difference_right_ambient] using!
     (contDiffAt_id.sub contDiffAt_const).prodMk (contDiffAt_const.sub contDiffAt_id)
 
 /-- Helper for Problem 5-11: near every cut-source point, the piecewise parametrization agrees
@@ -1385,7 +1385,8 @@ lemma quadratic_difference_cut_param_mfderiv_injective (t : quadratic_difference
       have hleft_sub :
           ContMDiffAt 𝓘(ℝ) 𝓘(ℝ, Plane) ∞
             (fun x : quadratic_difference_cut_source ↦ quadratic_difference_left_ambient x) t := by
-        simpa [quadratic_difference_left_branch] using quadratic_difference_left_branch_contMDiff_top t
+        simpa [quadratic_difference_left_branch] using!
+          quadratic_difference_left_branch_contMDiff_top t
       exact (contMDiffAt_subtype_iff (U := quadratic_difference_cut_source)
         (f := quadratic_difference_left_ambient) (x := t)).1 hleft_sub
     have hleft_ambient_mdifferentiable :
@@ -1409,7 +1410,7 @@ lemma quadratic_difference_cut_param_mfderiv_injective (t : quadratic_difference
       have hmiddle_sub :
           ContMDiffAt 𝓘(ℝ) 𝓘(ℝ, Plane) ∞
             (fun x : quadratic_difference_cut_source ↦ quadratic_difference_middle_ambient x) t := by
-        simpa [quadratic_difference_middle_branch] using
+        simpa [quadratic_difference_middle_branch] using!
           quadratic_difference_middle_branch_contMDiff_top t
       exact (contMDiffAt_subtype_iff (U := quadratic_difference_cut_source)
         (f := quadratic_difference_middle_ambient) (x := t)).1 hmiddle_sub
@@ -1433,7 +1434,7 @@ lemma quadratic_difference_cut_param_mfderiv_injective (t : quadratic_difference
       have hright_sub :
           ContMDiffAt 𝓘(ℝ) 𝓘(ℝ, Plane) ∞
             (fun x : quadratic_difference_cut_source ↦ quadratic_difference_right_ambient x) t := by
-        simpa [quadratic_difference_right_branch] using
+        simpa [quadratic_difference_right_branch] using!
           quadratic_difference_right_branch_contMDiff_top t
       exact (contMDiffAt_subtype_iff (U := quadratic_difference_cut_source)
         (f := quadratic_difference_right_ambient) (x := t)).1 hright_sub
@@ -1504,7 +1505,7 @@ lemma quadratic_difference_model_localDiffeomorphAt_isImmersionAtOfComplement_pu
     (by simp)
     hdom_mem
     (by
-      simpa using
+      simpa using!
         (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ, E)).id_mem_maximalAtlas)
     ?_
   intro u hu
@@ -1516,7 +1517,7 @@ lemma quadratic_difference_model_localDiffeomorphAt_isImmersionAtOfComplement_pu
   have hright : domChart (domChart.symm u) = u := domChart.right_inv hu_target
   -- In the chosen local-diffeomorphism chart, the map is literally the identity.
   simpa [domChart, Function.comp, OpenPartialHomeomorph.extend_coe,
-    OpenPartialHomeomorph.extend_coe_symm] using hfu.trans hright
+    OpenPartialHomeomorph.extend_coe_symm] using! hfu.trans hright
 
 /-- Helper for Problem 5-11: translation by a real constant is a top-regularity diffeomorphism of
 the model real line. -/
@@ -1591,8 +1592,9 @@ noncomputable def quadratic_difference_antidiagonal_straightening_diffeomorph :
       quadratic_difference_antidiagonal_straightening.contDiff.contMDiff
   contMDiff_invFun := by
     -- The inverse shear is continuous linear as well.
-    simpa [quadratic_difference_antidiagonal_straightening] using
-      quadratic_difference_antidiagonal_straightening.symm.contDiff.contMDiff
+    exact
+      ((contDiff_fst : ContDiff ℝ (⊤ : WithTop ℕ∞) (fun p : Plane ↦ p.1)).prodMk
+        (contDiff_snd.sub contDiff_fst)).contMDiff
 
 /-- Helper for Problem 5-11: the diagonal straightening map is likewise a top-regularity
 diffeomorphism of the ambient plane. -/
@@ -1605,8 +1607,9 @@ noncomputable def quadratic_difference_diagonal_straightening_diffeomorph :
       quadratic_difference_diagonal_straightening.contDiff.contMDiff
   contMDiff_invFun := by
     -- The inverse shear is again continuous linear.
-    simpa [quadratic_difference_diagonal_straightening] using
-      quadratic_difference_diagonal_straightening.symm.contDiff.contMDiff
+    exact
+      ((contDiff_fst : ContDiff ℝ (⊤ : WithTop ℕ∞) (fun p : Plane ↦ p.1)).prodMk
+        (contDiff_fst.add contDiff_snd)).contMDiff
 
 /-- Helper for Problem 5-11: the inverse antidiagonal straightening map has the explicit affine
 formula `(u, v) ↦ (u, v - u)`. -/
@@ -1627,15 +1630,15 @@ lemma quadratic_difference_real_axis_inclusion_isImmersionOfComplement_top :
   apply Manifold.IsImmersionAtOfComplement.mk_of_continuousAt
     (by
       -- The model inclusion is assembled from the identity and constant coordinates.
-      simpa [quadratic_difference_real_axis_inclusion] using
+      simpa [quadratic_difference_real_axis_inclusion] using!
         ((continuous_id : Continuous fun x : ℝ ↦ x).prodMk continuous_const).continuousAt)
     (ContinuousLinearEquiv.refl ℝ Plane)
     (OpenPartialHomeomorph.refl ℝ)
     (OpenPartialHomeomorph.refl Plane)
   · simp
   · simp
-  · simpa using (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ)).id_mem_maximalAtlas
-  · simpa using (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ, Plane)).id_mem_maximalAtlas
+  · simpa using! (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ)).id_mem_maximalAtlas
+  · simpa using! (contDiffGroupoid (⊤ : WithTop ℕ∞) 𝓘(ℝ, Plane)).id_mem_maximalAtlas
   · intro x hx
     -- In identity charts, the written-in-charts map is literally `u ↦ (u, 0)`.
     simp [quadratic_difference_real_axis_inclusion]
@@ -1657,7 +1660,7 @@ lemma quadratic_difference_middle_scalar_real_contDiffOn_cut :
     · exact hx.2 hcase
     · exact hx.1 hcase
   -- The inverse-function-theorem input is the ordinary smooth quotient formula.
-  simpa [quadratic_difference_middle_scalar_real] using
+  simpa [quadratic_difference_middle_scalar_real] using!
     (contDiffAt_id.div (contDiffAt_const.sub ((contDiffAt_id : ContDiffAt ℝ
       (⊤ : WithTop ℕ∞) (fun x : ℝ ↦ x) x).pow 2)) hden_ne).contDiffWithinAt
 
@@ -1696,7 +1699,7 @@ lemma quadratic_difference_middle_scalar_isLocalDiffeomorphAt_top
   have hfderiv_eq :
       fderiv ℝ quadratic_difference_middle_scalar_real (t : ℝ) =
         (ContinuousLinearMap.smulRight (1 : ℝ →L[ℝ] ℝ) c) := by
-    simpa [c] using hderiv.hasFDerivAt.fderiv
+    simpa [c] using! hderiv.hasFDerivAt.fderiv
   have he_map :
       (e : ℝ →L[ℝ] ℝ) =
         ContinuousLinearMap.smulRight (1 : ℝ →L[ℝ] ℝ) c := by
@@ -1707,7 +1710,7 @@ lemma quadratic_difference_middle_scalar_isLocalDiffeomorphAt_top
     rw [hfderiv_eq, he_map.symm]
   have hg_fderiv :
       HasFDerivAt quadratic_difference_middle_scalar_real (e : ℝ →L[ℝ] ℝ) (t : ℝ) := by
-    simpa [he_eq, ContinuousLinearMap.toSpanSingleton, c] using hderiv.hasFDerivAt
+    simpa [he_eq, ContinuousLinearMap.toSpanSingleton, c] using! hderiv.hasFDerivAt
   have hInv : (fderiv ℝ quadratic_difference_middle_scalar_real (t : ℝ)).IsInvertible := by
     rw [he_eq]
     simpa using (ContinuousLinearMap.isInvertible_equiv (f := e))
@@ -1746,7 +1749,7 @@ lemma quadratic_difference_left_source_coordinate_isImmersionAt_top
     quadratic_difference_model_localDiffeomorphAt_isImmersionAtOfComplement_punit
       ((quadratic_difference_real_add_const_diffeomorph 1).isLocalDiffeomorph (t : ℝ))
   -- Compose the open inclusion with the ambient translation to get the source coordinate.
-  simpa [Function.comp] using Manifold.IsImmersionAtOfComplement.ex416_comp hShift hOpen
+  simpa [Function.comp] using! Manifold.IsImmersionAtOfComplement.ex416_comp hShift hOpen
 
 /-- Helper for Problem 5-11: the right affine source coordinate is a top-level immersion because
 it is the open inclusion followed by translation by `-1`. -/
@@ -1765,7 +1768,7 @@ lemma quadratic_difference_right_source_coordinate_isImmersionAt_top
     quadratic_difference_model_localDiffeomorphAt_isImmersionAtOfComplement_punit
       ((quadratic_difference_real_add_const_diffeomorph (-1)).isLocalDiffeomorph (t : ℝ))
   -- The right coordinate uses the same open-inclusion route with the opposite translation.
-  simpa [Function.comp, sub_eq_add_neg] using
+  simpa [Function.comp, sub_eq_add_neg] using!
     Manifold.IsImmersionAtOfComplement.ex416_comp hShift hOpen
 
 /-- Helper for Problem 5-11: the middle rational source coordinate is a top-level immersion on the
@@ -1785,7 +1788,7 @@ lemma quadratic_difference_middle_source_coordinate_isImmersionAt_top
     quadratic_difference_model_localDiffeomorphAt_isImmersionAtOfComplement_punit
       (quadratic_difference_middle_scalar_isLocalDiffeomorphAt_top t)
   -- This is the source-faithful middle coordinate from the textbook branch parametrization.
-  simpa [Function.comp] using Manifold.IsImmersionAtOfComplement.ex416_comp hMid hOpen
+  simpa [Function.comp] using! Manifold.IsImmersionAtOfComplement.ex416_comp hMid hOpen
 
 /-- Helper for Problem 5-11: the left affine antidiagonal branch is a top-level immersion once we
 straighten the antidiagonal to the real axis. -/
@@ -1822,7 +1825,7 @@ lemma quadratic_difference_left_branch_isImmersionAtOfComplement_top
         (fun p : Plane ↦ (p.1, p.2 - p.1))
         ((t : ℝ) + 1, (0 : ℝ)) := by
     simpa [quadratic_difference_antidiagonal_straightening_diffeomorph,
-      quadratic_difference_antidiagonal_straightening] using hStraight
+      quadratic_difference_antidiagonal_straightening] using! hStraight
   have hComp :
       IsImmersionAtOfComplement quadratic_difference_branch_complement
         𝓘(ℝ) 𝓘(ℝ, Plane) (⊤ : WithTop ℕ∞)
@@ -1881,7 +1884,7 @@ lemma quadratic_difference_middle_branch_isImmersionAtOfComplement_top
         (fun p : Plane ↦ (p.1, p.1 + p.2))
         (quadratic_difference_middle_scalar_real (t : ℝ), (0 : ℝ)) := by
     simpa [quadratic_difference_diagonal_straightening_diffeomorph,
-      quadratic_difference_diagonal_straightening] using hStraight
+      quadratic_difference_diagonal_straightening] using! hStraight
   have hComp :
       IsImmersionAtOfComplement quadratic_difference_branch_complement
         𝓘(ℝ) 𝓘(ℝ, Plane) (⊤ : WithTop ℕ∞)
@@ -1941,7 +1944,7 @@ lemma quadratic_difference_right_branch_isImmersionAtOfComplement_top
         (fun p : Plane ↦ (p.1, p.2 - p.1))
         ((t : ℝ) - 1, (0 : ℝ)) := by
     simpa [quadratic_difference_antidiagonal_straightening_diffeomorph,
-      quadratic_difference_antidiagonal_straightening] using hStraight
+      quadratic_difference_antidiagonal_straightening] using! hStraight
   have hComp :
       IsImmersionAtOfComplement quadratic_difference_branch_complement
         𝓘(ℝ) 𝓘(ℝ, Plane) (⊤ : WithTop ℕ∞)
@@ -2201,7 +2204,7 @@ lemma plane_subtype_val_chart_pushforward_eq_model {S : Set Plane}
       MDifferentiableAt 𝓘(ℝ) 𝓘(ℝ) (hImmAt.domChart.extend 𝓘(ℝ)) p := by
     -- Maximal-atlas charts are differentiable at source points.
     exact
-      (contMDiffAt_extend (I := 𝓘(ℝ)) (e := hImmAt.domChart)
+      (hImmAt.domChart.contMDiffAt_extend (I := 𝓘(ℝ))
         hdomChart_mem_maximalAtlas_one hImmAt.mem_domChart_source).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hcod :
@@ -2209,7 +2212,7 @@ lemma plane_subtype_val_chart_pushforward_eq_model {S : Set Plane}
         (hImmAt.codChart.extend 𝓘(ℝ, Plane)) ((Subtype.val : S → Plane) p) := by
     -- The ambient chart is differentiable for the same reason.
     exact
-      (contMDiffAt_extend (I := 𝓘(ℝ, Plane)) (e := hImmAt.codChart)
+      (hImmAt.codChart.contMDiffAt_extend (I := 𝓘(ℝ, Plane))
         hcodChart_mem_maximalAtlas_one hImmAt.mem_codChart_source).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hL :
@@ -2233,7 +2236,7 @@ lemma plane_subtype_val_chart_pushforward_eq_model {S : Set Plane}
   have hright :
       mfderiv 𝓘(ℝ) 𝓘(ℝ, Plane) (L ∘ (hImmAt.domChart.extend 𝓘(ℝ))) p w =
         L ((mfderiv 𝓘(ℝ) 𝓘(ℝ) (hImmAt.domChart.extend 𝓘(ℝ)) p) w) := by
-    simpa [Function.comp, mfderiv_eq_fderiv] using
+    simpa [Function.comp, mfderiv_eq_fderiv] using!
       (mfderiv_comp_apply (x := p) (g := L) (f := hImmAt.domChart.extend 𝓘(ℝ))
         hL hdom w)
   -- Apply the chain rule to the chart-normal-form identity.
@@ -2283,7 +2286,7 @@ lemma plane_chart_extend_mfderiv_left_inverse {S : Type*}
       MDifferentiableAt 𝓘(ℝ) 𝓘(ℝ) (e.extend 𝓘(ℝ)) p := by
     -- Maximal-atlas charts are differentiable at source points.
     exact
-      (contMDiffAt_extend (I := 𝓘(ℝ)) (e := e) he_one hp).mdifferentiableAt
+      (e.contMDiffAt_extend (I := 𝓘(ℝ)) he_one hp).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hrange :
       MDifferentiableWithinAt 𝓘(ℝ) 𝓘(ℝ) (e.extend 𝓘(ℝ)).symm (Set.range 𝓘(ℝ))
@@ -2332,10 +2335,12 @@ lemma plane_chart_extend_mfderiv_injective {S : Type*}
     simpa [Linv] using congrArg Linv hw
   have hw₁ :
       ((Linv.comp (mfderiv 𝓘(ℝ) 𝓘(ℝ) (e.extend 𝓘(ℝ)) p)) w₁) = w₁ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₁) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₁) hleft
   have hw₂ :
       ((Linv.comp (mfderiv 𝓘(ℝ) 𝓘(ℝ) (e.extend 𝓘(ℝ)) p)) w₂) = w₂ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₂) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₂) hleft
   have hw₁' : w₁ = Linv (mfderiv 𝓘(ℝ) 𝓘(ℝ) (e.extend 𝓘(ℝ)) p w₁) := by
     simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using hw₁.symm
   have hw₂' : Linv (mfderiv 𝓘(ℝ) 𝓘(ℝ) (e.extend 𝓘(ℝ)) p w₂) = w₂ := by
@@ -2574,8 +2579,8 @@ lemma ambient_velocity_zero_of_cusp_curve
     have happly :
         fderiv ℝ g 0 1 = (0, 0) := by
       simpa using DFunLike.congr_fun hpair.hasFDerivAt.fderiv 1
-    simpa [curve_velocity, mfderiv_eq_fderiv] using happly
-  simpa [h0] using hvelocity
+    simpa [curve_velocity, mfderiv_eq_fderiv] using! happly
+  simpa [h0] using! hvelocity
 
 /-- Helper for Problem 5-11: every ambient tangent vector in the cusp tangent image at the origin
 must vanish. -/
@@ -2607,7 +2612,7 @@ lemma ambient_tangent_zero_at_cusp_origin
           (Subtype.val : cuspPolynomialZeroSet → Plane) :=
       (subtype_val_contMDiff_of_isImmersedCurve hImm).of_le le_top
     -- The ambient curve is the subtype curve followed by the immersed inclusion.
-    simpa [g] using hIncl.comp_contMDiffOn hsm
+    simpa [g] using! hIncl.comp_contMDiffOn hsm
   have hgDiff0 : DifferentiableAt ℝ g 0 := by
     have hgContDiffOn : ContDiffOn ℝ ∞ g (Set.Ioo (-(r : ℝ)) (r : ℝ)) := by
       rw [← contMDiffOn_iff_contDiffOn]
@@ -2623,7 +2628,7 @@ lemma ambient_tangent_zero_at_cusp_origin
     ambient_velocity_zero_of_cusp_curve (r := r) (g := g) hg0 hgDiff0 hcusp
   have hv_zero :
       v = curve_velocityWithin 𝓘(ℝ, Plane) g (Set.Ioo (-(r : ℝ)) (r : ℝ)) 0 := by
-    simpa [γ0, g, Function.comp, SmoothCurveAt.sourceSet] using hγv.symm
+    simpa [γ0, g, Function.comp, SmoothCurveAt.sourceSet] using! hγv.symm
   -- The cusp calculation forces every ambient tangent represented by such a curve to vanish.
   exact hv_zero.trans hzero_velocity
 

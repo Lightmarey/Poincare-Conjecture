@@ -54,7 +54,7 @@ theorem contDiffOn_infty_chartCurvatureOp (g : RiemannianMetric I M) (α : M) (u
   have hvel : ∀ i : Fin (Module.finrank ℝ E),
       ContDiffOn ℝ ∞ (fun t => Geodesic.chartCoord (E := E) i (deriv u t)) s := fun i => by
     have := (Geodesic.chartCoordFunctional (E := E) i).contDiff.comp_contDiffOn hu'
-    simpa only [Geodesic.chartCoordFunctional_apply] using this
+    simpa only [Geodesic.chartCoordFunctional_apply, Function.comp_def] using this
   unfold chartCurvatureOp
   refine ContDiffOn.sum (fun l _ => ContDiffOn.sum (fun j _ => ?_))
   have hscalar : ContDiffOn ℝ ∞

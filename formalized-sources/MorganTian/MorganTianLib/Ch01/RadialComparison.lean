@@ -213,9 +213,9 @@ theorem norm_jacobi_sq_le (h : IsRadialJacobi ℛ 𝒥 𝒥' b C) (hb : 0 < b)
     have hnorm : ∀ s, ‖𝒥 s w‖ ^ 2 = ⟪𝒥 s w, 𝒥 s w⟫ := fun s =>
       (real_inner_self_eq_norm_sq _).symm
     simp only [hnorm]
-    convert this using 1
-    rw [real_inner_comm (𝒥 r w) (𝒥' r w)]
-    ring
+    exact this.congr_deriv (by
+      rw [real_inner_comm (𝒥 r w) (𝒥' r w)]
+      ring)
   -- `F' ≤ 2(sn'/sn) F` from the shape-operator estimate
   have hFle : ∀ r ∈ Ioo (0 : ℝ) r₀, F' r ≤ 2 * (csK k r / snK k r) * F r := by
     intro r hr

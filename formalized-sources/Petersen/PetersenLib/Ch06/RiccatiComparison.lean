@@ -77,8 +77,8 @@ theorem riccatiComparisonPrinciple {b : ℝ} {ρ₁ ρ₂ ρ₁' ρ₂' F : ℝ 
         (Real.exp (F t) * (ρ₁ t + ρ₂ t)) t := by
       simpa [mul_comm] using (hF t ht).exp
     have := hd.mul he
-    convert this using 1
-    ring
+    change HasDerivAt ((fun t => ρ₂ t - ρ₁ t) * fun t => Real.exp (F t)) _ _
+    exact this.congr_deriv (by ring)
   -- That derivative is `≥ 0` by hypothesis.
   have hderiv : ∀ t ∈ interior (Ioo (0 : ℝ) b),
       0 ≤ deriv (fun t => (ρ₂ t - ρ₁ t) * Real.exp (F t)) t := by
@@ -119,7 +119,7 @@ theorem riccatiComparisonPrinciple_le_of_liminf {b : ℝ} {ρ₁ ρ₂ ρ₁' ρ
   -- `(ρ₂-ρ₁)·exp F` at `t` dominates its values at all smaller `s`, hence is `≥ 0`.
   have hnn : 0 ≤ (ρ₂ t - ρ₁ t) * Real.exp (F t) := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     set A := (ρ₂ t - ρ₁ t) * Real.exp (F t) with hA
     obtain ⟨s, hs, hsge⟩ := h0 t ht (-A / 2) (by linarith)
     have hsb : s ∈ Ioo (0 : ℝ) b := ⟨hs.1, lt_trans hs.2 ht.2⟩
@@ -158,7 +158,7 @@ theorem riccatiComparisonPrinciple_le_of_bounded_of_exp_tendsto_zero
   -- Near `0⁺`: the bound holds, `exp F` is small, and we are inside `(0,t)`.
   have hsmall : ∀ᶠ s in 𝓝[>] (0 : ℝ), Real.exp (F s) < ε / (C + 1) := by
     have := hexp (Iio_mem_nhds hpos)
-    simpa [Set.preimage, mem_Iio] using this
+    exact this
   have hIoo : Ioo (0 : ℝ) t ∈ 𝓝[>] (0 : ℝ) := Ioo_mem_nhdsGT ht.1
   obtain ⟨s, ⟨⟨hsb, hse⟩, hst⟩⟩ := ((hbdd.and hsmall).and hIoo).exists
   refine ⟨s, hst, ?_⟩
@@ -192,11 +192,13 @@ theorem riccatiComparisonPrinciple_statement_counterexample :
     fun t => Real.exp (-t) / 2, fun t => -Real.exp (-t) / 2, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro t _
     have h : HasDerivAt (fun t : ℝ => Real.exp (-t)) (-Real.exp (-t)) t := by
-      simpa using (Real.hasDerivAt_exp (-t)).comp t (hasDerivAt_neg t)
+      change HasDerivAt (Real.exp ∘ Neg.neg) _ _
+      exact ((Real.hasDerivAt_exp (-t)).comp t (hasDerivAt_neg t)).congr_deriv (by ring)
     simpa using ((hasDerivAt_const t (1 : ℝ)).sub h).div_const 2
   · intro t _
     have h : HasDerivAt (fun t : ℝ => Real.exp (-t)) (-Real.exp (-t)) t := by
-      simpa using (Real.hasDerivAt_exp (-t)).comp t (hasDerivAt_neg t)
+      change HasDerivAt (Real.exp ∘ Neg.neg) _ _
+      exact ((Real.hasDerivAt_exp (-t)).comp t (hasDerivAt_neg t)).congr_deriv (by ring)
     simpa [neg_div] using ((hasDerivAt_const t (1 : ℝ)).add h).div_const 2
   · -- `(ρ₂'+ρ₂²) - (ρ₁'+ρ₁²) = -exp(-t) + exp(-t) = 0`.
     intro t _
@@ -209,6 +211,8 @@ theorem riccatiComparisonPrinciple_statement_counterexample :
     rw [hEq]
     have : Tendsto (fun t : ℝ => Real.exp (-t)) (𝓝 (0 : ℝ)) (𝓝 1) := by
       have := (Real.continuous_exp.comp continuous_neg).tendsto (0 : ℝ)
+      rw [show (fun t : ℝ => Real.exp (-t)) = Real.exp ∘ fun a : ℝ => -a by
+        funext t; rfl]
       simpa using this
     exact this.mono_left nhdsWithin_le_nhds
   · constructor <;> norm_num
@@ -217,6 +221,6 @@ theorem riccatiComparisonPrinciple_statement_counterexample :
     rw [h]
     have : Real.exp (-1 : ℝ) < Real.exp 0 := by
       exact Real.exp_lt_exp.mpr (by norm_num)
-    simpa using this
+    simpa only [Real.exp_zero] using this
 
 end PetersenLib

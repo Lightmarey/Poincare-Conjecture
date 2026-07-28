@@ -248,7 +248,7 @@ theorem mfderiv_hyperboloidInclusion_injective (n : ℕ) (R : ℝ) [Fact (0 < R)
   rw [mfderiv_hyperboloidInclusion]
   intro u v huv
   have h1 := congrArg Prod.fst huv
-  simpa [hyperboloidInclusionDeriv] using h1
+  simpa [hyperboloidInclusionDeriv] using! h1
 
 /-- **Math.** The inclusion `ι : H^n(R) → ℝ^{n,1}` is a smooth immersion. -/
 theorem hyperboloidInclusion_isSmoothImmersion (n : ℕ) (R : ℝ) [Fact (0 < R)] :

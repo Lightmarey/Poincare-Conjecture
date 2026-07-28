@@ -275,13 +275,7 @@ constant model basis vectors: the trivialization of `Ts` is the identity
 (`symmL_opens`), so no chart transition ever bends them. -/
 theorem chartBasisVecFiber_opens (s : Opens F) (a : s) (i : Fin (Module.finrank ℝ F)) (b : s) :
     chartBasisVecFiber (I := 𝓘(ℝ, F)) a i b = (Module.finBasis ℝ F) i := by
-  rw [Tensor.chartBasisVecFiber]
-  have := symmL_opens s a b
-  have h2 : (trivializationAt F (TangentSpace 𝓘(ℝ, F)) a).symm (b : s)
-      = fun v => (trivializationAt F (TangentSpace 𝓘(ℝ, F)) a).symmL ℝ (b : s) v := by
-    funext v
-    rw [Trivialization.symmL_apply]
-  rw [h2, this]
+  rw [Tensor.chartBasisVecFiber, symmL_opens]
   rfl
 
 /-- **Math.** The chart Gram matrix function of the flat metric on an open

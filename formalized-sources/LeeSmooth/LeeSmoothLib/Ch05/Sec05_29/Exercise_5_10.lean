@@ -357,7 +357,8 @@ lemma sphericalCoordinates_open_source : IsOpen sphericalCoordinatesSourceSet :=
   -- The source is the union of a half-space and the complement of a coordinate hyperplane.
   have h0_cont : Continuous fun x : R3 => x 0 := PiLp.continuous_apply 2 _ 0
   have h1_cont : Continuous fun x : R3 => x 1 := PiLp.continuous_apply 2 _ 1
-  simpa [sphericalCoordinatesSourceSet] using
+  change IsOpen ({x : R3 | 0 < x 0} ∪ {x : R3 | x 1 ≠ 0})
+  exact
     (isOpen_lt continuous_const h0_cont).union
       (isOpen_ne_fun h1_cont continuous_const)
 
@@ -428,17 +429,17 @@ lemma complex_arg_contDiffAt_of_mem_slitPlane {z : ℂ} (hz : z ∈ Complex.slit
     ContDiffAt ℝ ω Complex.arg z := by
   -- Rewrite the complex slit-plane chart through the real polar-coordinate chart.
   have hz_real : Complex.equivRealProd z ∈ polarCoord.source := by
-    simpa [Complex.polarCoord_source] using hz
+    exact hz
   have hreal : ContDiffAt ℝ ω polarCoord (Complex.equivRealProd z) := by
     exact polarCoord_contDiffAt_of_mem_source hz_real
   have hcomplex : ContDiffAt ℝ ω Complex.polarCoord z := by
-    simpa [Complex.polarCoord] using hreal.comp z Complex.equivRealProdCLM.contDiff.contDiffAt
+    exact hreal.comp z Complex.equivRealProdCLM.contDiff.contDiffAt
   -- The argument is the second polar-coordinate component.
   have hEq : Complex.arg = fun w : ℂ ↦ (Complex.polarCoord w).2 := by
     funext w
     simp [Complex.polarCoord_apply]
   rw [hEq]
-  simpa using contDiff_snd.contDiffAt.comp z hcomplex
+  exact contDiff_snd.contDiffAt.comp z hcomplex
 
 /-- Helper for Exercise 5.10: `Complex.arg` is smooth on the canonical slit plane used by
 spherical coordinates. -/
@@ -456,13 +457,15 @@ lemma sphericalCoordinates_arg_contDiffOn :
   -- The planar projection into `ℂ` is globally smooth in the Euclidean coordinates.
   have hplanar : ContDiff ℝ ω (fun x : R3 ↦ Complex.mk (x 0) (x 1)) := by
     have hcoord0 : ContDiff ℝ ω (fun x : R3 ↦ ((x 0 : ℝ) : ℂ)) := by
-      simpa using
-        (Complex.ofRealCLM.contDiff.comp
-          (contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 3 ↦ ℝ) (i := (0 : Fin 3))))
+      change ContDiff ℝ ω (Complex.ofRealCLM ∘ fun x : R3 ↦ x (0 : Fin 3))
+      exact
+        Complex.ofRealCLM.contDiff.comp
+          (contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 3 ↦ ℝ) (i := (0 : Fin 3)))
     have hcoord1 : ContDiff ℝ ω (fun x : R3 ↦ ((x 1 : ℝ) : ℂ)) := by
-      simpa using
-        (Complex.ofRealCLM.contDiff.comp
-          (contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 3 ↦ ℝ) (i := (1 : Fin 3))))
+      change ContDiff ℝ ω (Complex.ofRealCLM ∘ fun x : R3 ↦ x (1 : Fin 3))
+      exact
+        Complex.ofRealCLM.contDiff.comp
+          (contDiff_piLp_apply (𝕜 := ℝ) (p := 2) (E := fun _ : Fin 3 ↦ ℝ) (i := (1 : Fin 3)))
     simpa [Complex.mk_eq_add_mul_I] using hcoord0.add (hcoord1.mul contDiff_const)
   -- Compose the slit-plane smoothness of `Complex.arg` with that planar projection.
   refine Complex.arg_contDiffOn_slitPlane.comp hplanar.contDiffOn ?_
@@ -626,12 +629,12 @@ lemma target_last_coordinate_eq_const_isEuclideanSlice
     · exact huV
     · intro i
       fin_cases i
-      simpa [Set.euclideanSlice] using hu2
+      exact hu2
   · intro hu
     rcases hu with ⟨huV, huTail⟩
     constructor
     · exact huV
-    · simpa [Set.euclideanSlice] using huTail 0
+    · exact huTail 0
 
 /-- Exercise 5.10: on any open subset of the standard spherical-coordinate domain, the restricted
 chart cuts out the unit sphere by the explicit coordinate equation `r = 1`. -/
@@ -713,7 +716,10 @@ lemma sphericalCoordinates_restrOpen_mem_maximalAtlas
     sphericalCoordinates.restrOpen U hU_open ∈
       IsManifold.maximalAtlas (𝓡 3) (⊤ : WithTop ℕ∞) R3 := by
   -- Restrict the already-certified smooth chart and then rewrite `restr` to `restrOpen`.
-  simpa [sphericalCoordinates_restr_eq_restrOpen hU_open] using
+  change sphericalCoordinates.restrOpen U hU_open ∈
+    (contDiffGroupoid (⊤ : WithTop ℕ∞) (𝓡 3)).maximalAtlas R3
+  rw [← sphericalCoordinates_restr_eq_restrOpen hU_open]
+  exact
     restr_mem_maximalAtlas
       (contDiffGroupoid (⊤ : WithTop ℕ∞) (𝓡 3))
       sphericalCoordinates_mem_maximalAtlas

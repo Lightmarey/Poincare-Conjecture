@@ -271,7 +271,7 @@ theorem problem_5_7_real_to_r1_isSmoothSubmersion :
       simpa [problem_5_7_real_to_r1] using
         (problem_5_7_real_to_r1_equiv.toContinuousLinearMap.hasFDerivAt (x := x)).fderiv
     rw [hderiv]
-    simpa [problem_5_7_real_to_r1] using problem_5_7_real_to_r1_equiv.surjective
+    simpa [problem_5_7_real_to_r1] using! problem_5_7_real_to_r1_equiv.surjective
 
 /-- Helper for Problem 5-7: the open complement of the two critical points. -/
 def problem_5_7_regularDomain : TopologicalSpace.Opens R2 :=
@@ -306,7 +306,7 @@ theorem problem_5_7_regularDomain_mfderiv_eq_comp_subtype_val (p : problem_5_7_r
     exact hsub.contMDiffAt.mdifferentiableAt (by simp)
   have hF_diff : MDifferentiableAt (𝓡 2) 𝓘(ℝ, ℝ) problem_5_7_F p.1 := by
     exact hF.contMDiffAt.mdifferentiableAt (by simp)
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     (mfderiv_comp p hF_diff hsub_diff)
 
 /-- Helper for Problem 5-7: the restriction of `F` to the regular domain is a smooth submersion
@@ -331,7 +331,7 @@ theorem problem_5_7_regularDomain_isSmoothSubmersion :
         (fun p : problem_5_7_regularDomain ↦ problem_5_7_real_to_r1 (problem_5_7_F p.1)) := by
     -- Smoothness follows from the chain rule for the fixed linear identification after the
     -- scalar regular-domain map.
-    simpa [Function.comp] using hr1.contMDiff.comp hscalar.contMDiff
+    simpa [Function.comp] using! hr1.contMDiff.comp hscalar.contMDiff
   refine ⟨by simpa using hcomp, ?_⟩
   intro p
   have hmdiff_outer :
@@ -348,9 +348,9 @@ theorem problem_5_7_regularDomain_isSmoothSubmersion :
           (mfderiv 𝓘(ℝ, ℝ) (𝓡 1) problem_5_7_real_to_r1 (problem_5_7_F p.1)).comp
             (mfderiv (𝓡 2) 𝓘(ℝ, ℝ)
               (fun q : problem_5_7_regularDomain ↦ problem_5_7_F q.1) p) := by
-    simpa [Function.comp] using mfderiv_comp p hmdiff_outer hmdiff_inner
+    simpa [Function.comp] using! mfderiv_comp p hmdiff_outer hmdiff_inner
   rw [hmfderiv]
-  simpa [Function.comp] using
+  simpa [Function.comp] using!
     (hr1.surjective_mfderiv (problem_5_7_F p.1)).comp (hscalar.surjective_mfderiv p)
 
 /-- Helper for Problem 5-7: a point on a nonexceptional fiber cannot be one of the two critical
@@ -994,7 +994,7 @@ theorem r1_transition_mem_contDiffGroupoid_real
       refine (heModel_contDiff.contDiffOn : ContDiffOn ℝ (⊤ : WithTop ℕ∞) eModel Set.univ).comp hmid ?_
       intro x hx
       simp [Set.mem_univ, eModel]
-    simpa [eModel, Function.comp, OpenPartialHomeomorph.trans_source] using hfinal
+    simpa [eModel, Function.comp, OpenPartialHomeomorph.trans_source] using! hfinal
   · -- The same conjugation argument applies to the inverse transition.
     have hmid :
         ContDiffOn ℝ (⊤ : WithTop ℕ∞)
@@ -1011,7 +1011,7 @@ theorem r1_transition_mem_contDiffGroupoid_real
       intro x hx
       simp [Set.mem_univ, eModel]
     simpa [eModel, Function.comp, OpenPartialHomeomorph.trans_source,
-      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using
+      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using!
       hfinal
 
 /-- Helper for Problem 5-7: a regular level set modeled on `ℝ¹` can be re-packaged as an

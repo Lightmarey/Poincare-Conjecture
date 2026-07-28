@@ -432,6 +432,7 @@ theorem tendsto_snRatio_atBot {k : ℝ} (hk : 0 < k) :
       (nhdsWithin_le_nhds (s := Iio R))
     rwa [hcsR] at this
   have := Filter.Tendsto.neg_mul_atTop (by norm_num : (-1 : ℝ) < 0) hcs hinv
+  change Tendsto (fun t => snRatio k t) (𝓝[<] R) atBot
   simpa [snRatio, div_eq_mul_inv] using this
 
 /-- **Math.** Petersen Cor. 6.4.2(1) (p. 271), the endpoint claim, **corrected**.

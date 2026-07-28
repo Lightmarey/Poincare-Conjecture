@@ -496,7 +496,8 @@ theorem ricciFlatRotSymIsFlat (n : ℕ) (hn : 3 ≤ n) (ρ : ℝ → ℝ)
     have hd0 : ∀ s, deriv (fun t => ρ t - t) s = 0 := by
       intro s
       have h2 : HasDerivAt (fun t : ℝ => ρ t - t) (deriv ρ s - 1) s := by
-        simpa using (hdiff s).hasDerivAt.sub (hasDerivAt_id s)
+        change HasDerivAt (ρ - id) _ _
+        exact (hdiff s).hasDerivAt.sub (hasDerivAt_id s)
       rw [h2.deriv, hone s, sub_self]
     have hdf : Differentiable ℝ fun t : ℝ => ρ t - t := hdiff.sub differentiable_id
     have hkey : ρ r - r = ρ 0 - 0 := is_const_of_deriv_eq_zero hdf hd0 r 0
@@ -505,7 +506,8 @@ theorem ricciFlatRotSymIsFlat (n : ℕ) (hn : 3 ≤ n) (ρ : ℝ → ℝ)
     have hd0 : ∀ s, deriv (fun t => ρ t + t) s = 0 := by
       intro s
       have h2 : HasDerivAt (fun t : ℝ => ρ t + t) (deriv ρ s + 1) s := by
-        simpa using (hdiff s).hasDerivAt.add (hasDerivAt_id s)
+        change HasDerivAt (ρ + id) _ _
+        exact (hdiff s).hasDerivAt.add (hasDerivAt_id s)
       rw [h2.deriv, hneg s]
       norm_num
     have hdf : Differentiable ℝ fun t : ℝ => ρ t + t := hdiff.add differentiable_id

@@ -35,7 +35,8 @@ theorem example_8_17_circle_parametrization_contMDiff :
   -- On model spaces, manifold smoothness is ordinary `ContDiff`.
   rw [contMDiff_iff_contDiff]
   -- The two coordinate functions are smooth, so their product map is smooth.
-  simpa [example_8_17_circle_parametrization] using Real.contDiff_cos.prodMk Real.contDiff_sin
+  change ContDiff ℝ ∞ (fun t : ℝ ↦ (Real.cos t, Real.sin t))
+  exact Real.contDiff_cos.prodMk Real.contDiff_sin
 
 /-- The planar rotation vector field `Y = x ∂/∂y - y ∂/∂x` from Example 8.17. -/
 def example_8_17_rotation_field (p : Plane) : TangentSpace 𝓘(ℝ, Plane) p :=
@@ -60,19 +61,11 @@ coordinate formula `(-y, x)`. -/
 unit tangent coordinate to `(-sin t, cos t)`. -/
 lemma circleParametrizationFderivApplyOne (t : ℝ) :
     fderiv ℝ example_8_17_circle_parametrization t 1 = (-Real.sin t, Real.cos t) := by
-  have hderiv :
-      HasFDerivAt example_8_17_circle_parametrization
-        (ContinuousLinearMap.toSpanSingleton ℝ (-Real.sin t, Real.cos t)) t := by
-    -- Differentiate the cosine and sine coordinates separately, then reassemble the product map.
-    simpa [example_8_17_circle_parametrization] using
-      (Real.hasDerivAt_cos t).hasFDerivAt.prodMk (Real.hasDerivAt_sin t).hasFDerivAt
-  have hfderiv :
-      fderiv ℝ example_8_17_circle_parametrization t =
-        ContinuousLinearMap.toSpanSingleton ℝ (-Real.sin t, Real.cos t) := by
-    -- `HasFDerivAt` identifies the Fréchet derivative with the expected linear map.
-    simpa using hderiv.fderiv
-  -- Evaluating the Fréchet derivative at `1` recovers the ordinary derivative vector.
-  simpa using DFunLike.congr_fun hfderiv 1
+  change (fderiv ℝ (fun s : ℝ ↦ (Real.cos s, Real.sin s)) t) 1 =
+    (-Real.sin t, Real.cos t)
+  rw [((Real.hasDerivAt_cos t).hasFDerivAt.prodMk
+    (Real.hasDerivAt_sin t).hasFDerivAt).fderiv]
+  simp
 
 /-- Helper for Example 8.17: the circle parametrization pushes `d / dt` forward to the planar
 rotation field at each parameter value. -/
@@ -82,8 +75,10 @@ lemma circleParametrizationPushforwardDdt (t : ℝ) :
   -- Compare tangent vectors after reading both sides in ambient `Plane` coordinates.
   apply (fromTangentSpace (example_8_17_circle_parametrization t)).injective
   -- Route correction: once transported to `Plane`, the claim is exactly the derivative formula.
-  simpa [example_8_17_circle_parametrization_apply, mfderiv_eq_fderiv] using
-    circleParametrizationFderivApplyOne t
+  rw [mfderiv_eq_fderiv]
+  change (fderiv ℝ example_8_17_circle_parametrization t) 1 =
+    (-Real.sin t, Real.cos t)
+  exact circleParametrizationFderivApplyOne t
 
 /-- Example 8.17: if `F(t) = (cos t, sin t)`, then the vector field `d/dt` on `ℝ` is
 `F`-related to the vector field `Y = x ∂/∂y - y ∂/∂x` on `ℝ²`. -/

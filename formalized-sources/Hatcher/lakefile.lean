@@ -9,7 +9,7 @@ package HatcherLib where
 
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git"
-    @ "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+    @ "520045ab14e26149ee970e2e617ca04b09bde5d6"
 
 @[default_target]
 lean_lib HatcherLib where

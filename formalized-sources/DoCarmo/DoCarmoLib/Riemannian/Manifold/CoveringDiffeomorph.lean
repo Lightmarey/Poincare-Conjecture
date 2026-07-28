@@ -53,7 +53,7 @@ proof of the Hadamard theorem ("since `M` is simply connected, the covering map
 `exp_p` is a diffeomorphism"). -/
 theorem IsCoveringMap.bijective_of_simplyConnected
     [PreconnectedSpace E] [Nonempty E]
-    [SimplyConnectedSpace X] [LocPathConnectedSpace X]
+    [SimplyConnectedSpace X] [LocallyPathConnectedSpace X]
     (hf : IsCoveringMap f) : Function.Bijective f := by
   obtain ⟨e₀⟩ := ‹Nonempty E›
   -- The identity `X → X` lifts uniquely to a global continuous section `s`.
@@ -80,7 +80,7 @@ nonempty space onto a simply connected, locally path connected base is a
 **homeomorphism** (a continuous open bijection). -/
 def IsCoveringMap.homeomorphOfSimplyConnected
     [PreconnectedSpace E] [Nonempty E]
-    [SimplyConnectedSpace X] [LocPathConnectedSpace X]
+    [SimplyConnectedSpace X] [LocallyPathConnectedSpace X]
     (hf : IsCoveringMap f) : E ≃ₜ X :=
   (Equiv.ofBijective f hf.bijective_of_simplyConnected).toHomeomorphOfContinuousOpen
     hf.continuous hf.isOpenMap
@@ -115,7 +115,7 @@ isometry out of the complete flat `T_pM`), this is exactly the Hadamard
 conclusion. -/
 def DCExpandsMetric.diffeomorphOfSimplyConnected [ProperSpace M] [T2Space M']
     [I'.Boundaryless] [PreconnectedSpace M] [Nonempty M]
-    [SimplyConnectedSpace M'] [LocPathConnectedSpace M']
+    [SimplyConnectedSpace M'] [LocallyPathConnectedSpace M']
     {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'} {f : M → M'}
     (hexp : DCExpandsMetric gM gN f) (hgM : gM.IsRiemannianDist)
     (hf : IsLocalDiffeomorph I I' ∞ f) : Diffeomorph I I' M M' ∞ :=
@@ -125,7 +125,7 @@ def DCExpandsMetric.diffeomorphOfSimplyConnected [ProperSpace M] [T2Space M']
 is `f` itself: the constructed diffeomorphism is `f`, upgraded, not a new map. -/
 theorem DCExpandsMetric.diffeomorphOfSimplyConnected_coe [ProperSpace M] [T2Space M']
     [I'.Boundaryless] [PreconnectedSpace M] [Nonempty M]
-    [SimplyConnectedSpace M'] [LocPathConnectedSpace M']
+    [SimplyConnectedSpace M'] [LocallyPathConnectedSpace M']
     {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'} {f : M → M'}
     (hexp : DCExpandsMetric gM gN f) (hgM : gM.IsRiemannianDist)
     (hf : IsLocalDiffeomorph I I' ∞ f) :

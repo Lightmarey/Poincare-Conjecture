@@ -170,7 +170,7 @@ theorem chartMetricInner_eq_inner (g : RiemannianMetric I M) {α x : M}
     rw [map_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [map_smul]
-    congr 1
+    rfl
   rw [htcc a, htcc b, chartMetricInner_def]
   -- bilinear expansion of the metric inner product
   simp only [map_sum, map_smul, ContinuousLinearMap.sum_apply,

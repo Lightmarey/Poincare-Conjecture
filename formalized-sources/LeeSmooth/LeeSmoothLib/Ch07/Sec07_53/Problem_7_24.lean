@@ -276,6 +276,9 @@ theorem polynomialPrecompose_right_inv {n : ℕ} (A : GL (Fin n) ℝ) :
       (MvPolynomial.aeval (polynomialCoordinateChange A⁻¹))
       (MvPolynomial.aeval (polynomialCoordinateChange A)) := by
   -- The left-inverse statement for `A⁻¹` is exactly the right-inverse statement for `A`.
+  change Function.LeftInverse
+    (MvPolynomial.aeval (polynomialCoordinateChange A))
+    (MvPolynomial.aeval (polynomialCoordinateChange A⁻¹))
   simpa using polynomialPrecompose_left_inv (A⁻¹)
 
 /-- The polynomial substitution induced by `A ∈ GL(n, ℝ)`, acting by precomposition with the
@@ -471,13 +474,13 @@ noncomputable def tau_d_n_continuousUnits (n : ℕ) (d : ℕ+) :
   map_one' := by
     apply (ContinuousLinearEquiv.unitsEquiv ℝ (polynomialRepresentationSpace n d)).injective
     -- Reduce the identity law to the corresponding linear-equivalence identity on coordinates.
-    simpa using congrArg LinearEquiv.toContinuousLinearEquiv
+    simpa using! congrArg LinearEquiv.toContinuousLinearEquiv
       (tau_d_n_coordinateLinearEquiv_one n d)
   map_mul' := by
     intro A B
     apply (ContinuousLinearEquiv.unitsEquiv ℝ (polynomialRepresentationSpace n d)).injective
     -- Reduce multiplicativity to the corresponding coordinate-model conjugation law.
-    simpa using congrArg LinearEquiv.toContinuousLinearEquiv
+    simpa using! congrArg LinearEquiv.toContinuousLinearEquiv
       (tau_d_n_coordinateLinearEquiv_mul n d A B)
 
 /-- The `τ_d^n` representation sends the identity of `GL(n, ℝ)` to the identity of
@@ -636,7 +639,7 @@ private theorem realGeneralLinearGroupInvEntry_contMDiff (n : ℕ) (i j : Fin n)
         Matrix (Fin n) (Fin n) ℝ →L[ℝ] (Fin n → ℝ))
   -- Compose the smooth inverse-valued map with the continuous linear projection to the `(i,j)`
   -- entry.
-  simpa [projEntry, ContinuousLinearMap.proj_apply, Function.comp] using
+  simpa [projEntry, ContinuousLinearMap.proj_apply, Function.comp] using!
     projEntry.contMDiff.comp (realGeneralLinearGroupInvVal_contMDiff n)
 
 /-- Helper for Problem 7-24: the coefficient of `m` in the transformed polynomial `p * X i`
@@ -744,7 +747,7 @@ private theorem polynomialPrecomposeCoeff_contMDiff (n : ℕ)
             (fun _ : GL (Fin n) ℝ ↦ MvPolynomial.coeff m (MvPolynomial.C a)))
     · intro p q hp hq m
       -- Coefficients are additive in the polynomial argument.
-      simpa [MvPolynomial.coeff_add] using (hp m).add (hq m)
+      simpa [MvPolynomial.coeff_add] using! (hp m).add (hq m)
     · intro p i hp m
       -- Route correction: after switching to bounded-monomial coordinates, the `mul_X` case is a
       -- finite sum of products of inverse-matrix entries and previously controlled coefficients.
@@ -765,7 +768,7 @@ private theorem polynomialPrecomposeCoeff_contMDiff (n : ℕ)
       by_cases hmj : j ∈ m.support
       · -- Supported coordinates are products of a smooth inverse entry and a smooth recursive
         -- coefficient function.
-        simpa [hmj] using
+        simpa [hmj] using!
           (realGeneralLinearGroupInvEntry_contMDiff n i j).mul (hp (m - Finsupp.single j 1))
       · -- Unsupported coordinates contribute the zero function.
         simpa [hmj] using
@@ -915,7 +918,7 @@ private theorem coordinateModelContinuousUnitsVal_contMDiff (n : ℕ) (d : ℕ+)
   rw [contMDiffContinuousLinearMap_iff_forall_apply]
   intro v
   -- After forgetting the units packaging, the orbit map is exactly the coordinate action.
-  simpa [tau_d_n_continuousUnits] using tau_d_n_coordinate_apply_contMDiff n d v
+  simpa [tau_d_n_continuousUnits] using! tau_d_n_coordinate_apply_contMDiff n d v
 
 /-- The `τ_d^n` polynomial action packaged as a smooth representation on the finite-coordinate
 model of `P_d^n`. -/
@@ -966,7 +969,7 @@ theorem tau_d_n_representation_faithful (n : ℕ+) (d : ℕ+) :
     LieGroupRepresentation.IsFaithful (tau_d_n_representation (n : ℕ) d) := by
   rw [LieGroupRepresentation.isFaithful_iff_injective]
   -- The bundled smooth representation has the same underlying monoid homomorphism.
-  simpa [tau_d_n_representation] using tau_d_n_continuousUnits_injective (n : ℕ) d
+  simpa [tau_d_n_representation] using! tau_d_n_continuousUnits_injective (n : ℕ) d
 
 /-- Auxiliary wrapper form: the finite-coordinate smooth representation attached to `τ_d^n` is
 injective as a map into the chapter's chosen coordinate model of `P_d^n`. -/

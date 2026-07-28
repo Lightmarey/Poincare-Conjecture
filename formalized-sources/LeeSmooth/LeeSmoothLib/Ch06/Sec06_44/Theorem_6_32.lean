@@ -141,7 +141,7 @@ theorem graphFirstProjection_contMDiff
     ContMDiff (modelWithCornersSelf ℝ S.ModelSpace) I ∞ (graphFirstProjection S) := by
   -- Route correction: view the restricted first projection as `Prod.fst ∘ S.inclusion` and read
   -- smoothness from the ambient projection together with the immersed-submanifold inclusion.
-  simpa [graphFirstProjection, Function.comp] using
+  simpa [graphFirstProjection, Function.comp] using!
     (contMDiff_fst.comp (ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff)
 
 /-- Helper for Theorem 6.32: the restricted second projection of an immersed submanifold is
@@ -151,7 +151,7 @@ theorem graphSecondProjection_contMDiff
     ContMDiff (modelWithCornersSelf ℝ S.ModelSpace) J ∞ (graphSecondProjection S) := by
   -- The same normalization identifies the restricted second projection with
   -- `Prod.snd ∘ S.inclusion`.
-  simpa [graphSecondProjection, Function.comp] using
+  simpa [graphSecondProjection, Function.comp] using!
     (contMDiff_snd.comp (ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff)
 
 /-- Helper for Theorem 6.32: the derivative of the restricted first projection is the first-factor
@@ -172,7 +172,7 @@ theorem graphFirstProjection_mfderiv_eq_fst_comp
         (mfderiv (modelWithCornersSelf ℝ S.ModelSpace) (I.prod J) S.inclusion x) :=
     (((ImmersedSubmanifold.inclusion_isImmersion_smooth S).contMDiff.mdifferentiableAt
       (by simp : (∞ : ℕ∞ω) ≠ 0)).hasMFDerivAt)
-  simpa [graphFirstProjection, graphSecondProjection, Function.comp] using
+  simpa [graphFirstProjection, graphSecondProjection, Function.comp] using!
     (HasMFDerivAt.comp x hg hf).mfderiv
 
 /-- Helper for Theorem 6.32: a smooth inverse to the restricted first projection packages the
@@ -222,14 +222,14 @@ theorem isGraphOfMap_of_firstProjectionRestrictionIsDiffeomorph
     restrictedFirstProjectionInverse_rightInverse S h, ?_⟩
   intro p
   apply Prod.ext
-  · simpa [graphFirstProjection] using restrictedFirstProjectionInverse_rightInverse S h p
+  · simpa [graphFirstProjection] using! restrictedFirstProjectionInverse_rightInverse S h p
   · rfl
 
 /-- Helper for Theorem 6.32: the ambient graph parametrization is smooth whenever `f` is. -/
 theorem ambientGraphMap_contMDiff {f : M → N} (hf : ContMDiff I J ∞ f) :
     ContMDiff I (I.prod J) ∞ (ambientGraphMap f) := by
   -- The ambient graph map is the product of the identity on `M` with the smooth map `f`.
-  simpa [ambientGraphMap] using contMDiff_id.prodMk hf
+  simpa [ambientGraphMap] using! contMDiff_id.prodMk hf
 
 /-- Helper for Theorem 6.32: the ambient graph parametrization is a topological embedding. -/
 theorem ambientGraphMap_isEmbedding {f : M → N} (hf : ContMDiff I J ∞ f) :
@@ -251,7 +251,7 @@ theorem ambientGraphMap_isImmersion {f : M → N} (hf : ContMDiff I J ∞ f) :
       mfderiv I (I.prod J) (ambientGraphMap f) p =
         (mfderiv I I (fun x : M ↦ x) p).prod (mfderiv I J f p) := by
     -- The graph derivative is the product of the identity derivative and the derivative of `f`.
-    simpa [ambientGraphMap] using
+    simpa [ambientGraphMap] using!
       (mfderiv_prodMk mdifferentiableAt_id
         (hf.contMDiffAt.mdifferentiableAt (by simp : (∞ : ℕ∞ω) ≠ 0)) :
         mfderiv I (I.prod J) (fun x : M ↦ ((fun y : M ↦ y) x, f x)) p =
@@ -264,11 +264,11 @@ theorem ambientGraphMap_isImmersion {f : M → N} (hf : ContMDiff I J ∞ f) :
   have hId :
       (mfderiv I I (fun x : M ↦ x) p) u =
         (mfderiv I I (fun x : M ↦ x) p) w := by
-    simpa [hDeriv] using hFirst
+    simpa [hDeriv] using! hFirst
   have hId' :
       (mfderiv I I (@id M) p) u =
         (mfderiv I I (@id M) p) w := by
-    simpa only using hId
+    simpa only using! hId
   simpa [mfderiv_id] using hId'
 
 /-- Helper for Theorem 6.32: the ambient graph parametrization is a smooth embedding. -/
@@ -284,7 +284,7 @@ theorem carrier_eq_range_ambientGraphMap
     (hgraph : IsGraphOfMap S f) :
     S.carrier = Set.range (ambientGraphMap f) := by
   -- This is just the graph condition rewritten with the canonical ambient graph-map helper.
-  simpa [ambientGraphMap] using hgraph.2.1
+  simpa [ambientGraphMap] using! hgraph.2.1
 
 /-- Helper for Theorem 6.32: in the graph case, the immersed-submanifold inclusion factors through
 the canonical ambient graph map and the restricted first projection. -/
@@ -300,7 +300,7 @@ theorem inclusion_eq_ambientGraphMap_comp_graphFirstProjection
     exact ⟨x, rfl⟩
   rcases hx with ⟨p, hp⟩
   have hpFst : p = graphFirstProjection S x := by
-    simpa [graphFirstProjection] using congrArg Prod.fst hp
+    simpa [graphFirstProjection] using! congrArg Prod.fst hp
   subst p
   exact hp.symm
 
@@ -423,7 +423,7 @@ theorem range_inr_sup_range_iff_surjective_fst_comp
     (ContinuousLinearMap.inr ℝ X Y).range ⊔ A.range = ⊤ ↔
       Function.Surjective ((ContinuousLinearMap.fst ℝ X Y).comp A) := by
   -- This bridge freezes the coercion from continuous linear maps to linear maps once.
-  simpa using
+  simpa using!
     (range_inr_sup_range_iff_surjective_fst_comp A.toLinearMap :
       (LinearMap.inr ℝ X Y).range ⊔ A.toLinearMap.range = ⊤ ↔
         Function.Surjective ((LinearMap.fst ℝ X Y).comp A.toLinearMap))
@@ -435,7 +435,7 @@ theorem verticalSliceMap_mfderiv
     mfderiv J (I.prod J) (verticalSliceMap p) q =
       ContinuousLinearMap.inr ℝ (TangentSpace I p) (TangentSpace J q) := by
   -- The vertical slice is the product of the constant map `p` and the identity on `N`.
-  simpa [verticalSliceMap] using
+  simpa [verticalSliceMap] using!
     (mfderiv_prod_right :
       mfderiv J (I.prod J) (fun y : N ↦ (p, y)) q =
         ContinuousLinearMap.inr ℝ (TangentSpace I p) (TangentSpace J q))
@@ -555,7 +555,7 @@ theorem hasUniqueTransverseVerticalSliceIntersections_of_restrictedFirstProjecti
       refine ⟨(mfderiv I (modelWithCornersSelf ℝ S.ModelSpace)
           (restrictedFirstProjectionInverse S h) p) v, ?_⟩
       have happly := congrArg (fun L ↦ L v) hmfderiv
-      simpa [ContinuousLinearMap.comp_apply] using happly.symm
+      simpa [ContinuousLinearMap.comp_apply] using! happly.symm
     exact
       (verticalSliceMeetsTransverselyAt_iff_surjective_graphFirstProjectionMfderiv S
         (restrictedFirstProjectionInverse S h p)).2 hsurj

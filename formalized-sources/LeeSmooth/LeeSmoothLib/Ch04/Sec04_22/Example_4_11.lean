@@ -117,7 +117,7 @@ noncomputable def fourierAngle_partialDiffeomorph {U : TopologicalSpace.Opens Ci
         have hbranch_eval :
             angleFunction_extension θ (Circle.exp ((2 * Real.pi) * y)) = (2 * Real.pi) * y := by
           simpa [Function.comp, angleFunction_extension, IsAngleFunction.circleExpOpenImage, hyU]
-            using hbranch
+            using! hbranch
         -- Dividing the branch value by `2π` recovers the original parameter.
         apply (div_eq_iff htwo_pi).2
         simpa [mul_comm, mul_left_comm, mul_assoc] using hbranch_eval
@@ -136,7 +136,7 @@ noncomputable def fourierAngle_partialDiffeomorph {U : TopologicalSpace.Opens Ci
           _ = z := hθ.2 ⟨z, hz⟩ }
   open_source := by
     -- The source is the preimage of the branch image under the smooth linear phase map.
-    simpa using hθ.openImage.2.preimage (continuous_const.mul continuous_id)
+    simpa using! hθ.openImage.2.preimage (continuous_const.mul continuous_id)
   open_target := U.2
   contMDiffOn_toFun := by
     -- The forward map is exactly the smooth Fourier exponential restricted to the source.
@@ -155,7 +155,7 @@ noncomputable def fourierAngle_partialDiffeomorph {U : TopologicalSpace.Opens Ci
     have hscaled :
         ContMDiffAt (I := 𝓡 1) (I' := 𝓘(ℝ)) (n := (∞ : WithTop ℕ∞))
           (fun w : Circle ↦ angleFunction_extension θ w / (2 * Real.pi)) z := by
-      simpa [div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc] using
+      simpa [div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc] using!
         (contMDiffAt_const.mul hθz)
     exact hscaled.contMDiffWithinAt
 

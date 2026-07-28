@@ -308,7 +308,12 @@ theorem complete_iff_of_riemannianCovering
         have h := (hγgeo 0).hasDerivAt_extChartAt_deriv
           hγcont.continuousAt (show γ 0 ∈ (chartAt Ht p).source by
             rw [hγ0']; exact mem_chart_source Ht p)
-        simpa only [Riemannian.Geodesic.chartReading_def] using h
+        have hread : (fun τ => extChartAt It p (γ τ)) =
+            Riemannian.Geodesic.chartReading (I := It) p γ := by
+          funext τ
+          rfl
+        rw [hread] at h
+        exact h
       have hdiff : MDifferentiableAt It I (π : Mt → M) p :=
         hπ.1.isLocalDiffeomorph.contMDiff.contMDiffAt.mdifferentiableAt (by simp)
       have hproj := Riemannian.hasDerivAt_extChartAt_comp_of_hasFDerivAt_mapReading

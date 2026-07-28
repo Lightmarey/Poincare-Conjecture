@@ -128,7 +128,7 @@ theorem hasDerivAt_gg3_zero (hfv0 : HasDerivAt f (v 0) 0)
   have hT2 := (hfv0.inner ℝ hr).const_mul (2 : ℝ)
   have hT3 := (hfv0.inner ℝ hs).const_mul (2 : ℝ)
   have h := (hT1.sub hT2).sub hT3
-  convert h using 1
+  convert h using 1 <;> try rfl
   simp only [hf0, map_zero, neg_zero, inner_zero_left, inner_zero_right, add_zero, zero_add,
     mul_zero]
   ring

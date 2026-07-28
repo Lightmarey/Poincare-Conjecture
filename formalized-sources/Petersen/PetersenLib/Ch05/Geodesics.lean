@@ -302,7 +302,7 @@ theorem hasGeodesicEquationAt_comp_const_mul (g : RiemannianMetric I M)
     have hbb : HasDerivAt (fun s => a • deriv u (a * s)) ((a * a) • b) t := by
       have hb' : HasDerivAt (fun s => deriv u (a * s)) (a • b) t :=
         hb.scomp t (hlin t)
-      simpa [smul_smul] using hb'.const_smul a
+      simpa [smul_smul, Pi.smul_apply] using! hb'.const_smul a
     exact hbb.congr_of_eventuallyEq hderiv_eq
   · -- the geodesic equation, using bilinearity of the Christoffel contraction
     show (a * a) • b + Geodesic.chartChristoffelContraction (I := I) g (γ (a * t))
@@ -330,19 +330,19 @@ theorem hasGeodesicEquationAt_comp_sub_const (g : RiemannianMetric I M)
     have hmem : ∀ᶠ s in 𝓝 t, HasDerivAt u (deriv u (s - c)) (s - c) :=
       (hcont.tendsto t).eventually hev
     filter_upwards [hmem] with s hs
-    simpa using hs.scomp s (hlin s)
+    simpa [Function.comp_def] using! hs.scomp s (hlin s)
   have hderiv_eq : ∀ᶠ s in 𝓝 t, deriv (fun s' => u (s' - c)) s =
       deriv u (s - c) := by
     filter_upwards [hev'] with s hs using hs.deriv
   refine ⟨v, b, ?_, ?_, ?_, ?_⟩
   · rw [hcurve]
-    simpa using hv.scomp t (hlin t)
+    simpa [Function.comp_def] using! hv.scomp t (hlin t)
   · rw [hcurve]
     filter_upwards [hev', hderiv_eq] with s hs hs'
     rwa [← hs'] at hs
   · rw [hcurve]
     have hbb : HasDerivAt (fun s => deriv u (s - c)) b t := by
-      simpa using hb.scomp t (hlin t)
+      simpa [Function.comp_def] using! hb.scomp t (hlin t)
     exact hbb.congr_of_eventuallyEq hderiv_eq
   · exact heq
 
@@ -363,7 +363,7 @@ theorem IsGeodesicWithInitialOn.shift {g : RiemannianMetric I M} {γ : ℝ → M
       (hasDerivAt_id (t₀ + c)).sub_const c
     have hvel' : HasDerivAt (fun s => extChartAt I p (γ s)) (v : E) (t₀ + c - c) := by
       rw [hsub]; exact hvel
-    simpa using hvel'.scomp (t₀ + c) hlin
+    simpa [Function.comp_def] using! hvel'.scomp (t₀ + c) hlin
   · exact hasGeodesicEquationAt_comp_sub_const (I := I) g c (hgeo (t - c) ht)
 
 /-- **Math.** Petersen Ch. 5 (`def:pet-ch5-exponential-map`, homogeneity property):

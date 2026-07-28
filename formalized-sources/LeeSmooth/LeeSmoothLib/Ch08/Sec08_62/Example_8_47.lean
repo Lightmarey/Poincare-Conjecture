@@ -20,6 +20,8 @@ noncomputable section
 open scoped Manifold ContDiff MatrixGroups
 open AffineEquiv LinearMap.GeneralLinearGroup Matrix.UnitaryGroup Topology
 
+attribute [local instance 100] LieRing.ofAssociativeRing
+
 -- Semantic recall aligned the source-facing orthogonal-group carrier with the existing
 -- `GroupLieAlgebra` API from Chapter 8; `lean_leansearch` also confirmed that mathlib's
 -- canonical target owner is `LieAlgebra.Orthogonal.so (Fin n) ℝ`.
@@ -57,7 +59,7 @@ theorem inducedLieAlgebraTargetLinearMapEq
     (F : ContMDiffMonoidMorphism I J ∞ G H) :
     (GroupLieAlgebra I G →ₗ[ℝ] TangentSpace J (F 1)) =
       (GroupLieAlgebra I G →ₗ[ℝ] GroupLieAlgebra J H) := by
-  simpa [GroupLieAlgebra] using
+  simpa [GroupLieAlgebra] using!
     congrArg (fun h : H ↦ GroupLieAlgebra I G →ₗ[ℝ] TangentSpace J h) F.map_one
 
 /-- Local bridge for Example 8.47: the identity derivative of a smooth monoid homomorphism,
@@ -141,7 +143,7 @@ theorem inducedLieAlgebraLinearMap_mulInvariantVectorField_apply
         @Eq (EG →L[ℝ] EH) (mfderiv I J (F ∘ (g * ·)) (1 : G))
           (mfderiv I J (((F g) * ·) ∘ F) (1 : G)) := by
       simpa [hcomp] using mfderiv_congr hcomp
-    simpa using congrArg (fun L : EG →L[ℝ] EH ↦ L X) hmf
+    simpa using! congrArg (fun L : EG →L[ℝ] EH ↦ L X) hmf
   have htarget :
       mfderiv I J (((F g) * ·) ∘ F) (1 : G) X =
         mfderiv J J ((F g) * ·) (1 : H) ((mfderiv I J F (1 : G)) X) := by
@@ -203,7 +205,7 @@ theorem inducedLieAlgebraLinearMap_map_lie_of_related
         VectorField.mlieBracket J
           (mulInvariantVectorField (inducedLieAlgebraLinearMap F X))
           (mulInvariantVectorField (inducedLieAlgebraLinearMap F Y)) (1 : H) := by
-    simpa using
+    simpa using!
       congrArg
         (fun z : H ↦
           VectorField.mlieBracket J
@@ -344,7 +346,7 @@ theorem inclusion_inducedLieAlgebraHomomorphism_injective
   apply hMfderivInj
   simpa [LieSubgroup.inclusion, ContMDiffMonoidMorphism.inducedLieAlgebraHomomorphism,
     ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap,
-    ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using hXY
+    ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using! hXY
 
 /-- Helper for Example 8.47: the canonical ambient Lie subalgebra attached to a Lie subgroup. -/
 def groupLieSubalgebra
@@ -397,12 +399,12 @@ theorem mem_groupLieSubalgebra_iff_exists_subgroupTangent
     refine ⟨Y, ?_⟩
     simpa [LieSubgroup.inclusion, ContMDiffMonoidMorphism.inducedLieAlgebraHomomorphism,
       ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap,
-      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using hY
+      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using! hY
   · rintro ⟨v, hv⟩
     refine ⟨v, ?_⟩
     simpa [LieSubgroup.inclusion, ContMDiffMonoidMorphism.inducedLieAlgebraHomomorphism,
       ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap,
-      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using hv
+      ContMDiffMonoidMorphism.inducedLieAlgebraLinearMap_apply] using! hv
 
 end LieSubgroup
 
@@ -702,11 +704,11 @@ private noncomputable def ambientOrthogonalGramDeriv (n : ℕ) (A : M(n)) :
 private lemma ambientOrthogonalGramMap_contDiff (n : ℕ) :
     ContDiff ℝ ∞ (ambientOrthogonalGramMap n) := by
   have hTranspose : ContDiff ℝ ∞ (fun A : M(n) ↦ A.transpose) := by
-    simpa using (transposeContinuousLinearMap n).contDiff
+    simpa using! (transposeContinuousLinearMap n).contDiff
   have hGram : ContDiff ℝ ∞ (fun A : M(n) ↦ A.transpose * A) := by
-    simpa using contDiff_mul.comp (hTranspose.prodMk contDiff_id)
+    simpa using! contDiff_mul.comp (hTranspose.prodMk contDiff_id)
   -- The ambient Gram map is the smooth Gram matrix followed by the linear self-adjoint projection.
-  simpa [ambientOrthogonalGramMap] using (selfAdjointProjection n).contDiff.comp hGram
+  simpa [ambientOrthogonalGramMap] using! (selfAdjointProjection n).contDiff.comp hGram
 
 /-- Helper for Example 8.47: the ambient Gram map is smooth for the singleton-chart manifold
 structures used in this file. -/
@@ -726,10 +728,10 @@ manifold structures used in this file. -/
 private lemma ambientOrthogonalGramMap_contDiffTop (n : ℕ) :
     ContDiff ℝ (⊤ : WithTop ℕ∞) (ambientOrthogonalGramMap n) := by
   have hTranspose : ContDiff ℝ (⊤ : WithTop ℕ∞) (fun A : M(n) ↦ A.transpose) := by
-    simpa using (transposeContinuousLinearMap n).contDiff
+    simpa using! (transposeContinuousLinearMap n).contDiff
   have hGram : ContDiff ℝ (⊤ : WithTop ℕ∞) (fun A : M(n) ↦ A.transpose * A) := by
-    simpa using contDiff_mul.comp (hTranspose.prodMk contDiff_id)
-  simpa [ambientOrthogonalGramMap] using (selfAdjointProjection n).contDiff.comp hGram
+    simpa using! contDiff_mul.comp (hTranspose.prodMk contDiff_id)
+  simpa [ambientOrthogonalGramMap] using! (selfAdjointProjection n).contDiff.comp hGram
 
 /-- Helper for Example 8.47: the ambient Gram derivative is obtained by differentiating
 `Aᵀ * A` and then projecting to the self-adjoint part. -/
@@ -737,15 +739,15 @@ private lemma ambientOrthogonalGramMap_hasFDerivAt (n : ℕ) (A : M(n)) :
     HasFDerivAt (ambientOrthogonalGramMap n) (ambientOrthogonalGramDeriv n A) A := by
   have htranspose :
       HasFDerivAt (fun B : M(n) ↦ B.transpose) (transposeContinuousLinearMap n) A := by
-    simpa using (transposeContinuousLinearMap n).hasFDerivAt
+    simpa using! (transposeContinuousLinearMap n).hasFDerivAt
   have hraw :
       HasFDerivAt (fun B : M(n) ↦ B.transpose * B)
         (ambientOrthogonalGramRawDeriv n A) A := by
-    simpa [ambientOrthogonalGramRawDeriv, ContinuousLinearMap.smulRight_apply] using
+    simpa [ambientOrthogonalGramRawDeriv, ContinuousLinearMap.smulRight_apply] using!
       (htranspose.mul'
         (ContinuousLinearMap.id ℝ (M(n))).hasFDerivAt)
   -- Project the ambient derivative through the continuous linear self-adjoint part map.
-  simpa [ambientOrthogonalGramMap, ambientOrthogonalGramDeriv, selfAdjointProjection] using
+  simpa [ambientOrthogonalGramMap, ambientOrthogonalGramDeriv, selfAdjointProjection] using!
     (selfAdjointProjection n).hasFDerivAt.comp A hraw
 
 /-- Helper for Example 8.47: the raw ambient Gram derivative has the expected formula
@@ -851,7 +853,7 @@ private lemma generalLinearGroup_val_mfderiv_eq_id (n : ℕ) (A : GL (Fin n) ℝ
     funext B
     rfl
   rw [← hchart]
-  simpa using
+  simpa using!
     (@mfderiv_extChartAt_self ℝ inferInstance
       (M(n)) inferInstance inferInstance (M(n)) inferInstance
       (I(n)) (GL (Fin n) ℝ) inferInstance
@@ -876,7 +878,7 @@ private lemma orthogonalGramMap_contMDiff (n : ℕ) :
       (SA(n)) inferInstance (selfAdjointMatrixChartedSpace n)
       ∞ (orthogonalGramMap n) := by
   -- The `GL` Gram map is the ambient smooth Gram map restricted along the smooth inclusion.
-  simpa [orthogonalGramMap, Function.comp, selfAdjointMatrixChartedSpace] using
+  simpa [orthogonalGramMap, Function.comp, selfAdjointMatrixChartedSpace] using!
     (ambientOrthogonalGramMap_contMDiff n).comp (generalLinearGroup_val_contMDiff n)
 
 /-- Helper for Example 8.47: the Gram map on `GL(n, ℝ)` is top-smooth. -/
@@ -888,7 +890,7 @@ private lemma orthogonalGramMap_contMDiffTop (n : ℕ) :
       (modelWithCornersSelf ℝ (SA(n)))
       (SA(n)) inferInstance (selfAdjointMatrixChartedSpace n)
       (⊤ : WithTop ℕ∞) (orthogonalGramMap n) := by
-  simpa [orthogonalGramMap, Function.comp, selfAdjointMatrixChartedSpace] using
+  simpa [orthogonalGramMap, Function.comp, selfAdjointMatrixChartedSpace] using!
     (ambientOrthogonalGramMap_contDiffTop n).contMDiff.comp (generalLinearGroup_val_contMDiffTop n)
 
 /-- Helper for Example 8.47: the manifold derivative of the `GL` Gram map is the ambient Gram
@@ -949,7 +951,7 @@ private lemma orthogonalGramMap_mfderiv_eq_ambient_comp_val (n : ℕ) (A : GL (F
         ambientOrthogonalGramDeriv n (A : M(n)) := by
     exact (ambientOrthogonalGramMap_hasFDerivAt n (A : M(n))).hasMFDerivAt.mfderiv
   -- Differentiate `ambientOrthogonalGramMap n ∘ val` locally and simplify the chain rule.
-  simpa [orthogonalGramMap, hambientDeriv] using
+  simpa [orthogonalGramMap, hambientDeriv] using!
     (show
       @mfderiv ℝ inferInstance
           (M(n)) inferInstance inferInstance (M(n)) inferInstance (I(n))
@@ -1055,7 +1057,7 @@ private lemma orthogonalGramMap_mfderiv_surjective
   -- The singleton chart on `GL(n, ℝ)` identifies the derivative of `val` with the identity.
   rw [orthogonalGramMap_mfderiv_eq_ambient_comp_val]
   rw [generalLinearGroup_val_mfderiv_eq_id]
-  simpa using ambientOrthogonalGramDeriv_surjective n A
+  simpa using! ambientOrthogonalGramDeriv_surjective n A
 
 /-- Helper for Example 8.47: `1` is a regular value of the `GL` Gram map. -/
 private theorem orthogonalGramMap_isRegularValue_one (n : ℕ) :
@@ -1367,11 +1369,11 @@ private theorem orthogonalGramFiberSubgroupEmbeddedData (n : ℕ) :
   -- Route correction: keep the raw-fiber spelling until the subgroup owner is in place.
   refine ⟨?_, ?_, ?_⟩
   · -- The subgroup owner is definitionally the subtype over the raw regular fiber.
-    simpa [orthogonalGramFiberSubgroup] using csO
+    simpa [orthogonalGramFiberSubgroup] using! csO
   · -- The embedded-submanifold structure is transported along the same carrier equality.
     simpa [orthogonalGramFiberSubgroup] using hEmbO
   · -- The same definitional transport yields the top-order manifold structure.
-    simpa [orthogonalGramFiberSubgroup] using hsTopO
+    simpa [orthogonalGramFiberSubgroup] using! hsTopO
 
 /-- Helper for Example 8.47: the literal Gram-fiber subgroup can be bundled directly as a
 `LieSubgroupGL n` with the standard orthogonal model space. -/
@@ -1434,7 +1436,7 @@ private theorem orthogonalGramFiberSubgroupPackagedWitness (n : ℕ) :
   · -- The bundled subgroup keeps the literal Gram-fiber carrier by construction.
     simp [S]
   · -- The subtype inclusion is the embedded-submanifold inclusion we just transported.
-    simpa [S] using hOSmoothEmbedding.isEmbedding
+    simpa [S] using! hOSmoothEmbedding.isEmbedding
 
 theorem orthogonalSubgroupInGeneralLinearGroup_has_lieSubgroup_structure
     (n : ℕ) :

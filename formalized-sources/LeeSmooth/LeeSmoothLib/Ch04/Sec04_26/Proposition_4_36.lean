@@ -52,7 +52,7 @@ theorem exists_localSectionOn {pi : E → M} (hpi : IsCoveringMap pi) {q : M}
         intro x
         exact t.mem_target.2 x.2
       -- Continuity comes from composing the inverse trivialization with the fixed-sheet graph.
-      simpa [Bundle.Trivialization.lift] using
+      simpa only [Bundle.Trivialization.lift, Function.comp_def] using
         t.continuousOn_invFun.comp_continuous hgraph htarget
     let σ : C(U, E) := ⟨fun x => t.lift p x, hσ_cont⟩
     have hσ_sec : (⟨pi, hpi.continuous⟩ : C(E, M)).IsLocalSection U σ := by

@@ -281,7 +281,7 @@ private theorem surjective_mfderiv_of_surjective_coordinateOperator {F : M → N
   obtain ⟨w, hw⟩ := hA ((mfderiv% (extChartAt J y₀) (F x)) v)
   refine ⟨(mfderiv[Set.range I] (extChartAt I x₀).symm (extChartAt I x₀ x)) w, ?_⟩
   apply (isInvertible_mfderiv_extChartAt hy).injective
-  simpa [ContinuousLinearMap.comp_apply] using hw
+  exact hw
 
 /-- Helper for Theorem 6.10: a non-surjective endomorphism of a finite-dimensional real vector
 space has zero determinant. -/
@@ -326,7 +326,7 @@ private theorem linearizedCoordinateOperator_det_eq_zero_of_isCriticalPoint {F :
         simpa [A, B, L, LEquiv] using hB
     have hmfderiv : Function.Surjective (mfderiv I J F x) := by
       exact surjective_mfderiv_of_surjective_coordinateOperator hx hy <| by
-        simpa [A] using hA
+        exact hA
     exact
       ((isCriticalPoint_iff_not_isRegularPoint F x).1 hcrit) <|
         (isRegularPoint_iff_surjective_mfderiv F x).2 hmfderiv
@@ -580,7 +580,7 @@ private theorem chartPieceImage_measure_zero_of_model_finrank_eq {F : M → N}
               (mfderiv I J F x) ∘L
               (mfderiv[Set.range I] φ.symm (φ x))) := by
       -- Normalize the source chart inverse in the derivative formula itself.
-      simpa [linearizedDeriv] using
+      exact
         congrArg
           (fun u : M ↦
             LMap.comp
@@ -616,7 +616,7 @@ private theorem chartPieceImage_measure_zero_of_model_finrank_eq {F : M → N}
               (mfderiv I J F x) ∘L
               (mfderiv[Set.range I] φ.symm (φ x))) := by
       -- Normalize the source chart inverse in the determinant formula as well.
-      simpa [linearizedDeriv] using
+      exact
         congrArg
           (fun u : M ↦
             LMap.comp
@@ -626,7 +626,7 @@ private theorem chartPieceImage_measure_zero_of_model_finrank_eq {F : M → N}
           hφleft
     -- The determinant vanishes because every point in the source piece is critical.
     rw [hformula]
-    simpa [φ, ψ, L, LMap] using
+    exact
       linearizedDerivative_det_eq_zero_onSourcePiece
         heq hsourceSet_crit hsourceSet_source hsourceSet_target hx
   have hlinearized_zero : μE (linearizedRep '' sourcePiece) = 0 := by
@@ -716,9 +716,10 @@ private theorem criticalValues_hasMeasureZero_of_model_finrank_eq {F : M → N}
     (heq : Module.finrank ℝ E = Module.finrank ℝ E') :
     has_measure_zero_in_manifold J {y : N | IsCriticalValue I J F y} := by
   intro μ hμ e he
-  let _ : MeasureSpace E' := ⟨μ⟩
-  let _ : (volume : Measure E').IsAddHaarMeasure := by
-    simpa using hμ
+  letI : MeasureSpace E' := ⟨μ⟩
+  letI : (volume : Measure E').IsAddHaarMeasure := by
+    change μ.IsAddHaarMeasure
+    exact hμ
   -- Upgrade the preferred-chart nullity statement to the manifold owner by covering the critical
   -- values with their own preferred target charts.
   have howner :
@@ -1523,9 +1524,10 @@ private theorem criticalValues_hasMeasureZero_of_targetFinrank_lt_sourceFinrank 
     (hlt : Module.finrank ℝ E' < Module.finrank ℝ E) :
     has_measure_zero_in_manifold J {y : N | IsCriticalValue I J F y} := by
   intro μ hμ e he
-  let _ : MeasureSpace E' := ⟨μ⟩
-  let _ : (volume : Measure E').IsAddHaarMeasure := by
-    simpa using hμ
+  letI : MeasureSpace E' := ⟨μ⟩
+  letI : (volume : Measure E').IsAddHaarMeasure := by
+    change μ.IsAddHaarMeasure
+    exact hμ
   -- Route correction: use the preferred-chart cover owner, so the strict branch matches the
   -- equal-dimensional assembly shape and the Euclidean core only has to prove the preferred-chart
   -- volume statement.

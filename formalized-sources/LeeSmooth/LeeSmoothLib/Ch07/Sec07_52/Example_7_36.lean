@@ -135,7 +135,7 @@ noncomputable local instance generalLinearGroupLieGroup
 noncomputable local instance matrixFunChartedSpace
     {ι : Type*} [Fintype ι] [DecidableEq ι] {K : Type*} [RCLike K] :
     ChartedSpace (ι → ι → K) (Matrix ι ι K) := by
-  simpa using (matrixChartedSpace : ChartedSpace (Matrix ι ι K) (Matrix ι ι K))
+  simpa using! (matrixChartedSpace : ChartedSpace (Matrix ι ι K) (Matrix ι ι K))
 
 noncomputable local instance realGeneralLinearGroupMatrixChartedSpace (n : ℕ) :
     ChartedSpace (Matrix (Fin n) (Fin n) ℝ) (GL (Fin n) ℝ) :=
@@ -254,7 +254,7 @@ theorem contMDiff_matrix_entry
     ContMDiff I (𝓘(ℝ, K)) ∞ (fun x ↦ F x i j) := by
   have hF' :
       ContMDiff I (𝓘(ℝ, ι → ι → K)) ∞ (fun x ↦ fun i j ↦ F x i j) := by
-    simpa using hF
+    simpa using! hF
   exact (contMDiff_pi_space.1 ((contMDiff_pi_space.1 hF') i)) j
 
 /-- Auxiliary lemma for the Lie group representations example: a diagonal matrix map is smooth
@@ -325,7 +325,7 @@ private theorem real_exp_contMDiff :
 private theorem complex_ofReal_contMDiff :
     ContMDiff (𝓘(ℝ, ℝ)) (𝓘(ℝ, ℂ)) ∞ ((↑) : ℝ → ℂ) := by
   let f : ℝ →L[ℝ] ℂ := Complex.ofRealCLM
-  simpa using
+  simpa using!
     (f.contDiff.contMDiff :
       ContMDiff (𝓘(ℝ, ℝ)) (𝓘(ℝ, ℂ)) ∞ ((↑) : ℝ → ℂ))
 
@@ -670,7 +670,7 @@ theorem torus_diagonal_matrix_hom_contMDiff :
     intro i
     -- Each torus coordinate is a smooth circle-valued projection, followed by the smooth circle
     -- inclusion into `ℂ`.
-    simpa [Function.comp] using hCircle.comp (hCoordCircle i)
+    simpa [Function.comp] using! hCircle.comp (hCoordCircle i)
   have hDiag :
       ContMDiff
         (TnModel n)
@@ -869,7 +869,7 @@ theorem additive_exp_diagonal_matrix_hom_contMDiff :
           (fun x : Fin n → ℝ ↦ Real.exp (x i)) := by
     intro i
     -- Each diagonal entry is the exponential of a smooth coordinate projection.
-    simpa [Function.comp] using real_exp_contMDiff.comp (hCoord i)
+    simpa [Function.comp] using! real_exp_contMDiff.comp (hCoord i)
   have hDiag :
       ContMDiff
         (𝓘(ℝ, Fin n → ℝ))
@@ -974,7 +974,7 @@ theorem unitary_character_diagonal_matrix_hom_contMDiff :
           (fun x : Fin n → ℝ ↦ (x i : ℂ)) := by
     intro i
     -- Real coordinate projections become complex-valued smoothly via `Complex.ofReal`.
-    simpa [Function.comp] using complex_ofReal_contMDiff.comp (hCoord i)
+    simpa [Function.comp] using! complex_ofReal_contMDiff.comp (hCoord i)
   have hPhase :
       ∀ i : Fin n,
         ContMDiff (𝓘(ℝ, Fin n → ℝ)) (𝓘(ℝ, ℂ)) ∞
@@ -992,7 +992,7 @@ theorem unitary_character_diagonal_matrix_hom_contMDiff :
           (fun x : Fin n → ℝ ↦ Complex.exp ((x i : ℂ) * (2 * Real.pi * Complex.I))) := by
     intro i
     -- Compose the smooth phase with the complex exponential.
-    simpa [Function.comp] using complex_exp_contMDiff.comp (hPhase i)
+    simpa [Function.comp] using! complex_exp_contMDiff.comp (hPhase i)
   have hDiag :
       ContMDiff
         (𝓘(ℝ, Fin n → ℝ))
@@ -1381,7 +1381,7 @@ private theorem polynomialPrecompose_right_inv {n : ℕ} (A : GL (Fin n) ℝ) :
       (MvPolynomial.aeval (polynomialCoordinateChange A⁻¹))
       (MvPolynomial.aeval (polynomialCoordinateChange A)) := by
   -- Apply the left-inverse statement to `A⁻¹`.
-  simpa using polynomialPrecompose_left_inv (A⁻¹)
+  simpa using! polynomialPrecompose_left_inv (A⁻¹)
 
 /-- Auxiliary lemma for the Lie group representations example: each homogeneous component keeps its
 degree under polynomial
@@ -1704,7 +1704,7 @@ private theorem realGeneralLinearGroupInvEntry_contMDiff (n : ℕ) (i j : Fin n)
       (ContinuousLinearMap.proj i :
         Matrix (Fin n) (Fin n) ℝ →L[ℝ] (Fin n → ℝ))
   -- Project the smooth inverse-valued map to its `(i,j)` entry.
-  simpa [projEntry, ContinuousLinearMap.proj_apply, Function.comp] using
+  simpa [projEntry, ContinuousLinearMap.proj_apply, Function.comp] using!
     projEntry.contMDiff.comp (realGeneralLinearGroupInvVal_contMDiff n)
 
 /-- Auxiliary lemma for the Lie group representations example: the coefficient of `m` in the
@@ -1802,7 +1802,7 @@ private theorem polynomialPrecomposeCoeff_contMDiff (n : ℕ)
   | add p q hp hq =>
       intro m
       -- Coefficients of sums are sums of coefficients.
-      simpa [polynomialPrecompose, MvPolynomial.coeff_add] using (hp m).add (hq m)
+      simpa [polynomialPrecompose, MvPolynomial.coeff_add] using! (hp m).add (hq m)
   | mul_X p i hp =>
       intro m
       -- The `p * X i` case expands coefficientwise as a finite sum of smooth products.
@@ -1829,7 +1829,7 @@ private theorem polynomialPrecomposeCoeff_contMDiff (n : ℕ)
         by_cases hj : j ∈ m.support
         · -- On supporting indices, the term is a product of the inverse entry and the shifted
           -- coefficient function.
-          simpa [hj] using
+          simpa [hj] using!
             (realGeneralLinearGroupInvEntry_contMDiff n i j).mul
               (hp (m - Finsupp.single j 1))
         · -- Off the support, the term is identically zero.
@@ -1888,7 +1888,7 @@ private theorem polynomialPrecomposeCoeff_contMDiff (n : ℕ)
                     (fun _ : GL (Fin n) ℝ ↦ (0 : ℝ))))
             (fun j s hj hs ↦ by
               -- Add one smooth summand at a time along the finite index set.
-              simpa [Finset.sum_insert, hj] using (hTerm j).add hs))
+              simpa [Finset.sum_insert, hj] using! (hTerm j).add hs))
       have hCoeff :
           (fun A : GL (Fin n) ℝ ↦
             MvPolynomial.coeff m
@@ -1979,13 +1979,13 @@ noncomputable def tau_d_n_continuousUnits (n : ℕ) (d : ℕ+) :
   map_one' := by
     apply (ContinuousLinearEquiv.unitsEquiv ℝ (polynomialRepresentationSpace n d)).injective
     -- Reduce the identity law to the corresponding coordinate-model linear equivalence.
-    simpa using congrArg LinearEquiv.toContinuousLinearEquiv
+    simpa using! congrArg LinearEquiv.toContinuousLinearEquiv
       (tau_d_n_coordinateLinearEquiv_one n d)
   map_mul' := by
     intro A B
     apply (ContinuousLinearEquiv.unitsEquiv ℝ (polynomialRepresentationSpace n d)).injective
     -- Reduce multiplicativity to the corresponding coordinate-model linear equivalence.
-    simpa using congrArg LinearEquiv.toContinuousLinearEquiv
+    simpa using! congrArg LinearEquiv.toContinuousLinearEquiv
       (tau_d_n_coordinateLinearEquiv_mul n d A B)
 
 /-- Auxiliary lemma for the Lie group representations example: every fixed vector in
@@ -2037,7 +2037,7 @@ private theorem coordinateModelContinuousUnitsVal_contMDiff (n : ℕ) (d : ℕ+)
   rw [contMDiffContinuousLinearMap_iff_forall_apply]
   intro v
   -- After forgetting the units packaging, the orbit map is exactly the coordinate action.
-  simpa [tau_d_n_continuousUnits] using tau_d_n_coordinate_apply_contMDiff n d v
+  simpa [tau_d_n_continuousUnits] using! tau_d_n_coordinate_apply_contMDiff n d v
 
 /-- Auxiliary smooth companion of `τ_d^n` on the bounded-monomial coordinate model of `𝒫_d^n`.
 -/

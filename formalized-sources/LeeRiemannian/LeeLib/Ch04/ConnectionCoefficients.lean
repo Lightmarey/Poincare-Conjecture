@@ -90,7 +90,8 @@ theorem covariantDeriv_finset_sum {κ : Type*}
         cov.zero]
       simp
   | @insert j t hj ih =>
-      have hP : MDiffAt (T% (fun y => ∑ i ∈ t, σ i y)) x := MDifferentiableAt.sum_section hσ
+      have hP : MDiffAt (T% (fun y => ∑ i ∈ t, σ i y)) x :=
+        MDifferentiableAt.sum_section fun i _ => hσ i
       have hsec : (fun y => ∑ i ∈ insert j t, σ i y)
           = σ j + (fun y => ∑ i ∈ t, σ i y) := by
         funext y; simp [Finset.sum_insert hj]

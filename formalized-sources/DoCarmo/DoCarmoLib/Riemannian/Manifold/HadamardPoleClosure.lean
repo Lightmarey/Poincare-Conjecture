@@ -91,7 +91,7 @@ connected `N` with a pole `p`, the exponential map `exp_p : T_pN → N` is a dif
 particular `N ≃ ℝⁿ`. This is `expDiffeomorphOfPole` with its last analytic input `hrays` supplied
 by `expMap_rays_are_geodesics` (via `hrays_of_rayGeodesic`). -/
 def expDiffeomorphOfPole_of_pole [ConnectedSpace N] [SimplyConnectedSpace N]
-    [LocPathConnectedSpace N] (g : RiemannianMetric I N) (hg : g.IsRiemannianDist) (p : N)
+    [LocallyPathConnectedSpace N] (g : RiemannianMetric I N) (hg : g.IsRiemannianDist) (p : N)
     (hpole : IsLocalDiffeomorph 𝓘(ℝ, F) I ∞
       (fun v : HadamardModel F => expMapGlobal g hg p (HadamardModel.toModel v))) :
     Diffeomorph 𝓘(ℝ, F) I (HadamardModel F) N ∞ :=

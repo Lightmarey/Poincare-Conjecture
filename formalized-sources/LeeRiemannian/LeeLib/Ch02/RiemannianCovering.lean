@@ -134,7 +134,7 @@ variable {π : C^∞⟮I, M; I', M'⟯}
 
 noncomputable instance : FunLike (CoveringAut π) M M where
   coe φ := φ.toDiffeomorph
-  coe_injective' φ ψ h := by
+  coe_injective φ ψ h := by
     cases φ; cases ψ
     simpa using DFunLike.coe_injective h
 

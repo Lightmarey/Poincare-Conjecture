@@ -40,7 +40,7 @@ open Riemannian.Jacobi
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
   [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
   {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H} [I.Boundaryless]
-  {M : Type*} [MetricSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
+  {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 
 /-- **Math.** A **parallel field** `e` along `γ` carries the covariant derivative `0`: the
 pair `(e, 0)` is an `IsCovariantDerivFieldAlongOn`.  `IsParallelSolOn` is literally
@@ -94,6 +94,7 @@ theorem _root_.Riemannian.Jacobi.IsParallelFieldAlongOn.smul_fun
       (Icc a' b') t := (hφ t).hasDerivAt.hasDerivWithinAt
   -- product rule for scalar • vector
   have hprod := hφderiv.smul hWderiv
+  change HasDerivWithinAt (φ • chartVectorRep (I := I) γ α e) _ (Icc a' b') t
   convert hprod using 1
   rw [Geodesic.chartChristoffelContraction_smul_right, smul_neg]
   abel

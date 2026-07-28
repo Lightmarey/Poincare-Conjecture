@@ -528,9 +528,9 @@ theorem geodesicVectorFieldChart_fiberScaling (g : RiemannianMetric I M) (α : M
     have hnot' : fiberScaling (I := I) a q ∉ e₀.baseSet := by
       rw [he₀, ← geodesicChartDomain_eq_trivBaseSet (I := I) α]
       exact hq
-    show e₀.symm (fiberScaling (I := I) a q) _ = fiberScalingLinearMap (E := E) a
-      (a • e₀.symm q _)
-    rw [e₀.symm_apply_of_notMem hnot, e₀.symm_apply_of_notMem hnot']
+    show e₀.symmL ℝ (fiberScaling (I := I) a q) _ = fiberScalingLinearMap (E := E) a
+      (a • e₀.symmL ℝ q _)
+    rw [e₀.symmL_apply_of_notMem hnot, e₀.symmL_apply_of_notMem hnot']
     rw [smul_zero]
     exact (map_zero _).symm
 

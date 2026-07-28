@@ -10,11 +10,11 @@ pair `(X, A)`, and proves several homotopy-equivalence criteria from it. mathlib
 does not package the HEP, so we introduce it here as project-local
 infrastructure.
 
-The propositions of Hatcher's final section — `(X, A)` has the HEP iff
-`X × {0} ∪ A × I` is a retract of `X × I`; CW pairs have the HEP; the quotient by
-a contractible subspace with the HEP is a homotopy equivalence; a homotopy
-equivalence restricting to `𝟙` on `A` is one rel `A` — are future work built on
-this definition.
+The retract characterization of HEP is proved below, and the quotient and
+relative-homotopy consequences are developed in the companion Chapter 0 files
+`QuotientContractible.lean` and `HomotopyExtensionRel.lean`.  The CW-pair
+specialization is intentionally kept as a separate theorem target because it
+requires the cell-by-cell deformation argument from Hatcher's text.
 -/
 
 namespace HatcherLib
@@ -256,6 +256,12 @@ theorem hasHEP_iff_isRetract {A : Set X} (hA : IsClosed A) :
     HasHEP.{u, u} A ↔ IsRetract (hepBase A) :=
   ⟨HasHEP.isRetract, hasHEP_of_isRetract hA⟩
 
+/-- In a Hausdorff ambient space, the retraction condition forces `A` to be
+closed, so the HEP characterization needs no separate closedness hypothesis. -/
+theorem hasHEP_iff_isRetract_of_t2 [T2Space X] {A : Set X} :
+    HasHEP.{u, u} A ↔ IsRetract (hepBase A) :=
+  ⟨HasHEP.isRetract, fun hR => hasHEP_of_isRetract (isClosed_of_isRetract hR) hR⟩
+
 /-!
 ## The retract of the cylinder onto `X × {0} ∪ A × I` is a deformation retract
 
@@ -379,5 +385,19 @@ theorem HasHEP.hepBase_deformationRetract {A : Set X} (hHEP : HasHEP.{u, u} A) :
     Nonempty (DeformationRetract (hepBase A)) := by
   obtain ⟨r, hmem, hfix⟩ := hHEP.isRetract
   exact ⟨hepBaseDeformationRetract r hmem hfix⟩
+
+/-- In a Hausdorff ambient space, a deformation retraction of the HEP base is
+equivalent to the homotopy extension property. -/
+theorem hasHEP_of_hepBase_deformationRetract [T2Space X] {A : Set X}
+    (d : DeformationRetract (hepBase A)) : HasHEP.{u, u} A := by
+  apply hasHEP_iff_isRetract_of_t2.mpr
+  exact ⟨d.retraction, d.mapsInto, d.fixes⟩
+
+theorem hasHEP_iff_hepBase_deformationRetract [T2Space X] {A : Set X} :
+    HasHEP.{u, u} A ↔ Nonempty (DeformationRetract (hepBase A)) := by
+  constructor
+  · exact HasHEP.hepBase_deformationRetract
+  · rintro ⟨d⟩
+    exact hasHEP_of_hepBase_deformationRetract d
 
 end HatcherLib

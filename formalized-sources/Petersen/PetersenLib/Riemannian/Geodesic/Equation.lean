@@ -420,7 +420,7 @@ lemma geodesicVectorFieldChartFiber_eq_sprayCoord
 def geodesicVectorFieldChart (g : RiemannianMetric I M) (α : M)
     (p : TangentBundle I M) : TangentSpace I.tangent p :=
   (trivializationAt (E × E) (TangentSpace I.tangent)
-      (⟨α, (0 : E)⟩ : TangentBundle I M)).symm p
+      (⟨α, (0 : E)⟩ : TangentBundle I M)).symmL ℝ p
     (geodesicVectorFieldChartFiber (I := I) g α p)
 
 /-- **Math.** The open set in `TangentBundle I M` on which the chart-fixed geodesic
@@ -494,13 +494,7 @@ lemma geodesicVectorFieldChart_zero_section
   rw [hfiber]
   set e := trivializationAt (E × E) (TangentSpace I.tangent)
       (⟨α, (0 : E)⟩ : TangentBundle I M)
-  have hcoe := Bundle.Trivialization.coe_symmₗ (R := ℝ) e
-    (⟨α, (0 : E)⟩ : TangentBundle I M)
-  have : e.symm (⟨α, (0 : E)⟩ : TangentBundle I M) (0 : E × E) = 0 := by
-    have h := congrFun hcoe (0 : E × E)
-    rw [← h]
-    exact map_zero _
-  exact this
+  exact map_zero _
 
 /-- **Math.** Local geodesic at time `t₀`: there is a basepoint `α : M` and a lifted
 curve `f : ℝ → TangentBundle I M` with `(f t).proj = γ t` for all `t`,
@@ -688,7 +682,10 @@ theorem hasGeodesicEquationAt_comp_neg
       have := (ha.scomp τ (hasDerivAt_neg τ))
       simpa [Function.comp_def] using this
     have hfin := hinner.neg
-    simpa using hfin
+    convert hfin using 1
+    · ext s
+      rfl
+    · simp
   · rw [chartChristoffelContraction_neg (I := I) g _ v]
     exact hgeo
 
@@ -756,7 +753,10 @@ theorem hasGeodesicEquationAt_comp_mul_left
       have := ha.scomp τ (hasDerivAt_const_mul a)
       simpa [Function.comp_def] using this
     have hfin := hcomp.const_smul a
-    simpa [smul_smul] using hfin
+    convert hfin using 1
+    · ext s
+      rfl
+    · simp [smul_smul]
   · show (a * a) • acc + chartChristoffelContraction (I := I) g (γ (a * τ))
         (a • v) (a • v) (extChartAt I (γ (a * τ)) (γ (a * τ))) = 0
     rw [chartChristoffelContraction_smul_smul (I := I) g (γ (a * τ)) a v,
@@ -982,6 +982,8 @@ lemma trivializationAt_apply_geodesicVectorFieldChart
   have hp' : p ∈ (trivializationAt (E × E) (TangentSpace I.tangent)
       (⟨α, (0 : E)⟩ : TangentBundle I M)).baseSet := by
     rw [← geodesicChartDomain_eq_trivBaseSet (I := I) α]; exact hp
+  unfold geodesicVectorFieldChart
+  rw [Bundle.Trivialization.symmL_apply _ hp']
   exact (trivializationAt (E × E) (TangentSpace I.tangent)
     (⟨α, (0 : E)⟩ : TangentBundle I M)).apply_mk_symm hp'
       (geodesicVectorFieldChartFiber (I := I) g α p)

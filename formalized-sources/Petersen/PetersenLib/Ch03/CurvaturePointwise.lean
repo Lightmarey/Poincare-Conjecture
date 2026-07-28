@@ -44,11 +44,11 @@ theorem isSmoothVectorField_finsetSum {ι : Type*} (s : Finset ι)
   classical
   induction s using Finset.induction_on with
   | empty =>
-      simpa using (0 : SmoothVectorField I M).smooth
+      simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I M).smooth
   | insert a s ha ih =>
       have h : IsSmoothVectorField
           (fun q => F a q + ∑ i ∈ s, F i q) := by
-        simpa using ((⟨F a, hF a⟩ : SmoothVectorField I M)
+        simpa [IsSmoothVectorField] using! ((⟨F a, hF a⟩ : SmoothVectorField I M)
           + ⟨fun q => ∑ i ∈ s, F i q, ih⟩).smooth
       have e : (fun q => ∑ i ∈ insert a s, F i q)
           = fun q => F a q + ∑ i ∈ s, F i q := by
@@ -85,7 +85,8 @@ theorem curvatureTensor_apply_eq_zero_of_first (D : AffineConnection I M)
   classical
   obtain ⟨f, V, hf, hV, hf0, hev⟩ := exists_decomposition_of_eq_zero hX hXp
   have hterm : ∀ i, IsSmoothVectorField (fun q => f i q • V i q) := fun i => by
-    simpa using (SmoothVectorField.smul (f i) (hf i) ⟨V i, hV i⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      (SmoothVectorField.smul (f i) (hf i) ⟨V i, hV i⟩).smooth
   have hsum : IsSmoothVectorField (fun q => ∑ i, f i q • V i q) :=
     isSmoothVectorField_finsetSum Finset.univ _ hterm
   rw [curvatureTensor_congr_first D hX hsum hZ hev]
@@ -142,7 +143,8 @@ theorem curvatureTensor_apply_eq_zero_of_field (D : AffineConnection I M)
   classical
   obtain ⟨f, V, hf, hV, hf0, hev⟩ := exists_decomposition_of_eq_zero hZ hZp
   have hterm : ∀ i, IsSmoothVectorField (fun q => f i q • V i q) := fun i => by
-    simpa using (SmoothVectorField.smul (f i) (hf i) ⟨V i, hV i⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      (SmoothVectorField.smul (f i) (hf i) ⟨V i, hV i⟩).smooth
   have hsum : IsSmoothVectorField (fun q => ∑ i, f i q • V i q) :=
     isSmoothVectorField_finsetSum Finset.univ _ hterm
   rw [curvatureTensor_congr_field D hX hY hZ hsum hev]
@@ -176,7 +178,8 @@ theorem curvatureTensor_sub_first (D : AffineConnection I M)
     curvatureTensor D (fun q => X₁ q - X₂ q) Y Z p
       = curvatureTensor D X₁ Y Z p - curvatureTensor D X₂ Y Z p := by
   have hsub : IsSmoothVectorField (fun q => X₁ q - X₂ q) := by
-    simpa using ((⟨X₁, hX₁⟩ : SmoothVectorField I M) - ⟨X₂, hX₂⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨X₁, hX₁⟩ : SmoothVectorField I M) - ⟨X₂, hX₂⟩).smooth
   have h := curvatureTensor_add_first D (Y := Y) hsub hX₂ hZ p
   have e : (fun q => (X₁ q - X₂ q) + X₂ q) = X₁ := by
     funext q; exact sub_add_cancel ..
@@ -190,7 +193,8 @@ theorem curvatureTensor_sub_field (D : AffineConnection I M)
     curvatureTensor D X Y (fun q => Z₁ q - Z₂ q) p
       = curvatureTensor D X Y Z₁ p - curvatureTensor D X Y Z₂ p := by
   have hsub : IsSmoothVectorField (fun q => Z₁ q - Z₂ q) := by
-    simpa using ((⟨Z₁, hZ₁⟩ : SmoothVectorField I M) - ⟨Z₂, hZ₂⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨Z₁, hZ₁⟩ : SmoothVectorField I M) - ⟨Z₂, hZ₂⟩).smooth
   have h := curvatureTensor_add_field D hX hY hsub hZ₂ p
   have e : (fun q => (Z₁ q - Z₂ q) + Z₂ q) = Z₁ := by
     funext q; exact sub_add_cancel ..
@@ -204,7 +208,8 @@ theorem curvatureTensor_sub_middle (D : AffineConnection I M)
     curvatureTensor D X (fun q => Y₁ q - Y₂ q) Z p
       = curvatureTensor D X Y₁ Z p - curvatureTensor D X Y₂ Z p := by
   have hsub : IsSmoothVectorField (fun q => Y₁ q - Y₂ q) := by
-    simpa using ((⟨Y₁, hY₁⟩ : SmoothVectorField I M) - ⟨Y₂, hY₂⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨Y₁, hY₁⟩ : SmoothVectorField I M) - ⟨Y₂, hY₂⟩).smooth
   have h := curvatureTensor_add_middle D hsub hY₂ hZ (X := X) p
   have e : (fun q => (Y₁ q - Y₂ q) + Y₂ q) = Y₁ := by
     funext q; exact sub_add_cancel ..
@@ -221,11 +226,14 @@ theorem curvatureTensor_apply_congr (D : AffineConnection I M)
     {p : M} (hX : X₁ p = X₂ p) (hY : Y₁ p = Y₂ p) (hZ : Z₁ p = Z₂ p) :
     curvatureTensor D X₁ Y₁ Z₁ p = curvatureTensor D X₂ Y₂ Z₂ p := by
   have hsubX : IsSmoothVectorField (fun q => X₁ q - X₂ q) := by
-    simpa using ((⟨X₁, hX₁⟩ : SmoothVectorField I M) - ⟨X₂, hX₂⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨X₁, hX₁⟩ : SmoothVectorField I M) - ⟨X₂, hX₂⟩).smooth
   have hsubY : IsSmoothVectorField (fun q => Y₁ q - Y₂ q) := by
-    simpa using ((⟨Y₁, hY₁⟩ : SmoothVectorField I M) - ⟨Y₂, hY₂⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨Y₁, hY₁⟩ : SmoothVectorField I M) - ⟨Y₂, hY₂⟩).smooth
   have hsubZ : IsSmoothVectorField (fun q => Z₁ q - Z₂ q) := by
-    simpa using ((⟨Z₁, hZ₁⟩ : SmoothVectorField I M) - ⟨Z₂, hZ₂⟩).smooth
+    simpa [IsSmoothVectorField] using!
+      ((⟨Z₁, hZ₁⟩ : SmoothVectorField I M) - ⟨Z₂, hZ₂⟩).smooth
   have step1 : curvatureTensor D X₁ Y₁ Z₁ p = curvatureTensor D X₂ Y₁ Z₁ p := by
     have h := curvatureTensor_sub_first D hX₁ hX₂ hZ₁ (Y := Y₁) p
     have h0 : curvatureTensor D (fun q => X₁ q - X₂ q) Y₁ Z₁ p = 0 :=
@@ -276,7 +284,8 @@ theorem curvatureTensorAt_add_first (D : AffineConnection I M) (p : M)
       = curvatureTensorAt D p u₁ v w + curvatureTensorAt D p u₂ v w := by
   have hsum : IsSmoothVectorField
       (fun q => extendTangentVector p u₁ q + extendTangentVector p u₂ q) := by
-    simpa using (extendTangentVector p u₁ + extendTangentVector p u₂).smooth
+    simpa [IsSmoothVectorField] using!
+      (extendTangentVector p u₁ + extendTangentVector p u₂).smooth
   have h : curvatureTensorAt D p (u₁ + u₂) v w
       = curvatureTensor D
           (fun q => extendTangentVector p u₁ q + extendTangentVector p u₂ q)
@@ -294,7 +303,7 @@ theorem curvatureTensorAt_smul_first (D : AffineConnection I M) (p : M)
     (c : ℝ) (u v w : TangentSpace I p) :
     curvatureTensorAt D p (c • u) v w = c • curvatureTensorAt D p u v w := by
   have hsmul : IsSmoothVectorField (fun q => c • extendTangentVector p u q) := by
-    simpa using (c • extendTangentVector p u).smooth
+    simpa [IsSmoothVectorField] using! (c • extendTangentVector p u).smooth
   have h : curvatureTensorAt D p (c • u) v w
       = curvatureTensor D (fun q => c • extendTangentVector p u q)
           (⇑(extendTangentVector p v)) (⇑(extendTangentVector p w)) p :=
@@ -338,7 +347,8 @@ theorem curvatureTensorAt_add_field (D : AffineConnection I M) (p : M)
       = curvatureTensorAt D p u v w₁ + curvatureTensorAt D p u v w₂ := by
   have hsum : IsSmoothVectorField
       (fun q => extendTangentVector p w₁ q + extendTangentVector p w₂ q) := by
-    simpa using (extendTangentVector p w₁ + extendTangentVector p w₂).smooth
+    simpa [IsSmoothVectorField] using!
+      (extendTangentVector p w₁ + extendTangentVector p w₂).smooth
   have h : curvatureTensorAt D p u v (w₁ + w₂)
       = curvatureTensor D (⇑(extendTangentVector p u))
           (⇑(extendTangentVector p v))
@@ -358,7 +368,7 @@ theorem curvatureTensorAt_smul_field (D : AffineConnection I M) (p : M)
     (c : ℝ) (u v w : TangentSpace I p) :
     curvatureTensorAt D p u v (c • w) = c • curvatureTensorAt D p u v w := by
   have hsmul : IsSmoothVectorField (fun q => c • extendTangentVector p w q) := by
-    simpa using (c • extendTangentVector p w).smooth
+    simpa [IsSmoothVectorField] using! (c • extendTangentVector p w).smooth
   have h : curvatureTensorAt D p u v (c • w)
       = curvatureTensor D (⇑(extendTangentVector p u))
           (⇑(extendTangentVector p v))

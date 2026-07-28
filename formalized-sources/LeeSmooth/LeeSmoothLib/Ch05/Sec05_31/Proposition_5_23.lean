@@ -48,10 +48,10 @@ theorem isSmoothLocalParametrization_of_mem_maximalAtlas
           (Subtype.val : (⟨φ.target, φ.open_target⟩ : Opens (EuclideanSpace ℝ (Fin k))) →
             EuclideanSpace ℝ (Fin k)) :=
       contMDiff_subtype_val
-    simpa [Function.comp] using hsymm.comp_contMDiff hsub fun u ↦ u.2
+    exact hsymm.comp_contMDiff hsub fun u ↦ u.2
   · -- As a map from the subtype `φ.target`, `φ.symm` is the restriction of the inverse partial
     -- homeomorphism, hence an open embedding.
-    simpa using (φ.symm.isOpenEmbedding_restrict)
+    exact φ.symm.isOpenEmbedding_restrict
 
 /- The reverse direction of the textbook iff would require the local parametrization predicate to
 assert that the lift is a coordinate-chart inverse, or equivalently to include smoothness of the

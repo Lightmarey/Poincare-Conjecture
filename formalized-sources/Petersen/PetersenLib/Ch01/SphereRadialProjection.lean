@@ -71,12 +71,12 @@ theorem hasDerivAt_inv_norm_smul_line_orthogonal {x u : E} (hx : x ≠ 0)
   have hpos : (0 : ℝ) < ‖x‖ ^ 2 := by positivity
   have hsqrt : HasDerivAt (fun t : ℝ => Real.sqrt (‖x‖ ^ 2 + t ^ 2 * ‖u‖ ^ 2)) 0 0 := by
     have h := (Real.hasDerivAt_sqrt (by rw [hval]; exact hpos.ne')).comp 0 hpoly
-    simpa using h
+    simpa [Function.comp_def] using! h
   have hinv : HasDerivAt (fun t : ℝ => (Real.sqrt (‖x‖ ^ 2 + t ^ 2 * ‖u‖ ^ 2))⁻¹) 0 0 := by
     have h0 : Real.sqrt (‖x‖ ^ 2 + (0 : ℝ) ^ 2 * ‖u‖ ^ 2) ≠ 0 := by
       rw [hval]
       exact Real.sqrt_ne_zero'.mpr hpos
-    simpa using hsqrt.inv h0
+    simpa using! hsqrt.inv h0
   have hline : HasDerivAt (fun t : ℝ => x + t • u) u 0 := by
     simpa using ((hasDerivAt_id (0 : ℝ)).smul_const u).const_add x
   have hfun : (fun t : ℝ => ‖x + t • u‖⁻¹ • (x + t • u))
@@ -89,8 +89,10 @@ theorem hasDerivAt_inv_norm_smul_line_orthogonal {x u : E} (hx : x ≠ 0)
     exact Real.sqrt_sq (norm_nonneg x)
   have h := hinv.smul hline
   convert h using 1
-  rw [h00]
-  simp
+  · funext t
+    rfl
+  · rw [h00]
+    simp
 
 /-- **Math.** The radial projection is constant along rays: its directional
 derivative in the radial direction vanishes. -/

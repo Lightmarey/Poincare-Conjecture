@@ -132,7 +132,8 @@ theorem mulInvariantVectorFieldLinearIndependentAt {ι : Type uE}
   let bg : Module.Basis ι 𝕜 (TangentSpace I g) :=
     b.map (leftMulMfderivLinearEquiv (I := I) (𝕜 := 𝕜) g)
   -- The transported family is a basis of `T_gG`, so it is linearly independent.
-  simpa [bg, Module.Basis.map_apply, leftMulMfderivLinearEquiv_apply] using bg.linearIndependent
+  simpa [bg, Module.Basis.map_apply, leftMulMfderivLinearEquiv_apply] using!
+    bg.linearIndependent
 
 /-- Helper for Corollary 8.39: the left-translated basis vectors span each tangent space `T_gG`. -/
 theorem mulInvariantVectorFieldTopLeSpanAt {ι : Type uE}

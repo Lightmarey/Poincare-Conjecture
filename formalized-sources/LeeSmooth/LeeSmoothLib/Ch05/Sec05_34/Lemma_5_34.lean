@@ -76,7 +76,7 @@ lemma embeddedPointwiseLocalScalarExtension
     simpa [Set.inter_comm] using (J.image_eq hImm.domChart.target).symm
   have hfcoord :
       ContMDiffOn 𝓘(ℝ, E') 𝓘(ℝ) ∞ fcoord (hImm.domChart.extend J).target := by
-    simpa [fcoord, Function.comp] using f.contMDiff.comp_contMDiffOn hdomChart_symm
+    exact f.contMDiff.comp_contMDiffOn hdomChart_symm
   -- Convert the intrinsic source-chart domain into an ambient-open patch of `M`.
   rcases Topology.IsInducing.subtypeVal.isOpen_iff.mp hImm.domChart.open_source with
     ⟨W, hW_open, hW_eq⟩
@@ -115,7 +115,7 @@ lemma embeddedPointwiseLocalScalarExtension
   have hcod_ext :
       ContMDiffOn I 𝓘(ℝ, E) ∞ (hImm.codChart.extend I) V := by
     exact
-      (contMDiffOn_extend (I := I) (n := (∞ : ℕ∞ω))
+      (hImm.codChart.contMDiffOn_extend (I := I) (n := (∞ : ℕ∞ω))
         (IsManifold.maximalAtlas_subset_of_le (I := I) (M := M)
           (m := (∞ : ℕ∞ω)) (n := (ω : ℕ∞ω)) (by simp) hImm.codChart_mem_maximalAtlas)).mono
         fun _x hx ↦ hx.1

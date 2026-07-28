@@ -46,7 +46,7 @@ end IsSmoothCoveringMap
 /-- Helper for Definition 4.26-extra-1: the source of the global trivialization for the identity
 map is all of `M`. -/
 theorem id_covering_trivialization_source_eq :
-    ((Homeomorph.prodPUnit M).symm.toOpenPartialHomeomorph).source =
+    (((Homeomorph.prodPUnit M : M × PUnit.{1} ≃ₜ M).symm.toOpenPartialHomeomorph).source) =
       (id : M → M) ⁻¹' (Set.univ : Set M) := by
   -- Both the partial homeomorphism source and the preimage of `univ` are all of `M`.
   ext x
@@ -55,7 +55,7 @@ theorem id_covering_trivialization_source_eq :
 /-- Helper for Definition 4.26-extra-1: the target of the global trivialization for the identity
 map is the full product `M × PUnit`. -/
 theorem id_covering_trivialization_target_eq :
-    ((Homeomorph.prodPUnit M).symm.toOpenPartialHomeomorph).target =
+    (((Homeomorph.prodPUnit M : M × PUnit.{1} ≃ₜ M).symm.toOpenPartialHomeomorph).target) =
       (Set.univ : Set M) ×ˢ (Set.univ : Set PUnit.{1}) := by
   -- The homeomorphism to `M × PUnit` is global, so its target is all of the product.
   ext x
@@ -64,15 +64,19 @@ theorem id_covering_trivialization_target_eq :
 /-- Helper for Definition 4.26-extra-1: the global trivialization for `id` projects back to the
 identity on the base. -/
 theorem id_covering_trivialization_proj_toFun
-    (x : M) (_hx : x ∈ ((Homeomorph.prodPUnit M).symm.toOpenPartialHomeomorph).source) :
-    (((Homeomorph.prodPUnit M).symm.toOpenPartialHomeomorph x).1) = (id : M → M) x := by
+    (x : M)
+    (_hx : x ∈
+      (((Homeomorph.prodPUnit M : M × PUnit.{1} ≃ₜ M).symm.toOpenPartialHomeomorph).source)) :
+    ((((Homeomorph.prodPUnit M : M × PUnit.{1} ≃ₜ M).symm.toOpenPartialHomeomorph x).1)) =
+      (id : M → M) x := by
   -- The first coordinate of `(x, ())` is exactly `x`.
-  change (((Equiv.prodPUnit M).symm x).1) = x
+  change ((((Equiv.prodPUnit M : M × PUnit.{1} ≃ M).symm x).1)) = x
   simp [Equiv.prodPUnit_symm_apply]
 
 /-- Helper for Definition 4.26-extra-1: the identity map has a global one-sheet trivialization. -/
 noncomputable def id_covering_trivialization : Bundle.Trivialization PUnit.{1} (id : M → M) :=
-  { toOpenPartialHomeomorph := (Homeomorph.prodPUnit M).symm.toOpenPartialHomeomorph
+  { toOpenPartialHomeomorph :=
+      (Homeomorph.prodPUnit M : M × PUnit.{1} ≃ₜ M).symm.toOpenPartialHomeomorph
     baseSet := Set.univ
     open_baseSet := isOpen_univ
     source_eq := id_covering_trivialization_source_eq

@@ -27,5 +27,6 @@ theorem mfderiv_chart_coordinate_vectors_basis
     he.mfderiv hp (chart_coordinate_vectors_basis he p hp i) =
       EuclideanSpace.basisFun (Fin n) ℝ i := by
   let de : TangentSpace I p ≃L[ℝ] EuclideanSpace ℝ (Fin n) := he.mfderiv hp
-  simpa [chart_coordinate_vectors_basis, de] using
-    de.apply_symm_apply ((EuclideanSpace.basisFun (Fin n) ℝ) i)
+  change de (de.symm ((EuclideanSpace.basisFun (Fin n) ℝ) i)) =
+    ((EuclideanSpace.basisFun (Fin n) ℝ) i : EuclideanSpace ℝ (Fin n))
+  exact de.apply_symm_apply ((EuclideanSpace.basisFun (Fin n) ℝ) i)

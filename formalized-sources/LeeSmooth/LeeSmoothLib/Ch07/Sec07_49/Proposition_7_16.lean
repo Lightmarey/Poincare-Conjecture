@@ -42,7 +42,7 @@ theorem ker_isProperlyEmbedded (F : G →ₜ* H) :
   have hker : (F.ker : Set G) = F ⁻¹' ({(1 : H)} : Set H) := by
     ext g
     rfl
-  simpa [hker] using
+  simpa [hker] using!
     (IsClosed.isProperlyEmbedded <| isClosed_singleton.preimage F.continuous_toFun)
 
 end ContinuousMonoidHom
@@ -81,7 +81,7 @@ lemma continuous_codRestrict_infty
   -- Continuity into the subtype is equivalent to continuity after composing with the inclusion.
   have hInducing := hS.isEmbedding.isInducing
   refine hInducing.continuous_iff.2 ?_
-  simpa [Function.comp] using hF.continuous
+  simpa [Function.comp] using! hF.continuous
 
 omit [FiniteDimensional 𝕜 EG] [Group G] [LieGroup I ∞ G] in
 /-- Helper for Proposition 7.16: in immersion charts for `Subtype.val : S → G`, the chart
@@ -138,10 +138,11 @@ lemma contMDiffAt_toSubtype_infty
         ContinuousWithinAt fS Set.univ x ∧
           ContDiffWithinAt 𝕜 ∞
             ((hImm.domChart.extend K) ∘ fS ∘ (e.extend L).symm) (Set.range L) x' := by
-    simpa [fS, e, x', Set.preimage_univ, Set.univ_inter] using
-      (@contMDiffWithinAt_iff_of_mem_maximalAtlas
-        𝕜 _ E'' _ _ H'' _ L M _ _ E' _ _ H' _ K S _ _ e hImm.domChart fS Set.univ ∞ _ _ x)
-        (IsManifold.chart_mem_maximalAtlas x) hImm.domChart_mem_maximalAtlas hx hy
+    simpa [fS, e, x', Set.preimage_univ, Set.univ_inter] using!
+      (contMDiffWithinAt_iff_of_mem_maximalAtlas
+        (I := L) (I' := K) (e := e) (e' := hImm.domChart) (f := fS)
+        (s := Set.univ) (x := x) (n := ∞)
+        (IsManifold.chart_mem_maximalAtlas x) hImm.domChart_mem_maximalAtlas hx hy)
   rw [ContMDiffAt, hchartSubtype, continuousWithinAt_univ]
   refine ⟨hcont, ?_⟩
   have hchartAmbient :
@@ -149,10 +150,11 @@ lemma contMDiffAt_toSubtype_infty
         ContinuousWithinAt F Set.univ x ∧
           ContDiffWithinAt 𝕜 ∞
             ((hImm.codChart.extend I) ∘ F ∘ (e.extend L).symm) (Set.range L) x' := by
-    simpa [e, x', Set.preimage_univ, Set.univ_inter] using
-      (@contMDiffWithinAt_iff_of_mem_maximalAtlas
-        𝕜 _ E'' _ _ H'' _ L M _ _ EG _ _ HG _ I G _ _ e hImm.codChart F Set.univ ∞ _ _ x)
-        (IsManifold.chart_mem_maximalAtlas x) hImm.codChart_mem_maximalAtlas hx hy'
+    simpa [e, x', Set.preimage_univ, Set.univ_inter] using!
+      (contMDiffWithinAt_iff_of_mem_maximalAtlas
+        (I := L) (I' := I) (e := e) (e' := hImm.codChart) (f := F)
+        (s := Set.univ) (x := x) (n := ∞)
+        (IsManifold.chart_mem_maximalAtlas x) hImm.codChart_mem_maximalAtlas hx hy')
   have hambient :
       ContDiffWithinAt 𝕜 ∞ ((hImm.codChart.extend I) ∘ F ∘ (e.extend L).symm) (Set.range L) x' := by
     -- Rewrite ambient smoothness in the chart pair `(e, hImm.codChart)`.
@@ -162,7 +164,7 @@ lemma contMDiffAt_toSubtype_infty
     simpa [eSymm] using eSymm.contDiff
   have hproj :
       ContDiff 𝕜 ∞ (fun v ↦ (eSymm v).1) := by
-    simpa [eSymm] using contDiff_fst.comp hsymm
+    simpa [eSymm] using! contDiff_fst.comp hsymm
   have hprojWithin :
       ContDiffWithinAt 𝕜 ∞ (fun v ↦ (eSymm v).1) Set.univ
         (((hImm.codChart.extend I) ∘ F ∘ (e.extend L).symm) x') :=
@@ -257,7 +259,7 @@ theorem kerEmbeddedData
           hEmb.codimension = rankAt I J F (1 : G) := by
   -- The kernel is definitionally the fiber over the identity, so the level-set theorem applies
   -- without changing the underlying manifold data.
-  simpa using
+  simpa using!
     (constant_rank_level_set_has_embedded_submanifold_structure
       F.contMDiff_toFun F.hasConstantRank (1 : H))
 
@@ -451,7 +453,7 @@ noncomputable def kerLieSubgroupStructure
           (K.prod K)
           I ∞ fun p : F.toMonoidHom.ker × F.toMonoidHom.ker ↦ (p.1 : G) := by
       -- Compose the subgroup inclusion with the first projection.
-      simpa using
+      simpa using!
         hsub.comp
           (contMDiff_fst :
             ContMDiff
@@ -462,19 +464,19 @@ noncomputable def kerLieSubgroupStructure
           (K.prod K)
           I ∞ fun p : F.toMonoidHom.ker × F.toMonoidHom.ker ↦ (p.2 : G) := by
       -- Compose the subgroup inclusion with the second projection.
-      simpa using
+      simpa using!
         hsub.comp
           (contMDiff_snd :
             ContMDiff
               (K.prod K) K ∞
               fun p : F.toMonoidHom.ker × F.toMonoidHom.ker ↦ p.2)
     -- Ambient multiplication is smooth, so the restricted ambient product is smooth as well.
-    simpa using hfst.mul hsnd
+    simpa using! hfst.mul hsnd
   have hmulSubtype :
       ContMDiff
         (K.prod K) K ∞
         (fun p : F.toMonoidHom.ker × F.toMonoidHom.ker ↦ p.1 * p.2) := by
-    simpa [subgroupMul_codRestrict_eq kerF] using
+    simpa [subgroupMul_codRestrict_eq kerF] using!
       Manifold.IsSmoothEmbedding.contMDiff_toSubtype_infty hEmbInfty hmulAmbient
         (fun p : F.toMonoidHom.ker × F.toMonoidHom.ker ↦
           kerF.mul_mem p.1.property p.2.property)
@@ -485,7 +487,7 @@ noncomputable def kerLieSubgroupStructure
   have hinvSubtype :
       ContMDiff K K ∞
         (fun x : F.toMonoidHom.ker ↦ x⁻¹) := by
-    simpa [subgroupInv_codRestrict_eq kerF] using
+    simpa [subgroupInv_codRestrict_eq kerF] using!
       Manifold.IsSmoothEmbedding.contMDiff_toSubtype_infty hEmbInfty hinvAmbient
         (fun x : F.toMonoidHom.ker ↦ kerF.inv_mem x.property)
   let _ :
@@ -549,7 +551,7 @@ noncomputable def kerSmoothLieSubgroup
     have hker : (F.toMonoidHom.ker : Set G) = F ⁻¹' ({(1 : H)} : Set H) := by
       ext g
       rfl
-    simpa [hker] using
+    simpa [hker] using!
       (IsClosed.isProperlyEmbedded <| isClosed_singleton.preimage F.contMDiff_toFun.continuous)
   embeddedSubmanifold := kerEmbeddedSubmanifold F
 
@@ -642,7 +644,7 @@ theorem ker_isProperlyEmbedded (F : ContMDiffMonoidMorphism I J ∞ G H) :
   have hker : (F.ker : Set G) = F ⁻¹' ({(1 : H)} : Set H) := by
     ext g
     rfl
-  simpa [hker] using
+  simpa [hker] using!
     (IsClosed.isProperlyEmbedded <| isClosed_singleton.preimage F.contMDiff_toFun.continuous)
 
 end ContMDiffMonoidMorphism

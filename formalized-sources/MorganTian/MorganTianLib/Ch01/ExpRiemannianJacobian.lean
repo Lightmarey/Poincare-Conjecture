@@ -86,7 +86,7 @@ theorem abs_det_tangentCoordChange_mul (α β : M) {q : M}
     have : ((tangentCoordChange I α β q : E →L[ℝ] E) : E →ₗ[ℝ] E).comp
         ((tangentCoordChange I β α q : E →L[ℝ] E) : E →ₗ[ℝ] E)
         = (ContinuousLinearMap.id ℝ E : E →ₗ[ℝ] E) := by
-      rw [← ContinuousLinearMap.coe_comp, hcomp]
+      exact congrArg ContinuousLinearMap.toLinearMap hcomp
     rw [this]
     simp
   rw [← abs_mul, hdet, abs_one]
@@ -182,7 +182,7 @@ theorem hasRiemannianJacobianOn_expMapGlobal (g : RiemannianMetric I M) (hg : g.
     rw [hDdef]
     rw [show ((A.comp D₀ : E →L[ℝ] E) : E →ₗ[ℝ] E)
         = ((A : E →L[ℝ] E) : E →ₗ[ℝ] E).comp ((D₀ : E →L[ℝ] E) : E →ₗ[ℝ] E) from
-      ContinuousLinearMap.coe_comp A D₀, LinearMap.det_comp, abs_mul]
+      (by rfl), LinearMap.det_comp, abs_mul]
   -- the reciprocal-determinant cancellation
   have hcancel : |LinearMap.det ((A : E →L[ℝ] E) : E →ₗ[ℝ] E)|
       * |LinearMap.det ((tangentCoordChange I α ζ q : E →L[ℝ] E) : E →ₗ[ℝ] E)| = 1 :=

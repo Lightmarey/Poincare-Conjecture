@@ -144,12 +144,11 @@ theorem realProjectiveChartDomain_isOpen (n : ℕ) (i : Fin (n + 1)) :
     IsOpen (realProjectiveChartDomain n i) := by
   let q : { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 } → ℝP[n] := Projectivization.mk' ℝ
   have hq : Topology.IsQuotientMap q := by
-    simpa [q, Projectivization.mk'] using
-      (isQuotientMap_quotient_mk' :
-        Topology.IsQuotientMap
-          (@Quotient.mk'
-            { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 }
-            (projectivizationSetoid ℝ (EuclideanSpace ℝ (Fin (n + 1))))))
+    change Topology.IsQuotientMap
+      (@Quotient.mk'
+        { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 }
+        (projectivizationSetoid ℝ (EuclideanSpace ℝ (Fin (n + 1)))))
+    exact isQuotientMap_quotient_mk'
   have hpre :
       q ⁻¹' realProjectiveChartDomain n i =
         { v : { w : EuclideanSpace ℝ (Fin (n + 1)) // w ≠ 0 } | v.1 i ≠ 0 } := by
@@ -217,12 +216,11 @@ private theorem realProjectiveChartToFun_continuousOn (n : ℕ) (i : Fin (n + 1)
   rw [continuousOn_iff_continuous_restrict]
   let q : { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 } → ℝP[n] := Projectivization.mk' ℝ
   have hq : Topology.IsQuotientMap q := by
-    simpa [q, Projectivization.mk'] using
-      (isQuotientMap_quotient_mk' :
-        Topology.IsQuotientMap
-          (@Quotient.mk'
-            { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 }
-            (projectivizationSetoid ℝ (EuclideanSpace ℝ (Fin (n + 1))))))
+    change Topology.IsQuotientMap
+      (@Quotient.mk'
+        { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 }
+        (projectivizationSetoid ℝ (EuclideanSpace ℝ (Fin (n + 1)))))
+    exact isQuotientMap_quotient_mk'
   have hq' :
       Topology.IsQuotientMap ((realProjectiveChartDomain n i).restrictPreimage q) :=
     hq.restrictPreimage_isOpen (realProjectiveChartDomain_isOpen n i)
@@ -281,7 +279,11 @@ private theorem realProjectiveChartToFun_continuousOn (n : ℕ) (i : Fin (n + 1)
               (v.1 : { w : EuclideanSpace ℝ (Fin (n + 1)) // w ≠ 0 }).1 i) := by
     refine continuous_pi fun j ↦ ?_
     exact (hnum j).div hden fun v ↦ hden_ne v
-  simpa [realProjectiveAffineCoordinates] using hToLp.comp hcoords
+  change Continuous (WithLp.toLp 2 ∘ fun v : s ↦
+    fun j ↦
+      (v.1 : { w : EuclideanSpace ℝ (Fin (n + 1)) // w ≠ 0 }).1 (i.succAbove j) /
+        (v.1 : { w : EuclideanSpace ℝ (Fin (n + 1)) // w ≠ 0 }).1 i)
+  exact hToLp.comp hcoords
 
 private theorem realProjectiveChartInv_continuous (n : ℕ) (i : Fin (n + 1)) :
     Continuous (realProjectiveChartInv n i) := by
@@ -312,12 +314,11 @@ private theorem realProjectiveChartInv_continuous (n : ℕ) (i : Fin (n + 1)) :
       Continuous
         (Projectivization.mk' ℝ :
           { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 } → ℝP[n]) := by
-    simpa [Projectivization.mk'] using
-      (continuous_quotient_mk' :
-        Continuous
-          (@Quotient.mk'
-            { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 }
-            (projectivizationSetoid ℝ (EuclideanSpace ℝ (Fin (n + 1))))))
+    change Continuous
+      (@Quotient.mk'
+        { v : EuclideanSpace ℝ (Fin (n + 1)) // v ≠ 0 }
+        (projectivizationSetoid ℝ (EuclideanSpace ℝ (Fin (n + 1)))))
+    exact continuous_quotient_mk'
   have hmk :
       realProjectiveChartInv n i = Projectivization.mk' ℝ ∘ f := by
     funext u

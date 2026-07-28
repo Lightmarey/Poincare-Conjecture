@@ -47,7 +47,8 @@ theorem localSection_contMDiffOn {π : M → M'} (hπ : IsLocalDiffeomorph I I' 
   have hsmooth : Manifold.IsSmoothLocalSection I I' π U' σ' := hπ.isSmoothLocalSection hσ'
   intro x hx
   have hsub : ContMDiffAt I' I ∞ (fun y : U' ↦ σ y) ⟨x, hx⟩ := by
-    simpa [σ'] using hsmooth.1 ⟨x, hx⟩
+    change ContMDiffAt I' I ∞ (σ' : U' → M) ⟨x, hx⟩
+    exact hsmooth.1 ⟨x, hx⟩
   exact (contMDiffAt_subtype_iff.mp hsub).contMDiffWithinAt
 
 end IsLocalDiffeomorph

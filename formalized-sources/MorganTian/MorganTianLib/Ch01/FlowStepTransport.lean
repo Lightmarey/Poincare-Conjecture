@@ -121,7 +121,7 @@ theorem exists_geodesic_flow_step_jacobiTransport
     intro t ht
     have h := (ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasDerivAt t
       (hZhasDeriv t ht)
-    simpa [geodesicSprayCoord] using h
+    convert h using 1 <;> rfl
   have huderiv_eq : ∀ t ∈ Ioo (-ε) ε, deriv u t = (Z x₀ t).2 :=
     fun t ht => (huderiv t ht).deriv
   -- `deriv u` agrees with `(Z x₀ ·).2` on the open window
@@ -146,7 +146,7 @@ theorem exists_geodesic_flow_step_jacobiTransport
         (-(chartChristoffelContraction (I := I) g β (Z x₀ t).2 (Z x₀ t).2 (Z x₀ t).1)) t := by
       have h := (ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasDerivAt t
         (hZhasDeriv t ht')
-      simpa [geodesicSprayCoord] using h
+      convert h using 1 <;> rfl
     have heq : deriv u =ᶠ[𝓝 t] fun s => (Z x₀ s).2 := by
       filter_upwards [isOpen_Ioo.mem_nhds ht'] with s hs
       exact huderiv_eq s hs

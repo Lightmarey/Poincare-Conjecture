@@ -271,7 +271,9 @@ theorem exists_expMap_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
         (fun a : ℝ => (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T)).1)
         (T • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (t * T)).2) t := by
       have hfst := (ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasDerivAt t hcomp
-      simpa [geodesicSprayCoord_def] using hfst
+      convert hfst using 1
+      · rfl
+      · simp [geodesicSprayCoord_def]
     -- the two forms agree near `t`
     have hev : (fun a : ℝ => f (a • u)) =ᶠ[𝓝 t]
         (fun a : ℝ => (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T)).1) := by
@@ -348,7 +350,9 @@ theorem exists_expMap_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
           (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (t * T)).2
           (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (t * T)).1)) t := by
       have h := (ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasDerivAt t hcomp
-      simpa [geodesicSprayCoord_def] using h
+      convert h using 1
+      · rfl
+      · simp [geodesicSprayCoord_def]
     have h₂ : HasDerivAt
         (fun t' : ℝ =>
           T • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (t' * T)).2)

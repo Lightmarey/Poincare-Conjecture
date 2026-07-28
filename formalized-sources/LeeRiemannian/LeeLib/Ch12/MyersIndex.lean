@@ -165,7 +165,9 @@ theorem sine_indexForm_nonneg_of_minimizing [CompleteSpace M]
   have hParMT : ∀ i, MorganTianLib.IsParallelAlongOn (I := I) g γ (e i) (-1) 2 := by
     intro i
     simpa only [MorganTianLib.IsParallelAlongOn,
-      Riemannian.Jacobi.IsParallelFieldAlongOn] using hpar i
+      Riemannian.Jacobi.IsParallelFieldAlongOn,
+      MorganTianLib.IsParallelSolOn, Riemannian.Jacobi.IsParallelSolOn,
+      MorganTianLib.chartVectorRep, Riemannian.Jacobi.chartVectorRep] using! hpar i
   have hmin : Real.sqrt (Riemannian.Geodesic.speedSq (I := I) g γ 0) ≤
       dist (γ 0) (γ 1) := by
     have hd01 : dist (γ 0) (γ 1) = ℓ := by

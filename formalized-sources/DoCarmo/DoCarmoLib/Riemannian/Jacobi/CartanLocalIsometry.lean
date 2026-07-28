@@ -182,7 +182,8 @@ theorem isLocalDiffeomorphAt_expMapGlobal_of_not_conjugate
   have htgt : gζ v ∈ (extChartAt I ζ).target := PartialEquiv.map_source _ hsrc
   have hc2 : IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞ (extChartAt I ζ).symm (gζ v) :=
     isLocalDiffeomorphAt_extChartAt_symm htgt
-  have hcomp : IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞ ((extChartAt I ζ).symm ∘ gζ) v := hc2.comp hg_ld
+  have hcomp : IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞ ((extChartAt I ζ).symm ∘ gζ) v :=
+    Riemannian.IsLocalDiffeomorphAt.comp hc2 hg_ld
   -- and `(extChartAt I ζ).symm ∘ gζ = exp_p` near `v`
   refine IsLocalDiffeomorphAt.congr_of_eventuallyEq hcomp ?_
   filter_upwards [hs_open.mem_nhds hvs] with w hw

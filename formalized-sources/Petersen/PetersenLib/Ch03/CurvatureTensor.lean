@@ -60,7 +60,7 @@ theorem cov_sub_direction (p : M) (v w : TangentSpace I p)
 theorem cov_zero_field (p : M) (v : TangentSpace I p) :
     D.cov p v (fun q : M => (0 : TangentSpace I q)) = 0 := by
   have h0 : IsSmoothVectorField (fun q : M => (0 : TangentSpace I q)) := by
-    simpa using (0 : SmoothVectorField I M).smooth
+    simpa [IsSmoothVectorField] using! (0 : SmoothVectorField I M).smooth
   have h := D.add_field p v h0 h0
   have e : (fun q : M => (0 : TangentSpace I q) + 0)
       = fun q : M => (0 : TangentSpace I q) := by funext q; simp
@@ -76,7 +76,7 @@ theorem cov_neg_field (p : M) (v : TangentSpace I p)
     {X : Π x : M, TangentSpace I x} (hX : IsSmoothVectorField X) :
     D.cov p v (fun q => -X q) = -D.cov p v X := by
   have hneg : IsSmoothVectorField (fun q : M => -X q) := by
-    simpa using (-(⟨X, hX⟩ : SmoothVectorField I M)).smooth
+    simpa [IsSmoothVectorField] using! (-(⟨X, hX⟩ : SmoothVectorField I M)).smooth
   have h := D.add_field p v hX hneg
   have e : (fun q : M => X q + -X q) = fun q : M => (0 : TangentSpace I q) := by
     funext q; simp
@@ -89,7 +89,7 @@ theorem sub_field (p : M) (v : TangentSpace I p)
     (h₁ : IsSmoothVectorField X₁) (h₂ : IsSmoothVectorField X₂) :
     D.cov p v (fun q => X₁ q - X₂ q) = D.cov p v X₁ - D.cov p v X₂ := by
   have hneg : IsSmoothVectorField (fun q : M => -X₂ q) := by
-    simpa using (-(⟨X₂, h₂⟩ : SmoothVectorField I M)).smooth
+    simpa [IsSmoothVectorField] using! (-(⟨X₂, h₂⟩ : SmoothVectorField I M)).smooth
   have e : (fun q : M => X₁ q - X₂ q) = fun q : M => X₁ q + -X₂ q := by
     funext q; rw [sub_eq_add_neg]
   rw [e, D.add_field p v h₁ hneg, D.cov_neg_field p v h₂, ← sub_eq_add_neg]
@@ -151,7 +151,7 @@ theorem IsSmoothVectorField.curvatureTensor [I.Boundaryless] [CompleteSpace E]
   have h₃ : IsSmoothVectorField
       (D.covField (PetersenLib.lieDerivativeVectorField I X Y) Z) :=
     D.smooth_cov (hX.lieDerivativeVectorField hY) hZ
-  simpa using
+  simpa [IsSmoothVectorField] using!
     ((⟨_, h₁⟩ : SmoothVectorField I M) - ⟨_, h₂⟩ - ⟨_, h₃⟩).smooth
 
 /-! ## The Ricci-identity form `R(X,Y)Z = ∇²_{X,Y}Z − ∇²_{Y,X}Z` -/
@@ -238,13 +238,13 @@ theorem curvatureTensor_tensorial (D : AffineConnection I M) {f : M → ℝ}
   have hcovYZ : IsSmoothVectorField (D.covField Y Z) := D.smooth_cov hY hZ
   have hcovXZ : IsSmoothVectorField (D.covField X Z) := D.smooth_cov hX hZ
   have hsmulYZ : IsSmoothVectorField (fun q => directionalDerivative Y f q • Z q) := by
-    simpa using (SmoothVectorField.smul _ hdYf ⟨Z, hZ⟩).smooth
+    simpa [IsSmoothVectorField] using! (SmoothVectorField.smul _ hdYf ⟨Z, hZ⟩).smooth
   have hsmulXZ : IsSmoothVectorField (fun q => directionalDerivative X f q • Z q) := by
-    simpa using (SmoothVectorField.smul _ hdXf ⟨Z, hZ⟩).smooth
+    simpa [IsSmoothVectorField] using! (SmoothVectorField.smul _ hdXf ⟨Z, hZ⟩).smooth
   have hfcovY : IsSmoothVectorField (fun q => f q • D.covField Y Z q) := by
-    simpa using (SmoothVectorField.smul _ hf ⟨_, hcovYZ⟩).smooth
+    simpa [IsSmoothVectorField] using! (SmoothVectorField.smul _ hf ⟨_, hcovYZ⟩).smooth
   have hfcovX : IsSmoothVectorField (fun q => f q • D.covField X Z q) := by
-    simpa using (SmoothVectorField.smul _ hf ⟨_, hcovXZ⟩).smooth
+    simpa [IsSmoothVectorField] using! (SmoothVectorField.smul _ hf ⟨_, hcovXZ⟩).smooth
   -- ∇_X ∇_Y (fZ), expanded
   have T1 : D.cov p (X p) (D.covField Y (fun q => f q • Z q))
       = directionalDerivative X (directionalDerivative Y f) p • Z p

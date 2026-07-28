@@ -229,16 +229,24 @@ theorem symm_pullback (e : Trivialization F (π F E)) (x : B') (v : F) :
   by_cases hx : f x ∈ e.baseSet
   · rw [Trivialization.symm_apply _ (show x ∈ (e.pullback (B' := B') f).baseSet from hx)]
     exact eq_of_heq (cast_heq _ _)
-  · rw [Trivialization.symm_apply_of_notMem _
-      (show x ∉ (e.pullback (B' := B') f).baseSet from hx),
-      Trivialization.symm_apply_of_notMem _ hx]
+  · have hxp : x ∉ (e.pullback (B' := B') f).baseSet := hx
+    have hxp' : x ∉ (e.pullback (B' := B') f).toPretrivialization.baseSet := hxp
+    have hx' : f x ∉ e.toPretrivialization.baseSet := hx
+    simp only [Trivialization.symm, Pretrivialization.symm, dif_neg hxp', dif_neg hx']
 
 omit [∀ b, IsTopologicalAddGroup (E b)] [∀ b, ContinuousConstSMul ℝ (E b)]
   [VectorBundle ℝ F E] in
 /-- `symm_pullback`, as an equality of continuous linear maps. -/
 theorem symmL_pullback (e : Trivialization F (π F E)) [e.IsLinear ℝ] (x : B') :
     (e.pullback (B' := B') f).symmL ℝ x = e.symmL ℝ (f x) :=
-  ContinuousLinearMap.ext fun v => symm_pullback f e x v
+  ContinuousLinearMap.ext fun v => by
+    by_cases hx : f x ∈ e.baseSet
+    · exact ((e.pullback (B' := B') f).symmL_apply
+          (show x ∈ (e.pullback (B' := B') f).baseSet from hx) v).trans
+        ((symm_pullback f e x v).trans (e.symmL_apply hx v).symm)
+    · exact ((e.pullback (B' := B') f).symmL_apply_of_notMem
+          (show x ∉ (e.pullback (B' := B') f).baseSet from hx) v).trans
+        (e.symmL_apply_of_notMem hx v).symm
 
 omit [∀ b, IsTopologicalAddGroup (E b)] [∀ b, ContinuousConstSMul ℝ (E b)]
   [VectorBundle ℝ F E] in

@@ -103,9 +103,9 @@ theorem exists_contMDiff_dirTangent_eq_one (p : M) {v : TangentSpace I p}
         (hasMFDerivAt_extChartAt (I := I) (mem_chart_source H p)).mdifferentiableAt
       have := hmd.hasMFDerivAt
       rwa [mfderiv_extChartAt_self] at this
-    have hcomp : HasMFDerivAt I 𝓘(ℝ, ℝ) (fun q => ℓ (extChartAt I p q)) p
+    have hcomp : HasMFDerivAt I 𝓘(ℝ, ℝ) (ℓ ∘ extChartAt I p) p
         (ℓ : E →L[ℝ] ℝ) := by
-      simpa using ℓ.hasMFDerivAt.comp p hext
+      simpa only [ContinuousLinearMap.comp_id] using ℓ.hasMFDerivAt.comp p hext
     have hsub := hcomp.sub (hasMFDerivAt_const (c := c₀) (x := p))
     have hev : (fun q => χ q • h q) =ᶠ[𝓝 p]
         ((fun q => ℓ (extChartAt I p q)) - fun _ => c₀) := by

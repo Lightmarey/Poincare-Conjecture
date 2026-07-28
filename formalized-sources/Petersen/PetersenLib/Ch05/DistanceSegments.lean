@@ -56,7 +56,8 @@ theorem hasDerivAt_chartLocalCurve {γ : ℝ → M} {t : ℝ}
   rw [hwrite, hpt, hrange] at h2
   have hfd : HasFDerivAt (Geodesic.chartLocalCurve (I := I) γ t)
       (mfderiv 𝓘(ℝ, ℝ) I γ t) t := hasFDerivWithinAt_univ.mp h2
-  simpa [velocity] using hfd.hasDerivAt
+  unfold velocity
+  convert hfd.hasDerivAt using 1 <;> aesop
 
 /-- **Eng.** The `curveSpeedSq` of `γ` at a point of differentiability is the
 intrinsic squared norm of the `mfderiv` velocity: `|ċ|² = g(ċ, ċ)`.  This

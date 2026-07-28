@@ -274,7 +274,7 @@ theorem isometryGroup_euclideanSpace {n : ℕ} (F : Equiv.Perm (EuclideanSpace �
       -- distance ≤ length of the image curve = length of the segment
       have h1 : dist (G x) (G y) ≤ arcLength (euclideanMetric n) (⇑G ∘ c) 0 1 := by
         have h := dist_le_arcLength (F := EuclideanSpace ℝ (Fin n)) hGc zero_le_one
-        simpa [Function.comp, hc0, hc1] using h
+        simpa [Function.comp_def, hc0, hc1] using! h
       have h2 : arcLength (euclideanMetric n) (⇑G ∘ c) 0 1
           = arcLength (euclideanMetric n) c 0 1 :=
         hG'.preservesMetric.arcLength (hGsmooth.mdifferentiable (by simp))
@@ -428,7 +428,7 @@ theorem mfderiv_coe_sphere_restrict_of_linearIsometryEquiv {r : ℝ} [Fact (0 < 
       = OL.comp (mfderiv (𝓡 n) 𝓘(ℝ, V) ((↑) : sphere (0 : V) r → V) x) := by
     rw [← h1, heq, h2, hOm]
   have := congrArg (fun T : TangentSpace (𝓡 n) x →L[ℝ] V => T u) hcomp
-  simpa [hOL] using this
+  simpa [hOL] using! this
 
 /-- **Math.** Petersen Example 1.3.2, the fully proved "⊇" direction, as a
 standalone sorry-free lemma: the restriction to `Sⁿ(R)` of an orthogonal
@@ -1044,7 +1044,7 @@ theorem mfderiv_hyperboloidInclusion_restrict {n : ℕ} {R : ℝ} [Fact (0 < R)]
   have := congrArg
     (fun T : TangentSpace 𝓘(ℝ, EuclideanSpace ℝ (Fin n)) p →L[ℝ]
       (EuclideanSpace ℝ (Fin n) × ℝ) => T u) hcomp
-  simpa [hLL] using this
+  simpa [hLL] using! this
 
 /-- **Math.** Petersen Example 1.3.3 (ingredient): tangent vectors to
 `Hⁿ(R)` are Minkowski-orthogonal to the position vector: with

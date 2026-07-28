@@ -81,7 +81,8 @@ lemma hopfActionAmbient_contMDiff :
         ∞
         (Prod.map c s) := by
     apply ContMDiff.prodMap
-    · simpa [c] using (contMDiff_coe_sphere (m := ∞) (n := 1) (E := ℂ))
+    · change ContMDiff (𝓡 1) 𝓘(ℝ, ℂ) ∞ (fun z : Circle ↦ (z : ℂ))
+      exact contMDiff_coe_sphere (m := ∞) (n := 1) (E := ℂ)
     · simpa [s] using
         (contMDiff_coe_sphere (m := ∞) (n := 2 * n + 1)
           (E := EuclideanSpace ℂ (Fin (n + 1))))
@@ -102,7 +103,9 @@ lemma hopfActionAmbient_contMDiff :
       rw [contMDiff_prod_module_iff, ← contMDiff_prod_iff]
       exact contMDiff_id
     exact contDiff_smul.contMDiff.comp hProd
-  simpa [c, s] using hSmul.comp hIncl
+  convert hSmul.comp hIncl using 1
+  funext p
+  rfl
 
 /-- Helper for Problem 7-11: the ambient Hopf action preserves the unit sphere. -/
 lemma hopfActionAmbient_memSphere (p : Circle × HopfSphere) :

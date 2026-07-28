@@ -130,7 +130,7 @@ lemma curve_velocity_eq_subtype_inclusion_mfderiv
     rfl
   rw [hγS_univ] at hcomp
   rw [hcod, hγ_univ] at hcomp
-  simpa [γS] using hcomp
+  simpa [γS] using! hcomp
 
 /-- Problem 5-19 (1): if a smooth curve in `M` has image in an embedded submanifold `S`, then its
 ambient velocity vector lies in the tangent subspace of `S`, viewed as the range of the
@@ -157,7 +157,7 @@ lemma tangentSpace_real_smul_one_eq (t : ℝ) (v : TangentSpace 𝓘(ℝ) t) :
     (NormedSpace.fromTangentSpace t v) • (1 : TangentSpace 𝓘(ℝ) t) = v := by
   have hone : (NormedSpace.fromTangentSpace t) (1 : TangentSpace 𝓘(ℝ) t) = (1 : ℝ) := rfl
   apply (NormedSpace.fromTangentSpace t).injective
-  simp [hone, smul_eq_mul]
+  simp [hone, smul_eq_mul, NormedSpace.fromTangentSpace]
 
 /-- The derivative of the figure-eight immersion at parameter `t`, expressed in `ℝ²` using
 `NormedSpace.fromTangentSpace`. -/
@@ -186,7 +186,7 @@ lemma figureEightBranchVelocity_eq (t : ℝ) :
     simpa using Real.hasDerivAt_sin t
   have hcurve : HasDerivAt figureEightCurveMap (2 * Real.cos (2 * t), Real.cos t) t := by
     -- Differentiate the two coordinates separately and reassemble them into the product map.
-    simpa [figureEightCurveMap, Function.comp] using hfst.prodMk hsnd
+    simpa [figureEightCurveMap, Function.comp] using! hfst.prodMk hsnd
   have hcurve_fderiv :
       fderiv ℝ figureEightCurveMap t =
         ContinuousLinearMap.toSpanSingleton ℝ (2 * Real.cos (2 * t), Real.cos t) := by
@@ -195,7 +195,7 @@ lemma figureEightBranchVelocity_eq (t : ℝ) :
       fderiv ℝ figureEightCurveMap t 1 = (2 * Real.cos (2 * t), Real.cos t) := by
     -- Applying the Fréchet derivative to `1` recovers the ordinary one-variable derivative.
     simpa using DFunLike.congr_fun hcurve_fderiv 1
-  simpa [figureEightBranchVelocity, curve_velocity, mfderiv_eq_fderiv] using hfderiv
+  simpa [figureEightBranchVelocity, curve_velocity, mfderiv_eq_fderiv] using! hfderiv
 
 /-- Helper for Problem 5-19: every value of the figure-eight tangent map is a scalar multiple of
 the branch velocity at the same parameter. -/

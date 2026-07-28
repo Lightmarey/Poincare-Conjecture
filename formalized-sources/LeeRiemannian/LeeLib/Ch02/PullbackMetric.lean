@@ -226,11 +226,9 @@ theorem contMDiffAt_bilinearCompOf
       rw [ContinuousLinearMap.inCoordinates_eq hx hfx]
       rfl
     have hcoeT : (tT.symm (F x) : E' → TangentSpace I' (F x))
-        = ⇑(tT.continuousLinearEquivAt ℝ (F x) hfx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]; rfl
+        = ⇑(tT.continuousLinearEquivAt ℝ (F x) hfx).symm := rfl
     have hcoeS : (sT.symm x : E → TangentSpace I x)
-        = ⇑(sT.continuousLinearEquivAt ℝ x hx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]; rfl
+        = ⇑(sT.continuousLinearEquivAt ℝ x hx).symm := rfl
     rw [hDu, hcoeT, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
   rw [hRHS, hG]
   have htrivM' :

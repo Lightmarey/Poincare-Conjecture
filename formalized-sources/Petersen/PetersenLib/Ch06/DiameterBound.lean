@@ -811,10 +811,11 @@ theorem continuousOn_sectionalCurvature_of_parallel
       rw [bivectorInnerProduct, hEunit τ (hsub hτ), hspeed τ (hsub hτ),
         hEperp τ (hsub hτ)]
       ring
-    symm
+    simp only [u, W]
     rw [chartMetricInner_eq_inner (I := I) g hsrcE,
       chartCurvatureEndo_apply, hcurv,
       tangentCoordChange_chartFieldRep (I := I) σ α Efield hsrcE]
+    symm
     change curvatureTensorFourAt (g.leviCivita) (σ τ) (Efield τ)
         (curveVelocity (I := I) σ τ) (curveVelocity (I := I) σ τ) (Efield τ) = _
     rw [(isAlgCurvatureForm_curvatureTensorFourAt (g.leviCivita) (σ τ)).pairSwap,

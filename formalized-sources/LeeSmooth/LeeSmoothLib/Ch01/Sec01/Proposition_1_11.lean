@@ -14,9 +14,9 @@ namespace TopologicalManifold
 /-- Proposition 1.11 (1): a topological manifold is locally path-connected via its Euclidean
 chart model. -/
 theorem locPathConnectedSpace (n : ℕ) (M : Type u) [TopologicalSpace M]
-    [TopologicalManifold n M] : LocPathConnectedSpace M := by
-  let _ : LocPathConnectedSpace (EuclideanSpace ℝ (Fin n)) := inferInstance
-  exact ChartedSpace.locPathConnectedSpace (EuclideanSpace ℝ (Fin n)) M
+    [TopologicalManifold n M] : LocallyPathConnectedSpace M := by
+  let _ : LocallyPathConnectedSpace (EuclideanSpace ℝ (Fin n)) := inferInstance
+  exact ChartedSpace.locallyPathConnectedSpace (EuclideanSpace ℝ (Fin n)) M
 
 end TopologicalManifold
 
@@ -24,12 +24,12 @@ end TopologicalManifold
 `LocPathConnectedSpace`, path-connectedness and connectedness agree by the general theorem
 `pathConnectedSpace_iff_connectedSpace`. -/
 recall pathConnectedSpace_iff_connectedSpace {X : Type u} [TopologicalSpace X]
-    [LocPathConnectedSpace X] : PathConnectedSpace X ↔ ConnectedSpace X
+    [LocallyPathConnectedSpace X] : PathConnectedSpace X ↔ ConnectedSpace X
 
 /- Proposition 1.11 (3): in a locally path-connected space, path components are exactly connected
 components. -/
 recall pathComponent_eq_connectedComponent {X : Type u} [TopologicalSpace X]
-    [LocPathConnectedSpace X] (x : X) : pathComponent x = connectedComponent x
+    [LocallyPathConnectedSpace X] (x : X) : pathComponent x = connectedComponent x
 
 /- Proposition 1.11 (5): connected components are open in every locally connected space, hence in
 every topological manifold. -/
@@ -48,7 +48,7 @@ recall isConnected_connectedComponent {X : Type u} [TopologicalSpace X] (x : X) 
 /-- Proposition 1.11 (4): (d) A topological manifold has countably many connected components. -/
 theorem countable_connectedComponents_of_topologicalManifold (n : ℕ) [TopologicalManifold n M] :
     Countable (ConnectedComponents M) := by
-  letI : LocPathConnectedSpace M := TopologicalManifold.locPathConnectedSpace n M
+  letI : LocallyPathConnectedSpace M := TopologicalManifold.locPathConnectedSpace n M
   letI : LocallyConnectedSpace M := inferInstance
   letI : LindelofSpace M := inferInstance
   letI : DiscreteTopology (ConnectedComponents M) := inferInstance
@@ -69,7 +69,7 @@ theorem connectedComponent_connectedSpace (x : M) : ConnectedSpace (connectedCom
 connected topological manifold. -/
 noncomputable instance connectedComponent_topologicalManifold (n : ℕ) [TopologicalManifold n M]
     (x : M) : TopologicalManifold n (connectedComponent x) := by
-  letI : LocPathConnectedSpace M := TopologicalManifold.locPathConnectedSpace n M
+  letI : LocallyPathConnectedSpace M := TopologicalManifold.locPathConnectedSpace n M
   exact Opens.topologicalManifold
     (⟨connectedComponent x, show IsOpen (connectedComponent x : Set M) from
       isOpen_connectedComponent⟩ : Opens M)

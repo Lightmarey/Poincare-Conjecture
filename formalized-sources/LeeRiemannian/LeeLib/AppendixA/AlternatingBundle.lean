@@ -152,7 +152,7 @@ theorem continuousAlternatingMapCoordChange_apply [VectorBundle 𝕜 F E]
   congr 1
   ext i
   rw [ContinuousLinearEquiv.coe_coe, Trivialization.coordChangeL_apply (R := 𝕜) e' e hb.symm,
-    Trivialization.symmL_apply]
+    e'.symmL_apply hb.2]
   exact (Trivialization.continuousLinearMapAt_apply_of_mem (R := 𝕜) e hb.1 _).symm
 
 end Bundle.Pretrivialization
@@ -188,6 +188,9 @@ def vectorPrebundle :
     have h : IsInducing fun x : (E b) [⋀^ι]→L[𝕜] G ↦ (b, φ x) :=
       isInducing_const_prod.mpr φ.toHomeomorph.isInducing
     convert h
+    · rfl
+    · simp [Pretrivialization.continuousAlternatingMap_apply, φ, L,
+        Trivialization.symm_continuousLinearEquivAt_eq']
 
 
 /-- Topology on the total space of the bundle of continuous alternating maps. -/

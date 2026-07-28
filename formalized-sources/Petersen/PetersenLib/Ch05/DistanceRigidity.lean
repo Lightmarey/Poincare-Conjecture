@@ -216,7 +216,7 @@ theorem hasDerivAt_extChartAt_comp_of_hasMFDerivAt {γ : ℝ → M} {t : ℝ} {p
   rw [ContinuousLinearMap.ext_iff]
   intro a
   rw [ContinuousLinearMap.comp_apply, ContinuousLinearMap.smulRight_apply, map_smul,
-    ← ContinuousLinearMap.one_apply (R₁ := ℝ) a, ← ContinuousLinearMap.smulRight_apply,
+    ← one_apply_eq_self (F := ℝ →L[ℝ] ℝ) a, ← ContinuousLinearMap.smulRight_apply,
     mfderiv_chartAt_eq_tangentCoordChange hsrc]
   rfl
 
@@ -493,7 +493,7 @@ theorem hasMFDerivAt_smulRight_velocity {γ : ℝ → M} {t : ℝ}
   have h1 : HasMFDerivAt 𝓘(ℝ, ℝ) I γ t (mfderiv 𝓘(ℝ, ℝ) I γ t) := hγ.hasMFDerivAt
   convert h1 using 1
   ext
-  simp only [ContinuousLinearMap.smulRight_apply, ContinuousLinearMap.one_apply, velocity,
+  simp only [ContinuousLinearMap.smulRight_apply, one_apply_eq_self, velocity,
     ← ContinuousLinearMap.map_smul, one_smul]
   rfl
 

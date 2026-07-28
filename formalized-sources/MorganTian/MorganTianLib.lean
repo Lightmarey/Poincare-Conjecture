@@ -1,6 +1,7 @@
 import MorganTianLib.Ch01.BishopGromov
 import MorganTianLib.Ch01.BishopGromovBall
 import MorganTianLib.Ch01.BishopGromovManifold
+import MorganTianLib.Ch01.BookCutLocus
 import MorganTianLib.Ch01.BrokenEnergy
 import MorganTianLib.Ch01.BrokenVariationData
 import MorganTianLib.Ch01.BrokenVariationGlue
@@ -10,6 +11,9 @@ import MorganTianLib.Ch01.ChartMetricCompatible
 import MorganTianLib.Ch01.ChartPartition
 import MorganTianLib.Ch01.ChartPartitionCorner
 import MorganTianLib.Ch01.ChartPartitionSlack
+import MorganTianLib.Ch01.Chapter1CutLocusRemaining
+import MorganTianLib.Ch01.Chapter1VolumeRemaining
+import MorganTianLib.Ch01.Chapter1BasicRemaining
 import MorganTianLib.Ch01.ChartVariation
 import MorganTianLib.Ch01.ComparisonFunctions
 import MorganTianLib.Ch01.ComparisonGeometric
@@ -19,14 +23,19 @@ import MorganTianLib.Ch01.ConjugateUnit
 import MorganTianLib.Ch01.ConstantGeodesicJacobi
 import MorganTianLib.Ch01.CurvatureCommutation
 import MorganTianLib.Ch01.CurvatureFrameBridge
+import MorganTianLib.Ch01.DistanceWeakReduction
 import MorganTianLib.Ch01.CurvatureNormManifold
 import MorganTianLib.Ch01.CurvatureNormSectional
 import MorganTianLib.Ch01.CurvatureOperator
 import MorganTianLib.Ch01.CurvatureSectionalBound
 import MorganTianLib.Ch01.CurvatureTensor
 import MorganTianLib.Ch01.CutLocus
+import MorganTianLib.Ch01.CutLocusAgreement
+import MorganTianLib.Ch01.CutLocusFacades
 import MorganTianLib.Ch01.CutLocusNull
 import MorganTianLib.Ch01.CutTimeMeasurable
+import MorganTianLib.Ch01.CutTimeContinuous
+import MorganTianLib.Ch01.CutTimeStarShaped
 import MorganTianLib.Ch01.Einstein
 import MorganTianLib.Ch01.EnergyVariation
 import MorganTianLib.Ch01.ExpBallDiffeo
@@ -36,6 +45,7 @@ import MorganTianLib.Ch01.ExpDifferential
 import MorganTianLib.Ch01.ExpJacobiDensity
 import MorganTianLib.Ch01.ExpLocalDiffeo
 import MorganTianLib.Ch01.ExpRiemannianJacobian
+import MorganTianLib.Ch01.ExpSegmentDiffeomorph
 import MorganTianLib.Ch01.FrameChartDeterminant
 import MorganTianLib.Ch01.FlowChainAssembly
 import MorganTianLib.Ch01.FlowChainNbhd
@@ -66,6 +76,7 @@ import MorganTianLib.Ch01.GeodesicTranslation
 import MorganTianLib.Ch01.Geodesics
 import MorganTianLib.Ch01.GlobalExp
 import MorganTianLib.Ch01.Hessian
+import MorganTianLib.Ch01.HopfRinow
 import MorganTianLib.Ch01.IndexForm
 import MorganTianLib.Ch01.IndexFormConjugate
 import MorganTianLib.Ch01.IndexFormNegative
@@ -85,11 +96,15 @@ import MorganTianLib.Ch01.JacobiRiccati
 import MorganTianLib.Ch01.JunctionGeodesic
 import MorganTianLib.Ch01.JunctionStep
 import MorganTianLib.Ch01.LeviCivita
+import MorganTianLib.Ch01.LocalIsometryFacades
+import MorganTianLib.Ch01.LocalIsometryInverse
 import MorganTianLib.Ch01.ManifoldCurvature
 import MorganTianLib.Ch01.MatrixCalculus
 import MorganTianLib.Ch01.MeasureNull
 import MorganTianLib.Ch01.Metric
 import MorganTianLib.Ch01.MetricEuclideanEquiv
+import MorganTianLib.Ch01.InjectivityRadiusAgreement
+import MorganTianLib.Ch01.InjectivityRadiusFrontier
 import MorganTianLib.Ch01.MinimalGeodesicNoConjugate
 import MorganTianLib.Ch01.MinimalGeodesicUnique
 import MorganTianLib.Ch01.NoConjugateOfMinimizing
@@ -117,6 +132,7 @@ import MorganTianLib.Ch01.RicciDivergence
 import MorganTianLib.Ch01.RicciFrame
 import MorganTianLib.Ch01.RicciFrameTrace
 import MorganTianLib.Ch01.RiemannianJacobian
+import MorganTianLib.Ch01.RiemannianCone
 import MorganTianLib.Ch01.RiemannianMeasure
 import MorganTianLib.Ch01.ScalarComparison
 import MorganTianLib.Ch01.SecondBianchi
@@ -136,6 +152,8 @@ import MorganTianLib.Ch01.VectorSturm
 import MorganTianLib.Ch01.VolumeAsymptotics
 import MorganTianLib.Ch01.VolumeComparison
 import MorganTianLib.Ch01.VolumeElement
+import MorganTianLib.Ch01.WeakLaplacian
+import MorganTianLib.Ch01.WeakLaplacianBridge
 import MorganTianLib.Ch02.AsymptoticRay
 import MorganTianLib.Ch02.Bochner
 import MorganTianLib.Ch02.BochnerLipschitz

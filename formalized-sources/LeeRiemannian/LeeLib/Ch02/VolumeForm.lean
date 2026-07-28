@@ -233,7 +233,8 @@ theorem _root_.Bundle.Trivialization.localFrame_eq_symmL {ι : Type*}
     (hx : x ∈ e.baseSet) (i : ι) :
     e.localFrame b i x = e.symmL 𝕜 x (b i) := by
   rw [Bundle.Trivialization.localFrame_apply_of_mem_baseSet _ _ hx]
-  rfl
+  change (e.linearEquivAt 𝕜 x hx).symm (b i) = e.symmL 𝕜 x (b i)
+  rw [e.linearEquivAt_symm_apply, e.symmL_apply hx]
 
 end LocalFrameSymmL
 
@@ -482,6 +483,7 @@ theorem volumeForm_apply_eq_one (g : RiemannianMetric I M) (o : PointwiseOrienta
   have hon' := orthonormal_toBasisAt g hY hon hx
   have := volumeFormL_apply_eq_one (o x) ((hY.toBasisAt hx).toOrthonormalBasis hon') (by
     rwa [Basis.toBasis_toOrthonormalBasis])
+  change (o x).volumeFormL (fun i => Y i x) = 1
   simpa only [Basis.coe_toOrthonormalBasis, IsLocalFrameOn.toBasisAt_coe] using this
 
 omit [FiniteDimensional ℝ E] in
@@ -498,7 +500,9 @@ theorem volumeForm_apply_eq_det (g : RiemannianMetric I M) (o : PointwiseOrienta
   have hon' := orthonormal_toBasisAt g hY hon hx
   have := volumeFormL_apply_eq_det (o x) ((hY.toBasisAt hx).toOrthonormalBasis hon') (by
     rwa [Basis.toBasis_toOrthonormalBasis]) v
-  simpa only [Basis.coe_toOrthonormalBasis, IsLocalFrameOn.toBasisAt_coe] using this
+  have hinner : ∀ i j, ⟪Y i x, v j⟫_ℝ = g.inner x (Y i x) (v j) := fun _ _ => rfl
+  change (o x).volumeFormL v = (Matrix.of fun i j => g.inner x (Y i x) (v j)).det
+  simpa only [Basis.coe_toOrthonormalBasis, IsLocalFrameOn.toBasisAt_coe, hinner] using this
 
 omit [FiniteDimensional ℝ E] in
 /-- **Lee, Proposition 2.41(a) — the coframe characterization of `dV_g`.**
@@ -609,7 +613,7 @@ theorem dualCoframe_apply_frame (g : RiemannianMetric I M)
   classical
   have hstep : g.dualCoframe Y x i (Y k x)
       = ((g.frameMatrix Y x)⁻¹ * g.frameMatrix Y x) i k := by
-    simp [dualCoframe, frameMatrix, ContinuousLinearMap.sum_apply, Matrix.mul_apply]
+    simp [dualCoframe, frameMatrix, Matrix.mul_apply]
   rw [hstep, Matrix.nonsing_inv_mul _ (Ne.isUnit (g.frameMatrix_det_ne_zero hY hx))]
   simp [Matrix.one_apply]
 
@@ -708,9 +712,17 @@ theorem contMDiffAt_volumeForm (g : RiemannianMetric I M) {o : PointwiseOrientat
       = (g.volumeForm o x₀).toAlternatingMap (fun i => Z i x₀) from rfl, hzero] at h1
     exact zero_ne_one h1
   -- hence the trivialized form at the centre survives the basis `b`, and generates the line
-  have hΩ : Φ x₀ (⇑b) ≠ 0 :=
+  have hΩ' : (g.volumeForm o x₀).toAlternatingMap ⇑(e.basisAt b hx₀e) ≠ 0 :=
     (AlternatingMap.map_basis_ne_zero_iff (e.basisAt b hx₀e)
       (g.volumeForm o x₀).toAlternatingMap).mpr hne
+  have hbasis : (⇑(e.basisAt b hx₀e) : Fin (finrank ℝ E) → TangentSpace I x₀) =
+      fun i => e.symmL ℝ x₀ (b i) := funext fun i => by
+    rw [← e.localFrame_eq_symmL b hx₀e i,
+      e.localFrame_apply_of_mem_baseSet b hx₀e]
+  have hΩ : Φ x₀ (⇑b) ≠ 0 := by
+    change (g.volumeForm o x₀).toAlternatingMap (fun i => e.symmL ℝ x₀ (b i)) ≠ 0
+    rw [← hbasis]
+    exact hΩ'
   -- `x ↦ e.symmL x (b j)` is a smooth local frame near `x₀`
   have hsec : ∀ j : Fin (finrank ℝ E), ContMDiffAt I (I.prod 𝓘(ℝ, E)) ∞
       (fun q => (⟨q, e.symmL ℝ q (b j)⟩ : TangentBundle I M)) x₀ := by

@@ -4,11 +4,12 @@ import DoCarmoLib.Riemannian.TangentBundle.TangentSmooth
 import Mathlib.Geometry.Manifold.Riemannian.Basic
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 import Mathlib.Analysis.Normed.Module.FiniteDimension
+import Mathlib.Analysis.InnerProductSpace.Orientation
 import Mathlib.Analysis.LocallyConvex.Bounded
 import Mathlib.Geometry.Manifold.VectorBundle.Hom
 import Mathlib.Geometry.Manifold.ContMDiffMFDeriv
 import Mathlib.Geometry.Manifold.Algebra.LieGroup
-import Mathlib.Geometry.Manifold.VectorBundle.SmoothSection
+import Mathlib.Geometry.Manifold.VectorBundle.ContMDiffSection
 import Mathlib.Geometry.Manifold.PartitionOfUnity
 
 /-!
@@ -50,6 +51,20 @@ def DCPreservesMetric (gM : RiemannianMetric I M) (gN : RiemannianMetric I' M')
     gM.metricInner p u v =
       gN.metricInner (f p) (mfderiv I I' f p u) (mfderiv I I' f p v)
 
+/-- **Math.** do Carmo Ch. 1, Definition 2.2, with both clauses explicit:
+an isometry is a smooth diffeomorphism whose differential preserves the
+Riemannian metric everywhere. -/
+def DCIsometry (gM : RiemannianMetric I M) (gN : RiemannianMetric I' M')
+    (Φ : DCDiffeomorph (I := I) (M := M) I' (M' := M')) : Prop :=
+  DCPreservesMetric gM gN Φ
+
+/-- **Math.** A do Carmo isometry preserves the metric. -/
+theorem DCIsometry.preservesMetric
+    {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'}
+    {Φ : DCDiffeomorph (I := I) (M := M) I' (M' := M')}
+    (hΦ : DCIsometry gM gN Φ) : DCPreservesMetric gM gN Φ :=
+  hΦ
+
 /-- **Math.** do Carmo Ch.1 Def. 2.3: `f` is a **local isometry at `p`** if it preserves
 the metric on some neighbourhood `U` of `p` on which it restricts to a
 diffeomorphism onto its image. The metric-preservation on `U` is captured here. -/
@@ -58,6 +73,32 @@ def DCIsLocalIsometryAt (gM : RiemannianMetric I M) (gN : RiemannianMetric I' M'
   ∃ U ∈ nhds p, ∀ q ∈ U, ∀ u v : TangentSpace I q,
     gM.metricInner q u v =
       gN.metricInner (f q) (mfderiv I I' f q u) (mfderiv I I' f q v)
+
+/-- **Math.** do Carmo Ch. 1, Definition 2.3, with both clauses made
+explicit: `f` is a smooth local diffeomorphism at `p`, and it preserves the
+Riemannian metric on a neighborhood of `p`.
+
+`DCIsLocalIsometryAt` predates the project's local-diffeomorphism API and is
+retained as the metric-preservation component for compatibility. This bundled
+predicate is the faithful local-isometry notion. -/
+def DCIsLocalIsometryAtFull (gM : RiemannianMetric I M)
+    (gN : RiemannianMetric I' M') (f : M → M') (p : M) : Prop :=
+  IsLocalDiffeomorphAt I I' ∞ f p ∧ DCIsLocalIsometryAt gM gN f p
+
+/-- **Math.** A full local isometry is, in particular, a smooth local
+diffeomorphism. -/
+theorem DCIsLocalIsometryAtFull.isLocalDiffeomorphAt
+    {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'}
+    {f : M → M'} {p : M} (hf : DCIsLocalIsometryAtFull gM gN f p) :
+    IsLocalDiffeomorphAt I I' ∞ f p :=
+  hf.1
+
+/-- **Math.** A full local isometry preserves the metric near its base point. -/
+theorem DCIsLocalIsometryAtFull.preservesMetricNear
+    {gM : RiemannianMetric I M} {gN : RiemannianMetric I' M'}
+    {f : M → M'} {p : M} (hf : DCIsLocalIsometryAtFull gM gN f p) :
+    DCIsLocalIsometryAt gM gN f p :=
+  hf.2
 
 /-! ## Parametrized curves (do Carmo Def. 1.2.8, 1.2.9) -/
 
@@ -105,6 +146,16 @@ theorem DCPreservesMetric.dcArcLength {gM : RiemannianMetric I M}
   funext t
   rw [DCVelocity_comp t (hf.mdifferentiableAt) (hc.mdifferentiableAt),
     Function.comp_apply, ← hiso (c t) (DCVelocity c t) (DCVelocity c t)]
+
+/-- **Math.** A do Carmo isometry preserves the arc length of every
+differentiable curve segment. -/
+theorem DCIsometry.dcArcLength {gM : RiemannianMetric I M}
+    {gN : RiemannianMetric I' M'}
+    {Φ : DCDiffeomorph (I := I) (M := M) I' (M' := M')}
+    (hΦ : DCIsometry gM gN Φ) {c : ℝ → M}
+    (hc : MDifferentiable 𝓘(ℝ, ℝ) I c) (a b : ℝ) :
+    DCArcLength gN (Φ ∘ c) a b = DCArcLength gM c a b :=
+  hΦ.preservesMetric.dcArcLength (Φ.mdifferentiable (by simp)) hc a b
 
 /-! ## Euclidean space (do Carmo Ex. 1.2.4) -/
 
@@ -388,10 +439,14 @@ theorem DCInducedForm_contMDiff (gN : RiemannianMetric I' M') {f : M → M'}
       rfl
     have hcoeT : (tT.symm (f x) : E' → TangentSpace I' (f x))
         = ⇑(tT.continuousLinearEquivAt ℝ (f x) hfx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq tT hfx]
+      funext y
+      exact (tT.symmL_apply hfx y).symm
     have hcoeS : (sT.symm x : E → TangentSpace I x)
         = ⇑(sT.continuousLinearEquivAt ℝ x hx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]
+      funext y
+      exact (sT.symmL_apply hx y).symm
     rw [hDu, hcoeT, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
   rw [hRHS, hG]
   have htrivM' : trivializationAt ℝ (Bundle.Trivial M' ℝ) (f x₀) = Bundle.Trivial.trivialization M' ℝ :=
@@ -541,10 +596,14 @@ theorem mfderiv_mul_left_inv_injective (x : G) :
     have hcomp : ((x * ·) ∘ (x⁻¹ * ·)) = (id : G → G) := by
       funext y; simp [mul_inv_cancel_left]
     rw [hcomp, mfderiv_id]
-  refine Function.LeftInverse.injective
-    (g := mfderiv I I (x * ·) (x⁻¹ * x)) fun u => ?_
-  have := congrArg (fun T : TangentSpace I x →L[ℝ] TangentSpace I x => T u) key
-  simpa using this
+  intro u v huv
+  have hcomp := congrArg (mfderiv I I (x * ·) (x⁻¹ * x)) huv
+  change ((mfderiv I I (x * ·) (x⁻¹ * x)).comp
+      (mfderiv I I (x⁻¹ * ·) x)) u =
+    ((mfderiv I I (x * ·) (x⁻¹ * x)).comp
+      (mfderiv I I (x⁻¹ * ·) x)) v at hcomp
+  rw [key] at hcomp
+  exact hcomp
 
 omit [IsManifold I ∞ G] [LieGroup I ∞ G] in
 /-- **Math.** The left-invariant form is symmetric when the seed form `b` is. -/
@@ -630,7 +689,9 @@ theorem DCLeftInvariantForm_contMDiff (b : E →L[ℝ] E →L[ℝ] ℝ) :
       rfl
     have hcoeS : (sT.symm x : E → TangentSpace I x)
         = ⇑(sT.continuousLinearEquivAt ℝ x hx).symm := by
-      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]; rfl
+      rw [Trivialization.symm_continuousLinearEquivAt_eq sT hx]
+      funext y
+      exact (sT.symmL_apply hx y).symm
     rw [hDu, ContinuousLinearEquiv.symm_apply_apply, hcoeS]
   rw [hRHS, hB]
   have htrivM : trivializationAt ℝ (Bundle.Trivial G ℝ) x₀ = Bundle.Trivial.trivialization G ℝ :=
@@ -660,5 +721,68 @@ noncomputable def DCLeftInvariantMetric [FiniteDimensional ℝ E]
   contMDiff := DCLeftInvariantForm_contMDiff b
 
 end LieGroupMetric
+
+/-! ## Pointwise volume forms (do Carmo Rem. 1.2.11) -/
+
+section PointwiseVolumeForm
+
+open Module
+open scoped Bundle RealInnerProductSpace
+
+variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
+  {n : ℕ} [Fact (finrank ℝ V = n)]
+
+/-- **Math.** The signed volume of an ordered `n`-tuple in an oriented real inner-product
+space is the canonical top alternating form determined by the metric and orientation. -/
+def DCSignedVolume (o : Orientation ℝ V (Fin n)) (v : Fin n → V) : ℝ :=
+  o.volumeForm v
+
+/-- **Math.** The signed volume is the determinant of the matrix of inner products with any
+positively oriented orthonormal basis. This is the finite-dimensional content behind do Carmo's
+coordinate formula `sqrt (det (g_ij))`. -/
+theorem DCSignedVolume_eq_det (o : Orientation ℝ V (Fin n))
+    (e : OrthonormalBasis (Fin n) ℝ V) (he : e.toBasis.orientation = o)
+    (v : Fin n → V) :
+    DCSignedVolume o v = (Matrix.of fun i j ↦ @inner ℝ V _ (v i) (e j)).det := by
+  rw [DCSignedVolume, o.volumeForm_robust e he, Basis.det_apply, ← Matrix.det_transpose]
+  congr 1
+  ext i j
+  simp only [Matrix.transpose_apply, Matrix.of_apply, Basis.toMatrix_apply,
+    OrthonormalBasis.coe_toBasis_repr_apply, OrthonormalBasis.repr_apply_apply]
+  exact real_inner_comm _ _
+
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
+  {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
+  {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
+
+/-- **Math.** A pointwise orientation chooses an orientation on every tangent space. No
+smoothness is built into this datum; that distinction is essential for the global volume-form
+and integration statements in do Carmo Rem. 1.2.11. -/
+abbrev DCPointwiseOrientation (I : ModelWithCorners ℝ E H) (M : Type*)
+    [TopologicalSpace M] [ChartedSpace H M] : Type _ :=
+  ∀ x : M, Orientation ℝ (TangentSpace I x) (Fin (finrank ℝ E))
+
+/-- **Math.** The pointwise Riemannian volume form at `x`: the top alternating form of the
+oriented inner-product space `(T_x M, g_x)`. This is deliberately fibrewise; it does not assert
+that an arbitrary pointwise orientation varies smoothly. -/
+def DCVolumeFormAt [HasMetric I M] (o : DCPointwiseOrientation I M) (x : M) :
+    (TangentSpace I x) [⋀^Fin (finrank ℝ E)]→ₗ[ℝ] ℝ :=
+  haveI : Fact (finrank ℝ (TangentSpace I x) = finrank ℝ E) := ⟨rfl⟩
+  (o x).volumeForm
+
+omit [FiniteDimensional ℝ E] in
+/-- **Math.** The pointwise Riemannian volume form is computed by the oriented orthonormal
+determinant formula. -/
+theorem DCVolumeFormAt_eq_det [hm : HasMetric I M]
+    (o : DCPointwiseOrientation I M) (x : M)
+    (e : OrthonormalBasis (Fin (finrank ℝ E)) ℝ (TangentSpace I x))
+    (he : e.toBasis.orientation = o x)
+    (v : Fin (finrank ℝ E) → TangentSpace I x) :
+    DCVolumeFormAt o x v =
+      (Matrix.of fun i j ↦ hm.metric.metricInner x (v i) (e j)).det := by
+  haveI : Fact (finrank ℝ (TangentSpace I x) = finrank ℝ E) := ⟨rfl⟩
+  exact DCSignedVolume_eq_det (o x) e he v
+
+end PointwiseVolumeForm
 
 end Riemannian

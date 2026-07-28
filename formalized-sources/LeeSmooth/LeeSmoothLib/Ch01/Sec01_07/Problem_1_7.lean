@@ -513,7 +513,7 @@ theorem continuousOn_stereographicNorthMap :
         ((continuous_const.sub
           ((PiLp.continuous_apply 2 _ (Fin.last n)).comp continuous_subtype_val)).continuousOn)
         fun x hx ↦ northDenominator_ne_zero n hx)
-  simpa [stereographicNorthMap] using
+  simpa [stereographicNorthMap] using!
     (PiLp.continuous_toLp 2 (fun _ : Fin n ↦ ℝ)).comp_continuousOn hcoord
 
 /-- The explicit inverse to north-pole stereographic projection is continuous. -/
@@ -538,11 +538,11 @@ theorem continuous_stereographicNorthInv :
       refine continuous_pi ?_
       intro i
       refine Fin.lastCases ?_ ?_ i
-      · simpa [Fin.snoc] using (continuous_norm.pow 2).sub continuous_const
+      · simpa [Fin.snoc] using! (continuous_norm.pow 2).sub continuous_const
       · intro j
-        simpa [Fin.snoc] using
+        simpa [Fin.snoc] using!
           continuous_const.mul ((PiLp.continuous_apply 2 (fun _ : Fin n ↦ ℝ) j).comp continuous_id)
-    simpa [stereographicNorthInvVector] using hscalar.smul hnumerator
+    simpa [stereographicNorthInvVector] using! hscalar.smul hnumerator
   -- Then lift the ambient continuity to the sphere-valued map via the proved membership theorem.
   exact Continuous.subtype_mk hvec (fun u ↦ stereographicNorthInvVector_mem_unitSphere n u)
 
@@ -562,7 +562,7 @@ theorem continuousOn_stereographicSouthMap :
         ((continuous_const.add
           ((PiLp.continuous_apply 2 _ (Fin.last n)).comp continuous_subtype_val)).continuousOn)
         fun x hx ↦ southDenominator_ne_zero n hx)
-  simpa [stereographicSouthMap] using
+  simpa [stereographicSouthMap] using!
     (PiLp.continuous_toLp 2 (fun _ : Fin n ↦ ℝ)).comp_continuousOn hcoord
 
 /-- The explicit inverse to south-pole stereographic projection is continuous. -/
@@ -586,11 +586,11 @@ theorem continuous_stereographicSouthInv :
       refine continuous_pi ?_
       intro i
       refine Fin.lastCases ?_ ?_ i
-      · simpa [Fin.snoc] using continuous_const.sub (continuous_norm.pow 2)
+      · simpa [Fin.snoc] using! continuous_const.sub (continuous_norm.pow 2)
       · intro j
-        simpa [Fin.snoc] using
+        simpa [Fin.snoc] using!
           continuous_const.mul ((PiLp.continuous_apply 2 (fun _ : Fin n ↦ ℝ) j).comp continuous_id)
-    simpa [stereographicSouthInvVector] using hscalar.smul hnumerator
+    simpa [stereographicSouthInvVector] using! hscalar.smul hnumerator
   -- Then package the ambient continuity as a sphere-valued map.
   exact Continuous.subtype_mk hvec (fun u ↦ stereographicSouthInvVector_mem_unitSphere n u)
 
@@ -670,7 +670,7 @@ theorem stereographicNorth_eq_line_intersection (x : northPoleComplement n) :
     intro h
     apply x.2
     apply Subtype.ext
-    simpa using h
+    simpa using! h
   have hxnorm : ‖(((x : UnitSphere) : AmbientSpace))‖ = 1 := by
     simpa [Metric.sphere, dist_eq_norm] using (x : UnitSphere).2
   have hxlt : inner ℝ (northPoleVec n) (((x : UnitSphere) : AmbientSpace)) < 1 := by
@@ -709,7 +709,7 @@ theorem stereographicSouth_eq_line_intersection (x : southPoleComplement n) :
     intro h
     apply x.2
     apply Subtype.ext
-    simpa using h
+    simpa using! h
   have hxnorm : ‖(((x : UnitSphere) : AmbientSpace))‖ = 1 := by
     simpa [Metric.sphere, dist_eq_norm] using (x : UnitSphere).2
   have hxlt : inner ℝ (southPoleVec n) (((x : UnitSphere) : AmbientSpace)) < 1 := by
@@ -804,7 +804,7 @@ lemma stereographicNorthInv_eq_southPole_iff (u : ModelSpace) :
         stereographicNorthMap n (stereographicNorthInv n u) =
           stereographicNorthMap n (southPolePoint n) := congrArg (stereographicNorthMap n) h
     rw [stereographicNorth_right_inv] at hmap
-    simpa [stereographicNorthMap, southPolePoint, southPoleVec, Fin.snoc] using hmap
+    simpa [stereographicNorthMap, southPolePoint, southPoleVec, Fin.snoc] using! hmap
   · intro hu
     apply Subtype.ext
     ext i
@@ -825,7 +825,7 @@ lemma stereographicSouthInv_eq_northPole_iff (u : ModelSpace) :
         stereographicSouthMap n (stereographicSouthInv n u) =
           stereographicSouthMap n (northPolePoint n) := congrArg (stereographicSouthMap n) h
     rw [stereographicSouth_right_inv] at hmap
-    simpa [stereographicSouthMap, northPolePoint, northPoleVec, Fin.snoc] using hmap
+    simpa [stereographicSouthMap, northPolePoint, northPoleVec, Fin.snoc] using! hmap
   · intro hu
     apply Subtype.ext
     ext i
@@ -846,7 +846,7 @@ lemma contDiffOn_stereographicInversion :
     refine (contDiff_norm_sq ℝ).contDiffOn.inv ?_
     intro u hu
     exact pow_ne_zero 2 (norm_ne_zero_iff.2 hu)
-  simpa using hscalar.smul contDiffOn_id
+  simpa using! hscalar.smul contDiffOn_id
 
 /-- For Problem 1-7, part (6): the two explicit stereographic charts define a smooth structure on `S^n`. -/
 theorem stereographic_two_chart_isManifold :
@@ -869,7 +869,7 @@ theorem stereographic_two_chart_isManifold :
     rw [hsource]
     refine contDiffOn_id.congr ?_
     intro u hu
-    simpa using stereographicNorth_right_inv n u
+    simpa using! stereographicNorth_right_inv n u
   · -- The north-to-south transition is the punctured-space inversion formula.
     have hsource :
         ((stereographicNorthChart n).symm.trans (stereographicSouthChart n)).source =
@@ -882,7 +882,7 @@ theorem stereographic_two_chart_isManifold :
     rw [hsource]
     refine (contDiffOn_stereographicInversion n).congr ?_
     intro u hu
-    simpa using stereographic_transition n u hu
+    simpa using! stereographic_transition n u hu
   · -- The south-to-north transition is the same inversion formula.
     have hsource :
         ((stereographicSouthChart n).symm.trans (stereographicNorthChart n)).source =
@@ -895,7 +895,7 @@ theorem stereographic_two_chart_isManifold :
     rw [hsource]
     refine (contDiffOn_stereographicInversion n).congr ?_
     intro u hu
-    simpa using stereographicSouth_transition n u hu
+    simpa using! stereographicSouth_transition n u hu
   · -- The south-to-south transition is again the identity.
     have hsource :
         ((stereographicSouthChart n).symm.trans (stereographicSouthChart n)).source =
@@ -907,7 +907,7 @@ theorem stereographic_two_chart_isManifold :
     rw [hsource]
     refine contDiffOn_id.congr ?_
     intro u hu
-    simpa using stereographicSouth_right_inv n u
+    simpa using! stereographicSouth_right_inv n u
 
 /-- Helper for Problem 1-7: a model-space partial homeomorphism belongs to
 `contDiffGroupoid ∞ (𝓡 n)` once it is `C^∞` in both directions on its source and target. -/
@@ -978,7 +978,7 @@ lemma contDiff_stereographicNorthInvVector :
       simpa [Fin.snoc] using
         contDiff_const.mul (contDiff_piLp_apply (p := 2) (i := j))
   -- Multiplying the numerator by the scalar factor gives the explicit inverse vector field.
-  simpa [stereographicNorthInvVector] using hscalar.smul hnumerator
+  simpa [stereographicNorthInvVector] using! hscalar.smul hnumerator
 
 /-- Helper for Problem 1-7: the ambient vector formula for the south inverse is smooth on
 `ℝ^n`. -/
@@ -1006,7 +1006,7 @@ lemma contDiff_stereographicSouthInvVector :
       simpa [Fin.snoc] using
         contDiff_const.mul (contDiff_piLp_apply (p := 2) (i := j))
   -- The same scalar factor smooths the south numerator as well.
-  simpa [stereographicSouthInvVector] using hscalar.smul hnumerator
+  simpa [stereographicSouthInvVector] using! hscalar.smul hnumerator
 
 /-- Helper for Problem 1-7: the explicit north stereographic map is `C^∞` for the standard sphere
 smooth structure. -/
@@ -1016,7 +1016,7 @@ lemma contMDiffOn_stereographicNorthMap_standard :
   -- Route correction: use the explicit ambient rational formula and compose it with the smooth
   -- inclusion `S^n ↪ ℝ^(n+1)` instead of unfolding the standard pole chart.
   haveI := Fact.mk (@finrank_euclideanSpace_fin ℝ _ (n + 1))
-  simpa [stereographicNorthMap] using
+  simpa [stereographicNorthMap] using!
     (contDiffOn_stereographicNorthAmbient (n := n)).contMDiffOn.comp
       ((contMDiff_coe_sphere (E := AmbientSpace) (m := (∞ : ℕ∞ω)) (n := n)).contMDiffOn)
       (fun x hx ↦ by simpa using northDenominator_ne_zero n hx)
@@ -1029,7 +1029,7 @@ lemma contMDiffOn_stereographicSouthMap_standard :
   -- Route correction: as in the north-pole case, compose the ambient rational formula with the
   -- smooth sphere inclusion.
   haveI := Fact.mk (@finrank_euclideanSpace_fin ℝ _ (n + 1))
-  simpa [stereographicSouthMap] using
+  simpa [stereographicSouthMap] using!
     (contDiffOn_stereographicSouthAmbient (n := n)).contMDiffOn.comp
       ((contMDiff_coe_sphere (E := AmbientSpace) (m := (∞ : ℕ∞ω)) (n := n)).contMDiffOn)
       (fun x hx ↦ by simpa using southDenominator_ne_zero n hx)
@@ -1041,7 +1041,7 @@ lemma contMDiff_stereographicNorthInv_standard :
   -- Route correction: build the sphere-valued inverse by codomain-restricting the smooth ambient
   -- inverse vector formula.
   haveI := Fact.mk (@finrank_euclideanSpace_fin ℝ _ (n + 1))
-  simpa [stereographicNorthInv] using
+  simpa [stereographicNorthInv] using!
     (ContMDiff.codRestrict_sphere (E := AmbientSpace) (n := n)
       ((contDiff_stereographicNorthInvVector (n := n)).contMDiff)
       (fun u ↦ stereographicNorthInvVector_mem_unitSphere n u))
@@ -1052,7 +1052,7 @@ lemma contMDiff_stereographicSouthInv_standard :
     ContMDiff (𝓡 n) (𝓡 n) ∞ (stereographicSouthInv n) := by
   -- Route correction: the south inverse is the same codomain-restriction argument.
   haveI := Fact.mk (@finrank_euclideanSpace_fin ℝ _ (n + 1))
-  simpa [stereographicSouthInv] using
+  simpa [stereographicSouthInv] using!
     (ContMDiff.codRestrict_sphere (E := AmbientSpace) (n := n)
       ((contDiff_stereographicSouthInvVector (n := n)).contMDiff)
       (fun u ↦ stereographicSouthInvVector_mem_unitSphere n u))

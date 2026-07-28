@@ -89,7 +89,7 @@ theorem gradient_mul {f h : M → ℝ} (hf : ∀ x, MDifferentiableAt I 𝓘(ℝ
     metricInner_gradient, metricInner_gradient]
   have hmul := directionalDerivative_mul (I := I) (hf x) (hh x) (fun _ => w)
   simp only [directionalDerivative_apply] at hmul
-  rw [show (fun p => f p * h p) = f * h from rfl, hmul]; ring
+  simpa [add_comm] using! hmul.symm
 
 /-! ## Hessian product rule (Hessian half of Exercise 2.5.5) -/
 

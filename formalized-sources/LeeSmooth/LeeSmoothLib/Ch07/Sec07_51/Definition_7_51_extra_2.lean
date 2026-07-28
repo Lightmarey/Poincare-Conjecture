@@ -61,7 +61,7 @@ theorem internalSemidirectProductAmbientConjugation_contMDiff
       ContMDiff (I_H.prod I_N) I (∞ : ℕ∞ω) (fun p : H × N ↦ p.2.1) :=
     h.n_subtype_contMDiff.comp contMDiff_snd
   -- The ambient formula is built from multiplication in `G` and inversion of the `H` factor.
-  simpa [mul_assoc] using (hHfst.mul hNsnd).mul hHfst.inv
+  simpa [mul_assoc] using! (hHfst.mul hNsnd).mul hHfst.inv
 
 /-- Helper for Definition 7.51-extra-2: ambient conjugation by an element of `H` preserves the
 normal subgroup `N`. -/

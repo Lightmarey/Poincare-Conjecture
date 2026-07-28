@@ -189,14 +189,14 @@ theorem realProjectiveAction_continuous :
     Continuous (fun q : (E →L[ℝ] E)ˣ × ℝP[n] ↦ q.1 • q.2) := by
   let q : { v : E // v ≠ 0 } → ℝP[n] := Projectivization.mk' ℝ
   have hq : Topology.IsQuotientMap q := by
-    simpa [q, Projectivization.mk'] using
+    simpa [q, Projectivization.mk'] using!
       (isQuotientMap_quotient_mk' :
         Topology.IsQuotientMap
           (@Quotient.mk'
             { v : E // v ≠ 0 }
             (projectivizationSetoid ℝ E)))
   have hqCont : Continuous q := by
-    simpa [q, Projectivization.mk'] using
+    simpa [q, Projectivization.mk'] using!
       (continuous_quotient_mk' :
         Continuous
           (@Quotient.mk'
@@ -212,7 +212,7 @@ theorem realProjectiveAction_continuous :
           (continuous_subtype_val.comp continuous_snd))
       (fun p ↦ (smul_ne_zero_iff_ne p.1).2 p.2.2)
   refine hq.continuous_lift_prod_right ?_
-  simpa [q, Projectivization.mk'_eq_mk, Projectivization.smul_mk] using hqCont.comp hRep
+  simpa [q, Projectivization.mk'_eq_mk, Projectivization.smul_mk] using! hqCont.comp hRep
 
 /-- Helper for Problem 7-9: after choosing source and target standard charts, the chart-conjugated
 projective action is smooth in the Euclidean model. -/
@@ -323,7 +323,7 @@ theorem realProjectiveAction_contMDiffAt_of_chart_pair
     continuousWithinAt_univ, Set.preimage_univ, Set.univ_inter]
   refine ⟨?_, ?_⟩
   · exact realProjectiveAction_continuous (n := n) |>.continuousAt
-  · simpa [e, eU, p0] using
+  · simpa [e, eU, p0] using!
       realProjectiveAction_writtenInCharts_contDiffWithinAt (n := n) (p := p) hi hj
 
 /-- Problem 7-9 (2): the canonical continuous-linear automorphism action on `ℝPⁿ` is smooth. -/

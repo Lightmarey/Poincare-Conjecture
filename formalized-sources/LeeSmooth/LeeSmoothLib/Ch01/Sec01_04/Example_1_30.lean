@@ -77,7 +77,8 @@ theorem graph_coordinate_chart_apply {n k : ℕ}
   -- Composing with the subtype inclusion only forgets the proof that the first coordinate lies in
   -- `U`, so the chart is still the first projection.
   rw [graph_coordinate_chart, OpenPartialHomeomorph.trans_apply]
-  simpa using graph_coordinates_apply U f hf.continuousOn p
+  rw [TopologicalSpace.Opens.openPartialHomeomorphSubtypeCoe_coe]
+  exact graph_coordinates_apply U f hf.continuousOn p
 
 /-- The graph of a smooth map `f : U → ℝ^k` on an open subset `U ⊆ ℝ^n` carries the canonical
 charted-space structure determined by the graph coordinate chart when `U` is nonempty, and the

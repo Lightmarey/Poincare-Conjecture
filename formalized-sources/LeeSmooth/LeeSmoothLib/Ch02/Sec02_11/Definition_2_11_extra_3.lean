@@ -33,12 +33,12 @@ theorem IsExhaustionFunction.isProperMap {f : M → ℝ} (hf : f.IsExhaustionFun
   isProperMap_iff_tendsto_cocompact.2 ⟨hf.continuous, hf.tendsto_atTop.trans atTop_le_cocompact⟩
 
 /-- An exhaustion function canonically yields a proper map. -/
-instance instIsProperMapOfIsExhaustionFunction {f : M → ℝ} [hf : f.IsExhaustionFunction] :
+theorem instIsProperMapOfIsExhaustionFunction {f : M → ℝ} [hf : f.IsExhaustionFunction] :
     IsProperMap f :=
   hf.isProperMap
 
 /-- An exhaustion function canonically yields continuity of its underlying function. -/
-instance instContinuousOfIsExhaustionFunction {f : M → ℝ} [hf : f.IsExhaustionFunction] :
+theorem instContinuousOfIsExhaustionFunction {f : M → ℝ} [hf : f.IsExhaustionFunction] :
     Continuous f :=
   hf.continuous
 

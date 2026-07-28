@@ -1,5 +1,6 @@
 import EvansLib.Ch01.MoreExamples
 import EvansLib.Ch01.Multiindex
+import Mathlib.Algebra.Group.Ext
 import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
 import Mathlib.Analysis.InnerProductSpace.Calculus
 
@@ -285,10 +286,13 @@ lemma heatKernelSpatial_time_deriv {n : ℕ} {t : ℝ} (ht : 0 < t)
     have hdiv : HasDerivAt (fun s : ℝ => ‖x‖ ^ 2 / (4 * s)) (-(‖x‖ ^ 2) / (4 * t ^ 2)) t := by
       have := (hasDerivAt_const t (‖x‖ ^ 2)).div h4s (by positivity)
       convert this using 1
-      field_simp
-      ring
+      · exact AddCommGroup.ext rfl
+      · exact Module.ext rfl
+      · rfl
+      · field_simp
+        ring
     have := (hlog.const_mul (-(n : ℝ) / 2)).sub hdiv
-    convert this using 1
+    convert this using 1 <;> try rfl
     field_simp
     ring
   -- Transfer the derivative from `exp(H)` to `heatKernelSpatial` on `{s>0}`.

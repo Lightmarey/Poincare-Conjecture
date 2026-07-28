@@ -151,7 +151,8 @@ theorem lipschitzWith_neg_chartGamma (cov : Connection I E (TangentSpace I : M �
     (v : E) (y : M) :
     LipschitzWith ‖chartGammaRight cov e b v y‖₊ (fun w => -chartGamma cov e b v w y) := by
   have h := (chartGammaRight cov e b v y).lipschitz.neg
-  simpa only [chartGammaRight_apply] using h
+  intro w w'
+  simpa only [Pi.neg_apply, chartGammaRight_apply] using h w w'
 
 /-- **CLM decomposition of the parallel-transport coefficient**: the ODE coefficient
 `chartGammaRight cov e b v y` is a finite sum of the *fixed* rank-one continuous linear
@@ -186,7 +187,12 @@ theorem continuousOn_chartGammaRight (cov : Connection I E (TangentSpace I : M �
   simp only [chartGammaRight_eq_sum]
   refine continuousOn_finsetSum _ fun k _ => continuousOn_finsetSum _ fun i _ =>
     continuousOn_finsetSum _ fun j _ => ?_
-  refine ContinuousOn.smul (ContinuousOn.mul ?_ ?_) continuousOn_const
+  refine ContinuousOn.smul
+    (ContinuousOn.mul (M := ℝ)
+      (f := fun t : ℝ => chartConnectionCoeff cov e b i j k (c t))
+      (g := fun t : ℝ => b.repr (deriv u t) i) ?_ ?_)
+    (continuousOn_const (α := ℝ) (β := E →L[ℝ] E) (s := s)
+      (c := (b.coord j).toContinuousLinearMap.smulRight (b k)))
   · exact ((chartConnectionCoeff_contMDiffOn cov hcov i j k).continuousOn).comp hc hcmem
   · have : (fun t => b.repr (deriv u t) i) = fun t => (b.coord i) (deriv u t) := by
       funext t; rw [Basis.coord_apply]

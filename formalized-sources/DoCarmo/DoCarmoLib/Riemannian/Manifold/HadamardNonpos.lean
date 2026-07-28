@@ -100,7 +100,8 @@ theorem isLocalDiffeomorphAt_expMapGlobal_of_nonpos
   have htgt : gζ v ∈ (extChartAt I ζ).target := PartialEquiv.map_source _ hsrc
   have hc2 : IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞ (extChartAt I ζ).symm (gζ v) :=
     isLocalDiffeomorphAt_extChartAt_symm htgt
-  have hcomp : IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞ ((extChartAt I ζ).symm ∘ gζ) v := hc2.comp hg_ld
+  have hcomp : IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞ ((extChartAt I ζ).symm ∘ gζ) v :=
+    Riemannian.IsLocalDiffeomorphAt.comp hc2 hg_ld
   -- and `(extChartAt I ζ).symm ∘ gζ = exp_p` near `v`
   refine IsLocalDiffeomorphAt.congr_of_eventuallyEq hcomp ?_
   filter_upwards [hs_open.mem_nhds hvs] with w hw
@@ -128,7 +129,8 @@ theorem isLocalDiffeomorph_expMapGlobal_hadamard_of_nonpos
       (isLocalDiffeomorphAt_extChartAt (I := 𝓘(ℝ, E)) (x := v)) ?_
     filter_upwards with y
     exact (HadamardModel.extChartAt_hadamard v y).symm
-  exact (isLocalDiffeomorphAt_expMapGlobal_of_nonpos g hg p (HadamardModel.toModel v) hsmooth hK).comp
+  exact Riemannian.IsLocalDiffeomorphAt.comp
+    (isLocalDiffeomorphAt_expMapGlobal_of_nonpos g hg p (HadamardModel.toModel v) hsmooth hK)
     htoModel
 
 /-! ### The Cartan–Hadamard theorem -/
@@ -143,7 +145,7 @@ Feeds the local-diffeomorphism `isLocalDiffeomorph_expMapGlobal_hadamard_of_nonp
 (`rem:dc-ch7-3-4`), which discharges the ray-geodesic input internally. The only non-`\leanok`
 hypothesis is `hsmooth`; see the module header. -/
 def hadamardDiffeomorphOfNonpos
-    [ConnectedSpace M] [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [ConnectedSpace M] [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M] (p : M)
     (hsmooth : ContMDiff 𝓘(ℝ, E) I ∞ (fun w : E => expMapGlobal (I := I) g hg p w))
     (hK : ∀ x : M, ∀ a c : TangentSpace I x,
@@ -155,7 +157,7 @@ def hadamardDiffeomorphOfNonpos
 /-- **Math.** The Cartan–Hadamard diffeomorphism **is** `exp_p` itself (anti-vacuity guard): it is
 `exp_p`, upgraded to a diffeomorphism, not a new map. -/
 theorem hadamardDiffeomorphOfNonpos_coe
-    [ConnectedSpace M] [SimplyConnectedSpace M] [LocPathConnectedSpace M]
+    [ConnectedSpace M] [SimplyConnectedSpace M] [LocallyPathConnectedSpace M]
     (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M] (p : M)
     (hsmooth : ContMDiff 𝓘(ℝ, E) I ∞ (fun w : E => expMapGlobal (I := I) g hg p w))
     (hK : ∀ x : M, ∀ a c : TangentSpace I x,

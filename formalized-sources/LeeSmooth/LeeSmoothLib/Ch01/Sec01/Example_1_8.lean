@@ -60,7 +60,7 @@ lemma mem_modelWithCorners_pi_source_iff
     have hx_source_pi : ∀ i, ((ModelWithCorners.pi I).symm x) i ∈ (e i).source := by
       exact fun i ↦ hx_source_mem' i (by simp)
     have hx_source : ∀ i, (I i).symm (x i) ∈ (e i).source := by
-      simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using hx_source_pi
+      simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using! hx_source_pi
     have hx_range_mem : x ∈ Set.pi Set.univ (fun i ↦ Set.range (I i)) := hx.2
     have hx_range : ∀ i, x i ∈ Set.range (I i) := by
       rw [Set.mem_pi] at hx_range_mem
@@ -69,7 +69,7 @@ lemma mem_modelWithCorners_pi_source_iff
   · intro hx
     constructor
     · have hx_source : ∀ i, ((ModelWithCorners.pi I).symm x) i ∈ (e i).source := by
-        simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using fun i ↦ (hx i).1
+        simpa [ModelWithCorners.pi, PartialEquiv.pi_symm_apply] using! fun i ↦ (hx i).1
       have hx_source_mem' :
           ∀ i ∈ Set.univ, ((ModelWithCorners.pi I).symm x) i ∈ (e i).source := by
         exact fun i _ ↦ hx_source i
@@ -86,7 +86,7 @@ lemma mem_modelWithCorners_pi_source_iff
 lemma contDiffOn_pi_proj (i : ι) (s : Set (∀ i, E i)) :
     ContDiffOn 𝕜 r (fun x : ∀ i, E i ↦ x i) s := by
   -- Coordinate projections are continuous linear, hence `C^r`.
-  simpa using
+  simpa using!
     ((((ContinuousLinearMap.proj (R := 𝕜) i) : (∀ i, E i) →L[𝕜] E i).contDiff).contDiffOn :
       ContDiffOn 𝕜 r ((ContinuousLinearMap.proj (R := 𝕜) i) : (∀ i, E i) → E i) s)
 
@@ -101,7 +101,7 @@ lemma contDiffGroupoid_pi {e : ∀ i, OpenPartialHomeomorph (H i) (H i)}
     intro i
     have hi :=
       (mem_groupoid_of_pregroupoid (PG := contDiffPregroupoid r (I i))).1 (he i)
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       (show ContDiffOn 𝕜 r ((I i) ∘ e i ∘ (I i).symm)
           ((I i).symm ⁻¹' (e i).source ∩ Set.range (I i)) from by
             simpa [contDiffPregroupoid] using hi.1).comp
@@ -113,7 +113,7 @@ lemma contDiffGroupoid_pi {e : ∀ i, OpenPartialHomeomorph (H i) (H i)}
     intro i
     have hi :=
       (mem_groupoid_of_pregroupoid (PG := contDiffPregroupoid r (I i))).1 (he i)
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       (show ContDiffOn 𝕜 r ((I i) ∘ (e i).symm ∘ (I i).symm)
           ((I i).symm ⁻¹' ((e i).symm).source ∩ Set.range (I i)) from by
             simpa [contDiffPregroupoid] using hi.2).comp

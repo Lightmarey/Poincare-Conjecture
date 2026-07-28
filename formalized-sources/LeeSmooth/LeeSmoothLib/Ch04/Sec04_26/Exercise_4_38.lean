@@ -170,7 +170,9 @@ theorem pi (hπ : ∀ i, IsSmoothCoveringMap (IE i) (IM i) (π i)) :
   -- diffeomorphism.
   refine ⟨isCoveringMap_pi (π := π) fun i ↦ (hπ i).isCoveringMap, ?_, ?_⟩
   · -- Surjectivity is coordinatewise.
-    simpa using Function.Surjective.piMap fun i ↦ (hπ i).surjective
+    intro y
+    choose x hx using fun i ↦ (hπ i).surjective (y i)
+    exact ⟨fun i ↦ x i, funext hx⟩
   · -- The finite product of smooth local diffeomorphisms is a smooth local diffeomorphism.
     simpa using isLocalDiffeomorph_pi (f := π) fun i ↦ (hπ i).isLocalDiffeomorph
 

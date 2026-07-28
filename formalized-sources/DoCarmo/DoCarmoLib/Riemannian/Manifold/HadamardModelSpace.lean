@@ -67,9 +67,12 @@ instance : T3Space (HadamardModel E) := inferInstanceAs (T3Space E)
 
 instance : PreconnectedSpace (HadamardModel E) := inferInstanceAs (PreconnectedSpace E)
 
-instance : LocPathConnectedSpace (HadamardModel E) := inferInstanceAs (LocPathConnectedSpace E)
+instance : LocallyPathConnectedSpace (HadamardModel E) :=
+  inferInstanceAs (LocallyPathConnectedSpace E)
 
 instance : Nonempty (HadamardModel E) := inferInstanceAs (Nonempty E)
+
+instance : Zero (HadamardModel E) := ⟨(0 : E)⟩
 
 /-- **Math.** The single global chart `HadamardModel E → E`, the identity of the underlying
 type. -/
@@ -104,6 +107,7 @@ fibre, mirroring mathlib's `riemannianMetricVectorSpace`. The final pulled-back 
 *different* inner product; this one only fixes the fibre norms. -/
 
 set_option backward.isDefEq.respectTransparency false in
+set_option synthInstance.maxHeartbeats 100000 in
 /-- **Math.** The **flat Riemannian metric** on `HadamardModel E`: `E`'s inner product on every
 tangent fibre, constant in the base point. This mirrors mathlib's `riemannianMetricVectorSpace`
 for the single-chart manifold `HadamardModel E`, and serves only as the reference fibre-metric
@@ -128,14 +132,14 @@ def flatMetric (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℝ E] :
   contMDiff := by
     intro x
     rw [contMDiffAt_section]
-    convert contMDiffAt_const (c := innerSL ℝ (E := E))
-    ext v w
     have hid : (HadamardModel.toModel (E := E) ∘
         ⇑((HadamardModel.isOpenEmbedding_toModel (E := E)).toOpenPartialHomeomorph
           (HadamardModel.toModel (E := E))).symm) = id := by
       funext y
       exact (HadamardModel.isOpenEmbedding_toModel (E := E)).toOpenPartialHomeomorph_right_inv
         (HadamardModel.toModel (E := E)) ⟨y, rfl⟩
+    convert! contMDiffAt_const (c := innerSL ℝ (E := E))
+    ext v w
     simp [hom_trivializationAt_apply, ContinuousLinearMap.inCoordinates, TangentSpace]
     rw [hid, fderiv_id]
     simp
@@ -226,7 +230,7 @@ from `hrays` (geodesic completeness at the origin) internally. This is the exact
 do Carmo's proof of the Hadamard theorem specialised to a pole, modulo the two analytic inputs
 `hf`/`hrays` it consumes. -/
 def HadamardModel.diffeomorphOfPole [ConnectedSpace N] [SimplyConnectedSpace N]
-    [LocPathConnectedSpace N] {f : HadamardModel F → N} (g : RiemannianMetric I N)
+    [LocallyPathConnectedSpace N] {f : HadamardModel F → N} (g : RiemannianMetric I N)
     (hf : IsLocalDiffeomorph 𝓘(ℝ, F) I ∞ f)
     (hrays : ∀ v : TangentSpace 𝓘(ℝ, F) (0 : HadamardModel F),
       ∃ γ : ℝ → HadamardModel F, γ 0 = 0 ∧
@@ -245,7 +249,7 @@ def HadamardModel.diffeomorphOfPole [ConnectedSpace N] [SimplyConnectedSpace N]
 application, `f = exp_p`): it is `f`, upgraded, not a new map. This is the anti-vacuity guard —
 the conclusion genuinely upgrades `f` to a diffeomorphism. -/
 theorem HadamardModel.diffeomorphOfPole_coe [ConnectedSpace N] [SimplyConnectedSpace N]
-    [LocPathConnectedSpace N] {f : HadamardModel F → N} (g : RiemannianMetric I N)
+    [LocallyPathConnectedSpace N] {f : HadamardModel F → N} (g : RiemannianMetric I N)
     (hf : IsLocalDiffeomorph 𝓘(ℝ, F) I ∞ f)
     (hrays : ∀ v : TangentSpace 𝓘(ℝ, F) (0 : HadamardModel F),
       ∃ γ : ℝ → HadamardModel F, γ 0 = 0 ∧
@@ -260,7 +264,7 @@ metric `exp_p^*g` (i.e. `exp_p` is a local isometry), then `exp_p` is a **diffeo
 `T_pN ≃ N`; in particular `N` is diffeomorphic to `ℝⁿ`. This is `diffeomorphOfPole` applied to
 `f = exp_p`. -/
 def HadamardModel.expDiffeomorphOfPole [CompleteSpace N] [ConnectedSpace N]
-    [SimplyConnectedSpace N] [LocPathConnectedSpace N] (g : RiemannianMetric I N)
+    [SimplyConnectedSpace N] [LocallyPathConnectedSpace N] (g : RiemannianMetric I N)
     (hg : g.IsRiemannianDist) (p : N)
     (hpole : IsLocalDiffeomorph 𝓘(ℝ, F) I ∞
       (fun v : HadamardModel F => Exponential.expMapGlobal g hg p (HadamardModel.toModel v)))

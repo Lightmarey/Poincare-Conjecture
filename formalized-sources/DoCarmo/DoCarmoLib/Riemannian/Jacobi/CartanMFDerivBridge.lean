@@ -72,10 +72,14 @@ manifold — curvature-free.
   `dcIsLocalIsometryAt_of_semiconjugacy_self`, its one-manifold form.
 * `continuous_metricInner_self`, `isOpen_admissible`, `zero_mem_admissible` — the window
   `{w : K₀⟨w,w⟩_p < π²}` is an open neighbourhood of `0`.
+* `exists_isom_of_orthonormal_bases` — corresponding metric-orthonormal bases determine a
+  metric-preserving continuous linear equivalence.
 * `exists_dcIsLocalIsometryAt_of_constantCurvature` (`cor:dc-ch8-2-2`) and
   `exists_dcIsLocalIsometryAt_of_constantCurvature_self` (`cor:dc-ch8-2-3`) — the existence
   statements: `f = exp_{p̃} ∘ i ∘ exp_p⁻¹` is built, and is a local diffeomorphism at `p`, a
   local isometry there, and has `df_p = i`.
+* Their `_of_orthonormal_bases` forms give do Carmo's literal conclusions
+  `df_p(e_j) = e'_j`.
 
 Blueprint: `lem:dc-ch8-2-1-mfderiv-bridge`, `lem:dc-ch8-2-1-exp-diff-zero`,
 `lem:dc-ch8-2-1-no-conjugate-zero`, `lem:dc-ch8-2-1-exp-norm-transfer-mfderiv`,
@@ -654,6 +658,78 @@ theorem zero_mem_admissible (g : RiemannianMetric I M) (x : M) (K₀ : ℝ) :
   rw [show g.metricInner x (0 : E) (0 : E) = 0 from h0, mul_zero]
   positivity
 
+/-- **Math.** Two bases that are orthonormal for the metrics at `p` and `p'` determine a
+metric-preserving continuous linear equivalence carrying corresponding basis vectors to one
+another.
+
+The underlying linear equivalence is `b.equiv b' (Equiv.refl ι)`.  It is continuous because
+`E` is finite-dimensional.  To prove that it preserves the metrics, regard both pairings as
+bilinear maps and use basis extensionality in each argument; on pairs of basis vectors both
+Gram matrices are the identity.
+
+This is the basis-to-isometry step in do Carmo Ch. 8, Corollaries 2.2 and 2.3. -/
+theorem exists_isom_of_orthonormal_bases
+    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (g : RiemannianMetric I M) (g' : RiemannianMetric I' M') (p : M) (p' : M')
+    (b b' : Module.Basis ι ℝ E)
+    (hb : ∀ j k, g.metricInner p (b j) (b k) = if j = k then 1 else 0)
+    (hb' : ∀ j k, g'.metricInner p' (b' j) (b' k) = if j = k then 1 else 0) :
+    ∃ i : E ≃L[ℝ] E,
+      (∀ u w : E, g'.metricInner p' (i u) (i w) = g.metricInner p u w) ∧
+        ∀ j, i (b j) = b' j := by
+  classical
+  let e : E ≃ₗ[ℝ] E := b.equiv b' (Equiv.refl ι)
+  let i : E ≃L[ℝ] E := e.toContinuousLinearEquiv
+  refine ⟨i, ?_, ?_⟩
+  · let B : E →ₗ[ℝ] E →ₗ[ℝ] ℝ := LinearMap.mk₂ ℝ
+      (fun u w => g'.metricInner p' (i u) (i w))
+      (by
+        intro u v w
+        change g'.metricInner p' (i (u + v)) (i w) =
+          g'.metricInner p' (i u) (i w) + g'.metricInner p' (i v) (i w)
+        rw [i.map_add, g'.metricInner_add_left])
+      (by
+        intro c u w
+        change g'.metricInner p' (i (c • u)) (i w) = c • g'.metricInner p' (i u) (i w)
+        rw [i.map_smul, g'.metricInner_smul_left]
+        simp only [smul_eq_mul])
+      (by
+        intro u v w
+        change g'.metricInner p' (i u) (i (v + w)) =
+          g'.metricInner p' (i u) (i v) + g'.metricInner p' (i u) (i w)
+        rw [i.map_add, g'.metricInner_add_right])
+      (by
+        intro c u w
+        change g'.metricInner p' (i u) (i (c • w)) = c • g'.metricInner p' (i u) (i w)
+        rw [i.map_smul, g'.metricInner_smul_right]
+        simp only [smul_eq_mul])
+    let C : E →ₗ[ℝ] E →ₗ[ℝ] ℝ := LinearMap.mk₂ ℝ
+      (fun u w => g.metricInner p u w)
+      (by
+        intro u v w
+        exact g.metricInner_add_left p u v w)
+      (by
+        intro c u w
+        exact g.metricInner_smul_left p c u w)
+      (by
+        intro u v w
+        exact g.metricInner_add_right p u v w)
+      (by
+        intro c u w
+        exact g.metricInner_smul_right p c u w)
+    have hBC : B = C := by
+      apply b.ext
+      intro j
+      apply b.ext
+      intro k
+      change g'.metricInner p' (i (b j)) (i (b k)) = g.metricInner p (b j) (b k)
+      rw [show i (b j) = b' j by simp [i, e],
+        show i (b k) = b' k by simp [i, e], hb', hb]
+    intro u w
+    exact congrArg (fun L : E →ₗ[ℝ] E →ₗ[ℝ] ℝ => L u w) hBC
+  · intro j
+    simp [i, e]
+
 /-! ### `cor:dc-ch8-2-2`, existence form -/
 
 /-- **Math.** **do Carmo Ch. 8, `cor:dc-ch8-2-2`.** Let `M` and `M̃` be spaces of the same
@@ -731,7 +807,8 @@ theorem exists_dcIsLocalIsometryAt_of_constantCurvature
       rw [hLp, i.map_zero]
       exact isLocalDiffeomorphAt_expMapGlobal_of_not_conjugate (I := I') g' hg' p'
         (not_isConjugatePointAt_globalGeodesic_zero g' hg' p')
-    have hcomp := (hexp'.comp hid).comp hLd
+    have hcomp := Riemannian.IsLocalDiffeomorphAt.comp
+      (Riemannian.IsLocalDiffeomorphAt.comp hexp' hid) hLd
     rw [hp0] at hcomp
     exact hcomp
   intro u
@@ -740,6 +817,30 @@ theorem exists_dcIsLocalIsometryAt_of_constantCurvature
     Filter.eventually_of_mem (hWopen.mem_nhds hW0) hsemi
   have hz := mfderiv_apply_eq_of_semiconjugacy_zero g hg g' hg' p p' i f (hfd 0 hW0) hsemi_ev0 u
   exact (expMapGlobal_zero g hg p) ▸ hz
+
+/-- **Math.** **do Carmo Ch. 8, Corollary 2.2, orthonormal-basis form.** For prescribed
+metric-orthonormal bases at `p` and `p'`, there is a local isometry whose differential carries
+each basis vector at `p` to the corresponding basis vector at `p'`.
+
+The metric-preserving linear equivalence is supplied by
+`exists_isom_of_orthonormal_bases`; the preceding Cartan construction realizes it as the
+differential of a local isometry. -/
+theorem exists_dcIsLocalIsometryAt_of_constantCurvature_of_orthonormal_bases
+    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M]
+    (g' : RiemannianMetric I' M') (hg' : g'.IsRiemannianDist) [CompleteSpace M']
+    {K₀ : ℝ}
+    (hK : g.leviCivitaConnection.IsConstantCurvature g K₀)
+    (hK' : g'.leviCivitaConnection.IsConstantCurvature g' K₀)
+    (p : M) (p' : M') (b b' : Module.Basis ι ℝ E)
+    (hb : ∀ j k, g.metricInner p (b j) (b k) = if j = k then 1 else 0)
+    (hb' : ∀ j k, g'.metricInner p' (b' j) (b' k) = if j = k then 1 else 0) :
+    ∃ f : M → M', IsLocalDiffeomorphAt I I' ∞ f p ∧ DCIsLocalIsometryAt g g' f p ∧
+      ∀ j, mfderiv I I' f p (b j) = b' j := by
+  obtain ⟨i, hi, hib⟩ := exists_isom_of_orthonormal_bases g g' p p' b b' hb hb'
+  obtain ⟨f, hlocal, hiso, hdf⟩ :=
+    exists_dcIsLocalIsometryAt_of_constantCurvature g hg g' hg' hK hK' p p' i hi
+  exact ⟨f, hlocal, hiso, fun j => (hdf (b j)).trans (hib j)⟩
 
 /-- **Math.** **do Carmo Ch. 8, `cor:dc-ch8-2-3`.** Let `M` have constant curvature `K₀` and let
 `p`, `q` be any two points of `M`. Given orthonormal bases `{e_j}` of `T_pM` and `{f_j}` of
@@ -756,6 +857,21 @@ theorem exists_dcIsLocalIsometryAt_of_constantCurvature_self
     ∃ f : M → M, IsLocalDiffeomorphAt I I ∞ f p ∧ DCIsLocalIsometryAt g g f p
       ∧ ∀ u : E, mfderiv I I f p u = i u :=
   exists_dcIsLocalIsometryAt_of_constantCurvature g hg g hg hK hK p q i hi
+
+/-- **Math.** **do Carmo Ch. 8, Corollary 2.3, orthonormal-basis form.** Any two
+metric-orthonormal bases at points `p` and `q` of a complete constant-curvature manifold are
+matched by the differential of a local self-isometry at `p`. -/
+theorem exists_dcIsLocalIsometryAt_of_constantCurvature_self_of_orthonormal_bases
+    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M]
+    {K₀ : ℝ} (hK : g.leviCivitaConnection.IsConstantCurvature g K₀)
+    (p q : M) (b b' : Module.Basis ι ℝ E)
+    (hb : ∀ j k, g.metricInner p (b j) (b k) = if j = k then 1 else 0)
+    (hb' : ∀ j k, g.metricInner q (b' j) (b' k) = if j = k then 1 else 0) :
+    ∃ f : M → M, IsLocalDiffeomorphAt I I ∞ f p ∧ DCIsLocalIsometryAt g g f p ∧
+      ∀ j, mfderiv I I f p (b j) = b' j :=
+  exists_dcIsLocalIsometryAt_of_constantCurvature_of_orthonormal_bases
+    g hg g hg hK hK p q b b' hb hb'
 
 end Riemannian.Jacobi
 

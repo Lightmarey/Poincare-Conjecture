@@ -245,7 +245,8 @@ theorem mfderiv_coe_sphere_radius_injective (r : ℝ) [Fact (0 < r)]
     rw [hf]
     intro a b hab
     refine smul_right_injective E hr.ne' ?_
-    simpa using hab
+    change r • a = r • b at hab
+    exact hab
   -- injectivity of the differential of `(r • ·) ∘ (unit-sphere inclusion)`
   have hg_inj : Function.Injective
       (mfderiv (𝓡 n) 𝓘(ℝ, E)

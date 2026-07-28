@@ -35,7 +35,7 @@ private theorem constantXDirection_contMDiff :
   -- Reduce section smoothness to the trivialized Euclidean coordinate.
   rw [Bundle.contMDiffAt_section p]
   -- The trivialized coordinate is constant.
-  simpa using
+  simpa using!
     (contMDiffAt_const :
       ContMDiffAt (𝓡 2) (𝓡 2) ∞
         (fun _ : R2 ↦ WithLp.toLp 2 ![(1 : ℝ), (0 : ℝ)]) p)
@@ -90,7 +90,7 @@ private theorem scaledYDirection_contMDiff :
   -- Reduce section smoothness to the trivialized Euclidean coordinate.
   rw [Bundle.contMDiffAt_section p]
   -- The trivialized coordinate is the smooth map `(x, y) ↦ (0, x)`.
-  simpa using scaledYDirectionCoords_contMDiff.contMDiffAt
+  simpa using! scaledYDirectionCoords_contMDiff.contMDiffAt
 
 /-- The vector field `Y = x ∂/∂y` on `ℝ²`, bundled as a smooth vector field. -/
 def example_8_24_Y : SmoothVectorField :=

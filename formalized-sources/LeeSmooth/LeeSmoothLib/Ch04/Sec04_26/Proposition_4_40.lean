@@ -216,8 +216,8 @@ theorem lifted_projection_branch_contMDiffOn
   let e : OpenPartialHomeomorph M' M := lifted_projection_branch (H := H) π hπ p
   have hs : e.source ⊆ (chartAt H p).source := by
     intro x hx
-    simpa [e, lifted_projection_branch]
-      using hx.1
+    change x ∈ (lifted_covering_chart (H := H) π hπ p).source
+    exact hx.1
   have hmaps : Set.MapsTo e e.source (chartAt H (π p)).source := by
     intro x hx
     have hx_target : (lifted_covering_chart (H := H) π hπ p) x ∈ (chartAt H (π p)).target := by
@@ -236,6 +236,8 @@ theorem lifted_projection_branch_contMDiffOn
     rcases hy with ⟨x, hx, rfl⟩
     have hx_chart : x ∈ (chartAt H p).source := hs hx
     have hx_target : (chartAt H p) x ∈ (chartAt H (π p)).target := by
+      change (lifted_covering_chart (H := H) π hπ p) x ∈
+        (chartAt H (π p)).target
       simpa [e, lifted_projection_branch] using hx.2
     have hstep :
         e x = (chartAt H (π p)).symm ((chartAt H p) x) := by
@@ -502,9 +504,12 @@ theorem pullback_chart_mem_maximalAtlas_of_partial_diffeomorph
   intro c hc
   have hc_max : c ∈ IsManifold.maximalAtlas I ∞ M' := by
     exact IsManifold.subset_maximalAtlas (I := I) (n := ∞) hc
+  have hΦ_open_symm :
+      Φ.symm.toOpenPartialHomeomorph.symm = Φ.toOpenPartialHomeomorph := by
+    rfl
   constructor
   · -- The forward transition is `Φ` written in the source chart `e` and target chart `c`.
-    simpa [OpenPartialHomeomorph.trans_assoc,
+    simpa [hΦ_open_symm, OpenPartialHomeomorph.trans_assoc,
       OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm] using
       writtenIn_partial_diffeomorph_mem_contDiffGroupoid
         (I := I) (Φ := Φ) (e := e) (c := c) he hc_max
@@ -531,7 +536,8 @@ theorem canonical_lifted_chart_mem_maximalAtlas_of_smooth_covering_structure
   have hΦsymm :
       Φ.symm.toOpenPartialHomeomorph =
         (hsm.2.isCoveringMap.isLocalHomeomorph.localInverseAt p).symm := by
-    simpa using congrArg OpenPartialHomeomorph.symm hΦ
+    rw [show Φ.symm.toOpenPartialHomeomorph = Φ.toOpenPartialHomeomorph.symm by rfl]
+    exact congrArg OpenPartialHomeomorph.symm hΦ
   -- The canonical lifted chart is precisely the pullback of the base chart along the canonical
   -- local inverse branch through `p`.
   simpa [lifted_covering_chart, hΦsymm] using
@@ -627,7 +633,8 @@ theorem smooth_covering_maximalAtlas_subset_via_canonical
     exact ⟨s, hs, hxs, (contDiffGroupoid ∞ I).mem_of_eqOnSource hcomp (Setoid.symm hEq)⟩
   constructor
   · exact hforward
-  · simpa using (contDiffGroupoid ∞ I).symm hforward
+  · simpa [OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm] using
+      (contDiffGroupoid ∞ I).symm hforward
 
 /-- Proposition 4.40 (1): if `π : M' → M` is a surjective topological covering map over a smooth
 manifold `M`, then `M'` admits a smooth structure modelled on the same `I` for which `π` is a

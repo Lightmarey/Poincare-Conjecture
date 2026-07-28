@@ -150,11 +150,16 @@ theorem hasDerivAt_testField (w : F) (t : ℝ) :
     HasDerivAt (testField w) (testDeriv w t) t := by
   have hpoly : HasDerivAt (fun s : ℝ => s * (1 - s)) (1 - 2 * t) t := by
     have h1 : HasDerivAt (fun s : ℝ => s - s ^ 2) (1 - 2 * t) t := by
+      have hfun : (fun s : ℝ => s - s ^ 2) = id - fun s : ℝ => s ^ 2 := by
+        funext s
+        rfl
+      rw [hfun]
       simpa using (hasDerivAt_id t).sub (hasDerivAt_pow 2 t)
     have hfun : (fun s : ℝ => s * (1 - s)) = fun s : ℝ => s - s ^ 2 := by
       funext s; ring
     rw [hfun]; exact h1
-  simpa [testField, testDeriv] using hpoly.smul_const w
+  change HasDerivAt (fun y : ℝ => (y * (1 - y)) • w) ((1 - 2 * t) • w) t
+  exact hpoly.smul_const w
 
 theorem continuous_testField (w : F) : Continuous (testField w) :=
   (continuous_id.mul (continuous_const.sub continuous_id)).smul continuous_const

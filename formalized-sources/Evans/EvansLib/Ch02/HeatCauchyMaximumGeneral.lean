@@ -40,7 +40,15 @@ lemma partialDeriv_comp_add_const {m : ℕ} {u : EuclideanSpace ℝ (Fin m) → 
     (hasFDerivAt_id p).add_const w
   have hcomp : HasFDerivAt (fun q => u (q + w)) (fderiv ℝ u (p + w)) p := by
     have := hu.hasFDerivAt.comp p hT
-    simpa using this
+    convert this using 1
+    · exact AddCommGroup.ext rfl
+    · exact Module.ext rfl
+    · rfl
+    · exact AddCommGroup.ext rfl
+    · exact Module.ext rfl
+    · funext q
+      rfl
+    · simp
   rw [partialDeriv_apply, partialDeriv_apply, hcomp.fderiv]
 
 /-- **Second partial through a constant translation.** -/
@@ -256,7 +264,8 @@ theorem heat_cauchy_uniqueness {u v : SpaceTime n → ℝ} {T A a : ℝ}
   intro p hp
   have h1 := hupper p hp
   have h2 := hlower p hp
-  simp only at h1 h2
+  change u p - v p ≤ 0 at h1
+  change v p - u p ≤ 0 at h2
   exact le_antisymm (by linarith) (by linarith)
 
 end EvansLib

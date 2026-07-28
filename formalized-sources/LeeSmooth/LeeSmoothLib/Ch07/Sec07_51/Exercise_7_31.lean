@@ -48,15 +48,12 @@ theorem semidirectProductInv_mul_cancel (θ : H →* MulAut N) (a : N × H) :
 /-- Part of Exercise 7.31: transport mathlib's canonical semidirect product `N ⋊[θ] H`
 across `SemidirectProduct.equivProd` to realize it on the product type `N × H`. -/
 abbrev semidirectProductGroup (θ : H →* MulAut N) : Group (N × H) where
-  mul := semidirectProductMul θ
-  one := (1, 1)
-  inv := semidirectProductInv θ
-  div := fun a b ↦ semidirectProductMul θ a (semidirectProductInv θ b)
-  mul_assoc := semidirectProductMul_assoc θ
-  one_mul := semidirectProductOne_mul θ
-  mul_one := semidirectProductMul_one θ
-  inv_mul_cancel := semidirectProductInv_mul_cancel θ
-  div_eq_mul_inv := fun a b ↦ rfl
+  __ :=
+    let _ : Mul (N × H) := ⟨semidirectProductMul θ⟩
+    let _ : One (N × H) := ⟨(1, 1)⟩
+    let _ : Inv (N × H) := ⟨semidirectProductInv θ⟩
+    Group.ofLeftAxioms (semidirectProductMul_assoc θ)
+      (semidirectProductOne_mul θ) (semidirectProductInv_mul_cancel θ)
 
 /-- Multiplication in `semidirectProductGroup θ` is the textbook semidirect-product formula. -/
 theorem semidirectProductGroup_mul_eq (θ : H →* MulAut N) (a b : N × H) :

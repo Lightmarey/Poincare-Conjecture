@@ -83,7 +83,7 @@ private lemma diffeomorph_mfderiv_isInvertible
   -- Package the derivative as the canonical linear equivalence supplied by the diffeomorphism API.
   let e := F.mfderivToContinuousLinearEquiv (by simp) x
   refine ⟨e, ?_⟩
-  simpa [e] using
+  simpa [e] using!
     (Diffeomorph.mfderivToContinuousLinearEquiv_coe (Φ := F) (hn := by simp) (x := x)).symm
 
 /-- Helper for Proposition 8.23: a maximal-atlas chart is a diffeomorphism between its source open
@@ -157,9 +157,8 @@ private lemma modelOpensTangentBundleChartAt
       FiberBundleCore.localTrivAsPartialEquiv, VectorBundleCore.toFiberBundleCore_baseSet,
       tangentBundleCore_baseSet, hchart]
     simp only [mfld_simps]
-    simpa using
-      (tangentBundleCore J V).coordChange_self (achart H' q.1) q.1
-        (mem_achart_source H' q.1) q.2
+    exact (tangentBundleCore J V).coordChange_self (achart H' q.1) q.1
+      (mem_achart_source H' q.1) q.2
 
 /-- Helper for Proposition 8.23: over an open subset of the model space, every tangent-bundle
 trivialization has full base set. -/
@@ -212,7 +211,7 @@ private lemma modelOpensTangentBundleTrivializationAt_eq_toProd
         ((trivializationAt E' (TangentSpace J) x) p) := by
     -- Expanding the tangent-bundle chart shows it is the trivialization followed by the base
     -- inclusion.
-    simpa [q, Function.comp, TopologicalSpace.Opens.chartAt_eq, prodChartedSpace_chartAt] using
+    simpa [q, Function.comp, TopologicalSpace.Opens.chartAt_eq, prodChartedSpace_chartAt] using!
       congrArg
         (fun e : OpenPartialHomeomorph (TangentBundle J V) (ModelProd H' E') ↦ e p)
         (FiberBundle.chartedSpace_chartAt
@@ -322,7 +321,7 @@ private lemma mpullback_diffeomorph_symm_apply
   refine
     (ContinuousLinearMap.IsInvertible.inverse_apply_eq
       ⟨e, by
-        simpa [e] using hcoe.symm⟩).2 ?_
+        simpa [e] using! hcoe.symm⟩).2 ?_
   have hcomp :
       mfderiv J J (F.symm ∘ F) p (X p) =
         mfderiv K J F.symm (F p) (mfderiv J K F p (X p)) := by
@@ -336,12 +335,12 @@ private lemma mpullback_diffeomorph_symm_apply
   have hcomp' :
       mfderiv J J (fun x : S ↦ F.symm (F x)) p (X p) =
         mfderiv K J F.symm (F p) (mfderiv J K F p (X p)) := by
-    simpa [Function.comp] using hcomp
+    simpa [Function.comp] using! hcomp
   have hid : (fun x : S ↦ F.symm (F x)) = id := by
     funext x
     simp
   rw [hid, mfderiv_id] at hcomp'
-  simpa using hcomp'
+  simpa using! hcomp'
 
 omit [IsManifold J ∞ S] in
 /-- Helper for Proposition 8.23: pulling back by a diffeomorphism and then by its inverse returns
@@ -367,7 +366,7 @@ private lemma mpullback_diffeomorph_cancel
   exact
     (ContinuousLinearMap.IsInvertible.inverse_apply_eq
       ⟨e, by
-        simpa [e] using hcoe.symm⟩).2 hpush
+        simpa [e] using! hcoe.symm⟩).2 hpush
 
 
 
@@ -489,7 +488,7 @@ private theorem embeddedNeighborhoodAtOfImmersedSubmanifold
     exact (Topology.IsEmbedding.of_comp_iff eCod.isEmbedding).mp hcomp
   have hUemb : Topology.IsEmbedding ((↑) : U → M) := by
     -- Forget the codomain restriction from the chart source back to the ambient manifold.
-    simpa [U, j, Function.comp] using Topology.IsEmbedding.subtypeVal.comp hj_emb
+    simpa [U, j, Function.comp] using! Topology.IsEmbedding.subtypeVal.comp hj_emb
   refine ⟨U, ?_, ?_⟩
   · -- The point `p` lies in the source of the local immersion chart used to define `U`.
     simpa [U, OpenPartialHomeomorph.extend_source] using hp.mem_domChart_source
@@ -498,7 +497,7 @@ private theorem embeddedNeighborhoodAtOfImmersedSubmanifold
       isImmersionOfLe (I := I) (J := J) (S := S) (m := (∞ : ℕ∞ω))
         (n := (⊤ : ℕ∞ω)) (by simp) hS
     refine Manifold.IsSmoothEmbedding.mk ?_ hUemb
-    simpa [Function.comp] using
+    simpa [Function.comp] using!
       Manifold.IsImmersion.ex416_comp hSInf (Manifold.IsImmersion.of_opens U)
 
 /-- Helper for Proposition 8.23: on an embedded patch, the pointwise chosen intrinsic tangent
@@ -556,7 +555,7 @@ private theorem chartExtend_mfderiv_left_inverse
       MDifferentiableAt J 𝓘(𝕜, E') (e.extend J) p := by
     -- Maximal-atlas charts are differentiable at every source point.
     exact
-      (contMDiffAt_extend (I := J) (e := e) he_one hp).mdifferentiableAt
+      (OpenPartialHomeomorph.contMDiffAt_extend (I := J) (e := e) he_one hp).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hrange :
       MDifferentiableWithinAt 𝓘(𝕜, E') J (e.extend J).symm (Set.range J) (e.extend J p) :=
@@ -604,10 +603,12 @@ private theorem chartExtend_mfderiv_injective
     simpa [Linv] using congrArg Linv hw
   have hw₁ :
       ((Linv.comp (mfderiv J 𝓘(𝕜, E') (e.extend J) p)) w₁) = w₁ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₁) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₁) hleft
   have hw₂ :
       ((Linv.comp (mfderiv J 𝓘(𝕜, E') (e.extend J) p)) w₂) = w₂ := by
-    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w₂) hleft
+    simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using!
+      congrArg (fun L ↦ L w₂) hleft
   have hw₁' : w₁ = Linv (mfderiv J 𝓘(𝕜, E') (e.extend J) p w₁) := by
     simpa [Linv, hp_left, ContinuousLinearMap.comp_apply] using hw₁.symm
   have hw₂' : Linv (mfderiv J 𝓘(𝕜, E') (e.extend J) p w₂) = w₂ := by
@@ -664,14 +665,14 @@ private theorem subtypeVal_chartPushforward_eq_model
       MDifferentiableAt J 𝓘(𝕜, E') (hImmAt.domChart.extend J) p := by
     -- Maximal-atlas charts are differentiable in model coordinates.
     exact
-      (contMDiffAt_extend (I := J) (e := hImmAt.domChart)
+      (OpenPartialHomeomorph.contMDiffAt_extend (I := J) (e := hImmAt.domChart)
         hdomChart_mem_maximalAtlas_one hImmAt.mem_domChart_source).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hcod :
       MDifferentiableAt I 𝓘(𝕜, E) (hImmAt.codChart.extend I) ((Subtype.val : S → M) p) := by
     -- The ambient chart enjoys the same differentiability property.
     exact
-      (contMDiffAt_extend (I := I) (e := hImmAt.codChart)
+      (OpenPartialHomeomorph.contMDiffAt_extend (I := I) (e := hImmAt.codChart)
         hcodChart_mem_maximalAtlas_one hImmAt.mem_codChart_source).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hL :
@@ -692,7 +693,7 @@ private theorem subtypeVal_chartPushforward_eq_model
   have hright :
       mfderiv J 𝓘(𝕜, E) (L ∘ (hImmAt.domChart.extend J)) p w =
         L ((mfderiv J 𝓘(𝕜, E') (hImmAt.domChart.extend J) p) w) := by
-    simpa [Function.comp, mfderiv_eq_fderiv] using
+    simpa [Function.comp, mfderiv_eq_fderiv] using!
       (mfderiv_comp_apply (x := p) (g := L) (f := hImmAt.domChart.extend J)
         hL hdom w)
   -- Apply the chain rule on both sides of the source-side equality.
@@ -769,7 +770,7 @@ private theorem fixedImmersionChartPushforward_eq_model
       MDifferentiableAt J 𝓘(𝕜, E') (hImmAt.domChart.extend J) q.1 := by
     -- The fixed source chart is differentiable at every point of its source.
     exact
-      (contMDiffAt_extend (I := J) (e := hImmAt.domChart)
+      (OpenPartialHomeomorph.contMDiffAt_extend (I := J) (e := hImmAt.domChart)
         hdomChart_mem_maximalAtlas_one q.2).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hq_cod_source : ((q.1 : S) : M) ∈ hImmAt.codChart.source :=
@@ -778,7 +779,7 @@ private theorem fixedImmersionChartPushforward_eq_model
       MDifferentiableAt I 𝓘(𝕜, E) (hImmAt.codChart.extend I) ((Subtype.val : S → M) q.1) := by
     -- The same holds for the fixed ambient chart at the image point.
     exact
-      (contMDiffAt_extend (I := I) (e := hImmAt.codChart)
+      (OpenPartialHomeomorph.contMDiffAt_extend (I := I) (e := hImmAt.codChart)
         hcodChart_mem_maximalAtlas_one hq_cod_source).mdifferentiableAt
         (by simp : (1 : ℕ∞ω) ≠ 0)
   have hL :
@@ -799,7 +800,7 @@ private theorem fixedImmersionChartPushforward_eq_model
   have hright :
       mfderiv J 𝓘(𝕜, E) (L ∘ (hImmAt.domChart.extend J)) q.1 w =
         L ((mfderiv J 𝓘(𝕜, E') (hImmAt.domChart.extend J) q.1) w) := by
-    simpa [Function.comp, mfderiv_eq_fderiv] using
+    simpa [Function.comp, mfderiv_eq_fderiv] using!
       (mfderiv_comp_apply (x := q.1) (g := L) (f := hImmAt.domChart.extend J)
         hL hdom w)
   -- Apply the chain rule to the fixed-chart identity.
@@ -930,11 +931,12 @@ private theorem ambientWithinChartCoordinates_contMDiffOnDomChartSource
     have hAt :
         ContMDiffAt J I.tangent ∞
           (fun q : S ↦ (show TangentBundle I M from ⟨q.1, Y q.1⟩)) q := by
-      simpa [Function.comp] using (Y.contMDiff q.1).comp q (hsub q)
+      simpa [Function.comp] using! (Y.contMDiff q.1).comp q (hsub q)
     exact hAt.contMDiffWithinAt
   have hcodChartOn :
       ContMDiffOn I 𝓘(𝕜, E) ∞ (hImmAt.codChart.extend I) hImmAt.codChart.source :=
-    contMDiffOn_extend (I := I) (n := (∞ : ℕ∞ω)) hImmAt.codChart_mem_maximalAtlas
+    OpenPartialHomeomorph.contMDiffOn_extend
+      (I := I) (n := (∞ : ℕ∞ω)) hImmAt.codChart_mem_maximalAtlas
   have htan :
       ContMDiffOn I.tangent (𝓘(𝕜, E)).tangent ∞
         (tangentMapWithin I 𝓘(𝕜, E) (hImmAt.codChart.extend I) hImmAt.codChart.source)
@@ -997,7 +999,7 @@ private theorem projectedAmbientCoordinates_contMDiffOnDomChartSource
         hImmAt.domChart.source :=
     ambientWithinChartCoordinates_contMDiffOnDomChartSource (I := I) (J := J) hS Y p
   -- The fixed linear projection from the immersion normal form preserves smoothness.
-  simpa [P, ContinuousLinearMap.comp_apply] using P.contMDiff.comp_contMDiffOn hambient
+  simpa [P, ContinuousLinearMap.comp_apply] using! P.contMDiff.comp_contMDiffOn hambient
 
 /-- Helper for Proposition 8.23: after transporting the chosen restriction field to the chart
 target open subset, its raw `E'`-valued coordinates agree with the projected ambient chart
@@ -1054,7 +1056,7 @@ private theorem restrictionChoice_chartTarget_eq_projectedAmbient
   have hcoordAt :
       MDifferentiableAt J 𝓘(𝕜, E') (fun r : V ↦ J r) (F q) := by
     -- On the target open subset, the preferred chart is the explicit coordinate map `r ↦ J r`.
-    simpa [extChartAt_coe, TopologicalSpace.Opens.chartAt_eq, chartAt_self_eq] using
+    simpa [extChartAt_coe, TopologicalSpace.Opens.chartAt_eq, chartAt_self_eq] using!
       (contMDiffAt_extChartAt (I := J) (n := (∞ : ℕ∞ω)) (x := F q)).mdifferentiableAt
         (by simp)
   have hFAt : MDifferentiableAt J J F q := F.contMDiff.mdifferentiableAt (by simp)
@@ -1065,7 +1067,7 @@ private theorem restrictionChoice_chartTarget_eq_projectedAmbient
   have hextAt :
       MDifferentiableAt J 𝓘(𝕜, E') (hImmAt.domChart.extend J) q.1 := by
     exact
-      (contMDiffAt_extend (I := J) (e := hImmAt.domChart)
+      (OpenPartialHomeomorph.contMDiffAt_extend (I := J) (e := hImmAt.domChart)
         (IsManifold.maximalAtlas_subset_of_le (I := J) (M := S)
           (m := 1) (n := (∞ : ℕ∞ω)) (by simp) hImmAt.domChart_mem_maximalAtlas)
         q.2).mdifferentiableAt (by simp : (1 : ℕ∞ω) ≠ 0)
@@ -1105,7 +1107,7 @@ private theorem restrictionChoice_chartTarget_eq_projectedAmbient
         mfderiv J 𝓘(𝕜, E') (((fun r : V ↦ J r) ∘ F)) q (XU q) =
           mfderiv J 𝓘(𝕜, E') (((hImmAt.domChart.extend J) ∘ (Subtype.val : U → S))) q
             (XU q) := by
-      simpa using congrArg
+      simpa using! congrArg
         (fun L : TangentSpace J q →L[𝕜] E' ↦ L (XU q)) hcompMfderiv
     exact hchainLeft.trans (hmid.trans hchainRight)
   have hsubApply :
@@ -1140,7 +1142,7 @@ private theorem restrictionChoice_chartTarget_eq_projectedAmbient
     have hcod :
         MDifferentiableAt I 𝓘(𝕜, E) (hImmAt.codChart.extend I) ((Subtype.val : S → M) q.1) := by
       exact
-        (contMDiffAt_extend (I := I) (e := hImmAt.codChart)
+        (OpenPartialHomeomorph.contMDiffAt_extend (I := I) (e := hImmAt.codChart)
           (IsManifold.maximalAtlas_subset_of_le (I := I) (M := M)
             (m := 1) (n := (∞ : ℕ∞ω)) (by simp) hImmAt.codChart_mem_maximalAtlas)
           hq_cod_source).mdifferentiableAt (by simp : (1 : ℕ∞ω) ≠ 0)
@@ -1239,7 +1241,7 @@ private theorem restrictionChoiceContMDiffOnChartSource
       refine
         (ContinuousLinearMap.IsInvertible.inverse_apply_eq
           ⟨e, by
-            simpa [e] using hcoe.symm⟩).2 ?_
+            simpa [e] using! hcoe.symm⟩).2 ?_
       simpa [Z] using
         (VectorField.f_related_apply (f_related_pushforward_of_diffeomorph F XU) q).symm
     simpa [hEq] using contMDiff_pushforward_of_diffeomorph F.symm hZ

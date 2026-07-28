@@ -398,7 +398,7 @@ lemma ambientBasisTransition_mem_contDiffGroupoid
           ContDiffOn ℝ (⊤ : WithTop ℕ∞) eModel Set.univ).comp hmid ?_
       intro x hx
       simp [Set.mem_univ, eModel]
-    simpa [hsource, eModel, Function.comp, OpenPartialHomeomorph.trans_source] using hfinal
+    simpa [hsource, eModel, Function.comp, OpenPartialHomeomorph.trans_source] using! hfinal
   · -- Apply the same conjugation to the inverse transition.
     have hmid :
         ContDiffOn ℝ (⊤ : WithTop ℕ∞)
@@ -416,7 +416,7 @@ lemma ambientBasisTransition_mem_contDiffGroupoid
       intro x hx
       simp [Set.mem_univ, eModel]
     simpa [htarget, eModel, Function.comp, OpenPartialHomeomorph.trans_source,
-      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using
+      OpenPartialHomeomorph.trans_symm_eq_symm_trans_symm, OpenPartialHomeomorph.trans_assoc] using!
       hfinal
 
 /-- Helper for Theorem 5.48: after installing the repaired self-model atlas on `M`, transport it
@@ -615,7 +615,7 @@ lemma boundarylessAmbientId_isSmoothEmbedding
           exact mem_chart_source H x)
   · simpa using (mem_chart_source H x)
   · simpa [domChart, boundarylessChartedSpaceFor, boundarylessLocalChartFor,
-      boundarylessModelChartedSpace] using
+      boundarylessModelChartedSpace] using!
       (IsManifold.chart_mem_maximalAtlas x :
         chartAt E x ∈
           IsManifold.maximalAtlas (modelWithCornersSelf ℝ E) (⊤ : WithTop ℕ∞) M)
@@ -678,14 +678,14 @@ lemma ambientBasisBoundarylessAmbientId_isSmoothEmbedding
         (⊤ : WithTop ℕ∞)
         M := by
     simpa [codChart, boundarylessChartedSpaceFor, boundarylessLocalChartFor,
-      boundarylessModelChartedSpace] using
+      boundarylessModelChartedSpace] using!
       (IsManifold.chart_mem_maximalAtlas x :
         chartAt E x ∈
           IsManifold.maximalAtlas (modelWithCornersSelf ℝ E) (⊤ : WithTop ℕ∞) M)
   have hdomChart :
       domChart ∈ IsManifold.maximalAtlas (𝓡 (n + 1)) (⊤ : WithTop ℕ∞) M := by
     -- Transport the repaired self-modeled chart through the fixed basis chart once.
-    simpa [domChart, codChart, eModel] using
+    simpa [domChart, codChart, eModel] using!
       (ambientBasisChart_mem_maximalAtlas I hn b hcodChart)
   -- In the Euclideanized chart, the identity map is the fixed basis linear equivalence back to
   -- the repaired self-modeled ambient coordinates.
@@ -777,14 +777,14 @@ lemma boundarylessAmbientBasisId_isSmoothEmbedding
         (⊤ : WithTop ℕ∞)
         M := by
     simpa [domChart, boundarylessChartedSpaceFor, boundarylessLocalChartFor,
-      boundarylessModelChartedSpace] using
+      boundarylessModelChartedSpace] using!
       (IsManifold.chart_mem_maximalAtlas x :
         chartAt E x ∈
           IsManifold.maximalAtlas (modelWithCornersSelf ℝ E) (⊤ : WithTop ℕ∞) M)
   have hcodChart :
       codChart ∈ IsManifold.maximalAtlas (𝓡 (n + 1)) (⊤ : WithTop ℕ∞) M := by
     -- Transport the repaired self-modeled chart through the fixed Euclidean basis chart once.
-    simpa [codChart, domChart, eModel] using
+    simpa [codChart, domChart, eModel] using!
       (ambientBasisChart_mem_maximalAtlas I hn b hdomChart)
   -- The reverse identity bridge is the same fixed basis linear equivalence, now read from the
   -- repaired self-model coordinates into the Euclidean ambient coordinates.
@@ -896,12 +896,12 @@ lemma fullDimensionalHalfSlice_mem_iff_lastCoord_nonneg
   rw [Set.euclideanHalfSlice, Set.euclideanSlice]
   constructor
   · rintro ⟨⟨hzV, _hzTail⟩, hzLast⟩
-    exact ⟨hzV, by simpa [Set.euclideanHalfSlice, Set.euclideanSlice] using hzLast⟩
+    exact ⟨hzV, by simpa [Set.euclideanHalfSlice, Set.euclideanSlice] using! hzLast⟩
   · rintro ⟨hzV, hzLast⟩
     refine ⟨⟨hzV, ?_⟩, ?_⟩
     · intro i
       exact False.elim ((Nat.not_lt_zero i.1) <| by simpa using i.2)
-    · simpa [Set.euclideanHalfSlice, Set.euclideanSlice] using hzLast
+    · simpa [Set.euclideanHalfSlice, Set.euclideanSlice] using! hzLast
 
 /-- Helper for Theorem 5.48: on the source of a full-dimensional boundary slice chart for `D`,
 membership in `D` is exactly nonnegativity of the last chart coordinate. -/
@@ -1264,7 +1264,7 @@ lemma boundaryChart_zero_firstCoord_of_boundaryPoint
     intro w hw
     rw [OpenPartialHomeomorph.extend_target']
     refine ⟨⟨w, le_of_lt hw.2⟩, ?_, rfl⟩
-    exact hV₀Target <| by simpa using hw.1
+    exact hV₀Target <| by simpa using! hw.1
   have hyInterior : (𝓡∂ (n + 1)).IsInteriorPoint y := by
     -- Maximal-atlas charts detect interior points through interior chart images.
     exact ((𝓡∂ (n + 1)).isInteriorPoint_iff_of_mem_maximalAtlas
@@ -1747,7 +1747,7 @@ lemma boundaryPoint_existsOutwardVector
     have hcoordEq :
         boundary_coordinate_component (chartAt (EuclideanHalfSpace (n + 1)) p) p v = -1 := by
       simpa [boundary_coordinate_component, modelVec, u, extChartAt]
-        using congrArg
+        using! congrArg
           (fun z ↦
             (NormedSpace.fromTangentSpace (extChartAt (𝓡∂ (n + 1)) p p) z) 0)
           hv
@@ -1794,7 +1794,7 @@ lemma boundaryDefiningAt_surjectiveAmbientMfderiv
           (mfderiv I 𝓘(ℝ, ℝ) ρ xD.1).comp
             (mfderiv (𝓡∂ (n + 1)) I (Subtype.val : D → M) xD) := by
       -- The derivative of the restriction is exactly the ambient derivative after the subtype map.
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (mfderiv_comp (x := xD) (g := ρ) (f := (Subtype.val : D → M)) hρMDiff hValMDiff)
     have hcompZero :
         mfderiv (𝓡∂ (n + 1)) 𝓘(ℝ, ℝ) (fun z : D ↦ ρ z.1) xD = 0 := by
@@ -1806,7 +1806,8 @@ lemma boundaryDefiningAt_surjectiveAmbientMfderiv
       calc
         mfderiv (𝓡∂ (n + 1)) 𝓘(ℝ, ℝ) (fun z : D ↦ -ρ z.1) xD
             = -mfderiv (𝓡∂ (n + 1)) 𝓘(ℝ, ℝ) (fun z : D ↦ ρ z.1) xD := by
-              simpa using (mfderiv_neg (fun z : D ↦ ρ z.1) xD)
+              simpa using!
+                (mfderiv_neg (I := 𝓡∂ (n + 1)) (f := fun z : D ↦ ρ z.1) (x := xD))
         _ = 0 := by
           rw [hcompZero]
           simp
@@ -1970,7 +1971,7 @@ lemma frontierPoint_hasExtendedSignedCoordinatePatch
   have hCoordSmooth :
       ContMDiffOn I 𝓘(ℝ, ℝ) ∞ coord U := by
     -- The signed first coordinate is the smooth Euclidean projection composed with the chart.
-    simpa [coord, Function.comp] using hProjSmooth.neg.comp_contMDiffOn hChartSmooth
+    simpa [coord, Function.comp] using! hProjSmooth.neg.comp_contMDiffOn hChartSmooth
   have hCoordSmoothOnClosed :
       (fun x : A ↦ coord x.1).IsSmoothOn I 𝓘(ℝ) := by
     -- Any point of the closed shrink already lies in the restricted chart source, so the same
@@ -1990,7 +1991,7 @@ lemma frontierPoint_hasExtendedSignedCoordinatePatch
   let ρ : M → ℝ := fun x ↦ ρ₁ x 0
   have hρSmooth : ContMDiff I 𝓘(ℝ, ℝ) ∞ ρ := by
     -- Project the global `ℝ¹` extension back to a scalar-valued smooth function.
-    simpa [ρ, Function.comp] using
+    simpa [ρ, Function.comp] using!
       (((EuclideanSpace.proj (𝕜 := ℝ) (0 : Fin 1)) :
         EuclideanSpace ℝ (Fin 1) →L[ℝ] ℝ).contMDiff.comp ρ₁.contMDiff)
   have hρEq : Set.EqOn ρ coord A := by
@@ -2246,7 +2247,7 @@ lemma frontierSignedPatch_hasZeroIffFrontier
         -- In the Euclidean half-space model, the boundary is exactly the zero set of the first
         -- coordinate.
         rw [(𝓡∂ (n + 1)).isBoundaryPoint_iff, frontier_range_modelWithCornersEuclideanHalfSpace]
-        simpa [extChartAt] using hchartZero.symm
+        simpa [extChartAt] using! hchartZero.symm
       have hLocal :
           IsLocalDiffeomorphAt
             (𝓡∂ (n + 1))
@@ -2300,7 +2301,7 @@ lemma frontierSignedPatch_negRestrict_isBoundaryDefiningAt
   have hNegSmooth :
       ContMDiffAt (𝓡∂ (n + 1)) 𝓘(ℝ, ℝ) ∞ (fun z : D ↦ -ρ z.1) xD := by
     have hValSmooth : ContMDiff (𝓡∂ (n + 1)) I ∞ (Subtype.val : D → M) := hImmNew.contMDiff
-    simpa [Function.comp] using (hρSmooth.neg.comp hValSmooth).contMDiffAt
+    simpa [Function.comp] using! (hρSmooth.neg.comp hValSmooth).contMDiffAt
   refine ⟨hxBoundaryMem, hNegSmooth, ?_⟩
   refine ⟨{z : D | z.1 ∈ V}, hVOpen.preimage continuous_subtype_val, ?_, ?_, ?_⟩
   · simpa [xD]
@@ -2599,7 +2600,7 @@ lemma frontierPartitionOfUnitySignedSum_hasSignZero
     -- The positive-total-weight locus is open because the total partition weight is continuous.
     have hpre : IsOpen (σ ⁻¹' Set.Ioi (0 : ℝ)) :=
       hσSmooth.continuous.isOpen_preimage (Set.Ioi (0 : ℝ)) isOpen_Ioi
-    simpa [U] using hpre
+    simpa [U] using! hpre
   have hFrontierU : frontier D ⊆ U := by
     intro x hx
     -- On the frontier itself the partition of unity has total weight exactly `1`.
@@ -2685,7 +2686,7 @@ lemma frontierPartitionOfUnitySignedSum_hasSignZero
       exact mul_nonneg (φ.nonneg z x) hzLocal
     have hsumPos :
         0 < (φ.finsupport x).sum (fun z ↦ φ z x * localρ z x) := by
-      rw [Finset.sum_eq_add_sum_diff_singleton_of_mem hy]
+      rw [Finset.sum_eq_add_sum_sdiff_singleton_of_mem hy]
       exact add_pos_of_pos_of_nonneg htermPos hrestNonneg
     simpa [hρ_finsupport x] using hsumPos
   have hρ_neg_of_not_frontier (x : M) (hxU : x ∈ U) (hxD : x ∈ D)
@@ -2710,7 +2711,7 @@ lemma frontierPartitionOfUnitySignedSum_hasSignZero
       exact mul_nonpos_of_nonneg_of_nonpos (φ.nonneg z x) hzLocal
     have hsumNeg :
         (φ.finsupport x).sum (fun z ↦ φ z x * localρ z x) < 0 := by
-      rw [Finset.sum_eq_add_sum_diff_singleton_of_mem hy]
+      rw [Finset.sum_eq_add_sum_sdiff_singleton_of_mem hy]
       exact add_neg_of_neg_of_nonpos htermNeg hrestNonpos
     simpa [hρ_finsupport x] using hsumNeg
   have hSign : ∀ x ∈ U, x ∈ D ↔ ρ x ≤ 0 := by

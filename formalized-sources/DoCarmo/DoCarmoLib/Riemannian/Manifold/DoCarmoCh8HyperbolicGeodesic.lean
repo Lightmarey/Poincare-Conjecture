@@ -386,11 +386,14 @@ theorem hyperbolic_semicircle_isGeodesic (e : Fin n) (m u : E) (hm : m e = 0) (h
     have hc : Real.cosh s ≠ 0 := (Real.cosh_pos s).ne'
     have hA : HasDerivAt (fun t => r * Real.sinh t / Real.cosh t) (r / (Real.cosh s)^2) s := by
       have h := ((Real.hasDerivAt_sinh s).const_mul r).div (Real.hasDerivAt_cosh s) hc
-      convert h using 2
-      linear_combination -r * Real.cosh_sq_sub_sinh_sq s
+      convert h using 1 <;> try rfl
+      field_simp [hc]
+      nlinarith [Real.cosh_sq_sub_sinh_sq s]
     have hB : HasDerivAt (fun t => r / Real.cosh t) (-(r * Real.sinh s) / (Real.cosh s)^2) s := by
       have h := (hasDerivAt_const s r).div (Real.hasDerivAt_cosh s) hc
-      convert h using 1; field_simp; ring
+      convert h using 1 <;> try rfl
+      field_simp
+      ring
     exact ((hA.smul_const u).add (hB.smul_const _)).const_add m
   · -- `HasDerivAt φ' (φ'' s) s`
     intro s
@@ -398,14 +401,18 @@ theorem hyperbolic_semicircle_isGeodesic (e : Fin n) (m u : E) (hm : m e = 0) (h
     have hA' : HasDerivAt (fun t => r / (Real.cosh t)^2)
         (-2 * r * Real.sinh s / (Real.cosh s)^3) s := by
       have h := (hasDerivAt_const s r).div ((Real.hasDerivAt_cosh s).pow 2) (pow_ne_zero 2 hc)
-      convert h using 1
-      simp only [Pi.pow_apply]; field_simp; ring
+      convert h using 1 <;> try rfl
+      simp only [Pi.pow_apply]
+      field_simp
+      ring
     have hB' : HasDerivAt (fun t => -(r * Real.sinh t) / (Real.cosh t)^2)
         ((-r * (Real.cosh s)^2 + 2 * r * (Real.sinh s)^2) / (Real.cosh s)^3) s := by
       have h := (((Real.hasDerivAt_sinh s).const_mul r).neg).div
         ((Real.hasDerivAt_cosh s).pow 2) (pow_ne_zero 2 hc)
-      convert h using 1
-      simp only [Pi.pow_apply, Pi.neg_apply]; field_simp; ring
+      convert h using 1 <;> try rfl
+      simp only [Pi.pow_apply, Pi.neg_apply]
+      field_simp
+      ring
     exact (hA'.smul_const u).add (hB'.smul_const _)
   · -- the geodesic ODE
     intro t

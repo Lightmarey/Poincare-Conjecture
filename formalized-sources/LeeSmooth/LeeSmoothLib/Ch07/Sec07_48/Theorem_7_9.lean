@@ -39,16 +39,16 @@ theorem chartedSpaceLocPathConnectedSpace
     {ES : Type*} [NormedAddCommGroup ES] [NormedSpace 𝕜' ES]
     {HS : Type*} [TopologicalSpace HS] {J : ModelWithCorners 𝕜' ES HS}
     {S : Type*} [TopologicalSpace S] [ChartedSpace HS S] :
-    LocPathConnectedSpace S := by
+    LocallyPathConnectedSpace S := by
   -- First transport local path connectedness from the convex model range to the model space.
   letI : RCLike 𝕜' := IsRCLikeNormedField.rclike 𝕜'
   letI : NormedSpace ℝ ES := NormedSpace.restrictScalars ℝ 𝕜' ES
-  letI : LocPathConnectedSpace HS := by
-    letI : LocPathConnectedSpace (Set.range J) := J.convex_range.locPathConnectedSpace
+  letI : LocallyPathConnectedSpace HS := by
+    letI : LocallyPathConnectedSpace (Set.range J) := J.convex_range.locallyPathConnectedSpace
     let e : HS ≃ₜ Set.range J := J.isClosedEmbedding.toHomeomorph
-    exact e.isOpenEmbedding.locPathConnectedSpace
+    exact e.isOpenEmbedding.locallyPathConnectedSpace
   -- Then the charted-space atlas propagates local path connectedness to the manifold itself.
-  exact ChartedSpace.locPathConnectedSpace HS S
+  exact ChartedSpace.locallyPathConnectedSpace HS S
 
 /-- Helper for Theorem 7.9: continuous lifts through a smooth covering map are determined on a
 preconnected domain by one point and the base composition. -/
@@ -76,7 +76,7 @@ lemma existsComparisonContinuousLift
     {H₁ : Type*} [TopologicalSpace H₁]
     {I₁ : ModelWithCorners 𝕜 E₁ H₁}
     {G₁ : Type*} [Group G₁] [TopologicalSpace G₁] [ChartedSpace H₁ G₁] [LieGroup I₁ ∞ G₁]
-    [LocPathConnectedSpace G₁]
+    [LocallyPathConnectedSpace G₁]
     {E₂ : Type*} [NormedAddCommGroup E₂] [NormedSpace 𝕜 E₂]
     {H₂ : Type*} [TopologicalSpace H₂]
     {I₂ : ModelWithCorners 𝕜 E₂ H₂}
@@ -157,8 +157,10 @@ theorem exists_lieGroupIsomorphism_of_universal_covering_group
     (hπ' : Manifold.IsUniversalSmoothCoveringMap ItildeReal' IReal π') :
     ∃ Φ : LieGroupIsomorphism ItildeReal ItildeReal' GtildeReal GtildeReal',
       π'.comp Φ.toContMDiffMonoidMorphism = π := by
-  let _ : LocPathConnectedSpace GtildeReal := chartedSpaceLocPathConnectedSpace (J := ItildeReal)
-  let _ : LocPathConnectedSpace GtildeReal' := chartedSpaceLocPathConnectedSpace (J := ItildeReal')
+  let _ : LocallyPathConnectedSpace GtildeReal :=
+    chartedSpaceLocPathConnectedSpace (J := ItildeReal)
+  let _ : LocallyPathConnectedSpace GtildeReal' :=
+    chartedSpaceLocPathConnectedSpace (J := ItildeReal')
   let _ : SimplyConnectedSpace GtildeReal := hπ.simplyConnectedSpace
   let _ : SimplyConnectedSpace GtildeReal' := hπ'.simplyConnectedSpace
   let _ : PathConnectedSpace GtildeReal := inferInstance
@@ -204,22 +206,25 @@ theorem exists_lieGroupIsomorphism_of_universal_covering_group
     -- Smoothness of the lift is detected after composing with the smooth covering `π'`.
     refine contMDiff_of_comp_eq_of_isLocalDiffeomorph F.continuous
       hπ'.isSmoothCoveringMap.isLocalDiffeomorph π.contMDiff_toFun ?_
-    simpa using hF_comp
+    change (π' : GtildeReal' → GReal) ∘ F = (π : GtildeReal → GReal)
+    exact hF_comp
   have hF'_smooth : ContMDiff ItildeReal' ItildeReal ∞ F' := by
     -- The reverse comparison lift is smooth for the same reason.
     refine contMDiff_of_comp_eq_of_isLocalDiffeomorph F'.continuous
       hπ.isSmoothCoveringMap.isLocalDiffeomorph π'.contMDiff_toFun ?_
-    simpa using hF'_comp
+    change (π : GtildeReal → GReal) ∘ F' = (π' : GtildeReal' → GReal)
+    exact hF'_comp
   have hF_mul : ∀ x y : GtildeReal, F (x * y) = F x * F y := by
     let leftLift : GtildeReal × GtildeReal → GtildeReal' := fun p ↦ F (p.1 * p.2)
     let rightLift : GtildeReal × GtildeReal → GtildeReal' := fun p ↦ F p.1 * F p.2
     have hleftLift : Continuous leftLift := by
       -- The first comparison map follows multiplication in the source cover and then applies `F`.
-      simpa [leftLift] using F.continuous.comp continuous_mul
+      change Continuous (F ∘ fun p : GtildeReal × GtildeReal ↦ p.1 * p.2)
+      exact F.continuous.comp continuous_mul
     have hrightLift : Continuous rightLift := by
       -- The second comparison map multiplies the two lifted coordinates in the target cover.
-      simpa [rightLift] using
-        (F.continuous.comp continuous_fst).mul (F.continuous.comp continuous_snd)
+      change Continuous ((F ∘ Prod.fst) * (F ∘ Prod.snd))
+      exact (F.continuous.comp continuous_fst).mul (F.continuous.comp continuous_snd)
     have hcomp :
         π' ∘ leftLift = π' ∘ rightLift := by
       funext p
@@ -256,6 +261,7 @@ theorem exists_lieGroupIsomorphism_of_universal_covering_group
   -- Package the pointwise comparison equation as an equality of smooth group homomorphisms.
   apply DFunLike.ext
   intro x
-  simpa [Φ] using congrFun hF_comp x
+  change π' (F x) = π x
+  exact congrFun hF_comp x
 
 end UniversalCoveringGroup

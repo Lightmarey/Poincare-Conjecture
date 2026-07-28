@@ -238,7 +238,7 @@ lemma isImmersion_packEuclideanCoordinates_of_left
     simpa using hg.contMDiff.prodMk_space hh
   have hFCont : ContMDiff (𝓡 n) (𝓡 (2 * n + m)) ∞ F := by
     -- Packing is a continuous linear equivalence, so the combined map is smooth.
-    simpa [F, Function.comp] using
+    simpa [F, Function.comp] using!
       (packEuclideanCoordinates (2 * n) m).toContinuousLinearMap.contMDiff.comp hProd
   have hgInj :
       ∀ x : M, Function.Injective (mfderiv (𝓡 n) (𝓡 (2 * n)) g x) :=
@@ -255,7 +255,7 @@ lemma isImmersion_packEuclideanCoordinates_of_left
             (fun y : M ↦ truncateTailCoordinates (2 * n) m (F y)) x =
           (truncateTailCoordinates (2 * n) m).comp
             (mfderiv (𝓡 n) (𝓡 (2 * n + m)) F x) := by
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (mfderiv_comp
           (x := x)
           (g := truncateTailCoordinates (2 * n) m)
@@ -274,13 +274,13 @@ lemma isImmersion_packEuclideanCoordinates_of_left
         truncateTailCoordinates (2 * n) m
           (mfderiv (𝓡 n) (𝓡 (2 * n + m)) F x u) := by
     -- Evaluate the recovered derivative identity on the first tangent vector.
-    simpa [ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L u) hHeadComp
+    simpa [ContinuousLinearMap.comp_apply] using! congrArg (fun L ↦ L u) hHeadComp
   have hHeadW :
       mfderiv (𝓡 n) (𝓡 (2 * n)) g x w =
         truncateTailCoordinates (2 * n) m
           (mfderiv (𝓡 n) (𝓡 (2 * n + m)) F x w) := by
     -- Evaluate the same identity on the second tangent vector.
-    simpa [ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w) hHeadComp
+    simpa [ContinuousLinearMap.comp_apply] using! congrArg (fun L ↦ L w) hHeadComp
   apply hgInj x
   rw [hHeadU, hHeadW, huw]
 
@@ -338,7 +338,10 @@ lemma truncateTailCoordinates_comp_one (N m : ℕ) :
       (truncateTailCoordinates N m).comp (truncateTailCoordinates (N + m) 1) := by
   -- Both sides keep exactly the first `N` coordinates, so coordinatewise simplification finishes.
   ext x i
-  simp [truncateTailCoordinates, Fin.castAdd_castAdd]
+  change x (Fin.castAdd (m + 1) i) =
+    truncateTailCoordinates (N + m) 1 x (Fin.castAdd m i)
+  rw [truncateTailCoordinates_one_apply]
+  rfl
 
 /-- Helper for Problem 6-12: forgetting zero tail coordinates does nothing. -/
 lemma truncateTailCoordinates_zero_apply
@@ -420,7 +423,7 @@ lemma obliqueProjectionToLastHyperplane_eq_clm {K : ℕ}
   -- Compare the two projection spellings coordinatewise through the public formula from
   -- Lemma 6.13.
   ext i
-  simpa [obliqueProjectionToLastHyperplaneCLM, obliqueProjectionToLastHyperplaneLinearMap] using
+  simpa [obliqueProjectionToLastHyperplaneCLM, obliqueProjectionToLastHyperplaneLinearMap] using!
     (obliqueProjectionToLastHyperplane_apply (hN := Nat.succ_pos K) v x i)
 
 /-- Helper for Problem 6-12: if a direction lies within distance `δ` of the last axis, then the
@@ -699,7 +702,8 @@ lemma existsApproximateCompressionToBase {m : ℕ}
         simpa using hG
       · intro x
         -- The approximation error is zero in the base case.
-        simpa [truncateTailCoordinates_zero_apply] using hε
+        rw [truncateTailCoordinates_zero_apply]
+        simpa using hε
   | succ m ih =>
       have hHalf : 0 < ε / 2 := by
         positivity
@@ -737,7 +741,7 @@ lemma existsApproximateCompressionToBase {m : ℕ}
           truncateTailCoordinates N (m + 1) (G x) =
             truncateTailCoordinates N m (truncateTailCoordinates (N + m) 1 (G x)) := by
         -- Normalize the repeated truncation into the recursive shape used by the induction.
-        simpa [ContinuousLinearMap.comp_apply] using
+        simpa [ContinuousLinearMap.comp_apply] using!
           congrArg (fun L ↦ L (G x)) (truncateTailCoordinates_comp_one N m)
       -- Combine the recursive approximation with the new codimension-drop estimate.
       calc
@@ -776,7 +780,7 @@ lemma packedGraph_isSmoothEmbedding
     simpa [G] using f.contMDiff.prodMk_space he.isImmersion.contMDiff
   have hFCont : ContMDiff (𝓡 n) (𝓡 (N + m)) ∞ F := by
     -- Packing is a continuous linear equivalence, so the graph map is smooth.
-    simpa [F, G, Function.comp] using
+    simpa [F, G, Function.comp] using!
       (packEuclideanCoordinates N m).toContinuousLinearMap.contMDiff.comp
         hGContSelf
   have hTailCompEq : (fun x : M ↦ tailCoordinates N m (F x)) = e := by
@@ -803,7 +807,7 @@ lemma packedGraph_isSmoothEmbedding
         mfderiv (𝓡 n) (𝓡 m) (fun y : M ↦ tailCoordinates N m (F y)) x =
           (tailCoordinates N m).comp (mfderiv (𝓡 n) (𝓡 (N + m)) F x) := by
       -- The chain rule differentiates `tailCoordinates ∘ F = e`.
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (mfderiv_comp
           (x := x)
           (g := tailCoordinates N m)
@@ -820,12 +824,12 @@ lemma packedGraph_isSmoothEmbedding
         mfderiv (𝓡 n) (𝓡 m) e x u =
           tailCoordinates N m (mfderiv (𝓡 n) (𝓡 (N + m)) F x u) := by
       -- Evaluate the chain-rule identity on the first tangent vector.
-      simpa [ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L u) hComp
+      simpa [ContinuousLinearMap.comp_apply] using! congrArg (fun L ↦ L u) hComp
     have hCompW :
         mfderiv (𝓡 n) (𝓡 m) e x w =
           tailCoordinates N m (mfderiv (𝓡 n) (𝓡 (N + m)) F x w) := by
       -- Evaluate the same identity on the second tangent vector.
-      simpa [ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w) hComp
+      simpa [ContinuousLinearMap.comp_apply] using! congrArg (fun L ↦ L w) hComp
     exact heDerivInj x <| by
       rw [hCompU, hCompW, huw]
   -- Compactness of the source upgrades the injective immersion to a smooth embedding.
@@ -957,7 +961,7 @@ lemma ambientTangentVector_contMDiff
       ∞
       (ambientTangentVector (n := n) (G := G)) := by
   -- Compose the smooth tangent map with the smooth bundle projection to the ambient tangent fiber.
-  simpa [ambientTangentVector, Function.comp] using
+  simpa [ambientTangentVector, Function.comp] using!
     (contMDiff_snd_tangentBundle_modelSpace
       (EuclideanSpace ℝ (Fin (2 * n + 1)))
       (𝓡 (2 * n + 1))).comp
@@ -1333,7 +1337,7 @@ lemma isImmersion_compProjection_of_not_mem_ambientTangentRange
   have hFCont : ContMDiff (𝓡 n) (𝓡 (2 * n)) ∞ F := by
     -- The projected map is smooth because it is the composition of `G` with a continuous linear
     -- map.
-    simpa [F, P, Function.comp] using P.contMDiff.comp hGCont
+    simpa [F, P, Function.comp] using! P.contMDiff.comp hGCont
   have hGInj :
       ∀ x : M, Function.Injective (mfderiv (𝓡 n) (𝓡 (2 * n + 1)) G x) :=
     (Manifold.is_immersion_iff_forall_injective_mfderiv hGCont).1 hG.isImmersion
@@ -1342,7 +1346,7 @@ lemma isImmersion_compProjection_of_not_mem_ambientTangentRange
   have hComp :
       mfderiv (𝓡 n) (𝓡 (2 * n)) F x = P.comp (mfderiv (𝓡 n) (𝓡 (2 * n + 1)) G x) := by
     -- The chain rule identifies the derivative of the projected map.
-    simpa [F, P, Function.comp] using
+    simpa [F, P, Function.comp] using!
       (mfderiv_comp (x := x)
         (g := P)
         (f := G)
@@ -1352,12 +1356,12 @@ lemma isImmersion_compProjection_of_not_mem_ambientTangentRange
       mfderiv (𝓡 n) (𝓡 (2 * n)) F x u =
         P (mfderiv (𝓡 n) (𝓡 (2 * n + 1)) G x u) := by
     -- Evaluate the chain-rule identity on the first tangent vector.
-    simpa [P] using congrArg (fun L ↦ L u) hComp
+    simpa [P] using! congrArg (fun L ↦ L u) hComp
   have hCompW :
       mfderiv (𝓡 n) (𝓡 (2 * n)) F x w =
         P (mfderiv (𝓡 n) (𝓡 (2 * n + 1)) G x w) := by
     -- Evaluate the same identity on the second tangent vector.
-    simpa [P] using congrArg (fun L ↦ L w) hComp
+    simpa [P] using! congrArg (fun L ↦ L w) hComp
   have hKernelEq :
       P
         (mfderiv (𝓡 n) (𝓡 (2 * n + 1)) G x u -
@@ -1382,7 +1386,6 @@ lemma isImmersion_compProjection_of_not_mem_ambientTangentRange
           mfderiv (𝓡 n) (𝓡 (2 * n)) F x u -
             mfderiv (𝓡 n) (𝓡 (2 * n)) F x w := by
             rw [← hCompU, ← hCompW]
-            rfl
       _ = 0 := hsub
   have hKernelDiff :
       P (mfderiv (𝓡 n) (𝓡 (2 * n + 1)) G x (u - w)) = 0 := by
@@ -1441,7 +1444,7 @@ lemma lastCoordinate_packEuclideanCoordinates_zero
           (x, (0 : EuclideanSpace ℝ (Fin 1))))
   -- The unique coordinate on `Fin 1` is exactly the last coordinate in the packed model.
   have h0 := congrArg (fun y : EuclideanSpace ℝ (Fin 1) ↦ y 0) hsnd
-  simpa using h0
+  simpa using! h0
 
 /-- Helper for Problem 6-12: in the critical dimension `N = 2n`, lift `f` to `ℝ^(2n + 1)`,
 approximate by an embedding there, and project back along a near-vertical tangent-avoiding
@@ -1474,7 +1477,7 @@ lemma criticalDimensionUniformApproximationByImmersions
   let fLift :
       C^∞⟮𝓡 n, M; 𝓡 (2 * n + 1), EuclideanSpace ℝ (Fin (2 * n + 1))⟯ :=
     ⟨fun x ↦ packEuclideanCoordinates (2 * n) 1 (f x, (0 : EuclideanSpace ℝ (Fin 1))), by
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (packEuclideanCoordinates (2 * n) 1).toContinuousLinearMap.contMDiff.comp
           hLiftProdSelf⟩
   obtain ⟨G, hGEmb, hGClose⟩ :=
@@ -1497,7 +1500,7 @@ lemma criticalDimensionUniformApproximationByImmersions
     exact ne_of_gt hvpos
   let g : C^∞⟮𝓡 n, M; 𝓡 (2 * n), EuclideanSpace ℝ (Fin (2 * n))⟯ :=
     ⟨fun x ↦ projectionAlongLastHyperplaneCLM (n := n) v (G x), by
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (projectionAlongLastHyperplaneCLM (n := n) v).contMDiff.comp G.contMDiff⟩
   refine ⟨g, ?_, ?_⟩
   · -- The chosen direction misses the entire ambient tangent range, so the projected map is an

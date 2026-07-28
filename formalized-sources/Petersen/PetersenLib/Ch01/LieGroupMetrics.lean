@@ -96,16 +96,18 @@ theorem mfderiv_mul_left_inv_mfderiv_mul_left (x : G) (u : TangentSpace I (1 : G
     mfderiv_comp_apply (1 : G)
       (mdifferentiableAt_mul_left (I := I) (a := x⁻¹) (b := x * 1))
       (mdifferentiableAt_mul_left (I := I) (a := x) (b := (1 : G))) u
-  have hpt : (mfderiv I I (x⁻¹ * ·) (x * 1) : E →L[ℝ] E) = mfderiv I I (x⁻¹ * ·) x := by
-    rw [mul_one]
-  have h2 := congrArg (fun T : E →L[ℝ] E => T (mfderiv I I (x * ·) (1 : G) u)) hpt
-  simp only at h2
   have h3 : mfderiv I I ((x⁻¹ * ·) ∘ (x * ·)) (1 : G) u = u := by
     have hcomp : ((x⁻¹ * ·) ∘ (x * ·) : G → G) = id := by
       funext z; simp
     rw [hcomp, mfderiv_id]
     rfl
-  exact h2.symm.trans (h1.symm.trans h3)
+  have h1' : mfderiv I I ((x⁻¹ * ·) ∘ (x * ·)) (1 : G) u
+      = mfderiv I I (x⁻¹ * ·) x (mfderiv I I (x * ·) (1 : G) u) := by
+    convert h1 using 1
+    have hpt : (mfderiv I I (x⁻¹ * ·) x : E →L[ℝ] E) =
+        mfderiv I I (x⁻¹ * ·) (x * 1) := by rw [mul_one]
+    exact DFunLike.congr_fun hpt (show E from mfderiv I I (x * ·) (1 : G) u)
+  exact h1'.symm.trans h3
 
 /-- **Math.** Chain rule on a Lie group: `d(L_x)_e ∘ d(L_{x⁻¹})_x = id` on
 `T_xG`, since `L_x ∘ L_{x⁻¹} = id`. -/
@@ -116,16 +118,18 @@ theorem mfderiv_mul_left_mfderiv_mul_left_inv (x : G) (u : TangentSpace I x) :
     mfderiv_comp_apply x
       (mdifferentiableAt_mul_left (I := I) (a := x) (b := x⁻¹ * x))
       (mdifferentiableAt_mul_left (I := I) (a := x⁻¹) (b := x)) u
-  have hpt : (mfderiv I I (x * ·) (x⁻¹ * x) : E →L[ℝ] E) = mfderiv I I (x * ·) (1 : G) := by
-    rw [inv_mul_cancel]
-  have h2 := congrArg (fun T : E →L[ℝ] E => T (mfderiv I I (x⁻¹ * ·) x u)) hpt
-  simp only at h2
   have h3 : mfderiv I I ((x * ·) ∘ (x⁻¹ * ·)) x u = u := by
     have hcomp : ((x * ·) ∘ (x⁻¹ * ·) : G → G) = id := by
       funext z; simp
     rw [hcomp, mfderiv_id]
     rfl
-  exact h2.symm.trans (h1.symm.trans h3)
+  have h1' : mfderiv I I ((x * ·) ∘ (x⁻¹ * ·)) x u
+      = mfderiv I I (x * ·) (1 : G) (mfderiv I I (x⁻¹ * ·) x u) := by
+    convert h1 using 1
+    have hpt : (mfderiv I I (x * ·) (1 : G) : E →L[ℝ] E) =
+        mfderiv I I (x * ·) (x⁻¹ * x) := by rw [inv_mul_cancel]
+    exact DFunLike.congr_fun hpt (show E from mfderiv I I (x⁻¹ * ·) x u)
+  exact h1'.symm.trans h3
 
 /-- **Math.** Petersen §1.3.2/§1.4.3: the differential of left translation
 `d(L_x)_e : T_eG ≃ T_xG` as a linear equivalence, with inverse

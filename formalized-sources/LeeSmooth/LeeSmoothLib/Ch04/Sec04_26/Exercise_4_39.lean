@@ -64,7 +64,8 @@ lemma fixed_sheet_lift_mem_component
     have hcomp : Continuous fun y : t.baseSet => ((y : M), (t e).2) := by
       exact continuous_subtype_val.prodMk continuous_const
     have hmem : ∀ y : t.baseSet, ((y : M), (t e).2) ∈ t.target := hlift_target
-    simpa [lift] using t.continuousOn_invFun.comp_continuous hcomp hmem
+    simpa only [lift, Function.comp_def] using
+      t.continuousOn_invFun.comp_continuous hcomp hmem
   let liftSet : Set E := Set.range lift
   have hlift_preconnected : IsPreconnected liftSet := by
     letI : PreconnectedSpace t.baseSet := Subtype.preconnectedSpace hbase

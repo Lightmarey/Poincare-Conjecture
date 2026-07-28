@@ -22,9 +22,6 @@ namespace IsTopologicalSubmersion
 
 variable {π : X → Y}
 
-/-- A topological submersion is continuous. -/
-instance (hπ : IsTopologicalSubmersion π) : Continuous π := hπ.continuous
-
 /-- A topological submersion is an open map. -/
 -- Proof sketch: let `W ⊆ X` be open and `y ∈ π '' W`, choose `x ∈ W` with `π x = y`, and use the
 -- local section through `x` to produce an open neighborhood of `y` contained in `π '' W`.

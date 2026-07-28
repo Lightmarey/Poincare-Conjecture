@@ -461,6 +461,10 @@ private theorem hasDerivAt_div_sq {r₀ : ℝ} {s s' h h' : ℝ → ℝ}
   intro r hr
   have hpos := hspos r hr
   have hsq : HasDerivAt (fun u => s u ^ 2) (2 * s r * s' r) r := by
+    have hfun : (fun u => s u ^ 2) = s ^ 2 := by
+      funext u
+      rfl
+    rw [hfun]
     simpa [mul_comm, mul_assoc, mul_left_comm] using (hs r hr).pow 2
   exact (hh r hr).div hsq (by positivity)
 

@@ -125,7 +125,7 @@ theorem exists_decomposition_of_eq_zero
   choose Vsvf hVsvf using hVex
   refine ⟨f, fun i x => Vsvf i x, hf_smooth, fun i => ?_, hfp, ?_⟩
   · show IsSmoothVectorField (fun x => Vsvf i x)
-    simpa using (Vsvf i).smooth
+    simpa only [IsSmoothVectorField] using! (Vsvf i).smooth
   · have hχ_one : χ =ᶠ[𝓝 p] (1 : M → ℝ) := χ.eventuallyEq_one
     have hVall : ∀ᶠ q in 𝓝 p, ∀ i, Vsvf i q = Tensor.chartBasisVecFiber (I := I) p i q :=
       Filter.eventually_all.mpr hVsvf

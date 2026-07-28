@@ -513,6 +513,11 @@ private theorem smoothnessCriterion_forward (hn : 0 < n) {ρ : ℝ → ℝ} (hρ
           (deriv (fun t : ℝ => Real.sqrt (A t)) 0) 0 := hg_diff.hasDerivAt
       have h3 := h1.mul h2
       simp only [one_mul, zero_mul, add_zero] at h3
+      have hfun : ((fun y : ℝ => y) * fun t => Real.sqrt (A t)) =
+          fun t => t * Real.sqrt (A t) := by
+        funext t
+        rfl
+      rw [hfun] at h3
       simpa only [hr_def] using h3
     rw [hd.deriv, hA0, Real.sqrt_one]
   · -- even-order derivatives vanish

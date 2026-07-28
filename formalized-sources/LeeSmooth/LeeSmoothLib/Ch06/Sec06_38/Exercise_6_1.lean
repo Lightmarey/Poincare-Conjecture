@@ -202,9 +202,8 @@ private theorem volume_openCube_eq_volume_ball (c : EuclideanSpace ℝ (Fin n)) 
     EuclideanSpace.volume_preserving_symm_measurableEquiv_toLp (Fin n)
   -- The cube is literally the preimage of the corresponding ball under the measure-preserving
   -- equivalence.
-  simpa [openCube, e, EuclideanSpace.equiv] using
-    (MeasureTheory.MeasurePreserving.measure_preimage_equiv he
-      (Metric.ball (e c) r))
+  change volume (e ⁻¹' Metric.ball (e c) r) = volume (Metric.ball (e c) r)
+  exact MeasureTheory.MeasurePreserving.measure_preimage_equiv he (Metric.ball (e c) r)
 
 /-- Helper for Exercise 6.1: a ball cover of the coordinate image of `A` pulls back to a cube
 cover of `A` with the same radii. -/
@@ -222,7 +221,12 @@ private theorem imageBallCover_pullbackCubeCover {A : Set (EuclideanSpace ℝ (F
     -- Membership in the pulled-back cube is just the corresponding ball-membership after applying
     -- the canonical equivalence.
     refine Set.mem_iUnion.2 ⟨i, ?_⟩
-    simpa [openCube] using hi
+    change
+      dist ((EuclideanSpace.equiv (Fin n) ℝ) x)
+        ((EuclideanSpace.equiv (Fin n) ℝ)
+          ((EuclideanSpace.equiv (Fin n) ℝ).symm (d i))) < ρ i
+    rw [(EuclideanSpace.equiv (Fin n) ℝ).apply_symm_apply]
+    exact hi
 
 /-- Exercise 6.1. Open rectangles can be replaced by open cubes or open balls in the definition of
 subsets of measure zero. This theorem records the open-cube formulation. -/
@@ -253,8 +257,8 @@ theorem volume_eq_zero_iff_forall_pos_exists_open_cube_cover
           ∑' i, volume (Metric.ball (d i) (ρ i)) := by
             apply tsum_congr
             intro i
-            simpa using
-              volume_openCube_eq_volume_ball ((EuclideanSpace.equiv (Fin n) ℝ).symm (d i)) (ρ i)
+            rw [volume_openCube_eq_volume_ball,
+              (EuclideanSpace.equiv (Fin n) ℝ).apply_symm_apply]
       _ < ENNReal.ofReal ε := hmass
   · intro hcube
     have hImageCover :
@@ -269,9 +273,10 @@ theorem volume_eq_zero_iff_forall_pos_exists_open_cube_cover
         rcases hy with ⟨x, hx, rfl⟩
         rcases Set.mem_iUnion.1 (hcover.2 hx) with ⟨i, hi⟩
         refine Set.mem_iUnion.2 ⟨i, ?_⟩
-        simpa [openCube] using
-          (show (EuclideanSpace.equiv (Fin n) ℝ) x ∈
-              Metric.ball ((EuclideanSpace.equiv (Fin n) ℝ) (c i)) (ρ i) from hi)
+        change dist (e x) ((EuclideanSpace.equiv (Fin n) ℝ) (c i)) < ρ i
+        change dist ((EuclideanSpace.equiv (Fin n) ℝ) x)
+          ((EuclideanSpace.equiv (Fin n) ℝ) (c i)) < ρ i
+        exact hi
       · calc
           (∑' i, volume (Metric.ball ((EuclideanSpace.equiv (Fin n) ℝ) (c i)) (ρ i))) =
               ∑' i, volume (openCube (c i) (ρ i)) := by

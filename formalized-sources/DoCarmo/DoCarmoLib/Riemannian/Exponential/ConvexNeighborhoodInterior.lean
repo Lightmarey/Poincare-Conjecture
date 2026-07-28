@@ -200,8 +200,9 @@ theorem exists_forall_geodesic_dist_lt_of_admissible
       rw [hEqs, hFσ0]; exact hles
     -- `nomax` forbids it
     exact hnomax (fun s => γ (s + t₀)) a w₀ ha0 hσgeo hσcont
-      (by rw [hσ0]; exact hsrc₀) (by rw [hσ0]; exact hV₀) hw₀ne
-      (by rw [hσ0]; exact hadm₀) hvelσ hFσmax
+      (by simpa only [zero_add] using hsrc₀)
+      (by simpa only [zero_add] using hV₀) hw₀ne
+      (by simpa only [zero_add] using hadm₀) hvelσ hFσmax
   -- the max-distance interior deduction
   exact lt_of_forall_not_isLocalMax_of_le hcontH hd0 hd1 hnomaxH
 

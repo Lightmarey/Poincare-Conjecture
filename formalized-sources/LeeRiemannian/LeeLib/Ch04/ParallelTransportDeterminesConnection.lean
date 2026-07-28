@@ -173,6 +173,10 @@ theorem isUnit_chartFundamentalSolution (cov : Connection I E (TangentSpace I : 
       simpa only [ContinuousLinearMap.neg_apply, chartGammaRight_apply] using hd
     have hs₂ : IsSolOn A_E t₀ t (0 : ℝ → E) := by
       intro τ hτ
+      have hzero : (0 : ℝ → E) = fun _ => (0 : E) := by
+        funext s
+        rfl
+      rw [hzero]
       simpa only [Pi.zero_apply, map_zero] using hasDerivWithinAt_const τ (Icc t₀ t) (0 : E)
     have hKA : ∀ τ ∈ Icc t₀ t, ‖A_E τ‖₊ ≤ K := fun τ hτ => by
       rw [hA_E]; simpa only [nnnorm_neg] using hK τ (hsub hτ)

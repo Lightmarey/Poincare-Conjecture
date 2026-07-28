@@ -58,11 +58,11 @@ theorem IsJacobiSolOn.apply {ℛ : ℝ → E →L[ℝ] E} {a b : ℝ} {𝒥 𝒥
   hasDerivWithinAt_fst t ht := by
     have := (ContinuousLinearMap.apply ℝ E w).hasFDerivAt.comp_hasDerivWithinAt t
       (h.hasDerivWithinAt_fst t ht)
-    simpa using this
+    convert this using 1 <;> rfl
   hasDerivWithinAt_snd t ht := by
     have := (ContinuousLinearMap.apply ℝ E w).hasFDerivAt.comp_hasDerivWithinAt t
       (h.hasDerivWithinAt_snd t ht)
-    simpa using this
+    convert this using 1 <;> rfl
 
 /-! ### Existence of the radial Jacobi datum -/
 

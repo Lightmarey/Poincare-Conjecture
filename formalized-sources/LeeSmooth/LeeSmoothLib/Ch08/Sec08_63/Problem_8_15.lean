@@ -77,7 +77,7 @@ lemma ambientSubtypePushforwardField_contMDiff
         (tangentMap J I (Subtype.val : S → M) ∘ (T% fun p : S ↦ X p)) := by
     exact
       (hInclContMDiff.contMDiff_tangentMap (by simp)).comp X.contMDiff
-  simpa [ambientSubtypePushforwardField, Function.comp, tangentMap] using hTangent
+  simpa [ambientSubtypePushforwardField, Function.comp, tangentMap] using! hTangent
 
 /-- Codomain-restricting the subtype inclusion to an ambient open
 neighborhood of `S` preserves smoothness. -/
@@ -89,7 +89,7 @@ lemma subtypeValToNeighborhood_contMDiff
   have hcomp :
       ContMDiff J I (∞ : ℕ∞ω)
         (Subtype.val ∘ fun p : S ↦ (⟨(p : M), hSU p.2⟩ : U)) := by
-    convert hS.isImmersion.contMDiff using 1
+    simpa [Function.comp_def] using! hS.isImmersion.contMDiff
   exact
     (ContMDiff.subtypeVal_comp_iff U
       (fun p : S ↦ (⟨(p : M), hSU p.2⟩ : U))).mp hcomp
@@ -365,7 +365,7 @@ lemma ambientCoordinateExtensionOfLocalSection
   have hσ_maps : Set.MapsTo σ V U := by
     -- The local section is assumed to stay inside the trivialization domain used for `ψ`.
     intro x hx
-    simpa [U] using hσ_mem x hx
+    simpa [τ, U] using! hσ_mem x hx
   refine ⟨ψ ∘ σ, ?_, ?_⟩
   · -- Compose the smooth source coordinate map with the smooth local section.
     simpa [Function.comp, ψ] using hψ.comp hσ hσ_maps
@@ -407,7 +407,7 @@ lemma immersionProjectedLocalSection_contMDiffOn
   have hcodExt :
       ContMDiffOn I 𝓘(ℝ, E) (∞ : ℕ∞ω) (hImm.codChart.extend I) V := by
     -- Restrict the ambient codomain chart extension to the chosen ambient patch.
-    exact (contMDiffOn_extend hcodChart_mem).mono hV_cod
+    exact (hImm.codChart.contMDiffOn_extend hcodChart_mem).mono hV_cod
   have hproj :
       ContMDiffOn I 𝓘(ℝ, E') (∞ : ℕ∞ω) (π ∘ (hImm.codChart.extend I)) V := by
     -- Postcompose the ambient chart coordinates with the fixed immersion projection.
@@ -417,7 +417,7 @@ lemma immersionProjectedLocalSection_contMDiffOn
     intro x hx
     simpa [π, Function.comp] using hV_target x hx
   -- Compose the smooth projected ambient coordinates with the smooth inverse source chart.
-  simpa [σ, π, Function.comp] using hdomChartSymm.comp hproj hmaps
+  simpa [σ, π, Function.comp] using! hdomChartSymm.comp hproj hmaps
 
 /-- Helper for Problem 8-15: on source points whose ambient image lies in the chosen patch, the
 projected chart local section is the identity. -/
@@ -553,13 +553,13 @@ lemma embeddedPointwiseLocalAmbientCoordinateExtension
       ContMDiffOn 𝓘(ℝ, E') 𝓘(ℝ, E) (∞ : ℕ∞ω) ψcoord T := by
     -- The chart-side representative is already smooth on the source chart target; only the
     -- off-target Euclidean extension step remains.
-    simpa only [τ, hImm, U, ψ, ψcoord, T, Function.comp] using
+    simpa only [τ, hImm, U, ψ, ψcoord, T, Function.comp] using!
       sourceCoordinateRepresentative_contMDiffOn hS X p
   have hψcoordSmoothOn :
       (fun z : T ↦ ψcoord z).IsSmoothOn (𝓘(ℝ, E')) 𝓘(ℝ, E) := by
     -- Route correction: use the source-facing local-extension owner on `T`, then extract the
     -- ambient-open Euclidean extension data needed below.
-    simpa only [τ, hImm, U, ψcoord, T] using
+    simpa only [τ, hImm, U, ψcoord, T] using!
       sourceCoordinateRepresentative_isSmoothOn hS X p
   have hExtend :
       ∃ Ω : Set E', IsOpen Ω ∧ z0 ∈ Ω ∧
@@ -612,7 +612,7 @@ lemma embeddedPointwiseLocalAmbientCoordinateExtension
     have hcodExt :
         ContMDiffOn I 𝓘(ℝ, E) (∞ : ℕ∞ω) (hImm.codChart.extend I) V := by
       -- Restrict the ambient codomain chart extension to the final ambient patch.
-      exact (contMDiffOn_extend hcodChart_mem).mono hV_cod
+      exact (hImm.codChart.contMDiffOn_extend hcodChart_mem).mono hV_cod
     have hproj :
         ContMDiffOn I 𝓘(ℝ, E') (∞ : ℕ∞ω) (π ∘ (hImm.codChart.extend I)) V := by
       -- Postcompose the ambient chart coordinates with the fixed immersion projection.
@@ -621,7 +621,7 @@ lemma embeddedPointwiseLocalAmbientCoordinateExtension
       intro x hx
       exact hx.2.2.2
     -- Compose the ambient codomain chart with the Euclidean extension built near `z0`.
-    simpa [χ, Function.comp] using hψext.comp hproj hmaps
+    simpa [χ, Function.comp] using! hψext.comp hproj hmaps
   refine ⟨V, hV_open, hpV, hV_base, χ, hχ, ?_⟩
   intro q hqV
   have hqτ : (q : M) ∈ τ.baseSet := hqV.1
@@ -727,7 +727,7 @@ theorem exists_local_vectorField_extension_of_isSmoothEmbedding
   rw [hY p]
   rw [eq_comm, (mfderiv_open_subset_inclusion_isInvertible U (f p)).inverse_apply_eq]
   -- Differentiating `Subtype.val ∘ f = Subtype.val` recovers the ambient pushforward field.
-  simpa [f, ambientSubtypePushforwardField, Function.comp] using
+  simpa [f, ambientSubtypePushforwardField, Function.comp] using!
     (mfderiv_comp_apply p hsub hf (X p))
 
 section GlobalExtension

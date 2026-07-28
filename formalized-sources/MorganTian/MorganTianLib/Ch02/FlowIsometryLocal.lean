@@ -409,7 +409,8 @@ theorem exists_flowIsometryBoxAt
           ((hflowm _ hx'c).2.1 (-t) (Ioo_subset_Icc_self hmt)).hasDerivAt
             (Icc_mem_nhds hmt.1 hmt.2)
         have hcomp := hZd.scomp t (hasDerivAt_neg t)
-        simpa using hcomp
+        exact (hcomp.congr_of_eventuallyEq
+          (Filter.Eventually.of_forall (fun s => rfl))).congr_deriv (by simp)
       have hmemt : ∀ t ∈ Ioo (-εm) εm,
           Zm (extChartAt I z x') (-t) ∈ (extChartAt I z).target := fun t ht =>
         (hflowm _ hx'c).2.2 (-t)

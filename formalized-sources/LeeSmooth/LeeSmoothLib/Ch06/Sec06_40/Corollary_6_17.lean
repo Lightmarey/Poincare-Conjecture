@@ -69,7 +69,7 @@ lemma smoothEmbedding_pair_of_leftEmbedding
       exact congrArg Prod.fst hvw
     -- Injectivity of the first derivative component already forces `v = w`.
     exact he_mfderiv x <| by
-      simpa [hDeriv] using hFirst
+      simpa [hDeriv] using! hFirst
   have hGraphEmb : Topology.IsEmbedding (fun x : M ↦ (x, f x)) :=
     isEmbedding_graph f.contMDiff.continuous
   have hProdEmb :
@@ -78,7 +78,7 @@ lemma smoothEmbedding_pair_of_leftEmbedding
     he.isEmbedding.prodMap Topology.IsEmbedding.id
   have hEmb : Topology.IsEmbedding Φ := by
     -- Factor the graph through the known embedding `e` in the first coordinate.
-    simpa [Φ, Function.comp] using hProdEmb.comp hGraphEmb
+    simpa [Φ, Function.comp] using! hProdEmb.comp hGraphEmb
   exact ⟨hImm, hEmb⟩
 
 /-- Helper for Corollary 6.17: if `e : M → ℝ^m` is a smooth embedding and
@@ -152,16 +152,16 @@ lemma smoothEmbedding_pair_of_rightEmbedding
           ((contMDiff_fst x).mdifferentiableAt (by simp : (∞ : ℕ∞ω) ≠ 0)))
     have hFirst : v.1 = w.1 := by
       have hSecondComponent := congrArg Prod.snd hvw
-      simpa [hDeriv, mfderiv_fst] using hSecondComponent
+      simpa [hDeriv, mfderiv_fst] using! hSecondComponent
     have hSecond : v.2 = w.2 := by
       have hFirstComponent := congrArg Prod.fst hvw
-      simpa [hDeriv, mfderiv_snd] using hFirstComponent
+      simpa [hDeriv, mfderiv_snd] using! hFirstComponent
     exact Prod.ext hFirst hSecond
   have hSwapEmb :
       Topology.IsEmbedding
         (fun p : EuclideanSpace ℝ (Fin m) × EuclideanSpace ℝ (Fin N) ↦ (p.2, p.1)) := by
     -- The same diffeomorphism is a homeomorphism, hence a topological embedding.
-    simpa [σ] using σ.toHomeomorph.isEmbedding
+    simpa [σ] using! σ.toHomeomorph.isEmbedding
   have hImm :
       IsImmersion
         I
@@ -169,10 +169,10 @@ lemma smoothEmbedding_pair_of_rightEmbedding
         ∞
         (fun x ↦ (f x, e x)) := by
     -- Compose the left graph embedding with the product-factor swap.
-    simpa [Function.comp] using IsImmersion.ex416_comp hSwapImm hLeft.isImmersion
+    simpa [Function.comp] using! IsImmersion.ex416_comp hSwapImm hLeft.isImmersion
   have hEmb : Topology.IsEmbedding (fun x ↦ (f x, e x)) := by
     -- Topological embedding is preserved by composition with the swap homeomorphism.
-    simpa [Function.comp] using hSwapEmb.comp hLeft.isEmbedding
+    simpa [Function.comp] using! hSwapEmb.comp hLeft.isEmbedding
   exact ⟨hImm, hEmb⟩
 
 end GraphHelpers
@@ -300,7 +300,10 @@ lemma truncateTailCoordinates_comp_one (N m : ℕ) :
   -- Both truncation operators keep exactly the first `N` coordinates, so extensionality reduces
   -- the comparison to coordinatewise simplification.
   ext x i
-  simp [truncateTailCoordinates, Fin.castAdd_castAdd]
+  change x (Fin.castAdd (m + 1) i) =
+    truncateTailCoordinates (N + m) 1 x (Fin.castAdd m i)
+  rw [truncateTailCoordinates_one_apply]
+  rfl
 
 /-- Helper for Corollary 6.17: the standard last-axis direction in `ℝ^(K + 1)` has zero first
 `K` coordinates and last coordinate `1`. -/
@@ -387,7 +390,7 @@ lemma obliqueProjectionToLastHyperplane_eq_clm {K : ℕ}
       obliqueProjectionToLastHyperplaneCLM (Nat.succ_pos K) v x := by
   -- Both projection spellings are definitionally the same coordinate formula after unfolding.
   ext i
-  simpa [obliqueProjectionToLastHyperplaneCLM, obliqueProjectionToLastHyperplaneLinearMap] using
+  simpa [obliqueProjectionToLastHyperplaneCLM, obliqueProjectionToLastHyperplaneLinearMap] using!
     (obliqueProjectionToLastHyperplane_apply (Nat.succ_pos K) v x i)
 
 /-- Helper for Corollary 6.17: dropping a single last coordinate is `1`-Lipschitz on
@@ -718,7 +721,8 @@ lemma existsApproximateCompressionToBase {m : ℕ}
         simpa using hG
       · intro x
         -- The approximation error is zero in the base case.
-        simpa [truncateTailCoordinates_zero_apply] using hε
+        rw [truncateTailCoordinates_zero_apply]
+        simpa using hε
   | succ m ih =>
       have hHalf : 0 < ε / 2 := by
         positivity
@@ -748,7 +752,7 @@ lemma existsApproximateCompressionToBase {m : ℕ}
           truncateTailCoordinates N (m + 1) (G x) =
             truncateTailCoordinates N m (truncateTailCoordinates (N + m) 1 (G x)) := by
         -- Normalize the repeated truncation into the recursive shape used by the induction.
-        simpa [ContinuousLinearMap.comp_apply] using
+        simpa [ContinuousLinearMap.comp_apply] using!
           congrArg (fun L ↦ L (G x)) (truncateTailCoordinates_comp_one N m)
       -- Combine the recursive approximation with the new codimension-drop estimate.
       calc
@@ -787,7 +791,7 @@ lemma packedGraph_isSmoothEmbedding
     simpa [G] using f.contMDiff.prodMk_space he.isImmersion.contMDiff
   have hFCont : ContMDiff I (𝓡 (N + m)) ∞ F := by
     -- The packed graph is smooth because packing is a continuous linear equivalence.
-    simpa [F, G, Function.comp] using
+    simpa [F, G, Function.comp] using!
       (packEuclideanCoordinates N m).toContinuousLinearMap.contMDiff.comp
         hGContSelf
   have hTailCompEq : (fun x : M ↦ tailCoordinates N m (F x)) = e := by
@@ -815,7 +819,7 @@ lemma packedGraph_isSmoothEmbedding
         mfderiv I (𝓡 m) (fun y : M ↦ tailCoordinates N m (F y)) x =
           (tailCoordinates N m).comp (mfderiv I (𝓡 (N + m)) F x) := by
       -- The chain rule differentiates `tailCoordinates ∘ F = e`.
-      simpa [Function.comp] using
+      simpa [Function.comp] using!
         (mfderiv_comp
           x
           ((tailCoordinates N m).contMDiffAt.mdifferentiableAt (by simp : (∞ : ℕ∞ω) ≠ 0))
@@ -830,12 +834,12 @@ lemma packedGraph_isSmoothEmbedding
         mfderiv I (𝓡 m) e x u =
           tailCoordinates N m (mfderiv I (𝓡 (N + m)) F x u) := by
       -- Evaluate the chain-rule identity on the first tangent vector.
-      simpa [ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L u) hComp
+      simpa [ContinuousLinearMap.comp_apply] using! congrArg (fun L ↦ L u) hComp
     have hCompW :
         mfderiv I (𝓡 m) e x w =
           tailCoordinates N m (mfderiv I (𝓡 (N + m)) F x w) := by
       -- Evaluate the same identity on the second tangent vector.
-      simpa [ContinuousLinearMap.comp_apply] using congrArg (fun L ↦ L w) hComp
+      simpa [ContinuousLinearMap.comp_apply] using! congrArg (fun L ↦ L w) hComp
     exact heDerivInj x <| by
       rw [hCompU, hCompW, huw]
   -- Compactness of the source upgrades the injective immersion to a smooth embedding.

@@ -129,7 +129,7 @@ theorem writtenInExtChartAt_contDiffOn_of_contMDiff
       (x := p) (y := f p) (f := f) hs hmaps).1 hf.contMDiffOn
   have himage : (extChartAt I p) '' s =
       (extChartAt I p).target ∩ (f ∘ (extChartAt I p).symm) ⁻¹' (extChartAt J (f p)).source := by
-    simpa [hs_def, Function.comp, extChartAt_target, extChartAt_coe_symm] using
+    simpa [hs_def, Function.comp, extChartAt_target, extChartAt_coe_symm] using!
       (extChartAt I p).image_source_inter_eq' (f ⁻¹' (extChartAt J (f p)).source)
   rw [himage] at hchart
   simpa using hchart
@@ -152,7 +152,7 @@ theorem writtenInExtChartAt_fderiv_eq_mfderiv_of_isInteriorPoint
 `ContinuousLinearEquiv.isOpen` restated for `ContinuousLinearMap.IsInvertible`, and it is what lets
 the derivative be kept invertible on a whole neighbourhood. -/
 theorem isOpen_setOf_isInvertible : IsOpen {A : E →L[𝕜] F | A.IsInvertible} := by
-  simpa [ContinuousLinearMap.IsInvertible] using
+  simpa [ContinuousLinearMap.IsInvertible] using!
     (ContinuousLinearEquiv.isOpen : IsOpen (range (fun e : E ≃L[𝕜] F => (e : E →L[𝕜] F))))
 
 /-- Shrink a neighbourhood so that the derivative stays invertible on the whole of a smaller *open*
@@ -349,7 +349,7 @@ theorem isLocalDiffeomorphAt_of_contMDiff_mfderiv_isInvertible
     rw [ha_def, ← nhdsWithin_eq_nhds.2 (range_mem_nhds_isInteriorPoint hp)]
     exact extChartAt_target_mem_nhdsWithin (I := I) p
   have hΩ_source : (f ∘ (extChartAt I p).symm) ⁻¹' (extChartAt J (f p)).source ∈ 𝓝 a := by
-    simpa [ha_def, Function.comp] using (extChartAt_preimage_mem_nhds (I := I) (x := p)
+    simpa [ha_def, Function.comp] using! (extChartAt_preimage_mem_nhds (I := I) (x := p)
       (hf.contMDiffAt.continuousAt.preimage_mem_nhds (extChartAt_source_mem_nhds (I := J) (f p))))
   have hΩ : Ω ∈ 𝓝 a := Filter.inter_mem hΩ_target hΩ_source
   have hgΩ : ContDiffOn 𝕜 n g Ω := by

@@ -97,7 +97,7 @@ theorem hasDerivAt_chartReading_sprayBase (hJ : IsOpen J)
   -- the position component has derivative the velocity component: `x' = w`
   have hpos : HasDerivAt (fun τ' => (ζ τ').1) ((ζ τ).2) τ := by
     have h := (ContinuousLinearMap.fst ℝ E E).hasFDerivAt.comp_hasDerivAt τ (hd τ hτ)
-    simpa using h
+    simpa [Function.comp_def] using h
   -- the chart reading agrees with the position component near `τ`
   refine hpos.congr_of_eventuallyEq ?_
   filter_upwards [hJ.mem_nhds hτ] with τ' hτ'
@@ -131,7 +131,7 @@ theorem isGeodesicOn_sprayBase (hJ : IsOpen J)
     have hvel : HasDerivAt (fun τ => (ζ τ).2)
         (- chartChristoffelContraction (I := I) g q ((ζ t).2) ((ζ t).2) ((ζ t).1)) t := by
       have h := (ContinuousLinearMap.snd ℝ E E).hasFDerivAt.comp_hasDerivAt t (hd t ht)
-      simpa using h
+      simpa [Function.comp_def] using h
     refine ⟨- chartChristoffelContraction (I := I) g q ((ζ t).2) ((ζ t).2) ((ζ t).1),
       hvel.congr_of_eventuallyEq hderiv_eq, ?_⟩
     rw [hderiv_eq.self_of_nhds, chartReading_sprayBase (I := I) hmem ht]

@@ -56,7 +56,8 @@ theorem mfderiv_mul_at_one_one_apply
       (v := (X, Y))
       hMul
   rw [mulRight_eq_id, oneMul_eq_id] at happly
-  simpa using happly
+  rw [mfderiv_id] at happly
+  exact happly
 
 /-- Helper for Problem 7-2: the derivative of `g ↦ (g, g⁻¹)` at `1` is the product of the
 identity derivative and the inversion derivative. -/
@@ -74,7 +75,8 @@ lemma pairWithInvMfderiv_apply
   have happly := congrArg
     (fun F : TangentSpace I (1 : G) →L[𝕜] TangentSpace (I.prod I) ((1 : G), (1 : G)⁻¹) ↦ F X)
     hmfderiv
-  simpa using happly
+  rw [mfderiv_id] at happly
+  exact happly
 
 /-- Helper for Problem 7-2: differentiating the identity `g * g⁻¹ = 1` at `1` gives zero. -/
 lemma mulInvCompositeMfderiv_apply_eq_zero
@@ -101,8 +103,8 @@ lemma mfderiv_mul_at_one_invMfderiv_apply
       (X, mfderiv% (fun g : G ↦ g⁻¹) (1 : G) X) = X + invMfderivAtOne X := by
   -- Normalize the inversion derivative into `GroupLieAlgebra I G` and reuse part (1).
   rw [inv_one]
-  simpa [invMfderivAtOne_eq] using
-    (mfderiv_mul_at_one_one_apply X (invMfderivAtOne X))
+  rw [invMfderivAtOne_eq]
+  exact mfderiv_mul_at_one_one_apply X _
 
 /-- Problem 7-2 (2): the derivative of the inversion map at the identity sends `X` to `-X`. -/
 theorem mfderiv_inv_at_one_apply

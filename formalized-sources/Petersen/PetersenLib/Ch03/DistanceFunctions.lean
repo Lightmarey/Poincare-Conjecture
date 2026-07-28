@@ -341,7 +341,7 @@ theorem distanceFunction_points (n : ℕ) (y : EuclideanSpace ℝ (Fin n)) :
     have hFD : HasFDerivAt (fun z : EuclideanSpace ℝ (Fin n) => ‖z - y‖)
         (‖x - y‖⁻¹ • innerSL ℝ (x - y)) x := by
       have := (hasFDerivAt_norm_ne_zero hu).comp x ((hasFDerivAt_id x).sub_const y)
-      simpa using this
+      simpa [Function.comp_def] using! this
     have hgrad : gradient (euclideanMetric n) (fun z => ‖z - y‖) x
         = ‖x - y‖⁻¹ • (x - y) := by
       refine (gradient_unique (euclideanMetric n) (fun z => ‖z - y‖) x _ (fun w => ?_)).symm

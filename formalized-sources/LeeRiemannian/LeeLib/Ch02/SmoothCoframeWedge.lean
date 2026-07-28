@@ -204,7 +204,7 @@ theorem contMDiffAt_wedgeCovectors_section {l : ℕ}
   rw [hA]
   simp only [ContinuousLinearMap.comp_apply]
   rw [inCoordinates_dual_apply hx]
-  rfl
+  rw [e.symmL_apply hx, he]
 
 end
 

@@ -121,7 +121,7 @@ lemma smoothChartDiffeomorph_mfderiv_isInvertible
   refine ⟨φx, ?_⟩
   simpa [Φ, φx] using
     (Diffeomorph.mfderivToContinuousLinearEquiv_coe
-      (Φ := Φ) (x := x) (hn := by simp)).symm
+      (Φ := Φ) (x := x) (hn := by simp))
 
 /-- Helper for Example 8.2: the coordinate vector field associated to a smooth chart is smooth
 because its coordinate component functions are constants on the chart image. -/

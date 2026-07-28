@@ -215,9 +215,8 @@ theorem contMDiff_section_opens_iff {X : ↥s → F} :
       (fun q => (⟨q, X q⟩ : TangentBundle 𝓘(ℝ, F) ↥s))
       ↔ ContMDiff 𝓘(ℝ, F) 𝓘(ℝ, F) n X := by
   constructor
-  · intro hX
+  · intro hX q
     -- compose the section with the (smooth) bundle trivialization projection
-    intro q
     have hq := hX q
     rw [Bundle.contMDiffAt_section] at hq
     -- the trivialized form agrees with `X` since all coordinate changes are the identity
@@ -321,7 +320,8 @@ theorem DCLieBracket_opens_eq_fderiv (X Y : SmoothVectorField 𝓘(ℝ, F) ↥s)
         exact WithTop.coe_le_coe.mpr le_top)
     (by
       have : (Subtype.val : ↥s → F) ⁻¹' (s : Set F) = Set.univ := by
-        ext x; simpa using x.2
+        ext x
+        simp
       rw [this]
       exact Filter.univ_mem)
   -- the pullbacks of the extensions are the original fields
@@ -408,7 +408,10 @@ the tangent trivialization is the identity on fibres. -/
       = ContinuousLinearMap.id ℝ F v := by
     rw [symmL_trivializationAt_opens]
     rfl
-  rw [Bundle.Trivialization.symmL_apply] at h
+  have hb : b ∈ (trivializationAt F (TangentSpace 𝓘(ℝ, F)) b₀).baseSet := by
+    rw [TangentBundle.trivializationAt_baseSet]
+    exact mem_chart_source F b
+  rw [Bundle.Trivialization.symmL_apply _ hb] at h
   exact h
 
 /-- **Math.** do Carmo Ch. 1, Ex. 2.4, restricted: an open subset of Euclidean
@@ -573,7 +576,7 @@ def opensEuclideanConnection : AffineConnection 𝓘(ℝ, F) ↥s where
       fderiv_smul hfd hYd
     rw [h]
     rw [X.dir_opens_eq hf q]
-    simp only [ContinuousLinearMap.add_apply, ContinuousLinearMap.coe_smul',
+    simp only [add_apply, FunLike.coe_smul,
       Pi.smul_apply, ContinuousLinearMap.smulRight_apply]
     rw [s.extendZero_val, s.extendZero_val]
     rfl
@@ -663,8 +666,8 @@ theorem opensEuclideanConnection_curvature (X Y Z : SmoothVectorField 𝓘(ℝ, 
         ⇑((opensEuclideanConnection (F := F) (s := s)).cov V Z)) q.val (W q) = _
     rw [hev.fderiv_eq]
     rw [fderiv_clm_apply hZ' hVd]
-    simp only [ContinuousLinearMap.add_apply, ContinuousLinearMap.flip_apply,
-      ContinuousLinearMap.coe_comp', Function.comp_apply]
+    simp only [add_apply, ContinuousLinearMap.flip_apply,
+      ContinuousLinearMap.coe_comp, Function.comp_apply]
     rw [s.extendZero_val]
     exact add_comm _ _
   -- the bracket term

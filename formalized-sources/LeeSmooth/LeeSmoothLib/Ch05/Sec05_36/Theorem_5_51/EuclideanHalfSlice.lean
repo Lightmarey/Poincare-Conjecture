@@ -62,7 +62,7 @@ private noncomputable def euclidean_half_slice_projection_homeomorph
       Set.euclideanHalfSlice U k hk hkn c ≃ₜ
         {x : Set.euclideanSlice U k hkn c |
           0 ≤ x.1 (euclidean_half_slice_ambient_last_coordinate hk hkn)} := by
-    simpa [Set.euclideanHalfSlice, euclidean_half_slice_ambient_last_coordinate] using
+    simpa [Set.euclideanHalfSlice, euclidean_half_slice_ambient_last_coordinate] using!
       (subtype_patch_intersection_homeomorph
         (Set.euclideanSlice U k hkn c)
         {y : EuclideanSpace ℝ (Fin n) |
@@ -164,7 +164,7 @@ noncomputable def euclidean_half_slice_projection_partial_homeomorph
           {u : EuclideanSpace ℝ (Fin (k + 1)) |
             0 ≤ u (projected_last_coordinate hk)} :=
         ⟨euclidean_slice_projection hkn x.1, by
-          simpa [euclidean_slice_projection_last_coordinate hk hkn x.1] using x.2.2⟩
+          simpa [euclidean_slice_projection_last_coordinate hk hkn x.1] using! x.2.2⟩
       let targetNonempty : Nonempty targetOpen := by
         refine ⟨⟨half_slice_last_coordinate_homeomorph hk xProjected, ?_⟩⟩
         have hxPerm :
@@ -214,7 +214,7 @@ theorem euclidean_half_slice_projection_partial_homeomorph_center_mem_source
           {u : EuclideanSpace ℝ (Fin (k + 1)) |
             0 ≤ u (projected_last_coordinate hk)} :=
         ⟨euclidean_slice_projection hkn x.1, by
-          simpa [euclidean_slice_projection_last_coordinate hk hkn x.1] using x.2.2⟩
+          simpa [euclidean_slice_projection_last_coordinate hk hkn x.1] using! x.2.2⟩
       let targetNonempty : Nonempty targetOpen := by
         refine ⟨⟨half_slice_last_coordinate_homeomorph hk xProjected, ?_⟩⟩
         have hxPerm :

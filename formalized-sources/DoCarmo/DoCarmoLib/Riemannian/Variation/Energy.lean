@@ -209,6 +209,20 @@ not (the square root is not differentiable at a zero of the velocity). -/
 def DCEnergy (g : RiemannianMetric I M) (c : ℝ → M) (a b : ℝ) : ℝ :=
   ∫ t in a..b, g.metricInner (c t) (DCVelocity c t) (DCVelocity c t)
 
+/-- **Math.** Energy is finitely additive over a subdivision.  This is the analytic
+identity used when do Carmo obtains the piecewise first- and second-variation formulas by
+summing their smooth-segment versions.  Oriented interval integrals make monotonicity of
+`tau` unnecessary; only integrability on every segment is required. -/
+theorem dcEnergy_eq_sum_subdivision (g : RiemannianMetric I M) (c : ℝ → M)
+    (tau : ℕ → ℝ) (n : ℕ)
+    (hint : ∀ i < n, IntervalIntegrable
+      (fun t => g.metricInner (c t) (DCVelocity c t) (DCVelocity c t))
+      volume (tau i) (tau (i + 1))) :
+    DCEnergy g c (tau 0) (tau n)
+      = ∑ i ∈ Finset.range n, DCEnergy g c (tau i) (tau (i + 1)) := by
+  simp only [DCEnergy]
+  exact (intervalIntegral.sum_integral_adjacent_intervals hint).symm
+
 /-- **Math.** The energy is the integral of the squared speed. -/
 theorem dcEnergy_eq_integral_dcSpeed_sq (g : RiemannianMetric I M) (c : ℝ → M) (a b : ℝ) :
     DCEnergy g c a b = ∫ t in a..b, (dcSpeed g c t) ^ 2 := by

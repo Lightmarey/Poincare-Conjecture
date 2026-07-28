@@ -152,7 +152,7 @@ lemma embedded_pointwise_local_scalar_extension
   -- Express the intrinsic smooth function in the source chart coordinates of the immersion.
   have hfcoord :
       ContMDiffOn 𝓘(ℝ, E') 𝓘(ℝ) ∞ fcoord (hImm.domChart.extend J).target := by
-    simpa [fcoord, Function.comp] using f.contMDiff.comp_contMDiffOn hdomChart_symm
+    simpa [fcoord, Function.comp] using! f.contMDiff.comp_contMDiffOn hdomChart_symm
   rcases subtype_open_eq_preimage_ambient_open (M := M) (S := S)
       (U := hImm.domChart.source) hImm.domChart.open_source with
     ⟨W, hW_open, hW_eq⟩
@@ -185,7 +185,7 @@ lemma embedded_pointwise_local_scalar_extension
   have hcod_ext :
       ContMDiffOn I 𝓘(ℝ, E) ∞ (hImm.codChart.extend I) V := by
     exact
-      (contMDiffOn_extend (I := I) (n := (∞ : ℕ∞ω))
+      (hImm.codChart.contMDiffOn_extend (I := I) (n := (∞ : ℕ∞ω))
         (IsManifold.maximalAtlas_subset_of_le (I := I) (M := M)
           (m := (∞ : ℕ∞ω)) (n := (⊤ : ℕ∞ω)) (by simp) hImm.codChart_mem_maximalAtlas)).mono
         fun _x hx ↦ hx.1
@@ -432,7 +432,7 @@ lemma subtype_val_to_punctured_ambient_contMDiff
     ContMDiff J I ⊤ (subtype_val_to_punctured_ambient (M := M) (S := S) hpS) := by
   let U : TopologicalSpace.Opens M := ⟨{x : M | x ≠ p}, isOpen_compl_singleton⟩
   -- Codomain restriction into an open subset preserves smoothness of the ambient inclusion.
-  simpa [U, Set.codRestrict] using
+  simpa [U, Set.codRestrict] using!
     contMDiff_codRestrict_opens (I := I) (K := J) U
       (subtype_val_contMDiff_of_isEmbeddedSubmanifold (I := I) (J := J) (S := S) hEmb)
       (subtype_val_ne_puncture (S := S) hpS)
@@ -529,7 +529,7 @@ lemma punctured_ambient_exhaustion_nonextendable
         simpa [N] using hx.2
       calc
         h xU = f xS := by
-          simp [f, iSU, subtype_val_to_punctured_ambient, xU, xS]
+          rfl
         _ = g x := hgx.symm
         _ ≤ g p + 1 := le_of_lt hxlt
     refine ⟨xU, ?_, rfl⟩
