@@ -23,9 +23,17 @@ overview: site/overview.html
 # HTML file (relative to this manifest), rendered as trusted content with math
 # typeset in the browser.
 tabs:
+  - id: proof-map
+    label: Proof Map
+    content: site/proof-map-tab.html
   - id: people
     label: People
     content: site/people.html
+
+# Extra applications served on the same origin by `hgraph serve`. The Proof
+# Map is built separately so its expandable map can keep its own small runtime.
+static:
+  proof-map: site/proof-map/dist
 
 # Every project below lives in this one repo, so they share it: it is what the
 # "send to GitHub" button on a node's review panel files its issue against.

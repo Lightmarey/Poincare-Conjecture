@@ -60,3 +60,6 @@ _site/
 **/PLAN.md
 **/PLAN_*.md
 *.lean.wip
+test/
+site/proof-map/dist/
+site/proof-map/node_modules/
