@@ -528,7 +528,7 @@ theorem chartCurvature_smul_right (g : RiemannianMetric I M) (α : M) (y v w : E
   simp only [chartCurvature_def, christoffelCurvature, map_smul,
     ContinuousLinearMap.smul_apply, smul_sub, smul_add]
 
--- mathlib's transparency-respecting defeq makes the `chartCurvature`/
+-- mathlib v4.30.0's transparency-respecting defeq makes the `chartCurvature`/
 -- `christoffelCurvature` unfolding `simp`s here exceed the default heartbeat budget.
 set_option synthInstance.maxHeartbeats 1000000 in
 set_option maxHeartbeats 1000000 in

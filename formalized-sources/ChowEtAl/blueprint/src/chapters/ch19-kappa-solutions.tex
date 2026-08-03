@@ -11,9 +11,10 @@ scalar curvature.
 
 \begin{definition}[$\kappa$-noncollapsed metric]
 \label{def:chow-iii-kappa-noncollapsed}
+\source{chow-et-al-ricci-flow-part-iii:page-0101}
 \dcref{ch19:19.1}
 \group{Noncollapsing}
-\source{chow-et-al-ricci-flow-part-iii:page-0101}
+
 A metric $\hat g$ is $\kappa$-noncollapsed below scale $\rho$ if every ball
 $B(x,r)$ with $r<\rho$ and $|\Rm|\le r^{-2}$ satisfies
 \[
@@ -25,9 +26,10 @@ $\kappa$-noncollapsed when every time slice has the property.
 
 \begin{theorem}[Perelman's no local collapsing]
 \label{thm:chow-iii-no-local-collapsing}
+\source{chow-et-al-ricci-flow-part-iii:page-0101}
 \dcref{ch19:19.2}
 \group{Noncollapsing}
-\source{chow-et-al-ricci-flow-part-iii:page-0101}
+
 For a finite-time Ricci flow on a closed manifold and a finite scale $\rho$,
 there is $\kappa>0$, depending only on the initial metric, the final time,
 and $\rho$, for which the flow is $\kappa$-noncollapsed below $\rho$.
@@ -35,20 +37,24 @@ and $\rho$, for which the flow is $\kappa$-noncollapsed below $\rho$.
 
 \begin{proposition}[Cheeger--Gromov--Taylor injectivity estimate]
 \label{prop:chow-iii-cgt-injectivity}
-\dcref{ch19:19.3}
-\group{Noncollapsing}
 \source{chow-et-al-ricci-flow-part-iii:page-0101}
 \uses{def:chow-iii-kappa-noncollapsed}
+\dcref{ch19:19.3}
+\group{Noncollapsing}
+
+
 If $|\Rm|\le r^{-2}$ on $B(p,r)$ and
 $\Vol B(p,r)/r^n\ge\kappa$, then $\inj(p)\ge\iota(\kappa,n)r$.
 \end{proposition}
 
 \begin{theorem}[Existence of finite-time singularity models]
 \label{thm:chow-iii-finite-time-model}
+\source{chow-et-al-ricci-flow-part-iii:page-0102}
+\uses{thm:chow-iii-no-local-collapsing, prop:chow-iii-cgt-injectivity}
 \dcref{ch19:19.4}
 \group{Singularity Models}
-\source{chow-et-al-ricci-flow-part-iii:page-0102}
-\uses{thm:chow-iii-no-local-collapsing,prop:chow-iii-cgt-injectivity}
+
+
 Let $t_i\nearrow T$, $p_i\in M$, $r_i>0$, and
 $K_i=|\Rm|(p_i,t_i)\to\infty$ satisfy
 $|\Rm|(x,t)\le CK_i$ on $B_{g(t_i)}(p_i,r_i)$ for $t<t_i$ and
@@ -60,10 +66,12 @@ curvature which is $\kappa$-noncollapsed at all scales.
 
 \begin{definition}[$\kappa$-solution]
 \label{def:chow-iii-kappa-solution}
-\dcref{ch19:19.7}
-\group{Definitions}
 \source{chow-et-al-ricci-flow-part-iii:page-0102,page-0103}
 \uses{def:chow-iii-kappa-noncollapsed}
+\dcref{ch19:19.7}
+\group{Definitions}
+
+
 A complete ancient flow $(M^n,\tilde g(t))$, $t\le0$, is a $\kappa$-solution
 if every time slice is nonflat, has nonnegative curvature operator, is
 $\kappa$-noncollapsed at all scales, and has scalar curvature bounded above
@@ -72,10 +80,12 @@ on $M\times(-\infty,0]$.
 
 \begin{corollary}[Three-dimensional finite-time models]
 \label{cor:chow-iii-3d-finite-time-model}
+\source{chow-et-al-ricci-flow-part-iii:page-0103}
+\uses{thm:chow-iii-finite-time-model, def:chow-iii-kappa-solution}
 \dcref{ch19:19.8}
 \group{Singularity Models}
-\source{chow-et-al-ricci-flow-part-iii:page-0103}
-\uses{thm:chow-iii-finite-time-model,def:chow-iii-kappa-solution}
+
+
 In dimension three, the Hamilton--Ivey estimate upgrades the limit in
 Theorem~\ref{thm:chow-iii-finite-time-model} to a three-dimensional
 $\kappa$-solution.
@@ -83,9 +93,10 @@ $\kappa$-solution.
 
 \begin{example}[Cylinders and quotients]
 \label{ex:chow-iii-cylinder-kappa}
+\source{chow-et-al-ricci-flow-part-iii:page-0103}
 \dcref{ch19:19.10}
 \group{Examples}
-\source{chow-et-al-ricci-flow-part-iii:page-0103}
+
 The shrinking quotients $(S^{n-k}\times\mathbb R^k)/\Gamma$ with
 $n-k\ge2$ are $\kappa$-solutions; the largest admissible $\kappa$ depends on
 $|\Gamma|$ and its action.  In dimension three no uniform lower bound exists
@@ -94,9 +105,10 @@ for arbitrary spherical space-form quotients.
 
 \begin{example}[Bryant soliton]
 \label{ex:chow-iii-bryant-soliton}
+\source{chow-et-al-ricci-flow-part-iii:page-0104,page-0105}
 \dcref{ch19:19.12}
 \group{Examples}
-\source{chow-et-al-ricci-flow-part-iii:page-0104,page-0105}
+
 The rotationally symmetric steady gradient soliton on $\mathbb R^n$ has
 $g_{\rm Bry}=dr^2+w(r)^2g_{S^{n-1}}$, with
 \[
@@ -111,9 +123,10 @@ the $C^0$ necks to embedded smooth necks.
 
 \begin{definition}[Asymptotic ratios]
 \label{def:chow-iii-asymptotic-ratios}
+\source{chow-et-al-ricci-flow-part-iii:page-0106}
 \dcref{ch19:19.7a}
 \group{Asymptotic Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0106}
+
 For a complete noncompact $(N^n,h)$ with $\Rc\ge0$, set
 \[
 \operatorname{AVR}(h)=\lim_{r\to\infty}\frac{\Vol B(p,r)}{\omega_n r^n},
@@ -125,10 +138,12 @@ Both are independent of $p$.
 
 \begin{example}[Asymptotic ratios of cylinders, Bryant solitons, and cones]
 \label{ex:chow-iii-avr-ascr-examples}
-\dcref{ch19:19.16--19.18}
-\group{Asymptotic Geometry}
 \source{chow-et-al-ricci-flow-part-iii:page-0107}
 \uses{def:chow-iii-asymptotic-ratios}
+\dcref{ch19:19.16--19.18}
+\group{Asymptotic Geometry}
+
+
 Closed-factor cylinders have $\operatorname{AVR}=0$; the Bryant soliton has
 volume growth of order $r^{(n+1)/2}$, $\operatorname{AVR}=0$, and
 $\operatorname{ASCR}=\infty$.  A cone $dr^2+r^2k$ over $(P^{n-1},k)$ has
@@ -140,10 +155,12 @@ $\operatorname{ASCR}=\infty$.  A cone $dr^2+r^2k$ over $(P^{n-1},k)$ has
 
 \begin{proposition}[Positive AVR from quadratic curvature decay]
 \label{prop:chow-iii-avr-from-ascr}
+\source{chow-et-al-ricci-flow-part-iii:page-0108}
+\uses{def:chow-iii-asymptotic-ratios, def:chow-iii-kappa-noncollapsed}
 \dcref{ch19:19.19}
 \group{Asymptotic Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0108}
-\uses{def:chow-iii-asymptotic-ratios,def:chow-iii-kappa-noncollapsed}
+
+
 If $\Rm\ge0$, the metric is $\kappa$-noncollapsed at all scales, and
 $|\Rm|(x)\le Cd(x,O)^{-2}$ outside $B(O,1)$, then
 \[
@@ -155,9 +172,10 @@ has $\operatorname{ASCR}=\infty$.
 
 \begin{theorem}[ASCR and AVR under Ricci flow]
 \label{thm:chow-iii-ascr-avr-time-invariance}
+\source{chow-et-al-ricci-flow-part-iii:page-0108}
 \dcref{ch19:19.21--19.22}
 \group{Asymptotic Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0108}
+
 For a complete ancient solution with bounded nonnegative curvature operator,
 $\operatorname{ASCR}(g(t))$ is independent of time.  For a complete solution
 with bounded nonnegative Ricci curvature and curvature tending to zero at
@@ -167,10 +185,12 @@ decay condition propagates forward).
 
 \begin{theorem}[Infinite ASCR alternatives]
 \label{thm:chow-iii-infinite-ascr}
-\dcref{ch19:19.23--19.24}
-\group{Asymptotic Geometry}
 \source{chow-et-al-ricci-flow-part-iii:page-0109}
 \uses{def:chow-iii-asymptotic-ratios}
+\dcref{ch19:19.23--19.24}
+\group{Asymptotic Geometry}
+
+
 A complete positively curved steady gradient soliton attaining its maximum
 scalar curvature, and a complete noncompact Type I ancient solution with
 bounded positive curvature operator, both have infinite ASCR.  Every complete
@@ -181,10 +201,12 @@ attaining its maximum scalar curvature.
 
 \begin{definition}[$\kappa$-solution with Harnack]
 \label{def:chow-iii-kappa-harnack}
-\dcref{ch19:19.27}
-\group{Harnack}
 \source{chow-et-al-ricci-flow-part-iii:page-0109,page-0110}
 \uses{def:chow-iii-kappa-solution}
+\dcref{ch19:19.27}
+\group{Harnack}
+
+
 Replace the bounded-curvature clause in Definition~\ref{def:chow-iii-kappa-solution}
 by Hamilton's trace Harnack inequality
 \[
@@ -196,10 +218,12 @@ time; an unbounded such solution has $\operatorname{ASCR}=\infty$.
 
 \begin{claim}[Entropy characterization]
 \label{clm:chow-iii-entropy-kappa}
-\dcref{ch19:19.32}
-\group{Entropy}
 \source{chow-et-al-ricci-flow-part-iii:page-0111,page-0112}
 \uses{def:chow-iii-kappa-solution}
+\dcref{ch19:19.32}
+\group{Entropy}
+
+
 For an ancient solution with $\Rm\ge0$ and bounded curvature on each time
 slice, all-scale $\kappa$-noncollapsing is equivalent to a uniform bound on
 Perelman's entropy $\mathcal W(g,f,\tau)$ for every adjoint heat kernel.
@@ -207,9 +231,10 @@ Perelman's entropy $\mathcal W(g,f,\tau)$ for every adjoint heat kernel.
 
 \begin{theorem}[Linear entropy and maximum volume growth]
 \label{thm:chow-iii-linear-entropy-volume}
+\source{chow-et-al-ricci-flow-part-iii:page-0112,page-0113,page-0114}
 \dcref{ch19:19.34}
 \group{Entropy}
-\source{chow-et-al-ricci-flow-part-iii:page-0112,page-0113,page-0114}
+
 For a complete noncompact manifold with $\Rc\ge0$, uniform boundedness of the
 linear entropies of all heat kernels is equivalent to maximum volume growth:
 $\Vol B(p,r)\ge cr^n$ for every $p$ and $r$.  Under maximum volume growth,
@@ -223,10 +248,12 @@ $\Vol B(p,r)\ge cr^n$ for every $p$ and $r$.  Under maximum volume growth,
 
 \begin{theorem}[Perelman's spherical $\kappa$-solution]
 \label{thm:chow-iii-perelman-sphere}
-\dcref{ch19:19.36}
-\group{Spherical Construction}
 \source{chow-et-al-ricci-flow-part-iii:page-0115}
 \uses{def:chow-iii-kappa-solution}
+\dcref{ch19:19.36}
+\group{Spherical Construction}
+
+
 For every $n\ge3$ there is a rotationally symmetric, reflection-invariant,
 Type II $\kappa$-solution on $S^n$ which shrinks to a round point in forward
 time.  Its backward limits include the Bryant soliton and the shrinking round
@@ -235,18 +262,20 @@ cylinder.
 
 \begin{theorem}[Compact Type I classification]
 \label{thm:chow-iii-compact-type-i}
+\source{chow-et-al-ricci-flow-part-iii:page-0115}
 \dcref{ch19:19.37}
 \group{Spherical Construction}
-\source{chow-et-al-ricci-flow-part-iii:page-0115}
+
 Any compact Type I ancient solution with positive curvature operator which is
 $\kappa$-noncollapsed is a shrinking spherical space form.
 \end{theorem}
 
 \begin{lemma}[Uniform noncollapsing of the normalized approximants]
 \label{lem:chow-iii-normalized-family-noncollapsed}
+\source{chow-et-al-ricci-flow-part-iii:page-0119,page-0120}
 \dcref{ch19:19.40}
 \group{Spherical Construction}
-\source{chow-et-al-ricci-flow-part-iii:page-0119,page-0120}
+
 The rescaled and time-translated approximants $\hat g_L(t)$ in Perelman's
 construction are $\kappa$-noncollapsed, with $\kappa$ independent of $L$, on
 all scales $r\le\sqrt{T_L/(4(T_L-t_L))}$.
@@ -254,10 +283,12 @@ all scales $r\le\sqrt{T_L/(4(T_L-t_L))}$.
 
 \begin{proposition}[The normalized family becomes ancient]
 \label{prop:chow-iii-normalized-family-ancient}
-\dcref{ch19:19.31}
-\group{Spherical Construction}
 \source{chow-et-al-ricci-flow-part-iii:page-0120,page-0121,page-0122,page-0123}
 \uses{lem:chow-iii-normalized-family-noncollapsed}
+\dcref{ch19:19.31}
+\group{Spherical Construction}
+
+
 For the normalized family, $t_0(L)=-T_L/(T_L-t_L)$ tends to $-\infty$ as
 $L\to\infty$.  The proof uses the scalar-curvature bounds, the changing-distance
 estimate, and the lower bound $\operatorname{diam}\hat g_L(t_0(L))\ge
@@ -266,10 +297,12 @@ L/\sqrt{T_L-t_L}$.
 
 \begin{proposition}[Limit properties of Perelman's construction]
 \label{prop:chow-iii-perelman-limit-properties}
+\source{chow-et-al-ricci-flow-part-iii:page-0124}
+\uses{thm:chow-iii-perelman-sphere, prop:chow-iii-normalized-family-ancient}
 \dcref{ch19:19.36a}
 \group{Spherical Construction}
-\source{chow-et-al-ricci-flow-part-iii:page-0124}
-\uses{thm:chow-iii-perelman-sphere,prop:chow-iii-normalized-family-ancient}
+
+
 Hamilton compactness produces a nonflat ancient limit on $S^n$; it is
 $\kappa$-noncollapsed at all scales, has nonnegative curvature operator, and
 retains rotational symmetry and reflection invariance.
@@ -279,29 +312,34 @@ retains rotational symmetry and reflection invariance.
 
 \begin{theorem}[Two-dimensional classification]
 \label{thm:chow-iii-2d-kappa}
+\source{chow-et-al-ricci-flow-part-iii:page-0125}
 \dcref{ch19:19.42}
 \group{Low Dimensions}
-\source{chow-et-al-ricci-flow-part-iii:page-0125}
+
 The only orientable two-dimensional $\kappa$-solution is the shrinking round
 $S^2$.
 \end{theorem}
 
 \begin{corollary}[Two-dimensional Harnack classification]
 \label{cor:chow-iii-2d-harnack}
+\source{chow-et-al-ricci-flow-part-iii:page-0125,page-0126}
+\uses{thm:chow-iii-2d-kappa, def:chow-iii-kappa-harnack}
 \dcref{ch19:19.43}
 \group{Low Dimensions}
-\source{chow-et-al-ricci-flow-part-iii:page-0125,page-0126}
-\uses{thm:chow-iii-2d-kappa,def:chow-iii-kappa-harnack}
+
+
 Every orientable two-dimensional $\kappa$-solution with Harnack has bounded
 curvature and is the shrinking round $S^2$.
 \end{corollary}
 
 \begin{proposition}[Three-dimensional Harnack equivalence]
 \label{prop:chow-iii-3d-harnack-equivalence}
-\dcref{ch19:19.44}
-\group{Low Dimensions}
 \source{chow-et-al-ricci-flow-part-iii:page-0126,page-0127}
 \uses{cor:chow-iii-2d-harnack}
+\dcref{ch19:19.44}
+\group{Low Dimensions}
+
+
 Every three-dimensional $\kappa$-solution with Harnack has bounded curvature.
 If the curvature operator is not positive, the universal cover splits off a
 line and reduces to the two-dimensional classification; in the positive case,
@@ -313,9 +351,10 @@ a contradiction.
 
 \begin{definition}[Reduced distance]
 \label{def:chow-iii-reduced-distance}
+\source{chow-et-al-ricci-flow-part-iii:page-0128}
 \dcref{ch19:19.43--19.45}
 \group{Reduced Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0128}
+
 For backward Ricci flow $g(\tau)$, define
 \[
 \mathcal L(\gamma)=\int\sqrt\tau\,(R+|\dot\gamma|^2)\,d\tau,
@@ -326,10 +365,12 @@ For backward Ricci flow $g(\tau)$, define
 
 \begin{lemma}[Two-point reduced-distance estimate]
 \label{lem:chow-iii-reduced-distance-two-point}
-\dcref{ch19:19.46}
-\group{Reduced Geometry}
 \source{chow-et-al-ricci-flow-part-iii:page-0128,page-0129,page-0130,page-0131,page-0132}
 \uses{def:chow-iii-reduced-distance}
+\dcref{ch19:19.46}
+\group{Reduced Geometry}
+
+
 For a $\kappa$-solution and $q_1,q_2$ at time $\bar\tau$,
 \[
 \ell(q_1,\bar\tau)+\ell(q_2,\bar\tau)+1\ge
@@ -340,10 +381,12 @@ For a $\kappa$-solution and $q_1,q_2$ at time $\bar\tau$,
 
 \begin{lemma}[Large-neighborhood estimates]
 \label{lem:chow-iii-large-neighborhood-estimates}
-\dcref{ch19:19.47}
-\group{Reduced Geometry}
 \source{chow-et-al-ricci-flow-part-iii:page-0132,page-0139}
 \uses{def:chow-iii-reduced-distance}
+\dcref{ch19:19.47}
+\group{Reduced Geometry}
+
+
 For points $q_\tau$ with bounded reduced distance, there are universal constants
 so that on $B_{g(\tau)}(q_\tau,A\sqrt\tau)$ both $\ell$ and $\tau R$ are
 uniformly bounded.  This is the estimate used to control the cylindrical
@@ -352,9 +395,10 @@ neighborhoods in the $\kappa$-gap argument.
 
 \begin{definition}[Reduced volume and strong collapse]
 \label{def:chow-iii-reduced-volume-strong-collapse}
+\source{chow-et-al-ricci-flow-part-iii:page-0133}
 \dcref{ch19:eq-19.57,ch19:19.50}
 \group{Reduced Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0133}
+
 For backward flow, define
 \[
 \widetilde V(\tau)=\int_M(4\pi\tau)^{-n/2}e^{-\ell(q,\tau)}\,d\mu_{g(\tau)}.
@@ -366,10 +410,12 @@ $\Vol B(q_0,r)/r^n<\kappa$.
 
 \begin{theorem}[Reduced-volume monotonicity]
 \label{thm:chow-iii-reduced-volume-monotonicity}
-\dcref{ch19:eq-19.58}
-\group{Reduced Geometry}
 \source{chow-et-al-ricci-flow-part-iii:page-0133}
 \uses{def:chow-iii-reduced-volume-strong-collapse}
+\dcref{ch19:eq-19.58}
+\group{Reduced Geometry}
+
+
 For bounded-curvature backward flow, $\widetilde V(\tau)\to1$ as $\tau\downarrow0$,
 it is nonincreasing in $\tau$, and equality at two times occurs exactly for
 Euclidean space.
@@ -377,10 +423,12 @@ Euclidean space.
 
 \begin{theorem}[Weakened no local collapsing]
 \label{thm:chow-iii-weakened-no-local-collapsing}
+\source{chow-et-al-ricci-flow-part-iii:page-0134}
+\uses{def:chow-iii-reduced-volume-strong-collapse, thm:chow-iii-reduced-volume-monotonicity}
 \dcref{ch19:19.51--19.52}
 \group{Reduced Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0134}
-\uses{def:chow-iii-reduced-volume-strong-collapse,thm:chow-iii-reduced-volume-monotonicity}
+
+
 There is $c_1(n)\le1/2$ such that strong $\kappa$-collapse at scale $r$ implies
 \[
 \widetilde V_*(\varepsilon r^2)\le
@@ -395,10 +443,12 @@ with $\kappa$ depending only on the stated geometric data.
 
 \begin{theorem}[Existence of an asymptotic shrinking soliton]
 \label{thm:chow-iii-asymptotic-shrinker}
+\source{chow-et-al-ricci-flow-part-iii:page-0134,page-0135,page-0136,page-0137}
+\uses{def:chow-iii-kappa-solution, lem:chow-iii-reduced-distance-two-point, thm:chow-iii-reduced-volume-monotonicity}
 \dcref{ch19:19.53}
 \group{Reduced Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0134,page-0135,page-0136,page-0137}
-\uses{def:chow-iii-kappa-solution,lem:chow-iii-reduced-distance-two-point,thm:chow-iii-reduced-volume-monotonicity}
+
+
 For every sequence $\tau_i\to\infty$ in a $\kappa$-solution there are points
 $q_i$ with $\ell(q_i,\tau_i)\le n/2$ and a subsequence for which
 $(M,\tau_i^{-1}g(\tau_i\theta),q_i)$ converges to a complete nonflat gradient
@@ -412,9 +462,10 @@ equals the limit of the reduced volumes.
 
 \begin{theorem}[Nonexistence of positive-curvature noncompact shrinkers]
 \label{thm:chow-iii-no-3d-shrinker}
+\source{chow-et-al-ricci-flow-part-iii:page-0137}
 \dcref{ch19:19.55}
 \group{$\kappa$-Gap}
-\source{chow-et-al-ricci-flow-part-iii:page-0137}
+
 There is no complete noncompact three-dimensional gradient shrinking soliton
 with bounded positive sectional curvatures which is $\kappa$-noncollapsed at
 all scales.
@@ -422,10 +473,12 @@ all scales.
 
 \begin{theorem}[Three-dimensional $\kappa$-gap]
 \label{thm:chow-iii-kappa-gap}
+\source{chow-et-al-ricci-flow-part-iii:page-0138,page-0139,page-0140}
+\uses{thm:chow-iii-asymptotic-shrinker, thm:chow-iii-no-3d-shrinker, thm:chow-iii-weakened-no-local-collapsing, lem:chow-iii-large-neighborhood-estimates}
 \dcref{ch19:19.56}
 \group{$\kappa$-Gap}
-\source{chow-et-al-ricci-flow-part-iii:page-0138,page-0139,page-0140}
-\uses{thm:chow-iii-asymptotic-shrinker,thm:chow-iii-no-3d-shrinker,thm:chow-iii-weakened-no-local-collapsing,lem:chow-iii-large-neighborhood-estimates}
+
+
 There is a universal $\kappa_0>0$ such that every three-dimensional
 nonspherical space-form $\kappa$-solution is $\kappa_0$-noncollapsed at all
 scales.  Its asymptotic shrinker is the round cylinder $S^2\times\mathbb R$
@@ -435,9 +488,10 @@ rules out collapse by the weakened no-local-collapsing estimate.
 
 \begin{remark}[Necessity of the nonspherical hypothesis]
 \label{rem:chow-iii-kappa-gap-hypothesis}
+\source{chow-et-al-ricci-flow-part-iii:page-0138}
 \dcref{ch19:19.57}
 \group{$\kappa$-Gap}
-\source{chow-et-al-ricci-flow-part-iii:page-0138}
+
 The hypothesis cannot be removed: spherical space forms $S^3/\Gamma$ have
 unbounded orders $|\Gamma|$, and $S^3/\Gamma\times\mathbb R$ gives the
 corresponding four-dimensional obstruction.

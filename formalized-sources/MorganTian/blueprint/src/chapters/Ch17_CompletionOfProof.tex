@@ -5,7 +5,8 @@
 
 \begin{proposition}[The strong canonical neighborhood assumption extends to the next scale $r_{i+1}$]
 \label{prop:canonical-neighborhood-extends}
-\uses{prop:kappa-limit-noncollapsing,thm:main-existence-ricci-flow-surgery}
+\uses{prop:kappa-limit-noncollapsing, thm:main-existence-ricci-flow-surgery}
+
 \label{extend}
 Suppose positive nonincreasing sequences
 \[
@@ -26,8 +27,9 @@ assumption with parameter $r_{i+1}$ on $[0,T)$.
 \end{proposition}
 
 \begin{proof}
+  \uses{prop:kappa-limit-noncollapsing, kaplimit, limitcannbhd, sliceconv, canonvary, narrows, controlnbhd, thm:local-surgery, prop:long-L-length-near-surgery-cap, lem:surgery-cap-ball-bounds, defncanonnbhd, defnepsround, Ccomponent, neckcurv, A_0, Restim, stdsoln, bigell, neckglue, stdsolncannbhd, def:overline-delta-0, prop:surgery-cap-evolution-alternative}
 \sketch
-\uses{prop:kappa-limit-noncollapsing,kaplimit,limitcannbhd,sliceconv,canonvary,narrows,controlnbhd}
+
 Assume failure for every choice and take $r_a\to0$, then surgery controls
 $\delta_{a,b}\to0$. Lemma~\ref{16.2} produces first failure points at the
 scale $r_a$. Rescale each flow at such a point to scalar curvature one. The
@@ -66,6 +68,7 @@ points, again a contradiction. Thus the first failure point exists as stated.
 \begin{remark}[The limiting canonical neighborhood is a cap, not a strong epsilon-neck]
 \label{rem:limit-canonical-neighborhood-is-cap}
 \uses{lem:limit-canonical-neighborhood-fails-at-surgery-scale}
+
 When the limiting strong-neck embedding meets a surgery cap, the canonical
 neighborhood obtained for the approximating points is a $(C,\epsilon)$-cap
 coming from the cap evolution, not a strong $\epsilon$-neck.
@@ -74,6 +77,7 @@ coming from the cap evolution, not a strong $\epsilon$-neck.
 \begin{claim}[The rescaled surgery time lies before $\theta_1$ in the limit]
 \label{claim:tilde-t-prime-bounded-by-theta1}
 \uses{def:overline-delta-0}
+
 After rescaling a counterexample by the previous surgery scale and moving that
 surgery time to $0$, there is $\theta_1<1$, independent of the sequence, such
 that the rescaled failure time $\widetilde t'\leq\theta_1$.
@@ -135,8 +139,9 @@ neighborhood.
 \end{lemma}
 
 \begin{proof}
+  \uses{A_0, stdsoln, prop:surgery-cap-evolution-alternative, posdistdec, stdsolncannbhd, canonvary, neckglue, def:overline-delta-0, Restim}
 \sketch
-\uses{A_0,stdsoln,prop:surgery-cap-evolution-alternative,posdistdec,stdsolncannbhd,canonvary,neckglue}
+
 The cap curvature bound gives a uniform lower bound
 \begin{equation}
 \label{hequat}
@@ -240,6 +245,7 @@ Otherwise repeat at the next singular time.
 \begin{lemma}[The number of surgery times up to $T_{i+1}$ is bounded]
 \label{lem:bounded-number-of-surgeries}
 \uses{thm:main-existence-ricci-flow-surgery}
+
 \label{bddsurgery}
 For a flow satisfying Theorem~\ref{MAIN} on $[0,T)$ with $T\leq T_{i+1}$,
 the number of surgery times is bounded by a constant depending only on

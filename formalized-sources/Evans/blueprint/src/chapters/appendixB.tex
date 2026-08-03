@@ -18,9 +18,10 @@ for all $x,y\in\R^n$ and $0\leq\tau\leq1$.
 
 \begin{theorem}[Supporting hyperplanes]
 \label{thm:supporting-hyperplanes}
+\uses{def:convex-function-rn}
 \dcref{appB:B.1-thm-1}
 \group{Convex Analysis}
-\uses{def:convex-function-rn}
+
 If $f:\R^n\to\R$ is convex, then for every $x\in\R^n$ there exists $r\in\R^n$ such that
 \[
 (2)\qquad f(y)\geq f(x)+r\cdot(y-x)
@@ -30,9 +31,10 @@ for every $y\in\R^n$.
 
 \begin{remark}[Supporting hyperplanes and uniform convexity]
 \label{rem:supporting-hyperplane-remarks}
+\uses{thm:supporting-hyperplanes}
 \dcref{appB:B.1-rem-1}
 \group{Convex Analysis}
-\uses{thm:supporting-hyperplanes}
+
 (i) The affine map $y\mapsto f(x)+r\cdot(y-x)$ is a supporting hyperplane to $f$ at $x$, and (2) places the graph of $f$ above it. If $f$ is differentiable at $x$, then $r=Df(x)$.
 
 (ii) For $f\in C^2(\R^n)$, convexity is equivalent to $D^2f\geq0$. The function is \textit{uniformly convex} if $D^2f\geq\theta I$ for some $\theta>0$, equivalently
@@ -45,9 +47,10 @@ for every $y\in\R^n$.
 
 \begin{theorem}[Jensen's inequality]
 \label{thm:jensens-inequality}
+\uses{def:convex-function-rn, thm:supporting-hyperplanes, def:function-notation-basic}
 \dcref{appB:B.1-thm-2}
 \group{Convex Analysis}
-\uses{def:convex-function-rn,thm:supporting-hyperplanes,def:function-notation-basic}
+
 Let $f:\R\to\R$ be convex, let $U\subset\R^n$ be open and bounded, and let $u:U\to\R$ be summable. Then
 \[
 (3)\qquad
@@ -83,9 +86,10 @@ For all $a,b\in\R$,
 
 \begin{lemma}[Cauchy's inequality with $\epsilon$]
 \label{lem:cauchys-inequality-epsilon}
+\uses{lem:cauchys-inequality}
 \dcref{appB:B.2-b}
 \group{Elementary Inequalities}
-\uses{lem:cauchys-inequality}
+
 For $a,b>0$ and $\epsilon>0$,
 \[
 (5)\qquad
@@ -98,9 +102,10 @@ ab\leq\epsilon a^2+\frac{b^2}{4\epsilon}.
 
 \begin{lemma}[Young's inequality]
 \label{lem:youngs-inequality}
+\uses{def:convex-function-rn}
 \dcref{appB:B.2-c}
 \group{Elementary Inequalities}
-\uses{def:convex-function-rn}
+
 Let $1<p,q<\infty$ and $p^{-1}+q^{-1}=1$. Then for $a,b>0$,
 \[
 (6)\qquad ab\leq\frac{a^p}{p}+\frac{b^q}{q}.
@@ -117,9 +122,10 @@ which is (6).
 
 \begin{lemma}[Young's inequality with $\epsilon$]
 \label{lem:youngs-inequality-epsilon}
+\uses{lem:youngs-inequality}
 \dcref{appB:B.2-d}
 \group{Elementary Inequalities}
-\uses{lem:youngs-inequality}
+
 Let $1<p,q<\infty$ satisfy $p^{-1}+q^{-1}=1$. For $a,b>0$ and $\epsilon>0$,
 \[
 (7)\qquad
@@ -137,9 +143,10 @@ C(\epsilon)=(\epsilon p)^{-q/p}q^{-1}.
 
 \begin{lemma}[H\"older's inequality]
 \label{lem:holders-inequality}
+\uses{lem:youngs-inequality}
 \dcref{appB:B.2-e}
 \group{Elementary Inequalities}
-\uses{lem:youngs-inequality}
+
 Let $1\leq p,q\leq\infty$ satisfy $p^{-1}+q^{-1}=1$. If $u\in L^p(U)$ and $v\in L^q(U)$, then
 \[
 (8)\qquad
@@ -153,9 +160,10 @@ Let $1\leq p,q\leq\infty$ satisfy $p^{-1}+q^{-1}=1$. If $u\in L^p(U)$ and $v\in 
 
 \begin{lemma}[Minkowski's inequality]
 \label{lem:minkowskis-inequality}
+\uses{lem:holders-inequality}
 \dcref{appB:B.2-f}
 \group{Elementary Inequalities}
-\uses{lem:holders-inequality}
+
 If $1\leq p\leq\infty$ and $u,v\in L^p(U)$, then
 \[
 (9)\qquad
@@ -179,9 +187,10 @@ division yields (9), with the zero-norm case immediate. For $p=\infty$, use the 
 
 \begin{remark}[Discrete H\"older and Minkowski inequalities]
 \label{rem:discrete-holder-minkowski-inequalities}
+\uses{lem:holders-inequality, lem:minkowskis-inequality}
 \dcref{appB:B.2-f-rem}
 \group{Elementary Inequalities}
-\uses{lem:holders-inequality,lem:minkowskis-inequality}
+
 For $a,b\in\R^n$, $1\leq p<\infty$, and $p^{-1}+q^{-1}=1$,
 \[
 (10)\qquad
@@ -202,9 +211,10 @@ For $a,b\in\R^n$, $1\leq p<\infty$, and $p^{-1}+q^{-1}=1$,
 
 \begin{lemma}[General H\"older inequality]
 \label{lem:general-holder-inequality}
+\uses{lem:holders-inequality}
 \dcref{appB:B.2-g}
 \group{Elementary Inequalities}
-\uses{lem:holders-inequality}
+
 Let $1\leq p_1,\ldots,p_m\leq\infty$ satisfy
 \[
 \sum_{k=1}^m\frac1{p_k}=1,
@@ -222,9 +232,10 @@ and suppose $u_k\in L^{p_k}(U)$ for $k=1,\ldots,m$. Then
 
 \begin{lemma}[Interpolation inequality for $L^p$-norms]
 \label{lem:interpolation-inequality-lp-norms}
+\uses{lem:holders-inequality}
 \dcref{appB:B.2-h}
 \group{Elementary Inequalities}
-\uses{lem:holders-inequality}
+
 Assume $1\leq s\leq r\leq t\leq\infty$ and
 \[
 \frac1r=\frac\theta s+\frac{1-\theta}{t}.
@@ -270,9 +281,10 @@ If $y\ne0$, minimize at $\epsilon=|x|/|y|$; if $y=0$, the conclusion is immediat
 
 \begin{remark}[Cauchy--Schwarz inequality for a symmetric nonnegative matrix]
 \label{rem:cauchy-schwarz-matrix-form}
+\uses{lem:cauchy-schwarz-inequality}
 \dcref{appB:B.2-i-rem}
 \group{Elementary Inequalities}
-\uses{lem:cauchy-schwarz-inequality}
+
 If $A=((a_{ij}))$ is a symmetric nonnegative $n\times n$ matrix, then for $x,y\in\R^n$,
 \[
 (14)\qquad
@@ -314,9 +326,10 @@ Integrate from $0$ to $t$ and use $e^{-\int_0^s\phi}\leq1$ to obtain (16). Setti
 
 \begin{lemma}[Gronwall's inequality (integral form)]
 \label{lem:gronwalls-inequality-integral-form}
+\uses{lem:gronwalls-inequality-differential-form}
 \dcref{appB:B.2-k}
 \group{Gronwall's Inequality}
-\uses{lem:gronwalls-inequality-differential-form}
+
 (i) Let $\xi:[0,T]\to[0,\infty)$ be summable and suppose
 \[
 (17)\qquad

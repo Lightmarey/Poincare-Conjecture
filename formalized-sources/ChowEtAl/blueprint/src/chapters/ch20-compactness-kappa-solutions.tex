@@ -7,10 +7,12 @@
 
 \begin{theorem}[$\kappa$-solutions with Harnack have ASCR $=\infty$ and AVR $=0$]
 \label{thm:chow-iii-kappa-harnack-ascr-avr}
+\source{chow-et-al-ricci-flow-part-iii:page-0145,page-0146,page-0147,page-0148,page-0149,page-0150}
+\uses{def:chow-iii-kappa-harnack, def:chow-iii-asymptotic-ratios, thm:chow-iii-point-picking-infinite-ascr, thm:chow-iii-dimension-reduction-one, thm:chow-iii-2d-kappa}
 \dcref{ch20:20.1}
 \group{Asymptotic Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0145,page-0146,page-0147,page-0148,page-0149,page-0150}
-\uses{def:chow-iii-kappa-harnack,def:chow-iii-asymptotic-ratios,thm:chow-iii-point-picking-infinite-ascr,thm:chow-iii-dimension-reduction-one,thm:chow-iii-2d-kappa}
+
+
 For every complete noncompact $n$-dimensional $\kappa$-solution with Harnack,
 $n\ge2$, one has
 \[
@@ -49,10 +51,12 @@ zero ASCR.  Thus none of the three cases occurs.
 
 \begin{corollary}[Any ancient solution with bounded $\Rm\ge0$ must have AVR $=0$]
 \label{cor:chow-iii-ancient-bounded-nonnegative-avr-zero}
-\dcref{ch20:20.2}
-\group{Asymptotic Geometry}
 \source{chow-et-al-ricci-flow-part-iii:page-0145,page-0146}
 \uses{thm:chow-iii-kappa-harnack-ascr-avr}
+\dcref{ch20:20.2}
+\group{Asymptotic Geometry}
+
+
 Let $(\mathcal M^n,g(t))$, $t\le0$, be complete, noncompact, nonflat, and
 ancient, with nonnegative curvature operator and
 \[
@@ -69,9 +73,10 @@ time-slice noncollapsing to force zero AVR, a contradiction.
 
 \begin{remark}[Kahler analogue]
 \label{rem:chow-iii-kahler-ancient-avr-zero}
+\source{chow-et-al-ricci-flow-part-iii:page-0146}
 \dcref{ch20:20.3}
 \group{Asymptotic Geometry}
-\source{chow-et-al-ricci-flow-part-iii:page-0146}
+
 The analogous statement holds for a nonflat ancient Kahler--Ricci flow with
 bounded nonnegative bisectional curvature: its asymptotic volume ratio is
 zero at every time.
@@ -81,10 +86,12 @@ zero at every time.
 
 \begin{proposition}[Almost ancient solutions with bounded $\Rm\ge0$ are collapsed at large scales]
 \label{prop:chow-iii-almost-ancient-large-scale-collapse}
+\source{chow-et-al-ricci-flow-part-iii:page-0151,page-0152}
+\uses{cor:chow-iii-ancient-bounded-nonnegative-avr-zero, prop:chow-iii-cgt-injectivity}
 \dcref{ch20:20.4}
 \group{Almost Kappa-Solutions}
-\source{chow-et-al-ricci-flow-part-iii:page-0151,page-0152}
-\uses{cor:chow-iii-ancient-bounded-nonnegative-avr-zero,prop:chow-iii-cgt-injectivity}
+
+
 For every $\varepsilon>0$ there is $A<\infty$ with the following property.
 Suppose $(\mathcal M_k^n,g_k(t))$, $t\in[t_k,0]$, have nonnegative curvature
 operator, and there are $x_k\in\mathcal M_k$, $r_k>0$ such that
@@ -114,10 +121,12 @@ contradicting Corollary~\ref{cor:chow-iii-ancient-bounded-nonnegative-avr-zero}.
 
 \begin{remark}[Interpretation of almost ancient]
 \label{rem:chow-iii-almost-ancient-rescaling}
-\dcref{ch20:20.5}
-\group{Almost Kappa-Solutions}
 \source{chow-et-al-ricci-flow-part-iii:page-0151}
 \uses{prop:chow-iii-almost-ancient-large-scale-collapse}
+\dcref{ch20:20.5}
+\group{Almost Kappa-Solutions}
+
+
 For $\widetilde g_k(t)=Q_kg_k(Q_k^{-1}t)$, the hypotheses say that the
 backward time intervals tend to $(-\infty,0]$ and that $R\le2$ on balls whose
 radii tend to infinity.  Thus the sequence becomes ancient and globally
@@ -126,10 +135,12 @@ bounded in the pointed limit.
 
 \begin{proposition}[Curvature estimate in noncollapsed balls]
 \label{prop:chow-iii-curvature-estimate-noncollapsed-balls}
+\source{chow-et-al-ricci-flow-part-iii:page-0152,page-0153,page-0154,page-0155,page-0156,page-0157}
+\uses{prop:chow-iii-almost-ancient-large-scale-collapse, prop:chow-iii-parabolic-cylinder-curvature-control, thm:chow-iii-changing-distances}
 \dcref{ch20:20.6}
 \group{Almost Kappa-Solutions}
-\source{chow-et-al-ricci-flow-part-iii:page-0152,page-0153,page-0154,page-0155,page-0156,page-0157}
-\uses{prop:chow-iii-almost-ancient-large-scale-collapse,prop:chow-iii-parabolic-cylinder-curvature-control,thm:chow-iii-changing-distances}
+
+
 For every $\omega>0$ there are $B(\omega),C(\omega)<\infty$ and
 $\tau_0(\omega)>0$ as follows.  Let $(\mathcal M^n,g(t))$,
 $t\in[t_0,0]$, be a not necessarily complete Ricci flow with $\Rm\ge0$, and
@@ -175,9 +186,10 @@ $[-\tau_0,0]$, so the first assertion applies there.
 
 \begin{remark}[Independence from the short-time parameter]
 \label{rem:chow-iii-curvature-estimate-time-independent}
+\source{chow-et-al-ricci-flow-part-iii:page-0153}
 \dcref{ch20:20.7}
 \group{Almost Kappa-Solutions}
-\source{chow-et-al-ricci-flow-part-iii:page-0153}
+
 The first, time-interval-noncollapsed assertion of Proposition
 \ref{prop:chow-iii-curvature-estimate-noncollapsed-balls} is independent of
 the choice of $\tau_0$.
@@ -187,9 +199,10 @@ the choice of $\tau_0$.
 
 \begin{definition}[Precompact and compact modulo scaling]
 \label{def:chow-iii-compact-modulo-scaling}
+\source{chow-et-al-ricci-flow-part-iii:page-0157,page-0158}
 \dcref{ch20:20.21--20.22}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0157,page-0158}
+
 For a sequence of ancient flows with positive scalar curvature and chosen
 space-time points $(x_k,t_k)$, define the curvature-normalized flows
 \[
@@ -204,19 +217,22 @@ modulo scaling} if every limit remains in the collection.
 
 \begin{remark}[Positive scalar curvature or Ricci flatness]
 \label{rem:chow-iii-ancient-positive-or-ricci-flat}
+\source{chow-et-al-ricci-flow-part-iii:page-0158}
 \dcref{ch20:20.8}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0158}
+
 An ancient solution with bounded curvature either has positive scalar
 curvature or is Ricci flat.
 \end{remark}
 
 \begin{theorem}[Compactness of $\kappa$-solutions with Harnack]
 \label{thm:chow-iii-kappa-harnack-compactness}
+\source{chow-et-al-ricci-flow-part-iii:page-0158,page-0160,page-0161,page-0162,page-0163,page-0164,page-0165,page-0166,page-0167,page-0168,page-0169,page-0170}
+\uses{def:chow-iii-compact-modulo-scaling, thm:chow-iii-kappa-harnack-ascr-avr, prop:chow-iii-almost-ancient-large-scale-collapse, prop:chow-iii-curvature-estimate-noncollapsed-balls, lem:chow-iii-bounded-curvature-bounded-distance, clm:chow-iii-unit-ball-volume-lower-bound}
 \dcref{ch20:20.9}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0158,page-0160,page-0161,page-0162,page-0163,page-0164,page-0165,page-0166,page-0167,page-0168,page-0169,page-0170}
-\uses{def:chow-iii-compact-modulo-scaling,thm:chow-iii-kappa-harnack-ascr-avr,prop:chow-iii-almost-ancient-large-scale-collapse,prop:chow-iii-curvature-estimate-noncollapsed-balls,lem:chow-iii-bounded-curvature-bounded-distance,clm:chow-iii-unit-ball-volume-lower-bound}
+
+
 For every $\kappa>0$ and $n\ge2$, the collection of $n$-dimensional
 $\kappa$-solutions with Harnack is compact modulo scaling.
 \end{theorem}
@@ -251,20 +267,24 @@ normalization pass to the smooth limit.
 
 \begin{corollary}[Compactness of three-dimensional $\kappa$-solutions]
 \label{cor:chow-iii-3d-kappa-compactness}
+\source{chow-et-al-ricci-flow-part-iii:page-0158}
+\uses{thm:chow-iii-kappa-harnack-compactness, prop:chow-iii-3d-harnack-equivalence}
 \dcref{ch20:20.10}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0158}
-\uses{thm:chow-iii-kappa-harnack-compactness,prop:chow-iii-3d-harnack-equivalence}
+
+
 For fixed $\kappa>0$, the collection of three-dimensional $\kappa$-solutions
 is compact modulo scaling.
 \end{corollary}
 
 \begin{corollary}[Improved compactness of three-dimensional $\kappa$-solutions]
 \label{cor:chow-iii-3d-kappa-improved-compactness}
+\source{chow-et-al-ricci-flow-part-iii:page-0158,page-0159}
+\uses{cor:chow-iii-3d-kappa-compactness, thm:chow-iii-kappa-gap}
 \dcref{ch20:20.11}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0158,page-0159}
-\uses{cor:chow-iii-3d-kappa-compactness,thm:chow-iii-kappa-gap}
+
+
 The union, over all $\kappa>0$, of the noncompact three-dimensional
 $\kappa$-solutions is compact modulo scaling.  The corresponding union of
 nonspherical-space-form three-dimensional $\kappa$-solutions is precompact
@@ -280,10 +300,12 @@ spherical limit is possible.
 
 \begin{example}[Pointed limits of model $\kappa$-solutions]
 \label{ex:chow-iii-model-kappa-pointed-limits}
+\source{chow-et-al-ricci-flow-part-iii:page-0159}
+\uses{ex:chow-iii-bryant-soliton, thm:chow-iii-perelman-sphere}
 \dcref{ch20:20.12}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0159}
-\uses{ex:chow-iii-bryant-soliton,thm:chow-iii-perelman-sphere}
+
+
 Pointed curvature-normalized Bryant solitons can limit only to the Bryant
 soliton or the round cylinder.  The expected limits of Perelman's spherical
 $\kappa$-solution are the shrinking round sphere, the solution itself, the
@@ -293,10 +315,12 @@ location of the basepoints relative to the tips.
 
 \begin{remark}[Exclusion of conical degeneration]
 \label{rem:chow-iii-kappa-compactness-no-conical-degeneration}
-\dcref{ch20:20.13}
-\group{Compactness}
 \source{chow-et-al-ricci-flow-part-iii:page-0160}
 \uses{thm:chow-iii-kappa-harnack-compactness}
+\dcref{ch20:20.13}
+\group{Compactness}
+
+
 The compactness theorem rules out curvature blow-up a uniformly bounded
 distance from basepoints of bounded curvature; in particular, a sequence
 cannot develop a singular Euclidean-cone pointed limit at such a point.
@@ -304,9 +328,10 @@ cannot develop a singular Euclidean-cone pointed limit at such a point.
 
 \begin{remark}[Rescaling at a high-curvature point]
 \label{rem:chow-iii-rescaling-bounded-distance}
+\source{chow-et-al-ricci-flow-part-iii:page-0162}
 \dcref{ch20:20.14}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0162}
+
 If a closed manifold has $R(x)=1$ and $R(y)d(x,y)^2\le C$, then for
 $\widetilde g=R(w)g$ one has
 \[
@@ -320,10 +345,12 @@ point at bounded distance in a pointed limit.
 
 \begin{lemma}[Bounded curvature at bounded distance]
 \label{lem:chow-iii-bounded-curvature-bounded-distance}
+\source{chow-et-al-ricci-flow-part-iii:page-0167,page-0168}
+\uses{prop:chow-iii-almost-ancient-large-scale-collapse, lem:chow-iii-point-picking-unbounded-change}
 \dcref{ch20:20.15}
 \group{Compactness}
-\source{chow-et-al-ricci-flow-part-iii:page-0167,page-0168}
-\uses{prop:chow-iii-almost-ancient-large-scale-collapse,lem:chow-iii-point-picking-unbounded-change}
+
+
 Let $(\mathcal M_k,g_k(t),x_k)$, $t\in(-\alpha_k,0]$, be complete Ricci
 flows with $\Rm\ge0$, $\partial_tR\ge0$, and suppose
 \[
@@ -352,10 +379,12 @@ Bishop--Gromov comparison gives the opposite positive lower bound.
 
 \begin{claim}[Volume noncollapsing from curvature bounded at the center]
 \label{clm:chow-iii-unit-ball-volume-lower-bound}
-\dcref{ch20:20.16}
-\group{Compactness}
 \source{chow-et-al-ricci-flow-part-iii:page-0169,page-0170}
 \uses{prop:chow-iii-curvature-estimate-noncollapsed-balls}
+\dcref{ch20:20.16}
+\group{Compactness}
+
+
 For curvature-normalized $n$-dimensional $\kappa$-solutions with Harnack,
 there is $c_0(\kappa,n)>0$ such that
 \[
@@ -376,10 +405,12 @@ the unit-ball volume $\omega_n/2$.
 
 \begin{theorem}[Derivative estimates for $\kappa$-solutions satisfying trace Harnack]
 \label{thm:chow-iii-kappa-scaled-derivative-estimates}
-\dcref{ch20:20.17}
-\group{Derivative Estimates}
 \source{chow-et-al-ricci-flow-part-iii:page-0170,page-0171}
 \uses{thm:chow-iii-kappa-harnack-compactness}
+\dcref{ch20:20.17}
+\group{Derivative Estimates}
+
+
 For $\kappa>0$ and $n\ge2$, there is $\eta(\kappa,n)<\infty$ such that every
 $n$-dimensional $\kappa$-solution with Harnack satisfies
 \[
@@ -397,10 +428,12 @@ under which both quantities converge to finite values, a contradiction.
 
 \begin{remark}[Estimates for derivatives of any order]
 \label{rem:chow-iii-kappa-all-derivative-estimates}
-\dcref{ch20:20.18}
-\group{Derivative Estimates}
 \source{chow-et-al-ricci-flow-part-iii:page-0171}
 \uses{thm:chow-iii-kappa-scaled-derivative-estimates}
+\dcref{ch20:20.18}
+\group{Derivative Estimates}
+
+
 For every $\ell,m\ge0$ there is $\eta(\kappa,\ell,m,n)$ such that
 \[
  |\partial_t^\ell\nabla^mR|
@@ -412,10 +445,12 @@ derivatives of $\Rm$, $\Ric$, or $R$.
 
 \begin{corollary}[Universal scaled derivative bounds in dimension three]
 \label{cor:chow-iii-3d-universal-scaled-derivatives}
+\source{chow-et-al-ricci-flow-part-iii:page-0171,page-0172}
+\uses{cor:chow-iii-3d-kappa-improved-compactness, thm:chow-iii-kappa-scaled-derivative-estimates}
 \dcref{ch20:20.19}
 \group{Derivative Estimates}
-\source{chow-et-al-ricci-flow-part-iii:page-0171,page-0172}
-\uses{cor:chow-iii-3d-kappa-improved-compactness,thm:chow-iii-kappa-scaled-derivative-estimates}
+
+
 There is a universal $\eta_0<\infty$, independent of $\kappa$, such that
 every three-dimensional $\kappa$-solution satisfies
 \[
@@ -429,9 +464,10 @@ $\eta(\ell,m)R^{1+\ell+m/2}$.
 
 \begin{remark}[Derivative estimate fails on the cigar soliton]
 \label{rem:chow-iii-cigar-scaled-derivative-failure}
+\source{chow-et-al-ricci-flow-part-iii:page-0172}
 \dcref{ch20:20.20}
 \group{Derivative Estimates}
-\source{chow-et-al-ricci-flow-part-iii:page-0172}
+
 For the cigar metric $ds^2+\tanh^2s\,d\theta^2$ with
 $R=4\operatorname{sech}^2s$, one has
 $\sup R^{-3/2}|\nabla R|=\infty$.  Curvature rescaling about points tending
@@ -440,10 +476,12 @@ to infinity produces a pointed half-line rather than a smooth surface limit.
 
 \begin{corollary}[Quadratic scalar-curvature lower bound]
 \label{cor:chow-iii-kappa-quadratic-curvature-lower-bound}
-\dcref{ch20:20.21}
-\group{Derivative Applications}
 \source{chow-et-al-ricci-flow-part-iii:page-0172}
 \uses{thm:chow-iii-kappa-scaled-derivative-estimates}
+\dcref{ch20:20.21}
+\group{Derivative Applications}
+
+
 For a noncompact $\kappa$-solution with Harnack and any fixed $p$,
 \[
  \liminf_{d_{g(t)}(x,p)\to\infty}R(x,t)d_{g(t)}(x,p)^2
@@ -462,10 +500,12 @@ and the assertion follows after multiplying by the squared distance.
 
 \begin{corollary}[Scalar curvature along steady-soliton flow lines]
 \label{cor:chow-iii-steady-soliton-flowline-curvature-lower-bound}
-\dcref{ch20:20.23}
-\group{Derivative Applications}
 \source{chow-et-al-ricci-flow-part-iii:page-0173}
 \uses{thm:chow-iii-kappa-scaled-derivative-estimates}
+\dcref{ch20:20.23}
+\group{Derivative Applications}
+
+
 Let a nonflat steady gradient Ricci soliton have $\Rm\ge0$ and be
 $\kappa$-noncollapsed at all scales.  If
 $\dot\sigma=-\nabla f$, then
@@ -484,9 +524,10 @@ $\frac d{du}R(\sigma(u))^{-1}\le\eta$, which integrates to the result.
 
 \begin{corollary}[Linear scalar-curvature upper bound for steady solitons]
 \label{cor:chow-iii-3d-steady-soliton-curvature-upper-bound}
+\source{chow-et-al-ricci-flow-part-iii:page-0173,page-0174}
 \dcref{ch20:20.24}
 \group{Derivative Applications}
-\source{chow-et-al-ricci-flow-part-iii:page-0173,page-0174}
+
 For a three-dimensional nonflat steady gradient Ricci soliton with
 $\Rm\ge0$ which is $\kappa$-noncollapsed at all scales, there is $C<\infty$
 such that
@@ -494,3 +535,46 @@ such that
  R(x)\le\frac C{1+d(x,p)}.
 \]
 \end{corollary}
+
+\begin{claim}[Optimistic conjecture in dimension two]
+\label{conj:chow-iii-2d-ancient-classification}
+\dcref{ch20:20.27}
+\group{Classification Conjectures}
+\source{chow-et-al-ricci-flow-part-iii:page-0174,page-0175}
+Every two-dimensional ancient solution with bounded curvature is one of:
+a quotient of $S^2$ or $\mathbb R^2$ with constant nonnegative curvature;
+the cigar steady soliton; or the King--Rosenau ancient solution on $S^2$ or
+$\mathbb{RP}^2$.
+\end{claim}
+
+\begin{claim}[Optimistic conjecture in dimension three]
+\label{conj:chow-iii-3d-positive-kappa-classification}
+\dcref{ch20:20.26}
+\group{Classification Conjectures}
+\source{chow-et-al-ricci-flow-part-iii:page-0174}
+The only three-dimensional $\kappa$-solutions with positive sectional
+curvature are round spherical space forms, the Bryant steady soliton, and
+Perelman's spherical $\kappa$-solution on $S^3$ or $\mathbb{RP}^3$.
+\end{claim}
+
+\begin{example}[Problem: infinite asymptotic scalar curvature from derivatives]
+\label{prob:chow-iii-kappa-derivatives-infinite-ascr}
+\dcref{ch20:20.22}
+\group{Derivative Applications}
+\source{chow-et-al-ricci-flow-part-iii:page-0173}
+Can the lower bound in Corollary
+\ref{cor:chow-iii-kappa-quadratic-curvature-lower-bound} be strengthened to
+\[
+ \liminf_{d_{g(t)}(x,p)\to\infty}R(x,t)d_{g(t)}(x,p)^2=\infty?
+\]
+\end{example}
+
+\begin{example}[Problem: rotationally symmetric positive $\kappa$-solutions]
+\label{prob:chow-iii-rotational-kappa-bryant}
+\dcref{ch20:20.25}
+\group{Classification Problems}
+\source{chow-et-al-ricci-flow-part-iii:page-0174}
+Prove that every rotationally symmetric noncompact three-dimensional
+$\kappa$-solution with positive sectional curvature is a constant multiple
+of the Bryant soliton.
+\end{example}

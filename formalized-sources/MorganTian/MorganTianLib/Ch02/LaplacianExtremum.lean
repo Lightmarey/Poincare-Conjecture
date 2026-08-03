@@ -81,6 +81,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E
 
 /-! ### Differentiating a function along an integral curve -/
 
+set_option backward.isDefEq.respectTransparency false in
 omit [CompleteSpace E] in
 /-- **Math.** Chain rule along an integral curve: if `γ` is an integral curve
 of the smooth field `X` near `t₀` and `F : M → ℝ` is smooth, then near `t₀`
@@ -116,6 +117,7 @@ theorem exists_isMIntegralCurveAt_smoothVectorField (X : SmoothVectorField I M)
 
 /-! ### The manifold Fermat lemma -/
 
+set_option backward.isDefEq.respectTransparency false in
 omit [CompleteSpace E] in
 /-- **Math.** **Fermat's lemma on a manifold**: at a local maximum `q` of a
 smooth function `f : M → ℝ`, the differential vanishes: `df_q = 0`. Proof:
@@ -145,6 +147,7 @@ theorem mfderiv_eq_zero_of_isLocalMax [FiniteDimensional ℝ E]
 
 /-! ### The Laplacian at an interior maximum -/
 
+set_option backward.isDefEq.respectTransparency false in
 omit [CompleteSpace E] in
 /-- **Math.** At a local maximum `q` of a smooth function `f`, the Hessian is
 negative semi-definite: `Hess(f)_q(v, v) ≤ 0` for every `v ∈ T_qM`. Proof: by
@@ -162,7 +165,7 @@ theorem hessianAt_nonpos_of_isLocalMax [FiniteDimensional ℝ E]
   set X := extendVector q v with hX
   -- the connection term of the Hessian vanishes at the critical point
   have hsecond : (nabla.cov X X).dir f q = 0 := by
-    simp only [SmoothVectorField.dir, hcrit, ContinuousLinearMap.zero_apply]
+    simp only [SmoothVectorField.dir, hcrit, zero_apply]
   -- restrict to an integral curve of `X` through `q`
   obtain ⟨γ, hγ0, hγ⟩ := exists_isMIntegralCurveAt_smoothVectorField X q
   have hφev : ∀ᶠ t in 𝓝 (0 : ℝ), HasDerivAt (f ∘ γ) (X.dir f (γ t)) t :=

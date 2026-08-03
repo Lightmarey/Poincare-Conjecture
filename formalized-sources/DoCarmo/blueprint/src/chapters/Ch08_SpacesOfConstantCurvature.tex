@@ -35,8 +35,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[Jacobi transfer in parallel frames]
   \label{lem:dc-ch8-2-1-jacobi-transfer}
   \lean{Riemannian.Jacobi.jacobiFrameTransfer}
-  \leanok
   \uses{def:dc-ch5-2-1}
+  \leanok
   Let $\gamma$ and $\tilde\gamma$ be geodesics with parallel orthonormal frames
   $(e_i)$ and $(\tilde e_i)$, where $e_n=\gamma'$ and
   $\tilde e_n=\tilde\gamma'$. Suppose that $J=\sum_i y_i e_i$ satisfies the Jacobi
@@ -63,8 +63,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[Jacobi transfer in constant curvature]
   \label{lem:dc-ch8-2-1-jacobi-transfer-const}
   \lean{Riemannian.Jacobi.jacobiFrameTransfer_isConstantCurvature}
-  \leanok
   \uses{lem:dc-ch8-2-1-jacobi-transfer}
+  \leanok
   Suppose $M$ and $\tilde M$ both have constant sectional curvature $K_0$ (the same value),
   and let $e_1,\dots,e_n$ resp.\ $\tilde e_1,\dots,\tilde e_n$ be parallel orthonormal frames
   along geodesics $\gamma$ resp.\ $\tilde\gamma$, with the velocities $u'=e_{n_0}$,
@@ -97,8 +97,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[velocity-seeded parallel orthonormal frame]
   \label{lem:dc-ch8-2-1-velocity-frame}
   \lean{Riemannian.Jacobi.exists_velocitySeededParallelOrthoFrame}
-  \leanok
   \uses{def:dc-ch5-2-1}
+  \leanok
   Let $\gamma:[a,b]\to M$ be a geodesic whose initial velocity is a unit vector. Then there is a parallel
   orthonormal frame $e_1(t),\dots,e_n(t)$ along $\gamma$ (parallel: $De_i/dt=0$; orthonormal:
   $\langle e_i(t),e_j(t)\rangle=\delta_{ij}$ for all $t$) whose distinguished member is the
@@ -115,8 +115,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[the parallel orthonormal frame along a geodesic, intrinsically]
   \label{lem:dc-ch8-2-1-parallel-ortho-frame}
   \lean{Riemannian.Jacobi.exists_parallelOrthoFrameAlongOn}
-  \leanok
   \uses{def:dc-ch5-2-1}
+  \leanok
   Let $\gamma:[a,b]\to M$ be a geodesic and let $\{e^0_i\}$ be an orthonormal family in
   $T_{\gamma(a)}M$. Then there is a family $\{e_i(t)\}$ of vector fields along $\gamma$ with
   $e_i(a)=e^0_i$, each $e_i$ parallel along $\gamma$, and
@@ -132,9 +132,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[Parallel frame transported by a linear isometry]
   \label{lem:dc-ch8-2-1-transported-frame}
-  \lean{Riemannian.Jacobi.exists_transportedParallelOrthoFrame,
-    Riemannian.Jacobi.exists_transportedParallelOrthoFrame_pair}
-  \leanok
+  \lean{Riemannian.Jacobi.exists_transportedParallelOrthoFrame, Riemannian.Jacobi.exists_transportedParallelOrthoFrame_pair}
   \uses{lem:dc-ch8-2-1-parallel-ortho-frame}
   Let $i:T_pM\to T_{\tilde p}\tilde M$ be a linear isometry, let $\{e^0_j\}$ be an orthonormal
   family at $p=\gamma(a)$, and let $\tilde\gamma:[a,b]\to\tilde M$ be a geodesic with
@@ -155,12 +153,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[uniqueness of parallel transport, and the transport map $P_t$]
   \label{lem:dc-ch8-2-1-parallel-transport-map}
-  \lean{Riemannian.Jacobi.IsParallelFieldAlongOn.eqOn_of_initial,
-    Riemannian.Jacobi.parallelTransportAlong,
-    Riemannian.Jacobi.metricInner_parallelTransportAlong,
-    Riemannian.Jacobi.parallelTransportAlongEquiv}
-  \leanok
+  \lean{Riemannian.Jacobi.IsParallelFieldAlongOn.eqOn_of_initial, Riemannian.Jacobi.parallelTransportAlong, Riemannian.Jacobi.metricInner_parallelTransportAlong, Riemannian.Jacobi.parallelTransportAlongEquiv}
   \uses{def:dc-ch5-2-1}
+  \leanok
   Let $\gamma:[a,b]\to M$ be a geodesic. Two fields parallel along $\gamma$ that agree at $a$
   agree on all of $[a,b]$. Consequently the assignment carrying $w_0\in T_{\gamma(a)}M$ to the
   value at $t$ of the parallel field along $\gamma$ seeded by $w_0$ is a well-defined map
@@ -201,12 +196,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[Parallel-transport conjugation]
   \label{lem:dc-ch8-2-1-phi}
-  \lean{Riemannian.Jacobi.parallelTransportConjugate,
-    Riemannian.Jacobi.parallelTransportConjugate_left,
-    Riemannian.Jacobi.metricInner_parallelTransportConjugate,
-    Riemannian.Jacobi.eq_parallelTransportConjugate_of_isParallelFieldAlongOn}
-  \leanok
+  \lean{Riemannian.Jacobi.parallelTransportConjugate, Riemannian.Jacobi.parallelTransportConjugate_left, Riemannian.Jacobi.metricInner_parallelTransportConjugate, Riemannian.Jacobi.eq_parallelTransportConjugate_of_isParallelFieldAlongOn}
   \uses{lem:dc-ch8-2-1-parallel-transport-map}
+  \leanok
   Let $\gamma:[a,b]\to M$ and $\tilde\gamma:[a,b]\to\tilde M$ be geodesics and let
   $i:T_{\gamma(a)}M\to T_{\tilde\gamma(a)}\tilde M$ be linear. For $t\in[a,b]$ put
 
@@ -247,9 +239,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[the chart frame coefficient is the intrinsic curvature form]
   \label{lem:dc-ch8-2-1-curvature-bridge}
-  \lean{Riemannian.Jacobi.chartMetricInner_chartCurvatureEndo_eq_curvatureFormAt,
-    Riemannian.Jacobi.chartFrameRealize_tangentCoordChange,
-    Riemannian.Jacobi.chartMetricInner_chartCurvatureEndo_chartVectorRep_eq_curvatureFormAt}
+  \lean{Riemannian.Jacobi.chartMetricInner_chartCurvatureEndo_eq_curvatureFormAt, Riemannian.Jacobi.chartFrameRealize_tangentCoordChange, Riemannian.Jacobi.chartMetricInner_chartCurvatureEndo_chartVectorRep_eq_curvatureFormAt}
   \leanok
   For $v,a,b\in T_qM$, the frame coefficient $\langle\mathcal R(a,v)v,b\rangle$ computed in a
   chart --- the form in which the Jacobi equation is actually run --- equals the intrinsic
@@ -273,8 +263,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[curvature intertwining in frame coefficients]
   \label{lem:dc-ch8-2-1-hmatch-transfer}
   \lean{Riemannian.Jacobi.chartMetricInner_chartCurvatureEndo_transfer_of_curvatureFormAt}
-  \leanok
   \uses{lem:dc-ch8-2-1-curvature-bridge}
+  \leanok
   Let $\varphi:T_qM\to T_{\tilde q}\tilde M$ be any map under which the curvature forms
   correspond,
 
@@ -322,8 +312,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[the Jacobi field read in a parallel orthonormal frame]
   \label{lem:dc-ch8-2-1-frame-coeff-bridge}
   \lean{Riemannian.Jacobi.isJacobiPairOn_of_isJacobiFieldOn}
+  \uses{def:dc-ch5-2-1, lem:dc-ch8-2-1-parallel-ortho-frame}
   \leanok
-  \uses{def:dc-ch5-2-1,lem:dc-ch8-2-1-parallel-ortho-frame}
   Let $\gamma$ be a geodesic of $M$, read in a fixed chart as the coordinate curve $u$
   staying in the chart domain, and let the pair $(J,DJ)$ satisfy the Jacobi pair system
   along $u$ on a parameter window $[a',b']$,
@@ -360,8 +350,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[transfer of the Jacobi norm under matching curvature coefficients]
   \label{lem:dc-ch8-2-1-jacobi-norm-transfer-general}
   \lean{Riemannian.Jacobi.chartMetricInner_transfer_of_jacobiCoef_match}
+  \uses{lem:dc-ch8-2-1-frame-coeff-bridge, lem:dc-ch8-2-1-hmatch-transfer, def:dc-ch5-2-1}
   \leanok
-  \uses{lem:dc-ch8-2-1-frame-coeff-bridge,lem:dc-ch8-2-1-hmatch-transfer,def:dc-ch5-2-1}
   Let $\gamma$ in $M$ and $\tilde\gamma$ in $\tilde M$ ($\dim M=\dim\tilde M=n$) be geodesics
   read in fixed charts as the coordinate curves $u$ and $\tilde u$, each staying in its chart
   domain, let $(J,DJ)$ and $(\tilde J,D\tilde J)$ satisfy the Jacobi pair systems along $u$
@@ -408,11 +398,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[the transported frame and velocity, read in a fixed chart]
   \label{lem:dc-ch8-2-1-frame-chart-interface}
-  \lean{Riemannian.Jacobi.jacobiCoef_match_of_curvatureFormAt,
-    Riemannian.Jacobi.jacobiCoef_match_of_curvatureFormAt_parallelTransportConjugate}
+  \lean{Riemannian.Jacobi.jacobiCoef_match_of_curvatureFormAt, Riemannian.Jacobi.jacobiCoef_match_of_curvatureFormAt_parallelTransportConjugate}
+  \uses{lem:dc-ch8-2-1-hmatch-transfer, lem:dc-ch8-2-1-transported-frame, lem:dc-ch8-2-1-parallel-transport-map, lem:dc-ch8-2-1-phi}
   \leanok
-  \uses{lem:dc-ch8-2-1-hmatch-transfer,lem:dc-ch8-2-1-transported-frame,
-    lem:dc-ch8-2-1-parallel-transport-map,lem:dc-ch8-2-1-phi}
   Let $\gamma:[a,b]\to M$ and $\tilde\gamma:[a,b]\to\tilde M$ be geodesics, each of which
   \emph{stays in the source of one fixed chart}, read there as the coordinate curves $u$ and
   $\tilde u$. Let $e_1,\dots,e_n$ be parallel fields along $\gamma$ and $\tilde e_1,\dots,
@@ -456,10 +444,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[the Cartan Jacobi norm transfer in variable curvature, intrinsically]
   \label{lem:dc-ch8-2-1-jacobi-norm-transfer-manifold}
   \lean{Riemannian.Jacobi.metricInner_jacobiField_transfer_of_curvatureFormAt}
+  \uses{lem:dc-ch8-2-1-frame-chart-interface, lem:dc-ch8-2-1-jacobi-norm-transfer-general, lem:dc-ch8-2-1-parallel-ortho-frame, def:dc-ch5-2-1}
   \leanok
-  \uses{lem:dc-ch8-2-1-frame-chart-interface,
-    lem:dc-ch8-2-1-jacobi-norm-transfer-general,
-    lem:dc-ch8-2-1-parallel-ortho-frame,def:dc-ch5-2-1}
   Let $\gamma,\tilde\gamma:[a',b']\to M,\tilde M$ be geodesics, each staying in the source of
   one fixed chart; let $e_1,\dots,e_n$ and $\tilde e_1,\dots,\tilde e_n$ be parallel
   \emph{orthonormal} frames along them; and let $\phi_t$ carry $\gamma'(t)$ to
@@ -486,8 +472,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[time reversal of the Jacobi system]
   \label{lem:dc-ch8-2-1-jacobi-reversal}
   \lean{Riemannian.Jacobi.IsJacobiFieldAlongOn.comp_neg}
-  \leanok
   \uses{def:dc-ch5-2-1}
+  \leanok
   Let $\gamma$ be a geodesic on $[a,b]$ and let $(J,DJ)$ be a Jacobi pair along it. Then
   $t\mapsto\gamma(-t)$ is a geodesic on $[-b,-a]$, and
 
@@ -508,8 +494,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[backward uniqueness of Jacobi fields]
   \label{lem:dc-ch8-2-1-jacobi-backward-uniqueness}
   \lean{Riemannian.Jacobi.IsJacobiFieldAlongOn.eqOn_zero_of_right}
+  \uses{lem:dc-ch8-2-1-jacobi-reversal, def:dc-ch5-2-1}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-reversal,def:dc-ch5-2-1}
   A Jacobi field along a geodesic on $[a,b]$ with $J(b)=0$ and $DJ(b)=0$ vanishes identically
   on $[a,b]$.
 \end{lemma}
@@ -523,8 +509,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[a Jacobi field with prescribed data at an interior time]
   \label{lem:dc-ch8-2-1-jacobi-interior-data}
   \lean{Riemannian.Jacobi.exists_isJacobiFieldAlongOn_at}
+  \uses{lem:dc-ch8-2-1-jacobi-backward-uniqueness, def:dc-ch5-2-1}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-backward-uniqueness,def:dc-ch5-2-1}
   Let $\gamma$ be a geodesic on $[a,b]$, let $t_0\in[a,b]$, and let $J_0,DJ_0\in
   T_{\gamma(t_0)}M$. Then there is a Jacobi field $(J,DJ)$ on $[a,b]$ with
   $J(t_0)=J_0$ and $DJ(t_0)=DJ_0$.
@@ -540,12 +526,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[from the norm transfer to the local isometry, in variable curvature]
   \label{lem:dc-ch8-2-1-exp-norm-transfer-general}
   \lean{Riemannian.Jacobi.metricInner_mfderiv_eq_of_semiconjugacy_of_curvatureFormAt}
+  \uses{lem:dc-ch8-2-1-jacobi-norm-transfer-manifold, cor:dc-ch5-2-5, lem:dc-ch8-2-1-jacobi-interior-data, lem:dc-ch8-2-1-exp-norm-transfer, lem:dc-ch8-2-1-polarization, lem:dc-ch8-2-1-exp-equiv, lem:dc-ch8-2-1-mfderiv-bridge, lem:dc-ch8-2-2-semiconjugacy, lem:dc-ch8-2-1-no-conjugate}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-norm-transfer-manifold,cor:dc-ch5-2-5,
-    lem:dc-ch8-2-1-jacobi-interior-data,
-    lem:dc-ch8-2-1-exp-norm-transfer,lem:dc-ch8-2-1-polarization,
-    lem:dc-ch8-2-1-exp-equiv,lem:dc-ch8-2-1-mfderiv-bridge,
-    lem:dc-ch8-2-2-semiconjugacy,lem:dc-ch8-2-1-no-conjugate}
   Let $M,\tilde M$ be complete, $p\in M$, $\tilde p\in\tilde M$, let $i:T_pM\to
   T_{\tilde p}\tilde M$ be a linear isometry, and let $v\in T_pM$. Write $\gamma=\gamma_v$
   and $\tilde\gamma=\gamma_{i(v)}$ for the two geodesics, and $q=\exp_p(v)$. Suppose:
@@ -616,19 +598,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[Cartan transport and matched frames]
   \label{lem:dc-ch8-2-1-cartan-frame-data}
-  \lean{Riemannian.Jacobi.cartanTransportZero,
-    Riemannian.Jacobi.cartanSeed,
-    Riemannian.Jacobi.metricInner_cartanSeed,
-    Riemannian.Jacobi.cartanPhi,
-    Riemannian.Jacobi.cartanPhi_zero,
-    Riemannian.Jacobi.cartanPhi_velocity,
-    Riemannian.Jacobi.cartanPhi_isLinear,
-    Riemannian.Jacobi.metricInner_cartanPhi,
-    Riemannian.Jacobi.exists_cartanFrameData}
+  \lean{Riemannian.Jacobi.cartanTransportZero, Riemannian.Jacobi.cartanSeed, Riemannian.Jacobi.metricInner_cartanSeed, Riemannian.Jacobi.cartanPhi, Riemannian.Jacobi.cartanPhi_zero, Riemannian.Jacobi.cartanPhi_velocity, Riemannian.Jacobi.cartanPhi_isLinear, Riemannian.Jacobi.metricInner_cartanPhi, Riemannian.Jacobi.exists_cartanFrameData}
+  \uses{lem:dc-ch8-2-1-phi, lem:dc-ch8-2-1-transported-frame, lem:dc-ch8-2-1-parallel-transport-map, lem:dc-ch8-2-1-metric-ortho-basis, lem:dc-ch8-2-1-velocity-frame}
   \leanok
-  \uses{lem:dc-ch8-2-1-phi,lem:dc-ch8-2-1-transported-frame,
-    lem:dc-ch8-2-1-parallel-transport-map,lem:dc-ch8-2-1-metric-ortho-basis,
-    lem:dc-ch8-2-1-velocity-frame}
   Let $M,\tilde M$ be complete, $p\in M$, $\tilde p\in\tilde M$, let $i:T_pM\to T_{\tilde p}\tilde
   M$ be a linear isometry, let $v\in T_pM$, and let $[a',b']$ be a window with $a'<0<1<b'$. Write
   $\gamma=\gamma_v$ and $\tilde\gamma=\gamma_{i(v)}$.
@@ -670,9 +642,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[Cartan transfer with nonconjugacy discharged]
   \label{lem:dc-ch8-2-1-exp-norm-transfer-general-discharged}
   \lean{Riemannian.Jacobi.metricInner_mfderiv_eq_of_semiconjugacy_of_curvatureFormAt_of_isLocalDiffeomorphAt}
+  \uses{lem:dc-ch8-2-1-exp-norm-transfer-general, lem:dc-ch8-2-1-cartan-frame-data, lem:dc-ch8-2-1-no-conjugate-normal}
   \leanok
-  \uses{lem:dc-ch8-2-1-exp-norm-transfer-general,lem:dc-ch8-2-1-cartan-frame-data,
-    lem:dc-ch8-2-1-no-conjugate-normal}
   Same setting and same conclusion as \cref{lem:dc-ch8-2-1-exp-norm-transfer-general} --- $f$
   preserves the metric at $q=\exp_p(v)$ --- but with the frames, $\phi$, and \emph{both}
   no-conjugacy clauses discharged rather than assumed. In place of them it assumes only that
@@ -694,10 +665,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[from pointwise metric preservation to a local isometry on $V$]
   \label{lem:dc-ch8-2-1-local-isometry-packaging}
-\lean{Riemannian.DCIsLocalIsometryAt}
-\leanok
-  \uses{lem:dc-ch8-2-1-exp-norm-transfer-general-discharged,lem:dc-ch8-2-1-single-chart,
-    lem:dc-ch8-2-1-exp-diff-zero,lem:dc-ch8-2-1-no-conjugate-zero}
+  \lean{Riemannian.DCIsLocalIsometryAt}
+  \uses{lem:dc-ch8-2-1-exp-norm-transfer-general-discharged, lem:dc-ch8-2-1-single-chart, lem:dc-ch8-2-1-exp-diff-zero, lem:dc-ch8-2-1-no-conjugate-zero, lem:dc-ch8-2-1-window-transfer}
+  \notready
   \notready
   The preceding result is pointwise at $q=\exp_p(v)$; this lemma packages it into a local
   isometry on the whole normal neighborhood. The remaining requirements are a single chart
@@ -723,9 +693,8 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[a geodesic of a normal neighborhood, confined to one chart]
   \label{lem:dc-ch8-2-1-single-chart}
-  \uses{lem:dc-ch8-2-1-frame-chart-interface,
-    lem:dc-ch8-2-1-jacobi-norm-transfer-general,
-    lem:dc-ch8-2-1-jacobi-norm-transfer-manifold}
+  \uses{lem:dc-ch8-2-1-frame-chart-interface, lem:dc-ch8-2-1-jacobi-norm-transfer-general, lem:dc-ch8-2-1-jacobi-norm-transfer-manifold, lem:dc-ch8-2-1-chart-partition, lem:dc-ch8-2-1-radial-chart}
+  \notready
   \notready
   The conclusion needed by the transfer is the single-chart condition on each geodesic over
   $[0,1]$ (or a finite chart-chain with compatible ODE data). The existence of such a chart
@@ -735,8 +704,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[the constant-curvature normal Jacobi field, any sign of $K_0$]
   \label{lem:dc-ch8-2-1-jacobi-const-solution}
   \lean{Riemannian.Jacobi.isJacobiFieldAlongOn_of_constantCurvature}
-  \leanok
   \uses{def:dc-ch5-2-1}
+  \leanok
   Let $M$ have constant sectional curvature $K_0$ (any sign), let $\gamma$ be a
   unit-speed geodesic, let $w$ be a \emph{parallel} field along $\gamma$ \emph{normal}
   to $\gamma'$, and let $h$ be any scalar solution of $h''+K_0 h=0$ (given by its
@@ -761,10 +730,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[the norm of a constant-curvature Jacobi field is manifold-independent]
   \label{lem:dc-ch8-2-1-jacobi-norm-transfer}
-  \lean{Riemannian.Jacobi.metricInner_jacobiField_eq_of_constantCurvature_of_speedSq,
-    Riemannian.Jacobi.metricInner_jacobiField_transfer_of_constantCurvature_of_speedSq}
+  \lean{Riemannian.Jacobi.metricInner_jacobiField_eq_of_constantCurvature_of_speedSq, Riemannian.Jacobi.metricInner_jacobiField_transfer_of_constantCurvature_of_speedSq}
+  \uses{lem:dc-ch8-2-1-jacobi-const-solution, cor:dc-ch5-2-5, def:dc-ch5-2-1}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-const-solution,cor:dc-ch5-2-5,def:dc-ch5-2-1}
   Let $\gamma:[0,\ell]\to M$ be a geodesic of squared speed $c=|\gamma'|^2\neq0$ on a
   manifold of constant sectional curvature $K_0$, let $J$ be the Jacobi field with $J(0)=0$
   and covariant derivative $DJ$, and let $h$ solve $h''+K_0c\,h=0$, $h(0)=0$, $h'(0)=1$.
@@ -804,10 +772,9 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[the differential of $\exp$ is norm-preserving between spaces of the same
   constant curvature]
   \label{lem:dc-ch8-2-1-exp-norm-transfer}
-  \lean{Riemannian.Jacobi.chartMetricInner_expDifferential_eq_metricInner_jacobiField,
-    Riemannian.Jacobi.chartMetricInner_expDifferential_transfer_of_constantCurvature_of_speedSq}
+  \lean{Riemannian.Jacobi.chartMetricInner_expDifferential_eq_metricInner_jacobiField, Riemannian.Jacobi.chartMetricInner_expDifferential_transfer_of_constantCurvature_of_speedSq}
+  \uses{lem:dc-ch8-2-1-jacobi-norm-transfer, cor:dc-ch5-2-5, def:dc-ch5-2-1}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-norm-transfer,cor:dc-ch5-2-5,def:dc-ch5-2-1}
   Let $M$ and $\tilde M$ be complete manifolds of the same constant sectional curvature
   $K_0$, let $p\in M$, $\tilde p\in\tilde M$, and let $v\in T_p M$, $\tilde v\in T_{\tilde p}\tilde M$
   be \emph{nonzero} vectors of the same length, $|v|_p^2=|\tilde v|_{\tilde p}^2=c$. Let
@@ -837,11 +804,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[in constant curvature, no conjugate point where the scalar solution is nonzero]
   \label{lem:dc-ch8-2-1-no-conjugate}
-  \lean{Riemannian.Jacobi.not_isConjugatePointAt_of_constantCurvature_of_speedSq,
-    Riemannian.Jacobi.not_isConjugatePointAt_of_constantCurvature_of_lt_pi,
-    Riemannian.Jacobi.exists_constCurvatureSol_ne_zero}
+  \lean{Riemannian.Jacobi.not_isConjugatePointAt_of_constantCurvature_of_speedSq, Riemannian.Jacobi.not_isConjugatePointAt_of_constantCurvature_of_lt_pi, Riemannian.Jacobi.exists_constCurvatureSol_ne_zero}
+  \uses{lem:dc-ch8-2-1-jacobi-norm-transfer, lem:dc-ch8-2-1-jacobi-const-solution, def:dc-ch5-3-1}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-norm-transfer,lem:dc-ch8-2-1-jacobi-const-solution,def:dc-ch5-3-1}
   Let $\gamma:[0,\ell]\to M$ be a geodesic of squared speed $c\neq0$ on a manifold of constant
   sectional curvature $K_0$, and let $h$ solve $h''+K_0c\,h=0$, $h(0)=0$, $h'(0)=1$. If
   $h(\ell)\neq0$, then $\gamma(\ell)$ is \emph{not} conjugate to $\gamma(0)$ along $\gamma$.
@@ -900,8 +865,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[$\exp_p$ is a local diffeomorphism away from conjugate points]
   \label{lem:dc-ch8-2-1-exp-local-diffeo}
   \lean{Riemannian.Jacobi.isLocalDiffeomorphAt_expMapGlobal_of_not_conjugate}
+  \uses{lem:dc-ch8-2-1-exp-equiv, prop:dc-ch5-3-5, lem:dc-ch7-3-2}
   \leanok
-  \uses{lem:dc-ch8-2-1-exp-equiv,prop:dc-ch5-3-5,lem:dc-ch7-3-2}
   Let $M$ be complete and $p\in M$. If the geodesic $\gamma_v$ from $p$ has no conjugate point
   of $p$ at parameter $1$, then $\exp_p$ is a $C^\infty$ local diffeomorphism at $v$; in
   particular it has a $C^\infty$ local inverse $\exp_p^{-1}$ defined near $\exp_p(v)$.
@@ -922,11 +887,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[non-conjugacy from the normal neighborhood, in variable curvature]
   \label{lem:dc-ch8-2-1-no-conjugate-normal}
-  \lean{Riemannian.Jacobi.not_isConjugatePointAt_globalGeodesic_of_injective_mfderiv,
-    Riemannian.Jacobi.not_isConjugatePointAt_globalGeodesic_of_isLocalDiffeomorphAt,
-    Riemannian.Jacobi.isLocalDiffeomorphAt_expMapGlobal_iff_not_isConjugatePointAt}
+  \lean{Riemannian.Jacobi.not_isConjugatePointAt_globalGeodesic_of_injective_mfderiv, Riemannian.Jacobi.not_isConjugatePointAt_globalGeodesic_of_isLocalDiffeomorphAt, Riemannian.Jacobi.isLocalDiffeomorphAt_expMapGlobal_iff_not_isConjugatePointAt}
+  \uses{lem:dc-ch8-2-1-exp-local-diffeo, lem:dc-ch8-2-1-mfderiv-bridge, prop:dc-ch5-3-5}
   \leanok
-  \uses{lem:dc-ch8-2-1-exp-local-diffeo,lem:dc-ch8-2-1-mfderiv-bridge,prop:dc-ch5-3-5}
   Let $M$ be complete and $p\in M$, and let $v\in T_pM$. If $d(\exp_p)_v$ is injective --- in
   particular, if $\exp_p$ is a local diffeomorphism at $v$ --- then $1$ is \emph{not} a conjugate
   parameter along $\gamma_v$. No curvature hypothesis is needed.
@@ -956,8 +919,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[polarization: a linear map preserving lengths preserves the metric]
   \label{lem:dc-ch8-2-1-polarization}
-  \lean{Riemannian.Jacobi.metricInner_polarization,
-    Riemannian.Jacobi.metricInner_transfer_of_norm_transfer}
+  \lean{Riemannian.Jacobi.metricInner_polarization, Riemannian.Jacobi.metricInner_transfer_of_norm_transfer}
   \leanok
   Let $q\in M$, $\tilde q\in\tilde M$, and let $L:T_qM\to T_{\tilde q}\tilde M$ be additive. If
   $L$ preserves squared lengths, $|L(w)|^2_{\tilde q}=|w|^2_q$ for every $w\in T_qM$, then it
@@ -998,8 +960,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[$d(\exp_p)_v$ is an isomorphism, with the Jacobi identification]
   \label{lem:dc-ch8-2-1-exp-equiv}
   \lean{Riemannian.Jacobi.expDifferential_isEquiv_jacobi_of_not_conjugate}
+  \uses{cor:dc-ch5-2-5, prop:dc-ch5-3-5}
   \leanok
-  \uses{cor:dc-ch5-2-5,prop:dc-ch5-3-5}
   If the geodesic $\gamma_v$ from $p$ has no conjugate point of $p$ at parameter $1$, then
   $d(\exp_p)_v$ is a continuous linear isomorphism $T_pM\to T_{\exp_p(v)}M$, \emph{and} it still
   satisfies the identification of \cref{cor:dc-ch5-2-5}: it carries $\nabla J(0)$ to $J(1)$ for
@@ -1019,9 +981,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[the chart reading of a differential is the coordinate change of the intrinsic one]
   \label{lem:dc-ch8-2-1-mfderiv-bridge}
-  \lean{Riemannian.Jacobi.chartReading_fderiv_apply_eq,
-    Riemannian.Jacobi.chartMetricInner_chartReading_fderiv_eq_metricInner_mfderiv,
-    Riemannian.Jacobi.chartMetricInner_expDifferential_eq_metricInner_mfderiv}
+  \lean{Riemannian.Jacobi.chartReading_fderiv_apply_eq, Riemannian.Jacobi.chartMetricInner_chartReading_fderiv_eq_metricInner_mfderiv, Riemannian.Jacobi.chartMetricInner_expDifferential_eq_metricInner_mfderiv}
   \leanok
   Let $F:T_pM\to M$ be $C^\infty$, let $\zeta\in M$ be a chart base point with $F(v)$ in the
   chart source, and suppose the chart-$\zeta$ reading $w\mapsto\varphi_\zeta(F(w))$ has
@@ -1071,8 +1031,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[the base point is never conjugate to itself at parameter $1$]
   \label{lem:dc-ch8-2-1-no-conjugate-zero}
   \lean{Riemannian.Jacobi.not_isConjugatePointAt_globalGeodesic_zero}
+  \uses{lem:dc-ch8-2-1-mfderiv-bridge, lem:dc-ch8-2-1-exp-diff-zero, prop:dc-ch5-3-5}
   \leanok
-  \uses{lem:dc-ch8-2-1-mfderiv-bridge,lem:dc-ch8-2-1-exp-diff-zero,prop:dc-ch5-3-5}
   For $M$ complete and $p\in M$, the parameter $1$ is not conjugate along the constant geodesic
   $\gamma_0$. No curvature hypothesis is needed. Consequently, by
   \cref{lem:dc-ch8-2-1-exp-local-diffeo}, $\exp_p$ is a $C^\infty$ local diffeomorphism at
@@ -1092,10 +1052,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[non-conjugacy along $\gamma_v$, and surjectivity of $d(\exp_p)_v$]
   \label{lem:dc-ch8-2-1-no-conjugate-ball}
-  \lean{Riemannian.Jacobi.not_isConjugatePointAt_globalGeodesic_of_constantCurvature_of_lt_pi,
-    Riemannian.Jacobi.surjective_mfderiv_expMapGlobal_of_not_conjugate}
+  \lean{Riemannian.Jacobi.not_isConjugatePointAt_globalGeodesic_of_constantCurvature_of_lt_pi, Riemannian.Jacobi.surjective_mfderiv_expMapGlobal_of_not_conjugate}
+  \uses{lem:dc-ch8-2-1-no-conjugate, lem:dc-ch8-2-1-exp-local-diffeo}
   \leanok
-  \uses{lem:dc-ch8-2-1-no-conjugate,lem:dc-ch8-2-1-exp-local-diffeo}
   Let $M$ have constant curvature $K_0$ and let $v\in T_pM$ with $v\neq 0$. If
 
   $$
@@ -1123,9 +1082,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[the norm transfer, intrinsically]
   \label{lem:dc-ch8-2-1-exp-norm-transfer-mfderiv}
   \lean{Riemannian.Jacobi.metricInner_mfderiv_expMapGlobal_transfer_of_constantCurvature_of_speedSq}
+  \uses{lem:dc-ch8-2-1-exp-norm-transfer, lem:dc-ch8-2-1-mfderiv-bridge, lem:dc-ch8-2-1-exp-equiv, lem:dc-ch8-2-1-jacobi-const-solution}
   \leanok
-  \uses{lem:dc-ch8-2-1-exp-norm-transfer,lem:dc-ch8-2-1-mfderiv-bridge,lem:dc-ch8-2-1-exp-equiv,
-    lem:dc-ch8-2-1-jacobi-const-solution}
   Let $M$ and $\tilde M$ have the same constant curvature $K_0$, let $p\in M$, $\tilde p\in\tilde M$,
   and let $v,Z\in T_pM$, $\tilde v,\tilde Z\in T_{\tilde p}\tilde M$ with $v\neq 0$ and
 
@@ -1161,14 +1119,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[metric preservation along a semiconjugacy]
   \label{lem:dc-ch8-2-2-semiconjugacy}
-  \lean{Riemannian.Jacobi.mfderiv_apply_eq_of_semiconjugacy_zero,
-    Riemannian.Jacobi.metricInner_mfderiv_eq_of_semiconjugacy,
-    Riemannian.Jacobi.dcIsLocalIsometryAt_of_semiconjugacy,
-    Riemannian.Jacobi.dcIsLocalIsometryAt_of_semiconjugacy_self}
+  \lean{Riemannian.Jacobi.mfderiv_apply_eq_of_semiconjugacy_zero, Riemannian.Jacobi.metricInner_mfderiv_eq_of_semiconjugacy, Riemannian.Jacobi.dcIsLocalIsometryAt_of_semiconjugacy, Riemannian.Jacobi.dcIsLocalIsometryAt_of_semiconjugacy_self}
+  \uses{lem:dc-ch8-2-1-exp-norm-transfer-mfderiv, lem:dc-ch8-2-1-no-conjugate-ball, lem:dc-ch8-2-1-no-conjugate-zero, lem:dc-ch8-2-1-exp-diff-zero, lem:dc-ch8-2-1-polarization, lem:dc-ch8-2-1-exp-local-diffeo}
   \leanok
-  \uses{lem:dc-ch8-2-1-exp-norm-transfer-mfderiv,lem:dc-ch8-2-1-no-conjugate-ball,
-    lem:dc-ch8-2-1-no-conjugate-zero,lem:dc-ch8-2-1-exp-diff-zero,
-    lem:dc-ch8-2-1-polarization,lem:dc-ch8-2-1-exp-local-diffeo}
   Let $M$ and $\tilde M$ have the same constant curvature $K_0$, let $i:T_pM\to T_{\tilde p}\tilde M$
   be a linear isometry, and let $W\subset T_pM$ be an open neighborhood of $0$ on which
   $K_0\langle w,w\rangle_p<\pi^2$. Suppose $f:M\to\tilde M$ is differentiable at each $\exp_p(w)$,
@@ -1219,21 +1172,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{theorem}[Cartan local isometry theorem]
   \label{thm:dc-ch8-2-1}
+  \uses{cor:dc-ch5-2-5, lem:dc-ch8-2-1-jacobi-transfer, lem:dc-ch8-2-1-parallel-ortho-frame, lem:dc-ch8-2-1-transported-frame, lem:dc-ch8-2-1-hmatch-transfer, lem:dc-ch8-2-1-curvature-bridge, lem:dc-ch8-2-1-frame-coeff-bridge, lem:dc-ch8-2-1-jacobi-norm-transfer-general, lem:dc-ch8-2-1-frame-chart-interface, lem:dc-ch8-2-1-jacobi-norm-transfer-manifold, lem:dc-ch8-2-1-single-chart, lem:dc-ch8-2-1-exp-norm-transfer-general, lem:dc-ch8-2-1-phi, lem:dc-ch8-2-1-parallel-transport-map, lem:dc-ch8-2-1-exp-norm-transfer, lem:dc-ch8-2-1-exp-equiv, lem:dc-ch8-2-1-exp-local-diffeo, lem:dc-ch8-2-1-polarization, lem:dc-ch8-2-1-no-conjugate, lem:dc-ch8-2-1-mfderiv-bridge, lem:dc-ch8-2-1-exp-diff-zero, lem:dc-ch8-2-1-no-conjugate-zero, lem:dc-ch8-2-1-no-conjugate-ball, lem:dc-ch8-2-1-exp-norm-transfer-mfderiv, lem:dc-ch8-2-1-jacobi-reversal, lem:dc-ch8-2-1-jacobi-backward-uniqueness, lem:dc-ch8-2-1-jacobi-interior-data, lem:dc-ch8-2-1-local-isometry-packaging}
+  \notready
   \dcref{ch8:2.1}
-  \uses{cor:dc-ch5-2-5,lem:dc-ch8-2-1-jacobi-transfer,lem:dc-ch8-2-1-parallel-ortho-frame,
-    lem:dc-ch8-2-1-transported-frame,lem:dc-ch8-2-1-hmatch-transfer,
-    lem:dc-ch8-2-1-curvature-bridge,lem:dc-ch8-2-1-frame-coeff-bridge,
-    lem:dc-ch8-2-1-jacobi-norm-transfer-general,lem:dc-ch8-2-1-frame-chart-interface,
-    lem:dc-ch8-2-1-jacobi-norm-transfer-manifold,lem:dc-ch8-2-1-single-chart,
-    lem:dc-ch8-2-1-exp-norm-transfer-general,lem:dc-ch8-2-1-phi,
-    lem:dc-ch8-2-1-parallel-transport-map,lem:dc-ch8-2-1-exp-norm-transfer,
-    lem:dc-ch8-2-1-exp-equiv,lem:dc-ch8-2-1-exp-local-diffeo,
-    lem:dc-ch8-2-1-polarization,lem:dc-ch8-2-1-no-conjugate,
-    lem:dc-ch8-2-1-mfderiv-bridge,lem:dc-ch8-2-1-exp-diff-zero,
-    lem:dc-ch8-2-1-no-conjugate-zero,lem:dc-ch8-2-1-no-conjugate-ball,
-    lem:dc-ch8-2-1-exp-norm-transfer-mfderiv,
-    lem:dc-ch8-2-1-jacobi-reversal,lem:dc-ch8-2-1-jacobi-backward-uniqueness,
-    lem:dc-ch8-2-1-jacobi-interior-data,lem:dc-ch8-2-1-local-isometry-packaging}
   \notready
   With the notation above, if for all $q\in V$ and all $x,y,u,v\in T_q(M)$ we have
 
@@ -1292,17 +1233,10 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{corollary}[Local equivalence of equal-curvature spaces]
   \label{cor:dc-ch8-2-2}
-  \dcref{ch8:2.2}
-  \lean{Riemannian.Jacobi.exists_dcIsLocalIsometryAt_of_constantCurvature}
+  \lean{Riemannian.Jacobi.exists_dcIsLocalIsometryAt_of_constantCurvature_of_orthonormal_bases}
+  \uses{lem:dc-ch8-2-1-jacobi-transfer-const, lem:dc-ch8-2-1-velocity-frame, lem:dc-ch8-2-1-jacobi-norm-transfer, lem:dc-ch8-2-1-jacobi-const-solution, lem:dc-ch8-2-1-exp-norm-transfer, lem:dc-ch8-2-1-exp-equiv, lem:dc-ch8-2-1-exp-local-diffeo, lem:dc-ch8-2-1-polarization, lem:dc-ch8-2-1-no-conjugate, lem:dc-ch8-2-1-mfderiv-bridge, lem:dc-ch8-2-1-exp-diff-zero, lem:dc-ch8-2-1-no-conjugate-zero, lem:dc-ch8-2-1-no-conjugate-ball, lem:dc-ch8-2-1-exp-norm-transfer-mfderiv, lem:dc-ch8-2-2-semiconjugacy}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-transfer-const,lem:dc-ch8-2-1-velocity-frame,
-    lem:dc-ch8-2-1-jacobi-norm-transfer,lem:dc-ch8-2-1-jacobi-const-solution,
-    lem:dc-ch8-2-1-exp-norm-transfer,lem:dc-ch8-2-1-exp-equiv,
-    lem:dc-ch8-2-1-exp-local-diffeo,lem:dc-ch8-2-1-polarization,
-    lem:dc-ch8-2-1-no-conjugate,lem:dc-ch8-2-1-mfderiv-bridge,
-    lem:dc-ch8-2-1-exp-diff-zero,lem:dc-ch8-2-1-no-conjugate-zero,
-    lem:dc-ch8-2-1-no-conjugate-ball,lem:dc-ch8-2-1-exp-norm-transfer-mfderiv,
-    lem:dc-ch8-2-2-semiconjugacy}
+  \dcref{ch8:2.2}
   Let $M$ and $\tilde{M}$ be spaces with the same constant curvature and the same
   dimension $n$. Let $p\in M$ and $\tilde{p}\in\tilde{M}$. Choose arbitrary
   orthonormal bases $\{e_j\}$ of $T_p(M)$ and $\{\tilde{e}_j\}$ of $T_{\tilde{p}}(\tilde{M})$,
@@ -1323,17 +1257,10 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{corollary}[Local frame transitivity]
   \label{cor:dc-ch8-2-3}
-  \dcref{ch8:2.3}
-  \lean{Riemannian.Jacobi.exists_dcIsLocalIsometryAt_of_constantCurvature_self}
+  \lean{Riemannian.Jacobi.exists_dcIsLocalIsometryAt_of_constantCurvature_self_of_orthonormal_bases}
+  \uses{lem:dc-ch8-2-1-jacobi-transfer-const, lem:dc-ch8-2-1-velocity-frame, lem:dc-ch8-2-1-jacobi-norm-transfer, lem:dc-ch8-2-1-jacobi-const-solution, lem:dc-ch8-2-1-exp-norm-transfer, lem:dc-ch8-2-1-exp-equiv, lem:dc-ch8-2-1-exp-local-diffeo, lem:dc-ch8-2-1-polarization, lem:dc-ch8-2-1-no-conjugate, lem:dc-ch8-2-1-mfderiv-bridge, lem:dc-ch8-2-1-exp-diff-zero, lem:dc-ch8-2-1-no-conjugate-zero, lem:dc-ch8-2-1-no-conjugate-ball, lem:dc-ch8-2-1-exp-norm-transfer-mfderiv, lem:dc-ch8-2-2-semiconjugacy}
   \leanok
-  \uses{lem:dc-ch8-2-1-jacobi-transfer-const,lem:dc-ch8-2-1-velocity-frame,
-    lem:dc-ch8-2-1-jacobi-norm-transfer,lem:dc-ch8-2-1-jacobi-const-solution,
-    lem:dc-ch8-2-1-exp-norm-transfer,lem:dc-ch8-2-1-exp-equiv,
-    lem:dc-ch8-2-1-exp-local-diffeo,lem:dc-ch8-2-1-polarization,
-    lem:dc-ch8-2-1-no-conjugate,lem:dc-ch8-2-1-mfderiv-bridge,
-    lem:dc-ch8-2-1-exp-diff-zero,lem:dc-ch8-2-1-no-conjugate-zero,
-    lem:dc-ch8-2-1-no-conjugate-ball,lem:dc-ch8-2-1-exp-norm-transfer-mfderiv,
-    lem:dc-ch8-2-2-semiconjugacy}
+  \dcref{ch8:2.3}
   Let $M$ be a space of constant curvature and let $p$ and $q$ be any two points of
   $M$. Let $\{e_j\}$ and $\{f_j\}$ be arbitrary orthonormal bases of $T_p(M)$ and
   $T_q(M)$, respectively. Then there exist neighborhoods $U$ of $p$ and $V$ of $q$,
@@ -1352,11 +1279,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{definition}[hyperbolic space $H^n$ as a Riemannian manifold]
   \label{def:dc-ch8-3-hyperbolic-space}
-  \lean{Riemannian.opensConformalMetric,
-    Riemannian.Hyperbolic.hyperbolicMetric,
-    Riemannian.Hyperbolic.hyperbolicMetric_apply,
-    Riemannian.Hyperbolic.hyperbolicMetric_gram}
-  \leanok
+  \lean{Riemannian.opensConformalMetric, Riemannian.Hyperbolic.hyperbolicMetric, Riemannian.Hyperbolic.hyperbolicMetric_apply, Riemannian.Hyperbolic.hyperbolicMetric_gram}
   The \emph{hyperbolic space} $H^n$ is the open half-space
   $H^n=\{x\in\mathbb R^n : x_n>0\}$ carrying the metric $g_{ij}=\delta_{ij}/x_n^2$
   of $(1)$, that is, the conformal rescaling of the ambient Euclidean metric by
@@ -1366,9 +1289,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[Christoffel symbols and coordinate curvature of a conformal metric]
   \label{lem:dc-ch8-3-conformal-curvature}
-  \lean{Riemannian.Hyperbolic.christoffelFromMetric_eq,
-    Riemannian.Hyperbolic.Rcoeff_diag,
-    Riemannian.Hyperbolic.hyperbolic_sectionalCurvature}
+  \lean{Riemannian.Hyperbolic.christoffelFromMetric_eq, Riemannian.Hyperbolic.Rcoeff_diag, Riemannian.Hyperbolic.hyperbolic_sectionalCurvature}
   \leanok
   For the conformal metric $g_{ij}=\delta_{ij}/F^2$ ($f=\log F$), the Christoffel
   symbols computed from the Koszul formula
@@ -1437,12 +1358,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[hyperbolic chart Gram and inverse-Gram in the abstract chart frame]
   \label{lem:dc-ch8-3-hyperbolic-chart-gram}
-  \lean{Riemannian.Hyperbolic.hyperbolic_chartGramMatrix,
-    Riemannian.Hyperbolic.hyperbolic_chartGramMatrix_eq,
-    Riemannian.Hyperbolic.hyperbolic_chartInvGramMatrix,
-    Riemannian.Hyperbolic.finBasisGramMatrix_det_isUnit}
-  \leanok
+  \lean{Riemannian.Hyperbolic.hyperbolic_chartGramMatrix, Riemannian.Hyperbolic.hyperbolic_chartGramMatrix_eq, Riemannian.Hyperbolic.hyperbolic_chartInvGramMatrix, Riemannian.Hyperbolic.finBasisGramMatrix_det_isUnit}
   \uses{def:dc-ch8-3-hyperbolic-space}
+  \leanok
   Because $H^n=\{x_n>0\}$ is an open subset of $\mathbb R^n$, its tangent bundle is
   canonically trivial and the abstract chart frame vector
   $\partial_i=$ \emph{finBasis}$_i$ (the frame underlying \cref{lem:dc-ch8-3-chart-curvature})
@@ -1471,11 +1389,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[hyperbolic chart Christoffel symbols and their derivatives, closed form]
   \label{lem:dc-ch8-3-hyperbolic-christoffel}
-  \lean{Riemannian.Hyperbolic.hyperbolic_chartChristoffel,
-    Riemannian.Hyperbolic.hyperbolic_partialDeriv_chartChristoffel,
-    Riemannian.Hyperbolic.hyperbolic_partialDeriv_chartGramOnE}
-  \leanok
+  \lean{Riemannian.Hyperbolic.hyperbolic_chartChristoffel, Riemannian.Hyperbolic.hyperbolic_partialDeriv_chartChristoffel, Riemannian.Hyperbolic.hyperbolic_partialDeriv_chartGramOnE}
   \uses{lem:dc-ch8-3-hyperbolic-chart-gram}
+  \leanok
   In the abstract chart frame the Christoffel symbols of the hyperbolic metric are,
   in closed form,
   $$\Gamma^k_{ij}(y)=-f_i\delta^k_j-f_j\delta^k_i+d^k B_{ij},\qquad
@@ -1510,8 +1426,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[inverse-Gram/coordinate identity $\sum_{ij}B^{ij}c_ic_j=1$]
   \label{lem:dc-ch8-3-inverse-gram-coord}
   \lean{Riemannian.Hyperbolic.finBasis_inv_gram_coord}
-  \leanok
   \uses{lem:dc-ch8-3-hyperbolic-chart-gram}
+  \leanok
   For the constant abstract-basis Gram matrix
   $B_{ij}=\langle\text{finBasis}_i,\text{finBasis}_j\rangle$ with inverse
   $B^{ij}=(B^{-1})_{ij}$, and $c_i=(\text{finBasis}_i)_n$ the $n$-th coordinate of
@@ -1532,11 +1448,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[the pointwise $(0,4)$ curvature form and its chart-frame value]
   \label{lem:dc-ch8-3-pointwise-curvature-form}
-  \lean{Riemannian.AffineConnection.curvatureFormAt,
-    Riemannian.AffineConnection.isAlgCurvatureForm_curvatureFormAt,
-    Riemannian.leviCivita_curvatureFormAt_chartFrame}
-  \leanok
+  \lean{Riemannian.AffineConnection.curvatureFormAt, Riemannian.AffineConnection.isAlgCurvatureForm_curvatureFormAt, Riemannian.leviCivita_curvatureFormAt_chartFrame}
   \uses{lem:dc-ch8-3-chart-curvature}
+  \leanok
   The curvature operator $R(X,Y)Z$ is a tensor: its value at $p$ depends only on
   $X(p),Y(p),Z(p)$. Lowering by the
   metric gives the pointwise $(0,4)$ form $\langle R(x,y)z,t\rangle_g$ on
@@ -1570,12 +1484,9 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{proposition}[$H^n$ has constant sectional curvature $-1$]
   \label{prop:dc-ch8-3-const-curv}
-  \lean{Riemannian.Hyperbolic.hyperbolic_isConstantCurvature,
-    Riemannian.Hyperbolic.hyperbolicMetric_sectionalCurvature_eq_neg_one,
-    Riemannian.Hyperbolic.hyperbolic_curvatureFormAt_eq,
-    Riemannian.Hyperbolic.hyperbolic_curvatureFormAt_frame}
+  \lean{Riemannian.Hyperbolic.hyperbolic_isConstantCurvature, Riemannian.Hyperbolic.hyperbolicMetric_sectionalCurvature_eq_neg_one, Riemannian.Hyperbolic.hyperbolic_curvatureFormAt_eq, Riemannian.Hyperbolic.hyperbolic_curvatureFormAt_frame}
+  \uses{lem:dc-ch8-3-conformal-curvature, lem:dc-ch8-3-chart-curvature, lem:dc-ch8-3-pointwise-curvature-form, lem:dc-ch8-3-hyperbolic-chart-gram, lem:dc-ch8-3-hyperbolic-christoffel, lem:dc-ch8-3-inverse-gram-coord, cor:dc-ch4-3-5, def:dc-ch8-3-hyperbolic-space}
   \leanok
-  \uses{lem:dc-ch8-3-conformal-curvature,lem:dc-ch8-3-chart-curvature,lem:dc-ch8-3-pointwise-curvature-form,lem:dc-ch8-3-hyperbolic-chart-gram,lem:dc-ch8-3-hyperbolic-christoffel,lem:dc-ch8-3-inverse-gram-coord,cor:dc-ch4-3-5,def:dc-ch8-3-hyperbolic-space}
   The hyperbolic space $H^n$, with the metric $g_{ij}=\delta_{ij}/x_n^2$, has
   constant sectional curvature equal to $-1$: for every point and every
   $2$-plane $\sigma\subset T_pH^n$, $K(p,\sigma)=-1$.
@@ -1621,8 +1532,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[Christoffel contraction of the hyperbolic metric, closed form]
   \label{lem:dc-ch8-3-christoffel-contraction}
   \lean{Riemannian.Hyperbolic.hyperbolic_chartChristoffelContraction_eq}
+  \uses{lem:dc-ch8-3-hyperbolic-christoffel, lem:dc-ch8-3-inverse-gram-coord}
   \leanok
-  \uses{lem:dc-ch8-3-hyperbolic-christoffel,lem:dc-ch8-3-inverse-gram-coord}
   Contracting the closed-form chart Christoffel symbols
   $\Gamma^k_{ij}=-\delta_{jk}f_i-\delta_{ki}f_j+\delta_{ij}f_k$
   ($f_i=(\partial_i)_n/x_n$) of \cref{lem:dc-ch8-3-hyperbolic-christoffel} against
@@ -1656,8 +1567,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[geodesic equation of $H^n$ in Euclidean form]
   \label{lem:dc-ch8-3-geodesic-equation}
   \lean{Riemannian.Hyperbolic.hyperbolic_isGeodesic_of}
-  \leanok
   \uses{lem:dc-ch8-3-christoffel-contraction}
+  \leanok
   A twice-differentiable curve $u:\mathbb R\to\mathbb R^n$ staying in the
   half-space ($u_n(t)>0$) whose acceleration satisfies the ordinary differential
   equation
@@ -1686,8 +1597,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[vertical lines are geodesics of $H^n$]
   \label{lem:dc-ch8-3-vertical-geodesic}
   \lean{Riemannian.Hyperbolic.hyperbolic_vertical_isGeodesic}
-  \leanok
   \uses{lem:dc-ch8-3-geodesic-equation}
+  \leanok
   For a horizontal base point $c$ (with $c_n=0$) and a constant $a>0$, the affinely
   parametrised vertical line
 
@@ -1711,8 +1622,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[semicircles perpendicular to $\partial H^n$ are geodesics of $H^n$]
   \label{lem:dc-ch8-3-semicircle-geodesic}
   \lean{Riemannian.Hyperbolic.hyperbolic_semicircle_isGeodesic}
-  \leanok
   \uses{lem:dc-ch8-3-geodesic-equation}
+  \leanok
   For a center $m$ on the boundary hyperplane ($m_n=0$), a unit horizontal vector
   $\hat u$ ($\hat u_n=0$, $\langle\hat u,\hat u\rangle=1$) and a radius $r>0$, the
   affinely parametrised semicircle
@@ -1738,11 +1649,10 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{proposition}[geodesics of $H^n$]
   \label{prop:dc-ch8-3-1}
-  \dcref{ch8:3.1}
   \lean{Riemannian.Hyperbolic.hyperbolic_geodesic_classification}
+  \uses{ex:dc-ch3-3-10, lem:dc-ch8-3-geodesic-equation, lem:dc-ch8-3-vertical-geodesic, lem:dc-ch8-3-semicircle-geodesic}
   \leanok
-  \uses{ex:dc-ch3-3-10,lem:dc-ch8-3-geodesic-equation,lem:dc-ch8-3-vertical-geodesic,
-    lem:dc-ch8-3-semicircle-geodesic}
+  \dcref{ch8:3.1}
   The straight lines perpendicular to the hyperplane $x_n=0$, and the circles of
   $H^n$ whose planes are perpendicular to the hyperplane $x_n=0$ and whose centers
   are in this hyperplane, are the geodesics of $H^n$.
@@ -1785,6 +1695,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{theorem}[universal covering of a space of constant curvature]
   \label{thm:dc-ch8-4-1}
+  \notready
   \dcref{ch8:4.1}
   \notready
   Let $M^n$ be a complete Riemannian manifold with constant sectional curvature $K$.
@@ -1828,8 +1739,7 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[a local isometry pushes geodesics forward]
   \label{lem:dc-ch8-4-2-geodesic-push}
   \lean{Riemannian.Geodesic.isGeodesicOn_comp_of_isLocalDiffeomorph}
-  \leanok
-  \uses{def:dc-ch1-2-3,def:dc-ch3-2-1}
+  \uses{def:dc-ch1-2-3, def:dc-ch3-2-1}
   Let $f:M\to N$ be a local isometry and let $\gamma$ be a geodesic of $M$ defined on
   an open set $s$ of times. Then $f\circ\gamma$ is a geodesic of $N$ on $s$.
 \end{lemma}
@@ -1847,11 +1757,7 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[the agreement locus is open and closed]
   \label{lem:dc-ch8-4-2-agree-locus}
-  \lean{Riemannian.AgreeLocus,
-    Riemannian.mem_agreeLocus_iff,
-    Riemannian.isClosed_agreeLocus,
-    Riemannian.eq_of_pointDatum_of_preconnected}
-  \leanok
+  \lean{Riemannian.AgreeLocus, Riemannian.mem_agreeLocus_iff, Riemannian.isClosed_agreeLocus, Riemannian.eq_of_pointDatum_of_preconnected}
   Let $f_1,f_2:M\to N$ be differentiable, $M$ connected, and let
 
   $$
@@ -1878,9 +1784,8 @@ $M$ and $\tilde{M}$, respectively.
 \begin{lemma}[first-order agreement propagates]
   \label{lem:dc-ch8-4-2-propagation}
   \lean{Riemannian.eventuallyEq_of_pointDatum}
+  \uses{lem:dc-ch8-4-2-geodesic-push, prop:dc-ch3-2-9, def:dc-ch3-expmap, lem:dc-ch3-expmap-ray, thm:dc-ch3-2-2}
   \leanok
-  \uses{lem:dc-ch8-4-2-geodesic-push,prop:dc-ch3-2-9,def:dc-ch3-expmap,
-    lem:dc-ch3-expmap-ray,thm:dc-ch3-2-2}
   Let $f_1,f_2:M\to N$ be local isometries and let $q\in M$ satisfy $f_1(q)=f_2(q)$ and
   $(df_1)_q=(df_2)_q$. Then $f_1=f_2$ on a neighborhood of $q$.
 \end{lemma}
@@ -1904,10 +1809,10 @@ $M$ and $\tilde{M}$, respectively.
 
 \begin{lemma}[uniqueness of a local isometry from a point datum]
   \label{lem:dc-ch8-4-2}
-  \dcref{ch8:4.2}
   \lean{Riemannian.eq_of_pointDatum_of_localIsometry}
-  \leanok
   \uses{def:dc-ch1-2-3}
+  \leanok
+  \dcref{ch8:4.2}
   Let $f_i:M\to N$, $i=1,2$, be two local isometries of the (connected) Riemannian
   manifold $M$ to the Riemannian manifold $N$, both of dimension $n$ and modelled on a
   common Euclidean space. Suppose that there exists a point $p\in M$ such that
@@ -1943,6 +1848,7 @@ Completeness and constant curvature descend from $M$ to $M/\Gamma$.
 
 \begin{proposition}[every space form is a quotient of a model]
   \label{prop:dc-ch8-4-3}
+  \notready
   \dcref{ch8:4.3}
   \notready
   Let $M$ be a complete Riemannian manifold with constant sectional curvature $K$
@@ -1970,6 +1876,7 @@ Completeness and constant curvature descend from $M$ to $M/\Gamma$.
 
 \begin{proposition}[even-dimensional space forms of $K=1$]
   \label{prop:dc-ch8-4-4}
+  \notready
   \dcref{ch8:4.4}
   \notready
   Let $M^n$ be a complete Riemannian manifold of even dimension $n=2m$, with constant
@@ -1993,6 +1900,7 @@ Completeness and constant curvature descend from $M$ to $M/\Gamma$.
 
 \begin{proposition}[metric of constant negative curvature on surfaces of genus $>1$]
   \label{prop:dc-ch8-4-5}
+  \notready
   \dcref{ch8:4.5}
   \notready
   Every compact orientable surface of genus $p>1$ can be provided with a metric of
@@ -2033,9 +1941,7 @@ so angles are preserved.
 
 \begin{definition}[conformal map with a coefficient of conformality]
   \label{def:dc-ch8-5-conformal}
-  \lean{Riemannian.IsConformalWithCoeff,
-    Riemannian.IsConformalWithCoeff.isConformalMap,
-    Riemannian.IsConformalWithCoeff.conformalAt}
+  \lean{Riemannian.IsConformalWithCoeff, Riemannian.IsConformalWithCoeff.isConformalMap, Riemannian.IsConformalWithCoeff.conformalAt}
   \leanok
   A map $f:U\subset\mathbb{R}^n\to\mathbb{R}^n$ is \emph{conformal at $p$ with
   coefficient of conformality $\lambda(p)>0$} if $f$ is differentiable at $p$ and
@@ -2048,9 +1954,8 @@ so angles are preserved.
 
 \begin{lemma}[a conformal map preserves norms up to $\lambda$ and preserves angles: $(3)\Rightarrow(4)$]
   \label{lem:dc-ch8-5-conformal-angle}
+  \lean{Riemannian.IsConformalWithCoeff.norm_fderiv_eq, Riemannian.IsConformalWithCoeff.angle_fderiv_eq}
   \uses{def:dc-ch8-5-conformal}
-  \lean{Riemannian.IsConformalWithCoeff.norm_fderiv_eq,
-    Riemannian.IsConformalWithCoeff.angle_fderiv_eq}
   \leanok
   If $f$ is conformal at $p$ with coefficient $\lambda$, then $|df_p(v)|=\lambda|v|$
   for every $v$, and $df_p$ preserves the non-oriented angle between any two
@@ -2070,12 +1975,9 @@ so angles are preserved.
 
 \begin{example}[Basic conformal transformations]
   \label{ex:dc-ch8-5-1}
-  \dcref{ch8:5.1}
+  \lean{Riemannian.isConformalWithCoeff_isometry, Riemannian.isConformalWithCoeff_dilatation, Riemannian.isConformalWithCoeff_inversion, Riemannian.inversion_unit_involutive, Riemannian.inversion_unit_fixed_of_mem_sphere, Riemannian.inversion_unit_eq_lineMap, Riemannian.dist_inversion_unit_center}
   \uses{def:dc-ch8-5-conformal}
-  \lean{Riemannian.isConformalWithCoeff_isometry,
-    Riemannian.isConformalWithCoeff_dilatation,
-    Riemannian.isConformalWithCoeff_inversion}
-  \leanok
+  \dcref{ch8:5.1}
   Euclidean isometries are conformal with coefficient $1$, and dilatations
   $f(p)=\lambda p$, $\lambda>0$, are conformal with coefficient $\lambda$. The
   inversion in the unit sphere centered at $p_0$,
@@ -2096,9 +1998,8 @@ so angles are preserved.
 
 \begin{lemma}[conformal maps are closed under composition]
   \label{lem:dc-ch8-5-conformal-comp}
+  \lean{Riemannian.IsConformalWithCoeff.comp, Riemannian.isConformalWithCoeff_id}
   \uses{def:dc-ch8-5-conformal}
-  \lean{Riemannian.IsConformalWithCoeff.comp,
-    Riemannian.isConformalWithCoeff_id}
   \leanok
   If $f$ is conformal at $p$ with coefficient $\lambda$ and $g$ is conformal at
   $f(p)$ with coefficient $\mu$, then $g\circ f$ is conformal at $p$ with
@@ -2118,6 +2019,8 @@ so angles are preserved.
 
 \begin{theorem}[Liouville]
   \label{thm:dc-ch8-5-2}
+  \uses{lem:dc-ch8-5-differential-core}
+  \notready
   \dcref{ch8:5.2}
   \notready
   Let $f:U\to\mathbb{R}^n$, $n\geq 3$, be a conformal transformation of an open set
@@ -2242,8 +2145,9 @@ so angles are preserved.
 
 \begin{theorem}[isometries of $H^n$ are conformal transformations preserving $H^n$]
   \label{thm:dc-ch8-5-3}
+  \uses{def:dc-ch8-5-conformal, def:dc-ch8-3-hyperbolic-space}
+  \notready
   \dcref{ch8:5.3}
-  \uses{def:dc-ch8-5-conformal,def:dc-ch8-3-hyperbolic-space}
   \notready
   The isometries of $H^n$ are the restrictions to $H^n\subset\mathbb{R}^n$ of the
   conformal transformations of $\mathbb{R}^n$ that take $H^n$ onto itself.
@@ -2301,8 +2205,9 @@ so angles are preserved.
 
 \begin{remark}[the ball model; horospheres and hyperspheres]
   \label{rem:dc-ch8-5-4}
+  \uses{def:dc-ch8-5-conformal, def:dc-ch8-3-hyperbolic-space, thm:dc-ch8-5-3}
+  \notready
   \dcref{ch8:5.4}
-  \uses{def:dc-ch8-5-conformal,def:dc-ch8-3-hyperbolic-space,thm:dc-ch8-5-3}
   \notready
   Let $B^n=\{p\in\mathbb R^n:|p|<2\}$ carry the metric
   $$
@@ -2329,4 +2234,26 @@ so angles are preserved.
   the three types of Euclidean spheres to centered spheres, boundary-parallel
   hyperplanes, and hyperplanes at fixed distance from a totally geodesic one,
   respectively.
+\end{proof}
+
+\begin{lemma}[a uniform radial chart neighborhood]
+  \label{lem:dc-ch8-2-1-radial-chart}
+  \dcref{ch8:2.1}
+  \lean{Riemannian.Jacobi.exists_radial_chart_neighborhood,
+    Riemannian.Jacobi.exists_pair_radial_chart_neighborhood}
+  \leanok
+  Let $p$ be a point of a complete Riemannian manifold and let $\exp_p$ be defined on the
+  whole tangent space. There is an open neighborhood $W$ of $0\in T_pM$ such that every
+  radial geodesic $t\mapsto\exp_p(tw)$ with $w\in W$ stays in the source of one fixed chart
+  at $p$ for $0\leq t\leq1$. For two complete manifolds modelled on the same space $E$ and a
+  continuous linear equivalence $i:E\to E$ between their tangent coordinates, one may choose
+  the same $W$ for the two radial families, using the intersection with the inverse image of the
+  second neighborhood under $i$.
+\end{lemma}
+\begin{proof}
+  \leanok
+  The global exponential map is continuous and sends $0$ to $p$, while the chart source is
+  open and contains $p$. Its inverse image therefore contains a metric ball about $0$; radial
+  homogeneity and $0\leq t\leq1$ keep every scaled vector in that ball. For a pair, intersect
+  the first ball with the pullback of the second ball under $i$.
 \end{proof}

@@ -6,9 +6,10 @@
 
 \begin{proposition}[Scalar maximum principle, first version]
 \label{ch04-prop-scalar-max-principle-pointwise-bounds}
+\source{chow-knopf-ricci-flow:page-0106}
 \dcref{Proposition 4.1}
 \group{weak-maximum-principles-scalar-equations}
-\source{chow-knopf-ricci-flow:page-0106}
+
 Let \(u : \mathcal M^n \times [0,T] \to \mathbb R\) be a \(C^2\) solution to the heat equation
 \[
 \frac{\partial u}{\partial t} = \Delta_g u
@@ -26,9 +27,10 @@ for all \(x \in \mathcal M^n\) and \(t \in [0,T)\).
 
 \begin{theorem}[Scalar maximum principle, second version]
 \label{ch04-thm-scalar-max-principle-supersolution-lower-bound}
+\source{chow-knopf-ricci-flow:page-0106, chow-knopf-ricci-flow:page-0107}
 \dcref{Theorem 4.2}
 \group{weak-maximum-principles-scalar-equations}
-\source{chow-knopf-ricci-flow:page-0106, chow-knopf-ricci-flow:page-0107}
+
 Let \(g(t) : t \in [0,T)\) be a \(1\)-parameter family of Riemannian metrics and \(X(t) : t \in [0,T)\) a \(1\)-parameter family of vector fields on a closed manifold \(\mathcal M^n\). Let \(u : \mathcal M^n \times [0,T) \to \mathbb R\) be a \(C^2\) function. Suppose that there exists \(\alpha \in \mathbb R\) such that \(u(x,0) \ge \alpha\) for all \(x \in \mathcal M^n\), and that \(u\) is a supersolution of the heat-type equation
 \[
 \frac{\partial v}{\partial t} = \Delta_{g(t)} v + \langle X, \nabla v \rangle
@@ -62,9 +64,10 @@ a contradiction. Therefore \(H>0\), and letting \(\varepsilon \downarrow 0\) yie
 
 \begin{proposition}[Scalar maximum principle, third version]
 \label{ch04-prop-scalar-max-principle-linear-reaction}
+\source{chow-knopf-ricci-flow:page-0108}
 \dcref{Proposition 4.3}
 \group{weak-maximum-principles-scalar-equations}
-\source{chow-knopf-ricci-flow:page-0108}
+
 Let \(u : \mathcal M^n \times [0,T) \to \mathbb R\) be a \(C^2\) supersolution to
 \[
 \frac{\partial v}{\partial t} = \Delta_{g(t)} v + \langle X, \nabla v \rangle + \beta v
@@ -89,9 +92,10 @@ Since \(\beta-C_\tau\le 0\) on \(\mathcal M^n\times[0,\tau]\), the function \(J\
 
 \begin{theorem}[Scalar maximum principle, fourth version]
 \label{ch04-thm-scalar-max-principle-ode-bounds}
+\source{chow-knopf-ricci-flow:page-0109}
 \dcref{Theorem 4.4}
 \group{weak-maximum-principles-scalar-equations}
-\source{chow-knopf-ricci-flow:page-0109}
+
 Let \(u : \mathcal M^n \times [0,T) \to \mathbb R\) be a \(C^2\) supersolution to
 \[
 \frac{\partial v}{\partial t} = \Delta_{g(t)} v + \langle X, \nabla v \rangle + F(v)
@@ -129,9 +133,10 @@ Applying Proposition~\ref{ch04-prop-scalar-max-principle-linear-reaction} with \
 
 \begin{remark}
 \label{ch04-rem-use-parabolic-maximum-principle}
+\source{chow-knopf-ricci-flow:page-0109}
 \dcref{Remark 4.5}
 \group{weak-maximum-principles-scalar-equations}
-\source{chow-knopf-ricci-flow:page-0109}
+
 In what follows, Theorem~\ref{ch04-thm-scalar-max-principle-ode-bounds} may be invoked simply as the parabolic maximum principle.
 \end{remark}
 
@@ -139,9 +144,10 @@ In what follows, Theorem~\ref{ch04-thm-scalar-max-principle-ode-bounds} may be i
 
 \begin{theorem}[Tensor maximum principle, first version]
 \label{ch04-thm-tensor-max-principle-nonnegativity}
+\source{chow-knopf-ricci-flow:page-0110, chow-knopf-ricci-flow:page-0111, chow-knopf-ricci-flow:page-0112, chow-knopf-ricci-flow:page-0113}
 \dcref{Theorem 4.6}
 \group{weak-maximum-principles-tensor-equations}
-\source{chow-knopf-ricci-flow:page-0110, chow-knopf-ricci-flow:page-0111, chow-knopf-ricci-flow:page-0112, chow-knopf-ricci-flow:page-0113}
+
 Let \(g(t)\) be a smooth \(1\)-parameter family of Riemannian metrics on a closed manifold \(M^n\). Let \(\alpha(t)\in C^\infty(T^*M^n \symtensor T^*M^n)\) be a symmetric \((2,0)\)-tensor satisfying
 \[
 \frac{\partial}{\partial t}\alpha \ge \Delta_{g(t)}\alpha+\beta,
@@ -206,9 +212,10 @@ a contradiction. Thus \(A_\varepsilon>0\), and letting \(\varepsilon\searrow 0\)
 
 \begin{remark}
 \label{ch04-rem-tensor-maximum-principle-oversight}
+\source{chow-knopf-ricci-flow:page-0113}
 \dcref{Remark 4.7}
 \group{weak-maximum-principles-tensor-equations}
-\source{chow-knopf-ricci-flow:page-0113}
+
 The proof above corrects a minor oversight in the original argument of Section~9 of \([58]\), which omitted the \(\partial g/\partial t\) term.
 \end{remark}
 
@@ -216,9 +223,10 @@ The proof above corrects a minor oversight in the original argument of Section~9
 
 \begin{theorem}[Tensor maximum principle, second version]
 \label{ch04-thm-tensor-max-principle-ode-pde}
+\source{chow-knopf-ricci-flow:page-0114}
 \dcref{Theorem 4.8}
 \group{advanced-weak-maximum-principles-systems}
-\source{chow-knopf-ricci-flow:page-0114}
+
 Let \(\mathcal M^n\) be a closed oriented manifold with a smooth family of metrics \(g(t)\) and Levi-Civita connections \(\nabla(t)\). Let \(\pi:\mathcal E\to\mathcal M^n\) be a vector bundle with bundle metric \(h\), and let \(\bar\nabla(t)\) be a smooth family of \(h\)-compatible connections. Let \(F:\mathcal E\times[0,T]\to\mathcal E\) be continuous, fiber-preserving, and fiberwise Lipschitz, and let \(\mathcal K\subset \mathcal E\) be closed. Suppose \(\alpha(t)\) solves
 \[
 \frac{\partial}{\partial t}\alpha=\hat\Delta\alpha+F(\alpha)
@@ -232,16 +240,18 @@ remains in \(\mathcal K_x\). Then \(\alpha(t)\in\mathcal K\) for all \(t\in[0,T]
 
 \begin{theorem}[Tensor maximum principle, third version]
 \label{ch04-thm-tensor-max-principle-time-dependent}
+\source{chow-knopf-ricci-flow:page-0114, chow-knopf-ricci-flow:page-0115}
 \dcref{Theorem 4.9}
 \group{advanced-weak-maximum-principles-systems}
-\source{chow-knopf-ricci-flow:page-0114, chow-knopf-ricci-flow:page-0115}
+
 With the same setup, allow \(\mathcal K(t)\subset\mathcal E\) to vary with time. If \(\alpha(0)\in \mathcal K(0)\), the space-time track \(\bigcup_{t\in[0,T]}(\mathcal K(t)\times\{t\})\) is closed in \(\mathcal E\times[0,T]\), each \(\mathcal K(t)\) is invariant under parallel translation by \(\bar\nabla(t)\), each fiber slice \(\mathcal K_x(t)\) is closed and convex, and every fiberwise ODE solution starting in \(\mathcal K_x(0)\) remains in \(\mathcal K_x(t)\), then \(\alpha(t)\in\mathcal K(t)\) for all \(t\in[0,T]\).
 \end{theorem}
 
 \begin{theorem}[Tensor maximum principle, fourth version]
 \label{ch04-thm-tensor-max-principle-avoidance}
+\source{chow-knopf-ricci-flow:page-0115}
 \dcref{Theorem 4.10}
 \group{advanced-weak-maximum-principles-systems}
-\source{chow-knopf-ricci-flow:page-0115}
+
 With the same setup, let \(\mathcal A(t)\subset\mathcal K(t)\) be an avoidance set such that the space-time tracks of \(\mathcal K(t)\) and \(\mathcal A(t)\) are closed in \(\mathcal E\times[0,T]\), each \(\mathcal K(t)\) is invariant under parallel translation by \(\bar\nabla(t)\), each \(\mathcal K_x(t)\) is closed and convex, and \(\alpha(t)\) avoids \(\mathcal A(t)\) for all \(t\in[0,T]\). If every fiberwise ODE solution starting in \(\mathcal K_x(0)\setminus\mathcal A_x(0)\) either remains in \(\mathcal K_x(t)\) for all \(t\in[0,T]\) or enters \(\mathcal A(t_0)\) at some \(t_0\in(0,T]\), then \(\alpha(t)\in\mathcal K(t)\) for all \(t\in[0,T]\).
 \end{theorem}

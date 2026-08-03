@@ -77,6 +77,15 @@ theorem busemann_apply_line {γ : ℝ → M} (hγ : IsMinGeodesicOn γ Set.univ)
     have h := le_abs_self (t - u)
     linarith
 
+/-- The forward and backward Busemann functions of a minimizing line have the
+displayed values at every point of the line. -/
+theorem busemann_apply_line_pair {γ : ℝ → M}
+    (hγ : IsMinGeodesicOn γ Set.univ) (u : ℝ) :
+    busemann γ (γ u) = -u ∧ busemann (fun t => γ (-t)) (γ u) = u := by
+  refine ⟨busemann_apply_line hγ u, ?_⟩
+  have h := busemann_apply_line hγ.neg_comp (-u)
+  simpa using h
+
 /-- **The Busemann pair of a minimizing line is non-negative**: if `γ` is a minimizing
 geodesic line with forward Busemann function `B₊ = busemann γ` and backward Busemann
 function `B₋ = busemann (fun t => γ (-t))`, then `B₊ + B₋ ≥ 0` everywhere. Indeed, for

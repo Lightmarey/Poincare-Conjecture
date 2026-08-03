@@ -22,9 +22,10 @@ for all $(x,t) \in U_T$, $\xi \in \mathbb{R}^n$.
 
 \begin{remark}[Parabolic operators are elliptic at each fixed time]
 \label{rem:parabolic-operator-elliptic-fixed-time}
+\uses{def:uniform-parabolicity, def:uniform-ellipticity}
 \dcref{ch7:7.1.1-rem-1}
 \group{Parabolic PDE}
-\uses{def:uniform-parabolicity,def:uniform-ellipticity}
+
 For every fixed $t\in[0,T]$, $L(t)$ is uniformly elliptic in the spatial variable with ellipticity constant $\theta$.
 \end{remark}
 
@@ -32,9 +33,10 @@ For every fixed $t\in[0,T]$, $L(t)$ is uniformly elliptic in the spatial variabl
 
 \begin{remark}[Weak parabolic time derivative]
 \label{rem:motivation-weak-solution-parabolic}
+\uses{def:sobolev-space-time-banach, def:dual-space-h-minus-1}
 \dcref{ch7:7.1.1-rem-2}
 \group{Parabolic PDE}
-\uses{def:sobolev-space-time-banach,def:dual-space-h-minus-1}
+
 Regard $u$ and $f$ as maps $[0,T]\to H_0^1(U)$ and $[0,T]\to L^2(U)$. Formal spatial integration by parts gives
 \[
 (u',v)+B[u,v;t]=(f,v) \qquad (v\in H_0^1(U)).
@@ -56,9 +58,10 @@ Thus the weak identity is interpreted with $u'\in H^{-1}(U)$ and the dual pairin
 
 \begin{definition}[Weak solution of the parabolic initial/boundary-value problem]
 \label{def:weak-solution-parabolic-bvp}
+\uses{rem:motivation-weak-solution-parabolic}
 \dcref{ch7:7.1.1-def-2}
 \group{Parabolic PDE}
-\uses{rem:motivation-weak-solution-parabolic}
+
 We say a function
 \[
 \mathbf{u} \in L^2(0,T; H_0^1(U)), \text{ with } \mathbf{u}' \in L^2(0,T; H^{-1}(U)),
@@ -74,9 +77,10 @@ for each $v \in H_0^1(U)$ and a.e. time $0 \le t \le T$, and
 
 \begin{remark}[Continuity of the weak solution]
 \label{rem:weak-solution-parabolic-continuity}
+\uses{def:weak-solution-parabolic-bvp, thm:more-calculus-h1-hminus1}
 \dcref{ch7:7.1.1-rem-3}
 \group{Parabolic PDE}
-\uses{def:weak-solution-parabolic-bvp,thm:more-calculus-h1-hminus1}
+
 Every weak solution belongs to $C([0,T];L^2(U))$, so its initial value is well-defined.
 \end{remark}
 
@@ -99,9 +103,10 @@ For each integer $m = 1, 2, \ldots$ there exists a unique function $u_m$ of the 
 
 \begin{theorem}[Energy estimates]
 \label{thm:parabolic-energy-estimates}
+\uses{thm:parabolic-galerkin-approximate-solutions, thm:energy-estimates}
 \dcref{ch7:7.1-thm-2}
 \group{Energy Estimates}
-\uses{thm:parabolic-galerkin-approximate-solutions,thm:energy-estimates}
+
 There exists a constant $C$, depending only on $U, T$ and the coefficients of $L$, such that
 \[
 \max_{0 \leq t \leq T} \|u_m(t)\|_{L^2(U)} + \|u_m\|_{L^2(0,T; H^1(U))} + \|u_m'\|_{L^2(0,T; H^{-1}(U))}
@@ -118,9 +123,10 @@ for $m = 1, 2, \ldots$ .
 
 \begin{theorem}[Existence of weak solution]
 \label{thm:parabolic-existence-weak-solution}
+\uses{thm:parabolic-galerkin-approximate-solutions, thm:parabolic-energy-estimates, def:weak-solution-parabolic-bvp}
 \dcref{ch7:7.1-thm-3}
 \group{Parabolic PDE}
-\uses{thm:parabolic-galerkin-approximate-solutions,thm:parabolic-energy-estimates,def:weak-solution-parabolic-bvp}
+
 There exists a weak solution of (11).
 \end{theorem}
 
@@ -130,9 +136,10 @@ There exists a weak solution of (11).
 
 \begin{theorem}[Uniqueness of weak solutions]
 \label{thm:parabolic-uniqueness-weak-solution}
+\uses{def:weak-solution-parabolic-bvp, thm:energy-estimates}
 \dcref{ch7:7.1-thm-4}
 \group{Parabolic PDE}
-\uses{def:weak-solution-parabolic-bvp,thm:energy-estimates}
+
 A weak solution of (11) is unique.
 \end{theorem}
 
@@ -164,9 +171,10 @@ Differentiating in time, applying the same energy estimate, and using $-\Delta u
 
 \begin{theorem}[Improved regularity]
 \label{thm:parabolic-improved-regularity}
+\uses{def:weak-solution-parabolic-bvp, thm:boundary-h2-regularity}
 \dcref{ch7:7.1-thm-5}
 \group{Regularity}
-\uses{def:weak-solution-parabolic-bvp,thm:boundary-h2-regularity}
+
 (i) Assume
 \[
 g \in H_0^1(U), \quad f \in L^2(0,T; L^2(U)).
@@ -220,25 +228,28 @@ with the estimate
 
 \begin{remark}[Precise versions of the formal estimates]
 \label{rem:parabolic-improved-regularity-remark}
+\uses{thm:parabolic-improved-regularity, rem:parabolic-regularity-motivation}
 \dcref{ch7:7.1.3-rem-2}
 \group{Regularity}
-\uses{thm:parabolic-improved-regularity,rem:parabolic-regularity-motivation}
+
 Parts (i) and (ii) of \cref{thm:parabolic-improved-regularity} are the variable-coefficient, bounded-domain versions of (39) and (44).
 \end{remark}
 
 \begin{remark}[Symmetric operators and eigenfunction bases]
 \label{rem:parabolic-regularity-symmetric-eigenfunctions}
+\uses{thm:parabolic-improved-regularity}
 \dcref{ch7:7.1.3-rem-3}
 \group{Regularity}
-\uses{thm:parabolic-improved-regularity}
+
 When $L$ is symmetric, the Galerkin basis may be chosen as an $H_0^1(U)$ eigenfunction basis of $L$, eliminating estimate (54).
 \end{remark}
 
 \begin{theorem}[Higher regularity]
 \label{thm:parabolic-higher-regularity}
+\uses{thm:parabolic-improved-regularity, thm:higher-boundary-regularity, thm:mappings-into-better-spaces}
 \dcref{ch7:7.1-thm-6}
 \group{Regularity}
-\uses{thm:parabolic-improved-regularity,thm:higher-boundary-regularity,thm:mappings-into-better-spaces}
+
 Assume
 \[
 g \in H^{2m+1}(U), \quad \frac{d^k f}{dt^k} \in L^2(0,T; H^{2m-2k}(U)) \quad (k=0,\ldots,m).
@@ -271,9 +282,10 @@ the constant $C$ depending only on $m, U, T$ and the coefficients of $L$.
 
 \begin{remark}[Compatibility conditions]
 \label{rem:parabolic-compatibility-conditions}
+\uses{thm:parabolic-higher-regularity, thm:mappings-into-better-spaces}
 \dcref{ch7:7.1.3-rem-4}
 \group{Regularity}
-\uses{thm:parabolic-higher-regularity,thm:mappings-into-better-spaces}
+
 The time traces satisfy
 \[
 f(0)\in H^{2m-1}(U),\quad f'(0)\in H^{2m-3}(U),\quad\ldots,\quad f^{(m-1)}(0)\in H^1(U),
@@ -287,9 +299,10 @@ Compatibility additionally requires every $g_j$ to have zero trace on $\partial 
 
 \begin{theorem}[Infinite differentiability]
 \label{thm:parabolic-infinite-differentiability}
+\uses{thm:parabolic-higher-regularity}
 \dcref{ch7:7.1-thm-7}
 \group{Regularity}
-\uses{thm:parabolic-higher-regularity}
+
 Assume
 \[
 g \in C^\infty(\bar{U}), \quad f \in C^\infty(\bar{U}_T),
@@ -306,9 +319,10 @@ u \in C^\infty(\bar{U}_T).
 
 \begin{remark}[Interior estimates]
 \label{rem:parabolic-interior-estimates}
+\uses{thm:parabolic-infinite-differentiability, thm:interior-h2-regularity}
 \dcref{ch7:7.1.3-rem-5}
 \group{Regularity}
-\uses{thm:parabolic-infinite-differentiability,thm:interior-h2-regularity}
+
 Interior analogues of the global regularity estimates require no boundary compatibility conditions.
 \end{remark}
 
@@ -318,9 +332,10 @@ Interior analogues of the global regularity estimates require no boundary compat
 
 \begin{theorem}[Weak maximum principle]
 \label{thm:parabolic-weak-maximum-principle}
+\uses{def:uniform-parabolicity, thm:weak-maximum-principle-c-zero}
 \dcref{ch7:7.1-thm-8}
 \group{Maximum Principles}
-\uses{def:uniform-parabolicity,thm:weak-maximum-principle-c-zero}
+
 Assume $u \in C^2_1(U_T) \cap C(\overline{U_T})$ and
 \[
 c = 0 \quad \text{in } U_T.
@@ -352,17 +367,19 @@ then
 
 \begin{remark}[Subsolution and supersolution terminology]
 \label{rem:parabolic-subsolution-supersolution}
+\uses{thm:parabolic-weak-maximum-principle}
 \dcref{ch7:7.1.4-rem-1}
 \group{Maximum Principles}
-\uses{thm:parabolic-weak-maximum-principle}
+
 Inequality (63) defines a subsolution, whose maximum lies on the parabolic boundary $\Gamma_T$; (64) defines a supersolution, whose minimum lies on $\Gamma_T$.
 \end{remark}
 
 \begin{theorem}[Weak maximum principle for $c \geq 0$]
 \label{thm:parabolic-weak-maximum-principle-c-nonneg}
+\uses{thm:parabolic-weak-maximum-principle}
 \dcref{ch7:7.1-thm-9}
 \group{Maximum Principles}
-\uses{thm:parabolic-weak-maximum-principle}
+
 Assume $u \in C_1^2(U_T) \cap C(\bar{U}_T)$ and
 \[
 c \geq 0 \text{ in } U_T.
@@ -391,9 +408,10 @@ then
 
 \begin{remark}[Absolute value bound]
 \label{rem:parabolic-weak-max-principle-abs-value}
+\uses{thm:parabolic-weak-maximum-principle-c-nonneg}
 \dcref{ch7:7.1.4-rem-2}
 \group{Maximum Principles}
-\uses{thm:parabolic-weak-maximum-principle-c-nonneg}
+
 If $u_t+Lu=0$ in $U_T$, then
 \[
 \max_{\bar U_T}|u|=\max_{\Gamma_T}|u|.
@@ -402,9 +420,10 @@ If $u_t+Lu=0$ in $U_T$, then
 
 \begin{remark}[Maximum principles with $c$ not necessarily nonnegative]
 \label{rem:parabolic-max-principle-negative-c}
+\uses{thm:parabolic-weak-maximum-principle-c-nonneg}
 \dcref{ch7:7.1.4-rem-3}
 \group{Maximum Principles}
-\uses{thm:parabolic-weak-maximum-principle-c-nonneg}
+
 Parabolic maximum principles remain valid for zeroth-order coefficients bounded below after an exponential change in time; nonnegativity of $c$ is not essential.
 \end{remark}
 
@@ -412,9 +431,10 @@ Parabolic maximum principles remain valid for zeroth-order coefficients bounded 
 
 \begin{theorem}[Parabolic Harnack inequality]
 \label{thm:parabolic-harnack-inequality}
+\uses{thm:parabolic-weak-maximum-principle}
 \dcref{ch7:7.1-thm-10}
 \group{Maximum Principles}
-\uses{thm:parabolic-weak-maximum-principle}
+
 Assume $u \in C^2_1(U_T)$ solves
 \[
 u_t + Lu = 0 \text{ in } U_T,
@@ -440,9 +460,10 @@ The constant $C$ depends only on $V$, $t_1$, $t_2$, and the coefficients of $L$.
 
 \begin{theorem}[Strong maximum principle]
 \label{thm:parabolic-strong-maximum-principle}
+\uses{thm:parabolic-weak-maximum-principle, thm:parabolic-harnack-inequality}
 \dcref{ch7:7.1-thm-11}
 \group{Maximum Principles}
-\uses{thm:parabolic-weak-maximum-principle,thm:parabolic-harnack-inequality}
+
 Assume $u \in C_1^2(U_T) \cap C(\overline{U_T})$ and
 \[
 c \equiv 0 \quad \text{in } U_T.
@@ -474,17 +495,19 @@ u \text{ is constant on } U_{t_0}.
 
 \begin{remark}[Infinite propagation speed]
 \label{rem:parabolic-infinite-propagation-speed}
+\uses{thm:parabolic-strong-maximum-principle}
 \dcref{ch7:7.1.4-rem-4}
 \group{Maximum Principles}
-\uses{thm:parabolic-strong-maximum-principle}
+
 A nontrivial nonnegative parabolic solution becomes positive throughout every connected spatial region at each later positive time; disturbances therefore have infinite propagation speed.
 \end{remark}
 
 \begin{theorem}[Strong maximum principle for $c \geq 0$]
 \label{thm:parabolic-strong-maximum-principle-c-nonneg}
+\uses{thm:parabolic-strong-maximum-principle, thm:parabolic-weak-maximum-principle-c-nonneg, thm:parabolic-harnack-inequality}
 \dcref{ch7:7.1-thm-12}
 \group{Maximum Principles}
-\uses{thm:parabolic-strong-maximum-principle,thm:parabolic-weak-maximum-principle-c-nonneg,thm:parabolic-harnack-inequality}
+
 Assume $u \in C_1^2(U_T) \cap C(\bar{U}_T)$ and
 \[
 c \geq 0 \quad \text{in } U_T.
@@ -537,9 +560,10 @@ for all $(x,t) \in U_T$, $\xi \in \mathbb{R}^n$.
 
 \begin{remark}[Weak hyperbolic time derivative]
 \label{rem:motivation-weak-solution-hyperbolic}
+\uses{rem:motivation-weak-solution-parabolic}
 \dcref{ch7:7.2.1-rem-1}
 \group{Hyperbolic PDE}
-\uses{rem:motivation-weak-solution-parabolic}
+
 Regard $u:[0,T]\to H_0^1(U)$ and $f:[0,T]\to L^2(U)$. Formal spatial integration by parts gives
 \[
 \langle u'',v\rangle+B[u,v;t]=(f,v) \qquad (v\in H_0^1(U)).
@@ -556,9 +580,10 @@ so $u''\in H^{-1}(U)$ is the natural weak time regularity.
 
 \begin{definition}[Weak solution of the hyperbolic initial/boundary-value problem]
 \label{def:weak-solution-hyperbolic-bvp}
+\uses{rem:motivation-weak-solution-hyperbolic}
 \dcref{ch7:7.2.1-def-2}
 \group{Hyperbolic PDE}
-\uses{rem:motivation-weak-solution-hyperbolic}
+
 We say a function
 \[
 \mathbf{u} \in L^2(0, T; H^1_0(U)), \text{ with } \mathbf{u}' \in L^2(0, T; L^2(U)), \mathbf{u}'' \in L^2(0, T; H^{-1}(U)),
@@ -574,9 +599,10 @@ for each $v \in H^1_0(U)$ and a.e. time $0 \le t \le T$, and
 
 \begin{remark}[Continuity of the weak solution]
 \label{rem:weak-solution-hyperbolic-continuity}
+\uses{def:weak-solution-hyperbolic-bvp, thm:calculus-abstract-space}
 \dcref{ch7:7.2.1-rem-2}
 \group{Hyperbolic PDE}
-\uses{def:weak-solution-hyperbolic-bvp,thm:calculus-abstract-space}
+
 Every weak solution satisfies $u\in C([0,T];L^2(U))$ and $u'\in C([0,T];H^{-1}(U))$, so both initial conditions are meaningful.
 \end{remark}
 
@@ -599,9 +625,10 @@ For each integer $m = 1, 2, \ldots$, there exists a unique function $\mathbf{u}_
 
 \begin{theorem}[Energy estimates]
 \label{thm:hyperbolic-energy-estimates}
+\uses{thm:hyperbolic-galerkin-approximate-solutions}
 \dcref{ch7:7.2-thm-2}
 \group{Energy Estimates}
-\uses{thm:hyperbolic-galerkin-approximate-solutions}
+
 There exists a constant $C$, depending only on $U$, $T$ and the coefficients of $L$, such that
 \[
 \max_{0 \le t \le T} \left( \|u_m(t)\|_{H^1_0(U)} + \|u'_m(t)\|_{L^2(U)} \right) + \|u''_m\|_{L^2(0,T;H^{-1}(U))}
@@ -621,9 +648,10 @@ for $m = 1, 2, \ldots$
 
 \begin{theorem}[Existence of weak solution]
 \label{thm:hyperbolic-existence-weak-solution}
+\uses{thm:hyperbolic-galerkin-approximate-solutions, thm:hyperbolic-energy-estimates, def:weak-solution-hyperbolic-bvp}
 \dcref{ch7:7.2-thm-3}
 \group{Hyperbolic PDE}
-\uses{thm:hyperbolic-galerkin-approximate-solutions,thm:hyperbolic-energy-estimates,def:weak-solution-hyperbolic-bvp}
+
 There exists a weak solution of (1).
 \end{theorem}
 
@@ -633,9 +661,10 @@ There exists a weak solution of (1).
 
 \begin{remark}[Improved regularity of the weak solution]
 \label{rem:hyperbolic-existence-remark}
+\uses{thm:hyperbolic-existence-weak-solution, thm:hyperbolic-energy-estimates}
 \dcref{ch7:7.2.2-rem-1}
 \group{Hyperbolic PDE}
-\uses{thm:hyperbolic-existence-weak-solution,thm:hyperbolic-energy-estimates}
+
 The energy estimates sharpen the weak-solution regularity to
 \[
 u\in L^\infty(0,T;H_0^1(U)),\qquad
@@ -646,9 +675,10 @@ u''\in L^2(0,T;H^{-1}(U)).
 
 \begin{theorem}[Uniqueness of weak solution]
 \label{thm:hyperbolic-uniqueness-weak-solution}
+\uses{def:weak-solution-hyperbolic-bvp}
 \dcref{ch7:7.2-thm-4}
 \group{Hyperbolic PDE}
-\uses{def:weak-solution-hyperbolic-bvp}
+
 A weak solution of (1) is unique.
 \end{theorem}
 
@@ -658,9 +688,10 @@ A weak solution of (1) is unique.
 
 \begin{remark}[Admissible test functions for uniqueness]
 \label{rem:hyperbolic-uniqueness-remark}
+\uses{thm:hyperbolic-uniqueness-weak-solution}
 \dcref{ch7:7.2.2-rem-2}
 \group{Hyperbolic PDE}
-\uses{thm:hyperbolic-uniqueness-weak-solution}
+
 The available regularity does not permit using $u'(t)$ directly as a test function; the uniqueness proof instead uses a time primitive of $u$.
 \end{remark}
 
@@ -668,9 +699,10 @@ The available regularity does not permit using $u'(t)$ directly as a test functi
 
 \begin{remark}[Formal hyperbolic regularity estimates]
 \label{rem:hyperbolic-regularity-motivation}
+\uses{thm:wave-equation-nonhomogeneous-duhamel}
 \dcref{ch7:7.2.3-rem-1}
 \group{Regularity}
-\uses{thm:wave-equation-nonhomogeneous-duhamel}
+
 For a smooth rapidly decaying solution of $u_{tt}-\Delta u=f$ on $\mathbb R^n\times(0,T)$ with data $(g,h)$, the wave-energy identity and Gronwall inequality give
 \[
 \sup_{0\le t\le T}\int_{\mathbb R^n}|Du|^2+u_t^2\,dx
@@ -687,9 +719,10 @@ Applying this estimate to $u_t$ and using $-\Delta u=f-u_{tt}$ yields
 
 \begin{theorem}[Improved regularity]
 \label{thm:hyperbolic-improved-regularity}
+\uses{def:weak-solution-hyperbolic-bvp, thm:parabolic-improved-regularity}
 \dcref{ch7:7.2-thm-5}
 \group{Regularity}
-\uses{def:weak-solution-hyperbolic-bvp,thm:parabolic-improved-regularity}
+
 (i) Assume
 \[
 g \in H_0^1(U), \quad h \in L^2(U), \quad f \in L^2(0,T;L^2(U)),
@@ -733,25 +766,28 @@ with the estimate:
 
 \begin{remark}[Precise versions of the formal estimates]
 \label{rem:hyperbolic-improved-regularity-remark}
+\uses{thm:hyperbolic-improved-regularity, rem:hyperbolic-regularity-motivation}
 \dcref{ch7:7.2.3-rem-2}
 \group{Regularity}
-\uses{thm:hyperbolic-improved-regularity,rem:hyperbolic-regularity-motivation}
+
 Parts (i) and (ii) of \cref{thm:hyperbolic-improved-regularity} are the bounded-domain, variable-coefficient versions of (42) and (47).
 \end{remark}
 
 \begin{remark}[Symmetric operators and eigenfunction bases]
 \label{rem:hyperbolic-symmetric-eigenfunctions}
+\uses{thm:hyperbolic-improved-regularity}
 \dcref{ch7:7.2.3-rem-3}
 \group{Regularity}
-\uses{thm:hyperbolic-improved-regularity}
+
 If $L$ is symmetric, the Galerkin basis may be chosen as an $H_0^1(U)$ eigenfunction basis of $L$, eliminating estimate (59).
 \end{remark}
 
 \begin{theorem}[Higher regularity]
 \label{thm:hyperbolic-higher-regularity}
+\uses{thm:hyperbolic-improved-regularity, thm:mappings-into-better-spaces}
 \dcref{ch7:7.2-thm-6}
 \group{Regularity}
-\uses{thm:hyperbolic-improved-regularity,thm:mappings-into-better-spaces}
+
 Assume
 \[
 \begin{cases}
@@ -791,9 +827,10 @@ and we have the estimate
 
 \begin{remark}[Compatibility conditions]
 \label{rem:hyperbolic-higher-regularity-remark}
+\uses{thm:hyperbolic-higher-regularity, thm:mappings-into-better-spaces}
 \dcref{ch7:7.2.3-rem-4}
 \group{Regularity}
-\uses{thm:hyperbolic-higher-regularity,thm:mappings-into-better-spaces}
+
 The time traces obey
 \[
 f(0)\in H^{m-1}(U),\quad f'(0)\in H^{m-2}(U),\quad\ldots,\quad f^{(m-2)}(0)\in H^1(U),
@@ -809,9 +846,10 @@ Compatibility requires each listed datum to have zero trace on $\partial U$.
 
 \begin{theorem}[Infinite differentiability]
 \label{thm:hyperbolic-infinite-differentiability}
+\uses{thm:hyperbolic-higher-regularity}
 \dcref{ch7:7.2-thm-7}
 \group{Regularity}
-\uses{thm:hyperbolic-higher-regularity}
+
 Assume
 \[
 g, h \in C^\infty(\bar{U}), \quad f \in C^\infty(\bar{U}_T),
@@ -832,9 +870,10 @@ u \in C^\infty(\bar{U}_T).
 
 \begin{theorem}[Finite propagation speed]
 \label{thm:hyperbolic-finite-propagation-speed}
+\uses{def:uniform-hyperbolicity, thm:wave-equation-finite-propagation-speed}
 \dcref{ch7:7.2-thm-8}
 \group{Hyperbolic PDE}
-\uses{def:uniform-hyperbolicity,thm:wave-equation-finite-propagation-speed}
+
 Assume $u$ is a smooth solution of the hyperbolic equation (72). If $u \equiv u_t \equiv 0$ on $C_0$, then $u \equiv 0$ within the cone $C$.
 \end{theorem}
 
@@ -844,9 +883,10 @@ Assume $u$ is a smooth solution of the hyperbolic equation (72). If $u \equiv u_
 
 \begin{remark}[Finite domain of dependence]
 \label{rem:hyperbolic-finite-propagation-remark}
+\uses{thm:hyperbolic-finite-propagation-speed}
 \dcref{ch7:7.2.4-rem-1}
 \group{Hyperbolic PDE}
-\uses{thm:hyperbolic-finite-propagation-speed}
+
 For initial data $u(0)=g$ and $u_t(0)=h$, the value $u(x_0,t_0)$ depends only on the restrictions of $g$ and $h$ to the base $C_0$ of the backward characteristic cone.
 \end{remark}
 
@@ -866,9 +906,10 @@ The system of PDE (1) is called hyperbolic if the $m \times m$ matrix $\mathbf{B
 
 \begin{definition}[Symmetric and strictly hyperbolic systems]
 \label{def:symmetric-strictly-hyperbolic-system}
+\uses{def:hyperbolic-system}
 \dcref{ch7:7.3.1-def-2}
 \group{Hyperbolic Systems}
-\uses{def:hyperbolic-system}
+
 (i) We say (1) is a symmetric hyperbolic system if $B_j(x, t)$ is a symmetric $m \times m$ matrix for each $x \in \mathbb{R}^n$, $t \geq 0$ ($j = 1, \ldots, m$).
 
 (ii) The system (1) is strictly hyperbolic if for each $x, y \in \mathbb{R}^n$, $y \neq 0$, and each $t \geq 0$, the matrix $\mathbf{B}(x, t; y)$ has $m$ distinct real eigenvalues:
@@ -879,9 +920,10 @@ The system of PDE (1) is called hyperbolic if the $m \times m$ matrix $\mathbf{B
 
 \begin{remark}[Plane-wave characterization of hyperbolicity]
 \label{rem:motivation-hyperbolicity-plane-wave}
+\uses{def:hyperbolic-system, def:traveling-wave-plane-wave}
 \dcref{ch7:7.3.1-rem-1}
 \group{Hyperbolic Systems}
-\uses{def:hyperbolic-system,def:traveling-wave-plane-wave}
+
 For constant matrices and $\mathbf f=0$, a plane wave
 \[
 \mathbf u(x,t)=\mathbf v(y\cdot x-\sigma t)
@@ -898,9 +940,10 @@ Thus $\sigma$ is an eigenvalue of $\mathbf B(y)=\sum_jy_jB_j$ and $\mathbf v'$ a
 
 \begin{remark}[Symmetric systems generalize second-order hyperbolic PDE]
 \label{rem:symmetric-hyperbolic-general-systems}
+\uses{def:symmetric-strictly-hyperbolic-system, def:uniform-hyperbolicity}
 \dcref{ch7:7.3.2-rem-1}
 \group{Hyperbolic Systems}
-\uses{def:symmetric-strictly-hyperbolic-system,def:uniform-hyperbolicity}
+
 A system
 \[
 B_0\mathbf u_t+\sum_{j=1}^nB_j\mathbf u_{x_j}=\mathbf f
@@ -918,9 +961,10 @@ has this form for $\mathbf u=(v_{x_1},\ldots,v_{x_n},v_t)$, with $B_0$ positive 
 
 \begin{definition}[Weak solution of a symmetric hyperbolic system]
 \label{def:weak-solution-symmetric-hyperbolic-system}
+\uses{rem:symmetric-hyperbolic-general-systems}
 \dcref{ch7:7.3.2-def-1}
 \group{Hyperbolic Systems}
-\uses{rem:symmetric-hyperbolic-general-systems}
+
 We say
 \[
 \mathbf{u} \in L^2(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \text{ with } \mathbf{u}' \in L^2(0,T; L^2(\mathbb{R}^n; \mathbb{R}^m)),
@@ -938,9 +982,10 @@ Here and afterwards $(\cdot, \cdot)$ denotes the inner product in $L^2(\mathbb{R
 
 \begin{remark}[Continuity of the weak solution]
 \label{rem:weak-solution-symmetric-hyperbolic-continuity}
+\uses{def:weak-solution-symmetric-hyperbolic-system, thm:calculus-abstract-space}
 \dcref{ch7:7.3.2-rem-2}
 \group{Hyperbolic Systems}
-\uses{def:weak-solution-symmetric-hyperbolic-system,thm:calculus-abstract-space}
+
 Every weak solution belongs to $C([0,T];L^2(\mathbb R^n;\mathbb R^m))$, so the initial condition is meaningful.
 \end{remark}
 
@@ -948,9 +993,10 @@ Every weak solution belongs to $C([0,T];L^2(\mathbb R^n;\mathbb R^m))$, so the i
 
 \begin{theorem}[Existence of approximate solutions]
 \label{thm:symmetric-hyperbolic-approximate-solutions}
+\uses{def:fundamental-solution-heat-equation}
 \dcref{ch7:7.3-thm-1}
 \group{Hyperbolic Systems}
-\uses{def:fundamental-solution-heat-equation}
+
 For each $\epsilon > 0$, there exists a unique solution $\mathbf{u}^\epsilon$ of (11), with
 \[
 \mathbf{u}^\epsilon \in L^2(0,T; H^3(\mathbb{R}^n; \mathbb{R}^m)), \quad (\mathbf{u}^\epsilon)' \in L^2(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)).
@@ -966,9 +1012,10 @@ For each $\epsilon > 0$, there exists a unique solution $\mathbf{u}^\epsilon$ of
 
 \begin{theorem}[Energy estimates]
 \label{thm:symmetric-hyperbolic-energy-estimates}
+\uses{thm:symmetric-hyperbolic-approximate-solutions}
 \dcref{ch7:7.3-thm-2}
 \group{Energy Estimates}
-\uses{thm:symmetric-hyperbolic-approximate-solutions}
+
 There exists a constant $C$, depending only on $n$ and the coefficients, such that
 \[
 \max_{0 \leq t \leq T} \|u^\epsilon(t)\|_{H^1(\mathbb{R}^n;\mathbb{R}^m)} + \|u_t^\epsilon\|_{L^2(0,T;L^2(\mathbb{R}^n;\mathbb{R}^m))}
@@ -988,9 +1035,10 @@ for each $0 < \epsilon \leq 1$.
 
 \begin{theorem}[Existence of weak solution]
 \label{thm:symmetric-hyperbolic-existence-weak-solution}
+\uses{thm:symmetric-hyperbolic-energy-estimates, def:weak-solution-symmetric-hyperbolic-system}
 \dcref{ch7:7.3-thm-3}
 \group{Hyperbolic Systems}
-\uses{thm:symmetric-hyperbolic-energy-estimates,def:weak-solution-symmetric-hyperbolic-system}
+
 There exists a weak solution of the initial value problem (5).
 \end{theorem}
 
@@ -1000,9 +1048,10 @@ There exists a weak solution of the initial value problem (5).
 
 \begin{theorem}[Uniqueness of weak solution]
 \label{thm:symmetric-hyperbolic-uniqueness-weak-solution}
+\uses{def:weak-solution-symmetric-hyperbolic-system}
 \dcref{ch7:7.3-thm-4}
 \group{Hyperbolic Systems}
-\uses{def:weak-solution-symmetric-hyperbolic-system}
+
 A weak solution of (5) is unique.
 \end{theorem}
 
@@ -1014,9 +1063,10 @@ A weak solution of (5) is unique.
 
 \begin{theorem}[Existence of solution]
 \label{thm:constant-coefficient-hyperbolic-existence}
+\uses{def:fractional-sobolev-space, def:fourier-transform-l1}
 \dcref{ch7:7.3-thm-5}
 \group{Hyperbolic Systems}
-\uses{def:fractional-sobolev-space,def:fourier-transform-l1}
+
 Assume
 \[
 \mathbf{g} \in H^s(\mathbb{R}^n; \mathbb{R}^m) \quad \left(s > \frac{n}{2} + m\right).
@@ -1056,9 +1106,10 @@ $\|\cdot\|$ here denoting the operator norm. Thus
 
 \begin{definition}[Infinitesimal generator]
 \label{def:semigroup-generator}
+\uses{def:semigroup-contraction-semigroup}
 \dcref{ch7:7.4.1-def-2}
 \group{Semigroup Theory}
-\uses{def:semigroup-contraction-semigroup}
+
 Write
 \[
 D(A) := \left\{u \in X \mid \lim_{t \to 0+} \frac{S(t)u - u}{t} \text{ exists in } X\right\}
@@ -1074,9 +1125,10 @@ We call $A : D(A) \to X$ the (infinitesimal) generator of the semigroup $\{S(t)\
 
 \begin{theorem}[Differential properties of semigroups]
 \label{thm:semigroup-differential-properties}
+\uses{def:semigroup-generator}
 \dcref{ch7:7.4-thm-1}
 \group{Semigroup Theory}
-\uses{def:semigroup-generator}
+
 Assume $u \in D(A)$. Then
 (i) $S(t)u \in D(A)$ for each $t \geq 0$,
 (ii) $AS(t)u = S(t)Au$ for each $t > 0$,
@@ -1091,17 +1143,19 @@ and
 
 \begin{remark}[Continuous differentiability of the flow]
 \label{rem:semigroup-c1-remark}
+\uses{thm:semigroup-differential-properties}
 \dcref{ch7:7.4.1-rem-1}
 \group{Semigroup Theory}
-\uses{thm:semigroup-differential-properties}
+
 If $u\in D(A)$, then $t\mapsto S(t)u$ is $C^1$ on $(0,\infty)$ because $AS(t)u=S(t)Au$ is continuous.
 \end{remark}
 
 \begin{theorem}[Properties of generators]
 \label{thm:semigroup-generator-properties}
+\uses{def:semigroup-generator, thm:semigroup-differential-properties}
 \dcref{ch7:7.4-thm-2}
 \group{Semigroup Theory}
-\uses{def:semigroup-generator,thm:semigroup-differential-properties}
+
 (i) The domain $D(A)$ is dense in $X$,
 
 and
@@ -1115,9 +1169,10 @@ and
 
 \begin{remark}[Meaning of ``closed operator'']
 \label{rem:closed-operator-definition}
+\uses{thm:semigroup-generator-properties}
 \dcref{ch7:7.4.1-rem-2}
 \group{Semigroup Theory}
-\uses{thm:semigroup-generator-properties}
+
 Closedness means that $u_k\in D(A)$, $u_k\to u$, and $Au_k\to v$ imply
 \[
 u\in D(A),\qquad Au=v.
@@ -1128,9 +1183,10 @@ u\in D(A),\qquad Au=v.
 
 \begin{definition}[Resolvent set and resolvent operator]
 \label{def:resolvent-set-operator}
+\uses{def:semigroup-generator}
 \dcref{ch7:7.4.1-def-3}
 \group{Semigroup Theory}
-\uses{def:semigroup-generator}
+
 (i) We say a real number $\lambda$ belongs to $\rho(A)$, the resolvent set of $A$, provided the operator
 \[
 \lambda I - A : D(A) \to X
@@ -1145,9 +1201,10 @@ R_\lambda u := (\lambda I - A)^{-1}u.
 
 \begin{theorem}[Properties of resolvent operators]
 \label{thm:resolvent-operator-properties}
+\uses{def:resolvent-set-operator}
 \dcref{ch7:7.4-thm-3}
 \group{Semigroup Theory}
-\uses{def:resolvent-set-operator}
+
 (i) If $\lambda, \mu \in \rho(A)$, we have
 \[
 R_\lambda - R_\mu = (\mu - \lambda)R_\lambda R_\mu \quad \text{(resolvent identity)}
@@ -1173,9 +1230,10 @@ and so $\|R_\lambda\| \leq \frac{1}{\lambda}$.
 
 \begin{remark}[Resolvent as Laplace transform]
 \label{rem:resolvent-laplace-transform-semigroup}
+\uses{thm:resolvent-operator-properties, ex:resolvent-laplace-transform}
 \dcref{ch7:7.4.1-rem-3}
 \group{Semigroup Theory}
-\uses{thm:resolvent-operator-properties,ex:resolvent-laplace-transform}
+
 For $\lambda>0$, the resolvent is the Laplace transform
 \[
 R_\lambda u=\int_0^\infty e^{-\lambda t}S(t)u\,dt.
@@ -1187,9 +1245,10 @@ R_\lambda u=\int_0^\infty e^{-\lambda t}S(t)u\,dt.
 
 \begin{theorem}[Hille--Yosida Theorem]
 \label{thm:hille-yosida-theorem}
+\uses{def:semigroup-contraction-semigroup, def:semigroup-generator, thm:resolvent-operator-properties}
 \dcref{ch7:7.4-thm-4}
 \group{Semigroup Theory}
-\uses{def:semigroup-contraction-semigroup,def:semigroup-generator,thm:resolvent-operator-properties}
+
 Let $A$ be a closed, densely-defined linear operator on $X$. Then $A$ is the generator of a contraction semigroup $\{S(t)\}_{t \geq 0}$ if and only if
 \[
 (0,\infty) \subset \rho(A) \text{ and } \|R_\lambda\| \leq \frac{1}{\lambda} \text{ for } \lambda > 0.
@@ -1203,9 +1262,10 @@ Let $A$ be a closed, densely-defined linear operator on $X$. Then $A$ is the gen
 
 \begin{remark}[$\omega$-contractive semigroups]
 \label{rem:omega-contractive-semigroup}
+\uses{thm:hille-yosida-theorem}
 \dcref{ch7:7.4.2-rem-1}
 \group{Semigroup Theory}
-\uses{thm:hille-yosida-theorem}
+
 A semigroup is $\omega$-contractive when $\|S(t)\|\le e^{\omega t}$. A closed densely defined operator $A$ generates such a semigroup iff
 \[
 (\omega,\infty)\subset\rho(A),\qquad
@@ -1220,9 +1280,10 @@ A semigroup is $\omega$-contractive when $\|S(t)\|\le e^{\omega t}$. A closed de
 
 \begin{theorem}[Second-order parabolic PDE as semigroups]
 \label{thm:parabolic-pde-as-semigroup}
+\uses{thm:hille-yosida-theorem, thm:energy-estimates, thm:boundary-h2-regularity, thm:first-existence-weak-solutions}
 \dcref{ch7:7.4-thm-5}
 \group{Semigroup Theory}
-\uses{thm:hille-yosida-theorem,thm:energy-estimates,thm:boundary-h2-regularity,thm:first-existence-weak-solutions}
+
 The operator $A$ generates a $\gamma$-contraction semigroup $\{S(t)\}_{t \ge 0}$ on $L^2(U)$.
 \end{theorem}
 
@@ -1232,9 +1293,10 @@ The operator $A$ generates a $\gamma$-contraction semigroup $\{S(t)\}_{t \ge 0}$
 
 \begin{remark}[Comparison with the Galerkin method]
 \label{rem:parabolic-semigroup-remark}
+\uses{thm:parabolic-pde-as-semigroup, thm:parabolic-existence-weak-solution}
 \dcref{ch7:7.4.3-rem-1}
 \group{Semigroup Theory}
-\uses{thm:parabolic-pde-as-semigroup,thm:parabolic-existence-weak-solution}
+
 The semigroup construction requires time-independent coefficients and directly yields a more regular solution. The Galerkin construction permits time-dependent coefficients.
 \end{remark}
 
@@ -1242,9 +1304,10 @@ The semigroup construction requires time-independent coefficients and directly y
 
 \begin{theorem}[Second-order hyperbolic PDE as semigroups]
 \label{thm:hyperbolic-pde-as-semigroup}
+\uses{thm:hille-yosida-theorem, thm:parabolic-pde-as-semigroup}
 \dcref{ch7:7.4-thm-6}
 \group{Semigroup Theory}
-\uses{thm:hille-yosida-theorem,thm:parabolic-pde-as-semigroup}
+
 The operator $A$ generates a contraction semigroup $\{S(t)\}_{t \geq 0}$ on $H_0^1(U) \times L^2(U)$.
 \end{theorem}
 

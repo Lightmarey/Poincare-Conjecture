@@ -10,9 +10,10 @@ Unless stated otherwise, \((\mathcal M^n,g)\) is closed and
 
 \begin{definition}[Perelman's energy and $\lambda$-invariant]
 \label{def:chow-iii-ch17-perelman-energy-lambda}
+\source{chow-et-al-ricci-flow-part-iii:page-0023}
 \dcref{ch17:17.1--17.4}
 \group{Entropy Functionals}
-\source{chow-et-al-ricci-flow-part-iii:page-0023}
+
 For $f\in C^\infty(\mathcal M)$, put
 \[
  \mathcal F(g,f)=\int_{\mathcal M}(R+|\nabla f|^2)e^{-f}\,d\mu
@@ -33,9 +34,10 @@ $f_0$ satisfies
 
 \begin{definition}[Perelman's entropy, $\mu$, and $\nu$]
 \label{def:chow-iii-ch17-perelman-entropy-mu-nu}
+\source{chow-et-al-ricci-flow-part-iii:page-0023,chow-et-al-ricci-flow-part-iii:page-0024}
 \dcref{ch17:17.5--17.10}
 \group{Entropy Functionals}
-\source{chow-et-al-ricci-flow-part-iii:page-0023,chow-et-al-ricci-flow-part-iii:page-0024}
+
 For $\tau>0$ and
 $u=(4\pi\tau)^{-n/2}e^{-f}=w^2$, define
 \[
@@ -58,10 +60,12 @@ Then
 
 \begin{theorem}[Entropy monotonicity]
 \label{thm:chow-iii-ch17-entropy-monotonicity}
-\dcref{ch17:17.11--17.13}
-\group{Entropy Functionals}
 \source{chow-et-al-ricci-flow-part-iii:page-0024}
 \uses{def:chow-iii-ch17-perelman-entropy-mu-nu}
+\dcref{ch17:17.11--17.13}
+\group{Entropy Functionals}
+
+
 If
 \[
  \partial_tg=-2\Ric,\qquad
@@ -87,10 +91,12 @@ integration by parts yields $\frac d{dt}\mathcal W=-\int\Box^*v\,d\mu$.
 
 \begin{lemma}[Euler--Lagrange equation for entropy minimizers]
 \label{lem:chow-iii-ch17-entropy-minimizer-equation}
-\dcref{ch17:eq-17.14,eq-17.15}
-\group{Entropy Functionals}
 \source{chow-et-al-ricci-flow-part-iii:page-0024}
 \uses{def:chow-iii-ch17-perelman-entropy-mu-nu}
+\dcref{ch17:eq-17.14,eq-17.15}
+\group{Entropy Functionals}
+
+
 A smooth constrained minimizer $f_\tau$ satisfies
 \[
  \tau(2\Delta f_\tau-|\nabla f_\tau|^2+R)+f_\tau-n=\mu(g,\tau).
@@ -113,9 +119,10 @@ $w=(4\pi\tau)^{-n/4}e^{-f/2}$ gives the first equation.
 
 \begin{lemma}[Logarithmic Sobolev inequality]
 \label{lem:chow-iii-ch17-logarithmic-sobolev}
+\source{chow-et-al-ricci-flow-part-iii:page-0025}
 \dcref{ch17:17.1}
 \group{Entropy Bounds}
-\source{chow-et-al-ricci-flow-part-iii:page-0025}
+
 For every $a>0$ there is $C(a,g)$ such that every positive $\varphi$ with
 $\int\varphi^2d\mu=1$ satisfies
 \[
@@ -130,9 +137,10 @@ where, for $n\ge3$,
 
 \begin{lemma}[Sobolev constants under scaling the metric]
 \label{lem:chow-iii-ch17-sobolev-scaling}
+\source{chow-et-al-ricci-flow-part-iii:page-0025,chow-et-al-ricci-flow-part-iii:page-0026}
 \dcref{ch17:17.2}
 \group{Entropy Bounds}
-\source{chow-et-al-ricci-flow-part-iii:page-0025,chow-et-al-ricci-flow-part-iii:page-0026}
+
 For $\lambda>0$,
 $C_s(\mathcal M,\lambda^2g)=C_s(\mathcal M,g)$; if $\lambda\ge1$, then
 $C(a,\lambda^2g)\le C(a,g)$.
@@ -147,10 +155,12 @@ for $C(a,g)$, volume scaling, and the first identity prove the second.
 
 \begin{lemma}[Upper bound for $\mu$ in terms of $\lambda$, volume, $\tau$, and $n$]
 \label{lem:chow-iii-ch17-mu-upper-lambda-volume}
+\source{chow-et-al-ricci-flow-part-iii:page-0026}
+\uses{def:chow-iii-ch17-perelman-energy-lambda, def:chow-iii-ch17-perelman-entropy-mu-nu}
 \dcref{ch17:17.3}
 \group{Entropy Bounds}
-\source{chow-et-al-ricci-flow-part-iii:page-0026}
-\uses{def:chow-iii-ch17-perelman-energy-lambda,def:chow-iii-ch17-perelman-entropy-mu-nu}
+
+
 For every $\tau>0$,
 \[
  \mu(g,\tau)\le\tau\lambda(g)+\frac1e\Vol(g)
@@ -169,10 +179,12 @@ Evaluate this at the constrained minimizer of $\mathcal G$.
 
 \begin{corollary}[Upper bound for $\mu$ when $\lambda\le0$]
 \label{cor:chow-iii-ch17-mu-upper-nonpositive-lambda}
-\dcref{ch17:17.4}
-\group{Entropy Bounds}
 \source{chow-et-al-ricci-flow-part-iii:page-0026,chow-et-al-ricci-flow-part-iii:page-0027}
 \uses{lem:chow-iii-ch17-mu-upper-lambda-volume}
+\dcref{ch17:17.4}
+\group{Entropy Bounds}
+
+
 If $\lambda(g)\le0$, then
 \[
  \mu(g,\tau)\le\log\Vol(g)-\frac n2\log(4\pi\tau)-n+\frac1e.
@@ -185,10 +197,12 @@ $c=\Vol(g)^{-2/n}$, and use $\lambda(cg)=c^{-1}\lambda(g)\le0$.
 
 \begin{lemma}[Lower bound for $\mu$]
 \label{lem:chow-iii-ch17-mu-lower-log-sobolev}
-\dcref{ch17:17.5}
-\group{Entropy Bounds}
 \source{chow-et-al-ricci-flow-part-iii:page-0027}
 \uses{lem:chow-iii-ch17-logarithmic-sobolev}
+\dcref{ch17:17.5}
+\group{Entropy Bounds}
+
+
 For every $\tau>0$,
 \[
  \mu(g,\tau)\ge \tau R_{\min}(g)-2C(2\tau,g)
@@ -204,9 +218,10 @@ $\int Rw^2d\mu\ge R_{\min}(g)$.  Take the infimum over $w$.
 
 \begin{lemma}[Lower bound for the $\mu$-invariant]
 \label{lem:chow-iii-ch17-mu-lower-lambda}
+\source{chow-et-al-ricci-flow-part-iii:page-0028,chow-et-al-ricci-flow-part-iii:page-0029}
 \dcref{ch17:17.6}
 \group{Entropy Bounds}
-\source{chow-et-al-ricci-flow-part-iii:page-0028,chow-et-al-ricci-flow-part-iii:page-0029}
+
 If $\tau\ge n/8$, then
 \[
  \mu(g,\tau)\ge\left(\tau-\frac n8\right)\lambda(g)
@@ -229,10 +244,12 @@ nonnegative.
 
 \begin{remark}[Large- and small-scale behavior of the lower bound]
 \label{rem:chow-iii-ch17-mu-lower-bound-scales}
-\dcref{ch17:17.7}
-\group{Entropy Bounds}
 \source{chow-et-al-ricci-flow-part-iii:page-0028}
 \uses{lem:chow-iii-ch17-mu-lower-lambda}
+\dcref{ch17:17.7}
+\group{Entropy Bounds}
+
+
 The preceding estimate cannot extend to all sufficiently small $\tau$, since
 its right side tends to $+\infty$ as $\tau\downarrow0$.  If
 $\lambda(g)>0$, it does imply $\mu(g,\tau)\to+\infty$ as
@@ -241,10 +258,12 @@ $\tau\to\infty$.
 
 \begin{lemma}[Lower bound for the volume of a solution when $\lambda\le0$]
 \label{lem:chow-iii-ch17-volume-lower-nonpositive-lambda}
+\source{chow-et-al-ricci-flow-part-iii:page-0029}
+\uses{cor:chow-iii-ch17-mu-upper-nonpositive-lambda, lem:chow-iii-ch17-mu-lower-lambda, thm:chow-iii-ch17-entropy-monotonicity}
 \dcref{ch17:17.8}
 \group{Finite Time Singularities}
-\source{chow-et-al-ricci-flow-part-iii:page-0029}
-\uses{cor:chow-iii-ch17-mu-upper-nonpositive-lambda,lem:chow-iii-ch17-mu-lower-lambda,thm:chow-iii-ch17-entropy-monotonicity}
+
+
 If $g(t)$, $t\in[0,T)$, is a closed Ricci flow and
 $\lambda(g(t))\le0$ throughout, then constants $c_1,c_2>0$ depending only
 on $g(0)$ satisfy
@@ -268,9 +287,10 @@ $c_1e^{-c_2t}$ after enlarging $c_2$.
 
 \begin{remark}[Singularity models]
 \label{rem:chow-iii-ch17-singularity-models}
+\source{chow-et-al-ricci-flow-part-iii:page-0030}
 \dcref{ch17:17.9}
 \group{Finite Time Singularities}
-\source{chow-et-al-ricci-flow-part-iii:page-0030}
+
 A finite-time singularity model is a complete ancient pointed limit of
 parabolic rescalings of a finite-time singular Ricci flow on a closed
 manifold.
@@ -278,10 +298,12 @@ manifold.
 
 \begin{lemma}[Finite-time singularity models are noncompact when $\lambda\le0$]
 \label{lem:chow-iii-ch17-model-noncompact-nonpositive-lambda}
+\source{chow-et-al-ricci-flow-part-iii:page-0030}
+\uses{lem:chow-iii-ch17-volume-lower-nonpositive-lambda, rem:chow-iii-ch17-singularity-models}
 \dcref{ch17:17.10}
 \group{Finite Time Singularities}
-\source{chow-et-al-ricci-flow-part-iii:page-0030}
-\uses{lem:chow-iii-ch17-volume-lower-nonpositive-lambda,rem:chow-iii-ch17-singularity-models}
+
+
 If a singular closed Ricci flow has $\lambda(g(t))\le0$ throughout, every
 finite-time singularity model is noncompact.
 \end{lemma}
@@ -294,9 +316,10 @@ converge to that model's finite volume, a contradiction.
 
 \begin{remark}[Noncompact singularity models have infinite volume]
 \label{rem:chow-iii-ch17-noncompact-model-infinite-volume}
+\source{chow-et-al-ricci-flow-part-iii:page-0030}
 \dcref{ch17:17.11}
 \group{Finite Time Singularities}
-\source{chow-et-al-ricci-flow-part-iii:page-0030}
+
 A bounded-curvature noncompact finite-time singularity model has infinite
 volume at every time.
 \end{remark}
@@ -308,10 +331,12 @@ infinite on a complete noncompact manifold, so their volumes sum to infinity.
 
 \begin{corollary}[A compact singularity model implies $\lambda>0$]
 \label{cor:chow-iii-ch17-compact-model-positive-lambda}
-\dcref{ch17:17.12}
-\group{Finite Time Singularities}
 \source{chow-et-al-ricci-flow-part-iii:page-0030}
 \uses{lem:chow-iii-ch17-model-noncompact-nonpositive-lambda}
+\dcref{ch17:17.12}
+\group{Finite Time Singularities}
+
+
 If a finite-time singular closed Ricci flow has a compact singularity model,
 then $\lambda(g(t_0))>0$ for some $t_0<T$, and hence
 $\lambda(g(t))>0$ for every $t\in[t_0,T)$.
@@ -323,10 +348,12 @@ Monotonicity of $\lambda$ preserves strict positivity thereafter.
 
 \begin{theorem}[Compact finite-time singularity models are shrinkers]
 \label{thm:chow-iii-ch17-compact-model-shrinker}
+\source{chow-et-al-ricci-flow-part-iii:page-0031,chow-et-al-ricci-flow-part-iii:page-0032}
+\uses{cor:chow-iii-ch17-compact-model-positive-lambda, lem:chow-iii-ch17-nu-continuity-positive-lambda}
 \dcref{ch17:17.13}
 \group{Finite Time Singularities}
-\source{chow-et-al-ricci-flow-part-iii:page-0031,chow-et-al-ricci-flow-part-iii:page-0032}
-\uses{cor:chow-iii-ch17-compact-model-positive-lambda,lem:chow-iii-ch17-nu-continuity-positive-lambda}
+
+
 Every finite-time singularity model whose underlying manifold is closed is a
 shrinking gradient Ricci soliton.
 \end{theorem}
@@ -346,10 +373,12 @@ $\nu$-monotonicity formula therefore gives the shrinking soliton equation.
 
 \begin{lemma}[Continuity of $\nu$ at positive $\lambda$]
 \label{lem:chow-iii-ch17-nu-continuity-positive-lambda}
+\source{chow-et-al-ricci-flow-part-iii:page-0032,chow-et-al-ricci-flow-part-iii:page-0033}
+\uses{lem:chow-iii-ch17-mu-continuity, lem:chow-iii-ch17-mu-lower-lambda, prop:chow-iii-ch17-mu-small-scale-limit}
 \dcref{ch17:17.14}
 \group{Finite Time Singularities}
-\source{chow-et-al-ricci-flow-part-iii:page-0032,chow-et-al-ricci-flow-part-iii:page-0033}
-\uses{lem:chow-iii-ch17-mu-continuity,lem:chow-iii-ch17-mu-lower-lambda,prop:chow-iii-ch17-mu-small-scale-limit}
+
+
 If $g_i\to g_\infty$ smoothly on a closed manifold and
 $\lambda(g_\infty)>0$, then $\nu(g_i)\to\nu(g_\infty)$.
 \end{lemma}
@@ -365,9 +394,10 @@ remaining compact interval lets one pass the infimum to the limit.
 
 \begin{lemma}[Continuous dependence of $\mu(g,\tau)$ on $g$]
 \label{lem:chow-iii-ch17-mu-continuity}
+\source{chow-et-al-ricci-flow-part-iii:page-0033,chow-et-al-ricci-flow-part-iii:page-0034}
 \dcref{ch17:17.15}
 \group{Entropy Bounds}
-\source{chow-et-al-ricci-flow-part-iii:page-0033,chow-et-al-ricci-flow-part-iii:page-0034}
+
 For $n\ge2$, $C<\infty$, and $\varepsilon>0$, there is $\delta>0$ with
 the following property.  If $R_{\rm avg}(\widetilde g),\Vol(\widetilde g)le C$,
 $|R_g-R_{\widetilde g}|\le\delta$, and
@@ -391,10 +421,12 @@ their total difference at most $\varepsilon$.
 
 \begin{corollary}[Singularity models on closed three-manifolds are round]
 \label{cor:chow-iii-ch17-closed-three-model-round}
-\dcref{ch17:17.16}
-\group{Finite Time Singularities}
 \source{chow-et-al-ricci-flow-part-iii:page-0034}
 \uses{thm:chow-iii-ch17-compact-model-shrinker}
+\dcref{ch17:17.16}
+\group{Finite Time Singularities}
+
+
 A finite-time singularity model on a closed three-manifold is a shrinking
 spherical space form.
 \end{corollary}
@@ -406,19 +438,22 @@ sectional curvature, and hence is a spherical space form.
 
 \begin{remark}[Type of a compact singularity model]
 \label{rem:chow-iii-ch17-compact-model-type-i-problem}
+\source{chow-et-al-ricci-flow-part-iii:page-0035}
 \dcref{ch17:17.17}
 \group{Finite Time Singularities}
-\source{chow-et-al-ricci-flow-part-iii:page-0035}
+
 The source asks whether every finite-time singular Ricci flow that forms a
 singularity model on a closed manifold must be Type I.
 \end{remark}
 
 \begin{remark}[Compact factors of singularity models are shrinkers]
 \label{rem:chow-iii-ch17-compact-factor-shrinker}
-\dcref{ch17:17.18}
-\group{Finite Time Singularities}
 \source{chow-et-al-ricci-flow-part-iii:page-0036}
 \uses{thm:chow-iii-ch17-compact-model-shrinker}
+\dcref{ch17:17.18}
+\group{Finite Time Singularities}
+
+
 If the universal cover of a finite-time singularity model splits as
 $(\mathcal N^m,h(t))\times\mathbb R^{n-m}$ with $\mathcal N$ compact, then
 $(\mathcal N,h(t))$ is a shrinking gradient Ricci soliton.
@@ -428,10 +463,12 @@ $(\mathcal N,h(t))$ is a shrinking gradient Ricci soliton.
 
 \begin{lemma}[$\mu(g,\tau)$ is negative for $\tau$ small]
 \label{lem:chow-iii-ch17-mu-negative-small-scale}
-\dcref{ch17:17.19}
-\group{Small Scale Entropy}
 \source{chow-et-al-ricci-flow-part-iii:page-0036,chow-et-al-ricci-flow-part-iii:page-0037}
 \uses{thm:chow-iii-ch17-entropy-monotonicity}
+\dcref{ch17:17.19}
+\group{Small Scale Entropy}
+
+
 There is $\bar\tau>0$ such that $\mu(g,\tau)<0$ for every
 $0<\tau<\bar\tau$.
 \end{lemma}
@@ -447,10 +484,12 @@ with any smaller terminal time proves the claim.
 
 \begin{proposition}[$\mu(g,\tau)\to0$ as $\tau\to0$]
 \label{prop:chow-iii-ch17-mu-small-scale-limit}
+\source{chow-et-al-ricci-flow-part-iii:page-0037,chow-et-al-ricci-flow-part-iii:page-0038,chow-et-al-ricci-flow-part-iii:page-0039,chow-et-al-ricci-flow-part-iii:page-0040,chow-et-al-ricci-flow-part-iii:page-0041,chow-et-al-ricci-flow-part-iii:page-0042}
+\uses{lem:chow-iii-ch17-mu-negative-small-scale, prop:chow-iii-ch17-smooth-entropy-minimizer, lem:chow-iii-ch17-weak-strong-maximum-principle, lem:chow-iii-ch17-minimizer-maximum-lower-bound}
 \dcref{ch17:17.20}
 \group{Small Scale Entropy}
-\source{chow-et-al-ricci-flow-part-iii:page-0037,chow-et-al-ricci-flow-part-iii:page-0038,chow-et-al-ricci-flow-part-iii:page-0039,chow-et-al-ricci-flow-part-iii:page-0040,chow-et-al-ricci-flow-part-iii:page-0041,chow-et-al-ricci-flow-part-iii:page-0042}
-\uses{lem:chow-iii-ch17-mu-negative-small-scale,prop:chow-iii-ch17-smooth-entropy-minimizer,lem:chow-iii-ch17-weak-strong-maximum-principle,lem:chow-iii-ch17-minimizer-maximum-lower-bound}
+
+
 For every closed Riemannian manifold,
 \[
  \lim_{\tau\downarrow0}\mu(g,\tau)=0.
@@ -485,19 +524,22 @@ strictly negative number, a contradiction.
 
 \begin{remark}[Small-scale entropy asymptotics]
 \label{rem:chow-iii-ch17-mu-small-scale-asymptotics-problem}
+\source{chow-et-al-ricci-flow-part-iii:page-0043}
 \dcref{ch17:17.21}
 \group{Small Scale Entropy}
-\source{chow-et-al-ricci-flow-part-iii:page-0043}
+
 The source asks for the more precise asymptotic expansion of $\mu(g,\tau)$
 as $\tau\downarrow0$.
 \end{remark}
 
 \begin{lemma}[For small $\tau$ the minimizer is nonconstant and may not be unique]
 \label{lem:chow-iii-ch17-small-minimizer-nonconstant-nonunique}
+\source{chow-et-al-ricci-flow-part-iii:page-0043}
+\uses{lem:chow-iii-ch17-entropy-minimizer-equation, prop:chow-iii-ch17-mu-small-scale-limit}
 \dcref{ch17:17.22}
 \group{Small Scale Entropy}
-\source{chow-et-al-ricci-flow-part-iii:page-0043}
-\uses{lem:chow-iii-ch17-entropy-minimizer-equation,prop:chow-iii-ch17-mu-small-scale-limit}
+
+
 For all sufficiently small $\tau$, every minimizer of
 $\mathcal W(g,\cdot,\tau)$ is nonconstant.  If the isometry group of
 $(\mathcal M,g)$ acts transitively, then every such minimizer is nonunique.
@@ -516,9 +558,10 @@ first claim.
 
 \begin{remark}[Minimizers on homogeneous spaces]
 \label{rem:chow-iii-ch17-homogeneous-minimizer-problem}
+\source{chow-et-al-ricci-flow-part-iii:page-0044}
 \dcref{ch17:17.23}
 \group{Small Scale Entropy}
-\source{chow-et-al-ricci-flow-part-iii:page-0044}
+
 The source asks for a description of entropy minimizers on round spheres and
 on other homogeneous manifolds, including their symmetries and their change
 across the Einstein scale.
@@ -528,10 +571,12 @@ across the Einstein scale.
 
 \begin{proposition}[Existence of a smooth minimizer for $\mathcal W$]
 \label{prop:chow-iii-ch17-smooth-entropy-minimizer}
+\source{chow-et-al-ricci-flow-part-iii:page-0044,chow-et-al-ricci-flow-part-iii:page-0045,chow-et-al-ricci-flow-part-iii:page-0046}
+\uses{lem:chow-iii-ch17-mu-lower-log-sobolev, lem:chow-iii-ch17-log-entropy-continuity, lem:chow-iii-ch17-weak-strong-maximum-principle}
 \dcref{ch17:17.24}
 \group{Entropy Minimizers}
-\source{chow-et-al-ricci-flow-part-iii:page-0044,chow-et-al-ricci-flow-part-iii:page-0045,chow-et-al-ricci-flow-part-iii:page-0046}
-\uses{lem:chow-iii-ch17-mu-lower-log-sobolev,lem:chow-iii-ch17-log-entropy-continuity,lem:chow-iii-ch17-weak-strong-maximum-principle}
+
+
 For every metric on a closed manifold and every $\tau>0$, there exists a
 smooth constrained minimizer $f_\tau$ of $\mathcal W(g,\cdot,\tau)$, and it
 satisfies the entropy Euler--Lagrange equation.
@@ -552,9 +597,10 @@ restores arbitrary $\tau$.
 
 \begin{lemma}[Continuity of logarithmic entropy]
 \label{lem:chow-iii-ch17-log-entropy-continuity}
+\source{chow-et-al-ricci-flow-part-iii:page-0047}
 \dcref{ch17:17.25}
 \group{Entropy Minimizers}
-\source{chow-et-al-ricci-flow-part-iii:page-0047}
+
 For every $\delta>0$, the map
 \[
  w\longmapsto\int_{\mathcal M}w^2\log w^2\,d\mu
@@ -573,9 +619,10 @@ $L^{2(1+\delta)}$ distance.  Sobolev embedding supplies the last assertion.
 
 \begin{lemma}[Strong maximum principle for weak solutions]
 \label{lem:chow-iii-ch17-weak-strong-maximum-principle}
+\source{chow-et-al-ricci-flow-part-iii:page-0047,chow-et-al-ricci-flow-part-iii:page-0048,chow-et-al-ricci-flow-part-iii:page-0049,chow-et-al-ricci-flow-part-iii:page-0050,chow-et-al-ricci-flow-part-iii:page-0051}
 \dcref{ch17:17.26}
 \group{Entropy Minimizers}
-\source{chow-et-al-ricci-flow-part-iii:page-0047,chow-et-al-ricci-flow-part-iii:page-0048,chow-et-al-ricci-flow-part-iii:page-0049,chow-et-al-ricci-flow-part-iii:page-0050,chow-et-al-ricci-flow-part-iii:page-0051}
+
 Let $(\mathcal M,g)$ be complete and let $w\ge0$ be a $C^{1,\alpha}$ weak
 solution of the entropy minimizer equation at scale one.  If $w(p)=0$, then
 $w$ vanishes in a neighborhood of $p$.
@@ -598,20 +645,24 @@ averages implies that $w$ vanishes on the corresponding ball.
 
 \begin{remark}[Scaling of the weak maximum principle]
 \label{rem:chow-iii-ch17-weak-maximum-principle-scaling}
-\dcref{ch17:17.27}
-\group{Entropy Minimizers}
 \source{chow-et-al-ricci-flow-part-iii:page-0048}
 \uses{lem:chow-iii-ch17-weak-strong-maximum-principle}
+\dcref{ch17:17.27}
+\group{Entropy Minimizers}
+
+
 By metric scaling, the preceding weak maximum principle holds for the
 entropy minimizer equation at every scale $\tau>0$.
 \end{remark}
 
 \begin{lemma}[Lower bound for the maximum value of a minimizer]
 \label{lem:chow-iii-ch17-minimizer-maximum-lower-bound}
-\dcref{ch17:17.28}
-\group{Entropy Minimizers}
 \source{chow-et-al-ricci-flow-part-iii:page-0052}
 \uses{lem:chow-iii-ch17-entropy-minimizer-equation}
+\dcref{ch17:17.28}
+\group{Entropy Minimizers}
+
+
 For an entropy minimizer $w_\tau$ on a closed manifold,
 \[
  \max_{\mathcal M}w_\tau\ge
@@ -630,9 +681,10 @@ $\log w_\tau$ gives the formula.
 
 \begin{definition}[Linear trace Harnack quadratic]
 \label{def:chow-iii-ch17-linear-trace-harnack}
+\source{chow-et-al-ricci-flow-part-iii:page-0052,chow-et-al-ricci-flow-part-iii:page-0053}
 \dcref{ch17:17.89--17.93}
 \group{Variation Formulas}
-\source{chow-et-al-ricci-flow-part-iii:page-0052,chow-et-al-ricci-flow-part-iii:page-0053}
+
 For a symmetric two-tensor $v$ and vector field $X$, define
 \[
  L(v,X)=\operatorname{div}(\operatorname{div}v)+\langle v,\Ric\rangle
@@ -647,10 +699,12 @@ For $X=\nabla f$ this is
 
 \begin{lemma}[Variation of Perelman's modified scalar curvature]
 \label{lem:chow-iii-ch17-modified-scalar-variation}
-\dcref{ch17:17.29}
-\group{Variation Formulas}
 \source{chow-et-al-ricci-flow-part-iii:page-0053}
 \uses{def:chow-iii-ch17-linear-trace-harnack}
+\dcref{ch17:17.29}
+\group{Variation Formulas}
+
+
 If $\partial_sg=v$ and $\partial_sf=\operatorname{tr}_gv$, so that
 $e^{-f}d\mu$ is fixed, then
 \[
@@ -667,10 +721,12 @@ inner product.
 
 \begin{lemma}[Perelman's first variation formula for $\mathcal F$]
 \label{lem:chow-iii-ch17-perelman-energy-first-variation}
-\dcref{ch17:17.30}
-\group{Variation Formulas}
 \source{chow-et-al-ricci-flow-part-iii:page-0053}
 \uses{lem:chow-iii-ch17-modified-scalar-variation}
+\dcref{ch17:17.30}
+\group{Variation Formulas}
+
+
 Under the same variation,
 \[
  \partial_s\mathcal F(g,f)=-\int_{\mathcal M}
@@ -687,9 +743,10 @@ $\langle v,\Ric+\nabla^2f\rangle$.
 
 \begin{definition}[Matrix Harnack tensor and curvature square]
 \label{def:chow-iii-ch17-matrix-harnack-curvature-square}
+\source{chow-et-al-ricci-flow-part-iii:page-0053,chow-et-al-ricci-flow-part-iii:page-0054}
 \dcref{ch17:17.97--17.103}
 \group{Variation Formulas}
-\source{chow-et-al-ricci-flow-part-iii:page-0053,chow-et-al-ricci-flow-part-iii:page-0054}
+
 Let
 \[
  P(X,Y,Z)=(\nabla_X\Ric)(Y,Z)-(\nabla_Y\Ric)(X,Z)
@@ -710,10 +767,12 @@ Also set $\alpha_{ij}=R_{ik\ell p}R_j{}^{k\ell p}$.  Then
 
 \begin{theorem}[Coupled one- and two-loop variation identity]
 \label{thm:chow-iii-ch17-coupled-loop-variation}
+\source{chow-et-al-ricci-flow-part-iii:page-0054,chow-et-al-ricci-flow-part-iii:page-0055,chow-et-al-ricci-flow-part-iii:page-0056}
+\uses{lem:chow-iii-ch17-perelman-energy-first-variation, def:chow-iii-ch17-matrix-harnack-curvature-square}
 \dcref{ch17:17.104--17.112}
 \group{Variation Formulas}
-\source{chow-et-al-ricci-flow-part-iii:page-0054,chow-et-al-ricci-flow-part-iii:page-0055,chow-et-al-ricci-flow-part-iii:page-0056}
-\uses{lem:chow-iii-ch17-perelman-energy-first-variation,def:chow-iii-ch17-matrix-harnack-curvature-square}
+
+
 Define
 \[
  \beta^{(1)}=-2(\Ric+\nabla^2f),\quad \gamma^{(1)}=-R-\Delta f,
@@ -748,13 +807,35 @@ square.
 
 \begin{remark}[Zeroth-loop variation identity]
 \label{rem:chow-iii-ch17-zeroth-loop-variation}
+\source{chow-et-al-ricci-flow-part-iii:page-0056}
 \dcref{ch17:17.31}
 \group{Variation Formulas}
-\source{chow-et-al-ricci-flow-part-iii:page-0056}
+
 If $\beta^{(0)}=g$, $\gamma^{(0)}=n/2$, and
 $\mathcal F_0=-\int f e^{-f}d\mu$, then
 \[
  \delta_{(\beta^{(0)},\gamma^{(0)})}\mathcal F_1
  +\delta_{(\beta^{(1)},\gamma^{(1)})}\mathcal F_0=0.
 \]
+\end{remark}
+
+\begin{remark}[Guiding principles for Ricci flow]
+\label{rem:chow-iii-ch17-guiding-principles-problem}
+\dcref{ch17:17.33}
+\group{Further Problems}
+\source{chow-et-al-ricci-flow-part-iii:page-0057}
+The source asks for new guiding principles beyond heat-equation analogies,
+maximum principles, monotonicity, solitons, space-time quantities, and point
+picking, with particular emphasis on localization, weak continuation through
+singularities, higher dimensions, and special geometric structures.
+\end{remark}
+
+\begin{remark}[Higher-loop monotonicity problem]
+\label{rem:chow-iii-ch17-higher-loop-problem}
+\dcref{ch17:17.32}
+\group{Variation Formulas}
+\source{chow-et-al-ricci-flow-part-iii:page-0056}
+The source asks whether the preceding identities extend to an infinite
+sequence of tensors $\beta^{(k)}$, functions $\gamma^{(k)}$, and functionals
+$\mathcal F_k$ producing a monotonicity formula extending Perelman's entropy.
 \end{remark}

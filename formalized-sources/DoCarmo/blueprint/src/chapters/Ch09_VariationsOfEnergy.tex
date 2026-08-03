@@ -4,8 +4,8 @@
 
 \begin{definition}[variation]
   \label{def:dc-ch9-2-1}
-\lean{Riemannian.Variation.IsDifferentiableVariation,Riemannian.Variation.IsDifferentiableVariation.isVariation,Riemannian.Variation.IsDifferentiableVariationOfOrder,Riemannian.Variation.IsDifferentiableVariationOfOrder.isVariationOfOrder,Riemannian.Variation.IsProperVariation,Riemannian.Variation.IsSmoothDifferentiableVariation,Riemannian.Variation.IsSmoothVariation,Riemannian.Variation.IsVariation.curve_isPiecewiseDifferentiableCurve,Riemannian.Variation.IsVariation.curve_zero,Riemannian.Variation.IsVariation.isVariationOfOrderOne,Riemannian.Variation.IsVariationOfOrder.curve_isPiecewiseDifferentiableCurve,Riemannian.Variation.IsVariationOfOrder.curve_piecewise_contMDiff,Riemannian.Variation.IsVariationOfOrder.isVariation,Riemannian.Variation.IsVariationOfOrder.variationalFieldBundle_piecewise_contMDiff,Riemannian.Variation.IsVariationOfOrder.variationalFieldBundle_proj_eq,Riemannian.Variation.curve,Riemannian.Variation.isProperVariation_iff,Riemannian.Variation.transversal,Riemannian.Variation.variationalField,Riemannian.Variation.variationalFieldBundle}
-\leanok
+  \lean{Riemannian.Variation.IsSmoothVariation, Riemannian.Variation.IsProperVariation, Riemannian.Variation.IsDifferentiableVariation, Riemannian.Variation.IsDifferentiableVariationOfOrder, Riemannian.Variation.IsSmoothDifferentiableVariation, Riemannian.Variation.curve, Riemannian.Variation.transversal, Riemannian.Variation.variationalField, Riemannian.Variation.variationalFieldBundle, Riemannian.Variation.IsVariationOfOrder.variationalFieldBundle_proj_eq, Riemannian.Variation.IsVariationOfOrder.variationalFieldBundle_piecewise_contMDiff, Riemannian.Variation.IsVariation.curve_zero, Riemannian.Variation.IsVariation.isVariationOfOrderOne, Riemannian.Variation.IsVariation.curve_isPiecewiseDifferentiableCurve, Riemannian.Variation.IsVariationOfOrder.isVariation, Riemannian.Variation.IsVariationOfOrder.curve_piecewise_contMDiff, Riemannian.Variation.IsVariationOfOrder.curve_isPiecewiseDifferentiableCurve, Riemannian.Variation.isProperVariation_iff, Riemannian.Variation.IsDifferentiableVariation.isVariation, Riemannian.Variation.IsDifferentiableVariationOfOrder.isVariationOfOrder}
+  \leanok
   \dcref{ch9:2.1}
   Let $c:[0,a]\to M$ be a piecewise differentiable curve in a manifold $M$. A
   \emph{variation} of $c$ is a continuous mapping $f:(-\varepsilon,\varepsilon)\times[0,a]\to M$
@@ -30,6 +30,7 @@
 \end{definition}
 \begin{proposition}[existence of a variation with given variational field]
   \label{prop:dc-ch9-2-2}
+  \uses{def:dc-ch9-2-1}
   \dcref{ch9:2.2}
   Given a piecewise differentiable field $V(t)$, along the piecewise differentiable
   curve $c:[0,a]\to M$, there exists a variation $f:(-\varepsilon,\varepsilon)\times[0,a]\to M$
@@ -37,6 +38,7 @@
   $V(0)=V(a)=0$, it is possible to choose $f$ as a proper variation.
 \end{proposition}
 \begin{proof}
+  \uses{thm:dc-ch3-3-7, lem:dc-ch9-2-2-exponential}
   \sketch
   Since $c([0,a])\subset M$ is compact it is possible to find a $\delta>0$
   such that $\exp_{c(t)}$ is well-defined for all $v\in T_{c(t)}M$ with $|v|<\delta$:
@@ -57,11 +59,10 @@
 \end{proof}
 \begin{definition}[energy of a curve]
   \label{def:dc-ch9-2-2-energy}
-  \dcref{ch9:2.2}
-  \lean{Riemannian.DCEnergy, Riemannian.dcSpeed, Riemannian.dcArcLength_eq_integral_dcSpeed,
-    Riemannian.dcEnergy_eq_integral_dcSpeed_sq}
-  \leanok
+  \lean{Riemannian.DCEnergy, Riemannian.dcSpeed, Riemannian.dcArcLength_eq_integral_dcSpeed, Riemannian.dcEnergy_eq_integral_dcSpeed_sq}
   \uses{def:dc-ch1-2-9}
+  \leanok
+  \dcref{ch9:2.2}
   For a curve $c:[a,b]\to M$ the \emph{speed} is $|dc/dt|=\langle dc/dt,dc/dt\rangle^{1/2}$
   and the \emph{energy} of the segment $c|[a,b]$ is
   $$
@@ -71,13 +72,10 @@
 \end{definition}
 \begin{lemma}[smooth curves have integrable speed and energy density]
   \label{lem:dc-ch9-2-2-smooth-speed-integrable}
-  \dcref{ch9:2.2}
-  \lean{Riemannian.Variation.ContMDiffOn.continuousOn_speedSq_of_isOpen,
-    Riemannian.Variation.ContMDiffOn.continuousOn_dcSpeed_of_isOpen,
-    Riemannian.Variation.ContMDiffOn.intervalIntegrable_dcSpeed_of_isOpen,
-    Riemannian.Variation.ContMDiffOn.intervalIntegrable_dcSpeed_sq_of_isOpen}
-  \leanok
+  \lean{Riemannian.Variation.ContMDiffOn.continuousOn_speedSq_of_isOpen, Riemannian.Variation.ContMDiffOn.continuousOn_dcSpeed_of_isOpen, Riemannian.Variation.ContMDiffOn.intervalIntegrable_dcSpeed_of_isOpen, Riemannian.Variation.ContMDiffOn.intervalIntegrable_dcSpeed_sq_of_isOpen}
   \uses{def:dc-ch9-2-2-energy}
+  \leanok
+  \dcref{ch9:2.2}
   If a curve is smooth on an open neighborhood of $[a,b]$, then its speed and
   squared speed are continuous there and integrable on $[a,b]$. Consequently
   its arc length and energy on $[a,b]$ are represented by ordinary interval
@@ -94,11 +92,10 @@
 \end{proof}
 \begin{lemma}[Schwarz inequality $L(c)^2\le a\,E(c)$]
   \label{lem:dc-ch9-2-2-schwarz}
-  \dcref{ch9:2.2}
-  \lean{Riemannian.dcArcLength_sq_le_mul_dcEnergy, Riemannian.dcArcLength_sq_eq_iff,
-    Riemannian.sq_integral_le_sub_mul_integral_sq, Riemannian.sq_integral_eq_iff_ae_eq_const}
-  \leanok
+  \lean{Riemannian.dcArcLength_sq_le_mul_dcEnergy, Riemannian.dcArcLength_sq_eq_iff, Riemannian.sq_integral_le_sub_mul_integral_sq, Riemannian.sq_integral_eq_iff_ae_eq_const}
   \uses{def:dc-ch9-2-2-energy}
+  \leanok
+  \dcref{ch9:2.2}
   For a curve $c:[a,b]\to M$ whose speed and squared speed are integrable,
   $$
   L(c)^2\le (b-a)\,E(c),
@@ -123,11 +120,10 @@
 \end{proof}
 \begin{lemma}[minimizing geodesics minimize energy]
   \label{lem:dc-ch9-2-3}
-\lean{Riemannian.Geodesic.IsMinimizingGeodesicSegment.dcEnergy_eq_iff_geodesicOn_and_minimizing,Riemannian.Geodesic.IsMinimizingGeodesicSegment.dcEnergy_le,Riemannian.Geodesic.IsMinimizingGeodesicSegment.geodesicOn_and_minimizing_of_dcEnergy_eq}
-\leanok
+  \lean{Riemannian.Geodesic.IsMinimizingGeodesicSegment.dcEnergy_le, Riemannian.Geodesic.IsMinimizingGeodesicSegment.geodesicOn_and_minimizing_of_dcEnergy_eq, Riemannian.Geodesic.IsMinimizingGeodesicSegment.dcEnergy_eq_iff_geodesicOn_and_minimizing}
+  \uses{cor:dc-ch3-3-9, lem:dc-ch9-2-2-schwarz, lem:dc-ch9-2-3-inequality, lem:dc-ch9-2-3-equality-case, lem:dc-ch9-2-3-arclength-bridge, lem:dc-ch9-2-3-pointwise-arclength}
+  \leanok
   \dcref{ch9:2.3}
-  \uses{cor:dc-ch3-3-9, lem:dc-ch9-2-2-schwarz, lem:dc-ch9-2-3-inequality,
-    lem:dc-ch9-2-3-equality-case, lem:dc-ch9-2-3-arclength-bridge}
   Let $p,q\in M$ and let $\gamma:[0,a]\to M$ be a minimizing geodesic joining $p$ to
   $q$. Then, for all curves $c:[0,a]\to M$ joining $p$ to $q$,
 
@@ -138,7 +134,7 @@
   with equality holding if and only if $c$ is a minimizing geodesic.
 \end{lemma}
 \begin{proof}
-\leanok
+  \leanok
   \sketch
   $$
   aE(\gamma)=(L(\gamma))^2\le(L(c))^2\le aE(c),
@@ -151,13 +147,10 @@
 \end{proof}
 \begin{lemma}[arc length as a path length]
   \label{lem:dc-ch9-2-3-arclength-bridge}
-  \dcref{ch9:2.3}
-  \lean{Riemannian.ofReal_dcArcLength_eq_pathELength,
-    Riemannian.enorm_mfderiv_eq_ofReal_dcSpeed,
-    Riemannian.dcArcLength_eq_toReal_pathELength,
-    Riemannian.dcArcLength_le_of_pathELength_le}
-  \leanok
+  \lean{Riemannian.ofReal_dcArcLength_eq_pathELength, Riemannian.enorm_mfderiv_eq_ofReal_dcSpeed, Riemannian.dcArcLength_eq_toReal_pathELength, Riemannian.dcArcLength_le_of_pathELength_le}
   \uses{def:dc-ch1-2-9, def:dc-ch9-2-2-energy}
+  \leanok
+  \dcref{ch9:2.3}
   For a curve $c:[a,b]\to M$ whose speed is integrable, the arc length
   $L(c)=\int_a^b|dc/dt|\,dt$ agrees with the length of $c$
   measured as a path in the metric space $M$. Consequently a comparison of path lengths
@@ -179,11 +172,10 @@
 \end{proof}
 \begin{lemma}[a geodesic attains equality in the Schwarz comparison]
   \label{lem:dc-ch9-2-3-geodesic-equality}
-  \dcref{ch9:2.3}
-  \lean{Riemannian.dcArcLength_sq_eq_mul_dcEnergy_of_isGeodesicOn,
-    Riemannian.dcSpeed_eq_of_isGeodesicOn}
-  \leanok
+  \lean{Riemannian.dcArcLength_sq_eq_mul_dcEnergy_of_isGeodesicOn, Riemannian.dcSpeed_eq_of_isGeodesicOn}
   \uses{lem:dc-ch9-2-2-schwarz, lem:dc-ch3-2-1-constspeed, def:dc-ch9-2-2-energy}
+  \leanok
+  \dcref{ch9:2.3}
   For a geodesic $\gamma:[a,b]\to M$ with integrable speed and squared speed,
   $$
   L(\gamma)^2 = (b-a)\,E(\gamma).
@@ -200,10 +192,10 @@
 \end{proof}
 \begin{lemma}[a minimizing geodesic minimizes energy: the inequality]
   \label{lem:dc-ch9-2-3-inequality}
-  \dcref{ch9:2.3}
-  \lean{Riemannian.dcEnergy_le_of_dcArcLength_le}
-  \leanok
+  \lean{Riemannian.dcEnergy_le_of_dcArcLength_le, Riemannian.Geodesic.IsMinimizingGeodesicSegment.dcEnergy_le}
   \uses{lem:dc-ch9-2-3-geodesic-equality, lem:dc-ch9-2-2-schwarz, def:dc-ch9-2-2-energy}
+  \leanok
+  \dcref{ch9:2.3}
   Let $\gamma:[a,b]\to M$ be a geodesic and $c:[a,b]\to M$ a curve with $L(\gamma)\le L(c)$
   (both with integrable speed and squared speed). Then $E(\gamma)\le E(c)$.
 
@@ -219,11 +211,10 @@
 \end{proof}
 \begin{lemma}[a smooth fixed-endpoint variation of a minimizer minimizes energy]
   \label{lem:dc-ch9-2-3-smooth-variation-energy-min}
-  \dcref{ch9:2.3}
   \lean{Riemannian.Variation.isLocalMin_dcEnergy_of_smooth_fixedEndpoint_variation}
+  \uses{lem:dc-ch9-2-2-smooth-speed-integrable, lem:dc-ch9-2-3-arclength-bridge, lem:dc-ch9-2-3-inequality}
   \leanok
-  \uses{lem:dc-ch9-2-2-smooth-speed-integrable,
-    lem:dc-ch9-2-3-arclength-bridge,lem:dc-ch9-2-3-inequality}
+  \dcref{ch9:2.3}
   Let $\gamma:[a,b]\to M$ be a minimizing geodesic, and let
   $f:(-\delta,\delta)\times J\to M$ be a smooth variation on an open
   neighborhood $J$ of $[a,b]$, with $f(0,t)=\gamma(t)$ and with both endpoint
@@ -243,11 +234,10 @@
 \end{proof}
 \begin{lemma}[equality in the energy comparison]
   \label{lem:dc-ch9-2-3-equality-case}
-  \dcref{ch9:2.3}
-  \lean{Riemannian.dcSpeed_ae_const_of_dcEnergy_eq,
-    Riemannian.dcArcLength_eq_of_dcEnergy_eq}
-  \leanok
+  \lean{Riemannian.dcSpeed_ae_const_of_dcEnergy_eq, Riemannian.dcArcLength_eq_of_dcEnergy_eq}
   \uses{lem:dc-ch9-2-3-geodesic-equality, lem:dc-ch9-2-2-schwarz, def:dc-ch9-2-2-energy}
+  \leanok
+  \dcref{ch9:2.3}
   In the situation of \cref{lem:dc-ch9-2-3-inequality}, if moreover $E(\gamma)=E(c)$, then
   \emph{(a)} the speed $|dc/dt|$ is (almost everywhere) constant, i.e. the parameter of $c$
   is proportional to arc length; and \emph{(b)} $L(\gamma)=L(c)$, i.e. $c$ is minimizing too.
@@ -266,13 +256,10 @@
 \end{proof}
 \begin{definition}[the covariant derivative along a curve, chart-independently]
   \label{def:dc-ch9-2-covariant-pair}
-  \dcref{ch9:2.4}
-  \lean{Riemannian.Variation.IsCovariantDerivSolOn,
-    Riemannian.Variation.IsCovariantDerivFieldAlongOn,
-    Riemannian.Variation.IsCovariantDerivSolOn.transfer,
-    Riemannian.Variation.IsCovariantDerivFieldAlongOn.isCovariantDerivSolOn_of_mem_source}
-  \leanok
+  \lean{Riemannian.Variation.IsCovariantDerivSolOn, Riemannian.Variation.IsCovariantDerivFieldAlongOn, Riemannian.Variation.IsCovariantDerivSolOn.transfer, Riemannian.Variation.IsCovariantDerivFieldAlongOn.isCovariantDerivSolOn_of_mem_source}
   \uses{prop:dc-ch2-2-2, lem:dc-ch2-2-2-coord}
+  \leanok
+  \dcref{ch9:2.4}
   Let $c:I\to M$ be a curve and let $V$, $DV$ be vector fields along $c$. Say that
   \emph{$DV$ is the covariant derivative of $V$ along $c$} on $[a,b]$ if near every
   $t_0\in[a,b]$ there is a chart containing the nearby piece of $c$ in which the
@@ -292,10 +279,10 @@
 \end{definition}
 \begin{lemma}[product rule along a curve, chart-independently]
   \label{lem:dc-ch9-2-covariant-pair-leibniz}
-  \dcref{ch9:2.4}
   \lean{Riemannian.Variation.IsCovariantDerivFieldAlongOn.hasDerivAt_metricInner}
-  \leanok
   \uses{def:dc-ch9-2-covariant-pair, lem:dc-ch2-3-2-coord}
+  \leanok
+  \dcref{ch9:2.4}
   Let $V$, $W$ be vector fields along a curve $c$ with covariant derivatives $DV$, $DW$
   in the sense of \cref{def:dc-ch9-2-covariant-pair}. Then, at interior times,
   $$
@@ -319,11 +306,10 @@
 \end{proof}
 \begin{lemma}[the symmetry lemma, operator form]
   \label{lem:dc-ch9-2-4-symmetry}
-  \dcref{ch9:2.4}
-  \lean{Riemannian.Variation.surfaceCovariantDerivS_snd_eq_surfaceCovariantDerivT_fst,
-    Riemannian.Variation.surfaceCovariantDerivS_snd_eq_surfaceCovariantDerivT_fst_of_forall}
-  \leanok
+  \lean{Riemannian.Variation.surfaceCovariantDerivS_snd_eq_surfaceCovariantDerivT_fst, Riemannian.Variation.surfaceCovariantDerivS_snd_eq_surfaceCovariantDerivT_fst_of_forall}
   \uses{lem:dc-ch3-3-4, def:dc-ch3-3-3}
+  \leanok
+  \dcref{ch9:2.4}
   Let $f$ be a ($C^2$) parametrized surface (\cref{def:dc-ch3-3-3}) \emph{read in a fixed
   chart}, and let $\frac{D}{\partial s}$, $\frac{D}{\partial t}$ be the covariant
   derivatives along $f$ of that chart. Then the two exchange on the velocity fields of $f$:
@@ -352,11 +338,10 @@
 \end{proof}
 \begin{lemma}[the $s$-derivative of the energy density]
   \label{lem:dc-ch9-2-4-energy-density}
-  \dcref{ch9:2.4}
-  \lean{Riemannian.Variation.hasDerivAt_chartEnergyDensity_slice,
-    Riemannian.Variation.hasDerivAt_chartEnergyDensity_slice_symm}
-  \leanok
+  \lean{Riemannian.Variation.hasDerivAt_chartEnergyDensity_slice, Riemannian.Variation.hasDerivAt_chartEnergyDensity_slice_symm}
   \uses{lem:dc-ch9-2-4-symmetry, lem:dc-ch2-3-2-coord}
+  \leanok
+  \dcref{ch9:2.4}
   Let $f$ be a ($C^2$) parametrized surface \emph{read in a fixed chart}, as in
   \cref{lem:dc-ch9-2-4-symmetry}. Then, pointwise,
   $$
@@ -378,12 +363,10 @@
 \end{proof}
 \begin{lemma}[integration by parts along a curve]
   \label{lem:dc-ch9-2-4-parts}
-  \dcref{ch9:2.4}
-  \lean{Riemannian.Variation.IsCovariantDerivFieldAlongOn.integral_metricInner_add,
-    Riemannian.Variation.IsCovariantDerivFieldAlongOn.integral_metricInner_covariantDeriv_left,
-    Riemannian.Variation.IsCovariantDerivFieldAlongOn.integral_metricInner_eq_neg_integral_of_proper}
-  \leanok
+  \lean{Riemannian.Variation.IsCovariantDerivFieldAlongOn.integral_metricInner_add, Riemannian.Variation.IsCovariantDerivFieldAlongOn.integral_metricInner_covariantDeriv_left, Riemannian.Variation.IsCovariantDerivFieldAlongOn.integral_metricInner_eq_neg_integral_of_proper}
   \uses{lem:dc-ch9-2-covariant-pair-leibniz, def:dc-ch9-2-covariant-pair}
+  \leanok
+  \dcref{ch9:2.4}
   Let $V$, $W$ be vector fields along a curve $c$ with covariant derivatives $DV$, $DW$
   in the sense of \cref{def:dc-ch9-2-covariant-pair}, on a segment $[a,b]$ carrying no
   breakpoint, and suppose the pairings $\langle\frac{DV}{dt},W\rangle$ and
@@ -416,10 +399,10 @@
 \end{proof}
 \begin{lemma}[the $s$-derivative of the energy density, chart-free]
   \label{lem:dc-ch9-2-4-density-self}
-  \dcref{ch9:2.4}
   \lean{Riemannian.Variation.IsCovariantDerivFieldAlongOn.hasDerivAt_metricInner_self}
-  \leanok
   \uses{lem:dc-ch9-2-covariant-pair-leibniz, def:dc-ch9-2-covariant-pair}
+  \leanok
+  \dcref{ch9:2.4}
   Let $V$ be a vector field along a curve $\gamma$ with covariant derivative $DV$ in the
   sense of \cref{def:dc-ch9-2-covariant-pair}. Then, at interior times,
   $$
@@ -443,10 +426,10 @@
 \end{proof}
 \begin{lemma}[symmetry of the connection along a surface, chart-free]
   \label{lem:dc-ch9-2-4-symmetry-manifold}
-  \dcref{ch9:2.4}
   \lean{Riemannian.Variation.covariantDerivS_velT_eq_covariantDerivT_velS}
-  \leanok
   \uses{lem:dc-ch9-2-4-symmetry, def:dc-ch9-2-covariant-pair}
+  \leanok
+  \dcref{ch9:2.4}
   Let $f$ be a parametrized surface in $M$, let $\frac{\partial f}{\partial t}$ and
   $\frac{\partial f}{\partial s}$ be its coordinate velocity fields, and suppose
   $\big(\frac{\partial f}{\partial t},\frac{D}{\partial s}\frac{\partial f}{\partial t}\big)$
@@ -474,11 +457,10 @@
 \end{proof}
 \begin{lemma}[differentiation of the energy under the integral sign]
   \label{lem:dc-ch9-2-4-under-integral}
-  \dcref{ch9:2.4}
   \lean{Riemannian.Variation.hasDerivAt_dcEnergy_of_dominated}
+  \uses{lem:dc-ch9-2-4-density-self, def:dc-ch9-2-2-energy, def:dc-ch9-2-1, def:dc-ch9-2-covariant-pair}
   \leanok
-  \uses{lem:dc-ch9-2-4-density-self, def:dc-ch9-2-2-energy, def:dc-ch9-2-1,
-    def:dc-ch9-2-covariant-pair}
+  \dcref{ch9:2.4}
   Let $f$ be a variation of $c$ and let $E$ be its energy (\cref{def:dc-ch9-2-2-energy}).
   Suppose $\big(\frac{\partial f}{\partial t},\frac{D}{\partial s}\frac{\partial f}{\partial t}\big)$
   is a covariant pair along each transversal, that the energy density is integrable at
@@ -507,11 +489,10 @@
 \end{proof}
 \begin{lemma}[first variation on a segment without breakpoints]
   \label{lem:dc-ch9-2-4-segment}
-  \dcref{ch9:2.4}
   \lean{Riemannian.Variation.hasDerivAt_dcEnergy_eq_first_variation}
+  \uses{lem:dc-ch9-2-4-under-integral, lem:dc-ch9-2-4-parts, def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair}
   \leanok
-  \uses{lem:dc-ch9-2-4-under-integral, lem:dc-ch9-2-4-parts, def:dc-ch9-2-2-energy,
-    def:dc-ch9-2-covariant-pair}
+  \dcref{ch9:2.4}
   In the situation of \cref{lem:dc-ch9-2-4-under-integral}, let $V=\frac{\partial f}{\partial s}(s_0,\cdot)$
   carry the covariant derivative $\frac{DV}{dt}$ and let $\frac{dc}{dt}=\frac{\partial f}{\partial t}(s_0,\cdot)$
   carry $\frac{D}{dt}\frac{dc}{dt}$, both along $c=f(s_0,\cdot)$ and in the sense of
@@ -545,11 +526,8 @@
 \end{proof}
 \begin{proposition}[formula for the first variation of the energy of a curve]
   \label{prop:dc-ch9-2-4}
+  \uses{def:dc-ch9-2-1, def:dc-ch9-2-2-energy, lem:dc-ch9-2-4-symmetry, def:dc-ch9-2-covariant-pair, lem:dc-ch9-2-4-energy-density, lem:dc-ch9-2-4-parts, lem:dc-ch9-2-4-density-self, lem:dc-ch9-2-4-symmetry-manifold, lem:dc-ch9-2-4-under-integral, lem:dc-ch9-2-4-segment, lem:dc-ch9-2-4-piecewise-assembly}
   \dcref{ch9:2.4}
-  \uses{def:dc-ch9-2-1, def:dc-ch9-2-2-energy, lem:dc-ch9-2-4-symmetry,
-    def:dc-ch9-2-covariant-pair, lem:dc-ch9-2-4-energy-density, lem:dc-ch9-2-4-parts,
-    lem:dc-ch9-2-4-density-self, lem:dc-ch9-2-4-symmetry-manifold,
-    lem:dc-ch9-2-4-under-integral, lem:dc-ch9-2-4-segment}
   Let $c:[0,a]\to M$ be a piecewise differentiable curve and let
   $f:(-\varepsilon,\varepsilon)\times[0,a]\to M$ be a variation of $c$. If
   $E:(-\varepsilon,\varepsilon)\to\mathbf{R}$ is the energy of $f$ then
@@ -585,10 +563,10 @@
 \end{proof}
 \begin{lemma}[a geodesic is a critical point of the energy]
   \label{lem:dc-ch9-2-5-geodesic}
-  \dcref{ch9:2.5}
   \lean{Riemannian.Variation.IsCovariantDerivFieldAlongOn.integral_metricInner_covariantDeriv_eq_zero_of_geodesic}
-  \leanok
   \uses{lem:dc-ch9-2-4-parts, def:dc-ch9-2-covariant-pair}
+  \leanok
+  \dcref{ch9:2.5}
   Let $W$ be a \emph{parallel} field along a curve $c$ --- $\frac{DW}{dt}=0$ --- and let
   $V$, $DV$ be a covariant-derivative pair along $c$ with $V(a)=V(b)=0$. Then on the
   segment $[a,b]$
@@ -611,8 +589,8 @@
 \end{proof}
 \begin{proposition}[geodesics as critical points of energy]
   \label{prop:dc-ch9-2-5}
-  \dcref{ch9:2.5}
   \uses{prop:dc-ch9-2-4, prop:dc-ch9-2-2, lem:dc-ch9-2-5-geodesic}
+  \dcref{ch9:2.5}
   A piecewise differentiable curve $c:[0,a]\to M$ is a geodesic if and only if, for
   every proper variation $f$ of $c$, we have $\frac{dE}{ds}(0)=0$.
 \end{proposition}
@@ -657,11 +635,10 @@
 \end{remark}
 \begin{lemma}[the second differentiation under the integral sign]
   \label{lem:dc-ch9-2-8-under-integral}
-  \dcref{ch9:2.8}
   \lean{Riemannian.Variation.hasDerivAt_dcPairing_of_dominated}
+  \uses{lem:dc-ch9-2-covariant-pair-leibniz, def:dc-ch9-2-covariant-pair, lem:dc-ch9-2-4-under-integral}
   \leanok
-  \uses{lem:dc-ch9-2-covariant-pair-leibniz, def:dc-ch9-2-covariant-pair,
-    lem:dc-ch9-2-4-under-integral}
+  \dcref{ch9:2.8}
   Let $f$ be a variation of $c$, let $\frac{\partial f}{\partial t}$ carry the covariant
   $s$-derivative $\frac{D}{\partial s}\frac{\partial f}{\partial t}$ along each transversal,
   and let $\frac{D}{\partial s}\frac{\partial f}{\partial t}$ in turn carry its own covariant
@@ -699,11 +676,10 @@
 \end{proof}
 \begin{lemma}[the second variation of the energy, before the curvature substitution]
   \label{lem:dc-ch9-2-8-energy-snd-deriv}
-  \dcref{ch9:2.8}
   \lean{Riemannian.Variation.hasDerivAt_deriv_dcEnergy_second_variation}
+  \uses{lem:dc-ch9-2-8-under-integral, lem:dc-ch9-2-4-under-integral, def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair}
   \leanok
-  \uses{lem:dc-ch9-2-8-under-integral, lem:dc-ch9-2-4-under-integral,
-    def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair}
+  \dcref{ch9:2.8}
   In the situation of \cref{lem:dc-ch9-2-8-under-integral}, suppose moreover that the first
   variation $E'(\sigma)=2\int_a^b\langle\frac{D}{\partial s}\frac{\partial f}{\partial t},
   \frac{\partial f}{\partial t}\rangle\,dt$ of \cref{lem:dc-ch9-2-4-under-integral} holds at
@@ -729,12 +705,10 @@
 \end{proof}
 \begin{lemma}[the Ricci-identity substitution, metric-paired, chart-read]
   \label{lem:dc-ch9-2-8-curvature-substitution}
-  \dcref{ch9:2.8}
-  \lean{Riemannian.Variation.chartMetricInner_surface_covariant_commutator_eq_curvatureFormAt,
-    Riemannian.Variation.chartMetricInner_chartCurvatureContraction2_eq_curvatureFormAt,
-    Riemannian.Variation.chartMetricInner_chartCurvatureContraction2_chartVectorRep_eq_curvatureFormAt}
-  \leanok
+  \lean{Riemannian.Variation.chartMetricInner_surface_covariant_commutator_eq_curvatureFormAt, Riemannian.Variation.chartMetricInner_chartCurvatureContraction2_eq_curvatureFormAt, Riemannian.Variation.chartMetricInner_chartCurvatureContraction2_chartVectorRep_eq_curvatureFormAt}
   \uses{lem:dc-ch4-4-1, def:dc-ch4-2-1}
+  \leanok
+  \dcref{ch9:2.8}
   Let $f$ be a ($C^2$) parametrized surface \emph{read in a fixed chart} and $V$ a field along
   it. The commutator of the two covariant derivatives, paired against a vector $w$, is the
   intrinsic curvature $(0,4)$ form of the chart-frame realizations of $\frac{\partial f}{\partial s}$,
@@ -756,11 +730,10 @@
 \end{proof}
 \begin{lemma}[the Ricci-identity substitution, chart-free]
   \label{lem:dc-ch9-2-8-curvature-substitution-manifold}
-  \dcref{ch9:2.8}
   \lean{Riemannian.Variation.metricInner_covariantDerivT_covariantDerivS_commutator_eq_curvatureFormAt}
+  \uses{lem:dc-ch9-2-8-curvature-substitution, def:dc-ch9-2-covariant-pair, lem:dc-ch9-2-4-symmetry-manifold}
   \leanok
-  \uses{lem:dc-ch9-2-8-curvature-substitution, def:dc-ch9-2-covariant-pair,
-    lem:dc-ch9-2-4-symmetry-manifold}
+  \dcref{ch9:2.8}
   Let $f$ be a parametrized surface in $M$ and $V$ a field along it, and suppose
   $\frac{D}{\partial s}V$, $\frac{D}{\partial t}V$ are covariant derivatives of $V$ along the
   slices in the sense of \cref{def:dc-ch9-2-covariant-pair}, and
@@ -790,14 +763,10 @@
 \end{proof}
 \begin{lemma}[proper second variation on a segment]
   \label{lem:dc-ch9-2-8-segment}
-  \dcref{ch9:2.8}
-  \lean{Riemannian.Variation.deriv_deriv_dcEnergy_eq_second_variation,
-    Riemannian.Variation.integral_second_variation_integrand_eq,
-    Riemannian.Variation.curvatureFormAt_swap_pairs}
+  \lean{Riemannian.Variation.deriv_deriv_dcEnergy_eq_second_variation, Riemannian.Variation.integral_second_variation_integrand_eq, Riemannian.Variation.curvatureFormAt_swap_pairs}
+  \uses{lem:dc-ch9-2-8-energy-snd-deriv, lem:dc-ch9-2-4-symmetry-manifold, lem:dc-ch9-2-8-curvature-substitution-manifold, lem:dc-ch9-2-4-parts, lem:dc-ch9-2-5-geodesic, def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair}
   \leanok
-  \uses{lem:dc-ch9-2-8-energy-snd-deriv, lem:dc-ch9-2-4-symmetry-manifold,
-    lem:dc-ch9-2-8-curvature-substitution-manifold, lem:dc-ch9-2-4-parts,
-    lem:dc-ch9-2-5-geodesic, def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair}
+  \dcref{ch9:2.8}
   Let $\gamma=f(s_0,\cdot):[a,b]\to M$ be a geodesic and $f$ a variation of $\gamma$ with
   variational field $V=\frac{\partial f}{\partial s}(s_0,\cdot)$ satisfying $V(a)=V(b)=0$ and
   $\frac{D}{\partial s}\frac{\partial f}{\partial s}(s_0,a)
@@ -834,6 +803,7 @@
 \end{proof}
 \begin{proposition}[formula for the second variation]
   \label{prop:dc-ch9-2-8}
+  \uses{def:dc-ch9-2-1, def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair, def:dc-ch4-2-1}
   \dcref{ch9:2.8}
   Let $\gamma:[0,a]\to M$ be a geodesic and let
   $f:(-\varepsilon,\varepsilon)\times[0,a]\to M$ be a proper variation of $\gamma$. Let $E$
@@ -848,6 +818,7 @@
   $\frac{DV}{dt}(t_i^-)=\lim_{t\to t_i,\,t<t_i}\frac{DV}{dt}$.
 \end{proposition}
 \begin{proof}
+  \uses{lem:dc-ch9-2-8-energy-snd-deriv, lem:dc-ch9-2-4-symmetry-manifold, lem:dc-ch9-2-8-curvature-substitution-manifold, lem:dc-ch9-2-4-parts, lem:dc-ch9-2-5-geodesic, lem:dc-ch9-2-8-jump-sum}
   \sketch
   Taking the derivative of (2),
 
@@ -874,8 +845,8 @@
 \end{proof}
 \begin{remark}[nonproper second variation with boundary terms]
   \label{rem:dc-ch9-2-9}
-  \dcref{ch9:2.9}
   \uses{prop:dc-ch9-2-8}
+  \dcref{ch9:2.9}
   If the variation is not proper, the endpoint terms in the second-variation
   formula need not vanish, and the formula becomes
 
@@ -889,13 +860,10 @@
 \end{remark}
 \begin{lemma}[nonproper second variation on a segment]
   \label{lem:dc-ch9-2-9-segment}
-  \dcref{ch9:2.9}
-  \lean{Riemannian.Variation.deriv_deriv_dcEnergy_eq_second_variation_nonproper,
-    Riemannian.Variation.integral_second_variation_integrand_eq_nonproper}
+  \lean{Riemannian.Variation.deriv_deriv_dcEnergy_eq_second_variation_nonproper, Riemannian.Variation.integral_second_variation_integrand_eq_nonproper}
+  \uses{lem:dc-ch9-2-8-energy-snd-deriv, lem:dc-ch9-2-4-symmetry-manifold, lem:dc-ch9-2-8-curvature-substitution-manifold, lem:dc-ch9-2-4-parts, def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair}
   \leanok
-  \uses{lem:dc-ch9-2-8-energy-snd-deriv, lem:dc-ch9-2-4-symmetry-manifold,
-    lem:dc-ch9-2-8-curvature-substitution-manifold, lem:dc-ch9-2-4-parts,
-    def:dc-ch9-2-2-energy, def:dc-ch9-2-covariant-pair}
+  \dcref{ch9:2.9}
   Let $\gamma=f(s_0,\cdot):[a,b]\to M$ be a geodesic and $f$ a variation of $\gamma$ that need
   \emph{not} be proper. Then, on the segment $[a,b]$ carrying no breakpoint,
   $$
@@ -921,8 +889,8 @@
 \end{proof}
 \begin{remark}[the index form]
   \label{rem:dc-ch9-2-10}
-  \dcref{ch9:2.10}
   \uses{prop:dc-ch9-2-8, rem:dc-ch9-2-9}
+  \dcref{ch9:2.10}
   On each interval where $V$ is differentiable,
   $\frac{d}{dt}\langle V,\frac{DV}{dt}\rangle=\langle V,\frac{D^2 V}{dt^2}\rangle+\langle\frac{DV}{dt},\frac{DV}{dt}\rangle$.
   For a geodesic $\gamma:[0,a]\to M$ and a partition
@@ -947,10 +915,10 @@
 \end{remark}
 \begin{lemma}[differentiating $\langle V,DV/dt\rangle$]
   \label{lem:dc-ch9-2-10-differentiation}
-  \dcref{ch9:2.10}
   \lean{Riemannian.Variation.hasDerivAt_metricInner_covariantDeriv}
-  \leanok
   \uses{lem:dc-ch9-2-covariant-pair-leibniz}
+  \leanok
+  \dcref{ch9:2.10}
   On each interval where $V$ is differentiable,
   $$
   \frac{d}{dt}\Big\langle V,\frac{DV}{dt}\Big\rangle
@@ -969,10 +937,10 @@
 \end{proof}
 \begin{definition}[the index form $I_a$]
   \label{def:dc-ch9-2-10-index-form}
-  \dcref{ch9:2.10}
   \lean{Riemannian.Variation.indexForm, Riemannian.Variation.indexForm_def}
-  \leanok
   \uses{def:dc-ch9-2-covariant-pair, def:dc-ch4-2-1, def:dc-ch1-2-9}
+  \leanok
+  \dcref{ch9:2.10}
   For a geodesic $\gamma:[0,a]\to M$ and a vector field $V$ along $\gamma$ with covariant
   derivative $V'=\frac{DV}{dt}$, the \emph{index form} is
   $$
@@ -984,13 +952,10 @@
 \end{definition}
 \begin{lemma}[second variation as the index form on a segment]
   \label{lem:dc-ch9-2-10-formula6}
-  \dcref{ch9:2.10}
-  \lean{Riemannian.Variation.deriv_deriv_dcEnergy_eq_indexForm,
-    Riemannian.Variation.integral_second_variation_eq_indexForm}
+  \lean{Riemannian.Variation.deriv_deriv_dcEnergy_eq_indexForm, Riemannian.Variation.integral_second_variation_eq_indexForm, Riemannian.Variation.ProperSecondVariationData.deriv_deriv_dcEnergy_eq_indexForm}
+  \uses{def:dc-ch9-2-10-index-form, lem:dc-ch9-2-8-energy-snd-deriv, lem:dc-ch9-2-4-symmetry-manifold, lem:dc-ch9-2-8-curvature-substitution-manifold, lem:dc-ch9-2-5-geodesic}
   \leanok
-  \uses{def:dc-ch9-2-10-index-form, lem:dc-ch9-2-8-energy-snd-deriv,
-    lem:dc-ch9-2-4-symmetry-manifold, lem:dc-ch9-2-8-curvature-substitution-manifold,
-    lem:dc-ch9-2-5-geodesic}
+  \dcref{ch9:2.10}
   Let $\gamma=f(s_0,\cdot):[a,b]\to M$ be a geodesic and $f$ a proper variation of $\gamma$
   (in the sense of \cref{lem:dc-ch9-2-8-segment}). Then
   $$
@@ -1014,8 +979,8 @@
 \end{proof}
 \begin{remark}[Index form as the Hessian of energy]
   \label{rem:dc-ch9-2-12}
-  \dcref{ch9:2.12}
   \uses{rem:dc-ch9-2-7}
+  \dcref{ch9:2.12}
   At a geodesic $\gamma\in\Omega_{p,q}$, the quadratic form
   $2I_a(V,V)$ is the Hessian $d^2E(V,V)$ of the energy functional in the
   direction of the endpoint-vanishing field $V$.
@@ -1024,9 +989,9 @@
 
 \begin{lemma}[a velocity-seeded parallel orthonormal frame along a geodesic]
   \label{lem:dc-ch9-3-1-velocity-frame}
-  \dcref{ch9:3.1}
   \lean{Riemannian.Variation.exists_velocitySeededParallelOrthoFrameAlongOn}
   \leanok
+  \dcref{ch9:3.1}
   Let $\gamma:[a,b]\to M$ be a geodesic with $\gamma'(a)\ne 0$. Then there are parallel fields
   $e_1,\dots,e_n$ along $\gamma$, orthonormal at every $t\in[a,b]$, and a distinguished index
   $n_0$ with $e_{n_0}(t)=\ell^{-1}\gamma'(t)$ for all $t$, where $\ell=|\gamma'|>0$ is the
@@ -1043,10 +1008,10 @@
 \end{proof}
 \begin{lemma}[the index form of a scaled parallel field]
   \label{lem:dc-ch9-3-1-index-form-scaled}
-  \dcref{ch9:3.1}
   \lean{Riemannian.Variation.indexForm_smul_eq}
-  \leanok
   \uses{def:dc-ch9-2-10-index-form, def:dc-ch9-2-covariant-pair}
+  \leanok
+  \dcref{ch9:3.1}
   For a field $V(t)=\varphi(t)\,e(t)$ with covariant derivative $V'=\varphi'\,e$ (as when $e$ is
   parallel), the index form is
   $$I_a(V,V)=\int_a^b\Big((\varphi')^2\,\langle e,e\rangle
@@ -1063,10 +1028,10 @@
 \end{proof}
 \begin{lemma}[the index form of $V_j$ in the velocity-seeded frame]
   \label{lem:dc-ch9-3-1-index-form-frame}
-  \dcref{ch9:3.1}
   \lean{Riemannian.Variation.indexForm_smul_frame_eq}
-  \leanok
   \uses{lem:dc-ch9-3-1-index-form-scaled, lem:dc-ch9-3-1-velocity-frame}
+  \leanok
+  \dcref{ch9:3.1}
   With the frame of \cref{lem:dc-ch9-3-1-velocity-frame} (so $e=e_j$ is a unit field and
   $\gamma'=\ell\,e_n$), for $V=\varphi\,e_j$
   $$I_a(V,V)=\int_a^b\Big((\varphi')^2-\varphi^2\,\ell^2\,\langle R(e_n,e_j)e_n,e_j\rangle\Big)\,dt.$$
@@ -1083,14 +1048,9 @@
 \end{proof}
 \begin{lemma}[the proper sine exponential variation]
   \label{lem:dc-ch9-3-1-sine-variation}
-  \dcref{ch9:3.1}
-  \lean{Riemannian.Variation.bonnetMyersSineVariation,
-    Riemannian.Variation.bonnetMyersSineVariation_zero,
-    Riemannian.Variation.bonnetMyersSineVariation_left,
-    Riemannian.Variation.bonnetMyersSineVariation_right,
-    Riemannian.Variation.hasDerivAt_bonnetMyersSineVariation_zero,
-    Riemannian.Variation.exists_contMDiffOn_infty_bonnetMyersSineVariation_strip}
+  \lean{Riemannian.Variation.bonnetMyersSineVariation, Riemannian.Variation.bonnetMyersSineVariation_zero, Riemannian.Variation.bonnetMyersSineVariation_left, Riemannian.Variation.bonnetMyersSineVariation_right, Riemannian.Variation.hasDerivAt_bonnetMyersSineVariation_zero, Riemannian.Variation.exists_contMDiffOn_infty_bonnetMyersSineVariation_strip, Riemannian.Variation.exists_proper_sine_smoothExponentialVariation, Riemannian.Variation.exists_proper_sine_exponentialVariation}
   \leanok
+  \dcref{ch9:3.1}
   Let $\gamma:\mathbb R\to M$ be a geodesic in a complete Riemannian
   manifold, and let $e$ be a parallel field along an open interval containing
   $[0,1]$. Then
@@ -1113,11 +1073,10 @@
 \end{proof}
 \begin{lemma}[energy minimality of the sine variation]
   \label{lem:dc-ch9-3-1-sine-energy-min}
-  \dcref{ch9:3.1}
   \lean{Riemannian.Variation.isLocalMin_dcEnergy_bonnetMyersSineVariation}
+  \uses{lem:dc-ch9-2-3-smooth-variation-energy-min, lem:dc-ch9-3-1-sine-variation}
   \leanok
-  \uses{lem:dc-ch9-2-3-smooth-variation-energy-min,
-    lem:dc-ch9-3-1-sine-variation}
+  \dcref{ch9:3.1}
   If $\gamma:[0,1]\to M$ is a distance-minimizing geodesic and $e$ is a
   parallel field as in \cref{lem:dc-ch9-3-1-sine-variation}, then the energy
   of the sine exponential variation has a local minimum at $s=0$.
@@ -1132,9 +1091,9 @@
 \end{proof}
 \begin{lemma}[second-order necessary condition at a minimum]
   \label{lem:dc-ch9-3-1-second-order-min}
-  \dcref{ch9:3.1}
-  \lean{Riemannian.Variation.isLocalMin_deriv_deriv_nonneg}
+  \lean{Riemannian.Variation.isLocalMin_deriv_deriv_nonneg, Riemannian.Variation.indexForm_nonneg_of_energyLocalMin, Riemannian.Variation.indexForm_nonneg_of_energyLocalMin_at}
   \leanok
+  \dcref{ch9:3.1}
   If $f:\mathbf{R}\to\mathbf{R}$ has a local minimum at $x$, is continuous there and is twice
   differentiable at $x$, then $f''(x)\ge 0$. This is the step by which a \emph{minimizing}
   geodesic forces $E_j''(0)\ge 0$ in \cref{thm:dc-ch9-3-1}: each curve of the variation joins
@@ -1149,13 +1108,10 @@
 \end{proof}
 \begin{lemma}[the summed index form is negative]
   \label{lem:dc-ch9-3-1-index-sum-neg}
-  \dcref{ch9:3.1}
-  \lean{Riemannian.Variation.integral_frame_sum_lt_zero,
-    Riemannian.Variation.sum_indexForm_smul_frame_neg,
-    Riemannian.Variation.exists_indexForm_smul_frame_neg}
+  \lean{Riemannian.Variation.integral_frame_sum_lt_zero, Riemannian.Variation.sum_indexForm_smul_frame_neg, Riemannian.Variation.exists_indexForm_smul_frame_neg}
+  \uses{lem:dc-ch9-3-1-velocity-frame, lem:dc-ch9-3-1-index-form-frame, lem:dc-ch9-3-3-ricci-sectional, def:dc-ch9-2-10-index-form}
   \leanok
-  \uses{lem:dc-ch9-3-1-velocity-frame, lem:dc-ch9-3-1-index-form-frame,
-    lem:dc-ch9-3-3-ricci-sectional, def:dc-ch9-2-10-index-form}
+  \dcref{ch9:3.1}
   Let $\gamma:[0,1]\to M$ be a geodesic of constant speed $\ell$ with the velocity-seeded
   parallel orthonormal frame of \cref{lem:dc-ch9-3-1-velocity-frame} (so each $e_j$, $j\ne n_0$,
   is a unit field and $\gamma'=\ell\,e_{n_0}$), and put $V_j(t)=(\sin\pi t)\,e_j(t)$. If $n\ge 2$
@@ -1190,12 +1146,10 @@
 \end{proof}
 \begin{theorem}[Bonnet--Myers]
   \label{thm:dc-ch9-3-1}
+  \uses{lem:dc-ch9-2-3, prop:dc-ch9-2-8, lem:dc-ch9-3-1-velocity-frame, lem:dc-ch9-3-1-index-form-frame, lem:dc-ch9-3-1-index-sum-neg, lem:dc-ch9-3-1-sine-variation, lem:dc-ch9-3-1-sine-energy-min, lem:dc-ch9-3-1-second-order-min, lem:dc-ch9-3-3-ricci-sectional}
+  \notready
   \dcref{ch9:3.1}
   \notready
-  \uses{lem:dc-ch9-2-3, prop:dc-ch9-2-8, lem:dc-ch9-3-1-velocity-frame,
-    lem:dc-ch9-3-1-index-form-frame, lem:dc-ch9-3-1-index-sum-neg,
-    lem:dc-ch9-3-1-sine-variation,lem:dc-ch9-3-1-sine-energy-min,
-    lem:dc-ch9-3-1-second-order-min, lem:dc-ch9-3-3-ricci-sectional}
   Let $M^n$ be a complete Riemannian manifold. Suppose that the Ricci curvature of
   $M$ satisfies
 
@@ -1250,7 +1204,27 @@
   all $p\in M$ and all $v\in T_p(M)$. Then the universal cover of $M$ is compact. In
   particular, the fundamental group $\pi_1(M)$ is finite.
 \end{corollary}
+
+\begin{lemma}[finite fundamental group from a compact simply connected cover]
+  \label{lem:dc-ch9-3-2-compact-cover}
+  \dcref{ch9:3.2}
+  \lean{Riemannian.Variation.finite_fiber_of_compact_covering,
+    Riemannian.Variation.monodromy_at_injective,
+    Riemannian.Variation.finite_fundamentalGroup_of_compact_simplyConnected_cover}
+  \leanok
+  Let $p:X\to Y$ be a surjective covering map, with $X$ compact and simply connected and
+  $Y$ a $T_1$ space.  Then the fundamental group $\pi_1(Y,y)$ is finite for every basepoint
+  $y\in Y$.
+\end{lemma}
 \begin{proof}
+  \leanok
+  A covering trivialization makes each fibre discrete, while compactness makes it finite.
+  Simple connectedness of $X$ makes monodromy at a chosen point of the fibre injective on
+  $\pi_1(Y,y)$; hence the fundamental group injects into a finite fibre.
+\end{proof}
+
+\begin{proof}
+  \leanok
   \sketch
   Introducing on the universal cover $\pi:\tilde M\to M$ the covering metric
   (the metric such that $\pi$ is a local isometry), $\tilde M$ is complete and its
@@ -1261,12 +1235,10 @@
 \end{proof}
 \begin{lemma}[Ricci as a sum of sectional curvatures]
   \label{lem:dc-ch9-3-3-ricci-sectional}
-  \dcref{ch9:3.3}
-  \lean{Riemannian.sectionalCurvature_eq_of_orthonormal,
-    Riemannian.ricciForm_self_eq_sum_sectionalCurvature,
-    Riemannian.ricciForm_self_ge_of_sectionalCurvature_ge}
-  \leanok
+  \lean{Riemannian.sectionalCurvature_eq_of_orthonormal, Riemannian.ricciForm_self_eq_sum_sectionalCurvature, Riemannian.ricciForm_self_ge_of_sectionalCurvature_ge, Riemannian.Variation.HasSectionalCurvatureLowerBound, Riemannian.Variation.hasRicciLowerBound_of_sectionalCurvatureLowerBound}
   \uses{def:dc-ch4-3-2, def:dc-ch4-4-ricci-form}
+  \leanok
+  \dcref{ch9:3.3}
   Let $\{e_1,\dots,e_n\}$ be an orthonormal basis of $T_pM$ and put $v=e_{i_0}$. Then
   $$
   Q(v,v)=\sum_{i\ne i_0}K(v,e_i),
@@ -1293,8 +1265,8 @@
 \end{proof}
 \begin{corollary}[positive sectional curvature bound]
   \label{cor:dc-ch9-3-3}
-  \dcref{ch9:3.3}
   \uses{thm:dc-ch9-3-1, cor:dc-ch9-3-2, lem:dc-ch9-3-3-ricci-sectional}
+  \dcref{ch9:3.3}
   Let $M$ be a complete Riemannian manifold with sectional curvature
   $K\ge\frac{1}{r^2}>0$. Then $M$ is compact, $\mathrm{diam}(M)\le\pi r$ and
   $\pi_1(M)$ is finite.
@@ -1308,8 +1280,8 @@
 \end{remark}
 \begin{remark}[Sharpness of the Bonnet--Myers diameter bound]
   \label{rem:dc-ch9-3-6}
-  \dcref{ch9:3.6}
   \uses{thm:dc-ch9-3-1}
+  \dcref{ch9:3.6}
   The estimate for the diameter given by \cref{thm:dc-ch9-3-1} cannot be improved. Indeed, the
   unit sphere $S^n\subset\mathbf{R}^{n+1}$ has constant sectional curvature equal to
   1 (therefore its Ricci curvature also is a constant equal to 1) and
@@ -1396,15 +1368,15 @@
 \end{proof}
 \begin{lemma}[invariant vector of an orthogonal map]
   \label{lem:dc-ch9-3-8}
-  \dcref{ch9:3.8}
   \lean{Riemannian.Variation.exists_fixed_vector_of_det_eq}
   \leanok
+  \dcref{ch9:3.8}
   Let $A$ be an orthogonal linear transformation of $\mathbf{R}^{n-1}$ and suppose
   that $\det A=(-1)^n$. Then $A$ fixes a non-zero vector of
   $\mathbf{R}^{n-1}$.
 \end{lemma}
 \begin{proof}
-  \leanok
+  \uses{rem:dc-ch9-2-9, lem:dc-ch9-3-7-orientation-det, lem:dc-ch9-3-8, lem:dc-ch9-2-2-schwarz}
   \sketch
   Since $A$ is orthogonal, $A-I=A(I-A^{T})$. Taking determinants in dimension
   $n-1$ gives
@@ -1423,8 +1395,8 @@
 \end{remark}
 \begin{corollary}[Synge]
   \label{cor:dc-ch9-3-10}
-  \dcref{ch9:3.10}
   \uses{thm:dc-ch9-3-7, cor:dc-ch9-3-3}
+  \dcref{ch9:3.10}
   Let $M^n$ be a compact manifold with positive sectional curvature.
   \emph{(a)} If $M^n$ is orientable and $n$ is even, then $M$ is simply connected.
   \emph{(b)} If $n$ is odd, then $M^n$ is orientable.
@@ -1451,4 +1423,228 @@
   orientability in a) and odd dimension in b). On the other hand, $P^3(\mathbf{R})$
   which is compact, orientable and not simply connected is an example which shows the
   necessity of even dimension in (a).
+\end{remark}
+
+\begin{lemma}[complete-exponential realization of a prescribed field]
+  \label{lem:dc-ch9-2-2-exponential}
+  \dcref{ch9:2.2}
+  \lean{Riemannian.Variation.exponentialVariation,
+    Riemannian.Variation.exponentialVariation_zero,
+    Riemannian.Variation.exponentialVariation_isProperVariation,
+    Riemannian.Variation.hasDerivAt_extChartAt_exponentialVariation_zero,
+    Riemannian.Variation.variationalField_exponentialVariation,
+    Riemannian.Variation.exponentialVariation_isVariationOfOrder_of_contMDiffOn,
+    Riemannian.Variation.exponentialVariation_isVariation_of_contMDiffOn,
+    Riemannian.Variation.exists_variation_with_variationalField_of_contMDiffOn,
+    Riemannian.Variation.exists_properVariation_with_variationalField_of_contMDiffOn}
+  \leanok
+  \uses{def:dc-ch9-2-1}
+  Let $c:\mathbb R\to M$ and $V:\mathbb R\to TM$ be represented in the model
+  vector space of a complete Riemannian manifold.  If, for some $a,\varepsilon>0$,
+  the complete-exponential family
+  $$f(s,t)=\exp_{c(t)}(sV(t))$$
+  is $C^1$ on $(-\varepsilon,\varepsilon)\times[0,a]$, then $f$ is a variation of
+  $c$ and its variational field is $V$.  If $V(0)=V(a)=0$, the same family is a
+  proper variation.
+\end{lemma}
+\begin{proof}
+  \leanok
+  The zero-slice identity follows from $\exp_p(0)=p$.  Differentiating the radial
+  exponential at the zero vector gives
+  $\partial_s f(0,t)=V(t)$, so the variational field is prescribed.  The assumed
+  $C^1$ regularity supplies the variation condition on the one-piece subdivision;
+  when the endpoint values of $V$ vanish, the endpoint exponential identities make
+  both endpoint curves constant, which is precisely properness.
+\end{proof}
+
+\begin{lemma}[equality gives pointwise proportional arc length]
+  \label{lem:dc-ch9-2-3-pointwise-arclength}
+  \dcref{ch9:2.3}
+  \lean{Riemannian.pathELength_eq_of_dcEnergy_eq}
+  \leanok
+  \uses{lem:dc-ch9-2-3-equality-case, lem:dc-ch9-2-3-arclength-bridge}
+  In the situation of \cref{lem:dc-ch9-2-3-equality-case}, for every $t\in[a,b]$,
+  $$
+  L\big(c|_{[a,t]}\big)=\frac{L(c)}{b-a}(t-a).
+  $$
+  Thus the parameter of $c$ is proportional to arc length pointwise, not merely almost
+  everywhere.
+\end{lemma}
+\begin{proof}
+  \leanok
+  \uses{lem:dc-ch9-2-3-equality-case, lem:dc-ch9-2-3-arclength-bridge}
+  By \cref{lem:dc-ch9-2-3-equality-case}, the speed of $c$ equals
+  $L(c)/(b-a)$ almost everywhere on $(a,b]$. Restricting this equality to $(a,t]$ and
+  integrating gives
+  $L(c|_{[a,t]})=(L(c)/(b-a))(t-a)$. The identification of this integral with path length
+  is \cref{lem:dc-ch9-2-3-arclength-bridge}. $\square$
+\end{proof}
+
+\begin{lemma}[finite-segment assembly of the first variation]
+  \label{lem:dc-ch9-2-4-piecewise-assembly}
+  \dcref{ch9:2.4}
+  \lean{Riemannian.Variation.hasDerivAt_dcEnergy_eq_piecewise_first_variation}
+  \leanok
+  \uses{def:dc-ch9-2-2-energy, lem:dc-ch9-2-4-segment}
+  Let $0=t_0<\cdots<t_{k+1}=a$. Assume the energy density is integrable on every
+  segment near $s_0$ and formula (1) has been established separately on each
+  $[t_i,t_{i+1}]$. Then the energy on $[0,a]$ is the sum of the segment energies, its
+  derivative is the sum of their derivatives, and the endpoint terms telescope to
+  $$
+  \left\langle V(a),\frac{dc}{dt}(a^-)\right\rangle
+  -\left\langle V(0),\frac{dc}{dt}(0^+)\right\rangle
+  -\sum_{i=1}^k\left\langle V(t_i),
+    \frac{dc}{dt}(t_i^+)-\frac{dc}{dt}(t_i^-)\right\rangle.
+  $$
+  Thus the finite-additivity, differentiation, and jump-term algebra needed for the
+  piecewise formula are formalized. The full proposition still has to extract the
+  segment hypotheses and one-sided fields from an arbitrary variation.
+\end{lemma}
+\begin{proof}
+  \leanok
+  \uses{def:dc-ch9-2-2-energy, lem:dc-ch9-2-4-segment}
+  Apply finite additivity of interval integrals, differentiate the resulting finite sum,
+  and telescope consecutive endpoint terms. $\square$
+\end{proof}
+
+\begin{lemma}[proper smooth variations through a geodesic are stationary]
+  \label{lem:dc-ch9-2-5-geodesic-energy}
+  \dcref{ch9:2.5}
+  \lean{Riemannian.Variation.hasDerivAt_dcEnergy_zero_of_geodesic}
+  \leanok
+  \uses{lem:dc-ch9-2-4-segment, lem:dc-ch9-2-5-geodesic, def:dc-ch9-2-1}
+  In the hypotheses of \cref{lem:dc-ch9-2-4-segment} on a segment $[a,b]$, suppose that
+  the covariant derivative of the velocity of the base curve is zero and that the
+  variational field vanishes at both endpoints. Then the energy of the variation is
+  stationary at the base parameter:
+  $$
+  E'(s_0)=0.
+  $$
+\end{lemma}
+\begin{proof}
+  \leanok
+  \uses{lem:dc-ch9-2-4-segment, lem:dc-ch9-2-5-geodesic}
+  Formula (1) of \cref{lem:dc-ch9-2-4-segment} has three contributions: the integral
+  against the covariant acceleration and the two endpoint pairings. The first is zero
+  when the base curve is a geodesic, and the endpoint pairings are zero for a proper
+  variation. Hence $E'(s_0)=0$.
+\end{proof}
+
+\begin{lemma}[telescoping the breakpoint terms]
+  \label{lem:dc-ch9-2-8-jump-sum}
+  \dcref{ch9:2.8}
+  \lean{Riemannian.Variation.sum_segment_boundary_eq_endpoint_sub_sum_jump,
+    Riemannian.Variation.sum_segment_boundary_eq_neg_sum_jump}
+  \leanok
+  Let $0=t_0<t_1<\cdots<t_{k+1}=a$ be a subdivision and write
+  \[
+    b_i^- = \left\langle V(t_i),\frac{DV}{dt}(t_i^-)\right\rangle,
+    \qquad
+    b_i^+ = \left\langle V(t_i),\frac{DV}{dt}(t_i^+)\right\rangle.
+  \]
+  Then the sum of the endpoint contributions from the $k+1$ segments is
+  \[
+    \sum_{i=0}^k (b_{i+1}^- - b_i^+)
+      = b_{k+1}^- - b_0^+ - \sum_{i=1}^k (b_i^+ - b_i^-).
+  \]
+  In particular, for a proper variation the two outer terms vanish, and the
+  segment boundaries give exactly the negative jump sum in formula (3).
+\end{lemma}
+\begin{proof}
+  \leanok
+  Induct on the number of internal subdivision points.  Adding the last
+  segment replaces the old terminal term by the new terminal term and the
+  difference $b_{k+1}^- - b_{k+1}^+$, which is the next jump contribution.
+  The proper case follows by setting the two outer pairings equal to zero.
+\end{proof}
+
+\begin{lemma}[piecewise second-variation assembly under segment hypotheses]
+  \label{lem:dc-ch9-2-8-piecewise-assembly}
+  \dcref{ch9:2.8}
+  \lean{Riemannian.Variation.hasDerivAt_deriv_dcEnergy_eq_piecewise_second_variation,
+    Riemannian.Variation.hasDerivAt_deriv_dcEnergy_eq_piecewise_second_variation_of_proper,
+    Riemannian.Variation.deriv_deriv_dcEnergy_eq_piecewise_second_variation_of_proper}
+  \leanok
+  \uses{lem:dc-ch9-2-8-segment, lem:dc-ch9-2-8-jump-sum, def:dc-ch9-2-2-energy}
+  Fix a finite subdivision $\tau_0,\ldots,\tau_{k+1}$. Assume that, near the base
+  parameter $s_0$, each segment energy is integrable and differentiable, and assume that
+  the segment second-variation derivative is
+  $$
+  \frac{d}{ds}\,E_i'(s_0)=2\big((b^-_{i+1}-b^+_i)-B_i\big).
+  $$
+  Then finite additivity of energy and differentiation of a finite sum give the global
+  derivative with endpoint terms and the internal jump sum:
+  $$
+  E''(s_0)=2\left(b^-_{k+1}-b^+_0-
+    \sum_{i=1}^{k}(b^+_i-b^-_i)-\sum_{i=0}^{k}B_i\right).
+  $$
+  If the two outer pairings vanish, $b^+_0=b^-_{k+1}=0$ (as properness supplies
+  in do Carmo's setting), this yields formula (3) with the subdivision jump term.
+  The hypotheses are intentionally stated at the segment level:
+  this lemma supplies the finite-subdivision assembly, while \cref{prop:dc-ch9-2-8} still
+  needs the geometric/regularity bridge from an arbitrary variation to those hypotheses.
+\end{lemma}
+\begin{proof}
+  \leanok
+  \uses{lem:dc-ch9-2-8-segment, lem:dc-ch9-2-8-jump-sum}
+  Apply finite additivity of the energy integral on the subdivision, differentiate the finite
+  sum, and substitute the assumed segment identities. Reindexing the endpoint terms gives
+  the displayed telescoping expression; properness removes the two outer pairings. $\square$
+\end{proof}
+
+\begin{lemma}[sectional Bonnet--Myers under explicit variation data]
+  \label{lem:dc-ch9-3-3-sectional-analytic}
+  \dcref{ch9:3.3}
+  \lean{Riemannian.Variation.bonnetMyers_diameterBound_of_sectional_of_analytic}
+  \leanok
+  \uses{lem:dc-ch9-3-3-ricci-sectional, lem:dc-ch9-3-1-velocity-frame,
+    lem:dc-ch9-3-1-index-sum-neg, thm:dc-ch7-2-8}
+  Let $M$ be a connected, complete Riemannian manifold of dimension at least two, and let
+  $r>0$. Assume that every sectional curvature is at least $1/r^2$. Suppose in addition that
+  along every distance-realizing geodesic of length $\ell>\pi r$, the velocity-seeded parallel
+  orthonormal frame and the sine fields $V_j(t)=\sin(\pi t)e_j(t)$ satisfy the explicit
+  nonnegativity conclusion of the second-variation argument (the analytic variation data).
+  Then $\operatorname{diam}(M)\le\pi r$ and $M$ is compact.
+
+  This is the sectional-curvature specialization of the Bonnet--Myers assembly with its
+  remaining variation regularity exposed; it makes no assertion about $\pi_1(M)$.
+\end{lemma}
+\begin{proof}
+  \leanok
+  By \cref{lem:dc-ch9-3-3-ricci-sectional}, the sectional lower bound gives the unnormalized
+  Ricci lower bound $(n-1)/r^2$ in every orthonormal frame. If two points were farther apart
+  than $\pi r$, Hopf--Rinow (\cref{thm:dc-ch7-2-8}) would provide a distance-realizing geodesic
+  of length $\ell>\pi r$. The velocity-seeded frame and the sine index-form computation
+  (\cref{lem:dc-ch9-3-1-velocity-frame,lem:dc-ch9-3-1-index-sum-neg}) would make the sum of
+  the perpendicular index forms strictly negative, while the assumed analytic variation data
+  make each summand nonnegative, a contradiction. Thus all distances are at most $\pi r$.
+  Completeness and Hopf--Rinow then make the bounded manifold compact.
+\end{proof}
+
+\begin{remark}[Remark 2.11]
+  \label{rem:dc-ch9-2-11}
+  \dcref{ch9:2.11}
+  It is possible to establish formulas for the first and second variations of the
+  arc length function $L(s)$. The expressions are entirely analogous to those for the
+  energy and, since they will not be used here, are not treated (see [dC 2]
+  paragraph 5.4).
+\end{remark}
+
+\begin{remark}[Remark 2.6]
+  \label{rem:dc-ch9-2-6}
+  \dcref{ch9:2.6}
+  \uses{prop:dc-ch9-2-5}
+  \cref{prop:dc-ch9-2-5} furnishes a characterization of geodesics as critical points of
+  the energy for all proper variations. In this sense geodesics can be thought of as
+  solutions to a variational problem; such a characterization is not local but
+  involves the behavior of the geodesic as a whole.
+\end{remark}
+
+\begin{remark}[Remark 3.5]
+  \label{rem:dc-ch9-3-5}
+  \dcref{ch9:3.5}
+  In fact it is not necessary that $K$ be bounded away from zero but only that $K$
+  not approach zero too fast. In this respect, see E. Calabi, "On Ricci curvatures
+  and geodesics", Duke Math. J. 34 (1967), 667–676 and R. Schneider, "Konvexe
+  Flächen mit langsam abnehmender Krümmung", Archiv der Math. 23 (1972), 650–654.
 \end{remark}

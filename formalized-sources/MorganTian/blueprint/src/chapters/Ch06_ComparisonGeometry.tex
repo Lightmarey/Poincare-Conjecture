@@ -15,7 +15,8 @@ $T{\mathcal M}=\langle\chi\rangle\oplus {\mathcal HT}{\mathcal M}$.
 
 
 \begin{definition}[Parameterized by backward time]\label{def:parameterized-by-backward-time}
-\uses{def:generalized-ricci-flow,def:time-slices-horizontal}
+\uses{def:generalized-ricci-flow, def:time-slices-horizontal}
+
 Let $0\le \tau_1<\tau_2$ be given and let $\gamma\colon
 [\tau_1,\tau_2]\to {\mathcal M}$ be a continuous map. We say that
 $\gamma$ is {\em parameterized by backward time} provided that $\gamma(\tau)\in M_{T-\tau}$ for all
@@ -28,8 +29,9 @@ parameterized by backward time. We begin with the definition of
 ${\mathcal L}$-length of such a path.
 
 \begin{definition}[${\mathcal L}$-length]\label{def:l-length}
+\uses{def:parameterized-by-backward-time, def:ricci-curvature}
 \label{Llength}
-\uses{def:parameterized-by-backward-time,def:ricci-curvature}
+
 Let  $\gamma\colon [\tau_{1},\tau_{2}]\rightarrow {\mathcal M},\ 0
 \le \tau_{1} < \tau_{2}$, be a  $C^{1}$-path parameterized by
 backward time. We define $X_\gamma(\tau)$ to be the horizontal
@@ -68,6 +70,7 @@ Let's consider the simplest example.
 
 \begin{example}[${\mathcal L}$-length in flat Euclidean space]\label{ex:l-length-euclidean}
 \uses{def:l-length}
+
 Suppose that our generalized Ricci flow is a constant family of
 Euclidean metrics on $\Ar^n\times [0,T]$. That is to say, $g(t) =
 g_{0}$ is the usual Euclidean metric. Then we have
@@ -88,8 +91,9 @@ $\sqrt{\tau}$.
 \subsection{${\mathcal L}$-geodesics}
 
 \begin{lemma}[Euler-Lagrange equation for ${\mathcal L}$-length]\label{lem:l-length-euler-lagrange}
-\label{EL}
 \uses{def:l-length}
+\label{EL}
+
 The
 Euler-Lagrange equation for critical paths for the $\mathcal{L}$-length is
 \begin{equation}\label{EulerLag}
@@ -101,6 +105,7 @@ Euler-Lagrange equation for critical paths for the $\mathcal{L}$-length is
 
 \begin{remark}[$\Ric(X,\cdot)^*$ as a horizontal vector field]\label{rem:ricci-one-form-dual}
 \uses{lem:l-length-euler-lagrange}
+
 $\Ric(X,\cdot)$ is a horizontal one-form along $\gamma$ and its
 dual $\Ric(X,\cdot)^*$ is a horizontal tangent vector field
 along $\gamma$.
@@ -172,13 +177,15 @@ Equation~(\ref{EulerLag}).
 
 \begin{remark}[Horizontal gradient convention]\label{rem:horizontal-gradient-convention}
 \uses{lem:l-length-euler-lagrange}
+
 In the Euler-Lagrange equation, $\nabla R$ is the horizontal
 gradient, and the equation is an equation of horizontal vector
 fields along $\gamma$.
 \end{remark}
 
 \begin{definition}[${\mathcal L}$-geodesic]\label{def:l-geodesic}
-\uses{def:l-length,lem:l-length-euler-lagrange}
+\uses{def:l-length, lem:l-length-euler-lagrange}
+
 A curve $\gamma$, parameterized by backward time, that is a critical
 point of the ${\mathcal L}$-length is called an $\mathcal{L}$-{\em
 geodesic}.
@@ -198,6 +205,7 @@ regular even at $s=0$.
 
 \begin{lemma}[Initial limit determines an ${\mathcal L}$-geodesic]\label{lem:l-geodesic-initial-limit}
 \uses{def:l-geodesic}
+
 Let $\gamma\colon [0,\tau_2]\to {\mathcal M}$ be an ${\mathcal L}$-geodesic.
 Then $\lim_{\tau\rightarrow 0}\sqrt{\tau}X_\gamma(\tau)$ exists. The
 ${\mathcal L}$-geodesic $\gamma$ is completely determined by this limit (and by
@@ -214,7 +222,8 @@ variables formula, $A(\tau)=2\sqrt{\tau}X_\gamma(\tau)$.
 \end{proof}
 
 \begin{definition}[Minimizing ${\mathcal L}$-geodesic]\label{def:l-geodesic-minimizing}
-\uses{def:l-geodesic,def:l-length}
+\uses{def:l-geodesic, def:l-length}
+
 An ${\mathcal L}$-geodesic is said to be {\em
 minimizing} if there is no
 curve parameterized by backward time with the same endpoints and
@@ -231,7 +240,8 @@ $$Y(\tau)=\frac{\partial}{\partial u}\gamma(\tau,u)|_{u=0}.$$
 
 
 \begin{lemma}[The ${\mathcal L}$-Jacobi equation]\label{lem:l-jacobi-equation}
-\uses{def:l-geodesic,lem:l-length-euler-lagrange}
+\uses{def:l-geodesic, lem:l-length-euler-lagrange}
+
 $Y(\tau)$ satisfies the {\em ${\mathcal L}$-Jacobi
 equation}:
 \begin{equation}\label{jaceqn}\nabla_X\nabla_XY+{\mathcal
@@ -278,6 +288,7 @@ $\gamma(\tau)$ to an entire family of curves.
 
 \begin{definition}[${\mathcal L}$-Jacobi field]\label{def:l-jacobi-field}
 \uses{lem:l-jacobi-equation}
+
 A field $Y(\tau)$ along an ${\mathcal L}$-geodesic is
 called an {\em ${\mathcal L}$-Jacobi field} if it satisfies the ${\mathcal L}$-Jacobi
 equation, Equation~(\ref{jaceqn}), and if it vanishes at $\tau_1$.
@@ -290,6 +301,7 @@ In fact, there is a similar result even for $\tau_1=0$.
 
 \begin{lemma}[Initial limit determines an ${\mathcal L}$-Jacobi field]\label{lem:l-jacobi-field-initial-limit}
 \uses{def:l-jacobi-field}
+
 Let $\gamma$ be an ${\mathcal L}$-geodesic defined on $[0,\tau_2]$
 and let $Y(\tau)$ be an ${\mathcal L}$-Jacobi field along $\gamma$.
 Then
@@ -326,8 +338,9 @@ given in the next proposition.
 
 
 \begin{proposition}[Second variation of ${\mathcal L}$-length via ${\mathcal L}$-Jacobi fields]\label{prop:l-length-second-variation}
+\uses{def:l-geodesic-minimizing, def:l-jacobi-field}
 \label{2ndvarj}
-\uses{def:l-geodesic-minimizing,def:l-jacobi-field}
+
 Suppose that $\gamma$ is a minimizing ${\mathcal L}$-geodesic. Then,
 for any vector field $Y$ along $\gamma$, vanishing at both
 endpoints, and any family $\gamma_u$ of curves parameterized by
@@ -344,8 +357,9 @@ Let us begin the proof of this proposition with the essential computation.
 
 
 \begin{lemma}[Second variation cross-term formula]\label{lem:l-length-second-variation-formula}
+\uses{def:l-jacobi-field, def:l-length}
 \label{2ndvari}
-\uses{def:l-jacobi-field,def:l-length}
+
 Let $\gamma$ be an ${\mathcal L}$-geodesic defined on $
 [\tau_1,\tau_2]$, and let $Y_1$ and $Y_2$ be horizontal vector
 fields along $\gamma$ vanishing at $\tau_1$. Suppose that
@@ -395,8 +409,9 @@ This proves the lemma.
 \end{proof}
 
 \begin{remark}[Second variation is determined by the ${\mathcal L}$-Jacobi field]\label{rem:second-variation-determined-by-jacobi}
+\uses{lem:l-length-second-variation-formula, def:l-jacobi-field}
 \label{variremark}
-\uses{lem:l-length-second-variation-formula,def:l-jacobi-field}
+
 Let $\gamma(\tau,u)$ be a family of curves as above with
 $\gamma(\tau,0),\ \tau_1\le \tau\le \bar \tau$, being an ${\mathcal
 L}$-geodesic. It follows from Lemma~\ref{lem:l-length-second-variation-formula} and the remark
@@ -409,8 +424,9 @@ the curve $\gamma(\bar\tau,u)$ at $u=0$.
 
 
 \begin{corollary}[Symmetry of the ${\mathcal L}$-Jacobi bilinear pairing]\label{cor:l-jacobi-bilinear-symmetric}
+\uses{def:l-jacobi-field, def:l-geodesic}
 \label{symmY}
-\uses{def:l-jacobi-field,def:l-geodesic}
+
 Let $\gamma$ be an ${\mathcal L}$-geodesic and let $Y_1,Y_2$ be vector fields
 along $\gamma$ vanishing at $\tau_1$. Suppose $Y_1(\tau_2)=Y_2(\tau_2)=0$.
  Then the
@@ -421,8 +437,9 @@ and $Y_2$.
 \end{corollary}
 
 \begin{proof}
+  \uses{lem:l-length-second-variation-formula, cor:l-jacobi-bilinear-symmetric, def:l-geodesic-minimizing}
 \sketch
-\uses{lem:l-length-second-variation-formula}
+
 Given $Y_1$ and $Y_2$ along $\gamma$ we construct a two-parameter
 family of curves parameterized by backward time as follows. Let
 $\gamma(\tau,u_1)$ be the value at $u_1$ of the geodesic through
@@ -502,8 +519,9 @@ is interpreted to mean $\lim_{\tau\rightarrow 0} \sqrt{\tau}X(\tau)
 = Z$.)
 
 \begin{definition}[${\mathcal L}$-exponential map]\label{def:l-exponential-map}
-\label{defnD}
 \uses{def:l-geodesic}
+\label{defnD}
+
 We define {\em the domain of definition of} ${\mathcal L}\mathrm{exp}_x$,  denoted ${\mathcal D}_x$, to be the
 subset of $T_xM_{T-\tau_1}\times (\tau_1,\infty)$ consisting of all pairs
 $(Z,\tau)$ for which $\tau> \tau_1$ is in the maximal domain of definition of
@@ -525,8 +543,9 @@ ${\mathcal D}_x^\tau$ with a subset of $T_xM_{T-\tau_1}$.
 
 
 \begin{lemma}[${\mathcal D}_x$ is open and ${\mathcal L}\exp_x$ is smooth]\label{lem:l-exponential-smooth}
-\label{lcdiffeo}
 \uses{def:l-exponential-map}
+\label{lcdiffeo}
+
 ${\mathcal D}_x$ is an open subset of $T_xM_{T-\tau_1}\times (\tau_1,\infty)$;
 its intersection with each line $\{Z\}\times (\tau_1,\infty)$ is a non-empty
 interval whose closure contains $\tau_1$. Furthermore, ${\mathcal L}\mathrm{exp}_x\colon {\mathcal D}_x\to {\mathcal M}$ is a smooth map, and $\widetilde
@@ -553,8 +572,9 @@ Now we compute the differential of ${\mathcal L}\exp$.
 
 
 \begin{lemma}[Differential of ${\mathcal L}\exp$ via ${\mathcal L}$-Jacobi fields]\label{lem:l-exponential-differential}
+\uses{def:l-exponential-map, def:l-jacobi-field}
 \label{DLJacobi}
-\uses{def:l-exponential-map,def:l-jacobi-field}
+
 Let $Z\in {\mathcal D}_x^{\bar\tau}\subset T_xM_{T-\tau_1}$. The
 differential of ${\mathcal L}\mathrm{exp}^{\bar\tau}_x$
 at the point $Z$ is given as follows: For each $W\in
@@ -607,8 +627,9 @@ L}$-length is no less than that of $\gamma$. In fact, there is a
 second-order version of this inequality which we shall need later.
 
 \begin{corollary}[Positivity of the second variation]\label{cor:l-length-second-variation-positive}
+\uses{prop:l-length-second-variation, lem:l-exponential-differential}
 \label{posform}
-\uses{prop:l-length-second-variation,lem:l-exponential-differential}
+
 Let $Z\in T_xM_{T-\tau_1}$. Suppose that the associated ${\mathcal
 L}$-geodesic $\gamma_Z$ minimizes ${\mathcal L}$-length between its
 endpoints, $x$ and $\gamma_Z(\bar\tau)$, and that $d_Z{\mathcal
@@ -643,8 +664,9 @@ $\gamma_Z|_{[\tau_1,\tau]}$. We compute its gradient.
 
 
 \begin{lemma}[Gradient of $\widetilde L^\tau$]\label{lem:l-length-tilde-gradient}
+\uses{def:l-exponential-map, def:l-length}
 \label{DtildeL}
-\uses{def:l-exponential-map,def:l-length}
+
 Suppose that $Z\in {\mathcal D}^{\tau}_x$. Then for any $\widetilde
 Y\in T_xM_{T-\tau_1}=T_Z({\mathcal D}^{\tau}_x)$ we have
 $$ \langle \nabla\widetilde L^{\tau},\widetilde Y\rangle =2\sqrt{\tau}\langle
@@ -689,8 +711,9 @@ study ${\mathcal L}\exp_x$ for $\tau>\tau_1$ but $\tau$
 sufficiently close to $\tau_1$.
 
 \begin{lemma}[Local diffeomorphism near the initial time]\label{lem:l-exponential-local-diffeomorphism}
+\uses{lem:l-exponential-differential, def:l-jacobi-field}
 \label{locstr}
-\uses{lem:l-exponential-differential,def:l-jacobi-field}
+
 For any $x$ in ${\mathcal M}$ with ${\bf
 t}(x)=T-\tau_1$ and any $Z\in T_xM_{t-\tau_1}$, there is $\delta>0$
 such that for any $\tau$ with $\tau_1<\tau<\tau_1+\delta$ the map
@@ -727,8 +750,9 @@ L}$-Jacobi field $Y$ along
 \end{proof}
 
 \begin{remark}[${\mathcal L}\exp$ for $\tau<\tau_1$]\label{rem:l-exponential-backward-tau}
+\uses{lem:l-exponential-local-diffeomorphism, lem:l-length-tilde-gradient}
 \label{backwards}
-\uses{lem:l-exponential-local-diffeomorphism,lem:l-length-tilde-gradient}
+
 When $\tau_1>0$ it is possible to consider the ${\mathcal L}\mathrm{exp}^{\tau}_x$ defined for $0<\tau<\tau_1$. In this case, the curves
 are moving backward in $\tau$ and hence are moving forward with
 respect to the time parameter ${\bf t}$. Two comments are in order.
@@ -751,8 +775,9 @@ Section~\ref{sect:InjDom} we keep the assumption that $x\in
 
 
 \begin{definition}[Injectivity set]\label{def:l-injectivity-set}
+\uses{def:l-exponential-map, def:l-length}
 \label{injdefn}
-\uses{def:l-exponential-map,def:l-length}
+
  The {\sl injectivity set}
 $\widetilde{\mathcal U}_x\subset {\mathcal D}_x\subset
 \left(T_xM_{T-\tau_1}\times (\tau_1,\infty)\right)$ is the subset of all $(Z,\tau)\in {\mathcal D}_x$ with the following
@@ -788,8 +813,9 @@ ${\mathcal D}_x^\tau$ for every $\tau>\tau_1$.
 
 
 \begin{definition}[Injectivity domain]\label{def:l-injectivity-domain}
+\uses{def:l-injectivity-set, def:l-exponential-map}
 \label{L_x}
-\uses{def:l-injectivity-set,def:l-exponential-map}
+
 We set ${\mathcal U}_x\subset {\mathcal M}$ equal to $ {\mathcal L}\exp_x(\widetilde{\mathcal
 U}_x)$. We call this subset of ${\mathcal M}$ the {\em injectivity
 domain (of $x$)}.
@@ -805,7 +831,8 @@ $\gamma_{Z}|_{[\tau_1,\tau]}$  is a minimizing
  ${\mathcal L}$-geodesic from $x$ to $q$.
 
 \begin{definition}[The minimal ${\mathcal L}$-length function $L_x$]\label{def:minimal-l-length-function}
-\uses{def:l-injectivity-domain,def:l-length}
+\uses{def:l-injectivity-domain, def:l-length}
+
 The function $L_x\colon {\mathcal U}_x\to \Ar$
 assigns to each $q$ in ${\mathcal U}_x$ the length of any minimizing
 ${\mathcal L}$-geodesic from $x$ to $q$. For any $\tau>\tau_1$, we
@@ -821,8 +848,9 @@ diffeomorphism onto an open subset of the manifold.
 
 
 \begin{proposition}[${\mathcal L}\exp_x$ is a diffeomorphism onto the injectivity domain]\label{prop:l-exponential-diffeomorphism}
+\uses{def:l-injectivity-set, def:l-injectivity-domain, def:minimal-l-length-function}
 \label{diffeo}
-\uses{def:l-injectivity-set,def:l-injectivity-domain,def:minimal-l-length-function}
+
 The map
 $${\mathcal L}\exp_x\colon\widetilde {\mathcal
 U}_x\to {\mathcal M}$$ is a diffeomorphism onto the open subset
@@ -864,8 +892,9 @@ smooth function.
 According to Lemma~\ref{lem:l-length-tilde-gradient} we have:
 
 \begin{corollary}[Gradient of $L_x^\tau$]\label{cor:l-length-gradient}
+\uses{lem:l-length-tilde-gradient, prop:l-exponential-diffeomorphism}
 \label{DL}
-\uses{lem:l-length-tilde-gradient,prop:l-exponential-diffeomorphism}
+
 At any $q\in {\mathcal U}_x(\tau)$ we have
 $$\nabla L_x^{\tau}(q)=2\sqrt{\tau}X(\tau)$$
 where  $X(\tau)$ is the horizontal component of $\gamma'(\tau)$,
@@ -894,8 +923,9 @@ the cut locus is star-shaped.
 
 
 \begin{proposition}[Monotonicity of the injectivity set]\label{prop:injectivity-set-monotone}
-\label{inclusion}
 \uses{def:l-injectivity-set}
+\label{inclusion}
+
 Let $\bar\tau'>\bar\tau$. Then $\widetilde{\mathcal
 U}_x(\bar\tau')\subset \widetilde{\mathcal U}_x(\bar\tau)\subset
 T_xM_{T-\tau_1}$.
@@ -965,8 +995,9 @@ since it is not a $C^2$-vector field.
 We shall also need a closely related result.
 
 \begin{proposition}[Local diffeomorphism of ${\mathcal L}\exp$ along a minimizing geodesic]\label{prop:l-exponential-diffeomorphism-along-geodesic}
+\uses{def:l-exponential-map, def:l-injectivity-domain, def:l-geodesic-minimizing}
 \label{tausmooth}
-\uses{def:l-exponential-map,def:l-injectivity-domain,def:l-geodesic-minimizing}
+
 Let $\gamma$ be a minimizing ${\mathcal L}$-geodesic defined for
 $[\tau_1,\bar\tau]$. Fix $0\le\tau_1<\tau_2<\bar\tau$, and set
 $q_2=\gamma(\tau_2)$, and $Z_2=\sqrt{\tau_2}X_{\gamma}(\tau_2)$.
@@ -1000,8 +1031,9 @@ We finish this section with a computation of the $\tau$-derivative
 of $L_x$.
 
 \begin{lemma}[$\tau$-derivative of $L_x$]\label{lem:l-length-tau-derivative}
+\uses{def:minimal-l-length-function, def:l-injectivity-domain}
 \label{Ltau}
-\uses{def:minimal-l-length-function,def:l-injectivity-domain}
+
  Suppose that
 $q\in  {\mathcal U}_x$ with ${\bf t}(q)=T-\bar\tau$ for some $\bar\tau>\tau_1$.
 Let $\gamma\colon [\tau_1,\bar\tau]\to {\mathcal M}$ be the unique minimizing
@@ -1045,8 +1077,9 @@ $Y(\tau)$ along an ${\mathcal L}$-geodesic $\gamma$. Here is the
 main result of this subsection.
 
 \begin{proposition}[Second variation formula for $\widetilde L^{\bar\tau}$]\label{prop:l-length-second-variation-general}
+\uses{def:l-geodesic, def:l-length}
 \label{2ndvariation}
-\uses{def:l-geodesic,def:l-length}
+
  Fix $0\le \tau_1<\bar \tau$.
 Let $\gamma$ be an ${\mathcal L}$-geodesic defined on
 $[\tau_1,\bar\tau]$ and let $\gamma_u=\widetilde\gamma(\tau,u)$ be a
@@ -1079,6 +1112,7 @@ We begin the proof of this result with the following computation.
 
 \begin{claim}[Rate of change of $\langle \nabla_X Y,Y\rangle$ along $\tau$]\label{claim:covariant-derivative-inner-product-formula}
 \uses{def:ricci-curvature}
+
   Let
 $\gamma(\tau)$ be a curve parameterized by backward time. Let $Y$ be
 a horizontal vector field along $\gamma$ and let $X$ be the
@@ -1091,6 +1125,7 @@ Then
 \end{claim}
 
 \begin{proof}
+  \uses{lem:l-length-second-variation-formula, lem:l-jacobi-equation, claim:covariant-derivative-inner-product-formula}
 \sketch
 We can break $\frac{\partial}{\partial\tau}\langle \nabla_{X}Y,Y\rangle $ into
 two parts: the first  assumes that the metric is constant and the second deals
@@ -1215,7 +1250,8 @@ inequalities for the barrier functions that yield the weak
 inequalities at non-smooth points.
 
 \begin{definition}[Adapted vector field]\label{def:adapted-vector-field}
-\uses{def:l-injectivity-domain,def:ricci-curvature}
+\uses{def:l-injectivity-domain, def:ricci-curvature}
+
 Let $q\in {\mathcal U}_x(\bar\tau)$ and let $\gamma\colon
 [\tau_1,\bar\tau]\to {\mathcal M}$ be the unique minimizing
 ${\mathcal L}$-geodesic from $x$ to $q$. We say that a horizontal
@@ -1230,8 +1266,8 @@ the following ODE on $[\tau_1,\bar \tau]$:
 Direct computation shows the following:
 
  \begin{lemma}[Norm of an adapted vector field]\label{lem:adapted-vector-field-norm}
+\uses{def:adapted-vector-field}
 \label{adaptform}
- \uses{def:adapted-vector-field}
  Suppose that $Y(\tau)$ is an adapted vector field along $\gamma$.
  Then
 \begin{eqnarray}\label{secondYeqn}
@@ -1252,8 +1288,9 @@ Now we come to the main result of this subsection, which is an
 extremely important inequality for the Hessian of $L_x^{\bar\tau}$.
 
 \begin{proposition}[Hessian inequality for $L_x^{\bar\tau}$]\label{prop:l-length-hessian-inequality}
+\uses{def:adapted-vector-field, def:minimal-l-length-function}
 \label{Hessineq}
-\uses{def:adapted-vector-field,def:minimal-l-length-function}
+
 Suppose that $q\in {\mathcal U}_x(\bar\tau)$, that $Z\in
 \widetilde{\mathcal U}_x(\bar\tau)$ is the pre-image of $q$,  and
 that $\gamma_Z$ is the  ${\mathcal L}$-geodesic to $q$ determined by
@@ -1278,6 +1315,7 @@ field $Y$ is also a ${\mathcal L}$-Jacobi field.
 
 \begin{remark}[$H(X,Y)$ is quadratic in $Y$]\label{rem:h-quadratic-in-y}
 \uses{prop:l-length-hessian-inequality}
+
 In spite of the notation, $H(X,Y)$ is a purely quadratic function of
 the vector field $Y$ along $\gamma_Z$.
 \end{remark}
@@ -1289,6 +1327,7 @@ U}_x(\bar\tau)$.
 
 \begin{lemma}[Existence of a family of ${\mathcal L}$-geodesics with prescribed variation]\label{lem:l-geodesic-family-existence}
 \uses{def:l-injectivity-domain}
+
 Suppose that $q\in {\mathcal U}_x(\bar\tau)$  and that $\gamma\colon
 [\tau_1,\bar\tau]\to{\mathcal M}$ is the minimizing ${\mathcal
 L}$-geodesic from $x$ to $q$. Then for every tangent vector $
@@ -1306,8 +1345,9 @@ $$\nabla_{\sqrt{\tau_1}X(\tau_1)}Y(\tau_1)=Z.$$
 \end{lemma}
 
 \begin{lemma}[Hessian of $L_x^{\bar\tau}$ via ${\mathcal L}$-Jacobi fields]\label{lem:l-length-hessian-jacobi-formula}
+\uses{def:l-jacobi-field, def:minimal-l-length-function}
 \label{Jacobi}
-\uses{def:l-jacobi-field,def:minimal-l-length-function}
+
 Let  $\gamma$ be a minimizing ${\mathcal L}$-geodesic from $x$, and
 let $Y(\tau)$ be an ${\mathcal L}$-Jacobi field along $\gamma$. Then
 $$2\sqrt{\bar\tau}\langle\nabla_XY(\bar\tau),Y(\bar\tau)\rangle = \Hess(L_x^{\bar\tau})(Y(\bar\tau),
@@ -1351,8 +1391,9 @@ Now suppose that we have a horizontal vector field that is both
 adapted and ${\mathcal L}$-Jacobi. We get:
 
 \begin{lemma}[Adapted ${\mathcal L}$-Jacobi field norm relation]\label{lem:adapted-jacobi-hessian-relation}
+\uses{def:adapted-vector-field, def:l-jacobi-field, def:minimal-l-length-function}
 \label{adapjab}
-\uses{def:adapted-vector-field,def:l-jacobi-field,def:minimal-l-length-function}
+
 Suppose that $q\in {\mathcal U}_x(\bar\tau)$, that $Z\in \widetilde
 {\mathcal U}_x(\bar\tau)$ is the pre-image of $q$, and that
 $\gamma_Z$ is the  ${\mathcal L}$-geodesic to $q$ determined by $Z$.
@@ -1364,8 +1405,9 @@ $$\frac{1}{2\sqrt{\bar\tau}(\sqrt{\bar\tau}-\sqrt{\tau_1})}|Y(\bar\tau)|^2
 \end{lemma}
 
 \begin{proof}
+  \uses{lem:l-length-hessian-jacobi-formula, lem:l-geodesic-family-existence, prop:l-length-second-variation-general, cor:l-length-gradient, lem:adapted-vector-field-norm, prop:l-length-second-variation, lem:l-length-second-variation-formula}
 \sketch
-\uses{lem:l-length-hessian-jacobi-formula}
+
 From the definition of an adapted vector field  $Y(\tau)$  we have
 \begin{equation*}
 \Ric(Y(\tau),Y(\tau)) + \langle
@@ -1384,8 +1426,9 @@ Now we are ready to begin the proof of Proposition~\ref{prop:l-length-hessian-in
 
 
 \begin{proof}
+  \uses{lem:l-geodesic-family-existence, prop:l-length-second-variation-general, cor:l-length-gradient, lem:adapted-vector-field-norm, prop:l-length-second-variation, lem:l-length-second-variation-formula}
 \sketch
-\uses{lem:l-geodesic-family-existence,prop:l-length-second-variation-general,cor:l-length-gradient,lem:adapted-vector-field-norm,prop:l-length-second-variation}
+
 Let $\tilde\gamma(\tau,u)$ be a family  of curves with
 $\gamma(\tau,0)=\gamma_Z$ and with $\frac{\partial}{\partial
 u}\gamma(\tau,u)=\widetilde Y(\tau,u)$. We denote by $Y$ the
@@ -1547,6 +1590,7 @@ field.
 
 \begin{claim}[Mixed second partials vanish]\label{claim:mixed-partials-vanish}
 \uses{lem:l-length-second-variation-formula}
+
 $$\frac{\partial}{\partial v}\frac{\partial}{\partial w}{\mathcal L}(\mu)|_{u=v=0}=
 \frac{\partial}{\partial w}\frac{\partial}{\partial v}{\mathcal
 L}(\mu)|_{v=w=0}=0.$$
@@ -1571,8 +1615,9 @@ main result.
 
 
 \begin{proposition}[Laplacian inequality for $L_x^{\bar\tau}$]\label{prop:l-length-laplacian-inequality}
+\uses{prop:l-length-hessian-inequality, def:l-injectivity-domain}
 \label{triL}
-\uses{prop:l-length-hessian-inequality,def:l-injectivity-domain}
+
 Suppose that $q\in {\mathcal U}_x(\bar\tau)$, that $Z\in \widetilde
 {\mathcal U}_x(\bar\tau)$ is the pre-image of $q$ and that
 $\gamma_Z$ is the ${\mathcal L}$-geodesic determined by $Z$. Then
@@ -1602,8 +1647,9 @@ $$\Ric+\frac{1}{2\sqrt{\bar\tau}}\Hess(L_x^{\bar\tau})
 
 
 \begin{proof}
+  \uses{prop:l-length-hessian-inequality, lem:adapted-jacobi-hessian-relation, lem:div-ricci-scalar-curvature, thm:curvature-evolution}
 \sketch
-\uses{prop:l-length-hessian-inequality,lem:adapted-jacobi-hessian-relation}
+
 Choose an orthonormal basis $\{Y_{\alpha}\}$ for
 $T_q(M_{T-\bar\tau})$. For each $\alpha$, extend $\{Y_{\alpha}\}$ to
 an adapted vector field along the $ \mathcal{L}$-geodesic $\gamma_Z$
@@ -1642,8 +1688,9 @@ the proof of Proposition~\ref{prop:l-length-laplacian-inequality}.
 
 
 \begin{claim}[Summed $H(X,Y_\alpha)$ formula]\label{claim:h-sum-formula}
-\label{Hclaim}
 \uses{prop:l-length-hessian-inequality}
+\label{Hclaim}
+
 $$\sum_\alpha
 H(X,Y_\alpha)=\frac{(\sqrt{\tau}-\sqrt{\tau_1})^2}{(\sqrt{\bar\tau}-\sqrt{\tau_1})^2}H(X).$$
 \end{claim}
@@ -1681,6 +1728,7 @@ greater than the initial time of the generalized Ricci flow.
 
 \begin{definition}[Reduced length]\label{def:reduced-length}
 \uses{def:minimal-l-length-function}
+
 We define
  the $\mathcal{L}$-{\sl reduced length} (from $x$)
 $$l_x\colon {\mathcal U}_x\to \Ar$$
@@ -1697,6 +1745,7 @@ Proposition~\ref{prop:l-length-laplacian-inequality}.
 
 \begin{definition}[The quantity $K_{\tau_1}^{\bar\tau}$]\label{def:reduced-length-k-quantity}
 \uses{prop:l-length-laplacian-inequality}
+
 For any ${\mathcal L}$-geodesic $\gamma$ parameterized by $[\tau_1,\bar\tau]$
 we define
 $$K_{\tau_1}^{\bar\tau}(\gamma)=
@@ -1708,8 +1757,9 @@ $K^{\bar\tau}(\gamma)$.
 The following is immediate from the definitions.
 
 \begin{lemma}[Continuity of the $K$-quantities]\label{lem:k-quantity-continuity}
-\label{Kequal}
 \uses{def:reduced-length-k-quantity}
+\label{Kequal}
+
 For any ${\mathcal L}$-geodesic $\gamma$ defined on $[0,\bar\tau]$ both
 $K^{\bar\tau}_{\tau_1}(\gamma)$ and ${\mathcal K}^{\bar\tau}_{\tau_1}(\gamma)$
 are continuous in $\tau_1$ and at $\tau_1=0$ they take the same value. Also,
@@ -1720,8 +1770,9 @@ horizontal component of $\gamma'$ at $\tau=\tau_1$.
 \end{lemma}
 
 \begin{lemma}[Reduced length via $K$]\label{lem:reduced-length-k-formula}
+\uses{def:reduced-length, def:reduced-length-k-quantity}
 \label{Keqn}
-\uses{def:reduced-length,def:reduced-length-k-quantity}
+
 Let $q\in {\mathcal
 U}_x(\bar\tau)$, let $Z\in \widetilde {\mathcal U}_x$ be the
 pre-image of $q$ and let $\gamma_Z$ be the ${\mathcal L}$-geodesic
@@ -1774,8 +1825,9 @@ $\tau_1=0$.
 
 
 \begin{lemma}[General differential inequalities for $l_x$]\label{lem:reduced-length-differential-inequalities}
+\uses{def:reduced-length, lem:reduced-length-k-formula, prop:l-length-laplacian-inequality}
 \label{linequal}
-\uses{def:reduced-length,lem:reduced-length-k-formula,prop:l-length-laplacian-inequality}
+
 For any  $q\in{\mathcal U}_x(\bar\tau)$, let $Z\in
 \widetilde{\mathcal U}_x(\bar\tau)$ be the pre-image of $q$ and let
 $\gamma_Z$ be the ${\mathcal L}$-geodesic determined by $Z$. Then we
@@ -1816,8 +1868,9 @@ When $\tau_1=0$, which is the case of main interest, all these
 formulas simplify and we get:
 
 \begin{theorem}[Reduced length differential identities at $\tau_1=0$]\label{thm:reduced-length-differential-identities}
+\uses{def:reduced-length, lem:reduced-length-differential-inequalities}
 \label{Ueqn}
-\uses{def:reduced-length,lem:reduced-length-differential-inequalities}
+
 Suppose that $x\in M_T$ so that $\tau_1=0$. For any $q\in{\mathcal
 U}_x(\bar\tau)$, let $Z\in \widetilde{\mathcal U}_x(\bar\tau)$ be
 the pre-image of $q$ and let $\gamma_Z$ be the ${\mathcal
@@ -1845,8 +1898,9 @@ Now let us reformulate the differential inequalities in
 Theorem~\ref{thm:reduced-length-differential-identities} in a way that will be useful later.
 
 \begin{corollary}[Reformulated PDE inequalities for $l_x$]\label{cor:reduced-length-pde-inequalities}
-\label{lformula}
 \uses{thm:reduced-length-differential-identities}
+\label{lformula}
+
 Suppose that $x\in M_T$ so that $\tau_1=0$. Then for $q\in{\mathcal
 U}^{\bar\tau}_x$ we have
 $$\frac{\partial l_x}{\partial \tau}(q)+\triangle l_x^{\bar\tau}(q)\le \frac{(n/2)-l_x^{\bar\tau}(q)}{\bar\tau}.$$
@@ -1873,7 +1927,8 @@ U}_x$.
 
 
 \begin{definition}[Tangential reduced length $\widetilde l$]\label{def:reduced-length-tangential}
-\uses{def:l-length,def:l-exponential-map}
+\uses{def:l-length, def:l-exponential-map}
+
 We define $\widetilde l\colon \widetilde {\mathcal U}_x\to
 \Ar$  by
 $$\widetilde l(Z,\tau)=\frac{\widetilde L(Z,\tau)}{2\sqrt{\tau}}=l(\gamma_Z|_{[\tau_1,\bar\tau]}).$$
@@ -1893,8 +1948,9 @@ entirely different computation with a different answer.
 
 
 \begin{lemma}[$\tau$-derivative of $\widetilde l$]\label{lem:reduced-length-tangential-tau-derivative}
-\label{tildeltau}
 \uses{def:reduced-length-tangential}
+\label{tildeltau}
+
 $$\frac{\partial \widetilde
 l(Z,\tau)}{\partial
 \tau}=\frac{1}{2}\left(R(\gamma_Z(\tau))+X(\tau)|^2\right)-\frac{\widetilde
@@ -1912,8 +1968,9 @@ $$\frac{\partial}{\partial\tau}\widetilde l(Z,\tau)=\frac{1}{2}\left(R(\gamma_z(
 \end{proof}
 
 \begin{corollary}[$\tau$-derivative of $\widetilde l$ via $K$]\label{cor:reduced-length-tangential-k-derivative}
+\uses{lem:reduced-length-tangential-tau-derivative, lem:reduced-length-k-formula}
 \label{tildelK}
-\uses{lem:reduced-length-tangential-tau-derivative,lem:reduced-length-k-formula}
+
 Suppose that $x\in M_T$ so that
 $\tau_1=0$. Then
 $$\frac{\partial}{\partial\tau}\widetilde
@@ -1944,6 +2001,7 @@ M_{T-\tau_1}\subset {\mathcal M}$.
 
 \begin{definition}[Domain of definition of $l_x$]\label{def:reduced-length-domain}
 \uses{def:reduced-length}
+
 Let $({\mathcal M},G)$ be a generalized Ricci flow and let $x\in
 M_{T-\tau_1}\subset {\mathcal M}$. The reduced length function $l_x$ is defined
 on the subset of ${\mathcal M}$ consisting of all points $y\in {\mathcal M}$
@@ -1955,8 +2013,9 @@ ${\mathcal L}$-geodesic divided by $2\sqrt{\tau}$.
 Here is the main result of this subsection.
 
 \begin{proposition}[Local Lipschitz property of $l_x$]\label{prop:reduced-length-lipschitz}
-\label{lips}
 \uses{def:reduced-length-domain}
+\label{lips}
+
 Let $({\mathcal M},G)$ be a generalized Ricci flow and let $x\in
 M_{T-\tau_1}\subset {\mathcal M}$. Let $\epsilon>0$ be given and let $A\subset
 {\mathcal M}\cap {\bf t}^{-1}(-\infty,T-\tau_1+\epsilon)$. Suppose that there
@@ -1979,6 +2038,7 @@ and the metric $dt^2$ on the tangent line spanned by $\chi$.
 
 \begin{corollary}[Lipschitz property on a time-slice]\label{cor:reduced-length-lipschitz-time-slice}
 \uses{prop:reduced-length-lipschitz}
+
 With $A$ and $\nu_0(A)$ as in Proposition~\ref{prop:reduced-length-lipschitz}, the
 restriction of $l_x$ to  $\nu_0(A)\cap M_{T-\bar\tau}$ is a locally
 Lipschitz function with respect to the metric $G_{T-\bar\tau}$.
@@ -1993,6 +2053,7 @@ result we introduce the following definition.
 
 \begin{definition}[Parabolic-type neighborhood $\widetilde P$]\label{def:l-parabolic-neighborhood}
 \uses{def:compatible-embedding}
+
 Let $y\in {\mathcal M}$ with ${\bf t}(y)=t$ and suppose that for
 some $\epsilon>0$ there is an embedding $\iota\colon B(y,t,r)\times
 (t-\epsilon,t+\epsilon)\to {\mathcal M}$ that is compatible with
@@ -2012,8 +2073,9 @@ Now we are ready for the more precise, technical result.
 
 
 \begin{proposition}[Precise local Lipschitz estimate for $l_x$]\label{prop:reduced-length-lipschitz-precise}
+\uses{def:l-parabolic-neighborhood, def:reduced-length-domain}
 \label{lipaty}
-\uses{def:l-parabolic-neighborhood,def:reduced-length-domain}
+
 Given constants  $\epsilon>0$, $\bar\tau_0<\infty$, $l_0<\infty$,
 and $C_0<\infty$, there are constants $ C<\infty$ and
 $0<\delta<\epsilon$ depending only the  given constants  such that
@@ -2083,8 +2145,9 @@ several preliminary results.
 
 
 \begin{lemma}[Min-max estimate along an ${\mathcal L}$-geodesic]\label{lem:l-geodesic-min-max-estimate}
-\label{min-max}
 \uses{def:l-geodesic}
+\label{min-max}
+
  Suppose  that
 $\gamma$ is an ${\mathcal L}$-geodesic defined on
 $[\tau_1,\bar\tau]$, and suppose that for all $\tau\in
@@ -2128,8 +2191,9 @@ the proof of the lemma.
 \end{proof}
 
 \begin{corollary}[Uniform speed bound along an ${\mathcal L}$-geodesic]\label{cor:l-geodesic-speed-bound}
+\uses{lem:l-geodesic-min-max-estimate, def:l-length}
 \label{minmax}
-\uses{lem:l-geodesic-min-max-estimate,def:l-length}
+
 Given $\bar\tau_0<\infty$, $C_0<\infty$, $\epsilon>0$, and $l_0<\infty$, there
 is a constant $C_2$ depending only on $C_0$, $l_0$, $\epsilon$ and $\bar\tau_0$
 such that the following holds. Let $\gamma$ be an ${\mathcal L}$-geodesic
@@ -2165,8 +2229,9 @@ space-time from $z$ to $y$.
 
 
 \begin{lemma}[Upper bound for $l_x$ near a given point]\label{lem:reduced-length-upper-bound-nearby}
+\uses{cor:l-geodesic-speed-bound, def:l-parabolic-neighborhood, def:l-length}
 \label{upperbd}
-\uses{cor:l-geodesic-speed-bound,def:l-parabolic-neighborhood,def:l-length}
+
 Given constants  $\epsilon>0$, $\bar\tau_0<\infty$, $C_0<\infty$,
 and $l_0<\infty$, there are $C_3<\infty$ and $0<\delta_2\le
 \epsilon/4$ depending only on the  given constants  such that the
@@ -2233,8 +2298,9 @@ this establishes Lemma~\ref{lem:reduced-length-upper-bound-nearby}.
 \end{proof}
 
 \begin{claim}[${\mathcal L}$-geodesic endpoint stays close to the ball]\label{claim:l-geodesic-endpoint-close-to-ball}
-\label{6.66}
 \uses{cor:l-geodesic-speed-bound}
+\label{6.66}
+
 $\gamma(\tau_1)\in \widetilde P(y,\epsilon,\epsilon)$ and writing
 $\gamma(\tau_1)=\iota(c,t_1)$ we have $d_{t_0}(c,b)\le
 (4C'+1)\alpha$.
@@ -2254,12 +2320,14 @@ The claim then follows from the triangle inequality.
 
 \begin{claim}[${\mathcal L}$-length of the concatenated path]\label{claim:l-length-concatenation-bound}
 \uses{claim:l-geodesic-endpoint-close-to-ball}
+
 There is a constant $C'_1$ depending only on
 $C_0$, $C'$, and $\bar\tau_0$ such that
 $$l(\gamma_1)\le l(\gamma|_{[\tau_1,\bar\tau-2\alpha]})+C'_1\alpha$$
 \end{claim}
 
 \begin{proof}
+  \uses{lem:reduced-length-upper-bound-nearby}
 \sketch
 First notice that since $\bar\tau=T-t_0$ and $|t'-t_0|\le \alpha$ we have
 $(T-t')-(\bar\tau-2\alpha)=2\alpha+(t'-t_0)\ge \alpha$. According to
@@ -2362,8 +2430,9 @@ have $d_{t'}(y,b)< \delta'_2$ the claim is then immediate.
 \end{proof}
 
 \begin{corollary}[Full measure of the injectivity set]\label{cor:reduced-length-full-measure}
+\uses{def:l-injectivity-domain, def:l-parabolic-neighborhood}
 \label{fullmeasure}
-\uses{def:l-injectivity-domain,def:l-parabolic-neighborhood}
+
 Let $({\mathcal M},G)$ be a generalized Ricci flow and let $x\in {\mathcal M}$
 with ${\bf t}(x)=T-\tau_1$. Let
  $A\subset {\mathcal
@@ -2377,7 +2446,8 @@ open subset of full measure in $A\cap M_{T-\tau}$.
 \end{corollary}
 
 \begin{proof}
-\uses{cor:l-geodesic-speed-bound}
+  \uses{cor:l-geodesic-speed-bound, def:l-exponential-map, def:l-injectivity-domain}
+
 \sketch
 Since ${\mathcal U}_x(\tau)$ is an open subset of $M_{T-\tau}$, the complement
 of $\nu(A)\cap{\mathcal U}_x(\tau)$ in $\nu(A)\cap M_{T-\tau}$ is a closed
@@ -2403,8 +2473,9 @@ This completes the proof of the Corollary~\ref{cor:reduced-length-full-measure}.
 \end{proof}
 
 \begin{claim}[Complement of the injectivity set falls into two types]\label{claim:complement-injectivity-set-two-types}
+\uses{def:l-exponential-map, def:l-injectivity-domain}
 \label{twosets}
-\uses{def:l-exponential-map,def:l-injectivity-domain}
+
 The complement of $\nu(A)\cap {\mathcal U}_{x}(\tau)$
 in $\nu(A)$ is contained in the union of two sets: The first is the set of
 points $z$ where there is more than one minimizing ${\mathcal L}$-geodesic from
@@ -2450,6 +2521,7 @@ proof of the claim.
 
 \begin{claim}[Two distinct minimizing geodesics give non-differentiability]\label{claim:l-length-nondifferentiable-at-multiple-geodesics}
 \uses{lem:l-length-tilde-gradient}
+
 Let $z\in M_{T-\tau}$. Suppose that there is a neighborhood of $z$ in
 $M_{T-\tau}$ with the property that every point of the neighborhood is the
 endpoint of a minimizing ${\mathcal L}$-geodesic from $x$, so that $L^\tau_x$
@@ -2487,8 +2559,9 @@ $\tau_1=0$ in this subsection.
 
 
 \begin{definition}[Reduced volume]\label{def:reduced-volume}
+\uses{def:reduced-length, def:l-injectivity-domain}
 \label{redvol}
-\uses{def:reduced-length,def:l-injectivity-domain}
+
 Let $A\subset {\mathcal U}_x(\tau)$ be a  measurable subset of
 $M_{T-\tau}$. The $\mathcal{L}$-{\em reduced volume of $A$ from $x$}
 (or the {\em reduced volume} for short) is
@@ -2501,8 +2574,9 @@ element of the metric $G(T-\tau)$.
 
 
 \begin{lemma}[Reduced volume as a pullback integral]\label{lem:reduced-volume-pullback}
+\uses{def:reduced-volume, def:l-exponential-map, def:reduced-length-tangential}
 \label{redvoltilde}
-\uses{def:reduced-volume,def:l-exponential-map,def:reduced-length-tangential}
+
 Let $A\subset {\mathcal U}_x(\tau)$ be a  measurable subset. Define
 $\widetilde A\subset \widetilde{\mathcal U}_x(\tau)$ to be the
 pre-image under ${\mathcal L}\exp_x^{\tau}$ of $A$. Then
@@ -2541,8 +2615,9 @@ the reduced length function for this Ricci flow. The associated
 function on the tangent space is denoted $\tilde l'$.
 
 \begin{lemma}[${\mathcal L}$-length rescaling]\label{lem:l-length-rescaling}
+\uses{def:l-length, def:l-geodesic}
 \label{Lrescale}
-\uses{def:l-length,def:l-geodesic}
+
 Let $({\mathcal M},G)$ be a generalized Ricci flow and let $x\in
 M_T\subset {\mathcal M}$. Fix $Q>0$ and let $({\mathcal M}',G')$ be
 the $Q$ scaling and shifting of $({\mathcal M},G)$ as described in
@@ -2562,6 +2637,7 @@ $\sqrt{Q^{-1}}Z=\lim_{\tau'\rightarrow
 
 \begin{remark}[Norms are preserved under the rescaling identification]\label{rem:rescaling-norm-identity}
 \uses{lem:l-length-rescaling}
+
 Notice that $|Z|_G^2=|\sqrt{Q^{-1}}Z|^2_{G'}$.
 \end{remark}
 
@@ -2581,8 +2657,9 @@ $\gamma$ is. The last statement follows directly.
 Immediately from the definitions we see the following:
 
 \begin{corollary}[${\mathcal L}\exp$ and $\widetilde l$ under rescaling]\label{cor:l-exponential-rescaling-identity}
+\uses{lem:l-length-rescaling, def:l-exponential-map, def:reduced-length-tangential}
 \label{COR}
-\uses{lem:l-length-rescaling,def:l-exponential-map,def:reduced-length-tangential}
+
 With notation as above, and with the substitution $\tau'=Q\tau$, for
 any $Z\in {\mathcal H}T_x{\mathcal M}$ and any $\tau>0$ we have
 $${\mathcal
@@ -2606,8 +2683,9 @@ U_x(\tau)\subset T_xM_T$. We wish to see that this quantity is invariant under
 the rescaling.
 
 \begin{lemma}[Scale invariance of the reduced-volume integrand]\label{lem:reduced-volume-integrand-scale-invariance}
+\uses{def:reduced-volume, cor:l-exponential-rescaling-identity}
 \label{Qformula}
-\uses{def:reduced-volume,cor:l-exponential-rescaling-identity}
+
 With the notation as above let ${\mathcal J}'(Z,\tau')$ denote the
 Jacobian determinant of  ${\mathcal L}'\exp_x$. Then, with the
 substitution $\tau'=Q\tau$, we have
@@ -2644,7 +2722,8 @@ Let us evaluate $f(\tau)$ in the case of $\Ar^n$ with the Ricci flow being the
 constant family of Euclidean metrics.
 
 \begin{example}[${\mathcal L}\exp$ in Euclidean space]\label{ex:l-exponential-euclidean}
-\uses{def:l-exponential-map,def:reduced-length-tangential}
+\uses{def:l-exponential-map, def:reduced-length-tangential}
+
 Let the Ricci flow be the constant family of standard metrics on
 $\Ar^n$. Fix $x=(p,T)\in \Ar ^n\times (-\infty,\infty)$. Then
 $${\mathcal L}\exp_x(Z,\tau)=(p+2\sqrt{\tau}Z,T-\tau).$$
@@ -2657,8 +2736,9 @@ is $|Z|^2$.
 Putting these computations together gives the following.
 
 \begin{claim}[The reduced-volume integrand in Euclidean space]\label{claim:reduced-volume-integrand-euclidean}
-\label{Arnquantity}
 \uses{ex:l-exponential-euclidean}
+\label{Arnquantity}
+
 In the case of the constant flow on Euclidean space we have
 $$f(\tau)=\tau^{-n/2}e^{-\tilde l(Z,\tau)}{\mathcal J}(Z,\tau)=2^ne^{-|Z|^2}.$$
 \end{claim}
@@ -2666,8 +2746,9 @@ $$f(\tau)=\tau^{-n/2}e^{-\tilde l(Z,\tau)}{\mathcal J}(Z,\tau)=2^ne^{-|Z|^2}.$$
 This computation has consequences for all Ricci flows.
 
 \begin{proposition}[Limit of the reduced-volume integrand]\label{prop:reduced-volume-integrand-limit}
+\uses{claim:reduced-volume-integrand-euclidean, def:l-exponential-map}
 \label{Jlimit}
-\uses{claim:reduced-volume-integrand-euclidean,def:l-exponential-map}
+
 Let $({\mathcal M},G)$ be a generalized Ricci flow and let $x\in M_T\subset
 {\mathcal M}$. Then, for any $A<\infty$, there is $\delta>0$ such that the map
 ${\mathcal L}\exp_x$ is defined on $B(0,A)\times (0,\delta)$, where
@@ -2746,8 +2827,9 @@ uniform over each of these balls.
 \end{proof}
 
 \begin{corollary}[The injectivity set contains a fixed ball for small $\tau$]\label{cor:injectivity-set-contains-ball-small-tau}
-\label{Jlimit1}
 \uses{prop:reduced-volume-integrand-limit}
+\label{Jlimit1}
+
 Let $({\mathcal M},G)$ be a generalized Ricci flow whose sectional
 curvatures are bounded. For any $x\in M_T$ and any $R<\infty$ for
 all $\tau>0$ sufficiently small, the ball of radius $R$ centered at
@@ -2806,8 +2888,9 @@ reduced volume.
 
 
 \begin{theorem}[Monotonicity of reduced volume]\label{thm:reduced-volume-monotone}
-\label{Amono}
 \uses{def:reduced-volume}
+\label{Amono}
+
 Fix $x\in M_T\subset {\mathcal M}$. Let $A\subset{\mathcal
 U}_x\subset {\mathcal M}$ be an open  subset. We suppose that for
 any $0<\tau\le \bar\tau$ and any $y\in A_\tau=A\cap M_{T-\tau}$ the
@@ -2821,7 +2904,8 @@ function of $\tau$ for all $0<\tau\le \bar\tau$.
 
 
 \begin{proof}
-\uses{lem:reduced-volume-pullback}
+  \uses{lem:reduced-volume-pullback, def:reduced-length-tangential, prop:reduced-volume-integrand-limit, lem:l-length-hessian-jacobi-formula, prop:l-length-hessian-inequality, prop:l-length-laplacian-inequality, cor:reduced-length-tangential-k-derivative, claim:h-sum-formula}
+
 \sketch
 Fix $\tau_0\in (0,\bar\tau]$. To prove the theorem we shall show
 that for any $0<\tau<\tau_0$ we have $\widetilde V_x(A_\tau)\ge
@@ -2850,8 +2934,9 @@ As we have already seen, this proposition implies
 \end{proof}
 
 \begin{proposition}[Pointwise monotonicity of the reduced-volume integrand]\label{prop:reduced-volume-integrand-monotone}
+\uses{def:reduced-length-tangential, prop:reduced-volume-integrand-limit}
 \label{fmonotone}
-\uses{def:reduced-length-tangential,prop:reduced-volume-integrand-limit}
+
 For each $Z\in \widetilde
 {\mathcal U}_x(\bar\tau)\subset T_xM_T$ the function
 $$f(Z,\tau)=\tau^{-\frac{n}{2}}e^{-\tilde l(Z,\tau)}{\mathcal J}(Z,\tau)$$
@@ -2928,8 +3013,9 @@ Notice that we have established the following:
 
 
 \begin{corollary}[Reduced volume is bounded]\label{cor:reduced-volume-bounded}
-\label{finiteredvol}
 \uses{thm:reduced-volume-monotone}
+\label{finiteredvol}
+
 For any measurable subset $A\subset {\mathcal U}_x(\tau)$ the
 reduced volume  $\widetilde V_x(A)$ is at most $(4\pi)^{n/2}$.
 \end{corollary}

@@ -10,9 +10,10 @@ bundle.  Components of tensors below are functions on the frame bundle.
 
 \begin{definition}[Tensor components on the frame bundle]
 \label{def:chow-ii-frame-tensor-components}
+\source{chow-et-al-ricci-flow-part-ii:page-0439,chow-et-al-ricci-flow-part-ii:page-0440}
 \dcref{appf:F.2}
 \group{Frame Bundle Calculus}
-\source{chow-et-al-ricci-flow-part-ii:page-0439,chow-et-al-ricci-flow-part-ii:page-0440}
+
 For a tensor $U$ of type $(p,q)$ and a frame $Y=\{Y_a\}$, write
 $U^{a_1\cdots a_q}_{b_1\cdots b_p}(Y)$ for its components in $Y$.  The
 associated vector-valued function is
@@ -32,9 +33,10 @@ Under $Z_b=G^a{}_bY_a$, $G\in\mathrm{GL}(n,\mathbb R)$, these components obey
 
 \begin{definition}[Vertical frame fields]
 \label{def:chow-ii-vertical-frame-fields}
+\source{chow-et-al-ricci-flow-part-ii:page-0443,chow-et-al-ricci-flow-part-ii:page-0444}
 \dcref{appf:F.6}
 \group{Frame Bundle Calculus}
-\source{chow-et-al-ricci-flow-part-ii:page-0443,chow-et-al-ricci-flow-part-ii:page-0444}
+
 For the standard matrix unit $e(a,b)\in\mathfrak{gl}(n,\mathbb R)$, define
 \[
  \Lambda^a_b(Y)=(\rho_Y)_*e(a,b).
@@ -45,10 +47,12 @@ $\Lambda^a_b=y_b^i\,\partial/\partial y_a^i$.
 
 \begin{lemma}[Vertical action on tensor components]
 \label{lem:chow-ii-vertical-tensor-action}
+\source{chow-et-al-ricci-flow-part-ii:page-0444}
+\uses{def:chow-ii-frame-tensor-components, def:chow-ii-vertical-frame-fields}
 \dcref{appf:F.8}
 \group{Frame Bundle Calculus}
-\source{chow-et-al-ricci-flow-part-ii:page-0444}
-\uses{def:chow-ii-frame-tensor-components,def:chow-ii-vertical-frame-fields}
+
+
 For a $(p,q)$-tensor,
 \[
  \Lambda^c_d U^{a_1\cdots a_q}_{b_1\cdots b_p}
@@ -61,9 +65,10 @@ For a $(p,q)$-tensor,
 
 \begin{definition}[Horizontal frame fields]
 \label{def:chow-ii-horizontal-frame-fields}
+\source{chow-et-al-ricci-flow-part-ii:page-0445,chow-et-al-ricci-flow-part-ii:page-0446}
 \dcref{appf:F.9}
 \group{Frame Bundle Calculus}
-\source{chow-et-al-ricci-flow-part-ii:page-0445,chow-et-al-ricci-flow-part-ii:page-0446}
+
 For $Y\in\mathcal F\mathcal M$, let $\gamma_{Y_a}$ be the parallel transport
 of $Y$ along a curve with initial velocity $Y_a$.  Define
 $\nabla_a|_Y=(d/dt)|_{0}\gamma_{Y_a}(t)$.  In local coordinates,
@@ -75,10 +80,12 @@ $\nabla_a|_Y=(d/dt)|_{0}\gamma_{Y_a}(t)$.  In local coordinates,
 
 \begin{lemma}[Horizontal differentiation is covariant differentiation]
 \label{lem:chow-ii-horizontal-covariant-differentiation}
-\dcref{appf:F.13,appf:F.14}
-\group{Frame Bundle Calculus}
 \source{chow-et-al-ricci-flow-part-ii:page-0447,chow-et-al-ricci-flow-part-ii:page-0448,chow-et-al-ricci-flow-part-ii:page-0449}
 \uses{def:chow-ii-horizontal-frame-fields}
+\dcref{appf:F.13,appf:F.14}
+\group{Frame Bundle Calculus}
+
+
 For every $(p,q)$-tensor $U$,
 \[
  \nabla_c\!\left(U^{a_1\cdots a_q}_{b_1\cdots b_p}\right)
@@ -92,10 +99,12 @@ as ordinary directional derivatives of their frame components.
 
 \begin{lemma}[Frame-bundle commutators]
 \label{lem:chow-ii-frame-bundle-commutators}
+\source{chow-et-al-ricci-flow-part-ii:page-0449,chow-et-al-ricci-flow-part-ii:page-0450}
+\uses{def:chow-ii-horizontal-frame-fields, def:chow-ii-vertical-frame-fields}
 \dcref{appf:F.16,appf:F.17}
 \group{Frame Bundle Calculus}
-\source{chow-et-al-ricci-flow-part-ii:page-0449,chow-et-al-ricci-flow-part-ii:page-0450}
-\uses{def:chow-ii-horizontal-frame-fields,def:chow-ii-vertical-frame-fields}
+
+
 On $\mathcal F\mathcal M$,
 \[
  [\nabla_a,\nabla_b]=-R^d{}_{abc}\Lambda^c_d,
@@ -112,10 +121,12 @@ Consequently, for a $(p,q)$-tensor $U$,
 
 \begin{definition}[Rotation fields]
 \label{def:chow-ii-rotation-fields}
-\dcref{appf:F.19}
-\group{Orthonormal Frame Bundle}
 \source{chow-et-al-ricci-flow-part-ii:page-0451}
 \uses{def:chow-ii-vertical-frame-fields}
+\dcref{appf:F.19}
+\group{Orthonormal Frame Bundle}
+
+
 Define the vertical rotation fields
 \[
  \rho_{ab}=g_{ac}\Lambda^c_b-g_{bc}\Lambda^c_a.
@@ -126,10 +137,12 @@ $\rho_{ba}=-\rho_{ab}$.
 
 \begin{lemma}[The orthonormal frame-bundle frame]
 \label{lem:chow-ii-orthonormal-frame-bundle}
+\source{chow-et-al-ricci-flow-part-ii:page-0452,chow-et-al-ricci-flow-part-ii:page-0453}
+\uses{def:chow-ii-horizontal-frame-fields, def:chow-ii-rotation-fields}
 \dcref{appf:F.23,appf:F.24,appf:F.25}
 \group{Orthonormal Frame Bundle}
-\source{chow-et-al-ricci-flow-part-ii:page-0452,chow-et-al-ricci-flow-part-ii:page-0453}
-\uses{def:chow-ii-horizontal-frame-fields,def:chow-ii-rotation-fields}
+
+
 The fields $\rho_{ab}$ are tangent to $\mathcal O\mathcal M$ and act on a
 1-form by $\rho_{ab}(V_c)=g_{ac}V_b-g_{bc}V_a$.  The fields
 $\{\nabla_a\}$ and $\{\rho_{bc}\}_{b<c}$ form an orthogonal basis on
@@ -150,10 +163,12 @@ and
 
 \begin{definition}[The time vector field]
 \label{def:chow-ii-frame-time-vector}
-\dcref{appf:F.29}
-\group{Ricci-Flow Frame Bundle}
 \source{chow-et-al-ricci-flow-part-ii:page-0454}
 \uses{def:chow-ii-vertical-frame-fields}
+\dcref{appf:F.29}
+\group{Ricci-Flow Frame Bundle}
+
+
 For a Ricci flow $g(t)$, define on $\mathcal F\mathcal M\times[0,T)$
 \[
  \nabla_t=\frac{\partial}{\partial t}+R_{ab}g^{bc}\Lambda^a_c.
@@ -165,10 +180,12 @@ to each time slice $\mathcal O\mathcal M_{g(t)}$.
 
 \begin{lemma}[Time covariant derivative of tensor components]
 \label{lem:chow-ii-time-covariant-derivative}
+\source{chow-et-al-ricci-flow-part-ii:page-0455}
+\uses{def:chow-ii-frame-time-vector, lem:chow-ii-vertical-tensor-action}
 \dcref{appf:F.33}
 \group{Ricci-Flow Frame Bundle}
-\source{chow-et-al-ricci-flow-part-ii:page-0455}
-\uses{def:chow-ii-frame-time-vector,lem:chow-ii-vertical-tensor-action}
+
+
 For a time-dependent $(p,q)$-tensor,
 \[
 \begin{aligned}
@@ -183,10 +200,12 @@ In particular, $\nabla_tg_{ab}=0$.
 
 \begin{lemma}[Curvature evolution in the moving frame]
 \label{lem:chow-ii-frame-curvature-evolution}
-\dcref{appf:eq-F.24,appf:eq-F.25}
-\group{Ricci-Flow Frame Bundle}
 \source{chow-et-al-ricci-flow-part-ii:page-0456,chow-et-al-ricci-flow-part-ii:page-0457}
 \uses{def:chow-ii-frame-time-vector}
+\dcref{appf:eq-F.24,appf:eq-F.25}
+\group{Ricci-Flow Frame Bundle}
+
+
 On $\mathcal O\mathcal M$, with $B_{abcd}=-R_{aebf}R_{cedf}$,
 \[
  (\nabla_t-\Delta)R_{abcd}
@@ -199,10 +218,12 @@ where $\Delta=\sum_e\nabla_e\nabla_e$.
 
 \begin{theorem}[Heat and covariant-derivative commutators]
 \label{thm:chow-ii-frame-heat-commutators}
+\source{chow-et-al-ricci-flow-part-ii:page-0457,chow-et-al-ricci-flow-part-ii:page-0458}
+\uses{lem:chow-ii-orthonormal-frame-bundle, def:chow-ii-frame-time-vector}
 \dcref{appf:F.35}
 \group{Ricci-Flow Frame Bundle}
-\source{chow-et-al-ricci-flow-part-ii:page-0457,chow-et-al-ricci-flow-part-ii:page-0458}
-\uses{lem:chow-ii-orthonormal-frame-bundle,def:chow-ii-frame-time-vector}
+
+
 On $\mathcal O\mathcal M$,
 \[
  [\nabla_t,\nabla_a]=\nabla_bR_{ac}\rho_{bc}+R_{ac}\nabla_c,

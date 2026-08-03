@@ -4,8 +4,9 @@
 
 \begin{definition}[Curvature pinched toward positive]
 \label{def:curvature-pinched-toward-positive}
+\uses{def:generalized-ricci-flow, def:curvature-operator}
 \label{pinchdef}
-\uses{def:generalized-ricci-flow,def:curvature-operator}
+
 Let $({\mathcal M},G)$ be a generalized three-dimensional Ricci flow
 whose domain of definition is contained in $[0,\infty)$. For each
 $x\in {\mathcal M}$, let $\nu(x)$ be the smallest eigenvalue of
@@ -36,8 +37,9 @@ holds for $2\epsilon$.
 
 \begin{theorem}[Bounded curvature at bounded distance]
 \label{thm:bounded-curvature-bounded-distance}
+\uses{def:curvature-pinched-toward-positive, def:strong-epsilon-neck-canonical-neighborhood, nocones}
 \label{bcbd}
-\uses{def:curvature-pinched-toward-positive,def:strong-epsilon-neck-canonical-neighborhood,nocones}
+
 Fix $0<\epsilon\le \epsilon_0$ and  $C<\infty$. Then for each
 $A<\infty$ there are $D_0<\infty$ and $D<\infty$ depending on $A$,
 $\epsilon$ and $C$ such that the following holds. Suppose that
@@ -461,8 +463,9 @@ the limiting manifold.
 
 \begin{proposition}[Properties of the incomplete geometric limit tube]
 \label{prop:incomplete-limit-tube-properties}
+\uses{def:generalized-ricci-flow, def:evolving-epsilon-neck, def:epsilon-neck, claim:balanced-chain-subgeodesic, claim:uniform-curvature-bound-reg-delta, basicconv, thm:shi-derivative-estimates, smoothconv, canonvary, Xcontainedin, partialflowlimit, blowupposcurv}
 \label{Uinfty}
-\uses{def:generalized-ricci-flow,def:evolving-epsilon-neck,def:epsilon-neck,claim:balanced-chain-subgeodesic,claim:uniform-curvature-bound-reg-delta,basicconv,thm:shi-derivative-estimates,smoothconv,canonvary,Xcontainedin,partialflowlimit,blowupposcurv}
+
 The geometric limit $(U_\infty,g_\infty,z_\infty)$ is an incomplete
 Riemannian $3$-manifold of finite diameter. There is a
 diffeomorphism $\psi\colon U_\infty\to S^2\times (0,1)$. There is a
@@ -689,8 +692,9 @@ The purpose of this section is to prove the following result.
 
 \begin{proposition}[Rescaled limits converge to a cone at the end]
 \label{prop:cone-limit-gromov-hausdorff}
-\label{statement}
 \uses{prop:incomplete-limit-tube-properties}
+\label{statement}
+
 Let $(U_\infty,g_\infty,z_\infty)$  be as in the conclusion of
 Proposition~\ref{prop:incomplete-limit-tube-properties}. Let $Q_\infty=R_{g_\infty}(z_\infty)$ and
 let ${\mathcal E}$ be the end of $U_\infty$ where the scalar
@@ -723,7 +727,8 @@ segment is equal to $d(x,y)$.
 
 \begin{claim}[Existence of minimizing rays to the end]
 \label{claim:minimizing-ray-to-end-exists}
-\uses{prop:incomplete-limit-tube-properties,genint}
+\uses{prop:incomplete-limit-tube-properties, genint}
+
 There is a minimizing geodesic ray to ${\mathcal E}$ from each $x\in
 U_\infty$ with $R(x)\ge 2Q_\infty$.
 \end{claim}
@@ -804,8 +809,9 @@ Given this result, the usual arguments show:
 
 \begin{corollary}[Uniqueness of shortest continuations]
 \label{cor:unique-shortest-subray}
-\label{distlim}
 \uses{claim:shortest-ray-equivalence}
+\label{distlim}
+
 If $\gamma$ is a minimizing geodesic ray from $x$ to the end
 ${\mathcal E}$, then for any $y\in \gamma\setminus\{x\}$ the sub-ray
 of $\gamma$ from $y$ to the end, is the unique shortest geodesic
@@ -840,6 +846,7 @@ $d(x,q_n)$, $d(y,q_n)$ and $d(x,y)$.
 \begin{definition}[Direction at the end]
 \label{def:direction-at-end}
 \uses{cor:unique-shortest-subray}
+
 We say that two minimizing geodesic rays limiting to ${\mathcal E}$
 are {\em equivalent} if one is contained in the other. From the
 unique continuation of geodesics it is easy to see that this
@@ -850,8 +857,9 @@ the {\sl set of directions at ${\mathcal E}$}.
 
 \begin{lemma}[Multiple directions at the end]
 \label{lem:multiple-directions-at-end}
-\label{morethanone}
 \uses{def:direction-at-end}
+\label{morethanone}
+
 There is more than one direction at ${\mathcal E}$.
 \end{lemma}
 
@@ -878,8 +886,9 @@ E}$}
 
 \begin{definition}[Comparison angle between two directions]
 \label{def:angle-between-directions-theta}
-\label{defntheta}
 \uses{def:direction-at-end}
+\label{defntheta}
+
 Let $\gamma$ and $\mu$ be minimizing geodesic rays limiting to
 ${\mathcal E}$, of lengths $a$ and $b$, parameterized by the
 distance from the end. For $0<s\le a$ and $0<s'\le b$ construct a
@@ -892,8 +901,9 @@ $\alpha_se\beta_{s'}$.
 
 \begin{lemma}[Monotone convergence of comparison angles]
 \label{lem:theta-monotone-convergence}
+\uses{def:angle-between-directions-theta, thm:length-comparison}
 \label{thetaconv}
-\uses{def:angle-between-directions-theta,thm:length-comparison}
+
 For all $\gamma,s,\mu,s'$ as in the previous definition we have
 $$0\le \theta(\gamma,s,\mu,s')\le \pi.$$ Furthermore,  $\theta(\gamma,s,\mu,s')$
 is a non-increasing function of $s$  when $\gamma,\mu,s'$ are held
@@ -953,6 +963,7 @@ the triangle inequality for $\theta$.
 \begin{lemma}[Triangle inequality for the angle metric]
 \label{lem:theta-triangle-inequality}
 \uses{def:angle-between-directions-theta}
+
 If $\gamma,\mu,\nu$ are minimizing geodesic rays limiting to
 ${\mathcal E}$, then
 $$\theta(\gamma,\mu)+\theta(\mu,\nu)\ge \theta(\gamma,\nu).$$
@@ -982,7 +993,8 @@ to ${\mathcal E}$, gives the result.
 
 \begin{definition}[Cone of directions at the end]
 \label{def:cone-of-directions}
-\uses{def:angle-between-directions-theta,def:direction-at-end}
+\uses{def:angle-between-directions-theta, def:direction-at-end}
+
 Let $X({\mathcal E})$ denote the set of directions at ${\mathcal
 E}$. We define the metric on $X({\mathcal E})$ by setting
 $d([\gamma],[\mu])=\theta(\gamma,\mu)$. We call this the {\sl
@@ -997,8 +1009,9 @@ Equation~(\ref{conemetric}).
 
 \begin{proposition}[The cone of directions is not a ray]
 \label{prop:cone-not-a-ray}
+\uses{def:cone-of-directions, lem:multiple-directions-at-end}
 \label{notray}
-\uses{def:cone-of-directions,lem:multiple-directions-at-end}
+
 $(C_{\mathcal E},g_{\mathcal E})$ is a metric cone that is not
 homeomorphic to a ray.
 \end{proposition}
@@ -1017,8 +1030,9 @@ Lemma~\ref{lem:multiple-directions-at-end}.
 
 \begin{lemma}[Cone distance bounds the limit distance]
 \label{lem:cone-distance-upper-bound}
-\label{distcomp}
 \uses{def:cone-of-directions}
+\label{distcomp}
+
 Suppose that $\gamma$ and $\mu$ are unique shortest geodesic rays
 from points $x$ and $y$ to the end ${\mathcal E}$. Let $[\gamma]$
 and $[\mu]$ be the points of $X({\mathcal E})$ represented by these
@@ -1046,8 +1060,9 @@ the interval $[0,\pi]$.
 
 \begin{corollary}[Rescaled cone distance bound]
 \label{cor:rescaled-cone-distance-bound}
-\label{refdistcomp}
 \uses{lem:cone-distance-upper-bound}
+\label{refdistcomp}
+
 Let $\gamma,\mu,x,y$ be as in the previous lemma. Fix $\lambda>0$.
 Let $a=d_{\lambda g_\infty}(x,{\mathcal E})$ and $b=d_{\lambda
 g_\infty}(y,{\mathcal E})$. Set $x'_\lambda$ and $y'_\lambda$ equal
@@ -1067,7 +1082,8 @@ does not affect the cone $C_{\mathcal E}$ nor its metric.
 
 \begin{lemma}[Nets of directions contain close pairs]
 \label{lem:directions-net-cardinality-bound}
-\uses{def:direction-at-end,def:angle-between-directions-theta}
+\uses{def:direction-at-end, def:angle-between-directions-theta}
+
 For any $\delta>0$ there is $K=K(\delta)<\infty$ so that for any set
 of realized directions at ${\mathcal E}$ of cardinality $K$,
 $\ell_1,\ldots,\ell_{K}$, it must be the case that there are $j$ and
@@ -1105,8 +1121,9 @@ yields:
 
 \begin{corollary}[Compactness and nets for the space of directions]
 \label{cor:directions-space-compact-net}
+\uses{lem:directions-net-cardinality-bound, def:cone-of-directions}
 \label{deltanet}
-\uses{lem:directions-net-cardinality-bound,def:cone-of-directions}
+
 The metric completion $\bar X({\mathcal E})$ of the space of
 directions at ${\mathcal E}$ is a compact space. For every
 $\delta>0$ this space has a  $\delta$-net consisting of realized
@@ -1126,8 +1143,9 @@ rescaled manifolds converge.
 
 \begin{proposition}[Explicit Gromov--Hausdorff convergence to the cone]
 \label{prop:gromov-hausdorff-limit-is-cone}
+\uses{def:cone-of-directions, cor:directions-space-compact-net, prop:incomplete-limit-tube-properties}
 \label{secondstatment}
-\uses{def:cone-of-directions,cor:directions-space-compact-net,prop:incomplete-limit-tube-properties}
+
 Let $(U_\infty,g_\infty)$  be an incomplete Riemannian $3$-manifold
 of non-negative curvature with an end ${\mathcal E}$ as in the
 hypothesis of Proposition~\ref{prop:cone-limit-gromov-hausdorff}. Fix a minimizing geodesic
@@ -1302,7 +1320,8 @@ geometric limit of the sequence $(U_\infty,\lambda_n'g_\infty,x_n)$
 
 \begin{claim}[The blow-up ratios are bounded]
 \label{claim:blowup-ratio-bounded}
-\uses{prop:incomplete-limit-tube-properties,prop:gromov-hausdorff-limit-is-cone,S2intersection,directions}
+\uses{prop:incomplete-limit-tube-properties, prop:gromov-hausdorff-limit-is-cone, S2intersection, directions}
+
 The ratio $\rho_n=\lambda_n'/\lambda_n$ is bounded above and below
 by positive constants.
 \end{claim}

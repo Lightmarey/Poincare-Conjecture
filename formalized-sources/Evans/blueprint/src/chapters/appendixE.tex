@@ -3,9 +3,10 @@
 
 \begin{theorem}[Eigenvectors of a compact, symmetric operator]
 \label{thm:eigenvectors-compact-symmetric-operator}
+\uses{def:hilbert-space, def:separable-space, def:compact-linear-operator, def:adjoint-symmetric-operator, def:eigenvalue-eigenvector-appendix-d, thm:fredholm-alternative, thm:spectrum-of-compact-operator, lem:bounds-on-spectrum-symmetric-operator}
 \dcref{appD:thm-7}
 \group{Fredholm Theory}
-\uses{def:hilbert-space,def:separable-space,def:compact-linear-operator,def:adjoint-symmetric-operator,def:eigenvalue-eigenvector-appendix-d,thm:fredholm-alternative,thm:spectrum-of-compact-operator,lem:bounds-on-spectrum-symmetric-operator}
+
 Let $H$ be a separable Hilbert space. Every compact symmetric operator
 $S:H\to H$ has a countable orthonormal basis of eigenvectors.
 \end{theorem}
@@ -64,9 +65,10 @@ $\mathcal M$.
 
 \begin{theorem}[Existence of Lebesgue measure and Lebesgue measurable sets]
 \label{thm:existence-lebesgue-measure}
+\uses{def:sigma-algebra}
 \dcref{appE:thm-1}
 \group{Measure Theory}
-\uses{def:sigma-algebra}
+
 There are a $\sigma$-algebra $\mathcal M$ of subsets of $\mathbb R^n$ and a map
 \[
 |\cdot|:\mathcal M\to[0,+\infty]
@@ -94,9 +96,10 @@ $n$-dimensional Lebesgue measure.
 
 \begin{remark}[Basic properties of Lebesgue measure]
 \label{rem:lebesgue-measure-properties}
+\uses{thm:existence-lebesgue-measure}
 \dcref{appE:E.1-rem-1}
 \group{Measure Theory}
-\uses{thm:existence-lebesgue-measure}
+
 (i) The measure of a set with piecewise smooth boundary equals its volume.
 
 (ii) Countable additivity implies
@@ -112,9 +115,10 @@ and, for every countable family of measurable sets,
 
 \begin{definition}[Almost everywhere]
 \label{def:almost-everywhere}
+\uses{thm:existence-lebesgue-measure}
 \dcref{appE:E.1-def-2}
 \group{Measure Theory}
-\uses{thm:existence-lebesgue-measure}
+
 A property holds \textit{almost everywhere}, abbreviated a.e., if it fails only
 on a measurable set of Lebesgue measure zero.
 \end{definition}
@@ -124,9 +128,10 @@ on a measurable set of Lebesgue measure zero.
 
 \begin{definition}[Measurable function]
 \label{def:measurable-function}
+\uses{def:sigma-algebra}
 \dcref{appE:E.2-def-1}
 \group{Measure Theory}
-\uses{def:sigma-algebra}
+
 A function $f:\mathbb R^n\to\mathbb R$ is measurable if
 \[
 f^{-1}(U)\in\mathcal M
@@ -140,9 +145,10 @@ measurable functions.
 
 \begin{theorem}[Egoroff's Theorem]
 \label{thm:egoroffs-theorem}
+\uses{def:measurable-function, def:almost-everywhere}
 \dcref{appE:thm-2}
 \group{Measure Theory}
-\uses{def:measurable-function,def:almost-everywhere}
+
 Let $A\subset\mathbb R^n$ be measurable with $|A|<\infty$, and let the
 measurable functions $f_k,f$ satisfy $f_k\to f$ a.e. on $A$. For every
 $\varepsilon>0$ there is a measurable set $E\subset A$ such that
@@ -169,9 +175,10 @@ integrable.
 
 \begin{definition}[Summable function]
 \label{def:summable-function}
+\uses{def:measurable-function}
 \dcref{appE:E.2-def-2}
 \group{Measure Theory}
-\uses{def:measurable-function}
+
 A measurable function $f$ is summable if
 \[
 \int_{\mathbb R^n}|f|\,dx<\infty.
@@ -180,9 +187,10 @@ A measurable function $f$ is summable if
 
 \begin{remark}[Integrable versus summable terminology]
 \label{rem:integrable-vs-summable-terminology}
+\uses{def:summable-function}
 \dcref{appE:E.2-rem-1}
 \group{Measure Theory}
-\uses{def:summable-function}
+
 Here integrable means that the integral is defined, possibly with value
 $+\infty$ or $-\infty$, whereas summable means that the integral is finite.
 \end{remark}
@@ -203,9 +211,10 @@ For a measurable real-valued function $f$,
 
 \begin{theorem}[Fatou's Lemma]
 \label{thm:fatous-lemma}
+\uses{def:summable-function}
 \dcref{appE:thm-3}
 \group{Measure Theory}
-\uses{def:summable-function}
+
 Let $\{f_k\}_{k=1}^\infty$ and $f$ be nonnegative summable functions. Then
 \[
 \int_{\mathbb R^n}\liminf_{k\to\infty}f_k\,dx
@@ -215,9 +224,10 @@ Let $\{f_k\}_{k=1}^\infty$ and $f$ be nonnegative summable functions. Then
 
 \begin{theorem}[Monotone Convergence Theorem]
 \label{thm:monotone-convergence-theorem}
+\uses{def:summable-function}
 \dcref{appE:thm-4}
 \group{Measure Theory}
-\uses{def:summable-function}
+
 Let $\{f_k\}_{k=1}^\infty$ be measurable and satisfy
 \[
 f_1\leq f_2\leq\cdots\leq f_k\leq f_{k+1}\leq\cdots.
@@ -231,9 +241,10 @@ Then
 
 \begin{theorem}[Dominated Convergence Theorem]
 \label{thm:dominated-convergence-theorem}
+\uses{def:summable-function}
 \dcref{appE:thm-5}
 \group{Measure Theory}
-\uses{def:summable-function}
+
 Let $\{f_k\}_{k=1}^\infty$ be integrable, suppose $f_k\to f$ a.e., and assume
 that a summable function $g$ satisfies
 \[
@@ -250,9 +261,10 @@ for every $k$. Then
 
 \begin{theorem}[Lebesgue's Differentiation Theorem]
 \label{thm:lebesgue-differentiation-theorem}
+\uses{def:summable-function, def:almost-everywhere}
 \dcref{appE:thm-6}
 \group{Measure Theory}
-\uses{def:summable-function,def:almost-everywhere}
+
 Let $f:\mathbb R^n\to\mathbb R$ be locally summable.
 
 (i) For a.e. $x_0\in\mathbb R^n$,
@@ -272,9 +284,10 @@ A point $x_0$ satisfying (4) is a Lebesgue point of $f$.
 
 \begin{remark}[$L^p$ version of the Lebesgue point theorem]
 \label{rem:lebesgue-differentiation-lp}
+\uses{thm:lebesgue-differentiation-theorem}
 \dcref{appE:E.4-rem-1}
 \group{Measure Theory}
-\uses{thm:lebesgue-differentiation-theorem}
+
 If $f\in L^p_{\mathrm{loc}}(\mathbb R^n)$ for $1\leq p<\infty$, then for a.e.
 $x_0\in\mathbb R^n$,
 \[
@@ -291,9 +304,10 @@ functions $f:[0,T]\to X$.
 
 \begin{definition}[Simple function]
 \label{def:simple-function-banach-valued}
+\uses{def:sigma-algebra}
 \dcref{appE:E.5-def-1}
 \group{Vector-Valued Integration}
-\uses{def:sigma-algebra}
+
 A function $s:[0,T]\to X$ is simple if
 \[
 (5)\qquad
@@ -305,9 +319,10 @@ where each $E_i\subset[0,T]$ is Lebesgue measurable and $u_i\in X$.
 
 \begin{definition}[Strongly measurable function]
 \label{def:strongly-measurable-function}
+\uses{def:simple-function-banach-valued, def:almost-everywhere}
 \dcref{appE:E.5-def-2}
 \group{Vector-Valued Integration}
-\uses{def:simple-function-banach-valued,def:almost-everywhere}
+
 A function $f:[0,T]\to X$ is strongly measurable if simple functions
 $s_k:[0,T]\to X$ exist such that
 \[
@@ -317,18 +332,20 @@ s_k(t)\to f(t)\quad\text{for a.e. }t\in[0,T].
 
 \begin{definition}[Weakly measurable function]
 \label{def:weakly-measurable-function}
+\uses{def:measurable-function, def:bounded-linear-functional-dual-space}
 \dcref{appE:E.5-def-3}
 \group{Vector-Valued Integration}
-\uses{def:measurable-function,def:bounded-linear-functional-dual-space}
+
 A function $f:[0,T]\to X$ is weakly measurable if
 $t\mapsto\langle u^*,f(t)\rangle$ is Lebesgue measurable for every $u^*\in X^*$.
 \end{definition}
 
 \begin{definition}[Almost separably valued]
 \label{def:almost-separably-valued}
+\uses{def:separable-space}
 \dcref{appE:E.5-def-4}
 \group{Vector-Valued Integration}
-\uses{def:separable-space}
+
 A function $f:[0,T]\to X$ is almost separably valued if there is a set
 $N\subset[0,T]$ with $|N|=0$ such that
 \[
@@ -339,18 +356,20 @@ is separable.
 
 \begin{theorem}[Pettis]
 \label{thm:pettis-theorem}
+\uses{def:strongly-measurable-function, def:weakly-measurable-function, def:almost-separably-valued}
 \dcref{appE:thm-7}
 \group{Vector-Valued Integration}
-\uses{def:strongly-measurable-function,def:weakly-measurable-function,def:almost-separably-valued}
+
 A map $f:[0,T]\to X$ is strongly measurable if and only if it is weakly
 measurable and almost separably valued.
 \end{theorem}
 
 \begin{definition}[Integral of a simple function]
 \label{def:integral-of-simple-function}
+\uses{def:simple-function-banach-valued}
 \dcref{appE:E.5-def-5}
 \group{Vector-Valued Integration}
-\uses{def:simple-function-banach-valued}
+
 For a simple function $s(t)=\sum_{i=1}^m\chi_{E_i}(t)u_i$, define
 \[
 (6)\qquad
@@ -360,9 +379,10 @@ For a simple function $s(t)=\sum_{i=1}^m\chi_{E_i}(t)u_i$, define
 
 \begin{definition}[Summable Banach space-valued function]
 \label{def:summable-banach-valued-function}
+\uses{def:integral-of-simple-function}
 \dcref{appE:E.5-def-6}
 \group{Vector-Valued Integration}
-\uses{def:integral-of-simple-function}
+
 A function $f:[0,T]\to X$ is summable if there are simple functions
 $\{s_k\}_{k=1}^\infty$ such that
 \[
@@ -374,9 +394,10 @@ $\{s_k\}_{k=1}^\infty$ such that
 
 \begin{definition}[Bochner integral]
 \label{def:bochner-integral}
+\uses{def:summable-banach-valued-function, def:integral-of-simple-function}
 \dcref{appE:E.5-def-7}
 \group{Vector-Valued Integration}
-\uses{def:summable-banach-valued-function,def:integral-of-simple-function}
+
 For a summable $f$ and any sequence of simple functions satisfying (7), define
 \[
 (8)\qquad
@@ -386,9 +407,10 @@ For a summable $f$ and any sequence of simple functions satisfying (7), define
 
 \begin{theorem}[Bochner]
 \label{thm:bochner-theorem}
+\uses{def:strongly-measurable-function, def:summable-banach-valued-function, def:bochner-integral, def:summable-function}
 \dcref{appE:thm-8}
 \group{Vector-Valued Integration}
-\uses{def:strongly-measurable-function,def:summable-banach-valued-function,def:bochner-integral,def:summable-function}
+
 A strongly measurable function $f:[0,T]\to X$ is summable if and only if the
 scalar function $t\mapsto\|f(t)\|$ is summable. In that case,
 \[

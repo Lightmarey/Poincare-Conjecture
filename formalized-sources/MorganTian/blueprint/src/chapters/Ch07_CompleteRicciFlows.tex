@@ -8,6 +8,7 @@ time intervals. The backward time variable is $\tau=T-t$.
 \begin{definition}[Complete Ricci flow of bounded curvature]
 \label{def:complete-bounded-curvature-flow}
 \uses{def:ricci-flow}
+
 Let $(M,g(t)),\ a\le t\le b$, be a  Ricci flow. We say that the flow
 is {\em complete of bounded curvature} if for each $t\in [a,b]$ the
 Riemannian manifold $(M,g(t))$ is complete and if there is
@@ -51,7 +52,8 @@ for all $(x,t)\in M\times [0,T]$.
 
 \begin{lemma}[Existence of minimizing L-geodesics]
 \label{lem:l-geodesic-existence}
-\uses{def:complete-bounded-curvature-flow}\label{geoexist} Assume that $M$ is connected.
+\uses{def:complete-bounded-curvature-flow}
+\label{geoexist} Assume that $M$ is connected.
 Given $p_1,p_2\in M$ and $0\le\tau_1<\tau_2\le T$, there is
  a minimizing ${\mathcal L}$-geodesic:
 $\gamma\colon[\tau_{1},\tau_{2}]\to M\times [0,T]$ connecting
@@ -102,7 +104,8 @@ ${\mathcal L}$-geodesics up to time $T$.
 
 \begin{lemma}[Unique extension of L-geodesics to time T]
 \label{lem:l-geodesic-extension}
-\uses{def:complete-bounded-curvature-flow,lem:l-geodesic-existence,lem:l-geodesic-min-max-estimate} For any $0\le \tau_1<\tau_2<T$ suppose that
+\uses{def:complete-bounded-curvature-flow, lem:l-geodesic-existence, lem:l-geodesic-min-max-estimate}
+ For any $0\le \tau_1<\tau_2<T$ suppose that
  $\gamma\colon [\tau_1,\tau_2]\to M\times [0,T]$ is an ${\mathcal L}$-geodesic.
  Then $\gamma$ extends uniquely to an ${\mathcal L}$-geodesic
 $\gamma\colon [0,T)\to M\times (0,T]$.
@@ -156,7 +159,8 @@ $l_{x}$ are defined on all of $M\times (0,T)$. This leads to:
 
 \begin{definition}[The functions L_x and l_x on complete space-time]
 \label{def:reduced-length-global}
-\uses{lem:l-geodesic-existence,def:l-injectivity-domain} Suppose that $(M,g(t)),\ 0\le t\le T<\infty$, is a Ricci
+\uses{lem:l-geodesic-existence, def:l-injectivity-domain}
+ Suppose that $(M,g(t)),\ 0\le t\le T<\infty$, is a Ricci
 flow, complete of bounded curvature.  We define the function
 $L_{x}\colon M\times [0,T)\to \Ar$ by assigning to each $(q,t)$ the
 length of any ${\mathcal L}$-minimizing ${\mathcal L}$-geodesic from
@@ -188,7 +192,8 @@ curvature.
 
 \begin{proposition}[Lipschitz regularity and diffeomorphism properties of L_x and l_x]
 \label{prop:l-exp-lipschitz-complete}
-\uses{def:reduced-length-global}\label{lipcomplete}
+\uses{def:reduced-length-global}
+\label{lipcomplete}
 Let $(M,g(t)),\ 0\le t\le T<\infty$, be a Ricci flow that is
 complete and of bounded curvature. Let $p\in M$, let $x=(p,T)\in
 M\times [0,T]$, and let $\tau\in (0,T)$.
@@ -225,7 +230,8 @@ bounded on $F=M\times [T-\tau,T]$.
 
 \begin{corollary}[Continuity and almost-everywhere smoothness of l_x]
 \label{cor:l-continuous-ae-smooth}
-\uses{prop:l-exp-lipschitz-complete,def:reduced-length-global}
+\uses{prop:l-exp-lipschitz-complete, def:reduced-length-global}
+
 The function $l_x$ is a continuous function on $M\times (0,T)$ and
 is smooth on the complement of a closed subset ${\mathcal C}$ that
 has the property that its intersection with each $M\times \{t\}$ is
@@ -267,7 +273,8 @@ satisfying $\varphi(p)=f(p)$ and $\varphi(u)\ge f(u)$ for all $u\in U$,
 
 \begin{proposition}[Differential inequality for l_x in the barrier sense]
 \label{prop:l-barrier-inequality}
-\uses{def:upper-barrier,def:reduced-length-global}\label{weaksense}
+\uses{def:upper-barrier, def:reduced-length-global}
+\label{weaksense}
 Let $(M,g(t)),\ 0\le t\le T<\infty$, be an $n$-dimensional Ricci
 flow,  complete  of bounded curvature. Fix a point $x=(p,T)\in
 M\times [0,T]$, and for any $(q,t)\in M\times [0,T]$, set
@@ -333,7 +340,8 @@ $M\times\{t=T-\tau\}$ with metric $g(T-\tau)$.
 
 \begin{claim}[l_x achieves its minimum and the minimizing set is compact]
 \label{claim:l-min-achieved-compact}
-\uses{def:reduced-length-global}\label{8.1}
+\uses{def:reduced-length-global}
+\label{8.1}
 For every $\tau\in(0,T)$, $l_x(\cdot,\tau)$ achieves its minimum. For
 every compact interval $I\subset(0,T)$, the set
 \[
@@ -359,15 +367,17 @@ $l_x$ gives attainment at each fixed $\tau$.
 
 \begin{theorem}[Upper bound n/2 for the minimum of l_x^tau]
 \label{thm:min-l-bound-n-half}
-\uses{def:reduced-length-global}\label{n/2} Suppose that $(M,g(t)),\ 0\le t\le T<\infty$,
+\uses{def:reduced-length-global}
+\label{n/2} Suppose that $(M,g(t)),\ 0\le t\le T<\infty$,
 is an $n$-dimensional Ricci flow, complete of bounded curvature.
 Then for any $x=(p,T)\in M\times [0,T]$ and for every $0<\tau<T$
 there is a point $q_\tau\in M$ such that $l_{x}(q_\tau,\tau)\le
 \frac{n}{2}$.
 \end{theorem}
 
-\begin{proof}\sketch
-\uses{claim:l-min-achieved-compact,prop:l-barrier-inequality,prop:forward-difference-maximum}
+\begin{proof}
+  \uses{claim:l-min-achieved-compact, prop:l-barrier-inequality, prop:forward-difference-maximum, def:reduced-length-global, cor:l-geodesic-speed-bound}\sketch
+
 Set $l_\mathrm{min}(\tau)=\min_{q\in M}l_x(q,\tau)$ using
 Claim~\ref{8.1}. Compactness implies continuity of $l_\mathrm{min}$. At a
 minimizer $q$ an upper barrier satisfies
@@ -388,7 +398,8 @@ propagates $l_\mathrm{min}(\tau)\le n/2$ to every $\tau<T$.
 
 \begin{corollary}[Compactness criterion giving the n/2 bound for generalized Ricci flows]
 \label{cor:generalized-flow-n-half-bound}
-\uses{def:reduced-length-global}\label{compactcoro}
+\uses{def:reduced-length-global}
+\label{compactcoro}
 Suppose that $({\mathcal M},G)$ is a generalized $n$-dimensional Ricci flow and
 that $x\in {\mathcal M}$ is given and set $t_0={\bf t}(x)$. We suppose that
 there is an open subset $U\subset {\bf t}^{-1}(-\infty,t_0)$ with the following
@@ -424,7 +435,8 @@ star-shaped from the origin.
 
 \begin{theorem}[Weak (distributional) differential inequalities for l_x]
 \label{thm:l-weak-inequalities}
-\uses{def:reduced-length-global,cor:reduced-length-pde-inequalities}\label{weak}
+\uses{def:reduced-length-global, cor:reduced-length-pde-inequalities}
+\label{weak}
 Let $(M,g(t)),\ 0\le t\le T<\infty$, be a Ricci flow, complete and
 of bounded curvature, and let $x=(p,T)\in M\times[0,T]$. The last
 two inequalities in Corollary~\ref{lformula}, namely
@@ -466,6 +478,7 @@ one equality holds for every test function and every $\tau$.
 \begin{remark}[Interpretation of the terms in the weak inequalities for l_x]
 \label{rem:l-weak-inequalities-interpretation}
 \uses{thm:l-weak-inequalities}
+
 The terms in these inequalities are interpreted in the following
 way: First of all, $\nabla l^\tau_x$ and $\triangle l^\tau_x$ are
 computed using only the spatial derivatives (i.e., they are
@@ -508,7 +521,8 @@ begin with a lemma.
 
 \begin{lemma}[Uniform gradient and Hessian bound for an upper barrier of L_x]
 \label{lem:l-barrier-hessian-bound}
-\uses{def:reduced-length-global}\label{phisupport}
+\uses{def:reduced-length-global}
+\label{phisupport}
 There is a continuous function $C\colon M\times (0,T)\to \Ar$ such
 that for each point $(q,t)\in M\times (0,T)$, setting $\tau=T-t$,
 the following holds. There is an upper barrier $\varphi_{(q,t)}$ for
@@ -583,6 +597,7 @@ approximates $g(t)$. The following is straightforward to prove.
 \begin{claim}[Euclidean-approximating ball with controlled Christoffel symbols]
 \label{claim:euclidean-approximating-ball}
 \uses{lem:l-barrier-hessian-bound}
+
 For each point $(q,t)\in M\times(0,T)$ there is an open metric ball
 $B_{(q,t)}$ centered at $q$ in $(M,g(t))$ which is the diffeomorphic
 image of a ball $\widetilde B\subset T_qM$ under the exponential map
@@ -628,7 +643,8 @@ This means:
 
 \begin{claim}[Upper barrier with strictly negative Euclidean Hessian]
 \label{claim:strictly-concave-barrier}
-\uses{claim:euclidean-approximating-ball,lem:l-barrier-hessian-bound}
+\uses{claim:euclidean-approximating-ball, lem:l-barrier-hessian-bound}
+
 For each $(q,t)\in M\times(0,T)$ there is a smooth function
 $$\psi_{(q,t)}\colon B_{(q,t)}\to \Ar$$
  with the property that at each
@@ -680,7 +696,8 @@ Now applying this to Euclidean intervals in $B_{(q,t)}$ we conclude:
 
 \begin{corollary}[Uniform strict convexity of L^tau plus psi]
 \label{cor:l-tau-uniform-convexity}\label{lineineq}
-\uses{claim:strictly-concave-barrier,claim:one-dim-barrier-maximum-principle}
+\uses{claim:strictly-concave-barrier, claim:one-dim-barrier-maximum-principle}
+
 For any $(q,t)\in M\times (0,T)$, the function
 $$\beta_{(q,t)}=L^\tau+\psi_{(q,t)}\colon B_{(q,t)}\to\Ar$$ is
 uniformly strictly convex with respect to $h$. In fact, let
@@ -701,6 +718,7 @@ $B_{(q,t)}$.
 \begin{claim}[Smooth strictly convex approximations to beta_(q,t)]
 \label{claim:smooth-convex-approximation}
 \uses{cor:l-tau-uniform-convexity}
+
 Fix $(q,t)\in M\times(0,T)$, and let $\beta_{(q,t)}\colon B_{(q,t)}\to \Ar$ be
 as above. Let $S\subset M$ be the singular locus of $L^\tau$, i.e.,
 $S=M\setminus {\mathcal U}_{x}(\tau)$. Set $S_{(q,t)}=B_{(q,t)}\cap S$. Of
@@ -765,7 +783,8 @@ We now have:
 
 \begin{claim}[Weak Laplacian comparison inequality for beta_(q,t)]
 \label{claim:beta-weak-laplacian-inequality}
-\uses{cor:l-tau-uniform-convexity,def:starred-integral}\label{wineq}
+\uses{cor:l-tau-uniform-convexity, def:starred-integral}
+\label{wineq}
 Let $\phi\colon B_{(q,t)}'\to \Ar$ be a non-negative, smooth
 function with compact support. Then
 $$\int_{B_{(q,t)}'}\beta_{(q,t)}\triangle \phi d\vol(g(t))\le \int_{(B_{(q,t)}')^*}\phi
@@ -805,13 +824,15 @@ establishes the claim.
 \begin{remark}[Laplacian convention with respect to the metric g(t)]
 \label{rem:laplacian-convention-metric-gt}
 \uses{claim:beta-weak-laplacian-inequality}
+
 Here $\triangle$ denotes the Laplacian with respect to the metric
 $g(t)$.
 \end{remark}
 
 \begin{corollary}[Weak Laplacian comparison inequality for l^tau]
 \label{cor:l-tau-weak-laplacian-inequality}
-\uses{def:reduced-length-global,def:starred-integral}\label{ltauineq}
+\uses{def:reduced-length-global, def:starred-integral}
+\label{ltauineq}
 Let $\phi\colon B_{(q,t)}'\to \Ar$ be a non-negative, smooth
 function with compact support. Then
 $$\int_{B_{(q,t)}'}l^\tau\triangle \phi d\vol(g(t))\le \int_{(B_{(q,t)}')^*}\phi
@@ -819,8 +840,9 @@ $$\int_{B_{(q,t)}'}l^\tau\triangle \phi d\vol(g(t))\le \int_{(B_{(q,t)}')^*}\phi
 \end{corollary}
 
 
-\begin{proof}\sketch
-\uses{claim:beta-weak-laplacian-inequality}
+\begin{proof}
+  \uses{claim:beta-weak-laplacian-inequality, cor:l-tau-weak-laplacian-inequality, cor:reduced-length-pde-inequalities, prop:l-exp-lipschitz-complete}\sketch
+
 Recall that $\beta_{(q,t)}=L^\tau+\psi_{(q,t)}$ and that
 $\psi_{(q,t)}$ is a $C^\infty$-function. Hence,
 $$\int_{B_{(q,t)}'}\psi_{(q,t)}\triangle \phi d\vol(g(t))= \int_{(B_{(q,t)}')^*}\phi
@@ -847,7 +869,8 @@ This function is defined for $0<\tau<T$.
 There is one simple case where we can make an explicit computation.
 \begin{lemma}[Reduced volume of flat Euclidean space equals (4pi)^(n/2)]
 \label{lem:reduced-volume-flat-space}
-\uses{def:reduced-length-global}\label{flat}
+\uses{def:reduced-length-global}
+\label{flat}
 If $(M,g(t))$ is flat Euclidean $n$-space (independent of $t$), then
 for any $x\in \Ar^n\times (-\infty,\infty)$ we have
 $$\widetilde V_x(M,\tau)=(4\pi)^{n/2}$$ for all $\tau>0$.
@@ -876,7 +899,8 @@ indeed, it is bounded above by the integral for  $\Ar^n$.
 
 \begin{theorem}[Reduced volume is finite, bounded by (4pi)^(n/2), and non-increasing]
 \label{thm:reduced-volume-monotone-bound}
-\uses{def:reduced-length-global}\label{4pi} Let $(M,g(t)),\ 0\le t\le T$, be a Ricci flow
+\uses{def:reduced-length-global}
+\label{4pi} Let $(M,g(t)),\ 0\le t\le T$, be a Ricci flow
 of bounded curvature with the property that for each $t\in [0,T]$
 the Riemannian manifold $(M,g(t))$ is complete. Fix a point
 $x=(p,T)\in M\times [0,T]$. For every $0<\tau<T$ the reduced volume
@@ -945,6 +969,7 @@ $[T-\bar\tau,T]$ is the trivial flow on flat Euclidean $n$-space.
 \begin{proposition}[Reduced volume equal to (4pi)^(n/2) forces the trivial flat flow]
 \label{prop:reduced-volume-rigidity}\label{4picase}
 \uses{def:reduced-length-global}
+
 Suppose that $(M,g(\tau)),\ 0\le \tau\le T$,
  is a solution to the backward Ricci flow
 equation, complete of bounded curvature. Let $x=(p,T)\in M\times

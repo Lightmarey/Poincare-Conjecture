@@ -5,11 +5,9 @@
 
 \begin{definition}[Jacobi field]
   \label{def:dc-ch5-2-1}
-  \dcref{ch5:2.1}
   \lean{Riemannian.Jacobi.exists_jacobiField, Riemannian.Jacobi.jacobiField_eqOn}
-  \leanok
-  \uses{lem:dc-ch5-2-1-parallel-frame, lem:dc-ch5-2-1-ode, lem:dc-ch5-2-1-frame-reduction,
-    lem:dc-ch5-2-1-frame-existence, lem:dc-ch5-2-1-real-curvature}
+  \uses{lem:dc-ch5-2-1-parallel-frame, lem:dc-ch5-2-1-ode, lem:dc-ch5-2-1-frame-reduction, lem:dc-ch5-2-1-frame-existence, lem:dc-ch5-2-1-real-curvature}
+  \dcref{ch5:2.1}
   Let $\gamma:[0,a]\to M$ be a geodesic in $M$. A vector field $J$ along $\gamma$ is
   a \emph{Jacobi field} if it satisfies
   $$
@@ -62,13 +60,9 @@
 
 \begin{lemma}[parallel orthonormal frame along a geodesic, coordinate form]
   \label{lem:dc-ch5-2-1-parallel-frame}
-  \dcref{ch5:2.1}
-  \lean{Riemannian.Jacobi.exists_parallelOrthoFrame_self,
-    Riemannian.Jacobi.exists_parallelOrthoFrame,
-    Riemannian.Jacobi.exists_chartOrthonormalBasis_self,
-    Riemannian.Jacobi.chartMetricInner_const_of_parallelSol}
-  \leanok
+  \lean{Riemannian.Jacobi.exists_parallelOrthoFrame_self, Riemannian.Jacobi.exists_parallelOrthoFrame, Riemannian.Jacobi.exists_chartOrthonormalBasis_self, Riemannian.Jacobi.chartMetricInner_const_of_parallelSol}
   \uses{def:dc-ch2-2-5, lem:dc-ch2-3-1-coord}
+  \dcref{ch5:2.1}
   Along a geodesic $\gamma:[0,a]\to M$, every orthonormal basis of
   $T_{\gamma(0)}M$ extends uniquely to a parallel orthonormal frame
   $e_1(t),\dots,e_n(t)$.
@@ -83,12 +77,9 @@
 
 \begin{lemma}[Jacobi system in a parallel frame: existence and uniqueness]
   \label{lem:dc-ch5-2-1-ode}
-  \dcref{ch5:2.1}
-  \lean{Riemannian.Jacobi.exists_isJacobiPairOn,
-    Riemannian.Jacobi.IsJacobiPairOn.eqOn,
-    Riemannian.Jacobi.IsJacobiPairOn.add,
-    Riemannian.Jacobi.IsJacobiPairOn.smul}
+  \lean{Riemannian.Jacobi.exists_isJacobiPairOn, Riemannian.Jacobi.IsJacobiPairOn.eqOn, Riemannian.Jacobi.IsJacobiPairOn.add, Riemannian.Jacobi.IsJacobiPairOn.smul}
   \leanok
+  \dcref{ch5:2.1}
   Let $A:[0,a]\to\operatorname{End}(\mathbb R^n)$ be continuous. For every
   $(f_0,f_1)\in\mathbb R^n\times\mathbb R^n$, the system
   $f''+A(t)f=0$ has a unique solution with $f(0)=f_0$ and $f'(0)=f_1$.
@@ -97,16 +88,10 @@
 
 \begin{lemma}[Jacobi reduction in a parallel orthonormal frame]
   \label{lem:dc-ch5-2-1-frame-reduction}
-  \dcref{ch5:2.1}
-  \lean{Riemannian.Jacobi.covariantDerivCoord_frameCombination,
-    Riemannian.Jacobi.covariantDerivCoord2_frameCombination,
-    Riemannian.Jacobi.chartMetricInner_covariantDerivCoord2_frame,
-    Riemannian.Jacobi.chartMetricInner_map_frameCombination_left,
-    Riemannian.Jacobi.frameJacobiComponent,
-    Riemannian.Jacobi.frameExpansion,
-    Riemannian.Jacobi.covariantDerivCoord2_add_map_frameCombination_expand}
-  \leanok
+  \lean{Riemannian.Jacobi.covariantDerivCoord_frameCombination, Riemannian.Jacobi.covariantDerivCoord2_frameCombination, Riemannian.Jacobi.chartMetricInner_covariantDerivCoord2_frame, Riemannian.Jacobi.chartMetricInner_map_frameCombination_left, Riemannian.Jacobi.frameJacobiComponent, Riemannian.Jacobi.frameExpansion, Riemannian.Jacobi.covariantDerivCoord2_add_map_frameCombination_expand}
   \uses{lem:dc-ch5-2-1-parallel-frame, prop:dc-ch2-2-2}
+  \leanok
+  \dcref{ch5:2.1}
   In a parallel orthonormal frame $e_1(t),\dots,e_n(t)$, a field
   $J=\sum_i f_i e_i$ is Jacobi if and only if
   $f_j''+\sum_i a_{ij}f_i=0$ for every $j$, where
@@ -128,12 +113,10 @@
 
 \begin{lemma}[existence and uniqueness of a Jacobi field by its initial data, frame form]
   \label{lem:dc-ch5-2-1-frame-existence}
-  \dcref{ch5:2.1}
-  \lean{Riemannian.Jacobi.jacobiCoefOp,
-    Riemannian.Jacobi.exists_jacobiField_frame,
-    Riemannian.Jacobi.jacobiField_frame_eqOn}
-  \leanok
+  \lean{Riemannian.Jacobi.jacobiCoefOp, Riemannian.Jacobi.exists_jacobiField_frame, Riemannian.Jacobi.jacobiField_frame_eqOn}
   \uses{lem:dc-ch5-2-1-parallel-frame, lem:dc-ch5-2-1-ode, lem:dc-ch5-2-1-frame-reduction}
+  \leanok
+  \dcref{ch5:2.1}
   For every pair $(J_0,w_0)\in T_{\gamma(0)}M\times T_{\gamma(0)}M$, there is a
   unique Jacobi field $J$ along $\gamma$ such that
   $J(0)=J_0$ and $\frac{DJ}{dt}(0)=w_0$.
@@ -156,15 +139,9 @@
 
 \begin{lemma}[the Jacobi coefficient is the curvature contraction read in the chart]
   \label{lem:dc-ch5-2-1-real-curvature}
-  \dcref{ch5:2.1}
-  \lean{Riemannian.Jacobi.chartCurvatureCoef,
-    Riemannian.Jacobi.chartCurvatureCoef_contDiffOn,
-    Riemannian.Jacobi.chartCurvatureOp,
-    Riemannian.Jacobi.continuousOn_chartCurvatureOp,
-    Riemannian.Jacobi.exists_jacobiField,
-    Riemannian.Jacobi.jacobiField_eqOn}
-  \leanok
+  \lean{Riemannian.Jacobi.chartCurvatureCoef, Riemannian.Jacobi.chartCurvatureCoef_contDiffOn, Riemannian.Jacobi.chartCurvatureOp, Riemannian.Jacobi.continuousOn_chartCurvatureOp, Riemannian.Jacobi.exists_jacobiField, Riemannian.Jacobi.jacobiField_eqOn}
   \uses{lem:dc-ch5-2-1-frame-existence, rem:dc-ch4-2-6}
+  \dcref{ch5:2.1}
   In coordinates $u$ along $\gamma$, the curvature contraction
   $w\mapsto R(\gamma',w)\gamma'$ has components
   $$
@@ -184,11 +161,10 @@
 
 \begin{remark}[standard tangential Jacobi fields]
   \label{rem:dc-ch5-2-2}
-  \dcref{ch5:2.2}
-  \lean{Riemannian.Jacobi.isJacobiFieldAlongOn_velocity,
-    Riemannian.Jacobi.isJacobiFieldAlongOn_smul_velocity}
-  \leanok
+  \lean{Riemannian.Jacobi.isJacobiFieldAlongOn_velocity, Riemannian.Jacobi.isJacobiFieldAlongOn_smul_velocity}
   \uses{def:dc-ch5-2-1}
+  \leanok
+  \dcref{ch5:2.2}
   Both $\gamma'$ and $t\gamma'$ are Jacobi fields along $\gamma$. The former is
   parallel and nowhere zero for a nonconstant geodesic, while the latter
   vanishes exactly at $t=0$. Jacobi fields orthogonal to $\gamma'$ will be called
@@ -203,21 +179,16 @@
 
 \begin{example}[Jacobi fields on manifolds of constant curvature]
   \label{ex:dc-ch5-2-3}
-  \dcref{ch5:2.3}
-  \lean{Riemannian.Jacobi.isJacobiFieldOn_of_constantCurvature,
-    Riemannian.Jacobi.isJacobiFieldOn_constCurvatureSol_pos,
-    Riemannian.Jacobi.isJacobiFieldOn_constCurvatureSol_zero,
-    Riemannian.Jacobi.isJacobiFieldOn_constCurvatureSol_neg}
-  \leanok
+  \lean{Riemannian.Jacobi.isJacobiFieldOn_of_constantCurvature, Riemannian.Jacobi.isJacobiFieldOn_constCurvatureSol_pos, Riemannian.Jacobi.isJacobiFieldOn_constCurvatureSol_zero, Riemannian.Jacobi.isJacobiFieldOn_constCurvatureSol_neg}
   \uses{lem:dc-ch4-3-4, lem:dc-ch5-2-3-const-form, lem:dc-ch5-2-3-jacobi-op}
+  \leanok
+  \dcref{ch5:2.3}
   Let $M$ have constant sectional curvature $K$, let
   $\gamma:[0,\ell]\to M$ be unit speed, and let $J$ be a normal Jacobi field.
   Then
-  
   $$
   R(\gamma',J)\gamma'=KJ.
   $$
-  
   and the Jacobi equation becomes
 
   $$
@@ -226,7 +197,6 @@
 
   If $w$ is a parallel unit field orthogonal to $\gamma'$, the solution of (2)
   with $J(0)=0$ and $J'(0)=w(0)$ is
-  
   $$
   J(t)=\begin{cases}\dfrac{\sin(t\sqrt{K})}{\sqrt{K}}\,w(t),&\text{if }K>0,\\[1ex] t\,w(t),&\text{if }K=0,\\[1ex]\dfrac{\sinh(t\sqrt{-K})}{\sqrt{-K}}\,w(t),&\text{if }K<0,\end{cases}
   $$
@@ -249,10 +219,10 @@
 
 \begin{lemma}[constant curvature: the pointwise $(0,4)$ form, coordinate form]
   \label{lem:dc-ch5-2-3-const-form}
-  \dcref{ch5:2.3}
   \lean{Riemannian.Jacobi.curvatureFormAt_isConstantCurvature}
-  \leanok
   \uses{lem:dc-ch4-3-4}
+  \leanok
+  \dcref{ch5:2.3}
   At each $q\in M$, the constant-curvature identity
   $\langle R(X,Y)Z,W\rangle=K_0(\langle X,Z\rangle\langle Y,W\rangle-\langle Y,Z\rangle\langle X,W\rangle)$
   from \cref{lem:dc-ch4-3-4} gives the pointwise $(0,4)$-form
@@ -262,10 +232,10 @@
 
 \begin{lemma}[constant curvature: $R(\gamma',J)\gamma'=K J$, coordinate form]
   \label{lem:dc-ch5-2-3-jacobi-op}
-  \dcref{ch5:2.3}
   \lean{Riemannian.Jacobi.chartCurvatureOp_isConstantCurvature}
-  \leanok
   \uses{lem:dc-ch5-2-3-const-form, cor:dc-ch5-2-9}
+  \leanok
+  \dcref{ch5:2.3}
   On a manifold of constant sectional curvature $K_0$, if $J$ is normal to a
   unit-speed geodesic $\gamma$, then
   $R(\gamma',J)\gamma'=K_0J$. Consequently the Jacobi equation is
@@ -281,11 +251,10 @@
 
 \begin{proposition}[Jacobi fields from exponential-map variations]
   \label{prop:dc-ch5-2-4}
-  \dcref{ch5:2.4}
-  \lean{Riemannian.Jacobi.expDifferential_eq_jacobiField,
-    Riemannian.Jacobi.IsJacobiFieldAlongOn.eqOn_of_initial}
-  \leanok
+  \lean{Riemannian.Jacobi.expDifferential_eq_jacobiField, Riemannian.Jacobi.IsJacobiFieldAlongOn.eqOn_of_initial}
   \uses{def:dc-ch5-2-1}
+  \leanok
+  \dcref{ch5:2.4}
   Let $\gamma:[0,a]\to M$ be a geodesic and let $J$ be a Jacobi field along
   $\gamma$ with $J(0)=0$. Put $\frac{DJ}{dt}(0)=w$ and $\gamma'(0)=v$. Using the
   natural identification $T_{av}(T_{\gamma(0)}M)\simeq T_{\gamma(0)}M$, construct a
@@ -318,10 +287,10 @@
 
 \begin{corollary}[exponential differential as a Jacobi field]
   \label{cor:dc-ch5-2-5}
-  \dcref{ch5:2.5}
   \lean{Riemannian.Jacobi.expDifferential_eq_jacobiField}
-  \leanok
   \uses{prop:dc-ch5-2-4, def:dc-ch5-2-1}
+  \leanok
+  \dcref{ch5:2.5}
   Let $\gamma:[0,a]\to M$ be a geodesic and put $p=\gamma(0)$. Then a Jacobi field
   $J$ along $\gamma$ with $J(0)=0$ is given by
 
@@ -333,8 +302,8 @@
 
 \begin{remark}[arbitrary initial values and derivative notation]
   \label{rem:dc-ch5-2-6}
-  \dcref{ch5:2.6}
   \uses{prop:dc-ch5-2-4}
+  \dcref{ch5:2.6}
   The construction of \cref{prop:dc-ch5-2-4} extends to Jacobi fields with
   arbitrary initial value. We henceforth write $\frac{DJ}{dt}=J'$ and
   $\frac{D^2 J}{dt^2}=J''$, etc.
@@ -342,11 +311,10 @@
 
 \begin{lemma}[Taylor expansion of $|J|^2$ in a parallel frame (analytic core)]
   \label{lem:dc-ch5-2-7-taylor-ode}
-  \dcref{ch5:2.7}
-  \lean{Riemannian.Jacobi.norm_sq_jacobi_isLittleO,
-    Riemannian.Jacobi.norm_sq_jacobi_isLittleO_local}
-  \leanok
+  \lean{Riemannian.Jacobi.norm_sq_jacobi_isLittleO, Riemannian.Jacobi.norm_sq_jacobi_isLittleO_local}
   \uses{def:dc-ch5-2-1}
+  \leanok
+  \dcref{ch5:2.7}
   Let $J=\sum_i f_i e_i$ be a Jacobi field in a parallel orthonormal frame,
   and put
   $A(t)=\big(\langle R(\gamma',e_i)\gamma',e_j\rangle\big)_{ij}$.
@@ -373,11 +341,10 @@
 
 \begin{lemma}[$C^\infty$ smoothness of the parallel frame and the Jacobi coefficient]
   \label{lem:dc-ch5-2-7-frame-smooth}
-  \dcref{ch5:2.7}
-  \lean{Riemannian.Jacobi.exists_contDiffOn_parallelOrthoFrame,
-    Riemannian.Jacobi.contDiffOn_infty_jacobiCoefOp}
-  \leanok
+  \lean{Riemannian.Jacobi.exists_contDiffOn_parallelOrthoFrame, Riemannian.Jacobi.contDiffOn_infty_jacobiCoefOp}
   \uses{lem:dc-ch5-2-1-parallel-frame, lem:dc-ch5-2-1-real-curvature}
+  \leanok
+  \dcref{ch5:2.7}
   Along a smooth geodesic in a coordinate chart, the parallel orthonormal frame
   of \cref{lem:dc-ch5-2-1-parallel-frame} may be chosen smooth. Consequently,
   $$
@@ -396,24 +363,20 @@
 
 \begin{proposition}[fourth-order norm expansion for exponential variations]
   \label{prop:dc-ch5-2-7}
-  \dcref{ch5:2.7}
   \lean{Riemannian.Jacobi.norm_sq_jacobi_frame_isLittleO}
-  \leanok
   \uses{lem:dc-ch5-2-7-taylor-ode, lem:dc-ch5-2-7-frame-smooth, def:dc-ch5-2-1}
+  \leanok
+  \dcref{ch5:2.7}
   Let $p\in M$ and $\gamma:[0,a]\to M$ be a geodesic with $\gamma(0)=p$,
   $\gamma'(0)=v$. Let $w\in T_v(T_p M)$ with $|w|=1$ and let $J$ be a Jacobi field
   along $\gamma$ given by
-  
   $$
   J(t)=(d\exp_p)_{tv}(tw),\quad 0\le t\le a.
   $$
-  
   Then the Taylor expansion of $|J(t)|^2$ about $t=0$ is given by
-  
   $$
   |J(t)|^2=t^2-\tfrac{1}{3}\langle R(v,w)v,w\rangle t^4+R(t),\qquad(3)
   $$
-  
   where $\lim_{t\to 0}\frac{R(t)}{t^4}=0$.
 \end{proposition}
 \begin{proof}
@@ -462,11 +425,10 @@
 
 \begin{corollary}[sectional-curvature form of the norm expansion]
   \label{cor:dc-ch5-2-9}
-  \dcref{ch5:2.9}
-  \lean{Riemannian.Jacobi.chartMetricInner_chartCurvatureOp_eq_sectionalCurvature,
-    Riemannian.Jacobi.chartMetricInner_chartCurvatureOp_eq_curvatureFormAt}
-  \leanok
+  \lean{Riemannian.Jacobi.chartMetricInner_chartCurvatureOp_eq_sectionalCurvature, Riemannian.Jacobi.chartMetricInner_chartCurvatureOp_eq_curvatureFormAt}
   \uses{def:dc-ch4-3-2, prop:dc-ch5-2-7}
+  \leanok
+  \dcref{ch5:2.9}
   If $\gamma:[0,\ell]\to M$ is parametrized by arc length (i.e. $|v|=1$) and
   $\langle w,v\rangle=0$, the expression $\langle R(v,w)v,w\rangle$ is the sectional
   curvature at $p$ with respect to the plane $\sigma$ generated by $v$ and $w$.
@@ -480,10 +442,10 @@
 
 \begin{lemma}[square root of the $|J|^2$ expansion (analytic core)]
   \label{lem:dc-ch5-2-10-sqrt}
-  \dcref{ch5:2.10}
   \lean{Riemannian.Jacobi.sqrt_isLittleO_of_sq_isLittleO}
-  \leanok
   \uses{cor:dc-ch5-2-9}
+  \leanok
+  \dcref{ch5:2.10}
   Let $g\ge0$ satisfy $g(t)=t^2-ct^4+o(t^4)$ as $t\to0$. Then
   $$
   \sqrt{g(t)}=t-\tfrac{c}{2}\,t^3+o(t^3),\qquad t\to 0^+.
@@ -500,10 +462,10 @@
 
 \begin{corollary}[norm expansion and sectional curvature]
   \label{cor:dc-ch5-2-10}
-  \dcref{ch5:2.10}
   \lean{Riemannian.Jacobi.norm_jacobi_frame_isLittleO}
-  \leanok
   \uses{prop:dc-ch5-2-7, lem:dc-ch5-2-10-sqrt, cor:dc-ch5-2-9}
+  \leanok
+  \dcref{ch5:2.10}
   With the same conditions as in the previous corollary,
 
   $$
@@ -516,19 +478,15 @@
   \label{rem:dc-ch5-2-11}
   \dcref{ch5:2.11}
   Let
-  
   $$
   f(t,s)=\exp_p tv(s),\quad t\in[0,\delta],\quad s\in(-\varepsilon,\varepsilon),
   $$
-  
   where $|v(s)|=1$, $v(0)=v$, $v'(0)=w$, and $\delta>0$ is chosen so that
   $\exp_p(tv(s))$ is defined. The variation of the radial lines in $T_pM$ has
   norm
-  
   $$
   \Big|\Big(\frac{\partial}{\partial s}tv(s)\Big)(0)\Big|=|tw|=t.
   $$
-  
   By (6), the norm of the corresponding geodesic variation is
   $t-\frac16K(p,\sigma)t^3+o(t^3)$. Thus positive sectional curvature decreases,
   and negative sectional curvature increases, the infinitesimal radial
@@ -539,10 +497,10 @@
 
 \begin{definition}[conjugate point, multiplicity]
   \label{def:dc-ch5-3-1}
-  \dcref{ch5:3.1}
-  \lean{Riemannian.Jacobi.IsConjugatePointAt}
-  \leanok
+  \lean{Riemannian.Jacobi.IsConjugatePointAt, Riemannian.Jacobi.IsGeodesicConjugatePointAt}
   \uses{def:dc-ch5-2-1}
+  \leanok
+  \dcref{ch5:3.1}
   Let $\gamma:[0,a]\to M$ be a geodesic and $t_0\in(0,a]$. The point
   $\gamma(t_0)$ is \emph{conjugate} to $\gamma(0)$ along $\gamma$ if some
   nonzero Jacobi field $J$ satisfies $J(0)=J(t_0)=0$. Its \emph{multiplicity}
@@ -552,12 +510,9 @@
 
 \begin{remark}[dimension bound for conjugate multiplicity]
   \label{rem:dc-ch5-3-2}
-  \dcref{ch5:3.2}
-  \lean{Riemannian.Jacobi.conjugateMultiplicity,
-    Riemannian.Jacobi.conjugateMultiplicity_le_finrank,
-    Riemannian.Jacobi.conjugateMultiplicity_le_finrank_sub_one}
-  \leanok
+  \lean{Riemannian.Jacobi.conjugateMultiplicity, Riemannian.Jacobi.conjugateMultiplicity_le_finrank, Riemannian.Jacobi.conjugateMultiplicity_le_finrank_sub_one}
   \uses{rem:dc-ch5-2-2}
+  \dcref{ch5:3.2}
   If $\dim M=n$, the Jacobi fields along $\gamma$ that vanish at $0$ form an
   $n$-dimensional space. A conjugate point along a nonconstant geodesic has
   multiplicity at most $n-1$.
@@ -574,11 +529,10 @@
 
 \begin{example}[conjugate points in positive constant curvature]
   \label{ex:dc-ch5-3-3}
-  \dcref{ch5:3.3}
-  \lean{Riemannian.Jacobi.isConjugatePointAt_constCurvature_pos,
-    Riemannian.Jacobi.conjugateMultiplicity_constCurvature_pos_eq}
-  \leanok
+  \lean{Riemannian.Jacobi.isConjugatePointAt_constCurvature_pos, Riemannian.Jacobi.conjugateMultiplicity_constCurvature_pos_eq}
   \uses{ex:dc-ch5-2-3, def:dc-ch5-3-1, rem:dc-ch5-3-2, prop:dc-ch5-3-5}
+  \leanok
+  \dcref{ch5:3.3}
   Let $M^n$ have constant sectional curvature $K_0>0$, and let
   $\gamma:[0,\pi/\sqrt{K_0}]\to M$ be unit speed. Then
   $\gamma(\pi/\sqrt{K_0})$ is conjugate to $\gamma(0)$ with multiplicity $n-1$.
@@ -600,8 +554,8 @@
 
 \begin{definition}[conjugate locus]
   \label{def:dc-ch5-3-4}
-\lean{Riemannian.Jacobi.IsFirstConjugatePointAt,Riemannian.Jacobi.conjugateLocus}
-\leanok
+  \lean{Riemannian.Jacobi.IsFirstConjugatePointAt, Riemannian.Jacobi.conjugateLocus}
+  \uses{def:dc-ch5-3-1}
   \dcref{ch5:3.4}
   The \emph{conjugate locus} $C(p)$ of $p\in M$ is the set of first conjugate
   points along all geodesics starting at $p$. For the unit sphere,
@@ -610,14 +564,10 @@
 
 \begin{proposition}[conjugate points and critical points of the exponential map]
   \label{prop:dc-ch5-3-5}
-  \dcref{ch5:3.5}
-  \lean{Riemannian.Jacobi.expDifferential_injective_iff_not_conjugate,
-    Riemannian.Jacobi.injective_jacobiEndpointOfVel_iff_not_conjugate,
-    Riemannian.Jacobi.conjugateMultiplicity,
-    Riemannian.Jacobi.isConjugatePointAt_iff_conjugateMultiplicity_pos,
-    Riemannian.Jacobi.conjugateMultiplicity_eq_finrank_ker_expDifferential}
-  \leanok
+  \lean{Riemannian.Jacobi.expDifferential_injective_iff_not_conjugate, Riemannian.Jacobi.injective_jacobiEndpointOfVel_iff_not_conjugate, Riemannian.Jacobi.conjugateMultiplicity, Riemannian.Jacobi.isConjugatePointAt_iff_conjugateMultiplicity_pos, Riemannian.Jacobi.conjugateMultiplicity_eq_finrank_ker_expDifferential}
   \uses{cor:dc-ch5-2-5, def:dc-ch5-3-1}
+  \leanok
+  \dcref{ch5:3.5}
   Let $\gamma:[0,a]\to M$ be a geodesic with $\gamma(0)=p$, and let
   $t_0\in(0,a]$. Then $q=\gamma(t_0)$ is conjugate to $p$ along $\gamma$ if and
   only if $v_0=t_0\gamma'(0)$ is a critical point of $\exp_p$. Moreover, the
@@ -638,10 +588,10 @@
 
 \begin{proposition}[affine tangential component of a Jacobi field]
   \label{prop:dc-ch5-3-6}
-  \dcref{ch5:3.6}
   \lean{Riemannian.Jacobi.chartMetricInner_jacobi_velocity_affine}
-  \leanok
   \uses{def:dc-ch5-2-1}
+  \leanok
+  \dcref{ch5:3.6}
   Let $J$ be a Jacobi field along the geodesic $\gamma:[0,a]\to M$. Then
 
   $$
@@ -667,10 +617,10 @@
 
 \begin{corollary}[constancy of the tangential component]
   \label{cor:dc-ch5-3-7}
-  \dcref{ch5:3.7}
   \lean{Riemannian.Jacobi.chartMetricInner_jacobi_velocity_const_of_eq}
-  \leanok
   \uses{prop:dc-ch5-3-6}
+  \leanok
+  \dcref{ch5:3.7}
   If $\langle J,\gamma'\rangle(t_1)=\langle J,\gamma'\rangle(t_2)$, $t_1,t_2\in[0,a]$,
   $t_1\neq t_2$, then $\langle J,\gamma'\rangle$ does not depend on $t$; in
   particular, if $J(0)=J(a)=0$, then $\langle J,\gamma'\rangle(t)\equiv 0$.
@@ -684,12 +634,10 @@
 
 \begin{corollary}[normal Jacobi fields with zero initial value]
   \label{cor:dc-ch5-3-8}
-  \dcref{ch5:3.8}
-  \lean{Riemannian.Jacobi.chartMetricInner_jacobi_velocity_eq_zero_iff,
-    Riemannian.Jacobi.velocityFunctional,
-    Riemannian.Jacobi.finrank_velocityPerp_eq}
-  \leanok
+  \lean{Riemannian.Jacobi.chartMetricInner_jacobi_velocity_eq_zero_iff, Riemannian.Jacobi.velocityFunctional, Riemannian.Jacobi.finrank_velocityPerp_eq}
   \uses{prop:dc-ch5-3-6, rem:dc-ch5-3-2}
+  \leanok
+  \dcref{ch5:3.8}
   Suppose $J(0)=0$. Then
   $\langle J'(0),\gamma'(0)\rangle=0$ if and only if
   $\langle J(t),\gamma'(t)\rangle=0$ for every $t$. If $\dim M=n$ and $\gamma$
@@ -706,10 +654,10 @@
 
 \begin{proposition}[Jacobi field with prescribed nonconjugate endpoints]
   \label{prop:dc-ch5-3-9}
-  \dcref{ch5:3.9}
   \lean{Riemannian.Jacobi.exists_unique_jacobi_of_endpoints}
-  \leanok
   \uses{cor:dc-ch5-2-5, def:dc-ch5-3-1}
+  \leanok
+  \dcref{ch5:3.9}
   Let $\gamma:[0,a]\to M$ be a geodesic, let
   $V_1\in T_{\gamma(0)}M$, and let $V_2\in T_{\gamma(a)}M$. If $\gamma(a)$ is
   not conjugate to $\gamma(0)$ along $\gamma$, there is a unique Jacobi field
@@ -733,13 +681,10 @@
 
 \begin{corollary}[normal Jacobi fields form an endpoint basis]
   \label{cor:dc-ch5-3-10}
-  \dcref{ch5:3.10}
-  \lean{Riemannian.Jacobi.jacobiConjugateBasis,
-    Riemannian.Jacobi.jacobiConjugateEquiv,
-    Riemannian.Jacobi.jacobiEndpointOfVel_map_velocityPerp_eq,
-    Riemannian.Jacobi.metricInner_jacobiJ_velocity_eq_zero}
-  \leanok
+  \lean{Riemannian.Jacobi.jacobiConjugateBasis, Riemannian.Jacobi.jacobiConjugateEquiv, Riemannian.Jacobi.jacobiEndpointOfVel_map_velocityPerp_eq, Riemannian.Jacobi.metricInner_jacobiJ_velocity_eq_zero}
   \uses{cor:dc-ch5-3-8, prop:dc-ch5-3-5, prop:dc-ch5-3-6, def:dc-ch5-3-1}
+  \leanok
+  \dcref{ch5:3.10}
   Let $\gamma:[0,a]\to M$ be a geodesic in $M$, $\dim M=n$, and let
   $\mathcal{J}^\perp$ be the space of Jacobi fields with $J(0)=0$,
   $J'(0)\perp\gamma'(0)$. Let $\{J_1,\dots,J_{n-1}\}$ be a basis of
@@ -756,3 +701,15 @@
   so it is an isomorphism and carries any basis of $\mathcal J^\perp$ to the
   displayed basis.
 \end{proof}
+
+\begin{example}[conjugate loci of the sphere and ellipsoid]
+  \label{ex:dc-ch5-3-4}
+  \dcref{ch5:3.4}
+  \uses{def:dc-ch5-3-4}
+  \notready
+  On $S^n$, $C(p)=\{-p\}$, for all $p$. The case of $S^n$, however, is not typical.
+  A more typical example is given by the ellipsoid, where $C(p)$ is, in general, a
+  curve with four singular points (see Fig. 4 of Chap. 13; cf. Braunmühl, A.,
+  "Geodätische Linien auf dreiachsigen Flächen 2-Grades", Math. Ann. 20 (1882),
+  557-586).
+\end{example}

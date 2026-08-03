@@ -15,23 +15,20 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{definition}[differentiable manifold]
   \label{def:dc-ch0-2-1}
-  \dcref{ch0:2.1}
   \lean{Riemannian.DCDifferentiableManifold}
   \leanok
+  \dcref{ch0:2.1}
+  \source{docarmo:page-0017}
   A \emph{differentiable manifold} of dimension $n$ is a set $M$ together with a family
   of injective mappings $\mathbf{x}_\alpha:U_\alpha\subset\mathbb{R}^n\to M$ of open
   sets $U_\alpha$ of $\mathbb{R}^n$ into $M$ such that:
-  
   1. $\bigcup_\alpha\mathbf{x}_\alpha(U_\alpha)=M$.
-  
   2. for any pair $\alpha,\beta$ with
      $\mathbf{x}_\alpha(U_\alpha)\cap\mathbf{x}_\beta(U_\beta)=W\neq\phi$, the sets
      $\mathbf{x}_\alpha^{-1}(W)$ and $\mathbf{x}_\beta^{-1}(W)$ are open in
      $\mathbb{R}^n$ and the mappings $\mathbf{x}_\beta^{-1}\circ\mathbf{x}_\alpha$
      are differentiable.
-  
   3. the family $\{(U_\alpha,\mathbf{x}_\alpha)\}$ is maximal relative to (1) and (2).
-  
   The pair $(U_\alpha,\mathbf{x}_\alpha)$ (or $\mathbf{x}_\alpha$) with
   $p\in\mathbf{x}_\alpha(U_\alpha)$ is a \emph{parametrization} (or \emph{system of
   coordinates}) of $M$ at $p$; $\mathbf{x}_\alpha(U_\alpha)$ is then a \emph{coordinate
@@ -41,9 +38,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{remark}[change of parameters as an axiom]
   \label{rem:dc-ch0-2-2}
+  \uses{def:dc-ch0-2-1}
+  \notready
   \dcref{ch0:2.2}
   \notready
-  \uses{def:dc-ch0-2-1}
   Condition (2) of \cref{def:dc-ch0-2-1} declares every coordinate change
   differentiable; it is the
   compatibility condition for transferring calculus from $\mathbb{R}^n$ to $M$.
@@ -51,6 +49,7 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{remark}[natural topology]
   \label{rem:dc-ch0-2-3}
+  \notready
   \dcref{ch0:2.3}
   \notready
   A differentiable structure on $M$ induces a natural topology: define $A\subset M$
@@ -63,6 +62,7 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[the real projective space $P^n(\mathbb{R})$]
   \label{ex:dc-ch0-2-4}
+  \notready
   \dcref{ch0:2.4}
   \notready
   $P^n(\mathbb{R})$ is the set of straight lines of $\mathbb{R}^{n+1}$ through the
@@ -71,18 +71,14 @@ Throughout, ``differentiable'' means $C^\infty$.
   with points denoted $[x_1,\dots,x_{n+1}]$. Let
   $V_i=\{[x_1,\dots,x_{n+1}]; x_i\neq0\}$, $i=1,\dots,n+1$, and define
   $\mathbf{x}_i:\mathbb{R}^n\to V_i$ by
-  
   $$
   \mathbf{x}_i(y_1,\dots,y_n)=[y_1,\dots,y_{i-1},1,y_i,\dots,y_n].
   $$
-  
   Each $\mathbf{x}_i$ is bijective with $\bigcup\mathbf{x}_i(\mathbb{R}^n)=P^n(\mathbb{R})$,
   $\mathbf{x}_i^{-1}(V_i\cap V_j)$ is open, and (for $i>j$, the case $i<j$ similar)
-  
   $$
   \mathbf{x}_j^{-1}\circ\mathbf{x}_i(y_1,\dots,y_n)=\Big(\frac{y_1}{y_j},\dots,\frac{y_{j-1}}{y_j},\frac{y_{j+1}}{y_j},\dots,\frac{y_{i-1}}{y_j},\frac{1}{y_j},\frac{y_i}{y_j},\dots,\frac{y_n}{y_j}\Big)
   $$
-  
   is differentiable. Thus $\{(\mathbb{R}^n,\mathbf{x}_i)\}$ is a differentiable
   structure: $P^n(\mathbb{R})$ is covered by $n+1$ coordinate neighborhoods $V_i$
   (directions not in the hyperplane $x_i=0$), with \emph{inhomogeneous coordinates}
@@ -92,20 +88,18 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{definition}[differentiable mapping]
   \label{def:dc-ch0-2-5}
-  \dcref{ch0:2.5}
   \lean{Riemannian.DCDifferentiableAt}
-  \leanok
   \uses{def:dc-ch0-2-1}
+  \leanok
+  \dcref{ch0:2.5}
   Let $M_1^n$ and $M_2^m$ be differentiable manifolds. A mapping
   $\varphi:M_1\to M_2$ is \emph{differentiable at} $p\in M_1$ if, given a parametrization
   $\mathbf{y}:V\subset\mathbb{R}^m\to M_2$ at $\varphi(p)$, there is a
   parametrization $\mathbf{x}:U\subset\mathbb{R}^n\to M_1$ at $p$ with
   $\varphi(\mathbf{x}(U))\subset\mathbf{y}(V)$ such that
-  
   $$
   \mathbf{y}^{-1}\circ\varphi\circ\mathbf{x}:U\subset\mathbb{R}^n\to\mathbb{R}^m\qquad\text{(1)}
   $$
-  
   is differentiable at $\mathbf{x}^{-1}(p)$. By condition (2) of \cref{def:dc-ch0-2-1}
   this is independent of the choice of parametrizations. The mapping (1) is the
   \emph{expression} of $\varphi$ in the parametrizations $\mathbf{x}$ and $\mathbf{y}$.
@@ -113,29 +107,25 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{definition}[tangent vector; tangent space]
   \label{def:dc-ch0-2-6}
-  \dcref{ch0:2.6}
   \lean{Riemannian.DCTangentSpaceAt}
   \leanok
+  \dcref{ch0:2.6}
   Let $M$ be a differentiable manifold. A differentiable
   $\alpha:(-\varepsilon,\varepsilon)\to M$ is a \emph{curve} in $M$. Suppose
   $\alpha(0)=p$, and let $\mathcal{D}$ be the functions on $M$ differentiable at
   $p$. The \emph{tangent vector to the curve $\alpha$ at $t=0$} is the function
   $\alpha'(0):\mathcal{D}\to\mathbb{R}$ given by
-  
   $$
   \alpha'(0)f=\frac{d(f\circ\alpha)}{dt}\Big|_{t=0},\qquad f\in\mathcal{D}.
   $$
-  
   A \emph{tangent vector at $p$} is the tangent vector at $t=0$ of some curve
   $\alpha:(-\varepsilon,\varepsilon)\to M$ with $\alpha(0)=p$. The set of all such
   is denoted $T_pM$. Choosing a parametrization $\mathbf{x}:U\to M^n$ at
   $p=\mathbf{x}(0)$, with $\mathbf{x}^{-1}\circ\alpha(t)=(x_1(t),\dots,x_n(t))$,
   one obtains
-  
   $$
   \alpha'(0)=\sum_i x_i'(0)\Big(\frac{\partial}{\partial x_i}\Big)_0.\qquad\text{(2)}
   $$
-  
   Here $\big(\frac{\partial}{\partial x_i}\big)_0$ is the tangent vector at $p$ of
   the coordinate curve $x_i\mapsto\mathbf{x}(0,\dots,x_i,\dots,0)$. Expression (2)
   shows $T_pM$ is a vector space of dimension $n$ with \emph{associated basis}
@@ -145,10 +135,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{proposition}[the differential]
   \label{prop:dc-ch0-2-7}
-  \dcref{ch0:2.7}
-  \uses{def:dc-ch0-2-6}
   \lean{Riemannian.DCDifferentialAt_curve}
+  \uses{def:dc-ch0-2-6}
   \leanok
+  \dcref{ch0:2.7}
   Let $M_1^n,M_2^m$ be differentiable manifolds and $\varphi:M_1\to M_2$
   differentiable. For $p\in M_1$ and $v\in T_pM_1$, choose a differentiable curve
   $\alpha:(-\varepsilon,\varepsilon)\to M_1$ with $\alpha(0)=p$, $\alpha'(0)=v$, and
@@ -163,7 +153,7 @@ Throughout, ``differentiable'' means $C^\infty$.
   write $\mathbf{y}^{-1}\circ\varphi\circ\mathbf{x}(q)=(y_1(x_1,\dots,x_n),\dots,y_m(x_1,\dots,x_n))$
   and $\mathbf{x}^{-1}\circ\alpha(t)=(x_1(t),\dots,x_n(t))$. Then with respect to
   the basis $\{(\frac{\partial}{\partial y_i})_0\}$,
-  
+
   $$
   \beta'(0)=\Big(\sum_{i=1}^n\frac{\partial y_1}{\partial x_i}x_i'(0),\dots,\sum_{i=1}^n\frac{\partial y_m}{\partial x_i}x_i'(0)\Big),\qquad\text{(3)}
   $$
@@ -176,20 +166,20 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{definition}[differential]
   \label{def:dc-ch0-2-8}
-  \dcref{ch0:2.8}
   \lean{Riemannian.DCDifferentialAt}
-  \leanok
   \uses{prop:dc-ch0-2-7}
+  \leanok
+  \dcref{ch0:2.8}
   The linear mapping $d\varphi_p$ defined by \cref{prop:dc-ch0-2-7} is the \emph{differential}
   of $\varphi$ at $p$.
 \end{definition}
 
 \begin{definition}[diffeomorphism; local diffeomorphism]
   \label{def:dc-ch0-2-9}
-  \dcref{ch0:2.9}
   \lean{Riemannian.DCDiffeomorph}
-  \leanok
   \uses{def:dc-ch0-2-5}
+  \leanok
+  \dcref{ch0:2.9}
   $\varphi:M_1\to M_2$ is a \emph{diffeomorphism} if it is differentiable, bijective, and
   $\varphi^{-1}$ is differentiable. It is a \emph{local diffeomorphism at} $p$ if there
   exist neighborhoods $U$ of $p$ and $V$ of $\varphi(p)$ with $\varphi:U\to V$ a
@@ -200,10 +190,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[differential of a diffeomorphism is an isomorphism]
   \label{lem:dc-ch0-2-9-iso}
-  \dcref{ch0:2.9}
   \lean{Riemannian.DCDiffeomorph.mfderiv_bijective}
+  \uses{def:dc-ch0-2-9, def:dc-ch0-2-8}
   \leanok
-  \uses{def:dc-ch0-2-9,def:dc-ch0-2-8}
+  \dcref{ch0:2.9}
   If $\varphi:M_1\to M_2$ is a diffeomorphism then for every $p\in M_1$ the
   differential $d\varphi_p:T_pM_1\to T_{\varphi(p)}M_2$ is a linear isomorphism.
 \end{lemma}
@@ -220,10 +210,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{theorem}[local converse, via inverse function theorem]
   \label{thm:dc-ch0-2-10}
-  \dcref{ch0:2.10}
   \lean{Riemannian.isLocalDiffeomorphAt_of_mfderiv_equiv}
+  \uses{def:dc-ch0-2-5, def:dc-ch0-2-8, def:dc-ch0-2-9}
   \leanok
-  \uses{def:dc-ch0-2-5,def:dc-ch0-2-8,def:dc-ch0-2-9}
+  \dcref{ch0:2.10}
   Let $\varphi:M_1^n\to M_2^n$ be a differentiable mapping and $p\in M_1$ such that
   $d\varphi_p:T_pM_1\to T_{\varphi(p)}M_2$ is an isomorphism. Then $\varphi$ is a
   local diffeomorphism at $p$.
@@ -250,12 +240,12 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{definition}[immersion; embedding; submanifold]
   \label{def:dc-ch0-3-1}
+  \lean{Riemannian.DCIsImmersion, Riemannian.DCIsEmbedding}
+  \uses{def:dc-ch0-2-5, def:dc-ch0-2-8}
+  \leanok
   \dcref{ch0:3.1}
   % submanifold = image of an embedded inclusion (an instance of DCIsEmbedding);
   % codimension $n-m$ is a derived numeric notion, not separate Lean data.
-  \lean{Riemannian.DCIsImmersion, Riemannian.DCIsEmbedding}
-  \leanok
-  \uses{def:dc-ch0-2-5,def:dc-ch0-2-8}
   Let $M^m,N^n$ be differentiable manifolds. A differentiable $\varphi:M\to N$ is an
   \emph{immersion} if $d\varphi_p:T_pM\to T_{\varphi(p)}N$ is injective for all $p\in M$.
   If in addition $\varphi$ is a homeomorphism onto $\varphi(M)\subset N$ (subspace
@@ -266,6 +256,7 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[a regular surface in $\mathbb{R}^3$ is a submanifold]
   \label{ex:dc-ch0-3-6}
+  \notready
   \dcref{ch0:3.6}
   \notready
   A regular surface $S\subset\mathbb{R}^3$ has the differentiable structure given by
@@ -280,10 +271,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{proposition}[every immersion is locally an embedding]
   \label{prop:dc-ch0-3-7}
-  \dcref{ch0:3.7}
   \lean{Riemannian.DCIsImmersion.exists_isEmbedding_restrict}
+  \uses{def:dc-ch0-3-1, lem:dc-ch0-3-7-embedding, lem:dc-ch0-3-7-normalform}
   \leanok
-  \uses{def:dc-ch0-3-1,lem:dc-ch0-3-7-embedding,lem:dc-ch0-3-7-normalform}
+  \dcref{ch0:3.7}
   Let $\varphi:M_1^n\to M_2^m$, $n\le m$, be an immersion. For every $p\in M_1$
   there exists a neighborhood $V\subset M_1$ of $p$ such that the restriction
   $\varphi\,|\,V\to M_2$ is an embedding.
@@ -314,10 +305,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[immersion normal form yields a local embedding]
   \label{lem:dc-ch0-3-7-embedding}
-  \dcref{ch0:3.7}
   \lean{Riemannian.isEmbedding_restrict_of_isImmersionAt}
-  \leanok
   \uses{def:dc-ch0-3-1}
+  \leanok
+  \dcref{ch0:3.7}
   Let $\varphi:M_1\to M_2$ and $p\in M_1$. Suppose that in suitable coordinate charts
   around $p$ and $\varphi(p)$ the map $\varphi$ has the standard immersion normal form
   $u\mapsto(u,0)$ (a linear inclusion of the model space of $M_1$ into that of $M_2$).
@@ -338,9 +329,9 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[local immersion normal form in normed spaces]
   \label{lem:dc-ch0-3-7-normalform}
-  \dcref{ch0:3.7}
   \lean{Riemannian.isEmbedding_restrict_of_hasFDerivAt_injective}
   \leanok
+  \dcref{ch0:3.7}
   Let $g:E\to F$ be a $C^\infty$ map between finite-dimensional normed spaces, defined on an
   open set $s\ni q$, whose Fréchet derivative $L=dg_q$ is injective. Then $g$ restricts to a
   topological embedding on a neighborhood of $q$.
@@ -362,38 +353,34 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[the tangent bundle]
   \label{ex:dc-ch0-4-1}
-  \dcref{ch0:4.1}
   \lean{Riemannian.DCTangentBundle}
-  \leanok
   \uses{def:dc-ch0-2-1}
+  \leanok
+  \dcref{ch0:4.1}
   Let $M^n$ be a differentiable manifold and $TM=\{(p,v); p\in M, v\in T_pM\}$. With
   a maximal structure $\{(U_\alpha,\mathbf{x}_\alpha)\}$ on $M$, coordinates
   $(x_1^\alpha,\dots,x_n^\alpha)$ on $U_\alpha$ and bases
   $\{\frac{\partial}{\partial x_i^\alpha}\}$, define
   $\mathbf{y}_\alpha:U_\alpha\times\mathbb{R}^n\to TM$ by
-  
   $$
   \mathbf{y}_\alpha(x_1^\alpha,\dots,x_n^\alpha,u_1,\dots,u_n)=\Big(\mathbf{x}_\alpha(x_1^\alpha,\dots,x_n^\alpha),\sum_{i=1}^n u_i\frac{\partial}{\partial x_i^\alpha}\Big).
   $$
-  
   Then $\bigcup_\alpha\mathbf{y}_\alpha(U_\alpha\times\mathbb{R}^n)=TM$ verifies (1)
   of \cref{def:dc-ch0-2-1}, and since $\mathbf{x}_\beta^{-1}\circ\mathbf{x}_\alpha$ is
   differentiable so is $d(\mathbf{x}_\beta^{-1}\circ\mathbf{x}_\alpha)$, giving
-  
   $$
   \mathbf{y}_\beta^{-1}\circ\mathbf{y}_\alpha(q_\alpha,v_\alpha)=\big((\mathbf{x}_\beta^{-1}\circ\mathbf{x}_\alpha)(q_\alpha),\,d(\mathbf{x}_\beta^{-1}\circ\mathbf{x}_\alpha)(v_\alpha)\big)
   $$
-  
   differentiable, verifying (2). Thus $\{(U_\alpha\times\mathbb{R}^n,\mathbf{y}_\alpha)\}$
   is a differentiable structure of dimension $2n$ on $TM$, the \emph{tangent bundle}.
 \end{example}
 
 \begin{lemma}[the tangent bundle is a smooth manifold]
   \label{lem:dc-ch0-4-1-manifold}
-  \dcref{ch0:4.1}
   \lean{Riemannian.DCTangentBundle.isManifold}
-  \leanok
   \uses{ex:dc-ch0-4-1}
+  \leanok
+  \dcref{ch0:4.1}
   The tangent bundle $TM$ of a smooth $n$-manifold $M$ carries a smooth manifold
   structure of dimension $2n$, modelled on $H\times E$.
 \end{lemma}
@@ -409,9 +396,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[regular surfaces in $\mathbb{R}^n$]
   \label{ex:dc-ch0-4-2}
+  \uses{ex:dc-ch0-3-6}
+  \notready
   \dcref{ch0:4.2}
   \notready
-  \uses{ex:dc-ch0-3-6}
   $M^k\subset\mathbb{R}^n$, $k\le n$, is a \emph{regular surface of dimension $k$} if for
   every $p\in M^k$ there is a neighborhood $V$ of $p$ in $\mathbb{R}^n$ and
   $\mathbf{x}:U\subset\mathbb{R}^k\to M\cap V$ with (a) $\mathbf{x}$ a
@@ -441,9 +429,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[inverse image of a regular value]
   \label{ex:dc-ch0-4-3}
+  \uses{ex:dc-ch0-4-2}
+  \notready
   \dcref{ch0:4.3}
   \notready
-  \uses{ex:dc-ch0-4-2}
   Let $F:U\subset\mathbb{R}^n\to\mathbb{R}^m$ be differentiable on an open set $U$.
   A point $p\in U$ is a \emph{critical point} if $dF_p:\mathbb{R}^n\to\mathbb{R}^m$ is
   not surjective; $F(p)$ is then a \emph{critical value}. A point $a\in\mathbb{R}^m$ not
@@ -470,17 +459,15 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{definition}[orientable manifold; orientation]
   \label{def:dc-ch0-4-4}
-  \dcref{ch0:4.4}
   \lean{Riemannian.DCIsOrientable}
   \leanok
+  \dcref{ch0:4.4}
   $M$ is \emph{orientable} if it admits a differentiable structure
   $\{(U_\alpha,\mathbf{x}_\alpha)\}$ such that:
-  
   (i) for every pair $\alpha,\beta$ with
   $\mathbf{x}_\alpha(U_\alpha)\cap\mathbf{x}_\beta(U_\beta)=W\neq\phi$, the
   differential of the change of coordinates
   $\mathbf{x}_\beta^{-1}\circ\mathbf{x}_\alpha$ has positive determinant.
-  
   Otherwise $M$ is \emph{non-orientable}. A choice of structure satisfying (i) is an
   \emph{orientation}; $M$ is then \emph{oriented}. Two structures satisfying (i) \emph{determine
   the same orientation} if their union again satisfies (i). If $M$ is orientable and
@@ -492,6 +479,7 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[two-neighborhood criterion]
   \label{ex:dc-ch0-4-5}
+  \notready
   \dcref{ch0:4.5}
   \notready
   If $M$ can be covered by two coordinate neighborhoods $V_1,V_2$ with
@@ -502,9 +490,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[another description of projective space]
   \label{ex:dc-ch0-4-7}
+  \uses{ex:dc-ch0-2-4}
+  \notready
   \dcref{ch0:4.7}
   \notready
-  \uses{ex:dc-ch0-2-4}
   $P^n(\mathbb{R})$ is the quotient of the unit sphere $S^n=\{p\in\mathbb{R}^{n+1};
   |p|=1\}$ by $p\sim A(p)=-p$. Introducing on $S^n\subset\mathbb{R}^{n+1}$ the
   regular-surface structure with hemisphere parametrizations
@@ -522,9 +511,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{example}[discontinuous action of a group]
   \label{ex:dc-ch0-4-8}
+  \uses{ex:dc-ch0-4-7}
+  \notready
   \dcref{ch0:4.8}
   \notready
-  \uses{ex:dc-ch0-4-7}
   A group $G$ \emph{acts on} a differentiable manifold $M$ if there is
   $\varphi:G\times M\to M$ such that (i) for each $g\in G$, $\varphi_g(p)=\varphi(g,p)$
   is a diffeomorphism with $\varphi_e=\mathrm{id}$, and (ii)
@@ -533,7 +523,6 @@ Throughout, ``differentiable'' means $C^\infty$.
   $p\in M$ has a neighborhood $U$ with $U\cap g(U)=\phi$ for all $g\neq e$. The
   action determines $\sim$ on $M$ ($p_1\sim p_2$ iff $p_2=gp_1$), with quotient
   $M/G$ and \emph{projection} $\pi:M\to M/G$, $\pi(p)=Gp$.
-  
   For a properly discontinuous action, $M/G$ has a differentiable structure with
   respect to which $\pi:M\to M/G$ is a local diffeomorphism.
 \end{example}
@@ -558,27 +547,23 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{definition}[vector field]
   \label{def:dc-ch0-5-1}
-  \dcref{ch0:5.1}
-  \lean{Riemannian.SmoothVectorField}
-  \leanok
+  \lean{Riemannian.VectorFieldSection, Riemannian.TangentSmoothAt, Riemannian.TangentSmoothAt.iff_coord, Riemannian.SmoothVectorField.smoothAt}
   \uses{ex:dc-ch0-4-1}
+  \leanok
+  \dcref{ch0:5.1}
   A \emph{vector field $X$ on $M$} associates to each $p\in M$ a vector $X(p)\in T_pM$;
   as a mapping, $X:M\to TM$. $X$ is \emph{differentiable} if $X:M\to TM$
   is. In a parametrization $\mathbf{x}:U\subset\mathbb{R}^n\to M$,
-  
   $$
   X(p)=\sum_{i=1}^n a_i(p)\frac{\partial}{\partial x_i},\qquad\text{(4)}
   $$
-  
   $a_i:U\to\mathbb{R}$; $X$ is differentiable iff the $a_i$ are differentiable for
   some (hence any) parametrization. Let $\mathcal{D}$ be the differentiable
   functions on $M$ and $\mathcal{F}$ the functions on $M$; thinking of
   $X:\mathcal{D}\to\mathcal{F}$,
-  
   $$
   (Xf)(p)=\sum_i a_i(p)\frac{\partial f}{\partial x_i}(p),\qquad\text{(5)}
   $$
-  
   $Xf$ is independent of $\mathbf{x}$, and $X$ is differentiable iff
   $Xf\in\mathcal{D}$ for all $f\in\mathcal{D}$. If $\varphi:M\to M$ is a
   diffeomorphism, $v\in T_pM$, and $f$ differentiable near $\varphi(p)$, then
@@ -587,9 +572,9 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[existence and uniqueness of the bracket field]
   \label{lem:dc-ch0-5-2}
-\lean{Riemannian.bracketField_dir,Riemannian.exists_unique_bracketField}
-  \dcref{ch0:5.2}
+  \lean{Riemannian.exists_unique_bracketField, Riemannian.bracketField_dir}
   \leanok
+  \dcref{ch0:5.2}
   Let $X,Y$ be differentiable vector fields on $M$. Then there exists a unique
   differentiable vector field $Z$ such that $Zf=(XY-YX)f$ for all
   $f\in\mathcal{D}$. This field is the \emph{bracket} $[X,Y]=XY-YX$.
@@ -623,10 +608,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[existence characterization: the bracket acts as the commutator of derivations]
   \label{lem:dc-ch0-5-2-commutator}
-  \dcref{ch0:5.2}
   \lean{Riemannian.mfderiv_mlieBracket_eq_commutator}
-  \leanok
   \uses{lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.2}
   Let $X,Y$ be smooth vector fields on a boundaryless manifold $M$ and $f$ a smooth
   real function. Then the bracket field $[X,Y]$ acts on $f$ as the
   commutator of the derivations $X$ and $Y$:
@@ -647,10 +632,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[uniqueness: a vector field is determined by its action on functions]
   \label{lem:dc-ch0-5-2-unique}
-  \dcref{ch0:5.2}
   \lean{Riemannian.tangentSection_eq_of_forall_mfderiv}
-  \leanok
   \uses{lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.2}
   A tangent vector at $p$, and hence a vector field on $M$, is determined by its
   action on differentiable real functions: if $Z_1,Z_2$ are sections of $TM$ with
   $Z_1f=Z_2f$ for every $f\in\mathcal{D}$, then $Z_1=Z_2$; in particular at most one
@@ -671,10 +656,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[smoothness of the bracket field]
   \label{lem:dc-ch0-5-2-smooth}
-  \dcref{ch0:5.2}
   \lean{Riemannian.DCLieBracket_smoothAt}
-  \leanok
   \uses{lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.2}
   If $X$ and $Y$ are smooth vector fields, then their bracket $[X,Y]$ is a smooth
   vector field.
 \end{lemma}
@@ -694,10 +679,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[antisymmetry of the bracket]
   \label{lem:dc-ch0-5-3-antisymm}
-  \dcref{ch0:5.3}
   \lean{Riemannian.DCLieBracket_antisymm}
-  \leanok
   \uses{lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.3}
   For differentiable vector fields $X$ and $Y$ one has $[X,Y]=-[Y,X]$.
 \end{lemma}
 \begin{proof}
@@ -711,10 +696,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[Jacobi identity in Leibniz form]
   \label{lem:dc-ch0-5-3-jacobi}
-  \dcref{ch0:5.3}
   \lean{Riemannian.DCLieBracket_jacobi}
-  \leanok
   \uses{lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.3}
   For differentiable vector fields $X,Y,Z$ one has
   $[X,[Y,Z]]=[[X,Y],Z]+[Y,[X,Z]]$.
 \end{lemma}
@@ -730,10 +715,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[Jacobi identity in cyclic form]
   \label{lem:dc-ch0-5-3-jacobi-cyclic}
-  \dcref{ch0:5.3}
   \lean{Riemannian.DCLieBracket_jacobi_cyclic}
+  \uses{lem:dc-ch0-5-3-jacobi, lem:dc-ch0-5-3-antisymm}
   \leanok
-  \uses{lem:dc-ch0-5-3-jacobi,lem:dc-ch0-5-3-antisymm}
+  \dcref{ch0:5.3}
   For differentiable vector fields $X,Y,Z$ one has the cyclic Jacobi identity
   $[[X,Y],Z]+[[Y,Z],X]+[[Z,X],Y]=0$.
 \end{lemma}
@@ -749,10 +734,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[linearity of the bracket]
   \label{lem:dc-ch0-5-3-bilinear}
-  \dcref{ch0:5.3}
   \lean{Riemannian.DCLieBracket_linear_left}
-  \leanok
   \uses{lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.3}
   For smooth vector fields $X,Y,Z$ and scalars $a,b\in\mathbb{R}$ one has
   $[aX+bY,Z]=a[X,Z]+b[Y,Z]$.
 \end{lemma}
@@ -766,10 +751,10 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{lemma}[Leibniz rule for the bracket]
   \label{lem:dc-ch0-5-3-leibniz}
-  \dcref{ch0:5.3}
   \lean{Riemannian.DCLieBracket_leibniz}
-  \leanok
   \uses{lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.3}
   For smooth vector fields $X,Y$ and smooth functions $f,g$ one has
   $[fX,gY]=fg[X,Y]+fX(g)Y-gY(f)X$, where $X(g)=dg_p(X_p)$ denotes the derivative
   of $g$ along $X$.
@@ -785,19 +770,15 @@ Throughout, ``differentiable'' means $C^\infty$.
 
 \begin{proposition}[properties of the bracket]
   \label{prop:dc-ch0-5-3}
-  \dcref{ch0:5.3}
   \lean{Riemannian.DCLieBracket_properties}
+  \uses{lem:dc-ch0-5-3-antisymm, lem:dc-ch0-5-3-jacobi-cyclic, lem:dc-ch0-5-3-bilinear, lem:dc-ch0-5-3-leibniz}
   \leanok
-  \uses{lem:dc-ch0-5-3-antisymm,lem:dc-ch0-5-3-jacobi-cyclic,lem:dc-ch0-5-3-bilinear,lem:dc-ch0-5-3-leibniz}
+  \dcref{ch0:5.3}
   If $X,Y,Z$ are differentiable vector fields on $M$, $a,b\in\mathbb{R}$, and $f,g$
   differentiable functions, then:
-  
   (a) $[X,Y]=-[Y,X]$ \emph{(anticommutativity)};
-  
   (b) $[aX+bY,Z]=a[X,Z]+b[Y,Z]$ \emph{(linearity)};
-  
   (c) $[[X,Y],Z]+[[Y,Z],X]+[[Z,X],Y]=0$ \emph{(Jacobi identity)};
-  
   (d) $[fX,gY]=fg[X,Y]+fX(g)Y-gY(f)X$.
 \end{proposition}
 \begin{proof}
@@ -820,10 +801,10 @@ flow} of $X$.
 
 \begin{proposition}[bracket as Lie derivative along the flow]
   \label{prop:dc-ch0-5-4}
-  \dcref{ch0:5.4}
-  \leanok
   \lean{Riemannian.DCLieBracket_eq_flow_lieDerivative}
-  \uses{lem:dc-ch0-5-5,lem:dc-ch0-5-2}
+  \uses{lem:dc-ch0-5-5, lem:dc-ch0-5-2}
+  \leanok
+  \dcref{ch0:5.4}
   Let $X,Y$ be differentiable vector fields on $M$, $p\in M$, and $\varphi_t$ the
   local flow of $X$ in a neighborhood $U$ of $p$. Then
 
@@ -846,9 +827,9 @@ flow} of $X$.
 
 \begin{lemma}[Hadamard-type lemma from calculus]
   \label{lem:dc-ch0-5-5}
-  \dcref{ch0:5.5}
-  \leanok
   \lean{Riemannian.DCHadamardFactor, Riemannian.DCHadamardFactorDiff}
+  \leanok
+  \dcref{ch0:5.5}
   Let $h:(-\delta,\delta)\times U\to\mathbb{R}$ be differentiable with $h(0,q)=0$
   for all $q\in U$. Then there exists a differentiable
   $g:(-\delta,\delta)\times U\to\mathbb{R}$ with $h(t,q)=t\,g(t,q)$; in particular
@@ -884,13 +865,14 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{theorem}[existence of partitions of unity]
   \label{thm:dc-ch0-5-6}
+  \notready
   \dcref{ch0:5.6}
   A differentiable manifold $M$ has a differentiable partition of unity if and only
   if every connected component of $M$ is Hausdorff and has a countable basis.
 \end{theorem}
 \begin{proof}
+  \uses{lem:dc-ch0-5-6-exists, lem:dc-ch0-5-6-onlyif-complete, lem:dc-ch0-5-6-component}
   \sketch
-  \uses{lem:dc-ch0-5-6-exists,lem:dc-ch0-5-6-onlyif-complete}
   For the forward implication, Hausdorffness and a countable basis yield a subordinate
   partition of unity by \cref{lem:dc-ch0-5-6-exists}. Conversely, a partition forces
   Hausdorffness by \cref{lem:dc-ch0-5-6-hausdorff} and second countability by
@@ -901,10 +883,10 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{lemma}[connected space with a locally finite $\sigma$-compact open cover]
   \label{lem:dc-ch0-5-6-sigmacompact-core}
-  \dcref{ch0:5.6}
   \lean{Riemannian.sigmaCompactSpace_of_locallyFinite_isSigmaCompact_cover}
-  \leanok
   \uses{thm:dc-ch0-5-6}
+  \leanok
+  \dcref{ch0:5.6}
   Let $X$ be a connected topological space carrying a locally finite open cover
   $\{V_i\}_{i\in\iota}$ each of whose members is $\sigma$-compact. Then $X$ is
   $\sigma$-compact.
@@ -931,10 +913,10 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{lemma}[second countability from a partition of unity]
   \label{lem:dc-ch0-5-6-onlyif}
-  \dcref{ch0:5.6}
   \lean{Riemannian.DCSecondCountable_of_locallyFinite_isSigmaCompact_cover}
+  \uses{lem:dc-ch0-5-6-sigmacompact-core, thm:dc-ch0-5-6}
   \leanok
-  \uses{lem:dc-ch0-5-6-sigmacompact-core,thm:dc-ch0-5-6}
+  \dcref{ch0:5.6}
   Let $M$ be a connected manifold charted over a second-countable model $H$. If $M$
   carries a locally finite open cover by $\sigma$-compact sets — in particular, the
   coordinate neighborhoods $\{V_\alpha\}$ of a differentiable partition of unity,
@@ -954,10 +936,10 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{lemma}[second countability from an honest partition of unity]
   \label{lem:dc-ch0-5-6-onlyif-pou}
-  \dcref{ch0:5.6}
   \lean{Riemannian.DCSecondCountable_of_partitionOfUnity}
+  \uses{lem:dc-ch0-5-6-onlyif, thm:dc-ch0-5-6}
   \leanok
-  \uses{lem:dc-ch0-5-6-onlyif,thm:dc-ch0-5-6}
+  \dcref{ch0:5.6}
   Let $M$ be a connected manifold charted over a second-countable model $H$, and let
   $\{f_\alpha\}$ be a differentiable partition of unity on $M$ (with $\sum_\alpha f_\alpha
   \equiv 1$) subordinate to a locally finite family $\{V_\alpha\}$ of $\sigma$-compact
@@ -978,10 +960,10 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{lemma}[a partition of unity forces the Hausdorff axiom]
   \label{lem:dc-ch0-5-6-hausdorff}
-  \dcref{ch0:5.6}
   \lean{Riemannian.t2Space_of_partitionOfUnity}
-  \leanok
   \uses{thm:dc-ch0-5-6}
+  \leanok
+  \dcref{ch0:5.6}
   Let $M$ be a manifold admitting a differentiable partition of unity $\{f_\alpha\}$
   subordinate to a family $\{V_\alpha\}$ of open, Hausdorff coordinate neighborhoods. Then
   $M$ is Hausdorff.
@@ -1001,10 +983,10 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{lemma}[complete ``only if'' direction from a partition of unity]
   \label{lem:dc-ch0-5-6-onlyif-complete}
-  \dcref{ch0:5.6}
   \lean{Riemannian.DCManifoldAxioms_of_partitionOfUnity}
+  \uses{lem:dc-ch0-5-6-hausdorff, lem:dc-ch0-5-6-onlyif-pou}
   \leanok
-  \uses{lem:dc-ch0-5-6-hausdorff,lem:dc-ch0-5-6-onlyif-pou}
+  \dcref{ch0:5.6}
   Let $M$ be a connected manifold charted over a second-countable model $H$ admitting a
   differentiable partition of unity subordinate to a locally finite family of open,
   Hausdorff, $\sigma$-compact coordinate neighborhoods. Then $M$ is Hausdorff and has a
@@ -1019,10 +1001,10 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{lemma}[existence of a subordinate partition of unity]
   \label{lem:dc-ch0-5-6-exists}
-  \dcref{ch0:5.6}
   \lean{Riemannian.DCSmoothPartitionOfUnity.exists_isSubordinate}
-  \leanok
   \uses{thm:dc-ch0-5-6}
+  \leanok
+  \dcref{ch0:5.6}
   Let $M$ be a Hausdorff, second-countable (equivalently $\sigma$-compact),
   finite-dimensional differentiable manifold. For every closed set $s\subseteq M$
   and every open covering $\{U_i\}$ of $s$ there is a differentiable partition of
@@ -1039,9 +1021,9 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{lemma}[normalization of a partition of unity]
   \label{lem:dc-ch0-5-6-sum}
-  \dcref{ch0:5.6}
   \lean{Riemannian.DCSmoothPartitionOfUnity.sum_eq_one}
   \leanok
+  \dcref{ch0:5.6}
   Let $\{f_\alpha\}$ be a differentiable partition of unity on $M$ subordinate to a
   covering of a set $s\subseteq M$. Then $\sum_\alpha f_\alpha(p)=1$ for every
   $p\in s$.
@@ -1056,17 +1038,15 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
 
 \begin{remark}[bump functions and locality]
   \label{rem:dc-ch0-5-7}
-\lean{Riemannian.exists_ch0_bump_function,Riemannian.exists_ch0_manifold_bump_function}
-\leanok
+  \lean{Riemannian.exists_ch0_bump_function, Riemannian.exists_ch0_manifold_bump_function}
+  \leanok
   \dcref{ch0:5.7}
   Given $p\in\mathbb{R}^n$ and an open ball $B_r(p)\subset\mathbb{R}^n$, there exist
   a neighborhood $U$ of $p$ with $\overline U\subset B_r(p)$ and a differentiable
   $f:\mathbb{R}^n\to\mathbb{R}$ with $0\le f(q)\le1$ and
-  
   $$
   f(q)=\begin{cases}1,&q\in\overline U,\\ 0,&q\notin B_r(p).\end{cases}
   $$
-  
   For $r=2$ take $U=B_1(p)$ and $f(q)=\beta(-|p-q|)$, where
   $\beta(t)=\frac{\int_{-\infty}^t\alpha(s)\,ds}{\int_{-2}^{-1}\alpha(s)\,ds}$ and
   $\alpha:\mathbb{R}\to\mathbb{R}$ equals $\exp\big(-\frac{1}{(t+2)(-1-t)}\big)$ for
@@ -1076,3 +1056,130 @@ finite, and $\sum_\alpha f_\alpha(p)=1$ for every $p\in M$. Such a partition is
   $f:M\to\mathbb{R}$, $0\le f\le1$, $f=1$ on $\overline U$, $f=0$ off $V$.
   These bump functions localize globally defined constructions.
 \end{remark}
+
+\begin{example}[a non-differentiable curve]
+  \label{ex:dc-ch0-3-2}
+  \dcref{ch0:3.2}
+  \lean{Riemannian.ch0AbsCurve, Riemannian.ch0AbsCurve_not_differentiableAt_zero}
+  \leanok
+  The curve $\alpha:\mathbb{R}\to\mathbb{R}^2$, $\alpha(t)=(t,|t|)$, is not
+  differentiable at $t=0$ (Fig. 5).
+\end{example}
+
+\begin{example}[differentiable but not an immersion]
+  \label{ex:dc-ch0-3-3}
+  \dcref{ch0:3.3}
+  \lean{Riemannian.ch0CuspCurve, Riemannian.ch0CuspCurve_differentiable,
+    Riemannian.ch0CuspCurve_fderiv_zero, Riemannian.ch0CuspCurve_not_immersion}
+  \leanok
+  $\alpha:\mathbb{R}\to\mathbb{R}^2$, $\alpha(t)=(t^3,t^2)$, is differentiable but
+  not an immersion: the immersion condition is $\alpha'(t)\neq0$, which fails at
+  $t=0$ (Fig. 6).
+\end{example}
+
+\begin{example}[immersion with self-intersection]
+  \label{ex:dc-ch0-3-4}
+  \dcref{ch0:3.4}
+  \lean{Riemannian.ch0SelfIntersectionCurve,
+    Riemannian.ch0SelfIntersectionCurve_hasDerivAt,
+    Riemannian.ch0SelfIntersectionCurve_differentiable,
+    Riemannian.ch0SelfIntersectionCurve_deriv_ne_zero,
+    Riemannian.ch0SelfIntersectionCurve_self_intersects}
+  \leanok
+  $\alpha(t)=(t^3-4t,\,t^2-4)$ (Fig. 7) is an immersion
+  $\alpha:\mathbb{R}\to\mathbb{R}^2$ with a self-intersection at $t=2,t=-2$. Hence
+  $\alpha$ is not an embedding.
+\end{example}
+
+\begin{example}[injective immersion that is not an embedding]
+  \label{ex:dc-ch0-3-5}
+  \dcref{ch0:3.5}
+  \notready
+  The curve $\alpha:(-3,0)\to\mathbb{R}^2$ (Fig. 8), defined piecewise as the
+  segment $(0,-(t+2))$ for $t\in(-3,-1)$, a regular joining curve for
+  $t\in(-1,-\frac1\pi)$, and $(-t,-\sin\frac1t)$ for $t\in(-\frac1\pi,0)$, is an
+  immersion without self-intersections that is not an embedding: a neighborhood of
+  a point $p$ in the vertical part has infinitely many connected components in the
+  topology induced from $\mathbb{R}^2$, whereas in the topology induced from
+  $\alpha$ (the line) it is an open interval, hence connected.
+\end{example}
+
+\begin{example}[the sphere $S^n$ is orientable]
+  \label{ex:dc-ch0-4-6}
+  \dcref{ch0:4.6}
+  \notready
+  \uses{ex:dc-ch0-4-5}
+  $S^n=\{(x_1,\dots,x_{n+1})\in\mathbb{R}^{n+1};\sum_{i=1}^{n+1}x_i^2=1\}$. With
+  north/south poles $N=(0,\dots,0,1)$, $S=(0,\dots,0,-1)$, the *stereographic
+  projections* $\pi_1:S^n-\{N\}\to\mathbb{R}^n$,
+  $\pi_1(x)=\big(\frac{x_1}{1-x_{n+1}},\dots,\frac{x_n}{1-x_{n+1}}\big)$, and
+  $\pi_2:S^n-\{S\}\to\mathbb{R}^n$ (from the south pole) are differentiable
+  injections onto $x_{n+1}=0$. The parametrizations
+  $(\mathbb{R}^n,\pi_1^{-1}),(\mathbb{R}^n,\pi_2^{-1})$ cover $S^n$ with change of
+  coordinates $y_j'=\frac{y_j}{\sum_{i=1}^n y_i^2}$, differentiable. For $n\geq2$,
+  $\pi_1^{-1}(\mathbb{R}^n)\cap\pi_2^{-1}(\mathbb{R}^n)=S^n-\{N,S\}$ is connected,
+  so by \cref{ex:dc-ch0-4-5}, $S^n$ is orientable. For $n=1$, the same atlas is
+  orientable directly: on the two components of $S^1-\{N,S\}$, the change of
+  coordinates is $y'=1/y$ with derivative $-1/y^2<0$, and changing the sign of one
+  coordinate makes both transition derivatives positive. The antipodal map
+  $A:S^n\to S^n$, $A(p)=-p$, is a diffeomorphism ($A^2=\mathrm{id}$); it reverses the
+  orientation of $S^n$ when $n$ is even and preserves it when $n$ is odd.
+\end{example}
+
+\begin{example}[special cases of Example 4.8]
+  \label{ex:dc-ch0-4-9}
+  \dcref{ch0:4.9}
+  \notready
+  \uses{ex:dc-ch0-4-8}
+  **4.9 (a) (the $k$-torus).** Let $G$ be the group of "integral" translations of
+  $\mathbb{R}^k$: for $(n_1,\dots,n_k)\in\mathbb{Z}^k$, the corresponding
+  translation sends $(x_1,\dots,x_k)$ to $(x_1+n_1,\dots,x_k+n_k)$.
+  This is a properly discontinuous action; $\mathbb{R}^k/G$ (with the structure of
+  \cref{ex:dc-ch0-4-8}) is the *$k$-torus $T^k$*. For $k=2$, $T^2$ is diffeomorphic to the
+  torus of revolution in $\mathbb{R}^3$, the inverse image of $0$ of
+  $f(x,y,z)=z^2+(\sqrt{x^2+y^2}-a)^2-r^2$.
+  \textbf{4.9 (b) (Klein bottle; Möbius band).} Let $S\subset\mathbb{R}^3$ be a regular
+  surface symmetric about $0$ (if $p\in S$ then $-p=A(p)\in S$). The group
+  $\{A,\mathrm{Id}\}$ acts properly discontinuously on $S$; $S/G$ carries the
+  structure of \cref{ex:dc-ch0-4-8}. When $S$ is the torus of revolution $T^2$, $S/G=K$ is
+  \emph{the Klein bottle}; when $S=C=\{(x,y,z); x^2+y^2=1,\,-1<z<1\}$ (a right circular
+  cylinder), $S/G$ is the \emph{Möbius band}. By Exercise 9 the Klein bottle and Möbius
+  band are non-orientable.
+\end{example}
+
+\begin{lemma}[fixed-cover characterization on an open connected component]
+  \label{lem:dc-ch0-5-6-component}
+  \dcref{ch0:5.6}
+  \uses{lem:dc-ch0-5-6-fixed-cover}
+  \lean{Riemannian.DCPartitionOfUnity_iff_manifoldAxioms_on_connectedComponent}
+  \leanok
+  Let $p\in M$ and suppose its connected component $C_p$ is open in $M$. For a locally finite
+  cover of $C_p$ by open Hausdorff $\sigma$-compact sets, a smooth partition of unity on $C_p$
+  subordinate to this fixed cover exists if and only if $C_p$ is Hausdorff and has a countable
+  basis. The cover and partition are genuinely component-local; no global countability or
+  cross-component assembly is asserted.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Regard $C_p$ as the open subspace of $M$. Connected components are preconnected, so this
+  subspace carries the connectedness instance required by
+  \cref{lem:dc-ch0-5-6-fixed-cover}; applying that characterization to the inherited manifold
+  structure gives the result.
+\end{proof}
+
+\begin{lemma}[fixed-cover partition-of-unity characterization]
+  \label{lem:dc-ch0-5-6-fixed-cover}
+  \dcref{ch0:5.6}
+  \lean{Riemannian.DCPartitionOfUnity_iff_manifoldAxioms}
+  \leanok
+  Let $M$ be a connected finite-dimensional manifold, charted over a second-countable model,
+  and let $\{V_i\}_{i\in\iota}$ be a locally finite cover by open Hausdorff $\sigma$-compact
+  sets. Then a smooth partition of unity subordinate to this fixed cover exists if and only if
+  $M$ is Hausdorff and has a countable basis.
+\end{lemma}
+\begin{proof}
+  \leanok
+  This is the connected fixed-cover form of the theorem: the forward implication obtains the
+  Hausdorff and second-countability axioms from the partition, while the reverse implication
+  applies the smooth subordinate-partition construction to the closed set $M$ itself.
+\end{proof}

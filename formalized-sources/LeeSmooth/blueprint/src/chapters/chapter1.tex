@@ -9,6 +9,7 @@
 \begin{definition}
 \label{def:1-extra-2}
 \lean{OpenPartialHomeomorph}
+
 \mathlibok
 A chart on a topological $n$-manifold $M$ is a pair $(U,\varphi)$, where
 $U\subseteq M$ is open and $\varphi:U\to\widehat U$ is a homeomorphism onto
@@ -27,6 +28,8 @@ defines the local coordinates $x^1,\ldots,x^n$ on $U$.
 \label{ex:1-3}
 \lean{graph_coordinates}
 \leanok
+
+
 \dcref{ch1:1.3}
 For an open set $U\subseteq\mathbb R^n$ and a continuous map
 $f:U\to\mathbb R^k$, let
@@ -45,6 +48,8 @@ of $\mathbb R^n$.
 \label{ex:1-5}
 \lean{real_projective_space_has_standard_chart}
 \leanok
+
+
 \dcref{ch1:1.5}
 Define $\mathbb{RP}^n$ as the set of one-dimensional subspaces of
 $\mathbb R^{n+1}$ with the quotient topology induced by
@@ -73,6 +78,8 @@ Hence $\mathbb{RP}^n$ is locally Euclidean of dimension $n$.
 \label{exer:1-6}
 \lean{realProjectiveSpace_chartDomain_isOpen}
 \leanok
+
+
 \dcref{ch1:1.6}
 $\mathbb{RP}^n$ is Hausdorff and second-countable, and hence is a topological
 $n$-manifold.
@@ -81,7 +88,8 @@ $n$-manifold.
 \begin{proposition}[Compactness of Projective Space]
 \label{exer:1-7}
 \lean{realProjectiveSpaceCompactSpace}
-\leanok
+
+
 \dcref{ch1:1.7}
 $\mathbb{RP}^n$ is compact; the restriction
 $\pi|_{\mathbb S^n}:\mathbb S^n\to\mathbb{RP}^n$ is surjective.
@@ -91,6 +99,8 @@ $\pi|_{\mathbb S^n}:\mathbb S^n\to\mathbb{RP}^n$ is surjective.
 \label{ex:1-8}
 \lean{isManifold_pi}
 \leanok
+
+
 \dcref{ch1:1.8}
 If $M_i$ is a topological manifold of dimension $n_i$ for $1\leq i\leq k$,
 then $M_1\times\cdots\times M_k$ is a topological manifold of dimension
@@ -107,6 +117,8 @@ U_1\times\cdots\times U_k\longrightarrow\mathbb R^{n_1+\cdots+n_k}.
 \label{ex:1-9}
 \lean{n_torus}
 \leanok
+
+
 \dcref{ch1:1.9}
 For $n\geq1$, the $n$-torus
 $\mathbb T^n=(\mathbb S^1)^n$ is a topological $n$-manifold.
@@ -115,6 +127,7 @@ $\mathbb T^n=(\mathbb S^1)^n$ is a topological $n$-manifold.
 \begin{definition}
 \label{def:1-extra-3}
 \lean{LocPathConnectedSpace}
+
 \mathlibok
 A topological space $X$ is connected if it is not the union of two disjoint
 nonempty open sets, path-connected if every two points are joined by a path,
@@ -124,6 +137,7 @@ and locally path-connected if it has a basis of path-connected open sets.
 \begin{definition}
 \label{def:1-extra-4}
 \lean{TopologicalSpace.IsOpenCover}
+
 \mathlibok
 A family $\mathcal X$ of subsets of a topological space $M$ is locally finite
 if every point has a neighborhood meeting only finitely many members of
@@ -135,6 +149,7 @@ paracompact if every open cover has an open locally finite refinement.
 \begin{lemma}
 \label{lem:1-13}
 \lean{LocallyFinite.closure_iUnion}
+
 \mathlibok
 \dcref{ch1:1.13}
 Let $\mathcal X$ be a locally finite family of subsets of a topological space
@@ -152,6 +167,7 @@ $M$. Then $\{\overline X:X\in\mathcal X\}$ is locally finite and
 \begin{definition}
 \label{def:1-2-extra-1}
 \lean{Diffeomorph.toHomeomorph}
+
 \mathlibok
 For open sets $U\subseteq\mathbb R^n$ and $V\subseteq\mathbb R^m$, a map
 $F:U\to V$ is smooth if all component functions have continuous partial
@@ -162,6 +178,7 @@ diffeomorphism, and every diffeomorphism is a homeomorphism.
 \begin{definition}
 \label{def:1-2-extra-2}
 \lean{e.symm}
+
 \mathlibok
 For charts $(U,\varphi)$ and $(V,\psi)$ on a topological $n$-manifold, the
 transition map on a nonempty overlap is
@@ -176,6 +193,8 @@ diffeomorphism between the indicated open subsets of $\mathbb R^n$.
 \label{def:1-2-extra-3}
 \lean{OpenPartialHomeomorph.IsSmoothAtlas}
 \leanok
+
+
 An atlas on $M$ is a family of charts whose domains cover $M$. It is smooth
 when every pair of its charts is smoothly compatible.
 \end{definition}
@@ -183,6 +202,7 @@ when every pair of its charts is smoothly compatible.
 \begin{definition}
 \label{def:1-2-extra-4}
 \lean{StructureGroupoid.maximalAtlas}
+
 \mathlibok
 A smooth atlas $\mathcal A$ is maximal if it is not properly contained in
 another smooth atlas; equivalently, every chart smoothly compatible with all
@@ -193,6 +213,8 @@ charts in $\mathcal A$ already belongs to $\mathcal A$.
 \label{def:1-2-extra-5}
 \lean{smooth_manifold_smooth_structure}
 \leanok
+
+
 A smooth structure on a topological manifold is a maximal smooth atlas. A
 smooth manifold is a topological manifold equipped with a smooth structure.
 A smooth manifold structure consists of both the manifold topology and the
@@ -203,6 +225,8 @@ smooth structure.
 \label{prop:1-17}
 \lean{same_smooth_structure_iff_union_is_smooth_atlas}
 \leanok
+
+
 \dcref{ch1:1.17}
 Let $M$ be a topological manifold.
 \begin{enumerate}
@@ -234,6 +258,7 @@ inside one maximal atlas have a smooth union.
 \begin{remark}
 \label{rem:1-2-extra-6}
 \lean{IsManifold}
+
 \mathlibok
 Requiring every transition map and its inverse to be $C^k$ gives a $C^k$
 structure; $C^0$ structures are topological manifold structures. Requiring
@@ -250,6 +275,8 @@ complex manifold structure.
 \label{def:1-3-extra-1}
 \lean{IsRegularCoordinateBall}
 \leanok
+
+
 A chart in the maximal smooth atlas is a smooth chart; its domain is a smooth
 coordinate domain. Smooth coordinate balls and cubes have Euclidean balls and
 cubes as their respective coordinate images. A subset $B\subseteq M$ is a
@@ -267,6 +294,8 @@ $0<r<r'$ such that
 \label{prop:1-19}
 \lean{exists_countable_regular_coordinate_ball_basis}
 \leanok
+
+
 \dcref{ch1:1.19}
 Every smooth manifold has a countable basis of regular coordinate balls.
 \end{proposition}
@@ -275,6 +304,7 @@ Every smooth manifold has a countable basis of regular coordinate balls.
 \begin{notation}
 \label{not:1-3-extra-2}
 \lean{extChartAt}
+
 \mathlibok
 In a chart $(U,\varphi)$ with coordinate functions $(x^1,\ldots,x^n)$, the
 local coordinate representation of $p\in U$ is
@@ -287,6 +317,8 @@ $p=(x^1,\ldots,x^n)$ in these coordinates.
 \label{ex:1-22}
 \lean{euclideanSpace_standard_smooth_structure}
 \leanok
+
+
 \dcref{ch1:1.22}
 The standard smooth structure on $\mathbb R^n$ is determined by
 $(\mathbb R^n,\operatorname{Id}_{\mathbb R^n})$. Its smooth charts are exactly
@@ -298,7 +330,8 @@ another is specified.
 \begin{example}[Another Smooth Structure on $\mathbb{R}$]
 \label{ex:1-23}
 \lean{cubicChart_not_mem_standard_smooth_maximalAtlas}
-\leanok
+
+
 \dcref{ch1:1.23}
 The homeomorphism
 \[
@@ -315,6 +348,8 @@ one smooth structure admits uncountably many distinct smooth structures.
 \label{ex:1-24}
 \lean{basis_coordinate_change_contDiff}
 \leanok
+
+
 \dcref{ch1:1.24}
 Let $V$ be an $n$-dimensional real vector space with its norm-independent
 topology. An ordered basis $(E_1,\ldots,E_n)$ defines
@@ -334,6 +369,7 @@ smooth structure on $V$.
 \begin{notation}
 \label{not:1-4-extra-1}
 \lean{Basis.sum_repr}
+
 \mathlibok
 The Einstein convention interprets an index occurring exactly twice in a
 monomial, once upstairs and once downstairs, as summed over its full range;
@@ -347,6 +383,7 @@ standard symplectic form on $\mathbb R^{2n}$, are written explicitly.
 \begin{example}[The General Linear Group]
 \label{ex:1-27}
 \lean{Units.isOpenEmbedding_val}
+
 \mathlibok
 \dcref{ch1:1.27}
 The group $\operatorname{GL}(n,\mathbb R)$ is the nonvanishing locus of the
@@ -359,6 +396,8 @@ $n^2$.
 \label{ex:1-28}
 \lean{fullRankRange_iff_natLeRank}
 \leanok
+
+
 \dcref{ch1:1.28}
 If $m<n$, the rank-$m$ matrices in
 $\operatorname M(m\times n,\mathbb R)$ form an open set: at each such matrix,
@@ -370,8 +409,11 @@ matrices when $n<m$.
 \begin{example}[Graphs of Smooth Functions]
 \label{ex:1-30}
 \lean{graph_smooth_structure}
-\leanok
 \uses{ex:1-3}
+\leanok
+
+
+
 \dcref{ch1:1.30}
 If $U\subseteq\mathbb R^n$ is open and $f:U\to\mathbb R^k$ is smooth, the
 graph $\Gamma(f)$ has the canonical smooth structure determined by the global
@@ -381,8 +423,11 @@ graph-coordinate chart $\pi_1|_{\Gamma(f)}:\Gamma(f)\to U$.
 \begin{example}[Projective Spaces]
 \label{ex:1-33}
 \lean{realProjectiveChartTransitionDiffeomorph}
-\leanok
 \uses{ex:1-5}
+\leanok
+
+
+
 \dcref{ch1:1.33}
 The charts $(U_i,\varphi_i)$ on $\mathbb{RP}^n$ are smoothly compatible. For
 $i>j$, their transition is
@@ -399,6 +444,8 @@ a diffeomorphism between the corresponding overlap images.
 \label{prob:1-8}
 \lean{IsAngleFunction}
 \leanok
+
+
 For an open set $U\subseteq\mathbb S^1\subseteq\mathbb C$, an
 \emph{angle function} is a continuous map $\theta:U\to\mathbb R$ satisfying
 $e^{i\theta(z)}=z$. Such a function exists if and only if
@@ -410,6 +457,8 @@ standard smooth structure on $\mathbb S^1$.
 \label{lem:1-35}
 \lean{ChartedSpaceCore.eq_toTopologicalSpace_of_chartedSpace}
 \leanok
+
+
 \dcref{ch1:1.35}
 Let $M$ be a set with subsets $U_\alpha$ and maps
 $\varphi_\alpha:U_\alpha\to\mathbb R^n$ satisfying:
@@ -446,8 +495,11 @@ and maximal smooth atlas are forced by the given charts, proving uniqueness.
 \begin{example}[Grassmann Manifolds]
 \label{ex:1-36}
 \lean{grassmannian.chart_equiv}
+\uses{ex:1-28, lem:1-35}
 \leanok
-\uses{ex:1-28,lem:1-35}
+
+
+
 \dcref{ch1:1.36}
 Let $V$ be an $n$-dimensional real vector space and $0\leq k\leq n$. The set
 $\operatorname G_k(V)$ of $k$-dimensional subspaces has a natural smooth
@@ -489,6 +541,8 @@ lemma therefore gives the asserted smooth manifold structure.
 \label{def:1-5-extra-1}
 \lean{TopologicalManifoldWithBoundary}
 \leanok
+
+
 The closed upper half-space is
 \[
 \mathbb H^n=\{(x^1,\ldots,x^n)\in\mathbb R^n:x^n\geq0\}.
@@ -521,6 +575,7 @@ interior chart after restriction.
 \begin{theorem}[Topological Invariance of the Boundary]
 \label{thm:1-37}
 \lean{ModelWithCorners.disjoint_interior_boundary}
+
 \mathlibok
 \dcref{ch1:1.37}
 If $M$ is a topological manifold with boundary, then every point lies in
@@ -535,6 +590,8 @@ disjoint and cover $M$.
 \label{def:1-6-extra-2}
 \lean{SmoothManifoldWithBoundary}
 \leanok
+
+
 A smooth structure on a topological manifold with boundary is a maximal atlas
 whose transition maps and inverses are smooth. A manifold with boundary
 equipped with such a structure is a smooth manifold with boundary. Every
@@ -545,6 +602,8 @@ smooth manifold is a smooth manifold with empty boundary.
 \label{def:1-6-extra-3}
 \lean{IsRegularCoordinateHalfBall}
 \leanok
+
+
 A chart in the maximal atlas of a smooth manifold with boundary is smooth.
 A smooth coordinate ball or half-ball is a smooth chart domain whose image is,
 respectively, a Euclidean ball or a set $B_r(x)\cap\mathbb H^n$ with
@@ -564,6 +623,8 @@ $0<r<r'$ such that
 \label{exer:1-44}
 \lean{manifoldInterior_boundaryless}
 \leanok
+
+
 \dcref{ch1:1.44}
 Let $M$ be a smooth $n$-manifold with boundary and let $U\subseteq M$ be open.
 Then:
@@ -580,6 +641,7 @@ boundary.
 \begin{proposition}
 \label{prop:1-45}
 \lean{ModelWithCorners.boundary_of_boundaryless_left}
+
 \mathlibok
 \dcref{ch1:1.45}
 If $M_1,\ldots,M_k$ are smooth manifolds and $N$ is a smooth manifold with
@@ -595,6 +657,8 @@ boundary and
 \label{thm:1-46}
 \lean{smooth_boundary_chart_frontier_independence}
 \leanok
+
+
 \dcref{ch1:1.46}
 Let $M$ be a smooth manifold with boundary and $p\in M$. If one smooth chart
 maps $p$ to $\partial\mathbb H^n$, then every smooth chart containing $p$ does
@@ -616,3 +680,33 @@ Thus $D\tau$ is nonsingular on $B$, and the inverse function theorem implies
 that $\tau(B)$ is open in $\mathbb R^n$. But $\tau(B)$ contains $y_0$ and lies
 in $\mathbb H^n$, contradicting $y_0\in\partial\mathbb H^n$.
 \end{proof}
+
+\begin{exercise}
+\label{exer:1-14}
+\lean{LocallyFinite.closure_iUnion}
+\mathlibok
+\uses{lem:1-13}
+\dcref{ch1:1.14}
+\begin{itemize}
+\item Exercise 1.14. Prove the preceding lemma.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+\label{exer:1-18}
+\lean{same_smooth_structure_iff_union_is_smooth_atlas}
+\leanok
+\uses{prop:1-17}
+\dcref{ch1:1.18}
+\begin{itemize}
+\item Exercise 1.18. Prove Proposition 1.17(b).
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+\label{exer:1-20}
+\lean{exists_countable_regular_coordinate_ball_basis}
+\leanok
+\dcref{ch1:1.20}
+Prove Proposition 1.19.
+\end{exercise}

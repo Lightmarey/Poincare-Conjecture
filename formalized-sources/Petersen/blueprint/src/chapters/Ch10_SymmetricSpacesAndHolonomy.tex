@@ -15,6 +15,7 @@ noncompact families.
 \begin{definition}[symmetric space]
   \label{def:pet-ch10-symmetric-space}
   \lean{PetersenLib.IsSymmetricSpace}
+  \source{petersen:page-0379}
   A Riemannian manifold $(M,g)$ is \emph{symmetric} if every $p\in M$ admits
   $A_p\in\mathrm{Iso}_p$ with $D_pA_p=-I$. This \emph{point symmetry} reverses
   each geodesic through $p$:
@@ -24,6 +25,7 @@ noncompact families.
 \begin{proposition}[symmetric spaces are homogeneous, hence complete]
   \label{prop:pet-ch10-symmetric-homogeneous}
   \lean{PetersenLib.symmetricSpace_isHomogeneous}
+  \source{petersen:page-0379}
   \uses{def:pet-ch10-symmetric-space}
   A symmetric space is homogeneous, and consequently complete.
 \end{proposition}
@@ -40,6 +42,7 @@ noncompact families.
 \begin{remark}[a symmetry at one point suffices; biinvariant Lie groups]
   \label{rem:pet-ch10-single-point-symmetry}
   \lean{PetersenLib.symmetricSpace_of_symmetry_at_one_point,PetersenLib.biinvariantLieGroupSymmetricSpace}
+  \source{petersen:page-0379}
   \uses{def:pet-ch10-symmetric-space}
   On a homogeneous space, one point symmetry determines all others: if
   $q=h\cdot p$, then $A_q=hA_ph^{-1}$. Consequently every Lie group with a
@@ -50,6 +53,7 @@ noncompact families.
 \begin{definition}[classical symmetric-space families]
   \label{def:pet-ch10-symmetric-space-tables}
   \lean{PetersenLib.symmetricSpaceTables}
+  \source{petersen:page-0379,petersen:page-0380}
   \uses{rem:pet-ch10-single-point-symmetry}
   The following compact symmetric spaces and their noncompact duals have the
   indicated ranks and dimensions.
@@ -112,6 +116,7 @@ noncompact families.
 \begin{definition}[rank of a geodesic and of a Riemannian manifold; CROSSes]
   \label{def:pet-ch10-rank}
   \lean{PetersenLib.geodesicRank,PetersenLib.manifoldRank}
+  \source{petersen:page-0381}
   For a geodesic $c:\mathbb R\to M$, its \emph{rank} is the dimension of
   \[
     \{E:E\text{ is parallel along }c,
@@ -137,15 +142,17 @@ Thus $\nabla R=0$ there and, by
 \begin{definition}[locally symmetric space]
   \label{def:pet-ch10-locally-symmetric-space}
   \lean{PetersenLib.IsLocallySymmetric}
+  \source{petersen:page-0382}
   A Riemannian manifold is \emph{locally symmetric} when its curvature tensor
   is parallel, $\nabla R=0$.
 \end{definition}
 
 \begin{theorem}[local symmetries from parallel curvature]
   \label{thm:pet-ch10-cartan-local-symmetry}
-  \dcref{ch10:10.1.1}
   \lean{PetersenLib.cartanLocalSymmetryExistence}
-  \uses{def:pet-ch10-locally-symmetric-space,def:pet-ch10-symmetric-space}
+  \source{petersen:page-0381,petersen:page-0382}
+  \uses{def:pet-ch10-locally-symmetric-space, def:pet-ch10-symmetric-space}
+  \dcref{ch10:10.1.1}
   Every $p$ in a locally symmetric manifold has a neighborhood on which an
   isometry $A_p$ satisfies $D_pA_p=-I$. If the manifold is also simply
   connected and complete, $A_p$ extends globally and the manifold is
@@ -167,6 +174,7 @@ Thus $\nabla R=0$ there and, by
 \begin{remark}[left-invariant metrics need not be locally symmetric]
   \label{rem:pet-ch10-non-locally-symmetric-examples}
   \lean{PetersenLib.bergerSphereNotLocallySymmetric,PetersenLib.heisenbergNotLocallySymmetric}
+  \source{petersen:page-0382}
   \uses{def:pet-ch10-locally-symmetric-space}
   For $\varepsilon\ne1$, Berger spheres and the Heisenberg group with their
   standard left-invariant metrics have neither parallel curvature nor, in
@@ -175,9 +183,10 @@ Thus $\nabla R=0$ there and, by
 
 \begin{theorem}[extending a curvature-preserving linear isometry]
   \label{thm:pet-ch10-cartan-isometry-extension}
-  \dcref{ch10:10.1.2}
   \lean{PetersenLib.cartanIsometryExtension}
-  \uses{def:pet-ch10-symmetric-space,def:pet-ch10-locally-symmetric-space}
+  \source{petersen:page-0382}
+  \uses{def:pet-ch10-symmetric-space, def:pet-ch10-locally-symmetric-space}
+  \dcref{ch10:10.1.2}
   Let $(M,g)$ be simply connected and symmetric, and let $(N,\bar g)$ be a
   complete locally symmetric space of the same dimension. For $p\in M$ and
   $q\in N$, suppose the linear isometry $L:T_pM\to T_qN$ satisfies
@@ -213,8 +222,9 @@ $\mathrm{iso}_p=\{X\in\mathrm{iso}:X_p=0\}$, and define
 
 \begin{proposition}[the involution $\sigma_p$ on $\mathrm{iso}$]
   \label{prop:pet-ch10-sigma-p-involution}
-  \dcref{ch10:10.1.3}
   \lean{PetersenLib.sigmaPInvolution}
+  \source{petersen:page-0383,petersen:page-0384}
+  \dcref{ch10:10.1.3}
   The map $\sigma_p=(A_p)_*$ is an involution of $\mathrm{iso}$: $\sigma_p^2=\mathrm{id}$.
   Its $1$-eigenspace is $\mathrm{iso}_p$, and its $(-1)$-eigenspace is
   $\{X\in\mathrm{iso}\mid(\nabla X)|_p=0\}$.
@@ -243,6 +253,7 @@ $T_pM$.
 \begin{definition}[the subspaces $t_p$ and $s_p$]
   \label{def:pet-ch10-tp-decomposition}
   \lean{PetersenLib.tpSubspace,PetersenLib.spSubspace}
+  \source{petersen:page-0384}
   \uses{prop:pet-ch10-sigma-p-involution}
   Let $t_p$ be the $(-1)$-eigenspace of $\sigma_p$. Then
   \cref{prop:pet-ch10-sigma-p-involution} gives
@@ -260,9 +271,10 @@ $T_pM$.
 
 \begin{proposition}[the bracket of $\mathrm{iso}$ from the curvature]
   \label{prop:pet-ch10-lie-bracket-curvature}
-  \dcref{ch10:10.1.4}
   \lean{PetersenLib.symmetricSpaceLieBracketCurvature}
+  \source{petersen:page-0384,petersen:page-0385}
   \uses{def:pet-ch10-tp-decomposition}
+  \dcref{ch10:10.1.4}
   Under \cref{def:pet-ch10-tp-decomposition}, the bracket is determined by
   $R_p$:
   \begin{enumerate}
@@ -289,6 +301,7 @@ $T_pM$.
 \begin{definition}[adjoint action and Killing form]
   \label{def:pet-ch10-killing-form}
   \lean{PetersenLib.adjointAction,PetersenLib.killingForm}
+  \source{petersen:page-0385}
   For a finite-dimensional Lie algebra $\mathfrak g$, define
   \[
     \mathrm{ad}_X(Y)=[X,Y],\qquad
@@ -300,9 +313,10 @@ $T_pM$.
 
 \begin{remark}[$\mathrm{ad}_S$ is skew and $B\le0$ on $s_p$]
   \label{rem:pet-ch10-adjoint-skew-symmetric}
-  \dcref{ch10:10.1.5}
   \lean{PetersenLib.adjointOnSpNegativeSemidefinite}
-  \uses{prop:pet-ch10-lie-bracket-curvature,def:pet-ch10-killing-form}
+  \source{petersen:page-0385}
+  \uses{prop:pet-ch10-lie-bracket-curvature, def:pet-ch10-killing-form}
+  \dcref{ch10:10.1.5}
   Give $T_pM\oplus s_p$ the orthogonal-sum metric, using
   $\langle S_1,S_2\rangle=-\operatorname{tr}(S_1S_2)$ on $s_p$. For $S\in s_p$,
   $\mathrm{ad}_S$ is skew-adjoint. Consequently
@@ -322,9 +336,10 @@ $T_pM$.
 
 \begin{theorem}[curvature from the bracket]
   \label{thm:pet-ch10-curvature-bracket-formula}
-  \dcref{ch10:10.1.6}
   \lean{PetersenLib.curvatureFromBracket,PetersenLib.ricciFromKillingForm}
-  \uses{prop:pet-ch10-lie-bracket-curvature,def:pet-ch10-killing-form}
+  \source{petersen:page-0385,petersen:page-0386,petersen:page-0387}
+  \uses{prop:pet-ch10-lie-bracket-curvature, def:pet-ch10-killing-form}
+  \dcref{ch10:10.1.6}
   If $X,Y,Z\in t_p$, then at $p$, $R(X,Y)Z=[Z,[X,Y]]$; equivalently, under
   $\mathrm{iso}\simeq T_pM\oplus s_p$,
   \[
@@ -366,6 +381,7 @@ $T_pM$.
 \begin{definition}[the abstract bracket on $T_pM\oplus\mathfrak{so}(T_pM)$]
   \label{def:pet-ch10-abstract-symmetric-bracket}
   \lean{PetersenLib.abstractSymmetricSpaceBracket}
+  \source{petersen:page-0387}
   \uses{thm:pet-ch10-curvature-bracket-formula}
   For any Riemannian manifold and $p\in M$, put
   $\mathfrak N_p=T_pM\oplus\mathfrak{so}(T_pM)$ and define
@@ -391,9 +407,10 @@ $T_pM$.
 
 \begin{corollary}[membership criterion for $s_p$]
   \label{cor:pet-ch10-so-membership-criterion}
-  \dcref{ch10:10.1.7}
   \lean{PetersenLib.spMembershipCriterion}
+  \source{petersen:page-0388}
   \uses{def:pet-ch10-tp-decomposition}
+  \dcref{ch10:10.1.7}
   Let $(M,g)$ be a simply connected symmetric space. Then $S\in\mathfrak{so}(T_pM)$
   lies in $s_p$ if and only if, for all $X,Y\in T_pM$,
   \[
@@ -417,9 +434,10 @@ $T_pM$.
 
 \begin{corollary}[$T_pM\oplus s_p$ is the maximal Lie subalgebra]
   \label{cor:pet-ch10-maximal-subalgebra}
-  \dcref{ch10:10.1.8}
   \lean{PetersenLib.tpSpMaximalSubalgebra}
-  \uses{def:pet-ch10-abstract-symmetric-bracket,cor:pet-ch10-so-membership-criterion}
+  \source{petersen:page-0388}
+  \uses{def:pet-ch10-abstract-symmetric-bracket, cor:pet-ch10-so-membership-criterion}
+  \dcref{ch10:10.1.8}
   Let $\mathfrak r_p\subset s_p$ be the Lie algebra generated by the curvature
   endomorphisms $R_{X,Y}$, $X,Y\in T_pM$. For a simply connected symmetric
   space, the bracket in
@@ -454,6 +472,7 @@ $T_pM$.
 \begin{remark}[reconstructing symmetric spaces from an involutive Lie algebra]
   \label{rem:pet-ch10-symmetric-space-from-involution}
   \lean{PetersenLib.symmetricSpaceFromInvolutiveLieAlgebra}
+  \source{petersen:page-0388,petersen:page-0389}
   \uses{cor:pet-ch10-maximal-subalgebra}
   Let $\sigma$ be an involution of a Lie algebra $\mathfrak g$, with
   $\mathfrak g=\mathfrak t\oplus\mathfrak k$ its $(-1)$- and $1$-eigenspaces.
@@ -495,9 +514,10 @@ $B\in O(l)$.
 
 \begin{example}[the compact Grassmannian]
   \label{ex:pet-ch10-compact-grassmannian}
-  \dcref{ch10:10.2.1}
   \lean{PetersenLib.compactGrassmannianSymmetricSpace}
-  \uses{def:pet-ch10-tp-decomposition,def:pet-ch10-killing-form,thm:pet-ch10-curvature-bracket-formula,cor:pet-ch10-maximal-subalgebra}
+  \source{petersen:page-0390,petersen:page-0391,petersen:page-0392}
+  \uses{def:pet-ch10-tp-decomposition, def:pet-ch10-killing-form, thm:pet-ch10-curvature-bracket-formula, cor:pet-ch10-maximal-subalgebra}
+  \dcref{ch10:10.2.1}
   Let $k,l\ge1$, $k+l\ge3$, and let
   $M=\widetilde G_k(\mathbb R^{k+l})$ be the oriented Grassmannian based at
   $p=\mathbb R^k$. Then
@@ -545,9 +565,10 @@ $B\in O(l)$.
 
 \begin{example}[the hyperbolic Grassmannian]
   \label{ex:pet-ch10-hyperbolic-grassmannian}
-  \dcref{ch10:10.2.2}
   \lean{PetersenLib.hyperbolicGrassmannianSymmetricSpace}
+  \source{petersen:page-0392,petersen:page-0393}
   \uses{ex:pet-ch10-compact-grassmannian}
+  \dcref{ch10:10.2.2}
   On $\mathbb R^{k,l}$ use
   $v^\top I_{k,l}w=\sum_{i\le k}v_iw_i-\sum_{i>k}v_iw_i$. Then
   \[
@@ -590,9 +611,10 @@ $B\in O(l)$.
 
 \begin{example}[complex projective space as a symmetric space]
   \label{ex:pet-ch10-complex-projective-space}
-  \dcref{ch10:10.2.3}
   \lean{PetersenLib.complexProjectiveSpaceSymmetricSpace}
-  \uses{def:pet-ch10-tp-decomposition,thm:pet-ch10-curvature-bracket-formula}
+  \source{petersen:page-0393,petersen:page-0394,petersen:page-0395}
+  \uses{def:pet-ch10-tp-decomposition, thm:pet-ch10-curvature-bracket-formula}
+  \dcref{ch10:10.2.3}
   For the first coordinate line $p\in\mathbb{CP}^n$,
   \[
     \mathbb{CP}^n
@@ -639,9 +661,10 @@ $B\in O(l)$.
 
 \begin{example}[$\mathrm{SL}(n)/\mathrm{SO}(n)$]
   \label{ex:pet-ch10-sl-so-quotient}
-  \dcref{ch10:10.2.4}
   \lean{PetersenLib.slSoSymmetricSpace}
-  \uses{def:pet-ch10-tp-decomposition,thm:pet-ch10-curvature-bracket-formula}
+  \source{petersen:page-0395,petersen:page-0396}
+  \uses{def:pet-ch10-tp-decomposition, thm:pet-ch10-curvature-bracket-formula}
+  \dcref{ch10:10.2.4}
   Decompose $\mathfrak{sl}(n)=\mathfrak t\oplus\mathfrak{so}(n)$ into symmetric
   traceless and skew-symmetric matrices. The involution
   $\sigma(X)=-X^\top$ negates $\mathfrak t$ and fixes $\mathfrak{so}(n)$. On
@@ -671,9 +694,10 @@ $B\in O(l)$.
 
 \begin{example}[Lie groups as symmetric spaces]
   \label{ex:pet-ch10-lie-group-symmetric}
-  \dcref{ch10:10.2.5}
   \lean{PetersenLib.compactLieGroupSymmetricSpace,PetersenLib.noncompactDualSymmetricSpace}
-  \uses{rem:pet-ch10-symmetric-space-from-involution,def:pet-ch10-killing-form,thm:pet-ch10-curvature-bracket-formula}
+  \source{petersen:page-0389,petersen:page-0396}
+  \uses{rem:pet-ch10-symmetric-space-from-involution, def:pet-ch10-killing-form, thm:pet-ch10-curvature-bracket-formula}
+  \dcref{ch10:10.2.5}
   Let $G$ be compact with a biinvariant metric and centerless Lie algebra
   $\mathfrak g$. Then $B$ is negative definite and $g=-B$ is biinvariant. The
   swap involution on $\mathfrak g\oplus\mathfrak g$ has eigenspaces
@@ -719,6 +743,7 @@ $B\in O(l)$.
 \begin{definition}[holonomy group and restricted holonomy group]
   \label{def:pet-ch10-holonomy-group}
   \lean{PetersenLib.HolonomyGroup,PetersenLib.RestrictedHolonomyGroup}
+  \source{petersen:page-0396,petersen:page-0397}
   Let $P_{c(a)}^{c(b)}$ denote parallel translation along a piecewise smooth
   curve $c:[a,b]\to M$. For fixed $p\in M$, the maps $P_p^p$ arising from loops
   based at $p$ form the holonomy group
@@ -731,6 +756,7 @@ $B\in O(l)$.
 \begin{remark}[elementary properties of the holonomy group]
   \label{rem:pet-ch10-holonomy-properties}
   \lean{PetersenLib.holonomyEuclidean,PetersenLib.holonomySphere,PetersenLib.holonomyHyperbolicSpace,PetersenLib.holonomyOrientability,PetersenLib.holonomyUniversalCover,PetersenLib.holonomyProduct,PetersenLib.holonomyConjugate,PetersenLib.holonomyInvariantTensor}
+  \source{petersen:page-0397}
   \uses{def:pet-ch10-holonomy-group}
   \begin{enumerate}
     \item[(a)] $\mathrm{Hol}_p(\mathbb R^n)=\{I\}$.
@@ -756,9 +782,10 @@ product decomposition of holonomy.
 
 \begin{theorem}[de Rham decomposition]
   \label{thm:pet-ch10-de-rham-decomposition}
-  \dcref{ch10:10.3.1}
   \lean{PetersenLib.deRhamDecomposition}
+  \source{petersen:page-0397,petersen:page-0398}
   \uses{rem:pet-ch10-holonomy-properties}
+  \dcref{ch10:10.3.1}
   Let $(M,g)$ be a Riemannian manifold and $TM=\eta_1\oplus\cdots\oplus\eta_k$
   the decomposition of the tangent bundle into irreducible components for the
   restricted holonomy. Around each $p\in M$ there is a neighborhood $U$ with a
@@ -791,9 +818,10 @@ questions to this case.
 
 \begin{theorem}[parallel tensors on irreducible manifolds]
   \label{thm:pet-ch10-parallel-tensor-eigenvalue}
-  \dcref{ch10:10.3.2}
   \lean{PetersenLib.parallelTensorSingleEigenvalue}
+  \source{petersen:page-0399}
   \uses{thm:pet-ch10-de-rham-decomposition}
+  \dcref{ch10:10.3.2}
   Let $(M,g)$ be an irreducible Riemannian manifold with a parallel $(1,1)$-tensor
   $T$. Then the symmetric part $S=\tfrac12(T+T^*)$ and skew-symmetric part
   $A=\tfrac12(T-T^*)$ each have exactly one (complex) eigenvalue. If $A\ne0$, it
@@ -817,9 +845,10 @@ questions to this case.
 
 \begin{corollary}[irreducible symmetric spaces are Einstein]
   \label{cor:pet-ch10-irreducible-symmetric-einstein}
-  \dcref{ch10:10.3.3}
   \lean{PetersenLib.irreducibleSymmetricSpaceEinstein}
+  \source{petersen:page-0399}
   \uses{thm:pet-ch10-parallel-tensor-eigenvalue}
+  \dcref{ch10:10.3.3}
   A simply connected irreducible symmetric space is an Einstein manifold; in
   particular its curvature operator is nonnegative or nonpositive according to
   the sign of the Einstein constant.
@@ -828,6 +857,7 @@ questions to this case.
 \begin{remark}[compact, flat, and noncompact type]
   \label{rem:pet-ch10-compact-flat-noncompact-type}
   \lean{PetersenLib.symmetricSpaceCompactFlatNoncompactType}
+  \source{petersen:page-0399,petersen:page-0400}
   \uses{cor:pet-ch10-irreducible-symmetric-einstein}
   For an irreducible symmetric space, \cref{cor:pet-ch10-irreducible-symmetric-einstein}
   gives an Einstein constant, and three cases occur. \emph{Compact type}: if the
@@ -841,7 +871,8 @@ questions to this case.
 \begin{definition}[Types I--IV of irreducible symmetric spaces]
   \label{def:pet-ch10-symmetric-space-type-I-IV}
   \lean{PetersenLib.symmetricSpaceTypeI,PetersenLib.symmetricSpaceTypeII,PetersenLib.symmetricSpaceTypeIII,PetersenLib.symmetricSpaceTypeIV}
-  \uses{rem:pet-ch10-compact-flat-noncompact-type,rem:pet-ch10-symmetric-space-from-involution}
+  \source{petersen:page-0400}
+  \uses{rem:pet-ch10-compact-flat-noncompact-type, rem:pet-ch10-symmetric-space-from-involution}
   Irreducible symmetric spaces of compact and noncompact type occur in dual
   pairs described by Lie algebra pairs $(\mathfrak g,\mathfrak t_p)$ with an
   involution having $1$-eigenspace $\mathfrak k$ (the Lie algebra of a compact
@@ -877,6 +908,7 @@ questions to this case.
 \begin{definition}[Berger's list of irreducible holonomy groups]
   \label{def:pet-ch10-berger-holonomy-table}
   \lean{PetersenLib.bergerHolonomyList}
+  \source{petersen:page-0401}
   For a simply connected irreducible Riemannian $n$-manifold whose holonomy
   acts transitively on the unit sphere of $T_pM$, the possible holonomy groups
   $\mathrm{Hol}_p$, and the resulting geometric structure, are:
@@ -897,9 +929,10 @@ questions to this case.
 
 \begin{theorem}[holonomy classification alternative]
   \label{thm:pet-ch10-berger-simons-classification}
-  \dcref{ch10:10.3.4}
   \lean{PetersenLib.bergerSimonsClassification}
-  \uses{def:pet-ch10-berger-holonomy-table,def:pet-ch10-rank}
+  \source{petersen:page-0401}
+  \uses{def:pet-ch10-berger-holonomy-table, def:pet-ch10-rank}
+  \dcref{ch10:10.3.4}
   Let $(M,g)$ be a simply connected irreducible Riemannian $n$-manifold. Then
   $\mathrm{Hol}_p$ either acts transitively on the unit sphere of $T_pM$, in
   which case $\mathrm{Hol}_p$ is one of the groups of
@@ -909,9 +942,10 @@ questions to this case.
 
 \begin{corollary}[nontransitive holonomy forces reducibility or rank $\ge2$]
   \label{cor:pet-ch10-nontransitive-holonomy}
-  \dcref{ch10:10.3.5}
   \lean{PetersenLib.nontransitiveHolonomyReducibleOrSymmetric}
+  \source{petersen:page-0402}
   \uses{thm:pet-ch10-berger-simons-classification}
+  \dcref{ch10:10.3.5}
   If a Riemannian manifold's holonomy does not act transitively on the unit
   sphere, then it is either reducible or a locally symmetric space of rank
   $\ge2$; in particular its rank is $\ge2$.
@@ -919,9 +953,10 @@ questions to this case.
 
 \begin{theorem}[rank rigidity in nonpositive curvature]
   \label{thm:pet-ch10-rank-rigidity-nonpositive}
-  \dcref{ch10:10.3.6}
   \lean{PetersenLib.rankRigidityNonpositiveCurvature}
+  \source{petersen:page-0402}
   \uses{cor:pet-ch10-nontransitive-holonomy}
+  \dcref{ch10:10.3.6}
   A compact Riemannian manifold of nonpositive curvature and rank $\ge2$ does
   not have transitive holonomy; in particular it is either reducible or locally
   symmetric.
@@ -929,9 +964,10 @@ questions to this case.
 
 \begin{theorem}[classification under nonnegative curvature operator]
   \label{thm:pet-ch10-gallot-meyer}
-  \dcref{ch10:10.3.7}
   \lean{PetersenLib.gallotMeyerNonnegativeCurvatureOperator}
-  \uses{thm:pet-ch10-berger-simons-classification,thm:pet-ch10-parallel-tensor-eigenvalue,thm:pet-ch10-de-rham-decomposition}
+  \source{petersen:page-0402,petersen:page-0403}
+  \uses{thm:pet-ch10-berger-simons-classification, thm:pet-ch10-parallel-tensor-eigenvalue, thm:pet-ch10-de-rham-decomposition}
+  \dcref{ch10:10.3.7}
   Let $(M,g)$ be a compact Riemannian $n$-manifold with nonnegative curvature
   operator. Then one of:
   \begin{enumerate}
@@ -969,9 +1005,10 @@ questions to this case.
 
 \begin{theorem}[classification under nonnegative complex sectional curvature]
   \label{thm:pet-ch10-brendle-schoen}
-  \dcref{ch10:10.3.8}
   \lean{PetersenLib.brendleSchoenNonnegativeComplexSectionalCurvature}
+  \source{petersen:page-0404}
   \uses{thm:pet-ch10-gallot-meyer}
+  \dcref{ch10:10.3.8}
   Let $(M,g)$ be a compact Riemannian $n$-manifold with nonnegative complex
   sectional curvature. Then one of:
   \begin{enumerate}
@@ -985,9 +1022,10 @@ questions to this case.
 
 \begin{remark}[geodesic loops are closed geodesics]
   \label{rem:pet-ch10-exercise-symmetric-flow-axis}
-  \dcref{ch10:10.5.1}
   \lean{PetersenLib.exercise10_5_1}
+  \source{petersen:page-0405}
   \uses{def:pet-ch10-tp-decomposition}
+  \dcref{ch10:10.5.1}
   Let $M$ be a symmetric space and $X\in t_p$ nontrivial (so $X$ is a Killing
   field with $(\nabla X)|_p=0$). Show: (1) the flow of $X$ is
   $F_s=A_{\exp(sX|_p)}\circ A_p$; (2) $c(t)=\exp(tX|_p)$ is an axis for $F_s$,
@@ -997,9 +1035,10 @@ questions to this case.
 
 \begin{remark}[the fundamental group of a symmetric space is abelian]
   \label{rem:pet-ch10-exercise-pi1-abelian}
-  \dcref{ch10:10.5.2}
   \lean{PetersenLib.exercise10_5_2}
+  \source{petersen:page-0405}
   \uses{rem:pet-ch10-exercise-symmetric-flow-axis}
+  \dcref{ch10:10.5.2}
   Let $M$ be a symmetric space. Show that $A_p$ acting on $\pi_1(M,p)$ by
   $[\gamma]\mapsto[\gamma]^{-1}$ shows $\pi_1(M,p)$ is abelian. (Hint: every
   element of $\pi_1(M,p)$ is represented by a geodesic loop, which by
@@ -1008,9 +1047,10 @@ questions to this case.
 
 \begin{remark}[Jacobi fields along a geodesic in a symmetric space]
   \label{rem:pet-ch10-exercise-jacobi-fields-eigenvector}
-  \dcref{ch10:10.5.3}
   \lean{PetersenLib.exercise10_5_3}
+  \source{petersen:page-0405,petersen:page-0406}
   \uses{def:pet-ch10-tp-decomposition}
+  \dcref{ch10:10.5.3}
   Let $M$ be a symmetric space and $c$ a geodesic. (1) If $E(t)$ is parallel
   along $c$, show $R(E,\dot c)\dot c$ is parallel. (2) If $E(0)$ is an eigenvector
   of $R(\cdot,\dot c(0))\dot c(0)$ with eigenvalue $\kappa$, show
@@ -1023,9 +1063,10 @@ questions to this case.
 
 \begin{remark}[nonnegative curvature of compact symmetric spaces]
   \label{rem:pet-ch10-exercise-compact-nonneg-curvature}
-  \dcref{ch10:10.5.4}
   \lean{PetersenLib.exercise10_5_4}
+  \source{petersen:page-0406}
   \uses{rem:pet-ch10-exercise-jacobi-fields-eigenvector}
+  \dcref{ch10:10.5.4}
   Let $M$ be a symmetric space. (1) Show directly that if $M$ is compact then
   $\sec\ge0$ (hint: argue by contradiction, producing an unbounded Jacobi field
   along a geodesic). (2) Show that if $c$ is a closed geodesic then
@@ -1035,9 +1076,10 @@ questions to this case.
 
 \begin{remark}[equivalent characterizations of a flat parallel direction]
   \label{rem:pet-ch10-exercise-jacobi-field-equivalence}
-  \dcref{ch10:10.5.5}
   \lean{PetersenLib.exercise10_5_5}
+  \source{petersen:page-0405,petersen:page-0406}
   \uses{def:pet-ch10-holonomy-group}
+  \dcref{ch10:10.5.5}
   Assume $M$ has nonpositive or nonnegative sectional curvature, $c$ a geodesic,
   $E$ a parallel field along $c$. Show the following are equivalent: (1)
   $g(R(E,\dot c)\dot c,E)=0$ everywhere along $c$; (2) $R(E,\dot c)\dot c=0$
@@ -1046,9 +1088,10 @@ questions to this case.
 
 \begin{remark}[Killing forms of the classical Lie algebras]
   \label{rem:pet-ch10-exercise-killing-form-classical}
-  \dcref{ch10:10.5.6}
   \lean{PetersenLib.exercise10_5_6}
+  \source{petersen:page-0406}
   \uses{def:pet-ch10-killing-form}
+  \dcref{ch10:10.5.6}
   (1) Show the Killing form of $\mathfrak g\otimes\mathbb C$ is the
   complexification of the Killing form $B$ of a real Lie algebra $\mathfrak g$.
   (2) Show the Killing forms of $\mathfrak{gl}(n,\mathbb C)$ and $\mathfrak{gl}(n)$
@@ -1067,9 +1110,10 @@ questions to this case.
 
 \begin{remark}[nondegenerate bilinear forms as a symmetric space]
   \label{rem:pet-ch10-exercise-gl-so-symmetric}
-  \dcref{ch10:10.5.7}
   \lean{PetersenLib.exercise10_5_7}
+  \source{petersen:page-0406}
   \uses{rem:pet-ch10-symmetric-space-from-involution}
+  \dcref{ch10:10.5.7}
   Show that $\mathrm{GL}^+(p+q,\mathbb R)/\mathrm{SO}(p,q)$ defines a symmetric space,
   identifiable with the nondegenerate bilinear forms on $\mathbb R^{p+q}$ of index
   $q$.
@@ -1077,107 +1121,119 @@ questions to this case.
 
 \begin{remark}[$\mathrm U(p,q)/\mathrm{SO}(p,q)$ as a symmetric space]
   \label{rem:pet-ch10-exercise-u-pq-so-pq-symmetric}
-  \dcref{ch10:10.5.8}
   \lean{PetersenLib.exercise10_5_8}
+  \source{petersen:page-0406}
   \uses{rem:pet-ch10-symmetric-space-from-involution}
+  \dcref{ch10:10.5.8}
   Show that $\mathrm U(p,q)/\mathrm{SO}(p,q)$ defines a symmetric space and that
   $\mathfrak u(p,q)\otimes\mathbb C=\mathfrak{gl}(p+q,\mathbb C)$.
 \end{remark}
 
 \begin{remark}[holonomy of $\mathbb{CP}^n$]
   \label{rem:pet-ch10-exercise-cpn-holonomy}
-  \dcref{ch10:10.5.9}
   \lean{PetersenLib.exercise10_5_9}
-  \uses{ex:pet-ch10-complex-projective-space,def:pet-ch10-holonomy-group}
+  \source{petersen:page-0406}
+  \uses{ex:pet-ch10-complex-projective-space, def:pet-ch10-holonomy-group}
+  \dcref{ch10:10.5.9}
   Show that the holonomy of $\mathbb{CP}^n$ is $\mathrm U(n)$.
 \end{remark}
 
 \begin{remark}[covering spaces of symmetric spaces]
   \label{rem:pet-ch10-exercise-covering-symmetric}
-  \dcref{ch10:10.5.10}
   \lean{PetersenLib.exercise10_5_10}
+  \source{petersen:page-0406}
   \uses{prop:pet-ch10-sigma-p-involution}
+  \dcref{ch10:10.5.10}
   Show that a covering space of a symmetric space is a symmetric space; give an
   example showing the converse fails.
 \end{remark}
 
 \begin{remark}[flatness iff discrete holonomy]
   \label{rem:pet-ch10-exercise-flat-discrete-holonomy}
-  \dcref{ch10:10.5.11}
   \lean{PetersenLib.exercise10_5_11}
+  \source{petersen:page-0406}
   \uses{def:pet-ch10-holonomy-group}
+  \dcref{ch10:10.5.11}
   Show that a manifold is flat if and only if the (restricted) holonomy Lie
   algebra $\mathfrak{hol}_p=\{0\}$, i.e.\ the holonomy group is discrete.
 \end{remark}
 
 \begin{remark}[finite fundamental group under irreducible holonomy and $\operatorname{Ric}\ge0$]
   \label{rem:pet-ch10-exercise-finite-fundamental-group}
-  \dcref{ch10:10.5.12}
   \lean{PetersenLib.exercise10_5_12}
+  \source{petersen:page-0406}
   \uses{def:pet-ch10-holonomy-group}
+  \dcref{ch10:10.5.12}
   Show that a compact Riemannian manifold with irreducible restricted holonomy
   and $\operatorname{Ric}\ge0$ has finite fundamental group.
 \end{remark}
 
 \begin{remark}[identifying $\mathrm{SL}(2,\mathbb R)/\mathrm{SO}(2)$ and $\mathrm{SL}(2,\mathbb C)/\mathrm{SU}(2)$]
   \label{rem:pet-ch10-exercise-sl2-quotients}
-  \dcref{ch10:10.5.13}
   \lean{PetersenLib.exercise10_5_13}
+  \source{petersen:page-0406}
   \uses{ex:pet-ch10-sl-so-quotient}
+  \dcref{ch10:10.5.13}
   Which known spaces are described by $\mathrm{SL}(2,\mathbb R)/\mathrm{SO}(2)$ and
   $\mathrm{SL}(2,\mathbb C)/\mathrm{SU}(2)$?
 \end{remark}
 
 \begin{remark}[Kähler structure iff holonomy in $\mathrm U(m)$]
   \label{rem:pet-ch10-exercise-kahler-unitary-holonomy}
-  \dcref{ch10:10.5.14}
   \lean{PetersenLib.exercise10_5_14}
-  \uses{def:pet-ch10-holonomy-group,def:pet-ch10-berger-holonomy-table}
+  \source{petersen:page-0406}
+  \uses{def:pet-ch10-holonomy-group, def:pet-ch10-berger-holonomy-table}
+  \dcref{ch10:10.5.14}
   Show that the holonomy of a Riemannian manifold is contained in $\mathrm U(m)$
   if and only if it has a Kähler structure.
 \end{remark}
 
 \begin{remark}[maximal isotropy forces constant curvature]
   \label{rem:pet-ch10-exercise-isop-so-constant-curvature}
-  \dcref{ch10:10.5.15}
   \lean{PetersenLib.exercise10_5_15}
+  \source{petersen:page-0406}
   \uses{def:pet-ch10-tp-decomposition}
+  \dcref{ch10:10.5.15}
   Show that if a homogeneous space has $\mathrm{iso}_p=\mathfrak{so}(T_pM)$ at
   some $p$, then it has constant curvature.
 \end{remark}
 
 \begin{remark}[maximality of two subalgebras of $\mathfrak{so}(n)$]
   \label{rem:pet-ch10-exercise-maximal-subalgebras-son}
-  \dcref{ch10:10.5.16}
   \lean{PetersenLib.exercise10_5_16}
-  \uses{ex:pet-ch10-compact-grassmannian,ex:pet-ch10-complex-projective-space}
+  \source{petersen:page-0406}
+  \uses{ex:pet-ch10-compact-grassmannian, ex:pet-ch10-complex-projective-space}
+  \dcref{ch10:10.5.16}
   Show that the subalgebras $\mathfrak{so}(k)\times\mathfrak{so}(n-k)$ and
   $\mathfrak u(n/2)$ are maximal in $\mathfrak{so}(n)$.
 \end{remark}
 
 \begin{remark}[$\mathfrak{su}(m)\subset\mathfrak{so}(m^2-1)$]
   \label{rem:pet-ch10-exercise-sum-in-so}
-  \dcref{ch10:10.5.17}
   \lean{PetersenLib.exercise10_5_17}
+  \source{petersen:page-0406}
   \uses{def:pet-ch10-killing-form}
+  \dcref{ch10:10.5.17}
   Show that $\mathfrak{su}(m)\subset\mathfrak{so}(m^2-1)$. (Hint: let
   $\mathfrak{su}(m)$ act on itself by the adjoint representation.)
 \end{remark}
 
 \begin{remark}[$t_p\subset\mathfrak{hol}_p$ in general]
   \label{rem:pet-ch10-exercise-tp-subset-holp}
-  \dcref{ch10:10.5.18}
   \lean{PetersenLib.exercise10_5_18}
-  \uses{def:pet-ch10-tp-decomposition,def:pet-ch10-holonomy-group}
+  \source{petersen:page-0407}
+  \uses{def:pet-ch10-tp-decomposition, def:pet-ch10-holonomy-group}
+  \dcref{ch10:10.5.18}
   Show that for any Riemannian manifold $t_p\subset\mathfrak{hol}_p$ (the
   holonomy Lie algebra). Give an example where equality fails.
 \end{remark}
 
 \begin{remark}[$t_p=\mathfrak{hol}_p$ for symmetric spaces]
   \label{rem:pet-ch10-exercise-tp-equals-holp-symmetric}
-  \dcref{ch10:10.5.19}
   \lean{PetersenLib.exercise10_5_19}
-  \uses{rem:pet-ch10-exercise-tp-subset-holp,cor:pet-ch10-maximal-subalgebra}
+  \source{petersen:page-0407}
+  \uses{rem:pet-ch10-exercise-tp-subset-holp, cor:pet-ch10-maximal-subalgebra}
+  \dcref{ch10:10.5.19}
   Show that for a symmetric space, $t_p=\mathfrak{hol}_p$. Use this to show
   that, unless the curvature is constant, $t_p=\mathfrak{hol}_p=\mathrm{iso}_p$
   provided $t_p\subset\mathfrak{so}(T_pM)$ is maximal.
@@ -1185,9 +1241,10 @@ questions to this case.
 
 \begin{remark}[nonpositive curvature operator of two further quotients]
   \label{rem:pet-ch10-exercise-son-c-sln-c-symmetric}
-  \dcref{ch10:10.5.20}
   \lean{PetersenLib.exercise10_5_20}
+  \source{petersen:page-0407}
   \uses{ex:pet-ch10-lie-group-symmetric}
+  \dcref{ch10:10.5.20}
   Show that $\mathrm{SO}(n,\mathbb C)/\mathrm{SO}(n)$ and
   $\mathrm{SL}(n,\mathbb C)/\mathrm{SU}(n)$ are symmetric spaces with nonpositive
   curvature operator.
@@ -1195,9 +1252,10 @@ questions to this case.
 
 \begin{remark}[quaternionic projective space as $\mathrm{Sp}(n+1)/(\mathrm{Sp}(1)\times\mathrm{Sp}(n))$]
   \label{rem:pet-ch10-exercise-quaternionic-projective-space}
-  \dcref{ch10:10.5.21}
   \lean{PetersenLib.exercise10_5_21}
+  \source{petersen:page-0407}
   \uses{ex:pet-ch10-complex-projective-space}
+  \dcref{ch10:10.5.21}
   The \emph{quaternionic projective space} $\mathbb{HP}^n$ is the space of
   quaternionic lines in $\mathbb H^{n+1}$. Define $\mathrm{Sp}(n)\subset\mathrm{SU}(2n)\subset\mathrm{SO}(4n)$
   as the orthogonal matrices commuting with the three complex structures
@@ -1208,18 +1266,20 @@ questions to this case.
 
 \begin{remark}[hyperbolic analogues of complex projective space]
   \label{rem:pet-ch10-exercise-hyperbolic-complex-projective}
-  \dcref{ch10:10.5.22}
   \lean{PetersenLib.exercise10_5_22}
-  \uses{ex:pet-ch10-complex-projective-space,ex:pet-ch10-hyperbolic-grassmannian}
+  \source{petersen:page-0407}
+  \uses{ex:pet-ch10-complex-projective-space, ex:pet-ch10-hyperbolic-grassmannian}
+  \dcref{ch10:10.5.22}
   Construct the hyperbolic analogues of the complex projective spaces. Show
   that they have negative curvature and are quarter-pinched.
 \end{remark}
 
 \begin{remark}[the monodromy map of a locally symmetric space]
   \label{rem:pet-ch10-exercise-lie-algebra-locally-symmetric}
-  \dcref{ch10:10.5.23}
   \lean{PetersenLib.exercise10_5_23}
+  \source{petersen:page-0407}
   \uses{rem:pet-ch10-symmetric-space-from-involution}
+  \dcref{ch10:10.5.23}
   Give a Lie algebra description of a locally symmetric space (not necessarily
   complete), and explain why it corresponds to a global symmetric space.
   Conclude that a simply connected locally symmetric space admits a monodromy
@@ -1229,27 +1289,30 @@ questions to this case.
 
 \begin{remark}[strict curvature-operator sign forces constant curvature]
   \label{rem:pet-ch10-exercise-pinched-curvature-operator-constant}
-  \dcref{ch10:10.5.24}
   \lean{PetersenLib.exercise10_5_24}
+  \source{petersen:page-0407}
   \uses{cor:pet-ch10-irreducible-symmetric-einstein}
+  \dcref{ch10:10.5.24}
   Show that if an irreducible symmetric space has strictly positive or strictly
   negative curvature operator, then it has constant curvature.
 \end{remark}
 
 \begin{remark}[isotropy preserves the translational summand]
   \label{rem:pet-ch10-exercise-bracket-tp-isop}
-  \dcref{ch10:10.5.25}
   \lean{PetersenLib.exercise10_5_25}
+  \source{petersen:page-0407}
   \uses{prop:pet-ch10-lie-bracket-curvature}
+  \dcref{ch10:10.5.25}
   Let $M$ be a symmetric space. Show that if $X\in t_p$ and $Y\in\mathrm{iso}_p$,
   then $[X,Y]\in t_p$.
 \end{remark}
 
 \begin{remark}[curvature and Ricci tensor via the $L_X$ operators]
   \label{rem:pet-ch10-exercise-curvature-ricci-bracket-formula}
-  \dcref{ch10:10.5.26}
   \lean{PetersenLib.exercise10_5_26}
+  \source{petersen:page-0407}
   \uses{thm:pet-ch10-curvature-bracket-formula}
+  \dcref{ch10:10.5.26}
   Let $M$ be a symmetric space and $X,Y,Z\in t_p$. Show
   $R(X,Y)Z=[L_X,L_Y]Z$ and $\operatorname{Ric}(X,Y)=-\operatorname{tr}([L_X,L_Y])$, where
   $L_X:=\operatorname{ad}_X$.
@@ -1257,9 +1320,10 @@ questions to this case.
 
 \begin{remark}[parallel extension of a $p$-form via holonomy invariance]
   \label{rem:pet-ch10-exercise-parallel-form-holonomy-invariant}
-  \dcref{ch10:10.5.27}
   \lean{PetersenLib.exercise10_5_27}
+  \source{petersen:page-0407}
   \uses{rem:pet-ch10-holonomy-properties}
+  \dcref{ch10:10.5.27}
   Consider a Riemannian manifold $M$ and a $p$-form $\omega$ on $T_pM$. Show
   that $\omega$ extends to a parallel form on $M$ if and only if $\omega$ is
   invariant under $\mathrm{Hol}_p(M)$.

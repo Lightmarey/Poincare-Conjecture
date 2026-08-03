@@ -9,9 +9,10 @@ its Riemann and Ricci tensors.
 
 \begin{lemma}[Ricci curvature bounds change the metric]
 \label{lem:chow-ii-ricci-bounds-metric-comparison}
+\source{chow-et-al-ricci-flow-part-ii:page-0256}
 \dcref{ch14:14.1}
 \group{Metric Comparison}
-\source{chow-et-al-ricci-flow-part-ii:page-0256}
+
 Let \(g(t)\), \(t\in[0,T)\), be a Ricci flow and let \(\mathcal U\) be an
 open subset of the manifold.
 \begin{enumerate}
@@ -37,10 +38,12 @@ at least \(-K_2\).  Integrating and exponentiating proves both inequalities.
 
 \begin{remark}[Uniform equivalence under two-sided Ricci bounds]
 \label{rem:chow-ii-uniform-metric-equivalence}
-\dcref{ch14:14.2}
-\group{Metric Comparison}
 \source{chow-et-al-ricci-flow-part-ii:page-0256}
 \uses{lem:chow-ii-ricci-bounds-metric-comparison}
+\dcref{ch14:14.2}
+\group{Metric Comparison}
+
+
 If \(-K_2g\le\operatorname{Rc}\le K_1g\), then
 \[
 e^{-2K_1T}g(0)\le g(t)\le e^{2K_2T}g(0)
@@ -50,10 +53,12 @@ on the common space-time domain.
 
 \begin{lemma}[Gradient and Laplacian estimates for a cutoff function]
 \label{lem:chow-ii-cutoff-gradient-laplacian-estimates}
-\dcref{ch14:14.3}
-\group{Cutoff Functions}
 \source{chow-et-al-ricci-flow-part-ii:page-0257,chow-et-al-ricci-flow-part-ii:page-0258,chow-et-al-ricci-flow-part-ii:page-0259}
 \uses{lem:chow-ii-ricci-bounds-metric-comparison}
+\dcref{ch14:14.3}
+\group{Cutoff Functions}
+
+
 Suppose \(\overline B_{g(0)}(p,r)\Subset\mathcal U\),
 \(|\operatorname{Rm}|\le K\) on \(B_{g(0)}(p,r)\times[0,\tau]\), and
 \(\tau\le\alpha/K\).  Put
@@ -109,10 +114,12 @@ the cut locus.
 
 \begin{lemma}[Cutoff functions with bounded derivatives]
 \label{lem:chow-ii-cutoff-bounded-derivatives}
-\dcref{ch14:14.4}
-\group{Cutoff Functions}
 \source{chow-et-al-ricci-flow-part-ii:page-0259}
 \uses{lem:chow-ii-cutoff-gradient-laplacian-estimates}
+\dcref{ch14:14.4}
+\group{Cutoff Functions}
+
+
 Under the hypotheses of Lemma~\ref{lem:chow-ii-cutoff-gradient-laplacian-estimates},
 suppose additionally that
 \[
@@ -138,9 +145,10 @@ gives both estimates.
 
 \begin{theorem}[Global derivative estimates]
 \label{thm:chow-ii-global-curvature-derivative-estimates}
+\source{chow-et-al-ricci-flow-part-ii:page-0259,chow-et-al-ricci-flow-part-ii:page-0260,chow-et-al-ricci-flow-part-ii:page-0261}
 \dcref{ch14:14.5}
 \group{Curvature Derivative Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0259,chow-et-al-ricci-flow-part-ii:page-0260,chow-et-al-ricci-flow-part-ii:page-0261}
+
 For \(\alpha>0\) and \(m,n\in\mathbb N\), there is a constant
 \[
 C=C(m,n,\max\{\alpha,1\})
@@ -181,9 +189,10 @@ all remaining products by \(C K^2\).  The maximum principle then yields
 
 \begin{lemma}[Doubling-time estimate]
 \label{lem:chow-ii-curvature-doubling-time}
+\source{chow-et-al-ricci-flow-part-ii:page-0260}
 \dcref{ch14:14.6}
 \group{Curvature Derivative Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0260}
+
 If a complete bounded-curvature Ricci flow satisfies \(|\operatorname{Rm}(g(0))|\le K\),
 then \(|\operatorname{Rm}(g(t))|\le2K\) for \(0\le t\le(16K)^{-1}\).
 \end{lemma}
@@ -197,10 +206,12 @@ stated interval.
 
 \begin{corollary}[Derivative estimates from an initial curvature bound]
 \label{cor:chow-ii-derivative-estimates-initial-curvature-bound}
+\source{chow-et-al-ricci-flow-part-ii:page-0260}
+\uses{thm:chow-ii-global-curvature-derivative-estimates, lem:chow-ii-curvature-doubling-time}
 \dcref{ch14:14.7}
 \group{Curvature Derivative Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0260}
-\uses{thm:chow-ii-global-curvature-derivative-estimates,lem:chow-ii-curvature-doubling-time}
+
+
 For \(m,n\in\mathbb N\), there is \(C(m,n)\) such that, whenever the maximum
 principle applies and \(|\operatorname{Rm}(g(0))|\le K\),
 \[
@@ -217,9 +228,10 @@ bound and a fixed dimensionless time parameter.
 
 \begin{remark}[Derivatives and scaling]
 \label{rem:chow-ii-curvature-derivative-scaling}
+\source{chow-et-al-ricci-flow-part-ii:page-0260,chow-et-al-ricci-flow-part-ii:page-0261}
 \dcref{ch14:14.8}
 \group{Scaling}
-\source{chow-et-al-ricci-flow-part-ii:page-0260,chow-et-al-ricci-flow-part-ii:page-0261}
+
 Under \(g\mapsto cg\), distances scale by \(c^{1/2}\), while
 \[
 |\operatorname{Rm}|\sim c^{-1},\qquad |\nabla^m\operatorname{Rm}|\sim c^{-(m+2)/2}.
@@ -233,10 +245,12 @@ is scale-covariant.
 
 \begin{remark}[Smoothing character of the derivative estimates]
 \label{rem:chow-ii-derivative-estimates-smoothing}
-\dcref{ch14:14.9}
-\group{Curvature Derivative Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0261}
 \uses{thm:chow-ii-global-curvature-derivative-estimates}
+\dcref{ch14:14.9}
+\group{Curvature Derivative Estimates}
+
+
 The factor \(t^{-m/2}\) permits no derivative bound at time zero, but gives
 bounds of every order at each positive time.  For the heat equation this rate
 is sharp: the solutions \(e^{-k^2t}\sin(kx)\) on the circle have uniformly
@@ -247,10 +261,12 @@ bounded size and gradients of order \(t^{-1/2}\) when \(k^2t\) is fixed.
 
 \begin{theorem}[Local first derivative estimate, Shi]
 \label{thm:chow-ii-shi-local-first-derivative-estimate}
-\dcref{ch14:14.10}
-\group{Local Curvature Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0263,chow-et-al-ricci-flow-part-ii:page-0264,chow-et-al-ricci-flow-part-ii:page-0265,chow-et-al-ricci-flow-part-ii:page-0266}
 \uses{lem:chow-ii-cutoff-gradient-laplacian-estimates}
+\dcref{ch14:14.10}
+\group{Local Curvature Estimates}
+
+
 Let \(\alpha>0\).  Suppose \(\overline B_{g(0)}(p,r)\Subset\mathcal U\),
 \(0<\tau\le\alpha/K\), and \(|\operatorname{Rm}|\le K\) on
 \(\mathcal U\times[0,\tau]\).  Then
@@ -293,10 +309,12 @@ claim.
 
 \begin{remark}[Independence from initial derivative bounds]
 \label{rem:chow-ii-local-first-estimate-initial-data}
-\dcref{ch14:14.11}
-\group{Local Curvature Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0263,chow-et-al-ricci-flow-part-ii:page-0264}
 \uses{thm:chow-ii-shi-local-first-derivative-estimate}
+\dcref{ch14:14.11}
+\group{Local Curvature Estimates}
+
+
 The estimate requires no bound on \(|\nabla\operatorname{Rm}(g(0))|\).  It is enough that
 each smaller closed initial ball be compact; the flow need not be complete
 outside the neighborhood on which the curvature bound is assumed.
@@ -304,10 +322,12 @@ outside the neighborhood on which the curvature bound is assumed.
 
 \begin{remark}[Dimensionless-radius form of Shi's estimate]
 \label{rem:chow-ii-shi-estimate-dimensionless-radius}
-\dcref{ch14:14.12}
-\group{Local Curvature Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0266}
 \uses{thm:chow-ii-shi-local-first-derivative-estimate}
+\dcref{ch14:14.12}
+\group{Local Curvature Estimates}
+
+
 If \(\gamma\le r\sqrt K\le\beta\), the maximum-principle polynomial in the
 proof is dimensionless after dividing \(H\) by \(K^4\); consequently
 \(|\nabla\operatorname{Rm}|\le C(\alpha,\beta,\gamma,n)K/\sqrt t\).
@@ -315,9 +335,10 @@ proof is dimensionless after dividing \(H\) by \(K^4\); consequently
 
 \begin{theorem}[Interior first derivative estimate]
 \label{thm:chow-ii-interior-first-derivative-estimate}
+\source{chow-et-al-ricci-flow-part-ii:page-0267}
 \dcref{ch14:14.13}
 \group{Local Curvature Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0267}
+
 If \(\overline B_{g(0)}(p,r)\Subset\mathcal U\) and \(|\operatorname{Rm}|\le K\) on
 \(B_{g(0)}(p,r)\times[0,\tau]\), then
 \[
@@ -340,10 +361,12 @@ the bound by \(K\sqrt A\), proving the result.
 
 \begin{theorem}[Local higher derivative estimates, Shi]
 \label{thm:chow-ii-shi-local-higher-derivative-estimates}
-\dcref{ch14:14.14}
-\group{Local Curvature Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0267,chow-et-al-ricci-flow-part-ii:page-0268,chow-et-al-ricci-flow-part-ii:page-0269}
 \uses{lem:chow-ii-shi-higher-derivative-quantity}
+\dcref{ch14:14.14}
+\group{Local Curvature Estimates}
+
+
 For \(\alpha,K,r>0\) and \(m,n\in\mathbb N\), there is
 \(C(\alpha,K,r,m,n)\) such that, under the hypotheses of
 Theorem~\ref{thm:chow-ii-shi-local-first-derivative-estimate},
@@ -373,9 +396,10 @@ half ball.
 
 \begin{lemma}[Evolution inequality for Shi's higher derivative quantity]
 \label{lem:chow-ii-shi-higher-derivative-quantity}
+\source{chow-et-al-ricci-flow-part-ii:page-0268,chow-et-al-ricci-flow-part-ii:page-0269,chow-et-al-ricci-flow-part-ii:page-0270}
 \dcref{ch14:14.15}
 \group{Local Curvature Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0268,chow-et-al-ricci-flow-part-ii:page-0269,chow-et-al-ricci-flow-part-ii:page-0270}
+
 Suppose for \(1\le j\le m\) that
 \[
 |\nabla^j\operatorname{Rm}|\le C_jt^{-j/2}
@@ -420,10 +444,12 @@ the stated inequality.
 
 \begin{theorem}[Shi's estimates with initial derivative bounds]
 \label{thm:chow-ii-shi-estimates-initial-derivative-bounds}
-\dcref{ch14:14.16}
-\group{Local Curvature Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0271,chow-et-al-ricci-flow-part-ii:page-0272,chow-et-al-ricci-flow-part-ii:page-0273}
 \uses{lem:chow-ii-modified-shi-derivative-quantity}
+\dcref{ch14:14.16}
+\group{Local Curvature Estimates}
+
+
 Let \(\ell\ge0\), \(n\ge2\), \(m\ge1\), and let
 \(\alpha,K,K_\ell,r>0\).  Suppose \(0<\tau\le\alpha/K\),
 \(\overline B_{g(0)}(p,r)\Subset\mathcal U\), and
@@ -458,19 +484,22 @@ induction and give the stated estimate.
 
 \begin{remark}[Recovery of Shi's estimates]
 \label{rem:chow-ii-modified-shi-zero-order-case}
+\source{chow-et-al-ricci-flow-part-ii:page-0271}
+\uses{thm:chow-ii-shi-estimates-initial-derivative-bounds, thm:chow-ii-shi-local-higher-derivative-estimates}
 \dcref{ch14:14.17}
 \group{Local Curvature Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0271}
-\uses{thm:chow-ii-shi-estimates-initial-derivative-bounds,thm:chow-ii-shi-local-higher-derivative-estimates}
+
+
 For \(\ell=0\), Theorem~\ref{thm:chow-ii-shi-estimates-initial-derivative-bounds}
 has the same time powers as Shi's local derivative estimates.
 \end{remark}
 
 \begin{lemma}[Evolution inequality for the modified derivative quantity]
 \label{lem:chow-ii-modified-shi-derivative-quantity}
+\source{chow-et-al-ricci-flow-part-ii:page-0272,chow-et-al-ricci-flow-part-ii:page-0273,chow-et-al-ricci-flow-part-ii:page-0274,chow-et-al-ricci-flow-part-ii:page-0275,chow-et-al-ricci-flow-part-ii:page-0276,chow-et-al-ricci-flow-part-ii:page-0277}
 \dcref{ch14:14.18}
 \group{Local Curvature Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0272,chow-et-al-ricci-flow-part-ii:page-0273,chow-et-al-ricci-flow-part-ii:page-0274,chow-et-al-ricci-flow-part-ii:page-0275,chow-et-al-ricci-flow-part-ii:page-0276,chow-et-al-ricci-flow-part-ii:page-0277}
+
 Fix \(\ell\ge0\) and suppose, for \(1\le j\le m\), that
 \[
 |\nabla^j\operatorname{Rm}|\le Ct^{-(j-\ell)_+/2}.
@@ -512,10 +541,12 @@ statement.
 
 \begin{theorem}[Modified Cheeger--Gromov compactness]
 \label{thm:chow-ii-modified-cheeger-gromov-compactness}
-\dcref{ch14:14.19}
-\group{Ricci Flow Compactness}
 \source{chow-et-al-ricci-flow-part-ii:page-0277}
 \uses{thm:chow-ii-shi-estimates-initial-derivative-bounds}
+\dcref{ch14:14.19}
+\group{Ricci Flow Compactness}
+
+
 Let \((M_k,g_k(t),p_k)\), \(t\in[0,T)\), be pointed complete Ricci flows.
 Suppose that, for some \(m_0\in\mathbb N\cup\{\infty\}\), the initial
 curvature derivatives through order \(m_0+1\) are uniformly bounded, the
@@ -539,10 +570,12 @@ of the limit.
 
 \begin{remark}[Finite-regularity compactness]
 \label{rem:chow-ii-finite-regularity-compactness}
-\dcref{ch14:14.20}
-\group{Ricci Flow Compactness}
 \source{chow-et-al-ricci-flow-part-ii:page-0277}
 \uses{thm:chow-ii-modified-cheeger-gromov-compactness}
+\dcref{ch14:14.20}
+\group{Ricci Flow Compactness}
+
+
 The theorem retains a prescribed finite degree of regularity at the initial
 time; no positive-time smoothing estimate alone supplies this conclusion at
 \(t=0\).
@@ -552,10 +585,12 @@ time; no positive-time smoothing estimate alone supplies this conclusion at
 
 \begin{lemma}[Existence of curvature bumps]
 \label{lem:chow-ii-existence-curvature-bumps}
-\dcref{ch14:14.21}
-\group{Curvature Positivity}
 \source{chow-et-al-ricci-flow-part-ii:page-0278,chow-et-al-ricci-flow-part-ii:page-0279}
 \uses{thm:chow-ii-interior-first-derivative-estimate}
+\dcref{ch14:14.21}
+\group{Curvature Positivity}
+
+
 Suppose \(|\operatorname{Rm}|\le K\) on \(B_{g(0)}(p,r)\times[0,T]\) and the least
 curvature-operator eigenvalue satisfies
 \(\lambda_1(\operatorname{Rm})(p,\tau)\ge cK\).
@@ -584,10 +619,12 @@ Theorem~\ref{thm:chow-ii-interior-first-derivative-estimate} gives
 
 \begin{lemma}[Instantaneous local derivative bounds]
 \label{lem:chow-ii-instantaneous-local-derivative-bounds}
-\dcref{ch14:14.22}
-\group{Local Curvature Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0279}
 \uses{thm:chow-ii-interior-first-derivative-estimate}
+\dcref{ch14:14.22}
+\group{Local Curvature Estimates}
+
+
 Let \(g(t)\), \(t\in(0,T)\), be complete with bounded nonnegative curvature
 operator.  If
 \(R(x,\tau)\le K\) on \(B_{g(\tau)}(p,r)\), then
@@ -610,9 +647,10 @@ Theorem~\ref{thm:chow-ii-interior-first-derivative-estimate} on
 
 \begin{lemma}[Bernstein estimate for the local heat equation]
 \label{lem:chow-ii-local-heat-bernstein-estimate}
+\source{chow-et-al-ricci-flow-part-ii:page-0280,chow-et-al-ricci-flow-part-ii:page-0281}
 \dcref{ch14:14.23}
 \group{Local Heat Equation}
-\source{chow-et-al-ricci-flow-part-ii:page-0280,chow-et-al-ricci-flow-part-ii:page-0281}
+
 Let \(\chi\) be smooth and compactly supported in a bounded domain \(\Omega\)
 of a complete Riemannian manifold with \(\operatorname{Rc}\ge-Kg\).  If
 \(\partial_tu=\chi^2\Delta u\) and \(u(0)=u_0\), then
@@ -647,10 +685,12 @@ and division by \(\chi^2t\) proves the estimate.
 
 \begin{example}[Higher derivative estimates for the local heat equation]
 \label{ex:chow-ii-local-heat-higher-derivative-estimates}
-\dcref{ch14:14.24}
-\group{Local Heat Equation}
 \source{chow-et-al-ricci-flow-part-ii:page-0281}
 \uses{lem:chow-ii-local-heat-bernstein-estimate}
+\dcref{ch14:14.24}
+\group{Local Heat Equation}
+
+
 For every \(m\ge1\), repeated differentiation of
 \(\partial_tu=\chi^2\Delta u\), followed by the Bernstein argument of
 Lemma~\ref{lem:chow-ii-local-heat-bernstein-estimate}, yields on
@@ -664,9 +704,10 @@ where \(C_m\) depends on curvature bounds and on derivatives of \(\chi\) and
 
 \begin{proposition}[Short-time existence for local Ricci flow]
 \label{prop:chow-ii-local-ricci-flow-short-time-existence}
+\source{chow-et-al-ricci-flow-part-ii:page-0282,chow-et-al-ricci-flow-part-ii:page-0283}
 \dcref{ch14:14.25}
 \group{Local Ricci Flow}
-\source{chow-et-al-ricci-flow-part-ii:page-0282,chow-et-al-ricci-flow-part-ii:page-0283}
+
 Let \((M,g_0)\) be complete and let \(\chi\) be smooth with compact support.
 There is \(\delta>0\), depending only on \(g_0\) near
 \(\operatorname{supp}\chi\), and a solution of
@@ -695,10 +736,12 @@ pullback shows
 
 \begin{theorem}[Existence-time estimate for local Ricci flow]
 \label{thm:chow-ii-local-ricci-flow-existence-time}
-\dcref{ch14:14.26}
-\group{Local Ricci Flow}
 \source{chow-et-al-ricci-flow-part-ii:page-0283}
 \uses{prop:chow-ii-local-ricci-flow-short-time-existence}
+\dcref{ch14:14.26}
+\group{Local Ricci Flow}
+
+
 There is \(C(n)>0\) such that, if \((M^n,g_0)\) is complete and
 \(|\operatorname{Rm}(g_0)|\le K\), the local Ricci flow exists at least for
 \[
@@ -718,9 +761,10 @@ DeTurck diffeomorphisms preserves the interval.
 
 \begin{lemma}[Variation formula for the Riemann tensor]
 \label{lem:chow-ii-riemann-tensor-variation-formula}
+\source{chow-et-al-ricci-flow-part-ii:page-0283,chow-et-al-ricci-flow-part-ii:page-0284,chow-et-al-ricci-flow-part-ii:page-0285}
 \dcref{ch14:14.27}
 \group{Curvature Variations}
-\source{chow-et-al-ricci-flow-part-ii:page-0283,chow-et-al-ricci-flow-part-ii:page-0284,chow-et-al-ricci-flow-part-ii:page-0285}
+
 If \(\partial_sg_{ij}=-2h_{ij}\), then
 \[
 \partial_sR_{ijkl}

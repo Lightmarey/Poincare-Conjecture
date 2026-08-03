@@ -9,9 +9,9 @@ real-valued functions on $M$.
 
 \begin{definition}[affine connection]
   \label{def:dc-ch2-2-1}
-  \dcref{ch2:2.1}
-  \lean{Riemannian.AffineConnection}
+  \lean{Riemannian.IsAffineConnectionMap, Riemannian.AffineConnection.ofIsAffineConnectionMap, Riemannian.AffineConnection.isAffineConnectionMap}
   \leanok
+  \dcref{ch2:2.1}
   An \emph{affine connection} on a differentiable manifold $M$ is a map
   \[
     \nabla\colon \mathcal{X}(M)\times\mathcal{X}(M)\longrightarrow\mathcal{X}(M),
@@ -27,12 +27,10 @@ real-valued functions on $M$.
 
 \begin{proposition}[covariant derivative along a curve]
   \label{prop:dc-ch2-2-2}
-  \dcref{ch2:2.2}
+  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add, Riemannian.covariantDerivCoord_smul, Riemannian.covariantDerivCoord_induced, Riemannian.covariantDerivCoord_unique}
   \uses{def:dc-ch2-2-1, lem:dc-ch2-2-2-coord, lem:dc-ch2-2-2-c-coord, lem:dc-ch2-2-2-c-bridge}
-  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add,
-    Riemannian.covariantDerivCoord_smul, Riemannian.covariantDerivCoord_induced,
-    Riemannian.covariantDerivCoord_unique}
   \leanok
+  \dcref{ch2:2.2}
   Let $M$ carry an affine connection $\nabla$, and let $c\colon I\to M$ be a
   differentiable curve. There is a unique operation assigning to every vector
   field $V$ along $c$ a vector field $DV/dt$ along $c$ such that
@@ -63,11 +61,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[covariant derivative in coordinates; properties (a), (b)]
   \label{lem:dc-ch2-2-2-coord}
-  \dcref{ch2:2.2}
+  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add, Riemannian.covariantDerivCoord_smul}
   \uses{def:dc-ch2-3-7-christoffel}
-  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add,
-    Riemannian.covariantDerivCoord_smul}
   \leanok
+  \dcref{ch2:2.2}
   Fix a Riemannian metric and a chart with Christoffel symbols $\Gamma^k_{ij}$.
   Set
   \[
@@ -84,10 +81,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[property (c) in coordinates: induced fields]
   \label{lem:dc-ch2-2-2-c-coord}
-  \dcref{ch2:2.2}
-  \uses{lem:dc-ch2-2-2-coord, def:dc-ch2-3-7-christoffel}
   \lean{Riemannian.chartCovariantDeriv, Riemannian.covariantDerivCoord_induced}
+  \uses{lem:dc-ch2-2-2-coord, def:dc-ch2-3-7-christoffel}
   \leanok
+  \dcref{ch2:2.2}
   For a coordinate vector field $Y$ and a tangent vector $v$ at $y$, define
   \[
     (\nabla_vY)(y)=DY(y)v+\Gamma(v,Y(y))(y).
@@ -98,6 +95,7 @@ real-valued functions on $M$.
   \]
 \end{lemma}
 \begin{proof}
+  \leanok
   \sketch
   The chain rule gives $(Y\circ u)'=DY(u)\dot u$, and the Christoffel terms in
   the two expressions coincide.
@@ -105,10 +103,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[formula (10): the Koszul reduction on a coordinate frame]
   \label{lem:dc-ch2-2-2-c-formula10}
-  \dcref{ch2:2.2}
-  \uses{lem:dc-ch2-3-6-koszul, def:dc-ch2-3-7-christoffel, thm:dc-ch2-3-6}
   \lean{Riemannian.christoffel_bridge_inner, Riemannian.christoffel_bridge_vector}
+  \uses{lem:dc-ch2-3-6-koszul, def:dc-ch2-3-7-christoffel, thm:dc-ch2-3-6}
   \leanok
+  \dcref{ch2:2.2}
   Let $\nabla$ be Levi-Civita and let $X_1,\dots,X_n$ be a coordinate frame at
   $p$. Suppose $[X_a,X_b](p)=0$ and
   $X_r\langle X_a,X_b\rangle(p)=\partial_rG_{ab}$, where
@@ -134,10 +132,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[property (c): chart-Christoffel bridge to the abstract connection]
   \label{lem:dc-ch2-2-2-c-bridge}
-  \dcref{ch2:2.2}
-  \uses{lem:dc-ch2-2-2-c-coord, lem:dc-ch2-2-2-c-formula10, thm:dc-ch2-3-6, def:dc-ch2-3-7-christoffel}
   \lean{Riemannian.exists_chartFrame_leviCivita_christoffel}
+  \uses{lem:dc-ch2-2-2-c-coord, lem:dc-ch2-2-2-c-formula10, thm:dc-ch2-3-6, def:dc-ch2-3-7-christoffel}
   \leanok
+  \dcref{ch2:2.2}
   The coordinate derivative in \cref{lem:dc-ch2-2-2-c-coord}, formed using the
   metric Christoffel symbols, is the coordinate expression of the abstract
   Levi-Civita connection from \cref{thm:dc-ch2-3-6}. At every point of a chart
@@ -161,10 +159,10 @@ real-valued functions on $M$.
 
 \begin{remark}[Remark 2.3]
   \label{rem:dc-ch2-2-3}
-\lean{Riemannian.AffineConnection.cov_congr_apply_eventuallyEq_right,Riemannian.AffineConnection.cov_congr_apply_left,Riemannian.AffineConnection.cov_smulSum_apply}
-\leanok
-  \dcref{ch2:2.3}
+  \lean{Riemannian.AffineConnection.cov_congr_apply_left, Riemannian.AffineConnection.cov_congr_apply_eventuallyEq_right, Riemannian.AffineConnection.cov_smulSum_apply}
   \uses{rem:dc-ch0-5-7, def:dc-ch2-2-1}
+  \leanok
+  \dcref{ch2:2.3}
   An affine connection is local. In coordinates, if
   $X=\sum_ix_iX_i$, $Y=\sum_jy_jX_j$, and
   $\nabla_{X_i}X_j=\sum_k\Gamma_{ij}^kX_k$, then
@@ -178,20 +176,19 @@ real-valued functions on $M$.
 
 \begin{remark}[Remark 2.4]
   \label{rem:dc-ch2-2-4}
-\lean{Riemannian.covariantDerivCoord,Riemannian.covariantDerivCoord_add,Riemannian.covariantDerivCoord_smul}
-\leanok
-  \dcref{ch2:2.4}
+  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add, Riemannian.covariantDerivCoord_smul}
   \uses{prop:dc-ch2-2-2}
+  \leanok
+  \dcref{ch2:2.4}
   An affine connection supplies a derivative of vector fields along curves, and
   therefore defines the acceleration $D(dc/dt)/dt$ of a curve in $M$.
 \end{remark}
 
 \begin{definition}[parallel vector field]
   \label{def:dc-ch2-2-5}
-  \dcref{ch2:2.5}
-  \uses{lem:dc-ch2-2-2-coord}
   \lean{Riemannian.IsParallelCoord}
-  \leanok
+  \uses{lem:dc-ch2-2-2-coord}
+  \dcref{ch2:2.5}
   A vector field $V$ along $c\colon I\to M$ is \emph{parallel} if
   $DV/dt=0$ on $I$. In coordinates this is the linear system
   \[
@@ -201,11 +198,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[the parallel-transport coefficient is a bounded linear operator]
   \label{lem:dc-ch2-2-6-coeff}
-  \dcref{ch2:2.6}
+  \lean{Riemannian.chartChristoffelContractionRight, Riemannian.lipschitzWith_neg_chartChristoffelContraction}
   \uses{def:dc-ch2-2-5}
-  \lean{Riemannian.chartChristoffelContractionRight,
-    Riemannian.lipschitzWith_neg_chartChristoffelContraction}
   \leanok
+  \dcref{ch2:2.6}
   For a chart velocity $v$ and base point $y$, the map
   $w\mapsto\Gamma(v,w)(y)$ is a bounded linear operator $A(v,y)$ on the
   finite-dimensional model space. Thus
@@ -215,17 +211,15 @@ real-valued functions on $M$.
 
 \begin{proposition}[parallel transport]
   \label{prop:dc-ch2-2-6}
-  \dcref{ch2:2.6}
   \uses{def:dc-ch2-2-5, lem:dc-ch2-2-6-exist, lem:dc-ch2-2-6-unique, lem:dc-ch2-2-6-transport}
-  \lean{Riemannian.parallelTransport}
-  \leanok
+  \notready
+  \dcref{ch2:2.6}
   Let $c\colon I\to M$ be differentiable, $t_0\in I$, and
   $V_0\in T_{c(t_0)}M$. There is a unique parallel vector field $V$ along $c$
   with $V(t_0)=V_0$. Its values are the \emph{parallel transports} of $V_0$
   along $c$.
 \end{proposition}
 \begin{proof}
-  \leanok
   \uses{lem:dc-ch2-2-6-exist, lem:dc-ch2-2-6-unique, lem:dc-ch2-2-6-transport}
   \sketch
   In one chart, writing $V=\sum_jv^jX_j$ reduces parallelism to
@@ -242,10 +236,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[existence of parallel transport]
   \label{lem:dc-ch2-2-6-exist}
-  \dcref{ch2:2.6}
-  \uses{def:dc-ch2-2-5, lem:dc-ch2-2-6-coeff}
   \lean{Riemannian.exists_isParallelCoord_Icc}
+  \uses{def:dc-ch2-2-5, lem:dc-ch2-2-6-coeff}
   \leanok
+  \dcref{ch2:2.6}
   On a compact interval $[a,b]$, every initial coordinate vector $V_0$ extends
   to a solution of
   \[
@@ -262,10 +256,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[uniqueness of parallel transport]
   \label{lem:dc-ch2-2-6-unique}
-  \dcref{ch2:2.6}
-  \uses{def:dc-ch2-2-5, lem:dc-ch2-2-2-coord, lem:dc-ch2-2-6-coeff}
   \lean{Riemannian.isParallelCoord_eqOn_Icc, Riemannian.isParallelSol_eqOn_Icc}
+  \uses{def:dc-ch2-2-5, lem:dc-ch2-2-2-coord, lem:dc-ch2-2-6-coeff}
   \leanok
+  \dcref{ch2:2.6}
   Two parallel coordinate vector fields along the same coordinate curve on
   $[a,b]$ that agree at $a$ agree throughout $[a,b]$.
 \end{lemma}
@@ -278,10 +272,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[parallel transport is a linear isomorphism]
   \label{lem:dc-ch2-2-6-transport}
-  \dcref{ch2:2.6}
-  \uses{lem:dc-ch2-2-6-exist, lem:dc-ch2-2-6-unique}
   \lean{Riemannian.parallelTransport, Riemannian.exists_parallelTransport_spec}
+  \uses{lem:dc-ch2-2-6-exist, lem:dc-ch2-2-6-unique}
   \leanok
+  \dcref{ch2:2.6}
   On $[a,b]$, the endpoint map
   \[
     P_c\colon T_{c(a)}M\longrightarrow T_{c(b)}M,
@@ -301,9 +295,8 @@ real-valued functions on $M$.
 
 \begin{definition}[compatible with the metric]
   \label{def:dc-ch2-3-1}
-  \dcref{ch2:3.1}
   \lean{Riemannian.CompatibleGen}
-  \leanok
+  \dcref{ch2:3.1}
   An affine connection $\nabla$ on a Riemannian manifold is \emph{compatible
   with the metric} if the inner product of any two parallel vector fields along
   any smooth curve is constant.
@@ -311,10 +304,9 @@ real-valued functions on $M$.
 
 \begin{proposition}[product rule characterization]
   \label{prop:dc-ch2-3-2}
-  \dcref{ch2:3.2}
-  \uses{def:dc-ch2-3-1, prop:dc-ch2-2-6, lem:dc-ch2-3-2-coord}
   \lean{Riemannian.compatibleGen_iff_productRuleGen}
-  \leanok
+  \uses{def:dc-ch2-3-1, prop:dc-ch2-2-6, lem:dc-ch2-3-2-coord}
+  \dcref{ch2:3.2}
   A connection $\nabla$ is compatible with the metric if and only if, for all
   vector fields $V,W$ along every differentiable curve $c\colon I\to M$,
   \[
@@ -336,10 +328,9 @@ real-valued functions on $M$.
 
 \begin{corollary}[compatibility on vector fields]
   \label{cor:dc-ch2-3-3}
-  \dcref{ch2:3.3}
   \lean{Riemannian.AffineConnection.IsMetricCompatible}
-  \leanok
   \uses{prop:dc-ch2-3-2}
+  \dcref{ch2:3.3}
   A connection $\nabla$ is compatible with the metric if and only if
   \[
     X\langle Y,Z\rangle
@@ -356,10 +347,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[metric compatibility of $D/dt$, coordinate form]
   \label{lem:dc-ch2-3-2-coord}
-  \dcref{ch2:3.2}
   \lean{Riemannian.hasDerivAt_chartMetricInner_along}
-  \leanok
   \uses{lem:dc-ch2-2-2-coord, def:dc-ch2-3-7-christoffel}
+  \leanok
+  \dcref{ch2:3.2}
   In a chart, write
   $\langle a,b\rangle_y=\sum_{i,j}g_{ij}(y)a^ib^j$ and
   $DV/dt=\dot V+\Gamma(\dot u,V)(u)$. Then coordinate vector fields $V,W$
@@ -386,10 +377,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[parallel fields have constant inner product, coordinate form]
   \label{lem:dc-ch2-3-1-coord}
-  \dcref{ch2:3.1}
   \lean{Riemannian.hasDerivAt_chartMetricInner_eq_zero_of_isParallelCoord}
-  \leanok
   \uses{def:dc-ch2-2-5, def:dc-ch2-3-1, lem:dc-ch2-3-2-coord}
+  \leanok
+  \dcref{ch2:3.1}
   If $V$ and $W$ are parallel coordinate vector fields along a coordinate
   curve, then $\langle V,W\rangle$ is constant.
 \end{lemma}
@@ -403,10 +394,10 @@ real-valued functions on $M$.
 
 \begin{definition}[symmetric connection]
   \label{def:dc-ch2-3-4}
-  \dcref{ch2:3.4}
   \lean{Riemannian.AffineConnection.IsSymmetric}
-  \leanok
   \uses{def:dc-ch2-2-1}
+  \leanok
+  \dcref{ch2:3.4}
   An affine connection $\nabla$ is \emph{symmetric} if
   \[
     \nabla_XY-\nabla_YX=[X,Y]
@@ -416,8 +407,8 @@ real-valued functions on $M$.
 
 \begin{remark}[Remark 3.5]
   \label{rem:dc-ch2-3-5}
-\lean{Riemannian.chartChristoffel_symm}
-\leanok
+  \lean{Riemannian.chartChristoffel_symm}
+  \leanok
   \dcref{ch2:3.5}
   In a coordinate frame $X_i=\partial/\partial x_i$, symmetry is equivalent to
   \[
@@ -429,10 +420,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[Koszul formula]
   \label{lem:dc-ch2-3-6-koszul}
-  \dcref{ch2:3.6}
   \lean{Riemannian.AffineConnection.koszul_formula}
-  \leanok
   \uses{def:dc-ch2-3-4, cor:dc-ch2-3-3}
+  \leanok
+  \dcref{ch2:3.6}
   If $\nabla$ is symmetric and metric-compatible, then, for all
   $X,Y,Z\in\mathcal{X}(M)$,
   \[
@@ -471,10 +462,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[uniqueness of the Levi-Civita connection]
   \label{lem:dc-ch2-3-6-unique}
-  \dcref{ch2:3.6}
   \lean{Riemannian.AffineConnection.leviCivita_unique'}
-  \leanok
   \uses{lem:dc-ch2-3-6-koszul, lem:dc-ch2-tangent-extension}
+  \leanok
+  \dcref{ch2:3.6}
   On a finite-dimensional, $\sigma$-compact, Hausdorff Riemannian manifold,
   there is at most one affine connection that is symmetric and
   metric-compatible.
@@ -492,12 +483,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[well-definedness of the Koszul functional]
   \label{lem:dc-ch2-3-6-welldef}
-  \dcref{ch2:3.6}
-  \lean{Riemannian.RiemannianMetric.koszulRHS,
-    Riemannian.RiemannianMetric.koszulRHS_add_right,
-    Riemannian.RiemannianMetric.koszulRHS_smul_right}
-  \leanok
+  \lean{Riemannian.RiemannianMetric.koszulRHS, Riemannian.RiemannianMetric.koszulRHS_add_right, Riemannian.RiemannianMetric.koszulRHS_smul_right}
   \uses{lem:dc-ch2-3-6-koszul}
+  \leanok
+  \dcref{ch2:3.6}
   For fixed $X,Y\in\mathcal{X}(M)$, let
   \[
     F_{Y,X}(Z)
@@ -521,13 +510,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[the Koszul-dual connection is an affine connection]
   \label{lem:dc-ch2-3-6-affine}
-  \dcref{ch2:3.6}
-  \lean{Riemannian.RiemannianMetric.koszulRHS_add_left,
-    Riemannian.RiemannianMetric.koszulRHS_leibniz_left,
-    Riemannian.RiemannianMetric.koszulRHS_add_middle,
-    Riemannian.RiemannianMetric.koszulRHS_smul_middle}
-  \leanok
+  \lean{Riemannian.RiemannianMetric.koszulRHS_add_left, Riemannian.RiemannianMetric.koszulRHS_leibniz_left, Riemannian.RiemannianMetric.koszulRHS_add_middle, Riemannian.RiemannianMetric.koszulRHS_smul_middle}
   \uses{def:dc-ch2-2-1, lem:dc-ch2-3-6-welldef}
+  \leanok
+  \dcref{ch2:3.6}
   The candidate $\nabla_YX=\frac12(F_{Y,X})^\sharp$ satisfies
   \begin{align*}
     F_{Y,X_1+X_2}&=F_{Y,X_1}+F_{Y,X_2},\\
@@ -553,13 +539,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[the Koszul-dual connection is Levi-Civita]
   \label{lem:dc-ch2-3-6-exist}
-  \dcref{ch2:3.6}
-  \lean{Riemannian.AffineConnection.isLeviCivita_of_koszulDual,
-    Riemannian.koszulDual_isSymmetric,
-    Riemannian.koszulDual_isMetricCompatible}
+  \lean{Riemannian.AffineConnection.isLeviCivita_of_koszulDual, Riemannian.koszulDual_isSymmetric, Riemannian.koszulDual_isMetricCompatible}
+  \uses{def:dc-ch2-2-1, def:dc-ch2-3-4, lem:dc-ch2-3-6-koszul, lem:dc-ch2-3-6-welldef, lem:dc-ch2-tangent-extension}
   \leanok
-  \uses{def:dc-ch2-2-1, def:dc-ch2-3-4, lem:dc-ch2-3-6-koszul, lem:dc-ch2-3-6-welldef,
-    lem:dc-ch2-tangent-extension}
+  \dcref{ch2:3.6}
   On a finite-dimensional, $\sigma$-compact, Hausdorff Riemannian manifold,
   suppose an affine connection satisfies
   \[
@@ -587,10 +570,10 @@ real-valued functions on $M$.
 
 \begin{theorem}[Levi-Civita]
   \label{thm:dc-ch2-3-6}
-  \dcref{ch2:3.6}
   \lean{Riemannian.RiemannianMetric.exists_unique_isLeviCivita}
-  \leanok
   \uses{def:dc-ch2-3-4, cor:dc-ch2-3-3, lem:dc-ch2-3-6-koszul, lem:dc-ch2-3-6-unique, lem:dc-ch2-3-6-welldef, lem:dc-ch2-3-6-exist}
+  \leanok
+  \dcref{ch2:3.6}
   Every Riemannian manifold admits a unique affine connection $\nabla$ that is
   \begin{enumerate}
     \item[(a)] symmetric;
@@ -631,10 +614,10 @@ real-valued functions on $M$.
 
 \begin{definition}[Christoffel symbols]
   \label{def:dc-ch2-3-7-christoffel}
-  \dcref{ch2:3.7}
   \lean{Riemannian.chartChristoffel}
-  \leanok
   \uses{def:dc-ch1-2-1}
+  \leanok
+  \dcref{ch2:3.7}
   In coordinates, let $g_{ij}=\langle X_i,X_j\rangle$ and let $(g^{km})$ be
   the inverse matrix. The \emph{Christoffel symbols of the second kind} are
   \[
@@ -648,10 +631,10 @@ real-valued functions on $M$.
 
 \begin{remark}[the Levi-Civita connection and its coefficients]
   \label{rem:dc-ch2-3-7}
-\lean{Riemannian.chartChristoffel,Riemannian.chartChristoffel_symm,Riemannian.chartGram_christoffel_contraction,Riemannian.christoffel_bridge_inner,Riemannian.christoffel_bridge_vector,Riemannian.exists_chartFrame_leviCivita_christoffel}
-\leanok
+  \lean{Riemannian.chartChristoffel, Riemannian.chartChristoffel_symm, Riemannian.chartGram_christoffel_contraction, Riemannian.christoffel_bridge_inner, Riemannian.christoffel_bridge_vector, Riemannian.exists_chartFrame_leviCivita_christoffel}
+  \uses{thm:dc-ch2-3-6, def:dc-ch2-3-7-christoffel}
+  \leanok
   \dcref{ch2:3.7}
-  \uses{thm:dc-ch2-3-6,def:dc-ch2-3-7-christoffel}
   The connection of \cref{thm:dc-ch2-3-6} is the \emph{Levi-Civita} or
   \emph{Riemannian connection}. Its coordinate coefficients, defined by
   $\nabla_{X_i}X_j=\sum_k\Gamma_{ij}^kX_k$, satisfy
@@ -671,3 +654,32 @@ real-valued functions on $M$.
   In Euclidean coordinates, $\Gamma_{ij}^k=0$, so this is the ordinary
   derivative.
 \end{remark}
+
+\begin{proposition}[Riemannian parallel transport along a $C^1$ curve]
+  \label{prop:dc-ch2-2-6-riemannian}
+  \dcref{ch2:2.6}
+  \uses{def:dc-ch2-2-5}
+  \lean{Riemannian.Variation.exists_parallelCovariantFieldAlongOn_at}
+  \leanok
+  Let $M$ be a positive-dimensional boundaryless Riemannian manifold, let
+  $\gamma:\mathbb{R}\to M$ be a $C^1$ curve, and let $a<b$. For every
+  $t_0\in[a,b]$ and $V_0\in T_{\gamma(t_0)}M$, there exists a parallel vector
+  field $V$ along $\gamma$ on $[a,b]$ such that $V(t_0)=V_0$. It is unique on
+  $[a,b]$ among parallel fields having that value at $t_0$.
+\end{proposition}
+\begin{proof}
+  \uses{lem:dc-ch2-2-6-exist, lem:dc-ch2-2-6-unique, lem:dc-ch2-2-6-transport}
+  \leanok
+  Starting at $a$, solve the parallelism system in a coordinate neighborhood.
+  Compactness of $[a,b]$ gives finitely many such neighborhoods along the curve,
+  and uniqueness makes the local solutions agree on every overlap; hence each
+  $X\in T_{\gamma(a)}M$ determines a unique parallel field $V_X$ on $[a,b]$.
+  Evaluation at $t_0$ defines a linear map
+  $P_{a,t_0}:T_{\gamma(a)}M\to T_{\gamma(t_0)}M$. If
+  $P_{a,t_0}(X)=P_{a,t_0}(Y)$, uniqueness applied from $t_0$ gives
+  $V_X=V_Y$ on $[a,b]$, and therefore $X=Y$. Thus $P_{a,t_0}$ is injective;
+  since its domain and codomain have the same finite dimension, it is an
+  isomorphism. Set $X=P_{a,t_0}^{-1}(V_0)$ and $V=V_X$. Then
+  $V(t_0)=V_0$, and a final application of uniqueness at $t_0$ proves the
+  asserted uniqueness of $V$ on $[a,b]$.
+\end{proof}

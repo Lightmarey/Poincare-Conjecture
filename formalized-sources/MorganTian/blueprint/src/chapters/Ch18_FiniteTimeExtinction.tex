@@ -6,8 +6,9 @@
 
 \begin{theorem}[Finite-time extinction for Ricci flow with surgery]
 \label{thm:finite-time-extinction-main}
-\label{extinct}
 \uses{MAIN}
+\label{extinct}
+
 Let $(M,g(0))$ be a compact, connected, normalized Riemannian $3$-manifold
 whose fundamental group is a free product of finite groups and infinite cyclic
 groups. Then $M$ contains no embedded $\Ar P^2$ with trivial normal bundle. The
@@ -17,7 +18,8 @@ $t\in[0,\infty)$, is extinct in finite time: $M_T=\emptyset$ for all
 sufficiently large $T$.
 \end{theorem}
 \begin{proof}
-\uses{prop:eventual-trivial-pi2,prop:w3-forward-difference-quotient,MAIN,lem:forward-difference-quotient}
+  \uses{prop:eventual-trivial-pi2, prop:w3-forward-difference-quotient, MAIN, lem:forward-difference-quotient, thm:finite-time-extinction-main, Tgood0good}
+
 \sketch An embedded $\Ar P^2$ with trivial normal bundle can be made disjoint
 from the connected-sum spheres. It lies in a prime factor, is nonseparating,
 and induces an injection of its order-two fundamental group. Mayer--Vietoris
@@ -146,6 +148,7 @@ Chapter~\ref{sect:surgery} has only finitely many homotopically essential
 sphere surgeries.
 \end{proposition}
 \begin{proof}
+  \uses{surgerytoptype}
 \sketch By Lemma~\ref{lem:homotopically-essential-family-finite}, $s(M_0)$ is
 finite. Claim~\ref{claim:invariant-s-monotone} makes $s(t)$ a nonnegative
 integer that drops at every essential surgery.
@@ -221,8 +224,9 @@ inequality.
 
 \begin{lemma}[Forward difference quotient for $W_2$]
 \label{lem:w2-forward-difference-quotient}
+\uses{lem:minimal-sphere-energy-gap, lem:forward-difference-quotient}
 \label{W_2}
-\uses{lem:minimal-sphere-energy-gap,lem:forward-difference-quotient}
+
 Along such a path of components,
 \[
 \frac{dW_2}{dt}(t)\le-4\pi-\frac12R_{\min}(t)W_2(t)
@@ -297,6 +301,7 @@ to $M$.
 \begin{remark}[Components with nontrivial $\pi_2$ that disappear]
 \label{rem:pi2-disappearing-components}
 \uses{thm:finite-time-extinction-main}
+
 The discarded components with nontrivial $\pi_2$ are exactly the
 $S^2\times\Ar$-type components: $S^2$-bundles over $S^1$ and
 $\Ar P^3\#\Ar P^3$. Consequently, after essential sphere surgeries cease,
@@ -326,8 +331,9 @@ $H_3$ by Hurewicz.
 
 \begin{definition}[Spanning-disk energy functional $W(\xi)$]
 \label{def:w-xi-spanning-disk-functional}
+\uses{prop:eventual-trivial-pi2, lem:w2-forward-difference-quotient}
 \label{Wdefn}
-\uses{prop:eventual-trivial-pi2,lem:w2-forward-difference-quotient}
+
 For a null-homotopic loop $\gamma\in\Lambda M$, let $A(\gamma)$ be the
 infimum of areas of Lipschitz spanning disks, with boundary equal to $\gamma$
 up to reparameterization. For a continuous family
@@ -422,8 +428,9 @@ $\pi_2(X)=0$.
 
 \begin{corollary}[Short loops bound small-area disks]
 \label{cor:short-loop-bounds-small-disk}
+\uses{lem:short-loops-trivial-pi3, claim:w-a-t-explicit-formula}
 \label{shlnsharea}
-\uses{lem:short-loops-trivial-pi3,claim:w-a-t-explicit-formula}
+
 For every compact Riemannian manifold $(X,g)$ and every $\eta>0$, there is
 $0<\zeta<\eta/2$ such that every $C^1$ loop of length less than $\eta$ bounds
 a disk of area less than $\eta$.
@@ -435,8 +442,9 @@ uniformly to zero with the loop length.
 
 \begin{proposition}[Forward difference quotient for $W_\xi$]
 \label{prop:w3-forward-difference-quotient}
+\uses{prop:eventual-trivial-pi2, def:w-xi-spanning-disk-functional}
 \label{W_3fordiff}
-\uses{prop:eventual-trivial-pi2,def:w-xi-spanning-disk-functional}
+
 Let $({\mathcal M},G)$ be as in Theorem~\ref{MAIN}, let ${\mathcal X}$ be a
 path of components on $[t_0,t_1]$ with
 $\pi_2({\mathcal X}(t_0))=0$, and let
@@ -449,6 +457,7 @@ nonsurgery times and satisfies
 $W_\xi(t)\le\liminf_{t'\to t^-}W_\xi(t')$ at surgery times.
 \end{proposition}
 \begin{proof}
+  \uses{prop:eventual-trivial-pi2, prop:w3-forward-difference-quotient, MAIN, lem:forward-difference-quotient}
 \sketch Continuity and surgery semicontinuity are
 Claims~\ref{claim:w-xi-continuity-nonsurgery} and
 \ref{claim:w-xi-surgery-semicontinuity}. On a surgery-free interval, choose a
@@ -500,8 +509,9 @@ denoted by a prime.
 
 \begin{claim}[Short-time existence of the curve-shrinking flow]
 \label{claim:curve-shrinking-short-time-existence}
-\label{curvshrexist}
 \uses{prop:curve-deformation-existence}
+\label{curvshrexist}
+
 Every immersed $C^2$ loop at time $t_0$ has an immersed curve-shrinking flow
 on $[t_0,t_1')$ for some $t_1'>t_0$. The solution extends through $t_1'$ as
 immersions unless $\max_{S^1}k(\cdot,t)\to\infty$ as $t\uparrow t_1'$.
@@ -598,8 +608,9 @@ curve-shrinking flow define
 
 \begin{lemma}[Christoffel symbols of the space-time metric]
 \label{lem:spacetime-christoffel}
-\label{hatchristoffel}
 \uses{not:curve-shrinking-spacetime}
+\label{hatchristoffel}
+
 For horizontal indices $i,j,k$ and time index $0$,
 \[
 \widehat\Gamma^k_{ij}=\Gamma^k_{ij},\qquad
@@ -622,9 +633,11 @@ Koszul formula.
 
 \begin{lemma}[First variation formulas for curve-shrinking flow]
 \label{lem:curve-shrinking-first-variation}
-\label{1stcurvshr}
-\uses{not:curve-shrinking-spacetime,lem:spacetime-christoffel}
 \source{morgan-tian-correction}
+\uses{not:curve-shrinking-spacetime, lem:spacetime-christoffel}
+\label{1stcurvshr}
+
+
 With the preceding notation,
 \[
 \widehat H(|X|^2)=-2\Ric_g(X,X)-2k^2|X|^2,
@@ -641,9 +654,11 @@ term. Differentiate $S=|X|^{-1}X$ and substitute the first identity.
 
 \begin{lemma}[Evolution equation for the curvature $k^2$]
 \label{lem:curve-shrinking-curvature-evolution}
-\label{2ndcurvshr}
-\uses{not:curve-shrinking-spacetime,lem:spacetime-christoffel}
 \source{morgan-tian-correction}
+\uses{not:curve-shrinking-spacetime, lem:spacetime-christoffel}
+\label{2ndcurvshr}
+
+
 With primes denoting arc-length derivatives,
 \begin{align*}
 \partial_tk^2={}&(k^2)''-2\langle(\nabla_SH)^\perp,(\nabla_SH)^\perp\rangle+2k^4
@@ -670,6 +685,7 @@ $[\widehat H,S]=(k^2+\Ric_g(S,S))S$ gives the displayed formula.
 \begin{remark}[The book's Lemma 19.7 is not correct]
 \label{rem:curve-shrinking-evolution-erratum}
 \source{morgan-tian-correction}
+
 A computation in a frozen pullback metric omits the last two terms of
 Lemma~\ref{lem:curve-shrinking-curvature-evolution} and replaces
 $2\widehat{\Rm}(\widehat H,S,H,S)$ by $\Rm(H,S,H,S)$. The omitted connection
@@ -679,9 +695,11 @@ initial length in the total-curvature estimate.
 
 \begin{corollary}[Differential inequality for $k^2$]
 \label{cor:curve-shrinking-curvature-inequality-bound}
-\label{*4'}
-\uses{lem:curve-shrinking-curvature-evolution}
 \source{morgan-tian-correction}
+\uses{lem:curve-shrinking-curvature-evolution}
+\label{*4'}
+
+
 There is $\widehat C<\infty$, depending only on bounds for the ambient
 curvature and its first covariant derivative, such that
 \[
@@ -699,9 +717,11 @@ also contribute $O(k)$.
 
 \begin{claim}[Differential inequality for the curvature $k$]
 \label{claim:curve-shrinking-curvature-inequality}
-\label{3rdcurvshr}
-\uses{cor:curve-shrinking-curvature-inequality-bound}
 \source{morgan-tian-correction}
+\uses{cor:curve-shrinking-curvature-inequality-bound}
+\label{3rdcurvshr}
+
+
 For $h_\epsilon=(k^2+\epsilon^2)^{1/2}$ there is $C_1$, depending only on the
 ambient flow, such that
 \[
@@ -725,9 +745,11 @@ L(t)=\int ds,
 
 \begin{lemma}[Growth bounds for length and total curvature]
 \label{lem:curve-shrinking-length-curvature-growth}
-\label{1835}
-\uses{claim:curve-shrinking-curvature-inequality}
 \source{morgan-tian-correction}
+\uses{claim:curve-shrinking-curvature-inequality}
+\label{1835}
+
+
 If $C_2$ bounds $|\Ric_g|$ and $C_1$ is as above, then
 \begin{equation}\label{Lformula}
 \frac{dL}{dt}\le\int(C_2-k^2)\,ds
@@ -751,9 +773,11 @@ of $h_\epsilon''$ vanishes. Let $\epsilon\downarrow0$.
 
 \begin{corollary}[Exponential bound for length and total curvature]
 \label{cor:curve-shrinking-length-curvature-exponential-bound}
-\label{lncurvgrowth}
-\uses{lem:curve-shrinking-length-curvature-growth}
 \source{morgan-tian-correction}
+\uses{lem:curve-shrinking-length-curvature-growth}
+\label{lncurvgrowth}
+
+
 For $t'\le t''$,
 \[
 L(t'')\le L(t')e^{C_2(t''-t')},
@@ -771,6 +795,7 @@ $\Theta(t'')\le(\Theta(t')+L(t'))e^{(C_1+C_2)(t''-t')}$.
 \begin{remark}[The bound on total curvature depends on the initial length]
 \label{rem:total-curvature-needs-initial-length}
 \source{morgan-tian-correction}
+
 The term $C_1L$ prevents control of $\Theta(t'')$ by $\Theta(t')$ alone. The
 later compact families have uniform initial bounds for both quantities.
 \end{remark}
@@ -860,6 +885,7 @@ curves by a third disjoint curve and pass to the limit.
 \begin{corollary}[Exponential growth bound for the minimal annulus area]
 \label{cor:minimal-annulus-exponential-growth}
 \uses{prop:curve-deformation-existence}
+
 The least annulus area between two degree-one ramp flows grows at most
 exponentially, with exponent controlled by the ambient sectional-curvature
 bound and independent of $\lambda$.
@@ -896,8 +922,9 @@ out annuli whose areas tend to zero.
 
 \begin{claim}[Uniformity of the polygonal approximation over a compact family]
 \label{claim:polygonal-approximation-uniform}
-\label{uniformc}
 \uses{claim:polygonal-approximation-properties}
+\label{uniformc}
+
 If $X\subset\Lambda M$ is compact, the threshold in the preceding claim may
 be chosen uniformly for $c\in X$.
 \end{claim}
@@ -919,7 +946,8 @@ null-homotopic, has length within $\zeta$ of $L(\Gamma(c))$, and satisfies
 \]
 \end{corollary}
 \begin{proof}
-\uses{claim:polygonal-approximation-uniform}
+  \uses{claim:polygonal-approximation-uniform, cor:polygonal-approximation-of-family}
+
 \sketch Uniformly short sides are unique and vary continuously with their endpoints.
 The small connecting annuli preserve homotopy classes and change least disk
 area by at most their area.
@@ -998,9 +1026,11 @@ The length identity gives a uniform constant $C_5>1$ with
 
 \begin{lemma}[Shi-type curvature estimate for curve-shrinking flow]
 \label{lem:curve-shrinking-shi-estimate}
-\label{CSSHI}
-\uses{prop:curve-deformation-existence}
 \source{morgan-tian-correction}
+\uses{prop:curve-deformation-existence}
+\label{CSSHI}
+
+
 Fix $\Theta_0,L_0<\infty$. There are $\delta>0$ and constants
 $\widetilde C_i$, depending only on $t_1-t_0$, an ambient curvature bound,
 $\Theta_0$, and $L_0$, with the following property. If an immersed
@@ -1023,8 +1053,10 @@ higher derivatives; see \cite{AG,Altschuler}.
 
 \begin{remark}[The Shi-type constants depend on the initial data]
 \label{rem:shi-constants-depend-on-initial-data}
-\uses{lem:curve-shrinking-shi-estimate,prop:curve-deformation-existence}
 \source{morgan-tian-correction}
+\uses{lem:curve-shrinking-shi-estimate, prop:curve-deformation-existence}
+
+
 The dependence on both $\Theta_0$ and $L_0$ is required by
 Remark~\ref{rem:total-curvature-needs-initial-length}. The lifted family from
 Lemma~\ref{lem:good-approximation-family} has uniform bounds for both, so the
@@ -1043,8 +1075,9 @@ of measure at most $4C_5B^{-1}$.
 
 \begin{claim}[Piecewise domination by the comparison ODE]
 \label{claim:piecewise-domination-estimate}
-\label{C1C4delta}
 \uses{claim:area-forward-difference-linear-bound}
+\label{C1C4delta}
+
 Fix $C_4$ and $\widetilde A>0$. For every $\zeta>0$ there is $\delta'>0$ such
 that the following holds. Let $J\subset[t_0,t_1]$ be a finite union of
 intervals, let $0\le f(t_0)\le\widetilde A$, and assume
@@ -1070,8 +1103,9 @@ $C_7e^{C_6(t_1-t_0)}\sum_j\delta_j$.
 
 \begin{claim}[Approximate piecewise domination by the comparison ODE]
 \label{claim:approximate-piecewise-domination-estimate}
-\label{deltaprime}
 \uses{claim:piecewise-domination-estimate}
+\label{deltaprime}
+
 With the preceding data and $J$ fixed, there is $\delta''>0$ such that the
 same conclusion with error $\zeta/2$ holds if the component condition is
 weakened to
@@ -1109,8 +1143,9 @@ uniform bounds.
 
 \begin{remark}[Length bound in the short-loop alternative]
 \label{rem:short-loop-length-bound}
+\uses{lem:immersed-curve-shrinking-area-bound, claim:curve-shrinking-flow-limit, claim:area-forward-difference-linear-bound, claim:piecewise-domination-estimate, claim:approximate-piecewise-domination-estimate, cor:curve-shrinking-length-curvature-exponential-bound, lem:curve-deformation-single-point-estimate, prop:curve-deformation-existence}
 \label{xicomp}
-\uses{lem:immersed-curve-shrinking-area-bound,claim:curve-shrinking-flow-limit,claim:area-forward-difference-linear-bound,claim:piecewise-domination-estimate,claim:approximate-piecewise-domination-estimate,cor:curve-shrinking-length-curvature-exponential-bound,lem:curve-deformation-single-point-estimate,prop:curve-deformation-existence}
+
 With the later choice of $B$, the short-loop alternative supplies
 $t_n\in J_B(c)$ with
 \[
@@ -1177,8 +1212,9 @@ at most $\mu$.
 
 \begin{lemma}[Length comparison for ramps joined by a small annulus]
 \label{lem:ramp-length-comparison-small-annulus}
-\label{BARMU}
 \uses{prop:curve-deformation-existence}
+\label{BARMU}
+
 There is $\delta>0$ such that for every $r>0$ there is $\bar\mu>0$, depending
 on $r$ and the ambient curvature bound, with the following property. If ramps
 $\gamma,\hat\gamma$ are joined by an annulus of area below $\bar\mu$,
@@ -1206,7 +1242,8 @@ $L(\widetilde\Gamma_{\hat c}^\lambda(t))<\zeta/2$ on $[t_2,t_1]$, then
 $L(p_1\widetilde\Gamma_c^\lambda(t_1))<\zeta$.
 \end{claim}
 \begin{proof}
-\uses{cor:curve-shrinking-length-curvature-exponential-bound,lem:ramp-length-comparison-small-annulus,lem:minimal-annulus-area-growth}
+  \uses{cor:curve-shrinking-length-curvature-exponential-bound, lem:ramp-length-comparison-small-annulus, lem:minimal-annulus-area-growth, lem:mu-net-area-comparison, lem:curve-deformation-single-point-estimate}
+
 \sketch Assume the final projected length is at least $\zeta$. The exponential length
 bound keeps the $c$-ramp length at least $3\zeta/4$ on $[t_2,t_1]$. Integrating
 Equation~\eqref{Lformula} finds a time at which $\int k^2ds\le C_8B$; on short
@@ -1219,8 +1256,9 @@ its bound by $\zeta/2$.
 
 \begin{proposition}[Existence of the curve-shrinking deformation]
 \label{prop:curve-deformation-existence}
-\label{XI}
 \uses{prop:w3-forward-difference-quotient}
+\label{XI}
+
 Let $(M,g(t))$, $t_0\le t\le t_1$, be a compact Ricci flow. Given a map
 $\Gamma\colon S^2\to\Lambda M$ of null-homotopic loops and $\zeta>0$, there
 is a continuous family
@@ -1558,8 +1596,9 @@ least one, contradicting Lemma~\ref{lem:far-apart-geodesics-disjoint}.
 
 \begin{corollary}[Summary of intersection properties of the geodesics Dx]
 \label{cor:geodesic-family-intersection-summary}
+\uses{prop:annulus-boundary-length-estimate, cor:focusing-triangle-from-short-arc, lem:no-geodesic-spans-c0-to-c0}
 \label{focussummary}
-\uses{prop:annulus-boundary-length-estimate,cor:focusing-triangle-from-short-arc,lem:no-geodesic-spans-c0-to-c0}
+
 Every $D_x$ is embedded and either has length $\delta'$ or ends on $c_1$. If
 $D_x$ and $D_{x'}$ meet, the points are joined on $c_0$ by an arc $\xi$ of
 length at most $\delta+\mu$; suitable initial segments and $\xi$ bound a disk

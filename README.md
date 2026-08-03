@@ -62,6 +62,21 @@ site/                  authored website content and assets
 | [Gilbarg-Trudinger](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/GilbargTrudinger) | Second-order elliptic partial differential equations |
 | [Han-Lin](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/HanLinLectureNotes) | Elliptic differential equations |
 
+## Current review milestones
+
+- **Hopf-Rinow (do Carmo, Chapter 7, Section 2).** The path-regularity gap raised
+  in [issue #6](https://github.com/frenzymath/Poincare-Conjecture/issues/6) is
+  closed: `piecewiseRiemannianEDist_eq_riemannianEDist` identifies do Carmo's
+  finite piecewise-smooth infimum with Mathlib's `riemannianEDist`.
+- **Cartan-Hadamard (do Carmo, Chapter 7, Section 3).** The theorem is fully
+  formalized without project axioms or `sorry`. The construction
+  `hadamardDiffeomorphOfNonpos_complete` is a global smooth diffeomorphism and
+  its underlying map is definitionally the exponential map, so mathematical
+  and Lean review can start.
+- **Cross-reference status.** Cartan-Hadamard is also complete in the
+  Lee-Riemannian development. Petersen Section 6.2 remains open, which is why
+  the workspace-wide milestone remains active.
+
 ## Contributing
 
 Contributions are welcome through [issues](https://github.com/frenzymath/Poincare-Conjecture/issues) and focused [pull requests](https://github.com/frenzymath/Poincare-Conjecture/pulls). Build instructions, local website preview, and the hgraph review/comment workflow are documented in [CONTRIBUTING.md](CONTRIBUTING.md).

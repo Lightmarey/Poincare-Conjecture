@@ -143,4 +143,17 @@ def IsRiemannianDist (g : RiemannianMetric I M) : Prop :=
   letI : RiemannianBundle (fun x : M ↦ TangentSpace I x) := ⟨g.toRiemannianMetric⟩
   IsRiemannianManifold I M
 
+/-- **Math.** Clearer-named synonym for `IsRiemannianDist`: the ambient extended
+distance `edist` on `M` **is induced by** the Riemannian metric `g` (i.e. equals
+`g`'s Riemannian distance). The predicate is about the ambient `edist`, not about
+`g` being a distance itself — "induces the ambient edist" names that precisely,
+avoiding the weaker reading of "compatible" (same topology/uniformity only).
+
+Definitionally equal to `IsRiemannianDist`, so the two names are interchangeable
+under dot-notation. Introduced as the preferred name per the issue #6 follow-up
+review; `IsRiemannianDist` is kept for its existing downstream users and will be
+phased out gradually rather than renamed repository-wide in one step. -/
+abbrev InducesAmbientEDist (g : RiemannianMetric I M) : Prop :=
+  g.IsRiemannianDist
+
 end Riemannian.RiemannianMetric

@@ -7,9 +7,13 @@ Ricci flow is the evolution equation
 
 \begin{definition}[Ricci flow evolution equation]
 \label{topping-intro-ricci-flow-evolution}
+\source{topping:page-0007}
+\uses{topping-intro-ricci-curvature}
 \dcref{ch1:1.1}
 \group{ricci-flow}
-\uses{topping-intro-ricci-curvature}
+\lean{Topping.IsRicciFlowOn}
+\leanok
+
 \[
 \frac{\partial g}{\partial t}=-2\,\Ric(g).
 \]
@@ -17,7 +21,10 @@ Ricci flow is the evolution equation
 
 \begin{remark}
 \label{topping-intro-ricci-curvature}
+\source{topping:page-0007}
 \group{ricci-flow}
+\lean{Topping.ricciTensorAt}
+\leanok
 $\Ric(g)$ denotes the Ricci curvature tensor of $g$.
 \end{remark}
 
@@ -44,6 +51,7 @@ metric is parallel.
 
 \begin{remark}
 \label{topping-intro-einstein-flow}
+\source{topping:page-0009}
 \group{examples}
 If $\Ric(g_0)=\lambda g_0$ for a constant $\lambda\in\mathbb R$, then
 \[
@@ -82,6 +90,7 @@ smooth function $f:\mathcal M\to\mathbb R$, the flow is characterised by:
 
 \begin{definition}[Flow of a time-dependent vector field]
 \label{topping-intro-flow-field}
+\source{topping:page-0009}
 \dcref{ch1:2.1}
 \group{ricci-solitons}
 \[
@@ -91,9 +100,11 @@ X(\psi_t(y),t)f=\frac{\partial}{\partial t}(f\circ\psi_t)(y).
 
 \begin{proposition}
 \label{topping-intro-pushforward-evolution}
+\source{topping:page-0010}
+\uses{topping-intro-flow-field}
 \dcref{ch1:2.1--ch1:2.3}
 \group{ricci-solitons}
-\uses{topping-intro-flow-field}
+
 For a smooth function $\sigma(t)$ and
 \[
 \hat g(t)=\sigma(t)\psi_t^*(g(t)),
@@ -115,6 +126,7 @@ $g$ contributing the middle term.
 
 \begin{definition}
 \label{topping-intro-ricci-soliton}
+\source{topping:page-0010}
 \dcref{ch1:2.2--ch1:2.4}
 \group{ricci-solitons}
 A metric $g_0$, vector field $Y$, and constant $\lambda\in\mathbb R$ define
@@ -128,6 +140,7 @@ or $\lambda>0$, respectively.
 
 \begin{definition}
 \label{topping-intro-gradient-soliton}
+\source{topping:page-0011}
 \dcref{ch1:2.3--ch1:2.5}
 \group{ricci-solitons}
 A Ricci soliton is a gradient Ricci soliton if $Y=\nabla f$ for some smooth
@@ -141,6 +154,7 @@ function $f:\mathcal M\to\mathbb R$. Its equation is
 
 \begin{remark}
 \label{topping-intro-parabolic-rescaling}
+\source{topping:page-0012}
 \dcref{ch1:2.7--ch1:2.9}
 \group{rescaling}
 If $g(t)$ is a Ricci flow on $[0,T]$ and $\lambda>0$, then
@@ -195,6 +209,7 @@ hyperbolic quotient.
 
 \begin{definition}
 \label{topping-intro-geometry}
+\source{topping:page-0021}
 \dcref{ch1:4.1}
 \group{three-manifolds}
 A geometry is a simply connected, homogeneous, unimodular Riemannian
@@ -207,6 +222,7 @@ quotient.
 
 \begin{definition}
 \label{topping-intro-geometric-manifold}
+\source{topping:page-0021}
 \dcref{ch1:4.2}
 \group{three-manifolds}
 A compact manifold $\mathcal M$ is geometric if
@@ -219,6 +235,7 @@ incompressible tori.
 
 \begin{conjecture}
 \label{topping-intro-thurston-geometrization}
+\source{topping:page-0021}
 \dcref{ch1:4.3}
 \group{three-manifolds}
 Every smooth, closed, oriented prime three-manifold is obtained by gluing

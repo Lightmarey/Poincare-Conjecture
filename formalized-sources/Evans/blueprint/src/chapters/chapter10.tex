@@ -68,9 +68,10 @@ v_t(x_0,t_0)+H(Dv(x_0,t_0),x_0)\geq0.
 
 \begin{definition}[Viscosity solution of the initial-value problem]
 \label{def:viscosity-solution-cauchy-problem}
+\uses{rem:hj-viscosity-solution-motivation}
 \dcref{ch10:10.1-def-1}
 \group{Viscosity Solutions}
-\uses{rem:hj-viscosity-solution-motivation}
+
 A bounded, uniformly continuous function $u$ is called a \textit{viscosity solution} of the \textit{initial-value problem} (1) for the \textit{Hamilton-Jacobi equation} provided:
 
 (i) $u = g$ on $\R^n \times \{t = 0\}$,
@@ -95,9 +96,10 @@ v_t(x_0, t_0) + H(Dv(x_0, t_0), x_0) \geq 0.
 
 \begin{remark}[The defining inequalities, not the vanishing-viscosity construction, are the definition]
 \label{rem:viscosity-solution-definition-emphasis}
+\uses{def:viscosity-solution-cauchy-problem}
 \dcref{ch10:10.1-rem-2}
 \group{Viscosity Solutions}
-\uses{def:viscosity-solution-cauchy-problem}
+
 The intrinsic definition is the pair of test-function inequalities (16), (17). Vanishing viscosity is one construction that implies these inequalities, not part of the definition.
 \end{remark}
 
@@ -105,9 +107,10 @@ The intrinsic definition is the pair of test-function inequalities (16), (17). V
 
 \begin{proposition}[Classical solutions are viscosity solutions]
 \label{prop:classical-solutions-are-viscosity-solutions}
+\uses{def:viscosity-solution-cauchy-problem}
 \dcref{ch10:10.1-prop-1}
 \group{Viscosity Solutions}
-\uses{def:viscosity-solution-cauchy-problem}
+
 If $u \in C^1(\R^n \times [0,\infty))$ solves (1) and if $u$ is bounded and uniformly continuous, then $u$ is a viscosity solution. That is, any \textit{classical solution} of $u_t + H(Du,x) = 0$ \textit{is also a viscosity solution}.
 \end{proposition}
 
@@ -137,9 +140,10 @@ u - v \text{ has a strict local maximum at } x_0.
 
 \begin{theorem}[Consistency of viscosity solutions]
 \label{thm:consistency-viscosity-solutions}
+\uses{def:viscosity-solution-cauchy-problem, lem:touching-by-c1-function}
 \dcref{ch10:10.1-thm-1}
 \group{Viscosity Solutions}
-\uses{def:viscosity-solution-cauchy-problem,lem:touching-by-c1-function}
+
 Let $u$ be a viscosity solution of (1), and suppose $u$ is differentiable at some point $(x_0, t_0) \in \R^n \times (0, \infty)$. Then
 \[
 u_t(x_0, t_0) + H(Du(x_0, t_0), x_0) = 0.
@@ -164,17 +168,19 @@ u=g & \text{on }\R^n\times\{t=0\}.
 
 \begin{definition}[Viscosity solution on a finite time interval]
 \label{def:viscosity-solution-finite-horizon}
+\uses{def:viscosity-solution-cauchy-problem}
 \dcref{ch10:10.2-def-1}
 \group{Viscosity Solutions}
-\uses{def:viscosity-solution-cauchy-problem}
+
 A bounded, uniformly continuous function $u$ is a viscosity solution of (1) if $u=g$ at $t=0$ and, for each smooth test function $v$, a local maximum of $u-v$ in $\R^n\times(0,T)$ implies (16), while a local minimum implies (17).
 \end{definition}
 
 \begin{lemma}[Extrema at a terminal time]
 \label{lem:extrema-at-terminal-time}
+\uses{def:viscosity-solution-finite-horizon}
 \dcref{ch10:10.2-lem-1}
 \group{Viscosity Solutions}
-\uses{def:viscosity-solution-finite-horizon}
+
 Assume $u$ is a viscosity solution of (1) and $u - v$ has a local maximum (minimum) at a point $(x_0, t_0) \in \R^n \times (0, T]$. Then
 \[
 v_t(x_0, t_0) + H(Dv(x_0, t_0), x_0) \le 0 \quad (\ge 0).
@@ -203,9 +209,10 @@ for $x, y, p, q \in \R^n$ and some constant $C \geq 0$.
 
 \begin{theorem}[Uniqueness of viscosity solution]
 \label{thm:uniqueness-viscosity-solution-hj}
+\uses{def:viscosity-solution-finite-horizon, lem:extrema-at-terminal-time, def:hamiltonian-lipschitz-condition}
 \dcref{ch10:10.2-thm-1}
 \group{Viscosity Solutions}
-\uses{def:viscosity-solution-finite-horizon,lem:extrema-at-terminal-time,def:hamiltonian-lipschitz-condition}
+
 Under assumption (3) there exists at most one viscosity solution of (1).
 \end{theorem}
 
@@ -215,9 +222,10 @@ Under assumption (3) there exists at most one viscosity solution of (1).
 
 \begin{remark}[Doubling of variables technique]
 \label{rem:doubling-variables-technique}
+\uses{thm:uniqueness-viscosity-solution-hj}
 \dcref{ch10:10.2-rem-1}
 \group{Viscosity Solutions}
-\uses{thm:uniqueness-viscosity-solution-hj}
+
 The uniqueness argument compares two solutions by maximizing a penalized function of two space-time variables; this is the \textit{doubling of variables} technique.
 \end{remark}
 
@@ -255,9 +263,10 @@ and for each $\alpha\in\mathcal A$, (1) has a unique Lipschitz response $\mathbf
 
 \begin{definition}[Running cost, terminal cost, and the cost functional]
 \label{def:control-cost-functional}
+\uses{def:controlled-ode-admissible-controls}
 \dcref{ch10:10.3-def-2}
 \group{Control Theory}
-\uses{def:controlled-ode-admissible-controls}
+
 For $x\in\R^n$, $0\leq t\leq T$, and $\alpha\in\mathcal A$, define
 \[
 C_{x,t}[\alpha(\cdot)] := \int_t^T h(\mathbf x(s), \alpha(s)) \, ds + g(\mathbf x(T)),
@@ -279,9 +288,10 @@ for some $C$.
 
 \begin{definition}[Value function]
 \label{def:value-function}
+\uses{def:control-cost-functional}
 \dcref{ch10:10.3-def-3}
 \group{Control Theory}
-\uses{def:control-cost-functional}
+
 The \textit{value function} is
 \[
 u(x,t) := \inf_{\alpha(\cdot) \in \mathcal{A}} C_{x,t}[\alpha(\cdot)] \quad (x \in \R^n, 0 \le t \le T).
@@ -291,9 +301,10 @@ u(x,t) := \inf_{\alpha(\cdot) \in \mathcal{A}} C_{x,t}[\alpha(\cdot)] \quad (x \
 
 \begin{theorem}[Optimality conditions]
 \label{thm:dynamic-programming-optimality-conditions}
+\uses{def:value-function, def:control-cost-functional}
 \dcref{ch10:10.3-thm-1}
 \group{Control Theory}
-\uses{def:value-function,def:control-cost-functional}
+
 For each $h > 0$ so small that $t + h \leq T$, we have
 \[
 u(x,t) = \inf_{\alpha(\cdot) \in \mathcal{A}} \left\{ \int_t^{t+h} h(\mathbf{x}(s), \alpha(s)) ds + u(\mathbf{x}(t+h), t+h) \right\},
@@ -310,9 +321,10 @@ where $\mathbf{x}(\cdot) = \mathbf{x}^{\alpha(\cdot)}(\cdot)$ solves the ODE (1)
 
 \begin{lemma}[Estimates for the value function]
 \label{lem:value-function-estimates}
+\uses{def:value-function, def:control-cost-functional}
 \dcref{ch10:10.3-lem-1}
 \group{Control Theory}
-\uses{def:value-function,def:control-cost-functional}
+
 There exists a constant $C$ such that
 \[
 |u(x,t)| \leq C,
@@ -329,9 +341,10 @@ for all $x, \hat{x} \in \R^n$, $0 \leq t, \hat{t} \leq T$.
 
 \begin{theorem}[A PDE for the value function]
 \label{thm:value-function-solves-hjb-equation}
+\uses{lem:value-function-estimates, thm:dynamic-programming-optimality-conditions, def:value-function}
 \dcref{ch10:10.3-thm-2}
 \group{Control Theory}
-\uses{lem:value-function-estimates,thm:dynamic-programming-optimality-conditions,def:value-function}
+
 The value function $u$ is the unique viscosity solution of this terminal-value problem for the Hamilton-Jacobi-Bellman equation:
 \[
 \begin{cases}
@@ -348,9 +361,10 @@ u = g & \text{on } \R^n \times \{t = T\}.
 
 \begin{remark}[The Hamilton-Jacobi-Bellman Hamiltonian]
 \label{rem:hjb-hamiltonian-formula}
+\uses{thm:value-function-solves-hjb-equation, def:hamiltonian-lipschitz-condition}
 \dcref{ch10:10.3-rem-1}
 \group{Control Theory}
-\uses{thm:value-function-solves-hjb-equation,def:hamiltonian-lipschitz-condition}
+
 The Hamilton--Jacobi--Bellman PDE has the form
 \[
 u_t + H(Du, x) = 0 \quad \text{in } \R^n \times (0,T),
@@ -365,9 +379,10 @@ The bounds (3), (5) imply that this $H$ satisfies \cref{def:hamiltonian-lipschit
 
 \begin{definition}[Viscosity solution of a terminal-value problem]
 \label{def:viscosity-solution-terminal-value-problem}
+\uses{def:viscosity-solution-cauchy-problem}
 \dcref{ch10:10.3-def-4}
 \group{Control Theory}
-\uses{def:viscosity-solution-cauchy-problem}
+
 A bounded, uniformly continuous function $u$ is a \textit{viscosity solution} of (22) provided:
 
 (i) $u = g$ on $\R^n \times \{t = T\}$,
@@ -399,9 +414,10 @@ The terminal-value inequalities reverse the initial-value inequalities in \cref{
 
 \begin{remark}[Correspondence with the initial-value problem via time reversal]
 \label{rem:terminal-value-time-reversal}
+\uses{def:viscosity-solution-terminal-value-problem, def:viscosity-solution-cauchy-problem}
 \dcref{ch10:10.3-rem-2}
 \group{Control Theory}
-\uses{def:viscosity-solution-terminal-value-problem,def:viscosity-solution-cauchy-problem}
+
 If $u$ is a viscosity solution of (22), then $w(x,t):=u(x,T-t)$ is a viscosity solution of
 \[
 \begin{cases}
@@ -413,9 +429,10 @@ w = g & \text{on } \R^n \times \{t = 0\}.
 
 \begin{remark}[Design of optimal controls]
 \label{rem:design-of-optimal-controls}
+\uses{thm:value-function-solves-hjb-equation}
 \dcref{ch10:10.3-rem-3}
 \group{Control Theory}
-\uses{thm:value-function-solves-hjb-equation}
+
 For an initial state $(x,t)$, a feedback trajectory satisfies
 \[
 \begin{cases} \dot{x}^*(s) = f(x^*(s), \alpha^*(s)) & (t < s < T) \\ x^*(t) = x, \end{cases}
@@ -459,9 +476,10 @@ L(q)=\sup_{p\in\R^n}\{p\cdot q-H(p)\}.
 
 \begin{theorem}[Hopf-Lax formula as viscosity solution]
 \label{thm:hopf-lax-formula-viscosity-solution}
+\uses{def:viscosity-solution-finite-horizon, thm:value-function-solves-hjb-equation, def:hopf-lax-formula, lem:hopf-lax-functional-identity, thm:convex-duality-hamiltonian-lagrangian, lem:hopf-lax-lipschitz-continuity}
 \dcref{ch10:10.3-thm-3}
 \group{Hopf-Lax Formula}
-\uses{def:viscosity-solution-finite-horizon,thm:value-function-solves-hjb-equation,def:hopf-lax-formula,lem:hopf-lax-functional-identity,thm:convex-duality-hamiltonian-lagrangian,lem:hopf-lax-lipschitz-continuity}
+
 Assume in addition that $g$ is bounded. Then the unique viscosity solution of the initial-value problem (43) is given by the formula (44).
 \end{theorem}
 

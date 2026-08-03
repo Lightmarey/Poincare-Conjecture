@@ -2,7 +2,8 @@
 
 \section{Local Boundedness}
 
-\begin{theorem}\label{hanlin:weaksol-part2-local-boundedness}\dcref{Theorem 4.1}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0073,han-lin-lecture-notes:page-0074,han-lin-lecture-notes:page-0075,han-lin-lecture-notes:page-0076,han-lin-lecture-notes:page-0077,han-lin-lecture-notes:page-0078,han-lin-lecture-notes:page-0079,han-lin-lecture-notes:page-0080,han-lin-lecture-notes:page-0081}
+\begin{theorem}\label{hanlin:weaksol-part2-local-boundedness}\dcref{Theorem 4.1}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0073,han-lin-lecture-notes:page-0074,han-lin-lecture-notes:page-0075,han-lin-lecture-notes:page-0076,han-lin-lecture-notes:page-0077,han-lin-lecture-notes:page-0078,han-lin-lecture-notes:page-0079,han-lin-lecture-notes:page-0080,han-lin-lecture-notes:page-0081}
 Suppose $a_{ij}\in L^\infty(B_1)$ and $c\in L^q(B_1)$ for some
 $q>n/2$, with
 \[
@@ -102,7 +103,9 @@ Lemma~\ref{hanlin:weaksol-part2-iteration-lemma} removes the
 $F(R)$ term.
 \end{proof}
 
-\begin{remark}\label{hanlin:weaksol-part2-bounded-test-function}\dcref{Remark 4.2}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0080}\uses{hanlin:weaksol-part2-local-boundedness}
+\begin{remark}\label{hanlin:weaksol-part2-bounded-test-function}\dcref{Remark 4.2}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0080}
+\uses{hanlin:weaksol-part2-local-boundedness}
 If $u$ is bounded, the truncation in the proof may be omitted and one may use
 \[
 \varphi=\eta^2(\bar u^{\beta+1}-k^{\beta+1})
@@ -111,7 +114,8 @@ If $u$ is bounded, the truncation in the proof may be omitted and one may use
 for $\beta\geq0$ and $0\leq\eta\in C^1_0(B_1)$.
 \end{remark}
 
-\begin{lemma}\label{hanlin:weaksol-part2-iteration-lemma}\dcref{Lemma 4.3}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0081}
+\begin{lemma}\label{hanlin:weaksol-part2-iteration-lemma}\dcref{Lemma 4.3}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0081}
 Let $f\geq0$ be bounded on $[\tau_0,\tau_1]$, with $\tau_0\geq0$, and
 suppose
 \[
@@ -141,7 +145,9 @@ f(t)\leq\theta^kf(t_k)+
 Let $k\to\infty$ and sum the geometric series.
 \end{proof}
 
-\begin{theorem}\label{hanlin:weaksol-part2-high-integrability}\dcref{Theorem 4.4}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0082,han-lin-lecture-notes:page-0083}\uses{hanlin:weaksol-part2-local-boundedness}
+\begin{theorem}\label{hanlin:weaksol-part2-high-integrability}\dcref{Theorem 4.4}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0082,han-lin-lecture-notes:page-0083}
+\uses{hanlin:weaksol-part2-local-boundedness}
 Assume $n\geq3$. Suppose $a_{ij}\in L^\infty(B_1)$ and
 $c\in L^{n/2}(B_1)$ satisfy
 \[
@@ -220,7 +226,8 @@ on $B_1$, where
 \qquad(x\in B_1,\ \xi\in\R^n).
 \]
 
-\begin{definition}\label{hanlin:weaksol-part2-homogeneous-subsolution}\dcref{Definition 4.5}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0084}
+\begin{definition}\label{hanlin:weaksol-part2-homogeneous-subsolution}\dcref{Definition 4.5}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0084}
 A function $u\in H^1_{\mathrm{loc}}(B_1)$ is a subsolution, respectively a
 supersolution, of $Lu=0$ if
 \[
@@ -230,7 +237,9 @@ supersolution, of $Lu=0$ if
 for every nonnegative $\varphi\in H^1_0(B_1)$.
 \end{definition}
 
-\begin{lemma}\label{hanlin:weaksol-part2-convex-composition}\dcref{Lemma 4.6}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0084}\uses{hanlin:weaksol-part2-homogeneous-subsolution}
+\begin{lemma}\label{hanlin:weaksol-part2-convex-composition}\dcref{Lemma 4.6}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0084}
+\uses{hanlin:weaksol-part2-homogeneous-subsolution}
 Let $\Phi\in C^1_{\mathrm{loc}}(\R)$ be convex.
 \begin{enumerate}
 \item[(i)] If $u$ is a subsolution and $\Phi'\geq0$, then
@@ -251,11 +260,14 @@ The supersolution case is analogous. Approximate a general convex $C^1$
 function by convolution and pass to the limit by dominated convergence.
 \end{proof}
 
-\begin{remark}\label{hanlin:weaksol-part2-positive-part-subsolution}\dcref{Remark 4.7}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0084}\uses{hanlin:weaksol-part2-convex-composition}
+\begin{remark}\label{hanlin:weaksol-part2-positive-part-subsolution}\dcref{Remark 4.7}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0084}
+\uses{hanlin:weaksol-part2-convex-composition}
 If $u$ is a subsolution, then $(u-k)^+=\max\{0,u-k\}$ is a subsolution.
 \end{remark}
 
-\begin{lemma}\label{hanlin:weaksol-part2-poincare-sobolev-zero-set}\dcref{Lemma 4.8}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0084,han-lin-lecture-notes:page-0085}
+\begin{lemma}\label{hanlin:weaksol-part2-poincare-sobolev-zero-set}\dcref{Lemma 4.8}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0084,han-lin-lecture-notes:page-0085}
 For $\epsilon>0$, if $u\in H^1(B_1)$ and
 \[
 |\{x\in B_1:u=0\}|\geq\epsilon|B_1|,
@@ -278,7 +290,9 @@ nonzero constant $u_0$, but
 a contradiction.
 \end{proof}
 
-\begin{theorem}\label{hanlin:weaksol-part2-density-theorem}\dcref{Theorem 4.9}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0085,han-lin-lecture-notes:page-0086}\uses{hanlin:weaksol-part2-local-boundedness,hanlin:weaksol-part2-convex-composition,hanlin:weaksol-part2-poincare-sobolev-zero-set}
+\begin{theorem}\label{hanlin:weaksol-part2-density-theorem}\dcref{Theorem 4.9}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0085,han-lin-lecture-notes:page-0086}
+\uses{hanlin:weaksol-part2-local-boundedness, hanlin:weaksol-part2-convex-composition, hanlin:weaksol-part2-poincare-sobolev-zero-set}
 Let $\epsilon\in(0,1)$ and let $u$ be a positive supersolution in $B_2$.
 If
 \[
@@ -310,7 +324,9 @@ $\sup_{B_{1/2}}(\log u)^-$ uniformly, giving
 $\inf_{B_{1/2}}u\geq e^{-C}$.
 \end{proof}
 
-\begin{theorem}\label{hanlin:weaksol-part2-oscillation-decay}\dcref{Theorem 4.10}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0086}\uses{hanlin:weaksol-part2-density-theorem}
+\begin{theorem}\label{hanlin:weaksol-part2-oscillation-decay}\dcref{Theorem 4.10}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0086}
+\uses{hanlin:weaksol-part2-density-theorem}
 If $u$ is a bounded solution of $Lu=0$ in $B_2$, then
 \[
 \osc_{B_{1/2}}u\leq\gamma\osc_{B_1}u,
@@ -338,7 +354,9 @@ $\alpha_1-\beta_1$; in the second the supremum falls by that fraction.
 Thus the oscillation contracts by $\gamma=1-1/C$.
 \end{proof}
 
-\begin{theorem}\label{hanlin:weaksol-part2-degiorgi-holder}\dcref{Theorem 4.11}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0087}\uses{hanlin:weaksol-part2-local-boundedness,hanlin:weaksol-part2-oscillation-decay}
+\begin{theorem}\label{hanlin:weaksol-part2-degiorgi-holder}\dcref{Theorem 4.11}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0087}
+\uses{hanlin:weaksol-part2-local-boundedness, hanlin:weaksol-part2-oscillation-decay}
 If $u\in H^1(B_1)$ solves $Lu=0$ in $B_1$, then
 $u\in C^\alpha(B_1)$ for some $\alpha\in(0,1)$ depending only on $n$ and
 $\Lambda/\lambda$. Moreover,
@@ -350,7 +368,9 @@ $\Lambda/\lambda$. Moreover,
 where $C$ depends only on $n$ and $\Lambda/\lambda$.
 \end{theorem}
 
-\begin{lemma}\label{hanlin:weaksol-part2-energy-decay}\dcref{Lemma 4.12}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0087,han-lin-lecture-notes:page-0088}\uses{hanlin:weaksol-part2-degiorgi-holder}
+\begin{lemma}\label{hanlin:weaksol-part2-energy-decay}\dcref{Lemma 4.12}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0087,han-lin-lecture-notes:page-0088}
+\uses{hanlin:weaksol-part2-degiorgi-holder}
 Suppose $a_{ij}\in L^\infty(B_r)$ satisfies
 \[
 \lambda|\xi|^2\leq a_{ij}(x)\xi_i\xi_j\leq\Lambda|\xi|^2
@@ -386,7 +406,9 @@ $B_{2\rho}$. Caccioppoli's inequality gives
 which proves the claim; larger $\rho$ are immediate.
 \end{proof}
 
-\begin{theorem}\label{hanlin:weaksol-part2-general-linear-holder}\dcref{Theorem 4.13}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0088}\uses{hanlin:weaksol-part1-holder-sol,hanlin:weaksol-part2-energy-decay}
+\begin{theorem}\label{hanlin:weaksol-part2-general-linear-holder}\dcref{Theorem 4.13}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0088}
+\uses{hanlin:weaksol-part1-holder-sol, hanlin:weaksol-part2-energy-decay}
 Assume $a_{ij}\in L^\infty(B_1)$ and $c\in L^n(B_1)$ satisfy
 \[
 \lambda|\xi|^2\leq a_{ij}(x)\xi_i\xi_j\leq\Lambda|\xi|^2
@@ -419,7 +441,9 @@ Let $\Omega\subset\R^n$ be a domain and suppose
 \qquad(x\in\Omega,\ \xi\in\R^n).
 \]
 
-\begin{theorem}\label{hanlin:weaksol-part2-scaled-local-boundedness}\dcref{Theorem 4.14}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0088}\uses{hanlin:weaksol-part2-local-boundedness}
+\begin{theorem}\label{hanlin:weaksol-part2-scaled-local-boundedness}\dcref{Theorem 4.14}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0088}
+\uses{hanlin:weaksol-part2-local-boundedness}
 Let $u\in H^1(\Omega)$ be a nonnegative subsolution:
 \[
 \int_\Omega a_{ij}D_i uD_j\varphi
@@ -436,7 +460,9 @@ $B_R\subset\Omega$, $0<r<R$, and $p>0$,
 where $C$ depends only on $n,\lambda,\Lambda,p$, and $q$.
 \end{theorem}
 
-\begin{theorem}\label{hanlin:weaksol-part2-weak-harnack}\dcref{Theorem 4.15}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0088,han-lin-lecture-notes:page-0089,han-lin-lecture-notes:page-0090,han-lin-lecture-notes:page-0091,han-lin-lecture-notes:page-0092,han-lin-lecture-notes:page-0093,han-lin-lecture-notes:page-0094}\uses{hanlin:weaksol-part1-john-nirenberg,hanlin:weaksol-part2-local-boundedness}
+\begin{theorem}\label{hanlin:weaksol-part2-weak-harnack}\dcref{Theorem 4.15}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0088,han-lin-lecture-notes:page-0089,han-lin-lecture-notes:page-0090,han-lin-lecture-notes:page-0091,han-lin-lecture-notes:page-0092,han-lin-lecture-notes:page-0093,han-lin-lecture-notes:page-0094}
+\uses{hanlin:weaksol-part1-john-nirenberg, hanlin:weaksol-part2-local-boundedness}
 Let $u\in H^1(\Omega)$ be a nonnegative supersolution:
 \[
 (*)\qquad
@@ -502,7 +528,9 @@ $p<n/(n-2)$. Undoing the scale and letting $k\downarrow0$ when
 $f\equiv0$ proves the theorem.
 \end{proof}
 
-\begin{theorem}\label{hanlin:weaksol-part2-moser-harnack}\dcref{Theorem 4.16}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0094,han-lin-lecture-notes:page-0095}\uses{hanlin:weaksol-part2-scaled-local-boundedness,hanlin:weaksol-part2-weak-harnack}
+\begin{theorem}\label{hanlin:weaksol-part2-moser-harnack}\dcref{Theorem 4.16}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0094,han-lin-lecture-notes:page-0095}
+\uses{hanlin:weaksol-part2-scaled-local-boundedness, hanlin:weaksol-part2-weak-harnack}
 Let $u\in H^1(\Omega)$ be a nonnegative solution of
 \[
 \int_\Omega a_{ij}D_i uD_j\varphi
@@ -519,7 +547,9 @@ $B_R\subset\Omega$,
 where $C$ depends only on $n,\lambda,\Lambda$, and $q$.
 \end{theorem}
 
-\begin{corollary}\label{hanlin:weaksol-part2-moser-holder}\dcref{Corollary 4.17}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0095,han-lin-lecture-notes:page-0096}\uses{hanlin:weaksol-part2-scaled-local-boundedness,hanlin:weaksol-part2-moser-harnack,hanlin:weaksol-part2-oscillation-iteration}
+\begin{corollary}\label{hanlin:weaksol-part2-moser-holder}\dcref{Corollary 4.17}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0095,han-lin-lecture-notes:page-0096}
+\uses{hanlin:weaksol-part2-scaled-local-boundedness, hanlin:weaksol-part2-moser-harnack, hanlin:weaksol-part2-oscillation-iteration}
 Let $u\in H^1(\Omega)$ solve
 \[
 \int_\Omega a_{ij}D_i uD_j\varphi
@@ -560,7 +590,8 @@ $\omega(1/2)\leq C(\|u\|_{L^2(B_1)}+\|f\|_{L^q(B_1)})$.
 Rescaling proves the stated estimate.
 \end{proof}
 
-\begin{lemma}\label{hanlin:weaksol-part2-oscillation-iteration}\dcref{Lemma 4.18}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0096}
+\begin{lemma}\label{hanlin:weaksol-part2-oscillation-iteration}\dcref{Lemma 4.18}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0096}
 Let $\omega$ and $\sigma$ be nondecreasing on $(0,R]$. Suppose
 $0<\gamma,\tau<1$ and
 \[
@@ -592,7 +623,9 @@ $\tau^kr_1<r\leq\tau^{k-1}r_1$. Then
 Set $r_1=r^\mu R^{1-\mu}$.
 \end{proof}
 
-\begin{corollary}\label{hanlin:weaksol-part2-liouville}\dcref{Corollary 4.19}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0096,han-lin-lecture-notes:page-0097}\uses{hanlin:weaksol-part2-moser-holder}
+\begin{corollary}\label{hanlin:weaksol-part2-liouville}\dcref{Corollary 4.19}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0096,han-lin-lecture-notes:page-0097}
+\uses{hanlin:weaksol-part2-moser-holder}
 Suppose $u$ solves a homogeneous equation on $\R^n$:
 \[
 \int_{\R^n}a_{ij}D_i uD_j\varphi=0
@@ -626,7 +659,8 @@ into
 \]
 Thus the transformed lower-order term has quadratic growth in $Dv$.
 
-\begin{example}\label{hanlin:weaksol-part2-nonlinear-counterexample}\dcref{Example 4.20}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0097}
+\begin{example}\label{hanlin:weaksol-part2-nonlinear-counterexample}\dcref{Example 4.20}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0097}
 For $R<1$, the equation
 \[
 -\Delta u=|Du|^2\qquad\text{in }B_R\subset\R^2
@@ -659,7 +693,9 @@ condition is
 \]
 where $f\in L^q(B_1)$ for some $q\geq2n/(n+2)$.
 
-\begin{lemma}\label{hanlin:weaksol-part2-nonlinear-harnack}\dcref{Lemma 4.21}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0098,han-lin-lecture-notes:page-0099}\uses{hanlin:weaksol-part2-scaled-local-boundedness,hanlin:weaksol-part2-weak-harnack}
+\begin{lemma}\label{hanlin:weaksol-part2-nonlinear-harnack}\dcref{Lemma 4.21}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0098,han-lin-lecture-notes:page-0099}
+\uses{hanlin:weaksol-part2-scaled-local-boundedness, hanlin:weaksol-part2-weak-harnack}
 Suppose $u\in H^1(B_1)$ is a nonnegative solution of $(\ast)$,
 $|u|\leq M$ in $B_1$, and $b$ satisfies the natural growth condition with
 $f\in L^q(B_1)$ for some $q>n/2$. Then, for every $B_R\subset B_1$,
@@ -701,7 +737,9 @@ therefore gives, for $0<p<n/(n-2)$,
 Combining this with the preceding subsolution estimate proves the claim.
 \end{proof}
 
-\begin{remark}\label{hanlin:weaksol-part2-nonlinear-gradient-estimate}\dcref{Remark 4.22}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0099}\uses{hanlin:weaksol-part2-nonlinear-harnack}
+\begin{remark}\label{hanlin:weaksol-part2-nonlinear-gradient-estimate}\dcref{Remark 4.22}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0099}
+\uses{hanlin:weaksol-part2-nonlinear-harnack}
 Testing the energy inequality from the proof of
 Lemma~\ref{hanlin:weaksol-part2-nonlinear-harnack} with
 $\varphi=(u+M)\eta^2$ gives
@@ -714,7 +752,9 @@ interior $L^2$ bound in terms of these constants and
 $\|f\|_{L^1(B_1)}$.
 \end{remark}
 
-\begin{corollary}\label{hanlin:weaksol-part2-nonlinear-holder}\dcref{Corollary 4.23}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0099}\uses{hanlin:weaksol-part2-moser-holder,hanlin:weaksol-part2-nonlinear-harnack}
+\begin{corollary}\label{hanlin:weaksol-part2-nonlinear-holder}\dcref{Corollary 4.23}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0099}
+\uses{hanlin:weaksol-part2-moser-holder, hanlin:weaksol-part2-nonlinear-harnack}
 Suppose $u\in H^1(B_1)$ is a bounded solution of $(\ast)$ and $b$ satisfies
 the natural growth condition with $f\in L^q(B_1)$ for some $q>n/2$.
 Then $u\in C^\alpha_{\mathrm{loc}}(B_1)$ for some $\alpha\in(0,1)$
@@ -733,7 +773,9 @@ Corollary~\ref{hanlin:weaksol-part2-moser-holder}, replacing the linear
 Harnack estimate by Lemma~\ref{hanlin:weaksol-part2-nonlinear-harnack}.
 \end{proof}
 
-\begin{theorem}\label{hanlin:weaksol-part2-nonlinear-gradient-holder}\dcref{Theorem 4.24}\group{ch04-weak-solutions-part-ii}\source{han-lin-lecture-notes:page-0099,han-lin-lecture-notes:page-0100}\uses{hanlin:weaksol-part1-campanato,hanlin:weaksol-part1-lemma-3-4,hanlin:weaksol-part1-harmonic-lemma,hanlin:weaksol-part1-grad-holder,hanlin:weaksol-part2-nonlinear-gradient-estimate,hanlin:weaksol-part2-nonlinear-holder}
+\begin{theorem}\label{hanlin:weaksol-part2-nonlinear-gradient-holder}\dcref{Theorem 4.24}\group{ch04-weak-solutions-part-ii}
+\source{han-lin-lecture-notes:page-0099,han-lin-lecture-notes:page-0100}
+\uses{hanlin:weaksol-part1-campanato, hanlin:weaksol-part1-lemma-3-4, hanlin:weaksol-part1-harmonic-lemma, hanlin:weaksol-part1-grad-holder, hanlin:weaksol-part2-nonlinear-gradient-estimate, hanlin:weaksol-part2-nonlinear-holder}
 Suppose $u\in H^1(B_1)$ is a bounded solution of $(\ast)$, $b$ satisfies
 the natural growth condition with $f\in L^q(B_1)$ for some $q>n$, and
 $a_{ij}\in C^\alpha(B_1)$ for $\alpha=1-n/q$. Then

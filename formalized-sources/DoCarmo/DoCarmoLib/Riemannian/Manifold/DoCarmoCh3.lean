@@ -26,9 +26,35 @@ variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M]
   [IsManifold I ∞ M]
 
 /-- **Math.** do Carmo Ch. 3, Definition 3.1: a continuous curve on
-`[a,b]` which is `C^1` on every member of some finite strict partition of
-the interval.  A global function represents the curve; only its restriction
-to `[a,b]` is part of the definition. -/
+`[a,b]` which is differentiable on every member of some finite strict
+partition of the interval.  A global function represents the curve; only its
+restriction to `[a,b]` is part of the definition.
+
+**Regularity, and the direction of the gap.** do Carmo's "differentiable" means
+`C^∞` throughout the book (Ch. 0, Introduction, printed p. 2: "Differentiable
+always signifies of class `C^∞`"), so his Definition 3.1 asks each piece to be
+`C^∞`.  The predicate here asks only `C^1`, which is also exactly the regularity
+the length theory consumes (`pathELength` integrates a first derivative; see
+`IsPiecewiseDifferentiableCurve.edist_le_pathELength`).
+
+Whether that mismatch is a defect depends on the position of each occurrence,
+so count them rather than guessing.  Of the occurrences in this library, 11 are
+*hypothesis* position — most importantly inside `IsMinimizingGeodesicSegment`,
+under a `∀ c`, and that predicate is never concluded anywhere — so there
+admitting more competitor curves makes the statement **stronger** than the
+book's.  5 are *conclusion* position, where the weaker class proves
+correspondingly less than the book would.
+
+One site is neither: `Geodesic.IsMinimizingGeodesicSegment.dcEnergy_eq_iff_
+geodesicOn_and_minimizing` (`Variation/EnergyMinimizing.lean`) is an `↔` with
+the predicate on both sides, so its occurrence is **invariant** — enlarging the
+curve class strengthens the reverse direction and weakens the forward one, and
+neither is free.
+
+Should a `C^∞` version be needed (e.g. to state do Carmo's Ch. 7 Definition 2.4
+infimum over his own curve class), add a separate order-graded predicate rather
+than raising the order here, since raising it in place would weaken every
+minimizing statement that quantifies over the class. -/
 def IsPiecewiseDifferentiableCurve (c : ℝ → M) (a b : ℝ) : Prop :=
   ContinuousOn c (Icc a b) ∧
     ∃ (n : ℕ) (τ : ℕ → ℝ), 0 < n ∧ τ 0 = a ∧ τ n = b ∧
@@ -52,13 +78,28 @@ def IsMinimizingGeodesicSegment (g : RiemannianMetric I M)
 The book allows a compact planar parameter set with a piecewise smooth boundary.
 The regularity used downstream is a `C^1` map on that parameter set together
 with `C^1` tangent-bundle sections along it; the boundary geometry remains a
-property of the chosen set.
+property of the chosen set.  do Carmo's own "differentiable" is `C^∞` (Ch. 0,
+Introduction, printed p. 2); the order-graded predicates in
+`DoCarmoCh3SurfaceRegularity.lean` carry that faithfully, and the definitions
+below are the order-one legacy interface.
 -/
 
 /-- **Math.** A `C^1` parametrized surface on a planar parameter set.  This is
 the differentiable-map content of do Carmo Ch. 3, Definition 3.3; the separate
 piecewise-smooth boundary hypotheses on the parameter set do not enter the
-surface or field operations. -/
+surface or field operations.
+
+**Regularity.** do Carmo's "differentiable" is `C^∞` (Ch. 0, Introduction,
+printed p. 2), so this legacy predicate is strictly weaker than his Definition
+3.3.  Unlike `IsPiecewiseDifferentiableCurve`, the weakening here is *not*
+automatically favourable: a parametrized surface is usually *supplied* to a
+lemma, so a `C^1` surface satisfies fewer conclusions than a `C^∞` one — in
+particular the symmetry lemma (Lemma 3.4) needs `C^2` and is therefore stated
+against explicit `HasFDerivAt` data rather than against this predicate.  The
+order-graded refinement `IsParametrizedSurfaceOfOrder` and its `C^∞`
+specialization `IsSmoothParametrizedSurface`
+(`DoCarmoCh3SurfaceRegularity.lean`) are the faithful forms; prefer them in new
+statements and keep this one only for backward compatibility. -/
 def IsParametrizedSurface (A : Set (ℝ × ℝ)) (s : ℝ × ℝ → M) : Prop :=
   ContMDiffOn (𝓘(ℝ, ℝ × ℝ)) I 1 s A
 

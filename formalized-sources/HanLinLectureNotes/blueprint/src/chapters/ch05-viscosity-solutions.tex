@@ -9,7 +9,8 @@ and continuous coefficients satisfying
 \]
 Write $Lu=a_{ij}D_{ij}u$.
 
-\begin{definition}\label{hanlin:ch05-def-5-1}\dcref{Definition 5.1}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}
+\begin{definition}\label{hanlin:ch05-def-5-1}\dcref{Definition 5.1}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0102}
 A function $u\in C(\Omega)$ is a viscosity supersolution of $Lu=f$ if
 every $\varphi\in C^2(\Omega)$ touching $u$ from below at
 $x_0\in\Omega$ satisfies $L\varphi(x_0)\leq f(x_0)$. It is a viscosity
@@ -17,17 +18,22 @@ subsolution if every such test touching from above satisfies
 $L\varphi(x_0)\geq f(x_0)$. A viscosity solution has both properties.
 \end{definition}
 
-\begin{remark}\label{hanlin:ch05-rem-5-2}\dcref{Remark 5.2}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}\uses{hanlin:ch05-def-5-1}
+\begin{remark}\label{hanlin:ch05-rem-5-2}\dcref{Remark 5.2}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0102}
+\uses{hanlin:ch05-def-5-1}
 It is equivalent in Definition~\ref{hanlin:ch05-def-5-1} to use quadratic
 test polynomials.
 \end{remark}
 
-\begin{remark}\label{hanlin:ch05-rem-5-3}\dcref{Remark 5.3}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}\uses{hanlin:ch05-def-5-1}
+\begin{remark}\label{hanlin:ch05-rem-5-3}\dcref{Remark 5.3}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0102}
+\uses{hanlin:ch05-def-5-1}
 Classical supersolutions are viscosity supersolutions, and a $C^2$ viscosity
 supersolution is classical. The analogous equivalence holds for subsolutions
 and solutions.
 \end{remark}
-\begin{definition}\label{hanlin:ch05-def-5-4}\dcref{Definition 5.4}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0102}
+\begin{definition}\label{hanlin:ch05-def-5-4}\dcref{Definition 5.4}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0102}
 Fix $0<\lambda\leq\Lambda$ and $f\in C(\Omega)$. A function
 $u\in C(\Omega)$ belongs to $S^+(\lambda,\Lambda,f)$ if every
 $\varphi\in C^2(\Omega)$ touching it from below at $x_0$ satisfies
@@ -46,7 +52,9 @@ S^-(\lambda,\Lambda,f)$.
 
 
 
-\begin{remark}\label{hanlin:ch05-rem-5-5}\dcref{Remark 5.5}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0103}\uses{hanlin:ch05-def-5-4}
+\begin{remark}\label{hanlin:ch05-rem-5-5}\dcref{Remark 5.5}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0103}
+\uses{hanlin:ch05-def-5-4}
 If
 \[
 a_{ij}D_{ij}u=f\quad\text{in }\Omega
@@ -56,7 +64,9 @@ supersolutions lie in $S^+(\lambda,\Lambda,f)$. These extremal classes also
 contain viscosity solutions of fully nonlinear uniformly elliptic equations.
 \end{remark}
 
-\begin{example}\label{hanlin:ch05-ex-5-6}\dcref{Example 5.6}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0103}\uses{hanlin:ch05-def-5-4}
+\begin{example}\label{hanlin:ch05-ex-5-6}\dcref{Example 5.6}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0103}
+\uses{hanlin:ch05-def-5-4}
 Let $\mathcal A_{\lambda,\Lambda}$ be the symmetric matrices $A$ satisfying
 \[
 \lambda|\xi|^2\leq A_{ij}\xi_i\xi_j\leq\Lambda|\xi|^2.
@@ -93,7 +103,8 @@ For continuous $v$ on an open convex set $\Omega$, write
 \]
 Its contact set is $\{x\in\Omega:v(x)=\Gamma(v)(x)\}$.
 
-\begin{lemma}\label{hanlin:ch05-lem-5-7}\dcref{Lemma 5.7}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0104}
+\begin{lemma}\label{hanlin:ch05-lem-5-7}\dcref{Lemma 5.7}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0104}
 Let $u\in C^{1,1}(B_1)$ satisfy $u\geq0$ on $\partial B_1$, and let
 $\Gamma_u$ be the convex envelope of $-u^-=\min\{u,0\}$. Then
 \[
@@ -102,7 +113,9 @@ $\Gamma_u$ be the convex envelope of $-u^-=\min\{u,0\}$. Then
 \]
 \end{lemma}
 
-\begin{theorem}\label{hanlin:ch05-thm-5-8}\dcref{Theorem 5.8}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0104,han-lin-lecture-notes:page-0105}\uses{hanlin:ch05-def-5-4,hanlin:ch05-lem-5-7}
+\begin{theorem}\label{hanlin:ch05-thm-5-8}\dcref{Theorem 5.8}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0104,han-lin-lecture-notes:page-0105}
+\uses{hanlin:ch05-def-5-4, hanlin:ch05-lem-5-7}
 Suppose $u\in S^+(\lambda,\Lambda,f)$ in $B_1$, $u\geq0$ on
 $\partial B_1$, and $f\in C(\Omega)$. If $\Gamma_u$ is the convex envelope
 of $-u^-$, then
@@ -121,7 +134,9 @@ determinant bound.
 
 \section{Harnack Inequality and \Calpha Bounds}
 
-\begin{lemma}\label{hanlin:ch05-lem-5-9}\dcref{Lemma 5.9}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0105,han-lin-lecture-notes:page-0106}\uses{hanlin:weaksol-part1-cz}
+\begin{lemma}\label{hanlin:ch05-lem-5-9}\dcref{Lemma 5.9}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0105,han-lin-lecture-notes:page-0106}
+\uses{hanlin:weaksol-part1-cz}
 Let $A\subset B\subset Q_1$ be measurable and let $\delta\in(0,1)$.
 Assume
 \begin{itemize}
@@ -139,7 +154,9 @@ the predecessor-cube estimates inside $B$.
 
 
 
-\begin{theorem}\label{hanlin:ch05-thm-5-10}\dcref{Theorem 5.10}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0107}\uses{hanlin:ch05-lem-5-12}
+\begin{theorem}\label{hanlin:ch05-thm-5-10}\dcref{Theorem 5.10}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0107}
+\uses{hanlin:ch05-lem-5-12}
 If $u\in\Sclass(\lambda,\Lambda,f)$ in $\B_1$, $u\geq0$, and
 $f\in C(\B_1)$, then
 \[
@@ -159,7 +176,9 @@ Lemma~\ref{hanlin:ch05-lem-5-12} applies to $u_\delta$. Let
 $\delta\downarrow0$ and cover $B_{1/2}$ by scaled cubes.
 \end{proof}
 
-\begin{corollary}\label{hanlin:ch05-cor-5-11}\dcref{Corollary 5.11}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106}\uses{hanlin:ch05-thm-5-10}
+\begin{corollary}\label{hanlin:ch05-cor-5-11}\dcref{Corollary 5.11}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0106}
+\uses{hanlin:ch05-thm-5-10}
 If $u\in\Sclass(\lambda,\Lambda,f)$ in $\B_1$ with $f\in C(\B_1)$,
 then $u\in\Calpha(\B_1)$ for some $\alpha\in(0,1)$ depending only on
 $n,\lambda$, and $\Lambda$, and
@@ -177,7 +196,9 @@ infimum from $u$. This contracts the oscillation up to the scaled $L^n$ norm
 of $f$; iteration on concentric balls gives the stated exponent and estimate.
 \end{proof}
 
-\begin{lemma}\label{hanlin:ch05-lem-5-12}\dcref{Lemma 5.12}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0109,han-lin-lecture-notes:page-0110,han-lin-lecture-notes:page-0111}\uses{hanlin:ch05-lem-5-13,hanlin:ch05-lem-5-14}
+\begin{lemma}\label{hanlin:ch05-lem-5-12}\dcref{Lemma 5.12}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0106,han-lin-lecture-notes:page-0109,han-lin-lecture-notes:page-0110,han-lin-lecture-notes:page-0111}
+\uses{hanlin:ch05-lem-5-13, hanlin:ch05-lem-5-14}
 There are $\varepsilon_0,C>0$, depending only on $n,\lambda,\Lambda$,
 such that the following holds. If
 $u\in\Sclass(\lambda,\Lambda,f)$ in $Q_{4\sqrt n}$, $u\geq0$,
@@ -196,7 +217,9 @@ decay in Lemma~\ref{hanlin:ch05-lem-5-14}. A point-selection iteration
 would otherwise produce an unbounded sequence inside the controlled cube.
 \end{proof}
 
-\begin{lemma}\label{hanlin:ch05-lem-5-13}\dcref{Lemma 5.13}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0107,han-lin-lecture-notes:page-0108}\uses{hanlin:ch05-def-5-4,hanlin:ch05-thm-5-8}
+\begin{lemma}\label{hanlin:ch05-lem-5-13}\dcref{Lemma 5.13}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0107,han-lin-lecture-notes:page-0108}
+\uses{hanlin:ch05-def-5-4, hanlin:ch05-thm-5-8}
 There are $\varepsilon_0>0$, $\mu\in(0,1)$, and $M>1$, depending
 only on $n,\lambda,\Lambda$, such that if
 $u\in\Splus(\lambda,\Lambda,f)$ in $B_{2\sqrt n}$,
@@ -214,7 +237,9 @@ Theorem~\ref{hanlin:ch05-thm-5-8} to its convex envelope. The contact set
 is contained in a fixed sublevel set of $u$.
 \end{proof}
 
-\begin{lemma}\label{hanlin:ch05-lem-5-14}\dcref{Lemma 5.14}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0108,han-lin-lecture-notes:page-0109}\uses{hanlin:ch05-lem-5-9,hanlin:ch05-lem-5-13}
+\begin{lemma}\label{hanlin:ch05-lem-5-14}\dcref{Lemma 5.14}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0108,han-lin-lecture-notes:page-0109}
+\uses{hanlin:ch05-lem-5-9, hanlin:ch05-lem-5-13}
 There are $\varepsilon_0,\varepsilon,C>0$, depending only on
 $n,\lambda,\Lambda$, such that if
 $u\in\Splus(\lambda,\Lambda,f)$ in $B_{2\sqrt n}$,
@@ -249,7 +274,9 @@ from above. Set
 with analogous notation $\Ap{M}{u,\Omega}$ and
 $\A{M}{u,\Omega}=\Omega\setminus\G{M}{u,\Omega}$.
 
-\begin{lemma}\label{hanlin:ch05-lem-5-15}\dcref{Lemma 5.15}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0111,han-lin-lecture-notes:page-0112,han-lin-lecture-notes:page-0113,han-lin-lecture-notes:page-0114}\uses{hanlin:ch05-lem-5-9,hanlin:ch05-lem-5-16}
+\begin{lemma}\label{hanlin:ch05-lem-5-15}\dcref{Lemma 5.15}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0111,han-lin-lecture-notes:page-0112,han-lin-lecture-notes:page-0113,han-lin-lecture-notes:page-0114}
+\uses{hanlin:ch05-lem-5-9, hanlin:ch05-lem-5-16}
 Let $B_{6\sqrt n}\subset\Omega$ with $\Omega$ bounded. There are
 $\delta_0,\mu,C>0$, depending only on $n,\lambda,\Lambda$, such that if
 $u\in S^+(\lambda,\Lambda,f)$ in $B_{6\sqrt n}$,
@@ -270,7 +297,9 @@ gain. Iterate the complementary bad-set estimate over dyadic cubes and use
 the same argument for $-u$ to obtain the two-sided conclusion.
 \end{proof}
 
-\begin{lemma}\label{hanlin:ch05-lem-5-16}\dcref{Lemma 5.16}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0112}\uses{hanlin:ch05-lem-5-13,hanlin:ch05-thm-5-8}
+\begin{lemma}\label{hanlin:ch05-lem-5-16}\dcref{Lemma 5.16}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0112}
+\uses{hanlin:ch05-lem-5-13, hanlin:ch05-thm-5-8}
 Let $B_{6\sqrt n}\subset\Omega$ with $\Omega$ bounded, and suppose
 $u\in S^+(\lambda,\Lambda,f)$ in $B_{6\sqrt n}$ with
 $f\in C(B_{6\sqrt n})$. There are $\sigma\in(0,1)$, $\delta_0>0$,
@@ -289,7 +318,9 @@ Theorem~\ref{hanlin:ch05-thm-5-8} to enlarge the lower contact set.
 \end{proof}
 
 
-\begin{remark}\label{hanlin:ch05-rem-5-17}\dcref{Remark 5.17}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0114}\uses{hanlin:ch05-lem-5-15}
+\begin{remark}\label{hanlin:ch05-rem-5-17}\dcref{Remark 5.17}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0114}
+\uses{hanlin:ch05-lem-5-15}
 For $u\in S(\lambda,\Lambda,f)$, polynomial decay of
 \[
 \mu(t)=|A_t(u,\Omega)\cap Q_1|
@@ -305,7 +336,9 @@ Throughout this section, $a_{ij},f\in C(B_1)$ and
 \lambda|\xi|^2\leq a_{ij}(x)\xi_i\xi_j\leq\Lambda|\xi|^2.
 \]
 
-\begin{lemma}\label{hanlin:ch05-lem-5-18}\dcref{Lemma 5.18}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0115}\uses{hanlin:ch05-thm-5-8,hanlin:ch05-cor-5-11,hanlin:lemma-holder-boundary}
+\begin{lemma}\label{hanlin:ch05-lem-5-18}\dcref{Lemma 5.18}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0115}
+\uses{hanlin:ch05-thm-5-8, hanlin:ch05-cor-5-11, hanlin:lemma-holder-boundary}
 Let $u\in C(B_1)$ solve
 \[
 a_{ij}D_{ij}u=f\quad\text{in }B_1,
@@ -335,7 +368,8 @@ $f-(a_{ij}-a_{ij}(0))D_{ij}h$, and optimize the boundary-layer width.
 \end{proof}
 
 
-\begin{definition}\label{hanlin:ch05-def-5-19}\dcref{Definition 5.19}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0116}
+\begin{definition}\label{hanlin:ch05-def-5-19}\dcref{Definition 5.19}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0116}
 A function $g$ is $L^n$-Hölder continuous at $0$ with exponent $\alpha$ if
 \[
 [g]_{C^\alpha_{L^n}}(0)
@@ -344,7 +378,9 @@ A function $g$ is $L^n$-Hölder continuous at $0$ with exponent $\alpha$ if
 \]
 \end{definition}
 
-\begin{theorem}\label{hanlin:ch05-thm-5-20}\dcref{Theorem 5.20}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0116,han-lin-lecture-notes:page-0117,han-lin-lecture-notes:page-0118}\uses{hanlin:ch05-def-5-19,hanlin:ch05-lem-5-18}
+\begin{theorem}\label{hanlin:ch05-thm-5-20}\dcref{Theorem 5.20}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0116,han-lin-lecture-notes:page-0117,han-lin-lecture-notes:page-0118}
+\uses{hanlin:ch05-def-5-19, hanlin:ch05-lem-5-18}
 Let $u\in C(B_1)$ solve
 \[
 a_{ij}D_{ij}u=f\quad\text{in }B_1
@@ -376,7 +412,9 @@ and coefficient bounds.
 \end{proof}
 
 
-\begin{theorem}\label{hanlin:ch05-thm-5-21}\dcref{Theorem 5.21}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0118}\uses{hanlin:ch05-thm-5-20}
+\begin{theorem}\label{hanlin:ch05-thm-5-21}\dcref{Theorem 5.21}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0118}
+\uses{hanlin:ch05-thm-5-20}
 Let $u\in C(B_1)$ be a viscosity solution of
 \[
 a_{ij}D_{ij}u=f\quad\text{in }B_1.
@@ -410,7 +448,9 @@ Assume in this section that $a_{ij},f\in C(B_1)$ and
 \lambda|\xi|^2\leq a_{ij}(x)\xi_i\xi_j\leq\Lambda|\xi|^2.
 \]
 
-\begin{theorem}\label{hanlin:ch05-thm-5-22}\dcref{Theorem 5.22}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0118,han-lin-lecture-notes:page-0119}\uses{hanlin:ch05-lem-5-23}
+\begin{theorem}\label{hanlin:ch05-thm-5-22}\dcref{Theorem 5.22}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0118,han-lin-lecture-notes:page-0119}
+\uses{hanlin:ch05-lem-5-23}
 Let $p>n$ and let $u\in C(B_1)$ be a viscosity solution of
 \[
 a_{ij}D_{ij}u=f\quad\text{in }B_1.
@@ -435,7 +475,9 @@ apply Lemma~\ref{hanlin:ch05-lem-5-23}, and cover $B_{1/2}$ by finitely
 many such balls.
 \end{proof}
 
-\begin{lemma}\label{hanlin:ch05-lem-5-23}\dcref{Lemma 5.23}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0121,han-lin-lecture-notes:page-0122}\uses{hanlin:ch05-lem-5-15,hanlin:ch05-lem-5-24}
+\begin{lemma}\label{hanlin:ch05-lem-5-23}\dcref{Lemma 5.23}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0121,han-lin-lecture-notes:page-0122}
+\uses{hanlin:ch05-lem-5-15, hanlin:ch05-lem-5-24}
 For each $p>n$ there are $\varepsilon,C>0$, depending only on
 $n,\lambda,\Lambda,p$, with the following property. If
 $u\in C(B_{8\sqrt n})$ solves
@@ -481,7 +523,9 @@ Moreover,
 |\{x:\theta(x)>t\}|\leq|A_t(u,\Omega)|\qquad(t>0).
 \]
 
-\begin{lemma}\label{hanlin:ch05-lem-5-24}\dcref{Lemma 5.24}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0120,han-lin-lecture-notes:page-0121}\uses{hanlin:ch05-lem-5-15,hanlin:ch05-lem-5-18}
+\begin{lemma}\label{hanlin:ch05-lem-5-24}\dcref{Lemma 5.24}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0119,han-lin-lecture-notes:page-0120,han-lin-lecture-notes:page-0121}
+\uses{hanlin:ch05-lem-5-15, hanlin:ch05-lem-5-18}
 Let $\Omega$ be bounded with $B_{8\sqrt n}\subset\Omega$, and let
 $u\in C(\Omega)$ solve
 \[
@@ -512,7 +556,9 @@ apply Lemma~\ref{hanlin:ch05-lem-5-15} to the difference.
 
 
 
-\begin{remark}\label{hanlin:ch05-rem-5-25}\dcref{Remark 5.25}\group{ch05-viscosity-solutions}\source{han-lin-lecture-notes:page-0121}\uses{hanlin:ch05-lem-5-24}
+\begin{remark}\label{hanlin:ch05-rem-5-25}\dcref{Remark 5.25}\group{ch05-viscosity-solutions}
+\source{han-lin-lecture-notes:page-0121}
+\uses{hanlin:ch05-lem-5-24}
 The conclusion of Lemma~\ref{hanlin:ch05-lem-5-24} remains valid if the
 contact hypothesis $G_1(u,\Omega)\cap Q_3\neq\emptyset$ is replaced by
 $|u|\leq1$ in $B_{8\sqrt n}$.

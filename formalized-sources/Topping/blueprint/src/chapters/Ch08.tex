@@ -12,6 +12,7 @@ u=(4\pi\tau)^{-n/2}e^{-f},\qquad
 
 \begin{definition}
 \label{topping-ch8-compatible-arguments}
+\source{topping:page-0086}
 \dcref{ch8:1.1}
 \group{perelman-w-entropy}
 A triple $(g,f,\tau)$ is \emph{compatible} when
@@ -23,9 +24,11 @@ A triple $(g,f,\tau)$ is \emph{compatible} when
 
 \begin{proposition}
 \label{topping-ch8-scale-invariance}
+\source{topping:page-0087}
+\uses{topping-ch8-compatible-arguments}
 \dcref{ch8:1.2}
 \group{perelman-w-entropy}
-\uses{topping-ch8-compatible-arguments}
+
 The map $(g,f,\tau)\mapsto(\tau^{-1}g,f,1)$ preserves compatibility and
 \[
 \mathcal W(g,f,\tau)=\mathcal W(\tau^{-1}g,f,1).
@@ -40,6 +43,7 @@ d\mu=(2\pi)^{-n/2}e^{-|x|^2/2}\,dx,
 
 \begin{theorem}
 \label{topping-ch8-gross-log-sobolev}
+\source{topping:page-0087}
 \dcref{ch8:1.3}
 \group{perelman-w-entropy}
 If $v:\mathbb R^n\to\mathbb R$ is smooth with
@@ -54,6 +58,7 @@ $v,|\nabla v|\in L^2(d\mu)$, then
 
 \begin{remark}
 \label{topping-ch8-gross-equality}
+\source{topping:page-0087}
 \dcref{ch8:1.4}
 \group{perelman-w-entropy}
 Equality in the Gross inequality holds if and only if $v$ is constant.
@@ -61,6 +66,7 @@ Equality in the Gross inequality holds if and only if $v$ is constant.
 
 \begin{remark}
 \label{topping-ch8-gross-no-dimension-constant}
+\source{topping:page-0087}
 \dcref{ch8:1.5}
 \group{perelman-w-entropy}
 The Gross inequality has no dimension-dependent additive constant.
@@ -68,6 +74,7 @@ The Gross inequality has no dimension-dependent additive constant.
 
 \begin{remark}
 \label{topping-ch8-gross-unit-mass}
+\source{topping:page-0087}
 \dcref{ch8:1.6}
 \group{perelman-w-entropy}
 If $\int v^2\,d\mu=1$, the Gross inequality reduces to
@@ -78,9 +85,11 @@ If $\int v^2\,d\mu=1$, the Gross inequality reduces to
 
 \begin{lemma}
 \label{topping-ch8-euclidean-w-nonnegative}
+\source{topping:page-0087,topping:page-0088,topping:page-0089}
+\uses{topping-ch8-gross-log-sobolev, topping-ch8-scale-invariance}
 \dcref{ch8:1.7}
 \group{perelman-w-entropy}
-\uses{topping-ch8-gross-log-sobolev,topping-ch8-scale-invariance}
+
 If $g$ is the flat metric on $\mathcal M=\mathbb R^n$ and $(g,f,\tau)$ is
 compatible, then
 \[
@@ -117,9 +126,11 @@ stated equality case.
 
 \begin{lemma}
 \label{topping-ch8-minimiser-exists}
+\source{topping:page-0089,topping:page-0090,topping:page-0091}
+\uses{topping-ch8-scale-invariance}
 \dcref{ch8:1.8}
 \group{perelman-w-entropy}
-\uses{topping-ch8-scale-invariance}
+
 For every smooth metric $g$ on a closed manifold $\mathcal M$ and every
 $\tau>0$, the infimum of $\mathcal W(g,f,\tau)$ over compatible smooth $f$
 is attained by a smooth compatible function.
@@ -179,6 +190,7 @@ intervals is an additional analytic input from [31].
 
 \begin{proposition}
 \label{topping-ch8-monotonicity}
+\source{topping:page-0092}
 \dcref{ch8:2.1}
 \group{perelman-w-entropy}
 If $\mathcal M$ is closed and
@@ -196,6 +208,7 @@ then
 
 \begin{remark}
 \label{topping-ch8-compatibility-preserved}
+\source{topping:page-0092}
 \dcref{ch8:2.2}
 \group{perelman-w-entropy}
 Under this coupled evolution, $u$ satisfies $\Box^*u=0$, so compatibility is
@@ -204,6 +217,7 @@ preserved.
 
 \begin{remark}
 \label{topping-ch8-shrinking-soliton}
+\source{topping:page-0092}
 \dcref{ch8:2.3}
 \group{perelman-w-entropy}
 If the derivative in Proposition~\ref{topping-ch8-monotonicity} is not strictly positive, then
@@ -215,6 +229,7 @@ and the flow is a shrinking gradient soliton.
 
 \begin{remark}
 \label{topping-ch8-existence-of-coupled-system}
+\source{topping:page-0093}
 \dcref{ch8:2.5}
 \group{perelman-w-entropy}
 Given a Ricci flow on $[0,T]$, one may set $\tau=T+C-t$ and solve the linear
@@ -223,9 +238,11 @@ equation for $u$ with prescribed final data, then recover $f$.
 
 \begin{proposition}
 \label{topping-ch8-local-monotonicity}
+\source{topping:page-0093,topping:page-0094,topping:page-0095}
+\uses{topping-ch8-monotonicity, topping-ch8-compatibility-preserved}
 \dcref{ch8:2.6}
 \group{perelman-w-entropy}
-\uses{topping-ch8-monotonicity,topping-ch8-compatibility-preserved}
+
 Under the evolution in Proposition~\ref{topping-ch8-monotonicity}, define
 \[
 v=\bigl[\tau(2\Delta f-|\nabla f|^2+R)+f-n\bigr]u.
@@ -260,6 +277,7 @@ u^{-1}\Box^*v
 
 \begin{remark}
 \label{topping-ch8-proposition-implies-monotonicity}
+\source{topping:page-0093}
 \dcref{ch8:2.7}
 \group{perelman-w-entropy}
 Since $\mathcal W=\int_{\mathcal M}v\,dV$, integrating the local formula
@@ -277,9 +295,11 @@ For a complete $(\mathcal M,g)$, $p\in\mathcal M$, and $s>0$, write
 
 \begin{theorem}
 \label{topping-ch8-no-collapsing}
+\source{topping:page-0096}
+\uses{topping-ch8-mu-ball-estimate}
 \dcref{ch8:3.1}
 \group{perelman-w-entropy}
-\uses{topping-ch8-mu-ball-estimate}
+
 Suppose $g(t)$ is a Ricci flow on a closed $\mathcal M$ for $t\in[0,T]$.
 With all quantities computed using $g(T)$, if $p\in\mathcal M$ and $r>0$ is
 sufficiently small that $|R|\leq r^{-2}$ on $B(p,r)$, then
@@ -316,9 +336,11 @@ $\mathcal K(p,r)>\xi$.
 
 \begin{theorem}
 \label{topping-ch8-mu-ball-estimate}
+\source{topping:page-0096}
+\uses{topping-ch8-minimiser-exists, topping-ch8-monotonicity}
 \dcref{ch8:3.4}
 \group{perelman-w-entropy}
-\uses{topping-ch8-minimiser-exists,topping-ch8-monotonicity}
+
 Suppose $g(t)$ is a Ricci flow on a closed $\mathcal M$ for $t\in[0,T]$.
 Compute $\mathcal V$, $R$, and balls using $g(T)$. For $p\in\mathcal M$ and
 $r>0$,
@@ -353,9 +375,11 @@ yields the stated $\gamma$.
 
 \begin{lemma}
 \label{topping-ch8-mu-ball-bound}
+\source{topping:page-0096,topping:page-0097,topping:page-0098}
+\uses{topping-ch8-minimiser-exists}
 \dcref{ch8:3.5}
 \group{perelman-w-entropy}
-\uses{topping-ch8-minimiser-exists}
+
 For any smooth metric $g$ on a closed $\mathcal M$, $r>0$, $p\in\mathcal M$,
 and $\lambda>0$,
 \[
@@ -410,9 +434,11 @@ For a Riemannian manifold $(\mathcal M,g)$, write
 
 \begin{lemma}
 \label{topping-ch8-volume-ratio-inj-estimate}
+\source{topping:page-0101,topping:page-0102,topping:page-0103}
+\uses{topping-ch8-no-collapsing}
 \dcref{ch8:4.1}
 \group{perelman-w-entropy}
-\uses{topping-ch8-no-collapsing}
+
 There are a universal $\bar r>0$ and an $n$-dependent $\eta>0$ such that,
 if $(\mathcal M^n,g)$ is closed and $|\operatorname{Rm}|\leq1$, then some
 $p\in\mathcal M$ satisfies
@@ -467,9 +493,11 @@ $0<r\leq(M|\Rm|(p_i,t_i))^{-1/2}$.
 
 \begin{theorem}
 \label{topping-ch8-blow-up-singularities}
+\source{topping:page-0104}
+\uses{topping-ch8-no-collapsing, topping-ch8-volume-ratio-inj-estimate, topping-ch7-compactness-ricci-flows}
 \dcref{ch8:5.1}
 \group{perelman-w-entropy}
-\uses{topping-ch8-no-collapsing,topping-ch8-volume-ratio-inj-estimate,topping-ch7-compactness-ricci-flows}
+
 Suppose that $\mathcal M$ is closed and $g(t)$ is a Ricci flow on a maximal
 interval $[0,T)$ with $T<\infty$. There are sequences $p_i\in\mathcal M$ and
 $t_i\uparrow T$ with

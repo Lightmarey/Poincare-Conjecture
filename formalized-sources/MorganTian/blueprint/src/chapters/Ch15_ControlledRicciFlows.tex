@@ -16,8 +16,9 @@ normalized after multiplication by a sufficiently large constant.
 
 \begin{claim}[Normalized initial data give short-time existence with curvature and volume control]
 \label{claim:normalized-initial-existence}
+\uses{thm:local-existence-uniqueness, prop:smooth-patching, thm:shi-derivative-estimates, prop:normalized-flow-short-time-bounds}
 \label{newkappa0r0t0}
-\uses{thm:local-existence-uniqueness,prop:smooth-patching,thm:shi-derivative-estimates,prop:normalized-flow-short-time-bounds}
+
 There is $\kappa_0>0$ such that a normalized initial metric has a Ricci flow
 on $[0,2^{-4}]$ with
 \[
@@ -32,7 +33,8 @@ for all $x$, $t\in[0,2^{-4}]$, and $r\leq\epsilon$.
 
 \begin{proposition}[Gluing an evolving neck to a strong neck produces a longer strong neck]
 \label{prop:neck-gluing}
-\uses{def:strong-canonical-neighborhood-assumption,def:evolving-epsilon-neck}
+\uses{def:strong-canonical-neighborhood-assumption, def:evolving-epsilon-neck}
+
 \label{neckglue}
 There is $0<\beta<1/2$ such that, for $\epsilon<1$, an evolving
 $\beta\epsilon$-neck on $[-t_0,0]$ centered at $x$ with $R(x,0)=1$ and a
@@ -113,6 +115,7 @@ decomposition.
 \begin{corollary}[Geometrization is inherited across surgery times]
 \label{cor:geometrization-inherited-across-surgery}
 \uses{prop:surgery-topological-type}
+
 \label{Tgood0good}
 If a time-slice $M_T$ of a flow satisfying Assumptions (1)--(7) satisfies
 Thurston's Geometrization Conjecture, then every earlier slice and the initial
@@ -136,7 +139,8 @@ backward induction and the fundamental-group hypotheses.
 
 \begin{definition}[Canonical neighborhood and surgery control parameters; surgery scale function]
 \label{def:surgery-scale-function}
-\uses{thm:local-surgery,thm:deep-delta-necks-in-horn}
+\uses{thm:local-surgery, thm:deep-delta-necks-in-horn}
+
 \label{hrestricted}
 Let $r(t)>0$ be the canonical-neighborhood parameter and
 $\overline\delta(t)>0$ the nonincreasing surgery-control parameter. Set
@@ -163,7 +167,8 @@ Set $t_0=2^{-5}$ and $T_i=2^it_0$ for $i\geq0$.
 
 \begin{definition}[Surgery parameter sequences $(r,\kappa,\delta)$]
 \label{def:surgery-parameter-sequences}
-\uses{thm:local-surgery,prop:neck-gluing,claim:normalized-initial-existence,lem:standard-initial-metric-asymptotic-bounds}
+\uses{thm:local-surgery, prop:neck-gluing, claim:normalized-initial-existence, lem:standard-initial-metric-asymptotic-bounds}
+
 \label{surgeryparams}
 Surgery parameter sequences are positive nonincreasing sequences
 \[
@@ -209,7 +214,8 @@ a finite union of $3$-balls.
 
 \begin{definition}[The surgery operation at a singular time]
 \label{def:surgery-operation}
-\uses{thm:local-surgery,lem:gluing-ricci-flows-with-surgery,thm:singular-time-limit-properties,thm:deep-delta-necks-in-horn,lem:finitely-many-horns-meeting-omega-rho}
+\uses{thm:local-surgery, lem:gluing-ricci-flows-with-surgery, thm:singular-time-limit-properties, thm:deep-delta-necks-in-horn, lem:finitely-many-horns-meeting-omega-rho}
+
 The preceding cut-and-cap construction at time $T$, using
 $\overline\delta(T)$ and $r_{i+1}$, is the surgery operation at $T$.
 \end{definition}
@@ -218,8 +224,9 @@ $\overline\delta(T)$ and $r_{i+1}$, is the surgery operation at $T$.
 
 \begin{theorem}[Main existence theorem: controlled Ricci flow with surgery extends for all time]
 \label{thm:main-existence-ricci-flow-surgery}
+\uses{def:curvature-pinched-toward-positive, def:strong-canonical-neighborhood-assumption}
 \label{MAIN}
-\uses{def:curvature-pinched-toward-positive,def:strong-canonical-neighborhood-assumption}
+
 There are parameter sequences
 \[
   {\bf K}=\{\kappa_i\},\qquad
@@ -291,7 +298,8 @@ new interval.
 
 \begin{proposition}[The pre-surgery flow map is distance decreasing near a surgery time]
 \label{prop:surgery-distance-decreasing}
-\uses{thm:local-surgery,def:surgery-parameter-sequences}
+\uses{thm:local-surgery, def:surgery-parameter-sequences}
+
 \label{surgerydist}
 Let $T$ be a surgery time with control below $\delta_0$ and scale below
 $R_0^{-1/2}$. For $t'<T$ sufficiently close, the flow gives a compatible
@@ -314,6 +322,7 @@ spheres allow the local maps to extend over the whole component.
 \begin{remark}[Non-separating surgery spheres prevent extending the comparison map]
 \label{rem:nonseparating-surgery-sphere}
 \uses{prop:surgery-distance-decreasing}
+
 A nonseparating surgery sphere gives a post-surgery component with caps on both
 sides, so the comparison map cannot extend continuously over the entire
 pre-surgery component.

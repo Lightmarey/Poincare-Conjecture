@@ -16,8 +16,9 @@ The endomorphism $\mathcal H_r$ is the \emph{Hessian operator} of $r$.
 
 \begin{lemma}[Algebraic Properties of the Hessian Operator]
 \label{lem:hessian-operator-properties}
+\uses{prop:jacobi-field-hessian-equation, lem:symmetric-bilinear-form-unit-vectors}
 \dcref{ch11:11.1}
-\uses{prop:jacobi-field-hessian-equation,lem:symmetric-bilinear-form-unit-vectors}
+
 The operator $\mathcal H_r$ is self-adjoint, satisfies
 $\mathcal H_r(\partial_r)=0$, and restricts on each level set of $r$ to the
 shape operator with normal $N=-\partial_r$.
@@ -34,8 +35,9 @@ $-\partial_r$.
 
 \begin{proposition}[Jacobi Fields and the Hessian Operator]
 \label{prop:jacobi-field-hessian-equation}
+\uses{prop:jacobi-fields-vanishing-at-point, prop:normal-jacobi-equivalent-conditions}
 \dcref{ch11:11.2}
-\uses{prop:jacobi-fields-vanishing-at-point,prop:normal-jacobi-equivalent-conditions}
+
 Let $U$ be a normal neighborhood of $p$ in a Riemannian manifold, let
 $r$ be its radial distance, and let $\gamma:[0,b]\to U$ be a unit-speed radial
 geodesic.  If $J$ is a normal Jacobi field along $\gamma$ with $J(0)=0$, then
@@ -221,8 +223,9 @@ $\widetilde\eta\leq\eta$.
 
 \begin{theorem}[Hessian Comparison]
 \label{thm:hessian-comparison}
-\dcref{ch11:11.7}
 \uses{prop:hessian-radial-distance-constant-curvature}
+\dcref{ch11:11.7}
+
 Let $(M,g)$ be a Riemannian $n$-manifold, let $p\in M$, let $U$ be a normal
 neighborhood of $p$, and let $r$ be its radial distance function.
 \begin{enumerate}
@@ -299,8 +302,9 @@ would contradict smoothness of $\mathcal H_r$ there.
 
 \begin{corollary}[Principal Curvature Comparison]
 \label{cor:principal-curvature-comparison}
+\uses{thm:hessian-comparison, prop:hessian-radial-distance-constant-curvature, lem:hessian-operator-properties}
 \dcref{ch11:11.8}
-\uses{thm:hessian-comparison,prop:hessian-radial-distance-constant-curvature,lem:hessian-operator-properties}
+
 Under the notation of the preceding theorem, the principal curvatures of the
 $r$-level sets with respect to the inward unit normal satisfy:
 \begin{enumerate}
@@ -324,8 +328,9 @@ inequalities in the Hessian comparison theorem and evaluate on eigenvectors.
 
 \begin{theorem}[Jacobi Field Comparison]
 \label{thm:jacobi-field-comparison}
-\dcref{ch11:11.9}
 \uses{cor:jacobi-field-decomposition}
+\dcref{ch11:11.9}
+
 Let $\gamma\colon[0,b]\to M$ be a unit-speed geodesic and let $J$ be a normal
 Jacobi field with $J(0)=0$.
 \begin{enumerate}
@@ -394,8 +399,9 @@ contradiction. Thus $b_0\geq b_2$.
 
 \begin{theorem}[Metric Comparison]
 \label{thm:metric-comparison}
+\uses{thm:gauss-lemma, cor:jacobi-field-tangent-vectors, prop:jacobi-fields-vanishing-at-point, prop:jacobi-constant-curvature, thm:jacobi-field-comparison, cor:polar-decomposition-integrals}
 \dcref{ch11:11.10}
-\uses{thm:gauss-lemma,cor:jacobi-field-tangent-vectors,prop:jacobi-fields-vanishing-at-point,prop:jacobi-constant-curvature,thm:jacobi-field-comparison}
+
 Let $(U,(x^i))$ be a normal coordinate chart for $g$ centered at $p$, and let
 $g_c$ be the constant-curvature metric in the same coordinates as in (10.17).
 \begin{enumerate}
@@ -442,8 +448,9 @@ The lower-bound case uses the reversed Jacobi comparison inequality.
 
 \begin{theorem}[Laplacian Comparison 1]
 \label{thm:laplacian-comparison-1}
+\uses{thm:hessian-comparison, prop:hessian-radial-distance-constant-curvature}
 \dcref{ch11:11.11}
-\uses{thm:hessian-comparison,prop:hessian-radial-distance-constant-curvature}
+
 Let $(M,g)$ be a Riemannian $n$-manifold with $\sec_M\leq c$, let $U$ be a
 normal neighborhood of $p$, and let $r$ be radial distance. On
 $U_0\setminus\{p\}$,
@@ -465,10 +472,13 @@ the result is the trace of the upper-curvature Hessian comparison inequality.
 
 \begin{theorem}[Conjugate Point Comparison I]
 \label{thm:conjugate-point-comparison-I}
-\dcref{ch11:11.12}
-\uses{thm:jacobi-field-comparison}
 \lean{LeeLib.Ch11.conjugatePointComparisonI_nonpos, LeeLib.Ch11.conjugatePointComparisonI_pos}
+\uses{thm:jacobi-field-comparison}
 \leanok
+\dcref{ch11:11.12}
+
+
+
 Let $(M,g)$ be a Riemannian manifold with $\sec_M\leq c$. If $c\leq0$, no
 point has a conjugate point along any geodesic. If $c=1/R^2>0$, no geodesic
 segment of length less than $\pi R$ contains conjugate endpoints.
@@ -489,8 +499,9 @@ for $0<t<\pi R$. Thus $J$ cannot vanish again in the stated ranges.
 
 \begin{lemma}
 \label{lem:riemannian-volume-laplacian}
+\uses{cor:gradient-radial-distance, prop:coordinate-representations-divergence-laplacian}
 \dcref{ch11:11.13}
-\uses{cor:gradient-radial-distance,prop:coordinate-representations-divergence-laplacian}
+
 Let $(x^i)$ be Riemannian normal coordinates on a normal neighborhood $U$ of
 $p$, let $r$ be radial distance, and let $\det g=\det(g_{ij})$. On
 $U\setminus\{p\}$,
@@ -524,8 +535,9 @@ volume estimate and its equality case.
 
 \begin{theorem}[G\"unther's Volume Comparison]
 \label{thm:gunther-volume-comparison}
+\uses{thm:laplacian-comparison-1, lem:riemannian-volume-laplacian, cor:polar-decomposition-integrals, thm:hessian-comparison, prop:hessian-radial-distance-constant-curvature, thm:bishop-gromov-volume-comparison}
 \dcref{ch11:11.14}
-\uses{thm:laplacian-comparison-1,lem:riemannian-volume-laplacian,cor:polar-decomposition-integrals,thm:hessian-comparison,prop:hessian-radial-distance-constant-curvature}
+
 Let $(M,g)$ be connected with $\sec_M\leq c$, fix $p\in M$, and set
 \[
 \delta_0=
@@ -609,8 +621,9 @@ then gives sectional curvature identically $c$ on $B_\delta(p)$.
 
 \begin{theorem}[Laplacian Comparison II]
 \label{thm:laplacian-comparison-ii}
+\uses{thm:laplacian-comparison-1, cor:jacobi-field-decomposition}
 \dcref{ch11:11.15}
-\uses{thm:laplacian-comparison-1,cor:jacobi-field-decomposition}
+
 
 Let $(M,g)$ be a Riemannian $n$-manifold satisfying
 \[
@@ -700,8 +713,9 @@ Scalar Riccati comparison yields $\widetilde H\leq H$ on $(0,b]$, proving
 
 \begin{theorem}[Conjugate Point Comparison II]
 \label{thm:conjugate-points-ricci-bounded}
+\uses{thm:laplacian-comparison-ii, lem:riemannian-volume-laplacian, thm:jacobi-field-comparison}
 \dcref{ch11:11.16}
-\uses{thm:laplacian-comparison-ii,lem:riemannian-volume-laplacian,thm:jacobi-field-comparison}
+
 
 Let $(M,g)$ be a Riemannian $n$-manifold satisfying
 \[
@@ -742,8 +756,9 @@ the preceding paragraph.
 
 \begin{corollary}[Injectivity Radius Comparison]
 \label{cor:injectivity-radius-ricci-bounded}
-\dcref{ch11:11.17}
 \uses{thm:conjugate-points-ricci-bounded}
+\dcref{ch11:11.17}
+
 
 Under the hypotheses of Theorem~11.16,
 \[
@@ -760,8 +775,9 @@ therefore bounds every geodesic-ball radius by $\pi R$.
 
 \begin{corollary}[Diameter Comparison]
 \label{cor:diameter-ricci-bounded}
-\dcref{ch11:11.18}
 \uses{thm:conjugate-points-ricci-bounded}
+\dcref{ch11:11.18}
+
 
 Let $(M,g)$ be a complete, connected Riemannian $n$-manifold satisfying
 $\operatorname{Rc}(v,v)\geq(n-1)/R^2$ for every unit vector. Then
@@ -777,8 +793,9 @@ any two points. Theorem~11.16 bounds its length by $\pi R$.
 
 \begin{theorem}[Bishop--Gromov Volume Comparison]
 \label{thm:bishop-gromov-volume-comparison}
+\uses{thm:chengs-maximal-diameter, thm:gunther-volume-comparison, thm:laplacian-comparison-ii, thm:cut-locus-properties, cor:polar-decomposition-integrals}
 \dcref{ch11:11.19}
-\uses{thm:chengs-maximal-diameter,thm:gunther-volume-comparison,thm:laplacian-comparison-ii,thm:cut-locus-properties,cor:polar-decomposition-integrals}
+
 
 Let $(M,g)$ be a connected Riemannian $n$-manifold with
 \[
@@ -892,8 +909,9 @@ continuity, on its closure $M$.
 
 \begin{corollary}
 \label{cor:ricci-volume-comparison}
-\dcref{ch11:11.20}
 \uses{thm:bishop-gromov-volume-comparison}
+\dcref{ch11:11.20}
+
 
 Let $(M,g)$ be a compact Riemannian $n$-manifold satisfying
 $\operatorname{Rc}(v,v)\geq(n-1)/R^2$ for every unit vector. Then
@@ -903,3 +921,70 @@ $\operatorname{Rc}(v,v)\geq(n-1)/R^2$ for every unit vector. Then
 \]
 If equality holds, $(M,g)$ has constant sectional curvature $1/R^2$.
 \end{corollary}
+
+\begin{exercise}\label{prob:focal-points-hypersurface}\dcref{ch11:11-6}
+Suppose $P$ is an embedded hypersurface in a Riemannian manifold $(M, g)$ and $N$ is a unit normal vector field along $P$. Suppose the principal curvatures of $P$ with respect to $-N$ are bounded below by a constant $\lambda$, and the sectional curvatures of $M$ are bounded above by $-\lambda^2$. Prove that $P$ has no focal points along any geodesic segment with initial velocity $N_p$ for $p \in P$.
+\end{exercise}
+
+\begin{exercise}\label{prob:focal-points-hypersurface-ii}\dcref{ch11:11-7}
+\uses{prob:transverse-jacobi-comparison}
+Suppose $P$ is an embedded hypersurface in a Riemannian manifold $(M, g)$ and $N$ is a unit normal vector field along $P$. Suppose the sectional curvatures of $M$ are bounded below by a constant $c$, and the principal curvatures of $P$ with respect to $-N$ are bounded above by a constant $\lambda$. Let $u$ be the solution to the initial value problem (11.35). Prove that if $b$ is a positive real number such that $u(b) = 0$, then $P$ has a focal point along every geodesic segment with initial velocity $N_p$ for some $p \in P$ and with length greater than or equal to $b$.
+\end{exercise}
+
+\begin{exercise}
+\label{prob:hessian-polar-coordinates}
+\dcref{ch11:11-1}
+\uses{cor:semigeodesic-metric-christoffel,ex:polar-normal-coordinates}
+
+Let $(M,g)$ be a Riemannian manifold, and let $U$ be a normal neighborhood of $p \in M$. Use Corollary 6.42 to show that in every choice of polar normal coordinates $(\theta^1,\ldots,\theta^{n-1},r)$ on a subset of $U \setminus \{p\}$ (see Example 6.45), the covariant Hessian of $r$ is given by
+\[
+\nabla^2 r = \frac{1}{2} \sum_{\alpha,\beta=1}^{n-1} (\partial_r g_{\alpha\beta}) \, d\theta^\alpha d\theta^\beta.
+\]
+\end{exercise}
+
+\begin{exercise}\label{prob:injectivity-radius-comparison}\dcref{ch11:11-4}
+\uses{prob:distance-cut-locus}
+Let $(M, g)$ be a compact Riemannian manifold. Prove that if $R, L$ are positive numbers such that all sectional curvatures of $M$ are less than or equal to $1/R^2$ and all closed geodesics have lengths greater than or equal to $L$, then
+\[
+\text{inj}(M) \geq \min(\pi R, \tfrac{1}{2}L).
+\]
+[Hint: Assume not, and use the result of Problem 10-23(b).]
+\end{exercise}
+
+\begin{exercise}
+\label{prob:jacobi-field-submanifold}
+\dcref{ch11:11-2}
+\uses{prop:jacobi-field-hessian-equation,prop:fermi-coordinates-radial-function,prob:transverse-jacobi-field}
+
+Prove the following extension to Proposition 11.2: Suppose $P$ is an embedded submanifold of a Riemannian manifold $(M,g)$, $U$ is a normal neighborhood of $P$ in $M$, and $r$ is the radial distance function for $P$ in $U$ (see Prop.\ 6.37). If $\gamma : [0,b] \to U$ is a geodesic segment with $\gamma(0) \in P$ and $\gamma'(0)$ normal to $P$, and $J$ is a Jacobi field along $\gamma$ that is transverse to $P$ in the sense of Problem 10-14, then $D_t J(t) = \mathcal{H}_r(J(t))$ for all $t \in [0,b]$.
+\end{exercise}
+
+\begin{exercise}\label{prob:riccati-equation}\dcref{ch11:11-3}
+Let $(M, g)$ be a Riemannian manifold, and let $f$ be any smooth local distance function defined on an open subset $U \subseteq M$. Let $F = \text{grad } f$ (so the integral curves of $F$ are unit-speed geodesics), and let $\mathcal{H}_f = \nabla F$ (the Hessian operator of $f$). Show that $\mathcal{H}_f$ satisfies the following Riccati equation along each integral curve $\gamma$ of $F$:
+\[
+D_t \mathcal{H}_f + \mathcal{H}_f^2 + R_{\gamma'} = 0, \quad (11.34)
+\]
+where $R_{\gamma'}(w) = R(w, \gamma')\gamma'$. [Hint: Let $W$ be any smooth vector field on $U$, and evaluate $\nabla_F \nabla_W F$ in two different ways.]
+\end{exercise}
+
+\begin{exercise}[Transverse Jacobi Field Comparison Theorem]\label{prob:transverse-jacobi-comparison}\dcref{ch11:11-5}
+\uses{thm:jacobi-field-comparison,prob:riccati-equation,prob:jacobi-field-submanifold}
+Let $P$ be an embedded hypersurface in a Riemannian manifold $(M, g)$. Suppose $\gamma: [0, b] \to M$ is a unit-speed geodesic segment with $\gamma(0) \in P$ and $\gamma'(0)$ normal to $P$, and $J$ is a normal Jacobi field along $\gamma$ that is transverse to $P$. Let $\lambda = h(J(0), J(0))$, where $h$ is the scalar second fundamental form of $P$ with respect to the normal $-\gamma'(0)$. Let $c$ be a real number, and let $u: \mathbb{R} \to \mathbb{R}$ be the unique solution to the initial value problem
+\[
+\begin{aligned}
+u''(t) + cu(t) &= 0, \\
+u(0) &= 1, \quad (11.35) \\
+u'(0) &= \lambda.
+\end{aligned}
+\]
+
+In the following statements, the principal curvatures of $P$ are computed with respect to the normal $-\gamma'(0)$.
+
+\begin{enumerate}
+\item[(a)] If all sectional curvatures of $M$ are bounded above by $c$, all principal curvatures of $P$ at $\gamma(0)$ are bounded below by $\lambda$, and $u(t) \neq 0$ for $t \in (0, b)$, then $|J(t)| \geq u(t)|J(0)|$ for all $t \in [0, b]$.
+
+\item[(b)] If all sectional curvatures of $M$ are bounded below by $c$, all principal curvatures of $P$ at $\gamma(0)$ are bounded above by $\lambda$, and $J(t) \neq 0$ for $t \in (0, b)$, then $|J(t)| \leq u(t)|J(0)|$ for all $t \in [0, b]$.
+\end{enumerate}
+
+[Hint: Mimic the proof of Theorem 11.9, using the results of Problems 11-3 and 11-2.]
+\end{exercise}

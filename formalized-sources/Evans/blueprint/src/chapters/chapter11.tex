@@ -82,18 +82,20 @@ the weak formulation of (5) is
 
 \begin{definition}[Integral solution of a system of conservation laws]
 \label{def:integral-solution-system}
+\uses{def:integral-solution-conservation-law}
 \dcref{ch11:11.1-def-1}
 \group{Conservation Laws}
-\uses{def:integral-solution-conservation-law}
+
 An \textit{integral solution} of (5) is a function
 $\mathbf u\in L^\infty(\mathbb R\times(0,\infty);\mathbb R^m)$ satisfying (13) for every test function (12).
 \end{definition}
 
 \begin{proposition}[Rankine--Hugoniot jump condition]
 \label{prop:rankine-hugoniot-condition-system}
+\uses{def:integral-solution-system}
 \dcref{ch11:11.1-prop-1}
 \group{Conservation Laws}
-\uses{def:integral-solution-system}
+
 Suppose $\mathbf u$ is an integral solution, smooth on either side of the smooth curve
 $C=\{(x,t)\mid x=s(t)\}$. Then, along $C$,
 $$(20) \qquad [\![\mathbf{F}(\mathbf{u})]\!] = \sigma[\![\mathbf{u}]\!],$$
@@ -131,9 +133,10 @@ If for each $z\in\mathbb{R}^m$ the eigenvalues of $\mathbf{B}(z)$ are real and d
 
 \begin{definition}[Eigenvalues and eigenvectors of a hyperbolic system]
 \label{def:eigenvalue-eigenvector-notation-hyperbolic}
+\uses{def:strictly-hyperbolic-system}
 \dcref{ch11:11.1-def-3}
 \group{Conservation Laws}
-\uses{def:strictly-hyperbolic-system}
+
 (i) Order the eigenvalues as
 $$(24) \qquad \lambda_1(z) < \lambda_2(z) < \cdots < \lambda_m(z) \quad (z\in\mathbb{R}^m)$$
 for each $z\in\mathbb R^m$.
@@ -155,9 +158,10 @@ Thus $\{\mathbf{l}_k(z)\}_{k=1}^m$ are the \textit{left eigenvectors} and $\{\ma
 
 \begin{remark}[Orthogonality of left and right eigenvectors]
 \label{rem:eigenvector-orthogonality}
+\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.1-rem-1}
 \group{Conservation Laws}
-\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
+
 $$(28) \qquad \mathbf{l}_l(z)\cdot\mathbf{r}_k(z) = 0 \quad \text{if } k\neq l \quad (z\in\mathbb{R}^m).$$
 Indeed, (25) and (26) give
 $$\lambda_k(z)(\mathbf{l}(z)\cdot\mathbf{r}_k(z)) = \mathbf{l}(z)\cdot(\mathbf{B}(z)\mathbf{r}_k(z)) = (\mathbf{B}(z)^T\mathbf{l}(z))\cdot\mathbf{r}_k(z) = \lambda_l(z)(\mathbf{l}(z)\cdot\mathbf{r}_k(z));$$
@@ -166,9 +170,10 @@ strict hyperbolicity implies (28).
 
 \begin{theorem}[Invariance of hyperbolicity under change of coordinates]
 \label{thm:invariance-hyperbolicity-coordinate-change}
+\uses{def:strictly-hyperbolic-system, def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.1-thm-1}
 \group{Conservation Laws}
-\uses{def:strictly-hyperbolic-system,def:eigenvalue-eigenvector-notation-hyperbolic}
+
 Let $u$ be a smooth solution of the strictly hyperbolic system (21). Assume also $\Phi:\mathbb{R}^m\to\mathbb{R}^m$ is a smooth diffeomorphism, with inverse $\Psi$. Then
 $$(29) \qquad \tilde{u} := \Phi(u)$$
 solves the strictly hyperbolic system
@@ -183,9 +188,10 @@ $$(31) \qquad \tilde B(z) := D\Phi(\Psi(z))B(\Psi(z))D\Psi(z) \quad (z\in\mathbb
 
 \begin{theorem}[Dependence of eigenvalues and eigenvectors on parameters]
 \label{thm:smooth-dependence-eigenvalues-eigenvectors}
+\uses{def:strictly-hyperbolic-system, def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.1-thm-2}
 \group{Conservation Laws}
-\uses{def:strictly-hyperbolic-system,def:eigenvalue-eigenvector-notation-hyperbolic}
+
 Assume the matrix function $\mathbf{B}$ is smooth, strictly hyperbolic. Then
 
 (i) the eigenvalues $\lambda_k(z)$ depend smoothly on $z\in\mathbb{R}^m$ $(k=1,\ldots,m)$.
@@ -200,17 +206,19 @@ $$|\mathbf{r}_k(z)|,\ |\mathbf{l}_k(z)| = 1 \quad (k=1,\ldots,m).$$
 
 \begin{remark}[Global orientation of eigenspaces]
 \label{rem:global-orientation-eigenspaces}
+\uses{thm:smooth-dependence-eigenvalues-eigenvectors}
 \dcref{ch11:11.1-rem-2}
 \group{Conservation Laws}
-\uses{thm:smooth-dependence-eigenvalues-eigenvectors}
+
 The globally smooth normalized eigenvectors orient the one-dimensional eigenspaces. This conclusion uses strict hyperbolicity and can fail for higher-dimensional eigenspaces.
 \end{remark}
 
 \begin{example}[Strict hyperbolicity of the $p$-system]
 \label{ex:p-system-strict-hyperbolicity}
+\uses{ex:p-system-definition, def:strictly-hyperbolic-system}
 \dcref{ch11:11.1-ex-4}
 \group{Conservation Laws}
-\uses{ex:p-system-definition,def:strictly-hyperbolic-system}
+
 For the $p$-system (6), we have
 $$\mathbf{u}_t + \mathbf{B}(\mathbf{u})\mathbf{u}_x = 0,$$
 for
@@ -222,9 +230,10 @@ For (8), condition (41) says that the stress $p(u_x)$ is strictly increasing in 
 
 \begin{example}[Strict hyperbolicity of Euler's equations]
 \label{ex:euler-equations-strict-hyperbolicity}
+\uses{ex:euler-equations-1d-system, thm:invariance-hyperbolicity-coordinate-change, def:strictly-hyperbolic-system}
 \dcref{ch11:11.1-ex-5}
 \group{Conservation Laws}
-\uses{ex:euler-equations-1d-system,thm:invariance-hyperbolicity-coordinate-change,def:strictly-hyperbolic-system}
+
 Euler's equations (9) comprise a strictly hyperbolic system provided we assume $p>0$ and
 $$(42) \qquad \frac{\partial p}{\partial\rho}>0, \quad \frac{\partial p}{\partial e}>0,$$
 where $p=p(\rho,e)$ is the constitutive relation between the mass density, the internal energy density and the pressure. This assertion is however difficult to verify directly, as the flux function $\mathbf{F}$ defined by (11) is complicated.
@@ -280,9 +289,10 @@ Equivalently, $w$ solves the scalar conservation law
 
 \begin{definition}[Rarefaction curve]
 \label{def:rarefaction-curve}
+\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.2-def-1}
 \group{Conservation Laws}
-\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
+
 Given a fixed state $z_0\in\mathbb{R}^m$, we define the $k^{\text{th}}$-\textit{rarefaction curve}
 $$R_k(z_0)$$
 to be the path in $\mathbb{R}^m$ of the solution of the ODE (6) which passes through $z_0$.
@@ -298,9 +308,10 @@ Then $R_k(z_0)=R_k^+(z_0)\cup\{z_0\}\cup R_k^-(z_0)$.
 
 \begin{definition}[Genuine nonlinearity and linear degeneracy]
 \label{def:genuinely-nonlinear-linearly-degenerate}
+\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.2-def-2}
 \group{Conservation Laws}
-\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
+
 (i) The pair $(\lambda_k(z), r_k(z))$ is called \textit{genuinely nonlinear} provided
 $$(11) \qquad D\lambda_k(z)\cdot r_k(z) \neq 0 \quad \text{for all } z\in\mathbb{R}^m.$$
 
@@ -312,9 +323,10 @@ $$(12) \qquad D\lambda_k(z)\cdot r_k(z) = 0 \quad \text{for all } z\in\mathbb{R}
 
 \begin{theorem}[Existence of $k$-rarefaction waves]
 \label{thm:existence-k-rarefaction-waves}
+\uses{def:genuinely-nonlinear-linearly-degenerate, def:rarefaction-curve, thm:riemann-problem-solution}
 \dcref{ch11:11.2-thm-1}
 \group{Conservation Laws}
-\uses{def:genuinely-nonlinear-linearly-degenerate,def:rarefaction-curve,thm:riemann-problem-solution}
+
 Suppose that for some $k\in\{1,\ldots,m\}$,
 
 (i) the pair $(\lambda_k, r_k)$ is genuinely nonlinear, and
@@ -331,9 +343,10 @@ $F_k''(s)=D\lambda_k(\mathbf v(s))\cdot r_k(\mathbf v(s))$, genuine nonlinearity
 
 \begin{remark}[Centered $k$-rarefaction wave]
 \label{rem:k-rarefaction-wave-terminology}
+\uses{thm:existence-k-rarefaction-waves}
 \dcref{ch11:11.2-rem-1}
 \group{Conservation Laws}
-\uses{thm:existence-k-rarefaction-waves}
+
 We call $\mathbf{u}$ a (centered) $k$-\textit{rarefaction wave}.
 \end{remark}
 
@@ -343,18 +356,20 @@ We call $\mathbf{u}$ a (centered) $k$-\textit{rarefaction wave}.
 
 \begin{definition}[Shock set]
 \label{def:shock-set}
+\uses{prop:rankine-hugoniot-condition-system}
 \dcref{ch11:11.2-def-3}
 \group{Conservation Laws}
-\uses{prop:rankine-hugoniot-condition-system}
+
 Given a fixed state $z_0\in\mathbb{R}^m$, we define the \textit{shock set}
 $$S(z_0) := \{z\in\mathbb{R}^m \mid \mathbf{F}(z) - \mathbf{F}(z_0) = \sigma(z-z_0) \text{ for a constant } \sigma = \sigma(z,z_0)\}.$$
 \end{definition}
 
 \begin{theorem}[Structure of the shock set]
 \label{thm:structure-of-shock-set}
+\uses{def:shock-set, thm:smooth-dependence-eigenvalues-eigenvectors, def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.2-thm-2}
 \group{Conservation Laws}
-\uses{def:shock-set,thm:smooth-dependence-eigenvalues-eigenvectors,def:eigenvalue-eigenvector-notation-hyperbolic}
+
 Fix $z_0\in\mathbb{R}^m$. In some neighborhood of $z_0$, $S(z_0)$ is the union of $m$ smooth curves $S_k(z_0)$ $(k=1,\ldots,m)$ such that:
 
 (i) The curve $S_k(z_0)$ passes through $z_0$, with tangent $\mathbf{r}_k(z_0)$.
@@ -373,9 +388,10 @@ $DF(\psi_k(t))r_k(\psi_k(t))=\lambda_k(\psi_k(t))r_k(\psi_k(t))$ along $R_k$. Pa
 
 \begin{theorem}[Linear degeneracy]
 \label{thm:linear-degeneracy-shock-rarefaction-coincide}
+\uses{thm:structure-of-shock-set, def:rarefaction-curve, def:genuinely-nonlinear-linearly-degenerate}
 \dcref{ch11:11.2-thm-3}
 \group{Conservation Laws}
-\uses{thm:structure-of-shock-set,def:rarefaction-curve,def:genuinely-nonlinear-linearly-degenerate}
+
 Suppose for some $k\in\{1,\ldots,m\}$ that the pair $(\lambda_k, r_k)$ is linearly degenerate. Then for each $z_0\in\mathbb{R}^m$,
 
 (i) $R_k(z_0) = S_k(z_0)$
@@ -411,9 +427,10 @@ $\sigma=\lambda_k(u_l)=\lambda_k(u_r)$ and the discontinuity is a $k$-contact di
 
 \begin{definition}[Admissible pair, Lax entropy condition]
 \label{def:admissible-pair-lax-entropy-condition}
+\uses{def:shock-set, thm:structure-of-shock-set}
 \dcref{ch11:11.2-def-4}
 \group{Conservation Laws}
-\uses{def:shock-set,thm:structure-of-shock-set}
+
 Assume the pair $(\lambda_k, r_k)$ is genuinely nonlinear at $u_l$. We say that the pair $(u_l, u_r)$ is \textit{admissible} provided
 $$u_r \in S_k(u_l)$$
 and
@@ -423,9 +440,10 @@ Condition (42) is the \textit{Lax entropy condition}; the displayed discontinuou
 
 \begin{definition}[$S_k^+$ and $S_k^-$]
 \label{def:shock-set-plus-minus}
+\uses{def:shock-set, def:admissible-pair-lax-entropy-condition}
 \dcref{ch11:11.2-def-5}
 \group{Conservation Laws}
-\uses{def:shock-set,def:admissible-pair-lax-entropy-condition}
+
 If the pair $(\lambda_k, r_k)$ is genuinely nonlinear, we write
 $$S_k^+(z_0) := \{z\in S_k(z_0) \mid \lambda_k(z_0) < \sigma(z,z_0) < \lambda_k(z)\}$$
 and
@@ -440,9 +458,10 @@ $$u_r \in S_k^-(u_l).$$
 
 \begin{definition}[The curve $T_k$]
 \label{def:t-curve}
+\uses{def:rarefaction-curve, def:shock-set-plus-minus, def:genuinely-nonlinear-linearly-degenerate}
 \dcref{ch11:11.2-def-6}
 \group{Conservation Laws}
-\uses{def:rarefaction-curve,def:shock-set-plus-minus,def:genuinely-nonlinear-linearly-degenerate}
+
 (i) If the pair $(\lambda_k, r_k)$ is genuinely nonlinear, write
 $$T_k(z_0) := R_k^+(z_0) \cup \{z_0\} \cup S_k^-(z_0).$$
 
@@ -454,9 +473,10 @@ Each $T_k(z_0)$ is $C^1$ near $z_0$ and tangent there to $r_k(z_0)$.
 
 \begin{theorem}[Local solution of Riemann's problem]
 \label{thm:local-solution-riemann-problem}
+\uses{def:t-curve, thm:existence-k-rarefaction-waves, def:admissible-pair-lax-entropy-condition, def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.2-thm-4}
 \group{Conservation Laws}
-\uses{def:t-curve,thm:existence-k-rarefaction-waves,def:admissible-pair-lax-entropy-condition,def:eigenvalue-eigenvector-notation-hyperbolic}
+
 Assume for each $k=1,\ldots,m$ that the pair $(\lambda_k, r_k)$ is either genuinely nonlinear or else linearly degenerate. Suppose further the left state $u_l$ is given. Then for each right state $u_r$ sufficiently close to $u_l$ there exists an integral solution $\mathbf{u}$ of Riemann's problem, which is constant on lines through the origin.
 \end{theorem}
 
@@ -480,9 +500,10 @@ u^1=g^1,\quad u^2=g^2 & \text{on }\mathbb R\times\{t=0\}.
 
 \begin{definition}[$i$-th Riemann invariant]
 \label{def:riemann-invariant}
+\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
 \dcref{ch11:11.3-def-1}
 \group{Conservation Laws}
-\uses{def:eigenvalue-eigenvector-notation-hyperbolic}
+
 We say
 $$w^i:\mathbb{R}^2\to\mathbb{R}$$
 is an $i^{\text{th}}$-\textit{Riemann invariant} provided
@@ -500,9 +521,10 @@ or equivalently
 
 \begin{remark}[Riemann invariants for $m>2$]
 \label{rem:riemann-invariants-mgt2-remark}
+\uses{def:riemann-invariant}
 \dcref{ch11:11.3-rem-1}
 \group{Conservation Laws}
-\uses{def:riemann-invariant}
+
 For $m>2$, Riemann invariants need not exist.
 \end{remark}
 
@@ -517,9 +539,10 @@ is a local coordinate map with inverse $\mathbf z(w)$, let $\mathbf u$ be a smoo
 
 \begin{theorem}[Conservation laws and Riemann invariants]
 \label{thm:conservation-laws-riemann-invariants}
+\uses{def:riemann-invariant}
 \dcref{ch11:11.3-thm-1}
 \group{Conservation Laws}
-\uses{def:riemann-invariant}
+
 The functions $v^1, v^2$ solve the system
 $$(6) \qquad \begin{cases} v^1_t + \lambda_2(\mathbf{u})v^1_x = 0 \\ v^2_t + \lambda_1(\mathbf{u})v^2_x = 0 \end{cases} \quad \text{in } \mathbb{R}\times(0,\infty).$$
 Thus the system is diagonal in the Riemann coordinates.
@@ -536,9 +559,10 @@ By definition $Dw^i$ is parallel to the left eigenvector $l_j$, so the last expr
 
 \begin{remark}[Riemann invariants along characteristics]
 \label{rem:riemann-invariant-characteristic-curves}
+\uses{thm:conservation-laws-riemann-invariants, def:genuinely-nonlinear-linearly-degenerate}
 \dcref{ch11:11.3-rem-2}
 \group{Conservation Laws}
-\uses{thm:conservation-laws-riemann-invariants,def:genuinely-nonlinear-linearly-degenerate}
+
 (i) Along the characteristics
 $$(7) \qquad \dot x_i(s) = \lambda_j(\mathbf{u}(x_i(s),s)) \quad (s\geq 0)$$
 for $i=1,2$, $j\neq i$, equation (6) gives
@@ -556,9 +580,10 @@ The inverse-coordinate identities imply that (11) is equivalent to $D\lambda_i$ 
 
 \begin{example}[Barotropic compressible gas dynamics]
 \label{ex:barotropic-gas-dynamics-riemann-invariants}
+\uses{def:riemann-invariant, ex:euler-equations-1d-system, rem:riemann-invariant-characteristic-curves}
 \dcref{ch11:11.3-ex-1}
 \group{Conservation Laws}
-\uses{def:riemann-invariant,ex:euler-equations-1d-system,rem:riemann-invariant-characteristic-curves}
+
 For barotropic compressible gas dynamics, the relevant equations are
 $$(12) \qquad \begin{cases} \rho_t + (\rho v)_x = 0 & \text{(conservation of mass)} \\ (\rho v)_t + (\rho v^2+p)_x = 0 & \text{(conservation of momentum)}, \end{cases}$$
 with the barotropic equation of state
@@ -611,9 +636,10 @@ $$w^1 = \int_1^\rho \frac{\sigma(s)}{s}\,ds + v, \quad w^2 = \int_1^\rho \frac{\
 
 \begin{theorem}[Riemann invariants and blow-up]
 \label{thm:riemann-invariants-blowup}
+\uses{def:riemann-invariant, thm:conservation-laws-riemann-invariants}
 \dcref{ch11:11.3-thm-2}
 \group{Conservation Laws}
-\uses{def:riemann-invariant,thm:conservation-laws-riemann-invariants}
+
 Assume $g$ is smooth, with compact support. Suppose also the genuine nonlinearity condition
 $$(27) \qquad \frac{\partial\lambda_i}{\partial w_j} > 0 \text{ in } \mathbb{R}^2 \quad (i=1,2,\ i\neq j)$$
 holds. Then the initial-value problem (1) cannot have a smooth solution $u$ existing for all times $t\geq 0$ if
@@ -672,9 +698,10 @@ and the end states necessarily satisfy
 
 \begin{theorem}[Existence of traveling waves for genuinely nonlinear systems]
 \label{thm:existence-traveling-waves-genuinely-nonlinear}
+\uses{def:genuinely-nonlinear-linearly-degenerate, def:shock-set, thm:structure-of-shock-set}
 \dcref{ch11:11.4-thm-1}
 \group{Conservation Laws}
-\uses{def:genuinely-nonlinear-linearly-degenerate,def:shock-set,thm:structure-of-shock-set}
+
 Assume the pair $(\lambda_k, \mathbf{r}_k)$ is genuinely nonlinear for $k=1,\ldots,m$. Let $u_r$ be selected sufficiently close to $u_l$. Then there exists a traveling wave solution of (2) connecting $u_l$ to $u_r$ if and only if
 $$(12) \qquad u_r \in S_k(u_l)$$
 for some $k\in\{1,\ldots,m\}$.
@@ -692,18 +719,20 @@ An orbit approaching $u_l$ as $s\to-\infty$ requires $\lambda_k(u_l)-\sigma>0$. 
 
 \begin{definition}[Lax's entropy criterion, general form]
 \label{def:lax-entropy-criterion-general}
+\uses{def:shock-set}
 \dcref{ch11:11.4-def-1}
 \group{Conservation Laws}
-\uses{def:shock-set}
+
 $$(16) \qquad \begin{cases} \sigma(z,u_l) > \sigma(u_r,u_l) \text{ for each } z \text{ lying} \\ \text{on the curve } S_k(u_l) \text{ between } u_r \text{ and } u_l. \end{cases}$$
 Condition (16) is \textit{Lax's entropy criterion}. It holds automatically for sufficiently close states on a genuinely nonlinear admissible shock branch.
 \end{definition}
 
 \begin{example}[Traveling waves for the $p$-system]
 \label{ex:traveling-waves-p-system}
+\uses{ex:p-system-definition, thm:existence-traveling-waves-genuinely-nonlinear, def:lax-entropy-criterion-general}
 \dcref{ch11:11.4-ex-1}
 \group{Conservation Laws}
-\uses{ex:p-system-definition,thm:existence-traveling-waves-genuinely-nonlinear,def:lax-entropy-criterion-general}
+
 The $p$-system is
 $$(17) \qquad \begin{cases} u^1_t - u^2_x = 0 & \text{(compatibility condition)} \\ u^2_t - p(u^1)_x = 0 & \text{(Newton's law)}, \end{cases}$$
 under the usual strict hyperbolicity condition
@@ -767,9 +796,10 @@ for every nonnegative $v\in C_c^\infty(\mathbb R\times(0,\infty))$. The associat
 
 \begin{definition}[Entropy solution, system case]
 \label{def:entropy-solution-system}
+\uses{def:integral-solution-system, def:entropy-entropy-flux-pair-system}
 \dcref{ch11:11.4-def-3}
 \group{Conservation Laws}
-\uses{def:integral-solution-system,def:entropy-entropy-flux-pair-system}
+
 We call $u$ an \textit{entropy solution} of (30) provided $u$ is an integral solution and $u$ satisfies the inequalities (29) for each entropy/entropy-flux pair $(\Phi,\Psi)$.
 \end{definition}
 
@@ -789,9 +819,10 @@ uniformly bounded in $L^\infty$, and suppose
 
 \begin{theorem}[Entropy and vanishing viscosity]
 \label{thm:entropy-vanishing-viscosity}
+\uses{def:entropy-solution-system, def:entropy-entropy-flux-pair-system}
 \dcref{ch11:11.4-thm-2}
 \group{Conservation Laws}
-\uses{def:entropy-solution-system,def:entropy-entropy-flux-pair-system}
+
 The function $u$ is an entropy solution of the conservation law (30).
 \end{theorem}
 
@@ -807,18 +838,20 @@ The last term is nonpositive by convexity. Testing against nonnegative $v$, inte
 
 \begin{example}[Entropy pairs for a scalar conservation law]
 \label{ex:scalar-entropy-flux-existence}
+\uses{def:entropy-entropy-flux-pair-system}
 \dcref{ch11:11.4-ex-2}
 \group{Conservation Laws}
-\uses{def:entropy-entropy-flux-pair-system}
+
 For $m=1$, any convex $\Phi$ has the corresponding flux
 $$\Psi(z) = \int_{z_0}^z \Phi'(w)F'(w)\,dw \quad (z\in\mathbb{R}).$$
 \end{example}
 
 \begin{example}[Entropy pair for the $p$-system]
 \label{ex:p-system-entropy-pair}
+\uses{def:entropy-entropy-flux-pair-system, ex:p-system-definition}
 \dcref{ch11:11.4-ex-3}
 \group{Conservation Laws}
-\uses{def:entropy-entropy-flux-pair-system,ex:p-system-definition}
+
 For the $p$-system we have $m=2$. To verify (25), (26) we must find $\Phi,\Psi$, with $\Phi$ convex and
 $$(\Phi_{z_1},\Phi_{z_2})\begin{pmatrix} 0 & -1 \\ -p'(z_1) & 0 \end{pmatrix} = \begin{pmatrix} \Psi_{z_1} \\ \Psi_{z_2} \end{pmatrix}.$$
 A solution is
@@ -860,17 +893,19 @@ for every nonnegative $v\in C_c^\infty(\mathbb R\times(0,\infty))$.
 
 \begin{definition}[Entropy solution, scalar case]
 \label{def:entropy-solution-scalar-new}
+\uses{def:entropy-entropy-flux-pair-scalar}
 \dcref{ch11:11.4-def-5}
 \group{Conservation Laws}
-\uses{def:entropy-entropy-flux-pair-scalar}
+
 We call $u\in C([0,\infty), L^1(\mathbb{R}))\cap L^\infty(\mathbb{R}\times(0,\infty))$ an \textit{entropy solution} of (35) provided $u$ satisfies the inequalities (38) for each entropy/entropy-flux pair $(\Phi,\Psi)$, and $u(\cdot,t)\to g$ in $L^1$ as $t\to 0$.
 \end{definition}
 
 \begin{remark}[Consistency with the scalar entropy solution of Chapter 3]
 \label{rem:entropy-solution-scalar-consistency}
+\uses{def:entropy-solution-scalar-new, def:integral-solution-conservation-law}
 \dcref{ch11:11.4-rem-1}
 \group{Conservation Laws}
-\uses{def:entropy-solution-scalar-new,def:integral-solution-conservation-law}
+
 Taking $\Phi(z)=\pm z$ and $\Psi(z)=\pm F(z)$ in (38) gives
 $$\int_0^\infty\int_{-\infty}^\infty uv_t + F(u)v_x\,dx\,dt = 0$$
 for all $v\in C_c^1(\mathbb{R}\times(0,\infty))$. Since $u(\cdot,t)\to g$ in $L^1$,
@@ -880,9 +915,10 @@ for all $v\in C_c^1(\mathbb{R}\times[0,\infty))$. Thus an entropy solution in th
 
 \begin{theorem}[Uniqueness of entropy solutions for a single conservation law]
 \label{thm:uniqueness-entropy-solutions-scalar-new}
+\uses{def:entropy-solution-scalar-new, thm:uniqueness-viscosity-solution-hj}
 \dcref{ch11:11.4-thm-3}
 \group{Conservation Laws}
-\uses{def:entropy-solution-scalar-new,thm:uniqueness-viscosity-solution-hj}
+
 There exists---up to a set of measure zero---at most one entropy solution of (35).
 \end{theorem}
 

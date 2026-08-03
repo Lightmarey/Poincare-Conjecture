@@ -122,7 +122,7 @@ theorem Geodesic.IsMinimizingGeodesicSegment.riemannianEDist_eq_pathELength
 
 /-- **Math.** A strict gap above an extended nonnegative length contains a positive
 multiplicative thickening of that length. -/
-private theorem exists_pos_ofReal_one_add_mul_lt {L R : ℝ≥0∞} (h : L < R) :
+theorem exists_pos_ofReal_one_add_mul_lt {L R : ℝ≥0∞} (h : L < R) :
     ∃ epsilon : ℝ, 0 < epsilon ∧ ENNReal.ofReal (1 + epsilon) * L < R := by
   by_cases hL0 : L = 0
   · exact ⟨1, one_pos, by simpa [hL0] using h⟩
@@ -174,7 +174,7 @@ theorem piecewiseRiemannianEDist_eq_riemannianEDist
       refine iInf_le_of_le n ?_
       refine iInf_le_of_le tau ?_
       refine iInf_le_of_le hn ?_
-      refine iInf_le_of_le htau ?_
+      refine iInf_le_of_le (fun i hi => (htau i hi).le) ?_
       refine iInf_le_of_le hsmooth ?_
       refine iInf_le_of_le (hsigma0.trans hγ0) ?_
       exact iInf_le_of_le (hsigma1.trans hγ1) le_rfl

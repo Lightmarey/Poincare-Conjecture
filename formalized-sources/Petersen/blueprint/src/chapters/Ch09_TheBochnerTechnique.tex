@@ -10,6 +10,7 @@ for forms and other natural tensor bundles.
 \begin{definition}[de Rham complex and cohomology]
   \label{def:pet-ch9-de-rham-cohomology}
   \lean{PetersenLib.deRhamCohomology}
+  \source{petersen:page-0348}
   For a manifold $M$, let $\Omega^k(M)$ denote its smooth $k$-forms and let
   $d^k:\Omega^k(M)\to\Omega^{k+1}(M)$ be exterior differentiation.  The
   resulting \emph{de Rham complex} is
@@ -26,6 +27,7 @@ for forms and other natural tensor bundles.
 \begin{remark}[Poincaré duality pairing]
   \label{rem:pet-ch9-poincare-duality}
   \lean{PetersenLib.poincareDualityPairing}
+  \source{petersen:page-0348,petersen:page-0349}
   \uses{def:pet-ch9-de-rham-cohomology}
   On a compact oriented $n$-manifold, the map
   \[
@@ -39,6 +41,7 @@ for forms and other natural tensor bundles.
 \begin{definition}[codifferential and normalized tensor inner product]
   \label{def:pet-ch9-codifferential}
   \lean{PetersenLib.codifferential,PetersenLib.normalizedTensorInnerProduct}
+  \source{petersen:page-0349}
   \uses{def:pet-ch9-de-rham-cohomology}
   On a Riemannian manifold, the \emph{codifferential}
   $\delta^k:\Omega^{k+1}(M)\to\Omega^k(M)$ is the adjoint $\nabla^*$ of $d^k$;
@@ -57,6 +60,7 @@ for forms and other natural tensor bundles.
 \begin{definition}[Hodge Laplacian]
   \label{def:pet-ch9-hodge-laplacian}
   \lean{PetersenLib.hodgeLaplacian}
+  \source{petersen:page-0349}
   \uses{def:pet-ch9-codifferential}
   Define the \emph{Hodge Laplacian} on $k$-forms by
   \[
@@ -67,9 +71,10 @@ for forms and other natural tensor bundles.
 
 \begin{lemma}[harmonic forms are closed and coclosed]
   \label{lem:pet-ch9-harmonic-iff-closed-coclosed}
-  \dcref{ch9:9.1.1}
   \lean{PetersenLib.hodgeLaplacian_eq_zero_iff}
+  \source{petersen:page-0349}
   \uses{def:pet-ch9-hodge-laplacian}
+  \dcref{ch9:9.1.1}
   A form $\omega$ satisfies $\square\omega=0$ precisely when
   $d\omega=\delta\omega=0$.  An exact form with this property is necessarily
   zero.
@@ -89,6 +94,7 @@ for forms and other natural tensor bundles.
 \begin{definition}[Hodge cohomology]
   \label{def:pet-ch9-hodge-cohomology}
   \lean{PetersenLib.hodgeCohomology}
+  \source{petersen:page-0350}
   \uses{def:pet-ch9-hodge-laplacian}
   The space of harmonic $k$-forms, called the \emph{Hodge cohomology}, is
   \[
@@ -100,7 +106,8 @@ for forms and other natural tensor bundles.
 \begin{theorem}[harmonic representatives for de Rham cohomology]
   \label{thm:pet-ch9-hodge-theorem}
   \lean{PetersenLib.hodgeCohomology_equiv_deRhamCohomology}
-  \uses{def:pet-ch9-hodge-cohomology,lem:pet-ch9-harmonic-iff-closed-coclosed,def:pet-ch9-de-rham-cohomology}
+  \source{petersen:page-0350}
+  \uses{def:pet-ch9-hodge-cohomology, lem:pet-ch9-harmonic-iff-closed-coclosed, def:pet-ch9-de-rham-cohomology}
   Every de Rham class on a closed oriented Riemannian manifold has exactly one
   harmonic representative; equivalently,
   $\mathcal H^k(M)\xrightarrow{\sim}H^k(M)$.
@@ -132,9 +139,10 @@ $\theta(v)=g(X,v)$, and $f=\tfrac12|\theta|^2=\tfrac12|X|^2=\tfrac12\theta(X)$.
 
 \begin{proposition}[duality between closed forms and symmetric derivatives]
   \label{prop:pet-ch9-vector-field-1form-duality}
-  \dcref{ch9:9.2.1}
   \lean{PetersenLib.dualVectorField_symmetric_iff_closed}
-  \uses{def:pet-ch9-de-rham-cohomology,def:pet-ch9-codifferential}
+  \source{petersen:page-0350,petersen:page-0351}
+  \uses{def:pet-ch9-de-rham-cohomology, def:pet-ch9-codifferential}
+  \dcref{ch9:9.2.1}
   Let $\theta=X^\flat$, so $\theta(v)=g(v,X)$.  Then
   \begin{enumerate}
     \item the endomorphism $v\mapsto\nabla_vX$ is self-adjoint exactly when
@@ -158,9 +166,10 @@ below through the dual vector field.
 
 \begin{proposition}[Bochner formula for closed $1$-forms]
   \label{prop:pet-ch9-bochner-formula-1forms}
-  \dcref{ch9:9.2.2}
   \lean{PetersenLib.bochnerFormula_oneForm}
+  \source{petersen:page-0351}
   \uses{prop:pet-ch9-vector-field-1form-duality}
+  \dcref{ch9:9.2.2}
   Suppose $\nabla X$ is symmetric, or equivalently $X^\flat$ is closed.  Put
   $f=\tfrac12|X|^2$ and choose a local potential $X=\nabla u$ near $p$.  At
   $p$ one has
@@ -187,9 +196,10 @@ below through the dual vector field.
 
 \begin{theorem}[Bochner vanishing for harmonic $1$-forms]
   \label{thm:pet-ch9-bochner-vanishing-1forms}
-  \dcref{ch9:9.2.3}
   \lean{PetersenLib.bochner_harmonicOneForm_parallel}
+  \source{petersen:page-0352}
   \uses{prop:pet-ch9-bochner-formula-1forms}
+  \dcref{ch9:9.2.3}
   Every harmonic one-form on a compact Riemannian manifold with
   $\operatorname{Ric}\ge0$ is parallel.
 \end{theorem}
@@ -207,9 +217,10 @@ below through the dual vector field.
 
 \begin{corollary}[vanishing under pointwise positive Ricci curvature]
   \label{cor:pet-ch9-harmonic-1forms-vanish-positive-ricci}
-  \dcref{ch9:9.2.4}
   \lean{PetersenLib.harmonicOneForms_vanish_of_positiveRicci}
+  \source{petersen:page-0352}
   \uses{thm:pet-ch9-bochner-vanishing-1forms}
+  \dcref{ch9:9.2.4}
   Under the assumptions of \cref{thm:pet-ch9-bochner-vanishing-1forms}, if
   $\operatorname{Ric}$ is positive definite at some point, then
   $\mathcal H^1(M)=0$.
@@ -224,9 +235,10 @@ below through the dual vector field.
 
 \begin{corollary}[first Betti bound and flat-torus rigidity]
   \label{cor:pet-ch9-betti1-bound-flat-torus}
-  \dcref{ch9:9.2.5}
   \lean{PetersenLib.firstBettiNumber_le_dim_iff_flatTorus}
-  \uses{thm:pet-ch9-bochner-vanishing-1forms,def:pet-ch9-hodge-cohomology}
+  \source{petersen:page-0352}
+  \uses{thm:pet-ch9-bochner-vanishing-1forms, def:pet-ch9-hodge-cohomology}
+  \dcref{ch9:9.2.5}
   For a compact $n$-manifold with nonnegative Ricci curvature,
   \[
     b_1(M)\le n.
@@ -257,8 +269,9 @@ Sobolev estimate to control the dimension of the harmonic-form space.
 
 \begin{lemma}[Li's dimension estimate]
   \label{lem:pet-ch9-li-dimension-estimate}
-  \dcref{ch9:9.2.6}
   \lean{PetersenLib.li_dimension_estimate}
+  \source{petersen:page-0353,petersen:page-0354}
+  \dcref{ch9:9.2.6}
   Let $E\to M$ be a rank-$m$ metric vector bundle over compact $(M,g)$.  For
   $s\in\Gamma(E)$ define
   \[
@@ -287,8 +300,9 @@ Sobolev estimate to control the dimension of the harmonic-form space.
 
 \begin{theorem}[Moser iteration supremum estimate]
   \label{thm:pet-ch9-moser-iteration}
-  \dcref{ch9:9.2.7}
   \lean{PetersenLib.moserIteration}
+  \source{petersen:page-0354,petersen:page-0355}
+  \dcref{ch9:9.2.7}
   Assume compact $(M,g)$ satisfies, for some $\nu>1$ and every smooth $u$,
   \[
     \|u\|_{2\nu}\le S\|\nabla u\|_2+\|u\|_2.
@@ -321,6 +335,7 @@ Sobolev estimate to control the dimension of the harmonic-form space.
 \begin{lemma}[Kato's inequality]
   \label{lem:pet-ch9-kato-inequality}
   \lean{PetersenLib.katoInequality}
+  \source{petersen:page-0356}
   Let $f=|T|$ for a tensor field $T$.  At every point where $f$ is smooth,
   \[
     df\le|\nabla T|.
@@ -336,9 +351,10 @@ Sobolev estimate to control the dimension of the harmonic-form space.
 
 \begin{theorem}[Gromov--Gallot first Betti estimate]
   \label{thm:pet-ch9-gromov-gallot-betti1-estimate}
-  \dcref{ch9:9.2.8}
   \lean{PetersenLib.gromovGallot_firstBettiNumber_estimate}
-  \uses{lem:pet-ch9-li-dimension-estimate,thm:pet-ch9-moser-iteration,lem:pet-ch9-kato-inequality,def:pet-ch9-hodge-cohomology,prop:pet-ch9-bochner-formula-1forms}
+  \source{petersen:page-0355,petersen:page-0356}
+  \uses{lem:pet-ch9-li-dimension-estimate, thm:pet-ch9-moser-iteration, lem:pet-ch9-kato-inequality, def:pet-ch9-hodge-cohomology, prop:pet-ch9-bochner-formula-1forms}
+  \dcref{ch9:9.2.8}
   Let $M^n$ be compact with
   $\operatorname{Ric}\ge(n-1)k$ and $\operatorname{diam}M\le D$.  There is a
   bound depending only on $n$ and $kD^2$,
@@ -374,8 +390,9 @@ symmetric tensors, or curvature tensors).
 
 \begin{proposition}[maximum principle for the connection Laplacian]
   \label{prop:pet-ch9-vanishing-connection-laplacian}
-  \dcref{ch9:9.3.1}
   \lean{PetersenLib.vanishing_connectionLaplacian}
+  \source{petersen:page-0357}
+  \dcref{ch9:9.3.1}
   Suppose a section $T\in\Gamma(E)$ over a Riemannian manifold satisfies
   $g(\nabla^*\nabla T,T)\le0$ pointwise.  If the function $|T|$ has a global
   maximum, then $\nabla T=0$.
@@ -391,9 +408,10 @@ symmetric tensors, or curvature tensors).
 
 \begin{theorem}[Gallot's connection-Laplacian estimate]
   \label{thm:pet-ch9-gallot-connection-laplacian-estimate}
-  \dcref{ch9:9.3.2}
   \lean{PetersenLib.gallot_connectionLaplacian_estimate}
-  \uses{lem:pet-ch9-li-dimension-estimate,thm:pet-ch9-moser-iteration,lem:pet-ch9-kato-inequality}
+  \source{petersen:page-0357}
+  \uses{lem:pet-ch9-li-dimension-estimate, thm:pet-ch9-moser-iteration, lem:pet-ch9-kato-inequality}
+  \dcref{ch9:9.3.2}
   Let compact $(M,g)$ satisfy the Sobolev hypothesis in
   \cref{thm:pet-ch9-moser-iteration}, and let $V\subset\Gamma(E)$ be finite
   dimensional.  If every $T\in V$ obeys
@@ -420,6 +438,7 @@ symmetric tensors, or curvature tensors).
 \begin{definition}[Weitzenböck curvature operator]
   \label{def:pet-ch9-weitzenbock-curvature-operator}
   \lean{PetersenLib.weitzenbockCurvatureOperator}
+  \source{petersen:page-0357,petersen:page-0358}
   Given a $(0,k)$-tensor $T$, define its \emph{Weitzenb\"ock curvature} by
   \[
     \operatorname{Ric}(T)(X_1,\dots,X_k)=\sum_j\big(R(e_j,X_i)T\big)(X_1,\dots,e_j,\dots,X_k)
@@ -439,6 +458,7 @@ symmetric tensors, or curvature tensors).
 \begin{definition}[Lichnerowicz Laplacian]
   \label{def:pet-ch9-lichnerowicz-laplacian}
   \lean{PetersenLib.lichnerowiczLaplacian}
+  \source{petersen:page-0358}
   \uses{def:pet-ch9-weitzenbock-curvature-operator}
   For $c>0$, the \emph{Lichnerowicz Laplacian} on $E$ is
   \[
@@ -460,6 +480,7 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 \begin{convention}[metric on $\mathfrak{so}(T_pM)$]
   \label{conv:pet-ch9-so-metric-convention}
   \lean{PetersenLib.soMetricConvention}
+  \source{petersen:page-0359}
   \uses{def:pet-ch9-weitzenbock-curvature-operator}
   Identify $\Lambda^2T_pM$ isometrically with $\mathfrak{so}(T_pM)$ by sending
   a unit bivector $v\wedge w$ to the quarter-turn in
@@ -478,9 +499,10 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 
 \begin{lemma}[curvature-operator formula for Weitzenb\"ock curvature]
   \label{lem:pet-ch9-ric-curvature-operator-formula}
-  \dcref{ch9:9.3.3}
   \lean{PetersenLib.weitzenbock_eq_curvatureOperator_sum}
-  \uses{conv:pet-ch9-so-metric-convention,def:pet-ch9-weitzenbock-curvature-operator,def:pet-ch9-lichnerowicz-laplacian}
+  \source{petersen:page-0359,petersen:page-0360}
+  \uses{conv:pet-ch9-so-metric-convention, def:pet-ch9-weitzenbock-curvature-operator, def:pet-ch9-lichnerowicz-laplacian}
+  \dcref{ch9:9.3.3}
   Every $(0,k)$-tensor $T$ satisfies
   \[
     \operatorname{Ric}(T)=-\sum_\sigma R(\Xi_\sigma)(\Xi_\sigma T),\qquad
@@ -507,9 +529,10 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 
 \begin{corollary}[Weitzenb\"ock lower bound]
   \label{cor:pet-ch9-ric-nonneg-curvature-operator}
-  \dcref{ch9:9.3.4}
   \lean{PetersenLib.weitzenbock_nonneg_of_curvatureOperator_nonneg}
+  \source{petersen:page-0360}
   \uses{lem:pet-ch9-ric-curvature-operator-formula}
+  \dcref{ch9:9.3.4}
   Nonnegative curvature operator implies
   $g(\operatorname{Ric}(T),T)\ge0$ for every tensor $T$.  More generally, from
   $\mathfrak R\ge k$ with $k<0$ one obtains
@@ -533,9 +556,10 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 
 \begin{theorem}[dimension estimate for Lichnerowicz-harmonic tensors]
   \label{thm:pet-ch9-lichnerowicz-dimension-estimate}
-  \dcref{ch9:9.3.5}
   \lean{PetersenLib.lichnerowiczLaplacian_kernel_dimension_estimate}
-  \uses{cor:pet-ch9-ric-nonneg-curvature-operator,thm:pet-ch9-gallot-connection-laplacian-estimate,prop:pet-ch9-vanishing-connection-laplacian}
+  \source{petersen:page-0360}
+  \uses{cor:pet-ch9-ric-nonneg-curvature-operator, thm:pet-ch9-gallot-connection-laplacian-estimate, prop:pet-ch9-vanishing-connection-laplacian}
+  \dcref{ch9:9.3.5}
   Suppose $\mathfrak R\ge k$ and $\operatorname{diam}M\le D$, and set
   \[
     V=\ker\Delta_L
@@ -556,9 +580,10 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 
 \begin{theorem}[Weitzenb\"ock formula for the Hodge Laplacian]
   \label{thm:pet-ch9-weitzenbock-hodge-laplacian}
-  \dcref{ch9:9.4.1}
   \lean{PetersenLib.hodgeLaplacian_eq_lichnerowiczLaplacian}
-  \uses{def:pet-ch9-hodge-laplacian,def:pet-ch9-weitzenbock-curvature-operator,def:pet-ch9-lichnerowicz-laplacian}
+  \source{petersen:page-0361}
+  \uses{def:pet-ch9-hodge-laplacian, def:pet-ch9-weitzenbock-curvature-operator, def:pet-ch9-lichnerowicz-laplacian}
+  \dcref{ch9:9.4.1}
   On differential forms, the Lichnerowicz operator with coefficient one is
   exactly the Hodge Laplacian:
   \[
@@ -581,9 +606,10 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 
 \begin{theorem}[Lichnerowicz identity for the curvature tensor]
   \label{thm:pet-ch9-curvature-tensor-lichnerowicz}
-  \dcref{ch9:9.4.2}
   \lean{PetersenLib.curvatureTensor_lichnerowiczIdentity}
-  \uses{def:pet-ch9-lichnerowicz-laplacian,def:pet-ch9-weitzenbock-curvature-operator}
+  \source{petersen:page-0362,petersen:page-0363}
+  \uses{def:pet-ch9-lichnerowicz-laplacian, def:pet-ch9-weitzenbock-curvature-operator}
+  \dcref{ch9:9.4.2}
   For the curvature tensor, the Lichnerowicz operator with coefficient
   $\tfrac12$ satisfies
   \begin{align*}
@@ -612,6 +638,7 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 \begin{definition}[the exterior derivative $d^\nabla h$ of a symmetric tensor]
   \label{def:pet-ch9-codazzi-exterior-derivative}
   \lean{PetersenLib.symmetricTensorExteriorDerivative}
+  \source{petersen:page-0363}
   If $h(z,w)=g(H(z),w)$ is symmetric, then the connection exterior derivative
   is defined by
   \[
@@ -622,6 +649,7 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 \begin{remark}[Codazzi identity for the Ricci tensor]
   \label{rem:pet-ch9-ricci-codazzi-identity}
   \lean{PetersenLib.ricciTensor_codazziIdentity}
+  \source{petersen:page-0363}
   \uses{def:pet-ch9-codazzi-exterior-derivative}
   The second fundamental form of an immersed hypersurface
   $M^n\to\mathbb R^{n+1}$ satisfies the Codazzi--Mainardi equation
@@ -635,9 +663,10 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 
 \begin{theorem}[Lichnerowicz identity for symmetric tensors]
   \label{thm:pet-ch9-symmetric-tensor-lichnerowicz-identity}
-  \dcref{ch9:9.4.3}
   \lean{PetersenLib.symmetricTensor_lichnerowiczIdentity}
-  \uses{def:pet-ch9-codazzi-exterior-derivative,def:pet-ch9-weitzenbock-curvature-operator}
+  \source{petersen:page-0364}
+  \uses{def:pet-ch9-codazzi-exterior-derivative, def:pet-ch9-weitzenbock-curvature-operator}
+  \dcref{ch9:9.4.3}
   For every symmetric $(0,2)$-tensor $h$ and vector $X$,
   \[
     (\nabla_X\nabla^*h)(X)+(\nabla^*d^\nabla h)(X,X)
@@ -657,6 +686,7 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 \begin{definition}[Codazzi and harmonic symmetric tensors]
   \label{def:pet-ch9-codazzi-harmonic-tensor}
   \lean{PetersenLib.IsCodazziTensor,PetersenLib.IsHarmonicSymmetricTensor}
+  \source{petersen:page-0364}
   \uses{def:pet-ch9-codazzi-exterior-derivative}
   Call a symmetric tensor $h$ \emph{Codazzi} when $d^\nabla h=0$; call it
   \emph{harmonic} when it is Codazzi and also divergence free,
@@ -665,9 +695,10 @@ manifest, and to identify natural Lichnerowicz Laplacians.
 
 \begin{proposition}[harmonic tensors and constant trace]
   \label{prop:pet-ch9-harmonic-iff-codazzi-constant-trace}
-  \dcref{ch9:9.4.4}
   \lean{PetersenLib.harmonic_iff_codazzi_constantTrace}
+  \source{petersen:page-0364}
   \uses{def:pet-ch9-codazzi-harmonic-tensor}
+  \dcref{ch9:9.4.4}
   For a symmetric $(0,2)$-tensor $h$,
   \[
     h\text{ is harmonic}\quad\Longleftrightarrow\quad
@@ -692,9 +723,10 @@ tensor is equivalent to divergence-free curvature.
 
 \begin{corollary}[harmonic curvature and Codazzi Ricci tensor]
   \label{cor:pet-ch9-ricci-harmonic-iff-curvature-harmonic}
-  \dcref{ch9:9.4.5}
   \lean{PetersenLib.ricciTensor_harmonic_iff_curvatureTensor_harmonic}
-  \uses{prop:pet-ch9-harmonic-iff-codazzi-constant-trace,rem:pet-ch9-ricci-codazzi-identity,thm:pet-ch9-curvature-tensor-lichnerowicz}
+  \source{petersen:page-0365}
+  \uses{prop:pet-ch9-harmonic-iff-codazzi-constant-trace, rem:pet-ch9-ricci-codazzi-identity, thm:pet-ch9-curvature-tensor-lichnerowicz}
+  \dcref{ch9:9.4.5}
   The following conditions are equivalent: $\operatorname{Ric}$ is harmonic,
   $\operatorname{Ric}$ is Codazzi with constant trace, and
   $\nabla^*R=0$ (equivalently, $R$ is harmonic).
@@ -715,9 +747,10 @@ tensor is equivalent to divergence-free curvature.
 
 \begin{theorem}[forms under a curvature-operator lower bound]
   \label{thm:pet-ch9-nonneg-curvature-operator-parallel-forms}
-  \dcref{ch9:9.4.6}
   \lean{PetersenLib.nonnegCurvatureOperator_harmonicForms_parallel}
-  \uses{thm:pet-ch9-weitzenbock-hodge-laplacian,thm:pet-ch9-lichnerowicz-dimension-estimate,cor:pet-ch9-ric-nonneg-curvature-operator}
+  \source{petersen:page-0365}
+  \uses{thm:pet-ch9-weitzenbock-hodge-laplacian, thm:pet-ch9-lichnerowicz-dimension-estimate, cor:pet-ch9-ric-nonneg-curvature-operator}
+  \dcref{ch9:9.4.6}
   Let $(M,g)$ be closed of dimension $n$.  Under $\mathfrak R\ge0$, every
   harmonic form is parallel.  If $\mathfrak R>0$, a parallel $l$-form can be
   nonzero only for $l=0$ or $l=n$.  For the lower bound $\mathfrak R\ge k$ and
@@ -743,9 +776,10 @@ tensor is equivalent to divergence-free curvature.
 
 \begin{example}[nonnegative sectional curvature on $\mathbb{CP}^2\#\mathbb{CP}^2$]
   \label{ex:pet-ch9-cp2-connect-sum-nonneg-curvature}
-  \dcref{ch9:9.4.7}
   \lean{PetersenLib.cp2ConnectSumCp2_nonnegSectionalCurvature}
+  \source{petersen:page-0366}
   \uses{thm:pet-ch9-nonneg-curvature-operator-parallel-forms}
+  \dcref{ch9:9.4.7}
   Let $S^1$ act diagonally on $S^2\times S^3$, by rotation of total angle
   $2\pi k$ on $S^2$ and by the Hopf action on
   $S^3\subset\mathbb C^2$.  The quotient is $S^2\times S^2$ for even $k$ and
@@ -758,9 +792,10 @@ tensor is equivalent to divergence-free curvature.
 
 \begin{theorem}[Tachibana rigidity]
   \label{thm:pet-ch9-tachibana-parallel-curvature}
-  \dcref{ch9:9.4.8}
   \lean{PetersenLib.tachibana_parallelCurvature}
-  \uses{thm:pet-ch9-curvature-tensor-lichnerowicz,prop:pet-ch9-vanishing-connection-laplacian,conv:pet-ch9-so-metric-convention}
+  \source{petersen:page-0367}
+  \uses{thm:pet-ch9-curvature-tensor-lichnerowicz, prop:pet-ch9-vanishing-connection-laplacian, conv:pet-ch9-so-metric-convention}
+  \dcref{ch9:9.4.8}
   On a closed manifold, divergence-free curvature together with
   $\mathfrak R\ge0$ implies $\nabla R=0$.  If the curvature operator is
   positive, the metric has constant sectional curvature.
@@ -785,6 +820,7 @@ tensor is equivalent to divergence-free curvature.
 \begin{definition}[$\Lambda^2TM$-valued tensor $\hat T$]
   \label{def:pet-ch9-tensor-lambda2-valued}
   \lean{PetersenLib.lambda2ValuedTensor}
+  \source{petersen:page-0368}
   \uses{conv:pet-ch9-so-metric-convention}
   Associate to a $(0,k)$-tensor $T$ the
   $\Lambda^2TM\cong\mathfrak{so}(TM)$-valued tensor $\hat T$ uniquely
@@ -797,9 +833,10 @@ tensor is equivalent to divergence-free curvature.
 
 \begin{lemma}[hat-tensor formula for Weitzenb\"ock curvature]
   \label{lem:pet-ch9-ric-curvature-operator-hat-formula}
-  \dcref{ch9:9.4.9}
   \lean{PetersenLib.weitzenbock_eq_curvatureOperator_hat}
-  \uses{def:pet-ch9-tensor-lambda2-valued,def:pet-ch9-weitzenbock-curvature-operator,lem:pet-ch9-ric-curvature-operator-formula}
+  \source{petersen:page-0368}
+  \uses{def:pet-ch9-tensor-lambda2-valued, def:pet-ch9-weitzenbock-curvature-operator, lem:pet-ch9-ric-curvature-operator-formula}
+  \dcref{ch9:9.4.9}
   For any two $(0,k)$-tensors $T$ and $S$, contraction of their hat tensors
   gives
   \[
@@ -823,9 +860,10 @@ tensor is equivalent to divergence-free curvature.
 
 \begin{proposition}[hat tensor of a $1$-form]
   \label{prop:pet-ch9-1form-hat-ricci}
-  \dcref{ch9:9.4.10}
   \lean{PetersenLib.oneForm_hat_ricci_identity}
-  \uses{lem:pet-ch9-ric-curvature-operator-hat-formula,def:pet-ch9-tensor-lambda2-valued}
+  \source{petersen:page-0368,petersen:page-0369}
+  \uses{lem:pet-ch9-ric-curvature-operator-hat-formula, def:pet-ch9-tensor-lambda2-valued}
+  \dcref{ch9:9.4.10}
   For a one-form $\omega=X^\flat$,
   \[
     \hat\omega(Z)=X\wedge Z,
@@ -848,7 +886,8 @@ tensor is equivalent to divergence-free curvature.
 \begin{remark}[$p$-form generalization]
   \label{rem:pet-ch9-pform-hat-formula}
   \lean{PetersenLib.pForm_hat_formula}
-  \uses{def:pet-ch9-tensor-lambda2-valued,prop:pet-ch9-1form-hat-ricci}
+  \source{petersen:page-0369}
+  \uses{def:pet-ch9-tensor-lambda2-valued, prop:pet-ch9-1form-hat-ricci}
   For a $p$-form $\omega$, define the vector-valued $(p-1)$-form $\Omega$ by
   \(g(\Omega(X_1,\dots,X_{p-1}),X_p)=\omega(X_1,\dots,X_p)\).  Then
   \[
@@ -862,9 +901,10 @@ Turning to $(0,2)$-tensors, let $h(z,w)=g(H(z),w)$ with adjoint $H^*$.
 
 \begin{proposition}[hat tensor of a $(0,2)$-tensor]
   \label{prop:pet-ch9-02tensor-hat-formula}
-  \dcref{ch9:9.4.11}
   \lean{PetersenLib.symmetricTensor_hat_formula}
+  \source{petersen:page-0369,petersen:page-0370}
   \uses{def:pet-ch9-tensor-lambda2-valued}
+  \dcref{ch9:9.4.11}
   If $h(z,w)=g(H(z),w)$ and $H^*$ is the adjoint of $H$, then
   \[
     \hat h(z,w)=H(z)\wedge w-z\wedge H^*(w).
@@ -894,6 +934,7 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 \begin{definition}[complex sectional curvature]
   \label{def:pet-ch9-complex-sectional-curvature}
   \lean{PetersenLib.complexSectionalCurvature}
+  \source{petersen:page-0370}
   \uses{prop:pet-ch9-02tensor-hat-formula}
   For complexified tangent vectors $z,w\in T_pM\otimes\mathbb C$, define the
   \emph{complex sectional curvature} of their span to be
@@ -905,6 +946,7 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 \begin{lemma}[real expansion of the complex sectional curvature]
   \label{lem:pet-ch9-complex-sectional-curvature-real-formula}
   \lean{PetersenLib.complexSectionalCurvature_realFormula}
+  \source{petersen:page-0370,petersen:page-0371}
   \uses{def:pet-ch9-complex-sectional-curvature}
   If $z=x+iy$ and $w=u+iv$, with $x,y,u,v\in T_pM$, then
   \begin{align*}
@@ -928,6 +970,7 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 \begin{remark}[special cases of the complex sectional curvature]
   \label{rem:pet-ch9-complex-sectional-curvature-special-cases}
   \lean{PetersenLib.complexSectionalCurvature_specialCases}
+  \source{petersen:page-0371}
   \uses{lem:pet-ch9-complex-sectional-curvature-real-formula}
   Three specializations of the preceding formula are used:
   \begin{enumerate}
@@ -940,9 +983,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{proposition}[normal tensors and complex sectional curvature]
   \label{prop:pet-ch9-normal-tensor-nonneg-complex-sectional}
-  \dcref{ch9:9.4.12}
   \lean{PetersenLib.normalTensor_nonneg_of_complexSectionalCurvature_nonneg}
-  \uses{prop:pet-ch9-02tensor-hat-formula,def:pet-ch9-complex-sectional-curvature}
+  \source{petersen:page-0371}
+  \uses{prop:pet-ch9-02tensor-hat-formula, def:pet-ch9-complex-sectional-curvature}
+  \dcref{ch9:9.4.12}
   If the endomorphism $H$ associated with a $(0,2)$-tensor $h$ is normal, then
   nonnegative complex sectional curvature implies
   $g(\mathfrak R(\hat h),\hat h)\ge0$.
@@ -962,9 +1006,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{proposition}[general tensors and complex sectional curvature]
   \label{prop:pet-ch9-general-tensor-nonneg-complex-sectional}
-  \dcref{ch9:9.4.13}
   \lean{PetersenLib.tensor_nonneg_of_complexSectionalCurvature_nonneg}
+  \source{petersen:page-0372}
   \uses{prop:pet-ch9-normal-tensor-nonneg-complex-sectional}
+  \dcref{ch9:9.4.13}
   At a point with nonnegative complex sectional curvature,
   \[
     g(\mathfrak R(\hat h),\hat h)\ge0
@@ -990,9 +1035,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[splitting of the universal cover]
   \label{rem:pet-ch9-exercise-9-6-1}
-  \dcref{ch9:9.6.1}
   \lean{PetersenLib.exercise9_6_1}
-  \uses{cor:pet-ch9-betti1-bound-flat-torus,thm:pet-ch9-bochner-vanishing-1forms}
+  \source{petersen:page-0373}
+  \uses{cor:pet-ch9-betti1-bound-flat-torus, thm:pet-ch9-bochner-vanishing-1forms}
+  \dcref{ch9:9.6.1}
   Let compact $(M^n,g)$ have $b_1(M)=k$ and $\operatorname{Ric}\ge0$.  Prove
   the product decomposition
   \[
@@ -1004,9 +1050,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[frame identity for a symmetric derivative]
   \label{rem:pet-ch9-exercise-9-6-2}
-  \dcref{ch9:9.6.2}
   \lean{PetersenLib.exercise9_6_2}
+  \source{petersen:page-0373}
   \uses{prop:pet-ch9-vector-field-1form-duality}
+  \dcref{ch9:9.6.2}
   For an arbitrary orthonormal frame $E_i$, derive
   \[
     \sum_i g(\nabla_{E_i}X,\nabla_XE_i)=0
@@ -1017,9 +1064,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[orthogonality of images and kernels]
   \label{rem:pet-ch9-exercise-9-6-3}
-  \dcref{ch9:9.6.3}
   \lean{PetersenLib.exercise9_6_3}
+  \source{petersen:page-0373}
   \uses{def:pet-ch9-codifferential}
+  \dcref{ch9:9.6.3}
   In $\Omega^k(M)$ for an oriented Riemannian manifold, establish
   \[
     (\operatorname{im}d^{k-1})^\perp=\ker\delta^{k-1},
@@ -1030,9 +1078,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[elliptic regularity for the connection Laplacian]
   \label{rem:pet-ch9-exercise-9-6-4}
-  \dcref{ch9:9.6.4}
   \lean{PetersenLib.exercise9_6_4}
+  \source{petersen:page-0373}
   \uses{def:pet-ch9-lichnerowicz-laplacian}
+  \dcref{ch9:9.6.4}
   For compact $(M^n,g)$ and a tensor bundle $E$, let $W^{k,2}(E)$ be the
   completion of $\Gamma(E)$ in the norm
   $\sum_{i=0}^k\|\nabla^iT\|_2^2$.  Thus $W^{1,2}$ has a weak derivative with
@@ -1059,9 +1108,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[spectral theorem for a Lichnerowicz Laplacian]
   \label{rem:pet-ch9-exercise-9-6-5}
-  \dcref{ch9:9.6.5}
   \lean{PetersenLib.exercise9_6_5}
-  \uses{def:pet-ch9-lichnerowicz-laplacian,rem:pet-ch9-exercise-9-6-4,cor:pet-ch9-ric-nonneg-curvature-operator}
+  \source{petersen:page-0373,petersen:page-0374}
+  \uses{def:pet-ch9-lichnerowicz-laplacian, rem:pet-ch9-exercise-9-6-4, cor:pet-ch9-ric-nonneg-curvature-operator}
+  \dcref{ch9:9.6.5}
   Let compact $(M^n,g)$ satisfy $\operatorname{diam}M\le D$ and
   $\operatorname{Ric}\ge k$, and let the rank-$m$ tensor bundle $E$ carry
   $\Delta_L$.  Prove the spectral theorem and the orthogonal splitting
@@ -1094,9 +1144,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[Euclidean rigidity outside a compact set]
   \label{rem:pet-ch9-exercise-9-6-6}
-  \dcref{ch9:9.6.6}
   \lean{PetersenLib.exercise9_6_6}
+  \source{petersen:page-0374}
   \uses{thm:pet-ch9-bochner-vanishing-1forms}
+  \dcref{ch9:9.6.6}
   Suppose $M^n-K\cong\mathbb R^n-C$ isometrically for compact
   $K\subset M$ and $C\subset\mathbb R^n$.  Prove that
   $\operatorname{Ric}_g\ge0$ forces $(M,g)$ to be Euclidean.  One may either
@@ -1107,18 +1158,20 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[harmonic one-forms on Einstein manifolds]
   \label{rem:pet-ch9-exercise-9-6-7}
-  \dcref{ch9:9.6.7}
   \lean{PetersenLib.exercise9_6_7}
-  \uses{def:pet-ch9-lichnerowicz-laplacian,thm:pet-ch9-weitzenbock-hodge-laplacian}
+  \source{petersen:page-0374}
+  \uses{def:pet-ch9-lichnerowicz-laplacian, thm:pet-ch9-weitzenbock-hodge-laplacian}
+  \dcref{ch9:9.6.7}
   Prove that on an Einstein manifold every harmonic one-form is an eigenform
   of $\nabla^*\nabla$.
 \end{remark}
 
 \begin{remark}[mixed Bochner formulas]
   \label{rem:pet-ch9-exercise-9-6-8}
-  \dcref{ch9:9.6.8}
   \lean{PetersenLib.exercise9_6_8}
+  \source{petersen:page-0374}
   \uses{prop:pet-ch9-bochner-formula-1forms}
+  \dcref{ch9:9.6.8}
   If both $\nabla X$ and $\nabla Y$ are symmetric, derive the polarized
   Bochner identities for
   $\operatorname{Hess}(g(X,Y)/2)$ and $\Delta(g(X,Y)/2)$.
@@ -1126,9 +1179,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[tensor inner-product identities]
   \label{rem:pet-ch9-exercise-9-6-9}
-  \dcref{ch9:9.6.9}
   \lean{PetersenLib.exercise9_6_9}
+  \source{petersen:page-0374,petersen:page-0375}
   \uses{prop:pet-ch9-vanishing-connection-laplacian}
+  \dcref{ch9:9.6.9}
   For same-type tensors $s_1,s_2$, polarize the identity
   $\Delta\tfrac12|s|^2=|\nabla s|^2-g(\nabla^*\nabla s,s)$ to prove
   \[
@@ -1148,9 +1202,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[skew endomorphisms acting on volume and curvature]
   \label{rem:pet-ch9-exercise-9-6-10}
-  \dcref{ch9:9.6.10}
   \lean{PetersenLib.exercise9_6_10}
+  \source{petersen:page-0375}
   \uses{conv:pet-ch9-so-metric-convention}
+  \dcref{ch9:9.6.10}
   On an $n$-manifold, verify the following actions of an endomorphism $L$:
   \begin{enumerate}
     \item[(1)] If $L$ is skew-symmetric, then $L\omega=0$ for every $n$-form.
@@ -1162,9 +1217,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[Simons' estimates for Codazzi tensors]
   \label{rem:pet-ch9-exercise-9-6-11}
-  \dcref{ch9:9.6.11}
   \lean{PetersenLib.exercise9_6_11}
-  \uses{def:pet-ch9-codazzi-harmonic-tensor,thm:pet-ch9-symmetric-tensor-lichnerowicz-identity,prop:pet-ch9-vanishing-connection-laplacian}
+  \source{petersen:page-0375}
+  \uses{def:pet-ch9-codazzi-harmonic-tensor, thm:pet-ch9-symmetric-tensor-lichnerowicz-identity, prop:pet-ch9-vanishing-connection-laplacian}
+  \dcref{ch9:9.6.11}
   Let $h$ be a constant-trace symmetric Codazzi tensor on compact $(M,g)$.
   \begin{enumerate}
     \item[(1)] Deduce $\nabla h=0$ from $\sec\ge0$.
@@ -1177,9 +1233,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[constant-mean-curvature hypersphere rigidity]
   \label{rem:pet-ch9-exercise-9-6-12}
-  \dcref{ch9:9.6.12}
   \lean{PetersenLib.exercise9_6_12}
-  \uses{def:pet-ch9-codazzi-exterior-derivative,rem:pet-ch9-exercise-9-6-11}
+  \source{petersen:page-0375,petersen:page-0376}
+  \uses{def:pet-ch9-codazzi-exterior-derivative, rem:pet-ch9-exercise-9-6-11}
+  \dcref{ch9:9.6.12}
   For an isometric immersion $(M^n,g)\hookrightarrow\mathbb R^{n+1}$:
   \begin{enumerate}
     \item[(1)] prove that the second fundamental form $\mathrm{II}$ is
@@ -1193,18 +1250,20 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[Berger's parallel-Ricci criterion]
   \label{rem:pet-ch9-exercise-9-6-13}
-  \dcref{ch9:9.6.13}
   \lean{PetersenLib.exercise9_6_13}
-  \uses{cor:pet-ch9-ricci-harmonic-iff-curvature-harmonic,thm:pet-ch9-symmetric-tensor-lichnerowicz-identity}
+  \source{petersen:page-0376}
+  \uses{cor:pet-ch9-ricci-harmonic-iff-curvature-harmonic, thm:pet-ch9-symmetric-tensor-lichnerowicz-identity}
+  \dcref{ch9:9.6.13}
   Prove that $\nabla\operatorname{Ric}=0$ on every compact manifold satisfying
   $\nabla^*R=0$ and $\sec\ge0$.
 \end{remark}
 
 \begin{remark}[isometries and harmonic forms]
   \label{rem:pet-ch9-exercise-9-6-14}
-  \dcref{ch9:9.6.14}
   \lean{PetersenLib.exercise9_6_14}
-  \uses{thm:pet-ch9-hodge-theorem,def:pet-ch9-hodge-cohomology}
+  \source{petersen:page-0376}
+  \uses{thm:pet-ch9-hodge-theorem, def:pet-ch9-hodge-cohomology}
+  \dcref{ch9:9.6.14}
   Fix a Killing field $K$ and a harmonic form $\omega$ on closed $(M,g)$.
   \begin{enumerate}
     \item[(1)] Prove $\mathcal L_K\omega=0$ by first showing that this Lie
@@ -1220,9 +1279,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[nonexact powers of the K\"ahler form]
   \label{rem:pet-ch9-exercise-9-6-15}
-  \dcref{ch9:9.6.15}
   \lean{PetersenLib.exercise9_6_15}
+  \source{petersen:page-0376}
   \uses{rem:pet-ch9-poincare-duality}
+  \dcref{ch9:9.6.15}
   Let $\omega$ be the parallel nondegenerate K\"ahler form of a closed
   K\"ahler manifold.  Prove that each wedge power
   $\omega^k=\omega\wedge\cdots\wedge\omega$ is closed and nonexact.  Use that
@@ -1232,9 +1292,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[vector-bundle-valued differential forms]
   \label{rem:pet-ch9-exercise-9-6-16}
-  \dcref{ch9:9.6.16}
   \lean{PetersenLib.exercise9_6_16}
-  \uses{def:pet-ch9-codazzi-exterior-derivative,def:pet-ch9-weitzenbock-curvature-operator}
+  \source{petersen:page-0376}
+  \uses{def:pet-ch9-codazzi-exterior-derivative, def:pet-ch9-weitzenbock-curvature-operator}
+  \dcref{ch9:9.6.16}
   For a tensor bundle $E\to M$, set $\Omega^0(M,E)=\Gamma(E)$ and let
   $\Omega^p(M,E)$ be the alternating $E$-valued $p$-forms.  Establish:
   \begin{enumerate}
@@ -1254,9 +1315,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[Codazzi tensors with bundle values]
   \label{rem:pet-ch9-exercise-9-6-17}
-  \dcref{ch9:9.6.17}
   \lean{PetersenLib.exercise9_6_17}
-  \uses{rem:pet-ch9-exercise-9-6-16,def:pet-ch9-codazzi-harmonic-tensor}
+  \source{petersen:page-0377}
+  \uses{rem:pet-ch9-exercise-9-6-16, def:pet-ch9-codazzi-harmonic-tensor}
+  \dcref{ch9:9.6.17}
   Specialize Exercise 9.6.16 to $E=TM$, so that
   $\Omega^1(M,TM)=\operatorname{Hom}(TM,TM)$.
   \begin{enumerate}
@@ -1273,9 +1335,10 @@ $H(w)=\mu w$ for orthonormal $z,w\in T_pM\otimes\mathbb{C}$. Then
 
 \begin{remark}[Thomas' Gauss-to-Codazzi implication]
   \label{rem:pet-ch9-exercise-9-6-18}
-  \dcref{ch9:9.6.18}
   \lean{PetersenLib.exercise9_6_18}
-  \uses{rem:pet-ch9-exercise-9-6-17,def:pet-ch9-codazzi-harmonic-tensor}
+  \source{petersen:page-0377}
+  \uses{rem:pet-ch9-exercise-9-6-17, def:pet-ch9-codazzi-harmonic-tensor}
+  \dcref{ch9:9.6.18}
   In dimension $n\ge3$, prove that the Gauss relation
   $\mathfrak R=S\wedge S$ forces $d^\nabla S=0$ when $\det S\ne0$.  Use the
   second Bianchi identity and analyze

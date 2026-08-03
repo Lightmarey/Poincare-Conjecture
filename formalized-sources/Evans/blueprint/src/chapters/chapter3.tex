@@ -23,9 +23,10 @@ $F(Du,u,x)=0$ if every $u(\cdot,a)$ is a solution and
 
 \begin{remark}[Complete integrals depend on all $n$ parameters]
 \label{rem:complete-integral-independence}
+\uses{def:complete-integral}
 \dcref{ch3:3.1.1-rem-1}
 \group{Nonlinear First-Order PDE}
-\uses{def:complete-integral}
+
 The rank condition excludes a nonzero direction $b\in\R^n$ for which
 $D_a u\cdot b$ vanishes identically in $x$; differentiating such an identity
 would put $b$ in the kernel of the displayed matrix.
@@ -33,9 +34,10 @@ would put $b$ in the kernel of the displayed matrix.
 
 \begin{example}[Clairaut's equation]
 \label{ex:clairaut-complete-integral}
+\uses{def:complete-integral}
 \dcref{ch3:3.1-ex-1}
 \group{Nonlinear First-Order PDE}
-\uses{def:complete-integral}
+
 For $x\cdot Du+f(Du)=u$, the functions
 \[
 u(x,a)=a\cdot x+f(a),\qquad a\in\R^n,
@@ -45,9 +47,10 @@ form a complete integral.
 
 \begin{example}[Eikonal equation]
 \label{ex:eikonal-complete-integral}
+\uses{def:complete-integral}
 \dcref{ch3:3.1-ex-2}
 \group{Nonlinear First-Order PDE}
-\uses{def:complete-integral}
+
 For $|Du|=1$, a complete integral is
 \[
 u(x,a,b)=a\cdot x+b,qquad a\in S^{n-1},\ b\in\R.
@@ -56,9 +59,10 @@ u(x,a,b)=a\cdot x+b,qquad a\in S^{n-1},\ b\in\R.
 
 \begin{example}[Hamilton--Jacobi complete integral]
 \label{ex:hamilton-jacobi-complete-integral}
+\uses{def:complete-integral}
 \dcref{ch3:3.1-ex-3}
 \group{Hamilton-Jacobi Equations}
-\uses{def:complete-integral}
+
 For $u_t+H(Du)=0$, the family
 \[
 u(x,t,a,b)=a\cdot x-tH(a)+b,qquad (a,b)\in\R^{n+1},
@@ -86,9 +90,10 @@ is the envelope of the family.
 
 \begin{theorem}[Construction of new solutions]
 \label{thm:envelope-solves-pde}
+\uses{def:envelope}
 \dcref{ch3:3.1-thm-1}
 \group{Nonlinear First-Order PDE}
-\uses{def:envelope}
+
 Every smooth envelope $v$ is a solution of $F(Dv,v,x)=0$.
 \end{theorem}
 
@@ -100,18 +105,20 @@ equation satisfied by each member of the complete integral.
 
 \begin{remark}[Geometric interpretation of the envelope]
 \label{rem:envelope-tangency}
+\uses{thm:envelope-solves-pde}
 \dcref{ch3:3.1.2-rem-1}
 \group{Nonlinear First-Order PDE}
-\uses{thm:envelope-solves-pde}
+
 At each $x$, the graph of the envelope is tangent to the graph of the member
 $u(\cdot,\phi(x))$.
 \end{remark}
 
 \begin{example}[Envelope of a complete integral for $u^2(1+|Du|^2)=1$]
 \label{ex:envelope-singular-integral}
+\uses{thm:envelope-solves-pde}
 \dcref{ch3:3.1-ex-4}
 \group{Nonlinear First-Order PDE}
-\uses{thm:envelope-solves-pde}
+
 The family
 \[
 u(x,a)=\pm\sqrt{1-|x-a|^2}
@@ -122,9 +129,10 @@ $a=x$, so its envelopes are the singular solutions $v\equiv\pm1$.
 
 \begin{definition}[General integral]
 \label{def:general-integral}
+\uses{def:complete-integral, def:envelope}
 \dcref{ch3:3.1.2-def-2}
 \group{Nonlinear First-Order PDE}
-\uses{def:complete-integral,def:envelope}
+
 Given a complete integral $u(x,a_1,\ldots,a_n)$ and a smooth function
 $h:\R^{n-1}\to\R$, restrict to $a_n=h(a_1,\ldots,a_{n-1})$ and take the
 envelope with respect to $a_1,\ldots,a_{n-1}$. The resulting family, with
@@ -133,9 +141,10 @@ arbitrary $h$, is the general integral associated with $u$.
 
 \begin{remark}[On the general integral]
 \label{rem:general-integral-remarks}
+\uses{def:general-integral}
 \dcref{ch3:3.1.2-rem-2}
 \group{Nonlinear First-Order PDE}
-\uses{def:general-integral}
+
 The construction yields solutions depending on one arbitrary function of
 $n-1$ variables, but it need not contain every solution of a reducible or
 factorized equation.
@@ -143,9 +152,10 @@ factorized equation.
 
 \begin{example}[Alternative complete integral for the eikonal equation]
 \label{ex:eikonal-alternative-complete-integral}
+\uses{def:general-integral}
 \dcref{ch3:3.1-ex-5}
 \group{Nonlinear First-Order PDE}
-\uses{def:general-integral}
+
 In two dimensions,
 \[
 u(x,a_1,a_2)=x_1\cos a_1+x_2\sin a_1+a_2
@@ -156,9 +166,10 @@ gives $u=\pm|x|$ away from the origin.
 
 \begin{example}[General integral for a Hamilton--Jacobi equation]
 \label{ex:hamilton-jacobi-envelope-example}
+\uses{def:general-integral, ex:hamilton-jacobi-complete-integral}
 \dcref{ch3:3.1-ex-6}
 \group{Hamilton-Jacobi Equations}
-\uses{def:general-integral,ex:hamilton-jacobi-complete-integral}
+
 For $u_t+|Du|^2=0$, choose $b=0$ in the complete integral
 $a\cdot x-t|a|^2+b$. Its envelope has $a=x/(2t)$ and hence
 \[
@@ -193,9 +204,10 @@ The characteristic equations are
 
 \begin{remark}[Closure of the characteristic system]
 \label{rem:characteristic-ode-closure}
+\uses{thm:characteristic-ode-structure}
 \dcref{ch3:3.2.1-rem-1}
 \group{Method of Characteristics}
-\uses{thm:characteristic-ode-structure}
+
 The $2n+1$ equations form a closed first-order system for $(p,z,x)$.
 \end{remark}
 
@@ -209,9 +221,10 @@ For $b(x)\cdot Du+c(x)u=0$, the characteristic system reduces to
 
 \begin{example}[Linear PDE on a quadrant]
 \label{ex:linear-pde-quadrant-characteristics}
+\uses{thm:characteristic-ode-structure}
 \dcref{ch3:3.2-ex-1}
 \group{Method of Characteristics}
-\uses{thm:characteristic-ode-structure}
+
 The problem
 \[
 x_2u_{x_1}-x_1u_{x_2}=u\quad(x_1,x_2>0),
@@ -231,9 +244,10 @@ For $b(x,u)\cdot Du+c(x,u)=0$, the reduced system is
 
 \begin{example}[Semilinear PDE on a half-space]
 \label{ex:semilinear-pde-halfspace-characteristics}
+\uses{thm:characteristic-ode-structure}
 \dcref{ch3:3.2-ex-2}
 \group{Method of Characteristics}
-\uses{thm:characteristic-ode-structure}
+
 For
 \[
 u_{x_1}+u_{x_2}=u^2\quad(x_2>0),\qquad u(x_1,0)=g(x_1),
@@ -247,9 +261,10 @@ where the denominator is nonzero.
 
 \begin{example}[Fully nonlinear PDE on a half-space]
 \label{ex:fully-nonlinear-halfspace-characteristics}
+\uses{thm:characteristic-ode-structure}
 \dcref{ch3:3.2-ex-3}
 \group{Method of Characteristics}
-\uses{thm:characteristic-ode-structure}
+
 The problem
 \[
 u_{x_1}u_{x_2}=u\quad(x_1>0),\qquad u(0,x_2)=x_2^2
@@ -281,9 +296,10 @@ F(p^0,z^0,x^0)=0.
 
 \begin{definition}[Noncharacteristic admissible triple]
 \label{def:noncharacteristic-triple}
+\uses{def:compatibility-conditions-admissible-triple}
 \dcref{ch3:3.2.3-def-2}
 \group{Method of Characteristics}
-\uses{def:compatibility-conditions-admissible-triple}
+
 An admissible triple is noncharacteristic if
 \[
 F_{p_n}(p^0,z^0,x^0)\ne0.
@@ -292,9 +308,10 @@ F_{p_n}(p^0,z^0,x^0)\ne0.
 
 \begin{lemma}[Noncharacteristic boundary conditions]
 \label{lem:noncharacteristic-boundary-conditions}
+\uses{def:noncharacteristic-triple}
 \dcref{ch3:3.2-lem-1}
 \group{Method of Characteristics}
-\uses{def:noncharacteristic-triple}
+
 Near a noncharacteristic admissible triple, the compatibility equation has a
 unique smooth solution
 \[
@@ -310,9 +327,10 @@ $p_n$ is nonzero by noncharacteristicity.
 
 \begin{remark}[Noncharacteristic condition for a general boundary]
 \label{rem:noncharacteristic-condition-general}
+\uses{def:noncharacteristic-triple}
 \dcref{ch3:3.2.3-rem-1}
 \group{Method of Characteristics}
-\uses{def:noncharacteristic-triple}
+
 For a smooth boundary with unit normal $\nu$, the invariant condition is
 \[
 D_pF(p^0,z^0,x^0)\cdot\nu(x^0)\ne0.
@@ -331,9 +349,10 @@ p(y,0)=(Dg(y),q(y,g(y),Dg(y))).
 
 \begin{lemma}[Local invertibility]
 \label{lem:local-invertibility-characteristics}
+\uses{def:noncharacteristic-triple}
 \dcref{ch3:3.2-lem-2}
 \group{Method of Characteristics}
-\uses{def:noncharacteristic-triple}
+
 The map $(y,s)\mapsto x(y,s)$ is locally invertible near $(y^0,0)$.
 \end{lemma}
 
@@ -351,9 +370,10 @@ u(x):=z(y(x),s(x)).
 
 \begin{theorem}[Local Existence Theorem]
 \label{thm:local-existence-characteristics}
+\uses{lem:local-invertibility-characteristics, def:compatibility-conditions-admissible-triple}
 \dcref{ch3:3.2-thm-2}
 \group{Method of Characteristics}
-\uses{lem:local-invertibility-characteristics,def:compatibility-conditions-admissible-triple}
+
 The function $u$ is smooth near $x^0$, satisfies
 $F(Du,u,x)=0$, and agrees with $g$ on the boundary.
 \end{theorem}
@@ -375,9 +395,10 @@ rule then gives $Du=p$, proving the PDE and the boundary condition.
 
 \begin{example}[Flow patterns for a linear transport-type PDE]
 \label{ex:linear-transport-characteristics-flow}
+\uses{thm:local-existence-characteristics}
 \dcref{ch3:3.2-ex-4}
 \group{Method of Characteristics}
-\uses{thm:local-existence-characteristics}
+
 For $b(x)\cdot Du=0$, $u$ is constant along integral curves of $\dot x=b(x)$.
 An attracting equilibrium obstructs a global continuous solution unless the
 incoming boundary values coincide; a flow crossing the domain transports the
@@ -387,9 +408,10 @@ values on the adjoining flow regions for continuity.
 
 \begin{example}[Characteristics for conservation laws]
 \label{ex:characteristics-conservation-laws}
+\uses{thm:local-existence-characteristics}
 \dcref{ch3:3.2-ex-5}
 \group{Conservation Laws}
-\uses{thm:local-existence-characteristics}
+
 For
 \[
 u_t+\operatorname{div}F(u)=0,
@@ -403,9 +425,10 @@ Crossing projected characteristics obstruct a global smooth solution.
 
 \begin{remark}[Implicit formula for the conservation law]
 \label{rem:implicit-formula-conservation-law}
+\uses{ex:characteristics-conservation-laws}
 \dcref{ch3:3.2.5-rem-1}
 \group{Conservation Laws}
-\uses{ex:characteristics-conservation-laws}
+
 Before characteristic crossing, the solution satisfies
 \[
 u(x,t)=g(x-tF'(u(x,t))).
@@ -418,9 +441,10 @@ The implicit function theorem applies while
 
 \begin{example}[Characteristics for the Hamilton--Jacobi equation]
 \label{ex:characteristics-hamilton-jacobi}
+\uses{thm:characteristic-ode-structure}
 \dcref{ch3:3.2-ex-6}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:characteristic-ode-structure}
+
 For $u_t+H(Du,x)=0$, the characteristic system is
 \[
 \dot p=-D_xH(p,x),\qquad
@@ -465,18 +489,20 @@ lemma of the calculus of variations yield the displayed system.
 
 \begin{remark}[Critical points versus minimizers]
 \label{rem:critical-point-vs-minimizer}
+\uses{thm:euler-lagrange-equations}
 \dcref{ch3:3.3.1-rem-1}
 \group{Calculus of Variations}
-\uses{thm:euler-lagrange-equations}
+
 Every minimizer is a critical point of $I$, but a critical point need not be a
 minimizer.
 \end{remark}
 
 \begin{example}[Newton's law as an Euler--Lagrange equation]
 \label{ex:newtons-law-lagrangian}
+\uses{thm:euler-lagrange-equations}
 \dcref{ch3:3.3.1-ex-1}
 \group{Calculus of Variations}
-\uses{thm:euler-lagrange-equations}
+
 For $L(q,x)=\frac12m|q|^2-\phi(x)$, Euler--Lagrange gives
 \[
 m\ddot x=-D\phi(x)=:f(x).
@@ -499,9 +525,10 @@ H(p,x)=p\cdot\mathbf q(p,x)-L(\mathbf q(p,x),x).
 
 \begin{example}[Hamiltonian for Newton's law: total energy]
 \label{ex:hamiltonian-newtons-law}
+\uses{def:hamiltonian-from-lagrangian, ex:newtons-law-lagrangian}
 \dcref{ch3:3.3.1-ex-2}
 \group{Calculus of Variations}
-\uses{def:hamiltonian-from-lagrangian,ex:newtons-law-lagrangian}
+
 For the Newtonian Lagrangian,
 \[
 H(p,x)=\frac1{2m}|p|^2+\phi(x),
@@ -511,9 +538,10 @@ the total kinetic plus potential energy.
 
 \begin{theorem}[Derivation of Hamilton's ODE]
 \label{thm:hamiltons-ode-derivation}
+\uses{thm:euler-lagrange-equations, def:hamiltonian-from-lagrangian}
 \dcref{ch3:3.3-thm-2}
 \group{Calculus of Variations}
-\uses{thm:euler-lagrange-equations,def:hamiltonian-from-lagrangian}
+
 The pair $(x,p)$ satisfies
 \[
 \dot x=D_pH(p,x),\qquad \dot p=-D_xH(p,x),
@@ -530,9 +558,10 @@ $\frac d{ds}H=D_pH\cdot\dot p+D_xH\cdot\dot x=0$.
 
 \begin{remark}[Hamilton's ODE as a first-order system]
 \label{rem:hamiltons-ode-system-structure}
+\uses{thm:hamiltons-ode-derivation}
 \dcref{ch3:3.3.1-rem-2}
 \group{Calculus of Variations}
-\uses{thm:hamiltons-ode-derivation}
+
 Hamilton's equations are a coupled system of $2n$ first-order ODE for
 $(x,p)\in\R^{2n}$.
 \end{remark}
@@ -568,9 +597,10 @@ Hamiltonian; write $H=L^*$.
 
 \begin{theorem}[Convex duality of Hamiltonian and Lagrangian]
 \label{thm:convex-duality-hamiltonian-lagrangian}
+\uses{def:legendre-transform}
 \dcref{ch3:3.3-thm-3}
 \group{Calculus of Variations}
-\uses{def:legendre-transform}
+
 The function $H=L^*$ is convex and superlinear, and
 \[
 L=H^*.
@@ -586,17 +616,19 @@ convex function $L$ at each $q$ gives the reverse inequality.
 
 \begin{remark}[Dual convex functions]
 \label{rem:dual-convex-functions}
+\uses{thm:convex-duality-hamiltonian-lagrangian}
 \dcref{ch3:3.3.2-rem-1}
 \group{Calculus of Variations}
-\uses{thm:convex-duality-hamiltonian-lagrangian}
+
 $H$ and $L$ are dual convex functions: $H=L^*$ and $L=H^*$.
 \end{remark}
 
 \begin{theorem}[Hopf--Lax formula]
 \label{thm:hopf-lax-formula-derivation}
+\uses{thm:convex-duality-hamiltonian-lagrangian}
 \dcref{ch3:3.3-thm-4}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:convex-duality-hamiltonian-lagrangian}
+
 For $t>0$, the variational problem
 \[
 u(x,t)=\inf_{w(t)=x}\left\{\int_0^tL(\dot w(s))\,ds+g(w(0))\right\}
@@ -616,18 +648,20 @@ attained.
 
 \begin{definition}[Hopf--Lax formula]
 \label{def:hopf-lax-formula}
+\uses{thm:hopf-lax-formula-derivation}
 \dcref{ch3:3.3.2-def-2}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:hopf-lax-formula-derivation}
+
 The minimum expression in the preceding theorem is called the Hopf--Lax
 formula.
 \end{definition}
 
 \begin{lemma}[A functional identity]
 \label{lem:hopf-lax-functional-identity}
+\uses{thm:hopf-lax-formula-derivation}
 \dcref{ch3:3.3-lem-1}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:hopf-lax-formula-derivation}
+
 For $0\le s<t$,
 \[
 u(x,t)=\min_y\left\{(t-s)L\left(\frac{x-y}{t-s}\right)+u(y,s)\right\}.
@@ -643,9 +677,10 @@ affine segment from $w$ to $x$.
 
 \begin{lemma}[Lipschitz continuity]
 \label{lem:hopf-lax-lipschitz-continuity}
+\uses{thm:hopf-lax-formula-derivation}
 \dcref{ch3:3.3-lem-2}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:hopf-lax-formula-derivation}
+
 If $g$ is Lipschitz, then $u$ is Lipschitz on $\R^n\times[0,\infty)$ and
 $u(x,0)=g(x)$. In particular, for a constant $C$,
 \[
@@ -663,9 +698,10 @@ the initial trace.
 
 \begin{theorem}[Solving the Hamilton--Jacobi equation]
 \label{thm:hopf-lax-solves-hj-equation}
+\uses{thm:hopf-lax-formula-derivation, lem:hopf-lax-functional-identity}
 \dcref{ch3:3.3-thm-5}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:hopf-lax-formula-derivation,lem:hopf-lax-functional-identity}
+
 At every differentiability point $(x,t)$ with $t>0$, the Hopf--Lax function
 satisfies
 \[
@@ -683,9 +719,10 @@ $q=(x-z)/t$. Take the supremum over $q$.
 
 \begin{theorem}[Hopf--Lax formula as solution]
 \label{thm:hopf-lax-formula-as-solution}
+\uses{thm:hopf-lax-solves-hj-equation, lem:hopf-lax-lipschitz-continuity}
 \dcref{ch3:3.3-thm-6}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:hopf-lax-solves-hj-equation,lem:hopf-lax-lipschitz-continuity}
+
 The Hopf--Lax function is Lipschitz, differentiable almost everywhere, and
 solves
 \[
@@ -711,9 +748,10 @@ are Lipschitz a.e. solutions. Thus the a.e. notion alone is nonunique.
 
 \begin{lemma}[Semiconcavity]
 \label{lem:hopf-lax-semiconcavity-from-data}
+\uses{def:semiconcave-function, thm:hopf-lax-formula-derivation}
 \dcref{ch3:3.3-lem-3}
 \group{Hamilton-Jacobi Equations}
-\uses{def:semiconcave-function,thm:hopf-lax-formula-derivation}
+
 If $g(x+z)-2g(x)+g(x-z)\le C|z|^2$, then its Hopf--Lax evolution obeys
 \[
 u(x+z,t)-2u(x,t)+u(x-z,t)\le C|z|^2.
@@ -740,9 +778,10 @@ $C^2$ Hessian is sufficient.
 
 \begin{remark}[Characterizations of semiconcavity]
 \label{rem:semiconcave-characterization}
+\uses{def:semiconcave-function}
 \dcref{ch3:3.3.3-rem-1}
 \group{Hamilton-Jacobi Equations}
-\uses{def:semiconcave-function}
+
 The preceding second-difference characterization is equivalent to concavity
 after subtracting a quadratic, and is implied by a globally bounded Hessian.
 \end{remark}
@@ -760,9 +799,10 @@ for all $p,\xi$.
 
 \begin{lemma}[Semiconcavity again]
 \label{lem:hopf-lax-semiconcavity-uniform-convexity}
+\uses{def:uniformly-convex-hamiltonian, thm:hopf-lax-formula-derivation}
 \dcref{ch3:3.3-lem-4}
 \group{Hamilton-Jacobi Equations}
-\uses{def:uniformly-convex-hamiltonian,thm:hopf-lax-formula-derivation}
+
 If $H$ is uniformly convex with constant $\theta$, then
 \[
 u(x+z,t)-2u(x,t)+u(x-z,t)\le\frac{|z|^2}{\theta t}.
@@ -778,9 +818,10 @@ Hopf--Lax expressions.
 
 \begin{definition}[Weak solution of the Hamilton--Jacobi initial-value problem]
 \label{def:weak-solution-hamilton-jacobi}
+\uses{def:semiconcave-function}
 \dcref{ch3:3.3.3-def-3}
 \group{Hamilton-Jacobi Equations}
-\uses{def:semiconcave-function}
+
 A Lipschitz $u:\R^n\times[0,\infty)\to\R$ is a weak solution if
 \begin{enumerate}
 \item[(a)] $u(x,0)=g(x)$;
@@ -791,9 +832,10 @@ A Lipschitz $u:\R^n\times[0,\infty)\to\R$ is a weak solution if
 
 \begin{theorem}[Uniqueness of weak solutions]
 \label{thm:uniqueness-weak-solutions-hj}
+\uses{def:weak-solution-hamilton-jacobi}
 \dcref{ch3:3.3-thm-7}
 \group{Hamilton-Jacobi Equations}
-\uses{def:weak-solution-hamilton-jacobi}
+
 If $H$ is $C^2$ and convex, superlinear, and $g$ is Lipschitz, there is at
 most one weak solution.
 \end{theorem}
@@ -810,9 +852,10 @@ forces $w=0$.
 
 \begin{theorem}[Hopf--Lax formula as weak solution]
 \label{thm:hopf-lax-formula-weak-solution}
+\uses{lem:hopf-lax-semiconcavity-from-data, lem:hopf-lax-semiconcavity-uniform-convexity, thm:uniqueness-weak-solutions-hj}
 \dcref{ch3:3.3-thm-8}
 \group{Hamilton-Jacobi Equations}
-\uses{lem:hopf-lax-semiconcavity-from-data,lem:hopf-lax-semiconcavity-uniform-convexity,thm:uniqueness-weak-solutions-hj}
+
 If $H$ is $C^2$, convex and superlinear, $g$ is Lipschitz, and either $g$ is
 semiconcave or $H$ uniformly convex, then the Hopf--Lax formula is the unique
 weak solution.
@@ -820,9 +863,10 @@ weak solution.
 
 \begin{example}[Explicit Hopf--Lax solution: $H(p) = \frac{1}{2}|p|^2$, $g = |x|$]
 \label{ex:hopf-lax-explicit-example-i}
+\uses{thm:hopf-lax-formula-weak-solution}
 \dcref{ch3:3.3.3-ex-2}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:hopf-lax-formula-weak-solution}
+
 For $H(p)=|p|^2/2$, $g(x)=|x|$,
 \[
 u(x,t)=\min_y\left\{\frac{|x-y|^2}{2t}+|y|\right\}
@@ -832,9 +876,10 @@ u(x,t)=\min_y\left\{\frac{|x-y|^2}{2t}+|y|\right\}
 
 \begin{example}[Explicit Hopf--Lax solution: $H(p) = \frac{1}{2}|p|^2$, $g = -|x|$]
 \label{ex:hopf-lax-explicit-example-ii}
+\uses{thm:hopf-lax-formula-weak-solution}
 \dcref{ch3:3.3.3-ex-3}
 \group{Hamilton-Jacobi Equations}
-\uses{thm:hopf-lax-formula-weak-solution}
+
 For $g(x)=-|x|$, the same Hamiltonian gives
 \[
 u(x,t)=\min_y\left\{\frac{|x-y|^2}{2t}-|y|\right\}=-|x|-\frac t2.
@@ -871,9 +916,10 @@ problem.
 
 \begin{proposition}[Rankine--Hugoniot condition]
 \label{prop:rankine-hugoniot-condition}
+\uses{def:integral-solution-conservation-law}
 \dcref{ch3:3.4.1-prop-1}
 \group{Conservation Laws}
-\uses{def:integral-solution-conservation-law}
+
 Suppose an integral solution is smooth on each side of a smooth discontinuity
 curve $x=s(t)$, and that $u$ and its first derivatives extend uniformly
 continuously to the curve from each side, with traces $u_l,u_r$. Then
@@ -894,9 +940,10 @@ $(1,-\dot s)$ this is the jump formula.
 
 \begin{example}[Shock waves for Burgers' equation]
 \label{ex:burgers-shock-formation}
+\uses{prop:rankine-hugoniot-condition}
 \dcref{ch3:3.4-ex-1}
 \group{Conservation Laws}
-\uses{prop:rankine-hugoniot-condition}
+
 For $F(u)=u^2/2$ and
 \[
 g(x)=\begin{cases}1,&x\le0,\\1-x,&0\le x\le1,\\0,&x\ge1,\end{cases}
@@ -918,9 +965,10 @@ which satisfies Rankine--Hugoniot with speed $1/2$.
 
 \begin{example}[Rarefaction waves and nonphysical shocks]
 \label{ex:rarefaction-nonphysical-shock}
+\uses{prop:rankine-hugoniot-condition, def:integral-solution-conservation-law}
 \dcref{ch3:3.4-ex-2}
 \group{Conservation Laws}
-\uses{prop:rankine-hugoniot-condition,def:integral-solution-conservation-law}
+
 For Burgers data $g=0$ on $x<0$ and $g=1$ on $x>0$, both the discontinuous
 profile with interface $x=t/2$ and the rarefaction
 \[
@@ -935,9 +983,10 @@ characteristics do not cross a discontinuity.
 
 \begin{definition}[Shock, entropy condition]
 \label{def:shock-entropy-condition}
+\uses{prop:rankine-hugoniot-condition}
 \dcref{ch3:3.4.1-def-2}
 \group{Conservation Laws}
-\uses{prop:rankine-hugoniot-condition}
+
 At a discontinuity curve, a shock satisfies Rankine--Hugoniot and
 \[
 F'(u_l)>\sigma>F'(u_r).
@@ -947,18 +996,20 @@ The inequalities are the entropy condition.
 
 \begin{remark}[Entropy condition under uniform convexity]
 \label{rem:entropy-condition-uniform-convexity}
+\uses{def:shock-entropy-condition}
 \dcref{ch3:3.4.1-rem-2}
 \group{Conservation Laws}
-\uses{def:shock-entropy-condition}
+
 If $F''\ge\theta>0$, then $F'$ is strictly increasing and the entropy
 inequalities are equivalent to $u_l>u_r$.
 \end{remark}
 
 \begin{example}[Shock and rarefaction combined for Burgers' equation]
 \label{ex:burgers-triangular-shock-wave}
+\uses{def:shock-entropy-condition, ex:burgers-shock-formation, ex:rarefaction-nonphysical-shock, prop:rankine-hugoniot-condition}
 \dcref{ch3:3.4-ex-3}
 \group{Conservation Laws}
-\uses{def:shock-entropy-condition,ex:burgers-shock-formation,ex:rarefaction-nonphysical-shock,prop:rankine-hugoniot-condition}
+
 For $g=0$ on $x<0$, $g=1$ on $0\le x\le1$, and $g=0$ on $x>1$, the
 solution for $0\le t\le2$ is
 \[
@@ -988,9 +1039,10 @@ Let $G=(F')^{-1}$.
 
 \begin{theorem}[Lax--Oleinik formula]
 \label{thm:lax-oleinik-formula}
+\uses{def:legendre-transform, thm:hopf-lax-formula-derivation}
 \dcref{ch3:3.4-thm-1}
 \group{Conservation Laws}
-\uses{def:legendre-transform,thm:hopf-lax-formula-derivation}
+
 For each $t>0$, except at most countably many $x$, the minimizer $y(x,t)$
 in the Hopf--Lax formula is unique; $x\mapsto y(x,t)$ is nondecreasing; and
 \[
@@ -1009,17 +1061,19 @@ $u=L'((x-y)/t)=G((x-y)/t)$.
 
 \begin{definition}[Lax--Oleinik formula]
 \label{def:lax-oleinik-formula}
+\uses{thm:lax-oleinik-formula}
 \dcref{ch3:3.4.2-def-1}
 \group{Conservation Laws}
-\uses{thm:lax-oleinik-formula}
+
 The preceding representation is the Lax--Oleinik formula.
 \end{definition}
 
 \begin{theorem}[Lax--Oleinik formula as integral solution]
 \label{thm:lax-oleinik-integral-solution}
+\uses{thm:lax-oleinik-formula, def:integral-solution-conservation-law}
 \dcref{ch3:3.4-thm-2}
 \group{Conservation Laws}
-\uses{thm:lax-oleinik-formula,def:integral-solution-conservation-law}
+
 The Lax--Oleinik function is an integral solution of the conservation-law
 initial-value problem.
 \end{theorem}
@@ -1036,9 +1090,10 @@ solution identity.
 
 \begin{lemma}[A one-sided jump estimate]
 \label{lem:lax-oleinik-entropy-estimate}
+\uses{thm:lax-oleinik-formula}
 \dcref{ch3:3.4-lem-1}
 \group{Conservation Laws}
-\uses{thm:lax-oleinik-formula}
+
 There is $C$ such that the Lax--Oleinik solution satisfies
 \[
 u(x+z,t)-u(x,t)\le\frac Ct z\qquad(z>0).
@@ -1056,17 +1111,19 @@ This is the claimed estimate.
 
 \begin{definition}[Entropy condition]
 \label{def:entropy-condition-inequality}
+\uses{lem:lax-oleinik-entropy-estimate}
 \dcref{ch3:3.4.3-def-1}
 \group{Conservation Laws}
-\uses{lem:lax-oleinik-entropy-estimate}
+
 The preceding one-sided estimate is called the entropy condition.
 \end{definition}
 
 \begin{remark}[Consequences of the entropy condition]
 \label{rem:entropy-condition-consequences}
+\uses{def:entropy-condition-inequality}
 \dcref{ch3:3.4.3-rem-1}
 \group{Conservation Laws}
-\uses{def:entropy-condition-inequality}
+
 For each $t>0$, $u(x,t)-Cx/t$ is nonincreasing. Thus left and right traces
 exist everywhere and at a discontinuity $u_l\ge u_r$, agreeing with the shock
 entropy inequality under uniform convexity.
@@ -1074,9 +1131,10 @@ entropy inequality under uniform convexity.
 
 \begin{definition}[Entropy solution]
 \label{def:entropy-solution-conservation-law}
+\uses{def:entropy-condition-inequality}
 \dcref{ch3:3.4.3-def-2}
 \group{Conservation Laws}
-\uses{def:entropy-condition-inequality}
+
 An $L^\infty$ function is an entropy solution if it satisfies the integral
 identity and, for some $C\ge0$,
 \[
@@ -1087,9 +1145,10 @@ for almost every $x,t$ and every $z>0$.
 
 \begin{theorem}[Uniqueness of entropy solutions]
 \label{thm:uniqueness-entropy-solutions}
+\uses{def:entropy-solution-conservation-law}
 \dcref{ch3:3.4-thm-3}
 \group{Conservation Laws}
-\uses{def:entropy-solution-conservation-law}
+
 If $F$ is smooth and convex, entropy solutions are unique up to a null set.
 \end{theorem}
 
@@ -1115,9 +1174,10 @@ assume $F$ is $C^2$ and uniformly convex and write $G=(F')^{-1}$.
 
 \begin{theorem}[Solution of Riemann's problem]
 \label{thm:riemann-problem-solution}
+\uses{def:shock-entropy-condition, thm:uniqueness-entropy-solutions, prop:rankine-hugoniot-condition}
 \dcref{ch3:3.4-thm-4}
 \group{Conservation Laws}
-\uses{def:shock-entropy-condition,thm:uniqueness-entropy-solutions,prop:rankine-hugoniot-condition}
+
 If $u_l>u_r$, the unique entropy solution is the shock
 \[
 u(x,t)=\begin{cases}u_l,&x/t<\sigma,\\u_r,&x/t>\sigma,\end{cases}
@@ -1143,9 +1203,10 @@ continuity and the one-sided estimate verify the entropy condition.
 
 \begin{remark}[Interpretation of the two cases]
 \label{rem:riemann-problem-shock-vs-rarefaction}
+\uses{thm:riemann-problem-solution}
 \dcref{ch3:3.4.4-rem-1}
 \group{Conservation Laws}
-\uses{thm:riemann-problem-solution}
+
 The first case is a constant-speed shock and the second a centered
 rarefaction. Both coincide with the Lax--Oleinik construction by uniqueness.
 \end{remark}
@@ -1158,9 +1219,10 @@ integrable.
 
 \begin{theorem}[Asymptotics in $L^\infty$-norm]
 \label{thm:asymptotics-sup-norm}
+\uses{thm:lax-oleinik-formula}
 \dcref{ch3:3.4-thm-5}
 \group{Conservation Laws}
-\uses{thm:lax-oleinik-formula}
+
 There is $C$ such that
 \[
 |u(x,t)|\le Ct^{-1/2}\qquad(x\in\R,t>0).
@@ -1201,9 +1263,10 @@ Then $p,q\ge0$ and $G'(\sigma)=1/d$.
 
 \begin{theorem}[Asymptotics in $L^1$-norm]
 \label{thm:asymptotics-l1-norm-n-wave}
+\uses{thm:asymptotics-sup-norm, def:n-wave}
 \dcref{ch3:3.4-thm-6}
 \group{Conservation Laws}
-\uses{thm:asymptotics-sup-norm,def:n-wave}
+
 If $p,q>0$, there is $C$ such that
 \[
 \int_\R|u(x,t)-N(x,t)|\,dx\le Ct^{-1/2}.
@@ -1224,9 +1287,10 @@ Together with the $L^\infty$ estimate this gives the stated $L^1$ rate.
 
 \begin{example}[Burgers' triangular shock wave as an $N$-wave]
 \label{ex:burgers-example-n-wave-specialization}
+\uses{def:n-wave, ex:burgers-triangular-shock-wave, thm:asymptotics-l1-norm-n-wave}
 \dcref{ch3:3.4.5-ex-1}
 \group{Conservation Laws}
-\uses{def:n-wave,ex:burgers-triangular-shock-wave,thm:asymptotics-l1-norm-n-wave}
+
 For the triangular Burgers data, $p=0$, $q=2$, $\sigma=0$, and $d=1$.
 Thus
 \[

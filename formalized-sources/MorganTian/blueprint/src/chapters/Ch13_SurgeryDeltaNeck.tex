@@ -80,6 +80,7 @@ e^{-2f(s)}\eta g_0,&2\leq s\leq A_{r_0},\\
 \begin{theorem}[Local surgery on a delta-neck: curvature control after surgery]
 \label{thm:local-surgery}
 \uses{claim:neck-to-cap-distance-decreasing}
+
 \label{LOCALSURGERY}
 There are $C_0,q,R_0<\infty$ and $\delta'_0>0$ such that if
 $R(x_0)\geq R_0$ and $0<\delta\leq\delta'_0$, the surgery result
@@ -134,6 +135,7 @@ The image of $B_{g_0}(p_0,A_0+4)$ in ${\mathcal S}$ is the
 \begin{lemma}[Surgery cap lies between two concentric metric balls]
 \label{lem:surgery-cap-ball-bounds}
 \uses{def:surgery-cap}
+
 \label{capball}
 For sufficiently small $\delta$ and $\epsilon<1/200$, the surgery cap lies in
 \[
@@ -223,6 +225,7 @@ formula gives the scalar-curvature identity.
 \begin{corollary}[Scalar curvature does not decrease under the surgery conformal factor]
 \label{cor:scalar-curvature-nondecreasing-conformal}
 \uses{cor:conformal-curvature-formula}
+
 \label{Rcompar}
 For fixed $C_0<\infty$ and
 $\delta<\min(\delta'_2,C_0^{-1})$, one has $\widehat R\geq R$.
@@ -261,6 +264,7 @@ bounds.
 \begin{corollary}[Curvature block-diagonalizes in the adapted orthonormal basis]
 \label{cor:curvature-diagonal-block-basis}
 \uses{lem:near-cylinder-curvature-eigenbasis}
+
 \label{2ndnewbasis}
 The basis in Lemma~\ref{newbasis} may be chosen so that
 \[
@@ -282,6 +286,7 @@ orthogonal complement is $O(\delta)$.
 \begin{lemma}[Curvature matrix of the conformally rescaled metric in the adapted basis]
 \label{lem:rhat-matrix-adapted-basis}
 \uses{cor:curvature-diagonal-block-basis}
+
 \label{Rhatmatrix}
 Let $\delta'_4=\min(\delta'_2,\delta'_3)$. If
 $\delta\leq\min(\delta'_4,C_0^{-1})$, then in the basis of
@@ -307,8 +312,9 @@ term.
 
 \begin{corollary}[Fully diagonalized curvature matrices for the neck metric and its rescaling]
 \label{cor:diagonalized-curvature-matrices}
+\uses{lem:near-cylinder-curvature-eigenbasis, lem:rhat-matrix-adapted-basis}
 \label{13.10}
-\uses{lem:near-cylinder-curvature-eigenbasis,lem:rhat-matrix-adapted-basis}
+
 If $\delta\leq\min(\delta'_4,C_0^{-1})$, there is an $h$-orthonormal basis in
 which
 \[
@@ -372,6 +378,7 @@ estimates. The choice $q\gg(4+A_0)^2$ and small $\delta$ yield the final two.
 \begin{corollary}[Smallest curvature eigenvalue increases under the surgery conformal change]
 \label{cor:smallest-eigenvalue-increases}
 \uses{cor:conformal-eigenvalue-estimates}
+
 \label{smeigen}
 For the chosen $q$, every fixed $C_0$, and sufficiently small $\delta$, the
 least eigenvalue of $\Rm_{\widehat h}$ is greater than that of $\Rm_h$ at the
@@ -394,6 +401,7 @@ $C_0=2Ke^q$.
 \begin{lemma}[Positivity of curvature eigenvalues on the surgery region]
 \label{lem:positive-eigenvalues-surgery-region}
 \uses{cor:conformal-eigenvalue-estimates}
+
 \label{nuprime>0}
 For the chosen $q,C_0$ and sufficiently small $\delta$, on
 $1\leq s\leq4+A_0$ one has

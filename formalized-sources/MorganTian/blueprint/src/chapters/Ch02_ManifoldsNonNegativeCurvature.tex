@@ -7,9 +7,13 @@
 \begin{definition}[Minimizing geodesic ray]
 \label{def:minimizing-geodesic-ray}
 \lean{MorganTianLib.IsGeodesicRay}
-\leanok
-\uses{def:geodesic}
 \source{morgan-tian}
+\uses{def:geodesic}
+\leanok
+
+
+
+
 A unit-speed geodesic ray $\lambda\colon[0,\infty)\to M$ is
 \emph{minimizing} if
 $$d(\lambda(s),\lambda(t))=|s-t|\qquad(s,t\ge0).$$
@@ -21,9 +25,13 @@ space.
 \begin{definition}[Minimizing geodesics on an interval]
 \label{def:minimizing-geodesic-window}
 \lean{MorganTianLib.IsMinGeodesicOn}
-\leanok
-\uses{def:minimizing-geodesic-ray}
 \source{morgan-tian}
+\uses{def:minimizing-geodesic-ray}
+\leanok
+
+
+
+
 For a metric space $(M,d)$ and $I\subset\Ar$, a map $\gamma\colon I\to M$
 is a \emph{unit-speed minimizing geodesic on $I$} if
 $$d(\gamma(s),\gamma(t))=|s-t|\qquad(s,t\in I).$$
@@ -35,8 +43,11 @@ property is preserved by restriction and translation of the parameter.
 \begin{definition}[Spaces with minimizing segments]
 \label{def:has-min-segments}
 \lean{MorganTianLib.HasMinSegments}
-\leanok
 \uses{def:minimizing-geodesic-window}
+\leanok
+
+
+
 A metric space $(M,d)$ \emph{has minimizing segments} if every $x,y\in M$
 are joined by a unit-speed minimizing map
 $\sigma\colon[0,d(x,y)]\to M$ with $\sigma(0)=x$ and
@@ -49,9 +60,13 @@ and~\ref{lem:ends-exist}.
 \begin{lemma}[Ultrafilter limits of minimizing geodesics]
 \label{lem:ultrafilter-limit-minimizing}
 \lean{MorganTianLib.exists_isMinGeodesicOn_hyperfilter_limit}
-\leanok
-\uses{def:minimizing-geodesic-window}
 \source{morgan-tian}
+\uses{def:minimizing-geodesic-window}
+\leanok
+
+
+
+
 Let $\cU$ be a non-principal ultrafilter on $\mathbb N$, let $M$ be a
 proper metric space, and let $0\in I\subset\Ar$. Suppose $\gamma_k$ is a
 unit-speed minimizing geodesic on $I_k\ni0$, every $t\in I$ belongs to
@@ -78,9 +93,13 @@ Closedness of $K$ gives $\gamma(0)\in K$.
 \begin{lemma}[Limits of minimizing geodesics: metric version]
 \label{lem:metric-limit-of-minimizing}
 \lean{MorganTianLib.exists_isMinGeodesicOn_tendstoLocallyUniformlyOn}
-\leanok
-\uses{def:minimizing-geodesic-window}
 \source{morgan-tian}
+\uses{def:minimizing-geodesic-window}
+\leanok
+
+
+
+
 Let $M$ be proper, let $I\subset\Ar$ be a closed interval containing
 $0$, and let $\gamma_k$ be unit-speed minimizing geodesics on intervals
 $I_k\ni0$. Assume every point of $I$ lies in all sufficiently late
@@ -104,9 +123,13 @@ local uniform convergence.
 \begin{lemma}[Rays from noncompact spaces: metric version]
 \label{lem:ray-exists-metric}
 \lean{MorganTianLib.exists_isGeodesicRay_of_noncompact}
-\leanok
-\uses{def:minimizing-geodesic-window,def:has-min-segments}
 \source{morgan-tian}
+\uses{def:minimizing-geodesic-window, def:has-min-segments}
+\leanok
+
+
+
+
 If $M$ is a noncompact proper metric space with minimizing segments,
 then every $p\in M$ is the initial point of a minimizing ray.
 \end{lemma}
@@ -123,8 +146,11 @@ on $[0,\infty)$ produces the required ray.
 \begin{lemma}[Distinct ends differ at some compact set]
 \label{lem:ends-differ-at-compact}
 \lean{MorganTianLib.SpaceOfEnds.exists_apply_ne}
-\leanok
 \uses{def:space-of-ends}
+\leanok
+
+
+
 If $\cE_1\ne\cE_2$ are ends of a topological space $X$, then some
 compact $K\subset X$ determines different components of $X\setminus K$
 for $\cE_1$ and $\cE_2$.
@@ -140,9 +166,13 @@ coordinate.
 \begin{lemma}[Ends reach infinity]
 \label{lem:end-component-unbounded}
 \lean{MorganTianLib.SpaceOfEnds.exists_mem_connectedComponentIn_forall_le_dist}
-\leanok
-\uses{def:space-of-ends,def:ends-transition}
 \source{morgan-tian}
+\uses{def:space-of-ends, def:ends-transition}
+\leanok
+
+
+
+
 Let $M$ be proper, let $\cE$ be an end, and let $U$ be the component of
 $M\setminus K$ selected by $\cE$ for a compact $K$. For every finite
 $R$ there is $z\in U$ such that $d(z,w)\ge R$ for every $w\in K$.
@@ -160,9 +190,13 @@ $U\subset K'$, a contradiction.
 \begin{lemma}[Lines from two ends: metric version]
 \label{lem:line-exists-metric}
 \lean{MorganTianLib.exists_isMinGeodesicOn_univ_of_ends_ne}
-\leanok
-\uses{def:minimizing-geodesic-window,def:has-min-segments,def:space-of-ends}
 \source{morgan-tian}
+\uses{def:minimizing-geodesic-window, def:has-min-segments, def:space-of-ends}
+\leanok
+
+
+
+
 A proper metric space with minimizing segments and at least two ends
 contains a minimizing line.
 \end{lemma}
@@ -180,14 +214,14 @@ $I=\Ar$ gives a minimizing line.
 
 \begin{lemma}[Geodesics depend continuously on their initial conditions]
 \label{lem:geodesic-continuous-dependence}
-\lean{MorganTianLib.exists_globalGeodesic_initial,
-  MorganTianLib.eqOn_of_initial_data,
-  MorganTianLib.convAt_of_convAt_zero,
-  MorganTianLib.tendsto_apply_of_convAt_zero,
-  MorganTianLib.tendstoUniformlyOn_of_convAt_zero}
-\leanok
-\uses{def:geodesic,thm:hopf-rinow}
+\lean{MorganTianLib.exists_globalGeodesic_initial, MorganTianLib.eqOn_of_initial_data, MorganTianLib.convAt_of_convAt_zero, MorganTianLib.tendsto_apply_of_convAt_zero, MorganTianLib.tendstoUniformlyOn_of_convAt_zero}
 \source{morgan-tian}
+\uses{def:geodesic, thm:hopf-rinow}
+\leanok
+
+
+
+
 Let $(M,g)$ be complete.
 \begin{enumerate}
 \item Every $(q,v)\in TM$ determines a unique global geodesic
@@ -217,9 +251,12 @@ time interval.
 \begin{lemma}[Limits of minimizing geodesics]
 \label{lem:limit-of-minimizing-geodesics}
 \lean{MorganTianLib.exists_isMinGeodesicOn_convAt_of_tendsto}
-\leanok
-\uses{def:geodesic}
 \source{morgan-tian}
+\uses{def:geodesic}
+
+
+
+
 Let $M$ be complete, let $I\subset\Ar$ be a nondegenerate interval
 containing $0$, and let closed intervals $I_k\ni0$ eventually contain
 every compact subset of $I$. If unit-speed minimizing geodesics
@@ -230,7 +267,6 @@ position-velocity pairs converge in $TM$.
 \end{lemma}
 \begin{proof}
 \sketch
-\leanok
 \uses{lem:geodesic-continuous-dependence,thm:hopf-rinow,thm:levi-civita-connection,def:geodesic}
 Extend each $\gamma_k$ globally. In a fixed chart near $p$, unit speed
 uniformly bounds the coordinate components of $\gamma_k'(0)$; extract a
@@ -243,8 +279,11 @@ $d(\gamma_k(s),\gamma_k(t))=|s-t|$ proves that the limit is minimizing.
 \begin{lemma}[Minimizing segments exist in complete manifolds]
 \label{lem:minimizing-segment-exists}
 \lean{MorganTianLib.hasMinSegments_of_complete}
-\leanok
 \uses{def:geodesic}
+\leanok
+
+
+
 If $M$ is connected and complete, any distinct $x,q\in M$ are joined by
 a unit-speed minimizing geodesic on $[0,d(x,q)]$.
 \end{lemma}
@@ -262,17 +301,22 @@ $d(\sigma(s),q)\le d(x,q)-s$ forces $\sigma(d(x,q))=q$.
 
 \begin{lemma}[Non-compact manifolds have ends]
 \label{lem:ends-exist}
-\label{ends}
 \lean{MorganTianLib.exists_isGeodesicRay_of_complete_noncompact', MorganTianLib.exists_isMinGeodesicOn_univ_of_complete_ends_ne', MorganTianLib.properSpace_of_complete', MorganTianLib.geodesicEndpointContinuity, MorganTianLib.convStepProperty}
-\leanok
-\uses{def:geodesic,def:space-of-ends}
 \source{morgan-tian}
+\uses{def:geodesic, def:space-of-ends}
+\leanok
+\label{ends}
+
+
+
+
 If $M$ is complete, connected, and noncompact, then every $p\in M$ is
 the initial point of a minimizing ray. If $M$ has more than one end, it
 also contains a minimizing line.
 \end{lemma}
 \begin{proof}
 \sketch
+\leanok
 \uses{def:geodesic,thm:hopf-rinow,def:exponential-map,lem:minimizing-segment-exists,def:has-min-segments,lem:ray-exists-metric,lem:line-exists-metric,def:space-of-ends}
 Lemma~\ref{lem:minimizing-segment-exists} gives minimizing segments.
 Hopf--Rinow and the exponential map identify each closed ball with the
@@ -284,9 +328,13 @@ Lemma~\ref{lem:line-exists-metric}.
 \begin{definition}[Busemann approximants]
 \label{def:busemann-approx}
 \lean{MorganTianLib.busemannAux}
-\leanok
-\uses{def:minimizing-geodesic-ray}
 \source{morgan-tian}
+\uses{def:minimizing-geodesic-ray}
+\leanok
+
+
+
+
 For a minimizing ray $\lambda$ and $t\ge0$, define
 $$B_{\lambda,t}(x)=d(\lambda(t),x)-t.$$
 \end{definition}
@@ -294,8 +342,11 @@ $$B_{\lambda,t}(x)=d(\lambda(t),x)-t.$$
 \begin{lemma}[Busemann approximants are $1$-Lipschitz]
 \label{lem:busemann-approx-lipschitz}
 \lean{MorganTianLib.lipschitzWith_busemannAux}
-\leanok
 \uses{def:busemann-approx}
+\leanok
+
+
+
 For all $x,y\in M$ and $t\ge0$,
 $|B_{\lambda,t}(x)-B_{\lambda,t}(y)|\le d(x,y)$.
 \label{eqnBlip}
@@ -309,8 +360,11 @@ This is the reverse triangle inequality for distance from $\lambda(t)$.
 \begin{lemma}[Busemann approximants are non-increasing in $t$]
 \label{lem:busemann-approx-antitone}
 \lean{MorganTianLib.busemannAux_antitoneOn}
-\leanok
 \uses{def:busemann-approx}
+\leanok
+
+
+
 For each $x$, the function $t\mapsto B_{\lambda,t}(x)$ is non-increasing
 on $[0,\infty)$.
 \label{eqnBmono}
@@ -325,8 +379,10 @@ $d(\lambda(t),x)\le(t-s)+d(\lambda(s),x)$.
 \begin{lemma}[Busemann approximants are bounded below]
 \label{lem:busemann-approx-lower-bound}
 \lean{MorganTianLib.neg_dist_le_busemannAux}
-\leanok
 \uses{def:busemann-approx}
+
+
+
 For $x\in M$ and $t\ge0$,
 $$B_{\lambda,t}(x)\ge-d(x,\lambda(0));$$
 in particular $B_{\lambda,t}(\lambda(0))=0$.
@@ -340,9 +396,12 @@ Use $t=d(\lambda(0),\lambda(t))\le d(\lambda(0),x)+d(x,\lambda(t))$.
 \begin{definition}[Busemann function]
 \label{def:busemann-function}
 \lean{MorganTianLib.busemann}
-\leanok
-\uses{def:busemann-approx,lem:busemann-approx-antitone,lem:busemann-approx-lower-bound,lem:ends-exist}
 \source{morgan-tian}
+\uses{def:busemann-approx, lem:busemann-approx-antitone, lem:busemann-approx-lower-bound, lem:ends-exist}
+
+
+
+
 The \emph{Busemann function} of a minimizing ray $\lambda$ is
 $$B_\lambda(x)=\lim_{t\to\infty}B_{\lambda,t}(x)
 =\inf_{t\ge0}B_{\lambda,t}(x),$$
@@ -352,8 +411,11 @@ whose existence follows from monotonicity and the preceding lower bound.
 \begin{lemma}[Busemann approximants converge to the Busemann function]
 \label{lem:busemann-limit}
 \lean{MorganTianLib.tendsto_busemannAux_atTop}
-\leanok
 \uses{def:busemann-function}
+\leanok
+
+
+
 For each $x\in M$, $B_{\lambda,t}(x)\to B_\lambda(x)$ as
 $t\to\infty$.
 \end{lemma}
@@ -367,8 +429,11 @@ A decreasing real function bounded below converges to its infimum.
 \begin{lemma}[The Busemann function bounds its approximants from below]
 \label{lem:busemann-le-approx}
 \lean{MorganTianLib.busemann_le_busemannAux}
-\leanok
 \uses{def:busemann-function}
+\leanok
+
+
+
 $B_\lambda(y)\le B_{\lambda,t}(y)$ for every $y\in M$ and $t\ge0$.
 \end{lemma}
 \begin{proof}
@@ -380,8 +445,11 @@ The left side is the infimum over all $t\ge0$.
 \begin{lemma}[The Busemann function is $1$-Lipschitz]
 \label{lem:busemann-lipschitz}
 \lean{MorganTianLib.lipschitzWith_busemann}
-\leanok
 \uses{def:busemann-function}
+\leanok
+
+
+
 For all $x,y\in M$,
 $$|B_\lambda(x)-B_\lambda(y)|\le d(x,y).$$
 Thus $B_\lambda$ is continuous.
@@ -397,8 +465,11 @@ pointwise limit.
 \begin{lemma}[Lower bound for the Busemann function]
 \label{lem:busemann-lower-bound}
 \lean{MorganTianLib.neg_dist_le_busemann}
-\leanok
 \uses{def:busemann-function}
+\leanok
+
+
+
 $B_\lambda(x)\ge-d(x,\lambda(0))$ for all $x\in M$.
 \end{lemma}
 \begin{proof}
@@ -411,8 +482,11 @@ Take the infimum in Lemma~\ref{lem:busemann-approx-lower-bound}.
 \begin{lemma}[The Busemann function along its ray]
 \label{lem:busemann-along-ray}
 \lean{MorganTianLib.busemann_apply_ray}
-\leanok
 \uses{def:busemann-function}
+\leanok
+
+
+
 $B_\lambda(\lambda(s))=-s$ for all $s\ge0$.
 \end{lemma}
 \begin{proof}
@@ -425,9 +499,13 @@ $-s$.
 \begin{definition}[Asymptotic rays]
 \label{def:asymptotic-ray}
 \lean{MorganTianLib.IsAsymptoticRay}
-\leanok
-\uses{def:minimizing-geodesic-ray,def:minimizing-geodesic-window}
 \source{morgan-tian}
+\uses{def:minimizing-geodesic-ray, def:minimizing-geodesic-window}
+\leanok
+
+
+
+
 Let $\lambda$ and $\mu$ be minimizing rays in a metric space. The ray
 $\mu$ is \emph{asymptotic to $\lambda$} if there are $t_n\to\infty$
 and minimizing segments from $\mu(0)$ to $\lambda(t_n)$ which converge
@@ -439,9 +517,13 @@ $d(\mu(0),\lambda(t_n))\ge t_n-d(\mu(0),\lambda(0))$.
 \begin{lemma}[Existence of asymptotic rays]
 \label{lem:asymptotic-ray-exists}
 \lean{MorganTianLib.exists_isAsymptoticRay}
-\leanok
-\uses{def:asymptotic-ray,def:has-min-segments}
 \source{morgan-tian}
+\uses{def:asymptotic-ray, def:has-min-segments}
+\leanok
+
+
+
+
 In a proper metric space with minimizing segments, every $x$ is the
 initial point of a ray asymptotic to any prescribed minimizing ray
 $\lambda$.
@@ -458,8 +540,11 @@ locally uniform subsequential limit.
 \begin{lemma}[Busemann values along asymptotic rays]
 \label{lem:asymptotic-ray}
 \lean{MorganTianLib.IsAsymptoticRay.busemann_apply}
+\uses{def:busemann-function, def:asymptotic-ray}
 \leanok
-\uses{def:busemann-function,def:asymptotic-ray}
+
+
+
 If $\mu$ is asymptotic to $\lambda$ and $x=\mu(0)$, then
 $$B_\lambda(\mu(s))=B_\lambda(x)-s\qquad(s\ge0).$$
 \end{lemma}
@@ -479,8 +564,11 @@ from the $1$-Lipschitz property and $d(x,\mu(s))=s$.
 \begin{corollary}[Busemann upper bound from an asymptotic ray]
 \label{cor:asymptotic-ray-busemann-bound}
 \lean{MorganTianLib.IsAsymptoticRay.busemann_le}
+\uses{def:busemann-function, def:asymptotic-ray, lem:asymptotic-ray}
 \leanok
-\uses{def:busemann-function,def:asymptotic-ray,lem:asymptotic-ray}
+
+
+
 If $x=\mu(0)$ and $\mu$ is asymptotic to $\lambda$, then
 $$B_\lambda(y)\le B_\lambda(x)-t+d(y,\mu(t))$$
 for every $y\in M$ and $t\ge0$.
@@ -495,7 +583,8 @@ Lemma~\ref{lem:asymptotic-ray}.
 
 \begin{lemma}[Busemann gradient along an asymptotic ray]
 \label{lem:busemann-gradient-norm-one}
-\uses{def:busemann-function,def:asymptotic-ray,lem:asymptotic-ray-exists,lem:asymptotic-ray}
+\uses{def:busemann-function, def:asymptotic-ray, lem:asymptotic-ray-exists, lem:asymptotic-ray}
+
 Let $M$ be connected and complete, let $\mu$ be asymptotic to $\lambda$
 with $\mu(0)=x$, and suppose $B_\lambda$ is differentiable at $x$. Then
 $$\nabla B_\lambda(x)=-\mu'(0),\qquad |\nabla B_\lambda(x)|=1.$$
@@ -514,9 +603,11 @@ forces $\nabla B_\lambda(x)=-\mu'(0)$.
 
 \begin{proposition}[Busemann function has non-positive Laplacian]
 \label{prop:busemann-laplacian}
-\label{Blambda}
-\uses{def:busemann-function,def:ricci-curvature}
 \source{morgan-tian}
+\uses{def:busemann-function, def:ricci-curvature}
+\label{Blambda}
+
+
 If $M$ is complete with non-negative Ricci curvature, then every
 Busemann function satisfies $\Delta B_\lambda\le0$ in the weak sense.
 \end{proposition}
@@ -560,8 +651,9 @@ $s_{ac}$ at $a$.
 
 \begin{theorem}[Length comparison theorem]
 \label{thm:length-comparison}
-\label{lengthcompar}
 \uses{def:sectional-curvature}
+\label{lengthcompar}
+
 Let $M$ have non-negative sectional curvature, let
 $\triangle(a,b,c)$ be a geodesic triangle in $M$, and let
 $\triangle(a',b',c')$ be Euclidean.
@@ -582,16 +674,18 @@ distances $u,v$ from $a$.
 
 \begin{corollary}[Angle monotonicity in non-negative curvature]
 \label{cor:angle-monotonicity}
-\label{anglemono}
 \uses{thm:length-comparison}
+\label{anglemono}
+
 The function $EA(u,v)$ is non-increasing in either variable when the
 other is fixed.
 \end{corollary}
 
 \begin{corollary}[Angle comparison in non-negative curvature]
 \label{cor:angle-comparison}
-\label{anglecompar}
 \uses{thm:length-comparison}
+\label{anglecompar}
+
 Let $M$ be complete with non-negative curvature. For minimizing arcs
 from $p$ to $a,b,c$, complete the three geodesic triangles
 $T(a,p,b)$, $T(b,p,c)$, and $T(c,p,a)$, and let the corresponding
@@ -615,8 +709,9 @@ with endpoints in it remains in it.
 
 \begin{theorem}[Soul Theorem (Cheeger-Gromoll)]
 \label{thm:soul-theorem}
-\label{soul}
 \uses{def:sectional-curvature}
+\label{soul}
+
 Let $(M,g)$ be connected, complete, noncompact, and of non-negative
 sectional curvature. Then $M$ contains a compact, totally geodesic,
 totally convex submanifold $S$ of positive codimension and is
@@ -629,6 +724,7 @@ This is the Cheeger--Gromoll soul theorem
 \begin{remark}[Soul theorem for positive curvature]
 \label{rem:soul-theorem-positive-curvature}
 \uses{thm:soul-theorem}
+
 The positive-curvature case used below has a point soul; this case first
 appeared in \cite{GromollMeyer}.
 \end{remark}
@@ -639,6 +735,7 @@ construction in \cite{Petersen}.
 \begin{lemma}[Angles of geodesics converge at infinity]
 \label{lem:angle-convergence-infinity}
 \uses{def:sectional-curvature}
+
 Let $M$ be complete, noncompact, and of non-negative sectional
 curvature. For $p\in M$ and $\epsilon>0$, some compact $K$ has the
 property that any two minimizing geodesics from $p$ to a common
@@ -659,8 +756,9 @@ $\epsilon$, a contradiction.
 
 \begin{corollary}[Distance level sets are homeomorphic]
 \label{cor:distance-level-sets-homeomorphic}
-\label{homeo}
 \uses{lem:angle-convergence-infinity}
+\label{homeo}
+
 Let $M$ be complete, noncompact, and of non-negative sectional
 curvature, fix $p\in M$, and put $f=d(p,\cdot)$. For some $R<\infty$
 and all $R\le s<s'$,
@@ -686,8 +784,9 @@ annulus between such levels with a product \cite{Petersen}.
 
 \begin{corollary}[Distance annuli are homotopy spheres]
 \label{cor:distance-annuli-homotopy-sphere}
+\uses{cor:distance-level-sets-homeomorphic, thm:soul-theorem}
 \label{htpytype}
-\uses{cor:distance-level-sets-homeomorphic,thm:soul-theorem}
+
 If $M$ is a complete noncompact positively curved $n$-manifold and
 $f=d(p,\cdot)$, then for some $R=R(p)$ and every $R\le s<s'$, both
 $f^{-1}((s,s'))$ and $f^{-1}((s,\infty))$ are homotopy equivalent to
@@ -711,8 +810,11 @@ product description.
 \begin{definition}[Transition maps between complementary components]
 \label{def:ends-transition}
 \lean{MorganTianLib.endsTransition}
-\leanok
 \source{morgan-tian}
+\leanok
+
+
+
 For compact $K\subset K'\subset X$, inclusion of complements induces
 $$\pi_0(X\setminus K')\longrightarrow\pi_0(X\setminus K),$$
 sending each component to the unique component containing it. Each
@@ -722,8 +824,11 @@ $\pi_0$ carries the quotient topology.
 \begin{lemma}[The transition maps are continuous]
 \label{lem:ends-transition-continuous}
 \lean{MorganTianLib.continuous_endsTransition}
-\leanok
 \uses{def:ends-transition}
+\leanok
+
+
+
 Every transition map of Definition~\ref{def:ends-transition} is
 continuous.
 \end{lemma}
@@ -737,8 +842,11 @@ on components and therefore descends through the quotient.
 \begin{lemma}[Transition maps: identity]
 \label{lem:ends-transition-id}
 \lean{MorganTianLib.endsTransition_refl}
-\leanok
 \uses{def:ends-transition}
+\leanok
+
+
+
 The transition map associated with $K\subset K$ is the identity.
 \end{lemma}
 \begin{proof}
@@ -750,8 +858,11 @@ Each component is the unique component containing itself.
 \begin{lemma}[Transition maps: composition]
 \label{lem:ends-transition-comp}
 \lean{MorganTianLib.endsTransition_trans}
-\leanok
 \uses{def:ends-transition}
+\leanok
+
+
+
 For compact $K\subset K'\subset K''$, the transition from $K''$ to
 $K$ is the composite through $K'$. Thus $K\mapsto\pi_0(X\setminus K)$
 is an inverse system.
@@ -765,12 +876,14 @@ component.
 
 \begin{definition}[Space of ends]
 \label{def:space-of-ends}
-\label{rem:ends-compactification}
 \lean{MorganTianLib.SpaceOfEnds}
-\leanok
-\uses{def:space-of-ends}
-\uses{def:ends-transition,lem:ends-transition-comp,lem:compact-set-in-codim-zero-submanifold}
 \source{morgan-tian}
+\uses{def:space-of-ends, def:ends-transition, lem:ends-transition-comp, lem:compact-set-in-codim-zero-submanifold}
+
+
+
+
+
 For a connected manifold $M$, its \emph{space of ends} is
 $$\varprojlim_{K\subset M\text{ compact}}\pi_0(M\setminus K),$$
 with the subspace topology from the product. An end is therefore a
@@ -814,7 +927,10 @@ The splitting theorem is due to Cheeger--Gromoll
 
 \begin{lemma}[Green identity for compactly supported test functions]
 \label{lem:green-identity-compact-support}
+\lean{MorganTianLib.green_identity_compact_support}
 \uses{lem:laplacian-local-formula}
+\leanok
+
 If $u$ is smooth on an open $\Omega\subset M$ and
 $\psi\in C_c^\infty(\Omega)$, then
 $$\int_\Omega(u\Delta\psi-\psi\Delta u)\,d\vol=0.$$
@@ -831,7 +947,8 @@ the general case to this calculation.
 
 \begin{claim}[Dirichlet problem on small geodesic balls]
 \label{claim:dirichlet-problem-small-balls}
-\uses{def:exponential-map,cor:exponential-local-diffeomorphism,lem:laplacian-local-formula}
+\uses{def:exponential-map, cor:exponential-local-diffeomorphism, lem:laplacian-local-formula}
+
 For every $p$ in an $n$-dimensional Riemannian manifold there is
 $r_D(p)>0$ such that, for $0<s\le r_D(p)$:
 \begin{enumerate}
@@ -849,7 +966,8 @@ result used in \cite{Petersen}.
 
 \begin{claim}[Comparison principle for continuous weak subsolutions]
 \label{claim:weak-subsolution-comparison}
-\uses{rem:laplacian-weak-sense,lem:laplacian-local-formula,lem:green-identity-compact-support}
+\uses{rem:laplacian-weak-sense, lem:laplacian-local-formula, lem:green-identity-compact-support}
+
 Let $\Omega$ be a nonempty connected open subset of a Riemannian
 manifold, with compact closure and nonempty boundary. If
 $w\in C(\overline\Omega)$ satisfies
@@ -862,6 +980,7 @@ the barrier formulation used in \cite{Petersen}.
 
 \begin{lemma}[Second-derivative test, minimum version]
 \label{lem:second-derivative-test-min}
+\mathlibok
 Let $\phi$ be continuous at $t_0$, differentiable near $t_0$, with
 $\phi'(t_0)=0$ and with $\phi'$ differentiable at $t_0$. If
 $\phi''(t_0)>0$, then $t_0$ is a local minimum.
@@ -871,6 +990,8 @@ $\phi''(t_0)>0$, then $t_0$ is a local minimum.
 \label{lem:second-derivative-test-max}
 \lean{MorganTianLib.deriv_deriv_nonpos_of_isLocalMax}
 \leanok
+
+
 If $\phi$ is continuous and locally maximal at $t_0$, differentiable
 near $t_0$, and $\phi'$ is differentiable at $t_0$, then
 $\phi''(t_0)\le0$.
@@ -886,6 +1007,7 @@ $\phi''(t_0)=0$.
 
 \begin{lemma}[Existence of integral curves]
 \label{lem:integral-curve-exists}
+\mathlibok
 For a smooth vector field $X$ on a boundaryless smooth manifold and
 $q\in M$, there is a curve $\gamma\colon\Ar\to M$ with $\gamma(0)=q$
 which satisfies $\gamma'=X\circ\gamma$ near $0$.
@@ -894,7 +1016,8 @@ which satisfies $\gamma'=X\circ\gamma$ near $0$.
 \begin{lemma}[Vanishing differential at a local maximum]
 \label{lem:differential-vanishes-at-max}
 \lean{MorganTianLib.mfderiv_eq_zero_of_isLocalMax}
-\leanok
+
+
 If a smooth $f\colon M\to\Ar$ has a local maximum at $q$, then
 $df_q=0$.
 \end{lemma}
@@ -909,8 +1032,10 @@ integral curve through $q$. Fermat's lemma gives $df_q(v)=0$.
 \begin{lemma}[Hessian is negative semi-definite at a local maximum]
 \label{lem:hessian-nonpositive-at-max}
 \lean{MorganTianLib.hessianAt_nonpos_of_isLocalMax}
-\leanok
 \uses{lem:hessian-symmetric}
+
+
+
 For a smooth function with a local maximum at $q$ and any affine
 connection,
 $$\Hess(f)_q(v,v)\le0\qquad(v\in T_qM).$$
@@ -928,7 +1053,8 @@ by the one-variable second-derivative test.
 \begin{lemma}[Local smooth extension]
 \label{lem:smooth-local-extension}
 \lean{MorganTianLib.exists_contMDiff_eventuallyEq_of_contMDiffOn}
-\leanok
+
+
 If $f$ is smooth on an open $U\subset M$ and $q\in U$, then some smooth
 $f'\colon M\to\Ar$ agrees with $f$ near $q$.
 \end{lemma}
@@ -942,8 +1068,11 @@ $q$, then extend by zero.
 \begin{lemma}[Laplacian is non-positive at an interior maximum]
 \label{lem:laplacian-nonpositive-at-max}
 \lean{MorganTianLib.laplacianAt_nonpos_of_isLocalMaxOn}
-\leanok
 \uses{lem:laplacian-local-formula}
+\leanok
+
+
+
 If a smooth $v$ on an open $U\subset M$ has a local maximum at $q$, then
 $dv(q)=0$ and $\Delta v(q)\le0$.
 \end{lemma}
@@ -958,9 +1087,11 @@ $\Delta v(q)\le0$.
 
 \begin{lemma}[Strong maximum principle for smooth subharmonic functions]
 \label{lem:hopf-strong-maximum}
-\uses{lem:laplacian-christoffel-formula}
 \lean{MorganTianLib.hopf_strong_maximum}
-\leanok
+\uses{lem:laplacian-christoffel-formula}
+
+
+
 Let $U$ be connected and open and let $h\in C^\infty(U)$ satisfy
 $\Delta h\ge0$. If $h$ attains $\sup_Uh$, then $h$ is constant.
 \end{lemma}
@@ -983,8 +1114,10 @@ finishes the proof.
 
 \begin{theorem}[Maximum principle]
 \label{thm:maximum-principle}
-\uses{rem:laplacian-weak-sense}
 \source{morgan-tian}
+\uses{rem:laplacian-weak-sense}
+
+
 Let $f$ be continuous on a connected Riemannian manifold and satisfy
 $\Delta f\ge0$ weakly, meaning
 $\int f\Delta\varphi\,d\vol\ge0$ for every non-negative compactly
@@ -993,6 +1126,7 @@ local maximum. If it attains a global maximum, it is constant.
 \end{theorem}
 \begin{proof}
 \sketch
+
 \uses{thm:weak-harmonic-regularity,claim:dirichlet-problem-small-balls,claim:weak-subsolution-comparison,rem:laplacian-weak-sense,lem:laplacian-local-formula}
 \uses{claim:dirichlet-problem-small-balls,claim:weak-subsolution-comparison,lem:green-identity-compact-support,lem:hopf-strong-maximum,def:exponential-map}
 Around a local maximum $p$, choose a small normal ball contained in the
@@ -1007,9 +1141,9 @@ maximizers is nonempty, open, and closed.
 
 \begin{theorem}[Regularity of weakly harmonic functions]
 \label{thm:weak-harmonic-regularity}
-\label{eqnlocmax}
-\label{rem:weak-harmonic-regularity-citation}
 \uses{rem:laplacian-weak-sense}
+\label{eqnlocmax}
+
 If a continuous $f\colon M\to\Ar$ satisfies
 $$\int_M f\Delta\varphi\,d\vol=0$$
 for every compactly supported smooth $\varphi$, then $f$ is smooth and
@@ -1026,9 +1160,12 @@ $f=u$ on the ball, proving local smoothness and harmonicity.
 
 \begin{lemma}[First derivatives of the square norm of a gradient]
 \label{lem:gradient-norm-sq-gradient}
-\uses{thm:levi-civita-connection,lem:hessian-symmetric}
 \lean{MorganTianLib.metricNormSq,MorganTianLib.contMDiff_metricNormSq,MorganTianLib.dir_metricNormSq,MorganTianLib.dir_metricNormSq_gradientField,MorganTianLib.gradientField_metricNormSq_gradientField,MorganTianLib.hessian_metricNormSq_gradientField}
+\uses{thm:levi-civita-connection, lem:hessian-symmetric}
 \leanok
+
+
+
 Let $G=(\nabla f)^*$ for smooth $f$. Then $|\nabla f|^2$ is smooth and
 for vector fields $X,Y$,
 \begin{enumerate}
@@ -1049,9 +1186,12 @@ gradient formula for the Hessian once more for the third.
 
 \begin{definition}[Square norm of the Hessian]
 \label{def:hessian-norm-sq}
-\uses{lem:hessian-symmetric}
 \lean{MorganTianLib.hessianNormSqAt}
+\uses{lem:hessian-symmetric}
 \leanok
+
+
+
 For smooth $f$ and an orthonormal basis $(e_i)$ of $T_pM$, define
 $$|\Hess(f)|^2(p)=\sum_{i,j}\Hess(f)_p(e_i,e_j)^2
 =g^{ik}g^{jl}\Hess(f)_{ij}\Hess(f)_{kl}.$$
@@ -1060,9 +1200,12 @@ The next lemma shows independence of the basis.
 
 \begin{lemma}[Basic properties of the Hessian square norm]
 \label{lem:hessian-norm-sq-basic}
-\uses{def:hessian-norm-sq,lem:hessian-symmetric}
 \lean{MorganTianLib.hessianNormSqAt_eq_sum,MorganTianLib.hessianNormSqAt_nonneg,MorganTianLib.hessianNormSqAt_eq_zero_iff,MorganTianLib.sq_laplacianAt_le_finrank_mul_hessianNormSqAt}
+\uses{def:hessian-norm-sq, lem:hessian-symmetric}
 \leanok
+
+
+
 For $n=\dim M$:
 \begin{enumerate}
 \item $|\Hess(f)|^2(p)$ is independent of the orthonormal basis;
@@ -1082,9 +1225,11 @@ $\Delta f=\sum_i\Hess(f)(e_i,e_i)$.
 
 \begin{lemma}[Hessian square norm as a trace along the gradient]
 \label{lem:hessian-riesz-trace}
-\uses{def:hessian-norm-sq,lem:hessian-symmetric}
 \lean{MorganTianLib.metricInner_cov_gradientField_eq_hessianAt,MorganTianLib.sum_metricInner_cov_cov_gradientField_eq_hessianNormSqAt}
-\leanok
+\uses{def:hessian-norm-sq, lem:hessian-symmetric}
+
+
+
 Let $G=(\nabla f)^*$, let $(e_i)$ be an orthonormal basis at $p$, and
 extend it to fields $E_i$. For every field $X$ and $w\in T_pM$,
 $$\langle(\nabla_XG)(p),w\rangle=\Hess(f)_p(X(p),w),$$
@@ -1103,9 +1248,12 @@ Hessian symmetry turns the trace into the defining sum of squares.
 
 \begin{lemma}[Smooth local orthonormal frames]
 \label{lem:local-orthonormal-frame}
-\uses{def:riemannian-metric}
 \lean{MorganTianLib.chartFrameNorm_section_contMDiffOn,MorganTianLib.exists_orthonormalFrame,MorganTianLib.orthonormalBasisOfMetricInner}
+\uses{def:riemannian-metric}
 \leanok
+
+
+
 Every $p$ has a neighborhood carrying a smooth orthonormal frame,
 whose members may be extended to smooth vector fields on $M$.
 \end{lemma}
@@ -1120,9 +1268,12 @@ bump function equal to $1$ near $p$ to extend the fields globally.
 
 \begin{lemma}[Derivative of the Laplacian as a trace of the second covariant derivative]
 \label{lem:laplacian-trace-commutation}
-\uses{def:second-covariant-derivative-vector-field,lem:hessian-symmetric}
 \lean{MorganTianLib.laplacianAt_eventuallyEq_sum_frame,MorganTianLib.contMDiff_laplacianAt,MorganTianLib.metricInner_secondCov_middle_congr,MorganTianLib.sum_metricInner_secondCov_frame_eq_dir_laplacianAt,MorganTianLib.sum_metricInner_secondCov_gradientField_eq_dir_laplacianAt}
+\uses{def:second-covariant-derivative-vector-field, lem:hessian-symmetric}
 \leanok
+
+
+
 For smooth $f$, $G=(\nabla f)^*$, an orthonormal basis $(e_i)$ at $p$,
 and smooth extensions $E_i$, the function $\Delta f$ is smooth and
 $$\sum_i\langle\nabla^2G(G,E_i),E_i\rangle(p)=G(\Delta f)(p).$$
@@ -1142,6 +1293,7 @@ they vanish.
 \begin{lemma}[Laplacian of the square norm of a one-form]
 \label{lem:laplacian-square-norm-one-form}
 \uses{thm:levi-civita-connection}
+
 For a smooth one-form $\omega$ and its connection Laplacian,
 $$\frac12\Delta|\omega|^2
 =\langle\Delta\omega,\omega\rangle+|\nabla\omega|^2.$$
@@ -1160,9 +1312,12 @@ Trace at $p$ to obtain the identity; tensoriality makes it global.
 
 \begin{lemma}[Bochner formula for functions]
 \label{lem:function-bochner-formula}
-\uses{def:ricci-curvature}
 \lean{MorganTianLib.laplacianAt_metricNormSq_gradientField,MorganTianLib.function_bochner_formula}
+\uses{def:ricci-curvature}
 \leanok
+
+
+
 For smooth $f$,
 $$\frac12\Delta|\nabla f|^2
 =|\Hess(f)|^2
@@ -1186,9 +1341,12 @@ lemmas.
 
 \begin{corollary}[Bochner vanishing]
 \label{cor:bochner-vanishing}
-\uses{lem:function-bochner-formula,def:hessian-norm-sq,def:ricci-curvature}
 \lean{MorganTianLib.hessianNormSqAt_eq_zero_of_bochner,MorganTianLib.hessianAt_eq_zero_of_bochner,MorganTianLib.cov_gradientField_apply_eq_zero_of_bochner}
+\uses{lem:function-bochner-formula, def:hessian-norm-sq, def:ricci-curvature}
 \leanok
+
+
+
 Suppose $\Delta f$ and $|\nabla f|^2$ are constant and
 $\Ric((\nabla f)^*,(\nabla f)^*)(p)\ge0$. Then
 $\Hess(f)_p=0$. Hence a harmonic function of constant gradient norm on
@@ -1207,27 +1365,12 @@ parallel.
 
 \begin{lemma}[Covariant differentiation along smooth maps]
 \label{lem:covariant-derivative-along-maps}
-\lean{MorganTianLib.chartLocalMap,
-  MorganTianLib.chartFieldCoord_curveVelocity_snd_eventually,
-  MorganTianLib.chartFieldCoord_curveVelocity_fst_eventually,
-  MorganTianLib.curveVelocity_comp_fst_eq,
-  MorganTianLib.curveVelocity_comp_snd_eq,
-  MorganTianLib.hasCovDerivAlongAt_fst_curveVelocity_snd,
-  MorganTianLib.hasCovDerivAlongAt_snd_curveVelocity_fst,
-  MorganTianLib.hasCovDerivAlongAt_fst_snd_symm,
-  MorganTianLib.HasCovDerivAlongAt,
-  MorganTianLib.HasCovDerivAlongAt.unique,
-  MorganTianLib.HasCovDerivAlongAt.add,
-  MorganTianLib.HasCovDerivAlongAt.const_smul,
-  MorganTianLib.HasCovDerivAlongAt.smul_fun,
-  MorganTianLib.hasCovDerivAlongAt_comp,
-  MorganTianLib.HasCovDerivAlongAt.hasDerivAt_metricInner,
-  MorganTianLib.hasGeodesicEquationAt_iff_hasCovDerivAlongAt_velocity_zero,
-  MorganTianLib.IsParallelAlong,
-  MorganTianLib.IsParallelAlong.metricInner_eq,
-  MorganTianLib.IsParallelAlong.apply_eq}
+\lean{MorganTianLib.chartLocalMap, MorganTianLib.chartFieldCoord_curveVelocity_snd_eventually, MorganTianLib.chartFieldCoord_curveVelocity_fst_eventually, MorganTianLib.curveVelocity_comp_fst_eq, MorganTianLib.curveVelocity_comp_snd_eq, MorganTianLib.hasCovDerivAlongAt_fst_curveVelocity_snd, MorganTianLib.hasCovDerivAlongAt_snd_curveVelocity_fst, MorganTianLib.hasCovDerivAlongAt_fst_snd_symm, MorganTianLib.HasCovDerivAlongAt, MorganTianLib.HasCovDerivAlongAt.unique, MorganTianLib.HasCovDerivAlongAt.add, MorganTianLib.HasCovDerivAlongAt.const_smul, MorganTianLib.HasCovDerivAlongAt.smul_fun, MorganTianLib.hasCovDerivAlongAt_comp, MorganTianLib.HasCovDerivAlongAt.hasDerivAt_metricInner, MorganTianLib.hasGeodesicEquationAt_iff_hasCovDerivAlongAt_velocity_zero, MorganTianLib.IsParallelAlong, MorganTianLib.IsParallelAlong.metricInner_eq, MorganTianLib.IsParallelAlong.apply_eq}
+\uses{thm:levi-civita-connection, def:geodesic}
 \leanok
-\uses{thm:levi-civita-connection,def:geodesic}
+
+
+
 Let $\alpha\colon U\subset\Ar^m\to M$ be smooth and let $W$ be a
 smooth field along $\alpha$. In local coordinates define
 $$\frac{DW}{\partial u^a}
@@ -1261,29 +1404,12 @@ linear ODE.
 
 \begin{lemma}[Covariant differentiation along a curve]
 \label{lem:cov-deriv-along-curve}
-\lean{MorganTianLib.HasCovDerivAlongAt,
-  MorganTianLib.chartFieldCoord,
-  MorganTianLib.HasCovDerivAlongAt.unique,
-  MorganTianLib.HasCovDerivAlongAt.add,
-  MorganTianLib.HasCovDerivAlongAt.const_smul,
-  MorganTianLib.HasCovDerivAlongAt.sub,
-  MorganTianLib.HasCovDerivAlongAt.smul_fun,
-  MorganTianLib.metricInner_eq_chartMetricInner,
-  MorganTianLib.HasCovDerivAlongAt.hasDerivAt_metricInner,
-  MorganTianLib.IsParallelAlong,
-  MorganTianLib.IsParallelAlong.metricInner_eq,
-  MorganTianLib.IsParallelAlong.apply_eq,
-  MorganTianLib.curveVelocity,
-  MorganTianLib.hasGeodesicEquationAt_iff_hasCovDerivAlongAt_velocity_zero,
-  MorganTianLib.fieldChartRep,
-  MorganTianLib.hasCovDerivAlongAt_comp,
-  MorganTianLib.cov_apply_eq_fderiv_add_chartChristoffelContraction,
-  MorganTianLib.hasCovDerivAlongAt_comp_cov,
-  MorganTianLib.hasCovDerivAlongAt_comp_zero,
-  MorganTianLib.isParallelAlong_comp_of_cov_eq_zero,
-  MorganTianLib.isParallelAlong_curveVelocity_of_isGeodesic}
+\lean{MorganTianLib.HasCovDerivAlongAt, MorganTianLib.chartFieldCoord, MorganTianLib.HasCovDerivAlongAt.unique, MorganTianLib.HasCovDerivAlongAt.add, MorganTianLib.HasCovDerivAlongAt.const_smul, MorganTianLib.HasCovDerivAlongAt.sub, MorganTianLib.HasCovDerivAlongAt.smul_fun, MorganTianLib.metricInner_eq_chartMetricInner, MorganTianLib.HasCovDerivAlongAt.hasDerivAt_metricInner, MorganTianLib.IsParallelAlong, MorganTianLib.IsParallelAlong.metricInner_eq, MorganTianLib.IsParallelAlong.apply_eq, MorganTianLib.curveVelocity, MorganTianLib.hasGeodesicEquationAt_iff_hasCovDerivAlongAt_velocity_zero, MorganTianLib.fieldChartRep, MorganTianLib.hasCovDerivAlongAt_comp, MorganTianLib.cov_apply_eq_fderiv_add_chartChristoffelContraction, MorganTianLib.hasCovDerivAlongAt_comp_cov, MorganTianLib.hasCovDerivAlongAt_comp_zero, MorganTianLib.isParallelAlong_comp_of_cov_eq_zero, MorganTianLib.isParallelAlong_curveVelocity_of_isGeodesic}
+\uses{thm:levi-civita-connection, def:geodesic}
 \leanok
-\uses{thm:levi-civita-connection,def:geodesic}
+
+
+
 For a field $W$ along a curve $\gamma$ and a chart state $(u,V)$ near
 $t_0$, define
 $$\frac{DW}{dt}(t_0)=\dot V(t_0)
@@ -1309,45 +1435,10 @@ from the metric identity and positive definiteness.
 
 \begin{lemma}[Flow of a parallel gradient field]
 \label{lem:parallel-gradient-flow}
-\lean{MorganTianLib.isParallelAlong_gradientField_comp_of_bochner,
-  MorganTianLib.curveVelocity_eq_gradientField_of_bochner,
-  MorganTianLib.metricInner_curveVelocity_self_of_bochner,
-  MorganTianLib.hasDerivAt_comp_of_bochner,
-  MorganTianLib.comp_eq_add_mul_of_bochner,
-  MorganTianLib.isMIntegralCurve_gradientField_of_bochner,
-  MorganTianLib.isMIntegralCurve_smoothVectorField_eq,
-  MorganTianLib.isMIntegralCurve_smoothVectorField_comp_add,
-  MorganTianLib.IsContGeodesicallyComplete,
-  MorganTianLib.isContGeodesicallyComplete_of_complete,
-  MorganTianLib.exists_isMIntegralCurve_gradientField_of_complete,
-  MorganTianLib.exists_gradientFlowLine_of_bochner,
-  MorganTianLib.smoothVectorFieldFlow,
-  MorganTianLib.smoothVectorFieldFlow_zero,
-  MorganTianLib.smoothVectorFieldFlow_add,
-  MorganTianLib.smoothVectorFieldFlow_bijective,
-  MorganTianLib.continuous_smoothVectorFieldFlow,
-  MorganTianLib.smoothVectorFieldFlowHomeomorph,
-  MorganTianLib.comp_smoothVectorFieldFlow_gradientField_of_bochner,
-  MorganTianLib.fderiv_fieldChartRep_gradientField_of_bochner,
-  MorganTianLib.chartMetricInner_variational_eq_left,
-  MorganTianLib.exists_localFlow_hasStrictFDerivAt,
-  MorganTianLib.metricPreserving_of_localFlowRep,
-  MorganTianLib.exists_flowIsometryBoxAt,
-  MorganTianLib.metricPreserving_smoothVectorFieldFlow_of_bochner,
-  HasStrictFDerivAt.continuousAt_derivMap,
-  MorganTianLib.contDiffOn_one_of_hasStrictFDerivAt,
-  MorganTianLib.contMDiffAt_smoothVectorFieldFlow_of_bochner,
-  MorganTianLib.contMDiff_smoothVectorFieldFlow_of_bochner,
-  MorganTianLib.exists_localFlow_hasStrictFDerivAt_uncurry,
-  MorganTianLib.exists_flowJointC1BoxAt,
-  MorganTianLib.contMDiffAt_smoothVectorFieldFlow_uncurry_of_bochner,
-  MorganTianLib.contMDiff_smoothVectorFieldFlow_uncurry_of_bochner,
-  MorganTianLib.mfderiv_smoothVectorFieldFlow_gradientField_of_bochner,
-  MorganTianLib.pathELength_comp_eq_of_metricPreserving,
-  MorganTianLib.edist_smoothVectorFieldFlow_le_of_bochner,
-  MorganTianLib.isometry_smoothVectorFieldFlow_of_bochner}
-\leanok
-\uses{thm:levi-civita-connection,def:geodesic,thm:hopf-rinow,def:exponential-map}
+\lean{MorganTianLib.isParallelAlong_gradientField_comp_of_bochner, MorganTianLib.curveVelocity_eq_gradientField_of_bochner, MorganTianLib.metricInner_curveVelocity_self_of_bochner, MorganTianLib.hasDerivAt_comp_of_bochner, MorganTianLib.comp_eq_add_mul_of_bochner, MorganTianLib.isMIntegralCurve_gradientField_of_bochner, MorganTianLib.isMIntegralCurve_smoothVectorField_eq, MorganTianLib.isMIntegralCurve_smoothVectorField_comp_add, MorganTianLib.IsContGeodesicallyComplete, MorganTianLib.isContGeodesicallyComplete_of_complete, MorganTianLib.exists_isMIntegralCurve_gradientField_of_complete, MorganTianLib.exists_gradientFlowLine_of_bochner, MorganTianLib.smoothVectorFieldFlow, MorganTianLib.smoothVectorFieldFlow_zero, MorganTianLib.smoothVectorFieldFlow_add, MorganTianLib.smoothVectorFieldFlow_bijective, MorganTianLib.continuous_smoothVectorFieldFlow, MorganTianLib.smoothVectorFieldFlowHomeomorph, MorganTianLib.comp_smoothVectorFieldFlow_gradientField_of_bochner, MorganTianLib.fderiv_fieldChartRep_gradientField_of_bochner, MorganTianLib.chartMetricInner_variational_eq_left, MorganTianLib.exists_localFlow_hasStrictFDerivAt, MorganTianLib.metricPreserving_of_localFlowRep, MorganTianLib.exists_flowIsometryBoxAt, MorganTianLib.metricPreserving_smoothVectorFieldFlow_of_bochner, HasStrictFDerivAt.continuousAt_derivMap, MorganTianLib.contDiffOn_one_of_hasStrictFDerivAt, MorganTianLib.contMDiffAt_smoothVectorFieldFlow_of_bochner, MorganTianLib.contMDiff_smoothVectorFieldFlow_of_bochner, MorganTianLib.exists_localFlow_hasStrictFDerivAt_uncurry, MorganTianLib.exists_flowJointC1BoxAt, MorganTianLib.contMDiffAt_smoothVectorFieldFlow_uncurry_of_bochner, MorganTianLib.contMDiff_smoothVectorFieldFlow_uncurry_of_bochner, MorganTianLib.mfderiv_smoothVectorFieldFlow_gradientField_of_bochner, MorganTianLib.pathELength_comp_eq_of_metricPreserving, MorganTianLib.edist_smoothVectorFieldFlow_le_of_bochner, MorganTianLib.isometry_smoothVectorFieldFlow_of_bochner}
+\uses{thm:levi-civita-connection, def:geodesic, thm:hopf-rinow, def:exponential-map}
+
+
 Let $(X,g)$ be complete and let $B\colon X\to\Ar$ be smooth with
 $\Hess(B)=0$ and $|\nabla B|=1$. Put $V=(\nabla B)^*$. Then:
 \begin{enumerate}
@@ -1361,7 +1452,6 @@ $\theta_0=\mathrm{id}$ and $\theta_s\theta_t=\theta_{s+t}$;
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-\leanok
 \sketch
 \uses{thm:levi-civita-connection,lem:hessian-symmetric,def:geodesic,thm:hopf-rinow,def:exponential-map,lem:covariant-derivative-along-maps}
 The identity
@@ -1377,42 +1467,10 @@ $|d\theta_t(w)|=|w|$, proving item~4 by polarization.
 
 \begin{lemma}[Level sets of a function with parallel unit gradient]
 \label{lem:parallel-gradient-level-sets}
-\lean{MorganTianLib.nonempty_preimage_of_bochner,
-  MorganTianLib.isClosed_preimage_of_continuous,
-  MorganTianLib.metricInner_curveVelocity_gradientField_of_bochner,
-  MorganTianLib.hasDerivAt_comp_zero_of_bochner,
-  MorganTianLib.comp_eq_of_bochner_of_metricInner_eq_zero,
-  MorganTianLib.mapsTo_preimage_of_bochner_of_metricInner_eq_zero,
-  MorganTianLib.metricInner_gradientField_eq_zero_of_mfderiv_eq_zero,
-  MorganTianLib.isConnected_preimage_of_bochner,
-  MorganTianLib.levelSetFlowIsometry,
-  MorganTianLib.exists_openPartialHomeomorph_comp_symm_eq_affine,
-  MorganTianLib.hasFDerivAt_comp_extChartAt_symm,
-  MorganTianLib.mfderiv_ne_zero_of_metricNormSq_gradientField_eq_one,
-  MorganTianLib.exists_extChartAt_openPartialHomeomorph_comp_symm_eq_affine,
-  MorganTianLib.levelDifferential,
-  MorganTianLib.levelRieszVector,
-  MorganTianLib.mem_orthogonal_levelRieszVector_iff,
-  MorganTianLib.levelHyperplaneBasis,
-  MorganTianLib.sliceProj,
-  MorganTianLib.sliceEmb,
-  MorganTianLib.adaptedStraightening,
-  MorganTianLib.levelSliceChart,
-  MorganTianLib.levelSetChartedSpace,
-  MorganTianLib.contDiffOn_levelSliceChart_trans,
-  MorganTianLib.isManifold_levelSet,
-  MorganTianLib.contMDiff_levelSet_val,
-  MorganTianLib.mfderiv_levelSet_val_injective,
-  MorganTianLib.range_mfderiv_levelSet_val,
-  MorganTianLib.exists_hasCovDerivAlongAt_curveVelocity,
-  MorganTianLib.metricInner_gradientField_curveVelocity_eq_zero_of_level,
-  MorganTianLib.metricInner_gradientField_covDerivVelocity_eq_zero_of_level,
-  MorganTianLib.levelSetInducedMetric,
-  MorganTianLib.levelSetInducedMetric_metricInner,
-  MorganTianLib.metricInner_mfderiv_levelSet_val,
-  MorganTianLib.exists_hasCovDerivAlongAt_curveVelocity_levelSet}
-\leanok
-\uses{lem:parallel-gradient-flow,def:geodesic,def:riemannian-metric}
+\lean{MorganTianLib.nonempty_preimage_of_bochner, MorganTianLib.isClosed_preimage_of_continuous, MorganTianLib.metricInner_curveVelocity_gradientField_of_bochner, MorganTianLib.hasDerivAt_comp_zero_of_bochner, MorganTianLib.comp_eq_of_bochner_of_metricInner_eq_zero, MorganTianLib.mapsTo_preimage_of_bochner_of_metricInner_eq_zero, MorganTianLib.metricInner_gradientField_eq_zero_of_mfderiv_eq_zero, MorganTianLib.isConnected_preimage_of_bochner, MorganTianLib.levelSetFlowIsometry, MorganTianLib.exists_openPartialHomeomorph_comp_symm_eq_affine, MorganTianLib.hasFDerivAt_comp_extChartAt_symm, MorganTianLib.mfderiv_ne_zero_of_metricNormSq_gradientField_eq_one, MorganTianLib.exists_extChartAt_openPartialHomeomorph_comp_symm_eq_affine, MorganTianLib.levelDifferential, MorganTianLib.levelRieszVector, MorganTianLib.mem_orthogonal_levelRieszVector_iff, MorganTianLib.levelHyperplaneBasis, MorganTianLib.sliceProj, MorganTianLib.sliceEmb, MorganTianLib.adaptedStraightening, MorganTianLib.levelSliceChart, MorganTianLib.levelSetChartedSpace, MorganTianLib.contDiffOn_levelSliceChart_trans, MorganTianLib.isManifold_levelSet, MorganTianLib.contMDiff_levelSet_val, MorganTianLib.mfderiv_levelSet_val_injective, MorganTianLib.range_mfderiv_levelSet_val, MorganTianLib.exists_hasCovDerivAlongAt_curveVelocity, MorganTianLib.metricInner_gradientField_curveVelocity_eq_zero_of_level, MorganTianLib.metricInner_gradientField_covDerivVelocity_eq_zero_of_level, MorganTianLib.levelSetInducedMetric, MorganTianLib.levelSetInducedMetric_metricInner, MorganTianLib.metricInner_mfderiv_levelSet_val, MorganTianLib.exists_hasCovDerivAlongAt_curveVelocity_levelSet}
+\uses{lem:parallel-gradient-flow, def:geodesic, def:riemannian-metric}
+
+
 Under the hypotheses of Lemma~\ref{lem:parallel-gradient-flow}, let
 $N_c=B^{-1}(c)$ with the induced metric. Then:
 \begin{enumerate}
@@ -1426,7 +1484,6 @@ $N_c$. Thus $N_c$ is totally geodesic.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-\leanok
 \sketch
 \uses{lem:parallel-gradient-flow,lem:covariant-derivative-along-maps,def:geodesic,def:exponential-map,thm:levi-civita-connection}
 The flow moves every point to level $c$, proving nonemptiness. Since
@@ -1444,56 +1501,10 @@ accelerations coincide, proving item~3.
 
 \begin{proposition}[Splitting along a parallel unit gradient]
 \label{prop:parallel-gradient-splitting}
-\lean{MorganTianLib.bochnerSplittingHomeomorph,
-  MorganTianLib.bochnerSplittingHomeomorphOfComplete,
-  MorganTianLib.mfderivReal,
-  MorganTianLib.abs_metricInner_le_sqrt_mul_sqrt,
-  MorganTianLib.ofReal_abs_sub_le_pathELength,
-  MorganTianLib.ofReal_abs_sub_le_edist_of_bochner,
-  MorganTianLib.abs_sub_le_dist_of_bochner,
-  MorganTianLib.edist_smoothVectorFieldFlow_self_of_bochner,
-  MorganTianLib.edist_smoothVectorFieldFlow_flow_of_bochner,
-  MorganTianLib.isMinGeodesicOn_smoothVectorFieldFlow_of_bochner,
-  MorganTianLib.edist_smoothVectorFieldFlow_pair_le_of_bochner,
-  MorganTianLib.ofReal_abs_le_edist_smoothVectorFieldFlow_pair_of_bochner,
-  MorganTianLib.edist_le_edist_smoothVectorFieldFlow_pair_add_of_bochner,
-  MorganTianLib.isComplete_preimage_of_continuous,
-  MorganTianLib.isGeodesicRay_smoothVectorFieldFlow_of_bochner,
-  MorganTianLib.busemann_smoothVectorFieldFlow_of_bochner,
-  MorganTianLib.sub_le_busemann_smoothVectorFieldFlow_of_bochner,
-  MorganTianLib.mfderiv_smoothVectorFieldFlow_comp_apply_one_of_bochner,
-  MorganTianLib.enorm_mfderiv_smoothVectorFieldFlow_comp_of_bochner,
-  MorganTianLib.pathELength_smoothVectorFieldFlow_comp_of_bochner,
-  MorganTianLib.pathELength_smoothVectorFieldFlow_comp_levelSet_of_bochner,
-  MorganTianLib.hasDerivAt_comp_gradientField,
-  MorganTianLib.enorm_mfderiv_eq_sqrt_metricInner_of_hasMFDerivAt,
-  MorganTianLib.enorm_mfderiv_levelProjection_of_bochner,
-  MorganTianLib.edist_levelProjection_le_of_bochner,
-  MorganTianLib.ofReal_mul_add_mul_le_edist_smoothVectorFieldFlow_pair_of_bochner,
-  MorganTianLib.ofReal_sqrt_le_edist_smoothVectorFieldFlow_pair_of_bochner,
-  MorganTianLib.continuous_metricInner_mfderiv_of_contMDiff,
-  MorganTianLib.pathELength_levelProjection_le_of_bochner,
-  MorganTianLib.pathELength_eq_ofReal_integral_of_contMDiff,
-  MorganTianLib.edist_smoothVectorFieldFlow_levelPath_le_of_bochner,
-  MorganTianLib.edist_smoothVectorFieldFlow_pair_le_ofReal_sqrt_of_bochner,
-  MorganTianLib.edist_smoothVectorFieldFlow_pair_eq_of_bochner,
-  MorganTianLib.dist_smoothVectorFieldFlow_pair_of_bochner,
-  MorganTianLib.busemann_smoothVectorFieldFlow_eq_of_bochner,
-  MorganTianLib.prod_dist_eq_sqrt_of_L2,
-  MorganTianLib.dist_eq_sqrt_dist_levelProjection_of_bochner,
-  MorganTianLib.bochnerSplittingIsometry,
-  MorganTianLib.metricInner_flowVariation_of_bochner,
-  MorganTianLib.levelSetInducedMetric,
-  MorganTianLib.levelSetProductMetric,
-  MorganTianLib.DCProductMetric_metricInner_mk,
-  MorganTianLib.levelSetProductMetric_metricInner,
-  MorganTianLib.levelSetProductMetric_metricInner_ambient,
-  MorganTianLib.mfderiv_prod_eq_add,
-  MorganTianLib.mfderiv_bochnerSplittingMap_apply,
-  MorganTianLib.metricInner_mfderiv_bochnerSplittingMap,
-  MorganTianLib.mfderiv_bochnerSplittingMap_injective}
-\leanok
-\uses{def:geodesic,thm:hopf-rinow,def:exponential-map,thm:levi-civita-connection,def:riemannian-metric}
+\lean{MorganTianLib.bochnerSplittingHomeomorph, MorganTianLib.bochnerSplittingHomeomorphOfComplete, MorganTianLib.mfderivReal, MorganTianLib.abs_metricInner_le_sqrt_mul_sqrt, MorganTianLib.ofReal_abs_sub_le_pathELength, MorganTianLib.ofReal_abs_sub_le_edist_of_bochner, MorganTianLib.abs_sub_le_dist_of_bochner, MorganTianLib.edist_smoothVectorFieldFlow_self_of_bochner, MorganTianLib.edist_smoothVectorFieldFlow_flow_of_bochner, MorganTianLib.isMinGeodesicOn_smoothVectorFieldFlow_of_bochner, MorganTianLib.edist_smoothVectorFieldFlow_pair_le_of_bochner, MorganTianLib.ofReal_abs_le_edist_smoothVectorFieldFlow_pair_of_bochner, MorganTianLib.edist_le_edist_smoothVectorFieldFlow_pair_add_of_bochner, MorganTianLib.isComplete_preimage_of_continuous, MorganTianLib.isGeodesicRay_smoothVectorFieldFlow_of_bochner, MorganTianLib.busemann_smoothVectorFieldFlow_of_bochner, MorganTianLib.sub_le_busemann_smoothVectorFieldFlow_of_bochner, MorganTianLib.mfderiv_smoothVectorFieldFlow_comp_apply_one_of_bochner, MorganTianLib.enorm_mfderiv_smoothVectorFieldFlow_comp_of_bochner, MorganTianLib.pathELength_smoothVectorFieldFlow_comp_of_bochner, MorganTianLib.pathELength_smoothVectorFieldFlow_comp_levelSet_of_bochner, MorganTianLib.hasDerivAt_comp_gradientField, MorganTianLib.enorm_mfderiv_eq_sqrt_metricInner_of_hasMFDerivAt, MorganTianLib.enorm_mfderiv_levelProjection_of_bochner, MorganTianLib.edist_levelProjection_le_of_bochner, MorganTianLib.ofReal_mul_add_mul_le_edist_smoothVectorFieldFlow_pair_of_bochner, MorganTianLib.ofReal_sqrt_le_edist_smoothVectorFieldFlow_pair_of_bochner, MorganTianLib.continuous_metricInner_mfderiv_of_contMDiff, MorganTianLib.pathELength_levelProjection_le_of_bochner, MorganTianLib.pathELength_eq_ofReal_integral_of_contMDiff, MorganTianLib.edist_smoothVectorFieldFlow_levelPath_le_of_bochner, MorganTianLib.edist_smoothVectorFieldFlow_pair_le_ofReal_sqrt_of_bochner, MorganTianLib.edist_smoothVectorFieldFlow_pair_eq_of_bochner, MorganTianLib.dist_smoothVectorFieldFlow_pair_of_bochner, MorganTianLib.busemann_smoothVectorFieldFlow_eq_of_bochner, MorganTianLib.prod_dist_eq_sqrt_of_L2, MorganTianLib.dist_eq_sqrt_dist_levelProjection_of_bochner, MorganTianLib.bochnerSplittingIsometry, MorganTianLib.metricInner_flowVariation_of_bochner, MorganTianLib.levelSetInducedMetric, MorganTianLib.levelSetProductMetric, MorganTianLib.DCProductMetric_metricInner_mk, MorganTianLib.levelSetProductMetric_metricInner, MorganTianLib.levelSetProductMetric_metricInner_ambient, MorganTianLib.mfderiv_prod_eq_add, MorganTianLib.mfderiv_bochnerSplittingMap_apply, MorganTianLib.metricInner_mfderiv_bochnerSplittingMap, MorganTianLib.mfderiv_bochnerSplittingMap_injective}
+\uses{def:geodesic, thm:hopf-rinow, def:exponential-map, thm:levi-civita-connection, def:riemannian-metric}
+
+
 Let $(X,g)$ be complete and connected and let $B\colon X\to\Ar$ be
 smooth with $\Hess(B)=0$ and $|\nabla B|=1$. Then
 $N=B^{-1}(0)$ is a nonempty connected complete totally geodesic embedded
@@ -1504,7 +1515,6 @@ is an isometry onto $X$, where
 $(g_N\oplus dt^2)((w,a),(w',a'))=g_N(w,w')+aa'$.
 \end{proposition}
 \begin{proof}
-\leanok
 \sketch
 \uses{lem:parallel-gradient-flow,lem:parallel-gradient-level-sets,thm:levi-civita-connection,lem:hessian-symmetric,def:riemannian-metric}
 Let $\theta$ be the gradient flow. Its inverse-coordinate map is
@@ -1522,10 +1532,14 @@ converges in $X$, and closedness of $N$ places the limit in $N$.
 
 \begin{lemma}[Busemann functions along a minimizing line]
 \label{lem:busemann-along-line}
-\lean{MorganTianLib.busemann_apply_line}
-\leanok
-\uses{def:busemann-function,def:minimizing-geodesic-window}
+\lean{MorganTianLib.busemann_apply_line_pair}
 \source{morgan-tian}
+\uses{def:busemann-function, def:minimizing-geodesic-window}
+\leanok
+
+
+
+
 For a minimizing line $\lambda\colon\Ar\to M$, let $B_+$ and $B_-$
 be the Busemann functions of $t\mapsto\lambda(t)$ and
 $t\mapsto\lambda(-t)$. Then
@@ -1544,9 +1558,13 @@ line.
 \begin{lemma}[The Busemann pair of a line is non-negative]
 \label{lem:busemann-pair-nonneg}
 \lean{MorganTianLib.busemann_add_busemann_neg_nonneg}
-\leanok
-\uses{def:busemann-function,def:minimizing-geodesic-window}
 \source{morgan-tian}
+\uses{def:busemann-function, def:minimizing-geodesic-window}
+\leanok
+
+
+
+
 For the Busemann pair of a minimizing line,
 $$B_+(x)+B_-(x)\ge0\qquad(x\in M).$$
 \end{lemma}
@@ -1562,8 +1580,11 @@ $B_{\lambda_+,t}(x)+B_{\lambda_-,s}(x)\ge0$. Take both infima.
 \begin{corollary}[The Busemann pair vanishes on its line]
 \label{cor:busemann-pair-vanishes-on-line}
 \lean{MorganTianLib.busemann_add_busemann_neg_apply_line}
-\leanok
 \uses{lem:busemann-along-line}
+\leanok
+
+
+
 $B_+(\lambda(u))+B_-(\lambda(u))=0$ for every $u\in\Ar$.
 \end{corollary}
 \begin{proof}
@@ -1575,9 +1596,11 @@ Use the two identities of Lemma~\ref{lem:busemann-along-line}.
 
 \begin{lemma}[Minimizing line implies isometric product]
 \label{lem:minimizing-line-implies-product}
-\label{line}
-\uses{def:ricci-curvature}
 \source{morgan-tian}
+\uses{def:ricci-curvature}
+\label{line}
+
+
 A connected complete Riemannian manifold of non-negative Ricci
 curvature that contains a minimizing line is isometric to
 $N\times\Ar$ for some Riemannian manifold $N$
@@ -1599,9 +1622,11 @@ applied to $B_+$ yields the product isometry.
 
 \begin{theorem}[Splitting Theorem]
 \label{thm:splitting-theorem}
-\label{splitting}
-\uses{def:ricci-curvature,def:space-of-ends}
 \source{morgan-tian}
+\uses{def:ricci-curvature, def:space-of-ends}
+\label{splitting}
+
+
 If $M$ is complete, has non-negative Ricci curvature, and has at least
 two ends, then $M$ is isometric to $N\times\Ar$ for a compact manifold
 $N$.
@@ -1628,8 +1653,11 @@ Fix $0<\epsilon<1/2$ and put $k=\lfloor\epsilon^{-1}\rfloor$.
 
 \begin{definition}[Epsilon-closeness in $C^{[1/\epsilon]}$-topology]
 \label{def:epsilon-close-topology}
-\label{epsclose}
+\lean{MorganTianLib.epsilonDerivativeOrder,MorganTianLib.iteratedCovariantMetricDifference,MorganTianLib.metricCovariantDerivativeNormSq,MorganTianLib.epsilonClosenessDensity,MorganTianLib.EpsilonClose,MorganTianLib.EpsilonCloseFamily}
 \uses{thm:levi-civita-connection}
+\leanok
+\label{epsclose}
+
 Let $g_0$ be a metric on $M$ and $X\subset M$ open. A metric $g$ on
 $X$ is \emph{$\epsilon$-close to $g_0$ in $C^{[1/\epsilon]}$} if
 \begin{equation}\label{eqnepsclose}
@@ -1644,6 +1672,7 @@ metric, covariant derivatives, and norms at time $t$.
 \begin{remark}[Ricci flow and metric topology]
 \label{rem:ricci-flow-metric-topology}
 \uses{def:epsilon-close-topology}
+
 Closeness of metric families in this sense imposes no time-derivative
 bound. For Ricci flows, $C^{2k}$-closeness is equivalent to control of
 the $r$th time derivatives of the $s$th covariant derivatives whenever
@@ -1652,8 +1681,11 @@ $s+2r\le2k$.
 
 \begin{definition}[Epsilon-neck structure]
 \label{def:epsilon-neck}
+\lean{MorganTianLib.roundSphereMetric, MorganTianLib.IsRoundCylinderMetric, MorganTianLib.EpsilonNeckStructure, MorganTianLib.epsilonNeckSlice, MorganTianLib.EpsilonNeckStructure.axialCoordinate, MorganTianLib.EpsilonNeckStructure.axialVector, MorganTianLib.EpsilonNeckStructure.negativeEnd, MorganTianLib.EpsilonNeckStructure.positiveEnd, MorganTianLib.EpsilonNeckStructure.fractionalSubneck, MorganTianLib.EpsilonNeckStructure.reversedParametrization, MorganTianLib.EpsilonNeckStructure.reversedParametrization_apply, MorganTianLib.AmbientEpsilonNeck, MorganTianLib.AmbientEpsilonNeck.ambientCenter, MorganTianLib.EpsilonNeckStructure.scale, MorganTianLib.AmbientEpsilonNeck.scale}
+\uses{def:sectional-curvature, def:epsilon-close-topology}
+\leanok
 \label{epsneck}
-\uses{def:sectional-curvature,def:epsilon-close-topology}
+
 An \emph{$\epsilon$-neck structure} on a Riemannian $3$-manifold
 $(N,g)$ centered at $x$ is a diffeomorphism
 $$\varphi\colon S^2\times(-\epsilon^{-1},\epsilon^{-1})\to N$$
@@ -1673,8 +1705,9 @@ $$r_N=R(x)^{-1/2}.$$
 
 \begin{lemma}[Epsilon-neck separates soul from end]
 \label{lem:epsilon-neck-separates}
+\uses{def:epsilon-neck, lem:metric-sphere-meets-neck-topologically}
 \label{neckseparate}
-\uses{def:epsilon-neck,lem:metric-sphere-meets-neck-topologically}
+
 Assume $\epsilon$ is small enough for Lemma~\ref{topiso}. Let $M$ be a
 noncompact positively curved $3$-manifold with soul $p$. The central
 sphere of every $\epsilon$-neck $N$ disjoint from $p$ separates $p$
@@ -1692,15 +1725,17 @@ infinity. Applying this to two disjoint necks gives the product region.
 
 \begin{proposition}[Positively curved manifolds don't have small epsilon-necks]
 \label{prop:epsilon-neck-narrow}
+\uses{def:epsilon-neck, def:sectional-curvature}
 \label{narrows}
-\uses{def:epsilon-neck,def:sectional-curvature}
+
 For all sufficiently small $\epsilon>0$, a complete positively curved
 Riemannian $3$-manifold contains no $\epsilon$-necks of arbitrarily
 small scale.
 \end{proposition}
 \begin{proof}
+  \uses{thm:soul-theorem, prop:busemann-laplacian, lem:neck-geodesic-directions, def:epsilon-neck, lem:metric-sphere-meets-neck-topologically}
 \sketch
-\uses{thm:soul-theorem,prop:busemann-laplacian,lem:neck-geodesic-directions}
+
 The compact case is immediate. Otherwise let $p$ be the point soul and
 note that every positive level of $d(p,\cdot)$ is connected. Choose two
 disjoint necks $N_1,N_2$ away from it, ordered toward the
@@ -1719,8 +1754,9 @@ out necks whose scales tend to zero.
 
 \begin{corollary}[Scale bound between separated $\epsilon$-necks]
 \label{cor:epsilon-neck-scale-bound}
+\uses{def:epsilon-neck, thm:soul-theorem, lem:epsilon-neck-separates, lem:metric-sphere-meets-neck-topologically}
 \label{strnarrows}
-\uses{def:epsilon-neck,thm:soul-theorem,lem:epsilon-neck-separates,lem:metric-sphere-meets-neck-topologically}
+
 Fix sufficiently small $\epsilon$. There is $C(\epsilon)<\infty$ such
 that if $N$ is an $\epsilon$-neck centered at $x$ in a noncompact
 positively curved $3$-manifold, disjoint from a soul $p$, and $N'$ is
@@ -1733,8 +1769,11 @@ $$R(x')\le C(\epsilon)R(x).$$
 \begin{definition}[Forward difference quotient bounds]
 \label{def:forward-difference-quotient}
 \lean{MorganTianLib.ForwardDiffQuotientLE}
-\leanok
 \source{morgan-tian}
+\leanok
+
+
+
 For continuous $f\colon[a,b]\to\Ar$, its forward difference quotient
 at $t\in[a,b)$ is at most $c$ if
 $$\limsup_{\triangle t\to0^+}
@@ -1747,8 +1786,11 @@ defined analogously using $\liminf$.
 \begin{lemma}[Weakening a forward difference quotient bound]
 \label{lem:forward-difference-quotient-mono}
 \lean{MorganTianLib.ForwardDiffQuotientLE.mono}
-\leanok
 \uses{def:forward-difference-quotient}
+\leanok
+
+
+
 If the forward difference quotient of $f$ at $t$ is at most $c$ and
 $c\le c'$, then it is at most $c'$.
 \end{lemma}
@@ -1761,8 +1803,11 @@ Every $r>c'$ also satisfies $r>c$.
 \begin{lemma}[Right derivatives bound forward difference quotients]
 \label{lem:right-derivative-forward-difference-quotient}
 \lean{MorganTianLib.HasDerivWithinAt.forwardDiffQuotientLE}
-\leanok
 \uses{def:forward-difference-quotient}
+\leanok
+
+
+
 If $f$ has right derivative $c$ at $t$, then its forward difference
 quotient there is at most $c$.
 \end{lemma}
@@ -1774,11 +1819,15 @@ The relevant difference quotients converge to $c$.
 
 \begin{lemma}[Forward difference quotient comparison lemma]
 \label{lem:forward-difference-quotient}
-\label{fordiffquot}
 \lean{MorganTianLib.le_of_forwardDiffQuotientLE}
-\leanok
-\uses{def:forward-difference-quotient}
 \source{morgan-tian}
+\uses{def:forward-difference-quotient}
+\leanok
+\label{fordiffquot}
+
+
+
+
 Let $f\colon[a,b]\to\Ar$ be continuous and let
 $\psi\in C^1([a,b]\times\Ar)$. Suppose the forward difference quotient
 of $f$ satisfies
@@ -1805,6 +1854,8 @@ $\epsilon\downarrow0$.
 \label{lem:max-function-continuous-product}
 \lean{MorganTianLib.continuous_iSup_of_compact}
 \leanok
+
+
 If $X$ is compact and $F\colon X\times\Ar\to\Ar$ is continuous, then
 $$F_{\max}(t)=\sup_{x\in X}F(x,t)$$
 is continuous.
@@ -1820,8 +1871,11 @@ matching upper bound uniformly in $x$. The empty case is immediate.
 \begin{lemma}[Forward difference quotient of the maximum of a compact family]
 \label{lem:forward-difference-maximum-product}
 \lean{MorganTianLib.forwardDiffQuotientLE_iSup}
+\uses{def:forward-difference-quotient, lem:max-function-continuous-product}
 \leanok
-\uses{def:forward-difference-quotient,lem:max-function-continuous-product}
+
+
+
 Let $X$ be nonempty and compact, let $t_0<b$, and let $F,F'$ be
 continuous on $X\times\Ar$, with
 $\partial_sF(x,s)=F'(x,s)$ for $s\in(t_0,b)$. If
@@ -1843,8 +1897,10 @@ $F'(x_0,t_0)\ge r>c$, a contradiction.
 \begin{corollary}[Forward difference maximum property, product case]
 \label{cor:forward-difference-maximum-product}
 \lean{MorganTianLib.iSup_le_of_forwardDiff_max}
-\leanok
 \uses{def:forward-difference-quotient}
+
+
+
 Let $X$ be nonempty and compact, and let $F,F'$ be continuous on
 $X\times\Ar$, with $\partial_sF(x,s)=F'(x,s)$. Suppose
 $$F'(x,t)\le\psi(t,F_{\max}(t))$$
@@ -1863,11 +1919,10 @@ Lemma~\ref{lem:forward-difference-quotient}.
 
 \begin{lemma}[Flow of a vector field near a compact set]
 \label{lem:vector-field-flow-near-compact}
-\lean{MorganTianLib.exists_forall_hasDerivWithinAt_continuousOn_of_contDiffAt,
-  MorganTianLib.exists_localFlowAt,
-  MorganTianLib.exists_localFlow_of_isCompact,
-  MorganTianLib.exists_isLocalFlow_of_isCompact}
+\lean{MorganTianLib.exists_forall_hasDerivWithinAt_continuousOn_of_contDiffAt, MorganTianLib.exists_localFlowAt, MorganTianLib.exists_localFlow_of_isCompact, MorganTianLib.exists_isLocalFlow_of_isCompact}
 \leanok
+
+
 Let $\chi$ be a smooth vector field on a boundaryless Hausdorff smooth
 manifold and let $Z$ be compact. There are $\eta>0$, an open
 $U\supset Z$, and a jointly continuous
@@ -1890,12 +1945,12 @@ The final identities follow from the chain rule and integration.
 
 \begin{lemma}[Forward difference maximum property along a local flow]
 \label{lem:forward-difference-maximum-flow}
-\lean{MorganTianLib.IsLocalFlow,
-  MorganTianLib.continuousOn_levelMax,
-  MorganTianLib.forwardDiffQuotientLE_levelMax,
-  MorganTianLib.levelMax_le_of_isLocalFlow}
-\leanok
+\lean{MorganTianLib.IsLocalFlow, MorganTianLib.continuousOn_levelMax, MorganTianLib.forwardDiffQuotientLE_levelMax, MorganTianLib.levelMax_le_of_isLocalFlow}
 \uses{def:forward-difference-quotient}
+\leanok
+
+
+
 Let ${\bf t},F,\chi F\colon M\to\Ar$, with ${\bf t}$ and $\chi F$
 continuous, and let $\mathcal Z$ be the set of fibrewise maximizers of
 $F$. Assume:
@@ -1930,11 +1985,15 @@ lemma to conclude.
 
 \begin{proposition}[Forward difference maximum property]
 \label{prop:forward-difference-maximum}
-\label{fordiffmax}
 \lean{MorganTianLib.levelMax_le_of_dir_le}
-\leanok
-\uses{def:forward-difference-quotient}
 \source{morgan-tian}
+\uses{def:forward-difference-quotient}
+\leanok
+\label{fordiffmax}
+
+
+
+
 Let $M$ be smooth, let $\chi$ be a smooth vector field, and let
 ${\bf t}\colon M\to[a,b]$ be smooth with $\chi({\bf t})=1$. Suppose
 $F\colon M\to\Ar$ is smooth, attains its maximum on every level of

@@ -1,6 +1,7 @@
 import MorganTianLib.Ch01.ExpContinuity
 import MorganTianLib.Ch01.ConstantGeodesicJacobi
 import MorganTianLib.Ch01.CurvatureNormManifold
+import DoCarmoLib.Riemannian.Jacobi.CartanLocalIsometry
 
 /-!
 # Poincaré Ch. 1, §1.5 — `lem:local-diffeomorphism-bounded-curvature`
@@ -205,6 +206,57 @@ theorem not_isConjugatePointAt_one_of_hasCurvatureOperatorNormLeOn
     have hxball : x ∈ curvatureBall p K :=
       lt_of_le_of_lt (mul_le_mul_of_nonneg_left hx (Real.sqrt_nonneg K)) hv
     exact sectionalCurvatureAt_le_of_hasCurvatureOperatorNormLeOn hK hRm hxball w₁ w₂
+
+/-- **Math.** The exponential map is a smooth local diffeomorphism at every vector in the
+curvature tangent ball. -/
+theorem expMapGlobal_isLocalDiffeomorphAt_curvatureTangentBall
+    (g : RiemannianMetric I M) (hg : g.IsRiemannianDist) [CompleteSpace M]
+    (p : M) {K : ℝ} (hK : 0 ≤ K)
+    (hRm : HasCurvatureOperatorNormLeOn g (curvatureBall p K) K) :
+    ∀ v ∈ curvatureTangentBall (I := I) g p K,
+      IsLocalDiffeomorphAt 𝓘(ℝ, E) I ∞
+        (fun w : E => expMapGlobal (I := I) g hg p (w : TangentSpace I p)) v := by
+  intro v hv
+  have hnc := not_isConjugatePointAt_one_of_hasCurvatureOperatorNormLeOn
+    g hg p hK hRm hv
+  have hglobal :
+      Riemannian.Geodesic.globalGeodesic (I := I) g hg p (v : TangentSpace I p) =
+        globalGeodesic (I := I) g hg p (v : TangentSpace I p) := by
+    unfold Riemannian.Geodesic.globalGeodesic MorganTianLib.globalGeodesic
+    rfl
+  have hncJ : ¬ Riemannian.Jacobi.IsConjugatePointAt (I := I) g
+      (Riemannian.Geodesic.globalGeodesic (I := I) g hg p (v : TangentSpace I p)) 1 := by
+    intro hconj
+    rw [hglobal] at hconj
+    apply hnc
+    rcases hconj with ⟨J, DJ, hJ, hne, hJ0, hJ1⟩
+    refine ⟨J, DJ, ?_, hne, hJ0, hJ1⟩
+    intro t₀ ht₀
+    obtain ⟨α, a, b, hab, ht₀ab, habsub, habnhds, hγ, hfield⟩ := hJ t₀ ht₀
+    refine ⟨α, a, b, hab, ht₀ab, habsub, habnhds, hγ, ?_⟩
+    have hrep (X : ℝ → E) :
+        Riemannian.Jacobi.chartVectorRep (I := I)
+            (globalGeodesic (I := I) g hg p (v : TangentSpace I p)) α X =
+          MorganTianLib.chartVectorRep (I := I)
+            (globalGeodesic (I := I) g hg p (v : TangentSpace I p)) α X := by
+      unfold Riemannian.Jacobi.chartVectorRep MorganTianLib.chartVectorRep
+      rfl
+    have hcurv (y X Y Z : E) :
+        Riemannian.Jacobi.chartCurvature (I := I) g α y X Y Z =
+          MorganTianLib.chartCurvature (I := I) g α y X Y Z := by
+      unfold Riemannian.Jacobi.chartCurvature MorganTianLib.chartCurvature
+      unfold Riemannian.Jacobi.christoffelCurvature MorganTianLib.christoffelCurvature
+      unfold Riemannian.Jacobi.chartChristoffelBilin MorganTianLib.chartChristoffelBilin
+      rfl
+    exact
+      { hasDerivWithinAt_fst := by
+          simpa only [hrep] using hfield.hasDerivWithinAt_fst
+        hasDerivWithinAt_snd := by
+          simpa only [hrep, hcurv] using hfield.hasDerivWithinAt_snd }
+  have hlocal := Riemannian.Jacobi.isLocalDiffeomorphAt_expMapGlobal_of_not_conjugate
+    (I := I) g hg p hncJ
+  simpa only [Riemannian.Exponential.expMapGlobal, MorganTianLib.expMapGlobal,
+    Riemannian.Geodesic.globalGeodesic, MorganTianLib.globalGeodesic] using hlocal
 
 /-! ### `lem:local-diffeomorphism-bounded-curvature` -/
 

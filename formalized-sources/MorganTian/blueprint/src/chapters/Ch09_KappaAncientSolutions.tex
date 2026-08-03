@@ -14,8 +14,9 @@ see also \cite{Hamiltonharnack}).
 \subsection{Definition}
 
 \begin{definition}[$\kappa$-non-collapsed Ricci flow]\label{def:kappa-noncollapsed}
-\label{kappadefn}
 \uses{def:ricci-flow}
+\label{kappadefn}
+
 Fix $\kappa>0$ and $r_0>0$. A Ricci flow $(M,g(t))$, $a<t\leq b$,
 of complete $n$-manifolds is \emph{$\kappa$-non-collapsed on scales at
 most $r_0$} if, whenever $(p,t)\in M\times(a,b]$, $0<r\leq r_0$,
@@ -29,7 +30,8 @@ one has $\Vol B(p,t,r)\geq\kappa r^n$. It is
 \end{definition}
 
 \begin{definition}[Ancient solution and $\kappa$-solution]\label{def:ancient-solution}
-\uses{def:ricci-flow,def:kappa-noncollapsed}
+\uses{def:ricci-flow, def:kappa-noncollapsed}
+
 An \emph{ancient solution} is a Ricci flow $(M,g(t))$,
 $-\infty<t\leq0$, such that every time-slice is connected, complete,
 non-flat, and has bounded nonnegative curvature operator. A
@@ -44,6 +46,7 @@ $0<\kappa'\leq\kappa$.
 
 \begin{example}[Shrinking round $2$-sphere is a $\kappa$-solution]\label{ex:shrinking-sphere-kappa-solution}
 \uses{def:ancient-solution}
+
 If $g_0$ is the round metric on $S^2$ with scalar curvature $1$, then
 $g(t)=(1-t)g_0$ is an ancient Ricci flow. It is a $\kappa$-solution
 whenever $\kappa$ does not exceed the volume of a unit ball in the
@@ -51,13 +54,15 @@ unit $2$-sphere.
 \end{example}
 
 \begin{theorem}[Two-dimensional $\kappa$-solutions are round]\label{thm:two-dimensional-kappa-solution-preview}
-\uses{def:ancient-solution,cor:two-dimensional-gradient-shrinking-soliton}
+\uses{def:ancient-solution, cor:two-dimensional-gradient-shrinking-soliton}
+
 Every orientable two-dimensional $\kappa$-solution is, after scaling,
 the shrinking round $2$-sphere above.
 \end{theorem}
 
 \begin{example}[Round $n$-sphere and its quotients]\label{ex:round-sphere-quotient-kappa-solution}
 \uses{def:ancient-solution}
+
 Let $g_0$ be the round metric on $S^n$ with scalar curvature $n/2$.
 Then $g(t)=(1-t)g_0$ is a $\kappa$-solution for every $\kappa$ no
 larger than the volume of a unit ball in the unit $n$-sphere. If a
@@ -68,6 +73,7 @@ $|\Gamma|^{-1}$ times that volume.
 
 \begin{example}[Shrinking cylinder $S^2\times\Ar$]\label{ex:cylinder-kappa-solution}
 \uses{def:ancient-solution}
+
 On $S^2\times\Ar$, the product metric
 $g(t)=(1-t)g_0+ds^2$ is a $\kappa$-solution whenever $\kappa$ does
 not exceed the volume of a unit ball in the product of the unit
@@ -75,14 +81,16 @@ $2$-sphere and $\Ar$.
 \end{example}
 
 \begin{example}[Quotient of the shrinking cylinder]\label{ex:cylinder-quotient-kappa-solution}
-\uses{def:ancient-solution,ex:cylinder-kappa-solution}
+\uses{def:ancient-solution, ex:cylinder-kappa-solution}
+
 The quotient of the shrinking cylinder by the product of the
 antipodal map on $S^2$ and $s\mapsto-s$ on $\Ar$ is an orientable
 $\kappa$-solution for some $\kappa>0$.
 \end{example}
 
 \begin{example}[Product with a circle is not $\kappa$-non-collapsed]\label{ex:cylinder-with-circle-not-kappa-noncollapsed}
-\uses{def:ancient-solution,def:kappa-noncollapsed}
+\uses{def:ancient-solution, def:kappa-noncollapsed}
+
 For the ancient product flow
 $g(t)=(1-t)g_0+ds^2$ on $S^2\times S^1_R$,
 \[
@@ -97,8 +105,9 @@ $\kappa>0$.
 \subsection{A consequence of Hamilton's Harnack inequality}
 
 \begin{proposition}[Harnack consequence: Lipschitz bound for reduced length]\label{prop:harnack-l-function-lipschitz-bound}
-\label{uniformlip}
 \uses{def:ricci-flow}
+\label{uniformlip}
+
 Let $(M,g(t))$, $-\tau_0\leq t\leq0$, be an $n$-dimensional Ricci
 flow of complete manifolds with bounded nonnegative curvature
 operator. Put $\tau=-t$, fix $x=(p,0)$, and let $0<c<1$. For
@@ -130,8 +139,9 @@ inequalities extend as local $L^\infty$ inequalities.
 \end{proof}
 
 \begin{corollary}[Uniform reduced-length gradient and time-derivative bound]\label{cor:l-function-gradient-bound}
-\label{unianc}
 \uses{prop:harnack-l-function-lipschitz-bound}
+\label{unianc}
+
 For an ancient flow as above and $x=(p,0)$, every $\tau>0$ satisfies
 \[
  |\nabla l_x|^2+R\leq\frac{3l_x}{\tau},
@@ -161,8 +171,9 @@ $l_x(q(\tau),\tau)\leq n/2$. For $\bar\tau>0$ set
 $g_{\bar\tau}(t)=\bar\tau^{-1}g(\bar\tau t)$.
 
 \begin{theorem}[Existence of the asymptotic gradient shrinking soliton]\label{thm:asymptotic-gradient-shrinking-soliton}
+\uses{def:ancient-solution, def:kappa-noncollapsed, def:gradient-shrinking-soliton}
 \label{asympGSS}
-\uses{def:ancient-solution,def:kappa-noncollapsed,def:gradient-shrinking-soliton}
+
 Let $\bar\tau_k\to\infty$, put $g_k=g_{\bar\tau_k}$, and
 $q_k=q(\bar\tau_k)$. After passage to a subsequence, the pointed
 flows $(M,g_k(t),(q_k,-1))$, $-\infty<t<0$, converge smoothly to a
@@ -189,6 +200,7 @@ reduced-volume bound rule out a flat limit.
 
 \begin{remark}[Caveats about the asymptotic soliton]\label{rem:asymptotic-soliton-caveats}
 \uses{thm:asymptotic-gradient-shrinking-soliton}
+
 The theorem does not assert bounded curvature on each limiting
 time-slice, so in general the limit is not yet known to extend to a
 $\kappa$-solution. Nor does it yet produce the usual self-similar
@@ -199,8 +211,9 @@ two and three (Corollaries~\ref{2DGSS} and~\ref{3DGSSkappa}).
 \subsection{Bounding the reduced length and curvature}
 
 \begin{claim}[Reduced volume rescaling]\label{claim:reduced-volume-rescaling}
-\label{scaleinv2}
 \uses{thm:asymptotic-gradient-shrinking-soliton}
+\label{scaleinv2}
+
 If $x_k=(p,0)$ in the $k$th rescaled flow, then
 \[
  \widetilde V_{x_k}(\tau)=\widetilde V_x(\bar\tau_k\tau).
@@ -212,8 +225,9 @@ Lemma~\ref{Qformula}.
 \end{proof}
 
 \begin{corollary}[Reduced volume limit is constant]\label{cor:reduced-volume-limit-constant}
-\label{redvolconst}
 \uses{claim:reduced-volume-rescaling}
+\label{redvolconst}
+
 There is $V_\infty\in[0,(4\pi)^{n/2})$ such that, for every
 $\tau>0$,
 \begin{equation}\label{limVeqn}
@@ -229,8 +243,9 @@ Claim~\ref{claim:reduced-volume-rescaling}.
 \end{proof}
 
 \begin{claim}[Bound for the reduced length at the minimizing point]\label{claim:qk-length-bound}
+\uses{thm:asymptotic-gradient-shrinking-soliton, cor:l-function-gradient-bound}
 \label{tausqtau}
-\uses{thm:asymptotic-gradient-shrinking-soliton,cor:l-function-gradient-bound}
+
 For every $\tau>0$,
 \[
  l_{x_k}(q_k,\tau)\leq\frac{n}{2\tau^2}+\frac{n\tau}{2}.
@@ -246,8 +261,9 @@ $\partial_\tau l\leq l/\tau$ gives $n\tau/2$ for $\tau>1$.
 \end{proof}
 
 \begin{corollary}[Quadratic distance bound for the reduced length]\label{cor:l-function-distance-bound}
-\label{lxkest}
 \uses{claim:qk-length-bound}
+\label{lxkest}
+
 There is a positive continuous function $C_1(\tau)$ such that
 \[
  l_{x_k}(q,\tau)\leq
@@ -269,7 +285,8 @@ bound into the gradient estimate.
 \end{proof}
 
 \begin{corollary}[Existence of the geometric limit flow]\label{cor:kappa-solution-geometric-limit-exists}
-\uses{thm:asymptotic-gradient-shrinking-soliton,def:kappa-noncollapsed}
+\uses{thm:asymptotic-gradient-shrinking-soliton, def:kappa-noncollapsed}
+
 After passage to a subsequence, the flows
 $(M,g_k(t),(q_k,-1))$ converge smoothly on $-\infty<t<0$ to a
 complete flow $(M_\infty,g_\infty(t),(q_\infty,-1))$ with
@@ -295,8 +312,9 @@ $C^{0,\alpha}_{\mathrm{loc}}$ for $0<\alpha<1$ and weakly in
 $W^{1,2}_{\mathrm{loc}}$.
 
 \begin{corollary}[Gradient bound for the limit length function]\label{cor:l-infinity-gradient-bound}
-\label{linfest}
 \uses{cor:l-function-distance-bound}
+\label{linfest}
+
 For $\tau>0$ and $q\in M_\infty$,
 \[
  |\nabla l_\infty(q,\tau)|\leq
@@ -318,8 +336,9 @@ from any point of the limiting flow.
 \subsection{Differential inequalities for $l_\infty$}
 
 \begin{proposition}[Differential equalities for the limit length function]\label{prop:l-infinity-differential-equations}
-\label{weakeqn}
 \uses{cor:l-infinity-gradient-bound}
+\label{weakeqn}
+
 The function $l_\infty$ is smooth on
 $M_\infty\times(-\infty,0)$ and satisfies
 \begin{equation}\label{weak1}
@@ -348,8 +367,9 @@ limit and gives Equation~\ref{weak2}.
 Proposition~{\ref{prop:l-infinity-differential-equations}}}\label{sect9.2.3}
 
 \begin{lemma}[Convergence of the gradient-squared term]\label{lem:gradient-convergence-distributions}
-\label{nablaconv}
 \uses{cor:l-infinity-gradient-bound}
+\label{nablaconv}
+
 For every $t<0$,
 \[
  |\nabla^{h_k}l_k|_{h_k}^2d\vol(h_k)
@@ -403,6 +423,7 @@ since the term involving $\nabla\varphi$ tends to zero.
 
 \begin{lemma}[The candidate distribution is non-positively paired]\label{lem:distribution-d-nonpositive}
 \uses{lem:gradient-convergence-distributions}
+
 Define
 \[
  \mathcal D=\partial_\tau l_\infty+|\nabla l_\infty|^2-R
@@ -429,8 +450,9 @@ stated pairing sign.
 \end{proof}
 
 \begin{corollary}[Weighted distribution is non-negative]\label{cor:weighted-distribution-nonnegative}
-\label{etimesdis}
 \uses{lem:distribution-d-nonpositive}
+\label{etimesdis}
+
 The map $\varphi\mapsto\mathcal D(e^{-l_\infty}\varphi)$ is a
 distribution whose value on every nonnegative compactly supported
 smooth $\varphi$ is nonnegative.
@@ -446,8 +468,9 @@ with the source sign convention.
 \subsection{Extension to non-compactly supported functions}
 
 \begin{lemma}[Lower bound for the reduced length]\label{lem:l-function-lower-bound}
-\label{lowerbdd}
 \uses{thm:asymptotic-gradient-shrinking-soliton}
+\label{lowerbdd}
+
 There is $c_1=c_1(n)>0$ such that, for $p,q\in M_k$,
 \[
  l_{x_k}(p,\tau)\geq-l_{x_k}(q,\tau)-1
@@ -480,7 +503,8 @@ rescaling proves the claim.
 \end{proof}
 
 \begin{corollary}[Refined lower bound for the reduced length]\label{cor:l-function-lower-bound-refined}
-\uses{lem:l-function-lower-bound,claim:qk-length-bound}
+\uses{lem:l-function-lower-bound, claim:qk-length-bound}
+
 For $q'\in M_k$ and $0<\tau_0\leq\tau'$,
 \[
  l_{x_k}(q',\tau')\geq
@@ -497,8 +521,9 @@ to replace $d_{g_k(-\tau')}$ by $d_{g_k(-\tau_0)}$.
 \end{proof}
 
 \begin{claim}[Absolute convergence of the weighted distribution]\label{claim:absolute-convergence-weighted-distribution}
-\label{absconv1}
 \uses{cor:l-function-lower-bound-refined}
+\label{absconv1}
+
 Fix a compact time interval $[-\tau,-\tau_0]$. If a locally
 Lipschitz $f$ satisfies $|f|\leq C\max(l_\infty,1)$, then
 $fe^{-l_\infty}$ is absolutely convergent: for every bounded smooth
@@ -519,8 +544,9 @@ curvature gives polynomial volume growth.
 \end{proof}
 
 \begin{corollary}[Absolute convergence of the gradient and time-derivative terms]\label{cor:absolute-convergence-gradient-terms}
+\uses{claim:absolute-convergence-weighted-distribution, cor:l-function-gradient-bound}
 \label{absconv}
-\uses{claim:absolute-convergence-weighted-distribution,cor:l-function-gradient-bound}
+
 The distributions $|\nabla l_\infty|^2e^{-l_\infty}$,
 $Re^{-l_\infty}$, and
 $|\partial_\tau l_\infty|e^{-l_\infty}$ are absolutely convergent
@@ -535,8 +561,9 @@ interval.
 \end{proof}
 
 \begin{claim}[Absolute convergence of the Laplacian term]\label{claim:absolute-convergence-laplacian-term}
-\label{absconv2}
 \uses{claim:absolute-convergence-weighted-distribution}
+\label{absconv2}
+
 If $\varphi$ and the exhaustion $\psi_k$ above are uniformly
 Lipschitz, then
 \[
@@ -555,8 +582,9 @@ claim applies.
 \end{proof}
 
 \begin{corollary}[Non-negativity of the weak pairing]\label{cor:weak-inequality-nonnegative-integral}
+\uses{claim:absolute-convergence-weighted-distribution, claim:absolute-convergence-laplacian-term, cor:weighted-distribution-nonnegative}
 \label{weakneg}
-\uses{claim:absolute-convergence-weighted-distribution,claim:absolute-convergence-laplacian-term,cor:weighted-distribution-nonnegative}
+
 If $0<\tau_0<\tau_1$, and $f$ is nonnegative, smooth, bounded, and
 has bounded spatial gradient, then
 \[
@@ -578,6 +606,7 @@ Proposition~{\ref{prop:l-infinity-differential-equations}}}\label{sect9.2.5}
 
 \begin{claim}[The pure Laplacian integral vanishes]\label{claim:laplacian-integral-vanishes}
 \uses{cor:absolute-convergence-gradient-terms}
+
 For $0<\tau_0<\tau_1$,
 \[
  \int_{\tau_0}^{\tau_1}\int_{M_\infty\times\{-\tau\}}
@@ -615,8 +644,9 @@ give
 \subsection{The gradient shrinking soliton equation}
 
 \begin{proposition}[The limit satisfies the gradient shrinking soliton equation]\label{prop:limit-gradient-shrinking-soliton-equation}
+\uses{prop:l-infinity-differential-equations, def:gradient-shrinking-soliton}
 \label{gradshrink}
-\uses{prop:l-infinity-differential-equations,def:gradient-shrinking-soliton}
+
 On $M_\infty\times(-\infty,0)$, with $\tau=-t$,
 \[
  \Ric_{g_\infty(t)}+\Hess^{g_\infty(t)}l_\infty(\cdot,\tau)
@@ -624,6 +654,7 @@ On $M_\infty\times(-\infty,0)$, with $\tau=-t$,
 \]
 \end{proposition}
 \begin{proof}
+  \uses{def:ricci-flow}
 \sketch Apply Lemma~\ref{lem:conjugate-heat-equation-soliton-identity}
 with $f=l_\infty$. Equation~\ref{weak1} says that $u$ satisfies the
 conjugate heat equation, while Equation~\ref{weak2} makes the
@@ -632,8 +663,9 @@ then forces the displayed squared norm to vanish because $u>0$.
 \end{proof}
 
 \begin{lemma}[Conjugate heat equation identity for gradient shrinking solitons]\label{lem:conjugate-heat-equation-soliton-identity}
-\label{9.1}
 \uses{def:ricci-flow}
+\label{9.1}
+
 Let $(M,g(t))$, $0\leq t\leq T$, be an $n$-dimensional Ricci flow,
 let $f$ be smooth, and put $\tau=T-t$. Then
 \[
@@ -654,6 +686,7 @@ satisfies
 \]
 \end{lemma}
 \begin{proof}
+  \uses{claim:curvature-symmetries-bianchi}
 \sketch Direct differentiation gives the equivalence. Set
 $H=\tau(2\triangle f-|\nabla f|^2+R)+f-n$, so $v=Hu$. Then
 \begin{equation}\label{dHeqn}
@@ -700,6 +733,7 @@ by the contracted second Bianchi identity.
 
 \begin{claim}[Bochner formula for $|\nabla f|^2$]\label{claim:laplacian-gradient-squared-formula}
 \uses{lem:laplacian-one-form}
+
 \[
  \triangle|\nabla f|^2
  =2\langle\nabla\triangle f,\nabla f\rangle
@@ -718,6 +752,7 @@ Theorem~{\ref{thm:asymptotic-gradient-shrinking-soliton}}}
 
 \begin{claim}[The pullback of $l_\infty$ in the flat case]\label{claim:flat-limit-length-function-form}
 \uses{prop:limit-gradient-shrinking-soliton-equation}
+
 If $(M_\infty,g_\infty(t))$ is flat for some $t<0$, then it is
 isometric to $\Ar^n$, and under such an isometry
 \[
@@ -770,8 +805,9 @@ Boundedness of $f$ forces termination, and the geometric sums give
 \end{proof}
 
 \begin{corollary}[Time-independent point-picking]\label{cor:point-picking-time-independent}
-\label{pp}
 \uses{lem:point-picking-general}
+\label{pp}
+
 If $f:B(p,2r)\to\Ar$ is continuous, bounded, and positive at $p$,
 then some $q\in B(p,2r)$ satisfies $f(q)\geq f(p)$ and, with
 $\alpha=f(p)/f(q)$,
@@ -789,8 +825,9 @@ Apply the lemma to the time-independent extension of $f$.
 \subsection{Splitting results}
 
 \begin{proposition}[Splitting at infinity]\label{prop:splitting-at-infinity}
-\label{prodatinf}
 \uses{def:kappa-noncollapsed}
+\label{prodatinf}
+
 Let $(M,g(t))$, $-\infty<t<0$, be a $\kappa$-non-collapsed flow of
 dimension $n\leq3$ whose time-slices are complete, noncompact,
 non-flat, and have nonnegative curvature operator. Assume
@@ -826,12 +863,14 @@ nonnegative curvature.
 \end{proof}
 
 \begin{corollary}[No two-dimensional example]\label{cor:no-two-dimensional-splitting-example}
-\label{compact2D}
 \uses{prop:splitting-at-infinity}
+\label{compact2D}
+
 No two-dimensional flow satisfies the hypotheses of
 Proposition~\ref{prop:splitting-at-infinity}.
 \end{corollary}
 \begin{proof}
+  \uses{cor:point-picking-time-independent}
 \sketch The proposition would produce a product of two
 one-dimensional manifolds, hence a flat limit, contradicting the
 normalization $R(q_\infty,-1)=1$.
@@ -853,6 +892,7 @@ $S^2$ is again a gradient shrinking soliton.
 
 \begin{definition}[$\kappa$-non-collapsed Riemannian manifold]\label{def:kappa-noncollapsed-riemannian-manifold}
 \uses{def:kappa-noncollapsed}
+
 A complete $n$-manifold $(M,g)$ is \emph{$\kappa$-non-collapsed}
 if, for every $p\in M$ and $r>0$, the bound
 $|\Rm_g|\leq r^{-2}$ on $B(p,r)$ implies
@@ -860,8 +900,9 @@ $\Vol B(p,r)\geq\kappa r^n$.
 \end{definition}
 
 \begin{theorem}[Classification of gradient shrinking solitons in dimension 2 and 3]\label{thm:gradient-shrinking-soliton-classification}
+\uses{def:kappa-noncollapsed-riemannian-manifold, def:gradient-shrinking-soliton}
 \label{GSSclass}
-\uses{def:kappa-noncollapsed-riemannian-manifold,def:gradient-shrinking-soliton}
+
 Let $(M,g)$ be a complete non-flat $\kappa$-non-collapsed manifold
 of dimension two or three with bounded nonnegative curvature. If a
 $C^2$ function $f$ satisfies
@@ -896,6 +937,7 @@ then makes the surface factor round, yielding (1)--(3).
 
 \begin{claim}[Compact positive-curvature case is round]\label{claim:compact-positive-curvature-round}
 \uses{thm:gradient-shrinking-soliton-classification}
+
 If $(M,g,f)$ satisfies the classification theorem and $M$ is
 compact with positive curvature, then the flow in
 Equation~\ref{Gdefn} is a shrinking family of round manifolds.
@@ -911,8 +953,9 @@ implies the same conclusion \cite{Hamiltonsurface}; see also
 \end{proof}
 
 \begin{corollary}[Compact asymptotic soliton forces time-shifted equivalence]\label{cor:compact-asymptotic-soliton-classification}
-\label{compactcase}
 \uses{claim:compact-positive-curvature-round}
+\label{compactcase}
+
 If a three-dimensional $\kappa$-solution has a compact asymptotic
 gradient shrinking soliton, then it is isomorphic to a time shift of
 that soliton.
@@ -930,8 +973,9 @@ singular time, so only a time shift remains.
 \subsection{Non-strictly positive curvature}
 
 \begin{claim}[Non-strictly positive curvature splits off a line]\label{claim:non-strictly-positive-curvature-splitting}
-\label{flatssplit}
 \uses{thm:gradient-shrinking-soliton-classification}
+\label{flatssplit}
+
 If $(M,g,f)$ satisfies the classification theorem but $(M,g)$ is not
 strictly positively curved, then $n=3$ and the self-similar flow has
 a one- or two-sheeted cover equal to the product of a positively
@@ -951,8 +995,9 @@ factor.
 \subsection{Noncompact strict positive curvature}\label{noncomp}
 
 \begin{proposition}[No non-compact positively curved examples]\label{prop:no-noncompact-positive-curvature-soliton}
-\label{noncompsol}
 \uses{thm:gradient-shrinking-soliton-classification}
+\label{noncompsol}
+
 No two- or three-dimensional soliton satisfying the classification
 theorem is both noncompact and positively curved.
 \end{proposition}
@@ -1027,8 +1072,9 @@ $(\sum_i\lambda_i)\sum_i(X^i)^2\lambda_i$, respectively.
 \end{proof}
 
 \begin{corollary}[Summary: non-compact soliton splitting]\label{cor:noncompact-soliton-splitting-summary}
+\uses{claim:non-strictly-positive-curvature-splitting, prop:splitting-at-infinity}
 \label{compact2Dsol}
-\uses{claim:non-strictly-positive-curvature-splitting,prop:splitting-at-infinity}
+
 There is no noncompact two-dimensional manifold satisfying the
 classification theorem. For a noncompact positively curved
 three-dimensional example, points tending to infinity and
@@ -1046,8 +1092,9 @@ three-dimensional limit has the asserted form.
 \end{proof}
 
 \begin{corollary}[Classification of two-dimensional gradient shrinking solitons]\label{cor:two-dimensional-gradient-shrinking-soliton}
+\uses{cor:no-two-dimensional-splitting-example, cor:noncompact-soliton-splitting-summary}
 \label{2DGSS}
-\uses{cor:no-two-dimensional-splitting-example,cor:noncompact-soliton-splitting-summary}
+
 \begin{enumerate}
 \item[(1)] A two-dimensional flow satisfying all hypotheses of
 Proposition~\ref{prop:splitting-at-infinity} except possibly
@@ -1092,8 +1139,9 @@ forcing equality.
 \subsection{Completion of the classification}
 
 \begin{corollary}[The splitting-at-infinity limit is a family of round surfaces]\label{cor:three-dimensional-splitting-compact-surfaces}
+\uses{prop:splitting-at-infinity, cor:two-dimensional-gradient-shrinking-soliton}
 \label{3Dinfty}
-\uses{prop:splitting-at-infinity,cor:two-dimensional-gradient-shrinking-soliton}
+
 For a three-dimensional flow satisfying
 Proposition~\ref{prop:splitting-at-infinity}, its splitting limit is
 the product of a shrinking family of compact round surfaces with a
@@ -1110,8 +1158,9 @@ round.
 \end{proof}
 
 \begin{corollary}[Asymptotic soliton of a 3D $\kappa$-solution has bounded curvature]\label{cor:three-dimensional-asymptotic-soliton-bounded-curvature}
+\uses{cor:three-dimensional-splitting-compact-surfaces, cor:two-dimensional-gradient-shrinking-soliton}
 \label{3DGSSkappa}
-\uses{cor:three-dimensional-splitting-compact-surfaces,cor:two-dimensional-gradient-shrinking-soliton}
+
 Every time-slice of an asymptotic gradient shrinking soliton of a
 three-dimensional $\kappa$-solution has bounded curvature.
 Consequently, restriction to $t\leq-a$ followed by a time shift by
@@ -1130,7 +1179,8 @@ contradicts Proposition~\ref{narrows}.
 \end{proof}
 
 \begin{corollary}[The asymptotic soliton falls under the classification theorem]\label{cor:asymptotic-soliton-classification-application}
-\uses{cor:three-dimensional-asymptotic-soliton-bounded-curvature,thm:gradient-shrinking-soliton-classification,thm:asymptotic-gradient-shrinking-soliton}
+\uses{cor:three-dimensional-asymptotic-soliton-bounded-curvature, thm:gradient-shrinking-soliton-classification, thm:asymptotic-gradient-shrinking-soliton}
+
 Every asymptotic gradient shrinking soliton of a three-dimensional
 $\kappa$-solution is one of the three flows in
 Theorem~\ref{thm:gradient-shrinking-soliton-classification}.
@@ -1159,8 +1209,9 @@ This is independent of $p$.
 \end{definition}
 
 \begin{proposition}[Non-compact $\kappa$-solutions have infinite asymptotic curvature]\label{prop:asymptotic-scalar-curvature-infinite}
+\uses{def:asymptotic-scalar-curvature, def:ancient-solution, def:kappa-noncollapsed}
 \label{asympscal}
-\uses{def:asymptotic-scalar-curvature,def:ancient-solution,def:kappa-noncollapsed}
+
 If $(M,g(t))$, $-\infty<t<0$, is a connected noncompact
 $\kappa$-solution of dimension at most three, then
 $\mathcal R(M,g(t))=+\infty$ for every $t<0$.
@@ -1202,8 +1253,9 @@ orientable surface, necessarily $S^2$ with its round metric.
 \section{Universal $\kappa$}
 
 \begin{proposition}[Universal $\kappa_0$ for non-round $3$-dimensional $\kappa$-solutions]\label{prop:universal-kappa-non-round}
+\uses{cor:compact-asymptotic-soliton-classification, thm:gradient-shrinking-soliton-classification}
 \label{kappa0}
-\uses{cor:compact-asymptotic-soliton-classification,thm:gradient-shrinking-soliton-classification}
+
 There is a universal $\kappa_0>0$ such that every non-round
 three-dimensional $\kappa$-solution is a $\kappa_0$-solution.
 \end{proposition}
@@ -1234,8 +1286,9 @@ For a $\kappa$-solution define
 Bishop--Gromov monotonicity makes the limit independent of $p$.
 
 \begin{theorem}[Asymptotic volume of a $\kappa$-solution is zero]\label{thm:asymptotic-volume-zero}
+\uses{def:ancient-solution, def:kappa-noncollapsed}
 \label{asympvol}
-\uses{def:ancient-solution,def:kappa-noncollapsed}
+
 Every $\kappa$-solution has identically zero asymptotic volume.
 \end{theorem}
 \begin{proof}
@@ -1256,8 +1309,9 @@ available.
 \subsection{Volume comparison}
 
 \begin{proposition}[Volume comparison for $\kappa$-non-collapsed balls]\label{prop:volume-comparison-bound}
-\label{volcomp}
 \uses{thm:asymptotic-volume-zero}
+\label{volcomp}
+
 Fix $n$. For every $\nu>0$ there is $A<\infty$ with the following
 property. Let $(M_k,g_k(t))$, $-t_k\leq t\leq0$, be Ricci flows with
 nonnegative curvature operator, let
@@ -1305,8 +1359,9 @@ Bishop--Gromov comparison.
 \end{proof}
 
 \begin{corollary}[Volume bounded below implies curvature bounded above]\label{cor:volume-bound-implies-curvature-bound}
-\label{bdvolbdcurv}
 \uses{prop:volume-comparison-bound}
+\label{bdvolbdcurv}
+
 For every $\nu>0$ there is $C=C(n,\nu)$ such that, if an ancient
 complete flow has bounded nonnegative curvature operator and
 \[
@@ -1327,8 +1382,9 @@ Theorem~\ref{thm:asymptotic-volume-zero}.
 \end{proof}
 
 \begin{corollary}[Global curvature bound from a volume lower bound]\label{cor:global-curvature-bound-from-volume}
-\label{global}
 \uses{cor:volume-bound-implies-curvature-bound}
+\label{global}
+
 For fixed $n$ and $\nu>0$ there is a finite function $K(A)$ on
 $(0,\infty)$ such that, under the hypotheses of the preceding
 corollary,
@@ -1354,8 +1410,9 @@ non-collapsing constant $\nu/(1+d/r)^n$.
 $\kappa$-solutions}
 
 \begin{theorem}[Compactness of based $3$-dimensional $\kappa$-solutions]\label{thm:kappa-solution-compactness}
+\uses{def:ancient-solution, def:kappa-noncollapsed}
 \label{compactkappa}
-\uses{def:ancient-solution,def:kappa-noncollapsed}
+
 Every sequence of based three-dimensional $\kappa$-solutions
 $(M_k,g_k(t),(p_k,0))$ with $R(p_k,0)=1$ has a smoothly convergent
 subsequence whose limit is a based $\kappa$-solution.
@@ -1374,15 +1431,17 @@ a $\kappa$-solution.
 \end{proof}
 
 \begin{lemma}[Uniform curvature bound near the base point]\label{lem:uniform-curvature-bound-kappa-solution}
-\label{proposition}
 \uses{thm:kappa-solution-compactness}
+\label{proposition}
+
 For each finite $r$ there is $C(r)<\infty$ such that every based
 three-dimensional $\kappa$-solution with $R(p,0)=1$ satisfies
 $R(q,0)\leq C(r)$ on $B(p,0,r)$.
 \end{lemma}
 \begin{proof}
+  \uses{prop:asymptotic-scalar-curvature-infinite, cor:volume-bound-implies-curvature-bound, cor:three-dimensional-asymptotic-soliton-bounded-curvature}
 \sketch
-\uses{prop:asymptotic-scalar-curvature-infinite}
+
 Choose the closest $q$ to $p$ with
 $d_0(p,q)^2R(q,0)=1$, and write $d=d_0(p,q)$,
 $Q=R(q,0)$. Claims~\ref{claim:curvature-ratio-bound-near-basepoint}
@@ -1396,8 +1455,9 @@ the curvature estimate to every fixed ball.
 \end{proof}
 
 \begin{claim}[Universal curvature ratio bound near $q$]\label{claim:curvature-ratio-bound-near-basepoint}
+\uses{cor:volume-bound-implies-curvature-bound, cor:three-dimensional-asymptotic-soliton-bounded-curvature}
 \label{2Rbound}
-\uses{cor:volume-bound-implies-curvature-bound,cor:three-dimensional-asymptotic-soliton-bounded-curvature}
+
 There is a universal $C$ such that
 $R(q',0)/R(q,0)\leq C$ for all $q'\in B(q,0,2d)$.
 \end{claim}
@@ -1442,8 +1502,9 @@ $-cQ^{-1}$ gives the result with $\widetilde C=e^{cC}$.
 \end{proof}
 
 \begin{claim}[Universal upper bound for $Q$]\label{claim:curvature-upper-bound-universal}
-\label{zkbound}
 \uses{claim:distance-bound-under-rescaling}
+\label{zkbound}
+
 The quantity $Q=R(q,0)$ is bounded above by a universal constant.
 \end{claim}
 \begin{proof}
@@ -1460,8 +1521,9 @@ Taking $c=(2C'')^{-1}$ gives a universal upper bound.
 \end{proof}
 
 \begin{claim}[Universal neighborhood curvature bound]\label{claim:basepoint-neighborhood-curvature-bound}
+\uses{claim:curvature-ratio-bound-near-basepoint, claim:curvature-upper-bound-universal}
 \label{bdnearxk}
-\uses{claim:curvature-ratio-bound-near-basepoint,claim:curvature-upper-bound-universal}
+
 There are universal $\delta>0$ and $C_1<\infty$ such that
 $d(p,q)\geq\delta$ and $R(q',t)\leq C_1$ for
 $q'\in B(p,0,d)$ and $t\leq0$.
@@ -1474,16 +1536,18 @@ extends it backward.
 \end{proof}
 
 \begin{corollary}[Curvature bound on a fixed universal ball]\label{cor:curvature-bound-fixed-ball}
-\label{rho}
 \uses{claim:basepoint-neighborhood-curvature-bound}
+\label{rho}
+
 After reducing the universal $\delta>0$ if necessary,
 $R(q',t)\leq\delta^{-2}$ on
 $B(p,0,\delta)\times(-\infty,0]$.
 \end{corollary}
 
 \begin{corollary}[Universal scale-invariant gradient and time-derivative bounds]\label{cor:curvature-derivative-bounds-universal}
-\label{derivcor}
 \uses{thm:kappa-solution-compactness}
+\label{derivcor}
+
 For each $\kappa>0$ there is $C<\infty$ such that every
 three-dimensional $\kappa$-solution satisfies
 \begin{equation}\label{gradest}
@@ -1510,8 +1574,9 @@ $|\triangle R+2|\Ric|^2|/R^2$.
 \subsection{Strong canonical neighborhoods}
 
 \begin{definition}[$(C,\epsilon)$-cap]\label{def:c-epsilon-cap}
-\label{epscap}
 \uses{def:epsilon-neck}
+\label{epscap}
+
 Fix $0<\epsilon<1/2$ and $C<\infty$. A
 \emph{$(C,\epsilon)$-cap} in a Riemannian $3$-manifold is an open
 submanifold $\mathcal C$, together with an open $N\subset\mathcal C$,
@@ -1549,6 +1614,7 @@ $B(y,r_y)\Subset\mathcal C$ and
 
 \begin{remark}[The ball $B(y,r_y)$ has compact closure in the cap]\label{rem:cap-core-ball-remark}
 \uses{def:c-epsilon-cap}
+
 If $B(y,r_y)$ meets the complement of the core, curvature control on
 the neck bounds $r_y$ by a fixed multiple of the neck curvature
 scale. Since $\epsilon<1/2$ and $y$ lies in the core, this implies
@@ -1557,8 +1623,9 @@ the closure of its negative end meets the core.
 \end{remark}
 
 \begin{claim}[Condition (8) is a time-derivative bound]\label{claim:cap-condition-time-derivative-equivalence}
+\uses{def:c-epsilon-cap, def:ricci-flow}
 \label{partialtR}
-\uses{def:c-epsilon-cap,def:ricci-flow}
+
 When $\mathcal C$ lies in a time-slice of a Ricci flow, the second
 inequality in Condition~(8) is equivalent to
 \[
@@ -1597,7 +1664,8 @@ $\varphi^*(Rg)$ is within $\epsilon$ of $g_0$ in that topology.
 \end{definition}
 
 \begin{definition}[$(C,\epsilon)$-canonical neighborhood]\label{def:canonical-neighborhood}
-\uses{def:epsilon-neck,def:c-epsilon-cap,def:c-component,def:epsilon-round-component}
+\uses{def:epsilon-neck, def:c-epsilon-cap, def:c-component, def:epsilon-round-component}
+
 An open neighborhood $U$ of $x$ in a Riemannian manifold is a
 \emph{$(C,\epsilon)$-canonical neighborhood} if it is one of:
 \begin{enumerate}
@@ -1609,8 +1677,9 @@ An open neighborhood $U$ of $x$ in a Riemannian manifold is a
 \end{definition}
 
 \begin{definition}[Evolving and strong $\epsilon$-neck; strong canonical neighborhood]\label{def:strong-epsilon-neck-canonical-neighborhood}
+\uses{def:generalized-ricci-flow, def:epsilon-neck, def:c-epsilon-cap, def:c-component, def:epsilon-round-component, def:epsilon-close-topology}
 \label{defncanonnbhd}
-\uses{def:generalized-ricci-flow,def:epsilon-neck,def:c-epsilon-cap,def:c-component,def:epsilon-round-component,def:epsilon-close-topology}
+
 Let $(\mathcal M,G)$ be a generalized Ricci flow, let
 $x\in\mathcal M$ with $\mathbf t(x)=t$, and fix $C<\infty$ and
 $\epsilon>0$. An \emph{evolving $\epsilon$-neck of normalized time
@@ -1644,8 +1713,9 @@ scaling.
 \end{definition}
 
 \begin{proposition}[Continuity of canonical neighborhoods]\label{prop:canonical-neighborhood-stability}
+\uses{def:strong-epsilon-neck-canonical-neighborhood, def:canonical-neighborhood}
 \label{canonvary}
-\uses{def:strong-epsilon-neck-canonical-neighborhood,def:canonical-neighborhood}
+
 Fix $\epsilon<1/4$ and $C<\infty$.
 \begin{enumerate}
 \item[(1)] If $U\subset M_t$ is a $(C,\epsilon)$-canonical
@@ -1683,8 +1753,9 @@ spacetime continuity assertion.
 \end{proof}
 
 \begin{corollary}[Centers of strong necks form an open set]\label{cor:strong-neck-centers-open}
-\label{strepsopen}
 \uses{prop:canonical-neighborhood-stability}
+\label{strepsopen}
+
 In an ancient solution, the set of spacetime points that are centers
 of strong $\epsilon$-necks is open.
 \end{corollary}
@@ -1699,8 +1770,9 @@ proposition.
 \end{proof}
 
 \begin{definition}[$\epsilon$-tube and capped $\epsilon$-tube]\label{def:epsilon-tube}
+\uses{def:epsilon-neck, def:c-epsilon-cap}
 \label{epstube}
-\uses{def:epsilon-neck,def:c-epsilon-cap}
+
 An \emph{$\epsilon$-tube} is a submanifold diffeomorphic to
 $S^2\times I$, for a nondegenerate interval $I$, such that every
 boundary component is the central sphere of an $\epsilon$-neck and
@@ -1722,7 +1794,8 @@ central spheres are isotopic to the fibers.
 \end{definition}
 
 \begin{definition}[Strong $\epsilon$-tube]\label{def:strong-epsilon-tube}
-\uses{def:epsilon-tube,def:strong-epsilon-neck-canonical-neighborhood}
+\uses{def:epsilon-tube, def:strong-epsilon-neck-canonical-neighborhood}
+
 A \emph{strong $\epsilon$-tube} in a generalized Ricci flow is an
 $\epsilon$-tube every point of which is the center of a strong
 $\epsilon$-neck.
@@ -1731,8 +1804,9 @@ $\epsilon$-neck.
 \subsection{Canonical neighborhoods for $\kappa$-solutions}
 
 \begin{proposition}[Trichotomy for $3$-dimensional $\kappa$-solutions]\label{prop:kappa-solution-trichotomy}
+\uses{def:ancient-solution, def:kappa-noncollapsed}
 \label{infprod2}
-\uses{def:ancient-solution,def:kappa-noncollapsed}
+
 Every three-dimensional $\kappa$-solution is exactly one of:
 \begin{enumerate}
 \item[(1)] positively curved at every time;
@@ -1752,6 +1826,7 @@ further double cover replaces $\Ar P^2$ by $S^2$, yielding (2) or
 
 \begin{lemma}[Neck structure outside a bounded ball]\label{lem:noncompact-kappa-solution-neck-structure}
 \uses{prop:kappa-solution-trichotomy}
+
 Let $(M,g(t))$ be a noncompact positively curved
 three-dimensional $\kappa$-solution and $p\in M$. There are
 $D',D_1'<\infty$, possibly depending on the flow and $p$, such that:
@@ -1777,8 +1852,9 @@ follows from strict positive curvature.
 \end{proof}
 
 \begin{proposition}[Uniform neck-structure constants]\label{prop:uniform-neck-structure-constants}
-\label{uniformD}
 \uses{lem:noncompact-kappa-solution-neck-structure}
+\label{uniformD}
+
 For every sufficiently small $\epsilon>0$ there are universal
 $D(\epsilon),D_1(\epsilon)<\infty$ such that, for any noncompact
 positively curved three-dimensional $\kappa$-solution and any soul
@@ -1826,6 +1902,7 @@ Corollary~\ref{neckseparate}.
 
 \begin{remark}[Basepoint may be replaced]\label{rem:uniform-neck-structure-basepoint-remark}
 \uses{prop:uniform-neck-structure-constants}
+
 In Part~(1), the soul may be replaced by any point that is not the
 center of a strong $\epsilon$-neck.
 \end{remark}
@@ -1847,8 +1924,9 @@ point.
 \end{proof}
 
 \begin{corollary}[Non-compact $\kappa$-solutions are (capped) strong tubes]\label{cor:noncompact-kappa-solution-tube-structure}
+\uses{prop:uniform-neck-structure-constants, cor:curvature-derivative-bounds-universal, def:strong-epsilon-tube}
 \label{noncompkappa}
-\uses{prop:uniform-neck-structure-constants,cor:curvature-derivative-bounds-universal,def:strong-epsilon-tube}
+
 There is $\bar\epsilon_2>0$ such that, for
 $0<\epsilon\leq\bar\epsilon_2$, some $C_0(\epsilon)$ has the
 following property: every noncompact three-dimensional
@@ -1869,8 +1947,9 @@ centers.
 \end{proof}
 
 \begin{theorem}[Structure of compact $\kappa$-solutions]\label{thm:compact-kappa-solution-structure}
+\uses{cor:noncompact-kappa-solution-tube-structure, def:strong-epsilon-tube}
 \label{thmep3}
-\uses{cor:noncompact-kappa-solution-tube-structure,def:strong-epsilon-tube}
+
 There is $\bar\epsilon_3>0$ such that, for every
 $0<\epsilon\leq\bar\epsilon_3$, some $C_1(\epsilon)<\infty$ makes
 every compact three-dimensional $\kappa$-solution satisfy one of:
@@ -1884,8 +1963,9 @@ $\epsilon$-tube.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
+  \uses{prop:universal-kappa-non-round, cor:noncompact-kappa-solution-tube-structure, cor:compact-asymptotic-soliton-classification, thm:gradient-shrinking-soliton-classification, thm:kappa-solution-compactness, prop:canonical-neighborhood-stability}
 \sketch
-\uses{prop:universal-kappa-non-round,cor:noncompact-kappa-solution-tube-structure,cor:compact-asymptotic-soliton-classification,thm:gradient-shrinking-soliton-classification}
+
 A compact $\kappa$-solution has positive curvature: otherwise its
 universal cover splits as $S^2\times\Ar$, forcing noncompactness or
 a collapsed $S^2\times S^1$ quotient. Its fundamental group is
@@ -1903,6 +1983,7 @@ applies, showing that $M$ is $S^3$ or $\Ar P^3$.
 
 \begin{claim}[Large-diameter compact solutions are capped tubes]\label{claim:diameter-canonical-neighborhood-criterion}
 \uses{cor:noncompact-kappa-solution-tube-structure}
+
 For each $\epsilon>0$ there is $C_1$ such that a compact non-round
 solution with
 \[
@@ -1923,7 +2004,8 @@ stability transfers that structure to the violating points.
 \end{proof}
 
 \begin{proposition}[Volume and curvature bounds for small-diameter compact solutions]\label{prop:compact-kappa-solution-volume-curvature-bounds}
-\uses{thm:compact-kappa-solution-structure,prop:universal-kappa-non-round,thm:kappa-solution-compactness,cor:noncompact-kappa-solution-tube-structure}
+\uses{thm:compact-kappa-solution-structure, prop:universal-kappa-non-round, thm:kappa-solution-compactness, cor:noncompact-kappa-solution-tube-structure}
+
 Let $0<\epsilon\leq\min(\bar\epsilon_2,\bar\epsilon_3)$ and let
 $C_1(\epsilon)$ be as above. There is $C_2(\epsilon)<\infty$ such
 that, for every compact non-round $\kappa$-solution satisfying
@@ -1956,8 +2038,9 @@ $C_2|\pi_1(M)|^{-1}R^{-3/2}$.
 \end{remark}
 
 \begin{theorem}[Summary structure theorem for $\kappa$-solutions]\label{thm:kappa-solution-structure-summary}
+\uses{thm:compact-kappa-solution-structure, cor:noncompact-kappa-solution-tube-structure, prop:compact-kappa-solution-volume-curvature-bounds, cor:curvature-derivative-bounds-universal}
 \label{kappasummary}
-\uses{thm:compact-kappa-solution-structure,cor:noncompact-kappa-solution-tube-structure,prop:compact-kappa-solution-volume-curvature-bounds,cor:curvature-derivative-bounds-universal}
+
 There is $\bar\epsilon>0$ such that, for
 $0<\epsilon<\bar\epsilon$, some $C=C(\epsilon)$ makes every
 three-dimensional $\kappa$-solution satisfy exactly one of:
@@ -1996,8 +2079,9 @@ strong neck center. In every case,
 \end{theorem}
 
 \begin{corollary}[Existence of canonical neighborhoods]\label{cor:canonical-neighborhood-existence}
+\uses{thm:kappa-solution-structure-summary, def:canonical-neighborhood}
 \label{kappacannbhd}
-\uses{thm:kappa-solution-structure-summary,def:canonical-neighborhood}
+
 For every $0<\epsilon\leq\bar\epsilon'$ there is
 $C(\epsilon)<\infty$ such that every point of a $\kappa$-solution
 has a strong $(C,\epsilon)$-canonical neighborhood, unless the
@@ -2005,8 +2089,9 @@ solution is $\Ar P^2\times\Ar$.
 \end{corollary}
 
 \begin{corollary}[Canonical neighborhoods pass to limits of generalized flows]\label{cor:canonical-neighborhood-limit-passage}
+\uses{cor:canonical-neighborhood-existence, def:strong-epsilon-neck-canonical-neighborhood, def:generalized-ricci-flow}
 \label{limitcannbhd}
-\uses{cor:canonical-neighborhood-existence,def:strong-epsilon-neck-canonical-neighborhood,def:generalized-ricci-flow}
+
 Fix $0<\epsilon\leq\bar\epsilon'$ and the preceding $C(\epsilon)$.
 Let $(\mathcal M_n,G_n,x_n)$ be based generalized Ricci flows with
 $\mathbf t(x_n)=0$, no time-slice containing an embedded

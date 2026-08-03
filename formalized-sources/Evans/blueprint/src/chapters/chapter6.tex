@@ -23,9 +23,10 @@ The PDE is in divergence form for (2) and nondivergence form for (3); $u=0$ on $
 
 \begin{remark}[Converting between divergence and nondivergence form]
 \label{rem:elliptic-operator-form-conversion}
+\uses{def:divergence-nondivergence-form}
 \dcref{ch6:6.1-rem-1}
 \group{Elliptic PDE}
-\uses{def:divergence-nondivergence-form}
+
 If $a^{ij}\in C^1(\bar U)$, the divergence operator (2) equals
 $$(2') \qquad Lu = -\sum_{i,j=1}^n a^{ij}(x)u_{x_ix_j} + \sum_{i=1}^n \tilde b^i(x)u_{x_i} + c(x)u$$
 with $\tilde b^i := b^i - \sum_{j=1}^n a^{ij}_{x_j}$. Thus the two forms are equivalent when the leading coefficients are $C^1$; divergence form is adapted to energy identities and nondivergence form to pointwise maximum principles.
@@ -33,9 +34,10 @@ with $\tilde b^i := b^i - \sum_{j=1}^n a^{ij}_{x_j}$. Thus the two forms are equ
 
 \begin{definition}[Uniform ellipticity]
 \label{def:uniform-ellipticity}
+\uses{def:divergence-nondivergence-form}
 \dcref{ch6:6.1-def-2}
 \group{Elliptic PDE}
-\uses{def:divergence-nondivergence-form}
+
 We say the partial differential operator $L$ is (uniformly) elliptic if there exists a constant $\theta > 0$ such that
 $$(4) \qquad \sum_{i,j=1}^n a^{ij}(x)\xi_i\xi_j \geq \theta|\xi|^2$$
 for a.e. $x \in U$ and all $\xi \in \R^n$.
@@ -43,9 +45,10 @@ for a.e. $x \in U$ and all $\xi \in \R^n$.
 
 \begin{remark}[Physical interpretation]
 \label{rem:elliptic-pde-physical-interpretation}
+\uses{def:uniform-ellipticity}
 \dcref{ch6:6.1-rem-2}
 \group{Elliptic PDE}
-\uses{def:uniform-ellipticity}
+
 The principal part $\mathbf A:D^2u=\sum_{i,j}a^{ij}u_{ij}$ models anisotropic diffusion. With flux $\mathbf F=-\mathbf A Du$, ellipticity implies
 $$\mathbf F \cdot Du \leq 0;$$
 while $\mathbf b\cdot Du$ is transport and $cu$ is a zeroth-order source term.
@@ -55,9 +58,10 @@ while $\mathbf b\cdot Du$ is transport and $cu$ is a zeroth-order source term.
 
 \begin{definition}[Bilinear form and weak solution for $f \in L^2(U)$]
 \label{def:bilinear-form-weak-solution-l2}
+\uses{def:divergence-nondivergence-form}
 \dcref{ch6:6.1-def-3}
 \group{Weak Solutions}
-\uses{def:divergence-nondivergence-form}
+
 (i) The bilinear form $B[\ ,\ ]$ associated with the divergence form elliptic operator $L$ defined by (2) is
 $$(8) \qquad B[u,v] := \int_U \sum_{i,j=1}^n a^{ij}u_{x_i}v_{x_j} + \sum_{i=1}^n b^iu_{x_i}v + cuv \, dx$$
 for $u,v \in H_0^1(U)$.
@@ -69,17 +73,19 @@ for all $v \in H_0^1(U)$, where $(\ ,\ )$ denotes the inner product in $L^2(U)$.
 
 \begin{remark}[Variational formulation]
 \label{rem:variational-formulation}
+\uses{def:bilinear-form-weak-solution-l2}
 \dcref{ch6:6.1-rem-3}
 \group{Weak Solutions}
-\uses{def:bilinear-form-weak-solution-l2}
+
 Identity (9) is the variational formulation of (1).
 \end{remark}
 
 \begin{definition}[Weak solution of the elliptic boundary-value problem]
 \label{def:weak-solution-elliptic-bvp}
+\uses{def:bilinear-form-weak-solution-l2, thm:characterization-h-minus-1}
 \dcref{ch6:6.1-def-4}
 \group{Weak Solutions}
-\uses{def:bilinear-form-weak-solution-l2,thm:characterization-h-minus-1}
+
 We say $u \in H_0^1(U)$ is a weak solution of problem (10) provided
 $$B[u,v] = \langle f,v \rangle$$
 for all $v \in H_0^1(U)$, where $\langle f,v \rangle = \int_U f^0 v + \sum_{i=1}^n f^i v_{x_i} \, dx$ and $\langle \cdot,\cdot \rangle$ is the pairing of $H^{-1}(U)$ and $H_0^1(U)$.
@@ -87,9 +93,10 @@ for all $v \in H_0^1(U)$, where $\langle f,v \rangle = \int_U f^0 v + \sum_{i=1}
 
 \begin{remark}[Nonzero boundary conditions]
 \label{rem:nonzero-boundary-weak-solution}
+\uses{def:weak-solution-elliptic-bvp, def:trace-operator}
 \dcref{ch6:6.1-rem-4}
 \group{Weak Solutions}
-\uses{def:weak-solution-elliptic-bvp,def:trace-operator}
+
 Assume $\partial U$ is $C^1$ and $u\in H^1(U)$ solves
 $$\begin{cases} Lu = f & \text{in } U \\ u = g & \text{on } \partial U. \end{cases}$$
 If $g$ is the trace of $w\in H^1(U)$, then $\tilde u:=u-w\in H_0^1(U)$ solves
@@ -125,9 +132,10 @@ for all $v \in H$.
 
 \begin{remark}[The symmetric case]
 \label{rem:lax-milgram-symmetric-case}
+\uses{thm:lax-milgram-theorem}
 \dcref{ch6:6.2-rem-1}
 \group{Weak Solutions}
-\uses{thm:lax-milgram-theorem}
+
 If $B$ is symmetric,
 $$B[u,v] = B[v,u] \quad (u,v \in H),$$
 then $B$ itself is an inner product equivalent to the Hilbert norm, so Riesz representation gives the result directly. Lax--Milgram does not require symmetry.
@@ -137,9 +145,10 @@ then $B$ itself is an inner product equivalent to the Hilbert norm, so Riesz rep
 
 \begin{theorem}[Energy estimates]
 \label{thm:energy-estimates}
+\uses{def:bilinear-form-weak-solution-l2, def:uniform-ellipticity, thm:poincare-w01p-subcritical}
 \dcref{ch6:6.2-thm-2}
 \group{Weak Solutions}
-\uses{def:bilinear-form-weak-solution-l2,def:uniform-ellipticity,thm:poincare-w01p-subcritical}
+
 There exist constants $\alpha,\beta > 0$ and $\gamma \geq 0$ such that
 $$(i) \qquad |B[u,v]| \leq \alpha\|u\|_{H_0^1(U)}\|v\|_{H_0^1(U)}$$
 and
@@ -153,9 +162,10 @@ for all $u,v \in H_0^1(U)$.
 
 \begin{theorem}[First Existence Theorem for weak solutions]
 \label{thm:first-existence-weak-solutions}
+\uses{thm:lax-milgram-theorem, thm:energy-estimates, def:bilinear-form-weak-solution-l2}
 \dcref{ch6:6.2-thm-3}
 \group{Weak Solutions}
-\uses{thm:lax-milgram-theorem,thm:energy-estimates,def:bilinear-form-weak-solution-l2}
+
 There is a number $\gamma \geq 0$ such that for each
 $$(7) \qquad \mu \geq \gamma$$
 and each function
@@ -170,9 +180,10 @@ $$(8) \qquad \begin{cases} Lu + \mu u = f & \text{in } U \\ u = 0 & \text{on } \
 
 \begin{remark}[General right-hand side and the isomorphism $L_\mu$]
 \label{rem:general-rhs-weak-solution-isomorphism}
+\uses{thm:first-existence-weak-solutions, def:weak-solution-elliptic-bvp}
 \dcref{ch6:6.2-rem-2}
 \group{Weak Solutions}
-\uses{thm:first-existence-weak-solutions,def:weak-solution-elliptic-bvp}
+
 For
 $$f^i \in L^2(U) \quad (i=0,\ldots,n),$$
 there is a unique weak solution $u$ of
@@ -186,9 +197,10 @@ is an isomorphism.
 
 \begin{example}[Nonnegative zeroth-order coefficient]
 \label{ex:energy-estimates-gamma-zero-examples}
+\uses{thm:energy-estimates, thm:poincare-w01p-subcritical}
 \dcref{ch6:6.2-ex-1}
 \group{Weak Solutions}
-\uses{thm:energy-estimates,thm:poincare-w01p-subcritical}
+
 For $Lu=-\Delta u$, the energy estimate holds with $\gamma=0$ by Poincare inequality. The same is true for $Lu=-\sum_{i,j}(a^{ij}u_{x_i})_{x_j}+cu$ when $c\ge0$.
 \end{example}
 
@@ -196,9 +208,10 @@ For $Lu=-\Delta u$, the energy estimate holds with $\gamma=0$ by Poincare inequa
 
 \begin{definition}[Formal adjoint operator and adjoint problem]
 \label{def:formal-adjoint-operator}
+\uses{def:divergence-nondivergence-form, def:bilinear-form-weak-solution-l2}
 \dcref{ch6:6.2-def-1}
 \group{Weak Solutions}
-\uses{def:divergence-nondivergence-form,def:bilinear-form-weak-solution-l2}
+
 (i) The operator $L^*$, the formal adjoint of $L$, is
 $$L^*v := -\sum_{i,j=1}^n(a^{ij}v_{x_j})_{x_i} - \sum_{i=1}^n b^iv_{x_i} + \left(c - \sum_{i=1}^n b^i_{x_i}\right)v,$$
 provided $b^i \in C^1(\bar U)$ $(i=1,\ldots,n)$.
@@ -218,9 +231,10 @@ for all $u \in H_0^1(U)$.
 
 \begin{theorem}[Second Existence Theorem for weak solutions]
 \label{thm:second-existence-fredholm-alternative}
+\uses{thm:first-existence-weak-solutions, def:formal-adjoint-operator, thm:rellich-kondrachov}
 \dcref{ch6:6.2-thm-4}
 \group{Weak Solutions}
-\uses{thm:first-existence-weak-solutions,def:formal-adjoint-operator,thm:rellich-kondrachov}
+
 (i) Precisely one of the following statements holds:
 
 either
@@ -244,9 +258,10 @@ The dichotomy $(\alpha)$, $(\beta)$ is the \textit{Fredholm alternative}.
 
 \begin{theorem}[Third Existence Theorem for weak solutions]
 \label{thm:third-existence-spectrum}
+\uses{thm:second-existence-fredholm-alternative, thm:energy-estimates}
 \dcref{ch6:6.2-thm-5}
 \group{Weak Solutions}
-\uses{thm:second-existence-fredholm-alternative,thm:energy-estimates}
+
 (i) There exists an at most countable set $\Sigma \subset \R$ such that the boundary-value problem
 $$(24) \qquad \begin{cases} Lu = \lambda u + f & \text{in } U \\ u = 0 & \text{on } \partial U \end{cases}$$
 has a unique weak solution for each $f \in L^2(U)$ if and only if $\lambda \notin \Sigma$.
@@ -261,17 +276,19 @@ $$\lambda_k \to +\infty.$$
 
 \begin{definition}[Spectrum of the operator $L$]
 \label{def:spectrum-of-operator}
+\uses{thm:third-existence-spectrum}
 \dcref{ch6:6.2-def-2}
 \group{Weak Solutions}
-\uses{thm:third-existence-spectrum}
+
 We call $\Sigma$ the (real) spectrum of the operator $L$.
 \end{definition}
 
 \begin{remark}[Eigenvalues and Helmholtz's equation]
 \label{rem:eigenvalues-helmholtz-equation}
+\uses{def:spectrum-of-operator}
 \dcref{ch6:6.2-rem-3}
 \group{Weak Solutions}
-\uses{def:spectrum-of-operator}
+
 The homogeneous problem
 $$\begin{cases} Lu = \lambda u & \text{in } U \\ u = 0 & \text{on } \partial U \end{cases}$$
 has a nontrivial solution iff $\lambda\in\Sigma$; such a $\lambda$ is an eigenvalue and $w$ an eigenfunction. For $L=-\Delta$ this is the Helmholtz equation.
@@ -279,9 +296,10 @@ has a nontrivial solution iff $\lambda\in\Sigma$; such a $\lambda$ is an eigenva
 
 \begin{theorem}[Boundedness of the inverse]
 \label{thm:boundedness-of-inverse}
+\uses{thm:third-existence-spectrum, thm:energy-estimates}
 \dcref{ch6:6.2-thm-6}
 \group{Weak Solutions}
-\uses{thm:third-existence-spectrum,thm:energy-estimates}
+
 If $\lambda \notin \Sigma$, there exists a constant $C$ such that
 $$(29) \qquad \|u\|_{L^2(U)} \leq C\|f\|_{L^2(U)},$$
 whenever $f \in L^2(U)$ and $u \in H_0^1(U)$ is the unique weak solution of
@@ -297,9 +315,10 @@ No uniform choice of $C$ is possible as $\lambda$ approaches an eigenvalue.
 
 \begin{remark}[Complex solutions]
 \label{rem:complex-valued-weak-solutions}
+\uses{thm:lax-milgram-theorem, thm:second-existence-fredholm-alternative}
 \dcref{ch6:6.2-rem-4}
 \group{Weak Solutions}
-\uses{thm:lax-milgram-theorem,thm:second-existence-fredholm-alternative}
+
 For complex-valued $u,v\in H^1(U)$, set
 $$(u,v)_{L^2(U)} := \int_U u\bar v\,dx, \quad (u,v)_{H^1(U)} := \int_U Du \cdot D\bar v + u\bar v\,dx,$$
 and set
@@ -317,9 +336,10 @@ for suitable $\alpha,\beta>0$ and $\gamma\ge0$, and the complex Lax--Milgram/Fre
 
 \begin{theorem}[Interior $H^2$-regularity]
 \label{thm:interior-h2-regularity}
+\uses{def:uniform-ellipticity, def:weak-solution-elliptic-bvp, thm:difference-quotients-weak-derivatives}
 \dcref{ch6:6.3-thm-1}
 \group{Regularity Theory}
-\uses{def:uniform-ellipticity,def:weak-solution-elliptic-bvp,thm:difference-quotients-weak-derivatives}
+
 Assume
 $$(5) \qquad a^{ij} \in C^1(U), \quad b^i,c \in L^\infty(U) \quad (i,j=1,\ldots,n)$$
 and
@@ -339,9 +359,10 @@ the constant $C$ depending only on $V$, $U$, and the coefficients of $L$.
 
 \begin{remark}
 \label{rem:interior-regularity-remarks}
+\uses{thm:interior-h2-regularity}
 \dcref{ch6:6.3-rem-1}
 \group{Regularity Theory}
-\uses{thm:interior-h2-regularity}
+
 (i) No zero-trace condition is required: $u\in H^1(U)$ suffices.
 
 (ii) Since $u\in H^2_{\mathrm{loc}}(U)$,
@@ -351,9 +372,10 @@ the weak identity agrees with the distributional integration-by-parts identity.
 
 \begin{theorem}[Higher interior regularity]
 \label{thm:higher-interior-regularity}
+\uses{thm:interior-h2-regularity}
 \dcref{ch6:6.3-thm-2}
 \group{Regularity Theory}
-\uses{thm:interior-h2-regularity}
+
 Let $m$ be a nonnegative integer, and assume
 $$(25) \qquad a^{ij}, b^i, c \in C^{m+1}(U) \quad (i,j=1,\ldots,n)$$
 and
@@ -373,9 +395,10 @@ the constant $C$ depending only on $m, U, V$ and the coefficients of $L$.
 
 \begin{theorem}[Infinite differentiability in the interior]
 \label{thm:interior-infinite-differentiability}
+\uses{thm:higher-interior-regularity, thm:general-sobolev-inequalities}
 \dcref{ch6:6.3-thm-3}
 \group{Regularity Theory}
-\uses{thm:higher-interior-regularity,thm:general-sobolev-inequalities}
+
 Assume
 $$a^{ij}, b^i, c \in C^\infty(U) \quad (i,j=1,\ldots,n)$$
 and
@@ -395,9 +418,10 @@ No boundary condition on $u$ is required; boundary singularities do not affect t
 
 \begin{theorem}[Boundary $H^2$-regularity]
 \label{thm:boundary-h2-regularity}
+\uses{def:uniform-ellipticity, def:weak-solution-elliptic-bvp, thm:difference-quotients-weak-derivatives, thm:interior-h2-regularity}
 \dcref{ch6:6.3-thm-4}
 \group{Regularity Theory}
-\uses{def:uniform-ellipticity,def:weak-solution-elliptic-bvp,thm:difference-quotients-weak-derivatives,thm:interior-h2-regularity}
+
 Assume
 $$(38) \qquad a^{ij} \in C^1(\bar U), \quad b^i,c \in L^\infty(U) \quad (i,j=1,\ldots,n)$$
 and
@@ -419,9 +443,10 @@ the constant $C$ depending only on $U$ and the coefficients of $L$.
 
 \begin{remark}
 \label{rem:boundary-regularity-remarks}
+\uses{thm:boundary-h2-regularity, thm:boundedness-of-inverse}
 \dcref{ch6:6.3-rem-2}
 \group{Regularity Theory}
-\uses{thm:boundary-h2-regularity,thm:boundedness-of-inverse}
+
 (i) For the unique zero-trace solution of (40),
 $$\|u\|_{H^2(U)} \leq C\|f\|_{L^2(U)}.$$
 
@@ -430,9 +455,10 @@ $$\|u\|_{H^2(U)} \leq C\|f\|_{L^2(U)}.$$
 
 \begin{theorem}[Higher boundary regularity]
 \label{thm:higher-boundary-regularity}
+\uses{thm:boundary-h2-regularity, thm:higher-interior-regularity}
 \dcref{ch6:6.3-thm-5}
 \group{Regularity Theory}
-\uses{thm:boundary-h2-regularity,thm:higher-interior-regularity}
+
 Let $m$ be a nonnegative integer, and assume
 $$(72) \qquad a^{ij}, b^i, c \in C^{m+1}(\bar U) \quad (i,j=1,\ldots,n)$$
 and
@@ -454,18 +480,20 @@ the constant $C$ depending only on $m, U$ and the coefficients of $L$.
 
 \begin{remark}
 \label{rem:higher-boundary-regularity-simplified}
+\uses{thm:higher-boundary-regularity}
 \dcref{ch6:6.3-rem-3}
 \group{Regularity Theory}
-\uses{thm:higher-boundary-regularity}
+
 For the unique solution of (74),
 $$\|u\|_{H^{m+2}(U)} \leq C\|f\|_{H^m(U)}.$$
 \end{remark}
 
 \begin{theorem}[Infinite differentiability up to the boundary]
 \label{thm:boundary-infinite-differentiability}
+\uses{thm:higher-boundary-regularity, thm:general-sobolev-inequalities}
 \dcref{ch6:6.3-thm-6}
 \group{Regularity Theory}
-\uses{thm:higher-boundary-regularity,thm:general-sobolev-inequalities}
+
 Assume
 $$a^{ij}, b^i, c \in C^\infty(\bar U) \quad (i,j=1,\ldots,n)$$
 and
@@ -487,9 +515,10 @@ $$u \in C^\infty(\bar U).$$
 
 \begin{theorem}[Weak maximum principle]
 \label{thm:weak-maximum-principle-c-zero}
+\uses{def:uniform-ellipticity, def:divergence-nondivergence-form, thm:boundary-h2-regularity}
 \dcref{ch6:6.4-thm-1}
 \group{Maximum Principles}
-\uses{def:uniform-ellipticity,def:divergence-nondivergence-form,thm:boundary-h2-regularity}
+
 Assume $u \in C^2(U) \cap C(\bar U)$ and
 $$c \equiv 0 \quad \text{in } U.$$
 
@@ -510,17 +539,19 @@ $$\min_{\bar U} u = \min_{\partial U} u.$$
 
 \begin{remark}
 \label{rem:subsolution-supersolution-terminology}
+\uses{thm:weak-maximum-principle-c-zero}
 \dcref{ch6:6.4-rem-1}
 \group{Maximum Principles}
-\uses{thm:weak-maximum-principle-c-zero}
+
 A function satisfying (3) is a subsolution and attains its maximum on $\partial U$; (4) defines a supersolution attaining its minimum there.
 \end{remark}
 
 \begin{theorem}[Weak maximum principle for $c \geq 0$]
 \label{thm:weak-maximum-principle-c-nonneg}
+\uses{thm:weak-maximum-principle-c-zero}
 \dcref{ch6:6.4-thm-2}
 \group{Maximum Principles}
-\uses{thm:weak-maximum-principle-c-zero}
+
 Assume $u \in C^2(U) \cap C(\bar U)$ and
 $$c \geq 0 \quad \text{in } U.$$
 
@@ -541,9 +572,10 @@ $$(12) \qquad \min_{\bar U} u \geq -\max_{\partial U} u^-.$$
 
 \begin{remark}
 \label{rem:weak-maximum-principle-absolute-value}
+\uses{thm:weak-maximum-principle-c-nonneg}
 \dcref{ch6:6.4-rem-2}
 \group{Maximum Principles}
-\uses{thm:weak-maximum-principle-c-nonneg}
+
 If $Lu=0$ in $U$, then
 $$(13) \qquad \max_{\bar U}|u| = \max_{\partial U}|u|.$$
 \end{remark}
@@ -552,9 +584,10 @@ $$(13) \qquad \max_{\bar U}|u| = \max_{\partial U}|u|.$$
 
 \begin{lemma}[Hopf's Lemma]
 \label{lem:hopfs-lemma}
+\uses{def:uniform-ellipticity, thm:weak-maximum-principle-c-zero}
 \dcref{ch6:6.4-lem-1}
 \group{Maximum Principles}
-\uses{def:uniform-ellipticity,thm:weak-maximum-principle-c-zero}
+
 Assume $u \in C^2(U) \cap C^1(\bar U)$ and
 $$c = 0 \quad \text{in } U.$$
 Suppose further
@@ -579,17 +612,19 @@ $$u(x^0) \geq 0.$$
 
 \begin{remark}
 \label{rem:hopfs-lemma-strict-inequality}
+\uses{lem:hopfs-lemma}
 \dcref{ch6:6.4-rem-3}
 \group{Maximum Principles}
-\uses{lem:hopfs-lemma}
+
 Part (i) strengthens the obvious non-strict inequality to $\frac{\partial u}{\partial\nu}(x^0)>0$. The interior ball condition holds when $\partial U$ is $C^2$.
 \end{remark}
 
 \begin{theorem}[Strong maximum principle]
 \label{thm:strong-maximum-principle-c-zero}
+\uses{lem:hopfs-lemma}
 \dcref{ch6:6.4-thm-3}
 \group{Maximum Principles}
-\uses{lem:hopfs-lemma}
+
 Assume $u \in C^2(U) \cap C(\bar U)$ and
 $$c \equiv 0 \quad \text{in } U.$$
 Suppose also $U$ is connected, open and bounded.
@@ -611,9 +646,10 @@ $$u \text{ is constant within } U.$$
 
 \begin{theorem}[Strong maximum principle with $c \geq 0$]
 \label{thm:strong-maximum-principle-c-nonneg}
+\uses{lem:hopfs-lemma, thm:strong-maximum-principle-c-zero}
 \dcref{ch6:6.4-thm-4}
 \group{Maximum Principles}
-\uses{lem:hopfs-lemma,thm:strong-maximum-principle-c-zero}
+
 Assume $u \in C^2(U) \cap C(\bar U)$ and
 $$c \geq 0 \quad \text{in } U.$$
 Suppose also $U$ is connected.
@@ -656,9 +692,10 @@ Perron--Frobenius comparison: \cite{Gantmacher1977}.
 
 \begin{theorem}[Eigenvalues of symmetric elliptic operators]
 \label{thm:existence-eigenvalues-symmetric-operator}
+\uses{thm:second-existence-fredholm-alternative, thm:rellich-kondrachov, def:bilinear-form-weak-solution-l2}
 \dcref{ch6:6.5-thm-1}
 \group{Eigenvalues}
-\uses{thm:second-existence-fredholm-alternative,thm:rellich-kondrachov,def:bilinear-form-weak-solution-l2}
+
 (i) Each eigenvalue of $L$ is real.
 
 (ii) Repeating each eigenvalue according to its finite multiplicity gives
@@ -679,25 +716,28 @@ for $k = 1,2,\ldots$.
 
 \begin{remark}
 \label{rem:eigenfunctions-smoothness}
+\uses{thm:existence-eigenvalues-symmetric-operator, thm:interior-infinite-differentiability, thm:boundary-infinite-differentiability}
 \dcref{ch6:6.5-rem-1}
 \group{Eigenvalues}
-\uses{thm:existence-eigenvalues-symmetric-operator,thm:interior-infinite-differentiability,thm:boundary-infinite-differentiability}
+
 Each $w_k\in C^\infty(U)$, and $w_k\in C^\infty(\bar U)$ when $\partial U$ is smooth.
 \end{remark}
 
 \begin{definition}[Principal eigenvalue]
 \label{def:principal-eigenvalue}
+\uses{thm:existence-eigenvalues-symmetric-operator}
 \dcref{ch6:6.5-def-1}
 \group{Eigenvalues}
-\uses{thm:existence-eigenvalues-symmetric-operator}
+
 We call $\lambda_1 > 0$ the principal eigenvalue of $L$.
 \end{definition}
 
 \begin{theorem}[Variational principle for the principal eigenvalue]
 \label{thm:variational-principle-principal-eigenvalue}
+\uses{thm:existence-eigenvalues-symmetric-operator, def:principal-eigenvalue, thm:strong-maximum-principle-c-zero}
 \dcref{ch6:6.5-thm-2}
 \group{Eigenvalues}
-\uses{thm:existence-eigenvalues-symmetric-operator,def:principal-eigenvalue,thm:strong-maximum-principle-c-zero}
+
 (i) We have
 $$(5) \qquad \lambda_1 = \min\{B[u,u] \mid u \in H_0^1(U), \|u\|_{L^2} = 1\}.$$
 
@@ -715,9 +755,10 @@ then $u$ is a multiple of $w_1$.
 
 \begin{remark}[Simplicity of $\lambda_1$ and Rayleigh's formula]
 \label{rem:principal-eigenvalue-simple-rayleigh}
+\uses{thm:variational-principle-principal-eigenvalue}
 \dcref{ch6:6.5-rem-2}
 \group{Eigenvalues}
-\uses{thm:variational-principle-principal-eigenvalue}
+
 (i) The principal eigenvalue is simple, and
 $$0 < \lambda_1 < \lambda_2 \leq \lambda_3 \leq \cdots.$$
 
@@ -729,9 +770,10 @@ $$\lambda_1 = \min_{\substack{u \in H_0^1(U) \\ u \neq 0}} \frac{B[u,u]}{\|u\|_{
 
 \begin{theorem}[Principal eigenvalue for nonsymmetric elliptic operators]
 \label{thm:principal-eigenvalue-nonsymmetric-operator}
+\uses{thm:strong-maximum-principle-c-nonneg, lem:hopfs-lemma, thm:weak-maximum-principle-c-nonneg}
 \dcref{ch6:6.5-thm-3}
 \group{Eigenvalues}
-\uses{thm:strong-maximum-principle-c-nonneg,lem:hopfs-lemma,thm:weak-maximum-principle-c-nonneg}
+
 (i) There exists a real eigenvalue $\lambda_1$ for the operator $L$, taken with zero boundary conditions. Furthermore if $\lambda \in \C$ is any other eigenvalue, we have
 $$\operatorname{Re}(\lambda) \geq \lambda_1.$$
 

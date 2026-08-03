@@ -22,21 +22,26 @@ u=g&\text{on }\R^n\times\{t=0\}.
 
 \begin{definition}[Explicit solution of the transport equation]
 \label{def:transport-explicit-solution}
-\dcref{ch2:2.1.1-def-1}
-\group{Transport Equation}
 \lean{EvansLib.transportSolution}
 \leanok
+\dcref{ch2:2.1.1-def-1}
+\group{Transport Equation}
+
+
 For $b\in\R^n$ and $g:\R^n\to\R$, define
 $$u(x,t):=g(x-tb)\qquad(x\in\R^n,\ t\in\R).$$
 \end{definition}
 
 \begin{theorem}[Solution of the transport initial-value problem]
 \label{thm:transport-ivp-solution}
+\lean{EvansLib.transportSolution_isClassicalSolution}
+\uses{def:transport-explicit-solution}
+\leanok
 \dcref{ch2:2.1.1-thm-1}
 \group{Transport Equation}
-\uses{def:transport-explicit-solution}
-\lean{EvansLib.transportSolution_isClassicalSolution}
-\leanok
+
+
+
 If $g\in C^1(\R^n)$, then $u(x,t)=g(x-tb)$ belongs to
 $C^1(\R^n\times\R)$ and satisfies $u_t+b\cdot Du=0$.
 \end{theorem}
@@ -49,11 +54,14 @@ gives $u_t+b\cdot Du=0$.
 
 \begin{theorem}[Initial condition for the transport solution]
 \label{thm:transport-initial-condition}
+\lean{EvansLib.transportSolution_init}
+\uses{def:transport-explicit-solution}
+\leanok
 \dcref{ch2:2.1.1-thm-2}
 \group{Transport Equation}
-\uses{def:transport-explicit-solution}
-\lean{EvansLib.transportSolution_init}
-\leanok
+
+
+
 The explicit solution satisfies $u(x,0)=g(x)$ for every $x\in\R^n$.
 \end{theorem}
 \begin{proof}
@@ -63,11 +71,14 @@ The explicit solution satisfies $u(x,0)=g(x)$ for every $x\in\R^n$.
 
 \begin{theorem}[Uniqueness for the transport initial-value problem]
 \label{thm:transport-ivp-uniqueness}
+\lean{EvansLib.transportSolution_unique}
+\uses{def:transport-explicit-solution}
+\leanok
 \dcref{ch2:2.1.1-thm-3}
 \group{Transport Equation}
-\uses{def:transport-explicit-solution}
-\lean{EvansLib.transportSolution_unique}
-\leanok
+
+
+
 If a differentiable $v$ satisfies $v_t+b\cdot Dv=0$ on $\R^n\times\R$ and
 $v(x,0)=g(x)$, then $v(x,t)=g(x-tb)$.
 \end{theorem}
@@ -101,11 +112,14 @@ integration along characteristics gives the following formula.
 
 \begin{definition}[Explicit solution of the nonhomogeneous transport equation]
 \label{def:transport-nonhom-solution}
+\lean{EvansLib.transportSolutionNonhom}
+\uses{def:transport-explicit-solution}
+\leanok
 \dcref{ch2:2.1.2-def-1}
 \group{Transport Equation}
-\uses{def:transport-explicit-solution}
-\lean{EvansLib.transportSolutionNonhom}
-\leanok
+
+
+
 For $b\in\R^n$, $g:\R^n\to\R$, and $f:\R^n\times\R\to\R$, define
 $$u(x,t):=g(x-tb)+\int_0^t f\bigl(x+(s-t)b,s\bigr)\,ds.$$
 The integrand samples $f$ on the characteristic through $(x,t)$ at time $s$.
@@ -113,11 +127,14 @@ The integrand samples $f$ on the characteristic through $(x,t)$ at time $s$.
 
 \begin{theorem}[The nonhomogeneous solution attains the initial data]
 \label{thm:transport-nonhom-initial-condition}
+\lean{EvansLib.transportSolutionNonhom_init}
+\uses{def:transport-nonhom-solution}
+\leanok
 \dcref{ch2:2.1.2-thm-1}
 \group{Transport Equation}
-\uses{def:transport-nonhom-solution}
-\lean{EvansLib.transportSolutionNonhom_init}
-\leanok
+
+
+
 The nonhomogeneous solution satisfies $u(x,0)=g(x)$.
 \end{theorem}
 \begin{proof}
@@ -127,11 +144,14 @@ The nonhomogeneous solution satisfies $u(x,0)=g(x)$.
 
 \begin{theorem}[The nonhomogeneous transport equation holds along characteristics]
 \label{thm:transport-nonhom-solves}
+\lean{EvansLib.transportSolutionNonhom_char_deriv}
+\uses{def:transport-nonhom-solution}
+\leanok
 \dcref{ch2:2.1.2-thm-2}
 \group{Transport Equation}
-\uses{def:transport-nonhom-solution}
-\lean{EvansLib.transportSolutionNonhom_char_deriv}
-\leanok
+
+
+
 If $f$ is continuous, then
 $$\left.\frac{d}{dr}\right|_{r=0}u\bigl((x,t)+r(b,1)\bigr)=f(x,t).$$
 If $u$ is differentiable, this is $u_t+b\cdot Du=f$.
@@ -162,9 +182,10 @@ where $\Delta u=\sum_{i=1}^n u_{x_i x_i}$.
 
 \begin{definition}[Harmonic function]
 \label{def:harmonic-function}
+\lean{InnerProductSpace.HarmonicOnNhd}
 \dcref{ch2:2.2-def-1}
 \group{Fundamental Solutions}
-\lean{InnerProductSpace.HarmonicOnNhd}
+
 \mathlibok
 A function $u\in C^2(U)$ is \emph{harmonic} on $U$ if $\Delta u=0$ on $U$.
 \end{definition}
@@ -182,11 +203,14 @@ $br^{2-n}+c$ for $n\ge3$.
 
 \begin{definition}[Fundamental solution of Laplace's equation]
 \label{def:fundamental-solution-laplace}
+\lean{EvansLib.laplaceFund}
+\uses{def:harmonic-function}
+\leanok
 \dcref{ch2:2.2.1-def-1}
 \group{Fundamental Solutions}
-\uses{def:harmonic-function}
-\lean{EvansLib.laplaceFund}
-\leanok
+
+
+
 For $x\ne0$, define
 $$(6)\qquad
 \Phi(x):=
@@ -199,11 +223,14 @@ where $\alpha(n)$ is the volume of the unit ball in $\R^n$.
 
 \begin{lemma}[The fundamental solution is harmonic away from the origin]
 \label{lem:laplace-fundamental-solution-harmonic}
+\lean{EvansLib.laplaceFund_harmonic,EvansLib.laplaceFund_harmonicOnNhd}
+\uses{def:fundamental-solution-laplace, def:harmonic-function}
+\leanok
 \dcref{ch2:2.2.1-lem-1}
 \group{Fundamental Solutions}
-\uses{def:fundamental-solution-laplace,def:harmonic-function}
-\lean{EvansLib.laplaceFund_harmonic,EvansLib.laplaceFund_harmonicOnNhd}
-\leanok
+
+
+
 For every $x\ne0$, $\Delta\Phi(x)=0$.
 \end{lemma}
 \begin{proof}
@@ -230,9 +257,10 @@ $$(8)\qquad u(x):=(\Phi*f)(x)=\int_{\R^n}\Phi(x-y)f(y)\,dy.$$
 
 \begin{theorem}[Solving Poisson's equation]
 \label{thm:poisson-equation-solution-formula}
+\uses{def:fundamental-solution-laplace}
 \dcref{ch2:2.2-thm-1}
 \group{Fundamental Solutions}
-\uses{def:fundamental-solution-laplace}
+
 The function in (8) belongs to $C^2(\R^n)$ and satisfies
 $$-\Delta u=f\quad\text{in }\R^n.$$
 \end{theorem}
@@ -258,9 +286,10 @@ to $-f(x)$, hence $\Delta u=-f$.
 
 \begin{remark}[Dirac measure notation]
 \label{rem:poisson-equation-dirac-delta-notation}
+\uses{thm:poisson-equation-solution-formula}
 \dcref{ch2:2.2.1-rem-1}
 \group{Fundamental Solutions}
-\uses{thm:poisson-equation-solution-formula}
+
 Distributionally,
 $$-\Delta\Phi=\delta_0,$$
 so $-\Delta(\Phi*f)=f$. The conclusion of
@@ -274,17 +303,16 @@ hypotheses on $f$; see \cite{GilbargTrudinger1983}.
 \begin{theorem}[Mean-value formulas for Laplace's equation]
 \label{thm:mean-value-formulas-laplace}
 \lean{EvansLib.unitSphereRadialIntegralAt_eq_volume_mul_of_harmonicOnNhd, EvansLib.HarmonicOnNhd.hasBallMeanValueProperty}
-\leanok
+\uses{def:harmonic-function}
 \dcref{ch2:2.2-thm-2}
 \group{Harmonic Functions}
-\uses{def:harmonic-function}
+
 If $u\in C^2(U)$ is harmonic, then for every ball $B(x,r)\subset U$,
 $$(16)\qquad
 u(x)=\fint_{\partial B(x,r)}u\,dS
 =\fint_{B(x,r)}u\,dy.$$
 \end{theorem}
 \begin{proof}
-\leanok
 \sketch Let $\phi(r)=\fint_{\partial B(x,r)}u\,dS$. Differentiation and the
 divergence theorem give
 $$\phi'(r)=\frac{r}{n}\fint_{B(x,r)}\Delta u\,dy=0.$$
@@ -295,16 +323,16 @@ identity in polar coordinates yields the ball identity.
 \begin{theorem}[Converse to mean-value property]
 \label{thm:converse-mean-value-property-laplace}
 \lean{EvansLib.harmonicOnNhd_of_unitSphereRadialIntegralAt_eq_zero}
+\uses{def:harmonic-function}
 \leanok
 \dcref{ch2:2.2-thm-3}
 \group{Harmonic Functions}
-\uses{def:harmonic-function}
+
 If $u\in C^2(U)$ and
 $$u(x)=\fint_{\partial B(x,r)}u\,dS$$
 for every $B(x,r)\subset U$, then $u$ is harmonic.
 \end{theorem}
 \begin{proof}
-\leanok
 \sketch The preceding differentiation formula makes every spherical average
 constant in $r$. If $\Delta u(x_0)\ne0$, after replacing $u$ by $-u$ if needed,
 $\Delta u>0$ on a small ball about $x_0$, contradicting
@@ -313,11 +341,13 @@ $0=\phi'(r)=\frac r n\fint_{B(x_0,r)}\Delta u$.
 
 \begin{theorem}[Converse to mean-value property, ball form]
 \label{thm:converse-mean-value-property-mvp}
-\group{Harmonic Functions}
+\lean{EvansLib.HasBallMeanValueProperty.laplacian_eq_zero, EvansLib.HasBallMeanValueProperty.harmonicOnNhd}
 \uses{def:ball-mean-value-property, def:harmonic-function}
-\lean{EvansLib.HasBallMeanValueProperty.laplacian_eq_zero,
-  EvansLib.HasBallMeanValueProperty.harmonicOnNhd}
 \leanok
+\group{Harmonic Functions}
+
+
+
 Let $U\subset\R^n$ be open. For continuous functions on $U$, harmonicity is
 equivalent to the ball mean-value property, and every such function is smooth.
 \end{theorem}
@@ -340,9 +370,11 @@ $\operatorname{tr}B=\Delta u(x)$. Thus $\Delta u(x)=0$.
 
 \begin{definition}[Ball mean-value property]
 \label{def:ball-mean-value-property}
-\group{Harmonic Functions}
 \lean{EvansLib.HasBallMeanValueProperty}
 \leanok
+\group{Harmonic Functions}
+
+
 A function $u:\R^n\to\R$ has the \emph{ball mean-value property} on an open
 set $U$ if
 $$u(x)=\fint_{B(x,r)}u\,dy$$
@@ -351,10 +383,13 @@ whenever $r>0$ and $\overline{B(x,r)}\subset U$.
 
 \begin{theorem}[Strong maximum principle, mean-value form]
 \label{thm:strong-maximum-principle-mvp}
-\group{Maximum Principles}
-\uses{def:ball-mean-value-property}
 \lean{EvansLib.eqOn_of_isPreconnected_of_isMaxOn, EvansLib.exists_frontier_isMaxOn}
+\uses{def:ball-mean-value-property}
 \leanok
+\group{Maximum Principles}
+
+
+
 Let $n\ge1$ and let $u$ have the ball mean-value property on an open set
 $U\subset\R^n$.
 
@@ -377,10 +412,12 @@ $\R^n$ unless one lies on $\partial U$.
 
 \begin{theorem}[Uniqueness for the Dirichlet problem, mean-value form]
 \label{thm:uniqueness-dirichlet-mvp}
-\group{Maximum Principles}
-\uses{def:ball-mean-value-property, thm:strong-maximum-principle-mvp}
 \lean{EvansLib.eqOn_closure_of_eqOn_frontier}
-\leanok
+\uses{def:ball-mean-value-property, thm:strong-maximum-principle-mvp}
+\group{Maximum Principles}
+
+
+
 Let $U\subset\R^n$ be bounded and open. If $u,v\in C(\overline U)$ have the
 ball mean-value property on $U$ and agree on $\partial U$, then
 $u=v$ on $\overline U$.
@@ -395,10 +432,12 @@ $w\le0$ and $w\ge0$.
 
 \begin{theorem}[Harnack's inequality, local form]
 \label{thm:harnack-local-mvp}
-\group{Harmonic Functions}
-\uses{def:ball-mean-value-property}
 \lean{EvansLib.harnack_local}
-\leanok
+\uses{def:ball-mean-value-property}
+\group{Harmonic Functions}
+
+
+
 Let $n\ge1$, let $u\in C(U)$ be nonnegative with the ball mean-value property,
 and suppose $|x-y|\le r$ and $\overline{B(x,2r)}\subset U$. Then
 $$u(y)\le2^n u(x).$$
@@ -413,10 +452,13 @@ $$u(x)=\fint_{B(x,2r)}u
 
 \begin{theorem}[Harnack's inequality, mean-value form]
 \label{thm:harnack-global-mvp}
-\group{Harmonic Functions}
-\uses{def:ball-mean-value-property, thm:harnack-local-mvp}
 \lean{EvansLib.exists_harnack_const}
+\uses{def:ball-mean-value-property, thm:harnack-local-mvp}
 \leanok
+\group{Harmonic Functions}
+
+
+
 Let $n\ge1$, let $U\subset\R^n$ be open, and let $V$ be connected and bounded
 with $\overline V\subset U$. There is $C>0$, depending only on $V$, such that
 $$u(x)\le C u(y)\qquad(x,y\in V)$$
@@ -433,10 +475,13 @@ along a path of at most $N$ balls yields $u(x)\le(2^n)^N u(y)$.
 
 \begin{theorem}[Liouville's theorem, mean-value form]
 \label{thm:liouville-mvp}
-\group{Harmonic Functions}
-\uses{def:ball-mean-value-property, thm:harnack-local-mvp}
 \lean{EvansLib.liouville_of_bddBelow, EvansLib.liouville_of_isBounded}
+\uses{def:ball-mean-value-property, thm:harnack-local-mvp}
 \leanok
+\group{Harmonic Functions}
+
+
+
 Let $n\ge1$. If $u\in C(\R^n)$ has the ball mean-value property and is bounded
 below, then $u$ is constant. In particular, every bounded such function is
 constant.
@@ -458,10 +503,11 @@ infimum over $y$ forces $v(x)=0$.
 \begin{theorem}[Strong maximum principle]
 \label{thm:strong-maximum-principle-laplace}
 \lean{EvansLib.harmonic_exists_frontier_isMaxOn, EvansLib.harmonic_eqOn_of_isPreconnected_of_isMaxOn}
+\uses{thm:mean-value-formulas-laplace}
 \leanok
 \dcref{ch2:2.2-thm-4}
 \group{Maximum Principles}
-\uses{thm:mean-value-formulas-laplace}
+
 Let $U$ be bounded and open, and let
 $u\in C^2(U)\cap C(\overline U)$ be harmonic.
 
@@ -471,7 +517,6 @@ $u\in C^2(U)\cap C(\overline U)$ be harmonic.
 then $u$ is constant on $U$.
 \end{theorem}
 \begin{proof}
-\leanok
 \sketch At an interior maximizer $x_0$, the mean-value formula forces
 $u\equiv u(x_0)$ on every ball centered at $x_0$ and compactly contained in
 $U$. The set of maximizers is therefore open and closed in $U$, proving (ii);
@@ -481,10 +526,11 @@ $U$. The set of maximizers is therefore open and closed in $U$, proving (ii);
 \begin{remark}[Strict positivity from boundary data]
 \label{rem:strong-maximum-principle-positivity}
 \lean{EvansLib.harmonic_pos_of_nonneg_on_frontier}
+\uses{thm:strong-maximum-principle-laplace}
 \leanok
 \dcref{ch2:2.2.3-rem-2}
 \group{Maximum Principles}
-\uses{thm:strong-maximum-principle-laplace}
+
 If $U$ is connected, $u\in C^2(U)\cap C(\overline U)$ is harmonic, and its
 boundary data are nonnegative and positive somewhere, then $u>0$ throughout
 $U$.
@@ -493,10 +539,11 @@ $U$.
 \begin{theorem}[Uniqueness]
 \label{thm:uniqueness-poisson-dirichlet}
 \lean{EvansLib.eqOn_closure_of_eqOn_frontier_of_laplacian_eq}
+\uses{thm:strong-maximum-principle-laplace}
 \leanok
 \dcref{ch2:2.2-thm-5}
 \group{Maximum Principles}
-\uses{thm:strong-maximum-principle-laplace}
+
 For $g\in C(\partial U)$ and $f\in C(U)$, there is at most one
 $u\in C^2(U)\cap C(\overline U)$ satisfying
 $$(17)\qquad
@@ -506,7 +553,6 @@ u=g&\text{on }\partial U.
 \end{cases}$$
 \end{theorem}
 \begin{proof}
-\leanok
 \sketch The difference of two solutions is harmonic and vanishes on
 $\partial U$. Apply the maximum principle to the difference and its negative.
 \end{proof}
@@ -516,11 +562,14 @@ $\partial U$. Apply the maximum principle to the difference and its negative.
 
 \begin{theorem}[Smoothness]
 \label{thm:harmonic-functions-smooth}
+\lean{EvansLib.HasBallMeanValueProperty.contDiffOn}
+\uses{def:ball-mean-value-property, thm:mean-value-formulas-laplace}
+\leanok
 \dcref{ch2:2.2-thm-6}
 \group{Harmonic Functions}
-\uses{def:ball-mean-value-property, thm:mean-value-formulas-laplace}
-\lean{EvansLib.HasBallMeanValueProperty.contDiffOn}
-\leanok
+
+
+
 If $u\in C(U)$ has the mean-value property (16) on every ball compactly
 contained in $U$, then $u\in C^\infty(U)$.
 \end{theorem}
@@ -542,9 +591,10 @@ Thus $u$ agrees locally with a smooth mollification.
 
 \begin{theorem}[Estimates on derivatives]
 \label{thm:harmonic-function-derivative-estimates}
+\uses{thm:mean-value-formulas-laplace}
 \dcref{ch2:2.2-thm-7}
 \group{Harmonic Functions}
-\uses{thm:mean-value-formulas-laplace}
+
 If $u$ is harmonic in $U$, $B(x_0,r)\subset U$, and $|\alpha|=k$, then
 $$(18)\qquad
 |D^\alpha u(x_0)|\le
@@ -574,14 +624,14 @@ $C_k=(2^{n+1}nk)^k/\alpha(n)$.
 \begin{theorem}[Liouville's Theorem]
 \label{thm:liouville-theorem-harmonic}
 \lean{EvansLib.harmonic_liouville_of_isBounded}
+\uses{thm:harmonic-function-derivative-estimates, thm:liouville-mvp}
 \leanok
 \dcref{ch2:2.2-thm-8}
 \group{Harmonic Functions}
-\uses{thm:harmonic-function-derivative-estimates, thm:liouville-mvp}
+
 Every bounded harmonic function $u:\R^n\to\R$ is constant.
 \end{theorem}
 \begin{proof}
-\leanok
 \sketch For any $x_0$ and $r>0$, the derivative estimate gives
 $$|Du(x_0)|\le\frac{C_1\alpha(n)}r\|u\|_{L^\infty(\R^n)}.$$
 Letting $r\to\infty$ gives $Du=0$.
@@ -589,9 +639,10 @@ Letting $r\to\infty$ gives $Du=0$.
 
 \begin{theorem}[Representation formula]
 \label{thm:representation-formula-bounded-solutions}
+\uses{def:fundamental-solution-laplace, thm:liouville-theorem-harmonic}
 \dcref{ch2:2.2-thm-9}
 \group{Harmonic Functions}
-\uses{def:fundamental-solution-laplace,thm:liouville-theorem-harmonic}
+
 Let $n\ge3$ and $f\in C_c^2(\R^n)$. Every bounded solution of
 $-\Delta u=f$ on $\R^n$ has the form
 $$u(x)=\int_{\R^n}\Phi(x-y)f(y)\,dy+C$$
@@ -605,9 +656,10 @@ harmonic, hence constant by Liouville's theorem.
 
 \begin{remark}
 \label{rem:representation-formula-n2-unbounded}
+\uses{def:fundamental-solution-laplace, thm:representation-formula-bounded-solutions}
 \dcref{ch2:2.2.3-rem-3}
 \group{Harmonic Functions}
-\uses{def:fundamental-solution-laplace,thm:representation-formula-bounded-solutions}
+
 For $n=2$, $\Phi(x)=-(2\pi)^{-1}\log|x|$ is unbounded at infinity, and so may
 be $\Phi*f$.
 \end{remark}
@@ -617,9 +669,10 @@ be $\Phi*f$.
 
 \begin{theorem}[Analyticity]
 \label{thm:harmonic-functions-analytic}
+\uses{thm:harmonic-function-derivative-estimates, thm:harmonic-functions-smooth}
 \dcref{ch2:2.2-thm-10}
 \group{Harmonic Functions}
-\uses{thm:harmonic-function-derivative-estimates,thm:harmonic-functions-smooth}
+
 Every harmonic function is analytic in its domain.
 \end{theorem}
 \begin{proof}
@@ -641,17 +694,17 @@ $x_0$.
 \begin{theorem}[Harnack's inequality]
 \label{thm:harnacks-inequality}
 \lean{EvansLib.exists_harnack_const_harmonic}
+\uses{thm:mean-value-formulas-laplace, thm:harnack-global-mvp}
 \leanok
 \dcref{ch2:2.2-thm-11}
 \group{Harmonic Functions}
-\uses{thm:mean-value-formulas-laplace, thm:harnack-global-mvp}
+
 For every connected open $V\Subset U$, there is $C>0$, depending only on
 $V$, such that
 $$\sup_Vu\le C\inf_Vu$$
 for every nonnegative harmonic function $u$ in $U$.
 \end{theorem}
 \begin{proof}
-\leanok
 \sketch With $r=\dist(V,\partial U)/4$, the mean-value formula and
 $B(y,r)\subset B(x,2r)$ show that $2^{-n}u(y)\le u(x)\le2^n u(y)$ whenever
 $x,y\in V$ and $|x-y|\le r$. A finite chain of overlapping balls covering the
@@ -672,9 +725,10 @@ $$\Delta\varphi^x=0\ \text{in }U,
 
 \begin{definition}[Green's function]
 \label{def:greens-function}
+\uses{def:fundamental-solution-laplace}
 \dcref{ch2:2.2.4-def-1}
 \group{Green's Functions}
-\uses{def:fundamental-solution-laplace}
+
 Green's function for $U$ is
 $$G(x,y):=\Phi(y-x)-\varphi^x(y)
 \qquad(x,y\in U,\ x\ne y).$$
@@ -687,9 +741,10 @@ $$u(x)=-\int_{\partial U}u(y)\frac{\partial G}{\partial\nu}(x,y)\,dS(y)
 
 \begin{theorem}[Representation formula using Green's function]
 \label{thm:representation-formula-greens-function}
+\uses{def:greens-function}
 \dcref{ch2:2.2-thm-12}
 \group{Green's Functions}
-\uses{def:greens-function}
+
 If $u\in C^2(\overline U)$ satisfies
 $$-\Delta u=f\ \text{in }U,
 \qquad
@@ -702,9 +757,10 @@ u(x)=-\int_{\partial U}g(y)\frac{\partial G}{\partial\nu}(x,y)\,dS(y)
 
 \begin{remark}[Green's function and the Dirac measure]
 \label{rem:greens-function-dirac-delta}
+\uses{def:greens-function}
 \dcref{ch2:2.2.4-rem-3}
 \group{Green's Functions}
-\uses{def:greens-function}
+
 For fixed $x\in U$, Green's function satisfies symbolically
 $$-\Delta_yG(x,\cdot)=\delta_x\ \text{in }U,
 \qquad
@@ -713,9 +769,10 @@ G(x,\cdot)=0\ \text{on }\partial U.$$
 
 \begin{theorem}[Symmetry of Green's function]
 \label{thm:greens-function-symmetry}
+\uses{def:greens-function}
 \dcref{ch2:2.2-thm-13}
 \group{Green's Functions}
-\uses{def:greens-function}
+
 For distinct $x,y\in U$,
 $$G(y,x)=G(x,y).$$
 \end{theorem}
@@ -733,21 +790,25 @@ Write $\R^n_+=\{x\in\R^n:x_n>0\}$.
 
 \begin{definition}[Reflection in a half-space]
 \label{def:reflection-half-space}
-\dcref{ch2:2.2.4-def-2}
-\group{Green's Functions}
 \lean{EvansLib.reflectHalfSpace}
 \leanok
+\dcref{ch2:2.2.4-def-2}
+\group{Green's Functions}
+
+
 For $x=(x_1,\ldots,x_{n-1},x_n)\in\R^n_+$, define
 $$\overline x=(x_1,\ldots,x_{n-1},-x_n).$$
 \end{definition}
 
 \begin{definition}[Green's function for the half-space]
 \label{def:greens-function-half-space}
+\lean{EvansLib.greensHalfSpace}
+\uses{def:greens-function, def:fundamental-solution-laplace, def:reflection-half-space}
 \dcref{ch2:2.2.4-def-3}
 \group{Green's Functions}
-\uses{def:greens-function,def:fundamental-solution-laplace,def:reflection-half-space}
-\lean{EvansLib.greensHalfSpace}
-\leanok
+
+
+
 Green's function for $\R^n_+$ is
 $$G(x,y):=\Phi(y-x)-\Phi(y-\overline x)
 \qquad(x,y\in\R^n_+,\ x\ne y).$$
@@ -762,9 +823,10 @@ $$K(x,y)=\frac{2x_n}{n\alpha(n)|x-y|^n}.$$
 
 \begin{theorem}[Poisson's formula for half-space]
 \label{thm:poissons-formula-half-space}
+\uses{def:greens-function-half-space}
 \dcref{ch2:2.2-thm-14}
 \group{Green's Functions}
-\uses{def:greens-function-half-space}
+
 Let $g\in C(\R^{n-1})\cap L^\infty(\R^{n-1})$ and define
 $$u(x)=\frac{2x_n}{n\alpha(n)}
 \int_{\partial\R^n_+}\frac{g(y)}{|x-y|^n}\,dy.$$
@@ -787,10 +849,12 @@ $$x_n\int_{|y-x^0|\ge\delta}|y-x^0|^{-n}\,dy\to0.$$
 
 \begin{definition}[Dual point]
 \label{def:dual-point-unit-sphere}
-\dcref{ch2:2.2.4-def-4}
-\group{Green's Functions}
 \lean{EvansLib.dualPoint}
 \leanok
+\dcref{ch2:2.2.4-def-4}
+\group{Green's Functions}
+
+
 For $x\ne0$, the point
 $$\overline x:=\frac{x}{|x|^2}$$
 is dual to $x$ under inversion through $\partial B(0,1)$.
@@ -800,11 +864,13 @@ For $|y|=1$, one has $|x|^2|y-\overline x|^2=|x-y|^2$.
 
 \begin{definition}[Green's function for the unit ball]
 \label{def:greens-function-ball}
+\lean{EvansLib.greensBall}
+\uses{def:greens-function, def:fundamental-solution-laplace, def:dual-point-unit-sphere}
 \dcref{ch2:2.2.4-def-5}
 \group{Green's Functions}
-\uses{def:greens-function,def:fundamental-solution-laplace,def:dual-point-unit-sphere}
-\lean{EvansLib.greensBall}
-\leanok
+
+
+
 Green's function for the unit ball is
 $$(41)\qquad
 G(x,y):=\Phi(y-x)-\Phi\bigl(|x|(y-\overline x)\bigr)
@@ -822,9 +888,10 @@ u(x)=\frac{r^2-|x|^2}{n\alpha(n)r}
 
 \begin{theorem}[Poisson's formula for ball]
 \label{thm:poissons-formula-ball}
+\uses{def:greens-function-ball}
 \dcref{ch2:2.2-thm-15}
 \group{Green's Functions}
-\uses{def:greens-function-ball}
+
 If $g\in C(\partial B(0,r))$ and $u$ is defined by (45), then
 $u\in C^\infty(B^0(0,r))$, $\Delta u=0$ there, and
 $$\lim_{\substack{x\to x^0\\x\in B^0(0,r)}}u(x)=g(x^0)
@@ -853,7 +920,7 @@ u=g&\text{on }\partial U.
 There is at most one $u\in C^2(\overline U)$ satisfying (46).
 \end{theorem}
 \begin{proof}
-\leanok
+  \uses{thm:uniqueness-poisson-dirichlet}
 \sketch The difference $w$ of two solutions is harmonic and vanishes on the
 boundary. Integration by parts gives
 $$0=-\int_Uw\Delta w\,dx=\int_U|Dw|^2\,dx,$$
@@ -908,10 +975,12 @@ $w'=-(r/2)w$, hence $w(r)=be^{-r^2/4}$.
 
 \begin{definition}[Fundamental solution of the heat equation]
 \label{def:fundamental-solution-heat-equation}
-\dcref{ch2:2.3.1-def-1}
-\group{Heat Equation}
 \lean{EvansLib.heatKernel}
 \leanok
+\dcref{ch2:2.3.1-def-1}
+\group{Heat Equation}
+
+
 The fundamental solution of the heat equation is
 $$\Phi(x,t):=
 \begin{cases}
@@ -922,11 +991,14 @@ $$\Phi(x,t):=
 
 \begin{lemma}[Integral of fundamental solution]
 \label{lem:integral-fundamental-solution-heat}
+\lean{EvansLib.heatKernelSpatial_integral}
+\uses{def:fundamental-solution-heat-equation}
+\leanok
 \dcref{ch2:2.3.1-lem-1}
 \group{Heat Equation}
-\lean{EvansLib.heatKernelSpatial_integral}
-\leanok
-\uses{def:fundamental-solution-heat-equation}
+
+
+
 For every $t>0$,
 $$\int_{\R^n}\Phi(x,t)\,dx=1.$$
 \end{lemma}
@@ -940,10 +1012,13 @@ $$\int_{\R^n}\Phi(x,t)\,dx
 
 \begin{lemma}[The fundamental solution solves the heat equation]
 \label{lem:heat-kernel-solves-heat-equation}
-\group{Heat Equation}
 \lean{EvansLib.heatKernelSpatial_solves_heat}
-\leanok
 \uses{def:fundamental-solution-heat-equation}
+\leanok
+\group{Heat Equation}
+
+
+
 For $t>0$ and $x\in\R^n$,
 $$\Phi_t(x,t)-\Delta_x\Phi(x,t)=0.$$
 \end{lemma}
@@ -966,9 +1041,10 @@ u(x,t):=\int_{\R^n}\Phi(x-y,t)g(y)\,dy
 
 \begin{theorem}[Solution of initial-value problem]
 \label{thm:heat-equation-initial-value-solution}
+\uses{def:fundamental-solution-heat-equation, lem:integral-fundamental-solution-heat, lem:heat-convolution-smooth, lem:heat-convolution-solves-heat, lem:heat-convolution-attains-initial-data}
 \dcref{ch2:2.3-thm-1}
 \group{Heat Equation}
-\uses{def:fundamental-solution-heat-equation,lem:integral-fundamental-solution-heat,lem:heat-convolution-smooth,lem:heat-convolution-solves-heat,lem:heat-convolution-attains-initial-data}
+
 If $g\in C(\R^n)\cap L^\infty(\R^n)$ and $u$ is defined by (9), then
 $u\in C^\infty(\R^n\times(0,\infty))$, $u_t-\Delta u=0$, and
 $$\lim_{\substack{(x,t)\to(x^0,0)\\t>0}}u(x,t)=g(x^0)
@@ -988,10 +1064,13 @@ $x\to x^0$.
 
 \begin{definition}[Heat convolution solution]
 \label{def:heat-convolution-solution}
-\group{Heat Equation}
-\uses{def:fundamental-solution-heat-equation}
 \lean{EvansLib.heatSolution}
+\uses{def:fundamental-solution-heat-equation}
 \leanok
+\group{Heat Equation}
+
+
+
 For $g:\R^n\to\R$, the \emph{heat convolution solution} is
 $$u(x,t):=\int_{\R^n}\Phi(x-y,t)g(y)\,dy
 \qquad(x\in\R^n,\ t>0).$$
@@ -999,10 +1078,13 @@ $$u(x,t):=\int_{\R^n}\Phi(x-y,t)g(y)\,dy
 
 \begin{lemma}[The heat convolution is smooth]
 \label{lem:heat-convolution-smooth}
-\group{Heat Equation}
-\uses{def:heat-convolution-solution,def:fundamental-solution-heat-equation}
 \lean{EvansLib.heatSolution_contDiffOn}
+\uses{def:heat-convolution-solution, def:fundamental-solution-heat-equation}
 \leanok
+\group{Heat Equation}
+
+
+
 If $g\in C(\R^n)$ has compact support, its heat convolution is
 $C^\infty$ on $\R^n\times(0,\infty)$.
 \end{lemma}
@@ -1016,10 +1098,13 @@ parametric convolution, which locally equals $u$.
 
 \begin{lemma}[The heat convolution solves the heat equation]
 \label{lem:heat-convolution-solves-heat}
-\group{Heat Equation}
-\uses{def:heat-convolution-solution,lem:heat-kernel-solves-heat-equation}
 \lean{EvansLib.heatSolution_solves_heat}
+\uses{def:heat-convolution-solution, lem:heat-kernel-solves-heat-equation}
 \leanok
+\group{Heat Equation}
+
+
+
 If $g\in C(\R^n)$ has compact support, then its heat convolution satisfies
 $$\partial_tu(x,t)=\sum_{j=1}^n\partial_{x_j}^2u(x,t)$$
 for every $x\in\R^n$ and $t>0$.
@@ -1033,9 +1118,10 @@ $\Phi_t=\Delta_x\Phi$.
 
 \begin{remark}[Dirac measure notation; infinite propagation speed]
 \label{rem:heat-equation-infinite-propagation-speed}
+\uses{thm:heat-equation-initial-value-solution}
 \dcref{ch2:2.3.1-rem-1}
 \group{Heat Equation}
-\uses{thm:heat-equation-initial-value-solution}
+
 The heat kernel satisfies symbolically
 $$\Phi_t-\Delta\Phi=0\ \text{for }t>0,
 \qquad
@@ -1046,10 +1132,12 @@ heat convolution is positive at every $x\in\R^n$ and every $t>0$.
 
 \begin{lemma}[Infinite propagation speed]
 \label{lem:heat-infinite-propagation-speed}
-\group{Heat Equation}
+\lean{EvansLib.heatSolution_pos_of_bounded}
 \uses{def:heat-convolution-solution}
-\lean{EvansLib.heatSolution_pos}
-\leanok
+\group{Heat Equation}
+
+
+
 If $g\in C(\R^n)$ has compact support, $g\ge0$, and $g$ is positive somewhere,
 then its heat convolution satisfies $u(x,t)>0$ for all $x\in\R^n$ and $t>0$.
 \end{lemma}
@@ -1062,10 +1150,13 @@ positive on a set of positive measure.
 
 \begin{lemma}[The heat convolution attains its initial data]
 \label{lem:heat-convolution-attains-initial-data}
-\group{Heat Equation}
-\uses{def:heat-convolution-solution,lem:integral-fundamental-solution-heat}
 \lean{EvansLib.heatSolution_tendsto_initial}
+\uses{def:heat-convolution-solution, lem:integral-fundamental-solution-heat}
 \leanok
+\group{Heat Equation}
+
+
+
 If $g\in C(\R^n)$ has compact support, then
 $$\lim_{\substack{(x,t)\to(x^0,0)\\t>0}}u(x,t)=g(x^0).$$
 \end{lemma}
@@ -1088,9 +1179,10 @@ u(x,t):=\int_0^t\int_{\R^n}
 
 \begin{theorem}[Solution of nonhomogeneous problem]
 \label{thm:heat-equation-nonhomogeneous-solution}
+\uses{def:fundamental-solution-heat-equation}
 \dcref{ch2:2.3-thm-2}
 \group{Heat Equation}
-\uses{def:fundamental-solution-heat-equation}
+
 Assume $f\in C_1^2(\R^n\times[0,\infty))$ has compact support and define
 $u$ by (13). Then $u\in C_1^2(\R^n\times(0,\infty))$,
 $$u_t-\Delta u=f,$$
@@ -1110,9 +1202,10 @@ $\|u(\cdot,t)\|_\infty\le t\|f\|_\infty\to0$.
 
 \begin{remark}[Combined Duhamel formula]
 \label{rem:heat-equation-duhamel-combined}
+\uses{thm:heat-equation-initial-value-solution, thm:heat-equation-nonhomogeneous-solution}
 \dcref{ch2:2.3.1-rem-2}
 \group{Heat Equation}
-\uses{thm:heat-equation-initial-value-solution,thm:heat-equation-nonhomogeneous-solution}
+
 Under the preceding hypotheses,
 $$(17)\qquad
 u(x,t)=\int_{\R^n}\Phi(x-y,t)g(y)\,dy
@@ -1125,21 +1218,26 @@ solves $u_t-\Delta u=f$ with $u(\cdot,0)=g$.
 
 \begin{definition}[Parabolic cylinder]
 \label{def:parabolic-cylinder-heat-ball}
-\dcref{ch2:2.3.2-def-1}
-\group{Heat Equation}
 \lean{EvansLib.parabolicCylinder}
 \leanok
+\dcref{ch2:2.3.2-def-1}
+\group{Heat Equation}
+
+
 For a bounded open $U\subset\R^n$ and $T>0$, define
 $$U_T:=U\times(0,T].$$
 \end{definition}
 
 \begin{definition}[Parabolic boundary]
 \label{def:parabolic-boundary-heat-ball}
+\lean{EvansLib.parabolicBoundary}
+\uses{def:parabolic-cylinder-heat-ball}
+\leanok
 \dcref{ch2:2.3.2-def-2}
 \group{Heat Equation}
-\uses{def:parabolic-cylinder-heat-ball}
-\lean{EvansLib.parabolicBoundary}
-\leanok
+
+
+
 The parabolic boundary is
 $$\Gamma_T:=\overline U_T\setminus U_T.$$
 It consists of $U\times\{0\}$ and $\partial U\times[0,T]$, but not the top
@@ -1148,11 +1246,14 @@ interior $U\times\{T\}$.
 
 \begin{definition}[Heat ball]
 \label{def:heat-ball}
+\lean{EvansLib.heatBall}
+\uses{def:fundamental-solution-heat-equation}
+\leanok
 \dcref{ch2:2.3.2-def-3}
 \group{Heat Equation}
-\uses{def:fundamental-solution-heat-equation}
-\lean{EvansLib.heatBall}
-\leanok
+
+
+
 For $x\in\R^n$, $t\in\R$, and $r>0$, define
 $$E(x,t;r):=
 \left\{(y,s):s\le t,\ \Phi(x-y,t-s)\ge r^{-n}\right\}.$$
@@ -1160,9 +1261,10 @@ $$E(x,t;r):=
 
 \begin{theorem}[Mean-value property for the heat equation]
 \label{thm:mean-value-property-heat-equation}
+\uses{def:fundamental-solution-heat-equation, def:parabolic-cylinder-heat-ball, def:heat-ball}
 \dcref{ch2:2.3-thm-3}
 \group{Heat Equation}
-\uses{def:fundamental-solution-heat-equation,def:parabolic-cylinder-heat-ball,def:heat-ball}
+
 If $u\in C_1^2(U_T)$ solves the heat equation, then
 $$(19)\qquad
 u(x,t)=\frac1{4r^n}\iint_{E(x,t;r)}
@@ -1188,9 +1290,10 @@ then gives $\phi(r)=4u(0,0)$.
 
 \begin{theorem}[Strong maximum principle for the heat equation]
 \label{thm:strong-maximum-principle-heat-equation}
+\uses{thm:mean-value-property-heat-equation}
 \dcref{ch2:2.3-thm-4}
 \group{Maximum Principles}
-\uses{thm:mean-value-property-heat-equation}
+
 Let $u\in C_1^2(U_T)\cap C(\overline U_T)$ solve the heat equation.
 
 (i) $\max_{\overline U_T}u=\max_{\Gamma_T}u$.
@@ -1209,18 +1312,20 @@ then connect $(x_0,t_0)$ to every $(x,t)$ with $t<t_0$. This proves (ii), and
 
 \begin{remark}[Time-directedness of the strong maximum principle]
 \label{rem:strong-maximum-principle-heat-time-intuition}
+\uses{thm:strong-maximum-principle-heat-equation}
 \dcref{ch2:2.3.3-rem-4}
 \group{Maximum Principles}
-\uses{thm:strong-maximum-principle-heat-equation}
+
 An interior maximum at time $t_0$ forces constancy only at times not exceeding
 $t_0$; later boundary data may change the solution.
 \end{remark}
 
 \begin{remark}[Strict positivity from boundary and initial data]
 \label{rem:strong-maximum-principle-heat-positivity}
+\uses{thm:strong-maximum-principle-heat-equation}
 \dcref{ch2:2.3.3-rem-5}
 \group{Maximum Principles}
-\uses{thm:strong-maximum-principle-heat-equation}
+
 Let $U$ be connected. If $u\in C_1^2(U_T)\cap C(\overline U_T)$ solves the
 heat equation, vanishes on $\partial U\times[0,T]$, and has nonnegative initial
 data positive somewhere, then $u>0$ throughout $U_T$.
@@ -1228,10 +1333,13 @@ data positive somewhere, then $u>0$ throughout $U_T$.
 
 \begin{theorem}[Weak maximum principle for the heat equation]
 \label{thm:weak-maximum-principle-heat}
-\group{Maximum Principles}
-\uses{def:parabolic-cylinder-heat-ball, def:parabolic-boundary-heat-ball}
 \lean{EvansLib.exists_parabolicBoundary_isMaxOn}
+\uses{def:parabolic-cylinder-heat-ball, def:parabolic-boundary-heat-ball}
 \leanok
+\group{Maximum Principles}
+
+
+
 Let $U\subset\R^n$ be open, bounded, and nonempty, and let $T>0$. If
 $u\in C(\overline U_T)$ is $C^2$ and satisfies $u_t=\Delta u$ on
 $U\times(0,T)$, then
@@ -1249,11 +1357,14 @@ slice.
 
 \begin{theorem}[Uniqueness on bounded domains]
 \label{thm:uniqueness-heat-bounded-domain}
+\lean{EvansLib.eqOn_closure_of_eqOn_parabolicBoundary}
+\uses{thm:strong-maximum-principle-heat-equation, thm:weak-maximum-principle-heat}
+\leanok
 \dcref{ch2:2.3-thm-5}
 \group{Maximum Principles}
-\uses{thm:strong-maximum-principle-heat-equation, thm:weak-maximum-principle-heat}
-\lean{EvansLib.eqOn_closure_of_eqOn_parabolicBoundary}
-\leanok
+
+
+
 For $g\in C(\Gamma_T)$ and $f\in C(U_T)$, there is at most one
 $u\in C_1^2(U_T)\cap C(\overline U_T)$ satisfying
 $$(22)\qquad
@@ -1272,10 +1383,13 @@ $w$ and $-w$.
 
 \begin{definition}[Backward-Gaussian comparison kernel]
 \label{def:comparison-kernel}
-\group{Heat Equation}
 \lean{EvansLib.compKernelSpaceTime}
-\leanok
 \uses{def:fundamental-solution-heat-equation}
+\leanok
+\group{Heat Equation}
+
+
+
 For $y\in\R^n$, $\tau\in\R$, and $t<\tau$, define
 $$K(x,t):=(\tau-t)^{-n/2}
 e^{|x-y|^2/[4(\tau-t)]}.$$
@@ -1283,10 +1397,13 @@ e^{|x-y|^2/[4(\tau-t)]}.$$
 
 \begin{lemma}[The comparison kernel solves the heat equation]
 \label{lem:comparison-kernel-solves-heat}
-\group{Heat Equation}
 \lean{EvansLib.compKernelSpaceTime_solvesHeat}
-\leanok
 \uses{def:comparison-kernel}
+\leanok
+\group{Heat Equation}
+
+
+
 For $t<\tau$,
 $$K_t-\Delta_xK=0.$$
 \end{lemma}
@@ -1299,10 +1416,13 @@ $$\Delta_xK=K\left(\frac{|x-y|^2}{4s^2}+\frac n{2s}\right)
 
 \begin{lemma}[The comparison function solves the heat equation]
 \label{lem:comparison-function-solves-heat}
-\group{Heat Equation}
 \lean{EvansLib.sub_const_mul_compKernel_solvesHeat}
-\leanok
 \uses{lem:comparison-kernel-solves-heat}
+\leanok
+\group{Heat Equation}
+
+
+
 If $u$ solves the heat equation below time $\tau$ and $\mu\in\R$, then
 $v=u-\mu K$ also solves it.
 \end{lemma}
@@ -1313,11 +1433,14 @@ $v=u-\mu K$ also solves it.
 
 \begin{theorem}[Maximum principle for the Cauchy problem]
 \label{thm:maximum-principle-heat-cauchy-problem}
+\lean{EvansLib.heat_cauchy_maxPrinciple}
+\uses{thm:maximum-principle-heat-cauchy-problem-smalltime}
+\leanok
 \dcref{ch2:2.3-thm-6}
 \group{Maximum Principles}
-\uses{thm:maximum-principle-heat-cauchy-problem-smalltime}
-\lean{EvansLib.heat_cauchy_maxPrinciple}
-\leanok
+
+
+
 Suppose $u\in C_1^2(\R^n\times(0,T])\cap C(\R^n\times[0,T])$ solves
 $$u_t-\Delta u=0,
 \qquad
@@ -1344,10 +1467,12 @@ The reverse inequality holds on the initial slice.
 
 \begin{theorem}[Maximum principle for the Cauchy problem, small-time case]
 \label{thm:maximum-principle-heat-cauchy-problem-smalltime}
-\group{Maximum Principles}
-\uses{lem:comparison-function-solves-heat,thm:weak-maximum-principle-heat}
 \lean{EvansLib.heat_cauchy_maxPrinciple_smallTime}
-\leanok
+\uses{lem:comparison-function-solves-heat, thm:weak-maximum-principle-heat}
+\group{Maximum Principles}
+
+
+
 Let $u\in C(\R^n\times[0,T])$ be $C^2$ and solve the heat equation on
 $\R^n\times(0,T)$. Suppose $u(x,0)\le M$,
 $u(x,t)\le Ae^{a|x|^2}$, and $4aT<1$. Then
@@ -1362,11 +1487,14 @@ growth term on the lateral boundary as $r\to\infty$. Let $\mu\downarrow0$.
 
 \begin{theorem}[Uniqueness for Cauchy problem]
 \label{thm:uniqueness-heat-cauchy-problem}
+\lean{EvansLib.heat_cauchy_uniqueness}
+\uses{thm:maximum-principle-heat-cauchy-problem}
+\leanok
 \dcref{ch2:2.3-thm-7}
 \group{Maximum Principles}
-\uses{thm:maximum-principle-heat-cauchy-problem}
-\lean{EvansLib.heat_cauchy_uniqueness}
-\leanok
+
+
+
 For $g\in C(\R^n)$ and $f\in C(\R^n\times[0,T])$, there is at most one
 $u\in C_1^2(\R^n\times(0,T])\cap C(\R^n\times[0,T])$ satisfying
 $$u_t-\Delta u=f,
@@ -1383,10 +1511,12 @@ two solutions.
 
 \begin{theorem}[Uniqueness for Cauchy problem, small-time case]
 \label{thm:uniqueness-heat-cauchy-problem-smalltime}
-\group{Maximum Principles}
-\uses{thm:maximum-principle-heat-cauchy-problem-smalltime}
 \lean{EvansLib.heat_cauchy_uniqueness_smallTime}
-\leanok
+\uses{thm:maximum-principle-heat-cauchy-problem-smalltime}
+\group{Maximum Principles}
+
+
+
 Let $u,v\in C(\R^n\times[0,T])$ be $C^2$ on $\R^n\times(0,T)$, agree at
 $t=0$, and suppose $u-v$ solves the homogeneous heat equation. If
 $|u|,|v|\le Ae^{a|x|^2}$ and $4aT<1$, then $u=v$.
@@ -1398,9 +1528,10 @@ constant $2A$ and initial bound $0$.
 
 \begin{remark}[Nonuniqueness without a growth bound]
 \label{rem:heat-equation-nonphysical-solutions}
+\uses{thm:uniqueness-heat-cauchy-problem}
 \dcref{ch2:2.3.3-rem-7}
 \group{Maximum Principles}
-\uses{thm:uniqueness-heat-cauchy-problem}
+
 Without a growth restriction, the zero-data Cauchy problem
 $$u_t-\Delta u=0,
 \qquad
@@ -1414,9 +1545,10 @@ $|x|\to\infty$ \cite{John1982}.
 
 \begin{theorem}[Smoothness]
 \label{thm:heat-equation-smoothness}
+\uses{thm:heat-equation-nonhomogeneous-solution, thm:uniqueness-heat-cauchy-problem}
 \dcref{ch2:2.3-thm-8}
 \group{Heat Equation}
-\uses{thm:heat-equation-nonhomogeneous-solution,thm:uniqueness-heat-cauchy-problem}
+
 Every $u\in C_1^2(U_T)$ solving the heat equation belongs to
 $C^\infty(U_T)$.
 \end{theorem}
@@ -1439,9 +1571,10 @@ under this integral gives $u\in C^\infty(C'')$.
 
 \begin{theorem}[Estimates on derivatives]
 \label{thm:heat-equation-derivative-estimates}
+\uses{thm:heat-equation-smoothness}
 \dcref{ch2:2.3-thm-9}
 \group{Heat Equation}
-\uses{thm:heat-equation-smoothness}
+
 For every $k,l\in\N$ there is $C_{kl}$ such that
 $$\max_{C(x,t;r/2)}|D_x^kD_t^lu|
 \le\frac{C_{kl}}{r^{k+2l+n+2}}
@@ -1459,9 +1592,10 @@ $\|v\|_{L^1(C(1))}=r^{-n-2}\|u\|_{L^1(C(r))}$, the stated exponent follows.
 
 \begin{remark}[Spatial analyticity]
 \label{rem:heat-equation-spatial-analyticity}
+\uses{thm:heat-equation-derivative-estimates}
 \dcref{ch2:2.3.3-rem-8}
 \group{Heat Equation}
-\uses{thm:heat-equation-derivative-estimates}
+
 For each fixed $0<t\le T$, the map $x\mapsto u(x,t)$ is analytic, but
 $t\mapsto u(x,t)$ need not be analytic \cite{Mikhailov1978}.
 \end{remark}
@@ -1485,7 +1619,7 @@ $$u_t-\Delta u=f\ \text{in }U_T,
 u=g\ \text{on }\Gamma_T.$$
 \end{theorem}
 \begin{proof}
-\leanok
+  \uses{lem:uniqueness-heat-bounded-domain-anisotropic}
 \sketch For the difference $w$ of two solutions, define
 $e(t)=\int_Uw(x,t)^2\,dx$. Since $w=0$ on the parabolic boundary,
 $$e'(t)=2\int_Uw\Delta w\,dx=-2\int_U|Dw|^2\,dx\le0.$$
@@ -1497,9 +1631,10 @@ As $e(0)=0$, one has $w=0$.
 
 \begin{theorem}[Backwards uniqueness]
 \label{thm:backwards-uniqueness-heat-equation}
+\uses{thm:uniqueness-heat-energy-method}
 \dcref{ch2:2.3-thm-11}
 \group{Energy Methods}
-\uses{thm:uniqueness-heat-energy-method}
+
 Let $u,\widetilde u\in C^2(\overline U_T)$ solve the heat equation with the
 same data on $\partial U\times[0,T]$. If $u(x,T)=\widetilde u(x,T)$ on $U$,
 then $u=\widetilde u$ throughout $U_T$.
@@ -1544,9 +1679,11 @@ u=g,\quad u_t=h&\text{on }\R\times\{t=0\}.
 
 \begin{definition}[d'Alembert's formula]
 \label{def:dalembert-formula}
-\group{Wave Equation}
 \lean{EvansLib.dAlembert}
 \leanok
+\group{Wave Equation}
+
+
 For $g,h:\R\to\R$, d'Alembert's solution is
 $$u(x,t):=\frac12[g(x+t)+g(x-t)]
 +\frac12\int_{x-t}^{x+t}h(y)\,dy.$$
@@ -1554,9 +1691,11 @@ $$u(x,t):=\frac12[g(x+t)+g(x-t)]
 
 \begin{lemma}[Second-order chain rule along a linear form]
 \label{lem:second-order-chain-rule-linear-form}
-\group{Wave Equation}
 \lean{EvansLib.iteratedFDeriv_two_comp_clm}
 \leanok
+\group{Wave Equation}
+
+
 Let $E$ be a normed real vector space, $\varphi\in C^2(\R)$, and
 $L:E\to\R$ a continuous linear form. For $p,v,w\in E$,
 $$D^2(\varphi\circ L)(p)(v,w)=\varphi''(Lp)(Lv)(Lw).$$
@@ -1568,11 +1707,14 @@ $$D^2(\varphi\circ L)(p)(v,w)=\varphi''(Lp)(Lv)(Lw).$$
 
 \begin{theorem}[Solution of wave equation, $n = 1$]
 \label{thm:wave-equation-dalembert-solution}
+\lean{EvansLib.dAlembert_isClassicalSolution}
+\uses{def:dalembert-formula, lem:second-order-chain-rule-linear-form}
+\leanok
 \dcref{ch2:2.4-thm-1}
 \group{Wave Equation}
-\uses{def:dalembert-formula,lem:second-order-chain-rule-linear-form}
-\lean{EvansLib.dAlembert_isClassicalSolution}
-\leanok
+
+
+
 If $g\in C^2(\R)$ and $h\in C^1(\R)$, then d'Alembert's solution belongs to
 $C^2(\R^2)$ and satisfies $u_{tt}-u_{xx}=0$.
 \end{theorem}
@@ -1586,10 +1728,13 @@ of the second time and space derivatives.
 
 \begin{theorem}[Initial conditions for d'Alembert's solution]
 \label{thm:dalembert-initial-conditions}
-\group{Wave Equation}
-\uses{def:dalembert-formula}
 \lean{EvansLib.dAlembert_init,EvansLib.dAlembert_init_time}
+\uses{def:dalembert-formula}
 \leanok
+\group{Wave Equation}
+
+
+
 Under the preceding hypotheses,
 $$u(x,0)=g(x),
 \qquad
@@ -1606,10 +1751,13 @@ which equals $h(x)$ at $t=0$.
 
 \begin{theorem}[General solution of the 1D wave equation]
 \label{thm:wave-1d-general-solution}
-\group{Wave Equation}
-\uses{lem:second-order-chain-rule-linear-form}
 \lean{EvansLib.waveGeneralSol_isClassicalSolution}
+\uses{lem:second-order-chain-rule-linear-form}
 \leanok
+\group{Wave Equation}
+
+
+
 For $F,G\in C^2(\R)$,
 $$u(x,t)=F(x+t)+G(x-t)$$
 is a $C^2$ solution of $u_{tt}-u_{xx}=0$.
@@ -1622,9 +1770,10 @@ $F\circ L_+$ and $G\circ L_-$.
 
 \begin{remark}[General solution of the 1D wave equation]
 \label{rem:wave-equation-general-solution-1d}
+\uses{thm:wave-equation-dalembert-solution, thm:wave-1d-general-solution}
 \dcref{ch2:2.4.1-rem-1}
 \group{Wave Equation}
-\uses{thm:wave-equation-dalembert-solution,thm:wave-1d-general-solution}
+
 Every d'Alembert solution has the form $F(x+t)+G(x-t)$, reflecting the
 factorization
 $$\Box=(\partial_t+\partial_x)(\partial_t-\partial_x).$$
@@ -1667,6 +1816,7 @@ U(r,0)=G(r),\quad U_t(r,0)=H(r).
 \end{cases}$$
 \end{lemma}
 \begin{proof}
+  \uses{lem:wave-spherical-mean-smoothness, lem:wave-spherical-mean-time-derivative, lem:weak-divergence-form-radial-equation}
 \sketch Differentiating spherical averages and applying the divergence theorem
 gives
 $$U_r=\frac r n\fint_{B(x,r)}\Delta u\,dy.$$
@@ -1699,7 +1849,6 @@ u(x,t)=\frac12\fint_{B(x,t)}
 \begin{lemma}[Some useful identities]
 \label{lem:wave-equation-useful-identities}
 \lean{EvansLib.waveRadial_second_deriv,EvansLib.waveRadial_expansion, EvansLib.evansRadialCoeff_zero_eq_doubleFactorial, EvansLib.waveRadial_transform_of_epd}
-\leanok
 \dcref{ch2:2.4-lem-2}
 \group{Wave Equation}
 Let $\phi\in C^{k+1}(\R)$ and $k\ge1$. Then
@@ -1722,9 +1871,10 @@ $$\widetilde U=left(\frac1r\partial_r\right)^{k-1}(r^{2k-1}U),
 
 \begin{lemma}[$\tilde{U}$ solves the one-dimensional wave equation]
 \label{lem:transformed-spherical-mean-wave-equation}
+\uses{lem:euler-poisson-darboux-equation, lem:wave-equation-useful-identities}
 \dcref{ch2:2.4-lem-3}
 \group{Wave Equation}
-\uses{lem:euler-poisson-darboux-equation,lem:wave-equation-useful-identities}
+
 The transformed average satisfies
 $$\widetilde U_{tt}-\widetilde U_{rr}=0,
 \qquad
@@ -1756,10 +1906,11 @@ u(x,t)=\frac1{\gamma_n}\left[
 \begin{theorem}[Solution of wave equation in odd dimensions]
 \label{thm:wave-equation-odd-dimensions-solution}
 \lean{EvansLib.oddWaveSolution_isSolutionOfIVP_of_order}
+\uses{lem:transformed-spherical-mean-wave-equation}
 \leanok
 \dcref{ch2:2.4-thm-2}
 \group{Wave Equation}
-\uses{lem:transformed-spherical-mean-wave-equation}
+
 Let $n\ge3$ be odd, $m=(n+1)/2$, $g\in C^{m+1}(\R^n)$, and
 $h\in C^m(\R^n)$. The function (31) belongs to
 $C^2(\R^n\times[0,\infty))$, solves $u_{tt}-\Delta u=0$, and satisfies
@@ -1769,7 +1920,6 @@ u_t(x,t)\to h(x^0)$$
 as $(x,t)\to(x^0,0)$ with $t>0$.
 \end{theorem}
 \begin{proof}
-\leanok
 \sketch By linearity treat the displacement and velocity data separately.
 For $g=0$, differentiate (31) and use
 $$\partial_tH(x;t)=\frac t n\fint_{B(x,t)}\Delta h\,dy,
@@ -1781,9 +1931,10 @@ in \cref{lem:wave-equation-useful-identities} gives the initial limits.
 
 \begin{remark}[Domain of dependence, regularity, and Huygens' principle]
 \label{rem:wave-equation-odd-dimension-remarks}
+\uses{thm:wave-equation-odd-dimensions-solution, thm:wave-equation-dalembert-solution}
 \dcref{ch2:2.4.1-rem-2}
 \group{Wave Equation}
-\uses{thm:wave-equation-odd-dimensions-solution,thm:wave-equation-dalembert-solution}
+
 For odd $n\ge3$, $u(x,t)$ depends only on the data and their required
 derivatives on $\partial B(x,t)$. Unlike the one-dimensional formula, (31)
 uses derivatives of $g$, so wave evolution does not improve regularity. Both
@@ -1808,9 +1959,10 @@ u(x,t)=\frac1{\gamma_n}\left[
 
 \begin{theorem}[Solution of wave equation in even dimensions]
 \label{thm:wave-equation-even-dimensions-solution}
+\uses{thm:wave-equation-odd-dimensions-solution}
 \dcref{ch2:2.4-thm-3}
 \group{Wave Equation}
-\uses{thm:wave-equation-odd-dimensions-solution}
+
 Let $n\ge2$ be even, $m=(n+2)/2$, $g\in C^{m+1}(\R^n)$, and
 $h\in C^m(\R^n)$. The function (38) belongs to
 $C^2(\R^n\times[0,\infty))$, solves $u_{tt}-\Delta u=0$, and satisfies
@@ -1828,9 +1980,10 @@ integrals in (38), and restriction to the hyperplane recovers $u$.
 
 \begin{remark}[Huygens' principle]
 \label{rem:huygens-principle}
+\uses{thm:wave-equation-odd-dimensions-solution, thm:wave-equation-even-dimensions-solution}
 \dcref{ch2:2.4.1-rem-3}
 \group{Wave Equation}
-\uses{thm:wave-equation-odd-dimensions-solution,thm:wave-equation-even-dimensions-solution}
+
 For odd $n\ge3$, data at $x$ affect the solution only on the boundary
 $|y-x|=t$ of the forward cone. For even $n$, formula (38) uses the entire ball
 $B(y,t)$, so the data continue to influence the cone interior after the
@@ -1850,9 +2003,10 @@ $$(41)\qquad u(x,t):=\int_0^t w(x,t;s)\,ds.$$
 
 \begin{theorem}[Solution of nonhomogeneous wave equation]
 \label{thm:wave-equation-nonhomogeneous-duhamel}
+\uses{thm:wave-equation-odd-dimensions-solution, thm:wave-equation-even-dimensions-solution}
 \dcref{ch2:2.4-thm-4}
 \group{Wave Equation}
-\uses{thm:wave-equation-odd-dimensions-solution,thm:wave-equation-even-dimensions-solution}
+
 Let $n\ge2$ and $f\in C^{[n/2]+1}(\R^n\times[0,\infty))$. The function
 in (41) belongs to $C^2(\R^n\times[0,\infty))$, satisfies
 $$u_{tt}-\Delta u=f,$$
@@ -1870,18 +2024,20 @@ follow directly.
 
 \begin{remark}[General solution of the nonhomogeneous wave equation]
 \label{rem:wave-equation-general-nonhomogeneous-solution}
+\uses{thm:wave-equation-nonhomogeneous-duhamel}
 \dcref{ch2:2.4.2-rem-1}
 \group{Wave Equation}
-\uses{thm:wave-equation-nonhomogeneous-duhamel}
+
 For arbitrary initial displacement and velocity, add the corresponding
 homogeneous solution to the Duhamel solution (41).
 \end{remark}
 
 \begin{example}[Nonhomogeneous wave equation for $n=1,3$]
 \label{ex:wave-equation-nonhomogeneous-n1-n3}
+\uses{thm:wave-equation-nonhomogeneous-duhamel, thm:wave-equation-dalembert-solution}
 \dcref{ch2:2.4.2-ex-1}
 \group{Wave Equation}
-\uses{thm:wave-equation-nonhomogeneous-duhamel,thm:wave-equation-dalembert-solution}
+
 For $n=1$, zero initial data give
 $$(43)\qquad
 u(x,t)=\frac12\int_0^t\int_{x-s}^{x+s}f(y,t-s)\,dy\,ds.$$
@@ -1951,10 +2107,12 @@ the cone.
 %ORIGINAL-NUMBER: 1
 \begin{theorem}[Problem 1: first-order equation with constant reaction term]
 \label{ex:transport-reaction-equation}
-\group{Transport Equation}
-\uses{thm:transport-ivp-solution,thm:transport-initial-condition}
 \lean{EvansLib.transportReactionSolution_char_deriv, EvansLib.transportReactionSolution_init}
-\leanok
+\uses{thm:transport-ivp-solution, thm:transport-initial-condition}
+\group{Transport Equation}
+
+
+
 For constants $c\in\R$, $b\in\R^n$, the function
 $$u(x,t)=e^{-ct}g(x-tb)$$
 satisfies

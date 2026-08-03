@@ -22,9 +22,10 @@ backward Ricci-flow case is \(\mathcal R_{ij}=R_{ij}\) and \(Q=R\).
 
 \begin{definition}[Heat kernel with respect to an evolving metric]
 \label{def:chow-iii-evolving-heat-kernel}
+\source{chow-et-al-ricci-flow-part-iii:page-0287}
 \dcref{ch24:24.1}
 \group{Evolving Heat Kernels}
-\source{chow-et-al-ricci-flow-part-iii:page-0287}
+
 A function \(H(x,\tau;y,v)\) on
 \(\mathcal M\times\mathcal M\times\{0<\tau-v\le T\}\) is a
 \emph{fundamental solution} for (L) if it has the standard space-time
@@ -39,10 +40,12 @@ is called the heat kernel.
 
 \begin{theorem}[Existence of the heat kernel on closed \(\mathcal M^n\)]
 \label{thm:chow-iii-closed-evolving-heat-kernel}
+\source{chow-et-al-ricci-flow-part-iii:page-0288}
+\uses{def:chow-iii-evolving-heat-kernel, prop:chow-iii-evolving-parametrix, lem:chow-iii-parametrix-convolution-derivatives}
 \dcref{ch24:24.2}
 \group{Evolving Heat Kernels}
-\source{chow-et-al-ricci-flow-part-iii:page-0288}
-\uses{def:chow-iii-evolving-heat-kernel,prop:chow-iii-evolving-parametrix,lem:chow-iii-parametrix-convolution-derivatives}
+
+
 If \(\mathcal M\) is closed, then \(L\) has a unique fundamental solution
 \(H(x,\tau;y,v)\).  It is positive and smooth, hence is the heat kernel.
 \end{theorem}
@@ -59,19 +62,22 @@ In polar coordinates about \(y\), write
 
 \begin{remark}[Changing distance in the parametrix]
 \label{rem:chow-iii-changing-distance-parametrix}
+\source{chow-et-al-ricci-flow-part-iii:page-0289}
 \dcref{ch24:24.3}
 \group{Local Parametrix}
-\source{chow-et-al-ricci-flow-part-iii:page-0289}
+
 Although \(\partial_\tau(r_\tau^2)\) is not usually explicit, only its local
 expansion near \(y\) is needed in the parametrix construction.
 \end{remark}
 
 \begin{lemma}[Recursive ODEs for \(\psi_k\)]
 \label{lem:chow-iii-parametrix-recursive-odes}
-\dcref{ch24:24.4}
-\group{Local Parametrix}
 \source{chow-et-al-ricci-flow-part-iii:page-0289,chow-et-al-ricci-flow-part-iii:page-0290}
 \uses{rem:chow-iii-changing-distance-parametrix}
+\dcref{ch24:24.4}
+\group{Local Parametrix}
+
+
 The equations
 \[
  \partial_{r_\tau}\psi_0=
@@ -104,19 +110,23 @@ of the resulting recursion into \(L_{x,\tau}H_N\) cancels every power below
 
 \begin{remark}[Independence of the truncation order]
 \label{rem:chow-iii-parametrix-coefficients-independent}
-\dcref{ch24:24.5}
-\group{Local Parametrix}
 \source{chow-et-al-ricci-flow-part-iii:page-0290}
 \uses{lem:chow-iii-parametrix-recursive-odes}
+\dcref{ch24:24.5}
+\group{Local Parametrix}
+
+
 The coefficient \(\psi_k\) is independent of the truncation order \(N\ge k\).
 \end{remark}
 
 \begin{remark}[Diagonal recursion]
 \label{rem:chow-iii-parametrix-diagonal-recursion}
-\dcref{ch24:24.6}
-\group{Local Parametrix}
 \source{chow-et-al-ricci-flow-part-iii:page-0291}
 \uses{lem:chow-iii-parametrix-recursive-odes}
+\dcref{ch24:24.6}
+\group{Local Parametrix}
+
+
 On the diagonal,
 \[
  \psi_k(y,y,\tau,v)=-\frac1k
@@ -126,9 +136,10 @@ On the diagonal,
 
 \begin{lemma}[Elementary bound for changing distances]
 \label{lem:chow-iii-changing-distance-bound}
+\source{chow-et-al-ricci-flow-part-iii:page-0291,chow-et-al-ricci-flow-part-iii:page-0292}
 \dcref{ch24:24.7}
 \group{Local Parametrix}
-\source{chow-et-al-ricci-flow-part-iii:page-0291,chow-et-al-ricci-flow-part-iii:page-0292}
+
 If \(\lvert\mathcal R_{ij}\rvert\le C\), then, away from the cut locus,
 \[
  \left|\partial_\tau r_\tau(x)\right|\le C r_\tau(x).
@@ -146,10 +157,12 @@ proves the estimate.
 
 \begin{lemma}[Covariant derivatives of \(L_{x,\tau}H_N\)]
 \label{lem:chow-iii-approximate-kernel-error-derivatives}
+\source{chow-et-al-ricci-flow-part-iii:page-0292,chow-et-al-ricci-flow-part-iii:page-0293}
+\uses{lem:chow-iii-parametrix-recursive-odes, lem:chow-iii-changing-distance-bound}
 \dcref{ch24:24.8}
 \group{Local Parametrix}
-\source{chow-et-al-ricci-flow-part-iii:page-0292,chow-et-al-ricci-flow-part-iii:page-0293}
-\uses{lem:chow-iii-parametrix-recursive-odes,lem:chow-iii-changing-distance-bound}
+
+
 For \(k,\ell\ge0\), on the uniform injectivity neighborhood,
 \[
  \left|\partial_\tau^\ell\nabla_x^k(L_{x,\tau}H_N)\right|
@@ -168,9 +181,10 @@ equal to one where \(d_\tau(x,y)\le\rho\), with
 
 \begin{definition}[Parametrix for \(L_{x,\tau}\)]
 \label{def:chow-iii-evolving-parametrix}
+\source{chow-et-al-ricci-flow-part-iii:page-0293}
 \dcref{ch24:24.10}
 \group{Global Parametrix}
-\source{chow-et-al-ricci-flow-part-iii:page-0293}
+
 A smooth function \(P\) is a parametrix if \(L_{x,\tau}P\) and
 \(L^*_{y,v}P\) extend continuously to \(\tau=v\), and \(P\) converges to the
 delta distribution in either time direction.
@@ -178,19 +192,23 @@ delta distribution in either time direction.
 
 \begin{proposition}[Existence of a parametrix for \(L_{x,\tau}\)]
 \label{prop:chow-iii-evolving-parametrix}
+\source{chow-et-al-ricci-flow-part-iii:page-0293}
+\uses{def:chow-iii-evolving-parametrix, lem:chow-iii-approximate-kernel-error-derivatives}
 \dcref{ch24:24.11}
 \group{Global Parametrix}
-\source{chow-et-al-ricci-flow-part-iii:page-0293}
-\uses{def:chow-iii-evolving-parametrix,lem:chow-iii-approximate-kernel-error-derivatives}
+
+
 If \(N>n/2\), then \(P_N\) is a parametrix for \(L_{x,\tau}\).
 \end{proposition}
 
 \begin{lemma}[Derivatives of \(L_{x,\tau}P_N\)]
 \label{lem:chow-iii-cutoff-parametrix-error-derivatives}
+\source{chow-et-al-ricci-flow-part-iii:page-0293}
+\uses{prop:chow-iii-evolving-parametrix, lem:chow-iii-approximate-kernel-error-derivatives}
 \dcref{ch24:24.12}
 \group{Global Parametrix}
-\source{chow-et-al-ricci-flow-part-iii:page-0293}
-\uses{prop:chow-iii-evolving-parametrix,lem:chow-iii-approximate-kernel-error-derivatives}
+
+
 For smooth covariant tensors \(G_{k,\ell}\),
 \[
  \partial_\tau^\ell\nabla_x^k(L_{x,\tau}P_N)
@@ -208,9 +226,10 @@ In particular,
 
 \begin{definition}[Space-time convolution]
 \label{def:chow-iii-space-time-convolution}
+\source{chow-et-al-ricci-flow-part-iii:page-0294}
 \dcref{ch24:24.13}
 \group{Convolution Series}
-\source{chow-et-al-ricci-flow-part-iii:page-0294}
+
 For suitable kernels \(F,G\), define
 \[
  (F*G)(x,\tau;y,v)=\int_v^\tau\!\int_{\mathcal M}
@@ -221,9 +240,10 @@ For suitable kernels \(F,G\), define
 
 \begin{remark}[Static specialization of convolution]
 \label{rem:chow-iii-static-convolution}
+\source{chow-et-al-ricci-flow-part-iii:page-0294}
 \dcref{ch24:24.14}
 \group{Convolution Series}
-\source{chow-et-al-ricci-flow-part-iii:page-0294}
+
 When the metric is fixed and both kernels depend only on time differences,
 Definition~\ref{def:chow-iii-space-time-convolution} is the usual heat-kernel
 convolution.
@@ -231,10 +251,12 @@ convolution.
 
 \begin{lemma}[Associativity of space-time convolution]
 \label{lem:chow-iii-space-time-convolution-associative}
-\dcref{ch24:24.15}
-\group{Convolution Series}
 \source{chow-et-al-ricci-flow-part-iii:page-0294}
 \uses{def:chow-iii-space-time-convolution}
+\dcref{ch24:24.15}
+\group{Convolution Series}
+
+
 Whenever the relevant integrals are defined, space-time convolution is
 associative.
 \end{lemma}
@@ -245,10 +267,12 @@ associative.
 
 \begin{lemma}[First space derivatives of a convolution with \(P_N\)]
 \label{lem:chow-iii-parametrix-convolution-first-derivative}
+\source{chow-et-al-ricci-flow-part-iii:page-0295,chow-et-al-ricci-flow-part-iii:page-0296}
+\uses{def:chow-iii-space-time-convolution, lem:chow-iii-cutoff-parametrix-error-derivatives}
 \dcref{ch24:24.16}
 \group{Convolution Series}
-\source{chow-et-al-ricci-flow-part-iii:page-0295,chow-et-al-ricci-flow-part-iii:page-0296}
-\uses{def:chow-iii-space-time-convolution,lem:chow-iii-cutoff-parametrix-error-derivatives}
+
+
 If \(G\) is continuous, then \(P_N*G\) is \(C^1\) in \(x\) and
 \[
  \partial_{x^i}(P_N*G)=\int_v^\tau\!\int_{\mathcal M}
@@ -259,10 +283,12 @@ If \(G\) is continuous, then \(P_N*G\) is \(C^1\) in \(x\) and
 
 \begin{lemma}[Second space derivatives of a convolution with \(P_N\)]
 \label{lem:chow-iii-parametrix-convolution-second-derivative}
-\dcref{ch24:24.17}
-\group{Convolution Series}
 \source{chow-et-al-ricci-flow-part-iii:page-0296,chow-et-al-ricci-flow-part-iii:page-0297}
 \uses{lem:chow-iii-parametrix-convolution-first-derivative}
+\dcref{ch24:24.17}
+\group{Convolution Series}
+
+
 Under the hypotheses of Lemma~\ref{lem:chow-iii-parametrix-convolution-first-derivative},
 in a geodesic coordinate neighborhood containing the half-injectivity ball,
 \(P_N*G\) is \(C^2\) in \(x\), and its second derivatives are obtained by
@@ -271,10 +297,12 @@ differentiating \(P_N\) twice under the convolution integral.
 
 \begin{lemma}[Time derivative of a convolution with \(P_N\)]
 \label{lem:chow-iii-parametrix-convolution-time-derivative}
+\source{chow-et-al-ricci-flow-part-iii:page-0297,chow-et-al-ricci-flow-part-iii:page-0298}
+\uses{def:chow-iii-space-time-convolution, lem:chow-iii-cutoff-parametrix-error-derivatives}
 \dcref{ch24:24.18}
 \group{Convolution Series}
-\source{chow-et-al-ricci-flow-part-iii:page-0297,chow-et-al-ricci-flow-part-iii:page-0298}
-\uses{def:chow-iii-space-time-convolution,lem:chow-iii-cutoff-parametrix-error-derivatives}
+
+
 If \(G\) is continuous, then \(P_N*G\) is \(C^1\) in \(\tau\) and
 \[
  \partial_\tau(P_N*G)=G+
@@ -285,10 +313,12 @@ If \(G\) is continuous, then \(P_N*G\) is \(C^1\) in \(\tau\) and
 
 \begin{lemma}[Covariant derivatives of the convolution series]
 \label{lem:chow-iii-parametrix-convolution-derivatives}
+\source{chow-et-al-ricci-flow-part-iii:page-0298,chow-et-al-ricci-flow-part-iii:page-0299}
+\uses{lem:chow-iii-space-time-convolution-associative, lem:chow-iii-parametrix-convolution-first-derivative, lem:chow-iii-parametrix-convolution-second-derivative, lem:chow-iii-parametrix-convolution-time-derivative}
 \dcref{ch24:24.19}
 \group{Convolution Series}
-\source{chow-et-al-ricci-flow-part-iii:page-0298,chow-et-al-ricci-flow-part-iii:page-0299}
-\uses{lem:chow-iii-space-time-convolution-associative,lem:chow-iii-parametrix-convolution-first-derivative,lem:chow-iii-parametrix-convolution-second-derivative,lem:chow-iii-parametrix-convolution-time-derivative}
+
+
 If \(m,\ell\ge0\) and \(N>n/2+2\ell+m\), then
 \[
  \sum_{k=1}^\infty
@@ -306,10 +336,12 @@ is a smooth fundamental solution.
 
 \begin{theorem}[Heat kernel expansion for evolving metrics]
 \label{thm:chow-iii-evolving-heat-kernel-expansion}
+\source{chow-et-al-ricci-flow-part-iii:page-0299,chow-et-al-ricci-flow-part-iii:page-0300}
+\uses{thm:chow-iii-closed-evolving-heat-kernel, lem:chow-iii-parametrix-convolution-derivatives}
 \dcref{ch24:24.21}
 \group{Heat Kernel Asymptotics}
-\source{chow-et-al-ricci-flow-part-iii:page-0299,chow-et-al-ricci-flow-part-iii:page-0300}
-\uses{thm:chow-iii-closed-evolving-heat-kernel,lem:chow-iii-parametrix-convolution-derivatives}
+
+
 On a closed manifold there are smooth \(u_k\), agreeing locally with
 \(\psi_k\), such that
 \[
@@ -325,10 +357,12 @@ where, uniformly in \(x,y\),
 
 \begin{lemma}[Expansion for \(\partial_\tau r_\tau\)]
 \label{lem:chow-iii-changing-distance-expansion}
-\dcref{ch24:24.22}
-\group{Heat Kernel Asymptotics}
 \source{chow-et-al-ricci-flow-part-iii:page-0301}
 \uses{lem:chow-iii-changing-distance-bound}
+\dcref{ch24:24.22}
+\group{Heat Kernel Asymptotics}
+
+
 In \(g(\tau)\)-normal coordinates \(x_\tau^i\) centered at \(y\),
 \[
  \partial_\tau r_\tau(x)=\frac{\mathcal R_{ij}x_\tau^ix_\tau^j}{r_\tau}
@@ -340,10 +374,12 @@ with tensors evaluated at \((y,\tau)\).
 
 \begin{remark}[Integrated distance expansion]
 \label{rem:chow-iii-integrated-distance-expansion}
-\dcref{ch24:24.23}
-\group{Heat Kernel Asymptotics}
 \source{chow-et-al-ricci-flow-part-iii:page-0302}
 \uses{lem:chow-iii-changing-distance-expansion}
+\dcref{ch24:24.23}
+\group{Heat Kernel Asymptotics}
+
+
 Along the radial geodesic \(\gamma\), for \(0<s\le r_\tau(x)\),
 \[
  \int_0^s\partial_\tau r_\tau(\gamma(\bar s))\,d\bar s
@@ -354,10 +390,12 @@ Along the radial geodesic \(\gamma\), for \(0<s\le r_\tau(x)\),
 
 \begin{lemma}[Asymptotic expansion for \(\psi_0\)]
 \label{lem:chow-iii-psi-zero-expansion}
+\source{chow-et-al-ricci-flow-part-iii:page-0302}
+\uses{lem:chow-iii-parametrix-recursive-odes, lem:chow-iii-changing-distance-expansion}
 \dcref{ch24:24.24}
 \group{Heat Kernel Asymptotics}
-\source{chow-et-al-ricci-flow-part-iii:page-0302}
-\uses{lem:chow-iii-parametrix-recursive-odes,lem:chow-iii-changing-distance-expansion}
+
+
 In normal coordinates at (y),
 \[
  \begin{aligned}
@@ -373,10 +411,12 @@ where the coefficients are evaluated at \((y,\tau)\).
 
 \begin{lemma}[Asymptotic expansion for \(\psi_1\)]
 \label{lem:chow-iii-psi-one-expansion}
+\source{chow-et-al-ricci-flow-part-iii:page-0302,chow-et-al-ricci-flow-part-iii:page-0303,chow-et-al-ricci-flow-part-iii:page-0304,chow-et-al-ricci-flow-part-iii:page-0305,chow-et-al-ricci-flow-part-iii:page-0306}
+\uses{lem:chow-iii-parametrix-recursive-odes, lem:chow-iii-psi-zero-expansion}
 \dcref{ch24:24.25}
 \group{Heat Kernel Asymptotics}
-\source{chow-et-al-ricci-flow-part-iii:page-0302,chow-et-al-ricci-flow-part-iii:page-0303,chow-et-al-ricci-flow-part-iii:page-0304,chow-et-al-ricci-flow-part-iii:page-0305,chow-et-al-ricci-flow-part-iii:page-0306}
-\uses{lem:chow-iii-parametrix-recursive-odes,lem:chow-iii-psi-zero-expansion}
+
+
 In normal coordinates at (y),
 \[
  \begin{aligned}
@@ -400,10 +440,12 @@ Let \(H=(4\pi\tau)^{-n/2}e^{-f}\) be the adjoint heat kernel based at
 
 \begin{claim}[Heat kernel asymptotics characterization of Ricci flow]
 \label{clm:chow-iii-heat-kernel-characterizes-ricci-flow}
+\source{chow-et-al-ricci-flow-part-iii:page-0307}
+\uses{thm:chow-iii-evolving-heat-kernel-expansion, lem:chow-iii-psi-zero-expansion, lem:chow-iii-psi-one-expansion}
 \dcref{ch24:24.26}
 \group{Ricci Flow Characterization}
-\source{chow-et-al-ricci-flow-part-iii:page-0307}
-\uses{thm:chow-iii-evolving-heat-kernel-expansion,lem:chow-iii-psi-zero-expansion,lem:chow-iii-psi-one-expansion}
+
+
 If \(\mathcal R_{ij}=R_{ij}\), so \(g(\tau)\) evolves by backward Ricci flow,
 then
 \[
@@ -416,19 +458,22 @@ In particular the left side is \(o(1)\) as
 
 \begin{remark}[The cubic-over-time error]
 \label{rem:chow-iii-cubic-over-time-error}
+\source{chow-et-al-ricci-flow-part-iii:page-0310}
 \dcref{ch24:24.27}
 \group{Ricci Flow Characterization}
-\source{chow-et-al-ricci-flow-part-iii:page-0310}
+
 If \(r_\tau(x)^2+\tau\to0\) while \(r_\tau(x)^2/\tau\) remains bounded,
 then \(r_\tau(x)^3/\tau\to0\).
 \end{remark}
 
 \begin{lemma}[Adjoint-kernel asymptotics under backward Ricci flow]
 \label{lem:chow-iii-adjoint-parametrix-ricci-asymptotics}
+\source{chow-et-al-ricci-flow-part-iii:page-0310}
+\uses{lem:chow-iii-psi-zero-expansion, lem:chow-iii-psi-one-expansion, rem:chow-iii-cubic-over-time-error}
 \dcref{ch24:24.28}
 \group{Ricci Flow Characterization}
-\source{chow-et-al-ricci-flow-part-iii:page-0310}
-\uses{lem:chow-iii-psi-zero-expansion,lem:chow-iii-psi-one-expansion,rem:chow-iii-cubic-over-time-error}
+
+
 If \(\mathcal R_{ij}=R_{ij}\) and \(Q=R\), then for the approximate adjoint
 heat kernel the quantity \(W\) defined from its logarithmic density satisfies
 \[
@@ -442,9 +487,10 @@ heat kernel the quantity \(W\) defined from its logarithmic density satisfies
 
 \begin{theorem}[Existence and uniqueness of Dirichlet heat kernel]
 \label{thm:chow-iii-static-dirichlet-heat-kernel}
+\source{chow-et-al-ricci-flow-part-iii:page-0311}
 \dcref{ch24:24.30}
 \group{Dirichlet Heat Kernels}
-\source{chow-et-al-ricci-flow-part-iii:page-0311}
+
 Let \((\mathcal M^n,g)\) be compact with nonempty smooth boundary.  There is a
 unique nonnegative Dirichlet heat kernel \(H_D\), smooth in the interior,
 vanishing on the boundary, and converging to \(\delta_y\) as \(t\searrow0\).
@@ -456,10 +502,12 @@ It has the eigenfunction expansion
 
 \begin{lemma}[Dirichlet problem for the heat equation]
 \label{lem:chow-iii-evolving-dirichlet-problem}
+\source{chow-et-al-ricci-flow-part-iii:page-0312,chow-et-al-ricci-flow-part-iii:page-0313,chow-et-al-ricci-flow-part-iii:page-0314,chow-et-al-ricci-flow-part-iii:page-0315,chow-et-al-ricci-flow-part-iii:page-0316,chow-et-al-ricci-flow-part-iii:page-0317,chow-et-al-ricci-flow-part-iii:page-0318,chow-et-al-ricci-flow-part-iii:page-0319,chow-et-al-ricci-flow-part-iii:page-0320,chow-et-al-ricci-flow-part-iii:page-0321}
+\uses{thm:chow-iii-closed-evolving-heat-kernel, lem:chow-iii-boundary-jump-relation, lem:chow-iii-normal-heat-kernel-derivative}
 \dcref{ch24:24.31}
 \group{Dirichlet Heat Kernels}
-\source{chow-et-al-ricci-flow-part-iii:page-0312,chow-et-al-ricci-flow-part-iii:page-0313,chow-et-al-ricci-flow-part-iii:page-0314,chow-et-al-ricci-flow-part-iii:page-0315,chow-et-al-ricci-flow-part-iii:page-0316,chow-et-al-ricci-flow-part-iii:page-0317,chow-et-al-ricci-flow-part-iii:page-0318,chow-et-al-ricci-flow-part-iii:page-0319,chow-et-al-ricci-flow-part-iii:page-0320,chow-et-al-ricci-flow-part-iii:page-0321}
-\uses{thm:chow-iii-closed-evolving-heat-kernel,lem:chow-iii-boundary-jump-relation,lem:chow-iii-normal-heat-kernel-derivative}
+
+
 Let \(\mathcal M\) be compact with boundary and let \(b\) be continuous on
 \(\partial\mathcal M\times(v,T]\), tending pointwise to zero as
 \(\tau\searrow v\).  There is a unique continuous solution \(u\), smooth in
@@ -487,10 +535,12 @@ maximum principle gives uniqueness.
 
 \begin{theorem}[Existence of Dirichlet heat kernel]
 \label{thm:chow-iii-evolving-dirichlet-heat-kernel}
+\source{chow-et-al-ricci-flow-part-iii:page-0313}
+\uses{lem:chow-iii-evolving-dirichlet-problem, thm:chow-iii-closed-evolving-heat-kernel}
 \dcref{ch24:24.32}
 \group{Dirichlet Heat Kernels}
-\source{chow-et-al-ricci-flow-part-iii:page-0313}
-\uses{lem:chow-iii-evolving-dirichlet-problem,thm:chow-iii-closed-evolving-heat-kernel}
+
+
 Let \(\widetilde H\) be the heat kernel on a closed extension of
 \(\mathcal M\), and let \(f_{y,v}\) solve the homogeneous equation with zero
 initial data and boundary value \(-\widetilde H(\cdot,\cdot;y,v)\).  Then
@@ -502,10 +552,12 @@ is the fundamental solution satisfying the Dirichlet boundary condition.
 
 \begin{lemma}[Jump relation]
 \label{lem:chow-iii-boundary-jump-relation}
-\dcref{ch24:24.33}
-\group{Boundary Layer Potentials}
 \source{chow-et-al-ricci-flow-part-iii:page-0313,chow-et-al-ricci-flow-part-iii:page-0314}
 \uses{thm:chow-iii-closed-evolving-heat-kernel}
+\dcref{ch24:24.33}
+\group{Boundary Layer Potentials}
+
+
 For \(x_0\in\partial\mathcal M\), the layer potential satisfies the
 nontangential boundary limit
 \[
@@ -518,10 +570,12 @@ nontangential boundary limit
 
 \begin{lemma}[Normal derivative estimate on a hypersurface]
 \label{lem:chow-iii-normal-heat-kernel-derivative}
-\dcref{ch24:24.35}
-\group{Boundary Layer Potentials}
 \source{chow-et-al-ricci-flow-part-iii:page-0317}
 \uses{thm:chow-iii-evolving-heat-kernel-expansion}
+\dcref{ch24:24.35}
+\group{Boundary Layer Potentials}
+
+
 Let \(\mathcal N^{n-1}\subset\mathcal M\) be a compact smooth hypersurface.
 For \(x,y\in\mathcal N\), \(0\le\sigma<\tau\le T\), and a unit normal
 \(\nu_{y,\sigma}\),
@@ -537,10 +591,12 @@ It is consequently bounded by
 
 \begin{remark}[Integrability of the first boundary kernel]
 \label{rem:chow-iii-first-boundary-kernel-integrable}
-\dcref{ch24:24.37}
-\group{Boundary Layer Potentials}
 \source{chow-et-al-ricci-flow-part-iii:page-0318}
 \uses{lem:chow-iii-normal-heat-kernel-derivative}
+\dcref{ch24:24.37}
+\group{Boundary Layer Potentials}
+
+
 For \(\alpha\in(1/2,1)\), the first iterated boundary kernel \(M_1\) obeys
 \[
  \int_0^\tau\!\int_{\partial\mathcal M}|M_1|
@@ -551,19 +607,22 @@ and hence its first Picard increment has the same bound.
 
 \begin{remark}[Gaussian normal derivative bounds]
 \label{rem:chow-iii-normal-derivative-gaussian-bounds}
-\dcref{ch24:24.38}
-\group{Boundary Layer Potentials}
 \source{chow-et-al-ricci-flow-part-iii:page-0318}
 \uses{lem:chow-iii-normal-heat-kernel-derivative}
+\dcref{ch24:24.38}
+\group{Boundary Layer Potentials}
+
+
 The two Gaussian estimates used for \(M_1\) follow directly from
 Lemma~\ref{lem:chow-iii-normal-heat-kernel-derivative}.
 \end{remark}
 
 \begin{theorem}[Existence and uniqueness on a noncompact manifold, fixed metric]
 \label{thm:chow-iii-noncompact-static-heat-kernel}
+\source{chow-et-al-ricci-flow-part-iii:page-0322}
 \dcref{ch24:24.39}
 \group{Noncompact Heat Kernels}
-\source{chow-et-al-ricci-flow-part-iii:page-0322}
+
 Every, not necessarily complete, noncompact Riemannian manifold has a unique
 minimal positive fundamental solution \(H_{\mathcal M}(x,y,t)\) of the heat
 equation.  It is smooth and symmetric in \(x,y\).
@@ -571,10 +630,12 @@ equation.  It is smooth and symmetric in \(x,y\).
 
 \begin{theorem}[Existence and uniqueness on a noncompact manifold, evolving metric]
 \label{thm:chow-iii-noncompact-evolving-heat-kernel}
+\source{chow-et-al-ricci-flow-part-iii:page-0323,chow-et-al-ricci-flow-part-iii:page-0324}
+\uses{thm:chow-iii-evolving-dirichlet-heat-kernel, lem:chow-iii-dirichlet-kernel-mass-bound}
 \dcref{ch24:24.40}
 \group{Noncompact Heat Kernels}
-\source{chow-et-al-ricci-flow-part-iii:page-0323,chow-et-al-ricci-flow-part-iii:page-0324}
-\uses{thm:chow-iii-evolving-dirichlet-heat-kernel,lem:chow-iii-dirichlet-kernel-mass-bound}
+
+
 Let \(\mathcal M\) be noncompact, let \(g(\tau)\) be a smooth family of
 metrics, and suppose \(Q\) is uniformly bounded.  Then \(L_{x,\tau}\) has a
 unique smooth minimal positive fundamental solution
@@ -591,10 +652,12 @@ minimality and uniqueness.
 
 \begin{lemma}[Uniform mass bound for Dirichlet heat kernels]
 \label{lem:chow-iii-dirichlet-kernel-mass-bound}
-\dcref{ch24:24.41}
-\group{Noncompact Heat Kernels}
 \source{chow-et-al-ricci-flow-part-iii:page-0323,chow-et-al-ricci-flow-part-iii:page-0324}
 \uses{thm:chow-iii-evolving-dirichlet-heat-kernel}
+\dcref{ch24:24.41}
+\group{Noncompact Heat Kernels}
+
+
 For \(y\in\Omega_i\), the Dirichlet heat kernel satisfies, uniformly in the
 exhaustion index,
 \[
@@ -609,3 +672,54 @@ evolution terms.  Gronwall's inequality and the limiting mass \(1\) at
 \(\tau=v\) give a bound depending only on \(T\) and the uniform coefficient
 bounds.
 \end{proof}
+
+\begin{claim}[Exercise: prove the jump relation]
+\label{clm:chow-iii-boundary-jump-exercise}
+\dcref{ch24:24.34}
+\group{Boundary Layer Potentials}
+\source{chow-et-al-ricci-flow-part-iii:page-0314}
+\uses{lem:chow-iii-boundary-jump-relation}
+Prove Lemma~\ref{lem:chow-iii-boundary-jump-relation} by isolating the
+near-diagonal singularity of the normal derivative.
+\end{claim}
+
+\begin{claim}[Exercise: prove the error derivative estimate]
+\label{clm:chow-iii-error-derivative-exercise}
+\dcref{ch24:24.9}
+\group{Local Parametrix}
+\source{chow-et-al-ricci-flow-part-iii:page-0293}
+\uses{lem:chow-iii-approximate-kernel-error-derivatives}
+Prove Lemma~\ref{lem:chow-iii-approximate-kernel-error-derivatives} by
+differentiating the Gaussian error representation.
+\end{claim}
+
+\begin{claim}[Exercise: complete the fundamental-solution construction]
+\label{clm:chow-iii-fundamental-solution-exercise}
+\dcref{ch24:24.20}
+\group{Convolution Series}
+\source{chow-et-al-ricci-flow-part-iii:page-0299}
+\uses{lem:chow-iii-parametrix-convolution-derivatives}
+Complete the details proving that the convolution series is a fundamental
+solution of \(L_{x,\tau}u=0\) for the evolving metric.
+\end{claim}
+
+\begin{claim}[Exercise: prove the normal derivative estimate]
+\label{clm:chow-iii-normal-derivative-exercise}
+\dcref{ch24:24.36}
+\group{Boundary Layer Potentials}
+\source{chow-et-al-ricci-flow-part-iii:page-0317,chow-et-al-ricci-flow-part-iii:page-0318}
+\uses{lem:chow-iii-normal-heat-kernel-derivative}
+Prove Lemma~\ref{lem:chow-iii-normal-heat-kernel-derivative} using the
+quadratic normal variation of squared distance along a hypersurface and the
+time variation of its unit normal.
+\end{claim}
+
+\begin{claim}[Problem: prove the Ricci-flow characterization]
+\label{clm:chow-iii-prove-ricci-flow-characterization}
+\dcref{ch24:24.29}
+\group{Ricci Flow Characterization}
+\source{chow-et-al-ricci-flow-part-iii:page-0310}
+\uses{clm:chow-iii-heat-kernel-characterizes-ricci-flow,lem:chow-iii-adjoint-parametrix-ricci-asymptotics}
+Prove Claim~\ref{clm:chow-iii-heat-kernel-characterizes-ricci-flow} by
+passing from the parametrix expansion to the heat kernel and normalizing (f).
+\end{claim}

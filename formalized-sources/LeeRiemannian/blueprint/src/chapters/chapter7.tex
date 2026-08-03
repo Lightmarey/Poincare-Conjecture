@@ -31,8 +31,9 @@ fields on every open subset,
 
 \begin{example}
 \label{ex:n-torus-flat-metric}
-\dcref{ch7:7.1}
 \uses{ex:n-torus-riemannian-submanifold}
+\dcref{ch7:7.1}
+
 The metric on the $n$-torus induced by the embedding in $\mathbb R^{2n}$ from
 Example 2.21 is flat: every point has coordinates in which the metric is
 Euclidean.
@@ -62,8 +63,9 @@ R(X,Y)Z
 
 \begin{proposition}
 \label{prop:curvature-multilinearity}
-\dcref{ch7:7.3}
 \uses{lem:tensor-characterization-lemma}
+\dcref{ch7:7.3}
+
 The map $R$ is multilinear over $C^\infty(M)$ and therefore defines a
 $(1,3)$-tensor field.
 \end{proposition}
@@ -111,8 +113,9 @@ $D_t,D_s$ for the associated covariant derivatives along $\Gamma$.
 
 \begin{proposition}
 \label{prop:curvature-commutator-failure}
-\dcref{ch7:7.5}
 \uses{prop:connection-on-tensor-bundles}
+\dcref{ch7:7.5}
+
 For every smooth vector field $V$ along a smooth family
 $\Gamma\colon J\times I\to M$ in a Riemannian or pseudo-Riemannian manifold,
 \[
@@ -199,8 +202,9 @@ pairing with the preserved metrics gives the displayed pullback identity.
 
 \begin{lemma}
 \label{lem:parallel-vector-field-flatness}
-\dcref{ch7:7.8}
 \uses{thm:linear-ode-existence-uniqueness}
+\dcref{ch7:7.8}
+
 Let $\nabla$ be a connection on a smooth manifold $M$ satisfying the flatness
 criterion. For every $p\in M$ and $v\in T_pM$, there is a parallel vector field
 $V$ on a neighborhood of $p$ such that $V_p=v$.
@@ -237,8 +241,9 @@ on the entire cube.
 
 \begin{theorem}
 \label{thm:flatness-iff-zero-curvature}
+\uses{prop:flat-manifold-levi-civita-flatness, lem:parallel-vector-field-flatness}
 \dcref{ch7:7.10}
-\uses{prop:flat-manifold-levi-civita-flatness,lem:parallel-vector-field-flatness}
+
 A Riemannian or pseudo-Riemannian manifold is flat if and only if its curvature
 tensor vanishes identically.
 \end{theorem}
@@ -269,8 +274,9 @@ to the Euclidean or appropriate pseudo-Euclidean model.
 
 \begin{theorem}
 \label{thm:curvature-endomorphism-formula}
+\uses{thm:linear-ode-existence-uniqueness, prop:curvature-commutator-failure}
 \dcref{ch7:7.11}
-\uses{thm:linear-ode-existence-uniqueness,prop:curvature-commutator-failure}
+
 Let $(M,g)$ be Riemannian or pseudo-Riemannian, let $I$ be an open interval
 containing $0$, and let $\Gamma\colon I\times I\to M$ be smooth. Put
 \[
@@ -405,8 +411,9 @@ $2Rm(Y,W,X,Z)-2Rm(X,Z,Y,W)=0$, which is equivalent to (c).
 
 \begin{proposition}[Differential Bianchi Identity]
 \label{prop:differential-bianchi-identity}
-\dcref{ch7:7.13}
 \uses{prop:properties-normal-coordinates}
+\dcref{ch7:7.13}
+
 
 On a Riemannian or pseudo-Riemannian manifold,
 \begin{equation}
@@ -648,8 +655,9 @@ In components,
 
 \begin{proposition}[Contracted Bianchi Identities]
 \label{prop:contracted-bianchi-identities}
+\uses{lem:ricci-symmetries, prop:connection-on-tensor-bundles, prop:musical-isomorphisms-commute, prop:exterior-derivative-covariant-formula, prob:exterior-derivative-covariant-formula}
 \dcref{ch7:7.18}
-\uses{lem:ricci-symmetries,prop:connection-on-tensor-bundles,prop:musical-isomorphisms-commute,prop:exterior-derivative-covariant-formula}
+
 
 On a Riemannian or pseudo-Riemannian manifold,
 \[
@@ -696,8 +704,9 @@ A Riemannian or pseudo-Riemannian metric is \emph{Einstein} if
 
 \begin{proposition}[Schur's Lemma]
 \label{prop:schur-lemma}
-\dcref{ch7:7.19}
 \uses{prop:contracted-bianchi-identities}
+\dcref{ch7:7.19}
+
 
 Let $(M,g)$ be a connected Riemannian or pseudo-Riemannian manifold of
 dimension $n\geq3$. If $\mathrm{Rc}=fg$ for a smooth function
@@ -720,8 +729,9 @@ Since $n\geq3$, $dS=0$. Connectedness makes $S$, and therefore $f$, constant.
 
 \begin{corollary}
 \label{cor:einstein-zero-ricci}
-\dcref{ch7:7.20}
 \uses{prop:schur-lemma}
+\dcref{ch7:7.20}
+
 
 If $(M,g)$ is a connected Riemannian or pseudo-Riemannian manifold of
 dimension $n\geq3$, then $g$ is Einstein if and only if
@@ -761,8 +771,9 @@ notation.
 
 \begin{proposition}[Dimension of the Algebraic Curvature Tensors]
 \label{prop:dim-algebraic-curvature-tensors}
-\dcref{ch7:7.21}
 \uses{prop:curvature-tensor-symmetries}
+\dcref{ch7:7.21}
+
 If $\dim V=n$, then
 \begin{equation}
 \dim \mathscr{R}(V^*) = \frac{n^2(n^2-1)}{12}. \tag{7.36}
@@ -846,8 +857,9 @@ follow by the corresponding contractions of (7.37).
 
 \begin{proposition}[A Right Inverse to Curvature Trace]
 \label{prop:right-inverse-trace}
-\dcref{ch7:7.23}
 \uses{lem:kulkarni-nomizu-properties}
+\dcref{ch7:7.23}
+
 Let $(V,g)$ be an $n$-dimensional scalar-product space with $n\geq3$, and
 define
 \begin{equation}
@@ -883,8 +895,9 @@ W=\mathrm{Rm}-P\owedge g
 
 \begin{proposition}[Weyl Decomposition]
 \label{prop:weyl-decomposition}
-\dcref{ch7:7.24}
 \uses{prop:right-inverse-trace}
+\dcref{ch7:7.24}
+
 For every Riemannian or pseudo-Riemannian $n$-manifold with $n\geq3$,
 $\operatorname{tr}_gW=0$, and
 \[
@@ -904,8 +917,9 @@ the trace decomposition from the preceding proposition.
 
 \begin{corollary}[Low-Dimensional Curvature Spaces]
 \label{cor:curvature-space-dimensions}
+\uses{prop:dim-algebraic-curvature-tensors, lem:kulkarni-nomizu-properties, prop:right-inverse-trace}
 \dcref{ch7:7.25}
-\uses{prop:dim-algebraic-curvature-tensors,lem:kulkarni-nomizu-properties,prop:right-inverse-trace}
+
 Let $(V,g)$ be an $n$-dimensional real scalar-product space.
 \begin{enumerate}
 \item[(a)] If $n=0$ or $n=1$, then $\mathscr R(V^*)=\{0\}$.
@@ -925,8 +939,9 @@ $G$ is injective and both its domain and codomain have dimension six.
 
 \begin{corollary}[The Curvature Tensor in Dimension 3]
 \label{cor:ricci-determines-curvature-dim3}
+\uses{cor:curvature-space-dimensions, prop:weyl-decomposition}
 \dcref{ch7:7.26}
-\uses{cor:curvature-space-dimensions,prop:weyl-decomposition}
+
 On every Riemannian or pseudo-Riemannian $3$-manifold, $W=0$ and
 \begin{equation}
 \mathrm{Rm}=P\owedge g
@@ -944,8 +959,9 @@ from the definition of $P$.
 
 \begin{corollary}[The Curvature Tensor in Dimension 2]
 \label{cor:curvature-tensor-dim-2}
+\uses{cor:curvature-space-dimensions, lem:kulkarni-nomizu-properties}
 \dcref{ch7:7.27}
-\uses{cor:curvature-space-dimensions,lem:kulkarni-nomizu-properties}
+
 On every Riemannian or pseudo-Riemannian $2$-manifold,
 \[
 \mathrm{Rm}=\frac14Sg\owedge g,
@@ -965,8 +981,9 @@ not be constant; the metric is Einstein exactly when $S$ is constant.
 
 \begin{proposition}[The Ricci Decomposition of the Curvature Tensor]
 \label{prop:ricci-decomposition}
+\uses{cor:curvature-tensor-dim-2, lem:kulkarni-nomizu-properties, prop:ricci-tensor-decomposition}
 \dcref{ch7:7.28}
-\uses{cor:curvature-tensor-dim-2,lem:kulkarni-nomizu-properties,prop:ricci-tensor-decomposition}
+
 Let $(M,g)$ be a Riemannian or pseudo-Riemannian $n$-manifold with $n\geq3$.
 Then
 \begin{equation}
@@ -999,8 +1016,9 @@ $\widetilde g=e^{2f}g$ for some smooth real-valued $f$.
 
 \begin{proposition}[Conformal Transformation of the Levi-Civita Connection]
 \label{prop:conformal-transformation-levi-civita}
-\dcref{ch7:7.29}
 \uses{thm:fundamental-theorem-riemannian-geometry}
+\dcref{ch7:7.29}
+
 Let $(M,g)$ be a Riemannian or pseudo-Riemannian $n$-manifold, with or without
 boundary, and let $\widetilde g=e^{2f}g$.  Their Levi-Civita connections satisfy
 \[
@@ -1025,8 +1043,9 @@ Expansion in a coordinate frame gives (7.43).
 
 \begin{theorem}[Conformal Transformation of the Curvature]
 \label{thm:conformal-transformation-curvature}
-\dcref{ch7:7.30}
 \uses{prop:conformal-transformation-levi-civita}
+\dcref{ch7:7.30}
+
 Let $g$ be a Riemannian or pseudo-Riemannian metric on an $n$-manifold with or
 without boundary, let $f\in C^\infty(M)$, and set $\widetilde g=e^{2f}g$.
 In the Riemannian case,
@@ -1080,8 +1099,9 @@ corresponding pseudo-Euclidean space in the pseudo-Riemannian case.
 
 \begin{corollary}[Conformal Flatness Forces Vanishing Weyl Tensor]
 \label{cor:weyl-zero-locally-conformally-flat}
-\dcref{ch7:7.31}
 \uses{thm:conformal-transformation-curvature}
+\dcref{ch7:7.31}
+
 If a Riemannian or pseudo-Riemannian manifold of dimension $n\geq3$ is locally
 conformally flat, then its Weyl tensor vanishes identically.
 \end{corollary}
@@ -1099,8 +1119,9 @@ C_{ijk}=P_{ij;k}-P_{ik;j}. \tag{7.49}
 
 \begin{proposition}[Divergence of the Weyl Tensor]
 \label{prop:trace-covariant-derivative-weyl}
-\dcref{ch7:7.32}
 \uses{prop:contracted-bianchi-identities}
+\dcref{ch7:7.32}
+
 On every Riemannian or pseudo-Riemannian $n$-manifold with $n\geq3$,
 \begin{equation}
 \operatorname{tr}_g(\nabla W)=(n-3)C, \tag{7.50}
@@ -1130,8 +1151,9 @@ W_{ijkl;i}=(n-3)(P_{jk;l}-P_{jl;k})=(n-3)C_{jkl}.
 
 \begin{corollary}[Vanishing Weyl Tensor Forces Vanishing Cotton Tensor]
 \label{cor:weyl-cotton-vanish-dimension-4}
-\dcref{ch7:7.33}
 \uses{prop:trace-covariant-derivative-weyl}
+\dcref{ch7:7.33}
+
 If $\dim M\geq4$ and the Weyl tensor of a Riemannian or pseudo-Riemannian
 manifold vanishes identically, then its Cotton tensor also vanishes.
 \end{corollary}
@@ -1145,8 +1167,9 @@ $\widetilde g=e^{2f}g$, then $\widetilde C=C$.
 
 \begin{corollary}[Conformal Flatness Forces Vanishing Cotton Tensor]
 \label{cor:cotton-tensor-vanishes-conformally-flat}
-\dcref{ch7:7.35}
 \uses{prop:conformal-invariance-cotton-dim3}
+\dcref{ch7:7.35}
+
 The Cotton tensor of every locally conformally flat $3$-manifold vanishes
 identically.
 \end{corollary}
@@ -1159,8 +1182,9 @@ gives the result.
 
 \begin{theorem}[Weyl--Schouten]
 \label{thm:weyl-schouten}
+\uses{cor:weyl-zero-locally-conformally-flat, cor:cotton-tensor-vanishes-conformally-flat, cor:ricci-determines-curvature-dim3, cor:weyl-cotton-vanish-dimension-4, lem:overdetermined-covector-system}
 \dcref{ch7:7.37}
-\uses{cor:weyl-zero-locally-conformally-flat,cor:cotton-tensor-vanishes-conformally-flat,cor:ricci-determines-curvature-dim3,cor:weyl-cotton-vanish-dimension-4,lem:overdetermined-covector-system}
+
 Let $(M,g)$ be a Riemannian or pseudo-Riemannian $n$-manifold with $n\geq3$.
 \begin{enumerate}
 \item[(a)] If $n\geq4$, then $(M,g)$ is locally conformally flat if and only
@@ -1262,6 +1286,13 @@ Every Riemannian locally symmetric space has parallel curvature tensor:
 \nabla\operatorname{Rm}=0.
 \]
 \end{proposition}
+
+\begin{exercise}
+\label{prob:symmetric-space-parallel-curvature}
+\dcref{ch7:7-3}
+Show that the curvature tensor of a Riemannian locally symmetric space is parallel: $\nabla \text{Rm} = 0$. (Used on pp. 297, 351.)
+\end{exercise}
+
 \begin{proof}
 \sketch
 At each point $p$, the local geodesic symmetry is an isometry fixing $p$ with
@@ -1283,6 +1314,20 @@ $\pi_i\colon M_1\times M_2\to M_i$ for the projections. Then
 S&=\pi_1^*S_1+\pi_2^*S_2.
 \end{align*}
 \end{proposition}
+
+\begin{exercise}
+\label{prob:product-metric-curvature}
+\dcref{ch7:7-6}
+\uses{exer:prove-lemma-2-11}
+Suppose $(M_1, g_1)$ and $(M_2, g_2)$ are Riemannian manifolds, and $M_1 \times M_2$ is endowed with the product metric $g = g_1 \oplus g_2$ as in (2.12). Show that the Riemann curvature, Ricci curvature, and scalar curvature of $g$ are given by the following formulas:
+\begin{align*}
+Rm &= \pi_1^* Rm_1 + \pi_2^* Rm_2, \\
+Rc &= \pi_1^* Rc_1 + \pi_2^* Rc_2, \\
+S &= \pi_1^* S_1 + \pi_2^* S_2,
+\end{align*}
+where $Rm_i$, $Rc_i$, and $S_i$ are the Riemann, Ricci, and scalar curvatures of $(M_i, g_i)$, and $\pi_i : M_1 \times M_2 \to M_i$ is the projection. (Used on pp. 257, 261.)
+\end{exercise}
+
 \begin{proof}
 \sketch
 The Levi--Civita connection of the product metric splits into the pullbacks of
@@ -1311,9 +1356,170 @@ $\widetilde R=\widetilde{\operatorname{Rm}}(
 \end{gathered}
 \]
 \end{proposition}
+
+\begin{exercise}[O'Neill's formula]
+\label{prob:oneill-formula}
+\dcref{ch7:7-14}
+\uses{prob:riemannian-submersion-connection}
+Suppose $\pi : (\tilde{M}, \tilde{g}) \to (M, g)$ is a Riemannian submersion. Using the notation and results of Problem 5-6, prove O'Neill's formula:
+\begin{align*}
+\mathrm{Rm}(W, X, Y, Z) \circ \pi &= \widetilde{\mathrm{Rm}}(\tilde{W}, \tilde{X}, \tilde{Y}, \tilde{Z}) - \frac{1}{2}\langle[\tilde{W}, \tilde{X}]^V, [\tilde{Y}, \tilde{Z}]^V\rangle \\
+&\quad - \frac{1}{4}\langle[\tilde{W}, \tilde{Y}]^V, [\tilde{X}, \tilde{Z}]^V\rangle + \frac{1}{4}\langle[\tilde{W}, \tilde{Z}]^V, [\tilde{X}, \tilde{Y}]^V\rangle.
+\end{align*}
+(Used on p. 258.)
+\end{exercise}
+
 \begin{proof}
 \sketch Decompose the Levi--Civita derivatives of horizontal lifts into their
 horizontal and vertical parts, substitute those decompositions into the
 curvature definition, and use metric compatibility. The vertical bracket
 terms combine with coefficients $-\frac12$, $-\frac14$, and $\frac14$.
 \end{proof}
+
+\begin{exercise}
+\label{exer:constructed-vector-field-smooth}
+\dcref{ch7:7.9}
+Prove that the vector field $V$ constructed in the preceding proof is smooth.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:prove-cotton-tensor-vanishes}
+\dcref{ch7:7.36}
+\uses{cor:cotton-tensor-vanishes-conformally-flat}
+Prove this corollary.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:prove-curvature-isometry}
+\dcref{ch7:7.7}
+\uses{prop:curvature-isometry-invariant}
+Prove Proposition 7.6.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:ricci-symmetries-proof}
+\dcref{ch7:7.16}
+\uses{lem:ricci-symmetries}
+Prove Lemma 7.15, using the symmetries of the curvature tensor.
+\end{exercise}
+
+\begin{exercise}[Bochner's formula]
+\label{prob:bochner-formula}
+\dcref{ch7:7-7}
+\uses{exer:hilbert-axioms-euclidean-plane,thm:ricci-identities}
+Suppose $(M, g)$ is a Riemannian manifold and $u \in C^\infty(M)$. Use (5.29) and (7.21) to prove \textbf{Bochner's formula}:
+\[
+\Delta\left(\tfrac{1}{2} |\operatorname{grad} u|^2\right) = |\nabla^2 u|^2 + \langle \operatorname{grad}(\Delta u), \operatorname{grad} u \rangle + Rc(\operatorname{grad} u, \operatorname{grad} u).
+\]
+\end{exercise}
+
+\begin{exercise}
+\label{prob:cartan-second-structure-equation}
+\dcref{ch7:7-5}
+\uses{prob:connection-1forms-cartan}
+Let $\nabla$ be the Levi-Civita connection on a Riemannian or pseudo-Riemannian manifold $(M,g)$, and let $\omega_i^j$ be its connection 1-forms with respect to a local frame $(E_i)$ (Problem 4-14). Define a matrix of 2-forms $\Omega_i^j$, called the \textit{curvature 2-forms}, by
+\[
+\Omega_i^j = \frac{1}{2}R_{klij} e^k \wedge e^l,
+\]
+where $(e^i)$ is the coframe dual to $(E_i)$. Show that the curvature 2-forms satisfy \textit{Cartan's second structure equation}:
+\[
+\Omega_i^j = d\omega_i^j - \omega_k^j \wedge \omega_i^k.
+\]
+[Hint: Expand $R(E_k, E_l)E_i$ in terms of $\nabla$ and $\omega_i^j$.]
+\end{exercise}
+
+\begin{exercise}
+\label{prob:conformal-laplacian-yamabe}
+\dcref{ch7:7-11}
+Let $(M, g)$ be a Riemannian manifold of dimension $n > 2$. Define the \textbf{conformal Laplacian} $L: C^\infty(M) \to C^\infty(M)$ by the formula
+\[
+Lu = -\frac{4(n-1)}{n-2} \Delta u + Su,
+\]
+where $\Delta$ is the Laplace--Beltrami operator of $g$ and $S$ is its scalar curvature. Prove that if $\tilde{g} = e^{2f} g$ for some $f \in C^\infty(M)$, and $\tilde{L}$ denotes the conformal Laplacian with respect to $\tilde{g}$, then for every $u \in C^\infty(M)$,
+\[
+e^{\frac{n+2}{2}f} \tilde{L}u = L\left(e^{\frac{n-2}{2}f} u\right).
+\]
+Conclude that a metric $\tilde{g}$ conformal to $g$ has constant scalar curvature $\lambda$ if and only if it can be expressed in the form $\tilde{g} = \varphi^{4/(n-2)} g$, where $\varphi$ is a smooth positive solution to the \textbf{Yamabe equation}:
+\begin{equation}
+L\varphi = \lambda \varphi^{\frac{n+2}{n-2}}.
+\tag{7.59}
+\end{equation}
+\end{exercise}
+
+\begin{exercise}
+\label{prob:cotton-tensor-conformal}
+\dcref{ch7:7-10}
+\uses{prop:conformal-invariance-cotton-dim3}
+Prove Proposition 7.34 (conformal invariance of the Cotton tensor in dimension 3).
+\end{exercise}
+
+\begin{exercise}
+\label{prob:curvature-coordinate-formula}
+\dcref{ch7:7-2}
+\uses{prop:curvature-tensor-components}
+Prove Proposition 7.4 (the formula for the curvature tensor in coordinates).
+\end{exercise}
+
+\begin{exercise}
+\label{prob:curvature-multilinearity-in-functions}
+\dcref{ch7:7-1}
+\uses{prop:curvature-multilinearity}
+Complete the proof of Proposition 7.3 by showing that $R(X,Y)(fZ) = fR(X,Y)Z$ for all smooth vector fields $X,Y,Z$ and smooth real-valued functions $f$.
+\end{exercise}
+
+\begin{exercise}
+\label{prob:flat-connection}
+\dcref{ch7:7-12}
+Let $M$ be a smooth manifold and let $\nabla$ be any connection on $TM$. We can define the \textbf{curvature endomorphism} of $\nabla$ by the same formula as in the Riemannian case: $R(X,Y)Z = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z$. Then $\nabla$ is said to be a \textbf{flat connection} if $R(X,Y)Z \equiv 0$. Prove that the following are equivalent:
+\begin{enumerate}
+\item[(a)] $\nabla$ is flat.
+\item[(b)] For every point $p \in M$, there exists a parallel local frame defined on a neighborhood of $p$.
+\item[(c)] For all $p,q \in M$, parallel transport along an admissible curve segment $\gamma$ from $p$ to $q$ depends only on the path-homotopy class of $\gamma$.
+\item[(d)] Parallel transport around any sufficiently small closed curve is the identity; that is, for every $p \in M$, there exists a neighborhood $U$ of $p$ such that if $\gamma : [a,b] \to U$ is an admissible curve in $U$ starting and ending at $p$, then $P_{ab} : T_p M \to T_p M$ is the identity map.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{prob:kulkarni-nomizu-properties}
+\dcref{ch7:7-9}
+\uses{lem:kulkarni-nomizu-properties}
+Prove parts (e) and (f) of Lemma 7.22 (properties of the Kulkarni--Nomizu product).
+\end{exercise}
+
+\begin{exercise}[Lichnerowicz's Theorem]
+\label{prob:lichnerowicz-theorem}
+\dcref{ch7:7-8}
+\uses{prob:harmonic-functions,prob:eigenfunction-laplacian-inequality,prob:bochner-formula}
+Suppose $(M, g)$ is a compact Riemannian $n$-manifold, and there is a positive constant $\kappa$ such that the Ricci tensor of $g$ satisfies $Rc(v, v) \geq \kappa|v|^2$ for all tangent vectors $v$. If $\lambda$ is any positive eigenvalue of $M$, then $\lambda \geq n\kappa/(n-1)$. [Hint: Use Probs. 2-23(c), 5-15, and 7-7.]
+\end{exercise}
+
+\begin{exercise}
+\label{prob:lie-group-curvature}
+\dcref{ch7:7-13}
+\uses{prob:lie-group-bi-invariant-metric}
+Let $G$ be a Lie group with a bi-invariant metric $g$. Show that the following formula holds whenever $X, Y, Z$ are left-invariant vector fields on $G$:
+\[
+R(X,Y)Z = \frac{1}{4}[Z,[X,Y]].
+\]
+\end{exercise}
+
+\begin{exercise}
+\label{prob:pseudo-riemannian-2d}
+\dcref{ch7:7-15}
+\uses{prop:canonical-form-vector-field}
+Suppose $(M, g)$ is a 2-dimensional pseudo-Riemannian manifold of signature $(1, 1)$, and $p \in M$.
+\begin{enumerate}
+\item[(a)] Show that there is a smooth local frame $(E_1, E_2)$ in a neighborhood of $p$ such that $g(E_1, E_1) = g(E_2, E_2) = 0$.
+\item[(b)] Show that there are smooth coordinates $(x, y)$ in a neighborhood of $p$ such that $(dx)^2 - (dy)^2 = fg$ for some smooth, positive real-valued function $f$. [Hint: Use Prop. A.45 to show that there exist coordinates $(t,u)$ in which $E_1 = \partial/\partial t$, and coordinates $(v,w)$ in which $E_2 = \partial/\partial v$, and set $x = u + w$, $y = u - w$.]
+\item[(c)] Show that $(M, g)$ is locally conformally flat.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\label{prob:ricci-in-normal-coordinates}
+\dcref{ch7:7-4}
+Let $M$ be a Riemannian or pseudo-Riemannian manifold, and let $(x^i)$ be normal coordinates centered at $p \in M$. Show that the following holds at $p$:
+\[
+R_{ijkl} = \frac{1}{2}\left(\partial_j \partial_l g_{ik} + \partial_i \partial_k g_{jl} - \partial_i \partial_l g_{jk} - \partial_j \partial_k g_{il}\right).
+\]
+\end{exercise}

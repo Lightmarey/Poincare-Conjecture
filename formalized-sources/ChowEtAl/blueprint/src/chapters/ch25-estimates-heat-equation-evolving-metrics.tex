@@ -18,9 +18,10 @@ We consider positive subsolutions and solutions of
 
 \begin{definition}[Parabolic mean value inequality]
 \label{def:chow-iii-parabolic-mean-value-inequality}
+\source{chow-et-al-ricci-flow-part-iii:page-0326,chow-et-al-ricci-flow-part-iii:page-0327}
 \dcref{ch25:25.1}
 \group{Parabolic Mean Value Inequalities}
-\source{chow-et-al-ricci-flow-part-iii:page-0326,chow-et-al-ricci-flow-part-iii:page-0327}
+
 A complete Riemannian manifold \((\mathcal M^n,g)\) satisfies the
 \emph{parabolic mean value inequality} up to time \(T\) with constant \(C\)
 if every nonnegative subsolution \(f\) of \(\partial_t f\leq\Delta f\) on
@@ -52,10 +53,12 @@ Write
 
 \begin{theorem}[Parabolic mean value inequality]
 \label{thm:chow-iii-evolving-parabolic-mean-value}
+\source{chow-et-al-ricci-flow-part-iii:page-0327,chow-et-al-ricci-flow-part-iii:page-0328,chow-et-al-ricci-flow-part-iii:page-0337}
+\uses{lem:chow-iii-reverse-poincare, prop:chow-iii-local-sobolev-ball, lem:chow-iii-moser-cylinder-iteration}
 \dcref{ch25:25.2}
 \group{Parabolic Mean Value Inequalities}
-\source{chow-et-al-ricci-flow-part-iii:page-0327,chow-et-al-ricci-flow-part-iii:page-0328,chow-et-al-ricci-flow-part-iii:page-0337}
-\uses{lem:chow-iii-reverse-poincare,prop:chow-iii-local-sobolev-ball,lem:chow-iii-moser-cylinder-iteration}
+
+
 Suppose \(\Ric(\widetilde g)\geq-K\) on \(\Omega\), and let \(u>0\)
 satisfy
 \[
@@ -105,9 +108,10 @@ local Sobolev constant.
 
 \begin{lemma}[Reverse Poincare-type inequalities]
 \label{lem:chow-iii-reverse-poincare}
+\source{chow-et-al-ricci-flow-part-iii:page-0328,chow-et-al-ricci-flow-part-iii:page-0329,chow-et-al-ricci-flow-part-iii:page-0330}
 \dcref{ch25:25.3}
 \group{Moser Iteration}
-\source{chow-et-al-ricci-flow-part-iii:page-0328,chow-et-al-ricci-flow-part-iii:page-0329,chow-et-al-ricci-flow-part-iii:page-0330}
+
 Let \(v=e^{-A\tau}u\), where
 \(Q+A-\mathcal R/(2p)\geq0\) for every \(p\geq1\).  Suppose
 \(0\leq\psi\leq1\) has compact spatial support in \(D\Subset\Omega\),
@@ -145,9 +149,10 @@ and then discarding either nonnegative term proves the two inequalities.
 
 \begin{proposition}[Local \(L^2\)-Sobolev inequality in a ball]
 \label{prop:chow-iii-local-sobolev-ball}
+\source{chow-et-al-ricci-flow-part-iii:page-0330}
 \dcref{ch25:25.4}
 \group{Moser Iteration}
-\source{chow-et-al-ricci-flow-part-iii:page-0330}
+
 There is \(C_S=C_S(n)\) such that, if \(n\geq3\) and
 \(\Ric_{\widetilde g}\geq-K\) on \(B_{\widetilde g}(x_0,2r)\), then every
 smooth compactly supported \(f\) on \(B_{\widetilde g}(x_0,r)\) satisfies
@@ -173,9 +178,10 @@ factor \(\Vol(B(x_0,r))^{-2/n}\).
 
 \begin{remark}[The two-dimensional Sobolev exponent]
 \label{rem:chow-iii-two-dimensional-local-sobolev}
+\source{chow-et-al-ricci-flow-part-iii:page-0331}
 \dcref{ch25:25.5}
 \group{Moser Iteration}
-\source{chow-et-al-ricci-flow-part-iii:page-0331}
+
 When \(n=2\), for every \(q>2\) the preceding estimate holds with target
 exponent \(2q/(q-2)\), volume exponent \(-2/q\), and a constant depending
 only on \(q\).
@@ -183,10 +189,12 @@ only on \(q\).
 
 \begin{lemma}[Moser iteration on nested cylinders]
 \label{lem:chow-iii-moser-cylinder-iteration}
+\source{chow-et-al-ricci-flow-part-iii:page-0331,chow-et-al-ricci-flow-part-iii:page-0332,chow-et-al-ricci-flow-part-iii:page-0333,chow-et-al-ricci-flow-part-iii:page-0334,chow-et-al-ricci-flow-part-iii:page-0335}
+\uses{lem:chow-iii-reverse-poincare, prop:chow-iii-local-sobolev-ball}
 \dcref{ch25:25.6}
 \group{Moser Iteration}
-\source{chow-et-al-ricci-flow-part-iii:page-0331,chow-et-al-ricci-flow-part-iii:page-0332,chow-et-al-ricci-flow-part-iii:page-0333,chow-et-al-ricci-flow-part-iii:page-0334,chow-et-al-ricci-flow-part-iii:page-0335}
-\uses{lem:chow-iii-reverse-poincare,prop:chow-iii-local-sobolev-ball}
+
+
 For \(r\in[r_0,2r_0)\) and \(1<\gamma\leq2\), with
 \(\gamma r\leq2r_0\), one has
 \[
@@ -228,10 +236,12 @@ that of \(B(x_0,r)\), gives the displayed constant.
 
 \begin{example}[Rescaled nested-cylinder iteration]
 \label{ex:chow-iii-rescaled-moser-cylinder-iteration}
-\dcref{ch25:25.7}
-\group{Moser Iteration}
 \source{chow-et-al-ricci-flow-part-iii:page-0335}
 \uses{lem:chow-iii-moser-cylinder-iteration}
+\dcref{ch25:25.7}
+\group{Moser Iteration}
+
+
 For the radii
 \(r_i=r(1+(\gamma-1)2^{1-i})\).
 \end{example}
@@ -249,10 +259,12 @@ contributes exactly \((\gamma-1)^{-n/4}\), proving the lemma.
 
 \begin{theorem}[Harnack estimate of Li--Yau type for evolving metrics]
 \label{thm:chow-iii-li-yau-evolving-metrics}
+\source{chow-et-al-ricci-flow-part-iii:page-0339,chow-et-al-ricci-flow-part-iii:page-0343,chow-et-al-ricci-flow-part-iii:page-0344,chow-et-al-ricci-flow-part-iii:page-0345,chow-et-al-ricci-flow-part-iii:page-0346,chow-et-al-ricci-flow-part-iii:page-0347,chow-et-al-ricci-flow-part-iii:page-0348,chow-et-al-ricci-flow-part-iii:page-0349,chow-et-al-ricci-flow-part-iii:page-0350,chow-et-al-ricci-flow-part-iii:page-0351}
+\uses{cor:chow-iii-harnack-quantity-evolution-inequality, lem:bounded-curvature-distance-like-function}
 \dcref{ch25:25.8}
 \group{Li--Yau Estimates}
-\source{chow-et-al-ricci-flow-part-iii:page-0339,chow-et-al-ricci-flow-part-iii:page-0343,chow-et-al-ricci-flow-part-iii:page-0344,chow-et-al-ricci-flow-part-iii:page-0345,chow-et-al-ricci-flow-part-iii:page-0346,chow-et-al-ricci-flow-part-iii:page-0347,chow-et-al-ricci-flow-part-iii:page-0348,chow-et-al-ricci-flow-part-iii:page-0349,chow-et-al-ricci-flow-part-iii:page-0350,chow-et-al-ricci-flow-part-iii:page-0351}
-\uses{cor:chow-iii-harnack-quantity-evolution-inequality,lem:bounded-curvature-distance-like-function}
+
+
 Assume on \(\mathcal M\times[0,T]\) that
 \[
  \Ric\geq-K,\qquad |\mathcal R_{ij}|\leq\Lambda,
@@ -320,10 +332,12 @@ by taking \(R\to\infty\) proves the global form.
 
 \begin{theorem}[Harnack estimate of Li--Yau type for Ricci flow]
 \label{thm:chow-iii-li-yau-ricci-flow}
+\source{chow-et-al-ricci-flow-part-iii:page-0339,chow-et-al-ricci-flow-part-iii:page-0340,chow-et-al-ricci-flow-part-iii:page-0351,chow-et-al-ricci-flow-part-iii:page-0352}
+\uses{cor:chow-iii-harnack-quantity-evolution-inequality, thm:chow-iii-changing-distances}
 \dcref{ch25:25.9}
 \group{Li--Yau Estimates}
-\source{chow-et-al-ricci-flow-part-iii:page-0339,chow-et-al-ricci-flow-part-iii:page-0340,chow-et-al-ricci-flow-part-iii:page-0351,chow-et-al-ricci-flow-part-iii:page-0352}
-\uses{cor:chow-iii-harnack-quantity-evolution-inequality,thm:chow-iii-changing-distances}
+
+
 Let \(g(\tau)\) be a complete Ricci flow
 \(\partial_\tau g=-2\Ric\).  Suppose that, on
 \(B_{g(\tau)}(p,2R)\) for each \(\tau\),
@@ -362,9 +376,10 @@ for \(\tau\phi P\).
 
 \begin{remark}[Locality of the Ricci-flow hypotheses]
 \label{rem:chow-iii-li-yau-locality-ricci-flow}
+\source{chow-et-al-ricci-flow-part-iii:page-0340}
 \dcref{ch25:25.10}
 \group{Li--Yau Estimates}
-\source{chow-et-al-ricci-flow-part-iii:page-0340}
+
 Theorem~\ref{thm:chow-iii-li-yau-ricci-flow} requires its geometric bounds
 only on the indicated moving ball, unlike Theorem
 \ref{thm:chow-iii-li-yau-evolving-metrics}.
@@ -374,10 +389,12 @@ only on the indicated moving ball, unlike Theorem
 
 \begin{corollary}[Classical-type Harnack inequality for evolving metrics]
 \label{cor:chow-iii-classical-harnack-evolving-metrics}
-\dcref{ch25:25.12}
-\group{Integrated Harnack Inequalities}
 \source{chow-et-al-ricci-flow-part-iii:page-0340,chow-et-al-ricci-flow-part-iii:page-0341}
 \uses{thm:chow-iii-li-yau-evolving-metrics}
+\dcref{ch25:25.12}
+\group{Integrated Harnack Inequalities}
+
+
 Assume \(\widetilde C_0^{-1}\widetilde g\leq g(\tau)leq
 \widetilde C_0\widetilde g\).  Under the hypotheses of Theorem
 \ref{thm:chow-iii-li-yau-evolving-metrics}, for
@@ -414,10 +431,12 @@ Exponentiation proves the claim.
 
 \begin{corollary}[Classical-type Harnack inequality for Ricci flow]
 \label{cor:chow-iii-classical-harnack-ricci-flow}
-\dcref{ch25:25.13}
-\group{Integrated Harnack Inequalities}
 \source{chow-et-al-ricci-flow-part-iii:page-0341,chow-et-al-ricci-flow-part-iii:page-0342}
 \uses{thm:chow-iii-li-yau-ricci-flow}
+\dcref{ch25:25.13}
+\group{Integrated Harnack Inequalities}
+
+
 Under the hypotheses of Theorem~\ref{thm:chow-iii-li-yau-ricci-flow}, assume
 \(\widetilde C_0^{-1}\widetilde g\leq g(\tau)\leq
 \widetilde C_0\widetilde g\) on \(B_{g(\tau)}(p,R)\).  If a minimizing
@@ -443,9 +462,10 @@ comparison gives the same energy bound.
 
 \begin{remark}[Mean value consequences and adjoint kernels]
 \label{rem:chow-iii-harnack-mean-value-adjoint-kernels}
+\source{chow-et-al-ricci-flow-part-iii:page-0342}
 \dcref{ch25:25.15}
 \group{Integrated Harnack Inequalities}
-\source{chow-et-al-ricci-flow-part-iii:page-0342}
+
 Integrating the classical Harnack inequality over a ball produces spatial
 mean value upper and lower bounds.  In conjunction with heat-kernel symmetry,
 these estimates give corresponding bounds for adjoint heat kernels under
@@ -463,9 +483,10 @@ Let \(L=\log u\).  Then
 
 \begin{remark}[Model values of the Harnack quantity]
 \label{rem:chow-iii-model-harnack-quantity}
+\source{chow-et-al-ricci-flow-part-iii:page-0343}
 \dcref{ch25:25.16}
 \group{Harnack Quantity}
-\source{chow-et-al-ricci-flow-part-iii:page-0343}
+
 For the Euclidean heat kernel and \(\varepsilon=0\), one has
 \(\tau P=-n/2\).  For the heat equation on a static manifold with
 nonnegative Ricci curvature, the Li--Yau estimate is \(P\geq-n/(2\tau)\).
@@ -473,9 +494,10 @@ nonnegative Ricci curvature, the Li--Yau estimate is \(P\geq-n/(2\tau)\).
 
 \begin{lemma}[Evolution equation for the Harnack quantity]
 \label{lem:chow-iii-harnack-quantity-evolution}
+\source{chow-et-al-ricci-flow-part-iii:page-0343,chow-et-al-ricci-flow-part-iii:page-0344}
 \dcref{ch25:25.17}
 \group{Harnack Quantity}
-\source{chow-et-al-ricci-flow-part-iii:page-0343,chow-et-al-ricci-flow-part-iii:page-0344}
+
 For every \(\varepsilon\in\mathbb R\),
 \[
 \begin{aligned}
@@ -510,10 +532,12 @@ remaining terms gives the formula.
 
 \begin{corollary}[Evolution inequality for the Harnack quantity]
 \label{cor:chow-iii-harnack-quantity-evolution-inequality}
-\dcref{ch25:25.18}
-\group{Harnack Quantity}
 \source{chow-et-al-ricci-flow-part-iii:page-0344,chow-et-al-ricci-flow-part-iii:page-0345}
 \uses{lem:chow-iii-harnack-quantity-evolution}
+\dcref{ch25:25.18}
+\group{Harnack Quantity}
+
+
 Suppose
 \[
  \Ric\geq-K,\quad |\mathcal R_{ij}|\leq\Lambda,
@@ -547,3 +571,31 @@ bounded below by
 Combining these estimates and using
 \(|\Hess L|^2\geq(\Delta L)^2/n\) proves the inequality.
 \end{proof}
+
+\begin{example}[Exercise 25.14: integrate the Ricci-flow gradient estimate]
+\label{ex:chow-iii-integrate-ricci-flow-gradient-estimate}
+\dcref{ch25:25.14}
+\group{Integrated Harnack Inequalities}
+\source{chow-et-al-ricci-flow-part-iii:page-0342}
+\uses{thm:chow-iii-li-yau-ricci-flow}
+Derive Corollary~\ref{cor:chow-iii-classical-harnack-ricci-flow} from the
+differential estimate.
+\end{example}
+\begin{proof}
+Along a path \(\gamma\), differentiate \(\log u(\gamma(\tau),\tau)\), insert
+the differential Harnack estimate, and apply
+\(a|X|^2+\langle X,Y\rangle\geq-|Y|^2/(4a)\) with
+\(a=1-\varepsilon\).  Integrating \(1/\tau\) gives the time-ratio factor;
+taking the constant-speed minimizing \(\widetilde g\)-geodesic and applying
+metric comparison gives the Gaussian factor.
+\end{proof}
+
+\begin{example}[Problem 25.11: local estimate for backward Ricci flow]
+\label{ex:chow-iii-local-li-yau-backward-ricci-flow}
+\dcref{ch25:25.11}
+\group{Li--Yau Problems}
+\source{chow-et-al-ricci-flow-part-iii:page-0340}
+Find a Li--Yau differential Harnack estimate for positive solutions of
+heat-type equations coupled to backward Ricci flow using only local bounds on
+the curvature and potential.
+\end{example}

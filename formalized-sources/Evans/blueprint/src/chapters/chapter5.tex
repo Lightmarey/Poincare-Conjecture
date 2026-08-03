@@ -20,9 +20,10 @@ $$\|u\|_{C^{0,\gamma}(\bar U)} := \|u\|_{C(\bar U)} + [u]_{C^{0,\gamma}(\bar U)}
 
 \begin{definition}[Holder space $C^{k,\gamma}(\bar U)$]
 \label{def:holder-space}
+\uses{def:holder-seminorm-sup-norm}
 \dcref{ch5:5.1-def-2}
 \group{Hölder Spaces}
-\uses{def:holder-seminorm-sup-norm}
+
 The Holder space
 $$C^{k,\gamma}(\bar U)$$
 consists of all functions $u \in C^k(\bar U)$ for which the norm
@@ -32,9 +33,10 @@ is finite.
 
 \begin{theorem}[Holder spaces as function spaces]
 \label{thm:holder-space-banach}
+\uses{def:holder-space}
 \dcref{ch5:5.1-thm-1}
 \group{Hölder Spaces}
-\uses{def:holder-space}
+
 The space of functions $C^{k,\gamma}(\bar U)$ is a Banach space.
 \end{theorem}
 
@@ -56,9 +58,10 @@ for all test functions $\phi \in C_c^\infty(U)$.
 
 \begin{lemma}[Uniqueness of weak derivatives]
 \label{lem:weak-derivative-uniqueness}
+\uses{def:weak-partial-derivative}
 \dcref{ch5:5.2-lem-1}
 \group{Sobolev Spaces}
-\uses{def:weak-partial-derivative}
+
 A weak $\alpha^{\text{th}}$-partial derivative of $u$, if it exists, is uniquely defined up to a set of measure zero.
 \end{lemma}
 
@@ -68,9 +71,10 @@ A weak $\alpha^{\text{th}}$-partial derivative of $u$, if it exists, is uniquely
 
 \begin{example}[A weak derivative that exists]
 \label{ex:weak-derivative-piecewise-linear-example}
+\uses{def:weak-partial-derivative}
 \dcref{ch5:5.2-ex-1}
 \group{Sobolev Spaces}
-\uses{def:weak-partial-derivative}
+
 Let $n = 1$, $U = (0,2)$, and
 $$u(x) = \begin{cases}
 x & \text{if } 0 < x \le 1 \\
@@ -91,9 +95,10 @@ as required.
 
 \begin{example}[A weak derivative that fails to exist]
 \label{ex:weak-derivative-nonexistence-example}
+\uses{def:weak-partial-derivative}
 \dcref{ch5:5.2-ex-2}
 \group{Sobolev Spaces}
-\uses{def:weak-partial-derivative}
+
 Let $n = 1$, $U = (0,2)$, and
 $$u(x) = \begin{cases} x & \text{if } 0 < x \le 1 \\ 2 & \text{if } 1 < x < 2. \end{cases}$$
 We assert $u'$ does not exist in the weak sense. To check this, we must show there does not exist any function $v \in L^1_{\text{loc}}(U)$ satisfying
@@ -111,9 +116,10 @@ a contradiction.
 
 \begin{definition}[Sobolev space $W^{k,p}(U)$]
 \label{def:sobolev-space-wkp}
+\uses{def:weak-partial-derivative}
 \dcref{ch5:5.2-def-2}
 \group{Sobolev Spaces}
-\uses{def:weak-partial-derivative}
+
 The Sobolev space
 $$W^{k,p}(U)$$
 consists of all locally summable functions $u : U \to \R$ such that for each multiindex $\alpha$ with $|\alpha| \le k$, $D^\alpha u$ exists in the weak sense and belongs to $L^p(U)$.
@@ -121,9 +127,10 @@ consists of all locally summable functions $u : U \to \R$ such that for each mul
 
 \begin{remark}[Notation $H^k$ and identification a.e.]
 \label{rem:hk-notation-identification}
+\uses{def:sobolev-space-wkp}
 \dcref{ch5:5.2-rem-1}
 \group{Sobolev Spaces}
-\uses{def:sobolev-space-wkp}
+
 (i) If $p = 2$, we usually write
 $$H^k(U) = W^{k,2}(U) \quad (k = 0, 1, \ldots).$$
 In particular, $H^0(U) = L^2(U)$.
@@ -133,9 +140,10 @@ In particular, $H^0(U) = L^2(U)$.
 
 \begin{definition}[Norm on $W^{k,p}(U)$]
 \label{def:sobolev-norm}
+\uses{def:sobolev-space-wkp}
 \dcref{ch5:5.2-def-3}
 \group{Sobolev Spaces}
-\uses{def:sobolev-space-wkp}
+
 If $u \in W^{k,p}(U)$, we define its norm to be
 $$\|u\|_{W^{k,p}(U)} := \begin{cases}
 \left(\sum_{|\alpha| \le k} \int_U |D^\alpha u|^p\,dx\right)^{1/p} & (1 \le p < \infty) \\
@@ -145,9 +153,10 @@ $$\|u\|_{W^{k,p}(U)} := \begin{cases}
 
 \begin{definition}[Convergence in $W^{k,p}(U)$ and $W^{k,p}_{\text{loc}}(U)$]
 \label{def:sobolev-convergence}
+\uses{def:sobolev-norm}
 \dcref{ch5:5.2-def-4}
 \group{Sobolev Spaces}
-\uses{def:sobolev-norm}
+
 (i) Let $\{u_m\}_{m=1}^\infty$, $u \in W^{k,p}(U)$. We say $u_m$ converges to $u$ in $W^{k,p}(U)$, written
 $$u_m \to u \quad \text{in } W^{k,p}(U),$$
 provided
@@ -162,9 +171,10 @@ for each $V \CC U$.
 
 \begin{definition}[The space $W_0^{k,p}(U)$]
 \label{def:sobolev-space-zero-boundary}
+\uses{def:sobolev-convergence}
 \dcref{ch5:5.2-def-5}
 \group{Sobolev Spaces}
-\uses{def:sobolev-convergence}
+
 We denote by
 $$W_0^{k,p}(U)$$
 the closure of $C_c^\infty(U)$ in $W^{k,p}(U)$.
@@ -172,9 +182,10 @@ the closure of $C_c^\infty(U)$ in $W^{k,p}(U)$.
 
 \begin{example}[A power singularity in a Sobolev space]
 \label{ex:power-singularity-sobolev-membership}
+\uses{def:sobolev-space-wkp, def:weak-partial-derivative}
 \dcref{ch5:5.2-ex-3}
 \group{Sobolev Spaces}
-\uses{def:sobolev-space-wkp,def:weak-partial-derivative}
+
 Take $U = B^0(0,1)$, the open unit ball in $\R^n$, and
 $$u(x) = |x|^{-\alpha} \quad (x \in U, x \ne 0).$$
 For which values of $\alpha > 0, n, p$ does $u$ belong to $W^{1,p}(U)$? To answer, note first $u$ is smooth away from $0$, with
@@ -192,9 +203,10 @@ for all $\phi \in C_c^\infty(U)$, provided $0 \le \alpha < n - 1$. Furthermore $
 
 \begin{example}[A dense countable sum of singularities]
 \label{ex:dense-singularities-unbounded-sobolev}
+\uses{ex:power-singularity-sobolev-membership}
 \dcref{ch5:5.2-ex-4}
 \group{Sobolev Spaces}
-\uses{ex:power-singularity-sobolev-membership}
+
 Let $\{r_k\}_{k=1}^{\infty}$ be a countable, dense subset of $U = B^0(0,1)$. Write
 $$u(x) = \sum_{k=1}^{\infty} \frac{1}{2^k} |x - r_k|^{-\alpha} \quad (x \in U).$$
 Then $u \in W^{1,p}(U)$ if and only if $\alpha < \frac{n-p}{p}$. If $0 < \alpha < \frac{n-p}{p}$, we see that $u$ belongs to $W^{1,p}(U)$ and yet is unbounded on each open subset of $U$.
@@ -204,9 +216,10 @@ Then $u \in W^{1,p}(U)$ if and only if $\alpha < \frac{n-p}{p}$. If $0 < \alpha 
 
 \begin{theorem}[Properties of weak derivatives]
 \label{thm:weak-derivative-properties}
+\uses{def:sobolev-space-wkp}
 \dcref{ch5:5.2-thm-1}
 \group{Sobolev Spaces}
-\uses{def:sobolev-space-wkp}
+
 Assume $u, v \in W^{k,p}(U)$, $|\alpha| \le k$. Then
 
 (i) $D^{\alpha}u \in W^{k-|\alpha|,p}(U)$ and $D^{\beta}(D^{\alpha}u) = D^{\alpha}(D^{\beta}u) = D^{\alpha+\beta}u$ for all multiindices $\alpha, \beta$ with $|\alpha| + |\beta| \le k$.
@@ -226,9 +239,10 @@ where $\binom{\alpha}{\beta} = \frac{\alpha!}{\beta!(\alpha-\beta)!}$.
 
 \begin{theorem}[Sobolev spaces as function spaces]
 \label{thm:sobolev-space-banach}
+\uses{def:sobolev-norm}
 \dcref{ch5:5.2-thm-2}
 \group{Sobolev Spaces}
-\uses{def:sobolev-norm}
+
 For each $k = 1, \ldots$ and $1 \le p \le \infty$, the Sobolev space $W^{k,p}(U)$ is a Banach space.
 \end{theorem}
 
@@ -243,9 +257,10 @@ For each $k = 1, \ldots$ and $1 \le p \le \infty$, the Sobolev space $W^{k,p}(U)
 
 \begin{theorem}[Local approximation by smooth functions]
 \label{thm:local-smooth-approximation}
+\uses{def:sobolev-space-wkp, def:sobolev-convergence}
 \dcref{ch5:5.3-thm-1}
 \group{Sobolev Space Approximation}
-\uses{def:sobolev-space-wkp,def:sobolev-convergence}
+
 Assume $u \in W^{k,p}(U)$ for some $1 \le p < \infty$, and set
 $$u^\varepsilon = \eta_\varepsilon * u \text{ in } U_\varepsilon.$$
 Then
@@ -266,9 +281,10 @@ and
 
 \begin{theorem}[Global approximation by smooth functions]
 \label{thm:global-smooth-approximation-interior}
+\uses{def:sobolev-space-wkp, thm:weak-derivative-properties}
 \dcref{ch5:5.3-thm-2}
 \group{Sobolev Space Approximation}
-\uses{def:sobolev-space-wkp,thm:weak-derivative-properties}
+
 Assume $U$ is bounded, and suppose as well that $u \in W^{k,p}(U)$ for some $1 \le p < \infty$. Then there exist functions $u_m \in C^\infty(U) \cap W^{k,p}(U)$ such that
 $$u_m \to u \quad \text{in } W^{k,p}(U).$$
 \end{theorem}
@@ -279,9 +295,10 @@ $$u_m \to u \quad \text{in } W^{k,p}(U).$$
 
 \begin{remark}[Approximation not up to the boundary]
 \label{rem:approximation-not-up-to-boundary}
+\uses{thm:global-smooth-approximation-interior}
 \dcref{ch5:5.3-rem-1}
 \group{Sobolev Space Approximation}
-\uses{thm:global-smooth-approximation-interior}
+
 The approximants need not belong to $C^\infty(\bar U)$.
 \end{remark}
 
@@ -289,9 +306,10 @@ The approximants need not belong to $C^\infty(\bar U)$.
 
 \begin{theorem}[Global approximation by functions smooth up to the boundary]
 \label{thm:global-smooth-approximation-boundary}
+\uses{def:sobolev-space-wkp, thm:local-smooth-approximation, thm:weak-derivative-properties}
 \dcref{ch5:5.3-thm-3}
 \group{Sobolev Space Approximation}
-\uses{def:sobolev-space-wkp,thm:local-smooth-approximation,thm:weak-derivative-properties}
+
 Assume $U$ is bounded and $\partial U$ is $C^1$. Suppose $u \in W^{k,p}(U)$ for some $1 \le p < \infty$. Then there exist functions $u_m \in C^\infty(\bar U)$ such that
 $$u_m \to u \quad \text{in } W^{k,p}(U).$$
 \end{theorem}
@@ -305,9 +323,10 @@ $$u_m \to u \quad \text{in } W^{k,p}(U).$$
 
 \begin{theorem}[Extension Theorem]
 \label{thm:sobolev-extension-theorem}
+\uses{def:sobolev-space-wkp, thm:global-smooth-approximation-boundary}
 \dcref{ch5:5.4-thm-1}
 \group{Sobolev Extension}
-\uses{def:sobolev-space-wkp,thm:global-smooth-approximation-boundary}
+
 Assume $U$ is bounded and $\partial U$ is $C^1$. Select a bounded open set $V$ such that $U \CC V$. Then there exists a bounded linear operator
 $$(1) \quad E: W^{1,p}(U) \to W^{1,p}(\R^n)$$
 such that for each $u \in W^{1,p}(U)$:
@@ -328,17 +347,19 @@ the constant $C$ depending only on $p$, $U$, and $V$.
 
 \begin{definition}[Extension of a Sobolev function]
 \label{def:extension-of-sobolev-function}
+\uses{thm:sobolev-extension-theorem}
 \dcref{ch5:5.4-def-1}
 \group{Sobolev Extension}
-\uses{thm:sobolev-extension-theorem}
+
 We call $Eu$ an extension of $u$ to $\R^n$.
 \end{definition}
 
 \begin{remark}[Extension in $W^{2,p}$; failure for $k>2$]
 \label{rem:extension-higher-order-remark}
+\uses{thm:sobolev-extension-theorem}
 \dcref{ch5:5.4-rem-1}
 \group{Sobolev Extension}
-\uses{thm:sobolev-extension-theorem}
+
 (i) If $\partial U$ is $C^2$, the same operator is bounded from $W^{2,p}(U)$ to $W^{2,p}(\R^n)$ and satisfies
 $$(10) \quad \|Eu\|_{W^{2,p}(\R^n)} \le C\|u\|_{W^{2,p}(U)},$$
 where $C$ depends only on $U$, $V$, $n$, and $p$.
@@ -351,9 +372,10 @@ where $C$ depends only on $U$, $V$, $n$, and $p$.
 
 \begin{theorem}[Trace Theorem]
 \label{thm:trace-theorem}
+\uses{def:sobolev-space-wkp, thm:global-smooth-approximation-boundary}
 \dcref{ch5:5.5-thm-1}
 \group{Sobolev Traces}
-\uses{def:sobolev-space-wkp,thm:global-smooth-approximation-boundary}
+
 Assume $U$ is bounded and $\partial U$ is $C^1$. Then there exists a bounded linear operator
 $$T : W^{1,p}(U) \to L^p(\partial U)$$
 such that
@@ -373,17 +395,19 @@ for each $u \in W^{1,p}(U)$, with the constant $C$ depending only on $p$ and $U$
 
 \begin{definition}[Trace of $u$ on $\partial U$]
 \label{def:trace-operator}
+\uses{thm:trace-theorem}
 \dcref{ch5:5.5-def-1}
 \group{Sobolev Traces}
-\uses{thm:trace-theorem}
+
 We call $Tu$ the trace of $u$ on $\partial U$.
 \end{definition}
 
 \begin{theorem}[Trace-zero functions in $W^{1,p}$]
 \label{thm:trace-zero-characterization}
+\uses{def:sobolev-space-zero-boundary, thm:trace-theorem}
 \dcref{ch5:5.5-thm-2}
 \group{Sobolev Traces}
-\uses{def:sobolev-space-zero-boundary,thm:trace-theorem}
+
 Assume $U$ is bounded and $\partial U$ is $C^1$. Suppose furthermore that $u \in W^{1,p}(U)$. Then
 $$(4) \quad u \in W_0^{1,p}(U) \quad \text{if and only if} \quad Tu = 0 \text{ on } \partial U.$$
 \end{theorem}
@@ -409,9 +433,10 @@ $$(9) \quad \frac{1}{p^*} = \frac{1}{p} - \frac{1}{n}, \quad p^* > p.$$
 
 \begin{theorem}[Gagliardo--Nirenberg--Sobolev inequality]
 \label{thm:gagliardo-nirenberg-sobolev-inequality}
+\uses{def:sobolev-conjugate-exponent}
 \dcref{ch5:5.6-thm-1}
 \group{Sobolev Inequalities}
-\uses{def:sobolev-conjugate-exponent}
+
 Assume $1 \le p < n$. There exists a constant $C$, depending only on $p$ and $n$, such that
 $$(10) \quad \|u\|_{L^{p^*}(\R^n)} \le C\|Du\|_{L^p(\R^n)},$$
 for all $u \in C_c^1(\R^n)$.
@@ -423,9 +448,10 @@ for all $u \in C_c^1(\R^n)$.
 
 \begin{theorem}[Estimates for $W^{1,p}$, $1 \le p < n$]
 \label{thm:sobolev-embedding-w1p-subcritical}
+\uses{thm:gagliardo-nirenberg-sobolev-inequality, thm:sobolev-extension-theorem, thm:local-smooth-approximation}
 \dcref{ch5:5.6-thm-2}
 \group{Sobolev Inequalities}
-\uses{thm:gagliardo-nirenberg-sobolev-inequality,thm:sobolev-extension-theorem,thm:local-smooth-approximation}
+
 Let $U$ be a bounded, open subset of $\R^n$, and suppose $\partial U$ is $C^1$. Assume $1 \le p < n$, and $u \in W^{1,p}(U)$. Then $u \in L^{p^*}(U)$, with the estimate
 $$(15) \quad \|u\|_{L^{p^*}(U)} \le C\|u\|_{W^{1,p}(U)},$$
 the constant $C$ depending only on $p, n$, and $U$.
@@ -437,9 +463,10 @@ the constant $C$ depending only on $p, n$, and $U$.
 
 \begin{theorem}[Poincare's inequality for $W_0^{1,p}$, $1 \le p < n$]
 \label{thm:poincare-w01p-subcritical}
+\uses{def:sobolev-space-zero-boundary, thm:gagliardo-nirenberg-sobolev-inequality}
 \dcref{ch5:5.6-thm-3}
 \group{Sobolev Inequalities}
-\uses{def:sobolev-space-zero-boundary,thm:gagliardo-nirenberg-sobolev-inequality}
+
 Assume $U$ is a bounded, open subset of $\R^n$. Suppose $u \in W_0^{1,p}(U)$ for some $1 \le p < n$. Then we have the estimate
 $$\|u\|_{L^q(U)} \le C\|Du\|_{L^p(U)}$$
 for each $q \in [1, p^*]$, the constant $C$ depending only on $p, q, n$ and $U$.
@@ -451,17 +478,19 @@ for each $q \in [1, p^*]$, the constant $C$ depending only on $p, q, n$ and $U$.
 
 \begin{remark}[Poincare's inequality]
 \label{rem:poincare-w01p-terminology}
+\uses{thm:poincare-w01p-subcritical, thm:sobolev-embedding-w1p-subcritical}
 \dcref{ch5:5.6-rem-1}
 \group{Sobolev Inequalities}
-\uses{thm:poincare-w01p-subcritical,thm:sobolev-embedding-w1p-subcritical}
+
 The estimate in \cref{thm:poincare-w01p-subcritical} is Poincare's inequality; unlike \cref{thm:sobolev-embedding-w1p-subcritical}, its right-hand side contains only $Du$.
 \end{remark}
 
 \begin{remark}[Equivalent norm on $W_0^{1,p}$; the borderline case $p=n$]
 \label{rem:borderline-case-p-equals-n}
+\uses{thm:poincare-w01p-subcritical}
 \dcref{ch5:5.6-rem-2}
 \group{Sobolev Inequalities}
-\uses{thm:poincare-w01p-subcritical}
+
 (i) If $U$ is bounded, $\|Du\|_{L^p(U)}$ and $\|u\|_{W^{1,p}(U)}$ are equivalent norms on $W_0^{1,p}(U)$.
 
 (ii) For $n>1$, the borderline embedding $W^{1,n}(U)\subset L^\infty(U)$ fails. On $U=B^0(0,1)$,
@@ -473,9 +502,10 @@ belongs to $W^{1,n}(U)$ but not to $L^\infty(U)$.
 
 \begin{theorem}[Morrey's inequality]
 \label{thm:morreys-inequality}
+\uses{def:holder-seminorm-sup-norm}
 \dcref{ch5:5.6-thm-4}
 \group{Sobolev Inequalities}
-\uses{def:holder-seminorm-sup-norm}
+
 Assume $n < p \le \infty$. Then there exists a constant $C$, depending only on $p$ and $n$, such that
 $$(20) \quad \|u\|_{C^{0,\gamma}(\R^n)} \le C\|u\|_{W^{1,p}(\R^n)}$$
 for all $u \in C^1(\R^n)$, where
@@ -488,9 +518,10 @@ $$\gamma := 1 - n/p.$$
 
 \begin{remark}[Morrey estimate on a ball]
 \label{rem:morrey-estimate-on-ball}
+\uses{thm:morreys-inequality}
 \dcref{ch5:5.6-rem-3}
 \group{Sobolev Inequalities}
-\uses{thm:morreys-inequality}
+
 For $n<p<\infty$, $u\in W^{1,p}(B(x,2r))$, and $y\in B(x,r)$,
 $$|u(y) - u(x)| \le Cr^{1-n/p} \left( \int_{B(x,2r)} |Du(z)|^p\,dz \right)^{1/p}$$
 with $C$ depending only on $n$ and $p$. The integral may also be restricted to $B(x,r)$.
@@ -506,9 +537,10 @@ $$u = u^* \text{ a.e.}$$
 
 \begin{theorem}[Estimates for $W^{1,p}$, $n < p \le \infty$]
 \label{thm:sobolev-embedding-w1p-supercritical}
+\uses{def:version-of-a-function, thm:morreys-inequality, thm:sobolev-extension-theorem, thm:local-smooth-approximation}
 \dcref{ch5:5.6-thm-5}
 \group{Sobolev Inequalities}
-\uses{def:version-of-a-function,thm:morreys-inequality,thm:sobolev-extension-theorem,thm:local-smooth-approximation}
+
 Let $U$ be a bounded, open subset of $\R^n$, and suppose $\partial U$ is $C^1$. Assume $n < p \le \infty$, and $u \in W^{1,p}(U)$. Then $u$ has a version $u^* \in C^{0,\gamma}(\bar{U})$, for $\gamma = 1 - \frac{n}{p}$, with the estimate
 $$\|u^*\|_{C^{0,\gamma}(\bar{U})} \le C\|u\|_{W^{1,p}(U)}.$$
 The constant $C$ depends only on $p, n$ and $U$.
@@ -520,9 +552,10 @@ The constant $C$ depends only on $p, n$ and $U$.
 
 \begin{remark}[Identification with continuous version]
 \label{rem:identify-continuous-version}
+\uses{thm:sobolev-embedding-w1p-supercritical}
 \dcref{ch5:5.6-rem-4}
 \group{Sobolev Inequalities}
-\uses{thm:sobolev-embedding-w1p-supercritical}
+
 For $p>n$, each $u\in W^{1,p}(U)$ is identified with the continuous version supplied by \cref{thm:sobolev-embedding-w1p-supercritical}.
 \end{remark}
 
@@ -530,9 +563,10 @@ For $p>n$, each $u\in W^{1,p}(U)$ is identified with the continuous version supp
 
 \begin{theorem}[General Sobolev inequalities]
 \label{thm:general-sobolev-inequalities}
+\uses{thm:gagliardo-nirenberg-sobolev-inequality, thm:morreys-inequality}
 \dcref{ch5:5.6-thm-6}
 \group{Sobolev Inequalities}
-\uses{thm:gagliardo-nirenberg-sobolev-inequality,thm:morreys-inequality}
+
 Let $U$ be a bounded open subset of $\R^n$, with a $C^1$ boundary. Assume $u \in W^{k,p}(U)$.
 
 (i) If
@@ -561,9 +595,10 @@ the constant $C$ depending only on $k, p, n, \gamma$ and $U$.
 
 \begin{remark}[Fourier-transform proof]
 \label{rem:general-sobolev-fourier-remark}
+\uses{thm:general-sobolev-inequalities}
 \dcref{ch5:5.6-rem-5}
 \group{Sobolev Inequalities}
-\uses{thm:general-sobolev-inequalities}
+
 General Sobolev inequalities also admit Fourier-transform proofs.
 \end{remark}
 
@@ -587,9 +622,10 @@ and
 
 \begin{theorem}[Rellich--Kondrachov Compactness Theorem]
 \label{thm:rellich-kondrachov}
+\uses{def:compact-embedding, thm:sobolev-embedding-w1p-subcritical, thm:sobolev-extension-theorem, thm:local-smooth-approximation}
 \dcref{ch5:5.7-thm-1}
 \group{Compactness}
-\uses{def:compact-embedding,thm:sobolev-embedding-w1p-subcritical,thm:sobolev-extension-theorem,thm:local-smooth-approximation}
+
 Assume $U$ is a bounded open subset of $\R^n$, and $\partial U$ is $C^1$. Suppose $1 \le p < n$. Then
 $$W^{1,p}(U) \CC L^q(U)$$
 for each $1 \le q < p^*$.
@@ -601,9 +637,10 @@ for each $1 \le q < p^*$.
 
 \begin{remark}[$W^{1,p}(U) \CC L^p(U)$ for all $p$]
 \label{rem:compact-embedding-lp-all-p}
+\uses{thm:rellich-kondrachov, thm:sobolev-embedding-w1p-subcritical, thm:morreys-inequality}
 \dcref{ch5:5.7-rem-1}
 \group{Compactness}
-\uses{thm:rellich-kondrachov,thm:sobolev-embedding-w1p-subcritical,thm:morreys-inequality}
+
 For every $1\le p\le\infty$,
 $$W^{1,p}(U) \CC L^p(U)$$
 when $U$ is bounded with $C^1$ boundary. Moreover,
@@ -618,9 +655,10 @@ without a $C^1$ boundary assumption.
 
 \begin{theorem}[Poincare's inequality]
 \label{thm:poincares-inequality-connected}
+\uses{thm:rellich-kondrachov, def:sobolev-space-wkp}
 \dcref{ch5:5.8-thm-1}
 \group{Poincaré Inequalities}
-\uses{thm:rellich-kondrachov,def:sobolev-space-wkp}
+
 Let $U$ be a bounded, connected, open subset of $\R^n$, with a $C^1$ boundary $\partial U$. Assume $1 \le p \le \infty$. Then there exists a constant $C$, depending only on $n,p$ and $U$, such that
 $$(1) \quad \|u - (u)_U\|_{L^p(U)} \le C\|Du\|_{L^p(U)}$$
 for each function $u \in W^{1,p}(U)$.
@@ -632,9 +670,10 @@ for each function $u \in W^{1,p}(U)$.
 
 \begin{theorem}[Poincare's inequality for a ball]
 \label{thm:poincares-inequality-ball}
+\uses{thm:poincares-inequality-connected}
 \dcref{ch5:5.8-thm-2}
 \group{Poincaré Inequalities}
-\uses{thm:poincares-inequality-connected}
+
 Assume $1 \le p \le \infty$. Then there exists a constant $C$, depending only on $n$ and $p$, such that
 $$(7) \quad \|u - (u)_{x,r}\|_{L^p(B(x,r))} \le Cr\|Du\|_{L^p(B(x,r))}$$
 for each ball $B(x,r) \subset \R^n$ and each function $u \in W^{1,p}(B^0(x,r))$.
@@ -646,9 +685,10 @@ for each ball $B(x,r) \subset \R^n$ and each function $u \in W^{1,p}(B^0(x,r))$.
 
 \begin{remark}[Bounded mean oscillation]
 \label{rem:bmo-remark}
+\uses{thm:poincares-inequality-ball}
 \dcref{ch5:5.8-rem-1}
 \group{Poincaré Inequalities}
-\uses{thm:poincares-inequality-ball}
+
 If $u \in W^{1,n}(\R^n) \cap L^1(\R^n)$ and $B(x,r)$ is a ball, then
 $$\int_{B(x,r)} |u - (u)_{x,r}|\, dy \le Cr\int_{B(x,r)} |Du|\, dy$$
 $$\le Cr \left(\int_{B(x,r)} |Du|^n\, dy\right)^{1/n} \le C\left(\int_{\R^n} |Du|^n\, dy\right)^{1/n}.$$
@@ -672,9 +712,10 @@ for $x \in V$ and $h \in \R$, $0 < |h| < \dist(V, \partial U)$.
 
 \begin{theorem}[Difference quotients and weak derivatives]
 \label{thm:difference-quotients-weak-derivatives}
+\uses{def:difference-quotients, def:sobolev-space-wkp}
 \dcref{ch5:5.8-thm-3}
 \group{Difference Quotients}
-\uses{def:difference-quotients,def:sobolev-space-wkp}
+
 (i) Suppose $1 \le p < \infty$ and $u \in W^{1,p}(U)$. Then for each $V \CC U$
 $$(8) \quad \|D^h u\|_{L^p(V)} \le C\|Du\|_{L^p(U)}$$
 for some constant $C$ and all $0 < |h| < \frac{1}{2}\dist(V, \partial U)$.
@@ -691,17 +732,19 @@ $$u \in W^{1,p}(V), \quad \text{with } \|Du\|_{L^p(V)} \le C.$$
 
 \begin{remark}[Assertion (ii) fails for $p=1$]
 \label{rem:difference-quotient-p1-fails}
+\uses{thm:difference-quotients-weak-derivatives}
 \dcref{ch5:5.8-rem-2}
 \group{Difference Quotients}
-\uses{thm:difference-quotients-weak-derivatives}
+
 Assertion (ii) of \cref{thm:difference-quotients-weak-derivatives} is false for $p=1$.
 \end{remark}
 
 \begin{remark}[Tangential difference quotients on half-balls]
 \label{rem:difference-quotient-half-ball-remark}
+\uses{thm:difference-quotients-weak-derivatives}
 \dcref{ch5:5.8-rem-3}
 \group{Difference Quotients}
-\uses{thm:difference-quotients-weak-derivatives}
+
 For the half-balls
 $$U=B^0(0,1)\cap\{x_n>0\},\qquad V=B^0(0,1/2)\cap\{x_n>0\},$$
 the tangential difference quotients satisfy
@@ -711,9 +754,10 @@ although $V\not\CC U$.
 
 \begin{theorem}[Characterization of $W^{1,\infty}$]
 \label{thm:characterization-w1infty-lipschitz}
+\uses{def:sobolev-space-wkp, thm:sobolev-extension-theorem}
 \dcref{ch5:5.8-thm-4}
 \group{Difference Quotients}
-\uses{def:sobolev-space-wkp,thm:sobolev-extension-theorem}
+
 Let $U$ be open and bounded, with $\partial U$ of class $C^1$. Then $u : U \to \R$ is Lipschitz continuous if and only if $u \in W^{1,\infty}(U)$.
 \end{theorem}
 
@@ -723,9 +767,10 @@ Let $U$ be open and bounded, with $\partial U$ of class $C^1$. Then $u : U \to \
 
 \begin{remark}[Local Lipschitz characterization; failure for $1\le p<\infty$]
 \label{rem:local-lipschitz-w1infty-loc-remark}
+\uses{thm:characterization-w1infty-lipschitz, thm:sobolev-embedding-w1p-supercritical}
 \dcref{ch5:5.8-rem-4}
 \group{Difference Quotients}
-\uses{thm:characterization-w1infty-lipschitz,thm:sobolev-embedding-w1p-supercritical}
+
 For every open $U$, $u\in W^{1,\infty}_{\mathrm{loc}}(U)$ if and only if $u$ is locally Lipschitz.
 No analogous equivalence holds for finite $p$: if $n<p<\infty$, then $W^{1,p}\subset C^{0,1-n/p}$, but Holder continuity with exponent less than one does not imply membership in any $W^{1,p}$.
 \end{remark}
@@ -744,9 +789,10 @@ $$\lim_{y \to x} \frac{|u(y) - u(x) - a \cdot (y - x)|}{|y - x|} = 0.$$
 
 \begin{theorem}[Differentiability almost everywhere]
 \label{thm:differentiability-almost-everywhere}
+\uses{def:differentiability-at-a-point, thm:morreys-inequality}
 \dcref{ch5:5.8-thm-5}
 \group{Differentiability of Sobolev Functions}
-\uses{def:differentiability-at-a-point,thm:morreys-inequality}
+
 Assume $u \in W^{1,p}_{\text{loc}}(U)$ for some $n < p \le \infty$. Then $u$ is differentiable a.e. in $U$, and its gradient equals its weak gradient a.e.
 \end{theorem}
 
@@ -756,9 +802,10 @@ Assume $u \in W^{1,p}_{\text{loc}}(U)$ for some $n < p \le \infty$. Then $u$ is 
 
 \begin{theorem}[Rademacher's Theorem]
 \label{thm:rademachers-theorem}
+\uses{thm:differentiability-almost-everywhere, thm:characterization-w1infty-lipschitz}
 \dcref{ch5:5.8-thm-6}
 \group{Differentiability of Sobolev Functions}
-\uses{thm:differentiability-almost-everywhere,thm:characterization-w1infty-lipschitz}
+
 Let $u$ be locally Lipschitz continuous in $U$. Then $u$ is differentiable almost everywhere in $U$.
 \end{theorem}
 
@@ -766,9 +813,10 @@ Let $u$ be locally Lipschitz continuous in $U$. Then $u$ is differentiable almos
 
 \begin{theorem}[Characterization of $H^k$ by Fourier transform]
 \label{thm:characterization-hk-fourier-transform}
+\uses{rem:hk-notation-identification}
 \dcref{ch5:5.8-thm-7}
 \group{Fourier Characterization of Sobolev Spaces}
-\uses{rem:hk-notation-identification}
+
 Let $k$ be a nonnegative integer.
 
 (i) A function $u \in L^2(\R^n)$ belongs to $H^k(\R^n)$ if and only if
@@ -785,9 +833,10 @@ for each $u \in H^k(\R^n)$.
 
 \begin{definition}[Fractional Sobolev space $H^s(\R^n)$]
 \label{def:fractional-sobolev-space}
+\uses{thm:characterization-hk-fourier-transform}
 \dcref{ch5:5.8-def-3}
 \group{Fourier Characterization of Sobolev Spaces}
-\uses{thm:characterization-hk-fourier-transform}
+
 Assume $0 < s < \infty$ and $u \in L^2(\R^n)$. Then $u \in H^s(\R^n)$ if $(1 + |y|^s)\hat u \in L^2(\R^n)$. For noninteger $s$, we set
 $$\|u\|_{H^s(\R^n)} := \|(1 + |y|^s)\hat u\|_{L^2(\R^n)}.$$
 \end{definition}
@@ -799,26 +848,29 @@ $$\|u\|_{H^s(\R^n)} := \|(1 + |y|^s)\hat u\|_{L^2(\R^n)}.$$
 
 \begin{definition}[The dual space $H^{-1}(U)$]
 \label{def:dual-space-h-minus-1}
+\uses{def:sobolev-space-zero-boundary}
 \dcref{ch5:5.9-def-1}
 \group{Dual Sobolev Spaces}
-\uses{def:sobolev-space-zero-boundary}
+
 We denote by $H^{-1}(U)$ the dual space to $H_0^1(U)$.
 \end{definition}
 
 \begin{definition}[Norm on $H^{-1}(U)$]
 \label{def:norm-on-h-minus-1}
+\uses{def:dual-space-h-minus-1}
 \dcref{ch5:5.9-def-2}
 \group{Dual Sobolev Spaces}
-\uses{def:dual-space-h-minus-1}
+
 If $f \in H^{-1}(U)$, we define the norm
 $$\|f\|_{H^{-1}(U)} = \sup\left\{\langle f,u\rangle \mid u \in H_0^1(U), \|u\|_{H_0^1(U)} \le 1\right\}.$$
 \end{definition}
 
 \begin{theorem}[Characterization of $H^{-1}$]
 \label{thm:characterization-h-minus-1}
+\uses{def:norm-on-h-minus-1}
 \dcref{ch5:5.9-thm-1}
 \group{Dual Sobolev Spaces}
-\uses{def:norm-on-h-minus-1}
+
 (i) Assume $f \in H^{-1}(U)$. Then there exist functions $f^0, f^1, \ldots, f^n$ in $L^2(U)$ such that
 $$(1) \quad \langle f,v \rangle = \int_U f^0 v + \sum_{i=1}^n f^i v_{x_i}\,dx \quad (v \in H_0^1(U)).$$
 
@@ -871,9 +923,10 @@ for all scalar test functions $\phi \in C_c^\infty(0, T)$.
 
 \begin{definition}[$W^{1,p}(0,T;X)$ and $H^1(0,T;X)$]
 \label{def:sobolev-space-time-banach}
+\uses{def:lp-time-banach-space, def:weak-derivative-banach-valued}
 \dcref{ch5:5.9-def-6}
 \group{Bochner Spaces}
-\uses{def:lp-time-banach-space,def:weak-derivative-banach-valued}
+
 (i) The Sobolev space
 $$W^{1,p}(0,T;X)$$
 consists of all functions $u \in L^p(0,T;X)$ such that $u'$ exists in the weak sense and belongs to $L^p(0,T;X)$. Furthermore,
@@ -887,9 +940,10 @@ $$\|u\|_{W^{1,p}(0,T;X)} := \begin{cases}
 
 \begin{theorem}[Calculus in an abstract space]
 \label{thm:calculus-abstract-space}
+\uses{def:sobolev-space-time-banach, thm:local-smooth-approximation}
 \dcref{ch5:5.9-thm-2}
 \group{Bochner Spaces}
-\uses{def:sobolev-space-time-banach,thm:local-smooth-approximation}
+
 Let $u \in W^{1,p}(0,T;X)$ for some $1 \le p \le \infty$. Then
 
 (i) $u \in C([0,T];X)$ (after possibly being redefined on a set of measure zero), and
@@ -907,9 +961,10 @@ the constant $C$ depending only on $T$.
 
 \begin{theorem}[More calculus]
 \label{thm:more-calculus-h1-hminus1}
+\uses{def:sobolev-space-time-banach, def:dual-space-h-minus-1}
 \dcref{ch5:5.9-thm-3}
 \group{Bochner Spaces}
-\uses{def:sobolev-space-time-banach,def:dual-space-h-minus-1}
+
 Suppose $u \in L^2(0,T;H_0^1(U))$, with $u' \in L^2(0,T;H^{-1}(U))$.
 
 (i) Then
@@ -933,9 +988,10 @@ the constant $C$ depending only on $T$.
 
 \begin{theorem}[Mappings into better spaces]
 \label{thm:mappings-into-better-spaces}
+\uses{def:sobolev-space-time-banach, thm:sobolev-extension-theorem, thm:difference-quotients-weak-derivatives, thm:more-calculus-h1-hminus1}
 \dcref{ch5:5.9-thm-4}
 \group{Bochner Spaces}
-\uses{def:sobolev-space-time-banach,thm:sobolev-extension-theorem,thm:difference-quotients-weak-derivatives,thm:more-calculus-h1-hminus1}
+
 Assume that $U$ is open, bounded, and $\partial U$ is smooth. Take $m$ to be a nonnegative integer.
 
 Suppose $\mathbf{u} \in L^2(0,T;H^{m+2}(U))$, with $\mathbf{u}' \in L^2(0,T;H^m(U))$.

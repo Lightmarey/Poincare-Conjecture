@@ -4,8 +4,9 @@
 
 \begin{definition}[Standard initial metric]
 \label{def:standard-initial-metric}
-\label{defn:stinmetr}
 \uses{def:sectional-curvature}
+\label{defn:stinmetr}
+
 A \emph{standard initial metric} is a complete $SO(3)$-invariant metric
 $g_0$ on $\Ar^3$ with nonnegative sectional curvature, equal outside a
 compact ball to $(S^2,h)\times(\Ar^+,ds^2)$, where $h$ has scalar
@@ -15,8 +16,9 @@ $p$, called its \emph{tip}.
 
 \begin{lemma}[Existence of a standard initial metric]
 \label{lem:existence-standard-initial-metric}
-\label{stdinit}
 \uses{def:standard-initial-metric}
+\label{stdinit}
+
 There is a standard initial metric.
 \end{lemma}
 \begin{proof}
@@ -40,8 +42,9 @@ $\int_0^2(2-s)(4s-s^2)^{-1/2}\lambda(s-s_0)\,ds=\sqrt2$.
 
 \begin{lemma}[Asymptotic and curvature bounds for the standard initial metric]
 \label{lem:standard-initial-metric-asymptotic-bounds}
-\label{A_0}
 \uses{lem:existence-standard-initial-metric}
+\label{A_0}
+
 There are $A_0,K,D<\infty$ such that $(\Ar^3\setminus B(0,A_0),g(0))$
 is the round scalar-curvature-$1$ cylinder, $\Vol B_{g(0)}(0,A_0)\le K$,
 and $D^{-1}\le R_{g(0)}\le D$.
@@ -51,7 +54,8 @@ Fix a standard initial metric $g_0$.
 
 \begin{definition}[Partial and standard Ricci flow]
 \label{def:standard-ricci-flow}
-\uses{def:standard-initial-metric,def:ricci-flow}
+\uses{def:standard-initial-metric, def:ricci-flow}
+
 A \emph{partial standard Ricci flow} is a Ricci flow $(\Ar^3,g(t))$,
 $0\le t<T$, with $g(0)=g_0$ and curvature locally bounded in time. It is
 \emph{standard} if it has no such extension to a larger interval.
@@ -59,8 +63,9 @@ $0\le t<T$, with $g(0)=g_0$ and curvature locally bounded in time. It is
 
 \begin{theorem}[Existence, uniqueness, and properties of the standard solution]
 \label{thm:standard-solution-existence-uniqueness}
+\uses{def:standard-ricci-flow, def:epsilon-neck}
 \label{stdsoln}
-\uses{def:standard-ricci-flow,def:epsilon-neck}
+
 A standard Ricci flow exists. Every standard flow $(\Ar^3,g(t))$, $0\le t<T$,
 is unique, has $T=1$, is complete with strictly positive curvature for
 $0<t<1$, is $SO(3)$-invariant, is asymptotic on every $[0,t_0]$, $t_0<1$,
@@ -80,8 +85,9 @@ uniqueness using the Ricci--DeTurck construction.
 
 \begin{lemma}[Completeness and positive curvature of the standard flow]
 \label{lem:standard-flow-complete-positive-curvature}
-\label{third}
 \uses{def:standard-ricci-flow}
+\label{third}
+
 For every $t_0<T$, $(\Ar^3,g(t_0))$ is complete and has positive curvature.
 \end{lemma}
 \begin{proof}
@@ -95,8 +101,9 @@ the nullspace principle gives strict positivity for $t_0>0$.
 
 \begin{proposition}[Asymptotic convergence to the standard evolving cylinder]
 \label{prop:standard-flow-asymptotic-cylinder}
+\uses{def:standard-ricci-flow, ex:shrinking-round-cylinder}
 \label{item5}
-\uses{def:standard-ricci-flow,ex:shrinking-round-cylinder}
+
 For $T'<T$ and $\epsilon>0$, outside a compact ball the flow on
 $[0,T']$ is $\epsilon$-close in $C^{[1/\epsilon]}$ to
 $(S^2,h(t))\times(\Ar^+,ds^2)$.
@@ -109,8 +116,9 @@ factor with the shrinking round $S^2$.
 
 \begin{corollary}[Maximal time is at most one]
 \label{cor:standard-flow-time-bound-one}
-\label{1}
 \uses{prop:standard-flow-asymptotic-cylinder}
+\label{1}
+
 $T\le1$.
 \end{corollary}
 \begin{proof}
@@ -127,8 +135,9 @@ For $\partial_tX=\triangle X+\Ric(X,\cdot)^*$, write $X^*=g(X,\cdot)$:
 
 \begin{lemma}[Evolution of $V=\nabla X^*$]
 \label{lem:v-tensor-evolution}
-\label{12.9}
 \uses{def:standard-ricci-flow}
+\label{12.9}
+
 For $V_{ij}=(\nabla_iX)_j$,
 \begin{equation}\label{eq.4}
  \partial_tV=\triangle V-\left(2{{R_k}^{rl}}_jV_{rl}+\Ric_k^lV_{lj}
@@ -148,6 +157,7 @@ intermediate identity is
 \begin{remark}[Covariant derivative and curvature acting on one-forms]
 \label{rem:covariant-derivative-one-forms}
 \uses{def:riemann-curvature-tensor}
+
 For one-forms, $\nabla_{\partial_r}dx^k=-\Gamma^k_{rl}dx^l$ and
 $\Rm(\partial_i,\partial_j)dx^k=-{{R_{ij}}^k}_l dx^l$; consequently
 $\Delta X_i-\Ric_{ik}X^k=-\Delta_dX_i$.
@@ -156,6 +166,7 @@ $\Delta X_i-\Ric_{ik}X^k=-\Delta_dX_i$.
 \begin{claim}[Commuting covariant derivatives and curvature]
 \label{claim:commuting-covariant-derivatives}
 \uses{def:riemann-curvature-tensor}
+
 For each tensor $\phi$,
 \[\nabla(\nabla_r\phi)=\nabla_r(\nabla\phi)+dx^k\otimes
 \Rm(\partial_k,\partial_r)\phi-\nabla_r(dx^l)\otimes\nabla_l\phi.\]
@@ -172,6 +183,7 @@ where $\Delta_Lh_{ij}=\Delta h_{ij}+2{{R_i}^{kl}}_jh_{kl}-\Ric_i^kh_{kj}-\Ric_j^
 \begin{corollary}[Standard solution is rotationally symmetric]
 \label{cor:standard-solution-rotationally-symmetric}
 \uses{def:standard-ricci-flow}
+
 Every $g(t)$ is invariant under the standard $SO(3)$ action.
 \end{corollary}
 \begin{proof}
@@ -183,13 +195,15 @@ $SO(3)$ action remains isometric.
 
 \begin{proposition}[Non-collapsing of the standard flow]
 \label{prop:standard-flow-kappa-noncollapsed}
-\label{stdkappa}
 \uses{def:standard-ricci-flow}
+\label{stdkappa}
+
 For all sufficiently small $r>0$, the standard flow is
 $\kappa$-noncollapsed on scales at most $r$ for some $\kappa>0$.
 \end{proposition}
 \begin{proof}
-\uses{prop:forward-difference-maximum,n/2,THM}
+  \uses{prop:forward-difference-maximum, n/2, THM, def:standard-ricci-flow, prop:standard-flow-asymptotic-cylinder}
+
 \sketch With $C=\max(2,\sup R(\cdot,0))$, the maximum principle gives
 the following bound. The bounded initial interval has uniform volume ratios;
 later times have a uniform reduced-volume lower bound, so the noncollapsing
@@ -198,6 +212,7 @@ theorem applies.
 \begin{claim}[Curvature bound along the standard flow]
 \label{claim:standard-flow-curvature-bound}
 \uses{def:standard-ricci-flow}
+
 For $t_0<T$, $t_0<C^{-1}$, and $0\le t\le t_0$,
 \[R(x,t)\le\frac C{1-Ct}.\]
 \end{claim}
@@ -233,8 +248,9 @@ equivalently the strictly parabolic Ricci--DeTurck equation
 
 \begin{lemma}[Harmonic map flow gives a Ricci-DeTurck flow]
 \label{lem:harmonic-map-flow-ricci-deturck}
-\label{12.7}
 \uses{def:standard-ricci-flow}
+\label{12.7}
+
 If $g(t)$ solves Ricci flow and $\psi_t$ solves \eqref{eq2.1} and is a
 diffeomorphism, then $(\psi_t^{-1})^*g(t)$ solves \eqref{RDfloweqn}.
 \end{lemma}
@@ -245,8 +261,9 @@ $\psi_t$; its Lie derivative is the DeTurck correction.
 
 \begin{corollary}[Ricci-DeTurck uniqueness implies Ricci flow uniqueness]
 \label{cor:ricci-deturck-uniqueness-implies-ricci-uniqueness}
-\label{dtuniqtouniq}
 \uses{lem:harmonic-map-flow-ricci-deturck}
+\label{dtuniqtouniq}
+
 If two Ricci flows agree at $t_0$ and their associated Ricci--DeTurck
 flows agree on $[t_0,T]$, then the Ricci flows agree on $[t_0,T]$.
 \end{corollary}
@@ -261,8 +278,9 @@ Let $g(t)=dr^2+f(r,t)^2d\sigma$,
 
 \begin{claim}[The radial coordinate $r$ as a function of $\hat r$ and $t$]
 \label{claim:radial-coordinate-properties}
-\label{cl12.20}
 \uses{def:standard-ricci-flow}
+\label{cl12.20}
+
 $r=r(\hat r,t)$ is smooth away from $\hat r=0$, odd in $\hat r$, with
 $r(0,t)=0$, $\partial_{\hat r}r(0,t)>0$, and
 $r^2=\hat r^2\xi(\hat r^2,t)$ for a positive smooth $\xi$.
@@ -281,8 +299,9 @@ and odd functions have these forms.
 
 \begin{corollary}[$r^2$ is a smooth function of the ambient coordinates]
 \label{cor:r-squared-smooth-function}
+\uses{claim:radial-coordinate-properties, lem:even-odd-radial-functions}
 \label{rcor}
-\uses{claim:radial-coordinate-properties,lem:even-odd-radial-functions}
+
 $r^2(\hat r,t)$ is smooth on $\Ar^n$, and $\hat r$ is smooth in $(r,t)$
 for $r>0$.
 \end{corollary}
@@ -292,11 +311,13 @@ Define
 \begin{claim}[$f(r,t)$ is a smooth odd function]
 \label{claim:f-odd-smooth-function}
 \uses{cor:r-squared-smooth-function}
+
 $f$ extends smoothly and oddly in $r$.
 \end{claim}
 \begin{corollary}[Factorization $f(r,t)=r\,h(r^2,t)$]
 \label{cor:f-factorization-rh}
 \uses{claim:f-odd-smooth-function}
+
 There is smooth $h(w,t)$ with $f(r,t)=rh(r^2,t)$.
 \end{corollary}
 
@@ -323,8 +344,9 @@ makes all coefficients of \eqref{betterharMapeq} smooth at the origin.
 
 \begin{claim}[Asymptotics of the harmonic map flow coefficients]
 \label{claim:harmonic-map-flow-asymptotics}
-\label{asympt}
 \uses{prop:standard-flow-asymptotic-cylinder}
+\label{asympt}
+
 At infinity, $e^{\tilde h(r^2,t)}\sim((1-t)r)^{-1}$,
 $\tilde h\sim-\log r$, $\partial_w\tilde h\sim-(2r^2)^{-1}$,
 $r^{-1}\partial_tr\sim C/r$, $\partial_rB\sim C$, and
@@ -340,6 +362,7 @@ definition of $B$ gives the fifth, and substitution into $G$ gives the last.
 \begin{proposition}[Short-time existence for the harmonic map flow]
 \label{prop:harmonic-map-flow-short-time-existence}
 \uses{def:standard-ricci-flow}
+
 For every $t_0<T_1$ for which a standard solution is defined on $[0,T_1]$,
 \eqref{betterharMapeq} with $\tilde\rho(\cdot,t_0)=0$ has a solution on
 $[t_0,T]$ for some $T>t_0$.
@@ -372,8 +395,9 @@ and hence
 
 \begin{proposition}[Harmonic map flow with quadratic decay at infinity]
 \label{prop:harmonic-map-flow-existence-decay}
+\uses{prop:harmonic-map-flow-short-time-existence, claim:harmonic-map-flow-asymptotics}
 \label{harmapflow}
-\uses{prop:harmonic-map-flow-short-time-existence,claim:harmonic-map-flow-asymptotics}
+
 For every standard solution and $t_0<T$, there is a rotationally symmetric
 harmonic map flow $\psi_t(x)=xe^{\tilde\rho(x,t)}$ on $[t_0,T']$ with
 $\psi_{t_0}=\Id$ and $|\nabla^i\tilde\rho|(x,t)\le C_{14}(1+|x|)^{-2}$
@@ -382,8 +406,9 @@ for $0\le i\le3$.
 
 \begin{proposition}[Uniqueness for the Ricci-DeTurck flow on noncompact manifolds]
 \label{prop:ricci-deturck-uniqueness-noncompact}
-\label{RDuniq}
 \uses{def:standard-ricci-flow}
+\label{RDuniq}
+
 Let bounded Ricci--DeTurck flows $\hat g_1,\hat g_2$ on complete noncompact
 $M$ have common initial metric $g$, uniform $C^2(g)$ and bilipschitz bounds,
 and the same sequential $C^1$ asymptotics along an exhaustion. Then
@@ -404,8 +429,9 @@ The maximum principle, then $b\to\infty$ and $\epsilon\to0$, proves equality.
 
 \begin{corollary}[Agreement of Ricci-DeTurck flows for standard solutions]
 \label{cor:standard-solution-deturck-agreement}
+\uses{prop:harmonic-map-flow-existence-decay, prop:ricci-deturck-uniqueness-noncompact}
 \label{duniq}
-\uses{prop:harmonic-map-flow-existence-decay,prop:ricci-deturck-uniqueness-noncompact}
+
 If standard solutions $g_1,g_2$ agree on $[0,t_0]$, their associated
 Ricci--DeTurck flows agree on $[t_0,T']$ for some $T'>t_0$.
 \end{corollary}
@@ -419,8 +445,9 @@ extension. Thus the flows agree throughout their common maximal interval.
 
 \begin{theorem}[Canonical neighborhoods in the standard solution]
 \label{thm:standard-solution-canonical-neighborhoods}
+\uses{thm:standard-solution-existence-uniqueness, prop:standard-flow-kappa-noncollapsed}
 \label{R_0cannbhd}
-\uses{thm:standard-solution-existence-uniqueness,prop:standard-flow-kappa-noncollapsed}
+
 For $0<\epsilon<1$ there is $r>0$ such that $R(x_0,t_0)\ge r^{-2}$
 implies $t_0>r^2$ and a strong $(C(\epsilon),\epsilon)$-canonical
 neighborhood at $(x_0,t_0)$. A strong neck there extends backward for
@@ -437,13 +464,15 @@ the required neighborhood back, a contradiction.
 \begin{claim}[Volume ratio of the rescaled limit is small]
 \label{claim:kappa-solution-volume-ratio-small}
 \uses{asympvol}
+
 For each $\epsilon>0$ some $A<\infty$ satisfies
 $\Vol(B_{Q_ng}(x,t_n,A))<\epsilon A^3$ for all large $n$.
 \end{claim}
 
 \begin{theorem}[The standard flow exists exactly on $[0,1)$]
 \label{thm:standard-solution-time-interval-one}
-\uses{thm:standard-solution-canonical-neighborhoods,prop:standard-flow-asymptotic-cylinder}
+\uses{thm:standard-solution-canonical-neighborhoods, prop:standard-flow-asymptotic-cylinder}
+
 $T=1$.
 \end{theorem}
 \begin{proof}
@@ -459,8 +488,9 @@ with $T\le1$.
 \section{Corollaries}
 \begin{proposition}[Scalar curvature lower bound $R\ge c/(1-t)$]
 \label{prop:standard-solution-scalar-curvature-lower-bound}
-\label{Restim}
 \uses{thm:standard-solution-canonical-neighborhoods}
+\label{Restim}
+
 There is $c>0$ such that $R(p,t)\ge c/(1-t)$ everywhere.
 \end{proposition}
 \begin{proof}
@@ -474,8 +504,9 @@ control then integrates to the stated uniform lower bound.
 
 \begin{theorem}[Trichotomy of canonical neighborhoods in the standard solution]
 \label{thm:standard-solution-trichotomy}
+\uses{thm:standard-solution-canonical-neighborhoods, prop:standard-solution-scalar-curvature-lower-bound}
 \label{stdsolncannbhd}
-\uses{thm:standard-solution-canonical-neighborhoods,prop:standard-solution-scalar-curvature-lower-bound}
+
 For every $\epsilon>0$ there is $C'(\epsilon)<\infty$ such that every
 $(x,t)$ lies either in the core of a $(C',\epsilon)$-cap, at the center
 of an evolving $\epsilon$-neck starting at $0$ and initially disjoint from
@@ -492,14 +523,16 @@ the outer necks and compactness gives caps on the remaining compact set.
 \begin{remark}[Evolving necks of rescaled time greater than one]
 \label{rem:evolving-neck-rescaled-time}
 \uses{def:evolving-epsilon-neck}
+
 This is compatible with the time interval $[0,1)$ because the neck scale is
 $R(x,t)^{-1/2}$, which tends to $0$ as $t\to1$.
 \end{remark}
 
 \begin{corollary}[Points near the tip lie in a canonical cap]
 \label{cor:standard-solution-cap-near-tip}
-\label{stdsolncap}
 \uses{thm:standard-solution-trichotomy}
+\label{stdsolncap}
+
 If $t\le R(q,t)^{-1}(1+\epsilon)$ and
 $(q,0)\in B(p_0,0,\epsilon^{-1}/2+A_0+5)$, then $(q,t)$ lies in a
 $(C'(\epsilon),\epsilon)$-cap.
@@ -508,14 +541,16 @@ $(C'(\epsilon),\epsilon)$-cap.
 \begin{remark}[The tip $p_0$ and the constant $A_0$]
 \label{rem:tip-and-a0-definitions}
 \uses{lem:standard-initial-metric-asymptotic-bounds}
+
 $p_0$ is the origin (the surgery-cap tip), and $A_0$ is from
 Lemma~\ref{lem:standard-initial-metric-asymptotic-bounds}.
 \end{remark}
 
 \begin{corollary}[Trichotomy for flows converging to the standard solution]
 \label{cor:generalized-flow-limit-trichotomy}
-\label{stdsolnlimit}
 \uses{thm:standard-solution-trichotomy}
+\label{stdsolnlimit}
+
 Let generalized flows $({\mathcal M}_n,G_n)$ converge geometrically on
 $U_n\times[0,\theta)$, $0<\theta<1$, to the standard solution. For large
 $n$, every point of the image lies in a $(C'(\epsilon),\epsilon)$-cap,
@@ -530,8 +565,9 @@ neighborhoods under geometric convergence.
 
 \begin{lemma}[Distance-decreasing property of the standard initial metric]
 \label{lem:standard-initial-metric-distance-decreasing}
-\label{decrease}
 \uses{def:standard-initial-metric}
+\label{decrease}
+
 Let $h_0$ be twice the usual metric on the unit sphere in $T_0\Ar^3$ and
 let $\rho(x,s)$ be radial exponential coordinates for $g_0$. Then
 $\rho^*g_0\le h_0\times ds^2$.

@@ -22,9 +22,10 @@ The boundary is $C^\infty$ if it is $C^k$ for every positive integer $k$, and it
 
 \begin{definition}[Outward normal and normal derivative]
 \label{def:outward-normal-and-normal-derivative}
+\uses{def:ck-boundary-regularity}
 \dcref{appC:C.1-def-2}
 \group{Boundary Regularity}
-\uses{def:ck-boundary-regularity}
+
 (i) If $\partial U$ is $C^1$, its outward-pointing unit normal field is
 \[
 \nu=(\nu^1,\ldots,\nu^n).
@@ -63,9 +64,10 @@ Throughout this subsection, $U\subset\mathbb R^n$ is open and bounded and $\part
 
 \begin{theorem}[Gauss--Green Theorem]
 \label{thm:gauss-green-theorem}
+\uses{def:ck-boundary-regularity, def:outward-normal-and-normal-derivative}
 \dcref{appC:thm-1}
 \group{Gauss-Green Theorem}
-\uses{def:ck-boundary-regularity,def:outward-normal-and-normal-derivative}
+
 If $u\in C^1(\overline U)$, then for $i=1,\ldots,n$,
 \[
 (1)\qquad
@@ -76,9 +78,10 @@ If $u\in C^1(\overline U)$, then for $i=1,\ldots,n$,
 
 \begin{theorem}[Integration-by-parts formula]
 \label{thm:integration-by-parts-formula}
+\uses{thm:gauss-green-theorem}
 \dcref{appC:thm-2}
 \group{Gauss-Green Theorem}
-\uses{thm:gauss-green-theorem}
+
 If $u,v\in C^1(\overline U)$, then for $i=1,\ldots,n$,
 \[
 (2)\qquad
@@ -93,9 +96,10 @@ If $u,v\in C^1(\overline U)$, then for $i=1,\ldots,n$,
 
 \begin{theorem}[Green's formulas]
 \label{thm:greens-formulas}
+\uses{thm:integration-by-parts-formula, def:outward-normal-and-normal-derivative}
 \dcref{appC:thm-3}
 \group{Gauss-Green Theorem}
-\uses{thm:integration-by-parts-formula,def:outward-normal-and-normal-derivative}
+
 If $u,v\in C^2(\overline U)$, then
 \[
 \text{(i)}\qquad
@@ -207,9 +211,10 @@ The function $\eta$ is the \textit{standard mollifier}.
 
 \begin{definition}[Mollification]
 \label{def:mollification}
+\uses{def:standard-mollifier, def:epsilon-interior-set-notation}
 \dcref{appC:C.4-def-3}
 \group{Mollification}
-\uses{def:standard-mollifier,def:epsilon-interior-set-notation}
+
 If $f:U\to\mathbb R$ is locally integrable, its mollification on $U_\epsilon$ is
 \[
 f^\epsilon:=\eta_\epsilon*f,
@@ -225,9 +230,10 @@ f^\epsilon(x)
 
 \begin{theorem}[Properties of mollifiers]
 \label{thm:properties-of-mollifiers}
+\uses{def:mollification, def:standard-mollifier}
 \dcref{appC:thm-6}
 \group{Mollification}
-\uses{def:mollification,def:standard-mollifier}
+
 Let $f\in L^1_{\mathrm{loc}}(U)$. Then:
 
 (i) $f^\epsilon\in C^\infty(U_\epsilon)$.
@@ -275,9 +281,10 @@ Let $U\subset\mathbb R^n$ be open, let $\mathbf f=(f^1,\ldots,f^n):U\to\mathbb R
 
 \begin{definition}[Notation: gradient matrix $D\mathbf f$]
 \label{def:gradient-matrix-df-square-notation}
+\uses{def:vector-valued-function-notation}
 \dcref{appC:C.5-def-1}
 \group{Inverse and Implicit Function Theorems}
-\uses{def:vector-valued-function-notation}
+
 The gradient matrix is
 \[
 D\mathbf f=
@@ -291,9 +298,10 @@ f^n_{x_1}&\cdots&f^n_{x_n}
 
 \begin{definition}[Jacobian $J\mathbf f$]
 \label{def:jacobian-jf}
+\uses{def:gradient-matrix-df-square-notation}
 \dcref{appC:C.5-def-2}
 \group{Inverse and Implicit Function Theorems}
-\uses{def:gradient-matrix-df-square-notation}
+
 The Jacobian is
 \[
 J\mathbf f
@@ -305,9 +313,10 @@ J\mathbf f
 
 \begin{theorem}[Inverse Function Theorem]
 \label{thm:inverse-function-theorem}
+\uses{def:jacobian-jf}
 \dcref{appC:thm-7}
 \group{Inverse and Implicit Function Theorems}
-\uses{def:jacobian-jf}
+
 Assume $\mathbf f\in C^1(U;\mathbb R^n)$ and $J\mathbf f(x_0)\ne0$. Then there are open sets $V\subset U$ and $W\subset\mathbb R^n$, with $x_0\in V$ and $z_0\in W$, such that:
 
 (i) $\mathbf f:V\to W$ is one-to-one and onto;
@@ -336,9 +345,10 @@ Let $U\subset\mathbb R^{n+m}$ be open, let $\mathbf f=(f^1,\ldots,f^m):U\to\math
 
 \begin{definition}[Notation: gradient matrix $D\mathbf f$]
 \label{def:gradient-matrix-df-rectangular-notation}
+\uses{def:xy-point-notation-rnm}
 \dcref{appC:C.6-def-2}
 \group{Inverse and Implicit Function Theorems}
-\uses{def:xy-point-notation-rnm}
+
 The gradient matrix is
 \[
 D\mathbf f
@@ -353,9 +363,10 @@ f^m_{x_1}&\cdots&f^m_{x_n}&f^m_{y_1}&\cdots&f^m_{y_m}
 
 \begin{definition}[Jacobian $J_y\mathbf f$]
 \label{def:jacobian-jyf}
+\uses{def:gradient-matrix-df-rectangular-notation}
 \dcref{appC:C.6-def-3}
 \group{Inverse and Implicit Function Theorems}
-\uses{def:gradient-matrix-df-rectangular-notation}
+
 Set
 \[
 J_y\mathbf f
@@ -367,9 +378,10 @@ J_y\mathbf f
 
 \begin{theorem}[Implicit Function Theorem]
 \label{thm:implicit-function-theorem}
+\uses{def:jacobian-jyf}
 \dcref{appC:thm-8}
 \group{Inverse and Implicit Function Theorems}
-\uses{def:jacobian-jyf}
+
 Assume $\mathbf f\in C^1(U;\mathbb R^m)$ and $J_y\mathbf f(x_0,y_0)\ne0$. Then there are an open set $V\subset U$ containing $(x_0,y_0)$, an open set $W\subset\mathbb R^n$ containing $x_0$, and a $C^1$ map $\mathbf g:W\to\mathbb R^m$ such that:
 
 (i) $\mathbf g(x_0)=y_0$;
@@ -387,9 +399,10 @@ Thus $\mathbf g$ is locally determined by the equation $\mathbf f(x,y)=z_0$.
 
 \begin{theorem}[Arzel\`a--Ascoli Theorem]
 \label{thm:arzela-ascoli-theorem}
+\uses{def:uniform-equicontinuity}
 \dcref{appC:thm-9}
 \group{Uniform Convergence}
-\uses{def:uniform-equicontinuity}
+
 Let $\{f_k\}_{k=1}^\infty$ be real-valued functions on $\mathbb R^n$. Assume that some $M$ satisfies
 \[
 |f_k(x)|\leq M

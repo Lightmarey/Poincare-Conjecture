@@ -24,9 +24,10 @@ compatibility.
 
 \begin{lemma}[uniqueness of mixed partials]
   \label{lem:pet-ch5-mixed-partials-uniqueness}
-  \dcref{ch5:5.1.1}
   \lean{PetersenLib.mixedPartials_uniqueness}
+  \source{petersen:page-0184}
   \leanok
+  \dcref{ch5:5.1.1}
   There is at most one way of defining mixed partials of maps $c:\Omega\to M$ so
   that properties (1) and (2) above hold.
 \end{lemma}
@@ -51,10 +52,11 @@ compatibility.
 
 \begin{theorem}[existence of mixed partials]
   \label{thm:pet-ch5-mixed-partials-existence}
-  \dcref{ch5:5.1.2}
   \lean{PetersenLib.mixedPartials_existence}
-  \leanok
+  \source{petersen:page-0185}
   \uses{lem:pet-ch5-mixed-partials-uniqueness}
+  \leanok
+  \dcref{ch5:5.1.2}
   It is possible to define mixed partials of maps $c:\Omega\to M$ in a coordinate
   system so that properties (1) and (2) of \cref{lem:pet-ch5-mixed-partials-uniqueness}
   hold.
@@ -94,10 +96,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[mixed partials in submanifolds]
   \label{prop:pet-ch5-mixed-partials-submanifold}
-  \dcref{ch5:5.1.3}
   \lean{PetersenLib.mixedPartialSubmanifoldProjection}
-  \leanok
+  \source{petersen:page-0187}
   \uses{thm:pet-ch5-mixed-partials-existence}
+  \leanok
+  \dcref{ch5:5.1.3}
   If $c:\Omega\to M\subset\tilde M$ and $\frac{\partial^2c}{\partial r\partial\theta}\in T_p\tilde M$
   is the mixed partial computed in $\tilde M$, then
   \[
@@ -127,6 +130,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[acceleration of a curve]
   \label{def:pet-ch5-acceleration}
   \lean{PetersenLib.curveAcceleration}
+  \source{petersen:page-0187,petersen:page-0188}
   \leanok
   For a $C^\infty$ curve $c:I\to M$ the \emph{acceleration} is $\ddot c=\frac{d^2c}{dt^2}$.
   In local coordinates,
@@ -138,8 +142,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[geodesic; arclength parametrization]
   \label{def:pet-ch5-geodesic}
   \lean{PetersenLib.IsGeodesic,PetersenLib.geodesicCoordinateEquation,PetersenLib.IsChartGeodesicOn}
-  \leanok
+  \source{petersen:page-0188}
   \uses{def:pet-ch5-acceleration}
+  \leanok
   A $C^\infty$ curve $c:I\to M$ with vanishing acceleration, $\ddot c=0$, is a
   \emph{geodesic}. If $c$ is a geodesic its speed $|\dot c|=\sqrt{g(\dot c,\dot c)}$
   is constant, since $\frac{d}{dt}g(\dot c,\dot c)=2g(\ddot c,\dot c)=0$; equivalently
@@ -155,12 +160,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[distance functions produce geodesics]
   \label{rem:pet-ch5-distance-function-geodesics}
-  \dcref{ch5:5.2.1}
-  \lean{PetersenLib.distanceFunctionIntegralCurvesAreGeodesics,
-        PetersenLib.distanceFunctionIntegralCurvesAreGeodesicsOn}
+  \lean{PetersenLib.distanceFunctionIntegralCurvesAreGeodesics, PetersenLib.distanceFunctionIntegralCurvesAreGeodesicsOn}
+  \source{petersen:page-0188}
+  \uses{def:pet-ch5-geodesic, lem:pet-ch5-distance-function-segments, thm:pet-ch5-energy-minima-geodesics}
   \leanok
-  \uses{def:pet-ch5-geodesic,lem:pet-ch5-distance-function-segments,
-        thm:pet-ch5-energy-minima-geodesics}
+  \dcref{ch5:5.2.1}
   If $r:U\to\mathbb R$ is a distance function then the integral curves of
   $\partial_r=\nabla r$ are geodesics.  (Petersen derives this from the covariant
   identity $\nabla_{\partial_r}\partial_r=0$; the formalization instead argues
@@ -179,10 +183,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[local uniqueness of geodesics]
   \label{thm:pet-ch5-local-uniqueness}
-  \dcref{ch5:5.2.2}
   \lean{PetersenLib.geodesic_local_uniqueness}
-  \leanok
+  \source{petersen:page-0189}
   \uses{def:pet-ch5-geodesic}
+  \leanok
+  \dcref{ch5:5.2.2}
   Let $I_1,I_2$ be intervals with $t_0\in I_1\cap I_2$. If $c_1:I_1\to U$ and
   $c_2:I_2\to U$ are geodesics in a chart $U\subset M$ with $c_1(t_0)=c_2(t_0)$ and
   $\dot c_1(t_0)=\dot c_2(t_0)$, then $c_1|_{I_1\cap I_2}=c_2|_{I_1\cap I_2}$.
@@ -199,10 +204,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[local existence of geodesics]
   \label{thm:pet-ch5-local-existence}
-  \dcref{ch5:5.2.3}
   \lean{PetersenLib.geodesic_local_existence}
-  \leanok
+  \source{petersen:page-0189}
   \uses{def:pet-ch5-geodesic}
+  \leanok
+  \dcref{ch5:5.2.3}
   For each $p\in U$ and $v\in\mathbb R^n$ there are a neighborhood $V_1$ of $p$, a
   neighborhood $V_2$ of $v$, and $\varepsilon>0$ such that for each $q\in V_1$,
   $w\in V_2$, there is a geodesic $c_{q,w}:(-\varepsilon,\varepsilon)\to U$ with $c(0)=q$,
@@ -238,10 +244,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[global uniqueness of geodesics]
   \label{lem:pet-ch5-global-uniqueness}
-  \dcref{ch5:5.2.4}
   \lean{PetersenLib.geodesic_global_uniqueness}
-  \leanok
+  \source{petersen:page-0189}
   \uses{thm:pet-ch5-local-uniqueness}
+  \leanok
+  \dcref{ch5:5.2.4}
   Let $I_1,I_2$ be open intervals with $t_0\in I_1\cap I_2$. If $c_1:I_1\to M$ and
   $c_2:I_2\to M$ are geodesics with $c_1(t_0)=c_2(t_0)$ and $\dot c_1(t_0)=\dot c_2(t_0)$,
   then $c_1|_{I_1\cap I_2}=c_2|_{I_1\cap I_2}$.
@@ -257,8 +264,9 @@ components of $v\in T_p\tilde M$.
 \begin{lemma}[uniform short-time existence over a compact set]
   \label{lem:pet-ch5-uniform-time-existence}
   \lean{PetersenLib.geodesic_uniformShortTimeExistence}
-  \leanok
+  \source{petersen:page-0190}
   \uses{thm:pet-ch5-local-existence}
+  \leanok
   If $\tilde K\subset TM$ is compact, there is $\varepsilon>0$ such that for each
   $(q,v)\in\tilde K$ there is a geodesic $c:(-\varepsilon,\varepsilon)\to M$ with
   $c(0)=q$, $\dot c(0)=v$.
@@ -274,8 +282,9 @@ components of $v\in T_p\tilde M$.
 \begin{proposition}[maximal geodesics leave every compact set]
   \label{prop:pet-ch5-leaves-compact-set}
   \lean{PetersenLib.maximalGeodesic_leavesCompactSet}
+  \source{petersen:page-0190}
+  \uses{lem:pet-ch5-uniform-time-existence, def:pet-ch5-geodesic}
   \leanok
-  \uses{lem:pet-ch5-uniform-time-existence,def:pet-ch5-geodesic}
   Let $c:I=(a,b)\to M$ be a geodesic on a maximal interval of definition, with
   $b<\infty$. Then for every compact $K\subset M$ there is $t_K<b$ such that
   $t_K<t<b$ implies $c(t)\notin K$.
@@ -294,10 +303,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[compact manifolds are geodesically complete]
   \label{cor:pet-ch5-compact-manifold-complete}
-  \dcref{ch5:5.2.5}
   \lean{PetersenLib.compactManifold_geodesicallyComplete}
-  \leanok
+  \source{petersen:page-0190}
   \uses{prop:pet-ch5-leaves-compact-set}
+  \leanok
+  \dcref{ch5:5.2.5}
   If $M$ is a compact Riemannian manifold, then for each $p\in M$, $v\in T_pM$
   there is a geodesic $c:\mathbb R\to M$ with $c(0)=p$, $\dot c(0)=v$: geodesics exist
   for all time.
@@ -315,18 +325,20 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[geodesically complete]
   \label{def:pet-ch5-geodesically-complete}
   \lean{PetersenLib.IsGeodesicallyComplete}
-  \leanok
+  \source{petersen:page-0190}
   \uses{def:pet-ch5-geodesic}
+  \leanok
   A Riemannian manifold on which every geodesic is defined for all time (i.e.\ on
   all of $\mathbb R$) is called \emph{geodesically complete}.
 \end{definition}
 
 \begin{lemma}[uniform extension on a compact interval]
   \label{lem:pet-ch5-uniform-neighborhood}
-  \dcref{ch5:5.2.6}
   \lean{PetersenLib.geodesic_uniformExtensionOnCompactInterval}
-  \leanok
+  \source{petersen:page-0190,petersen:page-0191}
   \uses{thm:pet-ch5-local-existence}
+  \leanok
+  \dcref{ch5:5.2.6}
   Suppose $c:[a,b]\to M$ is a geodesic on a compact interval. There is a
   neighborhood $V$ in $TM$ of $\dot c(a)$ such that if $v\in V$, then there is a
   geodesic $c_v:[a,b]\to M$ with $\dot c_v(a)=v$.
@@ -341,10 +353,10 @@ components of $v\in T_p\tilde M$.
 \end{proof}
 \begin{example}[jump in maximal interval]
   \label{ex:pet-ch5-punctured-plane-geodesic}
-  \dcref{ch5:5.2.7}
   \lean{PetersenLib.example_punctured_plane_geodesic_interval}
-\leanok
+  \source{petersen:page-0191}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.2.7}
   In the punctured plane $\mathbb R^2-\{(0,0)\}$ the unit-speed geodesic from
   $(-1,0)$ with tangent $(1,0)$ is defined only on $(-\infty,1)$, but nearby
   geodesics from $(-1,0)$ with tangent $(1+\varepsilon_1,\varepsilon_2)$,
@@ -354,9 +366,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[endpoints escaping to infinity]
   \label{ex:pet-ch5-region-geodesic-jump}
-  \dcref{ch5:5.2.8}
   \lean{PetersenLib.example_region_geodesic_endpoint_limit}
+  \source{petersen:page-0191}
   \uses{lem:pet-ch5-uniform-neighborhood}
+  \dcref{ch5:5.2.8}
   On $\{(x,y)\mid -1<xy\}$, $t\mapsto(t,0)$ is a geodesic on all of $\mathbb R$ that
   is a limit as $\varepsilon\to0$ of unit-speed geodesics $t\mapsto(t,-\varepsilon)$,
   each defined only on a finite interval whose endpoints tend to infinity, as
@@ -365,9 +378,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[great circles on spheres]
   \label{ex:pet-ch5-sphere-great-circles}
-  \dcref{ch5:5.2.9}
   \lean{PetersenLib.sphereGeodesicsAreGreatCircles}
-  \uses{def:pet-ch5-geodesic,prop:pet-ch5-mixed-partials-submanifold}
+  \source{petersen:page-0191}
+  \uses{def:pet-ch5-geodesic, prop:pet-ch5-mixed-partials-submanifold}
+  \dcref{ch5:5.2.9}
   On $S^n(R)\subset\mathbb R^{n+1}$, the acceleration of $c:I\to S^n(R)$ equals the
   Euclidean acceleration in $\mathbb R^{n+1}$ projected onto $S^n(R)$
   (\cref{prop:pet-ch5-mixed-partials-submanifold}), so $c$ is a geodesic iff $\ddot c$
@@ -387,9 +401,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[hyperbolas on hyperbolic space]
   \label{ex:pet-ch5-hyperbolic-hyperbolas}
-  \dcref{ch5:5.2.10}
   \lean{PetersenLib.hyperbolicSpaceGeodesicsAreHyperbolas}
-  \uses{def:pet-ch5-geodesic,prop:pet-ch5-mixed-partials-submanifold}
+  \source{petersen:page-0192}
+  \uses{def:pet-ch5-geodesic, prop:pet-ch5-mixed-partials-submanifold}
+  \dcref{ch5:5.2.10}
   On $H^n(R)\subset\mathbb R^{n,1}$, the acceleration is again the Minkowski
   projection of the ambient (Euclidean-formula) acceleration, and
   $T_pH^n(R)=\{v\mid v\perp p\}$ in the Minkowski sense. The curves
@@ -400,10 +415,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[left-invariant geodesics on Lie groups]
   \label{ex:pet-ch5-lie-group-geodesics}
-  \dcref{ch5:5.2.11}
   \lean{PetersenLib.leftInvariantGeodesicFields}
-  \leanok
+  \source{petersen:page-0192}
   \uses{def:pet-ch5-geodesic}
+  \leanok
+  \dcref{ch5:5.2.11}
   On a Lie group $G$ with left-invariant metric, the integral curves of a
   left-invariant vector field $X$ are geodesics iff $\nabla_XX\equiv0$; the
   upper-half-plane Lie group model does not satisfy this, but for a bi-invariant
@@ -416,6 +432,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[piecewise $C^\infty$ curve]
   \label{def:pet-ch5-piecewise-smooth-curve}
   \lean{PetersenLib.IsPiecewiseSmoothCurve}
+  \source{petersen:page-0193}
   \leanok
   A curve $c:[a,b]\to M$ is \emph{piecewise $C^\infty$} if it is continuous and there
   is a partition $a=a_1<a_2<\dots<a_k=b$ such that $c|_{[a_i,a_{i+1}]}$ is $C^\infty$
@@ -425,8 +442,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[length of a curve]
   \label{def:pet-ch5-curve-length}
   \lean{PetersenLib.curveLength,PetersenLib.ContMDiffOn.intervalIntegrable_sqrt_curveSpeedSq,PetersenLib.IsPiecewiseSmoothCurve.intervalIntegrable_sqrt_curveSpeedSq,PetersenLib.curveLength_comp_mul_add,PetersenLib.curveLength_comp_const_sub}
-  \leanok
+  \source{petersen:page-0193,petersen:page-0194}
   \uses{def:pet-ch5-piecewise-smooth-curve}
+  \leanok
   For $c:[a,b]\to M$ piecewise $C^\infty$, the \emph{length} is
   \[
     L(c)=\int_a^b|\dot c(t)|\,dt=\int_a^b\sqrt{g(\dot c(t),\dot c(t))}\,dt,
@@ -439,8 +457,9 @@ components of $v\in T_p\tilde M$.
 \begin{proposition}[arclength reparametrization of regular curves]
   \label{prop:pet-ch5-arclength-reparametrization}
   \lean{PetersenLib.regularCurve_arclengthReparametrization,PetersenLib.IsPiecewiseRegularCurve,PetersenLib.piecewiseRegularCurve_arclengthReparametrization,PetersenLib.curveLength_eq_of_unitSpeed_offFinset,PetersenLib.contDiffAt_curveSpeedSq,PetersenLib.curveSpeedSq_nonneg}
-  \leanok
+  \source{petersen:page-0194}
   \uses{def:pet-ch5-curve-length}
+  \leanok
   A regular curve $c:[a,b]\to M$ (velocity never vanishing) admits a reparametrization
   $c\circ\varphi^{-1}:[0,L(c)]\to M$ by an arclength parameter, piecewise smooth with
   unit speed everywhere.
@@ -459,8 +478,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[Riemannian distance]
   \label{def:pet-ch5-distance}
   \lean{PetersenLib.riemannianDistance,PetersenLib.riemannianDistance_comm,PetersenLib.riemannianDistance_triangle,PetersenLib.riemannianDistance_triangle_of_connected,PetersenLib.exists_isPiecewiseSmoothCurve_connecting}
-  \leanok
+  \source{petersen:page-0194}
   \uses{def:pet-ch5-curve-length}
+  \leanok
   For $p,q\in M$ let $\Omega_{p,q}=\{c:[0,1]\to M\mid c\text{ piecewise }C^\infty,\
   c(0)=p,\ c(1)=q\}$ and define the \emph{distance} $d(p,q)=|pq|=\inf\{L(c)\mid
   c\in\Omega_{p,q}\}$. Immediately $|pq|=|qp|$ and $|pq|\le|pr|+|rq|$; that $|pq|=0$
@@ -471,8 +491,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[metric balls and set distance]
   \label{def:pet-ch5-metric-balls}
   \lean{PetersenLib.metricBall,PetersenLib.metricClosedBall,PetersenLib.setDistance}
-  \leanok
+  \source{petersen:page-0194}
   \uses{def:pet-ch5-distance}
+  \leanok
   $B(p,r)=\{x\in M\mid|px|<r\}$, $\bar B(p,r)=\{x\in M\mid|px|\le r\}$. For
   $A,B\subset M$, $d(A,B)=|AB|=\inf\{|pq|\mid p\in A,q\in B\}$, and
   $B(A,r)=\{x\in M\mid|Ax|<r\}$, $\bar B(A,r)=D(A,r)=\{x\in M\mid|Ax|\le r\}$.
@@ -480,10 +501,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[infimum not realized]
   \label{ex:pet-ch5-infimum-not-realized}
-  \dcref{ch5:5.3.1}
   \lean{PetersenLib.example_infimum_not_realized}
-\leanok
+  \source{petersen:page-0194,petersen:page-0195}
   \uses{def:pet-ch5-distance}
+  \dcref{ch5:5.3.1}
   In $\mathbb R^2-\{(0,0)\}$ with the induced metric, $|(-1,0)(1,0)|=2$, but no curve
   of length $2$ from $(-1,0)$ to $(1,0)$ avoids $(0,0)$, so this distance is not
   realized by any curve; in the sense developed later, $\mathbb R^2-\{(0,0)\}$ is
@@ -493,8 +514,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[segment]
   \label{def:pet-ch5-segment}
   \lean{PetersenLib.IsSegment,PetersenLib.segmentNotation}
+  \source{petersen:page-0195}
+  \uses{def:pet-ch5-distance, def:pet-ch5-curve-length}
   \leanok
-  \uses{def:pet-ch5-distance,def:pet-ch5-curve-length}
   A curve $\sigma\in\Omega_{p,q}$ is a \emph{segment} if $L(\sigma)=|pq|$ and $\sigma$
   is parametrized proportionally to arc length. The notation $\overline{pq}$ denotes
   a specific segment on $[0,|pq|]$ with $\overline{pq}(0)=p$, $\overline{pq}(|pq|)=q$.
@@ -502,10 +524,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[distance functions bound length below]
   \label{lem:pet-ch5-distance-function-length-bound}
-  \dcref{ch5:5.3.2a}
   \lean{PetersenLib.distanceFunction_curveLength_ge}
+  \source{petersen:page-0195}
+  \uses{def:pet-ch5-curve-length, def:pet-ch3-distance-function}
   \leanok
-  \uses{def:pet-ch5-curve-length,def:pet-ch3-distance-function}
+  \dcref{ch5:5.3.2a}
   Let $r:U\to\mathbb R$ be a smooth distance function on an open set
   $U\subset(M,g)$. For every $C^\infty$ curve $c:[a,b]\to M$ whose image lies in
   $U$,
@@ -528,10 +551,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[distance functions and segments]
   \label{lem:pet-ch5-distance-function-segments}
-  \dcref{ch5:5.3.2b}
   \lean{PetersenLib.distanceFunction_integralCurvesAreSegments,PetersenLib.distanceFunction_integralCurve_curveLength}
+  \source{petersen:page-0195}
+  \uses{def:pet-ch5-segment, lem:pet-ch5-distance-function-length-bound}
   \leanok
-  \uses{def:pet-ch5-segment,lem:pet-ch5-distance-function-length-bound}
+  \dcref{ch5:5.3.2b}
   If $r:U\to\mathbb R$ is a smooth distance function on open $U\subset(M,g)$, the
   integral curves of $\nabla r$ are \emph{segments in $U$}: an integral curve $c$
   of $\nabla r$ on $[a,b]$ realises $L(c)|_a^b=r(c(b))-r(c(a))=b-a$ and minimises
@@ -550,8 +574,9 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[rigidity of length-minimisers]
   \label{rem:pet-ch5-distance-function-rigidity}
   \lean{PetersenLib.distanceFunction_velocity_eq_speed_smul_gradient_of_curveLength_eq}
+  \source{petersen:page-0195}
+  \uses{lem:pet-ch5-distance-function-length-bound, lem:pet-ch5-distance-function-segments}
   \leanok
-  \uses{lem:pet-ch5-distance-function-length-bound,lem:pet-ch5-distance-function-segments}
   Let $r:U\to\mathbb R$ be a smooth distance function on an open set
   $U\subset(M,g)$, and let $c:[a,b]\to U$ be a smooth curve with $a<b$ attaining
   the bound of \cref{lem:pet-ch5-distance-function-length-bound}, i.e.\
@@ -582,8 +607,8 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[a minimiser is a reparametrised integral curve of $\nabla r$]
   \label{rem:pet-ch5-minimizer-is-reparametrized-integral-curve}
   \lean{PetersenLib.distanceFunction_minimizer_eq_integralCurve_comp}
-\leanok
-  \uses{rem:pet-ch5-distance-function-rigidity,lem:pet-ch5-distance-function-segments}
+  \source{petersen:page-0195}
+  \uses{rem:pet-ch5-distance-function-rigidity, lem:pet-ch5-distance-function-segments}
   In the situation of \cref{rem:pet-ch5-distance-function-rigidity}, put
   $L=L(c)|_a^b$ and $\varphi(s)=L(c)|_a^s=\int_a^s|\dot c|\,dt$, and suppose
   $\sigma:[0,L]\to U$ is an integral curve of $\nabla r$ with $\sigma(0)=c(a)$.
@@ -601,7 +626,6 @@ components of $v\in T_p\tilde M$.
   so the hypothesis has not been discharged.
 \end{remark}
 \begin{proof}
-\leanok
   \uses{rem:pet-ch5-distance-function-rigidity}
   \sketch
   By \cref{rem:pet-ch5-distance-function-rigidity}, $\dot c=\varphi'\nabla r$;
@@ -618,10 +642,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[Euclidean segments]
   \label{ex:pet-ch5-euclidean-segments}
-  \dcref{ch5:5.3.3}
   \lean{PetersenLib.euclideanSegmentsAreStraightLines}
-  \leanok
+  \source{petersen:page-0195}
   \uses{lem:pet-ch5-distance-function-segments}
+  \leanok
+  \dcref{ch5:5.3.3}
   In $\mathbb R^n$, constant-speed straight segments $t\mapsto p+tv$ are segments, by
   \cref{lem:pet-ch5-distance-function-segments} applied to $r(x)=v\cdot x$ for a unit
   vector $v$. Each pair of points is joined by a segment unique up to
@@ -630,9 +655,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[circle segments]
   \label{ex:pet-ch5-circle-segment}
-  \dcref{ch5:5.3.4}
   \lean{PetersenLib.circleSegmentsBoundedByPi}
+  \source{petersen:page-0195}
   \uses{lem:pet-ch5-distance-function-segments}
+  \dcref{ch5:5.3.4}
   For $M=S^1$, $U=S^1-\{(1,0)\}$, the distance function $r(\theta)=\theta$,
   $\theta\in(0,2\pi)$, shows any $c(\theta)=(\cos\theta,\sin\theta)$, $\theta\in
   I\subset(0,2\pi)$, is a segment in $U$; but if the length of $I$ exceeds $\pi$,
@@ -641,9 +667,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[segments on the round sphere]
   \label{ex:pet-ch5-sphere-segments}
-  \dcref{ch5:5.3.5}
   \lean{PetersenLib.sphereSegmentsCharacterization}
+  \source{petersen:page-0195,petersen:page-0196}
   \uses{lem:pet-ch5-distance-function-segments}
+  \dcref{ch5:5.3.5}
   On $S^n(1)\subset\mathbb R^{n+1}$ with the warped product structure
   $ds_n^2=dr^2+\sin^2(r)ds_{n-1}^2$ centered at $p$: antipodal $p,q$ correspond to
   $r=0,\pi$; otherwise $p=(a,x_0)$, $q=(b,x_0)\in(0,\pi)\times S^{n-1}$, and $r$ is
@@ -663,29 +690,32 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[segments in hyperbolic space]
   \label{ex:pet-ch5-hyperbolic-segments}
-  \dcref{ch5:5.3.6}
   \lean{PetersenLib.hyperbolicSpaceAllGeodesicsAreSegments}
+  \source{petersen:page-0196}
   \uses{ex:pet-ch5-sphere-segments}
+  \dcref{ch5:5.3.6}
   The same strategy as for the sphere shows that all geodesics in hyperbolic space
   are segments.
 \end{example}
 
 \begin{example}[punctured plane again]
   \label{ex:pet-ch5-punctured-plane-no-segment}
-  \dcref{ch5:5.3.7}
   \lean{PetersenLib.example_punctured_plane_no_segment}
+  \source{petersen:page-0196}
+  \uses{def:pet-ch5-segment, def:pet-ch5-distance}
   \leanok
-  \uses{def:pet-ch5-segment,def:pet-ch5-distance}
+  \dcref{ch5:5.3.7}
   In $\mathbb R^2-\{(0,0)\}$, as already noted, not every pair of points is joined by
   a segment.
 \end{example}
 
 \begin{theorem}[metric and manifold topologies agree]
   \label{thm:pet-ch5-metric-topology}
-  \dcref{ch5:5.3.8}
   \lean{PetersenLib.riemannianDistance_inducesManifoldTopology,PetersenLib.riemannianMetricSpace,PetersenLib.isOpen_iff_riemannianDistance,PetersenLib.eq_of_riemannianDistance_eq_zero,PetersenLib.exists_riemannianDistance_le_sqrt_mul,PetersenLib.exists_sqrt_mul_le_riemannianDistance,PetersenLib.sqrt_mul_norm_sub_le_curveLength,PetersenLib.sqrt_mul_le_curveLength_of_exit}
-  \leanok
+  \source{petersen:page-0196}
   \uses{def:pet-ch5-distance}
+  \leanok
+  \dcref{ch5:5.3.8}
   The metric topology on $M$ induced by $|\cdot|$ coincides with the manifold
   topology.
 \end{theorem}
@@ -712,10 +742,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[compact manifolds are metrically complete]
   \label{cor:pet-ch5-compact-complete-metric}
-  \dcref{ch5:5.3.9}
   \lean{PetersenLib.compactManifold_metricallyComplete}
-  \leanok
+  \source{petersen:page-0198}
   \uses{thm:pet-ch5-metric-topology}
+  \leanok
+  \dcref{ch5:5.3.9}
   If $M$ is compact and $g$ a Riemannian metric on $M$, then $(M,|\cdot|_g)$ is a
   complete metric space.
 \end{corollary}
@@ -729,10 +760,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[approximation by constant-speed curves]
   \label{cor:pet-ch5-regular-curve-approx}
-  \dcref{ch5:5.3.10}
   \lean{PetersenLib.approximateByConstantSpeedCurve,PetersenLib.IsConstantSpeedCurve}
+  \source{petersen:page-0198}
+  \uses{thm:pet-ch5-metric-topology, prop:pet-ch5-arclength-reparametrization}
   \leanok
-  \uses{thm:pet-ch5-metric-topology,prop:pet-ch5-arclength-reparametrization}
+  \dcref{ch5:5.3.10}
   For $c\in\Omega_{p,q}$ and $\epsilon>0$ there is a constant-speed
   $\bar c\in\Omega_{p,q}$ with $L(\bar c)\le(1+\epsilon)L(c)$.
 \end{corollary}
@@ -753,8 +785,9 @@ components of $v\in T_p\tilde M$.
 \begin{lemma}[distance via constant-speed curves]
   \label{lem:pet-ch5-constant-speed-distance}
   \lean{PetersenLib.riemannianDistance_eq_sInf_constantSpeedDistanceSet}
+  \source{petersen:page-0198}
+  \uses{def:pet-ch5-distance, cor:pet-ch5-regular-curve-approx}
   \leanok
-  \uses{def:pet-ch5-distance,cor:pet-ch5-regular-curve-approx}
   Let $(M,g)$ be a Riemannian manifold and $p,q\in M$. Then
   \[
     |pq|=\inf\{L(\gamma)\mid\gamma\in\Omega_{p,q}\text{ of constant speed}\},
@@ -778,8 +811,9 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[other classes of curves]
   \label{rem:pet-ch5-absolutely-continuous-curves}
+  \source{petersen:page-0198}
+  \uses{lem:pet-ch5-constant-speed-distance, rem:pet-ch5-ex-29}
   \dcref{ch5:5.3.11}
-  \uses{lem:pet-ch5-constant-speed-distance,rem:pet-ch5-ex-29}
   The distance theory can equivalently be developed using absolutely continuous
   curves; by \cref{cor:pet-ch5-regular-curve-approx} one could also have restricted
   to piecewise smooth constant-speed curves throughout.
@@ -792,8 +826,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[functional distance]
   \label{def:pet-ch5-functional-distance}
   \lean{PetersenLib.functionalDistance,PetersenLib.HasGradientLeOne,PetersenLib.functionalDistance_nonneg}
-  \leanok
+  \source{petersen:page-0199}
   \uses{def:pet-ch5-distance}
+  \leanok
   The \emph{functional distance} is
   \[
     d_F(p,q)=\sup\{|f(p)-f(q)|\mid f:M\to\mathbb R,\ |\nabla f|\le1\text{ on }M\}.
@@ -808,8 +843,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[energy functional]
   \label{def:pet-ch5-energy-functional}
   \lean{PetersenLib.energyFunctional,PetersenLib.energyFunctional_nonneg,PetersenLib.IsPiecewiseSmoothCurve.intervalIntegrable_curveSpeedSq}
-  \leanok
+  \source{petersen:page-0199}
   \uses{def:pet-ch5-curve-length}
+  \leanok
   The \emph{arclength functional} is $L(c)=\int_0^1|\dot c|\,dt$, $c\in\Omega_{p,q}$;
   its minima (if they exist) have minimal length but not necessarily the correct
   (constant-speed) parametrization, and $L$ is invariant under reparametrization. The
@@ -822,10 +858,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[$E$- and $L$-minimizers coincide]
   \label{prop:pet-ch5-energy-length-minimizers}
-  \dcref{ch5:5.4.1}
   \lean{PetersenLib.energyMinimizer_of_constantSpeed_lengthMinimizer,PetersenLib.lengthMinimizer_of_energyMinimizer,PetersenLib.curveLength_sq_le_two_mul_energyFunctional,PetersenLib.IsConstantSpeedCurve.two_mul_energyFunctional}
+  \source{petersen:page-0199}
+  \uses{def:pet-ch5-energy-functional, cor:pet-ch5-regular-curve-approx}
   \leanok
-  \uses{def:pet-ch5-energy-functional,cor:pet-ch5-regular-curve-approx}
+  \dcref{ch5:5.4.1}
   If $\sigma\in\Omega_{p,q}$ has constant speed and minimizes $L$, then $\sigma$
   minimizes $E$. Conversely, if $\sigma$ minimizes $E$, then $\sigma$ minimizes $L$.
 \end{proposition}
@@ -849,6 +886,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[variation of a curve]
   \label{def:pet-ch5-variation}
   \lean{PetersenLib.CurveVariation,PetersenLib.IsProperVariation,PetersenLib.CurveVariation.curve,PetersenLib.CurveVariation.isPiecewiseSmoothCurve}
+  \source{petersen:page-0200}
   \leanok
   A \emph{variation} of $c:I\to M$ is $\bar c:(-\varepsilon,\varepsilon)\times[a,b]\to
   M$ with $\bar c(0,t)=c(t)$ for $t\in[a,b]$; it is \emph{piecewise smooth} if
@@ -864,10 +902,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[first variation formula]
   \label{lem:pet-ch5-first-variation-formula}
-  \dcref{ch5:5.4.2}
   \lean{PetersenLib.firstVariationOfEnergy,PetersenLib.hasDerivAt_pieceEnergy,PetersenLib.hasDerivAt_windowEnergy,PetersenLib.hasDerivAt_windowEnergy_chart,PetersenLib.chartReading_acceleration_transfer,PetersenLib.firstVariation_integrand_chart,PetersenLib.hasDerivAt_halfSpeedSq_variation}
+  \source{petersen:page-0200,petersen:page-0201}
+  \uses{def:pet-ch5-variation, def:pet-ch5-energy-functional}
   \leanok
-  \uses{def:pet-ch5-variation,def:pet-ch5-energy-functional}
+  \dcref{ch5:5.4.2}
   For a piecewise smooth variation $\bar c:(-\varepsilon,\varepsilon)\times[a,b]\to M$,
   \begin{align*}
     \frac{dE(c_s)}{ds}
@@ -911,10 +950,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[local minima of energy are geodesics]
   \label{thm:pet-ch5-energy-minima-geodesics}
-  \dcref{ch5:5.4.3}
   \lean{PetersenLib.energyLocalMinimum_isGeodesic}
+  \source{petersen:page-0201}
+  \uses{def:pet-ch5-energy-functional, def:pet-ch5-geodesic}
   \leanok
-  \uses{def:pet-ch5-energy-functional,def:pet-ch5-geodesic}
+  \dcref{ch5:5.4.3}
   If $c\in\Omega_{p,q}$ is a local minimum for $E:\Omega_{p,q}\to[0,\infty)$, then
   $c$ is a smooth geodesic.
 \end{theorem}
@@ -942,8 +982,9 @@ components of $v\in T_p\tilde M$.
 \begin{corollary}[characterization of segments]
   \label{cor:pet-ch5-segments-are-geodesics}
   \lean{PetersenLib.segment_isGeodesic}
+  \source{petersen:page-0203}
+  \uses{thm:pet-ch5-energy-minima-geodesics, prop:pet-ch5-energy-length-minimizers, def:pet-ch5-segment}
   \leanok
-  \uses{thm:pet-ch5-energy-minima-geodesics,prop:pet-ch5-energy-length-minimizers,def:pet-ch5-segment}
   Any piecewise smooth segment is a geodesic.
 \end{corollary}
 \begin{proof}
@@ -958,6 +999,7 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[energy minima need not be minimal geodesics]
   \label{rem:pet-ch5-sphere-not-locally-minimizing}
   \lean{PetersenLib.longSphereGeodesicsNotLocallyMinimizing}
+  \source{petersen:page-0203}
   \uses{thm:pet-ch5-energy-minima-geodesics}
   Local minima of $E$ characterize geodesics, but not every geodesic is a local
   minimum. In $\mathbb R^n$ all geodesics are integral curves of globally defined
@@ -973,8 +1015,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[exponential map; homogeneity property]
   \label{def:pet-ch5-exponential-map}
   \lean{PetersenLib.expMap,PetersenLib.geodesicHomogeneity}
-  \leanok
+  \source{petersen:page-0204}
   \uses{def:pet-ch5-geodesic}
+  \leanok
   For $v\in T_pM$ let $c_v$ be the unique geodesic with $c_v(0)=p$, $\dot c_v(0)=v$,
   and $[0,L_v)$ the nonnegative part of its maximal domain. Uniqueness of geodesics
   gives the \emph{homogeneity property} $c_{\alpha v}(t)=c_v(\alpha t)$ for
@@ -991,10 +1034,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[$\exp_p$ and $E$ are local diffeomorphisms]
   \label{prop:pet-ch5-exp-diffeomorphism-properties}
-  \dcref{ch5:5.5.1a}
   \lean{PetersenLib.expMap_localDiffeomorphism,PetersenLib.expDiagonalMap_localDiffeomorphism}
-\leanok
+  \source{petersen:page-0204,petersen:page-0205}
   \uses{def:pet-ch5-exponential-map}
+  \dcref{ch5:5.5.1a}
   \begin{enumerate}
   \item For $p\in M$, $D\exp_p:T_0(T_pM)\to T_pM$ is nonsingular at the origin, so
   $\exp_p$ is a local diffeomorphism near $0\in T_pM$.
@@ -1017,7 +1060,6 @@ components of $v\in T_p\tilde M$.
   $\exp_q v$, which is an unwritten consequence of geodesic uniqueness.
 \end{proposition}
 \begin{proof}
-\leanok
   \uses{prop:pet-ch5-exp-diffeomorphism-properties}
   \sketch
   (1) For the canonical isomorphism
@@ -1039,10 +1081,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[$D\exp_p$ is nonsingular at the origin]
   \label{lem:pet-ch5-exp-differential-nonsingular}
-  \dcref{ch5:5.5.1b}
   \lean{PetersenLib.expMap_localDiffeomorphism}
-  \leanok
+  \source{petersen:page-0204,petersen:page-0205}
   \uses{def:pet-ch5-exponential-map}
+  \leanok
+  \dcref{ch5:5.5.1b}
   For every $p\in M$ there is $\rho>0$ such that $B_\rho(0)\subset\mathcal O_p$,
   $\exp_p$ is injective on $B_\rho(0)$, its chart reading $w\mapsto\varphi_p(\exp_p
   w)$ has strict Fréchet derivative the identity at $0$ (so $D\exp_p$ is nonsingular
@@ -1067,8 +1110,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[injectivity radius]
   \label{def:pet-ch5-injectivity-radius}
   \lean{PetersenLib.injectivityRadius}
-  \leanok
+  \source{petersen:page-0206}
   \uses{prop:pet-ch5-exp-diffeomorphism-properties}
+  \leanok
   The \emph{injectivity radius} at $p$, $\operatorname{inj}_p$, is the largest
   $\varepsilon>0$ such that $\exp_p:B(0,\varepsilon)\to M$ is defined and a
   diffeomorphism onto its image.
@@ -1077,8 +1121,9 @@ components of $v\in T_p\tilde M$.
 \begin{lemma}[positivity of the injectivity radius]
   \label{lem:pet-ch5-injectivity-radius-positive}
   \lean{PetersenLib.injectivityRadius_pos}
+  \source{petersen:page-0206}
+  \uses{def:pet-ch5-injectivity-radius, lem:pet-ch5-exp-differential-nonsingular}
   \leanok
-  \uses{def:pet-ch5-injectivity-radius,lem:pet-ch5-exp-differential-nonsingular}
   For every $p\in M$ the injectivity radius is strictly positive,
   $\operatorname{inj}_p>0$. In particular the supremum defining $\operatorname{inj}_p$
   is a genuine positive number and Riemannian normal coordinates exist at every point.
@@ -1098,8 +1143,9 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[Riemannian normal coordinates]
   \label{rem:pet-ch5-riemannian-normal-coordinates}
   \lean{PetersenLib.riemannianNormalCoordinates}
-  \leanok
+  \source{petersen:page-0206}
   \uses{def:pet-ch5-injectivity-radius}
+  \leanok
   Identifying $T_pM$ with $\mathbb R^n$ via a linear isomorphism and using that
   $\exp_p$ is a diffeomorphism near $0$ gives \emph{exponential} or \emph{Riemannian
   normal coordinates} at $p$, unique up to the choice of identification; requiring a
@@ -1112,8 +1158,9 @@ components of $v\in T_p\tilde M$.
 \begin{corollary}[uniform injectivity radius on a compact set]
   \label{cor:pet-ch5-uniform-injectivity-radius-compact}
   \lean{PetersenLib.compactSet_uniformInjectivityRadius,PetersenLib.compactSet_uniformCInftyDiffeo}
-  \leanok
+  \source{petersen:page-0206}
   \uses{prop:pet-ch5-exp-diffeomorphism-properties}
+  \leanok
   Let $K\subset(M,g)$ be compact. There is $\varepsilon>0$ such that for every
   $p\in K$, $\exp_p:B(0,\varepsilon)\to M$ is defined and a diffeomorphism onto its
   image.
@@ -1191,7 +1238,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[normal exponential map]
   \label{def:pet-ch5-normal-exponential-map}
   \lean{PetersenLib.normalExpMap}
-\leanok
+  \source{petersen:page-0206,petersen:page-0207}
   \uses{def:pet-ch5-exponential-map}
   Let $N\subset M$ be a properly embedded submanifold; its normal bundle is
   $T^\perp N=\{v\in T_pM\mid p\in N,\ v\in(T_pN)^\perp\}$, so $T_pM=T_pN\oplus
@@ -1201,9 +1248,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[tubular neighborhoods]
   \label{cor:pet-ch5-tubular-neighborhood}
-  \dcref{ch5:5.5.3}
   \lean{PetersenLib.tubularNeighborhoodTheorem}
-  \uses{def:pet-ch5-normal-exponential-map,prop:pet-ch5-exp-diffeomorphism-properties}
+  \source{petersen:page-0207}
+  \uses{def:pet-ch5-normal-exponential-map, prop:pet-ch5-exp-diffeomorphism-properties}
+  \dcref{ch5:5.5.3}
   $D\exp^\perp$ is nonsingular at $0_p$ for all $p\in N$, and there is an open
   neighborhood $U$ of the zero section in $TN^\perp$ on which $\exp^\perp$ is a
   diffeomorphism onto its image $\exp^\perp(U)\subset M$, a \emph{tubular
@@ -1224,11 +1272,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[short geodesics are segments]
   \label{thm:pet-ch5-short-geodesics-segments}
-  \dcref{ch5:5.5.4a}
   \lean{PetersenLib.expMap_isSegment_unique}
-\leanok
-  \uses{def:pet-ch5-exponential-map,def:pet-ch5-segment,
-        lem:pet-ch5-short-geodesics-segments-normal}
+  \source{petersen:page-0207}
+  \uses{def:pet-ch5-exponential-map, def:pet-ch5-segment, lem:pet-ch5-short-geodesics-segments-normal}
+  \dcref{ch5:5.5.4a}
   Let $(M,g)$ be Riemannian, $p\in M$, $\varepsilon>0$ such that
   $\exp_p:B(0,\varepsilon)\to U\subset M$ is a diffeomorphism onto its image $U$.
   Then $U=B(p,\varepsilon)$, and for each $v\in B(0,\varepsilon)$ the geodesic
@@ -1251,8 +1298,9 @@ components of $v\in T_p\tilde M$.
 \begin{lemma}[radial geodesics realize distance and are segments]
   \label{lem:pet-ch5-radial-geodesic-segment}
   \lean{PetersenLib.expMap_riemannianDistance_eq, PetersenLib.exists_expMap_isSegment}
+  \source{petersen:page-0207}
+  \uses{def:pet-ch5-exponential-map, def:pet-ch5-segment}
   \leanok
-  \uses{def:pet-ch5-exponential-map,def:pet-ch5-segment}
   For every $p\in M$ there is $\varepsilon>0$ such that for all $v\in T_pM$ with
   $|v|_g<\varepsilon$ one has $v\in\mathcal O_p$ and
   \[
@@ -1280,8 +1328,9 @@ components of $v\in T_p\tilde M$.
 \begin{lemma}[uniqueness of the short radial segment, smooth competitors]
   \label{lem:pet-ch5-radial-geodesic-unique}
   \lean{PetersenLib.exists_expMap_smoothSegment_unique}
+  \source{petersen:page-0207,petersen:page-0208}
+  \uses{lem:pet-ch5-radial-geodesic-segment, lem:pet-ch5-gauss-lemma}
   \leanok
-  \uses{lem:pet-ch5-radial-geodesic-segment,lem:pet-ch5-gauss-lemma}
   For every $p\in M$ there is $\varepsilon>0$ such that $B_\varepsilon(0)\subset
   \mathcal O_p$ and, for every $v$ with $|v|<\varepsilon$, every $C^\infty$ curve
   $\sigma:[0,1]\to M$ from $p$ to $\exp_p v$ whose length realizes the radial
@@ -1309,8 +1358,9 @@ components of $v\in T_p\tilde M$.
 \begin{lemma}[the uniqueness clause for piecewise-smooth competitors]
   \label{lem:pet-ch5-radial-geodesic-unique-piecewise}
   \lean{PetersenLib.shortGeodesicsAreUniqueSegments}
+  \source{petersen:page-0207,petersen:page-0208}
+  \uses{lem:pet-ch5-radial-geodesic-unique, def:pet-ch5-piecewise-smooth-curve}
   \leanok
-  \uses{lem:pet-ch5-radial-geodesic-unique,def:pet-ch5-piecewise-smooth-curve}
   The strengthening of \cref{lem:pet-ch5-radial-geodesic-unique} from
   globally-$C^\infty$ competitors to the piecewise-$C^\infty$ class
   (\cref{def:pet-ch5-piecewise-smooth-curve}) that
@@ -1349,12 +1399,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[short geodesics on a normal ball]
   \label{lem:pet-ch5-short-geodesics-segments-normal}
-  \dcref{ch5:5.5.4b}
   \lean{PetersenLib.expMap_isSegment_unique}
+  \source{petersen:page-0207}
+  \uses{lem:pet-ch5-radial-geodesic-segment, lem:pet-ch5-radial-geodesic-unique-piecewise, cor:pet-ch5-metric-ball-image, def:pet-ch5-segment}
   \leanok
-  \uses{lem:pet-ch5-radial-geodesic-segment,
-        lem:pet-ch5-radial-geodesic-unique-piecewise,
-        cor:pet-ch5-metric-ball-image,def:pet-ch5-segment}
+  \dcref{ch5:5.5.4b}
   For every $p\in M$ there is $\varepsilon>0$ such that
   \begin{enumerate}
     \item $\{v:|v|_g<\varepsilon\}\subset\mathcal O_p$;
@@ -1390,8 +1439,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[radial distance function in exponential coordinates]
   \label{def:pet-ch5-radial-distance-function}
   \lean{PetersenLib.radialDistanceFunction}
-  \leanok
+  \source{petersen:page-0207}
   \uses{thm:pet-ch5-short-geodesics-segments}
+  \leanok
   On $U=\exp_p(B(0,\varepsilon))$ let $r(x)=|\exp_p^{-1}(x)|$, the Euclidean
   distance from the origin in $B(0,\varepsilon)\subset T_pM$, continuously extended
   by $r|_{\partial U}=\varepsilon$. In Cartesian coordinates on $T_pM$,
@@ -1400,10 +1450,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[the Gauss Lemma]
   \label{lem:pet-ch5-gauss-lemma}
-  \dcref{ch5:5.5.5}
   \lean{PetersenLib.gaussLemma}
-  \leanok
+  \source{petersen:page-0207}
   \uses{def:pet-ch5-radial-distance-function}
+  \leanok
+  \dcref{ch5:5.5.5}
   On $(U,g)$ the function $r$ has gradient $\nabla r=\partial_r$, where
   $\partial_r=D\exp_p(\partial_r)$ (the pushforward of the flat radial field).
   Equivalently, and as formalized: on a normal ball $B(0,\rho)\subset T_pM$,
@@ -1415,8 +1466,7 @@ components of $v\in T_p\tilde M$.
   $dr(w)=g(\partial_r,w)$ for all $w$, i.e. $\nabla r=\partial_r$.
 \end{lemma}
 \begin{proof}
-  \leanok
-  \uses{lem:pet-ch5-gauss-lemma}
+  \uses{lem:pet-ch5-gauss-lemma, thm:pet-ch5-short-geodesics-segments, lem:pet-ch5-distance-function-segments}
   \sketch
   Transport an orthonormal basis of $T_pM$ by $\exp_p$.  Then
   $r^2=\sum_i(x^i)^2$, $\partial_r=r^{-1}x^i\partial_i$, and
@@ -1459,10 +1509,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[exponential image of balls]
   \label{cor:pet-ch5-metric-ball-image}
-  \dcref{ch5:5.5.6}
   \lean{PetersenLib.expMap_ballImage,PetersenLib.expMap_closedBallImage}
+  \source{petersen:page-0209}
+  \uses{lem:pet-ch5-radial-geodesic-segment, def:pet-ch5-metric-balls}
   \leanok
-  \uses{lem:pet-ch5-radial-geodesic-segment,def:pet-ch5-metric-balls}
+  \dcref{ch5:5.5.6}
   There is $\varepsilon>0$ such that for each $\delta$ with $0<\delta\le\varepsilon$
   the exponential map carries the $g$-metric ball onto the Riemannian metric ball,
   both in the open and the closed form,
@@ -1487,8 +1538,9 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[radial isometry reformulation of the Gauss Lemma]
   \label{rem:pet-ch5-radial-isometry}
   \lean{PetersenLib.radialIsometryCondition}
-  \leanok
+  \source{petersen:page-0210}
   \uses{lem:pet-ch5-gauss-lemma}
+  \leanok
   The Gauss Lemma says $\exp_p:B(0,\varepsilon)\to B(p,\varepsilon)$ is a
   \emph{radial isometry}: $g(D\exp_p(\partial_r),D\exp_p(v))=g_p(\partial_r,v)$.
   Indeed $\tfrac1rg_{ij}v^iv^j=g(\tfrac1rx^i\partial_i,v^j\partial_j)=
@@ -1498,10 +1550,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[exponential coordinates are flat to first order]
   \label{lem:pet-ch5-normal-coords-jet}
-  \dcref{ch5:5.5.7a}
   \lean{PetersenLib.expCoordinates_jetFlatness}
+  \source{petersen:page-0210,petersen:page-0211}
+  \uses{rem:pet-ch5-radial-isometry, lem:pet-ch5-exp-differential-nonsingular}
   \leanok
-  \uses{rem:pet-ch5-radial-isometry,lem:pet-ch5-exp-differential-nonsingular}
+  \dcref{ch5:5.5.7a}
   In exponential coordinates at $p$ the metric is differentiable at the origin, its
   value there is $g_p$ (that is, $g_{ij}|_p=\delta_{ij}$ in a $g_p$-orthonormal
   frame), and all of its first partial derivatives vanish: $\partial_kg_{ij}|_p=0$.
@@ -1530,9 +1583,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[first-order flatness of exponential coordinates]
   \label{lem:pet-ch5-normal-coords-first-order}
-  \dcref{ch5:5.5.7b}
   \lean{PetersenLib.expCoordinates_firstOrderFlatness}
-  \uses{rem:pet-ch5-radial-isometry,lem:pet-ch5-normal-coords-jet}
+  \source{petersen:page-0210}
+  \uses{rem:pet-ch5-radial-isometry, lem:pet-ch5-normal-coords-jet}
+  \dcref{ch5:5.5.7b}
   In exponential coordinates, $g_{ij}=\delta_{ij}+O(r^2)$.
 
   \emph{Formalization status.} The quantitative rate is proved in
@@ -1570,6 +1624,7 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[asymptotics of the Hessian of $r$]
   \label{rem:pet-ch5-hessian-r-asymptotics}
   \lean{PetersenLib.hessianRadialFunction_asymptotics}
+  \source{petersen:page-0211}
   \uses{lem:pet-ch5-normal-coords-first-order}
   Writing the metric in polar form $g=dr^2+g_r$ (restriction of $g$ to the level
   spheres of $r$) near $p$, and comparing with the Euclidean
@@ -1582,9 +1637,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[local rigidity of constant curvature]
   \label{thm:pet-ch5-riemann-constant-curvature-local}
-  \dcref{ch5:5.5.8}
   \lean{PetersenLib.constantCurvature_locallyIsometricToSpaceForm}
+  \source{petersen:page-0211}
   \uses{rem:pet-ch5-hessian-r-asymptotics}
+  \dcref{ch5:5.5.8}
   If a Riemannian $n$-manifold $(M,g)$ has constant sectional curvature $k$, every
   point of $M$ has a neighborhood isometric to an open subset of the space form
   $S^n_k$.
@@ -1616,9 +1672,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[on the uniqueness used above]
   \label{rem:pet-ch5-uniqueness-remark-5-5-9}
-  \dcref{ch5:5.5.9}
   \lean{PetersenLib.remark_hessianODE_uniquenessSubtlety}
+  \source{petersen:page-0212,petersen:page-0213}
   \uses{thm:pet-ch5-riemann-constant-curvature-local}
+  \dcref{ch5:5.5.9}
   Neither of the systems $L_{\partial_r}g_r=2\operatorname{Hess}r$,
   $\nabla_{\partial_r}\operatorname{Hess}r+(\operatorname{Hess}r)^2=-kg_r$, nor the
   variant with $L_{\partial_r}\operatorname{Hess}r-(\operatorname{Hess}r)^2=-kg_r$,
@@ -1639,6 +1696,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[local Riemannian isometry]
   \label{def:pet-ch5-local-isometry}
   \lean{PetersenLib.IsLocalRiemannianIsometry}
+  \source{petersen:page-0213}
   \leanok
   A map $F:(M,g_M)\to(N,g_N)$ is a \emph{local Riemannian isometry} if for each
   $p\in M$, $DF_p:T_pM\to T_{F(p)}N$ is a linear isometry. A local coordinate
@@ -1649,10 +1707,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[basic properties of local isometries]
   \label{prop:pet-ch5-local-isometry-properties}
-  \dcref{ch5:5.6.1}
   \lean{PetersenLib.localIsometry_mapsGeodesicsToGeodesics,PetersenLib.localIsometry_isGeodesicOn,PetersenLib.localIsometry_expNaturality,PetersenLib.localIsometry_distanceDecreasing,PetersenLib.localIsometry_distancePreserving}
+  \source{petersen:page-0213}
+  \uses{def:pet-ch5-local-isometry, def:pet-ch5-geodesic, def:pet-ch5-exponential-map, def:pet-ch5-distance, lem:pet-ch5-global-uniqueness}
   \leanok
-  \uses{def:pet-ch5-local-isometry,def:pet-ch5-geodesic,def:pet-ch5-exponential-map,def:pet-ch5-distance,lem:pet-ch5-global-uniqueness}
+  \dcref{ch5:5.6.1}
   Let $F:(M,g_M)\to(N,g_N)$ be a local Riemannian isometry.
   \begin{enumerate}
   \item[(1)] $F$ maps geodesics to geodesics: if $\gamma$ is a continuous geodesic
@@ -1704,7 +1763,7 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[why naturality is stated at the intrinsic maximal geodesic]
   \label{rem:pet-ch5-exp-naturality-intrinsic}
-  \uses{prop:pet-ch5-local-isometry-properties,rem:pet-ch5-injectivity-radius-chart-artifact}
+  \uses{prop:pet-ch5-local-isometry-properties, rem:pet-ch5-injectivity-radius-chart-artifact}
   Part~(2) of \cref{prop:pet-ch5-local-isometry-properties} is Petersen's
   $F(\exp_p(v))=\exp_{F(p)}(DF_p(v))$, and the formalization at the maximal
   geodesic is faithful to the book: $\exp_p(v)$ \emph{is} the maximal geodesic
@@ -1728,10 +1787,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[uniqueness of Riemannian isometries]
   \label{prop:pet-ch5-isometry-uniqueness}
-  \dcref{ch5:5.6.2}
   \lean{PetersenLib.localIsometry_uniquelyDeterminedByOnePoint}
+  \source{petersen:page-0214}
+  \uses{def:pet-ch5-local-isometry, prop:pet-ch5-local-isometry-properties, cor:pet-ch5-uniform-injectivity-radius-compact}
   \leanok
-  \uses{def:pet-ch5-local-isometry,prop:pet-ch5-local-isometry-properties,cor:pet-ch5-uniform-injectivity-radius-compact}
+  \dcref{ch5:5.6.2}
   Let $F,G:(M,g_M)\to(N,g_N)$ be local Riemannian isometries, $M$ connected. If
   $F(p)=G(p)$ and $DF_p=DG_p$ for some $p\in M$, then $F=G$ on $M$.
 \end{proposition}
@@ -1751,9 +1811,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[completeness is preserved by Riemannian coverings]
   \label{prop:pet-ch5-covering-completeness}
-  \dcref{ch5:5.6.3}
   \lean{PetersenLib.riemannianCovering_completenessEquivalence}
-  \uses{def:pet-ch5-local-isometry,def:pet-ch5-geodesically-complete}
+  \source{petersen:page-0214}
+  \uses{def:pet-ch5-local-isometry, def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.6.3}
   Let $F:(M,g_M)\to(N,g_N)$ be a Riemannian covering map. $(M,g_M)$ is geodesically
   complete iff $(N,g_N)$ is.
 \end{proposition}
@@ -1768,9 +1829,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[completeness forces a covering map]
   \label{lem:pet-ch5-local-isometry-covering}
-  \dcref{ch5:5.6.4}
   \lean{PetersenLib.completeLocalIsometry_isCoveringMap}
-  \uses{def:pet-ch5-local-isometry,def:pet-ch5-geodesically-complete,cor:pet-ch5-uniform-injectivity-radius-compact}
+  \source{petersen:page-0214}
+  \uses{def:pet-ch5-local-isometry, def:pet-ch5-geodesically-complete, cor:pet-ch5-uniform-injectivity-radius-compact}
+  \dcref{ch5:5.6.4}
   If $F:(M,g_M)\to(N,g_N)$ is a local Riemannian isometry, $M$ geodesically
   complete, $N$ connected, then $F$ is a Riemannian covering map.
 \end{lemma}
@@ -1795,8 +1857,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[fixed-point set; totally geodesic submanifold]
   \label{def:pet-ch5-fixed-point-set}
   \lean{PetersenLib.fixedPointSet,PetersenLib.IsTotallyGeodesic}
-  \leanok
+  \source{petersen:page-0215}
   \uses{def:pet-ch5-exponential-map}
+  \leanok
   For a set $S$ of isometries of $(M,g)$, $\operatorname{Fix}(S)=\{x\in M\mid
   F(x)=x\ \forall F\in S\}$. A submanifold $N\subset(M,g)$ is \emph{totally
   geodesic} if for each $p\in N$ a neighborhood of $0\in T_pN\subset T_pM$ is
@@ -1807,8 +1870,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[the fixed tangent subspace]
   \label{def:pet-ch5-fixed-tangent-subspace}
   \lean{PetersenLib.fixedTangentSubspace}
-  \leanok
+  \source{petersen:page-0215}
   \uses{def:pet-ch5-fixed-point-set}
+  \leanok
   For a set $S$ of isometries of $(M,g)$ and $p\in M$,
   \[
     V_p=\{v\in T_pM\mid DF_p(v)=v\ \text{ for all }F\in S\},
@@ -1820,8 +1884,9 @@ components of $v\in T_p\tilde M$.
 \begin{proposition}[fixed-point components are totally geodesic]
   \label{prop:pet-ch5-fixed-point-component-totally-geodesic}
   \lean{PetersenLib.fixedPointSetComponent_totallyGeodesic}
+  \source{petersen:page-0215}
+  \uses{def:pet-ch5-fixed-point-set, def:pet-ch5-fixed-tangent-subspace, lem:pet-ch5-short-geodesics-segments-normal, prop:pet-ch5-local-isometry-properties}
   \leanok
-  \uses{def:pet-ch5-fixed-point-set,def:pet-ch5-fixed-tangent-subspace,lem:pet-ch5-short-geodesics-segments-normal,prop:pet-ch5-local-isometry-properties}
   Let $(M,g)$ be a connected Riemannian manifold whose Riemannian distance induces
   its topology, and let $S\subset\operatorname{Iso}(M,g)$. Then every connected
   component of $\operatorname{Fix}(S)$ is totally geodesic, with tangent
@@ -1856,8 +1921,9 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[fixed-point sets are totally geodesic]
   \label{prop:pet-ch5-fixed-point-totally-geodesic}
+  \source{petersen:page-0215}
+  \uses{def:pet-ch5-fixed-point-set, def:pet-ch5-fixed-tangent-subspace, prop:pet-ch5-fixed-point-component-totally-geodesic, cor:pet-ch5-metric-ball-image}
   \dcref{ch5:5.6.5}
-  \uses{def:pet-ch5-fixed-point-set,def:pet-ch5-fixed-tangent-subspace,prop:pet-ch5-fixed-point-component-totally-geodesic,cor:pet-ch5-metric-ball-image}
   If $S\subset\operatorname{Iso}(M,g)$, each connected component of
   $\operatorname{Fix}(S)$ is a totally geodesic submanifold.
 
@@ -1884,9 +1950,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[even codimension of orientation-preserving fixed sets]
   \label{rem:pet-ch5-fixed-point-codimension}
-  \dcref{ch5:5.6.6}
   \lean{PetersenLib.orientationPreservingFixedSet_evenCodimension}
+  \source{petersen:page-0216}
   \uses{prop:pet-ch5-fixed-point-totally-geodesic}
+  \dcref{ch5:5.6.6}
   If $DF_p:T_pM\to T_pM$ is orientation preserving for $p\in\operatorname{Fix}(F)$,
   the Zariski tangent space at $p$ has even codimension, since the $+1$-eigenspace
   of an element of $SO(n)$ has even codimension; so each component of
@@ -1897,9 +1964,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[the monodromy map]
   \label{thm:pet-ch5-monodromy-theorem}
-  \dcref{ch5:5.6.7}
   \lean{PetersenLib.monodromyMap}
-  \uses{thm:pet-ch5-riemann-constant-curvature-local,prop:pet-ch5-isometry-uniqueness}
+  \source{petersen:page-0216}
+  \uses{thm:pet-ch5-riemann-constant-curvature-local, prop:pet-ch5-isometry-uniqueness}
+  \dcref{ch5:5.6.7}
   Let $(M,g)$ be simply connected of dimension $n$ and constant curvature $k$, and
   $L:T_pM\to T_qS^n_k$ a linear isometry. There is a unique local Riemannian
   isometry $F:M\to S^n_k$ (the \emph{monodromy map}) with $DF_p=L$. If $(M,g)$ is
@@ -1921,9 +1989,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[immersions realize monodromy maps]
   \label{ex:pet-ch5-immersion-monodromy}
-  \dcref{ch5:5.6.8}
   \lean{PetersenLib.example_immersion_monodromy}
+  \source{petersen:page-0216}
   \uses{thm:pet-ch5-monodromy-theorem}
+  \dcref{ch5:5.6.8}
   For an immersion $M^n\to S^n_k$ with pulled-back metric, the monodromy map $F$ of
   \cref{thm:pet-ch5-monodromy-theorem} is (a version of) this immersion; such maps
   can fold wildly for $n\ge2$ and need not resemble covering maps.
@@ -1931,9 +2000,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[a diffeomorphism of a punctured space form]
   \label{ex:pet-ch5-folding-immersion}
-  \dcref{ch5:5.6.9}
   \lean{PetersenLib.example_puncturedSpaceForm_diffeomorphism}
+  \source{petersen:page-0217}
   \uses{thm:pet-ch5-monodromy-theorem}
+  \dcref{ch5:5.6.9}
   If $U\subset S^n_k$ is an open disc with smooth boundary, there is a
   diffeomorphism $F:M=S^n_k-\{p\}\to S^n_k-U$; the pulled-back metric on $M$ has
   constant curvature but looks poor near the missing point.
@@ -1941,9 +2011,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[$\mathbb{RP}^n$ admits no immersion into $S^n$]
   \label{ex:pet-ch5-rp-n-no-immersion}
-  \dcref{ch5:5.6.10}
   \lean{PetersenLib.example_projectiveSpace_noImmersionIntoSphere}
+  \source{petersen:page-0217}
   \uses{thm:pet-ch5-monodromy-theorem}
+  \dcref{ch5:5.6.10}
   $M=\mathbb{RP}^n=(\mathbb R^n-\{0\})/(\text{antipodal map})$ is not simply
   connected, hence admits no immersion into $S^n$ realizing the monodromy
   construction.
@@ -1951,18 +2022,20 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[monodromy map of a universal cover]
   \label{ex:pet-ch5-universal-cover-monodromy}
-  \dcref{ch5:5.6.11}
   \lean{PetersenLib.example_universalCover_monodromy}
+  \source{petersen:page-0217}
   \uses{thm:pet-ch5-monodromy-theorem}
+  \dcref{ch5:5.6.11}
   If $M$ is the universal cover of $S^2-\{\pm p\}$, the monodromy map is not
   one-to-one; it is exactly the covering map $M\to S^2-\{\pm p\}$.
 \end{example}
 
 \begin{corollary}[closed simply connected constant curvature]
   \label{cor:pet-ch5-closed-simply-connected-constant-curvature}
-  \dcref{ch5:5.6.12}
   \lean{PetersenLib.closedSimplyConnectedConstantCurvature_isSphere}
+  \source{petersen:page-0217}
   \uses{thm:pet-ch5-monodromy-theorem}
+  \dcref{ch5:5.6.12}
   If $M$ is closed and simply connected with constant curvature $k$, then $k>0$
   and $M=S^n$; in particular $S^p\times S^q$ and $\mathbb{CP}^n$ admit no
   constant-curvature metric.
@@ -1977,9 +2050,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[complete noncompact constant curvature]
   \label{cor:pet-ch5-noncompact-constant-curvature}
-  \dcref{ch5:5.6.13}
   \lean{PetersenLib.completeNoncompactConstantCurvature_universalCoverIsRn}
+  \source{petersen:page-0217}
   \uses{thm:pet-ch5-monodromy-theorem}
+  \dcref{ch5:5.6.13}
   If $M$ is geodesically complete, noncompact, with constant curvature $k$, then
   $k\le0$ and the universal cover of $M$ is diffeomorphic to $\mathbb R^n$; in
   particular $S^2\times\mathbb R^2$ and $S^n\times\mathbb R$ admit no geodesically
@@ -1996,9 +2070,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[classification of complete constant curvature spaces]
   \label{cor:pet-ch5-classification-constant-curvature}
-  \dcref{ch5:5.6.14}
   \lean{PetersenLib.killingHopfClassification}
-  \uses{thm:pet-ch5-monodromy-theorem,prop:pet-ch5-covering-completeness}
+  \source{petersen:page-0218}
+  \uses{thm:pet-ch5-monodromy-theorem, prop:pet-ch5-covering-completeness}
+  \dcref{ch5:5.6.14}
   If $(M,g)$ is connected, geodesically complete, with constant curvature $k$, its
   universal cover is isometric to $S^n_k$.
 \end{corollary}
@@ -2016,6 +2091,7 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[recovering the metric from the distance function]
   \label{rem:pet-ch5-polarization-metric-recovery}
   \lean{PetersenLib.metricRecoveredFromDistance}
+  \source{petersen:page-0218,petersen:page-0219}
   \uses{def:pet-ch5-distance}
   By polarization, $g(v,w)=\tfrac12(|v+w|^2-|v|^2-|w|^2)$, so it suffices to
   recover $|v|$ from $|\cdot|_g$; for a curve $\alpha$ with $\dot\alpha(0)=v$,
@@ -2027,8 +2103,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[distance coordinates]
   \label{def:pet-ch5-distance-coordinates}
   \lean{PetersenLib.distanceCoordinates}
-  \leanok
+  \source{petersen:page-0219}
   \uses{cor:pet-ch5-uniform-injectivity-radius-compact}
+  \leanok
   Fix $p\in M$ and $U\ni p$ with $B(q,\operatorname{inj}(q))\supset U$ for all
   $q\in U$; then $r_q(x)=|xq|$ is smooth on $U-\{q\}$ for each $q\in U$. Choosing
   $q_1,\dots,q_n\in U-\{p\}$, $n=\dim M$, with $\nabla r_{q_1}(p),\dots,\nabla
@@ -2038,9 +2115,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[distance-preserving bijections are isometries]
   \label{thm:pet-ch5-myers-steenrod-isometry}
-  \dcref{ch5:5.6.15}
   \lean{PetersenLib.distancePreservingBijection_isRiemannianIsometry}
-  \uses{def:pet-ch5-distance-coordinates,def:pet-ch5-local-isometry}
+  \source{petersen:page-0219}
+  \uses{def:pet-ch5-distance-coordinates, def:pet-ch5-local-isometry}
+  \dcref{ch5:5.6.15}
   If $F:M\to N$ is a bijection between Riemannian manifolds with
   $|F(p)F(q)|_{g_N}=|pq|_{g_M}$ for all $p,q\in M$, then $F$ is a Riemannian
   isometry.
@@ -2067,8 +2145,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[submetry]
   \label{def:pet-ch5-submetry}
   \lean{PetersenLib.IsSubmetry}
-  \leanok
+  \source{petersen:page-0220}
   \uses{def:pet-ch5-metric-balls}
+  \leanok
   $F:(\tilde M,g_{\tilde M})\to(M,g_M)$ is a \emph{submetry} if for every
   $\tilde p\in\tilde M$ there is $r>0$ such that $F(B(\tilde p,\varepsilon))=
   B(F(\tilde p),\varepsilon)$ for all $\varepsilon\le r$. Submetries are locally
@@ -2078,9 +2157,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[surjective submetries are $C^1$ submersions]
   \label{thm:pet-ch5-berestovskii-submetry}
-  \dcref{ch5:5.6.16}
   \lean{PetersenLib.surjectiveSubmetry_isC1RiemannianSubmersion}
-  \uses{def:pet-ch5-submetry,def:pet-ch5-distance-coordinates}
+  \source{petersen:page-0220}
+  \uses{def:pet-ch5-submetry, def:pet-ch5-distance-coordinates}
+  \dcref{ch5:5.6.16}
   If $F:(\tilde M,g_{\tilde M})\to(M,g_M)$ is a surjective submetry, then $F$ is a
   $C^1$ Riemannian submersion.
 \end{theorem}
@@ -2098,9 +2178,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[submetries are $C^{1,1}$, sharply]
   \label{rem:pet-ch5-submetry-c11}
-  \dcref{ch5:5.6.17}
   \lean{PetersenLib.remark_submetriesAreC11Sharp}
+  \source{petersen:page-0220,petersen:page-0221}
   \uses{thm:pet-ch5-berestovskii-submetry}
+  \dcref{ch5:5.6.17}
   Submetries are in fact $C^{1,1}$ (locally Lipschitz derivative), via local
   Lipschitz continuity of $\tilde p\mapsto\bar q$; this cannot be improved in
   general, e.g.\ for $K=[0,1]^2\subset\mathbb R^2$ the level sets of $r(x)=|xK|$ are
@@ -2112,6 +2193,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[proper action; orbit; isotropy group]
   \label{def:pet-ch5-proper-action}
   \lean{PetersenLib.IsProperAction,PetersenLib.orbit,PetersenLib.actionIsotropyGroup}
+  \source{petersen:page-0221}
   \leanok
   An action of a topological group $H$ on $M$ is \emph{proper} if
   $H\times M\to M\times M$, $(h,p)\mapsto(hp,p)$, is proper. The \emph{orbit}
@@ -2125,9 +2207,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{example}[a nonproper isometric action]
   \label{ex:pet-ch5-nonproper-action}
-  \dcref{ch5:5.6.18}
   \lean{PetersenLib.example_nonproperIsometricAction}
+  \source{petersen:page-0221}
   \uses{def:pet-ch5-proper-action}
+  \dcref{ch5:5.6.18}
   $\operatorname{Iso}(M)$ acts properly on $M$ (Arzelà–Ascoli), but a subgroup
   $H\subset\operatorname{Iso}(M)$ need not act properly unless closed: the action
   $\theta\cdot(z_1,z_2)=(e^{i\theta}z_1,e^{i\alpha\theta}z_2)$ of $\mathbb R$ on
@@ -2136,9 +2219,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[orbits are submanifolds; $\operatorname{Iso}(M,g)$ is a Lie group]
   \label{thm:pet-ch5-myers-steenrod-lie-group}
-  \dcref{ch5:5.6.19}
   \lean{PetersenLib.closedIsometrySubgroup_orbitsAreSubmanifolds,PetersenLib.isometryGroup_isLieGroup}
-  \uses{def:pet-ch5-proper-action,cor:pet-ch5-tubular-neighborhood}
+  \source{petersen:page-0221}
+  \uses{def:pet-ch5-proper-action, cor:pet-ch5-tubular-neighborhood}
+  \dcref{ch5:5.6.19}
   If $H$ is a closed subgroup of $\operatorname{Iso}(M,g)$, the orbits of the
   action are submanifolds; in particular $\operatorname{Iso}(M,g)$ itself is a Lie
   group.
@@ -2173,9 +2257,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[kernel of the orbit map]
   \label{prop:pet-ch5-orbit-map-differential}
-  \dcref{ch5:5.6.20}
   \lean{PetersenLib.orbitMapDifferentialKernel}
+  \source{petersen:page-0224}
   \uses{thm:pet-ch5-myers-steenrod-lie-group}
+  \dcref{ch5:5.6.20}
   Let $H$ be a closed subgroup of $\operatorname{Iso}(M,g)$ with Lie algebra
   $\mathfrak h=T_eH$, and $\mathfrak h_p=\{v\in\mathfrak h\mid\exp(tv)\in H_p\ \forall t\}$
   the subalgebra of $H_p$. For the orbit map $O_p(h)=hp$,
@@ -2197,9 +2282,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[the free slice theorem]
   \label{thm:pet-ch5-free-slice-theorem}
-  \dcref{ch5:5.6.21}
   \lean{PetersenLib.freeSliceTheorem}
-  \uses{def:pet-ch5-proper-action,cor:pet-ch5-tubular-neighborhood,thm:pet-ch5-myers-steenrod-lie-group}
+  \source{petersen:page-0224}
+  \uses{def:pet-ch5-proper-action, cor:pet-ch5-tubular-neighborhood, thm:pet-ch5-myers-steenrod-lie-group}
+  \dcref{ch5:5.6.21}
   If $H\subset\operatorname{Iso}(M,g)$ is closed and acts freely, $H\backslash M$
   has a smooth manifold structure and Riemannian metric making $M\to H\backslash M$
   a Riemannian submersion.
@@ -2226,9 +2312,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[homogeneous quotients $H/K$]
   \label{rem:pet-ch5-quotient-homogeneous}
-  \dcref{ch5:5.6.22}
   \lean{PetersenLib.remark_homogeneousQuotient}
+  \source{petersen:page-0225}
   \uses{thm:pet-ch5-free-slice-theorem}
+  \dcref{ch5:5.6.22}
   For $K\subset H$ compact, averaging any metric on $H$ over $K$ (acting by
   $(k,x)\mapsto xk^{-1}$) makes it right-$K$-invariant, giving a free isometric
   action to which \cref{thm:pet-ch5-free-slice-theorem} applies, so $H/K$ is a
@@ -2239,6 +2326,7 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[closed subgroups and right-invariant metrics]
   \label{rem:pet-ch5-closed-subgroup-quotient}
   \lean{PetersenLib.remark_closedSubgroupRightInvariantQuotient}
+  \source{petersen:page-0226}
   \uses{rem:pet-ch5-quotient-homogeneous}
   For $K\subset H$ merely closed, right multiplication by $K$ is still a proper
   action, made isometric by a right-$K$-invariant metric on $H$; but it may not be
@@ -2248,9 +2336,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[orbits of proper isometric actions are properly embedded]
   \label{cor:pet-ch5-proper-action-orbit-embedding}
-  \dcref{ch5:5.6.23}
   \lean{PetersenLib.properIsometricAction_orbitProperlyEmbedded}
-  \uses{prop:pet-ch5-orbit-map-differential,def:pet-ch5-proper-action}
+  \source{petersen:page-0226}
+  \uses{prop:pet-ch5-orbit-map-differential, def:pet-ch5-proper-action}
+  \dcref{ch5:5.6.23}
   For a proper isometric action $H\times M\to M$ and $p\in M$, the orbit map
   $H/H_p\to Hp$ is a proper embedding.
 \end{corollary}
@@ -2266,6 +2355,7 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[slice representation]
   \label{def:pet-ch5-slice-representation}
   \lean{PetersenLib.sliceRepresentation}
+  \source{petersen:page-0226}
   \uses{cor:pet-ch5-proper-action-orbit-embedding}
   The \emph{slice representation} of a proper isometric action $H\times M\to M$ at
   $p$ is the linear representation $H_p\times T_p^\perp Hp\to T_p^\perp Hp$,
@@ -2276,9 +2366,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[the slice theorem]
   \label{thm:pet-ch5-slice-theorem}
-  \dcref{ch5:5.6.24}
   \lean{PetersenLib.sliceTheorem}
-  \uses{def:pet-ch5-slice-representation,thm:pet-ch5-free-slice-theorem}
+  \source{petersen:page-0226}
+  \uses{def:pet-ch5-slice-representation, thm:pet-ch5-free-slice-theorem}
+  \dcref{ch5:5.6.24}
   Let $H\subset\operatorname{Iso}(M,g)$ be closed. For $p\in M$ there is a map
   $\exp^\perp:H\times_{H_p}T_p^\perp Hp\to M$ that is a diffeomorphism on a uniform
   tubular neighborhood $H\times_{H_p}B(0,\epsilon)$ onto an $\epsilon$-neighborhood
@@ -2297,9 +2388,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[isotropy near an orbit]
   \label{cor:pet-ch5-isotropy-near-orbit}
-  \dcref{ch5:5.6.25}
   \lean{PetersenLib.isotropyGroupNearOrbit}
+  \source{petersen:page-0227}
   \uses{thm:pet-ch5-slice-theorem}
+  \dcref{ch5:5.6.25}
   For small $v\in T_p^\perp Hp$, $H_{\exp_p(v)}=\{h\in H_p\mid Dh|_pv=v\}$.
 \end{corollary}
 \begin{proof}
@@ -2311,9 +2403,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[constant isotropy type gives a Riemannian quotient]
   \label{cor:pet-ch5-conjugate-isotropy-manifold}
-  \dcref{ch5:5.6.26}
   \lean{PetersenLib.constantIsotropyType_riemannianQuotient}
-  \uses{cor:pet-ch5-isotropy-near-orbit,thm:pet-ch5-free-slice-theorem}
+  \source{petersen:page-0227}
+  \uses{cor:pet-ch5-isotropy-near-orbit, thm:pet-ch5-free-slice-theorem}
+  \dcref{ch5:5.6.26}
   If $H\subset\operatorname{Iso}(M,g)$ is closed and all isotropy groups are
   conjugate, the orbit space is a Riemannian manifold and $M\to H\backslash M$ a
   Riemannian submersion.
@@ -2334,10 +2427,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[equivalence of completeness notions]
   \label{thm:pet-ch5-hopf-rinow}
-  \dcref{ch5:5.7.1}
   \lean{PetersenLib.hopfRinowTheorem}
+  \source{petersen:page-0227}
+  \uses{def:pet-ch5-geodesically-complete, def:pet-ch5-distance}
   \leanok
-  \uses{def:pet-ch5-geodesically-complete,def:pet-ch5-distance}
+  \dcref{ch5:5.7.1}
   For a Riemannian manifold $(M,g)$ the following are equivalent:
   \begin{enumerate}
   \item[(1)] $M$ is geodesically complete.
@@ -2378,11 +2472,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[geodesics are admissible piecewise-smooth competitors]
   \label{lem:pet-ch5-geodesics-are-piecewise-smooth}
-  \lean{PetersenLib.IsGeodesicOn.isPiecewiseSmoothCurve,
-    PetersenLib.IsGeodesic.isPiecewiseSmoothCurve}
+  \lean{PetersenLib.IsGeodesicOn.isPiecewiseSmoothCurve, PetersenLib.IsGeodesic.isPiecewiseSmoothCurve}
+  \source{petersen:page-0204}
+  \uses{def:pet-ch5-geodesic, def:pet-ch5-piecewise-smooth-curve, def:pet-ch5-exponential-map}
   \leanok
-  \uses{def:pet-ch5-geodesic,def:pet-ch5-piecewise-smooth-curve,
-    def:pet-ch5-exponential-map}
   A geodesic is $C^\infty$, hence an admissible competitor for the length
   infimum of \cref{def:pet-ch5-distance}: if $\gamma$ is a geodesic on an open
   time-set $s\supseteq[a,b]$ (in particular, if $\gamma$ is a globally defined
@@ -2408,10 +2501,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[complete manifolds have segments everywhere]
   \label{cor:pet-ch5-complete-segment-exists}
-  \dcref{ch5:5.7.2}
   \lean{PetersenLib.completeManifold_allPointsJoinedBySegment}
-  \leanok
+  \source{petersen:page-0229}
   \uses{thm:pet-ch5-hopf-rinow}
+  \leanok
+  \dcref{ch5:5.7.2}
   If $(M,g)$ is complete (in any of the equivalent senses), any two points of $M$
   are joined by a segment.  The formalization takes completeness in the metric
   sense and produces the segment on $[0,1]$, with constant speed $|pq|$; the
@@ -2430,11 +2524,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[unit-speed form: the notation $\overline{pq}$ is meaningful]
   \label{cor:pet-ch5-segment-notation-unitspeed}
-  \lean{PetersenLib.completeManifold_exists_isSegment_unitSpeed,
-        PetersenLib.segmentNotation_spec,
-        PetersenLib.IsSegment.curveLength_eq_self_of_domain}
+  \lean{PetersenLib.completeManifold_exists_isSegment_unitSpeed, PetersenLib.segmentNotation_spec, PetersenLib.IsSegment.curveLength_eq_self_of_domain}
+  \source{petersen:page-0229}
+  \uses{cor:pet-ch5-complete-segment-exists, def:pet-ch5-segment}
   \leanok
-  \uses{cor:pet-ch5-complete-segment-exists,def:pet-ch5-segment}
   Let $(M,g)$ be complete and $p,q\in M$.  Then $p$ and $q$ are joined by a segment
   $\sigma:[0,|pq|]\to M$ with $\sigma(0)=p$ and $\sigma(|pq|)=q$, and any such
   segment is parametrized by arclength: $L(\sigma|_{[0,t]})=t$ for all
@@ -2455,10 +2548,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[a proper Lipschitz function forces completeness]
   \label{cor:pet-ch5-proper-lipschitz-complete}
-  \dcref{ch5:5.7.3}
   \lean{PetersenLib.properLipschitzFunction_impliesComplete}
-  \leanok
+  \source{petersen:page-0229}
   \uses{thm:pet-ch5-metric-topology}
+  \leanok
+  \dcref{ch5:5.7.3}
   If $(M,g)$ admits a proper Lipschitz function $f:M\to\mathbb R$, then $M$ is
   complete.
 \end{corollary}
@@ -2477,9 +2571,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[global warped product from a conformal Hessian]
   \label{thm:pet-ch5-tashiro}
-  \dcref{ch5:5.7.4}
   \lean{PetersenLib.tashiroWarpedProductTheorem}
-  \uses{thm:pet-ch5-hopf-rinow,def:pet-ch5-exponential-map}
+  \source{petersen:page-0229,petersen:page-0230}
+  \uses{thm:pet-ch5-hopf-rinow, def:pet-ch5-exponential-map}
+  \dcref{ch5:5.7.4}
   Let $(M,g)$ be a complete Riemannian $n$-manifold admitting a nontrivial $f$
   with $\operatorname{Hess}f=\lambda g$. Then $(M,g)$ is isometric to a complete
   warped product metric of one of the forms:
@@ -2522,9 +2617,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{theorem}[global classification for $\operatorname{Hess}f=(\alpha f+\beta)g$]
   \label{thm:pet-ch5-hessian-classification}
-  \dcref{ch5:5.7.5}
   \lean{PetersenLib.affineHessianGlobalClassification}
+  \source{petersen:page-0231}
   \uses{thm:pet-ch5-tashiro}
+  \dcref{ch5:5.7.5}
   Let $(M,g)$ be complete of dimension $n$ with a nontrivial $f$,
   $\operatorname{Hess}f=(\alpha f+\beta)g$, $\alpha,\beta\in\mathbb R$. Then
   $(M,g)$ is one of:
@@ -2552,9 +2648,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[critical points and transnormal functions]
   \label{rem:pet-ch5-obata-transnormal}
-  \dcref{ch5:5.7.6}
   \lean{PetersenLib.remark_obataTransnormalFunctions}
+  \source{petersen:page-0232}
   \uses{thm:pet-ch5-hessian-classification}
+  \dcref{ch5:5.7.6}
   In case (a) $f$ has at least one critical point, while in (b), (c) it has none.
   Obata (1961) established the round-sphere case via $\operatorname{Hess}f=(1-f)g$.
   Transnormal functions on a complete manifold give a similar topological
@@ -2568,8 +2665,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[segment domain and its star interior]
   \label{def:pet-ch5-segment-domain}
   \lean{PetersenLib.segmentDomain,PetersenLib.segmentDomainStarInterior}
+  \source{petersen:page-0232,petersen:page-0233}
+  \uses{def:pet-ch5-segment, thm:pet-ch5-hopf-rinow}
   \leanok
-  \uses{def:pet-ch5-segment,thm:pet-ch5-hopf-rinow}
   For a complete $(M,g)$ and $p\in M$, the \emph{segment domain} is
   $\operatorname{seg}(p)=\{v\in T_pM\mid\exp_p(tv):[0,1]\to M\text{ is a segment}\}$,
   a closed star-shaped set with $M=\exp_p(\operatorname{seg}(p))$ (by
@@ -2579,12 +2677,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[injectivity of $\exp_p$ on the star interior]
   \label{prop:pet-ch5-segment-domain-injective}
-  \dcref{ch5:5.7.7}
-  \lean{PetersenLib.expMap_injectiveOnSegmentDomainStarInterior,
-        PetersenLib.segment_eq_expMap_ray_of_mem_segmentDomainStarInterior',
-        PetersenLib.segmentDomainStarInterior_subset_segmentDomain}
+  \lean{PetersenLib.expMap_injectiveOnSegmentDomainStarInterior, PetersenLib.segment_eq_expMap_ray_of_mem_segmentDomainStarInterior', PetersenLib.segmentDomainStarInterior_subset_segmentDomain}
+  \source{petersen:page-0233}
+  \uses{def:pet-ch5-segment-domain, cor:pet-ch5-segments-are-geodesics}
   \leanok
-  \uses{def:pet-ch5-segment-domain,cor:pet-ch5-segments-are-geodesics}
+  \dcref{ch5:5.7.7}
   If $x\in\exp_p(\operatorname{seg}^0(p))$, it is joined to $p$ by a unique
   segment; in particular $\exp_p$ is injective on $\operatorname{seg}^0(p)$.
 \end{proposition}
@@ -2601,9 +2698,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[nonsingularity of $\exp_p$ on the star interior]
   \label{lem:pet-ch5-exp-nonsingular-segment-domain}
+  \source{petersen:page-0233}
+  \uses{prop:pet-ch5-segment-domain-injective, cor:pet-ch5-uniform-injectivity-radius-compact}
+  \notready
   \dcref{ch5:5.7.8}
   \notready
-  \uses{prop:pet-ch5-segment-domain-injective,cor:pet-ch5-uniform-injectivity-radius-compact}
   $D\exp_p$ is nonsingular at every point of $\operatorname{seg}^0(p)$.
 
   \emph{Formalization status.} Not formalized. This lemma — equivalently, that
@@ -2638,9 +2737,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[the star boundary of $\operatorname{seg}(p)$]
   \label{lem:pet-ch5-cut-locus-characterization}
+  \source{petersen:page-0235}
+  \uses{lem:pet-ch5-exp-nonsingular-segment-domain, rem:pet-ch5-segment-domain-chart-artifact}
+  \notready
   \dcref{ch5:5.7.9}
   \notready
-  \uses{lem:pet-ch5-exp-nonsingular-segment-domain,rem:pet-ch5-segment-domain-chart-artifact}
   If $v\in\operatorname{seg}(p)-\operatorname{seg}^0(p)$, then either (1) there is
   $w\ne v$ in $\operatorname{seg}(p)$ with $\exp_p(v)=\exp_p(w)$, or (2) $D\exp_p$
   is singular at $v$.
@@ -2666,7 +2767,7 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[the Lean \texttt{segmentDomain} and \texttt{cutLocus} are chart artifacts]
   \label{rem:pet-ch5-segment-domain-chart-artifact}
-  \uses{def:pet-ch5-segment-domain,rem:pet-ch5-injectivity-radius-chart-artifact}
+  \uses{def:pet-ch5-segment-domain, rem:pet-ch5-injectivity-radius-chart-artifact}
   \texttt{PetersenLib.segmentDomain} is defined as the set of $v\in T_pM$ for which
   $t\mapsto\texttt{expMap}(g,p,tv)$ is a segment on $[0,1]$, and
   \texttt{segmentDomainStarInterior} and \texttt{cutLocus} are defined from it.
@@ -2692,9 +2793,11 @@ components of $v\in T_p\tilde M$.
 
 \begin{proposition}[the star interior is open]
   \label{prop:pet-ch5-segment-domain-open}
+  \source{petersen:page-0235}
+  \uses{lem:pet-ch5-cut-locus-characterization, lem:pet-ch5-exp-nonsingular-segment-domain}
+  \notready
   \dcref{ch5:5.7.10}
   \notready
-  \uses{lem:pet-ch5-cut-locus-characterization,lem:pet-ch5-exp-nonsingular-segment-domain}
   $\operatorname{seg}^0(p)$ is open in $T_pM$.
 
   \emph{Formalization status.} Not formalized, and genuinely blocked; see
@@ -2714,7 +2817,7 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[what \cref{prop:pet-ch5-segment-domain-open} is really blocked on]
   \label{rem:pet-ch5-segment-domain-open-blocker}
-  \uses{prop:pet-ch5-segment-domain-open,lem:pet-ch5-exp-nonsingular-segment-domain}
+  \uses{prop:pet-ch5-segment-domain-open, lem:pet-ch5-exp-nonsingular-segment-domain}
   Since $\operatorname{seg}(p)$ is star-shaped and $\operatorname{seg}^0(p)$ is its
   set of proper radial multiples, the assertion of
   \cref{prop:pet-ch5-segment-domain-open} amounts to
@@ -2739,8 +2842,9 @@ components of $v\in T_p\tilde M$.
 \begin{definition}[cut locus]
   \label{def:pet-ch5-cut-locus}
   \lean{PetersenLib.cutLocus}
-  \leanok
+  \source{petersen:page-0236}
   \uses{def:pet-ch5-segment-domain}
+  \leanok
   The set $\operatorname{seg}(p)-\operatorname{seg}^0(p)\subset T_pM$ is the
   \emph{cut locus} of $p$ (in $T_pM$). By
   \cref{prop:pet-ch5-segment-domain-open} and
@@ -2751,9 +2855,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{corollary}[smoothness of $r$ up to the cut point]
   \label{cor:pet-ch5-cut-locus-smoothness}
-  \dcref{ch5:5.7.11}
   \lean{PetersenLib.distanceFunction_smoothUpToCutPoint}
-  \uses{def:pet-ch5-cut-locus,lem:pet-ch5-cut-locus-characterization}
+  \source{petersen:page-0236}
+  \uses{def:pet-ch5-cut-locus, lem:pet-ch5-cut-locus-characterization}
+  \dcref{ch5:5.7.11}
   Let $c:[0,\infty)\to M$ be a geodesic, $c(0)=p$, and
   $\operatorname{cut}(\dot c(0))=\sup\{t\mid c|_{[0,t]}\text{ is a segment}\}$. Then
   $r$ is smooth at $c(t)$ for $t<\operatorname{cut}(\dot c(0))$ but not at
@@ -2774,7 +2879,8 @@ components of $v\in T_p\tilde M$.
 \begin{remark}[injectivity radius via the cut locus]
   \label{rem:pet-ch5-injectivity-radius-cut-locus}
   \lean{PetersenLib.injectivityRadius_viaCutLocus}
-  \uses{def:pet-ch5-cut-locus,def:pet-ch5-injectivity-radius}
+  \source{petersen:page-0236}
+  \uses{def:pet-ch5-cut-locus, def:pet-ch5-injectivity-radius}
   In a complete manifold, $\operatorname{inj}(p)$ (the largest $\varepsilon$ with
   $\exp_p:B(0,\varepsilon)\to B(p,\varepsilon)$ a diffeomorphism) equals $|v|$ for
   $v$ the closest point of the cut locus
@@ -2783,9 +2889,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{lemma}[characterization of the injectivity radius]
   \label{lem:pet-ch5-klingenberg}
-  \dcref{ch5:5.7.12}
   \lean{PetersenLib.klingenbergLemma}
-  \uses{rem:pet-ch5-injectivity-radius-cut-locus,lem:pet-ch5-cut-locus-characterization}
+  \source{petersen:page-0236}
+  \uses{rem:pet-ch5-injectivity-radius-cut-locus, lem:pet-ch5-cut-locus-characterization}
+  \dcref{ch5:5.7.12}
   Suppose $v\in\operatorname{seg}(p)-\operatorname{seg}^0(p)$ with
   $|v|=\operatorname{inj}(p)$. Either
   \begin{enumerate}
@@ -2812,18 +2919,20 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[fixed-time existence implies completeness]
   \label{rem:pet-ch5-ex-1}
-  \dcref{ch5:5.9.1}
   \lean{PetersenLib.exercise5_9_1}
+  \source{petersen:page-0237}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.1}
   If $(M,g)$ has the property that all unit-speed geodesics exist for a fixed time
   $\varepsilon>0$, show $(M,g)$ is geodesically complete.
 \end{remark}
 
 \begin{remark}[chain rule for velocity and acceleration]
   \label{rem:pet-ch5-ex-2}
-  \dcref{ch5:5.9.2}
   \lean{PetersenLib.exercise5_9_2}
+  \source{petersen:page-0237,petersen:page-0238}
   \uses{def:pet-ch5-acceleration}
+  \dcref{ch5:5.9.2}
   For $c:I\to M$ and $\phi:J\to I$, show
   $\frac{d(c\circ\phi)}{dt}=\dot c\circ\phi\cdot\frac{d\phi}{dt}$ and
   $\frac{d^2(c\circ\phi)}{dt^2}=\dot c\circ\phi\cdot\frac{d^2\phi}{dt^2}
@@ -2832,9 +2941,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[geodesic equation with orthogonal coordinates]
   \label{rem:pet-ch5-ex-3}
-  \dcref{ch5:5.9.3}
   \lean{PetersenLib.exercise5_9_3}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesic}
+  \dcref{ch5:5.9.3}
   If the coordinate vector fields of a chart are orthogonal ($g_{ij}=0$, $i\ne j$),
   show the geodesic equations become
   $\frac{d}{dt}\big(g_{ii}\frac{dc^i}{dt}\big)=\frac12\sum_j\frac{\partial g_{jj}}
@@ -2843,26 +2953,29 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[reparametrization to a geodesic]
   \label{rem:pet-ch5-ex-4}
-  \dcref{ch5:5.9.4}
   \lean{PetersenLib.exercise5_9_4}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesic}
+  \dcref{ch5:5.9.4}
   Show a regular curve can be reparametrized to be a geodesic iff its acceleration
   is everywhere tangent to the curve.
 \end{remark}
 
 \begin{remark}[a complete open submanifold is everything]
   \label{rem:pet-ch5-ex-5}
-  \dcref{ch5:5.9.5}
   \lean{PetersenLib.exercise5_9_5}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.5}
   If $O\subset(M,g)$ is open and $(O,g)$ is complete, show $O=M$.
 \end{remark}
 
 \begin{remark}[Misner completeness implies completeness]
   \label{rem:pet-ch5-ex-6}
-  \dcref{ch5:5.9.6}
   \lean{PetersenLib.exercise5_9_6}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.6}
   Call $(M,g)$ \emph{Misner complete} if every geodesic $c:(a,b)\to M$ with
   $b-a<\infty$ lies in a compact set. Show Misner completeness implies
   completeness.
@@ -2870,9 +2983,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[length-minimizers reparametrize a segment]
   \label{rem:pet-ch5-ex-7}
-  \dcref{ch5:5.9.7}
   \lean{PetersenLib.exercise5_9_7}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-segment}
+  \dcref{ch5:5.9.7}
   For $c\in\Omega_{p,q}$ with $L(c)=|pq|$: (1) show $L(c|_{[a,b]})=|c(a)c(b)|$ for
   all $a,b\in[0,1]$; (2) show there is a segment $\sigma\in\Omega_{p,q}$ and
   monotone $\varphi:[0,1]\to[0,1]$ (not necessarily everywhere smooth) with
@@ -2881,27 +2995,30 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[completeness under a larger metric]
   \label{rem:pet-ch5-ex-8}
-  \dcref{ch5:5.9.8}
   \lean{PetersenLib.exercise5_9_8}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.8}
   If $(M,g)$ is metrically complete and $\bar g\ge g$ another metric on $M$, show
   $(M,\bar g)$ is metrically complete.
 \end{remark}
 
 \begin{remark}[homogeneous manifolds are complete]
   \label{rem:pet-ch5-ex-9}
-  \dcref{ch5:5.9.9}
   \lean{PetersenLib.exercise5_9_9}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.9}
   A Riemannian manifold is \emph{homogeneous} if its isometry group acts
   transitively. Show homogeneous manifolds are geodesically complete.
 \end{remark}
 
 \begin{remark}[completeness of $\mathbb R\times N$ warped products]
   \label{rem:pet-ch5-ex-10}
-  \dcref{ch5:5.9.10}
   \lean{PetersenLib.exercise5_9_10}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.10}
   For $(M,g)=(\mathbb R\times N,dr^2+g_r)$ with $(N,g_r)$ complete for all
   $r\in\mathbb R$ (e.g.\ $g_r=\rho^2(r)g_N$, $\rho:\mathbb R\to(0,\infty)$, $(N,g_N)$
   metrically complete), show $(M,g)$ is metrically complete.
@@ -2909,9 +3026,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[completeness on a half-line warped product]
   \label{rem:pet-ch5-ex-11}
-  \dcref{ch5:5.9.11}
   \lean{PetersenLib.exercise5_9_11}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.11}
   For $(M,g)=((0,\infty)\times N,dr^2+\rho^2(r)g_N)$, $\rho:(0,\infty)\to
   (0,\infty)$, $(N,g_N)$ complete: give examples that are complete and examples
   that are not.
@@ -2919,9 +3037,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[splitting via a Hessian-flat submersion to $\mathbb R^k$]
   \label{rem:pet-ch5-ex-12}
-  \dcref{ch5:5.9.12}
   \lean{PetersenLib.exercise5_9_12}
+  \source{petersen:page-0238}
   \uses{def:pet-ch5-geodesically-complete}
+  \dcref{ch5:5.9.12}
   If $F:(M,g)\to(\mathbb R^k,g_{\mathbb R^k})$ is a Riemannian submersion, $(M,g)$
   complete, and each component of $F$ has zero Hessian, show
   $(M,g)=(N,h)\times(\mathbb R^k,g_{\mathbb R^k})$.
@@ -2929,35 +3048,39 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[filling a gap in the submetry theorem]
   \label{rem:pet-ch5-ex-13}
-  \dcref{ch5:5.9.13}
   \lean{PetersenLib.exercise5_9_13}
+  \source{petersen:page-0239}
   \uses{thm:pet-ch5-berestovskii-submetry}
+  \dcref{ch5:5.9.13}
   Find and fill in the gap in the proof of \cref{thm:pet-ch5-berestovskii-submetry}.
 \end{remark}
 
 \begin{remark}[isotropic implies homogeneous]
   \label{rem:pet-ch5-ex-14}
-  \dcref{ch5:5.9.14}
   \lean{PetersenLib.exercise5_9_14}
+  \source{petersen:page-0239}
   \uses{def:pet-ch5-fixed-point-set}
+  \dcref{ch5:5.9.14}
   A manifold is \emph{isotropic} at $p$ if $\operatorname{Iso}_p$ acts transitively
   on the unit sphere in $T_pM$. Show isotropy at every point implies homogeneity.
 \end{remark}
 
 \begin{remark}[orthonormal coordinates are distance coordinates]
   \label{rem:pet-ch5-ex-15}
-  \dcref{ch5:5.9.15}
   \lean{PetersenLib.exercise5_9_15}
+  \source{petersen:page-0239}
   \uses{rem:pet-ch5-distance-function-geodesics}
+  \dcref{ch5:5.9.15}
   If coordinates satisfy $g_{ii}=\delta_{ij}$ (i.e.\ $g_{i1}=\delta_{i1}$ for the
   first coordinate direction), show $x^1$ is a distance function.
 \end{remark}
 
 \begin{remark}[distance functions persist under a compatible metric change]
   \label{rem:pet-ch5-ex-16}
-  \dcref{ch5:5.9.16}
   \lean{PetersenLib.exercise5_9_16}
+  \source{petersen:page-0239}
   \uses{rem:pet-ch5-distance-function-geodesics}
+  \dcref{ch5:5.9.16}
   Let $r:U\to\mathbb R$ be a distance function w.r.t.\ $g$. If $\bar g$ satisfies
   $\bar g(\nabla r,v)=g(\nabla r,v)$ for all $v$ (gradient taken w.r.t.\ $g$), show
   $r$ is also a distance function w.r.t.\ $\bar g$.
@@ -2965,9 +3088,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[projective models of $S^n(R)$ and $H^n(R)$]
   \label{rem:pet-ch5-ex-17}
-  \dcref{ch5:5.9.17}
   \lean{PetersenLib.exercise5_9_17}
-  \uses{ex:pet-ch5-sphere-great-circles,ex:pet-ch5-hyperbolic-hyperbolas}
+  \source{petersen:page-0239}
+  \uses{ex:pet-ch5-sphere-great-circles, ex:pet-ch5-hyperbolic-hyperbolas}
+  \dcref{ch5:5.9.17}
   For $x\in\mathbb R^{n+1}$, $x^{n+1}>0$, the projection to $x^{n+1}=R$ is
   $P(x)=R(x^1/x^{n+1},\dots,x^n/x^{n+1},1)$. (1) Verify this formula; (2) show
   geodesics of $S^n(R)$, $H^n(R)$ are intersections with $2$-planes through the
@@ -2978,18 +3102,20 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[a conformal change making a manifold complete]
   \label{rem:pet-ch5-ex-18}
-  \dcref{ch5:5.9.18}
   \lean{PetersenLib.exercise5_9_18}
+  \source{petersen:page-0239}
   \uses{cor:pet-ch5-proper-lipschitz-complete}
+  \dcref{ch5:5.9.18}
   Show any $(M,g)$ admits a conformal change $(M,\lambda^2g)$ that is complete;
   take $\lambda:M\to[1,\infty)$ proper and rapidly growing.
 \end{remark}
 
 \begin{remark}[induced versus ambient distance on subsets of $\mathbb R^n$]
   \label{rem:pet-ch5-ex-19}
-  \dcref{ch5:5.9.19}
   \lean{PetersenLib.exercise5_9_19}
+  \source{petersen:page-0239}
   \uses{def:pet-ch5-distance}
+  \dcref{ch5:5.9.19}
   On $U\subset\mathbb R^n$ compare the Riemannian-induced distance to the ambient
   $\mathbb R^n$ distance: (1) give a non-convex $U$ where they agree; (2) give a
   convex $U$ where they do not.
@@ -2997,18 +3123,20 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[the $T$-tensor detects totally geodesic submanifolds]
   \label{rem:pet-ch5-ex-20}
-  \dcref{ch5:5.9.20}
   \lean{PetersenLib.exercise5_9_20}
+  \source{petersen:page-0239}
   \uses{def:pet-ch5-fixed-point-set}
+  \dcref{ch5:5.9.20}
   For $M\subset(\bar M,\bar g)$, using the $T$-tensor, show $T=0$ on $M$ iff
   $M\subset(\bar M,\bar g)$ is totally geodesic.
 \end{remark}
 
 \begin{remark}[convexity along geodesics via the Hessian]
   \label{rem:pet-ch5-ex-21}
-  \dcref{ch5:5.9.21}
   \lean{PetersenLib.exercise5_9_21}
+  \source{petersen:page-0239,petersen:page-0240}
   \uses{def:pet-ch5-geodesic}
+  \dcref{ch5:5.9.21}
   For $f:(M,g)\to\mathbb R$ smooth: (1) compute the first and second derivatives of
   $f\circ c$ along a geodesic $c$; (2) deduce that at a local max/min of $f$ the
   gradient vanishes and the Hessian is nonpositive/nonnegative; (3) show $f$ has
@@ -3017,18 +3145,20 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[leading term of the volume density]
   \label{rem:pet-ch5-ex-22}
-  \dcref{ch5:5.9.22}
   \lean{PetersenLib.exercise5_9_22}
+  \source{petersen:page-0240}
   \uses{def:pet-ch5-radial-distance-function}
+  \dcref{ch5:5.9.22}
   If the volume form near a point is $\lambda(r,\theta)\,dr\wedge\mathrm{vol}_{n-1}$,
   show $\lambda(r,\theta)=r^{n-1}+O(r^{n+1})$.
 \end{remark}
 
 \begin{remark}[segments to a properly embedded submanifold]
   \label{rem:pet-ch5-ex-23}
-  \dcref{ch5:5.9.23}
   \lean{PetersenLib.exercise5_9_23}
-  \uses{def:pet-ch5-segment,thm:pet-ch5-hopf-rinow}
+  \source{petersen:page-0240}
+  \uses{def:pet-ch5-segment, thm:pet-ch5-hopf-rinow}
+  \dcref{ch5:5.9.23}
   Let $N\subset M$ be properly embedded, $(M,g)$ complete, $|xN|=\inf\{|xp|\mid
   p\in N\}$, and $\sigma:[a,b]\to M$ a unit-speed segment from $N$ to $x$. (1) Show
   $\sigma$ is also a segment from $N$ to $\sigma(t)$, $t<b$, and $\dot\sigma(a)\perp
@@ -3040,34 +3170,38 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[cut locus on the square torus]
   \label{rem:pet-ch5-ex-24}
-  \dcref{ch5:5.9.24}
   \lean{PetersenLib.exercise5_9_24}
+  \source{petersen:page-0240}
   \uses{def:pet-ch5-cut-locus}
+  \dcref{ch5:5.9.24}
   Find the cut locus on the square torus $\mathbb R^2/\mathbb Z^2$.
 \end{remark}
 
 \begin{remark}[cut locus on the sphere and $\mathbb{RP}^n$]
   \label{rem:pet-ch5-ex-25}
-  \dcref{ch5:5.9.25}
   \lean{PetersenLib.exercise5_9_25}
+  \source{petersen:page-0240}
   \uses{def:pet-ch5-cut-locus}
+  \dcref{ch5:5.9.25}
   Find the cut locus on the sphere and on real projective space with the constant
   curvature metrics.
 \end{remark}
 
 \begin{remark}[first-order comparison of exponential images]
   \label{rem:pet-ch5-ex-26}
-  \dcref{ch5:5.9.26}
   \lean{PetersenLib.exercise5_9_26}
+  \source{petersen:page-0240}
   \uses{def:pet-ch5-exponential-map}
+  \dcref{ch5:5.9.26}
   Show $|\exp_p(v)\exp_p(w)|=|v-w|+O(r^2)$ for $|v|,|w|\le r$.
 \end{remark}
 
 \begin{remark}[second-order asymptotics of $\operatorname{Hess}r$]
   \label{rem:pet-ch5-ex-27}
-  \dcref{ch5:5.9.27}
   \lean{PetersenLib.exercise5_9_27}
+  \source{petersen:page-0240,petersen:page-0241}
   \uses{lem:pet-ch5-normal-coords-first-order}
+  \dcref{ch5:5.9.27}
   In exponential normal coordinates $x^i$ at $p$: (1) show
   $(\operatorname{Hess}x^i)_{kl}=\Gamma^i_{kl}=O(r)$; (2) using
   $\tfrac12r^2=\tfrac12\sum_i(x^i)^2$ and $g=\delta_{ij}+O(r^2)$, show
@@ -3077,9 +3211,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[one-sided directional derivatives of distance to a submanifold]
   \label{rem:pet-ch5-ex-28}
-  \dcref{ch5:5.9.28}
   \lean{PetersenLib.exercise5_9_28}
-  \uses{def:pet-ch5-segment,lem:pet-ch5-first-variation-formula,rem:pet-ch5-ex-26}
+  \source{petersen:page-0241}
+  \uses{def:pet-ch5-segment, lem:pet-ch5-first-variation-formula, rem:pet-ch5-ex-26}
+  \dcref{ch5:5.9.28}
   Let $(M,g)$ be complete, $K\subset M$ compact (or properly embedded), $r(x)=|xK|$.
   (1) Show that if $r$ is differentiable at $x\notin K$ then $\overline{xK}$
   contains only one vector; (2) for unit-speed $c$, show that if $f=r\circ c$ is
@@ -3095,9 +3230,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[metric-space length agrees with the Riemannian length]
   \label{rem:pet-ch5-ex-29}
-  \dcref{ch5:5.9.29}
   \lean{PetersenLib.exercise5_9_29}
-  \uses{def:pet-ch5-curve-length,rem:pet-ch5-ex-26}
+  \source{petersen:page-0242}
+  \uses{def:pet-ch5-curve-length, rem:pet-ch5-ex-26}
+  \dcref{ch5:5.9.29}
   In a metric space $(X,|\cdot|)$, define
   $L(c)=\sup\{\sum|c(t_i)c(t_{i+1})|\mid a=t_1\le\dots\le t_k=b\}$. (1) Show a
   curve of finite length is absolutely continuous; (2) show the Cantor step
@@ -3110,9 +3246,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[a synthetic characterization of exponential coordinates]
   \label{rem:pet-ch5-ex-30}
-  \dcref{ch5:5.9.30}
   \lean{PetersenLib.exercise5_9_30}
+  \source{petersen:page-0242}
   \uses{rem:pet-ch5-radial-isometry}
+  \dcref{ch5:5.9.30}
   If coordinates $x^i$ near $p$ satisfy $x^i(p)=0$ and $g_{ij}x^j=\delta_{ij}x^j$,
   show they must be exponential normal coordinates. Hint: set
   $r=\sqrt{\delta_{ij}x^ix^j}$, show it is a smooth distance function away from
@@ -3121,9 +3258,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[intersections of totally geodesic submanifolds]
   \label{rem:pet-ch5-ex-31}
-  \dcref{ch5:5.9.31}
   \lean{PetersenLib.exercise5_9_31}
+  \source{petersen:page-0242}
   \uses{def:pet-ch5-fixed-point-set}
+  \dcref{ch5:5.9.31}
   If $N_1,N_2\subset M$ are totally geodesic, show each component of $N_1\cap N_2$
   is a totally geodesic submanifold, with tangent space at $p$ the Zariski tangent
   space $T_pN_1\cap T_pN_2$.
@@ -3131,27 +3269,30 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[an isometry with differential $-I$]
   \label{rem:pet-ch5-ex-32}
-  \dcref{ch5:5.9.32}
   \lean{PetersenLib.exercise5_9_32}
+  \source{petersen:page-0242}
   \uses{prop:pet-ch5-isometry-uniqueness}
+  \dcref{ch5:5.9.32}
   Let $F:(M,g)\to(M,g)$ be an isometry fixing $p$. Show $DF|_p=-I$ on $T_pM$ iff
   $F^2=\mathrm{id}_M$ and $p$ is an isolated fixed point.
 \end{remark}
 
 \begin{remark}[functional distance equals distance when complete]
   \label{rem:pet-ch5-ex-33}
-  \dcref{ch5:5.9.33}
   \lean{PetersenLib.exercise5_9_33}
-  \uses{def:pet-ch5-functional-distance,thm:pet-ch5-hopf-rinow}
+  \source{petersen:page-0242}
+  \uses{def:pet-ch5-functional-distance, thm:pet-ch5-hopf-rinow}
+  \dcref{ch5:5.9.33}
   Show that for a complete manifold, the functional distance $d_F$ equals the
   Riemannian distance $d$.
 \end{remark}
 
 \begin{remark}[regular exponential images are local energy minima]
   \label{rem:pet-ch5-ex-34}
-  \dcref{ch5:5.9.34}
   \lean{PetersenLib.exercise5_9_34}
-  \uses{thm:pet-ch5-energy-minima-geodesics,lem:pet-ch5-exp-nonsingular-segment-domain}
+  \source{petersen:page-0242}
+  \uses{thm:pet-ch5-energy-minima-geodesics, lem:pet-ch5-exp-nonsingular-segment-domain}
+  \dcref{ch5:5.9.34}
   Let $c:[0,1]\to M$ be a geodesic such that $\exp_{c(0)}$ is regular at $tc'(0)$
   for all $t\le1$. Show $c$ is a local minimum of the energy functional. Hint: the
   lift of $c$ via $\exp_{c(0)}$ is a minimizing geodesic in the pullback metric.
@@ -3159,9 +3300,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[bi-invariant metrics and the Lie exponential]
   \label{rem:pet-ch5-ex-35}
-  \dcref{ch5:5.9.35}
   \lean{PetersenLib.exercise5_9_35}
-  \uses{def:pet-ch5-exponential-map,thm:pet-ch5-hopf-rinow}
+  \source{petersen:page-0242,petersen:page-0243}
+  \uses{def:pet-ch5-exponential-map, thm:pet-ch5-hopf-rinow}
+  \dcref{ch5:5.9.35}
   For a Lie group $G$ with bi-invariant (pseudo-)Riemannian metric: (1) show
   homomorphisms $\mathbb R\to G$ are precisely the integral curves of left-invariant
   vector fields through $e$; (2) show geodesics through $e$ are precisely such
@@ -3173,17 +3315,19 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[Riemannian submersions are submetries]
   \label{rem:pet-ch5-ex-36}
-  \dcref{ch5:5.9.36}
   \lean{PetersenLib.exercise5_9_36}
+  \source{petersen:page-0243}
   \uses{def:pet-ch5-submetry}
+  \dcref{ch5:5.9.36}
   Show a Riemannian submersion is a submetry.
 \end{remark}
 
 \begin{remark}[completeness descends along submersions and gives a fibration]
   \label{rem:pet-ch5-ex-37}
-  \dcref{ch5:5.9.37}
   \lean{PetersenLib.exercise5_9_37}
-  \uses{def:pet-ch5-submetry,thm:pet-ch5-hopf-rinow}
+  \source{petersen:page-0243}
+  \uses{def:pet-ch5-submetry, thm:pet-ch5-hopf-rinow}
+  \dcref{ch5:5.9.37}
   Let $F:(M,g_M)\to(N,g_N)$ be a Riemannian submersion. (1) Show $(N,g_N)$ is
   complete if $(M,g_M)$ is; (2) show $F$ is a fibration (locally
   $F^{-1}(U)\cong U\times F^{-1}(p)$) if $(M,g_M)$ is complete, and give a
@@ -3192,18 +3336,20 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[commuting isometries and even-codimension fixed sets]
   \label{rem:pet-ch5-ex-38}
-  \dcref{ch5:5.9.38}
   \lean{PetersenLib.exercise5_9_38}
+  \source{petersen:page-0243}
   \uses{rem:pet-ch5-fixed-point-codimension}
+  \dcref{ch5:5.9.38}
   Let $S$ be a set of orientation-preserving isometries of $(M,g)$ that pairwise
   commute. Show each component of $\operatorname{Fix}(S)$ has even codimension.
 \end{remark}
 
 \begin{remark}[affine maps]
   \label{rem:pet-ch5-ex-39}
-  \dcref{ch5:5.9.39}
   \lean{PetersenLib.exercise5_9_39}
-  \uses{def:pet-ch5-geodesic,prop:pet-ch5-isometry-uniqueness}
+  \source{petersen:page-0243}
+  \uses{def:pet-ch5-geodesic, prop:pet-ch5-isometry-uniqueness}
+  \dcref{ch5:5.9.39}
   A local diffeomorphism $F:(M,g_M)\to(N,g_N)$ is \emph{affine} if
   $F_*(\nabla^M_XY)=\nabla^N_{F_*X}F_*Y$ for all vector fields $X,Y$. (1) Show
   affine maps carry geodesics to geodesics; (2) show $F$ is determined by $F(p)$
@@ -3213,9 +3359,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[projective linear groups and isometry groups of space forms]
   \label{rem:pet-ch5-ex-40}
-  \dcref{ch5:5.9.40}
   \lean{PetersenLib.exercise5_9_40}
-  \uses{rem:pet-ch5-ex-39,ex:pet-ch5-sphere-great-circles,ex:pet-ch5-hyperbolic-hyperbolas}
+  \source{petersen:page-0243}
+  \uses{rem:pet-ch5-ex-39, ex:pet-ch5-sphere-great-circles, ex:pet-ch5-hyperbolic-hyperbolas}
+  \dcref{ch5:5.9.40}
   For $\mathbb{FP}^n$ ($\mathbb F=\mathbb R,\mathbb C$): (1) $\mathrm{GL}(n{+}1,
   \mathbb F)$ acts on $1$-dimensional subspaces of $\mathbb F^{n+1}$; (2) the
   kernel $H$ of this action is $\{\lambda I_{n+1}\}$, a normal subgroup; (3)
@@ -3231,9 +3378,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[the compact-open topology on $\operatorname{Iso}(M,g)$]
   \label{rem:pet-ch5-ex-41}
-  \dcref{ch5:5.9.41}
   \lean{PetersenLib.exercise5_9_41}
-  \uses{thm:pet-ch5-myers-steenrod-lie-group,def:pet-ch5-proper-action}
+  \source{petersen:page-0244}
+  \uses{thm:pet-ch5-myers-steenrod-lie-group, def:pet-ch5-proper-action}
+  \dcref{ch5:5.9.41}
   Let $\operatorname{Diff}(M;K,O)=\{F\in\operatorname{Diff}(M)\mid F(K)\subset O\}$.
   (1) Finite intersections of such sets ($K$ compact, $O$ open) form a topology
   base — the compact-open topology; (2) it is second countable; (3) on a
@@ -3248,9 +3396,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[Bianchi identities and the curvature tensor in normal coordinates]
   \label{rem:pet-ch5-ex-42}
-  \dcref{ch5:5.9.42}
   \lean{PetersenLib.exercise5_9_42}
+  \source{petersen:page-0244,petersen:page-0245}
   \uses{lem:pet-ch5-normal-coords-first-order}
+  \dcref{ch5:5.9.42}
   In exponential normal coordinates at $p$, all computed at $p$: (1) taking three
   derivatives of $x^i=\sum_sg_{is}x^s$ (as in
   \cref{lem:pet-ch5-normal-coords-first-order}), show
@@ -3264,9 +3413,10 @@ components of $v\in T_p\tilde M$.
 
 \begin{remark}[Riemannian volume expansion (A. Gray)]
   \label{rem:pet-ch5-ex-43}
-  \dcref{ch5:5.9.43}
   \lean{PetersenLib.exercise5_9_43}
+  \source{petersen:page-0246}
   \uses{rem:pet-ch5-ex-42}
+  \dcref{ch5:5.9.43}
   With notation as in \cref{rem:pet-ch5-ex-42}: (1) show
   $\sqrt{\det(g_{ij})}=1-\tfrac16\mathrm{Ric}_{ij}x^ix^j+O(|x|^3)$; (2) (A. Gray)
   show $\operatorname{vol}B(p,r)=\omega_nr^n\big(1-\tfrac{\mathrm{scal}(p)}{6(n+2)}r^2

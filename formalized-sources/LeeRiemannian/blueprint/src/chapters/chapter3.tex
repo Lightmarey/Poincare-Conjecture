@@ -94,8 +94,9 @@ The map $\sigma:S^n(R)\setminus\{N\}\to\mathbb R^n$ is a diffeomorphism and
 
 \begin{corollary}[Each sphere with a round metric is locally conformally flat]
 \label{cor:sphere-round-metric-locally-conformally-flat}
-\dcref{ch3:3.6}
 \uses{prop:stereographic-conformal-diffeomorphism}
+\dcref{ch3:3.6}
+
 Every round sphere is locally conformally flat.
 \end{corollary}
 \begin{proof}
@@ -191,8 +192,9 @@ Let $O(n,1)$ preserve the Minkowski form, and let $O^+(n,1)$ preserve the upper 
 
 \begin{proposition}
 \label{prop:lorentz-group-transitive}
-\dcref{ch3:3.9}
 \uses{prop:frame-homogeneous-sphere}
+\dcref{ch3:3.9}
+
 The group $O^+(n,1)$ acts transitively on $O(\mathbb H^n(R))$, and therefore $\mathbb H^n(R)$ is frame-homogeneous.
 \end{proposition}
 \begin{proof}
@@ -227,8 +229,9 @@ $\operatorname{Ad}(\varphi)=(C_\varphi)_*\colon\mathfrak g\to\mathfrak g$.
 
 \begin{proposition}[Bi-invariance and the Adjoint Representation]
 \label{prop:bi-invariant-metric-adjoint}
-\dcref{ch3:3.12}
 \uses{lem:left-invariant-metrics-lie-group}
+\dcref{ch3:3.12}
+
 Let $g$ be a left-invariant metric on $G$, with corresponding inner product
 $\langle\cdot,\cdot\rangle$ on $\mathfrak g$. Then $g$ is bi-invariant if and
 only if
@@ -304,8 +307,9 @@ An unbounded orbit therefore obstructs a bi-invariant metric.
 
 \begin{example}[Invariant Metrics on Lie Groups]
 \label{ex:invariant-metrics-lie-groups}
+\uses{ex:n-torus-riemannian-submanifold, ex:adjoint-representations-lie-groups, prop:berger-sphere, prop:orthogonal-group-bi-invariant-metric, thm:hyperbolic-space-models, prob:berger-sphere, prob:orthogonal-group-bi-invariant-metric}
 \dcref{ch3:3.16}
-\uses{ex:n-torus-riemannian-submanifold,ex:adjoint-representations-lie-groups,prop:berger-sphere,prop:orthogonal-group-bi-invariant-metric,thm:hyperbolic-space-models}
+
 \begin{enumerate}[label=(\alph*)]
 \item On an abelian Lie group the adjoint representation is trivial, so every
 left-invariant metric is bi-invariant. This includes the Euclidean metric on
@@ -393,11 +397,12 @@ action of a Lie group $G$.
 
 \begin{theorem}[Existence of Invariant Metrics on Homogeneous Spaces]
 \label{thm:existence-invariant-metrics-homogeneous-spaces}
+\uses{lem:invariant-inner-product-compact, thm:equivariant-rank-theorem, thm:local-section-theorem}
 \dcref{ch3:3.17}
-\uses{lem:invariant-inner-product-compact}
-\uses{lem:invariant-inner-product-compact}
-\uses{thm:equivariant-rank-theorem}
-\uses{thm:local-section-theorem}
+
+
+
+
 Let $M$ be a homogeneous $G$-space, $p_0\in M$, and
 $I_{p_0}\colon G_{p_0}\to\operatorname{GL}(T_{p_0}M)$ the isotropy
 representation. A $G$-invariant Riemannian metric on $M$ exists if and only if
@@ -428,8 +433,9 @@ $\pi$ then gives $g|_U=\sigma^*\tau$, proving smoothness.
 
 \begin{corollary}[Compact Isotropy Gives an Invariant Metric]
 \label{cor:invariant-metric-compact-isotropy}
-\dcref{ch3:3.18}
 \uses{thm:existence-invariant-metrics-homogeneous-spaces}
+\dcref{ch3:3.18}
+
 If a Lie group $G$ acts smoothly and transitively on a smooth manifold $M$ and
 all isotropy groups are compact, then $M$ admits a $G$-invariant Riemannian
 metric.
@@ -549,8 +555,9 @@ d\widetilde\varphi_q
 
 \begin{example}[Riemannian Symmetric Spaces]
 \label{ex:riemannian-symmetric-spaces}
+\uses{lem:homogeneous-point-reflection-symmetric, ex:fubini-study-metric, prop:grassmann-stiefel-manifolds, prop:fubini-study-metric-homogeneous, prop:grassmannian-metric-homogeneous, prob:grassmann-stiefel-manifolds, prob:fubini-study-metric-homogeneous, prob:grassmannian-metric-homogeneous}
 \dcref{ch3:3.24}
-\uses{lem:homogeneous-point-reflection-symmetric,ex:fubini-study-metric,prop:grassmann-stiefel-manifolds,prop:fubini-study-metric-homogeneous,prop:grassmannian-metric-homogeneous}
+
 \begin{enumerate}[label=(\alph*)]
 \item Every connected frame-homogeneous Riemannian manifold is symmetric:
 frame homogeneity supplies an isometry fixing $p$ and taking an orthonormal
@@ -633,6 +640,12 @@ of radius $R$.
 The metric on $\mathbb{RP}^n$ described in Example 2.34 is frame-homogeneous.
 \end{proposition}
 
+\begin{exercise}\label{prob:rp-n-frame-homogeneous}\dcref{ch3:3-2}
+\uses{ex:real-projective-space-metric}
+Prove that the metric on $\mathbb{RP}^n$ described in Example 2.34 is frame-homogeneous. (Used on p. 145)
+\end{exercise}
+
+
 \begin{proposition}
 \label{prop:berger-sphere}
 \dcref{ch3:3-10}
@@ -652,6 +665,24 @@ $(S^3,\bar g)$ to $(\operatorname{SU}(2),g_1)$.
 \end{enumerate}
 \end{proposition}
 
+\begin{exercise}
+\label{prob:berger-sphere}
+\dcref{ch3:3-10}
+\uses{ex:invariant-metrics-lie-groups}
+Consider the basis
+\[
+X = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}, \quad Y = \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix}, \quad Z = \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}
+\]
+for the Lie algebra $\mathfrak{su}(2)$. For each positive real number $a$, define a left-invariant metric $g_a$ on the group $\operatorname{SU}(2)$ by declaring $X, Y, aZ$ to be an orthonormal frame.
+
+(a) Show that $g_a$ is bi-invariant if and only if $a = 1$.
+
+(b) Show that the map defined by (3.16) is an isometry between $(S^3, \bar{g})$ and $(\operatorname{SU}(2), g_1)$. [Remark: $\operatorname{SU}(2)$ with any of these metrics is called a \textbf{Berger sphere}, named after Marcel Berger.]
+
+(Used on pp. 56, 71, 259.)
+\end{exercise}
+
+
 \begin{proposition}
 \label{prop:orthogonal-group-bi-invariant-metric}
 \dcref{ch3:3-11}
@@ -663,6 +694,14 @@ The formula
 defines a bi-invariant Riemannian metric on $O(n)$.
 \end{proposition}
 
+\begin{exercise}
+\label{prob:orthogonal-group-bi-invariant-metric}
+\dcref{ch3:3-11}
+\uses{ex:invariant-metrics-lie-groups}
+Prove that the formula $\langle A, B \rangle = \operatorname{tr}(A^T B)$ defines a bi-invariant Riemannian metric on $O(n)$. (See Example 3.16(e).)
+\end{exercise}
+
+
 \begin{proposition}
 \label{prop:fubini-study-metric-homogeneous}
 \dcref{ch3:3-19}
@@ -671,6 +710,12 @@ The Fubini--Study metric on $\mathbb{CP}^n$ is homogeneous, isotropic, and
 symmetric.
 \end{proposition}
 
+\begin{exercise}\label{prob:fubini-study-metric-homogeneous}\dcref{ch3:3-19}
+\uses{ex:fubini-study-metric}
+Show that the Fubini--Study metric on $\mathbb{CP}^n$ (Example 2.30) is homogeneous, isotropic, and symmetric. (Used on p. 78.)
+\end{exercise}
+
+
 \begin{proposition}
 \label{prop:grassmannian-metric-homogeneous}
 \dcref{ch3:3-20}
@@ -678,3 +723,194 @@ symmetric.
 The Riemannian-submersion metric on $G_k(\mathbb R^n)$ from
 \cref{prop:grassmann-stiefel-manifolds} is homogeneous and symmetric.
 \end{proposition}
+
+\begin{exercise}\label{prob:grassmannian-metric-homogeneous}\dcref{ch3:3-20}
+\uses{prob:grassmann-stiefel-manifolds}
+Show that the metric on the Grassmannian $G_k(\mathbb{R}^n)$ defined in Problem 2-7 is homogeneous, isotropic, and symmetric. (Used on p. 78.)
+\end{exercise}
+
+
+\begin{exercise}\label{exer:conformal-volume-forms}\dcref{ch3:3.4}
+Suppose $g_1$ and $g_2 = f g_1$ are conformally related metrics on an oriented $n$-manifold. Show that their volume forms are related by $d V_{g_2} = f^n d V_{g_1}$.
+\end{exercise}
+
+\begin{exercise}\label{exer:conformality-equivalence-relation}\dcref{ch3:3.3}
+\begin{enumerate}
+\item[(a)] Show that for every smooth manifold $M$, conformality is an equivalence relation on the set of all Riemannian metrics on $M$.
+\item[(b)] Show that conformal equivalence is an equivalence relation on the class of all Riemannian manifolds.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Suppose G is a Lie group and M is a homogeneous G-space that admits at least one g-invariant metric]
+\label{exer:invariant-metrics-bijection}
+\dcref{ch3:3.19}
+Show that for each $p \in M$, the map $g \mapsto g_p$ gives a bijection between $G$-invariant metrics on $M$ and $I_p(G_p)$-invariant inner products on $T_p M$.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:prove-locally-homogeneous-covering}
+\dcref{ch3:3.21}
+Prove this proposition.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:prove-preceding-lemma}
+\dcref{ch3:3.11}
+Prove the preceding lemma.
+\end{exercise}
+
+\begin{exercise}
+\label{prob:compact-lie-group-volume-form-bi-invariant}
+\dcref{ch3:3-9}
+Suppose $G$ is a compact Lie group with a left-invariant metric $g$ and a left-invariant orientation. Show that the Riemannian volume form $dV_g$ is bi-invariant. [Hint: Show that $dV_g$ is equal to the Riemannian volume form for a bi-invariant metric.]
+\end{exercise}
+
+\begin{exercise}\label{prob:conformal-metrics}\dcref{ch3:3-6}
+Show that two Riemannian metrics $g_1$ and $g_2$ are conformal if and only if they define the same angles but not necessarily the same lengths, and that a diffeomorphism is a conformal equivalence if and only if it preserves angles. [Hint: Let $(E_i)$ be a local orthonormal frame for $g_1$, and consider the $g_2$-angle between $E_i$ and $(\cos\theta)E_i + (\sin\theta)E_j$.] (Used on p. 59.)
+\end{exercise}
+
+\begin{exercise}
+\label{prob:diffeomorphism-pseudohyperbolic-pseudosphere}
+\dcref{ch3:3-24}
+Prove that for all positive integers $r$ and $s$ every real number $R > 0$, both the pseudohyperbolic space $\mathbb{H}^{r,s}(R)$ and the pseudosphere $S^{r,s}(R)$ are diffeomorphic to $\mathbb{R}^r \times S^s$. [Hint: Consider the maps $\varphi, \psi : \mathbb{R}^r \times S^s \to \mathbb{R}^{r+s+1}$ given by
+\[
+\varphi(x,y) = \left(Rx, \left(\sqrt{1 + |x|^2}\right) Ry\right), \quad \psi(x,y) = \left(\left(\sqrt{1 + |x|^2}\right) Ry, Rx\right).
+\]
+]
+\end{exercise}
+
+\begin{exercise}
+\label{prob:frame-homogeneity-pseudo-spaces}
+\dcref{ch3:3-23}
+\uses{thm:frame-homogeneous-pseudo-riemannian}
+Prove Theorem 3.26 (pseudo-Euclidean spaces, pseudospheres, and pseudo-hyperbolic spaces are frame-homogeneous).
+\end{exercise}
+
+\begin{exercise}
+\label{prob:heisenberg-group-metrics}
+\dcref{ch3:3-13}
+\uses{ex:invariant-metrics-lie-groups}
+Write down an explicit formula for an arbitrary left-invariant metric on the Heisenberg group $H_n$ of Example 3.16(g) in terms of global coordinates $(x^1, \ldots, x^n, y^1, \ldots, y^n, z)$, and show that the group has no bi-invariant metrics. (Used on pp. 68, 72.)
+\end{exercise}
+
+\begin{exercise}\label{prob:homogeneous-isotropic-riemannian}\dcref{ch3:3-3}
+\uses{prop:frame-homogeneous-manifolds}
+Prove Proposition 3.1 (about homogeneous and isotropic Riemannian manifolds).
+\end{exercise}
+
+\begin{exercise}
+\label{prob:hyperbolic-space-metrics}
+\dcref{ch3:3-12}
+\uses{ex:invariant-metrics-lie-groups}
+Regard the upper half-space $\mathbb{H}^n$ as a Lie group as described in Example 3.16(f).
+
+(a) Show that for each $R > 0$, the hyperbolic metric $\bar{g}_R$ on $\mathbb{H}^n$ is left-invariant.
+
+(b) Show that $\mathbb{H}^n$ does not admit any bi-invariant metrics.
+
+(Used on pp. 68, 72.)
+\end{exercise}
+
+\begin{exercise}\label{prob:isometric-action-e-n}\dcref{ch3:3-1}
+Show that (3.2) defines a smooth isometric action of $\text{E}(n)$ on $(\mathbb{R}^n,\bar{g})$, and the induced action on $\text{O}(\mathbb{R}^n)$ is transitive. (Used on p. 57.)
+\end{exercise}
+
+\begin{exercise}\label{prob:klein-bottle-flat-covering}\dcref{ch3:3-18}
+Let $\Gamma \subset E(2)$ be the subgroup defined by (3.20). Prove that $\Gamma$ acts freely and properly on $\mathbb{R}^2$ and the orbit space is homeomorphic to the Klein bottle, and conclude that the Klein bottle has a flat metric and a Riemannian covering by the Euclidean plane.
+\end{exercise}
+
+\begin{exercise}\label{prob:lie-group-adjoint-representation}\dcref{ch3:3-17}
+\uses{thm:existence-bi-invariant-metrics}
+Given a Lie group $G$, define an action of the product group $G \times G$ on $G$ by $(\varphi_1,\varphi_2) \cdot \psi = \varphi_1\psi\varphi_2^{-1}$. Show that this action is transitive, and that the isotropy group of the identity is the diagonal subgroup $\Delta = \{(\varphi,\varphi) : \varphi \in G\}$. Then show that the following diagram commutes:
+\[\begin{array}{ccc}
+\Delta & \cong & G \\
+I_e \downarrow & & \downarrow \mathrm{Ad} \\
+\mathrm{GL}(T_e G) & \cong & \mathrm{GL}(\mathfrak{g})
+\end{array}\]
+where $I_e$ is the isotropy representation of $\Delta$ and $\mathfrak{g}$ is the Lie algebra of $G$, and use this to give an alternative proof of Theorem 3.14.
+\end{exercise}
+
+\begin{exercise}
+\label{prob:minkowski-hyperboloid}
+\dcref{ch3:3-15}
+Let $\mathbb{R}^{n,1}$ be the $(n+1)$-dimensional Minkowski space with coordinates $(\xi, \tau) = (\xi^1, \ldots, \xi^n, \tau)$ and with the Minkowski metric $\bar{g}^{(n,1)} = \sum_i d(\xi^i)^2 - d\tau^2$. Let $S \subset \mathbb{R}^{n,1}$ be the set
+\[
+S = \{(\xi, \tau) : (\xi^1)^2 + \cdots + (\xi^n)^2 = \tau = 1\}.
+\]
+
+(a) Prove that $S$ is a smooth submanifold diffeomorphic to $S^{n-1}$, and with the induced metric $g = t^2 \bar{q}^{(n,1)}$ it is isometric to the round unit $(n-1)$-sphere.
+
+(b) Define an action of the orthochronous Lorentz group $O^+(n,1)$ on $S$ as follows: For every $p \in S$, let $\langle p \rangle$ denote the $1$-dimensional subspace of $\mathbb{R}^{n+1}$ spanned by $p$. Given $A \in O^+(n,1)$, show that the image set $A(\langle p \rangle)$ is a $1$-dimensional subspace that intersects $S$ in exactly one point, so we can define $A \cdot p$ to be the unique point in $S \cap A(\langle p \rangle)$. Prove that this is a smooth transitive action on $S$.
+
+(c) Prove that $O^+(n,1)$ acts by conformal diffeomorphisms of $(S,g)$.
+\end{exercise}
+
+\begin{exercise}\label{prob:no-riemannian-metric-invariant-lorentz}\dcref{ch3:3-16}
+\uses{prob:minkowski-hyperboloid}
+Prove that there is no Riemannian metric on the sphere that is invariant under the group action described in Problem 3-15.
+\end{exercise}
+
+\begin{exercise}\label{prob:poincare-disk}\dcref{ch3:3-8}
+Let $\mathbb{B}^2$ denote the Poincaré disk model of the hyperbolic plane (of radius 1), with the metric $\bar{g} = (du^2 + dv^2)/(1-u^2-v^2)^2$, and let $G \subseteq \text{GL}(2,\mathbb{C})$ be the subgroup defined by (3.18). Regarding $\mathbb{B}^2$ as a subset of the complex plane with coordinate $w = u + iv$, let $G$ act on $\mathbb{B}^2$ by
+\[
+\begin{pmatrix} \alpha & \beta \\ \bar{\beta} & \bar{\alpha} \end{pmatrix} \cdot w = \frac{\alpha w + \beta}{\bar{\beta}w + \bar{\alpha}}.
+\]
+
+Show that this defines a smooth, transitive, orientation-preserving, and isometric action of $G$ on $(\mathbb{R}^2, \bar{g})$. [Hint: One way to proceed is to define an action of $G$ on the upper half-plane by $A \cdot z = \kappa^{-1} \circ A \circ \kappa(z)$, where $\kappa$ is the Cayley transform defined by (3.14) in the case $R = 1$, and use the result of Problem 3-7.] (Used on pp. 73, 185.)
+\end{exercise}
+
+\begin{exercise}\label{prob:pseudospheres-pseudo-riemannian}\dcref{ch3:3-22}
+\uses{thm:pseudo-riemannian-signature,thm:hyperbolic-space-models}
+Prove Theorem 3.25 (showing that pseudospheres and pseudohyperbolic spaces are pseudo-Riemannian manifolds). [Hint: Mimic the argument in the proof of Theorem 3.7 that $\mathbb{H}^n(R)$ is Riemannian.]
+\end{exercise}
+
+\begin{exercise}\label{prob:riemannian-quotients-conjugate-subgroups}\dcref{ch3:3-21}
+\uses{prop:riemannian-quotient-metric}
+Let $(\tilde{M},\tilde{g})$ be a simply connected Riemannian manifold, and suppose $\Gamma_1$ and $\Gamma_2$ are countable subgroups of $\mathrm{Iso}(\tilde{M},\tilde{g})$ acting smoothly, freely, and properly on $M$ (when endowed with the discrete topology). For $i = 1,2$, let $M_i = \tilde{M}/\Gamma_i$, and let $g_i$ be the Riemannian metric on $M_i$ that makes the quotient map $\pi_i : \tilde{M} \to M_i$ a Riemannian covering (see Prop. 2.32). Prove that the Riemannian manifolds $(M_1,g_1)$ and $(M_2,g_2)$ are isometric if and only if $\Gamma_1$ and $\Gamma_2$ are conjugate subgroups of $\mathrm{Iso}(\tilde{M},\tilde{g})$.
+\end{exercise}
+
+\begin{exercise}\label{prob:sl2r-upper-half-plane}\dcref{ch3:3-7}
+Let $\mathbb{U}^2$ denote the upper half-plane model of the hyperbolic plane (of radius 1), with the metric $\bar{g} = (dx^2 + dy^2)/y^2$. Let $\text{SL}(2,\mathbb{R})$ denote the group of $2 \times 2$ real matrices of determinant 1. Regard $\mathbb{U}^2$ as a subset of the complex plane with coordinate $z = x + iy$, and let
+\[
+A \cdot z = \frac{az + b}{cz + d}, \quad A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \text{SL}(2,\mathbb{R}).
+\]
+Show that this defines a smooth, transitive, orientation-preserving, and isometric action of $\text{SL}(2,\mathbb{R})$ on $(\mathbb{U}^2,\bar{g})$. Is the induced action transitive on $\text{O}(\mathbb{U}^2)$?
+\end{exercise}
+
+\begin{exercise}
+\label{prob:sol-group-metrics}
+\dcref{ch3:3-14}
+\uses{prob:heisenberg-group-metrics,ex:invariant-metrics-lie-groups}
+Repeat Problem 3-13 for the group Sol of Example 3.16(h). (Used on p. 72.)
+\end{exercise}
+
+\begin{exercise}\label{prob:sphere-hyperbolic-scaling}\dcref{ch3:3-5}
+\begin{enumerate}
+\item[(a)] Prove that $(S^n(R),\bar{g}_R)$ is isometric to $(S^n,R^2\bar{g})$ for each $R > 0$.
+\item[(b)] Prove that $(\mathbb{H}^n(R),\bar{g}_R)$ is isometric to $(\mathbb{H}^n,R^2\bar{g})$ for each $R > 0$.
+\item[(c)] We could also have defined a family of metrics on $\mathbb{R}^n$ by $\bar{g}_R = R^2\bar{g}$. Why did we not bother?
+\end{enumerate}
+(Used on p. 185.)
+\end{exercise}
+
+\begin{exercise}\label{prob:theorem-3-7-proof}\dcref{ch3:3-4}
+\uses{thm:hyperbolic-space-models}
+Complete the proof of Theorem 3.7 by showing that $\kappa^* \bar{g}^3_R = \bar{g}^4_R$.
+\end{exercise}
+
+\begin{exercise}
+\label{prob:universal-anti-de-sitter}
+\dcref{ch3:3-25}
+\uses{prob:diffeomorphism-pseudohyperbolic-pseudosphere}
+Let $(K^r(R), \bar{g}_R^2)$ be the $r$-dimensional ball of radius $R$ with the Beltrami--Klein metric (3.9), and let $\bar{\mathbb{H}}^{r,1}(R)$ be the product manifold $K^r(R) \times \mathbb{R}$ with the pseudo-Riemannian warped product metric $q = \bar{g}_R^2 \oplus (-f^2 dt^2)$, where $f: K^r(R) \to \mathbb{R}^+$ is given by
+\[
+f(w) = \frac{R^2}{\sqrt{R^2 - |w|^2}}.
+\]
+
+Define $F: \bar{\mathbb{H}}^{r,1}(R) \to \mathbb{R}^{r,2}$ by
+\[
+F(w,t) = \frac{(Rw, R^2 \cos t, R^2 \sin t)}{\sqrt{R^2 - |w|^2}}.
+\]
+
+Prove that the image of $F$ is the anti-de Sitter space $\mathbb{H}^{r,1}(R)$, and $F$ defines a pseudo-Riemannian covering of $(\mathbb{H}^{r,1}(R), q_R^{(r,1)})$ by $(\bar{\mathbb{H}}^{r,1}(R), q)$. [Remark: We are tacitly extending the notions of warped product metric and Riemannian coverings to the pseudo-Riemannian case in the obvious ways. It follows from the result of Problem 3-24 that $\mathbb{H}^{r,s}(R)$ is simply connected when $s \geq 2$ but $\mathbb{H}^{r,1}(R)$ is not. This shows that $(\bar{\mathbb{H}}^{r,1}(R), q)$, called \textit{universal anti-de Sitter space of radius $R$}, is the universal pseudo-Riemannian covering manifold of $(\mathbb{H}^{r,1}(R), q_R^{(r,1)})$.]
+\end{exercise}

@@ -9,8 +9,7 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[the chart--connection bridge]
   \label{lem:chart-connection-bridge}
-  \lean{PetersenLib.leviCivita_chartFrame_christoffel,
-    PetersenLib.exists_chartFrame_leviCivita_christoffel_nhds}
+  \lean{PetersenLib.leviCivita_chartFrame_christoffel, PetersenLib.exists_chartFrame_leviCivita_christoffel_nhds}
   \leanok
   Infrastructure, not a numbered result of the source; recorded because the
   formalization needs it and Petersen takes it for granted.
@@ -46,8 +45,8 @@ nonpositive and positive sectional curvature.
 \begin{lemma}[the curvature--chart bridge]
   \label{lem:curvature-chart-bridge}
   \lean{PetersenLib.chartCurvatureContraction2_eq_neg_curvatureTensorAt}
-  \leanok
   \uses{prop:pet-ch3-curvature-coordinate-formula}
+  \leanok
   Infrastructure, not a numbered result of the source; recorded because the
   formalization needs it and Petersen takes it for granted.
 
@@ -88,6 +87,7 @@ nonpositive and positive sectional curvature.
 \begin{definition}[covariant derivative along a curve]
   \label{def:pet-ch6-vector-field-along-curve}
   \lean{PetersenLib.derivAlongCurve,PetersenLib.covariantDerivCoord_transfer}
+  \source{petersen:page-0248,petersen:page-0249}
   \leanok
   For a curve $c:I\to M$, a \emph{vector field along $c$} is a map $V:I\to TM$
   with $V(t)\in T_{c(t)}M$ for all $t\in I$. Thinking of $V$ as the variational
@@ -117,8 +117,9 @@ nonpositive and positive sectional curvature.
 \begin{definition}[third and higher partial derivatives]
   \label{def:pet-ch6-higher-order-partials}
   \lean{PetersenLib.surfaceCovariantDeriv,PetersenLib.thirdPartialDerivative}
-  \leanok
+  \source{petersen:page-0249}
   \uses{def:pet-ch6-vector-field-along-curve}
+  \leanok
   Using \cref{def:pet-ch6-vector-field-along-curve}, higher mixed partials of a
   multi-parameter map $c$ are defined recursively: to compute
   $\frac{\partial^3c}{\partial s\,\partial t\,\partial u}(s_0,t_0,u_0)$, set
@@ -134,9 +135,10 @@ nonpositive and positive sectional curvature.
 
 \begin{example}[mixed partials on $S^2(1)$]
   \label{ex:pet-ch6-sphere-third-partials}
-  \dcref{ch6:6.1.1}
   \lean{PetersenLib.sphereThirdPartialsExample}
+  \source{petersen:page-0250}
   \uses{def:pet-ch6-higher-order-partials}
+  \dcref{ch6:6.1.1}
   Parametrize $S^2(1)\subset\mathbb{R}^3$ as a surface of revolution about the
   $x$-axis by $c(t,\theta)=(\cos t,\sin t\cos\theta,\sin t\sin\theta)$, and
   compute all derivatives in $\mathbb{R}^3$ before projecting onto $S^2(1)$. The
@@ -163,10 +165,11 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[third partials and curvature]
   \label{lem:pet-ch6-third-partial-commutator}
-  \dcref{ch6:6.1.2}
   \lean{PetersenLib.thirdPartialCurvatureFormula}
-  \leanok
+  \source{petersen:page-0251}
   \uses{def:pet-ch6-higher-order-partials, lem:curvature-chart-bridge}
+  \leanok
+  \dcref{ch6:6.1.2}
   For a map $c(u,s,t)$ with values in $M$,
   \[
     \frac{\partial^3c}{\partial u\,\partial s\,\partial t}
@@ -193,8 +196,9 @@ nonpositive and positive sectional curvature.
 \begin{definition}[parallel field along a curve]
   \label{def:pet-ch6-parallel-field}
   \lean{PetersenLib.IsParallelAlong}
-  \leanok
+  \source{petersen:page-0252}
   \uses{def:pet-ch6-vector-field-along-curve}
+  \leanok
   A vector field $V$ along $c$ is \emph{parallel along $c$} if $\dot V\equiv0$.
   The tangent field $\dot c$ along a geodesic is parallel, and (by
   \cref{ex:pet-ch6-sphere-third-partials}) the unit field perpendicular to a
@@ -206,11 +210,11 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[existence and uniqueness of parallel fields]
   \label{thm:pet-ch6-parallel-field-existence-uniqueness}
-  \dcref{ch6:6.1.3a}
-  \lean{PetersenLib.parallelField_existence_uniqueness_global,
-    PetersenLib.exists_isParallelSolOn_Ioo_of_openHyp}
+  \lean{PetersenLib.parallelField_existence_uniqueness_global, PetersenLib.exists_isParallelSolOn_Ioo_of_openHyp}
+  \source{petersen:page-0252}
+  \uses{def:pet-ch6-parallel-field, thm:pet-ch6-parallel-field-chart-local}
   \leanok
-  \uses{def:pet-ch6-parallel-field,thm:pet-ch6-parallel-field-chart-local}
+  \dcref{ch6:6.1.3a}
   If $t_0\in I$ and $v\in T_{c(t_0)}M$, there is a unique parallel field $V(t)$
   defined on all of $I$ with $V(t_0)=v$.
 
@@ -231,10 +235,11 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[chart-local parallel fields]
   \label{thm:pet-ch6-parallel-field-chart-local}
-  \dcref{ch6:6.1.3b}
   \lean{PetersenLib.parallelField_existence_uniqueness}
-  \leanok
+  \source{petersen:page-0252}
   \uses{def:pet-ch6-parallel-field}
+  \leanok
+  \dcref{ch6:6.1.3b}
   Let $c$ be a curve whose restriction to $(a,b)$ is differentiable in a chart
   around $\alpha$ and stays in that chart's source, with the associated
   Christoffel contraction continuous and bounded on $[a,b]$. Then for $t_0\in(a,b)$
@@ -251,8 +256,9 @@ nonpositive and positive sectional curvature.
 \begin{definition}[Jacobi field]
   \label{def:pet-ch6-jacobi-field}
   \lean{PetersenLib.IsJacobiFieldAlong,PetersenLib.jacobiEquation}
-  \leanok
+  \source{petersen:page-0253,petersen:page-0254}
   \uses{def:pet-ch6-vector-field-along-curve, lem:pet-ch6-third-partial-commutator}
+  \leanok
   Let $\bar c(s,t)$ be a \emph{geodesic variation} of a geodesic $c(t)=\bar
   c(0,t)$, i.e.\ $t\mapsto\bar c(s,t)$ is a geodesic for every $s$. By
   \cref{lem:pet-ch6-third-partial-commutator} applied with $u=t$ (using that
@@ -302,6 +308,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[Jacobi fields and $D\exp_p$]
   \label{rem:pet-ch6-jacobi-dexp-relation}
   \lean{PetersenLib.jacobiField_dexp_relation}
+  \source{petersen:page-0254,petersen:page-0255}
   \uses{def:pet-ch6-jacobi-field}
   \leanok
   For the geodesic variation $\bar c(s,t)=\exp_p(t(\dot c(0)+sJ(0)))$ of
@@ -334,8 +341,9 @@ nonpositive and positive sectional curvature.
 \begin{remark}[Jacobi fields and the Hessian of $r$]
   \label{rem:pet-ch6-jacobi-hessian-r}
   \lean{PetersenLib.jacobiField_hess_r}
-  \leanok
+  \source{petersen:page-0255}
   \uses{def:pet-ch6-jacobi-field}
+  \leanok
   Let $c(t)$ be a unit speed geodesic with $c(0)=p$ and $J$ a Jacobi field
   along $c$ with $J(0)=0$; write $r(x)=|xp|$. As long as $tc'(0)$ lies in the
   interior of the domain on which $r$ is smooth (so that $\dot c(t)=\nabla
@@ -352,7 +360,7 @@ nonpositive and positive sectional curvature.
   $\nabla_{J}\nabla r$ into $\nabla_{\nabla r}J=\dot J$, and carries Petersen's
   radial hypothesis $\dot c(t)=\nabla r|_{c(t)}$ explicitly. The equation
   $\dot J=\nabla_{\dot c}J$ is the reusable along-curve $\leftrightarrow$ global
-  Levi-Civita bridge \lean{PetersenLib.derivAlongCurve_eq_leviCivita_cov}, which
+  Levi-Civita bridge , which
   identifies $\dot J(t)$ (the moving-foot covariant derivative
   \cref{def:pet-ch6-vector-field-along-curve}) with $\nabla_{\dot c(t)}J$ for a
   globally smooth field $J$; the first equality is the Ch.~3
@@ -364,8 +372,8 @@ nonpositive and positive sectional curvature.
 \begin{lemma}[the second variation integrand]
   \label{lem:pet-ch6-second-variation-integrand}
   \lean{PetersenLib.hasDerivAt_chartPairing_transversalAccel_of_geodesic_curvatureTensorAt,PetersenLib.hasDerivAt_chartPairing_transversalAccel_of_geodesic,PetersenLib.covariantDerivCoord_mixedPartial_fst_eq_sub_chartCurvature,PetersenLib.hasDerivAt_chartPairing_slice_ts,PetersenLib.surfaceCovariantDerivS_fderivSnd_eq_surfaceCovariantDerivT_fderivFst}
-  \leanok
   \uses{def:pet-ch6-vector-field-along-curve}
+  \leanok
   Let $\bar c(s,t)$ be a smooth variation whose base curve $t\mapsto\bar c(0,t)$ is
   a geodesic, and write $V=\partial c/\partial s$ and $T=\partial c/\partial t$.
   Then at $s=0$,
@@ -384,8 +392,9 @@ nonpositive and positive sectional curvature.
 \begin{lemma}[the coordinate curvature in one chart, at every point of it]
   \label{lem:pet-ch6-offdiagonal-curvature-bridge}
   \lean{PetersenLib.curvatureTensorAt_chartBasis_of_mem,PetersenLib.curvatureTensor_coordinates_of_mem,PetersenLib.chartCurvatureContraction2_eq_neg_curvatureTensorAt_of_mem,PetersenLib.chartCurvature_eq_curvatureTensorAt_of_mem,PetersenLib.chartCurvature_coordChange}
-  \leanok
+  \source{petersen:page-0107}
   \uses{prop:pet-ch3-curvature-coordinate-formula}
+  \leanok
   Fix a chart with domain $U$ and coordinate frame $\partial_1,\dots,\partial_n$.
   For \emph{every} $q\in U$ — not merely for one distinguished point of $U$ — the
   curvature tensor of the Levi-Civita connection satisfies
@@ -412,10 +421,11 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Synge's second variation formula]
   \label{thm:pet-ch6-synge-second-variation}
-  \dcref{ch6:6.1.4}
-  \leanok
   \lean{PetersenLib.secondVariationEnergy,PetersenLib.secondVariationEnergy_deriv,PetersenLib.intervalIntegrable_syngeIntegrand_window,PetersenLib.syngeIntegrand_eq_chartCurvature,PetersenLib.hasDerivAt_deriv_windowEnergy,PetersenLib.hasDerivAt_deriv_windowEnergy_chart_curvatureTensorAt,PetersenLib.derivAlongCurve_variationField_eq_transfer,PetersenLib.energyFunctional_eventuallyEq_windowEnergy_chart,PetersenLib.secondVariationEnergy_chart_curvatureTensorAt,PetersenLib.secondVariationEnergy_chart,PetersenLib.hasDerivAt_chartPairing_transversalAccel_of_geodesic_curvatureTensorAt_of_mem,PetersenLib.iteratedDeriv_two_windowEnergy_chart,PetersenLib.hasDerivAt_deriv_windowEnergy_chart,PetersenLib.hasDerivAt_integral_chartPairing_ss,PetersenLib.hasDerivAt_chartPairing_slice_ss,PetersenLib.hasDerivAt_windowEnergy_chart_preByParts_shift}
-  \uses{def:pet-ch6-vector-field-along-curve,lem:pet-ch6-offdiagonal-curvature-bridge}
+  \source{petersen:page-0255}
+  \uses{def:pet-ch6-vector-field-along-curve, lem:pet-ch6-offdiagonal-curvature-bridge}
+  \leanok
+  \dcref{ch6:6.1.4}
   If $\bar c:(-\varepsilon,\varepsilon)\times[a,b]\to M$ is a smooth variation
   of a geodesic $c(t)=\bar c(0,t)$, then
   \[
@@ -435,9 +445,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[special cases of the second variation formula]
   \label{rem:pet-ch6-second-variation-special-cases}
-  \leanok
   \lean{PetersenLib.secondVariationEnergy_properVariation,PetersenLib.secondVariationEnergy_parallelField,PetersenLib.secondVariationEnergy_parallelField_geodesicTransversals,PetersenLib.curveAcceleration_const}
-  \uses{thm:pet-ch6-synge-second-variation,def:pet-ch6-parallel-field}
+  \source{petersen:page-0256}
+  \uses{thm:pet-ch6-synge-second-variation, def:pet-ch6-parallel-field}
+  \leanok
   For a \emph{proper} variation (fixed endpoints) the boundary term in
   \cref{thm:pet-ch6-synge-second-variation} drops out, and with $V=\frac{\partial
   c}{\partial s}(0,\cdot)$,
@@ -457,8 +468,9 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[nonsingular exponential maps are covering maps]
   \label{lem:pet-ch6-nonsingular-exp-covering}
-  \dcref{ch6:6.2.1}
   \lean{PetersenLib.exp_nonsingular_isCoveringMap}
+  \source{petersen:page-0257}
+  \dcref{ch6:6.2.1}
   If $\exp_p:T_pM\to M$ is nonsingular everywhere (no critical points), then it
   is a covering map.
 \end{lemma}
@@ -469,9 +481,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Hadamard--Cartan diffeomorphism theorem]
   \label{thm:pet-ch6-cartan-hadamard}
-  \dcref{ch6:6.2.2}
   \lean{PetersenLib.cartanHadamard}
-  \uses{lem:pet-ch6-nonsingular-exp-covering,def:pet-ch6-sec-bounds}
+  \source{petersen:page-0257}
+  \uses{lem:pet-ch6-nonsingular-exp-covering, def:pet-ch6-sec-bounds}
+  \dcref{ch6:6.2.2}
   If $(M,g)$ is complete, connected, and has $\sec\le0$, then the universal
   cover of $M$ is diffeomorphic to $\mathbb{R}^n$.
 \end{theorem}
@@ -484,6 +497,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[failure for Ricci or scalar curvature bounds]
   \label{rem:pet-ch6-cartan-hadamard-fails-ricci}
   \lean{PetersenLib.cartanHadamard_fails_forRicci}
+  \source{petersen:page-0258}
   \uses{thm:pet-ch6-cartan-hadamard}
   No analogue of \cref{thm:pet-ch6-cartan-hadamard} holds under $\operatorname{Ric}\le0$
   or $\operatorname{scal}\le0$ in place of $\sec\le0$: there exist Ricci-flat metrics on
@@ -493,6 +507,7 @@ nonpositive and positive sectional curvature.
 \begin{definition}[strictly convex function]
   \label{def:pet-ch6-convex-function}
   \lean{PetersenLib.IsConvexOn,PetersenLib.IsStrictlyConvexOn}
+  \source{petersen:page-0259}
   \leanok
   A function on a Riemannian manifold is \emph{(strictly) convex} if its
   restriction to every \emph{nonconstant} geodesic is (strictly) convex as a
@@ -511,8 +526,9 @@ nonpositive and positive sectional curvature.
 \begin{remark}[$\operatorname{Hess}f_0\succ0$ in nonpositive curvature]
   \label{rem:pet-ch6-hessian-f0-positive-definite}
   \lean{PetersenLib.hess_f0_posDef_nonpositiveCurvature}
+  \source{petersen:page-0259}
+  \uses{rem:pet-ch6-jacobi-hessian-r, def:pet-ch6-convex-function, thm:pet-ch6-cartan-hadamard}
   \leanok
-  \uses{rem:pet-ch6-jacobi-hessian-r,def:pet-ch6-convex-function,thm:pet-ch6-cartan-hadamard}
   Let $(M,g)$ be complete, simply connected, and of nonpositive curvature, so
   by \cref{thm:pet-ch6-cartan-hadamard} the distance $r(x)=|xp|$ is smooth on
   $M-\{p\}$ and $f_0(x)=\tfrac12r(x)^2$ is smooth everywhere, with
@@ -558,8 +574,9 @@ nonpositive and positive sectional curvature.
 \begin{remark}[maxima of convex functions and unique minima]
   \label{rem:pet-ch6-max-of-convex-functions}
   \lean{PetersenLib.max_isConvex,PetersenLib.strictlyConvex_uniqueMinimum}
+  \source{petersen:page-0259}
+  \uses{def:pet-ch6-convex-function, thm:pet-ch5-hopf-rinow}
   \leanok
-  \uses{def:pet-ch6-convex-function,thm:pet-ch5-hopf-rinow}
   The maximum of finitely many convex functions is convex (this reduces to
   the one-dimensional statement by restricting to geodesics). Any proper,
   nonnegative, strictly convex function $f$ on a complete manifold has a
@@ -588,7 +605,8 @@ nonpositive and positive sectional curvature.
 \begin{definition}[$L^\infty$ center of mass]
   \label{def:pet-ch6-linfty-center-of-mass}
   \lean{PetersenLib.centerOfMassLinfty}
-  \uses{rem:pet-ch6-hessian-f0-positive-definite,rem:pet-ch6-max-of-convex-functions}
+  \source{petersen:page-0259,petersen:page-0260}
+  \uses{rem:pet-ch6-hessian-f0-positive-definite, rem:pet-ch6-max-of-convex-functions}
   Let $(M,g)$ be complete, simply connected, of nonpositive curvature, and
   $p_1,\dots,p_k\in M$. By
   \cref{rem:pet-ch6-hessian-f0-positive-definite} and
@@ -602,9 +620,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Cartan's center-of-mass theorem]
   \label{thm:pet-ch6-cartan-fixed-point}
-  \dcref{ch6:6.2.3}
   \lean{PetersenLib.cartan_finiteOrderIsometry_fixedPoint}
+  \source{petersen:page-0260}
   \uses{def:pet-ch6-linfty-center-of-mass}
+  \dcref{ch6:6.2.3}
   If $(M,g)$ is a complete simply connected Riemannian manifold of nonpositive
   curvature, then any isometry $F:M\to M$ of finite order has a fixed point.
 \end{theorem}
@@ -615,9 +634,10 @@ nonpositive and positive sectional curvature.
 
 \begin{corollary}[torsion-freeness of the fundamental group]
   \label{cor:pet-ch6-torsion-free-fundamental-group}
-  \dcref{ch6:6.2.4}
   \lean{PetersenLib.fundamentalGroup_torsionFree_nonpositiveCurvature}
+  \source{petersen:page-0261}
   \uses{thm:pet-ch6-cartan-fixed-point}
+  \dcref{ch6:6.2.4}
   If $(M,g)$ is a complete Riemannian manifold of nonpositive curvature, then
   $\pi_1(M)$ is torsion free: every nontrivial element has infinite order.
 \end{corollary}
@@ -629,9 +649,10 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[squared-distance Hessian lower bound]
   \label{lem:pet-ch6-hessian-lower-bound}
-  \dcref{ch6:6.2.5}
   \lean{PetersenLib.hess_f0_ge_metric_nonpositiveCurvature}
+  \source{petersen:page-0261}
   \uses{rem:pet-ch6-hessian-f0-positive-definite}
+  \dcref{ch6:6.2.5}
   If $(M,g)$ has nonpositive curvature, then any modified distance function
   $f_0=\tfrac12r^2$ satisfies $\operatorname{Hess}f_0\ge g$.
 \end{lemma}
@@ -644,6 +665,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[triangle and quadrilateral comparison]
   \label{rem:pet-ch6-triangle-comparison}
   \lean{PetersenLib.triangleComparison_nonpositiveCurvature}
+  \source{petersen:page-0262}
   \uses{lem:pet-ch6-hessian-lower-bound}
   Integrating $\frac{d}{dt}(f_{0,p}\circ c)\ge1$ along a unit speed geodesic
   $c$ (using \cref{lem:pet-ch6-hessian-lower-bound}) yields, for a triangle in
@@ -659,8 +681,8 @@ nonpositive and positive sectional curvature.
 
 \begin{definition}[axis, period, displacement function]
   \label{def:pet-ch6-axis-displacement}
-  \lean{PetersenLib.IsAxis,PetersenLib.IsAxisPeriod,PetersenLib.axisPeriod,
-    PetersenLib.displacementFunction}
+  \lean{PetersenLib.IsAxis,PetersenLib.IsAxisPeriod,PetersenLib.axisPeriod, PetersenLib.displacementFunction}
+  \source{petersen:page-0263}
   \leanok
   For an isometry $F:M\to M$, an \emph{axis} for $F$ is a geodesic
   $c:\mathbb{R}\to M$ such that $F\circ c$ is a reparametrization of $c$; since
@@ -685,9 +707,10 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[axis from positive minimal displacement]
   \label{lem:pet-ch6-axis-existence}
-  \dcref{ch6:6.2.7}
   \lean{PetersenLib.axis_of_positiveMinimalDisplacement}
+  \source{petersen:page-0263}
   \uses{def:pet-ch6-axis-displacement}
+  \dcref{ch6:6.2.7}
   If $F:M\to M$ is an isometry of a complete Riemannian manifold and
   $\delta_F$ has a positive minimum, then $F$ has an axis.
 \end{lemma}
@@ -699,6 +722,7 @@ nonpositive and positive sectional curvature.
 \begin{definition}[deck transformation]
   \label{def:pet-ch6-deck-transformation}
   \lean{PetersenLib.DeckTransformation,PetersenLib.DeckTransformation.isRiemannianIsometry}
+  \source{petersen:page-0264}
   \leanok
   For the universal cover $\pi:\tilde M\to M$, a \emph{deck transformation} is
   a map $F:\tilde M\to\tilde M$ with $\pi\circ F=\pi$; it is determined by the
@@ -724,9 +748,10 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[minimal displacement of deck transformations]
   \label{lem:pet-ch6-deck-transformation-dilation}
-  \dcref{ch6:6.2.8}
   \lean{PetersenLib.deckTransformation_minimalDisplacement_closedGeodesic}
-  \uses{def:pet-ch6-deck-transformation,def:pet-ch6-axis-displacement,lem:pet-ch6-axis-existence}
+  \source{petersen:page-0264}
+  \uses{def:pet-ch6-deck-transformation, def:pet-ch6-axis-displacement, lem:pet-ch6-axis-existence}
+  \dcref{ch6:6.2.8}
   If $F:\tilde M\to\tilde M$ is a nontrivial deck transformation on the
   universal cover over a compact base $M$, then $\delta_F$ has a positive
   minimum; the axis through the minimizing point projects to a closed
@@ -740,9 +765,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Preissmann's theorem]
   \label{thm:pet-ch6-preissmann}
-  \dcref{ch6:6.2.6}
   \lean{PetersenLib.preissmannTheorem}
-  \uses{lem:pet-ch6-deck-transformation-dilation,def:pet-ch6-axis-displacement,rem:pet-ch6-triangle-comparison}
+  \source{petersen:page-0263}
+  \uses{lem:pet-ch6-deck-transformation-dilation, def:pet-ch6-axis-displacement, rem:pet-ch6-triangle-comparison}
+  \dcref{ch6:6.2.6}
   If $(M,g)$ is a compact manifold of negative curvature, then every Abelian
   subgroup of $\pi_1(M)$ is cyclic. In particular, no compact product manifold
   $M\times N$ admits a metric of negative curvature.
@@ -757,9 +783,8 @@ nonpositive and positive sectional curvature.
 
 \begin{definition}[sectional curvature bounds]
   \label{def:pet-ch6-sec-bounds}
+  \lean{PetersenLib.HasSecBoundedBelow,PetersenLib.HasSecBoundedAbove, PetersenLib.HasSecIn,PetersenLib.HasSecPos,PetersenLib.HasSecNeg}
   \uses{def:pet-ch3-sectional-curvature}
-  \lean{PetersenLib.HasSecBoundedBelow,PetersenLib.HasSecBoundedAbove,
-    PetersenLib.HasSecIn,PetersenLib.HasSecPos,PetersenLib.HasSecNeg}
   \leanok
   Let $(M,g)$ be a Riemannian manifold with Levi-Civita connection $D$ and let
   $k,K\in\mathbb{R}$. Say $(M,g)$ has $\sec\ge k$ if $\sec(v,w)\ge k$ for every
@@ -800,8 +825,8 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[Bonnet--Synge index inequality, scalar core]
   \label{lem:pet-ch6-bonnet-synge-index-core}
-  \lean{PetersenLib.bonnetSynge_index_core,PetersenLib.integral_sin_sq_window,
-    PetersenLib.integral_cos_sq_window,PetersenLib.sq_pi_div_lt_of_pi_div_sqrt_lt}
+  \lean{PetersenLib.bonnetSynge_index_core,PetersenLib.integral_sin_sq_window, PetersenLib.integral_cos_sq_window,PetersenLib.sq_pi_div_lt_of_pi_div_sqrt_lt}
+  \source{petersen:page-0266,petersen:page-0267}
   \uses{def:pet-ch6-sec-bounds}
   \leanok
   Fix $l>0$, $k>0$ with $l>\pi/\sqrt k$, and let $\kappa:[0,l]\to\mathbb R$ satisfy
@@ -823,12 +848,12 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[Bonnet--Synge index inequality]
   \label{lem:pet-ch6-bonnet-synge-diameter}
-  \dcref{ch6:6.3.1}
-  \lean{PetersenLib.bonnetSynge_longGeodesicsNotMinimizing,
-    PetersenLib.bonnetSynge_variation_integrand}
-  \uses{rem:pet-ch6-second-variation-special-cases,def:pet-ch6-sec-bounds,%
+  \lean{PetersenLib.bonnetSynge_longGeodesicsNotMinimizing, PetersenLib.bonnetSynge_variation_integrand}
+  \source{petersen:page-0266}
+  \uses{rem:pet-ch6-second-variation-special-cases, def:pet-ch6-sec-bounds, %
     lem:pet-ch6-bonnet-synge-index-core}
   \leanok
+  \dcref{ch6:6.3.1}
   If $(M,g)$ satisfies $\sec\ge k>0$, then geodesics of length $>\pi/\sqrt k$
   cannot be locally minimizing.
 
@@ -855,9 +880,11 @@ nonpositive and positive sectional curvature.
 
 \begin{corollary}[Hopf--Rinow and Myers compactness criterion]
   \label{cor:pet-ch6-hopf-rinow-myers-diameter}
+  \source{petersen:page-0267}
+  \uses{lem:pet-ch6-bonnet-synge-diameter, def:pet-ch6-sec-bounds}
+  \notready
   \dcref{ch6:6.3.2}
   \notready
-  \uses{lem:pet-ch6-bonnet-synge-diameter,def:pet-ch6-sec-bounds}
   If $(M,g)$ is complete and satisfies $\sec\ge k>0$, then $M$ is compact and
   $\operatorname{diam}(M,g)\le\pi/\sqrt k=\operatorname{diam}S^n_k$; in particular $\pi_1(M)$ is
   finite.
@@ -871,8 +898,9 @@ nonpositive and positive sectional curvature.
 \begin{corollary}[Bonnet--Myers diameter and compactness]
   \label{cor:pet-ch6-hopf-rinow-myers-geometric}
   \lean{PetersenLib.hopfRinowMyers_diameterBound_of_secLowerBound}
+  \source{petersen:page-0267}
+  \uses{def:pet-ch6-sec-bounds, thm:pet-ch6-myers-ricci-geometric}
   \leanok
-  \uses{def:pet-ch6-sec-bounds,thm:pet-ch6-myers-ricci-geometric}
   Let $(M^n,g)$ be complete and connected, with $n\ge2$. If
   $\sec\ge k>0$, then $M$ is compact and
   $\operatorname{diam}(M,g)\le\pi/\sqrt k$.
@@ -885,9 +913,9 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[Myers' second-variation core]
   \label{lem:pet-ch6-myers-index}
-  \lean{PetersenLib.myersRicci_secondVariation_neg,PetersenLib.bonnetSynge_secondVariation_eq,
-    PetersenLib.myers_index_core}
-  \uses{lem:pet-ch6-bonnet-synge-index-core,rem:pet-ch6-second-variation-special-cases,def:pet-ch6-sec-bounds}
+  \lean{PetersenLib.myersRicci_secondVariation_neg,PetersenLib.bonnetSynge_secondVariation_eq, PetersenLib.myers_index_core}
+  \source{petersen:page-0267,petersen:page-0268}
+  \uses{lem:pet-ch6-bonnet-synge-index-core, rem:pet-ch6-second-variation-special-cases, def:pet-ch6-sec-bounds}
   \leanok
   Let $c:[0,l]\to M$ be a unit-speed geodesic with $l>\pi/\sqrt k$, $k>0$, and let
   $E_1=\dot c,E_2,\dots,E_n$ be a $g$-orthonormal parallel frame along $c$ with
@@ -919,8 +947,9 @@ nonpositive and positive sectional curvature.
 \begin{theorem}[Myers diameter and compactness]
   \label{thm:pet-ch6-myers-ricci-geometric}
   \lean{PetersenLib.myersRicciDiameterBound_of_ricciLowerBound}
+  \source{petersen:page-0267}
+  \uses{lem:pet-ch6-myers-index, def:pet-ch6-ricci-lower-bound}
   \leanok
-  \uses{lem:pet-ch6-myers-index,def:pet-ch6-ricci-lower-bound}
   Let $(M^n,g)$ be complete and connected, with $n\ge2$. If
   $\operatorname{Ric}\ge(n-1)k$ for some $k>0$, then $M$ is compact and
   $\operatorname{diam}(M,g)\le\pi/\sqrt k$.
@@ -934,8 +963,8 @@ nonpositive and positive sectional curvature.
 \begin{theorem}[Myers on an explicit simply connected cover]
   \label{thm:pet-ch6-myers-explicit-cover}
   \lean{PetersenLib.myersRicci_of_explicit_simplyConnectedCover}
-  \leanok
   \uses{thm:pet-ch6-myers-ricci-geometric}
+  \leanok
   Let $\widetilde M^n$ be a complete, connected, simply connected Riemannian
   manifold with $n\ge2$ and $\operatorname{Ric}_{\widetilde M}\ge(n-1)k$ for
   some $k>0$. If $p:\widetilde M\to M$ is a surjective covering map onto a
@@ -951,10 +980,11 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Myers' fundamental-group theorem]
   \label{thm:pet-ch6-myers-ricci-diameter}
+  \source{petersen:page-0267}
+  \uses{lem:pet-ch6-myers-index, cor:pet-ch6-hopf-rinow-myers-diameter, def:pet-ch6-ricci-lower-bound}
+  \notready
   \dcref{ch6:6.3.3}
   \notready
-  \uses{lem:pet-ch6-myers-index,cor:pet-ch6-hopf-rinow-myers-diameter,
-    def:pet-ch6-ricci-lower-bound}
   If $(M,g)$ is a complete Riemannian manifold with $\operatorname{Ric}\ge(n-1)k>0$,
   then $\operatorname{diam}(M,g)\le\pi/\sqrt k$, and $(M,g)$ has finite fundamental
   group.
@@ -967,8 +997,9 @@ nonpositive and positive sectional curvature.
 
 \begin{example}[the punctured sphere]
   \label{ex:pet-ch6-punctured-sphere-infinite-pi1}
-  \dcref{ch6:6.3.4}
   \lean{PetersenLib.puncturedSphereExample}
+  \source{petersen:page-0268}
+  \dcref{ch6:6.3.4}
   The incomplete manifold $S^2-\{\pm p\}$ has constant curvature $1$ and
   infinite fundamental group; its universal cover also has diameter $\pi$.
   This shows completeness cannot be dropped in
@@ -978,9 +1009,10 @@ nonpositive and positive sectional curvature.
 
 \begin{example}[a doubly warped product with positive Ricci curvature]
   \label{ex:pet-ch6-doubly-warped-ricci-positive}
-  \dcref{ch6:6.3.5}
   \lean{PetersenLib.dwpRicciPositiveOnS1TimesR3}
+  \source{petersen:page-0268}
   \uses{thm:pet-ch6-myers-ricci-diameter}
+  \dcref{ch6:6.3.5}
   $S^1\times\mathbb{R}^3$ admits a complete doubly warped product metric
   $dr^2+\rho^2(r)d\theta^2+\phi^2(r)ds_r^2$ with $\operatorname{Ric}>0$ everywhere,
   showing incompleteness is not needed to violate the topological conclusions
@@ -998,6 +1030,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[closed parallel fields around closed geodesics]
   \label{rem:pet-ch6-closed-parallel-field-construction}
   \lean{PetersenLib.closedParallelFieldAroundClosedGeodesic}
+  \source{petersen:page-0268,petersen:page-0269}
   \uses{def:pet-ch6-parallel-field}
   Let $c:[0,l]\to M$ be a closed unit speed geodesic, $p=c(0)=c(l)$, and
   $P:T_pM\to T_pM$ parallel translation once around $c$, a linear isometry
@@ -1016,9 +1049,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Synge's orientability theorem]
   \label{thm:pet-ch6-synge-theorem}
-  \dcref{ch6:6.3.6}
   \lean{PetersenLib.syngeTheorem}
-  \uses{lem:pet-ch6-deck-transformation-dilation,rem:pet-ch6-closed-parallel-field-construction,rem:pet-ch6-second-variation-special-cases,def:pet-ch6-sec-bounds}
+  \source{petersen:page-0269}
+  \uses{lem:pet-ch6-deck-transformation-dilation, rem:pet-ch6-closed-parallel-field-construction, rem:pet-ch6-second-variation-special-cases, def:pet-ch6-sec-bounds}
+  \dcref{ch6:6.3.6}
   Let $M$ be a compact manifold with $\sec>0$. (1) If $M$ is even-dimensional
   and orientable, $M$ is simply connected. (2) If $M$ is odd-dimensional,
   $M$ is orientable.
@@ -1048,6 +1082,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[the Hopf problem]
   \label{rem:pet-ch6-hopf-problem}
   \lean{PetersenLib.hopfProblemRemark}
+  \source{petersen:page-0269}
   \uses{thm:pet-ch6-synge-theorem}
   \Cref{thm:pet-ch6-synge-theorem} shows $\mathbb{RP}^2\times\mathbb{RP}^2$, which has
   positive Ricci curvature, admits no metric of positive sectional curvature
@@ -1062,9 +1097,10 @@ nonpositive and positive sectional curvature.
 
 \begin{proposition}[Riccati comparison principle]
   \label{prop:pet-ch6-riccati-comparison-principle}
-  \dcref{ch6:6.4.1a}
   \lean{PetersenLib.riccatiComparisonPrinciple}
+  \source{petersen:page-0270}
   \leanok
+  \dcref{ch6:6.4.1a}
   Let $\rho_1,\rho_2:(0,b)\to\mathbb{R}$ be smooth with
   \[
     \dot\rho_1+\rho_1^2\le\dot\rho_2+\rho_2^2 ,
@@ -1085,10 +1121,11 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[correction to the Riccati conclusion]
   \label{rem:pet-ch6-riccati-principle-correction}
-  \dcref{ch6:6.4.1b}
   \lean{PetersenLib.riccatiComparisonPrinciple_statement_counterexample}
-  \leanok
+  \source{petersen:page-0270}
   \uses{prop:pet-ch6-riccati-comparison-principle}
+  \leanok
+  \dcref{ch6:6.4.1b}
   The stronger endpoint assertion
   \[
     \rho_2-\rho_1\ \ge\ \limsup_{t\to0}\big(\rho_2(t)-\rho_1(t)\big),
@@ -1117,8 +1154,8 @@ nonpositive and positive sectional curvature.
 \begin{lemma}[Riccati comparison — corrected conclusion]
   \label{lem:pet-ch6-riccati-comparison-le}
   \lean{PetersenLib.riccatiComparisonPrinciple_le_of_liminf}
-  \leanok
   \uses{prop:pet-ch6-riccati-comparison-principle}
+  \leanok
   In the setting of \cref{prop:pet-ch6-riccati-comparison-principle}, suppose in
   addition that
   \[
@@ -1136,8 +1173,9 @@ nonpositive and positive sectional curvature.
 \begin{remark}[a sufficient initial condition for Riccati comparison]
   \label{rem:pet-ch6-riccati-liminf-hypothesis}
   \lean{PetersenLib.riccatiComparisonPrinciple_le_of_bounded_of_exp_tendsto_zero}
-  \leanok
+  \source{petersen:page-0270}
   \uses{lem:pet-ch6-riccati-comparison-le}
+  \leanok
   If $\rho_2-\rho_1$ is bounded near $0^+$ and $e^{F}\to0$ as $t\to0^+$, then the
   side condition of \cref{lem:pet-ch6-riccati-comparison-le} holds, and hence
   $\rho_1\le\rho_2$ on $(0,b)$. The second hypothesis amounts to
@@ -1164,11 +1202,11 @@ nonpositive and positive sectional curvature.
 
 \begin{corollary}[Riccati comparison estimate]
   \label{cor:pet-ch6-riccati-comparison-estimate}
-  \dcref{ch6:6.4.2a}
   \lean{PetersenLib.riccatiComparisonEstimate}
+  \source{petersen:page-0270,petersen:page-0271}
+  \uses{prop:pet-ch6-riccati-comparison-principle, lem:pet-ch6-riccati-comparison-le, rem:pet-ch6-riccati-liminf-hypothesis, rem:pet-ch6-riccati-estimate-strictness}
   \leanok
-  \uses{prop:pet-ch6-riccati-comparison-principle,lem:pet-ch6-riccati-comparison-le,
-    rem:pet-ch6-riccati-liminf-hypothesis,rem:pet-ch6-riccati-estimate-strictness}
+  \dcref{ch6:6.4.2a}
   Let $\rho:(0,b)\to\mathbb{R}$ be smooth with $\rho(t)=\tfrac1t+O(t)$ and $k\in\mathbb{R}$.
   (1) If $\dot\rho+\rho^2\le-k$, then $\rho(t)\le\operatorname{sn}_k'(t)/\operatorname{sn}_k(t)$, and
   moreover $b\le\pi/\sqrt k$ when $k>0$. (2) If $-k\le\dot\rho+\rho^2$, then
@@ -1181,9 +1219,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[the non-strict Riccati endpoint bound]
   \label{rem:pet-ch6-riccati-estimate-strictness}
-  \dcref{ch6:6.4.2b}
   \lean{PetersenLib.riccatiComparisonEstimate_lt_isFalse}
+  \source{petersen:page-0271}
   \leanok
+  \dcref{ch6:6.4.2b}
   The bound $b\le\pi/\sqrt k$ in \cref{cor:pet-ch6-riccati-comparison-estimate}(1)
   cannot be strengthened to $b<\pi/\sqrt k$. Take $k=1$ and
   $\rho=\operatorname{sn}_1'/\operatorname{sn}_1=\cot$ on $b=\pi=\pi/\sqrt k$. Then $\rho$ is
@@ -1205,9 +1244,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Rauch comparison theorem]
   \label{thm:pet-ch6-rauch-comparison}
-  \dcref{ch6:6.4.3}
   \lean{PetersenLib.rauchComparisonHessian}
-  \uses{cor:pet-ch6-riccati-comparison-estimate,rem:pet-ch6-jacobi-hessian-r,def:pet-ch6-sec-bounds}
+  \source{petersen:page-0271}
+  \uses{cor:pet-ch6-riccati-comparison-estimate, rem:pet-ch6-jacobi-hessian-r, def:pet-ch6-sec-bounds}
+  \dcref{ch6:6.4.3}
   Assume $(M,g)$ satisfies $k\le\sec\le K$, and write $g=dr^2+g_r$ for the
   metric in exponential polar coordinates around $p$ on the star-shaped
   region $T_pM-\{0\}$. Then
@@ -1233,9 +1273,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[index-form proof of Rauch comparison]
   \label{rem:pet-ch6-index-form-remark}
-  \dcref{ch6:6.4.4}
   \lean{PetersenLib.rauchComparisonViaIndexForm}
+  \source{petersen:page-0272}
   \uses{thm:pet-ch6-rauch-comparison}
+  \dcref{ch6:6.4.4}
   A more traditional proof of the lower-bound half of
   \cref{thm:pet-ch6-rauch-comparison} uses the index form (exercise 6.7.25),
   and can also be adapted to the upper-bound case.
@@ -1243,10 +1284,10 @@ nonpositive and positive sectional curvature.
 
 \begin{example}[conjugate points in $S^n_K$]
   \label{ex:pet-ch6-conjugate-point-space-form}
-  \dcref{ch6:6.4.5}
-  \lean{PetersenLib.conjugatePointSpaceFormExample,
-    PetersenLib.isLeast_positive_zero_snFunction}
+  \lean{PetersenLib.conjugatePointSpaceFormExample, PetersenLib.isLeast_positive_zero_snFunction}
+  \source{petersen:page-0273}
   \leanok
+  \dcref{ch6:6.4.5}
   On $S^n_K$, $K>0$, polar coordinates around $p$ give
   $dr^2+\operatorname{sn}_K^2(r)\,d\sigma_{n-1}^2$; at distance $\pi/\sqrt K$ from $p$,
   every direction hits a conjugate point.
@@ -1263,9 +1304,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[conjugate-radius comparison]
   \label{thm:pet-ch6-conjugate-radius-bound}
-  \dcref{ch6:6.4.6}
   \lean{PetersenLib.conjugateRadiusLowerBound}
-  \uses{thm:pet-ch6-rauch-comparison,ex:pet-ch6-conjugate-point-space-form}
+  \source{petersen:page-0273}
+  \uses{thm:pet-ch6-rauch-comparison, ex:pet-ch6-conjugate-point-space-form}
+  \dcref{ch6:6.4.6}
   If $(M,g)$ has $\sec\le K$, $K>0$, then
   $\exp_p:B(0,\pi/\sqrt K)\to M$ has no critical points.
 \end{theorem}
@@ -1278,6 +1320,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[injectivity radius in nonpositive curvature]
   \label{rem:pet-ch6-injectivity-radius-nonpositive}
   \lean{PetersenLib.injectivityRadius_nonpositiveCurvature}
+  \source{petersen:page-0274}
   \uses{thm:pet-ch6-cartan-hadamard}
   If $\sec\le0$ there are no conjugate points, so
   $\operatorname{inj}(p)=\tfrac12\cdot(\text{length of shortest geodesic loop at }p)$.
@@ -1292,9 +1335,10 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[Klingenberg's injectivity-radius lemma]
   \label{lem:pet-ch6-klingenberg-injectivity-estimate}
-  \dcref{ch6:6.4.7}
   \lean{PetersenLib.klingenbergInjectivityEstimate}
-  \uses{thm:pet-ch6-conjugate-radius-bound,rem:pet-ch6-injectivity-radius-nonpositive}
+  \source{petersen:page-0274}
+  \uses{thm:pet-ch6-conjugate-radius-bound, rem:pet-ch6-injectivity-radius-nonpositive}
+  \dcref{ch6:6.4.7}
   Let $(M,g)$ be compact with $\sec\le K$, $K>0$. Then
   \[
     \operatorname{inj}(p)\ge\min\Big\{\frac{\pi}{\sqrt K},\ \tfrac12\cdot
@@ -1306,9 +1350,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[convexity-radius criterion]
   \label{thm:pet-ch6-convexity-radius-criterion}
-  \dcref{ch6:6.4.8}
   \lean{PetersenLib.convexityRadiusCriterion}
+  \source{petersen:page-0274}
   \uses{thm:pet-ch6-rauch-comparison}
+  \dcref{ch6:6.4.8}
   Suppose $R>0$ satisfies (1) $R\le\tfrac12\operatorname{inj}(x)$ for all $x\in B(p,R)$,
   and (2) $R\le\tfrac12\cdot\pi/\sqrt K$, where
   $K=\sup\{\sec(\pi)\mid\pi\subset T_xM,\,x\in B(p,R)\}$. Then $r(x)=|xp|$ is
@@ -1324,8 +1369,9 @@ nonpositive and positive sectional curvature.
 \begin{definition}[convexity radius]
   \label{def:pet-ch6-convexity-radius}
   \lean{PetersenLib.convexityRadius}
+  \source{petersen:page-0275}
+  \uses{def:pet-ch6-convex-function, def:pet-ch5-segment, def:pet-ch5-metric-balls}
   \leanok
-  \uses{def:pet-ch6-convex-function,def:pet-ch5-segment,def:pet-ch5-metric-balls}
   The \emph{convexity radius} at $p$, $\operatorname{conv.rad}(p)$, is the largest
   $R>0$ such that $r(x)=|xp|$ is convex on $B(p,R)$ and any two points in $B(p,R)$
   are joined by a unique segment lying in $B(p,R)$. Globally
@@ -1353,8 +1399,10 @@ nonpositive and positive sectional curvature.
 
 \begin{corollary}[convexity-radius lower bound]
   \label{cor:pet-ch6-convexity-radius-bound}
+  \source{petersen:page-0275}
+  \uses{def:pet-ch6-convexity-radius, thm:pet-ch6-convexity-radius-criterion, lem:pet-ch6-klingenberg-injectivity-estimate}
   \notready
-  \uses{def:pet-ch6-convexity-radius,thm:pet-ch6-convexity-radius-criterion,lem:pet-ch6-klingenberg-injectivity-estimate}
+  \notready
   By \cref{thm:pet-ch6-convexity-radius-criterion} and
   \cref{lem:pet-ch6-klingenberg-injectivity-estimate},
   $\operatorname{conv.rad}(M,g)\ge\min\{\operatorname{inj}(M,g)/2,\ \pi/(2\sqrt K)\}$ where
@@ -1369,9 +1417,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Klingenberg's even-dimensional injectivity estimate]
   \label{thm:pet-ch6-klingenberg-even-dim-injectivity}
-  \dcref{ch6:6.5.1}
   \lean{PetersenLib.klingenbergEvenDimInjectivity}
-  \uses{lem:pet-ch6-klingenberg-injectivity-estimate,thm:pet-ch6-synge-theorem}
+  \source{petersen:page-0276}
+  \uses{lem:pet-ch6-klingenberg-injectivity-estimate, thm:pet-ch6-synge-theorem}
+  \dcref{ch6:6.5.1}
   If $(M,g)$ is a compact orientable even-dimensional manifold with
   $0<\sec\le1$, then $\operatorname{inj}(M,g)\ge\pi$. If $M$ is not orientable,
   $\operatorname{inj}(M,g)\ge\pi/2$.
@@ -1405,6 +1454,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[odd-dimensional counterexamples]
   \label{rem:pet-ch6-klingenberg-odd-dim-counterexample}
   \lean{PetersenLib.klingenbergOddDimCounterexample}
+  \source{petersen:page-0276,petersen:page-0277}
   \uses{thm:pet-ch6-klingenberg-even-dim-injectivity}
   No analogue of \cref{thm:pet-ch6-klingenberg-even-dim-injectivity} holds in
   odd dimensions: the orientable quotients $S^3/\mathbb{Z}_k$ have a closed
@@ -1420,6 +1470,7 @@ nonpositive and positive sectional curvature.
 \begin{definition}[$l$-connected pair]
   \label{def:pet-ch6-l-connected}
   \lean{PetersenLib.IsLConnected}
+  \source{petersen:page-0277}
   $A\subset X$ is \emph{$l$-connected} if the relative homotopy groups
   $\pi_k(X,A)$ vanish for $k<l$; by Hurewicz's theorem the relative homology
   groups $H_k(X,A)$ then also vanish for $k\le l$, so from the long exact
@@ -1430,6 +1481,7 @@ nonpositive and positive sectional curvature.
 \begin{definition}[index of a critical point]
   \label{def:pet-ch6-critical-point-index}
   \lean{PetersenLib.criticalPointIndex}
+  \source{petersen:page-0277}
   A critical point $p\in M$ of a smooth function $f:M\to\mathbb{R}$ has \emph{index}
   $m$ if $\operatorname{Hess}f$ is negative definite on an $m$-dimensional subspace of
   $T_pM$. If $m\ge1$, $p$ cannot be a local minimum of $f$, since $f$
@@ -1438,9 +1490,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Morse connectivity of sublevel sets]
   \label{thm:pet-ch6-morse-connectivity}
-  \dcref{ch6:6.5.2}
   \lean{PetersenLib.morseTheoreticConnectivity}
-  \uses{def:pet-ch6-l-connected,def:pet-ch6-critical-point-index}
+  \source{petersen:page-0277}
+  \uses{def:pet-ch6-l-connected, def:pet-ch6-critical-point-index}
+  \dcref{ch6:6.5.2}
   Let $f:M\to\mathbb{R}$ be smooth and proper. If $b$ is not a critical value and
   every critical point in $f^{-1}([a,b])$ has index $\ge m$, then
   $f^{-1}((-\infty,a))\subset f^{-1}((-\infty,b))$ is $(m-1)$-connected.
@@ -1453,8 +1506,9 @@ nonpositive and positive sectional curvature.
 \begin{definition}[the path space $\Omega_{A,B}(M)$ and index of a geodesic]
   \label{def:pet-ch6-path-space-AB}
   \lean{PetersenLib.pathSpaceAB,PetersenLib.geodesicIndexAB}
-  \leanok
+  \source{petersen:page-0278}
   \uses{def:pet-ch6-critical-point-index}
+  \leanok
   For $A,B\subset M$, $\Omega_{A,B}(M)=\{c:[0,1]\to M\mid c(0)\in A,\,c(1)\in
   B\}$. When $A,B$ are compact submanifolds, the energy functional
   $E:\Omega_{A,B}(M)\to[0,\infty)$ behaves as a proper smooth function, its
@@ -1469,9 +1523,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[submanifold connectivity from geodesic index]
   \label{thm:pet-ch6-submanifold-connectivity}
-  \dcref{ch6:6.5.3}
   \lean{PetersenLib.submanifoldIndexConnectivity}
-  \uses{def:pet-ch6-path-space-AB,thm:pet-ch6-morse-connectivity}
+  \source{petersen:page-0278}
+  \uses{def:pet-ch6-path-space-AB, thm:pet-ch6-morse-connectivity}
+  \dcref{ch6:6.5.3}
   Let $M$ be a complete Riemannian manifold and $A\subset M$ a compact
   submanifold. If every geodesic in $\Omega_{A,A}(M)$ perpendicular to $A$ at
   both endpoints has index $\ge k$, then $A\subset M$ is $k$-connected.
@@ -1484,9 +1539,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Berger's sphere theorem]
   \label{thm:pet-ch6-berger-sphere-theorem}
-  \dcref{ch6:6.5.4}
   \lean{PetersenLib.bergerSphereTheorem}
-  \uses{thm:pet-ch6-submanifold-connectivity,lem:pet-ch6-bonnet-synge-diameter,def:pet-ch6-l-connected}
+  \source{petersen:page-0279}
+  \uses{thm:pet-ch6-submanifold-connectivity, lem:pet-ch6-bonnet-synge-diameter, def:pet-ch6-l-connected}
+  \dcref{ch6:6.5.4}
   Let $M$ be a closed $n$-manifold with $\sec\ge1$. If $\operatorname{inj}_p>\pi/2$ for
   some $p\in M$, then $M$ is $(n-1)$-connected, hence a homotopy sphere.
 \end{theorem}
@@ -1498,9 +1554,10 @@ nonpositive and positive sectional curvature.
 
 \begin{theorem}[Klingenberg's pinching estimate]
   \label{thm:pet-ch6-klingenberg-pinching-injectivity}
-  \dcref{ch6:6.5.5}
   \lean{PetersenLib.klingenbergPinchingInjectivity}
-  \uses{thm:pet-ch6-klingenberg-even-dim-injectivity,lem:pet-ch6-klingenberg-injectivity-estimate}
+  \source{petersen:page-0279}
+  \uses{thm:pet-ch6-klingenberg-even-dim-injectivity, lem:pet-ch6-klingenberg-injectivity-estimate}
+  \dcref{ch6:6.5.5}
   A compact simply connected Riemannian $n$-manifold $(M,g)$ with
   $1\le\sec<4$ has $\operatorname{inj}>\pi/2$.
 \end{theorem}
@@ -1512,9 +1569,10 @@ nonpositive and positive sectional curvature.
 
 \begin{corollary}[quarter-pinched sphere theorem]
   \label{cor:pet-ch6-rauch-berger-klingenberg-sphere}
-  \dcref{ch6:6.5.6}
   \lean{PetersenLib.rauchBergerKlingenbergSphereTheorem}
-  \uses{thm:pet-ch6-berger-sphere-theorem,thm:pet-ch6-klingenberg-pinching-injectivity}
+  \source{petersen:page-0280}
+  \uses{thm:pet-ch6-berger-sphere-theorem, thm:pet-ch6-klingenberg-pinching-injectivity}
+  \dcref{ch6:6.5.6}
   Let $M$ be a closed simply connected $n$-manifold with $4>\sec\ge1$. Then
   $M$ is $(n-1)$-connected, hence a homotopy sphere.
 \end{corollary}
@@ -1526,9 +1584,10 @@ nonpositive and positive sectional curvature.
 
 \begin{corollary}[Ricci and injectivity imply simple connectivity]
   \label{cor:pet-ch6-ricci-simply-connected}
-  \dcref{ch6:6.5.7}
   \lean{PetersenLib.ricciDiameterInjectivitySimplyConnected}
-  \uses{thm:pet-ch6-submanifold-connectivity,thm:pet-ch6-myers-ricci-diameter}
+  \source{petersen:page-0280}
+  \uses{thm:pet-ch6-submanifold-connectivity, thm:pet-ch6-myers-ricci-diameter}
+  \dcref{ch6:6.5.7}
   If $M$ is a closed $n$-manifold with $\operatorname{Ric}\ge(n-1)$ and $\operatorname{inj}_p>\pi/2$
   for some $p\in M$, then $M$ is simply connected.
 \end{corollary}
@@ -1540,9 +1599,10 @@ nonpositive and positive sectional curvature.
 
 \begin{lemma}[the connectedness principle]
   \label{lem:pet-ch6-wilking-connectedness-principle}
-  \dcref{ch6:6.5.8}
   \lean{PetersenLib.wilkingConnectednessPrinciple}
-  \uses{def:pet-ch6-l-connected,rem:pet-ch6-second-variation-special-cases}
+  \source{petersen:page-0280,petersen:page-0281}
+  \uses{def:pet-ch6-l-connected, rem:pet-ch6-second-variation-special-cases}
+  \dcref{ch6:6.5.8}
   Let $M^n$ be compact with $\sec>0$. (a) If $N^{n-k}\subset M^n$ is a closed
   totally geodesic codimension-$k$ submanifold, then $N\subset M$ is
   $(n-2k+1)$-connected. (b) If $N_1^{n-k_1},N_2^{n-k_2}\subset M$ are closed
@@ -1561,6 +1621,7 @@ nonpositive and positive sectional curvature.
 \begin{remark}[Frankel's theorem]
   \label{rem:pet-ch6-frankel-theorem}
   \lean{PetersenLib.frankelTheoremRemark}
+  \source{petersen:page-0282}
   \uses{lem:pet-ch6-wilking-connectedness-principle}
   Part (b) of \cref{lem:pet-ch6-wilking-connectedness-principle}, in the
   special case that only nonemptiness of $N_1\cap N_2$ is retained, is
@@ -1573,17 +1634,19 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[classification of even-dimensional spherical space forms]
   \label{rem:pet-ch6-ex-6-7-1}
-  \dcref{ch6:6.7.1}
   \lean{PetersenLib.exercise_6_7_1}
+  \source{petersen:page-0282}
+  \dcref{ch6:6.7.1}
   Show that in even dimensions the sphere and real projective space are the
   only closed manifolds with constant positive curvature.
 \end{remark}
 
 \begin{remark}[parallel transport on tangent cones]
   \label{rem:pet-ch6-ex-6-7-2}
-  \dcref{ch6:6.7.2}
   \lean{PetersenLib.exercise_6_7_2}
+  \source{petersen:page-0282}
   \uses{def:pet-ch6-parallel-field}
+  \dcref{ch6:6.7.2}
   Consider a rotationally symmetric metric $dr^2+\rho^2(r)d\theta^2$ and the
   cone $dr^2+(\rho(a)+\dot\rho(a)(r-a))^2d\theta^2$ tangent to it at the
   latitude $r=a$ (a genuine tangent cone when the surface is a surface of
@@ -1597,10 +1660,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[Fermi--Walker transport]
   \label{rem:pet-ch6-ex-6-7-3}
-  \dcref{ch6:6.7.3}
   \lean{PetersenLib.exercise_6_7_3}
-\leanok
-  \uses{def:pet-ch6-vector-field-along-curve,def:pet-ch6-parallel-field}
+  \source{petersen:page-0283}
+  \uses{def:pet-ch6-vector-field-along-curve, def:pet-ch6-parallel-field}
+  \dcref{ch6:6.7.3}
   Let $c:[a,b]\to M$ have nonvanishing speed and $T=\dot c/|\dot c|$. Call $V$
   along $c$ a \emph{Fermi--Walker field} if
   $\dot V=g(V,T)\dot T-g(V,\dot T)T=(T\wedge\dot T)(V)$. (1) Show that given
@@ -1612,9 +1675,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[coverings of constant-curvature manifolds]
   \label{rem:pet-ch6-ex-6-7-4}
-  \dcref{ch6:6.7.4}
   \lean{PetersenLib.exercise_6_7_4}
+  \source{petersen:page-0283}
   \uses{thm:pet-ch6-conjugate-radius-bound}
+  \dcref{ch6:6.7.4}
   Let $(M,g)$ be complete of constant curvature $k$ and $L:T_pM\to
   T_pS^n_k$ a linear isometry. If $k\le0$, show
   $\exp_p\circ L^{-1}\circ\exp_p^{-1}:S^n_k\to M$ is a Riemannian covering
@@ -1625,9 +1689,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[flatness and two-parameter parallel transport]
   \label{rem:pet-ch6-ex-6-7-5}
-  \dcref{ch6:6.7.5}
   \lean{PetersenLib.exercise_6_7_5}
+  \source{petersen:page-0283}
   \uses{def:pet-ch6-parallel-field}
+  \dcref{ch6:6.7.5}
   Let $c(s,t):[0,1]^2\to(M,g)$ satisfy
   $R(\partial c/\partial s,\partial c/\partial t)=0$. Show that for each
   $v\in T_{c(0,0)}M$ there is a parallel field $V:[0,1]^2\to TM$ along $c$
@@ -1637,9 +1702,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[curvature symmetries from the commutator]
   \label{rem:pet-ch6-ex-6-7-6}
-  \dcref{ch6:6.7.6}
   \lean{PetersenLib.exercise_6_7_6}
+  \source{petersen:page-0283}
   \uses{lem:pet-ch6-third-partial-commutator}
+  \dcref{ch6:6.7.6}
   Using
   $R(\partial c/\partial s,\partial c/\partial t)\partial c/\partial u
   =\partial^3c/\partial s\,\partial t\,\partial u
@@ -1650,18 +1716,20 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[Killing fields along geodesics]
   \label{rem:pet-ch6-ex-6-7-7}
-  \dcref{ch6:6.7.7}
   \lean{PetersenLib.exercise_6_7_7}
+  \source{petersen:page-0284}
   \uses{def:pet-ch6-jacobi-field}
+  \dcref{ch6:6.7.7}
   Let $c$ be a geodesic and $X$ a Killing field. Show $X|_c$ is a Jacobi
   field.
 \end{remark}
 
 \begin{remark}[conjugate points and Jacobi fields]
   \label{rem:pet-ch6-ex-6-7-8}
-  \dcref{ch6:6.7.8}
   \lean{PetersenLib.exercise_6_7_8}
-  \uses{def:pet-ch6-jacobi-field,rem:pet-ch6-jacobi-dexp-relation}
+  \source{petersen:page-0284}
+  \uses{def:pet-ch6-jacobi-field, rem:pet-ch6-jacobi-dexp-relation}
+  \dcref{ch6:6.7.8}
   Let $c:[0,1]\to M$ be a geodesic. Show $\exp_{c(0)}$ has a critical point at
   $\dot c(0)$ iff there is a nontrivial Jacobi field $J$ along $c$ with
   $J(0)=0$, $\dot J(0)\perp\dot c(0)$, $J(1)=0$.
@@ -1669,9 +1737,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[Hessian of squared distance]
   \label{rem:pet-ch6-ex-6-7-9}
-  \dcref{ch6:6.7.9}
   \lean{PetersenLib.exercise_6_7_9}
-  \uses{def:pet-ch6-jacobi-field,lem:pet-ch6-hessian-lower-bound}
+  \source{petersen:page-0284}
+  \uses{def:pet-ch6-jacobi-field, lem:pet-ch6-hessian-lower-bound}
+  \dcref{ch6:6.7.9}
   Fix $p$, $v\in\operatorname{seg}_p^0$, $c(t)=\exp_p(tv)$, and the geodesic variation
   $\bar c(s,t)=\exp_p(t(v+sw))$ with Jacobi field $J$. Show
   $\nabla f_0|_{c(1)}=\dot c(1)$ and
@@ -1682,10 +1751,11 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[Wronskian identities for Jacobi fields]
   \label{rem:pet-ch6-ex-6-7-10}
-  \dcref{ch6:6.7.10}
   \lean{PetersenLib.exercise_6_7_10}
-  \leanok
+  \source{petersen:page-0284}
   \uses{def:pet-ch6-jacobi-field}
+  \leanok
+  \dcref{ch6:6.7.10}
   Let $c$ be a geodesic and $J_1,J_2$ Jacobi fields along $c$. (1) Show
   $g(\dot J_1,J_2)-g(J_1,\dot J_2)$ is constant. (2) Show
   $g(J_1(t),\dot c(t))=g(J_1(0),\dot c(0))+g(\dot J_1(0),\dot c(0))t$.
@@ -1693,9 +1763,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[a Riccati inequality for Jacobi fields]
   \label{rem:pet-ch6-ex-6-7-11}
-  \dcref{ch6:6.7.11}
   \lean{PetersenLib.exercise_6_7_11}
+  \source{petersen:page-0284}
   \uses{def:pet-ch6-jacobi-field}
+  \dcref{ch6:6.7.11}
   Let $J$ be a nontrivial Jacobi field along a unit speed geodesic $c$ with
   $J(0)=0$, $\dot J(0)\perp\dot c(0)$, and suppose $\sec\le K$. (1) With
   $\lambda=|J|^2/g(J,\dot J)$, show $\dot\lambda\le1+K\lambda^2$, $\lambda(0)=0$
@@ -1705,9 +1776,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[self-adjoint Jacobi spaces]
   \label{rem:pet-ch6-ex-6-7-12}
-  \dcref{ch6:6.7.12}
   \lean{PetersenLib.exercise_6_7_12}
+  \source{petersen:page-0284}
   \uses{def:pet-ch6-jacobi-field}
+  \dcref{ch6:6.7.12}
   Let $\mathfrak J$ be a self-adjoint space of Jacobi fields along a geodesic
   $c$ ($g(\dot J_1,J_2)=g(J_1,\dot J_2)$ for $J_1,J_2\in\mathfrak J$), and
   $\tilde{\mathfrak J}(t)=\{J(t):J\in\mathfrak J,\,J(t)=0\}
@@ -1720,9 +1792,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[point homogeneity]
   \label{rem:pet-ch6-ex-6-7-13}
-  \dcref{ch6:6.7.13}
   \lean{PetersenLib.exercise_6_7_13}
+  \source{petersen:page-0285}
   \uses{def:pet-ch6-vector-field-along-curve}
+  \dcref{ch6:6.7.13}
   Call $(M,g)$ \emph{$k$-point homogeneous} if for all $(p_1,\dots,p_k)$,
   $(q_1,\dots,q_k)$ with $|p_ip_j|=|q_iq_j|$ there is an isometry $F$ with
   $F(p_i)=q_i$ ($k=1$: homogeneous). (1) Show a homogeneous space has
@@ -1735,17 +1808,19 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[equidistant curves in space forms]
   \label{rem:pet-ch6-ex-6-7-14}
-  \dcref{ch6:6.7.14}
   \lean{PetersenLib.exercise_6_7_14}
+  \source{petersen:page-0285}
+  \dcref{ch6:6.7.14}
   Starting with a geodesic on a two-dimensional space form, discuss how the
   equidistant curves change as they move away from the geodesic.
 \end{remark}
 
 \begin{remark}[two-sided metric comparison]
   \label{rem:pet-ch6-ex-6-7-15}
-  \dcref{ch6:6.7.15}
   \lean{PetersenLib.exercise_6_7_15}
-  \uses{def:pet-ch6-jacobi-field,thm:pet-ch6-rauch-comparison}
+  \source{petersen:page-0285}
+  \uses{def:pet-ch6-jacobi-field, thm:pet-ch6-rauch-comparison}
+  \dcref{ch6:6.7.15}
   Let $r(x)=|xp|$ with $-K\le\sec\le K$, $g=dr^2+g_r$ on
   $(0,R)\times S^{n-1}$, $2R<\operatorname{inj}_p$. (1) Show
   $\operatorname{sn}_K^2(r)\,ds_{n-1}^2\le g_r\le\operatorname{sn}_{-K}^2(r)\,ds_{n-1}^2$. (2) Show there
@@ -1755,17 +1830,19 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[shortest loops in a homotopy class]
   \label{rem:pet-ch6-ex-6-7-16}
-  \dcref{ch6:6.7.16}
   \lean{PetersenLib.exercise_6_7_16}
+  \source{petersen:page-0285}
+  \dcref{ch6:6.7.16}
   Let $(M,g)$ be complete. Show every element of $\pi_1(M,p)$ contains a
   shortest loop at $p$, and that this shortest loop is a geodesic loop.
 \end{remark}
 
 \begin{remark}[index of a shortest loop]
   \label{rem:pet-ch6-ex-6-7-17}
-  \dcref{ch6:6.7.17}
   \lean{PetersenLib.exercise_6_7_17}
+  \source{petersen:page-0285}
   \uses{def:pet-ch6-path-space-AB}
+  \dcref{ch6:6.7.17}
   Let $(M,g)$ be complete with $\operatorname{inj}_p<R$ where
   $\exp_p:B(0,R)\to B(p,R)$ is nonsingular. Show the geodesic loop $c$ at $p$
   realizing the injectivity radius has index $0$.
@@ -1773,9 +1850,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[Frankel intersection argument]
   \label{rem:pet-ch6-ex-6-7-18}
-  \dcref{ch6:6.7.18}
   \lean{PetersenLib.exercise_6_7_18}
+  \source{petersen:page-0286}
   \uses{rem:pet-ch6-frankel-theorem}
+  \dcref{ch6:6.7.18}
   Let $M$ be $n$-dimensional with $\sec>0$ and $A,B$ closed totally geodesic
   submanifolds. Show directly (via a shortest connecting segment and the
   second variation formula, without invoking
@@ -1785,9 +1863,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[path-space proof of connectedness]
   \label{rem:pet-ch6-ex-6-7-19}
-  \dcref{ch6:6.7.19}
   \lean{PetersenLib.exercise_6_7_19}
-  \uses{def:pet-ch6-path-space-AB,lem:pet-ch6-wilking-connectedness-principle}
+  \source{petersen:page-0286}
+  \uses{def:pet-ch6-path-space-AB, lem:pet-ch6-wilking-connectedness-principle}
+  \dcref{ch6:6.7.19}
   Let $M$ be complete, $A\subset M$ compact, without invoking
   \cref{lem:pet-ch6-wilking-connectedness-principle}. (1) Show non-stationary
   curves in $\Omega_{A,A}(M)$ deform to shorter curves in $\Omega_{A,A}(M)$.
@@ -1799,9 +1878,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[solvable subgroups in negative curvature]
   \label{rem:pet-ch6-ex-6-7-20}
-  \dcref{ch6:6.7.20}
   \lean{PetersenLib.exercise_6_7_20}
-  \uses{thm:pet-ch6-preissmann,def:pet-ch6-axis-displacement}
+  \source{petersen:page-0286}
+  \uses{thm:pet-ch6-preissmann, def:pet-ch6-axis-displacement}
+  \dcref{ch6:6.7.20}
   Generalize \cref{thm:pet-ch6-preissmann} to show any solvable subgroup of
   $\pi_1$ of a compact negatively curved manifold is cyclic. Hint: use
   torsion-freeness and, by contradiction and solvability, a subgroup
@@ -1812,9 +1892,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[orientation of fixed-point-free isometries]
   \label{rem:pet-ch6-ex-6-7-21}
-  \dcref{ch6:6.7.21}
   \lean{PetersenLib.exercise_6_7_21}
+  \source{petersen:page-0286}
   \uses{rem:pet-ch6-closed-parallel-field-construction}
+  \dcref{ch6:6.7.21}
   Let $(M,g)$ be compact with $\sec>0$ and $F:M\to M$ an isometry of finite
   order without fixed points. Show that if $\dim M$ is even, $F$ is
   orientation reversing; if odd, orientation preserving. (Weinstein: this
@@ -1823,9 +1904,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[diameter of nontrivial spherical quotients]
   \label{rem:pet-ch6-ex-6-7-22}
-  \dcref{ch6:6.7.22}
   \lean{PetersenLib.exercise_6_7_22}
+  \source{petersen:page-0286}
   \uses{thm:pet-ch6-cartan-fixed-point}
+  \dcref{ch6:6.7.22}
   Use an analogue of \cref{thm:pet-ch6-cartan-fixed-point} to show a closed
   manifold of constant curvature $1$ is either the standard sphere or has
   diameter $\le\pi/2$; generalize to show a closed manifold with $\sec\ge1$
@@ -1834,9 +1916,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[distance coordinates]
   \label{rem:pet-ch6-ex-6-7-23}
-  \dcref{ch6:6.7.23}
   \lean{PetersenLib.exercise_6_7_23}
+  \source{petersen:page-0286,petersen:page-0287}
   \uses{thm:pet-ch6-rauch-comparison}
+  \dcref{ch6:6.7.23}
   Let $(M,g)$ be complete $n$-dimensional with $|\sec|<K$, and fix $p$,
   $\epsilon>0$, points $p_i$ with $r^i(x)=|xp_i|$ smooth on $B(p,\epsilon)$,
   $g(\nabla r^i,\nabla r^j)|_p=\delta^{ij}$, $|pp_i|\ge2\epsilon$. Let
@@ -1852,9 +1935,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[the index form]
   \label{rem:pet-ch6-ex-6-7-24}
-  \dcref{ch6:6.7.24}
   \lean{PetersenLib.exercise_6_7_24,PetersenLib.indexForm}
-  \uses{rem:pet-ch6-second-variation-special-cases,def:pet-ch6-jacobi-field}
+  \source{petersen:page-0287,petersen:page-0288}
+  \uses{rem:pet-ch6-second-variation-special-cases, def:pet-ch6-jacobi-field}
+  \dcref{ch6:6.7.24}
   For $V,W$ along a geodesic $c:[0,1]\to(M,g)$, the \emph{index form} is
   \[
     I_0^1(V,W)=I(V,W)=\int_0^1\big(g(\dot V,\dot W)-g(R(V,\dot c)\dot c,W)\big)\,dt,
@@ -1878,9 +1962,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[index comparison]
   \label{rem:pet-ch6-ex-6-7-25}
-  \dcref{ch6:6.7.25}
   \lean{PetersenLib.exercise_6_7_25}
-  \uses{rem:pet-ch6-ex-6-7-24,thm:pet-ch6-rauch-comparison}
+  \source{petersen:page-0288}
+  \uses{rem:pet-ch6-ex-6-7-24, thm:pet-ch6-rauch-comparison}
+  \dcref{ch6:6.7.25}
   Let $J$ be a nontrivial Jacobi field along a unit speed geodesic $c$ with
   $J(0)=0$, $\dot J(0)\perp\dot c(0)$, on a manifold with $\sec\ge k$, and
   suppose no Jacobi field on $c|_{[0,b]}$ vanishes at both endpoints. (1)
@@ -1894,9 +1979,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[small subgroups of the isometry group]
   \label{rem:pet-ch6-ex-6-7-26}
-  \dcref{ch6:6.7.26}
   \lean{PetersenLib.exercise_6_7_26}
-  \uses{thm:pet-ch6-cartan-fixed-point,def:pet-ch6-convexity-radius}
+  \source{petersen:page-0288,petersen:page-0289}
+  \uses{thm:pet-ch6-cartan-fixed-point, def:pet-ch6-convexity-radius}
+  \dcref{ch6:6.7.26}
   Let $\mathbf G\subset\operatorname{Iso}(M,g)$, with $\operatorname{Iso}(M,g)$ given the
   compact-open topology. (1) If $M$ is complete, simply connected,
   nonpositively curved, and $\mathbf G$ is compact, show $\mathbf G$ has a
@@ -1917,9 +2003,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[a submersion metric on the tangent bundle]
   \label{rem:pet-ch6-ex-6-7-27}
-  \dcref{ch6:6.7.27}
   \lean{PetersenLib.exercise_6_7_27}
+  \source{petersen:page-0289}
   \uses{def:pet-ch6-parallel-field}
+  \dcref{ch6:6.7.27}
   Construct a Riemannian metric on $TM$ for a Riemannian manifold $(M,g)$
   such that $\pi:TM\to M$ is a Riemannian submersion restricting to the given
   Euclidean metric on each fiber, by declaring parallel fields along curves
@@ -1928,9 +2015,10 @@ nonpositive and positive sectional curvature.
 
 \begin{remark}[a submersion metric on the frame bundle]
   \label{rem:pet-ch6-ex-6-7-28}
-  \dcref{ch6:6.7.28}
   \lean{PetersenLib.exercise_6_7_28}
+  \source{petersen:page-0289}
   \uses{def:pet-ch6-parallel-field}
+  \dcref{ch6:6.7.28}
   For a Riemannian manifold $(M,g)$ let $FM\to M$ be the orthonormal frame
   bundle. Find a Riemannian metric on $FM$ making $\pi:FM\to M$ a Riemannian
   submersion with fibers isometric to $O(n)$, by declaring parallel

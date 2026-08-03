@@ -35,7 +35,7 @@ Let $\Delta_n(X)$ be the free abelian group on the open $n$-simplices, written a
 \label{lem:boundary-composition-zero}
 \dcref{ch2:2.1}
 \group{Singular Homology}
-\uses{}
+
 $\partial_{n-1}\partial_n=0$ for every $n$.
 \end{lemma}
 \begin{proof}
@@ -50,9 +50,10 @@ Elements of the kernel are cycles, elements of the image are boundaries, and equ
 
 \begin{example}[Simplicial homology of $S^1$]
 \label{ex:simplicial-homology-circle}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.2}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 For the one-vertex, one-edge structure on $S^1$, $\partial_1=0$ and $\Delta_n(S^1)=0$ for $n\geq2$.  Hence
 \[
 H_n^\Delta(S^1)\cong\begin{cases}\mathbb{Z}&n=0,1,\\0&n\geq2.\end{cases}
@@ -61,9 +62,10 @@ H_n^\Delta(S^1)\cong\begin{cases}\mathbb{Z}&n=0,1,\\0&n\geq2.\end{cases}
 
 \begin{example}[Simplicial homology of the torus]
 \label{ex:simplicial-homology-torus}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.3}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 For the one-vertex, three-edge, two-triangle structure on $T$, $\partial_1=0$ and $\partial_2U=\partial_2L=a+b-c$.  Thus
 \[
 H_n^\Delta(T)\cong\begin{cases}\mathbb{Z}&n=0,2,\\\mathbb{Z}\oplus\mathbb{Z}&n=1,\\0&n\geq3.\end{cases}
@@ -73,9 +75,10 @@ The classes of $a,b$ generate $H_1^\Delta(T)$ and $U-L$ generates $H_2^\Delta(T)
 
 \begin{example}[Simplicial homology of $\mathbb{RP}^2$]
 \label{ex:simplicial-homology-rp2}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.4}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 For the two-vertex, three-edge, two-triangle structure on $\mathbb{RP}^2$, $\operatorname{Im}\partial_1=\langle w-v\rangle$, $\partial_2U=-a+b+c$, and $\partial_2L=a-b+c$.  Therefore
 \[
 H_0^\Delta(\mathbb{RP}^2)\cong\mathbb{Z},\qquad H_1^\Delta(\mathbb{RP}^2)\cong\mathbb{Z}_2,\qquad H_2^\Delta(\mathbb{RP}^2)=0.
@@ -84,9 +87,10 @@ H_0^\Delta(\mathbb{RP}^2)\cong\mathbb{Z},\qquad H_1^\Delta(\mathbb{RP}^2)\cong\m
 
 \begin{example}[$\Delta$-complex structure on $S^n$]
 \label{ex:delta-complex-sn}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.5}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 Glue two copies $U,L$ of $\Delta^n$ along their boundaries by the identity.  Then $\ker\partial_n=\mathbb{Z}\langle U-L\rangle$, so $H_n^\Delta(S^n)\cong\mathbb{Z}$ for this structure.
 \end{example}
 
@@ -100,9 +104,10 @@ The singular complex $S(X)$ has one ordered $n$-simplex for each singular simple
 
 \begin{proposition}[Homology of disjoint union]
 \label{prop:homology-disjoint-union}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.6}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 If $X=\coprod_\alpha X_\alpha$ is the decomposition into path-components, then
 \[
 H_n(X)\cong\bigoplus_\alpha H_n(X_\alpha).
@@ -114,9 +119,10 @@ H_n(X)\cong\bigoplus_\alpha H_n(X_\alpha).
 
 \begin{proposition}[Zero-dimensional homology of path-connected space]
 \label{prop:h0-path-connected}
+\uses{prop:homology-disjoint-union}
 \dcref{ch2:2.7}
 \group{Singular Homology}
-\uses{prop:homology-disjoint-union}
+
 If $X$ is nonempty and path-connected, $H_0(X)\cong\mathbb{Z}$.  In general, $H_0(X)$ is a direct sum of one copy of $\mathbb{Z}$ for each path-component.
 \end{proposition}
 \begin{proof}
@@ -127,7 +133,7 @@ If $X$ is nonempty and path-connected, $H_0(X)\cong\mathbb{Z}$.  In general, $H_
 \label{prop:homology-point}
 \dcref{ch2:2.8}
 \group{Singular Homology}
-\uses{}
+
 For a point, $H_0\cong\mathbb{Z}$ and $H_n=0$ for $n>0$.
 \end{proposition}
 \begin{proof}
@@ -146,9 +152,10 @@ For a map $f:X\to Y$, composition sends a singular simplex $\sigma$ to $f\circ\s
 
 \begin{proposition}[Chain map induces homology homomorphism]
 \label{prop:chain-map-induces-homology-homomorphism}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.9}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 A chain map induces homomorphisms on homology.
 \end{proposition}
 \begin{proof}
@@ -159,9 +166,10 @@ The induced maps satisfy $(fg)_*=f_*g_*$ and $\mathbb{1}_*=\mathbb{1}$.
 
 \begin{theorem}[Homotopic maps induce the same homology map]
 \label{thm:homotopic-maps-induce-same-homology-map}
+\uses{def:homotopy, prop:chain-map-induces-homology-homomorphism}
 \dcref{ch2:2.10}
 \group{Singular Homology}
-\uses{def:homotopy,prop:chain-map-induces-homology-homomorphism}
+
 If $f,g:X\to Y$ are homotopic, then $f_*=g_*:H_n(X)\to H_n(Y)$.
 \end{theorem}
 \begin{proof}
@@ -170,17 +178,19 @@ If $f,g:X\to Y$ are homotopic, then $f_*=g_*:H_n(X)\to H_n(Y)$.
 
 \begin{corollary}[Homotopy equivalence induces homology isomorphism]
 \label{cor:homotopy-equivalence-induces-homology-isomorphism}
+\uses{def:homotopy-equivalence, thm:homotopic-maps-induce-same-homology-map}
 \dcref{ch2:2.11}
 \group{Singular Homology}
-\uses{def:homotopy-equivalence,thm:homotopic-maps-induce-same-homology-map}
+
 A homotopy equivalence $f:X\to Y$ induces isomorphisms $H_n(X)\cong H_n(Y)$ for every $n$.
 \end{corollary}
 
 \begin{proposition}[Chain-homotopic maps induce the same homology map]
 \label{prop:chain-homotopic-maps-induce-same-homology-map}
+\uses{prop:chain-map-induces-homology-homomorphism}
 \dcref{ch2:2.12}
 \group{Singular Homology}
-\uses{prop:chain-map-induces-homology-homomorphism}
+
 Chain-homotopic chain maps induce the same homomorphism on homology.
 \end{proposition}
 \begin{proof}
@@ -193,9 +203,10 @@ A sequence is exact when the image of each map equals the kernel of the next.  I
 
 \begin{theorem}[Excision Theorem]
 \label{thm:excision}
+\uses{def:deformation-retraction}
 \dcref{ch2:2.13}
 \group{Singular Homology}
-\uses{def:deformation-retraction}
+
 If $A\ne\varnothing$ is closed in $X$ and is a deformation retract of a neighborhood, then
 \[
 \cdots\to\widetilde H_n(A)\to\widetilde H_n(X)\to\widetilde H_n(X/A)\xrightarrow{\partial}\widetilde H_{n-1}(A)\to\cdots\to\widetilde H_0(X/A)\to0
@@ -208,9 +219,10 @@ is exact.
 
 \begin{corollary}[Homology of spheres]
 \label{cor:homology-spheres}
+\uses{thm:excision}
 \dcref{ch2:2.14}
 \group{Singular Homology}
-\uses{thm:excision}
+
 \[
 \widetilde H_i(S^n)\cong\begin{cases}\mathbb{Z}&i=n,\\0&i\ne n.\end{cases}
 \]
@@ -221,9 +233,10 @@ is exact.
 
 \begin{corollary}[Non-retraction of disk onto boundary]
 \label{cor:non-retraction-disk-boundary}
+\uses{cor:homology-spheres}
 \dcref{ch2:2.15}
 \group{Singular Homology}
-\uses{cor:homology-spheres}
+
 $\partial D^n$ is not a retract of $D^n$.  Consequently every map $D^n\to D^n$ has a fixed point.
 \end{corollary}
 \begin{proof}
@@ -242,9 +255,10 @@ is a short exact sequence of chain complexes.
 
 \begin{theorem}[The sequence of homology groups]
 \label{thm:long-exact-sequence-pair}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.16}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 Every short exact sequence of chain complexes $0\to A\to B\to C\to0$ induces a long exact sequence
 \[
 \cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to H_{n-1}(B)\to\cdots.
@@ -262,9 +276,10 @@ For $A\ne\varnothing$, the same construction gives $\widetilde H_n(X,A)\cong H_n
 
 \begin{example}[Long exact sequence of disk and sphere pair]
 \label{ex:long-exact-sequence-disk-sphere}
+\uses{thm:long-exact-sequence-pair}
 \dcref{ch2:2.17}
 \group{Singular Homology}
-\uses{thm:long-exact-sequence-pair}
+
 \[
 H_i(D^n,\partial D^n)\cong\begin{cases}\mathbb{Z}&i=n,\\0&i\ne n.\end{cases}
 \]
@@ -272,17 +287,19 @@ H_i(D^n,\partial D^n)\cong\begin{cases}\mathbb{Z}&i=n,\\0&i\ne n.\end{cases}
 
 \begin{example}[Reduced homology isomorphic to relative homology of basepoint]
 \label{ex:reduced-homology-relative}
+\uses{thm:long-exact-sequence-pair}
 \dcref{ch2:2.18}
 \group{Singular Homology}
-\uses{thm:long-exact-sequence-pair}
+
 For $x_0\in X$, $H_n(X,x_0)\cong\widetilde H_n(X)$ for all $n$.
 \end{example}
 
 \begin{proposition}[If two maps $f,g:(X,A)\to(Y,B)$ are homotopic through maps of pairs $(X,A)\to(Y,B)$, then $f_* = g_*:H_n(X,A)\to H_n(Y,B)$]
 \label{prop:homotopic-maps-pairs}
+\uses{def:homotopy, thm:homotopic-maps-induce-same-homology-map}
 \dcref{ch2:2.19}
 \group{Singular Homology}
-\uses{def:homotopy,thm:homotopic-maps-induce-same-homology-map}
+
 Homotopic maps of pairs induce the same homomorphism on relative homology.
 \end{proposition}
 \begin{proof}
@@ -296,9 +313,10 @@ For $Z\subset A\subset X$, the long exact sequence of the triple is
 
 \begin{theorem}[Excision for relative homology]
 \label{thm:excision-general}
+\uses{lem:boundary-composition-zero}
 \dcref{ch2:2.20}
 \group{Singular Homology}
-\uses{lem:boundary-composition-zero}
+
 If $Z\subset A\subset X$ and $\overline Z\subset\operatorname{int}A$, then inclusion induces isomorphisms
 \[
 H_n(X-Z,A-Z)\cong H_n(X,A).
@@ -310,9 +328,10 @@ For an open cover $\mathcal U=\{U_j\}$, let $C_n^{\mathcal U}(X)$ be generated b
 
 \begin{proposition}[Inclusion of $\mathcal{U}$-chains is a chain homotopy equivalence]
 \label{prop:inclusion-u-chains-homotopy-equivalence}
+\uses{prop:chain-homotopic-maps-induce-same-homology-map}
 \dcref{ch2:2.21}
 \group{Singular Homology}
-\uses{prop:chain-homotopic-maps-induce-same-homology-map}
+
 The inclusion $C_*^{\mathcal U}(X)\hookrightarrow C_*(X)$ is a chain homotopy equivalence and induces $H_n^{\mathcal U}(X)\cong H_n(X)$.
 \end{proposition}
 \begin{proof}
@@ -321,9 +340,10 @@ The inclusion $C_*^{\mathcal U}(X)\hookrightarrow C_*(X)$ is a chain homotopy eq
 
 \begin{proposition}[Good pairs and absolute homology]
 \label{prop:good-pairs-absolute-homology}
+\uses{thm:excision-general, def:deformation-retraction}
 \dcref{ch2:2.22}
 \group{Singular Homology}
-\uses{thm:excision-general,def:deformation-retraction}
+
 If $(X,A)$ is a good pair, then the quotient map induces $H_n(X,A)\cong\widetilde H_n(X/A)$.
 \end{proposition}
 \begin{proof}
@@ -332,17 +352,19 @@ If $(X,A)$ is a good pair, then the quotient map induces $H_n(X,A)\cong\widetild
 
 \begin{example}[Explicit cycles generating homology of spheres and disks]
 \label{ex:cycles-spheres-disks}
+\uses{cor:homology-spheres}
 \dcref{ch2:2.23}
 \group{Singular Homology}
-\uses{cor:homology-spheres}
+
 For the two-simplex model of $S^n=D^n/\partial D^n$, the signed difference of the two top simplices represents the generator of $\widetilde H_n(S^n)$; the corresponding relative top cell represents the generator of $H_n(D^n,\partial D^n)$.
 \end{example}
 
 \begin{corollary}[Excision for CW subcomplexes]
 \label{cor:excision-cw-subcomplexes}
+\uses{thm:excision-general, def:cw-pair, prop:cw-pairs-have-hep}
 \dcref{ch2:2.24}
 \group{Singular Homology}
-\uses{thm:excision-general,def:cw-pair,prop:cw-pairs-have-hep}
+
 If $A$ and $B$ are CW subcomplexes and $X=A\cup B$, then inclusion induces
 \[
 H_n(B,A\cap B)\xrightarrow{\cong}H_n(X,A)
@@ -358,9 +380,10 @@ quotient isomorphism.
 
 \begin{corollary}[Wedge sums and direct sum of homology]
 \label{cor:wedge-sum-direct-sum-homology}
+\uses{prop:good-pairs-absolute-homology}
 \dcref{ch2:2.25}
 \group{Singular Homology}
-\uses{prop:good-pairs-absolute-homology}
+
 Suppose the wedge $\bigvee_\alpha X_\alpha$ is formed at basepoints
 $x_\alpha$ for which every pair $(X_\alpha,x_\alpha)$ is good. Then the
 inclusions induce an isomorphism
@@ -378,9 +401,10 @@ apply the good-pair quotient isomorphism before identifying the basepoints.
 
 \begin{theorem}[Invariance of dimension]
 \label{thm:invariance-of-dimension}
+\uses{prop:good-pairs-absolute-homology}
 \dcref{ch2:2.26}
 \group{Singular Homology}
-\uses{prop:good-pairs-absolute-homology}
+
 If nonempty open subsets $U\subset\mathbb{R}^m$ and
 $V\subset\mathbb{R}^n$ are homeomorphic, then $m=n$.
 \end{theorem}
@@ -397,9 +421,10 @@ degree $n$; hence $m=n$.
 
 \begin{theorem}[Isomorphism of simplicial and singular homology]
 \label{thm:simplicial-singular-homology-isomorphic}
+\uses{lem:five-lemma}
 \dcref{ch2:2.27}
 \group{Singular Homology}
-\uses{lem:five-lemma}
+
 For every $\Delta$-complex pair $(X,A)$, the canonical map
 \[
 H_n^\Delta(X,A)\longrightarrow H_n(X,A)
@@ -419,7 +444,7 @@ gives the relative assertion.
 \begin{lemma}[The Five-Lemma]
 \label{lem:five-lemma}
 \group{Singular Homology}
-\uses{}
+
 In a commutative diagram of exact sequences with five consecutive vertical maps, if the first, second, fourth, and fifth maps are isomorphisms, then so is the middle map.
 \end{lemma}
 \begin{proof}
@@ -437,9 +462,10 @@ Every homotopy equivalence $S^n\to S^n$ has degree $1$ or $-1$.
 
 \begin{theorem}[Tangent vector fields on spheres]
 \label{thm:tangent-vector-fields-spheres}
+\uses{cor:homology-spheres}
 \dcref{ch2:2.28}
 \group{Cellular Homology}
-\uses{cor:homology-spheres}
+
 $S^n$ admits a continuous nowhere-zero tangent vector field if and only if $n$ is odd.
 \end{theorem}
 \begin{proof}
@@ -448,9 +474,10 @@ $S^n$ admits a continuous nowhere-zero tangent vector field if and only if $n$ i
 
 \begin{proposition}[Only Z2 acts freely on even spheres]
 \label{prop:z2-acts-freely-even-spheres}
+\uses{thm:tangent-vector-fields-spheres}
 \dcref{ch2:2.29}
 \group{Cellular Homology}
-\uses{thm:tangent-vector-fields-spheres}
+
 If $n$ is even, every nontrivial group acting freely on $S^n$ is isomorphic to $\mathbb{Z}_2$.
 \end{proposition}
 \begin{proof}
@@ -461,9 +488,10 @@ If $f:S^n\to S^n$ has finite fiber $f^{-1}(y)=\{x_1,\ldots,x_m\}$, excision iden
 
 \begin{proposition}[Local degree formula]
 \label{prop:local-degree-formula}
+\uses{cor:homology-spheres}
 \dcref{ch2:2.30}
 \group{Cellular Homology}
-\uses{cor:homology-spheres}
+
 \[
 \deg f=\sum_{i=1}^m\deg f|_{x_i}.
 \]
@@ -474,25 +502,28 @@ If $f:S^n\to S^n$ has finite fiber $f^{-1}(y)=\{x_1,\ldots,x_m\}$, excision iden
 
 \begin{example}[Maps of prescribed degree]
 \label{ex:degree-reflection-antipodal}
+\uses{cor:homology-spheres}
 \dcref{ch2:2.31}
 \group{Cellular Homology}
-\uses{cor:homology-spheres}
+
 Collapsing the complement of $k$ disjoint balls in $S^n$ to a point and mapping the resulting wedge of spheres to $S^n$ produces degrees $\pm k$, by choosing the signs of the local degrees.
 \end{example}
 
 \begin{example}[Degrees of power maps and their suspensions]
 \label{ex:degree-suspension}
+\uses{def:suspension, cor:homology-spheres}
 \dcref{ch2:2.32}
 \group{Cellular Homology}
-\uses{def:suspension,cor:homology-spheres}
+
 The map $z\mapsto z^k$ on $S^1$ has degree $k$, and its local degrees add to $k$.  Suspension preserves degree, so suspending this map repeatedly realizes degree $k$ on every higher sphere.
 \end{example}
 
 \begin{proposition}[Suspension preserves degree]
 \label{prop:homology-cw-complexes}
+\uses{def:cell-complex}
 \dcref{ch2:2.33}
 \group{Cellular Homology}
-\uses{def:cell-complex}
+
 If $Sf:S^{n+1}\to S^{n+1}$ is the suspension of $f:S^n\to S^n$, then $\deg Sf=\deg f$.
 \end{proposition}
 \begin{proof}
@@ -501,9 +532,10 @@ If $Sf:S^{n+1}\to S^{n+1}$ is the suspension of $f:S^n\to S^n$, then $\deg Sf=\d
 
 \begin{lemma}[Homology of CW skeleton pairs]
 \label{lem:homology-cw-skeleton-pairs}
+\uses{def:cell-complex}
 \dcref{ch2:2.34}
 \group{Cellular Homology}
-\uses{def:cell-complex}
+
 For a CW complex $X$:
 \begin{enumerate}
 \item $H_k(X^n,X^{n-1})=0$ for $k\ne n$, while $H_n(X^n,X^{n-1})$ is free on the $n$-cells;
@@ -529,9 +561,10 @@ Its homology is denoted $H_n^{CW}(X)$.
 
 \begin{theorem}[Isomorphism of cellular and singular homology]
 \label{thm:cellular-singular-homology-isomorphic}
+\uses{prop:homology-cw-complexes, lem:homology-cw-skeleton-pairs}
 \dcref{ch2:2.35}
 \group{Cellular Homology}
-\uses{prop:homology-cw-complexes,lem:homology-cw-skeleton-pairs}
+
 \[
 H_n^{CW}(X)\cong H_n(X).
 \]
@@ -548,57 +581,64 @@ where $d_{\alpha\beta}$ is the degree of the attaching map $S^{n-1}\to X^{n-1}\t
 
 \begin{example}[Cellular homology of closed orientable surfaces]
 \label{ex:cellular-homology-spheres}
+\uses{thm:cellular-singular-homology-isomorphic, ex:sphere-two-cells}
 \dcref{ch2:2.36}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic,ex:sphere-two-cells}
+
 For the genus-$g$ orientable surface with one $0$-cell, $2g$ $1$-cells, and one $2$-cell attached by $\prod_i[a_i,b_i]$, both cellular boundary maps vanish.  Thus $H_0=H_2=\mathbb{Z}$ and $H_1=\mathbb{Z}^{2g}$.
 \end{example}
 
 \begin{example}[Cellular homology of closed nonorientable surfaces]
 \label{ex:cellular-homology-surfaces}
+\uses{thm:cellular-singular-homology-isomorphic}
 \dcref{ch2:2.37}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic}
+
 For the nonorientable genus-$g$ surface with attaching word $a_1^2\cdots a_g^2$, $d_2(1)=(2,\ldots,2)$ and $d_1=0$.  Hence $H_2=0$ and $H_1\cong\mathbb{Z}^{g-1}\oplus\mathbb{Z}_2$.
 \end{example}
 
 \begin{example}[An Acyclic Space]
 \label{ex:acyclic-space}
+\uses{thm:cellular-singular-homology-isomorphic}
 \dcref{ch2:2.38}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic}
+
 Attaching 2-cells to $S^1\vee S^1$ by $a^5b^{-3}$ and $b^3(ab)^{-2}$ gives $d_2=\begin{pmatrix}5&-2\\-3&1\end{pmatrix}$, whose determinant is $-1$.  The resulting connected complex is acyclic, although its fundamental group is nontrivial.
 \end{example}
 
 \begin{example}[A 3-dimensional torus]
 \label{ex:three-torus}
+\uses{thm:cellular-singular-homology-isomorphic}
 \dcref{ch2:2.39}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic}
+
 For $T^3$, all cellular boundary maps vanish, so $H_i(T^3)$ is $\mathbb{Z}$ for $i=0,3$, $\mathbb{Z}^3$ for $i=1,2$, and zero otherwise.  For $K\times S^1$, $d_3(c^3)=2C$, $d_2(A)=2b$, and $d_2(B)=d_2(C)=0$, giving $H_3=0$, $H_2\cong\mathbb{Z}\oplus\mathbb{Z}_2$, and $H_1\cong\mathbb{Z}^2\oplus\mathbb{Z}_2$.
 \end{example}
 
 \begin{example}[Moore Spaces]
 \label{ex:moore-spaces}
+\uses{thm:cellular-singular-homology-isomorphic}
 \dcref{ch2:2.40}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic}
+
 A Moore space $M(G,n)$ is a simply-connected CW complex for $n>1$ with $H_n(M(G,n))\cong G$ and reduced homology zero in other dimensions.  For finitely generated $G$, wedge spheres and degree maps realize it; in general attach $(n+1)$-cells representing a free presentation of $G$.
 \end{example}
 
 \begin{example}[CW complexes realizing prescribed homology groups]
 \label{ex:cellular-homology-cpn}
+\uses{thm:cellular-singular-homology-isomorphic, ex:complex-projective-space-cw}
 \dcref{ch2:2.41}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic,ex:complex-projective-space-cw}
+
 Wedge sums of Moore spaces realize any prescribed sequence of homology groups in positive dimensions.
 \end{example}
 
 \begin{example}[Cellular homology of $\mathbb{RP}^n$]
 \label{ex:cellular-homology-rpn}
+\uses{thm:cellular-singular-homology-isomorphic, ex:real-projective-space-cw}
 \dcref{ch2:2.42}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic,ex:real-projective-space-cw}
+
 $\mathbb{RP}^n$ has one cell in each dimension $0\leq k\leq n$, with cellular boundary $d_k=0$ for odd $k$ and multiplication by $2$ for even $k$.  Hence
 \[
 H_k(\mathbb{RP}^n)=\begin{cases}\mathbb{Z}&k=0,\text{ or }k=n\text{ odd},\\\mathbb{Z}_2&0<k<n\text{ odd},\\0&\text{otherwise}.\end{cases}
@@ -607,9 +647,10 @@ H_k(\mathbb{RP}^n)=\begin{cases}\mathbb{Z}&k=0,\text{ or }k=n\text{ odd},\\\math
 
 \begin{example}[Lens Spaces]
 \label{ex:lens-spaces}
+\uses{thm:cellular-singular-homology-isomorphic}
 \dcref{ch2:2.43}
 \group{Cellular Homology}
-\uses{thm:cellular-singular-homology-isomorphic}
+
 For $m>1$ and $(\ell_j,m)=1$, let $L_m(\ell_1,\ldots,\ell_n)=S^{2n-1}/\mathbb{Z}_m$ under $(z_j)\mapsto(e^{2\pi i\ell_j/m}z_j)$.  Its cellular chain complex has one copy of $\mathbb{Z}$ in each dimension through $2n-1$, with boundary maps alternating between $0$ and multiplication by $m$.  Therefore
 \[
 H_k(L_m(\ell_1,\ldots,\ell_n))=\begin{cases}\mathbb{Z}&k=0,2n-1,\\\mathbb{Z}_m&0<k<2n-1\text{ odd},\\0&\text{otherwise}.\end{cases}
@@ -618,9 +659,10 @@ H_k(L_m(\ell_1,\ldots,\ell_n))=\begin{cases}\mathbb{Z}&k=0,2n-1,\\\mathbb{Z}_m&0
 
 \begin{theorem}[Euler characteristic in terms of homology]
 \label{thm:euler-characteristic-homology}
+\uses{def:dimension-cw-complex}
 \dcref{ch2:2.44}
 \group{Cellular Homology}
-\uses{def:dimension-cw-complex}
+
 For a finite CW complex,
 \[
 \chi(X)=\sum_n(-1)^n\#\{n\text{-cells}\}=\sum_n(-1)^n\operatorname{rank}H_n(X).
@@ -633,7 +675,7 @@ For a finite CW complex,
 \begin{lemma}[Splitting Lemma]
 \label{lem:splitting-lemma}
 \group{Singular Homology}
-\uses{}
+
 For $0\to A\xrightarrow{i}B\xrightarrow{j}C\to0$, the following are equivalent: there is $p:B\to A$ with $pi=\mathbb{1}$; there is $s:C\to B$ with $js=\mathbb{1}$; and $B\cong A\oplus C$ compatibly with the sequence.
 \end{lemma}
 \begin{proof}
@@ -642,9 +684,10 @@ For $0\to A\xrightarrow{i}B\xrightarrow{j}C\to0$, the following are equivalent: 
 
 \begin{proposition}[Fundamental group of finite-dimensional K(G,1) is torsionfree]
 \label{prop:fundamental-group-kg1-torsionfree}
+\uses{def:k-g-1-space, ex:lens-spaces}
 \dcref{ch2:2.45}
 \group{Cellular Homology}
-\uses{def:k-g-1-space,ex:lens-spaces}
+
 If a finite-dimensional CW complex $X$ is a $K(G,1)$, then $G=\pi_1(X)$ is torsionfree.
 \end{proposition}
 \begin{proof}
@@ -661,25 +704,28 @@ At chain level use $\Phi(z)=(z,-z)$ and $\psi(x,y)=x+y$; the small-chain proposi
 
 \begin{example}[Mayer-Vietoris sequence of sphere split into hemispheres]
 \label{ex:mayer-vietoris-sphere}
+\uses{thm:excision-general}
 \dcref{ch2:2.46}
 \group{Singular Homology}
-\uses{thm:excision-general}
+
 For the hemispherical decomposition $S^n=A\cup B$ with $A\cap B=S^{n-1}$, $\widetilde H_i(S^n)\cong\widetilde H_{i-1}(S^{n-1})$.
 \end{example}
 
 \begin{example}[Mayer-Vietoris sequence of Klein bottle]
 \label{ex:mayer-vietoris-klein-bottle}
+\uses{thm:excision-general}
 \dcref{ch2:2.47}
 \group{Singular Homology}
-\uses{thm:excision-general}
+
 Writing the Klein bottle as two Möbius bands gives $\Phi:\mathbb{Z}\to\mathbb{Z}^2$, $1\mapsto(2,-2)$.  Thus $H_2(K)=0$ and $H_1(K)\cong\mathbb{Z}\oplus\mathbb{Z}_2$.
 \end{example}
 
 \begin{example}[Homology of mapping torus]
 \label{ex:homology-mapping-torus}
+\uses{thm:excision-general}
 \dcref{ch2:2.48}
 \group{Singular Homology}
-\uses{thm:excision-general}
+
 For maps $f,g:X\to Y$, let $Z=(X\times I\sqcup Y)/((x,0)\sim f(x),(x,1)\sim g(x))$.  Then
 \[
 \cdots\to H_n(X)\xrightarrow{f_*-g_*}H_n(Y)\to H_n(Z)\to H_{n-1}(X)\xrightarrow{f_*-g_*}H_{n-1}(Y)\to\cdots.
@@ -693,9 +739,10 @@ For an abelian group $G$, define $C_n(X;G)$ by allowing coefficients in $G$, set
 
 \begin{lemma}[Homology map of degree m map with G coefficients]
 \label{lem:homology-map-degree-m-coefficients}
+\uses{cor:homology-spheres}
 \dcref{ch2:2.49}
 \group{Singular Homology}
-\uses{cor:homology-spheres}
+
 If $f:S^k\to S^k$ has degree $m$, then $f_*:H_k(S^k;G)\to H_k(S^k;G)$ is multiplication by $m$.
 \end{lemma}
 \begin{proof}
@@ -704,17 +751,19 @@ If $f:S^k\to S^k$ has degree $m$, then $f_*:H_k(S^k;G)\to H_k(S^k;G)$ is multipl
 
 \begin{example}[Homology of RPn with field coefficients]
 \label{ex:homology-rpn-field-coefficients}
+\uses{ex:cellular-homology-rpn}
 \dcref{ch2:2.50}
 \group{Singular Homology}
-\uses{ex:cellular-homology-rpn}
+
 The cellular complex of $\mathbb{RP}^n$ over a field $F$ alternates $0$ and multiplication by $2$.  If $\operatorname{char}F=2$, then $H_k(\mathbb{RP}^n;F)\cong F$ for $0\leq k\leq n$; otherwise it is $F$ for $k=0$ and for $k=n$ odd, and zero otherwise.
 \end{example}
 
 \begin{example}[Homology of Moore space quotient]
 \label{ex:homology-moore-space-quotient}
+\uses{ex:moore-spaces}
 \dcref{ch2:2.51}
 \group{Singular Homology}
-\uses{ex:moore-spaces}
+
 For $X=M(\mathbb{Z}_m,n)$ and $f:X\to X/S^n=S^{n+1}$, $f_*$ is zero on
 reduced integral homology because the nonzero groups of source and target occur
 in different dimensions. With $\mathbb{Z}_m$ coefficients, the cellular
@@ -752,9 +801,10 @@ A category consists of objects, morphism sets with identity morphisms, and assoc
 
 \begin{theorem}[Hurewicz theorem in dimension 1]
 \label{thm:hurewicz-dimension-1}
+\uses{def:loop-and-pi1-set, prop:h0-path-connected}
 \dcref{ch2:2A.1}
 \group{Singular Homology}
-\uses{def:loop-and-pi1-set,prop:h0-path-connected}
+
 For path-connected $X$, regarding based loops as singular 1-cycles gives a surjection
 \[
 h:\pi_1(X,x_0)\twoheadrightarrow H_1(X)
@@ -767,9 +817,10 @@ whose kernel is the commutator subgroup.  Hence $H_1(X)\cong\pi_1(X,x_0)_{\mathr
 
 \begin{example}[H1 of closed orientable surface]
 \label{ex:h1-closed-orientable-surface}
+\uses{thm:hurewicz-dimension-1}
 \dcref{ch2:2A.2}
 \group{Singular Homology}
-\uses{thm:hurewicz-dimension-1}
+
 For a closed orientable genus-$g$ surface $M$, $H_1(M)\cong\mathbb{Z}^{2g}$, generated by the standard $\alpha_i,\beta_i$ cycles.
 \end{example}
 
@@ -777,9 +828,10 @@ For a closed orientable genus-$g$ surface $M$, $H_1(M)\cong\mathbb{Z}^{2g}$, gen
 
 \begin{proposition}[Homology of sphere complement of disk/sphere]
 \label{prop:homology-sphere-complement-disk-sphere}
+\uses{thm:excision-general, ex:mayer-vietoris-sphere}
 \dcref{ch2:2B.1}
 \group{Singular Homology}
-\uses{thm:excision-general,ex:mayer-vietoris-sphere}
+
 If $h:D^k\hookrightarrow S^n$, then $\widetilde H_i(S^n-h(D^k))=0$ for every $i$.  If $h:S^k\hookrightarrow S^n$ with $k<n$, then
 \[
 \widetilde H_i(S^n-h(S^k))\cong\begin{cases}\mathbb{Z}&i=n-k-1,\\0&\text{otherwise}.\end{cases}
@@ -801,17 +853,19 @@ $\widetilde H_i(S^n-h(S^k))\cong
 
 \begin{example}[The Alexander Horned Sphere]
 \label{ex:alexander-horned-sphere}
+\uses{prop:homology-sphere-complement-disk-sphere}
 \dcref{ch2:2B.2}
 \group{Singular Homology}
-\uses{prop:homology-sphere-complement-disk-sphere}
+
 There is an embedding $S^2\hookrightarrow\mathbb{R}^3$ whose unbounded complement is not simply-connected.  The nested solid-torus construction has complements with free groups $F_{2^n}$, where each old generator becomes a commutator of two new generators; their union is the complement group and has trivial abelianization.
 \end{example}
 
 \begin{theorem}[Invariance of domain]
 \label{thm:invariance-of-domain-general}
+\uses{prop:homology-sphere-complement-disk-sphere}
 \dcref{ch2:2B.3}
 \group{Singular Homology}
-\uses{prop:homology-sphere-complement-disk-sphere}
+
 If $U\subset\mathbb{R}^n$ is open and $h:U\to\mathbb{R}^n$ is a continuous injection, then $h(U)$ is open.
 \end{theorem}
 \begin{proof}
@@ -820,9 +874,10 @@ If $U\subset\mathbb{R}^n$ is open and $h:U\to\mathbb{R}^n$ is a continuous injec
 
 \begin{corollary}[Embedding of compact manifold in connected manifold]
 \label{cor:embedding-compact-manifold-connected}
+\uses{thm:invariance-of-domain-general}
 \dcref{ch2:2B.4}
 \group{Singular Homology}
-\uses{thm:invariance-of-domain-general}
+
 An embedding of a compact $n$-manifold into a connected $n$-manifold is surjective and hence a homeomorphism.
 \end{corollary}
 \begin{proof}
@@ -831,9 +886,10 @@ An embedding of a compact $n$-manifold into a connected $n$-manifold is surjecti
 
 \begin{theorem}[Real and complex division algebras]
 \label{thm:real-complex-division-algebras}
+\uses{prop:z2-acts-freely-even-spheres}
 \dcref{ch2:2B.5}
 \group{Cellular Homology}
-\uses{prop:z2-acts-freely-even-spheres}
+
 $\mathbb{R}$ and $\mathbb{C}$ are the only finite-dimensional commutative division algebras over $\mathbb{R}$ with identity.
 \end{theorem}
 \begin{proof}
@@ -842,9 +898,10 @@ $\mathbb{R}$ and $\mathbb{C}$ are the only finite-dimensional commutative divisi
 
 \begin{proposition}[Odd map of Sn has odd degree]
 \label{prop:odd-map-odd-degree}
+\uses{cor:homology-spheres}
 \dcref{ch2:2B.6}
 \group{Cellular Homology}
-\uses{cor:homology-spheres}
+
 If $f:S^n\to S^n$ satisfies $f(-x)=-f(x)$, then $\deg f$ is odd.
 \end{proposition}
 \begin{proof}
@@ -853,9 +910,10 @@ If $f:S^n\to S^n$ satisfies $f(-x)=-f(x)$, then $\deg f$ is odd.
 
 \begin{corollary}[Borsuk-Ulam theorem]
 \label{cor:borsuk-ulam}
+\uses{prop:odd-map-odd-degree}
 \dcref{ch2:2B.7}
 \group{Cellular Homology}
-\uses{prop:odd-map-odd-degree}
+
 For every $g:S^n\to\mathbb{R}^n$, some $x$ satisfies $g(x)=g(-x)$.
 \end{corollary}
 \begin{proof}
@@ -868,9 +926,10 @@ A simplicial map sends vertices to vertices and is affine on every simplex.  A v
 
 \begin{theorem}[Simplicial Approximation Theorem]
 \label{thm:simplicial-approximation}
+\uses{lem:star-intersections}
 \dcref{ch2:2C.1}
 \group{Singular Homology}
-\uses{lem:star-intersections}
+
 If $K$ is finite and $L$ is any simplicial complex, every continuous $f:K\to L$ is homotopic to a map simplicial on some iterated barycentric subdivision of $K$.
 \end{theorem}
 \begin{proof}
@@ -879,9 +938,10 @@ If $K$ is finite and $L$ is any simplicial complex, every continuous $f:K\to L$ 
 
 \begin{lemma}[Intersections of star neighborhoods]
 \label{lem:star-intersections}
+\uses{def:simplex}
 \dcref{ch2:2C.2}
 \group{Singular Homology}
-\uses{def:simplex}
+
 For vertices $v_1,\ldots,v_n$ of a simplicial complex, $\operatorname{st}v_1\cap\cdots\cap\operatorname{st}v_n$ is empty unless they span a simplex $\sigma$, in which case the intersection equals $\operatorname{st}\sigma$.
 \end{lemma}
 \begin{proof}
@@ -890,9 +950,10 @@ For vertices $v_1,\ldots,v_n$ of a simplicial complex, $\operatorname{st}v_1\cap
 
 \begin{theorem}[Lefschetz Fixed Point Theorem]
 \label{thm:lefschetz-fixed-point}
+\uses{thm:cellular-singular-homology-isomorphic}
 \dcref{ch2:2C.3}
 \group{Singular Homology}
-\uses{thm:cellular-singular-homology-isomorphic}
+
 For a finite simplicial complex, or a retract of one, if $\tau(f)=\sum_n(-1)^n\operatorname{tr}(f_*:H_n(X)\to H_n(X))\ne0$, then $f$ has a fixed point.
 \end{theorem}
 \begin{proof}
@@ -901,9 +962,10 @@ For a finite simplicial complex, or a retract of one, if $\tau(f)=\sum_n(-1)^n\o
 
 \begin{example}[Lefschetz number of surface rotation]
 \label{ex:lefschetz-surface-rotation}
+\uses{thm:lefschetz-fixed-point}
 \dcref{ch2:2C.4}
 \group{Singular Homology}
-\uses{thm:lefschetz-fixed-point}
+
 For the fixed-point-free half-turn of a genus-three orientable surface, the induced maps contribute $1$ in dimension $0$, $-2$ in dimension $1$, and $1$ in dimension $2$, so $\tau=0$.
 \end{example}
 
@@ -911,9 +973,10 @@ For the fixed-point-free half-turn of a genus-three orientable surface, the indu
 
 \begin{theorem}[CW complex homotopy equivalent to simplicial complex]
 \label{thm:cw-homotopy-equivalent-simplicial}
+\uses{def:cell-complex}
 \dcref{ch2:2C.5}
 \group{CW Complexes}
-\uses{def:cell-complex}
+
 Every CW complex is homotopy equivalent to a simplicial complex of the same dimension; finiteness and countability are preserved.
 \end{theorem}
 \begin{proof}

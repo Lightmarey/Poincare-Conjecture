@@ -31,9 +31,10 @@ Such a $w$ is an eigenfunction.
 
 \begin{remark}[Nonlinear extensions require linearity]
 \label{rem:separation-of-variables-linearity-remark}
+\uses{ex:heat-equation-separation-of-variables}
 \dcref{ch4:4.1-rem-1}
 \group{Separation of Variables}
-\uses{ex:heat-equation-separation-of-variables}
+
 The single separated mode follows from the ansatz itself; superposition of
 modes requires linearity of the PDE.
 \end{remark}
@@ -59,9 +60,10 @@ u(x,t)=((1-\gamma)\mu t+\lambda)^{1/(1-\gamma)}|x|^\alpha.
 
 \begin{remark}[Finite-time blow-up]
 \label{rem:porous-medium-blowup-remark}
+\uses{ex:porous-medium-separation-of-variables}
 \dcref{ch4:4.1-rem-2}
 \group{Similarity Solutions}
-\uses{ex:porous-medium-separation-of-variables}
+
 The preceding solution blows up at
 \[
 t_*=(\gamma-1)^{-1}\mu^{-1}
@@ -71,9 +73,10 @@ for $x\ne0$.
 
 \begin{example}[Additive separation of variables for the Hamilton--Jacobi equation]
 \label{ex:hamilton-jacobi-additive-separation}
+\uses{ex:hamilton-jacobi-complete-integral}
 \dcref{ch4:4.1-ex-3}
 \group{Separation of Variables}
-\uses{ex:hamilton-jacobi-complete-integral}
+
 For $u_t+H(Du)=0$, the additive ansatz $u=w(x)+v(t)$ gives
 $H(Dw)=\mu=-v'(t)$. Hence every solution of $H(Dw)=\mu$ produces
 \[
@@ -105,9 +108,10 @@ with wavefront normal $y$ and velocity $\sigma/|y|$.
 
 \begin{example}[Exponential plane wave solutions of linear PDE]
 \label{ex:exponential-plane-wave-solutions}
+\uses{def:traveling-wave-plane-wave}
 \dcref{ch4:4.2.1-ex-1}
 \group{Traveling Waves}
-\uses{def:traveling-wave-plane-wave}
+
 For $u=e^{i(y\cdot x+\omega t)}$, the dispersion relations are:
 \[
 \begin{array}{c|c|c}
@@ -124,9 +128,10 @@ dispersive (the Airy velocity is $y^2$).
 
 \begin{example}[Solitons for the Korteweg--de Vries equation]
 \label{ex:kdv-soliton-traveling-wave}
+\uses{def:traveling-wave-plane-wave}
 \dcref{ch4:4.2.1-ex-2}
 \group{Traveling Waves}
-\uses{def:traveling-wave-plane-wave}
+
 For KdV, $u_t+6uu_x+u_{xxx}=0$, a traveling profile satisfies the
 third-order ODE
 \[
@@ -146,18 +151,20 @@ u(x,t)=\frac\sigma2\sech^2\!\left(\frac{\sqrt\sigma}{2}(x-\sigma t-c)\right),
 
 \begin{remark}[Complete integrability of the KdV equation]
 \label{rem:kdv-complete-integrability}
+\uses{ex:kdv-soliton-traveling-wave}
 \dcref{ch4:4.2.1-rem-1}
 \group{Traveling Waves}
-\uses{ex:kdv-soliton-traveling-wave}
+
 KdV is completely integrable; see \cite{Drazin1983} for the associated
 solution-generating machinery.
 \end{remark}
 
 \begin{theorem}[Existence of a traveling wave for the bistable reaction-diffusion equation]
 \label{thm:bistable-traveling-wave-existence}
+\uses{def:traveling-wave-plane-wave}
 \dcref{ch4:4.2.1-thm-1}
 \group{Traveling Waves}
-\uses{def:traveling-wave-plane-wave}
+
 Let $f$ be smooth and, for some $0<a<1$, satisfy
 \[
 f(0)=f(a)=f(1)=0,\quad f<0\text{ on }(0,a),\quad f>0\text{ on }(a,1),
@@ -180,9 +187,10 @@ forming a heteroclinic orbit.
 
 \begin{remark}[Uniqueness of the bistable traveling wave velocity]
 \label{rem:bistable-traveling-wave-velocity-uniqueness}
+\uses{thm:bistable-traveling-wave-existence, ex:kdv-soliton-traveling-wave}
 \dcref{ch4:4.2.1-rem-2}
 \group{Traveling Waves}
-\uses{thm:bistable-traveling-wave-existence,ex:kdv-soliton-traveling-wave}
+
 A refined phase-plane argument gives uniqueness of the admissible velocity
 $\sigma$ for fixed $f$, unlike the KdV soliton family.
 \end{remark}
@@ -192,9 +200,10 @@ $\sigma$ for fixed $f$, unlike the KdV soliton family.
 
 \begin{example}[A scaling invariant solution of the porous medium equation: Barenblatt's solution]
 \label{ex:porous-medium-scaling-invariant-barenblatt}
+\uses{def:fundamental-solution-heat-equation}
 \dcref{ch4:4.2.2-ex-1}
 \group{Similarity Solutions}
-\uses{def:fundamental-solution-heat-equation}
+
 For $u_t-\Delta(u^\gamma)=0$, seek
 \[
 u(x,t)=t^{-\alpha}v(xt^{-\beta}),\qquad \alpha+1=\alpha\gamma+2\beta.
@@ -218,9 +227,10 @@ u(x,t)=t^{-\alpha}\left(b-\frac{\gamma-1}{2\gamma}\beta\frac{|x|^2}{t^{2\beta}}\
 
 \begin{remark}[Finite propagation speed for the porous medium equation]
 \label{rem:porous-medium-finite-propagation-speed}
+\uses{ex:porous-medium-scaling-invariant-barenblatt}
 \dcref{ch4:4.2.2-rem-1}
 \group{Similarity Solutions}
-\uses{ex:porous-medium-scaling-invariant-barenblatt}
+
 The Barenblatt profile has compact support at each $t>0$; degenerate diffusion
 therefore gives finite propagation speed for compactly supported nonnegative
 data.
@@ -248,9 +258,10 @@ For $u\in L^1(\R^n)$ define
 
 \begin{theorem}[Plancherel's Theorem]
 \label{thm:plancherel-theorem}
+\uses{def:fourier-transform-l1, ex:bessel-potentials, lem:integral-fundamental-solution-heat}
 \dcref{ch4:4.3.1-thm-1}
 \group{Fourier Transform}
-\uses{def:fourier-transform-l1,ex:bessel-potentials,lem:integral-fundamental-solution-heat}
+
 For $u\in L^1(\R^n)\cap L^2(\R^n)$,
 \[
 \hat u,\check u\in L^2(\R^n),\qquad
@@ -266,9 +277,10 @@ zero. This proves $\|\hat u\|_2=\|u\|_2$; the inverse transform is analogous.
 
 \begin{definition}[Fourier transform on $L^2$]
 \label{def:fourier-transform-l2}
+\uses{thm:plancherel-theorem}
 \dcref{ch4:4.3.1-def-2}
 \group{Fourier Transform}
-\uses{thm:plancherel-theorem}
+
 For $u\in L^2(\R^n)$, choose $u_k\in L^1\cap L^2$ with $u_k\to u$ in $L^2$.
 Plancherel makes $\hat u_k$ and $\check u_k$ Cauchy in $L^2$; their limits
 define $\hat u$ and $\check u$, independently of the approximating sequence.
@@ -276,9 +288,10 @@ define $\hat u$ and $\check u$, independently of the approximating sequence.
 
 \begin{theorem}[Properties of Fourier transform]
 \label{thm:fourier-transform-properties}
+\uses{def:fourier-transform-l2, thm:plancherel-theorem}
 \dcref{ch4:4.3.1-thm-2}
 \group{Fourier Transform}
-\uses{def:fourier-transform-l2,thm:plancherel-theorem}
+
 For $u,v\in L^2(\R^n)$,
 \[
 \int u\bar v\,dx=\int\hat u\,\overline{\hat v}\,dy,
@@ -298,9 +311,10 @@ approximate identities give Fourier inversion almost everywhere.
 
 \begin{example}[Bessel potentials]
 \label{ex:bessel-potentials}
+\uses{thm:fourier-transform-properties}
 \dcref{ch4:4.3.1-ex-1}
 \group{Fourier Transform}
-\uses{thm:fourier-transform-properties}
+
 For $-\Delta u+u=f$,
 \[
 \hat u(y)=\frac{\hat f(y)}{1+|y|^2},\qquad
@@ -314,9 +328,10 @@ B(x)=\frac1{2\pi^{n/2}}\int_0^\infty t^{-n/2}e^{-t-|x|^2/(4t)}\,dt.
 
 \begin{example}[Fundamental solution of the heat equation, via Fourier transform]
 \label{ex:fourier-transform-heat-fundamental-solution}
+\uses{thm:fourier-transform-properties, ex:bessel-potentials, thm:heat-equation-initial-value-solution}
 \dcref{ch4:4.3.1-ex-2}
 \group{Fourier Transform}
-\uses{thm:fourier-transform-properties,ex:bessel-potentials,thm:heat-equation-initial-value-solution}
+
 Fourier transformation in $x$ reduces the heat initial-value problem to
 $\hat u_t+|y|^2\hat u=0$, so
 \[
@@ -326,9 +341,10 @@ u(x,t)=\frac1{(4\pi t)^{n/2}}\int_{\R^n}e^{-|x-y|^2/(4t)}g(y)\,dy.
 
 \begin{example}[Fundamental solution of Schr\"odinger's equation]
 \label{ex:schrodinger-fundamental-solution}
+\uses{thm:plancherel-theorem, ex:fourier-transform-heat-fundamental-solution}
 \dcref{ch4:4.3.1-ex-3}
 \group{Fourier Transform}
-\uses{thm:plancherel-theorem,ex:fourier-transform-heat-fundamental-solution}
+
 For $iu_t+\Delta u=0$, formally continue the heat kernel to $it$:
 \[
 u(x,t)=\frac1{(4\pi it)^{n/2}}\int_{\R^n}e^{i|x-y|^2/(4t)}g(y)\,dy.
@@ -340,9 +356,10 @@ $L^2$.
 
 \begin{remark}[Fundamental solution of Schr\"odinger's equation and time reversibility]
 \label{rem:schrodinger-time-reversibility}
+\uses{ex:schrodinger-fundamental-solution, thm:backwards-uniqueness-heat-equation}
 \dcref{ch4:4.3.1-rem-1}
 \group{Fourier Transform}
-\uses{ex:schrodinger-fundamental-solution,thm:backwards-uniqueness-heat-equation}
+
 The fundamental solution
 \[
 \Psi(x,t)=(4\pi it)^{-n/2}e^{i|x|^2/(4t)},\qquad t\ne0,
@@ -353,9 +370,10 @@ time reversible, unlike heat evolution.
 
 \begin{example}[The wave equation via Fourier transform]
 \label{ex:fourier-transform-wave-equation}
+\uses{thm:fourier-transform-properties, ex:exponential-plane-wave-solutions}
 \dcref{ch4:4.3.1-ex-4}
 \group{Fourier Transform}
-\uses{thm:fourier-transform-properties,ex:exponential-plane-wave-solutions}
+
 For $u_{tt}-\Delta u=0$, $u(\cdot,0)=g$, $u_t(\cdot,0)=0$,
 \[
 \hat u(y,t)=\frac{\hat g(y)}2(e^{it|y|}+e^{-it|y|}),
@@ -369,9 +387,10 @@ u(x,t)=\frac1{(2\pi)^{n/2}}\int_{\R^n}\frac{\hat g(y)}2
 
 \begin{example}[Telegraph equation]
 \label{ex:telegraph-equation-fourier-transform}
+\uses{thm:fourier-transform-properties}
 \dcref{ch4:4.3.1-ex-5}
 \group{Fourier Transform}
-\uses{thm:fourier-transform-properties}
+
 For $u_{tt}+2du_t-u_{xx}=0$, Fourier modes satisfy
 $\hat u_{tt}+2d\hat u_t+|y|^2\hat u=0$. With
 $\gamma=(d^2-|y|^2)^{1/2}$ and $\delta=(|y|^2-d^2)^{1/2}$,
@@ -399,9 +418,10 @@ u^\#(s)=\int_0^\infty e^{-st}u(t)\,dt,\qquad s\ge0.
 
 \begin{example}[Resolvents and Laplace transform]
 \label{ex:resolvent-laplace-transform}
+\uses{def:laplace-transform, ex:bessel-potentials}
 \dcref{ch4:4.3.2-ex-1}
 \group{Laplace Transform}
-\uses{def:laplace-transform,ex:bessel-potentials}
+
 For $v_t-\Delta v=0$ with $v(\cdot,0)=f$, the time transform
 $u=v^\#(\cdot,s)$ satisfies
 \[
@@ -411,9 +431,10 @@ $u=v^\#(\cdot,s)$ satisfies
 
 \begin{example}[Wave equation from the heat equation, via Laplace transform]
 \label{ex:wave-equation-from-heat-laplace-transform}
+\uses{def:laplace-transform, thm:wave-equation-odd-dimensions-solution}
 \dcref{ch4:4.3.2-ex-2}
 \group{Laplace Transform}
-\uses{def:laplace-transform,thm:wave-equation-odd-dimensions-solution}
+
 For odd $n$, extend the zero-velocity wave solution evenly to negative time and
 set
 \[
@@ -438,9 +459,10 @@ The normalization uses the Gamma-function recursion from \cite{Rudin1976}.
 
 \begin{example}[The Hopf--Cole transformation for a quadratic-nonlinearity parabolic PDE]
 \label{ex:hopf-cole-quadratic-nonlinearity}
+\uses{ex:fourier-transform-heat-fundamental-solution}
 \dcref{ch4:4.4.1-ex-1}
 \group{Nonlinear to Linear PDE}
-\uses{ex:fourier-transform-heat-fundamental-solution}
+
 For
 \[
 u_t-a\Delta u+b|Du|^2=0,\qquad u(x,0)=g(x),\quad a>0,
@@ -455,9 +477,10 @@ u(x,t)=-\frac ab\log\left[(4\pi at)^{-n/2}
 
 \begin{example}[Viscous Burgers' equation via the Hopf--Cole transformation]
 \label{ex:viscous-burgers-hopf-cole}
+\uses{ex:hopf-cole-quadratic-nonlinearity, def:integral-solution-conservation-law}
 \dcref{ch4:4.4.1-ex-2}
 \group{Nonlinear to Linear PDE}
-\uses{ex:hopf-cole-quadratic-nonlinearity,def:integral-solution-conservation-law}
+
 For viscous Burgers,
 \[
 u_t-au_{xx}+uu_x=0,\qquad u(x,0)=g(x),
@@ -521,9 +544,10 @@ x^1_{u_2}-x^2_{u_1}=0.
 
 \begin{remark}[Simplifying the hodograph system via a potential function]
 \label{rem:hodograph-potential-simplification}
+\uses{ex:hodograph-transform-irrotational-flow}
 \dcref{ch4:4.4.3-rem-1}
 \group{Nonlinear to Linear PDE}
-\uses{ex:hodograph-transform-irrotational-flow}
+
 Writing $x^1=z_{u_1}$ and $x^2=z_{u_2}$ reduces the hodograph system to
 \[
 (\sigma^2-u_1^2)z_{u_2u_2}+2u_1u_2z_{u_1u_2}
@@ -533,9 +557,10 @@ Writing $x^1=z_{u_1}$ and $x^2=z_{u_2}$ reduces the hodograph system to
 
 \begin{example}[Legendre transform for the minimal surface equation]
 \label{ex:legendre-transform-minimal-surface}
+\uses{def:legendre-transform}
 \dcref{ch4:4.4.3-ex-2}
 \group{Nonlinear to Linear PDE}
-\uses{def:legendre-transform}
+
 For the two-dimensional minimal-surface equation, invert
 $p^i=u_{x_i}$ where $J=\det D^2u\ne0$, and define
 \[
@@ -554,9 +579,10 @@ and the minimal-surface equation becomes the linear equation
 
 \begin{remark}[Practical difficulty of the hodograph and Legendre techniques]
 \label{rem:hodograph-legendre-practical-difficulty}
+\uses{ex:hodograph-transform-irrotational-flow, ex:legendre-transform-minimal-surface}
 \dcref{ch4:4.4.3-rem-2}
 \group{Nonlinear to Linear PDE}
-\uses{ex:hodograph-transform-irrotational-flow,ex:legendre-transform-minimal-surface}
+
 These transforms linearize selected equations but generally make prescribed
 boundary conditions difficult to express.
 \end{remark}
@@ -577,9 +603,10 @@ the limit $\varepsilon\to0$ can change the analytic character of solutions.
 
 \begin{example}[Transport and small diffusion]
 \label{ex:transport-small-diffusion-singular-perturbation}
+\uses{def:singular-perturbation}
 \dcref{ch4:4.5.1-ex-1}
 \group{Asymptotics}
-\uses{def:singular-perturbation}
+
 Let a smooth planar velocity field $\mathbf b$ carry dye injected at the
 origin. The unperturbed density solves
 \[
@@ -609,9 +636,10 @@ with $u^\varepsilon=\varepsilon^{-1/2}(v+o(1))$.
 
 \begin{example}[Vanishing viscosity method for Burgers' equation]
 \label{ex:vanishing-viscosity-burgers}
+\uses{ex:viscous-burgers-hopf-cole, thm:lax-oleinik-formula}
 \dcref{ch4:4.5.2-ex-1}
 \group{Asymptotics}
-\uses{ex:viscous-burgers-hopf-cole,thm:lax-oleinik-formula}
+
 For viscous Burgers with viscosity $\varepsilon$,
 \[
 u_t^\varepsilon+u^\varepsilon u_x^\varepsilon-\varepsilon u_{xx}^\varepsilon=0,
@@ -656,9 +684,10 @@ $l(y_0)$.
 
 \begin{example}[Oscillating solutions and the geometric optics ansatz]
 \label{ex:geometric-optics-oscillating-solutions}
+\uses{thm:characteristic-ode-structure}
 \dcref{ch4:4.5.3-ex-1}
 \group{Asymptotics}
-\uses{thm:characteristic-ode-structure}
+
 For $u_{tt}-\Delta u=0$, insert
 \[
 u^\varepsilon=e^{ip^\varepsilon/\varepsilon}a^\varepsilon.
@@ -678,9 +707,10 @@ p_t\pm\left(\sum_{k,l}a^{kl}p_{x_k}p_{x_l}\right)^{1/2}=0.
 
 \begin{example}[Stationary phase for the wave equation]
 \label{ex:stationary-phase-wave-equation}
+\uses{ex:fourier-transform-wave-equation}
 \dcref{ch4:4.5.3-ex-2}
 \group{Asymptotics}
-\uses{ex:fourier-transform-wave-equation}
+
 For rapidly oscillatory initial data $g^\varepsilon(x)=a(x)e^{ip(x)/\varepsilon}$,
 the Fourier wave formula becomes
 \[
@@ -755,9 +785,10 @@ complete squares; each coordinate change has derivative $I$ at the origin.
 
 \begin{proposition}[The stationary phase asymptotic formula]
 \label{prop:stationary-phase-asymptotic-formula}
+\uses{lem:stationary-phase-linear-asymptotics, lem:stationary-phase-quadratic-asymptotics, lem:stationary-phase-changing-coordinates}
 \dcref{ch4:4.5.3-prop-1}
 \group{Asymptotics}
-\uses{lem:stationary-phase-linear-asymptotics,lem:stationary-phase-quadratic-asymptotics,lem:stationary-phase-changing-coordinates}
+
 For $I_\varepsilon=\int e^{i\phi(y)/\varepsilon}a(y)\,dy$, assume the
 critical points $y_1,\ldots,y_N$ in $\operatorname{spt}a$ are the only zeros
 of $D\phi$ and $D^2\phi(y_k)$ is nonsingular. Then
@@ -777,9 +808,10 @@ coordinate lemma and evaluated by the quadratic-phase lemma.
 
 \begin{example}[Stationary phase for the wave equation, continued]
 \label{ex:stationary-phase-wave-equation-continued}
+\uses{ex:stationary-phase-wave-equation, prop:stationary-phase-asymptotic-formula}
 \dcref{ch4:4.5.3-ex-3}
 \group{Asymptotics}
-\uses{ex:stationary-phase-wave-equation,prop:stationary-phase-asymptotic-formula}
+
 For $\phi_+=(x-z)\cdot y+t|y|+p(z)$, the stationary set is
 \[
 S^+=\left\{(y,z):x=z-t\frac{Dp(z)}{|Dp(z)|},\ y=Dp(z)\right\}.
@@ -796,9 +828,10 @@ $I_+^\varepsilon$; $I_-^\varepsilon$ is analogous.
 
 \begin{remark}[Optics and stationary phase]
 \label{rem:optics-stationary-phase-connection}
+\uses{ex:geometric-optics-oscillating-solutions, ex:stationary-phase-wave-equation-continued, thm:characteristic-ode-structure}
 \dcref{ch4:4.5.3-rem-1}
 \group{Asymptotics}
-\uses{ex:geometric-optics-oscillating-solutions,ex:stationary-phase-wave-equation-continued,thm:characteristic-ode-structure}
+
 The eikonal equations $p_t\pm|Dp|=0$ have characteristics
 \[
 \dot x=\mp p/|p|,\qquad \dot p=0.
@@ -865,9 +898,10 @@ Define
 
 \begin{definition}[Cauchy problem and Cauchy data]
 \label{def:cauchy-problem-cauchy-data}
+\uses{def:normal-derivative-notation}
 \dcref{ch4:4.6.1-def-2}
 \group{Power Series Methods}
-\uses{def:normal-derivative-notation}
+
 Given $g_0,\ldots,g_{k-1}:\Gamma\to\R$, the Cauchy problem prescribes
 \[
 \frac{\partial^ju}{\partial\nu^j}=g_j\quad\text{on }\Gamma,
@@ -899,9 +933,10 @@ plane.
 
 \begin{definition}[Noncharacteristic surface]
 \label{def:noncharacteristic-surface}
+\uses{def:cauchy-problem-cauchy-data}
 \dcref{ch4:4.6.1-def-4}
 \group{Power Series Methods}
-\uses{def:cauchy-problem-cauchy-data}
+
 An arbitrary smooth hypersurface $\Gamma$ is noncharacteristic if
 \[
 \sum_{|\alpha|=k}a_\alpha\nu^\alpha\ne0\quad\text{on }\Gamma
@@ -911,9 +946,10 @@ for all coefficient arguments.
 
 \begin{theorem}[Cauchy data and noncharacteristic surfaces]
 \label{thm:cauchy-data-noncharacteristic-surfaces}
+\uses{def:noncharacteristic-surface, def:cauchy-problem-cauchy-data, def:noncharacteristic-plane-flat}
 \dcref{ch4:4.6.1-thm-1}
 \group{Power Series Methods}
-\uses{def:noncharacteristic-surface,def:cauchy-problem-cauchy-data,def:noncharacteristic-plane-flat}
+
 If $\Gamma$ is noncharacteristic, every derivative of a smooth solution along
 $\Gamma$ is uniquely determined by the Cauchy data and the PDE coefficients.
 \end{theorem}
@@ -927,9 +963,10 @@ the transformed Cauchy data. Transform the resulting derivatives back.
 
 \begin{remark}[Noncharacteristic condition via a level set function]
 \label{rem:noncharacteristic-condition-level-set}
+\uses{def:noncharacteristic-surface}
 \dcref{ch4:4.6.1-rem-1}
 \group{Power Series Methods}
-\uses{def:noncharacteristic-surface}
+
 If $\Gamma=\{w=0\}$ and $Dw\ne0$ on $\Gamma$, then the condition is
 \[
 \sum_{|\alpha|=k}a_\alpha(Dw)^\alpha\ne0\quad\text{on }\Gamma.
@@ -952,9 +989,10 @@ for $|x-x_0|<r$ and some $r>0$.
 
 \begin{remark}[Basic properties of real analytic functions]
 \label{rem:real-analytic-function-remarks}
+\uses{def:real-analytic-function}
 \dcref{ch4:4.6.2-rem-1}
 \group{Power Series Methods}
-\uses{def:real-analytic-function}
+
 Analytic functions are $C^\infty$ and
 \[
 f_\alpha=\frac{D^\alpha f(x_0)}{\alpha!},\qquad
@@ -964,9 +1002,10 @@ f(x)=\sum_\alpha\frac{D^\alpha f(x_0)}{\alpha!}(x-x_0)^\alpha.
 
 \begin{example}[Power series for a simple rational function]
 \label{ex:real-analytic-example-rational-function}
+\uses{def:real-analytic-function}
 \dcref{ch4:4.6.2-ex-1}
 \group{Power Series Methods}
-\uses{def:real-analytic-function}
+
 For $|x|<r/\sqrt n$,
 \[
 \frac r{r-(x_1+\cdots+x_n)}
@@ -986,9 +1025,10 @@ $g\gg f$ if $g_\alpha\ge|f_\alpha|$ for every multiindex $\alpha$.
 
 \begin{lemma}[Majorants]
 \label{lem:power-series-majorants}
+\uses{def:power-series-majorizes, ex:real-analytic-example-rational-function}
 \dcref{ch4:4.6.2-lem-1}
 \group{Power Series Methods}
-\uses{def:power-series-majorizes,ex:real-analytic-example-rational-function}
+
 If $g\gg f$ and $g$ converges for $|x|<r$, then $f$ converges there. If $f$
 converges for $|x|<r$ and $0<s\sqrt n<r$, then $f$ has a majorant on
 $|x|<s\sqrt n$.
@@ -1003,9 +1043,10 @@ $Cs/[s-(x_1+\cdots+x_n)]$.
 
 \begin{remark}[Vector-valued power series notation]
 \label{rem:vector-valued-power-series-notation}
+\uses{def:power-series-majorizes}
 \dcref{ch4:4.6.2-rem-2}
 \group{Power Series Methods}
-\uses{def:power-series-majorizes}
+
 For vectors of power series, write $\mathbf g\gg\mathbf f$ when
 $g^k\gg f^k$ for every component.
 \end{remark}
@@ -1023,9 +1064,10 @@ where the coefficients are analytic and independent of $x_n$.
 
 \begin{theorem}[Cauchy--Kovalevskaya Theorem]
 \label{thm:cauchy-kovalevskaya}
+\uses{def:cauchy-problem-cauchy-data, thm:cauchy-data-noncharacteristic-surfaces, lem:power-series-majorants, rem:vector-valued-power-series-notation, def:real-analytic-function}
 \dcref{ch4:4.6.3-thm-1}
 \group{Power Series Methods}
-\uses{def:cauchy-problem-cauchy-data,thm:cauchy-data-noncharacteristic-surfaces,lem:power-series-majorants,rem:vector-valued-power-series-notation,def:real-analytic-function}
+
 If $\mathbf B_j$ and $\mathbf c$ are real analytic, there exist $r>0$ and a
 real analytic solution
 \[
@@ -1046,9 +1088,10 @@ series satisfies the system because its Taylor expansions agree.
 
 \begin{remark}[The Cauchy--Kovalevskaya Theorem for fully nonlinear equations]
 \label{rem:cauchy-kovalevskaya-fully-nonlinear}
+\uses{thm:cauchy-kovalevskaya}
 \dcref{ch4:4.6.3-rem-1}
 \group{Power Series Methods}
-\uses{thm:cauchy-kovalevskaya}
+
 The theorem extends to fully nonlinear analytic PDE; see \cite{Folland1976}.
 \end{remark}
 

@@ -37,9 +37,10 @@ This is a quasilinear, second-order PDE in divergence form.
 
 \begin{example}[Dirichlet's principle]
 \label{ex:dirichlets-principle-calculus-of-variations}
+\uses{thm:euler-lagrange-equation-pde-minimizer}
 \dcref{ch8:8.1-ex-1}
 \group{Euler--Lagrange Equations}
-\uses{thm:euler-lagrange-equation-pde-minimizer}
+
 Take
 \[
 L(p, z, x) = \frac{1}{2}|p|^2.
@@ -57,9 +58,10 @@ This is \textit{Dirichlet's principle} (see \cref{thm:dirichlets-principle}).
 
 \begin{example}[Generalized Dirichlet's principle]
 \label{ex:generalized-dirichlets-principle}
+\uses{thm:euler-lagrange-equation-pde-minimizer}
 \dcref{ch8:8.1-ex-2}
 \group{Euler--Lagrange Equations}
-\uses{thm:euler-lagrange-equation-pde-minimizer}
+
 Write
 \[
 L(p, z, x) = \frac{1}{2}\sum_{i,j=1}^{n} a^{ij}(x) p_i p_j - zf(x),
@@ -77,9 +79,10 @@ Uniform ellipticity of the coefficients $a^{ij}$ is the coercivity hypothesis th
 
 \begin{example}[Nonlinear Poisson equation]
 \label{ex:nonlinear-poisson-equation-calculus-of-variations}
+\uses{thm:euler-lagrange-equation-pde-minimizer}
 \dcref{ch8:8.1-ex-3}
 \group{Euler--Lagrange Equations}
-\uses{thm:euler-lagrange-equation-pde-minimizer}
+
 Given a smooth function $f : \R \to \R$, define its antiderivative $F(z) = \int_0^z f(y)\, dy$. Then the Euler--Lagrange equation associated with the functional
 \[
 I[w] := \int_U \frac{1}{2}|Dw|^2 - F(w)\, dx
@@ -92,9 +95,10 @@ is the nonlinear Poisson equation
 
 \begin{example}[Minimal surfaces]
 \label{ex:minimal-surfaces-calculus-of-variations}
+\uses{thm:euler-lagrange-equation-pde-minimizer}
 \dcref{ch8:8.1-ex-4}
 \group{Euler--Lagrange Equations}
-\uses{thm:euler-lagrange-equation-pde-minimizer}
+
 Let
 \[
 L(p, z, x) = (1 + |p|^2)^{1/2};
@@ -116,9 +120,10 @@ This partial differential equation is the \textit{minimal surface equation}. The
 
 \begin{proposition}[Second variation necessary condition]
 \label{prop:second-variation-convexity-necessary-condition}
+\uses{thm:euler-lagrange-equation-pde-minimizer}
 \dcref{ch8:8.1.3}
 \group{Euler--Lagrange Equations}
-\uses{thm:euler-lagrange-equation-pde-minimizer}
+
 If $u$ is a smooth minimizer of $I[\cdot]$ as in \cref{thm:euler-lagrange-equation-pde-minimizer}, then
 \[
 \sum_{i,j=1}^n L_{p_i p_j}(Du, u, x)\xi_i \xi_j \geq 0 \quad (\xi \in \R^n, x \in U).
@@ -148,9 +153,10 @@ I[\mathbf w]:=\int_U L(D\mathbf w(x),\mathbf w(x),x)\,dx.
 
 \begin{theorem}[Euler--Lagrange system for a minimizer]
 \label{thm:euler-lagrange-system-pde-minimizer}
+\uses{thm:euler-lagrange-equation-pde-minimizer}
 \dcref{ch8:8.1.4-a}
 \group{Euler--Lagrange Equations}
-\uses{thm:euler-lagrange-equation-pde-minimizer}
+
 Any smooth minimizer $\mathbf{u} = (u^1,\ldots,u^m)$ of $I[\cdot]$ defined by (15), taken among functions equal to $\mathbf{g}$ on $\partial U$, solves the coupled, quasilinear \textit{system} of PDE
 \[
 -\sum_{i=1}^n \left( L_{p_i^k}(D\mathbf{u}, \mathbf{u}, x) \right)_{x_i} + L_{z^k}(D\mathbf{u}, \mathbf{u}, x) = 0 \quad \text{in } U \quad (k = 1, \ldots, m).
@@ -166,9 +172,10 @@ These are the \textit{Euler--Lagrange equations} for the functional $I[\cdot]$ d
 
 \begin{definition}[Null Lagrangian]
 \label{def:null-lagrangian}
+\uses{thm:euler-lagrange-system-pde-minimizer}
 \dcref{ch8:8.1.4-def-1}
 \group{Null Lagrangians}
-\uses{thm:euler-lagrange-system-pde-minimizer}
+
 The function $L$ is called a \textit{null Lagrangian} if the system of Euler--Lagrange equations
 \[
 -\sum_{i=1}^{n} (L_{p_i^k}(D\mathbf{u}, \mathbf{u}, x))_{x_i} + L_{z_k}(D\mathbf{u}, \mathbf{u}, x) = 0 \quad \text{in } U \quad (k = 1, \ldots, m)
@@ -179,9 +186,10 @@ is automatically solved by all smooth functions $\mathbf{u} : U \to \R^m$.
 
 \begin{theorem}[Null Lagrangians and boundary conditions]
 \label{thm:null-lagrangians-boundary-conditions}
+\uses{def:null-lagrangian}
 \dcref{ch8:8.1-thm-1}
 \group{Null Lagrangians}
-\uses{def:null-lagrangian}
+
 Let $L$ be a null Lagrangian. Assume $\mathbf{u}, \bar{\mathbf{u}}$ are two functions in $C^2(U, \R^m)$ such that
 \[
 \mathbf{u} = \bar{\mathbf{u}} \quad \text{on } \partial U .
@@ -215,9 +223,10 @@ Let $\mathbf{u} : \R^n \to \R^n$ be a smooth function. Then
 
 \begin{theorem}[Determinants as null Lagrangians]
 \label{thm:determinant-null-lagrangian}
+\uses{lem:cofactor-divergence-free, def:null-lagrangian}
 \dcref{ch8:8.1-thm-2}
 \group{Null Lagrangians}
-\uses{lem:cofactor-divergence-free,def:null-lagrangian}
+
 The determinant function
 \[
 L(P) = \det P \quad (P \in \mathbb{M}^{n \times n})
@@ -233,9 +242,10 @@ is a null Lagrangian.
 
 \begin{theorem}[Brouwer's Fixed Point Theorem]
 \label{thm:brouwer-fixed-point-theorem}
+\uses{thm:null-lagrangians-boundary-conditions, thm:determinant-null-lagrangian}
 \dcref{ch8:8.1-thm-3}
 \group{Null Lagrangians}
-\uses{thm:null-lagrangians-boundary-conditions,thm:determinant-null-lagrangian}
+
 Assume
 \[
 \mathbf{u} : B(0,1) \to B(0,1)
@@ -282,9 +292,10 @@ L(p, z, x) \geq \alpha|p|^q - \beta \\
 
 \begin{definition}[Admissible class]
 \label{def:admissible-class-sobolev-minimization}
+\uses{def:coercivity-condition-lagrangian}
 \dcref{ch8:8.2.1-def-2}
 \group{Existence of Minimizers}
-\uses{def:coercivity-condition-lagrangian}
+
 Set
 \[
 \mathcal{A} := \{w \in W^{1,q}(U) \mid w = g \text{ on } \partial U \text{ in the trace sense}\}
@@ -297,9 +308,10 @@ $\R\cup\{+\infty\}$ for $w\in\mathcal A$.
 
 \begin{definition}[Minimizing sequence]
 \label{def:minimizing-sequence-calculus-of-variations}
+\uses{def:admissible-class-sobolev-minimization}
 \dcref{ch8:8.2.1-def-3}
 \group{Existence of Minimizers}
-\uses{def:admissible-class-sobolev-minimization}
+
 We call a sequence $\{u_k\}_{k=1}^{\infty} \subset \mathcal{A}$ satisfying (7), i.e.\ $I[u_k]\to m := \inf_{w\in\mathcal{A}} I[w]$, a \textit{minimizing sequence}.
 \end{definition}
 
@@ -322,9 +334,10 @@ u_k \rightharpoonup u \text{ weakly in } W^{1,q}(U).
 
 \begin{theorem}[Weak lower semicontinuity]
 \label{thm:weak-lower-semicontinuity-convex-lagrangian}
+\uses{prop:second-variation-convexity-necessary-condition, def:weakly-lower-semicontinuous-functional}
 \dcref{ch8:8.2-thm-1}
 \group{Existence of Minimizers}
-\uses{prop:second-variation-convexity-necessary-condition,def:weakly-lower-semicontinuous-functional}
+
 Assume that $L$ is bounded below, and in addition the mapping $p \mapsto L(p,z,x)$ is convex, for each $z \in \R, x \in U$. Then $I[\cdot]$ is weakly lower semicontinuous on $W^{1,q}(U)$.
 \end{theorem}
 
@@ -334,17 +347,19 @@ Assume that $L$ is bounded below, and in addition the mapping $p \mapsto L(p,z,x
 
 \begin{remark}[On the role of weak convergence in the proof]
 \label{rem:weak-lower-semicontinuity-proof-remark}
+\uses{thm:weak-lower-semicontinuity-convex-lagrangian}
 \dcref{ch8:8.2.2-rem-1}
 \group{Existence of Minimizers}
-\uses{thm:weak-lower-semicontinuity-convex-lagrangian}
+
 Convexity makes the dependence on $Du_k$ linear after applying the supporting-hyperplane inequality, so weak convergence suffices; weak convergence does not generally imply $Du_k\to Du$ almost everywhere. Strong $L^q$ convergence of $u_k$ removes the need for convexity in $z\mapsto L(p,z,x)$.
 \end{remark}
 
 \begin{theorem}[Existence of minimizer]
 \label{thm:existence-minimizer-convex-coercive}
+\uses{thm:weak-lower-semicontinuity-convex-lagrangian, def:coercivity-condition-lagrangian, def:admissible-class-sobolev-minimization}
 \dcref{ch8:8.2-thm-2}
 \group{Existence of Minimizers}
-\uses{thm:weak-lower-semicontinuity-convex-lagrangian,def:coercivity-condition-lagrangian,def:admissible-class-sobolev-minimization}
+
 Assume that $L$ satisfies the coercivity inequality (4) and is convex in the variable $p$. Suppose also the admissible set $\mathcal{A}$ is nonempty.
 
 Then there exists at least one function $u \in \mathcal{A}$ solving
@@ -359,9 +374,10 @@ I[u] = \min_{w \in \mathcal{A}} I[w] .
 
 \begin{theorem}[Uniqueness of minimizer]
 \label{thm:uniqueness-minimizer-uniformly-convex}
+\uses{thm:existence-minimizer-convex-coercive}
 \dcref{ch8:8.2-thm-3}
 \group{Existence of Minimizers}
-\uses{thm:existence-minimizer-convex-coercive}
+
 Assume $L=L(p,x)$ is independent of $z$, and that there exists $\theta>0$ such that
 \[
 \sum_{i,j=1}^n L_{p_i p_j}(p,x)\xi_i\xi_j
@@ -414,9 +430,10 @@ for all $v \in W_0^{1,q}(U)$.
 
 \begin{theorem}[Solution of the Euler--Lagrange equation]
 \label{thm:weak-solution-euler-lagrange-scalar}
+\uses{def:weak-solution-euler-lagrange-scalar}
 \dcref{ch8:8.2-thm-4}
 \group{Existence of Minimizers}
-\uses{def:weak-solution-euler-lagrange-scalar}
+
 Assume $L$ verifies the growth conditions (35), (36), and $u \in \mathcal{A}$ satisfies
 \[
 I[u] = \min_{w \in \mathcal{A}} I[w].
@@ -430,9 +447,10 @@ Then $u$ is a weak solution of (37).
 
 \begin{remark}[Weak solutions of the Euler--Lagrange equation need not be minimizers]
 \label{rem:weak-solution-minimizer-joint-convexity}
+\uses{thm:weak-solution-euler-lagrange-scalar}
 \dcref{ch8:8.2.3-rem-1}
 \group{Existence of Minimizers}
-\uses{thm:weak-solution-euler-lagrange-scalar}
+
 Weak solutions of (37) need not minimize $I$. If the joint mapping $(p,z)\mapsto L(p,z,x)$ is convex for each $x$, every weak solution is a minimizer. Indeed, if $u\in\mathcal A$ solves
 \[
 \begin{cases}
@@ -482,9 +500,10 @@ where $\mathbf{g} : \partial U \to \R^m$ is given.
 
 \begin{theorem}[Existence of minimizer, systems]
 \label{thm:existence-minimizer-systems}
+\uses{def:admissible-class-systems, thm:existence-minimizer-convex-coercive}
 \dcref{ch8:8.2-thm-5}
 \group{Existence of Minimizers}
-\uses{def:admissible-class-systems,thm:existence-minimizer-convex-coercive}
+
 Assume that $L$ satisfies the coercivity inequality (43) and is convex in the variable $P$. Suppose also the admissible set $\mathcal{A}$ is nonempty.
 
 Then there exists $\mathbf{u} \in \mathcal{A}$ solving
@@ -499,9 +518,10 @@ I[\mathbf{u}] = \min_{\mathbf{w} \in \mathcal{A}} I[\mathbf{w}].
 
 \begin{theorem}[Uniqueness of minimizer, systems]
 \label{thm:uniqueness-minimizer-systems}
+\uses{thm:existence-minimizer-systems}
 \dcref{ch8:8.2-thm-6}
 \group{Existence of Minimizers}
-\uses{thm:existence-minimizer-systems}
+
 Assume $L$ does not depend on $z$ and the mapping $P \mapsto L(P, x)$ is uniformly convex. Then a minimizer $\mathbf{u} \in \mathcal{A}$ of $I[\cdot]$ is unique.
 \end{theorem}
 
@@ -538,9 +558,10 @@ for all $\mathbf{w} \in W_0^{1,q}(U; \R^m)$, $\mathbf{w} = (w^1, \ldots, w^m)$.
 
 \begin{theorem}[Solution of the Euler--Lagrange system]
 \label{thm:weak-solution-euler-lagrange-system}
+\uses{def:weak-solution-euler-lagrange-system, thm:weak-solution-euler-lagrange-scalar}
 \dcref{ch8:8.2-thm-7}
 \group{Existence of Minimizers}
-\uses{def:weak-solution-euler-lagrange-system,thm:weak-solution-euler-lagrange-scalar}
+
 Assume $L$ verifies the growth conditions (44) and $\mathbf{u} \in \mathcal{A}$ satisfies
 \[
 I[\mathbf{u}] = \min_{\mathbf{w} \in \mathcal{A}} I[\mathbf{w}].
@@ -556,9 +577,10 @@ Then $\mathbf{u}$ is a weak solution of (45).
 
 \begin{lemma}[Weak continuity of determinants]
 \label{lem:weak-continuity-of-determinants}
+\uses{lem:cofactor-divergence-free}
 \dcref{ch8:8.2-lem-1}
 \group{Existence of Minimizers}
-\uses{lem:cofactor-divergence-free}
+
 Assume $n < q < \infty$ and
 \[
 \mathbf{u}_k \rightharpoonup \mathbf{u} \quad \text{weakly in } W^{1,q}(U; \R^n).
@@ -592,9 +614,10 @@ is convex.
 
 \begin{theorem}[Lower semicontinuity of polyconvex functionals]
 \label{thm:lower-semicontinuity-polyconvex}
+\uses{def:polyconvex-lagrangian, lem:weak-continuity-of-determinants, thm:weak-lower-semicontinuity-convex-lagrangian}
 \dcref{ch8:8.2-thm-8}
 \group{Existence of Minimizers}
-\uses{def:polyconvex-lagrangian,lem:weak-continuity-of-determinants,thm:weak-lower-semicontinuity-convex-lagrangian}
+
 Suppose $n < q < \infty$. Assume also $L$ is bounded below and is polyconvex. Then $I[u]$ is weakly lower semicontinuous on $W^{1,q}(U;\R^n)$.
 \end{theorem}
 
@@ -604,9 +627,10 @@ Suppose $n < q < \infty$. Assume also $L$ is bounded below and is polyconvex. Th
 
 \begin{theorem}[Existence of minimizers, polyconvex functionals]
 \label{thm:existence-minimizer-polyconvex}
+\uses{thm:lower-semicontinuity-polyconvex, def:admissible-class-systems}
 \dcref{ch8:8.2-thm-9}
 \group{Existence of Minimizers}
-\uses{thm:lower-semicontinuity-polyconvex,def:admissible-class-systems}
+
 Assume that $n < q < \infty$, and that $L$ satisfies the coercivity inequality (43) and is polyconvex. Suppose also the admissible set $\mathcal{A}$ is nonempty.
 
 Then there exists $u \in \mathcal{A}$ solving
@@ -617,9 +641,10 @@ I[u] = \min_{w \in \mathcal{A}} I[w].
 
 \begin{example}[Nonlinear elasticity and polyconvexity]
 \label{ex:polyconvexity-nonlinear-elasticity}
+\uses{def:polyconvex-lagrangian}
 \dcref{ch8:8.2.4-ex-1}
 \group{Existence of Minimizers}
-\uses{def:polyconvex-lagrangian}
+
 For a hyperelastic body in dimension $n=3$, the displacement minimizes
 \[
 I[\mathbf{w}] := \int_U L(D\mathbf{w}, x)\, dx
@@ -668,9 +693,10 @@ and, for some $\theta>0$,
 
 \begin{theorem}[Second derivatives for minimizers]
 \label{thm:second-derivatives-minimizers}
+\uses{def:uniform-ellipticity, thm:interior-h2-regularity, thm:boundary-h2-regularity, thm:difference-quotients-weak-derivatives}
 \dcref{ch8:8.3-thm-1}
 \group{Regularity}
-\uses{def:uniform-ellipticity,thm:interior-h2-regularity,thm:boundary-h2-regularity,thm:difference-quotients-weak-derivatives}
+
 \begin{enumerate}
 \item[(i)] Let $u \in H^1(U)$ be a weak solution of the nonlinear partial differential equation (3), where $L$ satisfies (5), (6). Then
 \[
@@ -731,9 +757,10 @@ The admissible class is
 
 \begin{theorem}[Existence of constrained minimizer]
 \label{thm:existence-constrained-minimizer-nonlinear-eigenvalue}
+\uses{def:admissible-class-nonlinear-eigenvalue}
 \dcref{ch8:8.4-thm-1}
 \group{Constrained Minimization}
-\uses{def:admissible-class-nonlinear-eigenvalue}
+
 Assume the admissible set $\mathcal{A}$ is nonempty. Then there exists $u \in \mathcal{A}$ satisfying
 \[
 I[u] = \min_{w \in \mathcal{A}} I[w].
@@ -746,9 +773,10 @@ I[u] = \min_{w \in \mathcal{A}} I[w].
 
 \begin{theorem}[Lagrange multiplier]
 \label{thm:lagrange-multiplier-nonlinear-eigenvalue}
+\uses{thm:existence-constrained-minimizer-nonlinear-eigenvalue}
 \dcref{ch8:8.4-thm-2}
 \group{Constrained Minimization}
-\uses{thm:existence-constrained-minimizer-nonlinear-eigenvalue}
+
 Let $u \in \mathcal{A}$ satisfy
 \[
 I[u] = \min_{w \in \mathcal{A}} I[w].
@@ -768,9 +796,10 @@ for all $v \in H_0^1(U)$.
 
 \begin{remark}[Nonlinear eigenvalue problem interpretation]
 \label{rem:nonlinear-eigenvalue-lagrange-multiplier-interpretation}
+\uses{thm:lagrange-multiplier-nonlinear-eigenvalue}
 \dcref{ch8:8.4.1-rem-1}
 \group{Constrained Minimization}
-\uses{thm:lagrange-multiplier-nonlinear-eigenvalue}
+
 The minimizer $u$ is a weak solution of
 \[
 \begin{cases}
@@ -810,9 +839,10 @@ The set $\mathcal A$ in (25) is the admissible class for the obstacle problem wi
 
 \begin{theorem}[Existence of minimizer, obstacle problem]
 \label{thm:existence-minimizer-obstacle-problem}
+\uses{def:admissible-class-obstacle-problem}
 \dcref{ch8:8.4-thm-3}
 \group{Variational Inequalities}
-\uses{def:admissible-class-obstacle-problem}
+
 Assume the admissible set $\mathcal{A}$ is nonempty. Then there exists a unique function $u \in \mathcal{A}$ satisfying
 \[
 I[u] = \min_{w \in \mathcal{A}} I[w].
@@ -825,9 +855,10 @@ I[u] = \min_{w \in \mathcal{A}} I[w].
 
 \begin{theorem}[Variational characterization of minimizer]
 \label{thm:variational-inequality-characterization}
+\uses{thm:existence-minimizer-obstacle-problem}
 \dcref{ch8:8.4-thm-4}
 \group{Variational Inequalities}
-\uses{thm:existence-minimizer-obstacle-problem}
+
 Let $u \in \mathcal{A}$ be the unique solution of
 \[
 I[u] = \min_{w \in \mathcal{A}} I[w].
@@ -846,9 +877,10 @@ We call (26) a \textit{variational inequality}.
 
 \begin{remark}[Interpretation of the variational inequality]
 \label{rem:obstacle-problem-free-boundary-interpretation}
+\uses{thm:variational-inequality-characterization}
 \dcref{ch8:8.4.2-rem-1}
 \group{Variational Inequalities}
-\uses{thm:variational-inequality-characterization}
+
 If $\partial U$ is smooth, then $u\in W^{2,\infty}(U)$; see Kinderlehrer--Stampacchia \cite{KinderlehrerStampacchia1980}. Hence
 \[
 O := \{x \in U \mid u(x) > h(x)\}
@@ -919,9 +951,10 @@ for each $\mathbf{v} \in H_0^1(U;\R^m) \cap L^\infty(U;\R^m)$.
 
 \begin{remark}[Harmonic map equation and the Lagrange multiplier function]
 \label{rem:harmonic-maps-lagrange-multiplier-function}
+\uses{thm:euler-lagrange-harmonic-maps}
 \dcref{ch8:8.4.3-rem-1}
 \group{Constrained Minimization}
-\uses{thm:euler-lagrange-harmonic-maps}
+
 Identity (33) says that $\mathbf u=(u^1,\ldots,u^m)$ is a weak solution of
 \[
 \begin{cases} -\Delta \mathbf{u} = |D\mathbf{u}|^2 \mathbf{u} & \text{in } U \\ \mathbf{u} = \mathbf{g} & \text{on } \partial U. \end{cases}
@@ -955,9 +988,10 @@ Let $\mathbf u\in\mathcal A$ be the unique minimizer of $I$ over $\mathcal A$.
 
 \begin{theorem}[Pressure as Lagrange multiplier]
 \label{thm:pressure-lagrange-multiplier-stokes}
+\uses{def:admissible-class-stokes-problem}
 \dcref{ch8:8.4-thm-6}
 \group{Incompressible Fluids}
-\uses{def:admissible-class-stokes-problem}
+
 There exists a scalar function $p \in L^2_{\text{loc}}(U)$ such that
 \[
 \int_U Du : Dv\, dx = \int_U p\, \Div \mathbf{v} + \mathbf{f}\cdot\mathbf{v}\, dx
@@ -972,9 +1006,10 @@ for all $\mathbf{v} \in H^1(U;\R^3)$ with compact support within $U$.
 
 \begin{remark}[Weak formulation of Stokes' problem]
 \label{rem:stokes-problem-weak-formulation}
+\uses{thm:pressure-lagrange-multiplier-stokes}
 \dcref{ch8:8.4.4-rem-1}
 \group{Incompressible Fluids}
-\uses{thm:pressure-lagrange-multiplier-stokes}
+
 Identity (39) is the weak formulation of \textit{Stokes' problem}
 \[
 \begin{cases}
@@ -1006,9 +1041,10 @@ for some $q > 3$.
 
 \begin{theorem}[Minimizers with determinant constraint]
 \label{thm:existence-minimizer-determinant-constraint}
+\uses{def:admissible-class-incompressible-elasticity, lem:weak-continuity-of-determinants}
 \dcref{ch8:8.4-thm-7}
 \group{Nonlinear Elasticity}
-\uses{def:admissible-class-incompressible-elasticity,lem:weak-continuity-of-determinants}
+
 Assume the mapping
 \[
 P \mapsto L(P,x)
@@ -1031,9 +1067,10 @@ I[\mathbf{u}] = \min_{\mathbf{w} \in \mathcal{A}} I[\mathbf{w}].
 
 \begin{remark}[Velocity versus displacement incompressibility conditions]
 \label{rem:incompressibility-euler-formula}
+\uses{def:admissible-class-stokes-problem, def:admissible-class-incompressible-elasticity}
 \dcref{ch8:8.4.4-rem-2}
 \group{Nonlinear Elasticity}
-\uses{def:admissible-class-stokes-problem,def:admissible-class-incompressible-elasticity}
+
 The Stokes incompressibility condition is
 \[
 \Div \mathbf{u} = 0
@@ -1086,17 +1123,19 @@ The element $v$, if it exists, is unique. We then write $I'[u] = v$.
 
 \begin{definition}[The class $C^1(H;\R)$]
 \label{def:c1-functional-class-hilbert}
+\uses{def:frechet-derivative-hilbert-space}
 \dcref{ch8:8.5.1-def-2}
 \group{Critical Point Theory}
-\uses{def:frechet-derivative-hilbert-space}
+
 We say $I$ belongs to $C^1(H;\R)$ if $I'[u]$ exists for each $u \in H$, and the mapping $I' : H \to H$ is continuous.
 \end{definition}
 
 \begin{remark}[Simplifying Lipschitz hypothesis]
 \label{rem:lipschitz-derivative-simplification}
+\uses{def:c1-functional-class-hilbert}
 \dcref{ch8:8.5.1-rem-1}
 \group{Critical Point Theory}
-\uses{def:c1-functional-class-hilbert}
+
 The simplifying hypothesis used here is
 \[
 I' : H \to H \text{ is Lipschitz continuous on bounded subsets of } H.
@@ -1113,9 +1152,10 @@ K_c:=\{u\in H\mid I[u]=c,\ I'[u]=0\}.
 
 \begin{definition}[Critical points and critical values]
 \label{def:critical-point-critical-value}
+\uses{def:frechet-derivative-hilbert-space}
 \dcref{ch8:8.5.1-def-3}
 \group{Critical Point Theory}
-\uses{def:frechet-derivative-hilbert-space}
+
 (i) We say $u \in H$ is a \textit{critical point} if $I'[u] = 0$.
 
 (ii) The real number $c$ is a \textit{critical value} if $K_c \neq \emptyset$.
@@ -1138,9 +1178,10 @@ is precompact in $H$.
 
 \begin{theorem}[Deformation Theorem]
 \label{thm:deformation-theorem}
+\uses{def:palais-smale-condition, def:critical-point-critical-value}
 \dcref{ch8:8.5-thm-1}
 \group{Critical Point Theory}
-\uses{def:palais-smale-condition,def:critical-point-critical-value}
+
 Assume $I \in \mathcal{C}$ satisfies the Palais--Smale condition. Suppose also
 \[
 K_c = \emptyset.
@@ -1171,9 +1212,10 @@ satisfy
 
 \begin{theorem}[Mountain Pass Theorem]
 \label{thm:mountain-pass-theorem}
+\uses{thm:deformation-theorem}
 \dcref{ch8:8.5-thm-2}
 \group{Critical Point Theory}
-\uses{thm:deformation-theorem}
+
 Assume $I \in \mathcal{C}$ satisfies the Palais--Smale condition. Suppose also
 \begin{itemize}
 \item[(i)] $I[0] = 0$,
@@ -1246,9 +1288,10 @@ satisfies the hypotheses (23)--(25).
 
 \begin{theorem}[Existence of a nontrivial solution]
 \label{thm:existence-nontrivial-solution-semilinear-elliptic}
+\uses{thm:mountain-pass-theorem, thm:lax-milgram-theorem}
 \dcref{ch8:8.5-thm-3}
 \group{Critical Point Theory}
-\uses{thm:mountain-pass-theorem,thm:lax-milgram-theorem}
+
 The boundary-value problem (22) has at least one weak solution $u \not\equiv 0$.
 \end{theorem}
 

@@ -17,6 +17,7 @@ The sign convention is fixed by the following definition.
 \begin{definition}[curvature tensor]
   \label{def:pet-ch3-curvature-tensor}
   \lean{PetersenLib.curvatureTensor}
+  \source{petersen:page-0096}
   \leanok
   Let $(M,g)$ be a Riemannian manifold with Riemannian connection $\nabla$. The
   \emph{curvature tensor} is the $(1,3)$-tensor defined on vector fields $X,Y,Z$ by
@@ -36,8 +37,9 @@ The sign convention is fixed by the following definition.
 \begin{lemma}[tensoriality of the curvature tensor]
   \label{lem:pet-ch3-curvature-tensor-tensorial}
   \lean{PetersenLib.curvatureTensor_tensorial}
-  \leanok
+  \source{petersen:page-0096}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
   For $f\in C^\infty(M)$,
   $R(X,Y)(fZ)=fR(X,Y)Z$.
 \end{lemma}
@@ -56,8 +58,9 @@ The sign convention is fixed by the following definition.
 \begin{remark}[the Ricci identity as a derivation]
   \label{rem:pet-ch3-ricci-identity-derivation}
   \lean{PetersenLib.curvatureTensor_derivation}
-  \leanok
+  \source{petersen:page-0097}
   \uses{lem:pet-ch3-curvature-tensor-tensorial}
+  \leanok
   The symmetry of the Hessian implies that $R_{X,Y}$ annihilates functions. Thus
   $\nabla^2_{X,Y}-\nabla^2_{Y,X}=R_{X,Y}=R(X,Y)$, where on the right $R(X,Y)$ is
   regarded as a $(1,1)$-tensor acting on tensors as a derivation. In particular, if
@@ -70,8 +73,9 @@ The sign convention is fixed by the following definition.
 \begin{definition}[$(0,4)$-curvature tensor]
   \label{def:pet-ch3-curvature-04-tensor}
   \lean{PetersenLib.curvatureTensorFour}
-  \leanok
+  \source{petersen:page-0097}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
   Lower the output index with $g$:
   \[
     R(X,Y,Z,W)=g(R(X,Y)Z,W).
@@ -80,10 +84,11 @@ The sign convention is fixed by the following definition.
 
 \begin{proposition}[Symmetries of the curvature tensor]
   \label{prop:pet-ch3-curvature-symmetries}
-  \dcref{ch3:3.1.1}
   \lean{PetersenLib.curvatureTensor_symmetries}
-  \leanok
+  \source{petersen:page-0097,petersen:page-0098,petersen:page-0099,petersen:page-0100}
   \uses{def:pet-ch3-curvature-04-tensor}
+  \leanok
+  \dcref{ch3:3.1.1}
   The Riemannian curvature tensor $R(X,Y,Z,W)$ satisfies:
   \begin{enumerate}
     \item[(1)] skew-symmetry in the first two and in the last two entries:
@@ -111,10 +116,11 @@ The sign convention is fixed by the following definition.
 
 \begin{example}[Euclidean space is flat]
   \label{ex:pet-ch3-euclidean-flat}
-  \dcref{ch3:3.1.2}
   \lean{PetersenLib.euclideanSpace_curvature_eq_zero}
-  \leanok
+  \source{petersen:page-0100}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
+  \dcref{ch3:3.1.2}
   $(\mathbb R^n,g_{\mathrm{eu}})$ has $R\equiv0$, since $\nabla_i\partial_j=0$ for the
   standard Cartesian coordinate vector fields.
 \end{example}
@@ -127,6 +133,7 @@ operator on bivectors.
 \begin{definition}[inner product on bivectors]
   \label{def:pet-ch3-bivector-inner-product}
   \lean{PetersenLib.bivectorInnerProduct}
+  \source{petersen:page-0100}
   \leanok
   On the space $\Lambda^2T_pM$ of bivectors, with $e_1,\dots,e_n$ an orthonormal
   basis of $T_pM$, the inner product making $\{e_i\wedge e_j\}_{i<j}$ an
@@ -140,8 +147,9 @@ operator on bivectors.
 \begin{definition}[bivectors as skew-symmetric maps]
   \label{def:pet-ch3-bivector-skew-map}
   \lean{PetersenLib.bivectorSkewMap}
-  \leanok
+  \source{petersen:page-0100}
   \uses{def:pet-ch3-bivector-inner-product}
+  \leanok
   Identify a decomposable bivector with the skew-adjoint map
   \[
     (x\wedge y)(v)=g(x,v)y-g(y,v)x,
@@ -153,8 +161,9 @@ operator on bivectors.
 \begin{lemma}[Jacobi identity for bivector maps]
   \label{lem:pet-ch3-bivector-jacobi-identity}
   \lean{PetersenLib.bivectorSkewMap_jacobi}
-  \leanok
+  \source{petersen:page-0100}
   \uses{def:pet-ch3-bivector-skew-map}
+  \leanok
   $(x\wedge y)(z)+(y\wedge z)(x)+(z\wedge x)(y)=0$.
 \end{lemma}
 \begin{proof}
@@ -172,8 +181,9 @@ operator on bivectors.
 \begin{definition}[curvature operator]
   \label{def:pet-ch3-curvature-operator}
   \lean{PetersenLib.curvatureOperator}
+  \source{petersen:page-0101}
+  \uses{def:pet-ch3-curvature-04-tensor, def:pet-ch3-bivector-inner-product, def:pet-ch3-bivector-skew-map}
   \leanok
-  \uses{def:pet-ch3-curvature-04-tensor,def:pet-ch3-bivector-inner-product,def:pet-ch3-bivector-skew-map}
   By the symmetry properties of $R$, it defines a symmetric bilinear map
   $R:\Lambda^2TM\times\Lambda^2TM\to\mathbb R$,
   \[
@@ -196,8 +206,9 @@ of tangent $2$-planes.
 \begin{definition}[directional curvature operator]
   \label{def:pet-ch3-directional-curvature-operator}
   \lean{PetersenLib.directionalCurvatureOperator}
+  \source{petersen:page-0101}
+  \uses{def:pet-ch3-curvature-tensor, prop:pet-ch3-curvature-symmetries}
   \leanok
-  \uses{def:pet-ch3-curvature-tensor,prop:pet-ch3-curvature-symmetries}
   For $v\in T_pM$, the \emph{directional} (or \emph{tidal force}) \emph{curvature
   operator} is $R_v(w)=R(w,v)v:T_pM\to T_pM$. It is self-adjoint and $v$ is always
   a zero eigenvector, by the symmetry properties of $R$.
@@ -206,8 +217,9 @@ of tangent $2$-planes.
 \begin{definition}[sectional curvature]
   \label{def:pet-ch3-sectional-curvature}
   \lean{PetersenLib.sectionalCurvature}
+  \source{petersen:page-0101}
+  \uses{def:pet-ch3-directional-curvature-operator, def:pet-ch3-bivector-inner-product}
   \leanok
-  \uses{def:pet-ch3-directional-curvature-operator,def:pet-ch3-bivector-inner-product}
   The \emph{sectional curvature} of $v,w\in T_pM$ is the normalized biquadratic form
   \[
     \sec(v,w)=\frac{g(R_v(w),w)}{g(v,v)g(w,w)-g(v,w)^2}
@@ -219,10 +231,11 @@ of tangent $2$-planes.
 
 \begin{proposition}[Riemann's characterization of constant sectional curvature]
   \label{prop:pet-ch3-riemann-constant-curvature-equivalence}
-  \dcref{ch3:3.1.3}
   \lean{PetersenLib.riemann_constantCurvature_equivalence}
+  \source{petersen:page-0101,petersen:page-0102,petersen:page-0103}
+  \uses{def:pet-ch3-sectional-curvature, def:pet-ch3-curvature-operator, prop:pet-ch3-curvature-symmetries, lem:pet-ch3-bivector-jacobi-identity}
   \leanok
-  \uses{def:pet-ch3-sectional-curvature,def:pet-ch3-curvature-operator,prop:pet-ch3-curvature-symmetries,lem:pet-ch3-bivector-jacobi-identity}
+  \dcref{ch3:3.1.3}
   The following are equivalent, for fixed $p\in M$ and $k\in\mathbb R$:
   \begin{enumerate}
     \item[(1)] $\sec(\pi)=k$ for all $2$-planes $\pi\subset T_pM$;
@@ -255,8 +268,9 @@ of tangent $2$-planes.
 \begin{definition}[constant curvature]
   \label{def:pet-ch3-constant-curvature}
   \lean{PetersenLib.HasConstantCurvature}
-  \leanok
+  \source{petersen:page-0103}
   \uses{prop:pet-ch3-riemann-constant-curvature-equivalence}
+  \leanok
   $(M,g)$ has \emph{constant curvature} $k\in\mathbb R$ if one (equivalently, by
   \cref{prop:pet-ch3-riemann-constant-curvature-equivalence}, all) of the four
   equivalent conditions holds at every $p\in M$ with the same $k$.
@@ -269,8 +283,9 @@ Tracing one input-output pair of $R$ produces Ricci curvature.
 \begin{definition}[Ricci curvature]
   \label{def:pet-ch3-ricci-curvature}
   \lean{PetersenLib.RicciCurvature}
-  \leanok
+  \source{petersen:page-0103}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
   For an orthonormal basis $e_1,\dots,e_n$ of $T_pM$, the \emph{Ricci curvature} is
   the trace
   \[
@@ -285,8 +300,9 @@ Tracing one input-output pair of $R$ produces Ricci curvature.
 \begin{definition}[Einstein manifold]
   \label{def:pet-ch3-einstein-manifold}
   \lean{PetersenLib.IsEinstein}
-  \leanok
+  \source{petersen:page-0103,petersen:page-0104}
   \uses{def:pet-ch3-ricci-curvature}
+  \leanok
   Write $\operatorname{Ric}\ge k$ if, at every $p\in M$, each eigenvalue of the
   Ricci endomorphism $\operatorname{Ric}_p:T_pM\to T_pM$ is $\ge k$; equivalently,
   $\operatorname{Ric}(v,v)\ge kg(v,v)$ for every tangent vector $v$. $(M,g)$ is an
@@ -297,8 +313,9 @@ Tracing one input-output pair of $R$ produces Ricci curvature.
 \begin{proposition}[Ricci curvature via sectional curvature]
   \label{prop:pet-ch3-ricci-sectional-relation}
   \lean{PetersenLib.ricciCurvature_eq_sum_sectionalCurvature}
+  \source{petersen:page-0104}
+  \uses{def:pet-ch3-ricci-curvature, def:pet-ch3-sectional-curvature}
   \leanok
-  \uses{def:pet-ch3-ricci-curvature,def:pet-ch3-sectional-curvature}
   If $v\in T_pM$ is a unit vector completed to an orthonormal basis
   $\{v,e_2,\dots,e_n\}$, then
   $\operatorname{Ric}(v,v)=\sum_{i=2}^n\sec(v,e_i)$.
@@ -317,8 +334,9 @@ Tracing one input-output pair of $R$ produces Ricci curvature.
 \begin{corollary}[Ricci determines sec in dimensions $2$ and $3$]
   \label{cor:pet-ch3-ricci-determines-sec-low-dim}
   \lean{PetersenLib.einstein_iff_hasConstantCurvature_of_finrank_three}
+  \source{petersen:page-0104}
+  \uses{prop:pet-ch3-ricci-sectional-relation, def:pet-ch3-einstein-manifold, def:pet-ch3-constant-curvature}
   \leanok
-  \uses{prop:pet-ch3-ricci-sectional-relation,def:pet-ch3-einstein-manifold,def:pet-ch3-constant-curvature}
   For $n=2$, and also for $n=3$, $\operatorname{Ric}$ determines $\sec$
   completely: for $n=3$ and orthonormal $\{e_1,e_2,e_3\}$,
   \[
@@ -342,8 +360,9 @@ Tracing one input-output pair of $R$ produces Ricci curvature.
 \begin{remark}[constant curvature is Einstein]
   \label{rem:pet-ch3-constant-curvature-einstein}
   \lean{PetersenLib.constantCurvature_isEinstein}
+  \source{petersen:page-0104}
+  \uses{def:pet-ch3-constant-curvature, def:pet-ch3-einstein-manifold, prop:pet-ch3-ricci-sectional-relation}
   \leanok
-  \uses{def:pet-ch3-constant-curvature,def:pet-ch3-einstein-manifold,prop:pet-ch3-ricci-sectional-relation}
   \sketch
   If $(M,g)$ has constant curvature $k$, it is Einstein with Einstein constant
   $(n-1)k$: for unit $v$, \cref{prop:pet-ch3-ricci-sectional-relation} gives
@@ -353,9 +372,9 @@ Tracing one input-output pair of $R$ produces Ricci curvature.
 \begin{remark}[dimension of nonconstant-curvature Einstein metrics]
   \label{rem:pet-ch3-einstein-not-constant-curvature-examples}
   \lean{PetersenLib.einstein_examples}
-  \leanok
+  \source{petersen:page-0104}
+  \uses{def:pet-ch3-einstein-manifold, prop:pet-ch3-ricci-sectional-relation}
   % Lean: only the dimension-$3$ obstruction is formalized; the metric families are omitted.
-  \uses{def:pet-ch3-einstein-manifold,prop:pet-ch3-ricci-sectional-relation}
   \sketch
   An Einstein metric without constant sectional curvature must have dimension
   at least $4$, by
@@ -369,8 +388,9 @@ The full trace of curvature is the scalar curvature.
 \begin{definition}[scalar curvature]
   \label{def:pet-ch3-scalar-curvature}
   \lean{PetersenLib.scalarCurvature}
+  \source{petersen:page-0104,petersen:page-0105}
+  \uses{def:pet-ch3-ricci-curvature, def:pet-ch3-curvature-operator}
   \leanok
-  \uses{def:pet-ch3-ricci-curvature,def:pet-ch3-curvature-operator}
   The \emph{scalar curvature} is $\operatorname{scal}=\operatorname{tr}(\operatorname{Ric})=2\operatorname{tr}\mathfrak R$,
   a function $\operatorname{scal}:M\to\mathbb R$.
 \end{definition}
@@ -378,8 +398,9 @@ The full trace of curvature is the scalar curvature.
 \begin{remark}[formulas for the scalar curvature]
   \label{rem:pet-ch3-scalar-curvature-formulas}
   \lean{PetersenLib.scalarCurvature_formulas}
-  \leanok
+  \source{petersen:page-0105}
   \uses{def:pet-ch3-scalar-curvature}
+  \leanok
   In an orthonormal basis $e_1,\dots,e_n$,
   \[
     \operatorname{scal}=\sum_{j}g(\operatorname{Ric}(e_j),e_j)
@@ -392,6 +413,7 @@ The full trace of curvature is the scalar curvature.
 \begin{notation}[divergence/adjoint of a tensor]
   \label{notation:pet-ch3-divergence-adjoint}
   \lean{PetersenLib.divergenceAdjoint}
+  \source{petersen:page-0105,petersen:page-0106}
   \leanok
   For a $(0,k)$-tensor $T$ and an orthonormal frame $E_1,\dots,E_n$ on $(M,g)$, the
   adjoint of the covariant derivative is the $(0,k-1)$-tensor
@@ -403,10 +425,11 @@ The full trace of curvature is the scalar curvature.
 
 \begin{proposition}[Contracted Bianchi identity]
   \label{prop:pet-ch3-contracted-bianchi}
-  \dcref{ch3:3.1.5}
   \lean{PetersenLib.contractedBianchiIdentity}
+  \source{petersen:page-0106}
+  \uses{def:pet-ch3-scalar-curvature, def:pet-ch3-ricci-curvature, notation:pet-ch3-divergence-adjoint, prop:pet-ch3-curvature-symmetries}
   \leanok
-  \uses{def:pet-ch3-scalar-curvature,def:pet-ch3-ricci-curvature,notation:pet-ch3-divergence-adjoint,prop:pet-ch3-curvature-symmetries}
+  \dcref{ch3:3.1.5}
   On any Riemannian manifold, $d\operatorname{tr}(\operatorname{Ric})=d\operatorname{scal}=-2\nabla^*\operatorname{Ric}$.
 \end{proposition}
 \begin{proof}
@@ -428,10 +451,11 @@ The full trace of curvature is the scalar curvature.
 
 \begin{lemma}[Schur's lemma]
   \label{lem:pet-ch3-schur-lemma}
-  \dcref{ch3:3.1.4}
   \lean{PetersenLib.schurLemma}
+  \source{petersen:page-0105,petersen:page-0106}
+  \uses{def:pet-ch3-sectional-curvature, def:pet-ch3-einstein-manifold, prop:pet-ch3-contracted-bianchi, prop:pet-ch3-riemann-constant-curvature-equivalence}
   \leanok
-  \uses{def:pet-ch3-sectional-curvature,def:pet-ch3-einstein-manifold,prop:pet-ch3-contracted-bianchi,prop:pet-ch3-riemann-constant-curvature-equivalence}
+  \dcref{ch3:3.1.4}
   Let $(M,g)$ have dimension $n\ge3$ and satisfy, for a function $f:M\to\mathbb
   R$, either
   \begin{enumerate}
@@ -458,10 +482,11 @@ The full trace of curvature is the scalar curvature.
 
 \begin{corollary}[Einstein metrics and normalized Ricci curvature]
   \label{cor:pet-ch3-einstein-ricci-scalar-characterization}
-  \dcref{ch3:3.1.6}
   \lean{PetersenLib.einstein_iff_ricci_eq_scal_div_n_metric}
+  \source{petersen:page-0106}
+  \uses{def:pet-ch3-einstein-manifold, def:pet-ch3-scalar-curvature, lem:pet-ch3-schur-lemma}
   \leanok
-  \uses{def:pet-ch3-einstein-manifold,def:pet-ch3-scalar-curvature,lem:pet-ch3-schur-lemma}
+  \dcref{ch3:3.1.6}
   An $n(>2)$-dimensional Riemannian manifold $(M,g)$ is Einstein if and only if
   $\operatorname{Ric}=\dfrac{\operatorname{scal}}{n}g$.
 \end{corollary}
@@ -484,8 +509,9 @@ quadratic combinations of Christoffel symbols.
 \begin{proposition}[curvature tensor in coordinates]
   \label{prop:pet-ch3-curvature-coordinate-formula}
   \lean{PetersenLib.curvatureTensor_coordinates}
-  \leanok
+  \source{petersen:page-0107}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
   In local coordinates, writing $X=X^i\partial_i$, $Y=Y^j\partial_j$,
   $Z=Z^k\partial_k$ and $R(\partial_i,\partial_j)\partial_k=R^l_{ijk}\partial_l$, so
   $R(X,Y)Z=X^iY^jZ^kR^l_{ijk}\partial_l$, the coefficients are
@@ -511,10 +537,11 @@ quadratic combinations of Christoffel symbols.
 
 \begin{remark}[Ricci and scalar curvature in index notation]
   \label{rem:pet-ch3-ricci-scalar-index-notation}
-  \dcref{ch3:3.1.7}
   \lean{PetersenLib.ricciScalar_indexNotation}
+  \source{petersen:page-0108}
+  \uses{def:pet-ch3-ricci-curvature, def:pet-ch3-scalar-curvature, prop:pet-ch3-curvature-coordinate-formula}
   \leanok
-  \uses{def:pet-ch3-ricci-curvature,def:pet-ch3-scalar-curvature,prop:pet-ch3-curvature-coordinate-formula}
+  \dcref{ch3:3.1.7}
   In coordinates one writes $\operatorname{Ric}_{ij}=R_{ij}=R^k_{ik}=g^{kl}R_{kijl}$ and
   $\operatorname{scal}=R=g^{ij}R_{ij}$, both obtained by contracting indices of the curvature
   tensor; to avoid confusing the full curvature tensor with the scalar curvature
@@ -523,10 +550,11 @@ quadratic combinations of Christoffel symbols.
 
 \begin{remark}[Lowered curvature components]
   \label{rem:pet-ch3-curvature-index-conventions}
-  \dcref{ch3:3.1.8}
   \lean{PetersenLib.curvatureTensor_indexLowering}
+  \source{petersen:page-0108}
+  \uses{def:pet-ch3-curvature-04-tensor, prop:pet-ch3-curvature-coordinate-formula}
   \leanok
-  \uses{def:pet-ch3-curvature-04-tensor,prop:pet-ch3-curvature-coordinate-formula}
+  \dcref{ch3:3.1.8}
   Consistently with $R(X,Y,Z,W)=g(R(X,Y)Z,W)$, the fully lower-index curvature
   components are $R_{ijkl}=g_{sl}R^s_{ijk}=R(\partial_i,\partial_j,\partial_k,\partial_l)$.
 \end{remark}
@@ -542,6 +570,7 @@ fundamental form.
 \begin{definition}[the tensors $S$ and $\operatorname{Hess}^2f$]
   \label{def:pet-ch3-hessian-square-notation}
   \lean{PetersenLib.hessianOperator}
+  \source{petersen:page-0108}
   \leanok
   For a smooth function $f$ (possibly only on an open $O\subset M$), write
   $S(X)=\nabla_X\nabla f$ for the $(1,1)$-tensor corresponding to
@@ -552,6 +581,7 @@ fundamental form.
 \begin{definition}[second fundamental form]
   \label{def:pet-ch3-second-fundamental-form}
   \lean{PetersenLib.secondFundamentalForm}
+  \source{petersen:page-0108,petersen:page-0109}
   \leanok
   For a hypersurface $H^{n-1}\subset M^n$ with fixed unit normal field
   $N:H\to T^\perp H=\{v\in T_pM\mid p\in H,\,v\perp T_pH\}$, the \emph{second
@@ -573,10 +603,11 @@ fundamental form.
 
 \begin{proposition}[Level-set normals and Hessians]
   \label{prop:pet-ch3-normal-hessian-relation}
-  \dcref{ch3:3.2.1}
   \lean{PetersenLib.normal_hessian_relation}
+  \source{petersen:page-0108,petersen:page-0109}
+  \uses{def:pet-ch3-second-fundamental-form, def:pet-ch3-hessian-square-notation}
   \leanok
-  \uses{def:pet-ch3-second-fundamental-form,def:pet-ch3-hessian-square-notation}
+  \dcref{ch3:3.2.1}
   Let $H\subset f^{-1}(a)$ be open and consist entirely of regular points of $f$.
   Then:
   \begin{enumerate}
@@ -604,10 +635,11 @@ fundamental form.
 
 \begin{theorem}[Radial curvature equation]
   \label{thm:pet-ch3-radial-curvature-equation}
-  \dcref{ch3:3.2.2}
   \lean{PetersenLib.radialCurvatureEquation}
+  \source{petersen:page-0110}
+  \uses{def:pet-ch3-hessian-square-notation, def:pet-ch3-curvature-tensor}
   \leanok
-  \uses{def:pet-ch3-hessian-square-notation,def:pet-ch3-curvature-tensor}
+  \dcref{ch3:3.2.2}
   With $S,\operatorname{Hess}^2f$ as in \cref{def:pet-ch3-hessian-square-notation}:
   \begin{align}
     (\nabla_{\nabla f}S)(X)+S^2(X)-\nabla_X(S(\nabla f))&=-R(X,\nabla f)\nabla f,\\
@@ -638,10 +670,11 @@ fundamental form.
 
 \begin{remark}[Tangential and normal decomposition]
   \label{rem:pet-ch3-tangential-normal-decomposition}
-  \dcref{ch3:3.2.3}
   \lean{PetersenLib.tangentialNormalDecomposition}
-  \leanok
+  \source{petersen:page-0110}
   \uses{thm:pet-ch3-radial-curvature-equation}
+  \leanok
+  \dcref{ch3:3.2.3}
   The third formula of \cref{thm:pet-ch3-radial-curvature-equation} computes a
   suitable curvature using only gradients of functions and Lie derivatives — no
   covariant derivatives are needed. The next two fundamental equations, known as
@@ -654,10 +687,11 @@ fundamental form.
 
 \begin{theorem}[Tangential Gauss equation]
   \label{thm:pet-ch3-tangential-curvature-equation}
-  \dcref{ch3:3.2.4}
   \lean{PetersenLib.tangentialCurvatureEquation}
+  \source{petersen:page-0111}
+  \uses{def:pet-ch3-second-fundamental-form, rem:pet-ch3-tangential-normal-decomposition}
   \leanok
-  \uses{def:pet-ch3-second-fundamental-form,rem:pet-ch3-tangential-normal-decomposition}
+  \dcref{ch3:3.2.4}
   For $X,Y,Z,W$ tangent to a hypersurface $H$ with induced metric $g_H$ and
   induced curvature $R^H$,
   \[
@@ -679,10 +713,11 @@ fundamental form.
 
 \begin{theorem}[Normal Codazzi--Mainardi equation]
   \label{thm:pet-ch3-normal-curvature-equation}
-  \dcref{ch3:3.2.5}
   \lean{PetersenLib.normalCurvatureEquation}
-  \leanok
+  \source{petersen:page-0111}
   \uses{thm:pet-ch3-tangential-curvature-equation}
+  \leanok
+  \dcref{ch3:3.2.5}
   For $X,Y,Z$ tangent to a hypersurface $H$,
   \[
     g(R(X,Y)Z,N)=-(\nabla_X\Pi)(Y,Z)+(\nabla_Y\Pi)(X,Z).
@@ -700,8 +735,9 @@ fundamental form.
 \begin{remark}[curvature equations by dimension]
   \label{rem:pet-ch3-curvature-equations-by-dimension}
   \lean{PetersenLib.curvatureEquationsByDimension}
+  \source{petersen:page-0112}
+  \uses{thm:pet-ch3-radial-curvature-equation, thm:pet-ch3-tangential-curvature-equation, thm:pet-ch3-normal-curvature-equation}
   \leanok
-  \uses{thm:pet-ch3-radial-curvature-equation,thm:pet-ch3-tangential-curvature-equation,thm:pet-ch3-normal-curvature-equation}
   Together the three fundamental equations compute curvature by induction on
   dimension: knowing curvature on $H$ and the shape operator $S$ determines
   curvature on $M$ at points of $H$. If $\dim M=1$ then $\dim H=0$, matching
@@ -717,8 +753,9 @@ fundamental form.
 \begin{corollary}[Gauss's Theorema Egregium]
   \label{cor:pet-ch3-gauss-egregium}
   \lean{PetersenLib.gaussTheoremaEgregium}
+  \source{petersen:page-0112}
+  \uses{thm:pet-ch3-tangential-curvature-equation, ex:pet-ch3-euclidean-flat}
   \leanok
-  \uses{thm:pet-ch3-tangential-curvature-equation,ex:pet-ch3-euclidean-flat}
   When $M^3=\mathbb R^3$ (so $R\equiv0$) and $E_1,E_2$ is an orthonormal basis of
   $T_pH$ for a surface $H\subset\mathbb R^3$,
   \[
@@ -743,6 +780,7 @@ $|\nabla r|=1$.
 \begin{definition}[distance function]
   \label{def:pet-ch3-distance-function}
   \lean{PetersenLib.IsDistanceFunction}
+  \source{petersen:page-0113}
   \leanok
   For $O\subset(M,g)$ open, $r:O\to\mathbb R$ is a \emph{distance function} if
   $|\nabla r|\equiv1$ on $O$, i.e.\ a solution of the \emph{Hamilton--Jacobi} (or
@@ -751,10 +789,11 @@ $|\nabla r|=1$.
 
 \begin{example}[Euclidean point-distance functions]
   \label{ex:pet-ch3-distance-to-points}
-  \dcref{ch3:3.2.6}
   \lean{PetersenLib.distanceFunction_points}
-  \leanok
+  \source{petersen:page-0113}
   \uses{def:pet-ch3-distance-function}
+  \leanok
+  \dcref{ch3:3.2.6}
   On $(\mathbb R^n,g_{\mathrm{can}})$, $r(x)=|x-y|$ is smooth on $\mathbb
   R^n\setminus\{y\}$ with $|\nabla r|\equiv1$. For two points $y,z$,
   $r(x)=\operatorname{dist}(x,\{y,z\})=\min\{|x-y|,|x-z|\}$ is smooth away from
@@ -764,11 +803,12 @@ $|\nabla r|=1$.
 
 \begin{example}[Distance to a submanifold]
   \label{ex:pet-ch3-distance-to-submanifold}
-  \dcref{ch3:3.2.7}
   \lean{PetersenLib.distanceFunction_submanifold}
-  \leanok
-  % Lean: formalized for a linear subspace; the curved case requires tubular neighborhoods.
+  \source{petersen:page-0113}
   \uses{def:pet-ch3-distance-function}
+  \leanok
+  \dcref{ch3:3.2.7}
+  % Lean: formalized for a linear subspace; the curved case requires tubular neighborhoods.
   For a submanifold $H\subset\mathbb R^n$,
   $r(x)=\operatorname{dist}(x,H)=\inf\{|x-y|\mid y\in H\}$ is a distance function
   on some open $O$. When $H$ is an orientable hypersurface
@@ -785,10 +825,11 @@ $|\nabla r|=1$.
 
 \begin{lemma}[Distance functions as Riemannian submersions]
   \label{lem:pet-ch3-distance-function-submersion}
-  \dcref{ch3:3.2.8}
   \lean{PetersenLib.distanceFunction_iff_riemannianSubmersion}
-  \leanok
+  \source{petersen:page-0114}
   \uses{def:pet-ch3-distance-function}
+  \leanok
+  \dcref{ch3:3.2.8}
   For $O$ open in a Riemannian manifold, $r:O\to I\subset\mathbb R$ is a distance
   function if and only if it is a Riemannian submersion.
 \end{lemma}
@@ -808,8 +849,9 @@ $|\nabla r|=1$.
 \begin{definition}[distance-function notation: $\partial_r,O_r,g_r,S$]
   \label{def:pet-ch3-distance-function-notation}
   \lean{PetersenLib.distanceFunctionNotation}
+  \source{petersen:page-0114}
+  \uses{lem:pet-ch3-distance-function-submersion, def:pet-ch3-second-fundamental-form}
   \leanok
-  \uses{lem:pet-ch3-distance-function-submersion,def:pet-ch3-second-fundamental-form}
   Fix a distance function $r:O\to\mathbb R$. Write $\partial_r=\nabla r$; the
   level sets are $O_r=\{x\in O\mid r(x)=r\}$ with induced metric $g_r$, and
   $\nabla',R'$ denote the connection and curvature of $(O_r,g_r)$. Since
@@ -820,10 +862,10 @@ $|\nabla r|=1$.
 
 \begin{example}[Zero shape operator and hyperplanes]
   \label{ex:pet-ch3-zero-shape-operator-hyperplane}
-  \dcref{ch3:3.2.9}
   \lean{PetersenLib.zeroShapeOperator_iff_hyperplane}
-  \leanok
+  \source{petersen:page-0114,petersen:page-0115}
   \uses{def:pet-ch3-distance-function-notation}
+  \dcref{ch3:3.2.9}
   Let $H\subset\mathbb R^n$ be an orientable hypersurface with unit normal $N$
   and shape operator $S(v)=\nabla_vN$. If $S=0$ on $H$, $N$ is constant on $H$
   and $H$ is open in the hyperplane $\{x+p\mid x\cdot N_p=0\}$ for fixed $p\in
@@ -848,8 +890,9 @@ $|\nabla r|=1$.
 \begin{remark}[intrinsic versus extrinsic geometry]
   \label{rem:pet-ch3-intrinsic-extrinsic}
   \lean{PetersenLib.intrinsicExtrinsicGeometry}
-  \leanok
+  \source{petersen:page-0115}
   \uses{ex:pet-ch3-zero-shape-operator-hyperplane}
+  \leanok
   The curvature tensor depends only on $(M,g)$, whereas the shape operator also
   depends on a chosen isometric immersion
   $(M,g)\to(\bar M,\bar g)$.
@@ -862,10 +905,11 @@ operator.
 
 \begin{corollary}[Radial equation for distance functions]
   \label{cor:pet-ch3-radial-equation-distance-function}
-  \dcref{ch3:3.2.10}
   \lean{PetersenLib.radialEquation_distanceFunction}
+  \source{petersen:page-0115}
+  \uses{def:pet-ch3-distance-function-notation, thm:pet-ch3-radial-curvature-equation, prop:pet-ch3-normal-hessian-relation}
   \leanok
-  \uses{def:pet-ch3-distance-function-notation,thm:pet-ch3-radial-curvature-equation,prop:pet-ch3-normal-hessian-relation}
+  \dcref{ch3:3.2.10}
   For a distance function $r:O\to\mathbb R$, $\nabla_{\partial_r}\partial_r=0$ and
   $\nabla_{\partial_r}S+S^2=-R_{\partial_r}$, where $R_{\partial_r}(X)=R(X,\partial_r)\partial_r$.
 \end{corollary}
@@ -881,10 +925,11 @@ operator.
 
 \begin{proposition}[Curvature equations for distance functions]
   \label{prop:pet-ch3-distance-function-curvature-equations}
-  \dcref{ch3:3.2.11}
   \lean{PetersenLib.distanceFunction_curvatureEquations}
+  \source{petersen:page-0115,petersen:page-0116}
+  \uses{cor:pet-ch3-radial-equation-distance-function, thm:pet-ch3-radial-curvature-equation}
   \leanok
-  \uses{cor:pet-ch3-radial-equation-distance-function,thm:pet-ch3-radial-curvature-equation}
+  \dcref{ch3:3.2.11}
   For a distance function $r:(O,g)\to\mathbb R$ with $\partial_r=\nabla r$:
   \begin{enumerate}
     \item[(1)] $\mathcal L_{\partial_r}g=2\operatorname{Hess}r$;
@@ -910,8 +955,9 @@ into ordinary differential equations along radial curves.
 \begin{definition}[Jacobi field]
   \label{def:pet-ch3-jacobi-field}
   \lean{PetersenLib.IsJacobiField}
-  \leanok
+  \source{petersen:page-0116}
   \uses{def:pet-ch3-distance-function-notation}
+  \leanok
   For a smooth distance function $r$, a \emph{Jacobi field} is a smooth vector
   field $J$ independent of $r$, i.e.\ satisfying the \emph{Jacobi equation}
   $\mathcal L_{\partial_r}J=0$.
@@ -920,8 +966,9 @@ into ordinary differential equations along radial curves.
 \begin{remark}[construction of Jacobi fields]
   \label{rem:pet-ch3-jacobi-field-construction}
   \lean{PetersenLib.jacobiField_construction}
-  \leanok
+  \source{petersen:page-0116}
   \uses{def:pet-ch3-jacobi-field}
+  \leanok
   \sketch
   In coordinates $(r,x^2,\dots,x^n)$ adapted to $r$, write
   $J=J^r\partial_r+J^i\partial_i$. Then
@@ -934,8 +981,9 @@ into ordinary differential equations along radial curves.
 \begin{lemma}[first-order form of the Jacobi equation]
   \label{lem:pet-ch3-jacobi-field-equivalent-equation}
   \lean{PetersenLib.jacobiField_equivalentEquation}
-  \leanok
+  \source{petersen:page-0116}
   \uses{def:pet-ch3-jacobi-field}
+  \leanok
   $\mathcal L_{\partial_r}J=0$ is equivalent to $\nabla_{\partial_r}J=S(J)$, and
   consequently $\operatorname{Hess}r(J,J)=g(\nabla_{\partial_r}J,J)=\tfrac12\partial_rg(J,J)$.
 \end{lemma}
@@ -953,8 +1001,9 @@ into ordinary differential equations along radial curves.
 \begin{proposition}[second-order Jacobi equation]
   \label{prop:pet-ch3-jacobi-second-order-equation}
   \lean{PetersenLib.jacobiField_secondOrderEquation}
+  \source{petersen:page-0117}
+  \uses{lem:pet-ch3-jacobi-field-equivalent-equation, cor:pet-ch3-radial-equation-distance-function, def:pet-ch3-directional-curvature-operator}
   \leanok
-  \uses{lem:pet-ch3-jacobi-field-equivalent-equation,cor:pet-ch3-radial-equation-distance-function,def:pet-ch3-directional-curvature-operator}
   A Jacobi field $J$ satisfies $\nabla_{\partial_r}\nabla_{\partial_r}J=-R(J,\partial_r)\partial_r$.
 \end{proposition}
 \begin{proof}
@@ -974,8 +1023,9 @@ into ordinary differential equations along radial curves.
 \begin{proposition}[fundamental equations on Jacobi fields]
   \label{prop:pet-ch3-jacobi-field-curvature-equations}
   \lean{PetersenLib.jacobiField_curvatureEquations}
+  \source{petersen:page-0117}
+  \uses{def:pet-ch3-jacobi-field, prop:pet-ch3-distance-function-curvature-equations}
   \leanok
-  \uses{def:pet-ch3-jacobi-field,prop:pet-ch3-distance-function-curvature-equations}
   For Jacobi fields $J_1,J_2$, equations (1) and (3) of
   \cref{prop:pet-ch3-distance-function-curvature-equations} become
   \[
@@ -996,8 +1046,9 @@ into ordinary differential equations along radial curves.
 \begin{remark}[reduction on a product neighborhood]
   \label{rem:pet-ch3-jacobi-field-product-neighborhood}
   \lean{PetersenLib.jacobiField_productNeighborhood}
-  \leanok
+  \source{petersen:page-0117}
   \uses{prop:pet-ch3-jacobi-field-curvature-equations}
+  \leanok
   \sketch
   On a product neighborhood $\Omega=(a,b)\times H\subset M$ with $r(t,z)=t$, the
   metric is $g=dr^2+g_r$, a one-parameter family of metrics on $H$; a vector
@@ -1014,8 +1065,9 @@ into ordinary differential equations along radial curves.
 \begin{lemma}[the radial curvature term via sectional curvature]
   \label{lem:pet-ch3-jacobi-field-sectional-curvature-formula}
   \lean{PetersenLib.jacobiField_sectionalCurvatureFormula}
+  \source{petersen:page-0118}
+  \uses{rem:pet-ch3-jacobi-field-product-neighborhood, def:pet-ch3-sectional-curvature}
   \leanok
-  \uses{rem:pet-ch3-jacobi-field-product-neighborhood,def:pet-ch3-sectional-curvature}
   For $X$ tangent to $H$ (so $g(X,\partial_r)=0$),
   $R(X,\partial_r,\partial_r,X)=\sec(X,\partial_r)g_r(X,X)$; hence for a Jacobi
   field $J$ on $H$,
@@ -1040,10 +1092,11 @@ into ordinary differential equations along radial curves.
 
 \begin{example}[Gaussian curvature in distance coordinates]
   \label{ex:pet-ch3-two-dim-sectional-curvature-formula}
-  \dcref{ch3:3.2.12}
   \lean{PetersenLib.twoDimensional_sectionalCurvature_formula}
-  \leanok
+  \source{petersen:page-0118,petersen:page-0119}
   \uses{lem:pet-ch3-jacobi-field-sectional-curvature-formula}
+  \leanok
+  \dcref{ch3:3.2.12}
   If $\dim M=2$, write $g=dr^2+\rho^2(r,\theta)d\theta^2$ with $\theta$
   coordinatizing the level sets of $r$. Then $\partial_\theta$ is a Jacobi field
   of length $\rho$, and $\sec(T_pM)=-\partial_r^2\rho/\rho$.
@@ -1073,8 +1126,9 @@ Parallel transport gives a second class of test fields for the radial equation.
 \begin{definition}[parallel field]
   \label{def:pet-ch3-parallel-field}
   \lean{PetersenLib.IsParallelField}
-  \leanok
+  \source{petersen:page-0119}
   \uses{def:pet-ch3-distance-function-notation}
+  \leanok
   For a smooth distance function $r$, a \emph{parallel field} is a vector field
   $X$ with $\nabla_{\partial_r}X=0$. Parallel fields are almost never Jacobi
   fields.
@@ -1083,8 +1137,9 @@ Parallel transport gives a second class of test fields for the radial equation.
 \begin{proposition}[curvature equation on parallel fields]
   \label{prop:pet-ch3-parallel-field-curvature-equation}
   \lean{PetersenLib.parallelField_curvatureEquation}
+  \source{petersen:page-0119}
+  \uses{def:pet-ch3-parallel-field, prop:pet-ch3-distance-function-curvature-equations, lem:pet-ch3-jacobi-field-sectional-curvature-formula}
   \leanok
-  \uses{def:pet-ch3-parallel-field,prop:pet-ch3-distance-function-curvature-equations,lem:pet-ch3-jacobi-field-sectional-curvature-formula}
   For parallel fields $X,Y$, $\partial_rg(X,Y)=0$; equation (2) of
   \cref{prop:pet-ch3-distance-function-curvature-equations} becomes
   $\partial_r(\operatorname{Hess}r(X,Y))+\operatorname{Hess}^2r(X,Y)=-R(X,\partial_r,\partial_r,Y)$,
@@ -1112,8 +1167,9 @@ to the following two notions.
 \begin{definition}[conjugate point, focal point]
   \label{def:pet-ch3-conjugate-focal-point}
   \lean{PetersenLib.ConjugatePoint}
+  \source{petersen:page-0120}
+  \uses{prop:pet-ch3-distance-function-curvature-equations, prop:pet-ch3-parallel-field-curvature-equation}
   \leanok
-  \uses{prop:pet-ch3-distance-function-curvature-equations,prop:pet-ch3-parallel-field-curvature-equation}
   Along an integral curve of $\partial_r$ with bounded curvature, if
   $\operatorname{Hess}r$ blows up, equation (2) forces it to be decreasing as $r$
   increases, so it can only tend to $-\infty$; by equation (1), the only possible
@@ -1129,9 +1185,10 @@ to the following two notions.
 \begin{remark}[conjugate and focal loci of an ellipse]
   \label{rem:pet-ch3-conjugate-vs-focal-example}
   \lean{PetersenLib.conjugateVsFocal_ellipse}
+  \source{petersen:page-0120}
+  \uses{def:pet-ch3-conjugate-focal-point}
   \leanok
   % Lean: formalized as plane geometry; no abstract focal-point API is used.
-  \uses{def:pet-ch3-conjugate-focal-point}
   \sketch
   For $c(t)=(a\cos t,b\sin t)$ with $0<b<a$, the conjugate locus along the
   normals is the evolute
@@ -1151,8 +1208,9 @@ to the following two notions.
 \begin{remark}[sign consequences of radial Hessian evolution]
   \label{rem:pet-ch3-external-force-internal-reaction}
   \lean{PetersenLib.externalForceInternalReaction}
+  \source{petersen:page-0120}
+  \uses{def:pet-ch3-conjugate-focal-point, prop:pet-ch3-distance-function-curvature-equations}
   \leanok
-  \uses{def:pet-ch3-conjugate-focal-point,prop:pet-ch3-distance-function-curvature-equations}
   \sketch
   Equations (2) and (3) of
   \cref{prop:pet-ch3-distance-function-curvature-equations} can be written as
@@ -1170,11 +1228,12 @@ to the following two notions.
 
 \begin{remark}[Jet dependence of induced curvature]
   \label{rem:pet-ch3-ex-1}
-  \dcref{ch3:3.4.1}
   \lean{PetersenLib.exercise3_4_1}
-  \leanok
-  % Lean: formalized as invariance of induced curvature under equality of first and second jets.
+  \source{petersen:page-0121}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
+  \dcref{ch3:3.4.1}
+  % Lean: formalized as invariance of induced curvature under equality of first and second jets.
   Let $M$ be an $n$-dimensional submanifold of $\mathbb R^{n+m}$ with the induced
   metric, given locally by a parametrization $u^s(x^1,\dots,x^n)$,
   $s=1,\dots,n+m$. Show that in these coordinates $R^l_{ijk}$ depends only on the
@@ -1183,10 +1242,11 @@ to the following two notions.
 
 \begin{remark}[Equivalent gradient-length conditions]
   \label{rem:pet-ch3-ex-2}
-  \dcref{ch3:3.4.2}
   \lean{PetersenLib.exercise3_4_2}
-  \leanok
+  \source{petersen:page-0121}
   \uses{def:pet-ch3-hessian-square-notation}
+  \leanok
+  \dcref{ch3:3.4.2}
   For $f:(M,g)\to\mathbb R$ smooth on a connected Riemannian manifold, consider:
   (1) $|\nabla f|$ is constant; (2) $\nabla_{\nabla f}\nabla f=0$; (3) $|\nabla
   f|$ is constant on the level sets of $f$. Show $(1)\Leftrightarrow(2)\Rightarrow(3)$,
@@ -1195,10 +1255,11 @@ to the following two notions.
 
 \begin{remark}[Lie and covariant derivatives of the Hessian operator]
   \label{rem:pet-ch3-ex-3}
-  \dcref{ch3:3.4.3}
   \lean{PetersenLib.exercise3_4_3}
+  \source{petersen:page-0121}
+  \uses{def:pet-ch3-hessian-square-notation, thm:pet-ch3-radial-curvature-equation}
   \leanok
-  \uses{def:pet-ch3-hessian-square-notation,thm:pet-ch3-radial-curvature-equation}
+  \dcref{ch3:3.4.3}
   For $f$ with $S(X)=\nabla_X\nabla f$, show that
   $\mathcal L_{\nabla f}S=\nabla_{\nabla f}S$ and
   $(\mathcal L_{\nabla f}S)(X)+S^2(X)-\nabla_X(S(\nabla f))=-R_{\nabla f}(X)$.
@@ -1209,10 +1270,11 @@ to the following two notions.
 
 \begin{remark}[Gauss and Codazzi equations for distance functions]
   \label{rem:pet-ch3-ex-4}
-  \dcref{ch3:3.4.4}
   \lean{PetersenLib.exercise3_4_4}
+  \source{petersen:page-0121,petersen:page-0122}
+  \uses{thm:pet-ch3-tangential-curvature-equation, thm:pet-ch3-normal-curvature-equation}
   \leanok
-  \uses{thm:pet-ch3-tangential-curvature-equation,thm:pet-ch3-normal-curvature-equation}
+  \dcref{ch3:3.4.4}
   For a distance function $r=f:M\to\mathbb R$, show the tangential and mixed
   curvature equations can be written as
   \[
@@ -1224,30 +1286,33 @@ to the following two notions.
 
 \begin{remark}[Bianchi identities in normal coordinates]
   \label{rem:pet-ch3-ex-5}
-  \dcref{ch3:3.4.5}
   \lean{PetersenLib.exercise3_4_5}
-  \leanok
+  \source{petersen:page-0122}
   \uses{prop:pet-ch3-curvature-symmetries}
+  \leanok
+  \dcref{ch3:3.4.5}
   Prove both Bianchi identities at a point $p\in M$ using a coordinate system
   where $\nabla_{\partial_i}\partial_j=0$ at $p$.
 \end{remark}
 
 \begin{remark}[Parallel curvature of space forms]
   \label{rem:pet-ch3-ex-6}
-  \dcref{ch3:3.4.6}
   \lean{PetersenLib.exercise3_4_6}
-  \leanok
+  \source{petersen:page-0122}
   \uses{def:pet-ch3-constant-curvature}
+  \leanok
+  \dcref{ch3:3.4.6}
   Show that a Riemannian manifold with constant curvature has parallel curvature
   tensor.
 \end{remark}
 
 \begin{remark}[Parallel Ricci and scalar curvature]
   \label{rem:pet-ch3-ex-7}
-  \dcref{ch3:3.4.7}
   \lean{PetersenLib.exercise3_4_7}
+  \source{petersen:page-0122}
+  \uses{def:pet-ch3-ricci-curvature, def:pet-ch3-scalar-curvature}
   \leanok
-  \uses{def:pet-ch3-ricci-curvature,def:pet-ch3-scalar-curvature}
+  \dcref{ch3:3.4.7}
   Show that a Riemannian manifold with parallel Ricci tensor has constant scalar
   curvature. (The converse fails, and a metric with parallel curvature tensor
   need not be Einstein.)
@@ -1255,10 +1320,11 @@ to the following two notions.
 
 \begin{remark}[Divergence of the curvature tensor]
   \label{rem:pet-ch3-ex-8}
-  \dcref{ch3:3.4.8}
   \lean{PetersenLib.exercise3_4_8}
+  \source{petersen:page-0122}
+  \uses{prop:pet-ch3-contracted-bianchi, notation:pet-ch3-divergence-adjoint}
   \leanok
-  \uses{prop:pet-ch3-contracted-bianchi,notation:pet-ch3-divergence-adjoint}
+  \dcref{ch3:3.4.8}
   With $R$ the $(0,4)$-curvature tensor and $\operatorname{Ric}$ the
   $(0,2)$-Ricci tensor, show
   $(\nabla^*R)(Z,X,Y)=(\nabla_X\operatorname{Ric})(Y,Z)-(\nabla_Y\operatorname{Ric})(X,Z)$.
@@ -1269,11 +1335,12 @@ to the following two notions.
 
 \begin{remark}[Mixed curvature of product metrics]
   \label{rem:pet-ch3-ex-9}
-  \dcref{ch3:3.4.9}
   \lean{PetersenLib.exercise3_4_9}
+  \source{petersen:page-0122}
+  \uses{def:pet-ch3-sectional-curvature, rem:pet-ch1-ex-1}
   \leanok
+  \dcref{ch3:3.4.9}
   % Lean: both the mixed covariant derivative and mixed sectional curvature statements are formalized.
-  \uses{def:pet-ch3-sectional-curvature,rem:pet-ch1-ex-1}
   For Riemannian manifolds $(M,g_M),(N,g_N)$ with product metric
   $(M\times N,g_M+g_N)$, and $X$ a vector field on $M$, $Y$ on $N$ regarded on
   $M\times N$, show $\nabla_XY=0$; conclude that the mixed sectional curvature
@@ -1282,10 +1349,11 @@ to the following two notions.
 
 \begin{remark}[Orthogonality characterization of constant curvature]
   \label{rem:pet-ch3-ex-10}
-  \dcref{ch3:3.4.10}
   \lean{PetersenLib.exercise3_4_10}
-  \leanok
+  \source{petersen:page-0122}
   \uses{def:pet-ch3-constant-curvature}
+  \leanok
+  \dcref{ch3:3.4.10}
   Show that $(M,g)$ has constant curvature at $p$ iff $R(v,w)z=0$ for all pairwise
   orthogonal $v,w,z\in T_pM$. Hint: a symmetric bilinear form $B$ on an inner
   product space with $B(v,w)=0$ whenever $v\perp w$ is a multiple of the inner
@@ -1294,11 +1362,12 @@ to the following two notions.
 
 \begin{remark}[General-codimension Gauss and Codazzi equations]
   \label{rem:pet-ch3-ex-11}
-  \dcref{ch3:3.4.11}
   \lean{PetersenLib.exercise3_4_11}
-  \leanok
-  % Lean: formalized via an abstract tangent-normal projection and the induced operator splitting.
+  \source{petersen:page-0122}
   \uses{thm:pet-ch3-tangential-curvature-equation}
+  \leanok
+  \dcref{ch3:3.4.11}
+  % Lean: formalized via an abstract tangent-normal projection and the induced operator splitting.
   For $X,Y,Z$ tangent to $M$ (a submanifold with second fundamental form $T$ and
   normal connection $\nabla^\perp$), show
   \[
@@ -1313,21 +1382,23 @@ to the following two notions.
 
 \begin{remark}[Ricci curvature of Euclidean hypersurfaces]
   \label{rem:pet-ch3-ex-12}
-  \dcref{ch3:3.4.12}
   \lean{PetersenLib.exercise3_4_12}
+  \source{petersen:page-0123}
+  \uses{def:pet-ch3-second-fundamental-form, def:pet-ch3-ricci-curvature}
   \leanok
-  \uses{def:pet-ch3-second-fundamental-form,def:pet-ch3-ricci-curvature}
+  \dcref{ch3:3.4.12}
   For $H^{n-1}\subset\mathbb R^n$, show
   $\operatorname{Ric}^H=\operatorname{tr}(\Pi)\cdot\Pi-\Pi^2$.
 \end{remark}
 
 \begin{remark}[Totally geodesic hypersurfaces and constant curvature]
   \label{rem:pet-ch3-ex-13}
-  \dcref{ch3:3.4.13}
   \lean{PetersenLib.exercise3_4_13}
+  \source{petersen:page-0123}
+  \uses{def:pet-ch3-second-fundamental-form, def:pet-ch3-constant-curvature, rem:pet-ch3-ex-10}
   \leanok
+  \dcref{ch3:3.4.13}
   % Lean: part (2) is formalized; part (1) requires space-form models.
-  \uses{def:pet-ch3-second-fundamental-form,def:pet-ch3-constant-curvature,rem:pet-ch3-ex-10}
   A hypersurface is \emph{totally geodesic} if its second fundamental form
   vanishes. (1) Show that the space forms $S^n_k$ have the property that any
   tangent vector is normal to a totally geodesic hypersurface. (2) Show that a
@@ -1338,11 +1409,12 @@ to the following two notions.
 
 \begin{remark}[Normal curvature and Ricci equations]
   \label{rem:pet-ch3-ex-14}
-  \dcref{ch3:3.4.14}
   \lean{PetersenLib.exercise3_4_14}
-  \leanok
-  % Lean: the two skew-symmetries and Ricci equation are formalized for an abstract smooth orthogonal splitting.
+  \source{petersen:page-0123}
   \uses{def:pet-ch3-second-fundamental-form}
+  \leanok
+  \dcref{ch3:3.4.14}
+  % Lean: the two skew-symmetries and Ricci equation are formalized for an abstract smooth orthogonal splitting.
   For tangent fields $X,Y$ and normal fields $V,W$ of a submanifold, define the
   normal curvature $R^\perp(X,Y,V,W)$. (1) Show $R^\perp$ is tensorial and
   skew-symmetric in $X,Y$ and in $V,W$. (2) Show
@@ -1352,10 +1424,11 @@ to the following two notions.
 
 \begin{remark}[Curvature operator and Ricci curvature in dimension three]
   \label{rem:pet-ch3-ex-15}
-  \dcref{ch3:3.4.15}
   \lean{PetersenLib.exercise3_4_15}
+  \source{petersen:page-0123}
+  \uses{def:pet-ch3-curvature-operator, def:pet-ch3-ricci-curvature}
   \leanok
-  \uses{def:pet-ch3-curvature-operator,def:pet-ch3-ricci-curvature}
+  \dcref{ch3:3.4.15}
   For a $3$-manifold, if the curvature operator in diagonal form is
   $\operatorname{diag}(\alpha,\beta,\gamma)$, show the Ricci curvature is diagonal
   with entries $\alpha+\beta,\beta+\gamma,\alpha+\gamma$, and that
@@ -1364,10 +1437,11 @@ to the following two notions.
 
 \begin{remark}[Einstein tensor]
   \label{rem:pet-ch3-ex-16}
-  \dcref{ch3:3.4.16}
   \lean{PetersenLib.exercise3_4_16}
+  \source{petersen:page-0123,petersen:page-0124}
+  \uses{def:pet-ch3-ricci-curvature, def:pet-ch3-scalar-curvature, notation:pet-ch3-divergence-adjoint}
   \leanok
-  \uses{def:pet-ch3-ricci-curvature,def:pet-ch3-scalar-curvature,notation:pet-ch3-divergence-adjoint}
+  \dcref{ch3:3.4.16}
   For the $(0,2)$-tensor $T=\operatorname{Ric}+b\cdot\operatorname{scal}\cdot
   g+cg$, $b,c\in\mathbb R$: (1) show $\nabla^*T=0$ if $b=-\tfrac12$ — the tensor
   $G=\operatorname{Ric}-\tfrac{\operatorname{scal}}2g+cg$ is the \emph{Einstein
@@ -1378,11 +1452,12 @@ to the following two notions.
 
 \begin{remark}[Complex and isotropic sectional curvature]
   \label{rem:pet-ch3-ex-17}
-  \dcref{ch3:3.4.17}
   \lean{PetersenLib.exercise3_4_17}
-  \leanok
-  % Lean: parts (1)--(3) are formalized; parts (4)--(5) are deferred.
+  \source{petersen:page-0124,petersen:page-0125}
   \uses{def:pet-ch3-sectional-curvature}
+  \leanok
+  \dcref{ch3:3.4.17}
+  % Lean: parts (1)--(3) are formalized; parts (4)--(5) are deferred.
   Let $T_{\mathbb C}M=TM\otimes\mathbb C$; for $v=v_1+iv_2\in T_{\mathbb C}M$
   ($v_1,v_2\in TM$), $\bar v=v_1-iv_2$, and any tensorial object on $TM$
   complexifies, e.g.\ for a $(1,1)$-tensor $S$,
@@ -1410,11 +1485,12 @@ to the following two notions.
 
 \begin{remark}[Curvature under metric scaling]
   \label{rem:pet-ch3-ex-18}
-  \dcref{ch3:3.4.18}
   \lean{PetersenLib.exercise3_4_18}
+  \source{petersen:page-0125}
+  \uses{def:pet-ch3-sectional-curvature, def:pet-ch3-scalar-curvature, def:pet-ch3-curvature-operator, def:pet-ch3-ricci-curvature}
   \leanok
+  \dcref{ch3:3.4.18}
   % Lean: parts (1), (3), (4), and the sectional/scalar parts of (2) are formalized.
-  \uses{def:pet-ch3-sectional-curvature,def:pet-ch3-scalar-curvature,def:pet-ch3-curvature-operator,def:pet-ch3-ricci-curvature}
   Scaling $(M,g)$ to $(M,\lambda^2g)$: (1) show the connection and $(1,3)$-curvature
   tensor are unchanged; (2) $\sec,\operatorname{scal},\mathfrak R$ are all
   multiplied by $\lambda^{-2}$; (3) $\operatorname{Ric}$ as a $(1,1)$-tensor is
@@ -1424,21 +1500,23 @@ to the following two notions.
 
 \begin{remark}[Affine vector fields]
   \label{rem:pet-ch3-ex-19}
-  \dcref{ch3:3.4.19}
   \lean{PetersenLib.exercise3_4_19}
-  \leanok
+  \source{petersen:page-0125}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
+  \dcref{ch3:3.4.19}
   Call $X$ an \emph{affine vector field} if $\mathcal L_X\nabla=0$. Show such a
   field satisfies $\nabla^2_{U,V}X=-R(X,U)V$.
 \end{remark}
 
 \begin{remark}[Integrability conditions for first-order systems]
   \label{rem:pet-ch3-ex-20}
-  \dcref{ch3:3.4.20}
   \lean{PetersenLib.exercise3_4_20}
-  \leanok
-  % Lean: necessity in part (1) is formalized; parts (2)--(4) require Frobenius-type existence.
+  \source{petersen:page-0125,petersen:page-0126}
   \uses{prop:pet-ch3-curvature-coordinate-formula}
+  \leanok
+  \dcref{ch3:3.4.20}
+  % Lean: necessity in part (1) is formalized; parts (2)--(4) require Frobenius-type existence.
   For $P^i_k(x,u)$, $x=(x^1,\dots,x^n)$, $u=(u^1,\dots,u^m)$, consider
   $\partial u^i/\partial x^k=P^i_k(x,u(x))$, $u(x_0)=u_0$. (1) Show
   $\partial^2u^i/\partial x^k\partial x^j=\partial P^i_k/\partial
@@ -1457,11 +1535,12 @@ to the following two notions.
 
 \begin{remark}[Fundamental theorem of hypersurface theory]
   \label{rem:pet-ch3-ex-21}
-  \dcref{ch3:3.4.21}
   \lean{PetersenLib.exercise3_4_21}
+  \source{petersen:page-0126,petersen:page-0127}
+  \uses{prop:pet-ch3-curvature-coordinate-formula, thm:pet-ch3-tangential-curvature-equation, thm:pet-ch3-normal-curvature-equation}
   \leanok
+  \dcref{ch3:3.4.21}
   % Lean: part (1) and the necessity direction of part (2) are formalized; the converse and existence claims require Frobenius. The converse implication in part (4) is formalized.
-  \uses{prop:pet-ch3-curvature-coordinate-formula,thm:pet-ch3-tangential-curvature-equation,thm:pet-ch3-normal-curvature-equation}
   For a Riemannian immersion $F=(u^1,\dots,u^{n+1}):M^n\hookrightarrow\mathbb
   R^{n+1}$, $U^i_k=\partial u^i/\partial x^k$: (1) show
   $\partial U^i_j/\partial x^k=\sum_s\Gamma^s_{kj}U^i_s-\Pi_{jk}N^i$ for a unit normal
@@ -1486,11 +1565,12 @@ to the following two notions.
 
 \begin{remark}[Hyperbolic hypersurface realization]
   \label{rem:pet-ch3-ex-22}
-  \dcref{ch3:3.4.22}
   \lean{PetersenLib.exercise3_4_22}
-  \leanok
-  % Lean: the Gauss--Codazzi identities and converse constant-curvature implication are formalized; local existence is deferred.
+  \source{petersen:page-0127}
   \uses{rem:pet-ch3-ex-21}
+  \leanok
+  \dcref{ch3:3.4.22}
+  % Lean: the Gauss--Codazzi identities and converse constant-curvature implication are formalized; local existence is deferred.
   Repeat \cref{rem:pet-ch3-ex-21} for an immersion $F:M^n\hookrightarrow\mathbb
   R^{n,1}$ with normal $N$ satisfying $|N|^2=-1$, obtaining a local
   characterization of the hyperbolic spaces $H^n(R)$ as the local model of
@@ -1502,10 +1582,11 @@ to the following two notions.
 
 \begin{remark}[Kulkarni--Nomizu product]
   \label{rem:pet-ch3-ex-23}
-  \dcref{ch3:3.4.23}
   \lean{PetersenLib.exercise3_4_23}
+  \source{petersen:page-0127}
+  \uses{prop:pet-ch3-curvature-symmetries, def:pet-ch3-constant-curvature}
   \leanok
-  \uses{prop:pet-ch3-curvature-symmetries,def:pet-ch3-constant-curvature}
+  \dcref{ch3:3.4.23}
   For symmetric $(0,2)$-tensors $h,k$, define
   $h\owedge k(v_1,v_2,v_3,v_4)=\tfrac12(h(v_1,v_4)k(v_2,v_3)+h(v_2,v_3)k(v_1,v_4))
   -\tfrac12(h(v_1,v_3)k(v_2,v_4)+h(v_2,v_4)k(v_1,v_3))$. (1) Show $h\owedge
@@ -1519,10 +1600,11 @@ to the following two notions.
 
 \begin{remark}[Schouten tensor]
   \label{rem:pet-ch3-ex-24}
-  \dcref{ch3:3.4.24}
   \lean{PetersenLib.exercise3_4_24}
+  \source{petersen:page-0127,petersen:page-0128}
+  \uses{def:pet-ch3-ricci-curvature, def:pet-ch3-scalar-curvature, rem:pet-ch3-ex-23}
   \leanok
-  \uses{def:pet-ch3-ricci-curvature,def:pet-ch3-scalar-curvature,rem:pet-ch3-ex-23}
+  \dcref{ch3:3.4.24}
   Define $P=\dfrac2{n-2}\operatorname{Ric}-\dfrac{\operatorname{scal}}{(n-1)(n-2)}g$
   for $n>2$. (1) Show $P\equiv0$ implies $\operatorname{Ric}=0$. (2) Show the
   decomposition
@@ -1538,10 +1620,11 @@ to the following two notions.
 
 \begin{remark}[Weyl tensor]
   \label{rem:pet-ch3-ex-25}
-  \dcref{ch3:3.4.25}
   \lean{PetersenLib.exercise3_4_25}
-  \leanok
+  \source{petersen:page-0128}
   \uses{rem:pet-ch3-ex-24}
+  \leanok
+  \dcref{ch3:3.4.25}
   Define $W$ implicitly by
   $R=\dfrac{\operatorname{scal}}{n(n-1)}g\owedge g+\dfrac2{n-2}(\operatorname{Ric}-\tfrac{\operatorname{scal}}ng)\owedge
   g+W=P\owedge g+W$ (with $P$ as in \cref{rem:pet-ch3-ex-24}). (1) Show $n=3$
@@ -1551,21 +1634,23 @@ to the following two notions.
 
 \begin{remark}[Divergence of the Schouten and Weyl tensors]
   \label{rem:pet-ch3-ex-26}
-  \dcref{ch3:3.4.26}
   \lean{PetersenLib.exercise3_4_26}
+  \source{petersen:page-0129}
+  \uses{rem:pet-ch3-ex-24, notation:pet-ch3-divergence-adjoint}
   \leanok
+  \dcref{ch3:3.4.26}
   % Lean: the Schouten-divergence identity is formalized; the Weyl-divergence identity is deferred.
-  \uses{rem:pet-ch3-ex-24,notation:pet-ch3-divergence-adjoint}
   Show $\nabla^*P=-\dfrac1{n-1}d\operatorname{scal}$ and
   $\nabla^*W(Z,X,Y)=\dfrac{n-3}2\big((\nabla_XP)(Y,Z)-(\nabla_YP)(X,Z)\big)$.
 \end{remark}
 
 \begin{remark}[Structure constants]
   \label{rem:pet-ch3-ex-27}
-  \dcref{ch3:3.4.27}
   \lean{PetersenLib.exercise3_4_27}
-  \leanok
+  \source{petersen:page-0129}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
+  \dcref{ch3:3.4.27}
   For an orthonormal frame $E_1,\dots,E_n$ define structure constants $c^k_{ij}$
   by $[E_i,E_j]=c^k_{ij}E_k$ (functions on $M$), and $\Gamma^k_{ij},R^l_{ijk}$ by
   $\nabla_{E_i}E_j=\Gamma^k_{ij}E_k$, $R(E_i,E_j)E_k=R^l_{ijk}E_l$. Compute
@@ -1575,11 +1660,12 @@ to the following two notions.
 
 \begin{remark}[Cartan formalism]
   \label{rem:pet-ch3-ex-28}
-  \dcref{ch3:3.4.28}
   \lean{PetersenLib.exercise3_4_28}
-  \leanok
-  % Lean: parts (1)--(2) are formalized; the converse in (1) and surface formula (3) are deferred.
+  \source{petersen:page-0129,petersen:page-0130}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
+  \dcref{ch3:3.4.28}
+  % Lean: parts (1)--(2) are formalized; the converse in (1) and surface formula (3) are deferred.
   For a frame $E_1,\dots,E_n$, write the connection as $\nabla E_i=\omega^j_iE_j$
   (connection $1$-forms $\omega^j_i$), i.e.\ $\nabla_vE_i=\omega^j_i(v)E_j$; for
   an orthonormal frame with dual coframe $\omega^i$: (1) show $\omega^i_j=-\omega^j_i$
@@ -1596,10 +1682,11 @@ to the following two notions.
 
 \begin{remark}[Polarization of algebraic curvature tensors]
   \label{rem:pet-ch3-ex-29}
-  \dcref{ch3:3.4.29}
   \lean{PetersenLib.exercise3_4_29}
+  \source{petersen:page-0130,petersen:page-0131}
+  \uses{lem:pet-ch3-bivector-jacobi-identity, prop:pet-ch3-curvature-symmetries}
   \leanok
-  \uses{lem:pet-ch3-bivector-jacobi-identity,prop:pet-ch3-curvature-symmetries}
+  \dcref{ch3:3.4.29}
   Assume $R(X,Y,Z,W)$ is an algebraic curvature tensor, i.e.\ satisfies
   properties (1)--(3) of \cref{prop:pet-ch3-curvature-symmetries}. (1) Show
   \begin{align*}
@@ -1619,10 +1706,11 @@ to the following two notions.
 
 \begin{remark}[Curvature-operator norm from sectional curvature]
   \label{rem:pet-ch3-ex-30}
-  \dcref{ch3:3.4.30}
   \lean{PetersenLib.exercise3_4_30}
+  \source{petersen:page-0131}
+  \uses{rem:pet-ch3-ex-29, def:pet-ch3-curvature-operator}
   \leanok
-  \uses{rem:pet-ch3-ex-29,def:pet-ch3-curvature-operator}
+  \dcref{ch3:3.4.30}
   Using \cref{rem:pet-ch3-ex-29}, show the norm of the curvature operator on
   $\Lambda^2T_pM$ is bounded, $|\mathfrak R|_p\le c(n)|\sec|_p$, for a constant
   $c(n)$ depending only on dimension, where $|\sec|_p$ is the largest absolute
@@ -1631,10 +1719,11 @@ to the following two notions.
 
 \begin{remark}[Curvature of left-invariant metrics]
   \label{rem:pet-ch3-ex-31}
-  \dcref{ch3:3.4.31}
   \lean{PetersenLib.exercise3_4_31}
-  \leanok
+  \source{petersen:page-0131}
   \uses{def:pet-ch3-curvature-tensor}
+  \leanok
+  \dcref{ch3:3.4.31}
   Let $G$ be a Lie group with a left-invariant nondegenerate metric
   $(\cdot,\cdot)$ on $\mathfrak g$; for $X\in\mathfrak g$ let
   $\operatorname{ad}_X^*$ be the adjoint of $\operatorname{ad}_XY=[X,Y]$ with
@@ -1654,10 +1743,10 @@ to the following two notions.
 
 \begin{remark}[Curvature of biinvariant metrics]
   \label{rem:pet-ch3-ex-32}
-  \dcref{ch3:3.4.32}
   \lean{PetersenLib.exercise3_4_32}
-  \leanok
-  \uses{rem:pet-ch3-ex-31,def:pet-ch3-curvature-operator}
+  \source{petersen:page-0131,petersen:page-0132}
+  \uses{rem:pet-ch3-ex-31, def:pet-ch3-curvature-operator}
+  \dcref{ch3:3.4.32}
   Let $G$ be a Lie group with a biinvariant (possibly indefinite, nondegenerate)
   metric $(\cdot,\cdot)$ on $\mathfrak g$. Using left-invariant fields, show: (1)
   $\nabla_XY=\tfrac12[X,Y]$; (2) $R(X,Y)Z=\tfrac14[Z,[X,Y]]$; (3)
@@ -1673,10 +1762,11 @@ to the following two notions.
 
 \begin{remark}[Killing-form metric]
   \label{rem:pet-ch3-ex-33}
-  \dcref{ch3:3.4.33}
   \lean{PetersenLib.exercise3_4_33}
+  \source{petersen:page-0132}
+  \uses{rem:pet-ch3-ex-32, def:pet-ch3-ricci-curvature}
   \leanok
-  \uses{rem:pet-ch3-ex-32,def:pet-ch3-ricci-curvature}
+  \dcref{ch3:3.4.33}
   For a Lie group with nondegenerate Killing form $B$, using $-B$ as the
   left-invariant metric: (1) show this metric is biinvariant; (2) show
   $\operatorname{Ric}=-\tfrac14B$.
@@ -1684,10 +1774,11 @@ to the following two notions.
 
 \begin{remark}[Cartan formalism for Killing-form metrics]
   \label{rem:pet-ch3-ex-34}
-  \dcref{ch3:3.4.34}
   \lean{PetersenLib.exercise3_4_34}
-  \leanok
+  \source{petersen:page-0132}
   \uses{rem:pet-ch3-ex-33}
+  \leanok
+  \dcref{ch3:3.4.34}
   Using the Cartan formalism of \cref{rem:pet-ch3-ex-28} in the setting of
   \cref{rem:pet-ch3-ex-33}, compute all quantities in terms of the structure
   constants of $\mathfrak g$: with a biinvariant metric, in an orthonormal basis

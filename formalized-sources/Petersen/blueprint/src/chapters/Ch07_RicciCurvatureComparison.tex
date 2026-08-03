@@ -28,8 +28,9 @@ $\Hess^2r(X,Y)=g(\nabla_X\partial_r,\nabla_Y\partial_r)$.
 
 \begin{proposition}[volume-form and Laplacian trace identities]
   \label{prop:pet-ch7-volume-form-laplacian-trace}
-  \dcref{ch7:7.1.1}
   \lean{PetersenLib.volumeFormLaplacianTraceIdentities}
+  \source{petersen:page-0291,petersen:page-0292}
+  \dcref{ch7:7.1.1}
   The volume form $\vol$ and Laplacian $\Delta r$ of a smooth distance
   function $r$ satisfy
   \[
@@ -59,6 +60,7 @@ $\partial_r\lambda=\lambda\,\Delta r$.
 \begin{definition}[polar density and its constant-curvature model]
   \label{def:pet-ch7-polar-density}
   \lean{PetersenLib.polarDensity,PetersenLib.polarDensityConstantCurvature}
+  \source{petersen:page-0292,petersen:page-0293}
   \uses{prop:pet-ch7-volume-form-laplacian-trace}
   In exponential polar coordinates $g=dr^2+g_r$ at $p$, the \emph{polar
   density} $\lambda(r,\theta)>0$ is defined by
@@ -80,9 +82,10 @@ radial volume estimates.
 
 \begin{lemma}[Ricci mean-curvature comparison]
   \label{lem:pet-ch7-ricci-comparison-mean-curvature}
-  \dcref{ch7:7.1.2}
   \lean{PetersenLib.ricciMeanCurvatureComparison}
-  \uses{prop:pet-ch7-volume-form-laplacian-trace,def:pet-ch7-polar-density}
+  \source{petersen:page-0293}
+  \uses{prop:pet-ch7-volume-form-laplacian-trace, def:pet-ch7-polar-density}
+  \dcref{ch7:7.1.2}
   If $(M,g)$ has $\Ric\ge(n-1)k$ for some $k\in\mathbb{R}$, then
   \[
     \Delta r\le(n-1)\frac{\snk_k'(r)}{\snk_k(r)},
@@ -100,9 +103,10 @@ radial volume estimates.
 
 \begin{lemma}[absolute volume comparison]
   \label{lem:pet-ch7-absolute-volume-comparison}
-  \dcref{ch7:7.1.3}
   \lean{PetersenLib.absoluteVolumeComparison}
+  \source{petersen:page-0294}
   \uses{lem:pet-ch7-ricci-comparison-mean-curvature}
+  \dcref{ch7:7.1.3}
   If $(M,g)$ has $\Ric\ge(n-1)k$, then $\vol B(p,r)\le v(n,k,r)$, where
   $v(n,k,r)$ is the volume of a metric ball of radius $r$ in the constant
   curvature space form $S^n_k$.
@@ -118,9 +122,10 @@ strengthens to a monotonicity statement for ratios of volumes.
 
 \begin{lemma}[Bishop--Gromov relative volume comparison]
   \label{lem:pet-ch7-relative-volume-comparison}
-  \dcref{ch7:7.1.4}
   \lean{PetersenLib.relativeVolumeComparison}
+  \source{petersen:page-0294,petersen:page-0295}
   \uses{lem:pet-ch7-ricci-comparison-mean-curvature}
+  \dcref{ch7:7.1.4}
   Let $(M,g)$ be complete with $\Ric\ge(n-1)k$. The volume ratio
   \[
     r\mapsto\frac{\vol B(p,r)}{v(n,k,r)}
@@ -140,8 +145,9 @@ functions.
 
 \begin{lemma}[Hessian comparison at a contact point]
   \label{lem:pet-ch7-hessian-touching-comparison}
-  \dcref{ch7:7.1.5}
   \lean{PetersenLib.hessianTouchingComparison}
+  \source{petersen:page-0295,petersen:page-0296}
+  \dcref{ch7:7.1.5}
   If $f,h:(M,g)\to\mathbb{R}$ are $C^2$ functions such that $f(p)=h(p)$ and
   $f(x)\ge h(x)$ for all $x$ near $p$, then
   \[
@@ -157,6 +163,7 @@ functions.
 \begin{definition}[support functions; barrier-sense Hessian and Laplacian bounds]
   \label{def:pet-ch7-support-function}
   \lean{PetersenLib.SupportFunctionBelow,PetersenLib.barrierHessBound}
+  \source{petersen:page-0296}
   \uses{lem:pet-ch7-hessian-touching-comparison}
   By \cref{lem:pet-ch7-hessian-touching-comparison}, a $C^2$ function
   $f:M\to\mathbb{R}$ has $\Hess f|_p\ge B$ for a symmetric bilinear form $B$ on $T_pM$
@@ -180,9 +187,10 @@ functions.
 
 \begin{theorem}[convex functions near a maximum]
   \label{thm:pet-ch7-convex-constant-near-max}
-  \dcref{ch7:7.1.6}
   \lean{PetersenLib.convexHessNonnegConstantNearMax}
+  \source{petersen:page-0296}
   \uses{def:pet-ch7-support-function}
+  \dcref{ch7:7.1.6}
   If $f:(M,g)\to\mathbb{R}$ is continuous with $\Hess f\ge0$ everywhere, then $f$ is
   constant near any local maximum. In particular, $f$ cannot have a global
   maximum unless $f$ is constant.
@@ -191,6 +199,7 @@ functions.
 \begin{definition}[subharmonic and superharmonic functions]
   \label{def:pet-ch7-subharmonic-superharmonic}
   \lean{PetersenLib.IsSubharmonic,PetersenLib.IsSuperharmonic}
+  \source{petersen:page-0296}
   \uses{def:pet-ch7-support-function}
   A continuous $f:(M,g)\to\mathbb{R}$ with $\Delta f\ge0$ everywhere (in the support
   sense) is \emph{subharmonic}; if $\Delta f\le0$ it is \emph{superharmonic}.
@@ -198,9 +207,10 @@ functions.
 
 \begin{theorem}[strong maximum principle]
   \label{thm:pet-ch7-strong-maximum-principle}
-  \dcref{ch7:7.1.7}
   \lean{PetersenLib.strongMaximumPrinciple}
-  \uses{def:pet-ch7-subharmonic-superharmonic,thm:pet-ch7-convex-constant-near-max}
+  \source{petersen:page-0296,petersen:page-0297,petersen:page-0298}
+  \uses{def:pet-ch7-subharmonic-superharmonic, thm:pet-ch7-convex-constant-near-max}
+  \dcref{ch7:7.1.7}
   If $f:(M,g)\to\mathbb{R}$ is continuous and subharmonic, then $f$ is constant in a
   neighborhood of every local maximum. In particular, if $f$ has a global
   maximum then $f$ is constant.
@@ -214,6 +224,7 @@ functions.
 \begin{definition}[linear and harmonic functions]
   \label{def:pet-ch7-linear-harmonic-function}
   \lean{PetersenLib.IsLinearFunction,PetersenLib.IsHarmonicFunction}
+  \source{petersen:page-0298}
   \uses{def:pet-ch7-support-function}
   A continuous $f:(M,g)\to\mathbb{R}$ is \emph{linear} if $\Hess f\equiv0$, i.e.\
   both $\Hess f\ge0$ and $\Hess f\le0$ hold everywhere in the support sense.
@@ -226,9 +237,10 @@ functions.
 
 \begin{theorem}[regularity of weakly harmonic functions]
   \label{thm:pet-ch7-harmonic-regularity}
-  \dcref{ch7:7.1.8}
   \lean{PetersenLib.harmonicFunctionRegularity}
+  \source{petersen:page-0298,petersen:page-0299}
   \uses{def:pet-ch7-linear-harmonic-function}
+  \dcref{ch7:7.1.8}
   If $f:(M,g)\to\mathbb{R}$ is continuous and harmonic in the weak (support) sense,
   then $f$ is smooth.
 \end{theorem}
@@ -245,9 +257,10 @@ functions.
 
 \begin{lemma}[Calabi's Laplacian comparison]
   \label{lem:pet-ch7-laplacian-comparison-calabi}
-  \dcref{ch7:7.1.9}
   \lean{PetersenLib.laplacianComparisonCalabi}
+  \source{petersen:page-0298,petersen:page-0299}
   \uses{def:pet-ch7-support-function}
+  \dcref{ch7:7.1.9}
   If $(M,g)$ is complete and $\Ric(M,g)\ge(n-1)k$, then any distance function
   $r(x)=|xp|$ satisfies
   \[
@@ -270,8 +283,9 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{theorem}[Cheeger--Colding segment inequality]
   \label{thm:pet-ch7-segment-inequality}
-  \dcref{ch7:7.1.10}
   \lean{PetersenLib.segmentInequality}
+  \source{petersen:page-0300}
+  \dcref{ch7:7.1.10}
   Assume $(M,g)$ has $\Ric\ge(n-1)k$, $k\le0$. Let $f:M\to[0,\infty)$ and
   $A,B\subset W\subset M$ with $\diam W\le D$. For each $x\in A$, $y\in B$ fix a
   segment $c_{x,y}:[0,1]\to M$ from $x$ to $y$, and suppose $c_{x,y}(t)\in W$
@@ -290,9 +304,10 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{corollary}[weak Poincaré inequality]
   \label{cor:pet-ch7-weak-poincare}
-  \dcref{ch7:7.1.11}
   \lean{PetersenLib.weakPoincareInequality}
+  \source{petersen:page-0301,petersen:page-0302}
   \uses{thm:pet-ch7-segment-inequality}
+  \dcref{ch7:7.1.11}
   Assume $(M,g)$ has $\Ric\ge(n-1)k$, $k\le0$. Any smooth $u:M\to[0,\infty)$
   satisfies
   \[
@@ -308,9 +323,10 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{remark}[upper-gradient form of weak Poincaré]
   \label{rem:pet-ch7-upper-gradient}
-  \dcref{ch7:7.1.12}
   \lean{PetersenLib.upperGradientPoincare}
+  \source{petersen:page-0302}
   \uses{cor:pet-ch7-weak-poincare}
+  \dcref{ch7:7.1.12}
   \Cref{cor:pet-ch7-weak-poincare} holds for any measurable $u$ with a function
   $G$ in place of $|du|$, provided $|u(x)-u(y)|\le\int_0^1G(c(t))\,|\dot
   c(t)|\,dt$ for all $c\in\Omega_{x,y}$ (paths from $x$ to $y$); such $G$ is an
@@ -320,6 +336,7 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 \begin{definition}[maximal function]
   \label{def:pet-ch7-maximal-function}
   \lean{PetersenLib.maximalFunction}
+  \source{petersen:page-0302}
   For $u:M\to\mathbb{R}$ and $D>0$, the \emph{maximal function} of $u$ (relative to
   the scale $D$) is
   \[
@@ -329,9 +346,10 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{theorem}[maximal-function weak estimate]
   \label{thm:pet-ch7-maximal-function-theorem}
-  \dcref{ch7:7.1.14}
   \lean{PetersenLib.maximalFunctionTheorem}
+  \source{petersen:page-0303}
   \uses{def:pet-ch7-maximal-function}
+  \dcref{ch7:7.1.14}
   Assume $(M,g)$ has $\Ric\ge(n-1)k$. There is $C=C(n,kD^2)$ such that for all
   $t>0$,
   \[
@@ -346,9 +364,10 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{theorem}[weak Poincaré--Sobolev level-set estimate]
   \label{thm:pet-ch7-weak-poincare-sobolev-estimate}
-  \dcref{ch7:7.1.15}
   \lean{PetersenLib.weakPoincareSobolevEstimate}
-  \uses{cor:pet-ch7-weak-poincare,thm:pet-ch7-maximal-function-theorem}
+  \source{petersen:page-0303,petersen:page-0304,petersen:page-0305}
+  \uses{cor:pet-ch7-weak-poincare, thm:pet-ch7-maximal-function-theorem}
+  \dcref{ch7:7.1.15}
   Assume $(M,g)$ has $\Ric\ge(n-1)k$, $k\le0$, and $\diam M\le D$. For smooth
   $u:M\to[0,\infty)$,
   \[
@@ -365,9 +384,10 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{theorem}[Poincaré--Sobolev inequality]
   \label{thm:pet-ch7-poincare-sobolev}
-  \dcref{ch7:7.1.13}
   \lean{PetersenLib.poincareSobolevInequality}
+  \source{petersen:page-0302,petersen:page-0305,petersen:page-0306,petersen:page-0307}
   \uses{thm:pet-ch7-weak-poincare-sobolev-estimate}
+  \dcref{ch7:7.1.13}
   Assume $(M,g)$ has $\Ric\ge(n-1)k$, $k\le0$. For all smooth $u:M\to[0,\infty)$
   and $\nu\in[1,\tfrac{n}{n-1}]$,
   \[
@@ -383,18 +403,20 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{remark}[Dirichlet Poincaré inequality]
   \label{rem:pet-ch7-dirichlet-poincare}
-  \dcref{ch7:7.1.16}
   \lean{PetersenLib.exerciseDirichletPoincareReference}
+  \source{petersen:page-0307}
   \uses{thm:pet-ch7-poincare-sobolev}
+  \dcref{ch7:7.1.16}
   See \cref{rem:pet-ch7-ex-17} for the Poincaré inequality for functions with
   Dirichlet boundary conditions vanishing on a ball's boundary.
 \end{remark}
 
 \begin{proposition}[Sobolev interpolation hierarchy]
   \label{prop:pet-ch7-sobolev-hierarchy}
-  \dcref{ch7:7.1.17}
   \lean{PetersenLib.sobolevInterpolationHierarchy}
+  \source{petersen:page-0307}
   \uses{thm:pet-ch7-poincare-sobolev}
+  \dcref{ch7:7.1.17}
   Suppose every smooth function on $(M,g)$ satisfies $\|u-u_M\|_{s-1}\le
   S\|du\|_1$ for some fixed $s>1$. Then for $1\le p<s$,
   \[
@@ -409,9 +431,10 @@ For a bounded domain $B\subset M$ and $u:M\to\mathbb{R}$, write
 
 \begin{theorem}[Rellich compactness]
   \label{thm:pet-ch7-rellich-compactness}
-  \dcref{ch7:7.1.18}
   \lean{PetersenLib.rellichCompactness}
+  \source{petersen:page-0308}
   \uses{thm:pet-ch7-weak-poincare-sobolev-estimate}
+  \dcref{ch7:7.1.18}
   Assume $(M^n,g)$ is a compact Riemannian $n$-manifold. Then the inclusion
   $W^{1,2}(M)\subset L^2(M)$ (where $W^{1,2}(M)$ is the Hilbert-space closure
   of $C^\infty(M)$ in the norm $\|u\|_2^2+\|du\|_2^2$) is compact.
@@ -430,8 +453,9 @@ Volume comparison bounds short presentations of fundamental groups.
 
 \begin{lemma}[Gromov's short presentation of the fundamental group]
   \label{lem:pet-ch7-gromov-generators}
-  \dcref{ch7:7.2.1}
   \lean{PetersenLib.gromovShortGenerators}
+  \source{petersen:page-0308,petersen:page-0309}
+  \dcref{ch7:7.2.1}
   A compact Riemannian manifold $M$ admits generators $\{c_1,\dots,c_m\}$ for
   $\Gamma=\pi_1(M)$ such that all relations are of the form
   $c_ic_jc_k^{-1}=1$ for suitable $i,j,k$, with each generator represented by a
@@ -445,9 +469,10 @@ Volume comparison bounds short presentations of fundamental groups.
 
 \begin{example}[lens spaces with collapsing volume]
   \label{ex:pet-ch7-lens-spaces-example}
-  \dcref{ch7:7.2.2}
   \lean{PetersenLib.exampleLensSpacesGrowingFundamentalGroup}
+  \source{petersen:page-0309}
   \uses{lem:pet-ch7-gromov-generators}
+  \dcref{ch7:7.2.2}
   Consider $M_k=S^3/\mathbb{Z}_k$, the constant curvature $3$-sphere quotient by
   the cyclic group of order $k$. As $k\to\infty$, $\vol M_k\to0$ while the
   curvature stays $1$ and $\diam M_k=\pi/2$. Thus $\pi_1(M_k)=\mathbb{Z}_k$ grows
@@ -459,6 +484,7 @@ Volume comparison bounds short presentations of fundamental groups.
 \begin{definition}[the class $\mathfrak{M}(n,k,v,D)$]
   \label{def:pet-ch7-manifold-class}
   \lean{PetersenLib.ManifoldClass}
+  \source{petersen:page-0309}
   For $n\in\mathbb{N}$, $k\in\mathbb{R}$, $v,D\in(0,\infty)$, let
   $\mathfrak{M}(n,k,v,D)$ denote the class of compact Riemannian $n$-manifolds
   $(M,g)$ with $\Ric\ge(n-1)k$, $\vol M\ge v$, $\diam M\le D$.
@@ -466,9 +492,10 @@ Volume comparison bounds short presentations of fundamental groups.
 
 \begin{theorem}[Anderson's fundamental-group finiteness theorem]
   \label{thm:pet-ch7-anderson-finiteness}
-  \dcref{ch7:7.2.3}
   \lean{PetersenLib.andersonFundamentalGroupFiniteness}
-  \uses{def:pet-ch7-manifold-class,lem:pet-ch7-gromov-generators}
+  \source{petersen:page-0309}
+  \uses{def:pet-ch7-manifold-class, lem:pet-ch7-gromov-generators}
+  \dcref{ch7:7.2.3}
   For fixed $n,k,v,D$, there are only finitely many isomorphism types of
   fundamental group among the manifolds in $\mathfrak{M}(n,k,v,D)$.
 \end{theorem}
@@ -480,9 +507,10 @@ Volume comparison bounds short presentations of fundamental groups.
 
 \begin{lemma}[Anderson's short-loop subgroup bound]
   \label{lem:pet-ch7-anderson-short-loops}
-  \dcref{ch7:7.2.4}
   \lean{PetersenLib.andersonShortLoopSubgroupFinite}
+  \source{petersen:page-0310}
   \uses{def:pet-ch7-manifold-class}
+  \dcref{ch7:7.2.4}
   For fixed $n,k,v,D$ there are $L=L(n,k,v,D)$, $N=N(n,k,v,D)$ such that for
   every $M\in\mathfrak{M}(n,k,v,D)$, any subgroup of $\pi_1(M)$ generated by
   loops of length $\le L$ has order $\le N$.
@@ -499,9 +527,10 @@ Equality in Myers' diameter bound is rigid.
 
 \begin{theorem}[Cheng's maximal-diameter rigidity theorem]
   \label{thm:pet-ch7-cheng-rigidity}
-  \dcref{ch7:7.2.5}
   \lean{PetersenLib.chengMaximalDiameterRigidity}
-  \uses{lem:pet-ch7-laplacian-comparison-calabi,thm:pet-ch7-strong-maximum-principle}
+  \source{petersen:page-0310,petersen:page-0311,petersen:page-0312}
+  \uses{lem:pet-ch7-laplacian-comparison-calabi, thm:pet-ch7-strong-maximum-principle}
+  \dcref{ch7:7.2.5}
   If $(M,g)$ is complete with $\Ric\ge(n-1)k>0$ and $\diam=\pi/\sqrt k$, then
   $(M,g)$ is isometric to $S^n_k$ (the space form of curvature $k$).
 \end{theorem}
@@ -513,9 +542,10 @@ Equality in Myers' diameter bound is rigid.
 
 \begin{example}[almost maximal diameter in dimension four]
   \label{ex:pet-ch7-anderson-cp2-example}
-  \dcref{ch7:7.2.6}
   \lean{PetersenLib.andersonAlmostMaximalDiameterExampleFour}
+  \source{petersen:page-0312,petersen:page-0313}
   \uses{thm:pet-ch7-cheng-rigidity}
+  \dcref{ch7:7.2.6}
   For $n=4$, consider metrics $dr^2+\rho^2\sigma_1^2+\phi^2(\sigma_2^2+\sigma_3^2)$
   on $I\times S^3$, with
   \[
@@ -534,9 +564,10 @@ Equality in Myers' diameter bound is rigid.
 
 \begin{example}[higher-dimensional almost maximal diameter]
   \label{ex:pet-ch7-otsu-example}
-  \dcref{ch7:7.2.7}
   \lean{PetersenLib.otsuAlmostMaximalDiameterExample}
+  \source{petersen:page-0313}
   \uses{ex:pet-ch7-anderson-cp2-example}
+  \dcref{ch7:7.2.7}
   For $n\ge5$, standard doubly warped products $dr^2+\rho^2ds_2^2+\phi^2ds^2_{n-3}$
   on $I\times S^2\times S^{n-3}$, with $\rho,\phi$ chosen analogously to
   \cref{ex:pet-ch7-anderson-cp2-example}, yield metrics on $S^2\times
@@ -557,6 +588,7 @@ Throughout this section, $(M,g)$ is complete and noncompact.
 \begin{definition}[ray, line]
   \label{def:pet-ch7-ray-line}
   \lean{PetersenLib.IsRay,PetersenLib.IsLine}
+  \source{petersen:page-0313}
   A \emph{ray} $r:[0,\infty)\to(M,g)$ is a unit-speed geodesic with
   $|r(t)r(s)|=|t-s|$ for all $t,s\ge0$; it may be viewed as a semi-infinite
   segment, or a segment from $r(0)$ to infinity. A \emph{line}
@@ -567,6 +599,7 @@ Throughout this section, $(M,g)$ is complete and noncompact.
 \begin{definition}[connected/disconnected at infinity]
   \label{def:pet-ch7-connected-infinity}
   \lean{PetersenLib.IsConnectedAtInfinity}
+  \source{petersen:page-0314}
   A complete manifold $(M,g)$ is \emph{connected at infinity} if for every
   compact $K\subset M$ there is a compact $C\supset K$ such that any two
   points of $M-C$ can be joined by a curve in $M-K$. Otherwise $(M,g)$ is
@@ -575,9 +608,10 @@ Throughout this section, $(M,g)$ is complete and noncompact.
 
 \begin{lemma}[existence of rays and lines]
   \label{lem:pet-ch7-ray-line-existence}
-  \dcref{ch7:7.3.1}
   \lean{PetersenLib.rayExistenceLineIfDisconnectedAtInfinity}
-  \uses{def:pet-ch7-ray-line,def:pet-ch7-connected-infinity}
+  \source{petersen:page-0313,petersen:page-0314}
+  \uses{def:pet-ch7-ray-line, def:pet-ch7-connected-infinity}
+  \dcref{ch7:7.3.1}
   If $p\in(M,g)$ then a ray emanating from $p$ always exists. If $M$ is
   disconnected at infinity, $(M,g)$ contains a line.
 \end{lemma}
@@ -589,9 +623,10 @@ Throughout this section, $(M,g)$ is complete and noncompact.
 
 \begin{example}[paraboloid metrics without lines]
   \label{ex:pet-ch7-paraboloid-no-lines}
-  \dcref{ch7:7.3.2}
   \lean{PetersenLib.paraboloidContainsNoLines}
+  \source{petersen:page-0314}
   \uses{def:pet-ch7-ray-line}
+  \dcref{ch7:7.3.2}
   Surfaces of revolution $dr^2+\rho^2(r)ds^2_{n-1}$ with $\rho:[0,\infty)\to
   [0,\infty)$, $\dot\rho(t)<1$, $\ddot\rho(t)<0$ for $t>0$, contain no lines;
   such manifolds look like paraboloids.
@@ -599,18 +634,20 @@ Throughout this section, $(M,g)$ is complete and noncompact.
 
 \begin{example}[cylindrical manifolds contain a line]
   \label{ex:pet-ch7-cylinder-contains-line}
-  \dcref{ch7:7.3.3}
   \lean{PetersenLib.sphereCrossRAlwaysContainsLine}
+  \source{petersen:page-0315}
   \uses{lem:pet-ch7-ray-line-existence}
+  \dcref{ch7:7.3.3}
   Any complete metric on $S^{n-1}\times\mathbb{R}$ contains a line, since the
   manifold is disconnected at infinity.
 \end{example}
 
 \begin{example}[Schwarzschild metrics contain no line]
   \label{ex:pet-ch7-schwarzschild-no-line}
-  \dcref{ch7:7.3.4}
   \lean{PetersenLib.schwarzschildContainsNoLine}
+  \source{petersen:page-0315}
   \uses{def:pet-ch7-ray-line}
+  \dcref{ch7:7.3.4}
   The Schwarzschild metric on $S^{n-2}\times\mathbb{R}^2$ contains no lines, as
   follows from the splitting theorem (\cref{thm:pet-ch7-splitting-theorem})
   since the space is not metrically a product.
@@ -623,9 +660,10 @@ $b_t(x)=|xc(t)|-t$.
 
 \begin{proposition}[estimates for Busemann approximants]
   \label{prop:pet-ch7-busemann-approximants}
-  \dcref{ch7:7.3.6}
   \lean{PetersenLib.busemannApproximantsProperties}
-  \uses{def:pet-ch7-ray-line,lem:pet-ch7-laplacian-comparison-calabi}
+  \source{petersen:page-0316}
+  \uses{def:pet-ch7-ray-line, lem:pet-ch7-laplacian-comparison-calabi}
+  \dcref{ch7:7.3.6}
   The functions $b_t$, $t\ge0$, satisfy:
   \begin{enumerate}
     \item[(1)] for fixed $x$, $t\mapsto b_t(x)$ is decreasing and bounded in
@@ -643,6 +681,7 @@ $b_t(x)=|xc(t)|-t$.
 \begin{definition}[Busemann function]
   \label{def:pet-ch7-busemann-function}
   \lean{PetersenLib.busemannFunction}
+  \source{petersen:page-0316}
   \uses{prop:pet-ch7-busemann-approximants}
   By \cref{prop:pet-ch7-busemann-approximants}, $b_t$ converges pointwise as
   $t\to\infty$ to a $1$-Lipschitz function
@@ -657,9 +696,10 @@ $b_t(x)=|xc(t)|-t$.
 
 \begin{example}[Euclidean Busemann functions]
   \label{ex:pet-ch7-euclidean-busemann}
-  \dcref{ch7:7.3.7}
   \lean{PetersenLib.euclideanBusemannFunction}
+  \source{petersen:page-0316}
   \uses{def:pet-ch7-busemann-function}
+  \dcref{ch7:7.3.7}
   If $M=(\mathbb{R}^n,g_{\mathbb{R}^n})$, every Busemann function has the form
   $b_c(x)=\dot c(0)\cdot(c(0)-x)$.
 \end{example}
@@ -667,6 +707,7 @@ $b_t(x)=|xc(t)|-t$.
 \begin{definition}[horosphere, asymptote]
   \label{def:pet-ch7-horosphere-asymptote}
   \lean{PetersenLib.Horosphere,PetersenLib.IsAsymptoteFor}
+  \source{petersen:page-0317}
   \uses{def:pet-ch7-busemann-function}
   The level sets $b_c^{-1}(t)$ are \emph{horospheres} (hyperplanes in $\mathbb{R}^n$;
   spheres tangent to the boundary in the Poincaré model of hyperbolic space).
@@ -679,9 +720,10 @@ $b_t(x)=|xc(t)|-t$.
 
 \begin{proposition}[Busemann comparison along an asymptote]
   \label{prop:pet-ch7-busemann-asymptote-relation}
-  \dcref{ch7:7.3.8}
   \lean{PetersenLib.busemannAsymptoteRelation}
+  \source{petersen:page-0317,petersen:page-0318}
   \uses{def:pet-ch7-horosphere-asymptote}
+  \dcref{ch7:7.3.8}
   With $c,p,\tilde c$ as in \cref{def:pet-ch7-horosphere-asymptote}, the
   Busemann functions satisfy
   \begin{enumerate}
@@ -698,9 +740,10 @@ $b_t(x)=|xc(t)|-t$.
 
 \begin{lemma}[superharmonicity of Busemann functions]
   \label{lem:pet-ch7-busemann-superharmonic}
-  \dcref{ch7:7.3.9}
   \lean{PetersenLib.busemannFunctionSuperharmonic}
-  \uses{prop:pet-ch7-busemann-asymptote-relation,prop:pet-ch7-busemann-approximants}
+  \source{petersen:page-0318}
+  \uses{prop:pet-ch7-busemann-asymptote-relation, prop:pet-ch7-busemann-approximants}
+  \dcref{ch7:7.3.9}
   If $\Ric(M,g)\ge0$, then $\Delta b_c\le0$ everywhere.
 \end{lemma}
 \begin{proof}
@@ -711,9 +754,10 @@ $b_t(x)=|xc(t)|-t$.
 
 \begin{theorem}[Cheeger--Gromoll splitting theorem]
   \label{thm:pet-ch7-splitting-theorem}
-  \dcref{ch7:7.3.5}
   \lean{PetersenLib.cheegerGromollSplittingTheorem}
-  \uses{lem:pet-ch7-busemann-superharmonic,thm:pet-ch7-strong-maximum-principle,thm:pet-ch7-harmonic-regularity}
+  \source{petersen:page-0315,petersen:page-0318,petersen:page-0319}
+  \uses{lem:pet-ch7-busemann-superharmonic, thm:pet-ch7-strong-maximum-principle, thm:pet-ch7-harmonic-regularity}
+  \dcref{ch7:7.3.5}
   If $(M,g)$ contains a line and has $\Ric\ge0$, then $(M,g)$ is isometric to
   a product $(H\times\mathbb{R},\,g_0+dt^2)$.
 \end{theorem}
@@ -730,9 +774,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{corollary}[Ricci-flat obstruction for sphere products]
   \label{cor:pet-ch7-no-ricci-flat-sphere-product}
-  \dcref{ch7:7.3.10}
   \lean{PetersenLib.noRicciFlatMetricOnSphereProductLowDim}
+  \source{petersen:page-0319}
   \uses{thm:pet-ch7-splitting-theorem}
+  \dcref{ch7:7.3.10}
   $S^k\times S^1$ admits no Ricci-flat metric when $k=2,3$.
 \end{corollary}
 \begin{proof}
@@ -743,9 +788,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{theorem}[structure of compact manifolds with nonnegative Ricci curvature]
   \label{thm:pet-ch7-structure-theorem}
-  \dcref{ch7:7.3.11}
   \lean{PetersenLib.nonnegativeRicciStructureTheorem}
-  \uses{thm:pet-ch7-splitting-theorem,lem:pet-ch7-ray-line-existence}
+  \source{petersen:page-0319,petersen:page-0320}
+  \uses{thm:pet-ch7-splitting-theorem, lem:pet-ch7-ray-line-existence}
+  \dcref{ch7:7.3.11}
   Suppose $(M,g)$ is compact with $\Ric\ge0$. Then:
   \begin{enumerate}
     \item[(1)] the universal cover $(\tilde M,\tilde g)$ splits isometrically
@@ -764,9 +810,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Wilking's converse realization theorem]
   \label{rem:pet-ch7-wilking-remark}
-  \dcref{ch7:7.3.12}
   \lean{PetersenLib.wilkingConverseRemark}
+  \source{petersen:page-0320}
   \uses{thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.3.12}
   Wilking has shown conversely that any group $G$ admitting a finite normal
   subgroup $H\subset G$ with $G/H$ acting discretely and cocompactly on a
   Euclidean space is the fundamental group of a compact manifold with
@@ -775,9 +822,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{corollary}[aspherical nonnegative-Ricci manifolds are flat]
   \label{cor:pet-ch7-flat-manifold-Kpi1}
-  \dcref{ch7:7.3.13}
   \lean{PetersenLib.flatIfAsphericalNonnegRicci}
+  \source{petersen:page-0320,petersen:page-0321}
   \uses{thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.3.13}
   Suppose $(M,g)$ is compact with $\Ric\ge0$. If $M$ is a $K(\pi,1)$ (its
   universal cover is contractible), then the universal cover is Euclidean
   space and $(M,g)$ is flat.
@@ -790,9 +838,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{corollary}[positive Ricci curvature at one point forces finite fundamental group]
   \label{cor:pet-ch7-finite-fundamental-group-positive-ricci}
-  \dcref{ch7:7.3.14}
   \lean{PetersenLib.finitePi1IfPositiveRicciSomewhere}
+  \source{petersen:page-0321}
   \uses{thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.3.14}
   If $(M,g)$ is compact with $\Ric\ge0$ and $\Ric>0$ on some tangent space
   $T_pM$, then $\pi_1(M)$ is finite.
 \end{corollary}
@@ -804,9 +853,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{corollary}[first Betti-number bound]
   \label{cor:pet-ch7-first-betti-number-bound}
-  \dcref{ch7:7.3.15}
   \lean{PetersenLib.firstBettiNumberBoundNonnegRicci}
+  \source{petersen:page-0321}
   \uses{thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.3.15}
   If $(M,g)$ is compact with $\Ric\ge0$, then $b_1(M)\le\dim M=n$, with
   equality iff $(M,g)$ is a flat torus.
 \end{corollary}
@@ -818,9 +868,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{theorem}[homogeneous nonnegative-Ricci splitting]
   \label{thm:pet-ch7-homogeneous-splitting}
-  \dcref{ch7:7.3.16}
   \lean{PetersenLib.homogeneousNonnegRicciSplitting}
-  \uses{thm:pet-ch7-splitting-theorem,thm:pet-ch7-structure-theorem}
+  \source{petersen:page-0321,petersen:page-0322}
+  \uses{thm:pet-ch7-splitting-theorem, thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.3.16}
   Let $(M,g)$ be a homogeneous Riemannian manifold with $\Ric\ge0$. Then
   $(M,g)=(N\times\mathbb{R}^k,\,g_N+g_{\mathbb{R}^k})$ with $(N,g_N)$ compact homogeneous.
 \end{theorem}
@@ -834,9 +885,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[polar-density comparison equation]
   \label{rem:pet-ch7-ex-1}
-  \dcref{ch7:7.5.1}
   \lean{PetersenLib.exercise7_5_1}
-  \uses{prop:pet-ch7-volume-form-laplacian-trace,def:pet-ch7-polar-density}
+  \source{petersen:page-0322}
+  \uses{prop:pet-ch7-volume-form-laplacian-trace, def:pet-ch7-polar-density}
+  \dcref{ch7:7.5.1}
   With notation as in §7.1.1 and using $\vol=\lambda\,dr\wedge\vol_{n-1}$, show
   that $\mu=\lambda^{1/(n-1)}$ satisfies
   \[
@@ -848,9 +900,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Calabi--Yau linear volume growth]
   \label{rem:pet-ch7-ex-2}
-  \dcref{ch7:7.5.2}
   \lean{PetersenLib.exercise7_5_2}
+  \source{petersen:page-0322}
   \uses{thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.5.2}
   Let $(M,g)$ be complete noncompact with $\Ric\ge0$, $p\in M$.
   \begin{enumerate}
     \item[(1)] Show that for each $R>1$ there is $x\in M$ with
@@ -864,9 +917,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[equivalent definitions of convexity on an interval]
   \label{rem:pet-ch7-ex-3}
-  \dcref{ch7:7.5.3}
   \lean{PetersenLib.exercise7_5_3}
+  \source{petersen:page-0322,petersen:page-0323}
   \uses{def:pet-ch7-support-function}
+  \dcref{ch7:7.5.3}
   Let $f:I\to\mathbb{R}$ be continuous on an interval $I\subset\mathbb{R}$. Show that (1)
   $f$ is convex, (2) $f$ has a linear support function from below of the form
   $a(x-x_0)+f(x_0)$ at every $x_0\in I$, and (3) $f''\ge0$ in the support
@@ -875,18 +929,20 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[failure of an endpoint Poincaré estimate]
   \label{rem:pet-ch7-ex-4}
-  \dcref{ch7:7.5.4}
   \lean{PetersenLib.exercise7_5_4}
+  \source{petersen:page-0323}
   \uses{thm:pet-ch7-poincare-sobolev}
+  \dcref{ch7:7.5.4}
   Show that on a compact Riemannian manifold there is no finite $S(s)$ with
   $\|f-f_M\|_\infty\le S\|df\|_1$ for $1<s<\dim M$.
 \end{remark}
 
 \begin{remark}[basic covering lemma]
   \label{rem:pet-ch7-ex-5}
-  \dcref{ch7:7.5.5}
   \lean{PetersenLib.exercise7_5_5}
+  \source{petersen:page-0323}
   \uses{thm:pet-ch7-maximal-function-theorem}
+  \dcref{ch7:7.5.5}
   Given a separable metric space $(X,d)$ and a bounded positive function
   $R:X\to(0,D]$, show there is a countable $A\subset X$ such that the balls
   $B(p,R(p))$, $p\in A$, are pairwise disjoint and $X=\bigcup_{p\in
@@ -896,9 +952,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[radial Hessian rigidity]
   \label{rem:pet-ch7-ex-6}
-  \dcref{ch7:7.5.6}
   \lean{PetersenLib.exercise7_5_6}
+  \source{petersen:page-0323}
   \uses{thm:pet-ch7-cheng-rigidity}
+  \dcref{ch7:7.5.6}
   Assume $r(x)=|xp|$ is smooth on $B(p,R)$. Show that if
   $\Hess r=(\snk'(r)/\snk(r))g_r$ in polar coordinates, then all sectional
   curvatures on $B(p,R)$ equal $k$.
@@ -906,9 +963,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[unbounded Sobolev--Poincaré constants]
   \label{rem:pet-ch7-ex-7}
-  \dcref{ch7:7.5.7}
   \lean{PetersenLib.exercise7_5_7}
+  \source{petersen:page-0323}
   \uses{thm:pet-ch7-poincare-sobolev}
+  \dcref{ch7:7.5.7}
   Construct convex surfaces in $\mathbb{R}^3$ by capping off cylinders
   $[-R,R]\times S^1$ to show the Sobolev--Poincaré constants increase as $R$
   increases. (Hint: consider test functions constant except on $[-1,1]\times
@@ -917,18 +975,20 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[rigidity in absolute volume comparison]
   \label{rem:pet-ch7-ex-8}
-  \dcref{ch7:7.5.8}
   \lean{PetersenLib.exercise7_5_8}
+  \source{petersen:page-0323}
   \uses{lem:pet-ch7-absolute-volume-comparison}
+  \dcref{ch7:7.5.8}
   Show that if $(M,g)$ has $\Ric\ge(n-1)k$ and $\vol B(p,R)=v(n,k,R)$ for some
   $p\in M$, then the metric has constant curvature $k$ on $B(p,R)$.
 \end{remark}
 
 \begin{remark}[Jacobi fields and the Jacobian of an exponential flow]
   \label{rem:pet-ch7-ex-9}
-  \dcref{ch7:7.5.9}
   \lean{PetersenLib.exercise7_5_9}
+  \source{petersen:page-0323}
   \uses{lem:pet-ch7-laplacian-comparison-calabi}
+  \dcref{ch7:7.5.9}
   Let $X$ be a vector field and $F_t(p)=\exp_p(tX|_p)$.
   \begin{enumerate}
     \item[(1)] For $v\in T_pM$, show $J(t)=DF_t(v)$ is a Jacobi field along
@@ -947,9 +1007,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Euclidean rigidity from asymptotic volume ratio]
   \label{rem:pet-ch7-ex-10}
-  \dcref{ch7:7.5.10}
   \lean{PetersenLib.exercise7_5_10}
+  \source{petersen:page-0324}
   \uses{lem:pet-ch7-relative-volume-comparison}
+  \dcref{ch7:7.5.10}
   Show that a complete manifold $(M,g)$ with $\Ric\ge0$ and
   $\lim_{r\to\infty}\vol B(p,r)/(\omega_nr^n)=1$ for some $p\in M$ must be
   isometric to Euclidean space.
@@ -957,9 +1018,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[trace inequality for the Hessian]
   \label{rem:pet-ch7-ex-11}
-  \dcref{ch7:7.5.11}
   \lean{PetersenLib.exercise7_5_11}
+  \source{petersen:page-0324}
   \uses{lem:pet-ch7-hessian-touching-comparison}
+  \dcref{ch7:7.5.11}
   Show that any function on an $n$-dimensional Riemannian manifold satisfies
   $|\Hess u|^2\ge\tfrac1n|\Delta u|^2$, with equality iff
   $\Hess u=\tfrac{\Delta u}{n}g$. What can be said about $M$ when
@@ -968,9 +1030,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[integration by parts for the Laplacian]
   \label{rem:pet-ch7-ex-12}
-  \dcref{ch7:7.5.12}
   \lean{PetersenLib.exercise7_5_12}
+  \source{petersen:page-0324}
   \uses{def:pet-ch7-linear-harmonic-function}
+  \dcref{ch7:7.5.12}
   Show that if $u,v:M\to\mathbb{R}$ are compactly supported and smooth on open dense
   sets, then
   \[
@@ -981,27 +1044,30 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[sign of Laplacian eigenvalues]
   \label{rem:pet-ch7-ex-13}
-  \dcref{ch7:7.5.13}
   \lean{PetersenLib.exercise7_5_13}
+  \source{petersen:page-0324}
   \uses{thm:pet-ch7-strong-maximum-principle}
+  \dcref{ch7:7.5.13}
   Show that if $\Delta u=\lambda u$ on a closed Riemannian manifold, then
   $\lambda\le0$, and $\lambda=0$ forces $u$ constant.
 \end{remark}
 
 \begin{remark}[a first spherical eigenfunction]
   \label{rem:pet-ch7-ex-14}
-  \dcref{ch7:7.5.14}
   \lean{PetersenLib.exercise7_5_14}
+  \source{petersen:page-0324}
   \uses{thm:pet-ch7-cheng-rigidity}
+  \dcref{ch7:7.5.14}
   Show that $u_k=\cos(\sqrt kr)$ on $S^n_k=S^n(1/\sqrt k)$ satisfies $\Delta
   u_k=-nk\,u_k$ and $\int u_k\,\vol=0$.
 \end{remark}
 
 \begin{remark}[Lichnerowicz eigenvalue estimate]
   \label{rem:pet-ch7-ex-15}
-  \dcref{ch7:7.5.15}
   \lean{PetersenLib.exercise7_5_15}
+  \source{petersen:page-0324}
   \uses{thm:pet-ch7-cheng-rigidity}
+  \dcref{ch7:7.5.15}
   Let $(M^n,g)$ be closed with $\Ric\ge(n-1)k>0$. Use the Bochner formula to
   show that every $u$ with $\Delta u=-\lambda u$, $\lambda>0$, satisfies
   $\lambda\ge nk$. Deduce, via the spectral theorem for $\Delta$, that every
@@ -1011,9 +1077,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Obata rigidity]
   \label{rem:pet-ch7-ex-16}
-  \dcref{ch7:7.5.16}
   \lean{PetersenLib.exercise7_5_16}
-  \uses{rem:pet-ch7-ex-15,thm:pet-ch7-cheng-rigidity}
+  \source{petersen:page-0324}
+  \uses{rem:pet-ch7-ex-15, thm:pet-ch7-cheng-rigidity}
+  \dcref{ch7:7.5.16}
   Let $(M^n,g)$ be closed with $\Ric\ge(n-1)k>0$. Using the Bochner formula as
   in \cref{rem:pet-ch7-ex-15}, show that if $\Delta u=-nk\,u$ for some
   function $u$, then $\Hess u=-ku\,g$. Conclude $(M^n,g)=S^n_k$.
@@ -1021,9 +1088,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Li--Schoen local Poincaré estimate]
   \label{rem:pet-ch7-ex-17}
-  \dcref{ch7:7.5.17}
   \lean{PetersenLib.exercise7_5_17}
+  \source{petersen:page-0324,petersen:page-0325}
   \uses{thm:pet-ch7-poincare-sobolev}
+  \dcref{ch7:7.5.17}
   Let $(M,g)$ be complete with $\Ric\ge-(n-1)k^2$, $k\ge0$; $p\in M$; $R>0$
   with $\partial B(p,2R)\ne\emptyset$; $q\in\partial B(p,2R)$;
   $r(x)=|xq|$.
@@ -1045,9 +1113,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Cheeger comparison for unions of balls]
   \label{rem:pet-ch7-ex-18}
-  \dcref{ch7:7.5.18}
   \lean{PetersenLib.exercise7_5_18}
+  \source{petersen:page-0325}
   \uses{lem:pet-ch7-relative-volume-comparison}
+  \dcref{ch7:7.5.18}
   Suppose $(M^n,g)$ has $\Ric\ge(n-1)k$.
   \begin{enumerate}
     \item[(1)] For $p_1,\dots,p_k\in M$, show
@@ -1061,9 +1130,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[polar-cone volume comparison]
   \label{rem:pet-ch7-ex-19}
-  \dcref{ch7:7.5.19}
   \lean{PetersenLib.exercise7_5_19}
+  \source{petersen:page-0326}
   \uses{lem:pet-ch7-absolute-volume-comparison}
+  \dcref{ch7:7.5.19}
   For $p\in M$ and $\Gamma\subset T_pM$ a set of unit vectors, define the
   polar cone $B^\Gamma(p,R)=\{(t,\theta)\in M\mid t\le R,\ \theta\in\Gamma\}$.
   If $\Ric M\ge(n-1)k$, show
@@ -1074,9 +1144,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[fundamental group and center of a compact Lie group]
   \label{rem:pet-ch7-ex-20}
-  \dcref{ch7:7.5.20}
   \lean{PetersenLib.exercise7_5_20}
+  \source{petersen:page-0326}
   \uses{thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.5.20}
   Let $G$ be a compact connected Lie group with a biinvariant metric and
   $\Ric\ge0$.
   \begin{enumerate}
@@ -1089,9 +1160,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Euclidean-end rigidity]
   \label{rem:pet-ch7-ex-21}
-  \dcref{ch7:7.5.21}
   \lean{PetersenLib.exercise7_5_21}
+  \source{petersen:page-0326}
   \uses{thm:pet-ch7-structure-theorem}
+  \dcref{ch7:7.5.21}
   Let $(M,g)$ be $n$-dimensional and isometric to Euclidean space outside a
   compact $K\subset M$, i.e.\ $M-K$ is isometric to $\mathbb{R}^n-C$ for some
   compact $C\subset\mathbb{R}^n$. If $\Ric\ge0$, show $M=\mathbb{R}^n$.
@@ -1099,9 +1171,10 @@ manifolds of nonnegative Ricci curvature.
 
 \begin{remark}[Myers diameter bound from excess]
   \label{rem:pet-ch7-ex-22}
-  \dcref{ch7:7.5.22}
   \lean{PetersenLib.exercise7_5_22}
+  \source{petersen:page-0326}
   \uses{thm:pet-ch7-cheng-rigidity}
+  \dcref{ch7:7.5.22}
   Show that if $\Ric\ge n-1$ then $\diam\le\pi$, by showing that if
   $|pq|>\pi$, then $e_{p,q}(x)=|px|+|xq|-|pq|$ has negative Laplacian at a
   local minimum.

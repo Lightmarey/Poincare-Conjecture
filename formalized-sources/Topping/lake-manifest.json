@@ -5,19 +5,19 @@
     {
       "type": "path",
       "scope": "",
-      "name": "DoCarmoLib",
+      "name": "MorganTianLib",
       "manifestFile": "lake-manifest.json",
       "inherited": false,
-      "dir": "../DoCarmo",
+      "dir": "../MorganTian",
       "configFile": "lakefile.lean"
     },
     {
       "type": "path",
       "scope": "",
-      "name": "Shared",
+      "name": "DoCarmoLib",
       "manifestFile": "lake-manifest.json",
-      "inherited": true,
-      "dir": "../../shared",
+      "inherited": false,
+      "dir": "../DoCarmo",
       "configFile": "lakefile.lean"
     },
     {
@@ -30,6 +30,15 @@
       "manifestFile": "lake-manifest.json",
       "inputRev": "520045ab14e26149ee970e2e617ca04b09bde5d6",
       "inherited": true,
+      "configFile": "lakefile.lean"
+    },
+    {
+      "type": "path",
+      "scope": "",
+      "name": "Shared",
+      "manifestFile": "lake-manifest.json",
+      "inherited": true,
+      "dir": "../MorganTian/../../shared",
       "configFile": "lakefile.lean"
     },
     {

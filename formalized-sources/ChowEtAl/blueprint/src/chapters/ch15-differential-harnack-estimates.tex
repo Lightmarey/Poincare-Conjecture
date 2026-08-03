@@ -9,9 +9,10 @@ Ricci, and scalar curvatures.
 
 \begin{definition}[The tensors \(P\) and \(M\)]
 \label{def:chow-ii-harnack-p-and-m-tensors}
+\source{chow-et-al-ricci-flow-part-ii:page-0287,chow-et-al-ricci-flow-part-ii:page-0288}
 \dcref{ch15:eq-15.5,eq-15.9}
 \group{Harnack Quadratic}
-\source{chow-et-al-ricci-flow-part-ii:page-0287,chow-et-al-ricci-flow-part-ii:page-0288}
+
 For a Ricci flow at time \(t>0\), define
 \[
 P_{kij}=\nabla_kR_{ij}-\nabla_iR_{kj}
@@ -32,10 +33,12 @@ Ricci tensor occurs once with each sign.
 
 \begin{lemma}[Soliton identities for \(P\) and \(M\)]
 \label{lem:chow-ii-soliton-harnack-identities}
-\dcref{ch15:eq-15.7,eq-15.10}
-\group{Harnack Quadratic}
 \source{chow-et-al-ricci-flow-part-ii:page-0287,chow-et-al-ricci-flow-part-ii:page-0288}
 \uses{def:chow-ii-harnack-p-and-m-tensors}
+\dcref{ch15:eq-15.7,eq-15.10}
+\group{Harnack Quadratic}
+
+
 If a gradient Ricci soliton satisfies
 \[
 R_{ij}+\dot c(t)g_{ij}=-\nabla_i\nabla_jf,
@@ -66,10 +69,12 @@ Putting \(\dot c=1/(2t)\) proves the second assertion.
 
 \begin{definition}[Hamilton's Harnack quadratic]
 \label{def:chow-ii-hamilton-harnack-quadratic}
-\dcref{ch15:eq-15.12}
-\group{Harnack Quadratic}
 \source{chow-et-al-ricci-flow-part-ii:page-0289}
 \uses{def:chow-ii-harnack-p-and-m-tensors}
+\dcref{ch15:eq-15.12}
+\group{Harnack Quadratic}
+
+
 For a two-form \(U\) and one-form \(W\), define
 \[
 Q(U\oplus W)=M_{ij}W^iW^j+2P_{pij}U^{pi}W^j
@@ -79,10 +84,12 @@ Q(U\oplus W)=M_{ij}W^iW^j+2P_{pij}U^{pi}W^j
 
 \begin{lemma}[The Harnack quadratic is stationary on expanding solitons]
 \label{lem:chow-ii-harnack-quadratic-expanding-soliton-nullity}
+\source{chow-et-al-ricci-flow-part-ii:page-0289}
+\uses{lem:chow-ii-soliton-harnack-identities, def:chow-ii-hamilton-harnack-quadratic}
 \dcref{ch15:eq-15.15}
 \group{Harnack Quadratic}
-\source{chow-et-al-ricci-flow-part-ii:page-0289}
-\uses{lem:chow-ii-soliton-harnack-identities,def:chow-ii-hamilton-harnack-quadratic}
+
+
 On a normalized expanding gradient Ricci soliton,
 \[
 Q((W\wedge\nabla f)\oplus W)=0
@@ -105,10 +112,12 @@ the same identities, both conclusions follow.
 
 \begin{theorem}[Hamilton's matrix Harnack estimate]
 \label{thm:chow-ii-hamilton-matrix-harnack}
+\source{chow-et-al-ricci-flow-part-ii:page-0290,chow-et-al-ricci-flow-part-ii:page-0306,chow-et-al-ricci-flow-part-ii:page-0307,chow-et-al-ricci-flow-part-ii:page-0308,chow-et-al-ricci-flow-part-ii:page-0309,chow-et-al-ricci-flow-part-ii:page-0310,chow-et-al-ricci-flow-part-ii:page-0311,chow-et-al-ricci-flow-part-ii:page-0312,chow-et-al-ricci-flow-part-ii:page-0313,chow-et-al-ricci-flow-part-ii:page-0314}
+\uses{def:chow-ii-hamilton-harnack-quadratic, prop:chow-ii-bilinear-form-maximum-principle, thm:chow-ii-harnack-quadratic-evolution, lem:chow-ii-harnack-exhaustion-function, lem:chow-ii-harnack-barrier-functions, lem:chow-ii-perturbed-harnack-evolution}
 \dcref{ch15:15.1}
 \group{Matrix Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0290,chow-et-al-ricci-flow-part-ii:page-0306,chow-et-al-ricci-flow-part-ii:page-0307,chow-et-al-ricci-flow-part-ii:page-0308,chow-et-al-ricci-flow-part-ii:page-0309,chow-et-al-ricci-flow-part-ii:page-0310,chow-et-al-ricci-flow-part-ii:page-0311,chow-et-al-ricci-flow-part-ii:page-0312,chow-et-al-ricci-flow-part-ii:page-0313,chow-et-al-ricci-flow-part-ii:page-0314}
-\uses{def:chow-ii-hamilton-harnack-quadratic,prop:chow-ii-bilinear-form-maximum-principle,thm:chow-ii-harnack-quadratic-evolution,lem:chow-ii-harnack-exhaustion-function,lem:chow-ii-harnack-barrier-functions,lem:chow-ii-perturbed-harnack-evolution}
+
+
 If \((\mathcal M^n,g(t))\), \(t\in[0,T)\), is complete and has bounded
 nonnegative curvature operator, then
 \[
@@ -144,10 +153,12 @@ an exhaustion of space-time yields \(Q\ge0\).
 
 \begin{remark}[No initial-time curvature bound is needed]
 \label{rem:chow-ii-harnack-open-initial-time}
-\dcref{ch15:15.2}
-\group{Matrix Harnack Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0290}
 \uses{thm:chow-ii-hamilton-matrix-harnack}
+\dcref{ch15:15.2}
+\group{Matrix Harnack Estimates}
+
+
 The conclusion of Theorem~\ref{thm:chow-ii-hamilton-matrix-harnack} remains
 valid for a flow on \((0,T)\) whose curvature is bounded on every compact time
 interval, even if \(\sup_{\mathcal M}|\Rm(t)|\to\infty\) as \(t\downarrow0\).
@@ -162,10 +173,12 @@ Then let \(T'\uparrow T\).
 
 \begin{corollary}[Trace Harnack estimate and monotonicity of \(tR\)]
 \label{cor:chow-ii-trace-harnack-and-tr-monotonicity}
-\dcref{ch15:15.3}
-\group{Trace Harnack Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0290,chow-et-al-ricci-flow-part-ii:page-0291}
 \uses{thm:chow-ii-hamilton-matrix-harnack}
+\dcref{ch15:15.3}
+\group{Trace Harnack Estimates}
+
+
 Under the hypotheses of Theorem~\ref{thm:chow-ii-hamilton-matrix-harnack},
 \[
 \partial_tR+\frac Rt+2\langle\nabla R,V\rangle+2\Ric(V,V)\ge0.
@@ -186,10 +199,12 @@ Replace \(V\) by \(-V\) and multiply by two.  Setting \(V=0\) gives
 
 \begin{corollary}[Trace Harnack estimate for ancient solutions]
 \label{cor:chow-ii-ancient-trace-harnack}
-\dcref{ch15:15.4}
-\group{Trace Harnack Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0291}
 \uses{cor:chow-ii-trace-harnack-and-tr-monotonicity}
+\dcref{ch15:15.4}
+\group{Trace Harnack Estimates}
+
+
 If a complete ancient Ricci flow has bounded nonnegative curvature operator,
 then
 \[
@@ -205,10 +220,12 @@ translating an arbitrary \(\alpha<t\) to time zero.  Its extra term is
 
 \begin{corollary}[Comparison of scalar curvature at space-time points]
 \label{cor:chow-ii-scalar-curvature-spacetime-comparison}
-\dcref{ch15:15.5}
-\group{Trace Harnack Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0291,chow-et-al-ricci-flow-part-ii:page-0292}
 \uses{cor:chow-ii-trace-harnack-and-tr-monotonicity}
+\dcref{ch15:15.5}
+\group{Trace Harnack Estimates}
+
+
 Under the hypotheses of Theorem~\ref{thm:chow-ii-hamilton-matrix-harnack},
 \[
 \partial_t\log R-\frac12|\nabla\log R|^2+\frac1t\ge0,
@@ -233,10 +250,12 @@ Since \(\Ric\ge0\), \(g(t)\le g(t_1)\).  Integrate along a constant-speed
 
 \begin{corollary}[Ancient scalar-curvature comparison]
 \label{cor:chow-ii-ancient-scalar-curvature-spacetime-comparison}
-\dcref{ch15:15.6}
-\group{Trace Harnack Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0292}
 \uses{cor:chow-ii-ancient-trace-harnack}
+\dcref{ch15:15.6}
+\group{Trace Harnack Estimates}
+
+
 For a complete ancient solution with bounded nonnegative curvature operator,
 \[
 \frac{R(x_2,t_2)}{R(x_1,t_1)}\ge
@@ -253,9 +272,10 @@ estimate, which has no \(1/t\) term.
 
 \begin{proposition}[Two-dimensional trace Harnack estimate]
 \label{prop:chow-ii-surface-trace-harnack-positive-curvature}
+\source{chow-et-al-ricci-flow-part-ii:page-0292,chow-et-al-ricci-flow-part-ii:page-0293}
 \dcref{ch15:15.7}
 \group{Surface Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0292,chow-et-al-ricci-flow-part-ii:page-0293}
+
 For a complete surface Ricci flow with bounded positive scalar curvature,
 \[
 \partial_t\log R-|\nabla\log R|^2+\frac1t
@@ -278,10 +298,12 @@ The maximum principle and the solution \(-1/t\) of \(q'=q^2\) give
 
 \begin{remark}[Weak surface trace estimate]
 \label{rem:chow-ii-surface-trace-harnack-nonnegative-curvature}
-\dcref{ch15:15.8}
-\group{Surface Harnack Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0293}
 \uses{prop:chow-ii-surface-trace-harnack-positive-curvature}
+\dcref{ch15:15.8}
+\group{Surface Harnack Estimates}
+
+
 For nonnegative scalar curvature, the quadratic trace Harnack estimate remains
 valid with weak inequality.
 \end{remark}
@@ -292,10 +314,12 @@ strictly positive barrier argument and let \(\varepsilon\downarrow0\).
 
 \begin{corollary}[Surface monotonicity of \(tR\)]
 \label{cor:chow-ii-surface-tr-monotonicity}
-\dcref{ch15:15.9}
-\group{Surface Harnack Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0293}
 \uses{rem:chow-ii-surface-trace-harnack-nonnegative-curvature}
+\dcref{ch15:15.9}
+\group{Surface Harnack Estimates}
+
+
 On a surface Ricci flow with \(R\ge0\), \(tR(x,t)\) is nondecreasing.  For an
 ancient flow, \(R(x,t)\) is nondecreasing.
 \end{corollary}
@@ -306,9 +330,10 @@ initial time to \(\alpha\) and let \(\alpha\to-\infty\).
 
 \begin{proposition}[Two-dimensional matrix Harnack estimate]
 \label{prop:chow-ii-surface-matrix-harnack}
+\source{chow-et-al-ricci-flow-part-ii:page-0293}
 \dcref{ch15:15.10}
 \group{Surface Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0293}
+
 For a complete surface Ricci flow on \([0,T)\) with bounded positive scalar
 curvature,
 \[
@@ -329,10 +354,12 @@ tensor maximum principle precludes such a first zero.
 
 \begin{remark}[Trace, weak, and equality cases on surfaces]
 \label{rem:chow-ii-surface-matrix-harnack-consequences}
+\source{chow-et-al-ricci-flow-part-ii:page-0293}
+\uses{prop:chow-ii-surface-matrix-harnack, prop:chow-ii-surface-trace-harnack-positive-curvature}
 \dcref{ch15:15.11}
 \group{Surface Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0293}
-\uses{prop:chow-ii-surface-matrix-harnack,prop:chow-ii-surface-trace-harnack-positive-curvature}
+
+
 Tracing the surface matrix estimate gives the trace estimate.  A flow defined
 only on \((0,T)\) satisfies the weak matrix inequality, and equality can occur
 for positively curved expanding gradient solitons limiting to a cone at time
@@ -341,19 +368,22 @@ zero.
 
 \begin{remark}[Evolution formula for the surface matrix]
 \label{rem:chow-ii-surface-matrix-evolution-reference}
+\source{chow-et-al-ricci-flow-part-ii:page-0293}
 \dcref{ch15:15.12}
 \group{Surface Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0293}
+
 The evolution formula used in Proposition~\ref{prop:chow-ii-surface-matrix-harnack}
 is the tensorial mechanism behind the two-dimensional matrix estimate.
 \end{remark}
 
 \begin{proposition}[Equivalence of the two surface matrix estimates]
 \label{prop:chow-ii-equivalent-surface-matrix-harnack-forms}
+\source{chow-et-al-ricci-flow-part-ii:page-0294,chow-et-al-ricci-flow-part-ii:page-0295}
+\uses{def:chow-ii-hamilton-harnack-quadratic, prop:chow-ii-surface-matrix-harnack}
 \dcref{ch15:15.13}
 \group{Surface Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0294,chow-et-al-ricci-flow-part-ii:page-0295}
-\uses{def:chow-ii-hamilton-harnack-quadratic,prop:chow-ii-surface-matrix-harnack}
+
+
 In dimension two with \(R>0\), Hamilton's inequality \(Q\ge0\) is equivalent
 to
 \[
@@ -379,9 +409,10 @@ inequality.  Dividing by \(R\) is precisely the Hessian identity for
 
 \begin{proposition}[Maximum principle for bilinear forms]
 \label{prop:chow-ii-bilinear-form-maximum-principle}
+\source{chow-et-al-ricci-flow-part-ii:page-0295,chow-et-al-ricci-flow-part-ii:page-0296,chow-et-al-ricci-flow-part-ii:page-0297,chow-et-al-ricci-flow-part-ii:page-0298}
 \dcref{ch15:15.14}
 \group{Tensor Maximum Principles}
-\source{chow-et-al-ricci-flow-part-ii:page-0295,chow-et-al-ricci-flow-part-ii:page-0296,chow-et-al-ricci-flow-part-ii:page-0297,chow-et-al-ricci-flow-part-ii:page-0298}
+
 Let \(\mathcal V\) be a finite-rank metric vector bundle over a closed
 time-dependent Riemannian manifold.  Suppose \(F_t\) is fiber preserving,
 locally Lipschitz on bounded sets, and has the null-eigenvector property
@@ -414,9 +445,10 @@ iterate the uniform short interval finitely many times.
 
 \begin{remark}[Comparison with the tensor maximum principle]
 \label{rem:chow-ii-bilinear-form-maximum-principle-comparison}
+\source{chow-et-al-ricci-flow-part-ii:page-0296}
 \dcref{ch15:15.15}
 \group{Tensor Maximum Principles}
-\source{chow-et-al-ricci-flow-part-ii:page-0296}
+
 Proposition~\ref{prop:chow-ii-bilinear-form-maximum-principle} is the vector
 bundle version of the weak maximum principle for symmetric tensors, with
 explicit control of the chosen local vector extensions.
@@ -424,10 +456,12 @@ explicit control of the chosen local vector extensions.
 
 \begin{theorem}[Evolution of Hamilton's matrix Harnack quadratic]
 \label{thm:chow-ii-harnack-quadratic-evolution}
+\source{chow-et-al-ricci-flow-part-ii:page-0299,chow-et-al-ricci-flow-part-ii:page-0300,chow-et-al-ricci-flow-part-ii:page-0301,chow-et-al-ricci-flow-part-ii:page-0302,chow-et-al-ricci-flow-part-ii:page-0303,chow-et-al-ricci-flow-part-ii:page-0304,chow-et-al-ricci-flow-part-ii:page-0305,chow-et-al-ricci-flow-part-ii:page-0306}
+\uses{def:chow-ii-hamilton-harnack-quadratic, lem:chow-ii-evolution-of-p-tensor, lem:chow-ii-evolution-of-m-tensor}
 \dcref{ch15:15.16}
 \group{Harnack Evolution Equations}
-\source{chow-et-al-ricci-flow-part-ii:page-0299,chow-et-al-ricci-flow-part-ii:page-0300,chow-et-al-ricci-flow-part-ii:page-0301,chow-et-al-ricci-flow-part-ii:page-0302,chow-et-al-ricci-flow-part-ii:page-0303,chow-et-al-ricci-flow-part-ii:page-0304,chow-et-al-ricci-flow-part-ii:page-0305,chow-et-al-ricci-flow-part-ii:page-0306}
-\uses{def:chow-ii-hamilton-harnack-quadratic,lem:chow-ii-evolution-of-p-tensor,lem:chow-ii-evolution-of-m-tensor}
+
+
 At a point, extend \(U\) and \(W\) so that
 \[
 (\nabla_t-\Delta)W_a=t^{-1}W_a,\quad
@@ -462,9 +496,10 @@ which factor as the last line.
 
 \begin{remark}[Soliton origin of the extension equations]
 \label{rem:chow-ii-harnack-extension-soliton-motivation}
+\source{chow-et-al-ricci-flow-part-ii:page-0299,chow-et-al-ricci-flow-part-ii:page-0300}
 \dcref{ch15:15.17}
 \group{Harnack Evolution Equations}
-\source{chow-et-al-ricci-flow-part-ii:page-0299,chow-et-al-ricci-flow-part-ii:page-0300}
+
 The spatial extension equation for \(U\) is obtained by taking
 \(U=W\wedge\nabla f\) on a normalized expanding gradient soliton and using
 \(\nabla^2f=-\Ric-g/(2t)\).  The time equations are the corresponding
@@ -473,10 +508,12 @@ parabolic extensions at the chosen point.
 
 \begin{lemma}[Evolution of the \(P\)-tensor]
 \label{lem:chow-ii-evolution-of-p-tensor}
-\dcref{ch15:15.18}
-\group{Harnack Evolution Equations}
 \source{chow-et-al-ricci-flow-part-ii:page-0300,chow-et-al-ricci-flow-part-ii:page-0301}
 \uses{def:chow-ii-harnack-p-and-m-tensors}
+\dcref{ch15:15.18}
+\group{Harnack Evolution Equations}
+
+
 \[
 (\nabla_t-\Delta)P_{abc}=2R_{adeb}P_{dec}+2R_{adec}P_{dbe}
 +2R_{bdec}P_{ade}-2R_{de}\nabla_dR_{abec}.
@@ -494,10 +531,12 @@ identity.  Grouping the three Ricci-derivative differences gives the three
 
 \begin{lemma}[Evolution of the \(M\)-tensor]
 \label{lem:chow-ii-evolution-of-m-tensor}
+\source{chow-et-al-ricci-flow-part-ii:page-0301,chow-et-al-ricci-flow-part-ii:page-0302,chow-et-al-ricci-flow-part-ii:page-0303,chow-et-al-ricci-flow-part-ii:page-0304}
+\uses{def:chow-ii-harnack-p-and-m-tensors, lem:chow-ii-evolution-of-p-tensor}
 \dcref{ch15:15.19}
 \group{Harnack Evolution Equations}
-\source{chow-et-al-ricci-flow-part-ii:page-0301,chow-et-al-ricci-flow-part-ii:page-0302,chow-et-al-ricci-flow-part-ii:page-0303,chow-et-al-ricci-flow-part-ii:page-0304}
-\uses{def:chow-ii-harnack-p-and-m-tensors,lem:chow-ii-evolution-of-p-tensor}
+
+
 \[
 \begin{aligned}
 (\nabla_t-\Delta)M_{ab}={}&2R_{acdb}M_{cd}
@@ -523,9 +562,10 @@ terms combine into the first and penultimate terms.  Differentiating
 
 \begin{remark}[Equivalent form of the \(P^2\)-terms]
 \label{rem:chow-ii-m-evolution-equivalent-p-terms}
+\source{chow-et-al-ricci-flow-part-ii:page-0301}
 \dcref{ch15:15.20}
 \group{Harnack Evolution Equations}
-\source{chow-et-al-ricci-flow-part-ii:page-0301}
+
 The cyclic identity for \(P\) gives
 \[
 P_{cda}P_{cdb}-2P_{acd}P_{bdc}
@@ -535,10 +575,12 @@ P_{cda}P_{cdb}-2P_{acd}P_{bdc}
 
 \begin{example}[Unconstrained evolution of the Harnack quadratic]
 \label{ex:chow-ii-unconstrained-harnack-quadratic-evolution}
-\dcref{ch15:15.21}
-\group{Harnack Evolution Equations}
 \source{chow-et-al-ricci-flow-part-ii:page-0306}
 \uses{thm:chow-ii-harnack-quadratic-evolution}
+\dcref{ch15:15.21}
+\group{Harnack Evolution Equations}
+
+
 For arbitrary space-time extensions of \(U,W\), the evolution of \(Q\) is the
 formula of Theorem~\ref{thm:chow-ii-harnack-quadratic-evolution} plus the
 product-rule terms obtained from the differences between their actual
@@ -553,9 +595,10 @@ stated correction terms.
 
 \begin{lemma}[Distance-like exhaustion with uniform derivatives]
 \label{lem:chow-ii-harnack-exhaustion-function}
+\source{chow-et-al-ricci-flow-part-ii:page-0309}
 \dcref{ch15:15.22}
 \group{Noncompact Harnack Argument}
-\source{chow-et-al-ricci-flow-part-ii:page-0309}
+
 If a complete noncompact Ricci flow on \([0,T]\) satisfies
 \(|\Rm|+|\nabla\Ric|\le k_0\), then for each \(O\in\mathcal M\) there is a
 smooth \(h\) and \(C=C(n,k_0,T)\) such that
@@ -574,10 +617,12 @@ constants and proves all estimates.
 
 \begin{lemma}[Barrier functions for the perturbed quadratic]
 \label{lem:chow-ii-harnack-barrier-functions}
-\dcref{ch15:15.23}
-\group{Noncompact Harnack Argument}
 \source{chow-et-al-ricci-flow-part-ii:page-0310}
 \uses{lem:chow-ii-harnack-exhaustion-function}
+\dcref{ch15:15.23}
+\group{Noncompact Harnack Argument}
+
+
 Given \(C,\eta>0\) and compact \(\Omega\subset\mathcal M\), there are smooth
 positive \(\phi(x,t)\), \(\psi(t)\) such that \(\phi,\psi\le\eta\) on
 \(\Omega\times[0,T]\), \(\phi\to\infty\) at spatial infinity, and
@@ -597,10 +642,12 @@ finally \(\delta\) small enough that \(\psi\le\eta\) and
 
 \begin{lemma}[Evolution inequality for the perturbed Harnack quadratic]
 \label{lem:chow-ii-perturbed-harnack-evolution}
+\source{chow-et-al-ricci-flow-part-ii:page-0310,chow-et-al-ricci-flow-part-ii:page-0311,chow-et-al-ricci-flow-part-ii:page-0312,chow-et-al-ricci-flow-part-ii:page-0313,chow-et-al-ricci-flow-part-ii:page-0314}
+\uses{thm:chow-ii-harnack-quadratic-evolution, lem:chow-ii-harnack-barrier-functions}
 \dcref{ch15:15.24}
 \group{Noncompact Harnack Argument}
-\source{chow-et-al-ricci-flow-part-ii:page-0310,chow-et-al-ricci-flow-part-ii:page-0311,chow-et-al-ricci-flow-part-ii:page-0312,chow-et-al-ricci-flow-part-ii:page-0313,chow-et-al-ricci-flow-part-ii:page-0314}
-\uses{thm:chow-ii-harnack-quadratic-evolution,lem:chow-ii-harnack-barrier-functions}
+
+
 Define
 \[
 \widehat{M}=M+t^{-1}\phi g,\qquad \widehat{\Rm}=\Rm+\psi I,
@@ -641,10 +688,12 @@ Thus \(Q\ge0\) is equivalent to \(Z\ge0\).
 
 \begin{theorem}[Evolution of the minimizing Harnack two-tensor]
 \label{thm:chow-ii-minimizing-harnack-two-tensor-evolution}
+\source{chow-et-al-ricci-flow-part-ii:page-0315,chow-et-al-ricci-flow-part-ii:page-0316}
+\uses{def:chow-ii-hamilton-harnack-quadratic, lem:chow-ii-evolution-of-p-tensor, lem:chow-ii-evolution-of-m-tensor}
 \dcref{ch15:15.25}
 \group{Minimizing Harnack Tensor}
-\source{chow-et-al-ricci-flow-part-ii:page-0315,chow-et-al-ricci-flow-part-ii:page-0316}
-\uses{def:chow-ii-hamilton-harnack-quadratic,lem:chow-ii-evolution-of-p-tensor,lem:chow-ii-evolution-of-m-tensor}
+
+
 As long as \(Z\ge0\), write \(Q\) as a sum of squares with coefficients
 \(Y^N_{ab},X^N_a\).  Define
 \[
@@ -676,10 +725,12 @@ terms are expanded using
 
 \begin{remark}[Trace of the \(K\)-tensor]
 \label{rem:chow-ii-k-tensor-trace-is-z}
-\dcref{ch15:15.26}
-\group{Minimizing Harnack Tensor}
 \source{chow-et-al-ricci-flow-part-ii:page-0316}
 \uses{thm:chow-ii-minimizing-harnack-two-tensor-evolution}
+\dcref{ch15:15.26}
+\group{Minimizing Harnack Tensor}
+
+
 The tensor \(K\) is skew in its last two indices and satisfies
 \[
 g^{vt}K_{avtu}=Z_{ua}.
@@ -696,10 +747,12 @@ by writing the positive operator \(S\) as a sum of squares on two-forms.
 
 \begin{proposition}[General evolution of the minimizing Harnack tensor]
 \label{prop:chow-ii-general-z-tensor-evolution}
-\dcref{ch15:15.27}
-\group{Minimizing Harnack Tensor}
 \source{chow-et-al-ricci-flow-part-ii:page-0317}
 \uses{thm:chow-ii-minimizing-harnack-two-tensor-evolution}
+\dcref{ch15:15.27}
+\group{Minimizing Harnack Tensor}
+
+
 Without assuming \(Z\ge0\),
 \[
 \begin{aligned}
@@ -721,10 +774,12 @@ terms gives \(2S(K,K)\); direct contraction of all remaining curvature and
 
 \begin{lemma}[Sum-of-squares identity for the \(Z\)-reaction term]
 \label{lem:chow-ii-z-reaction-sum-of-squares}
-\dcref{ch15:15.28}
-\group{Minimizing Harnack Tensor}
 \source{chow-et-al-ricci-flow-part-ii:page-0317}
 \uses{prop:chow-ii-general-z-tensor-evolution}
+\dcref{ch15:15.28}
+\group{Minimizing Harnack Tensor}
+
+
 When \(\Rm>0\) and \(Z\ge0\), the six algebraic terms after \(-2Z/t\) in
 Proposition~\ref{prop:chow-ii-general-z-tensor-evolution} equal
 \(\sum_{N,M}L_a^{NM}L_b^{NM}\).
@@ -742,9 +797,10 @@ give the \(RZ-P^2\) terms, and their cross terms give the two terms linear in
 
 \begin{lemma}[Characterization of the minimizing two-form]
 \label{lem:chow-ii-characterization-minimizing-two-form}
+\source{chow-et-al-ricci-flow-part-ii:page-0318}
 \dcref{ch15:15.29}
 \group{Minimizing Harnack Tensor}
-\source{chow-et-al-ricci-flow-part-ii:page-0318}
+
 For \(\Rm>0\),
 \[
 P_{abc}W_c+R_{abdc}U_{cd}=0
@@ -759,9 +815,10 @@ converse follows by applying \(\Rm\) to the second equality.
 
 \begin{remark}[Three-dimensional lower bound for the \(K\)-term]
 \label{rem:chow-ii-three-dimensional-k-term-lower-bound}
+\source{chow-et-al-ricci-flow-part-ii:page-0319}
 \dcref{ch15:15.30}
 \group{Minimizing Harnack Tensor}
-\source{chow-et-al-ricci-flow-part-ii:page-0319}
+
 In dimension three, if
 \(A_{ab}=S_{mntu}K_{avtu}K_{bvmn}\), then
 \[
@@ -780,10 +837,12 @@ terms and apply
 
 \begin{corollary}[Quadratic lower evolution bound for \(Z\) in dimension three]
 \label{cor:chow-ii-three-dimensional-z-quadratic-evolution-bound}
+\source{chow-et-al-ricci-flow-part-ii:page-0320}
+\uses{thm:chow-ii-minimizing-harnack-two-tensor-evolution, rem:chow-ii-three-dimensional-k-term-lower-bound}
 \dcref{ch15:15.31}
 \group{Minimizing Harnack Tensor}
-\source{chow-et-al-ricci-flow-part-ii:page-0320}
-\uses{thm:chow-ii-minimizing-harnack-two-tensor-evolution,rem:chow-ii-three-dimensional-k-term-lower-bound}
+
+
 In dimension three, as long as \(Z\ge0\),
 \[
 (\nabla_t-\Delta)Z_{ab}\ge
@@ -809,10 +868,12 @@ and let \(\overline Q\) be Hamilton's quadratic with \(M\) replaced by
 
 \begin{theorem}[An ancient maximizer is a steady gradient soliton]
 \label{thm:chow-ii-ancient-positive-curvature-maximizer-steady-soliton}
+\source{chow-et-al-ricci-flow-part-ii:page-0320,chow-et-al-ricci-flow-part-ii:page-0321,chow-et-al-ricci-flow-part-ii:page-0322,chow-et-al-ricci-flow-part-ii:page-0323,chow-et-al-ricci-flow-part-ii:page-0324,chow-et-al-ricci-flow-part-ii:page-0325,chow-et-al-ricci-flow-part-ii:page-0326,chow-et-al-ricci-flow-part-ii:page-0327}
+\uses{cor:chow-ii-ancient-matrix-harnack, lem:chow-ii-ancient-harnack-nullspace-propagation, lem:chow-ii-nullspace-map-is-wedge-map, lem:chow-ii-evolution-of-p-tensor, lem:chow-ii-evolution-of-m-tensor}
 \dcref{ch15:15.33}
 \group{Ancient Solutions and Solitons}
-\source{chow-et-al-ricci-flow-part-ii:page-0320,chow-et-al-ricci-flow-part-ii:page-0321,chow-et-al-ricci-flow-part-ii:page-0322,chow-et-al-ricci-flow-part-ii:page-0323,chow-et-al-ricci-flow-part-ii:page-0324,chow-et-al-ricci-flow-part-ii:page-0325,chow-et-al-ricci-flow-part-ii:page-0326,chow-et-al-ricci-flow-part-ii:page-0327}
-\uses{cor:chow-ii-ancient-matrix-harnack,lem:chow-ii-ancient-harnack-nullspace-propagation,lem:chow-ii-nullspace-map-is-wedge-map,lem:chow-ii-evolution-of-p-tensor,lem:chow-ii-evolution-of-m-tensor}
+
+
 Let a simply connected manifold carry a complete ancient Ricci flow with
 strictly positive curvature operator and curvature uniformly bounded in
 space-time.  If \(R\) attains its space-time maximum, then the flow is a
@@ -847,9 +908,10 @@ soliton equation.
 
 \begin{remark}[Why shrinking solitons do not satisfy the maximum hypothesis]
 \label{rem:chow-ii-shrinking-soliton-no-spacetime-r-maximum}
+\source{chow-et-al-ricci-flow-part-ii:page-0320}
 \dcref{ch15:15.34}
 \group{Ancient Solutions and Solitons}
-\source{chow-et-al-ricci-flow-part-ii:page-0320}
+
 A shrinking sphere, and more generally a shrinking soliton, has scalar
 curvature tending to infinity at its singular time, so its space-time scalar
 curvature supremum is not attained.
@@ -857,10 +919,12 @@ curvature supremum is not attained.
 
 \begin{corollary}[Matrix Harnack estimate for ancient solutions]
 \label{cor:chow-ii-ancient-matrix-harnack}
-\dcref{ch15:15.35}
-\group{Ancient Solutions and Solitons}
 \source{chow-et-al-ricci-flow-part-ii:page-0321}
 \uses{thm:chow-ii-hamilton-matrix-harnack}
+\dcref{ch15:15.35}
+\group{Ancient Solutions and Solitons}
+
+
 If a complete ancient Ricci flow has bounded nonnegative curvature operator,
 then \(\overline Q(U\oplus W)\ge0\) for every \(U,W\).
 \end{corollary}
@@ -873,9 +937,10 @@ Theorem~\ref{thm:chow-ii-hamilton-matrix-harnack}.  The only
 
 \begin{remark}[An alternative proof of the ancient rigidity theorem]
 \label{rem:chow-ii-alternative-ancient-rigidity-proof}
+\source{chow-et-al-ricci-flow-part-ii:page-0321}
 \dcref{ch15:15.36}
 \group{Ancient Solutions and Solitons}
-\source{chow-et-al-ricci-flow-part-ii:page-0321}
+
 Theorem~\ref{thm:chow-ii-ancient-positive-curvature-maximizer-steady-soliton}
 also follows from the linear trace Harnack calculation, with less algebra than
 the null-space argument presented here.
@@ -883,10 +948,12 @@ the null-space argument presented here.
 
 \begin{lemma}[Propagation of a deficient ancient Harnack null space]
 \label{lem:chow-ii-ancient-harnack-nullspace-propagation}
+\source{chow-et-al-ricci-flow-part-ii:page-0322,chow-et-al-ricci-flow-part-ii:page-0323}
+\uses{cor:chow-ii-ancient-matrix-harnack, lem:chow-ii-harnack-exhaustion-function, lem:chow-ii-harnack-barrier-functions}
 \dcref{ch15:15.37}
 \group{Ancient Solutions and Solitons}
-\source{chow-et-al-ricci-flow-part-ii:page-0322,chow-et-al-ricci-flow-part-ii:page-0323}
-\uses{cor:chow-ii-ancient-matrix-harnack,lem:chow-ii-harnack-exhaustion-function,lem:chow-ii-harnack-barrier-functions}
+
+
 If at one time the null space of \(\overline Q\) has dimension less than
 \(n\) at some point, then at every point at every later time its null space
 has dimension less than \(n\).
@@ -908,10 +975,12 @@ claim.
 
 \begin{lemma}[The ancient null-space map is wedging with a vector]
 \label{lem:chow-ii-nullspace-map-is-wedge-map}
-\dcref{ch15:15.38}
-\group{Ancient Solutions and Solitons}
 \source{chow-et-al-ricci-flow-part-ii:page-0324,chow-et-al-ricci-flow-part-ii:page-0325,chow-et-al-ricci-flow-part-ii:page-0326}
 \uses{lem:chow-ii-ancient-harnack-nullspace-propagation}
+\dcref{ch15:15.38}
+\group{Ancient Solutions and Solitons}
+
+
 Suppose the null space of \(\overline Q\) has dimension \(n\), so it is the
 graph of \(L:T\mathcal M\to\Lambda^2T\mathcal M\).  Define
 \(V_i=2g^{jk}L_{ijk}/(n-1)\).  Then
@@ -935,9 +1004,10 @@ Contracting \(i,p\) and using the definition of \(V\) yields the formula.
 
 \begin{remark}[Space-time splitting interpretation]
 \label{rem:chow-ii-ancient-rigidity-spacetime-splitting}
+\source{chow-et-al-ricci-flow-part-ii:page-0327}
 \dcref{ch15:15.39}
 \group{Ancient Solutions and Solitons}
-\source{chow-et-al-ricci-flow-part-ii:page-0327}
+
 The steady soliton equation makes \(\nabla f+\partial_t\) parallel for the
 space-time connection.  The ancient Harnack estimate gives nonnegative
 space-time curvature, while attainment of the scalar-curvature maximum gives
@@ -950,10 +1020,12 @@ space-time splitting theorem.
 
 \begin{theorem}[Pinched noncompact three-manifolds are flat]
 \label{thm:chow-ii-pinched-noncompact-three-manifold-flat}
+\source{chow-et-al-ricci-flow-part-ii:page-0327,chow-et-al-ricci-flow-part-ii:page-0328,chow-et-al-ricci-flow-part-ii:page-0329,chow-et-al-ricci-flow-part-ii:page-0330}
+\uses{thm:chow-ii-ancient-positive-curvature-maximizer-steady-soliton, thm:chow-ii-odd-dimensional-positive-curvature-gap}
 \dcref{ch15:15.40}
 \group{Applications of Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0327,chow-et-al-ricci-flow-part-ii:page-0328,chow-et-al-ricci-flow-part-ii:page-0329,chow-et-al-ricci-flow-part-ii:page-0330}
-\uses{thm:chow-ii-ancient-positive-curvature-maximizer-steady-soliton,thm:chow-ii-odd-dimensional-positive-curvature-gap}
+
+
 Let \((\mathcal M^3,g_0)\) be complete and noncompact, with bounded
 nonnegative sectional curvature.  If
 \(\Ric_{g_0}\ge\varepsilon R_{g_0}g_0\) for some \(\varepsilon>0\), then
@@ -981,18 +1053,20 @@ are impossible, so \(g_0\) is flat.
 
 \begin{theorem}[Odd-dimensional positive-curvature gap theorem]
 \label{thm:chow-ii-odd-dimensional-positive-curvature-gap}
+\source{chow-et-al-ricci-flow-part-ii:page-0330}
 \dcref{ch15:15.41}
 \group{Applications of Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0330}
+
 If \((\mathcal M^{2k+1},g)\) is complete, noncompact, and has positive
 sectional curvature, then its asymptotic scalar-curvature ratio is positive.
 \end{theorem}
 
 \begin{theorem}[Differential Harnack estimate for mean curvature flow]
 \label{thm:chow-ii-mean-curvature-flow-harnack}
+\source{chow-et-al-ricci-flow-part-ii:page-0330,chow-et-al-ricci-flow-part-ii:page-0331}
 \dcref{ch15:15.42}
 \group{Related Harnack Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0330,chow-et-al-ricci-flow-part-ii:page-0331}
+
 Let a closed manifold evolve by a strictly convex mean curvature flow
 \(\partial_tX=-H\nu\) in Euclidean space.  Then
 \[
@@ -1017,3 +1091,24 @@ Strict convexity makes the first term nonnegative.  The scalar maximum
 principle, beginning at small positive time where the \(H/(2t)\) term
 dominates, yields \(Z\ge0\).
 \end{proof}
+
+\begin{example}[Hamilton's three-dimensional Harnack problem]
+\label{ex:chow-ii-arbitrary-three-dimensional-matrix-harnack-problem}
+\dcref{ch15:15.32}
+\group{Open Harnack Problems}
+\source{chow-et-al-ricci-flow-part-ii:page-0320}
+Determine whether there is a matrix Harnack estimate for every complete
+three-dimensional Ricci flow with bounded curvature, without assuming a
+nonnegative curvature operator.
+\end{example}
+
+\begin{example}[Complete noncompact mean-curvature-flow problem]
+\label{ex:chow-ii-complete-noncompact-mcf-harnack-problem}
+\dcref{ch15:15.43}
+\group{Open Harnack Problems}
+\source{chow-et-al-ricci-flow-part-ii:page-0331}
+Find sufficient hypotheses, beyond convexity and bounded second fundamental
+form if necessary, under which
+Theorem~\ref{thm:chow-ii-mean-curvature-flow-harnack} extends to complete
+noncompact mean curvature flows.
+\end{example}

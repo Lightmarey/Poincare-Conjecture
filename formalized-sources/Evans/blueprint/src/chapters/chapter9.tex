@@ -56,9 +56,10 @@ A weak solution of (1) is a function $u\in H_0^1(U)$ such that
 
 \begin{lemma}[Zeros of a vector field]
 \label{lem:zeros-of-a-vector-field}
+\uses{thm:brouwer-fixed-point-theorem}
 \dcref{ch9:9.1-lem-1}
 \group{Nonlinear Elliptic PDE}
-\uses{thm:brouwer-fixed-point-theorem}
+
 Assume the continuous function $\mathbf{v} : \R^n \to \R^n$ satisfies
 \[
 \mathbf{v}(x) \cdot x \geq 0 \quad \text{if } |x| = r,
@@ -76,9 +77,10 @@ for some $r > 0$. Then there exists a point $x \in B(0,r)$ such that
 
 \begin{theorem}[Construction of approximate solutions]
 \label{thm:monotonicity-approximate-solutions}
+\uses{lem:zeros-of-a-vector-field}
 \dcref{ch9:9.1-thm-1}
 \group{Nonlinear Elliptic PDE}
-\uses{lem:zeros-of-a-vector-field}
+
 For each integer $m = 1, \ldots$, there exists a function $u_m$ of the form (6) satisfying the identities (7).
 \end{theorem}
 
@@ -88,9 +90,10 @@ For each integer $m = 1, \ldots$, there exists a function $u_m$ of the form (6) 
 
 \begin{theorem}[Energy estimates]
 \label{thm:monotonicity-energy-estimates}
+\uses{thm:monotonicity-approximate-solutions, thm:poincares-inequality-connected}
 \dcref{ch9:9.1-thm-2}
 \group{Energy Estimates}
-\uses{thm:monotonicity-approximate-solutions,thm:poincares-inequality-connected}
+
 There exists a constant $C$, depending only on $U$ and $\mathbf{a}$, such that
 \[
 \|u_m\|_{H^1_0(U)} \leq C(1 + \|f\|_{L^2(U)})
@@ -105,9 +108,10 @@ for $m = 1, 2, \ldots$.
 
 \begin{theorem}[Existence of weak solution]
 \label{thm:monotonicity-existence-weak-solution}
+\uses{thm:monotonicity-approximate-solutions, thm:monotonicity-energy-estimates, def:monotone-vector-field}
 \dcref{ch9:9.1-thm-3}
 \group{Nonlinear Elliptic PDE}
-\uses{thm:monotonicity-approximate-solutions,thm:monotonicity-energy-estimates,def:monotone-vector-field}
+
 There exists a weak solution of the nonlinear boundary-value problem (1).
 \end{theorem}
 
@@ -117,9 +121,10 @@ There exists a weak solution of the nonlinear boundary-value problem (1).
 
 \begin{remark}[Method of Browder and Minty]
 \label{rem:browder-minty-method}
+\uses{thm:monotonicity-existence-weak-solution}
 \dcref{ch9:9.1-rem-1}
 \group{Nonlinear Elliptic PDE}
-\uses{thm:monotonicity-existence-weak-solution}
+
 The \textit{method of Browder and Minty} uses monotonicity to identify weak limits of nonlinear terms.
 \end{remark}
 
@@ -132,9 +137,10 @@ Assume additionally that, for some $\theta>0$,
 
 \begin{theorem}[Uniqueness of weak solution]
 \label{thm:monotonicity-uniqueness-weak-solution}
+\uses{thm:monotonicity-existence-weak-solution}
 \dcref{ch9:9.1-thm-4}
 \group{Nonlinear Elliptic PDE}
-\uses{thm:monotonicity-existence-weak-solution}
+
 Assume the strict monotonicity property (20) holds. Then there exists only one weak solution of (1).
 \end{theorem}
 
@@ -144,9 +150,10 @@ Assume the strict monotonicity property (20) holds. Then there exists only one w
 
 \begin{remark}[$H^2$ regularity under strict monotonicity]
 \label{rem:monotonicity-h2-regularity}
+\uses{thm:monotonicity-uniqueness-weak-solution, thm:interior-h2-regularity}
 \dcref{ch9:9.1-rem-2}
 \group{Elliptic Regularity}
-\uses{thm:monotonicity-uniqueness-weak-solution,thm:interior-h2-regularity}
+
 Under (20), the weak solution belongs to $H^2(U)$ and satisfies
 \[
 -\Div\,\mathbf{a}(Du) = f \quad \text{a.e. in } U.
@@ -196,9 +203,10 @@ We say that $A$ is a strict contraction if (1) holds.
 
 \begin{example}[Reaction-diffusion equations]
 \label{ex:reaction-diffusion-banach-fixed-point}
+\uses{def:sobolev-space-time-banach}
 \dcref{ch9:9.2-ex-1}
 \group{Fixed Point Theorems}
-\uses{def:sobolev-space-time-banach}
+
 Consider the \textit{reaction-diffusion system}
 \[
 \begin{cases}
@@ -242,17 +250,19 @@ for $\mathbf v\in H_0^1(U;\R^m)$, and
 
 \begin{definition}[Weak solution of the reaction-diffusion system]
 \label{def:weak-solution-reaction-diffusion-system}
+\uses{ex:reaction-diffusion-banach-fixed-point, thm:mappings-into-better-spaces}
 \dcref{ch9:9.2.1-def-2}
 \group{Fixed Point Theorems}
-\uses{ex:reaction-diffusion-banach-fixed-point,thm:mappings-into-better-spaces}
+
 A function $\mathbf{u}$ satisfying (5) is a \textit{weak solution} of (2) provided (6) and (7) hold.
 \end{definition}
 
 \begin{theorem}[Existence for the reaction-diffusion system]
 \label{thm:reaction-diffusion-banach-existence}
+\uses{thm:banach-fixed-point-theorem, def:strict-contraction, def:weak-solution-reaction-diffusion-system}
 \dcref{ch9:9.2-thm-2}
 \group{Fixed Point Theorems}
-\uses{thm:banach-fixed-point-theorem,def:strict-contraction,def:weak-solution-reaction-diffusion-system}
+
 There exists a unique weak solution of (2).
 \end{theorem}
 
@@ -262,9 +272,10 @@ There exists a unique weak solution of (2).
 
 \begin{remark}[Chemical interpretation of the reaction-diffusion system]
 \label{rem:reaction-diffusion-chemical-interpretation}
+\uses{thm:reaction-diffusion-banach-existence}
 \dcref{ch9:9.2.1-rem-1}
 \group{Fixed Point Theorems}
-\uses{thm:reaction-diffusion-banach-existence}
+
 In reaction-diffusion models, $\Delta\mathbf u$ represents diffusion and $\mathbf f(\mathbf u)$ represents reactions. Polynomial reaction laws need not be globally Lipschitz and may produce finite-time blow-up.
 \end{remark}
 
@@ -273,9 +284,10 @@ In reaction-diffusion models, $\Delta\mathbf u$ represents diffusion and $\mathb
 
 \begin{theorem}[Schauder's Fixed Point Theorem]
 \label{thm:schauders-fixed-point-theorem}
+\uses{thm:brouwer-fixed-point-theorem}
 \dcref{ch9:9.2-thm-3}
 \group{Fixed Point Theorems}
-\uses{thm:brouwer-fixed-point-theorem}
+
 Suppose $K \subset X$ is compact and convex, and assume also
 \[
 A : K \to K
@@ -296,9 +308,10 @@ A nonlinear mapping $A : X \to X$ is called \textit{compact} provided for each b
 
 \begin{theorem}[Schaefer's Fixed Point Theorem]
 \label{thm:schaefers-fixed-point-theorem}
+\uses{thm:schauders-fixed-point-theorem, def:compact-mapping-banach-space}
 \dcref{ch9:9.2-thm-4}
 \group{Fixed Point Theorems}
-\uses{thm:schauders-fixed-point-theorem,def:compact-mapping-banach-space}
+
 Suppose
 \[
 A : X \to X
@@ -316,9 +329,10 @@ is bounded. Then $A$ has a fixed point.
 
 \begin{remark}[The method of a priori estimates]
 \label{rem:a-priori-estimates-method}
+\uses{thm:schaefers-fixed-point-theorem}
 \dcref{ch9:9.2.2-rem-1}
 \group{Fixed Point Theorems}
-\uses{thm:schaefers-fixed-point-theorem}
+
 Bounding every solution of $u=\lambda A[u]$ uniformly for $0\leq\lambda\leq1$ yields a fixed point of $A$. This is the method of \textit{a priori estimates}.
 \end{remark}
 
@@ -344,9 +358,10 @@ for some constant $C$ and all $p \in \R^n$.
 
 \begin{theorem}[Existence for the quasilinear elliptic PDE]
 \label{thm:schaefer-quasilinear-existence}
+\uses{thm:schaefers-fixed-point-theorem, def:compact-mapping-banach-space, thm:second-derivatives-minimizers}
 \dcref{ch9:9.2-thm-5}
 \group{Fixed Point Theorems}
-\uses{thm:schaefers-fixed-point-theorem,def:compact-mapping-banach-space,thm:second-derivatives-minimizers}
+
 If $\mu > 0$ is sufficiently large, there exists a function $u \in H^2(U) \cap H^1_0(U)$ solving the boundary-value problem (21).
 \end{theorem}
 
@@ -356,9 +371,10 @@ If $\mu > 0$ is sufficiently large, there exists a function $u \in H^2(U) \cap H
 
 \begin{remark}[Remark and warning]
 \label{rem:iteration-scheme-warning}
+\uses{thm:schaefer-quasilinear-existence}
 \dcref{ch9:9.2.2-rem-2}
 \group{Fixed Point Theorems}
-\uses{thm:schaefer-quasilinear-existence}
+
 The iteration
 \[
 \begin{cases}
@@ -408,9 +424,10 @@ for each $v \in H^1_0(U)$.
 
 \begin{remark}[Classical interpretation]
 \label{rem:sub-supersolution-c2-case}
+\uses{def:weak-sub-supersolution}
 \dcref{ch9:9.3-rem-1}
 \group{Sub- and Supersolutions}
-\uses{def:weak-sub-supersolution}
+
 If $\bar{u}, \underline{u} \in C^2(U)$, then from (3) and (4) it follows that
 \[
 -\Delta \bar{u} \geq f(\bar{u}), \quad -\Delta \underline{u} \leq f(\underline{u}) \quad \text{in } U.
@@ -419,9 +436,10 @@ If $\bar{u}, \underline{u} \in C^2(U)$, then from (3) and (4) it follows that
 
 \begin{theorem}[Existence of a solution between sub- and supersolutions]
 \label{thm:existence-between-sub-supersolutions}
+\uses{def:weak-sub-supersolution, thm:first-existence-weak-solutions}
 \dcref{ch9:9.3-thm-1}
 \group{Sub- and Supersolutions}
-\uses{def:weak-sub-supersolution,thm:first-existence-weak-solutions}
+
 Assume there exist a weak supersolution $\bar{u}$ and a weak subsolution $\underline{u}$ of (1), satisfying
 \[
 \underline{u} \leq 0, \quad \bar{u} \geq 0 \quad \text{on } \partial U \text{ in the trace sense}, \quad \underline{u} \leq \bar{u} \text{ a.e. in } U.
@@ -476,9 +494,10 @@ Then integration by parts and Cauchy's inequality give
 
 \begin{theorem}[Blow-up for large initial data]
 \label{thm:blowup-large-data}
+\uses{def:principal-eigenvalue}
 \dcref{ch9:9.4.1-thm-1}
 \group{Nonexistence}
-\uses{def:principal-eigenvalue}
+
 Let $u$ be a smooth solution of (1) with $g\geq0$, $g\not\equiv0$, let $w_1$ satisfy (3), and define $\eta(t)=\int_Uu(x,t)w_1(x)\,dx$. If
 \[
 \eta(0) = \int_U gw_1 \, dx > \lambda_1,
@@ -529,9 +548,10 @@ lies in $\overline{U}$.
 
 \begin{lemma}[Normals to a star-shaped region]
 \label{lem:normals-star-shaped-region}
+\uses{def:star-shaped-domain}
 \dcref{ch9:9.4.2-lem-1}
 \group{Nonexistence}
-\uses{def:star-shaped-domain}
+
 Assume $\partial U$ is $C^1$ and $U$ is star-shaped with respect to 0. Then
 \[
 x \cdot \nu(x) \geq 0 \quad \text{for all } x \in \partial U,
@@ -545,9 +565,10 @@ where $\nu$ denotes the unit outward normal.
 
 \begin{theorem}[Nonexistence of nontrivial solution]
 \label{thm:derrick-pohozaev-nonexistence}
+\uses{def:star-shaped-domain, lem:normals-star-shaped-region}
 \dcref{ch9:9.4.2-thm-1}
 \group{Nonexistence}
-\uses{def:star-shaped-domain,lem:normals-star-shaped-region}
+
 Assume $u \in C^2(\overline{U})$ is a solution of problem (11), and the exponent $p$ satisfies inequality (13). Suppose further $U$ is star-shaped with respect to 0, and $\partial U$ is $C^1$. Then
 \[
 u \equiv 0 \quad \text{within } U.
@@ -560,9 +581,10 @@ u \equiv 0 \quad \text{within } U.
 
 \begin{remark}[Derrick--Pohozaev identity]
 \label{rem:derrick-pohozaev-identity-name}
+\uses{thm:derrick-pohozaev-nonexistence}
 \dcref{ch9:9.4.2-rem-1}
 \group{Nonexistence}
-\uses{thm:derrick-pohozaev-nonexistence}
+
 The \textit{Derrick--Pohozaev identity} is
 \[
 \frac{n-2}{2}\int_U|Du|^2\,dx
@@ -592,9 +614,10 @@ Then $0<u<1$ in $U$.
 
 \begin{theorem}[Star-shaped level sets]
 \label{thm:star-shaped-level-sets}
+\uses{def:star-shaped-domain, lem:normals-star-shaped-region, thm:strong-maximum-principle-laplace}
 \dcref{ch9:9.5.1-thm-1}
 \group{Symmetry of Solutions}
-\uses{def:star-shaped-domain,lem:normals-star-shaped-region,thm:strong-maximum-principle-laplace}
+
 For each $0 < \lambda < 1$ the level set
 \[
 \Gamma_\lambda := \{x \in U \mid u(x) = \lambda\}
@@ -626,9 +649,10 @@ u>0\quad\text{in }U.
 
 \begin{lemma}[A refinement of Hopf's Lemma]
 \label{lem:hopf-lemma-refinement}
+\uses{lem:hopfs-lemma, thm:strong-maximum-principle-c-zero}
 \dcref{ch9:9.5.2-lem-1}
 \group{Maximum Principles}
-\uses{lem:hopfs-lemma,thm:strong-maximum-principle-c-zero}
+
 Suppose $V \subset \R^n$ is open, $v \in C^2(\overline{V})$, and $c \in L^\infty(V)$. Assume
 \[
 \begin{cases} -\Delta v + cv \geq 0 & \text{in } V \\ v \geq 0 & \text{in } V. \end{cases}
@@ -656,9 +680,10 @@ No sign condition on the zeroth-order coefficient $c$ is required.
 
 \begin{lemma}[Boundary estimates]
 \label{lem:boundary-estimates-radial-symmetry}
+\uses{lem:hopf-lemma-refinement}
 \dcref{ch9:9.5.2-lem-2}
 \group{Maximum Principles}
-\uses{lem:hopf-lemma-refinement}
+
 Let $u \in C^2(\overline{U})$ satisfy (2), (3). Then for each point $x^0 \in \partial U \cap \{x_n > 0\}$, either
 \[
 u_{x_n}(x^0) < 0
@@ -695,9 +720,10 @@ P_\lambda := \{x \in \R^n \mid x_n = \lambda\}.
 
 \begin{theorem}[Radial symmetry]
 \label{thm:radial-symmetry-positive-solutions}
+\uses{lem:hopf-lemma-refinement, lem:boundary-estimates-radial-symmetry, def:moving-plane-notation}
 \dcref{ch9:9.5.2-thm-2}
 \group{Symmetry of Solutions}
-\uses{lem:hopf-lemma-refinement,lem:boundary-estimates-radial-symmetry,def:moving-plane-notation}
+
 Let $u \in C^2(\overline{U})$ solve (2), (3). Then $u$ is radial; that is,
 \[
 u(x) = v(r) \quad (r = |x|)
@@ -749,9 +775,10 @@ We say $I : H \to (-\infty, +\infty]$ is \textit{lower semicontinuous} if
 
 \begin{definition}[Subdifferential]
 \label{def:subdifferential-hilbert}
+\uses{def:convex-function-hilbert-space}
 \dcref{ch9:9.6.1-def-3}
 \group{Convex Analysis}
-\uses{def:convex-function-hilbert-space}
+
 Let $I : H \to (-\infty, +\infty]$ be convex and proper.
 \begin{enumerate}
 \item[(i)] For each $u \in H$, we write
@@ -766,9 +793,10 @@ The mapping $\partial I : H \to 2^H$ is the \textit{subdifferential} of $I$.
 
 \begin{theorem}[Properties of subdifferentials]
 \label{thm:properties-of-subdifferentials}
+\uses{def:subdifferential-hilbert, def:lower-semicontinuous-hilbert-functional, thm:weak-lower-semicontinuity-convex-lagrangian}
 \dcref{ch9:9.6-thm-1}
 \group{Convex Analysis}
-\uses{def:subdifferential-hilbert,def:lower-semicontinuous-hilbert-functional,thm:weak-lower-semicontinuity-convex-lagrangian}
+
 Let $I : H \to (-\infty, +\infty]$ be convex, proper and lower semicontinuous. Then
 \begin{enumerate}
 \item[(i)] $D(\partial I) \subseteq D(I)$.
@@ -795,9 +823,10 @@ u + \lambda v = w.
 
 \begin{definition}[Nonlinear resolvent and Yosida approximation]
 \label{def:nonlinear-resolvent-yosida}
+\uses{thm:properties-of-subdifferentials}
 \dcref{ch9:9.6.1-def-4}
 \group{Convex Analysis}
-\uses{thm:properties-of-subdifferentials}
+
 \begin{enumerate}
 \item[(1)] For each $\lambda > 0$ define the \textit{nonlinear resolvent} $J_\lambda : H \to D(\partial I)$ by setting
 \[
@@ -818,9 +847,10 @@ The operator $A_\lambda$ is the Yosida regularization of $A=\partial I$.
 
 \begin{theorem}[Properties of $J_\lambda$, $A_\lambda$]
 \label{thm:properties-resolvent-yosida}
+\uses{def:nonlinear-resolvent-yosida, thm:properties-of-subdifferentials}
 \dcref{ch9:9.6-thm-2}
 \group{Convex Analysis}
-\uses{def:nonlinear-resolvent-yosida,thm:properties-of-subdifferentials}
+
 For each $\lambda > 0$ and $w, \tilde{w} \in H$, the following statements hold:
 \begin{enumerate}
 \item[(i)] $\|J_\lambda[w] - J_\lambda[\tilde{w}]\| \le \|w - \tilde{w}\|$,
@@ -902,9 +932,10 @@ For each $t\geq0$, the map $u\mapsto S(t)u$ in (10) is generally nonlinear.
 
 \begin{theorem}[Solution of gradient flow]
 \label{thm:solution-of-gradient-flow}
+\uses{thm:properties-resolvent-yosida, def:nonlinear-contraction-semigroup}
 \dcref{ch9:9.6-thm-3}
 \group{Nonlinear Semigroups}
-\uses{thm:properties-resolvent-yosida,def:nonlinear-contraction-semigroup}
+
 For each $u \in D(\partial I)$ there exists a unique function
 \[
 \mathbf{u} \in C([0, \infty); H), \text{ with } \mathbf{u}' \in L^\infty(0, \infty; H),
@@ -927,9 +958,10 @@ and
 
 \begin{remark}[Extension to $\overline{D(\partial I)}$]
 \label{rem:gradient-flow-semigroup-extension}
+\uses{thm:solution-of-gradient-flow}
 \dcref{ch9:9.6.2-rem-2}
 \group{Nonlinear Semigroups}
-\uses{thm:solution-of-gradient-flow}
+
 For $\mathbf u,\mathbf v\in D(\partial I)$, the limiting flow satisfies
 \[
 \|S(t)\mathbf{u} - S(t)\mathbf{v}\| \leq \|\mathbf{u} - \mathbf{v}\| \quad (t \geq 0)
@@ -964,9 +996,10 @@ for constants $C,\theta>0$.
 
 \begin{theorem}[Characterization of $\partial I$]
 \label{thm:characterization-subdifferential-uniformly-convex-lagrangian}
+\uses{def:convex-function-hilbert-space, def:subdifferential-hilbert, thm:weak-lower-semicontinuity-convex-lagrangian, def:monotone-vector-field, thm:second-derivatives-minimizers}
 \dcref{ch9:9.6-thm-4}
 \group{Convex Analysis}
-\uses{def:convex-function-hilbert-space,def:subdifferential-hilbert,thm:weak-lower-semicontinuity-convex-lagrangian,def:monotone-vector-field,thm:second-derivatives-minimizers}
+
 \begin{enumerate}
 \item[(i)] $I : H \to (-\infty, +\infty]$ is convex, proper and lower semicontinuous.
 \item[(ii)] $D(\partial I) = H^2(U) \cap H_0^1(U)$.
@@ -983,9 +1016,10 @@ for constants $C,\theta>0$.
 
 \begin{example}[Quasilinear parabolic PDE via gradient flows]
 \label{ex:quasilinear-parabolic-gradient-flow}
+\uses{thm:characterization-subdifferential-uniformly-convex-lagrangian, thm:solution-of-gradient-flow}
 \dcref{ch9:9.6.3-ex-1}
 \group{Nonlinear Semigroups}
-\uses{thm:characterization-subdifferential-uniformly-convex-lagrangian,thm:solution-of-gradient-flow}
+
 Consider
 \[
 \begin{cases}

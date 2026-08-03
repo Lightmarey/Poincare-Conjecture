@@ -18,6 +18,8 @@ $\mathcal V\to M$.
 \label{def:riemannian-metric}
 \lean{MorganTianLib.RiemannianMetric}
 \leanok
+
+
 Let $M$ be an $n$-manifold. A \emph{Riemannian metric} is a smooth
 section $g\in\Gamma(T^*M\otimes T^*M)$ whose value at each $p\in M$ is
 a positive-definite symmetric bilinear form on $T_pM$. In coordinates
@@ -39,9 +41,12 @@ paths joining two points. For $r>0$, set
 
 \begin{theorem}[Levi-Civita connection]
 \label{thm:levi-civita-connection}
-\uses{def:riemannian-metric}
 \lean{MorganTianLib.existsUnique_leviCivita}
+\uses{def:riemannian-metric}
 \leanok
+
+
+
 For every Riemannian metric $g$ there is a unique $\mathbb R$-linear
 connection
 \[
@@ -100,10 +105,13 @@ metric-dual gradient. Define
 \end{equation}
 \begin{lemma}[Hessian is symmetric]
 \label{lem:hessian-symmetric}
-\label{Hessformula}
-\uses{thm:levi-civita-connection}
 \lean{MorganTianLib.hessian,MorganTianLib.hessian_symm,MorganTianLib.hessian_smul,MorganTianLib.hessianAt_symm,MorganTianLib.hessian_eq_metricInner_cov_gradientField,MorganTianLib.hessianAt_chartBasisVecFiber}
+\uses{thm:levi-civita-connection}
 \leanok
+\label{Hessformula}
+
+
+
 The Hessian is a symmetric covariant $2$-tensor. For smooth
 $\phi,\psi$,
 \[
@@ -155,9 +163,12 @@ spectrum.
 
 \begin{definition}[Riemann curvature tensor]
 \label{def:riemann-curvature-tensor}
-\uses{thm:levi-civita-connection}
 \lean{MorganTianLib.riemannCurvature,MorganTianLib.curvatureForm}
+\uses{thm:levi-civita-connection}
 \leanok
+
+
+
 The \emph{Riemann curvature tensor} is
 \[
   \mathcal R(X,Y)Z
@@ -188,10 +199,13 @@ $\mathcal R(X,Y,Z,W)=g(\mathcal R(X,Y)W,Z)$; hence
 
 \begin{lemma}[Curvature symmetries and Bianchi identities]
 \label{claim:curvature-symmetries-bianchi}
-\label{Bianchi}
-\uses{def:riemann-curvature-tensor}
 \lean{MorganTianLib.curvatureForm_symmetries,MorganTianLib.curvatureForm_secondBianchi}
+\uses{def:riemann-curvature-tensor}
 \leanok
+\label{Bianchi}
+
+
+
 The curvature tensor satisfies
 \[
   R_{ijkl}=-R_{jikl}=-R_{ijlk},
@@ -216,9 +230,12 @@ All identities are tensorial, so it suffices to use commuting coordinate fields.
 
 \begin{definition}[Sectional curvature]
 \label{def:sectional-curvature}
-\uses{def:riemann-curvature-tensor}
 \lean{MorganTianLib.sectionalCurvatureAt}
+\uses{def:riemann-curvature-tensor}
 \leanok
+
+
+
 For a $2$-plane $P\subset T_pM$ with orthonormal basis $\{X,Y\}$,
 its \emph{sectional curvature} is
 \[
@@ -237,9 +254,12 @@ of $p$ and $P\subset T_pM$.
 
 \begin{lemma}[Curvature tensor of constant curvature manifolds]
 \label{lem:constant-curvature-tensor}
-\uses{def:sectional-curvature}
 \lean{MorganTianLib.hasConstantSectionalCurvature_iff_curvatureFormAt_eq}
+\uses{def:sectional-curvature}
 \leanok
+
+
+
 A Riemannian manifold has constant sectional curvature $\lambda$ if
 and only if
 \[
@@ -279,9 +299,12 @@ simple connectivity are included in Lemma~\ref{lem:model-spaces}.
 
 \begin{definition}[Curvature operator]
 \label{def:curvature-operator}
-\uses{def:riemann-curvature-tensor,def:sectional-curvature}
-\lean{MorganTianLib.curvatureOperator,MorganTianLib.curvatureOperator_ιMulti,MorganTianLib.curvatureOperator_symm,MorganTianLib.sectionalCurvature_eq_curvatureOperator,MorganTianLib.HasPositiveCurvatureOperator,MorganTianLib.HasNonnegativeCurvatureOperator,MorganTianLib.sectionalCurvature_nonneg_of_hasNonnegativeCurvatureOperator}
+\lean{MorganTianLib.curvatureOperator,MorganTianLib.curvatureOperator_iMulti,MorganTianLib.curvatureOperator_symm,MorganTianLib.sectionalCurvature_eq_curvatureOperator,MorganTianLib.HasPositiveCurvatureOperator,MorganTianLib.HasNonnegativeCurvatureOperator,MorganTianLib.sectionalCurvature_nonneg_of_hasNonnegativeCurvatureOperator}
+\uses{def:riemann-curvature-tensor, def:sectional-curvature}
 \leanok
+
+
+
 The metric identifies the curvature tensor with the symmetric bilinear
 form
 \[
@@ -294,9 +317,12 @@ nonnegative) if $\Rm(\varphi,\varphi)>0$ for every nonzero $\varphi$
 
 \begin{definition}[Norm of the curvature operator]
 \label{def:curvature-operator-norm}
-\uses{def:curvature-operator,def:sectional-curvature}
 \lean{MorganTianLib.wedgeInner,MorganTianLib.HasCurvatureOperatorNormLe,MorganTianLib.abs_curvatureForm_le_of_hasCurvatureOperatorNormLe,MorganTianLib.exists_orthonormal_changeBasis,MorganTianLib.abs_sectionalCurvature_le_of_hasCurvatureOperatorNormLe}
+\uses{def:curvature-operator, def:sectional-curvature}
 \leanok
+
+
+
 Give $\wedge^2T_xM$ the inner product
 \[
   \langle X\wedge Y,Z\wedge W\rangle
@@ -322,9 +348,12 @@ Positive (respectively, nonnegative) curvature operator implies positive
 
 \begin{definition}[Ricci curvature and scalar curvature]
 \label{def:ricci-curvature}
-\uses{def:riemann-curvature-tensor}
 \lean{MorganTianLib.ricciAt,MorganTianLib.scalarCurvatureAt}
+\uses{def:riemann-curvature-tensor}
 \leanok
+
+
+
 The symmetric \emph{Ricci tensor} is
 \[
   \Ric(X,Y)=g^{kl}R(X,\partial_k,Y,\partial_l)
@@ -341,9 +370,11 @@ of the Ricci endomorphism.
 
 \begin{lemma}[Ricci curvature as a trace of the curvature operator]
 \label{lem:ricci-trace-curvature-operator}
-\uses{def:ricci-curvature,def:riemann-curvature-tensor,claim:curvature-symmetries-bianchi}
 \lean{MorganTianLib.metricInner_riemannCurvature_eq_curvatureFormAt,MorganTianLib.sum_metricInner_riemannCurvature_self_eq_ricciAt}
-\leanok
+\uses{def:ricci-curvature, def:riemann-curvature-tensor, claim:curvature-symmetries-bianchi}
+
+
+
 Let $X$ be a smooth vector field, $p\in M$, and
 $\{e_1,\ldots,e_n\}$ an orthonormal basis of $T_pM$, extended to
 smooth fields $E_i$. Then
@@ -380,10 +411,13 @@ For a covariant $2$-tensor $\omega$, define
 
 \begin{lemma}[Divergence of Ricci from second Bianchi identity]
 \label{lem:div-ricci-scalar-curvature}
-\label{divRic}
-\uses{claim:curvature-symmetries-bianchi,def:ricci-curvature}
 \lean{MorganTianLib.dir_scalarCurvature_eq_two_divRicci,MorganTianLib.divRicciAt,MorganTianLib.covRicciAt,MorganTianLib.divRicciAt_eq_sum_orthonormalBasis,MorganTianLib.covRicci_eq_frame_sum,MorganTianLib.dir_scalarCurvatureAt_eq_two_frame_covRicci,MorganTianLib.covRicci_congr_apply}
+\uses{claim:curvature-symmetries-bianchi, def:ricci-curvature}
 \leanok
+\label{divRic}
+
+
+
 $$dR=2\operatorname{div}(\Ric)=2\nabla^*\Ric.$$
 \end{lemma}
 
@@ -408,9 +442,12 @@ one-form case follows by duality.
 
 \begin{definition}[Second covariant derivative of a vector field]
 \label{def:second-covariant-derivative-vector-field}
-\uses{thm:levi-civita-connection}
 \lean{MorganTianLib.secondCov}
+\uses{thm:levi-civita-connection}
 \leanok
+
+
+
 For an affine connection $\nabla$ and vector fields $X,Y,Z$, the
 \emph{second covariant derivative} of $Z$ is
 \[
@@ -420,9 +457,11 @@ For an affine connection $\nabla$ and vector fields $X,Y,Z$, the
 
 \begin{lemma}[Tensoriality of the second covariant derivative]
 \label{lem:second-covariant-derivative-tensorial}
-\uses{def:second-covariant-derivative-vector-field}
 \lean{MorganTianLib.secondCov_add_left,MorganTianLib.secondCov_smul_left,MorganTianLib.secondCov_add_middle,MorganTianLib.secondCov_smul_middle,MorganTianLib.secondCov_congr_left}
-\leanok
+\uses{def:second-covariant-derivative-vector-field}
+
+
+
 For fixed $Z$, the map $(X,Y)\mapsto\nabla^2Z(X,Y)$ is additive in
 each argument and satisfies
 \[
@@ -442,9 +481,12 @@ Additivity follows from additivity of the connection. Scaling the first directio
 
 \begin{lemma}[Ricci commutation identity for vector fields]
 \label{lem:ricci-commutation-vector-field}
-\uses{def:second-covariant-derivative-vector-field,def:riemann-curvature-tensor}
 \lean{MorganTianLib.secondCov_sub_swap}
+\uses{def:second-covariant-derivative-vector-field, def:riemann-curvature-tensor}
 \leanok
+
+
+
 Let $\nabla$ be a torsion-free affine connection on $M$. For all
 smooth vector fields $X$, $Y$, $Z$,
 $$\nabla^2Z(X,Y)-\nabla^2Z(Y,X)={\mathcal R}(X,Y)Z,$$
@@ -471,10 +513,12 @@ $\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z
 
 \begin{lemma}[Laplacian of differential form]
 \label{lem:laplacian-one-form}
-\label{lapformula}
-\uses{lem:hessian-symmetric,def:ricci-curvature}
 \lean{MorganTianLib.oneFormLaplacianAt,MorganTianLib.oneFormLaplacianAt_eq_sum_frame,MorganTianLib.metricInner_secondCov_gradientField_symm,MorganTianLib.sum_metricInner_secondCov_along_frame_eq_dir_laplacianAt,MorganTianLib.sum_metricInner_riemannCurvature_frame_eq_ricciAt,MorganTianLib.oneFormLaplacianAt_gradientField_eq_dirTangent_laplacianAt_add_ricciAt,MorganTianLib.oneFormLaplacianAt_gradientField_eq_metricInner_gradientAt_add_ricciAt}
-\leanok
+\uses{lem:hessian-symmetric, def:ricci-curvature}
+\label{lapformula}
+
+
+
 For every smooth function $f$,
 \[
   \triangle(df)=d(\triangle f)+\Ric((\nabla f)^*,\mathord\cdot).
@@ -574,6 +618,7 @@ $\partial_i$.
 \begin{theorem}[Uniformization Theorem]
 \label{thm:uniformization}
 \uses{def:sectional-curvature}
+
 Let $(M^n,g)$, $n\ge2$, be complete, simply connected, and of constant
 sectional curvature $\lambda$. Then:
 \begin{enumerate}
@@ -614,18 +659,24 @@ isometries; such a quotient is a \emph{space form}.
 
 \begin{definition}[Einstein manifold]
 \label{def:einstein-manifold}
-\uses{def:ricci-curvature}
 \lean{MorganTianLib.IsEinstein}
+\uses{def:ricci-curvature}
 \leanok
+
+
+
 A Riemannian manifold is \emph{Einstein with constant $\lambda$} if
 $\Ric_g=\lambda g$.
 \end{definition}
 
 \begin{example}[Einstein manifolds in dimensions 2 and 3]
 \label{ex:einstein-dimension-2-3}
-\uses{def:einstein-manifold,def:sectional-curvature}
 \lean{MorganTianLib.IsEinstein.sectionalCurvature_const}
+\uses{def:einstein-manifold, def:sectional-curvature}
 \leanok
+
+
+
 If $n\in\{2,3\}$ and $(M^n,g)$ is Einstein with constant $\lambda$,
 then it has constant sectional curvature $\lambda/(n-1)$.
 \end{example}
@@ -644,7 +695,8 @@ $K_{ij}$ to equal $\lambda/2$.
 
 \begin{remark}[Complete Einstein surfaces and $3$-manifolds are space forms]
 \label{rem:einstein-space-form}
-\uses{ex:einstein-dimension-2-3,thm:uniformization}
+\uses{ex:einstein-dimension-2-3, thm:uniformization}
+
 If the manifold in Example~\ref{ex:einstein-dimension-2-3} is
 complete, Theorem~\ref{thm:uniformization} makes it a space form of
 curvature $\lambda/(n-1)$.
@@ -655,6 +707,7 @@ curvature $\lambda/(n-1)$.
 \begin{definition}[Open cone]
 \label{def:cone}
 \lean{MorganTianLib.positiveReal,MorganTianLib.coneMetric, MorganTianLib.coneMetric_metricInner_mk}
+\uses{def:riemannian-metric}
 \leanok
 \label{conedefn}
 The \emph{open cone} over $(N,g)$ is
@@ -697,8 +750,11 @@ terms of those of $N$.
 
 \begin{proposition}[Curvature operator of cone]
 \label{prop:cone-curvature}
+\lean{MorganTianLib.coneWedgeEquiv,MorganTianLib.coneWedgeInnerAt_horizontal_mixed,MorganTianLib.coneCurvatureOperatorAt,MorganTianLib.coneBaseCurvatureDifferenceAt,MorganTianLib.coneCurvatureBlockFormAt,MorganTianLib.coneCurvatureOperatorAt_eq_block}
+\uses{def:cone, def:curvature-operator}
+\leanok
 \label{conecurv}
-\uses{def:cone,def:curvature-operator}
+
 Let $N$ be a Riemannian manifold of dimension $n-1$. Fix $(p,s)\in
 c(N)=N\times (0,\infty)$. With respect to the orthogonal splitting
 $$\wedge^2T_{(p,s)}c(N)=\wedge^2T_pN\oplus
@@ -726,6 +782,7 @@ Under $\wedge^2T_{(p,s)}c(N)=\wedge^2T_pN\oplus(T_pN\wedge\partial_s)$, the seco
 \begin{corollary}[Eigenvalues of cone curvature operator]
 \label{cor:cone-eigenvalues}
 \uses{prop:cone-curvature}
+
 For any $p\in N$ let $\lambda_1,\ldots,\lambda_{(n-1)(n-2)/2}$ be
 the eigenvalues of $\Rm_g(p)$. Then for any $s>0$  there are
 $(n-1)$ zero eigenvalues of $\Rm_{\tilde g}(p,s)$. The other
@@ -756,9 +813,12 @@ the exponential map.
 
 \begin{definition}[Geodesic]
 \label{def:geodesic}
-\uses{thm:levi-civita-connection}
 \lean{MorganTianLib.IsGeodesic,MorganTianLib.IsGeodesicOn}
+\uses{thm:levi-civita-connection}
 \leanok
+
+
+
  Let $I$ be an open interval.
 A smooth curve $\gamma\colon I \rightarrow M$ is called a
 \textit{geodesic} if $\nabla_{\dot \gamma}\dot
@@ -904,9 +964,12 @@ in the following lemma.
 
 \begin{lemma}[Covariant commutation and the Jacobi equation for families]
 \label{lem:covariant-commutation-jacobi}
-\uses{thm:levi-civita-connection,def:riemann-curvature-tensor,def:geodesic}
 \lean{MorganTianLib.covDerivAlong,MorganTianLib.christoffelCurvature,MorganTianLib.covDerivAlong_comm,MorganTianLib.covDerivAlong_fderiv_symm,MorganTianLib.covDerivAlong_geodesic_family_jacobi,MorganTianLib.chartChristoffelBilin,MorganTianLib.chartCurvature,MorganTianLib.chart_geodesic_family_jacobi}
+\uses{thm:levi-civita-connection, def:riemann-curvature-tensor, def:geodesic}
 \leanok
+
+
+
 Let $U$ be a coordinate chart of $M$, with Christoffel symbols
 $\Gamma^k_{ij}$ of the Levi-Civita connection
 (Theorem~\ref{thm:levi-civita-connection}). For $x\in U$ write
@@ -945,9 +1008,12 @@ system, and the basic solvability theory follows.
 
 \begin{lemma}[Jacobi fields along a coordinate curve]
 \label{lem:jacobi-field-coordinates}
-\uses{lem:covariant-commutation-jacobi,def:riemann-curvature-tensor,thm:levi-civita-connection,lem:second-order-linear-ode}
-\lean{MorganTianLib.chartCurvatureEndo,MorganTianLib.IsJacobiFieldOn,MorganTianLib.jacobiPairCoeffCoord,MorganTianLib.exists_isJacobiFieldOn_Icc,MorganTianLib.exists_isJacobiFieldOn_Icc_of_curve,MorganTianLib.continuousOn_jacobiPairCoeffCoord,MorganTianLib.IsJacobiFieldOn.eqOn_of_left,MorganTianLib.IsJacobiFieldOn.eqOn_of_right,MorganTianLib.IsJacobiFieldOn.add,MorganTianLib.IsJacobiFieldOn.const_smul,MorganTianLib.IsJacobiFieldOn.eqOn_zero}
+\lean{MorganTianLib.chartCurvatureEndo,MorganTianLib.JacobiFieldOn,MorganTianLib.jacobiPairCoeffCoord,MorganTianLib.exists_isJacobiFieldOn_Icc,MorganTianLib.exists_isJacobiFieldOn_Icc_of_curve,MorganTianLib.continuousOn_jacobiPairCoeffCoord,MorganTianLib.IsJacobiFieldOn.eqOn_of_left,MorganTianLib.IsJacobiFieldOn.eqOn_of_right,MorganTianLib.IsJacobiFieldOn.add,MorganTianLib.IsJacobiFieldOn.const_smul,MorganTianLib.IsJacobiFieldOn.eqOn_zero}
+\uses{lem:covariant-commutation-jacobi, def:riemann-curvature-tensor, thm:levi-civita-connection, lem:second-order-linear-ode}
 \leanok
+
+
+
 Let $u\colon[a,b]\to U$ be a $C^1$ curve in a coordinate chart $U$,
 with $\Gamma$ and ${\mathcal R}$ as in
 Lemma~\ref{lem:covariant-commutation-jacobi}, the coefficient
@@ -988,9 +1054,12 @@ curvature. This is the bridge through which the geometric hypothesis
 
 \begin{lemma}[The curvature tensor in chart coordinates]
 \label{lem:chart-curvature-coordinates}
-\uses{def:riemann-curvature-tensor,thm:levi-civita-connection,def:sectional-curvature,lem:covariant-commutation-jacobi,claim:curvature-symmetries-bianchi}
 \lean{MorganTianLib.curvatureFormAt_chartFrame,MorganTianLib.chartCurvature_basis,MorganTianLib.exists_chartFrame_leviCivita_christoffel_nhds,MorganTianLib.exists_contMDiff_eventuallyEq,MorganTianLib.cov_congr_apply_right,MorganTianLib.alg_curvature_le_of_sectionalCurvature_le,MorganTianLib.chartCurvature_pairing_le_of_sectionalCurvatureAt_le,MorganTianLib.chartCurvature_pairing_le_of_sectionalCurvatureAt_le'}
+\uses{def:riemann-curvature-tensor, thm:levi-civita-connection, def:sectional-curvature, lem:covariant-commutation-jacobi, claim:curvature-symmetries-bianchi}
 \leanok
+
+
+
 Let $(U,x)$ be a coordinate chart of $(M,g)$, $p\in U$, and let
 $G_{ml}=g(\partial_m,\partial_l)$ be the Gram matrix of the
 coordinate frame. Let ${\mathcal R}$ be the coefficient curvature of
@@ -1038,9 +1107,12 @@ lemma.
 
 \begin{lemma}[Parallel transport and parallel frames]
 \label{lem:parallel-frame}
-\uses{def:riemannian-metric,thm:levi-civita-connection}
 \lean{MorganTianLib.IsParallelSolOn,MorganTianLib.exists_parallelFrame_Icc,MorganTianLib.IsParallelSolOn.eqOn_of_left,MorganTianLib.IsParallelSolOn.chartMetricInner_eq,MorganTianLib.chartMetricInner_parallelFrame_eq}
+\uses{def:riemannian-metric, thm:levi-civita-connection}
 \leanok
+
+
+
 Let $(M,g)$ be a Riemannian manifold with Levi-Civita connection
 $\nabla$, and let $\gamma\colon[a,b]\to M$ be a smooth curve whose
 image lies in the domain of a single coordinate chart. A vector field
@@ -1077,8 +1149,10 @@ in Lemma~\ref{lem:geodesic-polar-form}).
 \begin{lemma}[Second-order linear ODE: existence, uniqueness,
 superposition]
 \label{lem:second-order-linear-ode}
-\lean{MorganTianLib.IsJacobiSolOn,MorganTianLib.exists_isJacobiSolOn_Icc,MorganTianLib.IsJacobiSolOn.eqOn_of_left,MorganTianLib.IsJacobiSolOn.eqOn_of_right,MorganTianLib.IsJacobiSolOn.add,MorganTianLib.IsJacobiSolOn.const_smul,MorganTianLib.IsJacobiSolOn.sub,MorganTianLib.IsJacobiSolOn.eqOn_zero}
+\lean{MorganTianLib.JacobiSolOn,MorganTianLib.exists_isJacobiSolOn_Icc,MorganTianLib.IsJacobiSolOn.eqOn_of_left,MorganTianLib.IsJacobiSolOn.eqOn_of_right,MorganTianLib.IsJacobiSolOn.add,MorganTianLib.IsJacobiSolOn.const_smul,MorganTianLib.IsJacobiSolOn.sub,MorganTianLib.IsJacobiSolOn.eqOn_zero}
 \leanok
+
+
 Let $F$ be a real Banach space, let $a\le b$, and let
 $R\colon[a,b]\to L(F)$ be a continuous family of bounded operators.
 Say that a pair of curves $y,v\colon[a,b]\to F$ {\em solves the
@@ -1108,9 +1182,12 @@ Rewrite the second-order equation as a first-order linear system on the product 
 
 \begin{definition}[Conjugate point]
 \label{def:conjugate-point}
-\uses{def:geodesic,lem:jacobi-field-coordinates}
 \lean{MorganTianLib.chartVectorRep,MorganTianLib.IsJacobiFieldAlongOn,MorganTianLib.IsConjugatePointAt}
+\uses{def:geodesic, lem:jacobi-field-coordinates}
 \leanok
+
+
+
 Let $\gamma$ be a geodesic beginning at $p\in M$. A {\sl Jacobi field
 along $\gamma$} is a field of tangent vectors $J(t)\in T_{\gamma(t)}M$
 along $\gamma$, together with its covariant derivative
@@ -1134,15 +1211,12 @@ Lemma~\ref{lem:conjugate-sturm} — and we make it explicit.)
 
 \begin{proposition}[Minimal geodesics have no conjugate points]
 \label{prop:minimal-geodesic-no-conjugate}
-\label{jacmin}
+\lean{MorganTianLib.not_isConjugatePointAt_of_minimizing, MorganTianLib.indexForm_nonneg_of_minimizing, MorganTianLib.dist_eq_speed_mul_of_minimizing, MorganTianLib.minimalGeodesic_restrict_unique, MorganTianLib.eqOn_of_minimizing_geodesic_of_minimizing_geodesic, MorganTianLib.globalGeodesic_eqOn_of_minimizing}
 \uses{def:conjugate-point}
-\lean{MorganTianLib.not_isConjugatePointAt_of_minimizing,
-  MorganTianLib.indexForm_nonneg_of_minimizing,
-  MorganTianLib.dist_eq_speed_mul_of_minimizing,
-  MorganTianLib.minimalGeodesic_restrict_unique,
-  MorganTianLib.eqOn_of_minimizing_geodesic_of_minimizing_geodesic,
-  MorganTianLib.globalGeodesic_eqOn_of_minimizing}
-\leanok
+\label{jacmin}
+
+
+
 Suppose that $\gamma\colon [0,1]\to M$ is a minimal geodesic. Then
 for any $t<1$ the restriction of $\gamma$ to $[0,t]$ is the unique
 minimal geodesic between its endpoints and there are no conjugate
@@ -1223,6 +1297,7 @@ not by the first variation]
 \label{rem:part1-corner-rigidity-route}
 \lean{MorganTianLib.minimalGeodesic_restrict_unique, MorganTianLib.globalGeodesic_eqOn_of_minimizing}
 \leanok
+
 The argument just given for Part 1 is Morgan--Tian's, and it is complete.  It is
 \emph{not}, however, the route taken in the formalization
 (\texttt{MorganTianLib.minimalGeodesic\_restrict\_unique}), for a structural reason: the
@@ -1258,6 +1333,7 @@ formula valid for piecewise smooth variations.
 \begin{lemma}[Second variation is zero iff Jacobi field]
 \label{claim:second-variation-minimal-geodesic}
 \uses{def:geodesic}
+
 Suppose that $\gamma$ is a minimal geodesic and $Y$ is a field
 vanishing at both endpoints. Let $\tilde\gamma(t,u)$ be any
 one-parameter family of curves parameterized by $[0,1]$, with
@@ -1378,9 +1454,12 @@ $s\mapsto u(s,t_i)$, the boundary terms of adjacent pieces telescope.
 
 \begin{lemma}[Metric compatibility in a chart]
 \label{lem:chart-metric-compatibility}
-\uses{thm:levi-civita-connection}
 \lean{MorganTianLib.isMetricCompatibleAt_chartMetricBilin}
+\uses{thm:levi-civita-connection}
 \leanok
+
+
+
 Let $G_{ij}$ be the Gram matrix of $g$ in a chart and $\Gamma^k_{ij}$ its
 Christoffel symbols.  Then, for all vectors $X,V,W$ of the model space,
 $$(\partial_X G)(V,W)=G(\Gamma(X,V),W)+G(V,\Gamma(X,W)),$$
@@ -1406,9 +1485,12 @@ $(V,W)$ and linear in $X$, so it holds for all $X,V,W$.
 
 \begin{lemma}[Second variation of energy, in a chart]
 \label{lem:second-variation-energy-chart}
-\uses{def:geodesic,lem:chart-metric-compatibility,claim:curvature-symmetries-bianchi,lem:covariant-commutation-jacobi}
 \lean{MorganTianLib.secondVariation_energyDensity}
+\uses{def:geodesic, lem:chart-metric-compatibility, claim:curvature-symmetries-bianchi, lem:covariant-commutation-jacobi}
 \leanok
+
+
+
 Let $u$ be a $C^3$ two-parameter family of curves read in a chart, write
 $X=\partial_t u$, $Y=\partial_s u$, and suppose the $t$-line through the point in
 question is a geodesic there, $\nabla_tX=0$.  Then the energy density
@@ -1435,9 +1517,12 @@ symmetry of the curvature tensor, and integration by parts.
 
 \begin{lemma}[A conjugate point makes the index form indefinite]
 \label{lem:index-form-negative-at-conjugate}
-\uses{def:conjugate-point,def:geodesic,lem:second-order-linear-ode,lem:parallel-frame,claim:curvature-symmetries-bianchi}
 \lean{MorganTianLib.exists_indexForm_neg_of_isConjugatePointAt}
+\uses{def:conjugate-point, def:geodesic, lem:second-order-linear-ode, lem:parallel-frame, claim:curvature-symmetries-bianchi}
 \leanok
+
+
+
 Let $\gamma$ be a geodesic defined on an interval $[a,b]\supseteq [0,1]$ with
 $a<0$ and $1<b$, and suppose that for some $t_0\in(0,1)$ the point $\gamma(t_0)$
 is conjugate to $\gamma(0)$ along $\gamma$. Then there is a piecewise smooth
@@ -1471,9 +1556,12 @@ definition, conjugate points occurring only at parameters $t>0$.)
 
 \begin{definition}[Exponential map]
 \label{def:exponential-map}
-\uses{def:geodesic}
 \lean{MorganTianLib.expMap,MorganTianLib.expDomain}
+\uses{def:geodesic}
 \leanok
+
+
+
 For any $p\in M$, we can define the \textit{exponential
 map} at $p$, $\exp_{p}$. It is
 defined on an open neighborhood $O_{p}$ of the origin in $T_{p}M$
@@ -1498,7 +1586,8 @@ Section~2.)
 
 \begin{lemma}[Normal balls, uniformly on compact sets]
 \label{lem:normal-ball}
-\uses{def:exponential-map,def:geodesic}
+\uses{def:exponential-map, def:geodesic}
+
 Let $(M,g)$ be a Riemannian manifold, not assumed complete, and let
 $K\subset M$ be compact. There is $\delta=\delta(K)>0$ such that
 for every $x\in K$ the exponential map $\exp_x$ is defined on
@@ -1536,9 +1625,12 @@ fields, as follows.
 
 \begin{lemma}[The differential of the exponential map via Jacobi fields]
 \label{lem:exponential-differential-jacobi}
-\uses{def:exponential-map,def:geodesic,def:conjugate-point}
 \lean{MorganTianLib.IsJacobiFieldOn.transfer,MorganTianLib.chartCurvature_coordChange,MorganTianLib.exists_isJacobiFieldAlongOn,MorganTianLib.IsJacobiFieldAlongOn.eqOn_of_initial,MorganTianLib.IsJacobiFieldAlongOn.isJacobiFieldOn_of_mem_source,MorganTianLib.exists_geodesic_chart_partition,MorganTianLib.hasStrictFDerivAt_comp_chain,MorganTianLib.hasStrictFDerivAt_comp_chain',MorganTianLib.jacobiVarPair_of_left_eq_zero,MorganTianLib.exists_geodesic_flow_step_jacobiTransport,MorganTianLib.exists_geodesic_flow_step_jacobiTransport_manifold,MorganTianLib.IsGeodesicOn.comp_const_add,MorganTianLib.exists_geodesic_flow_step_jacobiTransport_manifold_at,MorganTianLib.exists_geodesic_flow_step_jacobiTransport_manifold_ball,MorganTianLib.exists_geodesic_flowstep_partition,MorganTianLib.exists_geodesic_junction_step,MorganTianLib.IsJacobiFieldAlongOn.mono,MorganTianLib.exists_geodesic_jacobiTransport_chain,MorganTianLib.sprayFlow_eq_chartState,MorganTianLib.hasStrictFDerivAt_comp_chain_nbhd,MorganTianLib.exists_geodesic_chartState,MorganTianLib.eq_of_chartState_eq,MorganTianLib.stateTransition_chartState,MorganTianLib.exists_geodesic_jacobiTransport_chain_nbhd,MorganTianLib.globalGeodesic,MorganTianLib.globalGeodesic_eq,MorganTianLib.expMapGlobal,MorganTianLib.expMapGlobal_eq_of_isGeodesic,MorganTianLib.hasFDerivAt_chartReading_expMapGlobal,MorganTianLib.expDifferential_eq_jacobiField}
+\uses{def:exponential-map, def:geodesic, def:conjugate-point}
 \leanok
+
+
+
 Let $p\in M$ and let $v\in O_p$, the maximal domain of $\exp_p$.
 Let $\gamma=\gamma_v\colon[0,1]\to M$ and $X=\gamma'$. For
 $Z\in T_pM$ let $Y_Z$ be the unique Jacobi field along $\gamma$
@@ -1558,10 +1650,12 @@ Vary the initial vector by $v+sw$ and differentiate the corresponding geodesic f
 
 \begin{corollary}[Exponential map is local diffeomorphism]
 \label{cor:exponential-local-diffeomorphism}
-\label{star}
-\uses{prop:minimal-geodesic-no-conjugate}
 \lean{MorganTianLib.expMapGlobal_localDiffeo_of_minimizing}
-\leanok
+\uses{prop:minimal-geodesic-no-conjugate}
+\label{star}
+
+
+
 Suppose that $\gamma$ is a minimal geodesic parameterized by $[0,1]$
 starting at $p$. Let $X(0)=\gamma'(0)\in T_pM$. Then for each
 $t_0<1$ the restriction $\gamma|_{[0,t_0]}$ is a minimal geodesic
@@ -1572,7 +1666,6 @@ $t_0X(0)$.
 \begin{proof}
 \sketch
 \uses{prop:minimal-geodesic-no-conjugate,lem:exponential-differential-jacobi}
-\leanok
 Of course, $\exp_p(t_0X(0))=\gamma(t_0)$. By
 Lemma~\ref{lem:exponential-differential-jacobi} (applied to the
 geodesic $\gamma|_{[0,t_0]}=\gamma_{t_0X(0)}$, reparameterized by
@@ -1591,7 +1684,8 @@ existence of minimizing geodesics and the Hopf--Rinow theorem.
 
 \begin{lemma}[Existence of minimizing geodesics]
 \label{lem:minimizing-geodesic-exists}
-\uses{def:geodesic,def:exponential-map}
+\uses{def:geodesic, def:exponential-map}
+
 Let $(M,g)$ be a Riemannian manifold, not assumed complete or
 connected (with the convention that $d(p,q)=\infty$ when there is
 no smooth path from $p$ to $q$), let $p\in M$ and $D>0$. Suppose
@@ -1614,8 +1708,9 @@ We can now state and prove the classical theorem of Hopf and Rinow
 \begin{theorem}[Hopf-Rinow Theorem]
 \label{thm:hopf-rinow}
 \lean{MorganTianLib.hopfRinow_geodesic_complete, MorganTianLib.hopfRinow_minimizing_geodesic, MorganTianLib.hopfRinow_properSpace}
-\leanok
 \uses{def:geodesic}
+\leanok
+
 (Hopf-Rinow) Let $(M,g)$ be a Riemannian manifold which is
 complete as a metric space; for parts (2) and (3) assume in
 addition that $M$ is connected. Then:
@@ -1628,7 +1723,7 @@ geodesic, of length $d(p,q)$;
 \end{theorem}
 
 \begin{proof}
-\leanok
+  \leanok
 \sketch
 \uses{def:geodesic,def:exponential-map,lem:minimizing-geodesic-exists,thm:levi-civita-connection}
 Metric completeness lets successive short minimizing segments converge, so a maximal geodesic cannot stop at finite time. Geodesic completeness and the open-and-closed argument for points reachable by minimizing geodesics then give a minimizer between any two points. Conversely, if every geodesic is defined for all time, the same argument supplies minimizing geodesics, and Cauchy sequences converge by placing their tails in a normal ball. The remaining compactness and properness formulations follow from closed bounded balls and the exponential image of compact tangent balls.
@@ -1642,8 +1737,9 @@ consequently, $\exp_p\colon T_pM\to M$ is onto.
 \begin{definition}[Cut locus]
 \label{def:cut-locus}
 \lean{MorganTianLib.bookSegmentDomain,MorganTianLib.bookCutLocus}
-\leanok
 \uses{def:exponential-map}
+\leanok
+
 Let $M$ be complete and connected, and let $p\in M$. Let $U_p\subset T_pM$ denote
 the set of all $v\in T_pM$ for which: (i) $\gamma_v$ is the unique
 minimal geodesic from $p$ to $\gamma_v(1)$, and (ii) $\exp_p$ is
@@ -1670,9 +1766,12 @@ properties of $U_p$ are most easily derived.
 
 \begin{definition}[Minimizing times and the cut time]
 \label{def:cut-time}
-\uses{def:exponential-map,def:geodesic}
 \lean{MorganTianLib.IsMinimizingUpTo,MorganTianLib.minimizingTimes,MorganTianLib.cutTime}
+\uses{def:exponential-map, def:geodesic}
 \leanok
+
+
+
 Let $M$ be complete, $p\in M$ and $v\in T_pM$, and let $\gamma_v(t)=\exp_p(tv)$ be the
 radial geodesic. Say that $\gamma_v$ is \emph{minimizing up to time $t\ge 0$} if the
 segment $\gamma_v|_{[0,t]}$ realises the distance between its endpoints,
@@ -1686,9 +1785,12 @@ $\R^n$ and of $H^n_k$.
 
 \begin{lemma}[The minimizing times form an interval]
 \label{lem:minimizing-downward-closed}
-\uses{def:cut-time}
 \lean{MorganTianLib.IsMinimizingUpTo.mono,MorganTianLib.minimizingTimes_ordConnected}
+\uses{def:cut-time}
 \leanok
+
+
+
 If $\gamma_v$ is minimizing up to $t$ and $0\le s\le t$, then $\gamma_v$ is minimizing up
 to $s$. Hence $T_v$ is an interval containing $0$, and $c(v)=\sup T_v$ is a genuine
 \emph{cut}: $\gamma_v$ is minimizing before $c(v)$ and not after it.
@@ -1711,9 +1813,12 @@ $d(p,\gamma_v(s))=s\lvert v\rvert_g$, which is the claim.
 
 \begin{definition}[The segment domain, the cut locus and the injectivity radius, metrically]
 \label{def:cut-time-locus}
-\uses{def:cut-time,lem:minimizing-downward-closed}
 \lean{MorganTianLib.segmentDomain,MorganTianLib.cutLocus,MorganTianLib.injectivityRadius}
+\uses{def:cut-time, lem:minimizing-downward-closed}
 \leanok
+
+
+
 With $c(v)$ as in Definition~\ref{def:cut-time}, set
 $$U_p=\{v\in T_pM : c(v)>1\},\qquad
 {\mathcal C}_p=\{\gamma_v(c(v)) : \lvert v\rvert_g=1,\ c(v)<\infty\},\qquad
@@ -1725,9 +1830,12 @@ Lemma~\ref{lem:cut-locus-properties}.
 
 \begin{lemma}[$U_p$ is star-shaped]
 \label{lem:segment-domain-star-shaped}
-\uses{def:cut-time-locus,def:cut-time}
 \lean{MorganTianLib.isMinimizingUpTo_smul,MorganTianLib.segmentDomain_smul_mem}
+\uses{def:cut-time-locus, def:cut-time}
 \leanok
+
+
+
 If $v\in U_p$ and $0<\lambda\le1$ then $\lambda v\in U_p$. Thus $U_p$ is star-shaped about
 the origin.
 \end{lemma}
@@ -1747,9 +1855,10 @@ $0<\lambda\le 1$ then $c(\lambda v)=c(v)/\lambda\ge c(v)>1$, i.e. $\lambda v\in 
 
 \begin{lemma}[Properties of the cut locus]
 \label{lem:cut-locus-properties}
-\lean{MorganTianLib.cutLocus_properties}
+\lean{MorganTianLib.bookSegmentDomain_eq_segmentDomain, MorganTianLib.bookCutLocus_eq_cutLocus, MorganTianLib.cutLocus_properties}
+\uses{def:cut-locus, def:cut-time-locus, lem:segment-domain-star-shaped}
 \leanok
-\uses{def:cut-locus,def:cut-time-locus,lem:segment-domain-star-shaped}
+
 Let $M$ be complete and connected, and let $p\in M$. Then:
 \begin{enumerate}
 \item $U_p$ is an open, star-shaped neighborhood of $0$ in
@@ -1761,7 +1870,6 @@ ${\mathcal C}_p=M\setminus\exp_p(U_p)$ is closed;
 \end{lemma}
 
 \begin{proof}
-\leanok
 \sketch
 \uses{def:cut-locus,lem:localized-cut-locus,thm:hopf-rinow,lem:normal-ball}
 Radial minimality is downward closed, which proves star-shapedness. A finite cut time is attained by continuity of distance. If the endpoint were neither conjugate nor joined by a second minimizing geodesic, the inverse function theorem and compactness of minimizing initial vectors would extend uniqueness and minimality beyond the cut time, a contradiction. These arguments also give continuity of the cut time along directions where the alternatives remain separated.
@@ -1788,9 +1896,12 @@ single points.
 
 \begin{lemma}[The cut time is upper semicontinuous, hence measurable]
 \label{lem:cut-time-measurable}
-\uses{def:cut-time,def:exponential-map}
 \lean{MorganTianLib.le_cutTime_iff,MorganTianLib.measurable_cutTime}
+\uses{def:cut-time, def:exponential-map}
 \leanok
+
+
+
 Let $M$ be complete and $p\in M$. Then:
 \begin{enumerate}
 \item for every $t\ge0$, $\ \gamma_v$ is minimizing up to $t$ if and
@@ -1809,9 +1920,12 @@ If a direction has cut time below a fixed number, choose a slightly later point 
 
 \begin{definition}[Cut vectors]
 \label{def:cut-vectors}
-\uses{def:cut-time}
 \lean{MorganTianLib.cutVectors}
+\uses{def:cut-time}
 \leanok
+
+
+
 The \emph{cut vectors} of $p$ are
 $$\Sigma_p=\{v\in T_pM\ :\ v\neq0,\ c(v)=1\}.$$
 \end{definition}
@@ -1829,6 +1943,8 @@ visibly measurable.
 \label{lem:radial-graph-null}
 \lean{MorganTianLib.IsRadialGraph,MorganTianLib.addHaar_eq_zero_of_isRadialGraph}
 \leanok
+
+
 Let $E$ be a finite-dimensional real normed space with Haar measure
 $\mu$, and let $A\subseteq E$ be measurable with $0\notin A$. If $A$
 meets every ray $\{ru : r>0\}$ ($\lvert u\rvert=1$) in at most one
@@ -1850,11 +1966,12 @@ slice is null; by Fubini, $A$ is null.
 
 \begin{lemma}[$\exp_p$ carries null sets to null sets]
 \label{lem:exp-preserves-null}
-\uses{def:exponential-map,lem:exponential-differential-jacobi}
-\lean{MorganTianLib.riemannianMeasure_eq_zero_of_chartImage_null,
-  MorganTianLib.riemannianMeasure_image_eq_zero_of_null,
-  MorganTianLib.riemannianMeasure_expMapGlobal_image_eq_zero}
+\lean{MorganTianLib.riemannianMeasure_eq_zero_of_chartImage_null, MorganTianLib.riemannianMeasure_image_eq_zero_of_null, MorganTianLib.riemannianMeasure_expMapGlobal_image_eq_zero}
+\uses{def:exponential-map, lem:exponential-differential-jacobi}
 \leanok
+
+
+
 Let $M$ be complete, $p\in M$, and $N\subseteq T_pM$ a Lebesgue-null
 set. Then $\exp_p(N)$ is null for the Riemannian measure $\mu_g$.
 \end{lemma}
@@ -1884,13 +2001,12 @@ of null sets.
 
 \begin{lemma}[The cut locus is null]
 \label{lem:cut-locus-null}
-\uses{def:cut-locus,def:cut-vectors,def:cut-time,lem:cut-time-measurable,
-  lem:radial-graph-null,lem:exp-preserves-null}
-\lean{MorganTianLib.cutLocus_subset_image_cutVectors,
-  MorganTianLib.isRadialGraph_cutVectors,
-  MorganTianLib.measurableSet_cutVectors,
-  MorganTianLib.riemannianMeasure_cutLocus_eq_zero}
+\lean{MorganTianLib.cutLocus_subset_image_cutVectors, MorganTianLib.isRadialGraph_cutVectors, MorganTianLib.measurableSet_cutVectors, MorganTianLib.riemannianMeasure_cutLocus_eq_zero}
+\uses{def:cut-locus, def:cut-vectors, def:cut-time, lem:cut-time-measurable, lem:radial-graph-null, lem:exp-preserves-null}
 \leanok
+
+
+
 Let $M$ be complete and connected and $p\in M$. Then ${\mathcal C}_p$
 has measure zero. This is part (3) of
 Lemma~\ref{lem:cut-locus-properties}, proved without Sard's theorem and
@@ -1923,18 +2039,16 @@ $\mu_g$-null subset of $M$ containing ${\mathcal C}_p$.
 
 \begin{proposition}[Exponential map to cut locus complement]
 \label{prop:exponential-diffeomorphism-cut-locus}
+\lean{MorganTianLib.bookSegmentDomain_eq_segmentDomain, MorganTianLib.bookCutLocus_eq_cutLocus, MorganTianLib.expMapGlobal_segmentDomain_diffeomorph}
 \uses{def:cut-locus}
-\lean{MorganTianLib.expDifferential_isEquiv_of_minimizing_radial,
-  MorganTianLib.expMapGlobal_locallyInjective_of_minimizing_radial,
-  MorganTianLib.injOn_expMapGlobal_segmentDomain,
-  MorganTianLib.exists_mem_segmentDomain_expMapGlobal_eq}
 \leanok
+
+
 The map
 $$\exp_p\colon U_p\to M\setminus {\mathcal C}_p$$
 is a diffeomorphism. \end{proposition}
 
 \begin{proof}
-\leanok
 \sketch
 \uses{def:cut-locus,def:exponential-map,def:geodesic,lem:cut-locus-properties}
 Every point outside the cut locus has a unique minimizing radial vector, which lies in $U_p$; this proves bijectivity. Such a vector is not conjugate before its cut time, so the exponential differential is invertible there. The inverse function theorem gives a smooth local inverse, and the local inverses agree by uniqueness, producing the global diffeomorphism.
@@ -1946,8 +2060,9 @@ used repeatedly in the volume arguments below.
 \begin{lemma}[Radial structure of the domain $U_p$]
 \label{lem:cut-time-star-shaped}
 \lean{MorganTianLib.bookSegmentDomain_radial_properties}
+\uses{def:cut-locus, lem:cut-locus-properties}
 \leanok
-\uses{def:cut-locus,lem:cut-locus-properties}
+
 Let $M$ be complete and connected, let $p\in M$, let
 $U_p\subset T_pM$ be the
 set of Definition~\ref{def:cut-locus} (open, by
@@ -1969,7 +2084,6 @@ $[0,c(v))$.
 \end{lemma}
 
 \begin{proof}
-\leanok
 \sketch
 \uses{def:cut-locus,lem:cut-locus-properties,prop:minimal-geodesic-no-conjugate,def:conjugate-point,lem:exponential-differential-jacobi}
 Homogeneity of the cut time gives the radial description of $U_p$. Downward closure of minimizing times shows that every shorter multiple of a vector in $U_p$ remains in $U_p$. Conversely, approaching the cut time along the ray identifies the radial boundary and yields the stated formula for the domain.
@@ -1981,8 +2095,9 @@ Homogeneity of the cut time gives the radial description of $U_p$. Downward clos
 \begin{definition}[Injectivity radius]
 \label{def:injectivity-radius}
 \lean{MorganTianLib.metricExpBallDiffeomorph, MorganTianLib.metricBookInjectivityRadius}
+\uses{def:exponential-map, def:cut-locus}
 \leanok
-\uses{def:exponential-map,def:cut-locus}
+
 The {\sl injectivity radius $\inj_M(p)$ of $M$ at $p$} is the
 supremum of the $r> 0$ for which the restriction of $\exp_p\colon T_pM\to M$ to the ball $B(0,r)$ of radius $r$ in $T_pM$
 is a diffeomorphism into $M$. Clearly, $\inj_M(p)$ is the
@@ -2003,7 +2118,8 @@ following lemma.
 
 \begin{lemma}[Klingenberg: short geodesic loop at the injectivity radius]
 \label{lem:klingenberg-loop}
-\uses{def:injectivity-radius,def:exponential-map,def:conjugate-point,def:geodesic,thm:hopf-rinow}
+\uses{def:injectivity-radius, def:exponential-map, def:conjugate-point, def:geodesic, thm:hopf-rinow}
+
 Let $M$ be complete and connected, $p\in M$, and suppose
 $\rho:=\inj_M(p)<\infty$. If no geodesic from $p$ has a conjugate point at distance
 $\le\rho$ along it, then there is a geodesic loop $\sigma\colon
@@ -2027,8 +2143,9 @@ the Uniformization Theorem (Theorem~\ref{thm:uniformization}).
 \begin{definition}[Local isometry]
 \label{def:local-isometry}
 \lean{MorganTianLib.LocalIsometry.IsLocalIsometry, MorganTianLib.LocalIsometry.IsLocalIsometry.of_contMDiff_preservesMetric, MorganTianLib.LocalIsometry.isLocalIsometry_iff_contMDiff_preservesMetric}
-\leanok
 \uses{def:riemannian-metric}
+\leanok
+
 A smooth map $F\colon (N,h)\to (M,g)$ between Riemannian manifolds
 of the same dimension is a {\sl local isometry} if $F^*g=h$, i.e.,
 if $dF_x\colon T_xN\to T_{F(x)}M$ is a linear isometry for every
@@ -2040,9 +2157,10 @@ isometry; its inverse is then also an isometry.
 
 \begin{lemma}[Local isometries and the exponential map]
 \label{lem:local-isometry-exponential}
-\lean{MorganTianLib.LocalIsometry.IsLocalIsometry.isGeodesic_comp, MorganTianLib.LocalIsometry.IsLocalIsometry.expMapIntrinsic_naturality_of_complete}
+\lean{MorganTianLib.LocalIsometry.IsLocalIsometry.isGeodesicCurveOn_comp, MorganTianLib.LocalIsometry.IsLocalIsometry.expMapIntrinsic_naturality_of_complete}
+\uses{def:local-isometry, def:geodesic, def:exponential-map}
 \leanok
-\uses{def:local-isometry,def:geodesic,def:exponential-map}
+
 A local isometry $F\colon N\to M$ carries geodesics to geodesics.
 If in addition $N$ is complete (as a metric space), then for every
 $x\in N$, every $v\in T_xN$ and every $t\in \mathbb{R}$ the point
@@ -2051,7 +2169,6 @@ $$F\left(\exp_x(tv)\right)=\exp_{F(x)}\left(t\,dF_x(v)\right).$$
 \end{lemma}
 
 \begin{proof}
-\leanok
 \sketch
 \uses{thm:levi-civita-connection,thm:hopf-rinow}
 Being a geodesic is a local property, and on a small neighborhood
@@ -2084,7 +2201,8 @@ uniform scale over any compact set, an isometry of metric balls.
 
 \begin{lemma}[Local isometries on normal balls]
 \label{lem:local-isometry-normal-balls}
-\uses{def:local-isometry,def:exponential-map}
+\uses{def:local-isometry, def:exponential-map}
+
 Let $F\colon(N,h)\to(M,g)$ be a local isometry and let $K\subset
 N$ be compact. Then there is $\delta>0$ such that:
 \begin{enumerate}
@@ -2110,15 +2228,16 @@ Apply the exponential-map identity for a local isometry at each preimage of the 
 \begin{lemma}[Rigidity of local isometries]
 \label{lem:local-isometry-rigidity}
 \lean{MorganTianLib.LocalIsometry.IsLocalIsometry.eq_of_pointDatum}
-\leanok
 \uses{def:local-isometry}
+\leanok
+
 Let $N$ be connected and let $F_1,F_2\colon N\to M$ be local
 isometries with $F_1(x_0)=F_2(x_0)$ and $d(F_1)_{x_0}=d(F_2)_{x_0}$
 for some $x_0\in N$. Then $F_1=F_2$.
 \end{lemma}
 
 \begin{proof}
-\leanok
+  \leanok
 \sketch
 \uses{lem:local-isometry-exponential,def:exponential-map,lem:normal-ball}
 Let $A=\{x\in N\,|\, F_1(x)=F_2(x)\text{ and }
@@ -2142,14 +2261,13 @@ $A=N$.
 \begin{lemma}[Local isometries from complete manifolds are coverings]
 \label{lem:local-isometry-covering}
 \lean{MorganTianLib.LocalIsometry.IsLocalIsometry.surjectiveCovering}
-\leanok
 \uses{def:local-isometry}
+
 Let $F\colon N\to M$ be a local isometry, where $N$ is complete and
 $M$ is connected. Then $F$ is a surjective covering map.
 \end{lemma}
 
 \begin{proof}
-\leanok
 \sketch
 \uses{lem:local-isometry-exponential,thm:hopf-rinow,def:exponential-map}
 Completeness of the source and preservation of lengths let every short geodesic from a target point lift for its full parameter interval. Normal-ball inverse branches based at the points of one fiber are pairwise disjoint by uniqueness of lifted geodesics. Every point over a sufficiently small target ball belongs to one such branch, so the ball is evenly covered. Thus the local isometry is a covering map.
@@ -2160,7 +2278,10 @@ Levi-Civita connection of a submanifold of Euclidean space.
 
 \begin{lemma}[Levi-Civita connection of a Euclidean submanifold]
 \label{lem:submanifold-connection}
-\uses{def:riemannian-metric,thm:levi-civita-connection,def:geodesic}
+\lean{MorganTianLib.euclideanSubmanifold_connection_and_geodesic,MorganTianLib.IsEuclideanSubmanifoldGeodesic}
+\uses{def:riemannian-metric, thm:levi-civita-connection, def:geodesic}
+\leanok
+
 Let $M\subset\Ar^N$ be an embedded smooth submanifold with the
 induced Riemannian metric, and for $x\in M$ let
 $P_x\colon\Ar^N\to T_xM$ denote the orthogonal projection. Then
@@ -2194,7 +2315,8 @@ so that $s_\lambda>0$ on $(0,D_\lambda)$.
 
 \begin{lemma}[Jacobi fields and the exponential map in constant curvature]
 \label{lem:constant-curvature-jacobi}
-\uses{lem:constant-curvature-tensor,def:geodesic,def:exponential-map,thm:hopf-rinow}
+\uses{lem:constant-curvature-tensor, def:geodesic, def:exponential-map, thm:hopf-rinow}
+
 Let $(M,g)$ be a complete Riemannian $n$-manifold of constant
 sectional curvature $\lambda$ and let $p\in M$.
 \begin{enumerate}
@@ -2299,7 +2421,8 @@ preceding lemma for repeated use.
 
 \begin{lemma}[Polar model of nonpositive constant curvature]
 \label{lem:model-polar-isometry}
-\uses{def:sectional-curvature,def:exponential-map,def:local-isometry,lem:constant-curvature-jacobi}
+\uses{def:sectional-curvature, def:exponential-map, def:local-isometry, lem:constant-curvature-jacobi}
+
 Let $(M,g)$ be a complete, simply-connected Riemannian $n$-manifold
 of constant sectional curvature $\lambda\le0$ and let $p\in M$.
 Then $G:=\exp_p^*g$ is a smooth metric on $T_pM$, given in
@@ -2319,7 +2442,8 @@ after Definition~\ref{def:sectional-curvature}.
 
 \begin{lemma}[The model spaces]
 \label{lem:model-spaces}
-\uses{def:sectional-curvature,def:geodesic,lem:constant-curvature-tensor}
+\uses{def:sectional-curvature, def:geodesic, lem:constant-curvature-tensor}
+
 Let $n\ge2$.
 \begin{enumerate}
 \item $(\Ar^n,g_{\mathrm{euc}})$ is complete, simply connected, of
@@ -2480,7 +2604,8 @@ derive from the Jacobi equation.
 
 \begin{lemma}[Leading terms of the metric in normal coordinates]
 \label{lem:normal-coordinates-expansion}
-\uses{def:exponential-map,def:riemann-curvature-tensor}
+\uses{def:exponential-map, def:riemann-curvature-tensor}
+
 In Gaussian normal coordinates $(x^1,\ldots,x^n)$ centered at $p$,
 $$g_{ij}(x)=\delta_{ij}+\frac13R_{iklj}x^kx^l
 +\frac16R_{iklj,s}x^kx^lx^s+O(|x|^4),$$
@@ -2517,9 +2642,12 @@ d\theta^{n-1}\\
 
 \begin{lemma}[Laplacian in local coordinates, Christoffel form]
 \label{lem:laplacian-christoffel-formula}
-\uses{lem:hessian-symmetric,thm:levi-civita-connection}
 \lean{MorganTianLib.laplacianAt_eq_chart_formula,MorganTianLib.laplacianAt_eq_invGram_sum}
+\uses{lem:hessian-symmetric, thm:levi-civita-connection}
 \leanok
+
+
+
 In any coordinate chart, the Laplacian of a smooth function $f$
 satisfies
 \[ \triangle f
@@ -2543,9 +2671,12 @@ Trace the coordinate Hessian formula $\Hess(f)_{ij}=\partial_i\partial_jf-\Gamma
 
 \begin{lemma}[Laplacian in local coordinates]
 \label{lem:laplacian-local-formula}
-\uses{lem:laplacian-christoffel-formula}
 \lean{MorganTianLib.laplacianAt_eq_chart_divergence}
+\uses{lem:laplacian-christoffel-formula}
 \leanok
+
+
+
 The \textit{Laplacian operator} acting on scalar
 functions on $M$ is given in local coordinates by
 \[ \triangle  = \frac{1}{\sqrt{\det(g)}}\partial_i
@@ -2592,9 +2723,9 @@ inequality holds across the cut locus in the following weak sense.
 \begin{remark}[Laplacian in weak sense]
 \label{rem:laplacian-weak-sense}
 \lean{MorganTianLib.weakLaplacianLE_iff_test_integral}
-\leanok
+\uses{lem:laplacian-local-formula, def:weak-laplacian}
 \label{calabi}
-\uses{lem:laplacian-local-formula}
+
 Let $f$ be a locally Lipschitz function on $M$ and let $h$ be a
 locally integrable function on $M$. The statement that $\triangle
 f\leq h$ in {\sl the sense of distributions} (or equivalently {\sl
@@ -2626,7 +2757,8 @@ gradient (standard real analysis).
 
 \begin{example}[Distance function Laplacian bound]
 \label{ex:distance-function-laplacian}
-\uses{lem:laplacian-local-formula,def:ricci-curvature,rem:laplacian-weak-sense}
+\uses{lem:laplacian-local-formula, def:ricci-curvature, rem:laplacian-weak-sense}
+
 Let $(M,g)$ be a complete connected Riemannian manifold of
 dimension $n\ge2$, let $p\in M$, and let $f(x)=d(p,x)$ be the
 distance function from $p$. If $(M, g)$ has
@@ -2637,8 +2769,9 @@ in Remark~\ref{rem:laplacian-weak-sense} above).
 \end{example}
 
 \begin{proof}
+  \uses{def:cut-locus, lem:cut-locus-properties, prop:exponential-diffeomorphism-cut-locus, lem:cut-time-star-shaped, lem:volume-element-comparison, lem:geodesic-polar-form, def:ricci-curvature, rem:laplacian-weak-sense, rem:laplacian-weak-green-identity}
 \sketch
-\uses{def:cut-locus,lem:cut-locus-properties,prop:exponential-diffeomorphism-cut-locus,lem:cut-time-star-shaped,lem:volume-element-comparison,lem:geodesic-polar-form,def:ricci-curvature,rem:laplacian-weak-sense}
+
 Use polar coordinates about $p$ off the cut locus. The distance function has unit radial gradient and its Hessian on tangent directions is the second fundamental form of the distance sphere. The assumed mean-curvature bound therefore gives the pointwise Laplacian inequality. Integrate over the domain with a small ball and the cut locus removed, apply the divergence theorem, and let the auxiliary boundaries shrink; their contributions vanish by the local normal-coordinate estimates and nullity of the cut locus, giving the distributional inequality.
 \end{proof}
 \noindent [Compare \cite{Petersen}, p. 284 Lemma 42].
@@ -2672,6 +2805,8 @@ in polar coordinates on $T_{q_k}(H^n_k)$ in terms of the following function.
 \label{def:sinh-comparison-function}
 \lean{MorganTianLib.snK}
 \leanok
+
+
 We define a function $\sn_k$ as follows:$$\sn_k(r)=\begin{cases}
 r \ \  & \text{if }k=0 \\
 \frac{1}{\sqrt{k}}\sinh(\sqrt{k}r) \ \ & \text{if } k>0.
@@ -2702,9 +2837,12 @@ coordinates.
 
 \begin{lemma}[Radial Jacobi fields stay orthogonal to the geodesic]
 \label{lem:radial-jacobi-orthogonal}
-\uses{def:geodesic,def:conjugate-point,def:riemann-curvature-tensor,claim:curvature-symmetries-bianchi}
 \lean{MorganTianLib.chartCurvature_inner_velocity_eq_zero,MorganTianLib.innerVelocity,MorganTianLib.innerVelocity_eq_chartMetricInner_of_geodesicAt,MorganTianLib.IsJacobiFieldOn.hasDerivAt_chartInner_fst_velocity,MorganTianLib.IsJacobiFieldOn.hasDerivAt_chartInner_snd_velocity,MorganTianLib.IsJacobiFieldAlongOn.innerVelocity_snd_eq,MorganTianLib.IsJacobiFieldAlongOn.innerVelocity_fst_eq,MorganTianLib.IsJacobiFieldAlongOn.innerVelocity_fst_eq_zero,MorganTianLib.IsJacobiFieldAlongOn.innerVelocity_snd_eq_zero}
+\uses{def:geodesic, def:conjugate-point, def:riemann-curvature-tensor, claim:curvature-symmetries-bianchi}
 \leanok
+
+
+
 Let $\gamma$ be a geodesic on $[a,b]$ in a Riemannian manifold $(M,g)$,
 and let $J$ be a Jacobi field along $\gamma$, with covariant derivative
 $\nabla J$. Then:
@@ -2733,9 +2871,12 @@ that the operator appearing in the Jacobi equation is self-adjoint.
 
 \begin{lemma}[The Jacobi operator is self-adjoint]
 \label{lem:jacobi-operator-symmetric}
-\uses{def:riemann-curvature-tensor,claim:curvature-symmetries-bianchi}
 \lean{MorganTianLib.curvatureFormAt_jacobi_symm,MorganTianLib.chartCurvature_inner_symm,MorganTianLib.chartCurvatureEndo_inner_symm}
+\uses{def:riemann-curvature-tensor, claim:curvature-symmetries-bianchi}
 \leanok
+
+
+
 Let $u\in T_qM$. The {\sl Jacobi operator} $R_u\colon T_qM\to T_qM$,
 $R_u(X)={\mathcal R}(X,u)u$, is self-adjoint:
 $$\langle R_u(X),Y\rangle=\langle X,R_u(Y)\rangle
@@ -2761,7 +2902,8 @@ identities gives ${\mathcal R}(X,u,u,Y)={\mathcal R}(Y,u,u,X)$.
 
 \begin{lemma}[Radial geometry in geodesic polar coordinates]
 \label{lem:geodesic-polar-form}
-\uses{def:exponential-map,def:geodesic,lem:hessian-symmetric,def:riemann-curvature-tensor,def:sectional-curvature,lem:radial-jacobi-orthogonal,lem:jacobi-operator-symmetric}
+\uses{def:exponential-map, def:geodesic, lem:hessian-symmetric, def:riemann-curvature-tensor, def:sectional-curvature, lem:radial-jacobi-orthogonal, lem:jacobi-operator-symmetric}
+
 Let $p\in M$, let $V$ be an open set of unit vectors in $T_pM$, let
 $0<r_0\le\infty$, and suppose that $\exp_p$ is defined on the cone
 $C=\{tw\,|\,w\in V,\ 0\le t<r_0\}$ and is non-singular at every
@@ -2812,9 +2954,12 @@ Differentiate the family $r\mapsto\exp_p(ru)$ in angular directions. The resulti
 
 \begin{lemma}[Small-time asymptotics of Jacobi-type solutions]
 \label{lem:jacobi-small-time}
-\uses{lem:second-order-linear-ode}
 \lean{MorganTianLib.IsJacobiSolOn.max_norm_le,MorganTianLib.IsJacobiSolOn.norm_snd_le,MorganTianLib.IsJacobiSolOn.norm_fst_le,MorganTianLib.IsJacobiSolOn.norm_snd_sub_le,MorganTianLib.IsJacobiSolOn.norm_fst_sub_le}
+\uses{lem:second-order-linear-ode}
 \leanok
+
+
+
 Let $F$ be a real Banach space and let $R\colon[0,b]\to L(F)$ be
 continuous with $\|R(t)\|\le C$ for all $t\in[0,b]$; set
 $K=\max(1,C)$. Let $(y,v)$ solve the second-order linear equation
@@ -2856,9 +3001,12 @@ $$\|y(t)-t\,v_0\|\le\int_0^t\tfrac12\,CMs^2\,ds
 
 \begin{lemma}[Inverse asymptotics of the matrix Jacobi solution]
 \label{lem:jacobi-matrix-inverse}
-\uses{lem:second-order-linear-ode,lem:jacobi-small-time}
 \lean{MorganTianLib.IsJacobiSolOn.norm_one_sub_inv_smul_fst_le,MorganTianLib.IsJacobiSolOn.isUnit_fst,MorganTianLib.IsJacobiSolOn.norm_snd_mul_inverse_fst_sub_le}
+\uses{lem:second-order-linear-ode, lem:jacobi-small-time}
 \leanok
+
+
+
 Let $F$ be a unital real Banach algebra and let
 $R\colon[0,b]\to L(F)$ be continuous with $\|R\|\le C$ on $[0,b]$;
 set $K=\max(1,C)$ and $M=e^{Kb}$. Let $(y,v)$ solve $y''+R(t)\,y=0$
@@ -2908,9 +3056,12 @@ $\|v(t)y(t)^{-1}-t^{-1}\cdot1\|
 
 \begin{lemma}[No conjugate point $\Rightarrow$ the matrix Jacobi field is invertible]
 \label{lem:jacobi-matrix-nonsingular}
-\uses{def:conjugate-point,lem:second-order-linear-ode,lem:parallel-frame}
 \lean{MorganTianLib.isUnit_of_not_isConjugatePointAt,MorganTianLib.exists_isJacobiFieldAlongOn_mem,MorganTianLib.IsJacobiFieldAlongOn.eqOn_zero_of_mem,MorganTianLib.frameVec_frameLift}
+\uses{def:conjugate-point, lem:second-order-linear-ode, lem:parallel-frame}
 \leanok
+
+
+
 Let $\gamma$ be a geodesic, let $E_1,\ldots,E_n$ be a parallel $g$-orthonormal
 frame along $\gamma$, and let ${\mathcal J}$ be the matrix Jacobi field in that
 frame, i.e.\ the solution of ${\mathcal J}''+{\mathcal R}{\mathcal J}=0$ with
@@ -2953,9 +3104,12 @@ $x=0$, ${\mathcal J}(r)$ is injective, and so invertible.
 
 \begin{lemma}[The radial shape operator and its Riccati equation]
 \label{lem:radial-shape-riccati}
-\uses{lem:second-order-linear-ode,lem:jacobi-matrix-inverse,lem:jacobi-small-time}
-\lean{MorganTianLib.IsRadialJacobi,MorganTianLib.jacobiOpCoeff,MorganTianLib.shapeOp,MorganTianLib.wronskian_eq,MorganTianLib.shapeOp_symm,MorganTianLib.hasDerivAt_shapeOp,MorganTianLib.tendsto_shapeOp_sub_inv_smul_id,MorganTianLib.IsRadialJacobi.isUnit_fst}
+\lean{MorganTianLib.RadialJacobi,MorganTianLib.jacobiOpCoeff,MorganTianLib.shapeOp,MorganTianLib.wronskian_eq,MorganTianLib.shapeOp_symm,MorganTianLib.hasDerivAt_shapeOp,MorganTianLib.tendsto_shapeOp_sub_inv_smul_id,MorganTianLib.IsRadialJacobi.isUnit_fst,MorganTianLib.geodesic_polar_frame_form}
+\uses{lem:second-order-linear-ode, lem:jacobi-matrix-inverse, lem:jacobi-small-time}
 \leanok
+
+
+
 Let $E$ be a real Hilbert space, let $b>0$, and let
 $\mathcal R\colon[0,b]\to L(E)$ be continuous with
 $\|\mathcal R\|\le C$ and each $\mathcal R(t)$ symmetric. Let
@@ -2988,9 +3142,12 @@ Let $\mathcal J$ be the matrix Jacobi solution and set $A=\mathcal J'\mathcal J^
 
 \begin{lemma}[Radial comparison in a parallel frame]
 \label{lem:radial-comparison}
-\uses{lem:radial-shape-riccati,lem:operator-riccati-upper,lem:trace-riccati-comparison,lem:ratio-monotone,lem:jacobi-small-time,def:sinh-comparison-function}
 \lean{MorganTianLib.shapeOp_inner_le,MorganTianLib.norm_jacobi_sq_le,MorganTianLib.trace_shapeOp_le,MorganTianLib.tendsto_snK_div_self,MorganTianLib.tendsto_norm_jacobi_div_self}
+\uses{lem:radial-shape-riccati, lem:operator-riccati-upper, lem:trace-riccati-comparison, lem:ratio-monotone, lem:jacobi-small-time, def:sinh-comparison-function}
 \leanok
+
+
+
 In the setting of Lemma~\ref{lem:radial-shape-riccati}, fix $k\ge0$.
 \begin{enumerate}
 \item If $\langle{\mathcal R}(r)X,X\rangle\ge-k\,|X|^2$ for all
@@ -3013,9 +3170,12 @@ The radial shape operator satisfies the matrix Riccati equation and has asymptot
 
 \begin{lemma}[Derivative of the radial volume element]
 \label{lem:radial-volume-element}
-\uses{lem:radial-shape-riccati}
 \lean{MorganTianLib.volumeElement,MorganTianLib.hasDerivAt_volumeElement}
+\uses{lem:radial-shape-riccati}
 \leanok
+
+
+
 In the setting of Lemma~\ref{lem:radial-shape-riccati}, suppose in addition
 that $\dim E=m<\infty$, and set
 $$\lambda(r)=\det{\mathcal J}(r).$$
@@ -3046,9 +3206,12 @@ $\Tr(XY)=\Tr(YX)$.
 
 \begin{lemma}[Scalar Riccati comparison]
 \label{lem:scalar-riccati-comparison}
-\uses{def:sinh-comparison-function}
 \lean{MorganTianLib.scalar_riccati_comparison,MorganTianLib.scalar_riccati_comparison_Ioi}
+\uses{def:sinh-comparison-function}
 \leanok
+
+
+
 Fix $k\ge 0$ and $0<r_0\le\infty$. Suppose $\phi\colon
 (0,r_0)\to\mathbb{R}$ is differentiable with
 $$\phi'+\phi^2\le k\quad\text{on }(0,r_0),\qquad\text{and}\qquad
@@ -3084,6 +3247,8 @@ coefficients.
 \label{lem:ratio-monotone}
 \lean{MorganTianLib.antitoneOn_div_sq_of_deriv_le,MorganTianLib.monotoneOn_div_sq_of_le_deriv}
 \leanok
+
+
 Fix $r_0>0$ and let $s,h\colon(0,r_0)\to\mathbb R$ be differentiable
 with $s>0$. If $h'\le 2\frac{s'}{s}\,h$ on $(0,r_0)$, then $h/s^2$
 is non-increasing there; if instead $h'\ge2\frac{s'}{s}\,h$, then
@@ -3107,6 +3272,8 @@ non-decreasing).
 \label{lem:scalar-sturm-comparison}
 \lean{MorganTianLib.scalar_sturm_comparison,MorganTianLib.scalar_sturm_pos}
 \leanok
+
+
 Fix $K\ge0$ and $t_1>0$ with $\sqrt K\,t_1<\pi$ (no condition when
 $K=0$), and write $s_K$ for the solution of $s_K''+K\,s_K=0$,
 $s_K(0)=0$, $s_K'(0)=1$ (the function $s_\lambda$ with $\lambda=K$
@@ -3155,9 +3322,12 @@ $\langle V'',V\rangle\ge-K\,|V|^2$ below.
 
 \begin{lemma}[Vector-valued Sturm comparison]
 \label{lem:vector-sturm-comparison}
+\lean{MorganTianLib.vector_sturm_comparison,MorganTianLib.vector_sturm_ne_zero,MorganTianLib.tendsto_norm_div_self_of_hasDerivWithinAt,MorganTianLib.rauch_lower_vector,MorganTianLib.rauch_lower_vector_ne_zero}
 \uses{lem:scalar-sturm-comparison}
-\lean{MorganTianLib.vector_sturm_comparison,MorganTianLib.vector_sturm_ne_zero,MorganTianLib.tendsto_norm_div_self_of_hasDerivWithinAt}
 \leanok
+
+
+
 Fix $K\ge0$ and $T$ with $\sqrt K\,T<\pi$, and let $E$ be a real
 inner product space. Let $V\colon[0,T]\to E$ be continuous on
 $[0,T]$ and twice differentiable on $(0,T)$, and suppose that:
@@ -3185,9 +3355,12 @@ expansion and the endpoint slope analysis.
 
 \begin{lemma}[Jacobi fields in a parallel orthonormal frame]
 \label{lem:jacobi-frame-reduction}
-\uses{lem:parallel-frame,lem:jacobi-field-coordinates,lem:vector-sturm-comparison,def:riemannian-metric}
 \lean{MorganTianLib.jacobi_frame_sturm_comparison,MorganTianLib.jacobi_ne_zero_of_curvature_le,MorganTianLib.chartMetricInner_parseval,MorganTianLib.exists_chartMetricInner_orthonormal,MorganTianLib.chartMetricInner_pos}
+\uses{lem:parallel-frame, lem:jacobi-field-coordinates, lem:vector-sturm-comparison, def:riemannian-metric}
 \leanok
+
+
+
 Fix $K\ge0$ and $T>0$ with $\sqrt K\,T<\pi$. Let $u\colon[0,T]\to U$ be a
 $C^1$ curve in a coordinate chart $U$ (the Gram matrix of the metric being
 differentiable along $u$), and let $(J,\nabla J)$ be a Jacobi field along
@@ -3211,9 +3384,12 @@ Write the Jacobi field and its covariant derivative in a parallel orthonormal fr
 
 \begin{lemma}[No conjugate points under an upper curvature bound]
 \label{lem:conjugate-sturm}
-\uses{def:conjugate-point,def:sectional-curvature,def:geodesic}
 \lean{MorganTianLib.not_isConjugatePointAt_of_sectionalCurvatureAt_le,MorganTianLib.IsJacobiFieldAlongOn.sqrt_metricInner_comparison,MorganTianLib.IsJacobiFieldAlongOn.ne_zero_of_sectionalCurvatureAt_le,MorganTianLib.IsJacobiFieldAlongOn.eqOn_zero,MorganTianLib.scalar_sturm_comparison_extend,MorganTianLib.scalar_sturm_comparison_of_start}
+\uses{def:conjugate-point, def:sectional-curvature, def:geodesic}
 \leanok
+
+
+
 Fix $K\ge 0$, with the convention $\pi/\sqrt K=+\infty$ for $K=0$.
 Let $\gamma\colon[0,T]\to M$ be a unit-speed geodesic such that
 $K(P)\le K$ for every $2$-plane $P$ tangent to $M$ at a point of
@@ -3251,6 +3427,8 @@ argument for its left difference quotients.
 \label{lem:operator-riccati-lower}
 \lean{MorganTianLib.operator_riccati_nonneg,MorganTianLib.minRayleigh,MorganTianLib.le_of_left_slope_eventually_lt,MorganTianLib.apply_eq_minRayleigh_smul}
 \leanok
+
+
 Let $E$ be a nontrivial finite-dimensional real inner product space
 and fix $r_0>0$. Let $s\colon(0,r_0)\to\mathbb R$ be differentiable
 and positive, bounded near $0^+$, and write $a=s'/s$. Let $U(r)$,
@@ -3276,9 +3454,12 @@ comparison along each fixed direction.
 
 \begin{lemma}[Operator Riccati comparison, upper form]
 \label{lem:operator-riccati-upper}
-\uses{lem:scalar-riccati-comparison}
 \lean{MorganTianLib.operator_riccati_le}
+\uses{lem:scalar-riccati-comparison}
 \leanok
+
+
+
 Let $E$ be a real inner product space and fix $k\ge0$, $r_0>0$. Let
 $A(r)$, $r\in(0,r_0)$, be a differentiable family of symmetric
 endomorphisms of $E$ with
@@ -3309,7 +3490,8 @@ yields $\phi(r)\le\sn_k'(r)/\sn_k(r)$ on $(0,r_0)$.
 
 \begin{lemma}[Rauch lower bounds under an upper curvature bound]
 \label{lem:rauch-lower}
-\uses{lem:geodesic-polar-form,def:sectional-curvature}
+\uses{lem:geodesic-polar-form, def:sectional-curvature}
+
 Fix $\bar K\ge0$. In the setting of
 Lemma~\ref{lem:geodesic-polar-form} (a cone $C$ of radius $r_0$ on
 which $\exp_p$ is defined and non-singular), suppose in addition
@@ -3342,19 +3524,12 @@ fields, which are exactly Jacobi fields vanishing at $p$.
 
 \begin{lemma}[Jacobi field comparison along a geodesic]
 \label{lem:jacobi-metric-comparison}
-\uses{def:geodesic,def:conjugate-point,def:sectional-curvature,
-def:sinh-comparison-function,lem:parallel-frame,lem:jacobi-frame-reduction,
-lem:jacobi-operator-symmetric,lem:second-order-linear-ode,lem:radial-comparison}
-\lean{MorganTianLib.exists_isRadialJacobi,
-MorganTianLib.IsJacobiSolOn.apply,
-MorganTianLib.continuousOn_frameCurv,
-MorganTianLib.frameCurvOp_symm,
-MorganTianLib.isJacobiSolOn_frameVec,
-MorganTianLib.exists_isRadialJacobi_of_geodesic,
-MorganTianLib.curvatureFormAt_jacobi_le_of_sectionalCurvatureAt_ge,
-MorganTianLib.metricInner_jacobi_le_snK,
-MorganTianLib.metricInner_jacobi_le_snK_of_sectionalCurvature}
+\lean{MorganTianLib.exists_isRadialJacobi, MorganTianLib.IsJacobiSolOn.apply, MorganTianLib.continuousOn_frameCurv, MorganTianLib.frameCurvOp_symm, MorganTianLib.isJacobiSolOn_frameVec, MorganTianLib.exists_isRadialJacobi_of_geodesic, MorganTianLib.curvatureFormAt_jacobi_le_of_sectionalCurvatureAt_ge, MorganTianLib.metricInner_jacobi_le_snK, MorganTianLib.metricInner_jacobi_le_snK_of_sectionalCurvature}
+\uses{def:geodesic, def:conjugate-point, def:sectional-curvature, def:sinh-comparison-function, lem:parallel-frame, lem:jacobi-frame-reduction, lem:jacobi-operator-symmetric, lem:second-order-linear-ode, lem:radial-comparison}
 \leanok
+
+
+
 Fix $k\ge 0$. Let $\gamma$ be a geodesic of $(M,g)$ parameterized at unit
 speed, defined on an interval containing $[0,r_0]$ in its interior, with
 $\gamma(0)=p$, and suppose
@@ -3370,10 +3545,11 @@ $$|J(r)|_g\ \le\ \sn_k(r)\,|\nabla J(0)|_g,\qquad 0<r<r_0.$$
 
 \begin{proof}
 \sketch
-\uses{lem:parallel-frame,lem:jacobi-frame-reduction,lem:jacobi-operator-symmetric,
 \leanok
+\uses{lem:parallel-frame, lem:jacobi-frame-reduction, lem:jacobi-operator-symmetric, lem:second-order-linear-ode, lem:radial-comparison, def:sinh-comparison-function}
 Pass to a parallel frame, where the Jacobi field solves a vector-valued second-order equation with self-adjoint curvature coefficient. The sectional bound gives the required quadratic-form bound on that coefficient. Vector Sturm comparison against $s_K$ then controls the norm and prevents an additional zero; translating back through the frame gives the geometric statement.
 \end{proof}
+
 
 Now we can compare manifolds of varying sectional curvature with
 those of constant curvature.
@@ -3381,9 +3557,12 @@ those of constant curvature.
 
 \begin{lemma}[Sectional curvature comparison in a parallel frame]
 \label{lem:frame-sectional-comparison}
-\uses{lem:jacobi-metric-comparison,lem:radial-comparison,lem:radial-shape-riccati,def:sectional-curvature,def:sinh-comparison-function}
 \lean{MorganTianLib.sectional_curvature_comparison}
+\uses{lem:jacobi-metric-comparison, lem:radial-comparison, lem:radial-shape-riccati, def:sectional-curvature, def:sinh-comparison-function}
 \leanok
+
+
+
 Fix $k\ge0$. Let $\gamma\colon[a,b]\to M$ be a unit-speed geodesic, with
 $a<0<B<b$ and $r_0\le B$, and suppose that at every point $\gamma(r)$ with
 $0<r<r_0$ every sectional curvature satisfies $-k\le K(P)$. Let
@@ -3419,9 +3598,12 @@ Lemma~\ref{lem:jacobi-metric-comparison}.
 
 \begin{lemma}[Polar metric comparison: the pullback of $g$ under $\exp_p$]
 \label{lem:exp-pullback-metric-comparison}
-\uses{def:exponential-map,lem:exponential-differential-jacobi,lem:frame-sectional-comparison,lem:jacobi-matrix-nonsingular,def:conjugate-point,def:sectional-curvature,def:sinh-comparison-function}
 \lean{MorganTianLib.expDifferential_metricInner_le_of_not_conjugate,MorganTianLib.expDifferential_metricInner_le_of_sectionalCurvature}
+\uses{def:exponential-map, lem:exponential-differential-jacobi, lem:frame-sectional-comparison, lem:jacobi-matrix-nonsingular, def:conjugate-point, def:sectional-curvature, def:sinh-comparison-function}
 \leanok
+
+
+
 Fix $k\ge0$. Let $(M,g)$ be complete, let $p\in M$, let $u\in T_pM$ be a unit
 vector, and let $0<r<r_0$. Write $\gamma_u(s)=\exp_p(su)$ for the unit-speed
 geodesic in the direction $u$. Suppose that
@@ -3463,9 +3645,12 @@ Decompose each tangent vector into radial and angular parts. The Gauss lemma tre
 
 \begin{lemma}[Polar volume comparison: the Jacobian of $\exp_p$]
 \label{lem:exp-pullback-volume-comparison}
-\uses{def:exponential-map,lem:exponential-differential-jacobi,lem:volume-element-comparison,lem:jacobi-matrix-nonsingular,def:conjugate-point,def:ricci-curvature,def:sinh-comparison-function}
 \lean{MorganTianLib.expDifferential_det_le_of_not_conjugate,MorganTianLib.expDifferential_det_le_of_sectionalCurvature}
+\uses{def:exponential-map, lem:exponential-differential-jacobi, lem:volume-element-comparison, lem:jacobi-matrix-nonsingular, def:conjugate-point, def:ricci-curvature, def:sinh-comparison-function}
 \leanok
+
+
+
 Fix $k\ge0$ and let $n=\dim M\ge2$. Let $(M,g)$ be complete, let $p\in M$, let
 $u\in T_pM$ be a unit vector, and let $0<r<r_0$. Write
 $\gamma_u(s)=\exp_p(su)$. Suppose that
@@ -3511,11 +3696,12 @@ Represent the angular differential of $\exp_p$ by the matrix of radial Jacobi fi
 
 \begin{theorem}[Sectional curvature comparison theorem]
 \label{thm:sectional-curvature-comparison}
+\lean{MorganTianLib.expDifferential_metricInner_le_of_minimizing, MorganTianLib.sectional_curvature_comparison_radial_of_minimizing}
+\uses{def:sectional-curvature, def:sinh-comparison-function}
 \label{SCC}
-\uses{def:sectional-curvature,def:sinh-comparison-function}
-\lean{MorganTianLib.expDifferential_metricInner_le_of_minimizing,
-  MorganTianLib.sectional_curvature_comparison_radial_of_minimizing}
-\leanok
+
+
+
 (Sectional Curvature Comparison) Fix $k\ge 0$. Let $(M, g)$ be a
 Riemannian manifold with the property that $-k \leq K(P)$ for every
 $2$-plane $P$ in $TM$. Fix a minimizing geodesic $\gamma\colon
@@ -3557,27 +3743,13 @@ exponential mapping.
 
 \begin{lemma}[Exponential map local diffeomorphism for bounded curvature]
 \label{lem:local-diffeomorphism-bounded-curvature}
-\label{localdiffeo}
-\uses{def:curvature-operator-norm,def:exponential-map}
-\lean{MorganTianLib.curvatureTangentBall,
-MorganTianLib.curvatureBall,
-MorganTianLib.HasCurvatureOperatorNormLeOn,
-MorganTianLib.hasStrictFDerivAt_chartReading_expMapGlobal,
-MorganTianLib.speedSq_globalGeodesic,
-MorganTianLib.globalGeodesic_smul,
-MorganTianLib.not_isConjugatePointAt_one_of_sectionalCurvatureAt_le,
-MorganTianLib.not_isConjugatePointAt_one_zero_vec,
-MorganTianLib.not_isConjugatePointAt_one_of_hasCurvatureOperatorNormLeOn,
-MorganTianLib.expDifferential_isEquiv_of_not_conjugate,
-MorganTianLib.expMapGlobal_locallyInjective_of_not_conjugate,
-MorganTianLib.expMapGlobal_map_nhds_of_not_conjugate,
-MorganTianLib.expMapGlobal_isLocalHomeomorphAt_of_not_conjugate,
-MorganTianLib.continuousAt_expMapGlobal,
-MorganTianLib.continuous_expMapGlobal,
-MorganTianLib.dist_expMapGlobal_le,
-MorganTianLib.expMapGlobal_mapsTo_curvatureBall,
-MorganTianLib.expMapGlobal_isLocalDiffeo_curvatureBall}
+\lean{MorganTianLib.curvatureTangentBall, MorganTianLib.curvatureBall, MorganTianLib.HasCurvatureOperatorNormLeOn, MorganTianLib.hasStrictFDerivAt_chartReading_expMapGlobal, MorganTianLib.speedSq_globalGeodesic, MorganTianLib.globalGeodesic_smul, MorganTianLib.not_isConjugatePointAt_one_of_sectionalCurvatureAt_le, MorganTianLib.not_isConjugatePointAt_one_zero_vec, MorganTianLib.not_isConjugatePointAt_one_of_hasCurvatureOperatorNormLeOn, MorganTianLib.expDifferential_isEquiv_of_not_conjugate, MorganTianLib.expMapGlobal_locallyInjective_of_not_conjugate, MorganTianLib.expMapGlobal_map_nhds_of_not_conjugate, MorganTianLib.expMapGlobal_isLocalHomeomorphAt_of_not_conjugate, MorganTianLib.continuousAt_expMapGlobal, MorganTianLib.continuous_expMapGlobal, MorganTianLib.dist_expMapGlobal_le, MorganTianLib.expMapGlobal_mapsTo_curvatureBall, MorganTianLib.expMapGlobal_isLocalDiffeomorphAt_curvatureTangentBall, MorganTianLib.expMapGlobal_isLocalDiffeo_curvatureBall}
+\uses{def:curvature-operator-norm, def:exponential-map}
 \leanok
+\label{localdiffeo}
+
+
+
 Fix $K\ge 0$, with the convention $\pi/\sqrt K=+\infty$ for $K=0$.
 Let $(M,g)$ be complete, so that (Theorem~\ref{thm:hopf-rinow})
 $\exp_p$ is defined on all of $T_pM$, and in particular on the ball
@@ -3597,9 +3769,10 @@ for instance, when $B(p,\pi/\sqrt K)$ has compact closure.
 
 \begin{proof}
 \sketch
-\uses{lem:conjugate-sturm,def:curvature-operator-norm,def:exponential-map,def:sectional-curvature,
+\uses{lem:conjugate-sturm, def:curvature-operator-norm, def:exponential-map, def:sectional-curvature, lem:exponential-differential-jacobi, lem:second-order-linear-ode, def:conjugate-point, thm:hopf-rinow}
 The curvature-operator bound implies the same upper bound for sectional curvature. Every radial geodesic of length below $\pi/\sqrt K$ has no conjugate point by Sturm comparison, so the differential of $\exp_p$ is nonsingular there. The inverse function theorem gives a local diffeomorphism at every nonzero vector; at the origin this is the standard exponential-map differential identity.
 \end{proof}
+
 
 There is a crucial comparison result for volume which involves the
 Ricci curvature. Its algebraic-analytic core is the following traced
@@ -3609,9 +3782,12 @@ Cauchy--Schwarz inequality for traces.
 
 \begin{lemma}[Trace Riccati comparison]
 \label{lem:trace-riccati-comparison}
-\uses{def:sinh-comparison-function}
 \lean{MorganTianLib.trace_riccati_comparison,MorganTianLib.sq_trace_le_finrank_mul_trace_comp_self}
+\uses{def:sinh-comparison-function}
 \leanok
+
+
+
 Fix $k\ge0$ and $r_0>0$. Let $E$ be a real inner product space of
 finite dimension $m\ge1$ and let $A(r)$, $0<r<r_0$, be a
 differentiable family of symmetric endomorphisms of $E$ such that
@@ -3652,7 +3828,8 @@ volume--injectivity radius estimate.
 
 \begin{lemma}[Monotonicity of the volume element]
 \label{lem:volume-element-comparison}
-\uses{lem:geodesic-polar-form,def:ricci-curvature,def:sinh-comparison-function}
+\uses{lem:geodesic-polar-form, def:ricci-curvature, def:sinh-comparison-function}
+
 Fix $k\ge0$. Let $p\in M$ and let $\gamma(t)=\exp_p(tv)$ be a
 unit-speed radial geodesic, defined and free of conjugate points on
 $[0,r_0)$, along which $\Ric\ge-(n-1)k$. Let $\lambda(t,\theta)$ be
@@ -3687,9 +3864,12 @@ geodesic sphere.
 
 \begin{lemma}[Volume element comparison in a parallel frame]
 \label{lem:frame-volume-comparison}
-\uses{lem:radial-shape-riccati,lem:radial-volume-element,lem:trace-riccati-comparison,lem:ratio-monotone,def:ricci-curvature,def:sinh-comparison-function}
-\lean{MorganTianLib.sq_trace_sub_le,MorganTianLib.trace_riccati_comparison_perp,MorganTianLib.IsRadialJacobi.apply_radial,MorganTianLib.shapeOp_apply_radial,MorganTianLib.trace_shapeOp_le_perp,MorganTianLib.antitoneOn_div_pow_of_deriv_le,MorganTianLib.tendsto_volumeElement_div_pow,MorganTianLib.volumeElement_pos,MorganTianLib.polarDensity,MorganTianLib.hasDerivAt_polarDensity,MorganTianLib.antitoneOn_polarDensity_div_snK_pow,MorganTianLib.tendsto_polarDensity_div_snK_pow,MorganTianLib.polarDensity_le_snK_pow,MorganTianLib.trace_frameCurvOp_eq_ricciAt,MorganTianLib.frameCurvOp_radial_eq_zero,MorganTianLib.exists_isRadialJacobi_of_geodesic_velocity,MorganTianLib.ricci_curvature_comparison}
+\lean{MorganTianLib.sq_trace_sub_le,MorganTianLib.trace_riccati_comparison_perp,MorganTianLib.IsRadialJacobi.apply_radial,MorganTianLib.shapeOp_apply_radial,MorganTianLib.trace_shapeOp_le_perp,MorganTianLib.antitoneOn_div_pow_of_deriv_le,MorganTianLib.tendsto_volumeElement_div_pow,MorganTianLib.volumeElement_pos,MorganTianLib.polarDensity,MorganTianLib.hasDerivAt_polarDensity,MorganTianLib.antitoneOn_polarDensity_div_snK_pow,MorganTianLib.tendsto_polarDensity_div_snK_pow,MorganTianLib.polarDensity_le_snK_pow,MorganTianLib.trace_frameCurvOp_eq_ricciAt,MorganTianLib.frameCurvOp_radial_eq_zero,MorganTianLib.exists_isRadialJacobi_of_geodesic_velocity,MorganTianLib.ricci_curvature_comparison,MorganTianLib.volume_element_comparison_frame}
+\uses{lem:radial-shape-riccati, lem:radial-volume-element, lem:trace-riccati-comparison, lem:ratio-monotone, def:ricci-curvature, def:sinh-comparison-function}
 \leanok
+
+
+
 Fix $k\ge0$ and let $\mathcal J$ be the matrix Jacobi field of a unit-speed
 geodesic $\gamma$ on a parallel orthonormal frame of dimension $n\ge2$ whose
 $0$-th vector is $\gamma'$, so that the radial direction $u$ satisfies
@@ -3716,12 +3896,12 @@ The logarithmic derivative of the radial Jacobian is the trace of the Riccati op
 
 \begin{theorem}[Ricci curvature comparison theorem]
 \label{thm:ricci-curvature-comparison}
+\lean{MorganTianLib.ricci_curvature_comparison, MorganTianLib.expDifferential_det_le_of_minimizing, MorganTianLib.ricci_curvature_comparison_radial_of_minimizing}
+\uses{def:ricci-curvature, def:sinh-comparison-function}
 \label{riccurvcomp}
-\uses{def:ricci-curvature,def:sinh-comparison-function}
-\lean{MorganTianLib.ricci_curvature_comparison,
-  MorganTianLib.expDifferential_det_le_of_minimizing,
-  MorganTianLib.ricci_curvature_comparison_radial_of_minimizing}
-\leanok
+
+
+
 {\bf (Ricci curvature comparison)} Fix $k\ge 0$. Assume that $(M,
 g)$ satisfies $\Ric \geq -(n-1)k$. Let $\gamma\colon [0,r_0)\to
 M$ be a minimal geodesic of unit speed. Then for any $r<r_0$ at
@@ -3769,7 +3949,8 @@ record that the cut-locus apparatus localizes to such a ball.
 
 \begin{lemma}[Localized cut-locus apparatus]
 \label{lem:localized-cut-locus}
-\uses{def:exponential-map,def:geodesic,def:conjugate-point}
+\uses{def:exponential-map, def:geodesic, def:conjugate-point}
+
 Let $(M,g)$ be a Riemannian manifold, not assumed complete, let
 $p\in M$ and $R>0$, and suppose that $B(p,R)$ has compact closure
 in $M$. Then:
@@ -3804,6 +3985,8 @@ Restrict the cut-time and exponential-map construction to the compact set of dir
 \label{lem:integral-ratio-monotone}
 \lean{MorganTianLib.antitoneOn_integral_ratio}
 \leanok
+
+
 Let $R>0$ and let $f,g\colon(0,R)\to\mathbb R$ be integrable on $(0,r)$ for
 every $r<R$, with $g>0$ on $(0,R)$. If $f/g$ is non-increasing on $(0,R)$,
 then
@@ -3835,6 +4018,8 @@ differentiability of $\Phi$ or $\Psi$ is used.)
 \label{lem:integral-ratio-normalized}
 \lean{MorganTianLib.tendsto_integral_ratio}
 \leanok
+
+
 Let $R>0$ and let $f,g\colon(0,R)\to\mathbb R$ be integrable on $(0,r)$ for
 every $r<R$, with $g>0$ on $(0,R)$. If the pointwise ratio $f/g$ tends to $1$
 as $t\to0^+$, then
@@ -3857,9 +4042,12 @@ fundamental theorem of calculus is used.
 
 \begin{lemma}[Bishop-Gromov along a radial direction]
 \label{lem:frame-bishop-gromov}
-\uses{lem:frame-volume-comparison,lem:integral-ratio-monotone,lem:integral-ratio-normalized,def:ricci-curvature,def:sinh-comparison-function}
 \lean{MorganTianLib.bishop_gromov_radial,MorganTianLib.tendsto_bishop_gromov_radial}
+\uses{lem:frame-volume-comparison, lem:integral-ratio-monotone, lem:integral-ratio-normalized, def:ricci-curvature, def:sinh-comparison-function}
 \leanok
+
+
+
 In the situation of Lemma~\ref{lem:frame-volume-comparison} --- a unit-speed
 geodesic $\gamma$ on a parallel orthonormal frame of dimension $n\ge2$ whose
 $0$-th vector is $\gamma'$, free of conjugate points on $(0,r_0)$, along which
@@ -3890,9 +4078,12 @@ ratio of primitives tends to $1$.
 
 \begin{definition}[The volume density in a chart]
 \label{def:chart-volume-density}
-\uses{def:riemannian-metric}
 \lean{MorganTianLib.chartVolumeDensity}
+\uses{def:riemannian-metric}
 \leanok
+
+
+
 Let $(M,g)$ be an $n$-dimensional Riemannian manifold without boundary and let
 $\varphi_\alpha\colon U_\alpha\to E$ be a chart. Write
 $$g^\alpha_{ij}(x)=g_x(\partial^\alpha_i,\partial^\alpha_j),\qquad x\in U_\alpha,$$
@@ -3907,9 +4098,12 @@ $$\lambda_\alpha(y)=\sqrt{\det g^\alpha\bigl(\varphi_\alpha^{-1}(y)\bigr)},
 
 \begin{lemma}[Transformation law of the volume density]
 \label{lem:volume-density-change}
-\uses{def:chart-volume-density}
 \lean{MorganTianLib.chartGramMatrix_det_change,MorganTianLib.sqrt_chartGramMatrix_det_change}
+\uses{def:chart-volume-density}
 \leanok
+
+
+
 Let $\alpha,\beta$ be charts and $x\in U_\alpha\cap U_\beta$. Let
 $A=D(\varphi_\alpha\circ\varphi_\beta^{-1})$ be the derivative at $\varphi_\beta(x)$ of the
 transition map, viewed as the change of coordinate frames
@@ -3936,9 +4130,12 @@ roots and using $\sqrt{(\det A)^2}=\lvert\det A\rvert$ gives the last identity.
 
 \begin{lemma}[The chart volume is chart-independent]
 \label{lem:riemannian-measure-well-defined}
-\uses{def:chart-volume-density,lem:volume-density-change}
 \lean{MorganTianLib.chartMeasure_apply_eq}
+\uses{def:chart-volume-density, lem:volume-density-change}
 \leanok
+
+
+
 For a chart $\alpha$ and a measurable $S\subseteq U_\alpha$ set
 $$\mu_\alpha(S)=\int_{\varphi_\alpha(S)}\lambda_\alpha\,d\mu ,$$
 where $\mu$ is Lebesgue (Haar) measure on the model space. If $S$ is a measurable set with
@@ -3968,9 +4165,12 @@ right-hand side is $\mu_\beta(S)$.
 
 \begin{definition}[The Riemannian measure]
 \label{def:riemannian-measure}
-\uses{def:chart-volume-density,lem:riemannian-measure-well-defined}
 \lean{MorganTianLib.riemannianMeasure,MorganTianLib.riemannianMeasure_apply_chart}
+\uses{def:chart-volume-density, lem:riemannian-measure-well-defined}
 \leanok
+
+
+
 Let $(M,g)$ be a second-countable Riemannian manifold without boundary. Choose a countable
 family of charts $\{(U_{\alpha_n},\varphi_{\alpha_n})\}_{n\in\N}$ covering $M$, and
 disjointify it into the Borel partition
@@ -3992,9 +4192,12 @@ additivity of $\mu_\alpha$ yields $\mu_g(S)=\mu_\alpha(S)$.
 
 \begin{lemma}[Change of variables for the Riemannian measure]
 \label{lem:riemannian-measure-jacobian}
-\uses{def:riemannian-measure,def:chart-volume-density}
 \lean{MorganTianLib.riemannianMeasure_eq_lintegral_jacobian}
+\uses{def:riemannian-measure, def:chart-volume-density}
 \leanok
+
+
+
 Let $S\subseteq U_\alpha$ be measurable and let $\psi\colon U\to M$ be an injective map from a
 measurable $U\subseteq E$ with $\varphi_\alpha\circ\psi$ differentiable on $U$ and
 $(\varphi_\alpha\circ\psi)(U)=\varphi_\alpha(S)$. Then
@@ -4030,9 +4233,12 @@ that is what the notion of a Riemannian Jacobian does.
 
 \begin{definition}[Riemannian Jacobian]
 \label{def:riemannian-jacobian}
-\uses{def:chart-volume-density}
 \lean{MorganTianLib.HasRiemannianJacobianOn}
+\uses{def:chart-volume-density}
 \leanok
+
+
+
 Let $\psi\colon U\to M$ with $U\subseteq E$. A function $\rho\colon
 U\to\R$ is a \emph{Riemannian Jacobian} for $\psi$ on $U$ if for every
 $v\in U$ and every chart $\alpha$ whose domain contains $\psi(v)$, the
@@ -4046,10 +4252,12 @@ depend on $\alpha$, so this is a condition on $\rho$ and not a choice.
 
 \begin{lemma}[Change of variables, globally]
 \label{lem:riemannian-measure-jacobian-global}
-\uses{def:riemannian-measure,def:riemannian-jacobian,
-  lem:riemannian-measure-jacobian}
 \lean{MorganTianLib.riemannianMeasure_image_eq_lintegral_jacobian}
+\uses{def:riemannian-measure, def:riemannian-jacobian, lem:riemannian-measure-jacobian}
 \leanok
+
+
+
 Let $U\subseteq E$ be measurable, $\psi\colon E\to M$ continuous and
 injective on $U$, and let $\rho$ be a Riemannian Jacobian for $\psi$ on
 $U$. Then
@@ -4083,11 +4291,12 @@ to each $U_n$.
 
 \begin{lemma}[The Riemannian Jacobian of the exponential map]
 \label{lem:exponential-riemannian-jacobian}
-\uses{def:riemannian-jacobian,def:exponential-map,lem:exponential-differential-jacobi,
-  lem:volume-density-change,def:cut-time-locus,prop:exponential-diffeomorphism-cut-locus}
-\lean{MorganTianLib.expRiemannianJacobian,MorganTianLib.hasRiemannianJacobianOn_expMapGlobal,
-  MorganTianLib.riemannianMeasure_image_segmentDomain_eq_lintegral}
+\lean{MorganTianLib.expRiemannianJacobian,MorganTianLib.hasRiemannianJacobianOn_expMapGlobal, MorganTianLib.riemannianMeasure_image_segmentDomain_eq_lintegral}
+\uses{def:riemannian-jacobian, def:exponential-map, lem:exponential-differential-jacobi, lem:volume-density-change, def:cut-time-locus, prop:exponential-diffeomorphism-cut-locus}
 \leanok
+
+
+
 Fix $p\in M$. The exponential map $\exp_p\colon T_pM\to M$ carries a Riemannian
 Jacobian on all of $T_pM$, namely the function
 $$\rho_p(v)=\bigl\lvert\det D(\varphi_{\exp_p(v)}\circ\exp_p)_v\bigr\rvert\cdot
@@ -4099,15 +4308,18 @@ $$\Vol\bigl(\exp_p(U)\bigr)=\int_U\rho_p\,d\mu.$$
 
 \begin{proof}
 \sketch
-\uses{def:riemannian-jacobian,lem:exponential-differential-jacobi,lem:volume-density-change,
 \leanok
+\uses{def:riemannian-jacobian, lem:exponential-differential-jacobi, lem:volume-density-change, lem:riemannian-measure-jacobian-global, prop:exponential-diffeomorphism-cut-locus}
 Choose orthonormal frames at the source and target. In those frames the Riemannian Jacobian is the absolute determinant of the differential. The radial frame identifies the angular block with the Jacobi matrix and the radial block with the unit vector by the Gauss lemma. Thus the determinant equals the polar volume density, with the coordinate Gram factors cancelling by the transformation law.
 \end{proof}
+
 
 \begin{lemma}[Polar coordinates for a ball integral]
 \label{lem:polar-coordinates}
 \lean{MorganTianLib.lintegral_eq_polar,MorganTianLib.setLIntegral_ball_eq_polar}
 \leanok
+
+
 Let $E$ be a real normed space of finite dimension $n\ge1$, let $\mu$ be a Haar
 measure on $E$, let $S\subset E$ be the unit sphere, and let $\mu_S$ be the
 induced measure on $S$ (so that $\mu_S(A)=n\cdot\mu\bigl((0,1)\cdot A\bigr)$).
@@ -4131,9 +4343,12 @@ $t<r$; the inner integral therefore runs over $(0,r)$.
 
 \begin{lemma}[The model polar volume]
 \label{lem:model-ball-volume}
-\uses{def:sinh-comparison-function,lem:polar-coordinates}
-\lean{MorganTianLib.modelBallVolume_eq}
+\lean{MorganTianLib.modelBallVolume_eq,MorganTianLib.model_polar_volume_identity}
+\uses{def:sinh-comparison-function, lem:polar-coordinates}
 \leanok
+
+
+
 Write $\rho_k(v)=\bigl(\sn_k(|v|)/|v|\bigr)^{n-1}$ for the volume density of the
 exponential map of the model space $H^n_k$ (Lemma~\ref{lem:constant-curvature-jacobi}),
 and $\Vol B_{H^n_k}(q_k,r)=\int_{B(0,r)}\rho_k\,d\mu$. Then
@@ -4154,9 +4369,12 @@ the constant $\mu_S(S)=\omega_{n-1}$.
 
 \begin{lemma}[Bishop-Gromov for the volume of a ball]
 \label{lem:bishop-gromov-ball}
-\uses{lem:polar-coordinates,lem:model-ball-volume,def:sinh-comparison-function}
 \lean{MorganTianLib.bishop_gromov_ball,MorganTianLib.bishop_gromov_ball_ratio}
+\uses{lem:polar-coordinates, lem:model-ball-volume, def:sinh-comparison-function}
 \leanok
+
+
+
 Let $k\ge0$ and $R>0$. Let $\rho\ge0$ be a measurable density on $T_pM$ (thought of
 as $\rho(v)=|\det d(\exp_p)_v|$, extended by $0$ past the cut time), and put
 $\Vol(r)=\int_{B(0,r)}\rho\,d\mu$. Suppose that in every unit direction
@@ -4180,10 +4398,11 @@ Apply the radial Bishop--Gromov inequality direction by direction, extending eac
 
 \begin{theorem}[Bishop-Gromov relative volume comparison]
 \label{thm:bishop-gromov}
-\label{BishopGromov}
-\uses{def:ricci-curvature,thm:ricci-curvature-comparison,lem:bishop-gromov-ball,def:riemannian-measure}
 \lean{MorganTianLib.bishop_gromov_ball,MorganTianLib.bishop_gromov_ball_ratio}
-\leanok
+\uses{def:ricci-curvature, thm:ricci-curvature-comparison, lem:bishop-gromov-ball, def:riemannian-measure}
+\label{BishopGromov}
+
+
 (Relative Volume Comparison, Bishop-Gromov 1964-1980) Suppose $(M,
 g)$ is a Riemannian manifold. Fix a point $p\in M$, and suppose that
 $B(p,R)$ has compact closure in $M$. Suppose that for some $k\ge 0$
@@ -4197,7 +4416,6 @@ then $\Vol\,B(p,r)/r^n$ is a non-increasing function of $r$ for $r<R$.
 \end{theorem}
 
 \begin{proof}
-\leanok
 \sketch
 \uses{lem:volume-element-comparison,lem:geodesic-polar-form,lem:localized-cut-locus,lem:model-polar-isometry,lem:normal-ball}
 For almost every radial direction, Ricci comparison makes the ratio of the radial Jacobian to the model density nonincreasing until the cut time. Extend it by zero after the cut time and integrate first in radius and then over the unit sphere. The elementary ratio-of-integrals lemma preserves monotonicity under both integrations. Polar coordinates and nullity of the cut locus identify the resulting integrals with the volumes of the manifold and model balls, and the small-radius normalization gives the limiting value one.
@@ -4214,7 +4432,10 @@ quantities in play is recorded in the following lemma.
 
 \begin{lemma}[Rescaling the metric]
 \label{lem:metric-rescaling}
-\uses{def:riemannian-metric,def:sectional-curvature,def:curvature-operator-norm,def:ricci-curvature,def:injectivity-radius,def:exponential-map}
+\lean{MorganTianLib.metricRescalingLaws}
+\leanok
+\uses{def:riemannian-metric, def:sectional-curvature, def:curvature-operator-norm, def:ricci-curvature, def:injectivity-radius, def:exponential-map}
+
 Let $(M,g)$ be a Riemannian manifold and let $c>0$ be a constant;
 set $g'=c\,g$. Then:
 \begin{enumerate}
@@ -4244,8 +4465,9 @@ For $\tilde g=cg$, the inverse metric contributes $c^{-1}$ and derivatives of th
 
 \begin{proposition}[Bounded curvature implies volume-injectivity relation]
 \label{prop:injectivity-radius-volume}
+\uses{def:injectivity-radius, def:curvature-operator-norm}
 \label{injvol}
-\uses{def:injectivity-radius,def:curvature-operator-norm}
+
 Fix an integer $n>0$. For every $\epsilon>0$ there is $\delta>0$
 depending on $n$ and $\epsilon$ such that the following holds.
 Suppose that $(M^n,g)$ is a complete connected Riemannian
@@ -4285,8 +4507,10 @@ then forces the volume downstairs to be small.
 
 \begin{lemma}[The pulled-back ball and lifts of short curves]
 \label{lem:pullback-ball}
-\uses{def:exponential-map,def:geodesic,lem:geodesic-polar-form,def:local-isometry}
 \source{cheeger-gromov-taylor:page-0032}
+\uses{def:exponential-map, def:geodesic, lem:geodesic-polar-form, def:local-isometry}
+
+
 Let $p\in M$, let $0<\rho_*\le\infty$, and suppose that
 $\exp_p$ is defined and non-singular on
 $B=B(0,\rho_*)\subset T_pM$. Let $\tilde g=\exp_p^*g$ on $B$.
@@ -4354,7 +4578,8 @@ Use the exponential map as a local isometry on the pulled-back metric ball. Shor
 
 \begin{lemma}[Unique minimizers and convexity in the pulled-back ball]
 \label{lem:pullback-unique-minimizers}
-\uses{lem:pullback-ball,def:sectional-curvature,lem:rauch-lower,lem:conjugate-sturm}
+\uses{lem:pullback-ball, def:sectional-curvature, lem:rauch-lower, lem:conjugate-sturm}
+
 In the setting of Lemma~\ref{lem:pullback-ball} with $\rho_*=1$,
 suppose in addition that $|K(P)|\le1$ for every $2$-plane tangent
 to $(B,\tilde g)$. Write $\widetilde\exp_z$ for the exponential
@@ -4509,8 +4734,10 @@ $\Omega_z\setminus\{z\}$ to all of $\Omega_z$, which is assertion
 
 \begin{lemma}[Distinctness of the lifted multiples of a geodesic loop]
 \label{lem:loop-multiples-distinct}
-\uses{lem:pullback-ball,lem:pullback-unique-minimizers}
 \source{cheeger-gromov-taylor:page-0033}
+\uses{lem:pullback-ball, lem:pullback-unique-minimizers}
+
+
 In the setting of Lemma~\ref{lem:pullback-unique-minimizers}
 ($\rho_*=1$, $|K(P)|\le1$ on $(B,\tilde g)$), let $\gamma$ be a
 geodesic loop at $p$ of length $2\ell>0$, smooth on the open
@@ -4674,8 +4901,9 @@ Hence the $x_m$, $0\le m\le N$, are pairwise distinct.
 
 \begin{theorem}[Volume lower bound implies injectivity radius lower bound]
 \label{thm:volume-injectivity-radius}
+\uses{def:injectivity-radius, def:curvature-operator-norm}
 \label{volinj}
-\uses{def:injectivity-radius,def:curvature-operator-norm}
+
 Fix an integer $n>0$. For every $\epsilon>0$ there is $\delta>0$
 depending on $n$ and $\epsilon$ such that the following holds.
 Suppose that $(M^n,g)$ is a complete connected Riemannian

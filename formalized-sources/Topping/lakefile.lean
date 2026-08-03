@@ -10,6 +10,7 @@ package Topping where
   ]
 
 require DoCarmoLib from "../DoCarmo"
+require MorganTianLib from "../MorganTian"
 
 @[default_target]
 lean_lib Topping where

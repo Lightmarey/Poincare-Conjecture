@@ -13,10 +13,14 @@ do Carmo uses immediately afterwards:
 * a relation saying that an own-foot field is parallel on every member of a
   finite partition, together with the induced endpoint transport relation.
 
-The latter is deliberately relational.  The existing parallel-field API gives
-chart-local certificates, but a canonical transport map for an arbitrary
-piecewise differentiable (not necessarily geodesic) curve still needs an
-existence/uniqueness theorem for each smooth piece.
+**The transport relation in this file is defective and superseded.**  It imposes
+the parallel-transport ODE at the endpoints of each closed piece, using the
+two-sided `deriv` of the chart reading — which does not exist at a corner, so
+the condition degenerates there instead of constraining transport.  Both
+predicates carry the details in their own docstrings.  The corrected definition,
+with the existence and uniqueness theorems do Carmo's Definition 3.1 asserts, is
+`DoCarmoCh3PiecewiseTransport.lean`.  The vertex/velocity material above is
+unaffected.
 -/
 
 open Bundle Manifold Set
@@ -67,7 +71,7 @@ end RiemannianMetric
 
 namespace Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+variable {E : Type*} [NormedAddCommGroup E]
   [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
   [NeZero (Module.finrank ℝ E)]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
@@ -142,7 +146,20 @@ theorem vertexAngle_eq_angle_left_right (g : RiemannianMetric I M)
 /-- **Math.** An own-foot field is piecewise parallel along `c` on `[a,b]` if
 `c` has a finite strict differentiability partition and the field is parallel
 on every partition segment.  Requiring one global own-foot field records the
-matching condition at each vertex. -/
+matching condition at each vertex.
+
+**Defective; do not build on this.**  Use
+`Riemannian.Geodesic.IsPiecewiseParallelAlong` in
+`DoCarmoCh3PiecewiseTransport.lean`, which carries the existence and uniqueness
+theorems.  The problem is at the corners: `Jacobi.IsParallelFieldAlongOn` on the
+*closed* piece `[τ i, τ (i+1)]` imposes its ODE at every point of that piece,
+with the coefficient built from the **two-sided** `deriv` of the chart reading.
+At an interior breakpoint of a curve that genuinely breaks, that derivative does
+not exist, so `deriv` returns `0` and — the Christoffel contraction being linear
+in that slot — the condition imposed at the corner degenerates instead of
+constraining transport.  See
+`chartChristoffelContraction_deriv_eq_zero_of_not_differentiableAt`.  Nothing
+was proved from the bad clause, since this predicate has no consumers. -/
 def IsPiecewiseParallelFieldAlongOn (g : RiemannianMetric I M)
     (c : ℝ → M) (w : ℝ → E) (a b : ℝ) : Prop :=
   ContinuousOn c (Icc a b) ∧
@@ -154,9 +171,14 @@ def IsPiecewiseParallelFieldAlongOn (g : RiemannianMetric I M)
 
 /-- **Math.** Endpoint transport along a piecewise differentiable curve is
 the relation obtained by evaluating a piecewise parallel field at the two
-endpoints.  It is a relation until arbitrary-curve existence and uniqueness
-are supplied, which is exactly the successive-transport content of do Carmo's
-definition. -/
+endpoints.
+
+**Defective; do not build on this** — it inherits the corner problem of
+`IsPiecewiseParallelFieldAlongOn` above.  The successive-transport content of do
+Carmo's definition is now a theorem, for a corrected predicate, in
+`DoCarmoCh3PiecewiseTransport.lean`: `exists_isPiecewiseParallelAlong` and
+`isPiecewiseParallelAlong_unique`, with the transport map itself given by
+`piecewiseTransport`. -/
 def IsPiecewiseParallelTransport (g : RiemannianMetric I M)
     (c : ℝ → M) (a b : ℝ)
     (v₀ : TangentSpace I (c a)) (v₁ : TangentSpace I (c b)) : Prop :=

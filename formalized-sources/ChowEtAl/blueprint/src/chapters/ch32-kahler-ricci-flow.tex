@@ -19,9 +19,10 @@ It preserves volume.
 
 \begin{definition}[Nonsingular solution (Definition 32.1)]
 \label{def:chow-iv-nonsingular-solution}
+\source{chow-et-al-ricci-flow-part-iv:page-0221}
 \dcref{ch32:32.1}
 \group{Nonsingular Solutions}
-\source{chow-et-al-ricci-flow-part-iv:page-0221}
+
 A solution $(\mathcal M^n,g(t))$ of the normalized Ricci flow on a closed
 manifold is \emph{nonsingular} if it is defined for every
 $t\in[0,\infty)$ and there is a constant $C<\infty$ such that
@@ -33,10 +34,12 @@ $t\in[0,\infty)$ and there is a constant $C<\infty$ such that
 
 \begin{theorem}[Nonsingular solutions on $3$-manifolds admit geometric decompositions (Theorem 32.2)]
 \label{thm:chow-iv-nonsingular-geometric-decomposition}
-\dcref{ch32:32.2}
-\group{Nonsingular Solutions}
 \source{chow-et-al-ricci-flow-part-iv:page-0222,chow-et-al-ricci-flow-part-iv:page-0223,chow-et-al-ricci-flow-part-iv:page-0224}
 \uses{def:chow-iv-nonsingular-solution}
+\dcref{ch32:32.2}
+\group{Nonsingular Solutions}
+
+
 If a closed $3$-manifold $\mathcal M$ admits a nonsingular solution of the
 normalized Ricci flow, then $\mathcal M$ is diffeomorphic to one of the
 following:
@@ -54,10 +57,12 @@ Thurston.
 
 \begin{definition}[Sequential collapse]
 \label{def:chow-iv-sequential-collapse}
-\dcref{ch32:sequential-collapse}
-\group{Nonsingular Solutions}
 \source{chow-et-al-ricci-flow-part-iv:page-0222}
 \uses{def:chow-iv-nonsingular-solution}
+\dcref{ch32:sequential-collapse}
+\group{Nonsingular Solutions}
+
+
 For a nonsingular solution, put
 \[
  \rho(t)=\max_{x\in\mathcal M}\inj_{g(t)}(x).
@@ -90,9 +95,10 @@ Consequently its lower Dini derivative satisfies
 
 \begin{lemma}[Monotonicity of $R_{\min}(t)$ (Lemma 32.3)]
 \label{lem:chow-iv-minimum-scalar-curvature-monotonicity}
+\source{chow-et-al-ricci-flow-part-iv:page-0224}
 \dcref{ch32:32.3}
 \group{Scalar Curvature Cases}
-\source{chow-et-al-ricci-flow-part-iv:page-0224}
+
 Let $(\mathcal M^n,g(t))$ be a normalized Ricci flow on a closed manifold.
 \begin{enumerate}
 \item If $R_{\min}(t_0)>0$, then $R_{\min}(t)>0$ for every $t\ge t_0$.
@@ -121,9 +127,10 @@ strictly increasing $R_{\min}$.
 
 \begin{definition}[Pointed $C^\infty$ Cheeger--Gromov convergence (Definition 32.4)]
 \label{def:chow-iv-pointed-cheeger-gromov-convergence-nrf}
+\source{chow-et-al-ricci-flow-part-iv:page-0225}
 \dcref{ch32:32.4}
 \group{Normalized Ricci Flow Compactness}
-\source{chow-et-al-ricci-flow-part-iv:page-0225}
+
 A sequence of pointed normalized Ricci flows
 $(\mathcal M_i^n,g_i(t),x_i)$ on a common interval $(\alpha,\omega)$
 converges to a complete pointed family
@@ -141,10 +148,12 @@ $\mathcal M_\infty\times(\alpha,\omega)$.
 
 \begin{theorem}[Hamilton's Cheeger--Gromov-type compactness (Theorem 32.5)]
 \label{thm:chow-iv-hamilton-compactness-nrf}
-\dcref{ch32:32.5}
-\group{Normalized Ricci Flow Compactness}
 \source{chow-et-al-ricci-flow-part-iv:page-0225,chow-et-al-ricci-flow-part-iv:page-0226}
 \uses{def:chow-iv-pointed-cheeger-gromov-convergence-nrf}
+\dcref{ch32:32.5}
+\group{Normalized Ricci Flow Compactness}
+
+
 Let $(\mathcal M_i^n,g_i(t),x_i)$ be complete pointed normalized Ricci
 flows on $(\alpha,\omega)$, where $0\in(\alpha,\omega)$, and suppose that
 \[
@@ -181,10 +190,12 @@ proves (32.5), and the original curvature bound passes to the limit.
 
 \begin{example}[Pathologies for averages under pointed convergence]
 \label{ex:chow-iv-average-scalar-curvature-pathologies}
-\dcref{ch32:32.6}
-\group{Normalized Ricci Flow Compactness}
 \source{chow-et-al-ricci-flow-part-iv:page-0226}
 \uses{def:chow-iv-pointed-cheeger-gromov-convergence-nrf}
+\dcref{ch32:32.6}
+\group{Normalized Ricci Flow Compactness}
+
+
 For every $n\ge3$, there are closed pointed manifolds whose average scalar
 curvatures tend to $+\infty$ while their pointed limit is complete,
 noncompact, and has bounded curvature.  For every $n>3$, there is a
@@ -194,10 +205,12 @@ average scalar curvatures have two distinct subsequential limits.
 
 \begin{remark}[Compactness does not control global averages (Remark 32.7)]
 \label{rem:chow-iv-compactness-global-averages}
-\dcref{ch32:32.7}
-\group{Normalized Ricci Flow Compactness}
 \source{chow-et-al-ricci-flow-part-iv:page-0226}
 \uses{ex:chow-iv-average-scalar-curvature-pathologies}
+\dcref{ch32:32.7}
+\group{Normalized Ricci Flow Compactness}
+
+
 Pointed Cheeger--Gromov convergence alone does not force convergence of
 average scalar curvatures; global volume can escape through regions that
 leave every compact neighborhood of the base point.  Thus a compactness
@@ -207,10 +220,12 @@ as a separate conclusion obtained from the evolution and derivative bounds.
 
 \begin{definition}[Limit solution at infinite time]
 \label{def:chow-iv-nrf-limit-solution}
+\source{chow-et-al-ricci-flow-part-iv:page-0226}
+\uses{def:chow-iv-sequential-collapse, thm:chow-iv-hamilton-compactness-nrf}
 \dcref{ch32:eq-32.6--32.8}
 \group{Normalized Ricci Flow Compactness}
-\source{chow-et-al-ricci-flow-part-iv:page-0226}
-\uses{def:chow-iv-sequential-collapse,thm:chow-iv-hamilton-compactness-nrf}
+
+
 Let $(\mathcal M^3,g(t))$ be a noncollapsed nonsingular normalized Ricci
 flow.  Given $t_i\to\infty$, choose $x_i$ with
 $\inj_{g(t_i)}(x_i)\ge\delta$ and set
@@ -240,10 +255,12 @@ $\widetilde g(0)=g(0)$.  The two flows are related by
 
 \begin{lemma}[Criterion for $g(t)$ to have nonnegative curvature (Lemma 32.8)]
 \label{lem:chow-iv-limit-nonnegative-curvature-criterion}
-\dcref{ch32:32.8}
-\group{Positive and Zero Cases}
 \source{chow-et-al-ricci-flow-part-iv:page-0227,chow-et-al-ricci-flow-part-iv:page-0228}
 \uses{def:chow-iv-nrf-limit-solution}
+\dcref{ch32:32.8}
+\group{Positive and Zero Cases}
+
+
 Let $(\mathcal M^3,g(t))$ be a noncollapsed nonsingular normalized Ricci
 flow and let $[0,\widetilde T)$ be the maximal interval for its corresponding
 ordinary Ricci flow.  Suppose
@@ -307,10 +324,12 @@ identifies the manifold as a spherical space form.
 
 \begin{remark}[Alternative exclusion of the product case (Remark 32.9)]
 \label{rem:chow-iv-exclude-sphere-line-product}
-\dcref{ch32:32.9}
-\group{Positive and Zero Cases}
 \source{chow-et-al-ricci-flow-part-iv:page-0228}
 \uses{lem:chow-iv-limit-nonnegative-curvature-criterion}
+\dcref{ch32:32.9}
+\group{Positive and Zero Cases}
+
+
 The $S^2\times\mathbb R$ quotient can alternatively be excluded by applying
 Perelman's no-local-collapsing theorem to the eternal limit as
 $t\to-\infty$.
@@ -318,10 +337,12 @@ $t\to-\infty$.
 
 \begin{proposition}[The positive case (Proposition 32.10)]
 \label{prop:chow-iv-positive-case-spherical-space-form}
+\source{chow-et-al-ricci-flow-part-iv:page-0228,chow-et-al-ricci-flow-part-iv:page-0229}
+\uses{lem:chow-iv-minimum-scalar-curvature-monotonicity, lem:chow-iv-limit-nonnegative-curvature-criterion}
 \dcref{ch32:32.10}
 \group{Positive and Zero Cases}
-\source{chow-et-al-ricci-flow-part-iv:page-0228,chow-et-al-ricci-flow-part-iv:page-0229}
-\uses{lem:chow-iv-minimum-scalar-curvature-monotonicity,lem:chow-iv-limit-nonnegative-curvature-criterion}
+
+
 If a noncollapsed nonsingular normalized Ricci flow
 $(\mathcal M^3,g(t))$ satisfies $R_{\min}(t_0)>0$ for some $t_0$, then
 $\mathcal M$ is diffeomorphic to a spherical space form.
@@ -348,10 +369,12 @@ Therefore it is a spherical space form.
 
 \begin{proposition}[The zero case (Proposition 32.11)]
 \label{prop:chow-iv-zero-case-flat-metric}
+\source{chow-et-al-ricci-flow-part-iv:page-0229,chow-et-al-ricci-flow-part-iv:page-0230}
+\uses{lem:chow-iv-limit-nonnegative-curvature-criterion, def:chow-iv-nrf-limit-solution}
 \dcref{ch32:32.11}
 \group{Positive and Zero Cases}
-\source{chow-et-al-ricci-flow-part-iv:page-0229,chow-et-al-ricci-flow-part-iv:page-0230}
-\uses{lem:chow-iv-limit-nonnegative-curvature-criterion,def:chow-iv-nrf-limit-solution}
+
+
 If a noncollapsed nonsingular normalized Ricci flow
 $(\mathcal M^3,g(t))$ on a closed manifold satisfies
 \[
@@ -419,10 +442,12 @@ After rescaling, the negative case is normalized by
 
 \begin{proposition}[Case III: Any limit is hyperbolic (Proposition 32.12)]
 \label{prop:chow-iv-negative-case-hyperbolic-limit}
+\source{chow-et-al-ricci-flow-part-iv:page-0231,chow-et-al-ricci-flow-part-iv:page-0232}
+\uses{lem:chow-iv-minimum-scalar-curvature-monotonicity, def:chow-iv-nrf-limit-solution}
 \dcref{ch32:32.12}
 \group{Negative Case}
-\source{chow-et-al-ricci-flow-part-iv:page-0231,chow-et-al-ricci-flow-part-iv:page-0232}
-\uses{lem:chow-iv-minimum-scalar-curvature-monotonicity,def:chow-iv-nrf-limit-solution}
+
+
 Let $(\mathcal M^3,g(t))$ be a noncollapsed nonsingular normalized Ricci
 flow satisfying (32.19).  For any $t_i\to\infty$ and base points satisfying
 the noncollapsing injectivity estimate, every corresponding limit solution

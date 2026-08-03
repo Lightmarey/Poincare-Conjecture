@@ -124,9 +124,10 @@ a\cdot b=\sum_{i=1}^n a_ib_i,
 
 \begin{definition}[Notation for Functions]
 \label{def:function-notation-basic}
+\uses{def:geometric-notation}
 \dcref{appA:A.3}
 \group{Function Notation}
-\uses{def:geometric-notation}
+
 Let $U\subset\mathbb R^n$ be open.
 
 (i) A scalar function is written $u:U\to\mathbb R$, $u(x)=u(x_1,\ldots,x_n)$. It is \textit{smooth} when it is infinitely differentiable.
@@ -267,9 +268,10 @@ D_yu=(u_{y_1},\ldots,u_{y_m}).
 
 \begin{definition}[Function Spaces]
 \label{def:function-space-notation}
+\uses{def:derivative-notation-multiindex, def:geometric-notation}
 \dcref{appA:A.3-function-spaces}
 \group{Function Spaces}
-\uses{def:derivative-notation-multiindex,def:geometric-notation}
+
 Let $U\subset\mathbb R^n$ be open.
 
 (i)
@@ -333,9 +335,10 @@ Membership entails continuity of these quantities up to the top $U\times\{t=T\}$
 
 \begin{definition}[Vector-Valued Functions]
 \label{def:vector-valued-function-notation}
+\uses{def:derivative-notation-multiindex, def:function-notation-basic}
 \dcref{appA:A.4}
 \group{Vector-Valued Functions}
-\uses{def:derivative-notation-multiindex,def:function-notation-basic}
+
 Let $m>1$ and $\mathbf u=(u^1,\ldots,u^m):U\to\mathbb R^m$.
 
 (i) For every multiindex $\alpha$,
@@ -372,9 +375,10 @@ D\mathbf u=
 
 \begin{remark}[Sub- and Superscripts for Boldface Mappings]
 \label{rem:boldface-convention-sub-superscripts}
+\uses{def:vector-valued-function-notation}
 \dcref{appA:A.4-remark}
 \group{Notation Conventions}
-\uses{def:vector-valued-function-notation}
+
 Mappings into $\mathbb R^m$ for $m>1$, or into Banach or Hilbert spaces, are boldface and have superscripted components. Points $x=(x_1,\ldots,x_n)\in\mathbb R^n$ are not boldface and have subscripted components. Matrix-valued mappings are boldface; their component indices may be superscripts or mixed sub- and superscripts.
 \end{remark}
 
@@ -414,9 +418,10 @@ means
 
 \begin{remark}[Implicit Limits in $O$/$o$ Notation]
 \label{rem:big-oh-little-oh-implicit-limit}
+\uses{def:big-oh-little-oh-notation}
 \dcref{appA:A.5-remark}
 \group{Asymptotic Notation}
-\uses{def:big-oh-little-oh-notation}
+
 The expressions $O(g)$ and $o(g)$ require a limiting regime, such as $x\to x_0$, even when it is left implicit by context.
 \end{remark}
 
@@ -425,16 +430,18 @@ The expressions $O(g)$ and $o(g)$ require a limiting regime, such as $x\to x_0$,
 
 \begin{remark}[Why ``$Du$'' Instead of ``$\nabla u$'']
 \label{rem:gradient-notation-choice-du}
+\uses{def:derivative-notation-multiindex}
 \dcref{appA:A.6-i}
 \group{Notation Conventions}
-\uses{def:derivative-notation-multiindex}
+
 The gradient and Hessian are denoted $Du$ and $D^2u$. This keeps $D^2u$ distinct from the Laplacian and makes the multiindex notation $D^\alpha u$ consistent.
 \end{remark}
 
 \begin{remark}[Why ``$U$'' Instead of ``$\Omega$'']
 \label{rem:domain-notation-choice-u}
+\uses{def:geometric-notation}
 \dcref{appA:A.6-ii}
 \group{Notation Conventions}
-\uses{def:geometric-notation}
+
 Open PDE domains are normally denoted $U$, leaving $V$ and $W$ for subdomains. The symbol $\Omega$ is reserved for probability spaces, including probabilistic representations of PDE \cite{Freidlin1985}.
 \end{remark}

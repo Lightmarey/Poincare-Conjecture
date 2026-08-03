@@ -13,7 +13,10 @@ a_{ij}(x)\xi_i\xi_j \ge \lambda |\xi|^2
 \qquad (x\in\Omega,\ \xi\in\mathbb{R}^n).
 \]
 
-\begin{lemma}\label{hanlin:maxprin-lemma-2-1}\dcref{Lemma 2.1}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0029}
+\begin{lemma}\label{hanlin:maxprin-lemma-2-1}\dcref{Lemma 2.1}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0029}
+\lean{HanLinLectureNotes.Ch02.positive_operator_nonnegative_maximum_not_mem}
+\leanok
 Let $u\in C^2(\Omega)\cap C(\overline\Omega)$, with $Lu>0$ and $c\le0$ in
 $\Omega$. A nonnegative maximum of $u$ on $\overline\Omega$ cannot occur in
 $\Omega$.
@@ -24,12 +27,18 @@ $D^2u(x_0)\le0$. Positivity of $(a_{ij}(x_0))$ and $c(x_0)u(x_0)\le0$ give
 $Lu(x_0)\le0$, contradicting $Lu>0$.
 \end{proof}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-2}\dcref{Remark 2.2}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0029}
+\begin{remark}\label{hanlin:maxprin-remark-2-2}\dcref{Remark 2.2}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0029}
+\lean{HanLinLectureNotes.Ch02.positive_operator_maximum_not_mem_of_zeroOrder_eq_zero}
+\leanok
 When $c\equiv0$, the sign restriction on the maximum is unnecessary; the same
 observation applies to the analogous results below.
 \end{remark}
 
-\begin{lemma}[Weak maximum principle]\label{hanlin:maxprin-lemma-2-3}\dcref{Lemma 2.3}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0029}
+\begin{lemma}[Weak maximum principle]\label{hanlin:maxprin-lemma-2-3}\dcref{Lemma 2.3}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0029}
+\lean{HanLinLectureNotes.Ch02.weak_maximum_principle}
+\leanok
 Let $u\in C^2(\Omega)\cap C(\overline\Omega)$ satisfy $Lu\ge0$ and $c\le0$ in
 $\Omega$. If its maximum on $\overline\Omega$ is nonnegative, that maximum is
 attained on $\partial\Omega$.
@@ -60,13 +69,19 @@ u=\varphi\quad\text{on }\partial\Omega,
 \]
 where $f\in C(\Omega)$ and $\varphi\in C(\partial\Omega)$.
 
-\begin{remark}\label{hanlin:maxprin-remark-2-4}\dcref{Remark 2.4}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0030}
+\begin{remark}\label{hanlin:maxprin-remark-2-4}\dcref{Remark 2.4}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0030}
+\lean{HanLinLectureNotes.dirichlet_uniqueness_counterexamples}
+\leanok
 The boundedness of $\Omega$ and the hypothesis $c\le0$ are essential in general;
 Dirichlet uniqueness can fail on an unbounded domain or when $c$ has positive
 part.
 \end{remark}
 
-\begin{example}\label{hanlin:maxprin-example-2-5}\dcref{Example 2.5}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0030}
+\begin{example}\label{hanlin:maxprin-example-2-5}\dcref{Example 2.5}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0030}
+\lean{HanLinLectureNotes.sineProduct_square_counterexample}
+\leanok
 For $\Omega=(0,\pi)^2$, the nonzero function $u(x,y)=\sin x\sin y$ satisfies
 \[
 \Delta u+2u=0\quad\text{in }\Omega,
@@ -75,7 +90,10 @@ u=0\quad\text{on }\partial\Omega.
 \]
 \end{example}
 
-\begin{theorem}[Hopf lemma]\label{hanlin:maxprin-theorem-2-6}\dcref{Theorem 2.6}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0030,han-lin-lecture-notes:page-0031}
+\begin{theorem}[Hopf lemma]\label{hanlin:maxprin-theorem-2-6}\dcref{Theorem 2.6}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0030,han-lin-lecture-notes:page-0031}
+\lean{HanLinLectureNotes.Ch02.hopf_boundary_point_liminf_pos}
+\leanok
 Let $B\subset\mathbb{R}^n$ be an open ball, $x_0\in\partial B$, and
 $u\in C^2(B)\cap C(B\cup\{x_0\})$. Suppose $Lu\ge0$, $c\le0$ in $B$, and
 \[
@@ -95,14 +113,20 @@ $u+\epsilon h$, for a fixed sufficiently small $\epsilon>0$, forces its maximum
 to $x_0$. The outward difference quotient then gives the stated strict
 inequality.
 \end{proof}
-\begin{remark}\label{hanlin:maxprin-remark-2-7}\dcref{Remark 2.7}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0030,han-lin-lecture-notes:page-0031}
+\begin{remark}\label{hanlin:maxprin-remark-2-7}\dcref{Remark 2.7}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0030,han-lin-lecture-notes:page-0031}
+\lean{HanLinLectureNotes.Ch02.hopf_boundary_outward_normal_fderiv_pos}
+\leanok
 If $u\in C^1(B\cup\{x_0\})$, then
 \[
 \frac{\partial u}{\partial \nu}(x_0) > 0.
 \]
 \end{remark}
 
-\begin{theorem}[Strong maximum principle]\label{hanlin:maxprin-theorem-2-8}\dcref{Theorem 2.8}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0031}
+\begin{theorem}[Strong maximum principle]\label{hanlin:maxprin-theorem-2-8}\dcref{Theorem 2.8}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0031}
+\lean{HanLinLectureNotes.Ch02.strong_maximum_principle}
+\leanok
 Let $u\in C^2(\Omega)\cap C(\overline\Omega)$ satisfy $Lu\ge0$ and $c\le0$ in
 $\Omega$. Unless $u$ is constant, every nonnegative maximum on
 $\overline\Omega$ occurs only on $\partial\Omega$.
@@ -119,13 +143,15 @@ Theorem~\ref{hanlin:maxprin-theorem-2-6} gives a positive outward derivative at
 $x_0$, whereas the interior maximum gives $Du(x_0)=0$.
 \end{proof}
 
-\begin{corollary}[Comparison principle]\label{hanlin:maxprin-cor-2-9}\dcref{Corollary 2.9}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0032}
+\begin{corollary}[Comparison principle]\label{hanlin:maxprin-cor-2-9}\dcref{Corollary 2.9}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0032}
 Suppose $u\in C^2(\Omega)\cap C(\overline\Omega)$, $Lu\ge0$, $c\le0$ in
 $\Omega$, and $u\le0$ on $\partial\Omega$. Then $u\le0$ in $\Omega$; moreover,
 either $u<0$ there or $u\equiv0$.
 \end{corollary}
 
-\begin{corollary}\label{hanlin:maxprin-cor-2-10}\dcref{Corollary 2.10}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0032}
+\begin{corollary}\label{hanlin:maxprin-cor-2-10}\dcref{Corollary 2.10}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0032}
 Assume that $\Omega$ has the interior sphere property and
 $u\in C^2(\Omega)\cap C^1(\overline\Omega)$ satisfies $Lu\ge0$ and $c\le0$ in
 $\Omega$. If a nonconstant $u$ attains a nonnegative maximum at $x_0$, then
@@ -135,7 +161,8 @@ $x_0\in\partial\Omega$ and every outward direction $v$ at $x_0$ satisfies
 \]
 \end{corollary}
 
-\begin{corollary}\label{hanlin:maxprin-cor-2-11}\dcref{Corollary 2.11}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0032}
+\begin{corollary}\label{hanlin:maxprin-cor-2-11}\dcref{Corollary 2.11}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0032}
 Let $\Omega\subset\mathbb{R}^n$ be bounded with the interior sphere property,
 and let $u\in C^2(\Omega)\cap C^1(\overline\Omega)$ solve
 \[
@@ -165,7 +192,10 @@ and Corollary~\ref{hanlin:maxprin-cor-2-10} instead force every homogeneous
 solution to be constant.
 \end{proof}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-12}\dcref{Theorem 2.12}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0032,han-lin-lecture-notes:page-0033}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-12}\dcref{Theorem 2.12}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0032,han-lin-lecture-notes:page-0033}
+\lean{HanLinLectureNotes.Ch02.nonpositive_subsolution_strong_alternative}
+\leanok
 If $u\in C^2(\Omega)\cap C(\overline\Omega)$ satisfies $Lu\ge0$ and $u\le0$ in
 $\Omega$, then either $u<0$ throughout $\Omega$ or $u\equiv0$.
 \end{theorem}
@@ -187,7 +217,8 @@ a_{ij}D_{ij}v+\bigl(\alpha(a_{1i}+a_{i1})+b_i\bigr)D_iv\ge 0.
 Theorem~\ref{hanlin:maxprin-theorem-2-8} applied to $v$ yields the dichotomy.
 \end{proof}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-13}\dcref{Theorem 2.13}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0033}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-13}\dcref{Theorem 2.13}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0033}
 Assume that $w\in C^2(\Omega)\cap C^1(\overline\Omega)$ is positive on
 $\overline\Omega$ and satisfies $Lw\le0$. If
 $u\in C^2(\Omega)\cap C(\overline\Omega)$ and $Lu\ge0$, then a nonnegative
@@ -209,7 +240,10 @@ Theorem~\ref{hanlin:maxprin-theorem-2-6} and
 Corollary~\ref{hanlin:maxprin-cor-2-9} to $v$.
 \end{proof}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-14}\dcref{Remark 2.14}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0033}
+\begin{remark}\label{hanlin:maxprin-remark-2-14}\dcref{Remark 2.14}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0033}
+\lean{HanLinLectureNotes.Ch02.positive_supersolution_comparison_and_dirichlet_uniqueness}
+\leanok
 Under the positive-supersolution hypothesis of
 Theorem~\ref{hanlin:maxprin-theorem-2-13}, $L$ has the comparison principle.
 Consequently,
@@ -221,7 +255,10 @@ u=\varphi\quad\text{on }\partial\Omega
 has at most one solution.
 \end{remark}
 
-\begin{proposition}[Maximum principle on narrow domains]\label{hanlin:maxprin-prop-2-15}\dcref{Proposition 2.15}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0033,han-lin-lecture-notes:page-0034}
+\begin{proposition}[Maximum principle on narrow domains]\label{hanlin:maxprin-prop-2-15}\dcref{Proposition 2.15}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0033,han-lin-lecture-notes:page-0034}
+\lean{HanLinLectureNotes.Ch02.exists_positive_supersolution_of_narrow_domain}
+\leanok
 Suppose a unit vector $e$ and $d>0$ satisfy
 $|(y-x)\cdot e|<d$ for all $x,y\in\Omega$. There is $d_0>0$, depending only
 on $\lambda$, $\|b_i\|_\infty$, and $\|c^+\|_\infty$, such that $d\le d_0$
@@ -244,14 +281,20 @@ Then $e^{\alpha d}\le2$ for sufficiently small $d$, and hence
 $Lw\le N(e^{\alpha d}-2)\le0$.
 \end{proof}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-16}\dcref{Remark 2.16}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0034}
+\begin{remark}\label{hanlin:maxprin-remark-2-16}\dcref{Remark 2.16}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0034}
+\lean{HanLinLectureNotes.Ch02.exists_positive_supersolution_of_narrow_unbounded_domain}
+\leanok
 Proposition~\ref{hanlin:maxprin-prop-2-15}, and some related results above, also
 apply to unbounded domains.
 \end{remark}
 
 \section{Poisson Equations}\label{hanlin:maxprin-section-2-2}
 
-\begin{lemma}\label{hanlin:poisson-lemma-2-17}\dcref{Lemma 2.17}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0034,han-lin-lecture-notes:page-0035}
+\begin{lemma}\label{hanlin:poisson-lemma-2-17}\dcref{Lemma 2.17}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0034,han-lin-lecture-notes:page-0035}
+\lean{HanLinLectureNotes.Ch02.poisson_fderiv_norm_le}
+\leanok
 If $u\in C^2(B_R)\cap C(\overline B_R)$ satisfies $\Delta u=f$ in $B_R$ for
 $f\in C(\overline B_R)$, then
 \[
@@ -285,7 +328,8 @@ D_nu(0)\le\frac nR M+\frac R2F.
 Apply the same argument to $-u$ and rotate coordinates.
 \end{proof}
 
-\begin{lemma}\label{hanlin:poisson-lemma-2-18}\dcref{Lemma 2.18}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0035,han-lin-lecture-notes:page-0036}
+\begin{lemma}\label{hanlin:poisson-lemma-2-18}\dcref{Lemma 2.18}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0035,han-lin-lecture-notes:page-0036}
 Let $u\in C^2(B_{2R})\cap C(\overline B_{2R})$ satisfy $\Delta u=f$ in
 $B_{2R}$, where $f\in C(\overline B_{2R})$. For distinct $x,y\in B_R$,
 \[
@@ -372,7 +416,8 @@ $C^{2,\alpha}$ there when some polynomial $P$ of degree at most two satisfies
 |u(x)-P(x)|\le c|x|^{2+\alpha}.
 \]
 
-\begin{lemma}\label{hanlin:maxprin-lemma-2-19}\dcref{Lemma 2.19}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0037,han-lin-lecture-notes:page-0038}
+\begin{lemma}\label{hanlin:maxprin-lemma-2-19}\dcref{Lemma 2.19}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0037,han-lin-lecture-notes:page-0038}
 Fix $\alpha\in(0,1)$. There are $c_0>0$, $\mu\in(0,1)$, and $\epsilon_0>0$,
 depending only on $n$ and $\alpha$, with the following property. If
 $u\in C^2(B_1)$, $\Delta u=f$ in $B_1$, $f\in C(B_1)$, and
@@ -403,7 +448,8 @@ Choose $\mu$ so the first term is at most $\frac12\mu^{2+\alpha}$ on $B_\mu$,
 then choose $\epsilon_0$ so the second has the same bound.
 \end{proof}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-20}\dcref{Theorem 2.20}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0038,han-lin-lecture-notes:page-0039}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-20}\dcref{Theorem 2.20}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0038,han-lin-lecture-notes:page-0039}
 Let $u\in C^2(B_1)$ satisfy $\Delta u=f$ in $B_1$, where $f$ is
 $C^\alpha$ at $0$. There is a quadratic polynomial
 \[
@@ -461,7 +507,8 @@ Combining this with the approximation by $P_k$ and undoing the normalization
 proves the estimates.
 \end{proof}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-21}\dcref{Theorem 2.21}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0040,han-lin-lecture-notes:page-0041}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-21}\dcref{Theorem 2.21}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0040,han-lin-lecture-notes:page-0041}
 Suppose $u\in C^2(\overline B_1)$ is positive and
 \[
 \Delta u=f(u)\quad\text{in }B_1,
@@ -480,7 +527,9 @@ directions gives radial symmetry, and the Hopf inequality gives strict radial
 decrease.
 \end{proof}
 
-\begin{lemma}\label{hanlin:maxprin-lemma-2-22}\dcref{Lemma 2.22}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0040}\uses{hanlin:maxprin-theorem-2-21}
+\begin{lemma}\label{hanlin:maxprin-lemma-2-22}\dcref{Lemma 2.22}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0040}
+\uses{hanlin:maxprin-theorem-2-21}
 Let $u$ satisfy the hypotheses of Theorem~\ref{hanlin:maxprin-theorem-2-21}.
 For $x_0\in\partial B_1$ and a unit vector $\nu$ with $\nu\cdot x_0>0$, there
 is $r>0$ such that
@@ -489,7 +538,8 @@ is $r>0$ such that
 \qquad(x\in B_1\cap B_r(x_0)).
 \]
 \end{lemma}
-\begin{proof}\uses{hanlin:maxprin-theorem-2-6}
+\begin{proof}
+  \uses{hanlin:maxprin-theorem-2-6, hanlin:maxprin-lemma-2-22, hanlin:maxprin-theorem-2-13}
 \sketch If $f(0)\le0$, local Lipschitz continuity gives a bounded $c\ge0$ with
 \[
 \Delta u=f(u)\le f(u)-f(0)\le c(x)u,
@@ -515,7 +565,8 @@ After rotating so $x_0=(1,0,\ldots,0)$, Taylor expansion gives
 for nearby interior points, a contradiction.
 \end{proof}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-23}\dcref{Remark 2.23}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0041}
+\begin{remark}\label{hanlin:maxprin-remark-2-23}\dcref{Remark 2.23}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0041}
 The proof above uses boundary smoothness of both the domain and the solution.
 Section~\ref{hanlin:maxprin-section-2-6} removes those requirements.
 \end{remark}
@@ -533,7 +584,10 @@ a_{ij}(x)\xi_i\xi_j\ge\lambda|\xi|^2,
 \max_\Omega|a_{ij}|+\max_\Omega|b_i|\le\Lambda.
 \]
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-24}\dcref{Theorem 2.24}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0042}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-24}\dcref{Theorem 2.24}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0042}
+\lean{HanLinLectureNotes.Ch02.dirichlet_apriori_estimate}
+\leanok
 Let $u\in C^2(\Omega)\cap C(\overline\Omega)$ solve
 \[
 Lu=f\quad\text{in }\Omega,
@@ -568,7 +622,8 @@ Corollary~\ref{hanlin:maxprin-cor-2-9} yields
 \]
 \end{proof}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-25}\dcref{Theorem 2.25}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0043,han-lin-lecture-notes:page-0044}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-25}\dcref{Theorem 2.25}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0043,han-lin-lecture-notes:page-0044}
 Let $u\in C^2(\Omega)\cap C^1(\overline\Omega)$ solve
 \[
 Lu=f\quad\text{in }\Omega,
@@ -635,7 +690,10 @@ The equation for $w$ is therefore in the strict case above, with controlled
 coefficients; boundedness above and below of $z$ gives the result for $u$.
 \end{proof}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-26}\dcref{Remark 2.26}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0044}
+\begin{remark}\label{hanlin:maxprin-remark-2-26}\dcref{Remark 2.26}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0044}
+\lean{HanLinLectureNotes.zero_robin_coefficient_nonunique}
+\leanok
 The conclusion may fail under the weaker assumption $\alpha\ge0$; even
 uniqueness is then not guaranteed.
 \end{remark}
@@ -653,7 +711,8 @@ bounded and continuous, and
 a_{ij}(x)\xi_i\xi_j\ge\lambda|\xi|^2.
 \]
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-27}\dcref{Theorem 2.27}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0044,han-lin-lecture-notes:page-0045}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-27}\dcref{Theorem 2.27}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0044,han-lin-lecture-notes:page-0045}
 Let $u\in C^3(\Omega)\cap C^1(\overline\Omega)$ satisfy the equation above, with
 $a_{ij},b_i\in C^1(\overline\Omega)$ and
 $f\in C^1(\overline\Omega\times\mathbb R)$. Then
@@ -702,7 +761,8 @@ The weak maximum principle bounds $w$ by its boundary values and gives the
 claimed estimate.
 \end{proof}
 
-\begin{proposition}\label{hanlin:maxprin-prop-2-28}\dcref{Proposition 2.28}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0046}
+\begin{proposition}\label{hanlin:maxprin-prop-2-28}\dcref{Proposition 2.28}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0046}
 Under the equation and coefficient hypotheses of
 Theorem~\ref{hanlin:maxprin-theorem-2-27}, but with only
 $u\in C^3(\Omega)$, every $\Omega'\Subset\Omega$ satisfies
@@ -741,7 +801,8 @@ the maximum principle bounds $\gamma|Du|^2$, and a cutoff equal to one on
 $\Omega'$ proves the estimate.
 \end{proof}
 
-\begin{proposition}\label{hanlin:maxprin-prop-2-29}\dcref{Proposition 2.29}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0047}
+\begin{proposition}\label{hanlin:maxprin-prop-2-29}\dcref{Proposition 2.29}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0047}
 Assume that $\Omega$ has the uniform exterior sphere property and that
 $u\in C^2(\Omega)\cap C(\overline\Omega)$ satisfies
 \[
@@ -832,7 +893,8 @@ u(x)\le u(y)+p\cdot(x-y)\ \text{for all }x\in\Omega
 If $u\in C^1$, then $p=Du(y)$; if $u\in C^2$, then $D^2u\le0$ on
 $\Gamma^+$. Moreover, $u$ is concave exactly when $\Gamma^+=\Omega$.
 
-\begin{theorem}[Alexandroff maximum principle]\label{hanlin:maxprin-theorem-2-30}\dcref{Theorem 2.30}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0049,han-lin-lecture-notes:page-0050,han-lin-lecture-notes:page-0051}
+\begin{theorem}[Alexandroff maximum principle]\label{hanlin:maxprin-theorem-2-30}\dcref{Theorem 2.30}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0049,han-lin-lecture-notes:page-0050,han-lin-lecture-notes:page-0051}
 Suppose $u\in C(\overline\Omega)\cap C^2(\Omega)$ satisfies $Lu\ge f$, $c\le0$,
 and
 \[
@@ -862,7 +924,8 @@ Integration and passage to the zero-regularization limit give the displayed
 constant and estimate.
 \end{proof}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-31}\dcref{Remark 2.31}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0049}
+\begin{remark}\label{hanlin:maxprin-remark-2-31}\dcref{Remark 2.31}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0049}
 The $L^n$ norm of $f^-/D^*$ may be restricted to
 \[
 \Gamma^+\cap\left\{x\in\Omega:
@@ -870,12 +933,16 @@ u(x)>\sup_{\partial\Omega}u^+\right\}.
 \]
 \end{remark}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-32}\dcref{Remark 2.32}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0049}
+\begin{remark}\label{hanlin:maxprin-remark-2-32}\dcref{Remark 2.32}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0049}
 Unlike Theorem~\ref{hanlin:maxprin-theorem-2-24}, this result does not assume
 uniform ellipticity.
 \end{remark}
 
-\begin{lemma}\label{hanlin:maxprin-lemma-2-33}\dcref{Lemma 2.33}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0049,han-lin-lecture-notes:page-0050}
+\begin{lemma}\label{hanlin:maxprin-lemma-2-33}\dcref{Lemma 2.33}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0049,han-lin-lecture-notes:page-0050}
+\lean{HanLinLectureNotes.Ch02.alexandroff_weighted_contact_integral}
+\leanok
 Let $g\in L^1_{\mathrm{loc}}(\mathbb R^n)$ be nonnegative and
 $u\in C(\overline\Omega)\cap C^2(\Omega)$. If
 \[
@@ -896,7 +963,11 @@ $B_{\widetilde M}(0)\subset Du(\Gamma^+)$, and the area formula for the gradient
 map gives the inequality.
 \end{proof}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-34}\dcref{Remark 2.34}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0050}\uses{hanlin:maxprin-lemma-2-33}
+\begin{remark}\label{hanlin:maxprin-remark-2-34}\dcref{Remark 2.34}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0050}
+\uses{hanlin:maxprin-lemma-2-33}
+\lean{HanLinLectureNotes.Ch02.alexandroff_operator_contact_inequalities}
+\leanok
 For positive definite $A=(a_{ij})$, the arithmetic--geometric mean inequality
 on $\GammaP$ gives
 \[
@@ -911,7 +982,11 @@ Consequently, Lemma~\ref{hanlin:maxprin-lemma-2-33} implies
 \]
 \end{remark}
 
-\begin{remark}\label{hanlin:maxprin-remark-2-35}\dcref{Remark 2.35}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0050}\uses{hanlin:maxprin-lemma-2-33}
+\begin{remark}\label{hanlin:maxprin-remark-2-35}\dcref{Remark 2.35}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0050}
+\uses{hanlin:maxprin-lemma-2-33}
+\lean{HanLinLectureNotes.Ch02.alexandroff_zero_drift_contact_bounds}
+\leanok
 Taking $g=1$ in Lemma~\ref{hanlin:maxprin-lemma-2-33} yields
 \[
 \sup_\Omega u\le\sup_{\partial\Omega}u^+
@@ -928,7 +1003,8 @@ This is the zero-drift, zero-order-free case of
 Theorem~\ref{hanlin:maxprin-theorem-2-30}.
 \end{remark}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-36}\dcref{Theorem 2.36}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0051,han-lin-lecture-notes:page-0052}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-36}\dcref{Theorem 2.36}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0051,han-lin-lecture-notes:page-0052}
 Suppose $u\in C(\overline\Omega)\cap C^2(\Omega)$ solves
 \[
 Qu=a_{ij}(x,u,Du)D_{ij}u+b(x,u,Du)=0
@@ -966,7 +1042,10 @@ $g_\infty$ bounds the attainable supporting slopes and hence the oscillation by
 $C\operatorname{diam}(\Omega)$.
 \end{proof}
 
-\begin{example}\label{hanlin:maxprin-example-2-37}\dcref{Example 2.37}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0052}
+\begin{example}\label{hanlin:maxprin-example-2-37}\dcref{Example 2.37}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0052}
+\lean{HanLinLectureNotes.Ch02.prescribedMeanCurvatureExample}
+\leanok
 For the prescribed mean-curvature equation
 \[
 (1+|Du|^2)\Delta u-D_iuD_juD_{ij}u
@@ -990,7 +1069,8 @@ g_\infty=\int_{\mathbb R^n}\frac{dp}{(1+|p|^2)^{(n+2)/2}}
 \]
 \end{example}
 
-\begin{corollary}\label{hanlin:maxprin-cor-2-38}\dcref{Corollary 2.38}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0052}
+\begin{corollary}\label{hanlin:maxprin-cor-2-38}\dcref{Corollary 2.38}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0052}
 Let $u\in C(\overline\Omega)\cap C^2(\Omega)$ satisfy
 \[
 (1+|Du|^2)\Delta u-D_iuD_juD_{ij}u
@@ -1009,7 +1089,8 @@ Then
 where $C$ depends only on $n$ and $H_0$.
 \end{corollary}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-39}\dcref{Theorem 2.39}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0053}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-39}\dcref{Theorem 2.39}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0053}
 Suppose $u\in C(\overline\Omega)\cap C^2(\Omega)$ satisfies
 \[
 \det(D^2u)=f(x,u,Du)
@@ -1040,7 +1121,8 @@ $\int_\Omega h$, while the strict inequality with $g_\infty$ bounds the support
 slopes. Multiplication by $\operatorname{diam}(\Omega)$ gives the estimate.
 \end{proof}
 
-\begin{corollary}\label{hanlin:maxprin-cor-2-40}\dcref{Corollary 2.40}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0053}
+\begin{corollary}\label{hanlin:maxprin-cor-2-40}\dcref{Corollary 2.40}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0053}
 If $u\in C(\overline\Omega)\cap C^2(\Omega)$ and
 \[
 \det(D^2u)=f(x)\quad\text{in }\Omega,
@@ -1054,7 +1136,8 @@ then
 \]
 \end{corollary}
 
-\begin{corollary}\label{hanlin:maxprin-cor-2-41}\dcref{Corollary 2.41}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0053}
+\begin{corollary}\label{hanlin:maxprin-cor-2-41}\dcref{Corollary 2.41}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0053}
 Let $u\in C(\overline\Omega)\cap C^2(\Omega)$ satisfy the prescribed
 Gauss-curvature equation
 \[
@@ -1083,7 +1166,8 @@ Lu=a_{ij}D_{ij}u+b_iD_iu+cu,
 \]
 with $(a_{ij})$ pointwise positive definite.
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-42}\dcref{Theorem 2.42}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0054}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-42}\dcref{Theorem 2.42}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0054}
 Suppose $u\in C(\overline\Omega)\cap C^2(\Omega)$ satisfies $Lu\ge0$ in
 $\Omega$, $u\le0$ on $\partial\Omega$, and
 $\operatorname{diam}(\Omega)\le d$. There is
@@ -1109,7 +1193,8 @@ Choose $\delta$ so the coefficient on the right is at most $1/2$.
 
 \section{The Moving Plane Method}\label{hanlin:maxprin-section-2-6}
 
-\begin{theorem}\label{hanlin:maxprin-theorem-2-43}\dcref{Theorem 2.43}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0054,han-lin-lecture-notes:page-0055}
+\begin{theorem}\label{hanlin:maxprin-theorem-2-43}\dcref{Theorem 2.43}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0054,han-lin-lecture-notes:page-0055}
 Suppose $u\in C(\overline B_1)\cap C^2(B_1)$ is positive and satisfies
 \[
 \Delta u+f(u)=0\quad\text{in }B_1,
@@ -1129,7 +1214,8 @@ implies radial symmetry, and the directional inequality gives strict radial
 decrease away from the origin.
 \end{proof}
 
-\begin{lemma}\label{hanlin:maxprin-lemma-2-44}\dcref{Lemma 2.44}\group{ch02-maximum-principles}\source{han-lin-lecture-notes:page-0055}
+\begin{lemma}\label{hanlin:maxprin-lemma-2-44}\dcref{Lemma 2.44}\group{ch02-maximum-principles}
+\source{han-lin-lecture-notes:page-0055}
 Let the bounded domain $\Omega$ be convex in the $x_1$ direction and symmetric
 about $\{x_1=0\}$. If $u\in C(\overline\Omega)\cap C^2(\Omega)$ is positive and
 \[

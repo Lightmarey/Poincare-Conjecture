@@ -10,6 +10,8 @@
 \label{def:3-13-extra-1}
 \lean{geometric_tangent_space}
 \leanok
+
+
 For $a\in\mathbb{R}^n$, the geometric tangent space at $a$ is
 \[
 \mathbb{R}^n_a=\{a\}\times\mathbb{R}^n
@@ -27,6 +29,7 @@ disjoint.
 \begin{definition}
 \label{def:3-13-extra-2}
 \lean{PointDerivation}
+
 \mathlibok
 For $a\in\mathbb{R}^n$, a derivation at $a$ is an $\mathbb{R}$-linear map
 $w:C^\infty(\mathbb{R}^n)\to\mathbb{R}$ satisfying
@@ -44,6 +47,8 @@ pointwise operations
 \label{lem:3-1}
 \lean{point_derivation_mul_eq_zero_of_vanish_at}
 \leanok
+
+
 \dcref{ch3:3.1}
 Let $a\in\mathbb{R}^n$, $w\in T_a\mathbb{R}^n$, and
 $f,g\in C^\infty(\mathbb{R}^n)$. Then:
@@ -64,6 +69,7 @@ If $f(a)=g(a)=0$, (3.3) gives $w(fg)=0$ directly.
 \begin{definition}
 \label{def:3-13-extra-3}
 \lean{PointDerivation}
+
 \mathlibok
 Let $M$ be a smooth manifold, possibly with boundary, and let $p\in M$. A
 derivation at $p$ is an $\mathbb{R}$-linear map
@@ -80,6 +86,8 @@ elements are tangent vectors at $p$.
 \label{lem:3-4}
 \lean{tangent_vector_mul_eq_zero_of_vanish_at}
 \leanok
+
+
 \dcref{ch3:3.4}
 Let $M$ be a smooth manifold, possibly with boundary, let $p\in M$ and
 $v\in T_pM$, and let $f,g\in C^\infty(M)$. Then:
@@ -96,6 +104,7 @@ $v\in T_pM$, and let $f,g\in C^\infty(M)$. Then:
 \begin{definition}
 \label{def:3-14-extra-1}
 \lean{mfderiv}
+
 \mathlibok
 For a smooth map $F:M\to N$ between smooth manifolds, possibly with boundary,
 and $p\in M$, the differential at $p$ is the linear map
@@ -115,6 +124,8 @@ so $dF_p(v)$ is a derivation at $F(p)$.
 \label{prop:3-6}
 \lean{diffeomorph_mfderiv_symm_eq_symm}
 \leanok
+
+
 \dcref{ch3:3.6}
 Let $F:M\to N$ and $G:N\to P$ be smooth maps between smooth manifolds,
 possibly with boundary, and let $p\in M$.
@@ -133,8 +144,11 @@ possibly with boundary, and let $p\in M$.
 \begin{proposition}
 \label{prop:3-8}
 \lean{PointDerivation.congr_of_eqOn_nhds}
-\leanok
 \uses{lem:3-4}
+\leanok
+
+
+
 \dcref{ch3:3.8}
 Let $M$ be a smooth manifold, possibly with boundary, $p\in M$, and
 $v\in T_pM$. If $f,g\in C^\infty(M)$ agree on a neighborhood of $p$, then
@@ -152,8 +166,11 @@ $h=\psi h$ and $h(p)=\psi(p)=0$. Lemma~\ref{lem:3-4} gives $v(h)=v(\psi h)=0$.
 \begin{proposition}[The Tangent Space to an Open Submanifold]
 \label{prop:3-9}
 \lean{mfderiv_open_subset_inclusion_isInvertible}
-\leanok
 \uses{prop:3-8}
+\leanok
+
+
+
 \dcref{ch3:3.9}
 Let $U$ be an open subset of a smooth manifold $M$, possibly with boundary,
 and let $\iota:U\hookrightarrow M$ be inclusion. For every $p\in U$,
@@ -181,8 +198,11 @@ extension; it is a derivation and $d\iota_p(v)=w$.
 \begin{proposition}[Dimension of the Tangent Space]
 \label{prop:3-10}
 \lean{tangentSpace_finrank_eq_of_n_dimensional_manifold}
+\uses{prop:3-6, prop:3-9}
 \leanok
-\uses{prop:3-6,prop:3-9}
+
+
+
 \dcref{ch3:3.10}
 If $M$ is a smooth $n$-manifold, then $\dim T_pM=n$ for every $p\in M$.
 \end{proposition}
@@ -203,6 +223,8 @@ The last space has dimension $n$.
 \label{lem:3-11}
 \lean{mfderiv_half_space_inclusion_isInvertible}
 \leanok
+
+
 \dcref{ch3:3.11}
 For the inclusion $\iota:\mathbb{H}^n\hookrightarrow\mathbb{R}^n$ and every
 $a\in\partial\mathbb{H}^n$, the map
@@ -228,8 +250,11 @@ $d\iota_a(v)=w$.
 \begin{proposition}[Dimension of Tangent Spaces on a Manifold with Boundary]
 \label{prop:3-12}
 \lean{tangentSpace_finrank_eq_of_n_dimensional_manifold}
+\uses{lem:3-11, prop:3-6, prop:3-9}
 \leanok
-\uses{lem:3-11,prop:3-6,prop:3-9}
+
+
+
 \dcref{ch3:3.12}
 If $M$ is a smooth $n$-manifold with boundary, then $\dim T_pM=n$ for every
 $p\in M$.
@@ -253,6 +278,7 @@ T_pM\cong T_pU\cong T_{\varphi(p)}\widehat U
 \begin{definition}
 \label{def:3-14-extra-2}
 \lean{lineDeriv}
+
 \mathlibok
 For a finite-dimensional vector space $V$, $a\in V$, and $v\in V$, define
 \[
@@ -265,6 +291,8 @@ D_v|_a(f)=\left.\frac{d}{dt}\right|_{t=0}f(a+tv),
 \label{prop:3-13}
 \lean{mfderiv_vector_space_to_tangent_space}
 \leanok
+
+
 \dcref{ch3:3.13}
 For a finite-dimensional vector space $V$ with its standard smooth structure
 and $a\in V$, the map $v\mapsto D_v|_a$ is a canonical isomorphism
@@ -290,7 +318,10 @@ dL_a(D_v|_a)(f)
 \begin{proposition}[The Tangent Space to a Product Manifold]
 \label{prop:3-14}
 \lean{tangentSpaceFiniteProductEquivDirectSum_apply}
+\uses{prob:3-2}
 \leanok
+
+
 \dcref{ch3:3.14}
 Let $M_1,\ldots,M_k$ be smooth manifolds, let
 $\pi_j:M_1\times\cdots\times M_k\to M_j$ be projection, and write
@@ -319,8 +350,11 @@ spaces defines the inverse linear map.
 \begin{definition}
 \label{def:3-15-extra-1}
 \lean{mfderiv_chart_coordinate_vectors_basis}
+\uses{prop:3-6, prop:3-9}
 \leanok
-\uses{prop:3-6,prop:3-9}
+
+
+
 Let $(U,\varphi)$ be a smooth chart on an $n$-manifold $M$, with coordinate
 functions $(x^i)$, and let $p\in U$. The coordinate vectors at $p$ are
 \[
@@ -347,6 +381,8 @@ is one-sided.
 \label{prop:3-15}
 \lean{chart_coordinate_vectors_basis}
 \leanok
+
+
 \dcref{ch3:3.15}
 Let $M$ be a smooth $n$-manifold, possibly with boundary, and let $p\in M$.
 For every smooth chart $(U,(x^i))$ containing $p$, the vectors
@@ -361,6 +397,8 @@ form a basis of the $n$-dimensional space $T_pM$.
 \label{def:3-15-extra-2}
 \lean{chart_coordinate_vectors_basis}
 \leanok
+
+
 Relative to a coordinate basis, every $v\in T_pM$ has a unique expression
 \[
 v=\left.v^i\frac{\partial}{\partial x^i}\right|_p.
@@ -377,6 +415,7 @@ v(x^j)=v^i\frac{\partial x^j}{\partial x^i}(p)=v^j.
 \begin{remark}
 \label{rem:3-15-extra-3}
 \lean{mfderiv_eq_fderiv}
+
 \mathlibok
 Let $F:U\to V$ be smooth, where $U\subseteq\mathbb{R}^n$ and
 $V\subseteq\mathbb{R}^m$ are open, with domain coordinates $(x^i)$ and
@@ -408,6 +447,7 @@ map or pointwise pushforward.
 \begin{remark}
 \label{rem:3-15-extra-4}
 \lean{tangentCoordChange_def}
+
 \mathlibok
 Let $(U,\varphi)$ and $(V,\psi)$ be charts containing $p$, with coordinates
 $(x^i)$ and $(\widetilde x^i)$, and put $\widehat p=\varphi(p)$. For the
@@ -435,6 +475,8 @@ $v=v^i\partial/\partial x^i|_p
 \label{ex:3-16}
 \lean{polar_vector_in_standard_coordinates}
 \leanok
+
+
 \dcref{ch3:3.16}
 For $(x,y)=(r\cos\theta,r\sin\theta)$, let $p$ have polar coordinates
 $(2,\pi/2)$. At $p$,
@@ -460,6 +502,7 @@ v=2\left.\frac{\partial}{\partial x}\right|_p
 \begin{remark}
 \label{rem:3-15-extra-5}
 \lean{tangentMap_chart_symm}
+
 \mathlibok
 The vector $\partial/\partial x^i|_p$ depends on the entire coordinate system,
 because its definition holds all other coordinates constant; changing those
@@ -474,6 +517,7 @@ unchanged.
 \begin{definition}
 \label{def:3-16-extra-1}
 \lean{TangentBundle}
+
 \mathlibok
 For a smooth manifold $M$, possibly with boundary, its tangent bundle is
 \[
@@ -490,8 +534,10 @@ and each $T_pM$ is identified with its canonical image in $TM$.
 \begin{proposition}
 \label{prop:3-18}
 \lean{Bundle.contMDiff_proj}
-\mathlibok
 \uses{lem:1-35}
+
+\mathlibok
+
 \dcref{ch3:3.18}
 For a smooth $n$-manifold $M$, the set $TM$ has a natural topology and smooth
 structure making it a smooth $2n$-manifold, and $\pi:TM\to M$ is smooth.
@@ -531,6 +577,7 @@ $\pi(x,v)=x$, so $\pi$ is smooth.
 \begin{notation}
 \label{not:3-16-extra-2}
 \lean{chartAt}
+
 \mathlibok
 The coordinates $(x^i,v^i)$ in (3.13) are the natural coordinates on $TM$.
 \end{notation}
@@ -539,6 +586,8 @@ The coordinates $(x^i,v^i)$ in (3.13) are the natural coordinates on $TM$.
 \label{exer:3-19}
 \lean{tangentBundleBoundaryChart_apply}
 \leanok
+
+
 \dcref{ch3:3.19}
 If $M$ is a smooth manifold with boundary, its natural topology and smooth
 structure make $TM$ a smooth manifold with boundary. A boundary chart
@@ -550,6 +599,7 @@ $(x^i,v^i)$.
 \begin{definition}
 \label{def:3-16-extra-3}
 \lean{tangentMap}
+
 \mathlibok
 For a smooth map $F:M\to N$, the global differential, or global tangent map,
 is
@@ -563,6 +613,7 @@ Thus $dF(v)=dF_p(v)$ for $v\in T_pM$.
 \begin{proposition}
 \label{prop:3-21}
 \lean{fun}
+
 \mathlibok
 \dcref{ch3:3.21}
 If $F:M\to N$ is smooth, then $dF:TM\to TN$ is smooth.
@@ -584,6 +635,8 @@ partial derivatives are smooth.
 \label{not:3-16-extra-4}
 \lean{diffeomorph_mfderiv_symm_eq_symm}
 \leanok
+
+
 For a diffeomorphism $F$, write $dF^{-1}$ for either $(dF)^{-1}$ or
 $d(F^{-1})$; these maps agree.
 \end{notation}
@@ -595,6 +648,8 @@ $d(F^{-1})$; these maps agree.
 \label{def:3-17-extra-1}
 \lean{curve_velocity}
 \leanok
+
+
 A curve in a manifold $M$, possibly with boundary, is a continuous map
 $\gamma:J\to M$ from an interval $J\subseteq\mathbb{R}$. Curves are
 parametrized. If $\gamma$ is smooth and $t_0\in J$, its velocity is
@@ -621,6 +676,8 @@ functions of the curve as $\gamma^i$, one has
 \label{prop:3-23}
 \lean{exists_smooth_curve_with_velocity_boundaryless}
 \leanok
+
+
 \dcref{ch3:3.23}
 Let $M$ be a smooth manifold, possibly with boundary, and let $p\in M$. Every
 $v\in T_pM$ is the velocity of a smooth curve in $M$.
@@ -645,6 +702,8 @@ $\gamma'(0)=v$.
 \label{prop:3-24}
 \lean{composite_curve_velocity_of_contMDiff}
 \leanok
+
+
 \dcref{ch3:3.24}
 Let $F:M\to N$ be smooth and $\gamma:J\to M$ a smooth curve. For every
 $t_0\in J$,
@@ -667,8 +726,11 @@ By the chain rule for differentials,
 \begin{corollary}[Computing the Differential Using a Velocity Vector]
 \label{cor:3-25}
 \lean{differential_eq_velocity_of_composite_curve}
+\uses{prop:3-23, prop:3-24}
 \leanok
-\uses{prop:3-23,prop:3-24}
+
+
+
 \dcref{ch3:3.25}
 Let $F:M\to N$ be smooth, $p\in M$, and $v\in T_pM$. For every smooth curve
 $\gamma:J\to M$ with $0\in J$, $\gamma(0)=p$, and $\gamma'(0)=v$,
@@ -683,6 +745,7 @@ dF_p(v)=(F\circ\gamma)'(0).
 \begin{definition}
 \label{def:3-18-extra-1}
 \lean{smoothSheafCommRing}
+
 \mathlibok
 A smooth function element on $M$ is a pair $(f,U)$ with $U\subseteq M$ open
 and $f:U\to\mathbb{R}$ smooth. For $p\in M$, restrict to function elements
@@ -706,6 +769,8 @@ element is the germ of the zero function.
 \label{def:3-18-extra-4}
 \lean{IsCoordinateTangentVector}
 \leanok
+
+
 Equivalently, a tangent vector at $p$ can be represented by an assignment of a
 tuple $(v^1,\ldots,v^n)\in\mathbb{R}^n$ to every smooth coordinate chart
 containing $p$, such that on overlaps the tuples obey the transformation law
@@ -718,6 +783,7 @@ containing $p$, such that on overlaps the tuples obey the transformation law
 \begin{definition}
 \label{def:3-19-extra-1}
 \lean{Category}
+
 \mathlibok
 A category $\mathrm C$ consists of classes $\operatorname{Ob}(\mathrm C)$ and
 $\operatorname{Hom}(\mathrm C)$, source and target objects for each morphism,
@@ -739,6 +805,7 @@ $\operatorname{Id}_X$ satisfying
 \begin{definition}
 \label{def:3-19-extra-2}
 \lean{CategoryTheory.IsIso}
+
 \mathlibok
 A morphism $f\in\operatorname{Hom}_{\mathrm C}(X,Y)$ is an isomorphism if
 there is $g\in\operatorname{Hom}_{\mathrm C}(Y,X)$ such that
@@ -752,6 +819,8 @@ f\circ g=\operatorname{Id}_Y,
 \label{ex:3-26}
 \lean{pointed_map_iff_exists_hom}
 \leanok
+
+
 \dcref{ch3:3.26}
 Examples of categories include sets and maps; topological spaces or
 manifolds and continuous maps; smooth manifolds, with or without boundary, and
@@ -771,6 +840,7 @@ categories.
 \begin{definition}
 \label{def:3-19-extra-3}
 \lean{LocallySmall}
+
 \mathlibok
 A category is small if both its object class and its morphism class are sets.
 It is locally small if $\operatorname{Hom}_{\mathrm C}(X,Y)$ is a set for every
@@ -781,6 +851,7 @@ but not small.
 \begin{definition}
 \label{def:3-19-extra-4}
 \lean{CategoryTheory.Functor}
+
 \mathlibok
 For categories $\mathrm C$ and $\mathrm D$, a covariant functor
 $\mathcal F:\mathrm C\to\mathrm D$ assigns an object $\mathcal F(X)$ to every
@@ -797,3 +868,51 @@ composition:
 \mathcal F(g\circ h)=\mathcal F(g)\circ\mathcal F(h).
 \]
 \end{definition}
+
+\begin{exercise}
+\label{exer:3-17}
+\lean{cubicShear_symm_fderiv_apply_e1}
+\leanok
+\dcref{ch3:3.17}
+Let $\left( {x, y}\right)$ denote the standard coordinates on ${\mathbb{R}}^{2}$ . Verify that $\left( {\widetilde{x},\widetilde{y}}\right)$ are global smooth coordinates on ${\mathbb{R}}^{2}$ , where
+
+\[
+\widetilde{x} = x,\;\widetilde{y} = y + {x}^{3}.
+\]
+
+Let $p$ be the point $\left( {1,0}\right)  \in  {\mathbb{R}}^{2}$ (in standard coordinates), and show that
+
+\[
+{\left. \frac{\partial }{\partial x}\right| }_{p} \neq  {\left. \frac{\partial }{\partial \widetilde{x}}\right| }_{p}
+\]
+
+even though the coordinate functions $x$ and $\widetilde{x}$ are identically equal.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:3-27}
+\lean{Functor.map_isIso}
+\mathlibok
+\dcref{ch3:3.27}
+Show that any (covariant or contravariant) functor from C to D takes isomorphisms in C to isomorphisms in D.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:3-5}
+\lean{tangent_vector_mul_eq_zero_of_vanish_at}
+\leanok
+\uses{lem:3-4}
+\dcref{ch3:3.5}
+\begin{itemize}
+\item Exercise 3.5. Prove Lemma 3.4.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+\label{exer:3-7}
+\lean{mfderiv}
+\mathlibok
+\uses{prop:3-6}
+\dcref{ch3:3.7}
+Prove Proposition 3.6.
+\end{exercise}

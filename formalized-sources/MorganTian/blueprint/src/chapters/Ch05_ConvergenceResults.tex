@@ -11,8 +11,9 @@ the splitting result at infinity.
 \section{Geometric convergence of Riemannian manifolds}
 
 \begin{definition}[$\delta$-regular point]\label{def:delta-regular-point}
-\label{deltareg}
 \uses{def:riemannian-metric}
+\label{deltareg}
+
 Let $(U,g)$ be a Riemannian manifold. Let $\delta>0$ be given. We
 say that $p\in U$ is a {\em $\delta$-regular}
 point if for every $r'<\delta$ the
@@ -28,6 +29,7 @@ connected component of $\operatorname{Reg}_\delta(U,g)$ containing $x$.
 
 \begin{lemma}[Regular points form a closed set]\label{lem:reg-delta-closed}
 \uses{def:delta-regular-point}
+
  $\operatorname{Reg}_\delta(U,g)$  is a closed subset of $U$.
 \end{lemma}
 
@@ -45,8 +47,9 @@ closure.
 
 
 \begin{definition}[Geometric limit of Riemannian manifolds]\label{def:geometric-limit}
+\uses{def:delta-regular-point, def:riemannian-metric}
 \label{smoothconv}
-\uses{def:delta-regular-point,def:riemannian-metric}
+
 For each $k$
 let $(U_k,g_k,x_k)$ be a based, connected Riemannian manifold. A
 {\sl geometric limit} of the sequence $\{U_k,g_k,x_k\}_{k=0}^\infty$
@@ -88,6 +91,7 @@ limit} of the sequence.
 
 \begin{remark}[Geometric limits and incompleteness]\label{rem:geometric-limit-incomplete-condition}
 \uses{def:geometric-limit}
+
 Conditions (1) and (2a) in the definition above also appear in the definition
 in the case of complete limits. It is Condition (2b) that is extra in this
 incomplete case. It says that once $k$ is sufficiently large then the image
@@ -101,6 +105,7 @@ distance from the boundary of $U_\ell$.
 
 \begin{lemma}[Uniqueness of geometric limits]\label{lem:geometric-limit-uniqueness}
 \uses{def:geometric-limit}
+
 The geometric limit of a sequence $(U_k,g_k,x_k)$ is unique up to
 based isometry.
 \end{lemma}
@@ -167,8 +172,9 @@ isometry $U_\infty\to U'_\infty$.
 
 
 \begin{theorem}[Existence of geometric limits]\label{thm:geometric-limit-existence}
-\label{basicconv}
 \uses{def:delta-regular-point}
+\label{basicconv}
+
 Suppose that $\{(U_k,g_k,x_k)\}_{k=1}^\infty$ is a sequence of
 based, connected, $n$-dimensional Riemannian manifolds. In addition,
 suppose the following:
@@ -288,6 +294,7 @@ uniformly on compact subsets of $B$, to a limit.
 
 \begin{lemma}[Complete partial limits are geometric limits]\label{lem:partial-limit-complete-is-limit}
 \uses{def:geometric-limit}
+
 Suppose that $(U_k,g_k,x_k)$ is a sequence of based Riemannian
 manifolds and that there is a partial geometric limit
 $(U_\infty,g_\infty,x_\infty)$ that is a complete Riemannian
@@ -308,8 +315,9 @@ Definition~\ref{def:geometric-limit} is automatic in this case.
 \end{proof}
 
 \begin{theorem}[Geometric convergence for complete manifolds]\label{thm:manifold-convergence-complete-limit}
-\label{mfdconv}
 \uses{thm:geometric-limit-existence}
+\label{mfdconv}
+
 Let $\{(M_k,g_k,x_k)\}_{k=1}^\infty$ be a sequence  of connected,
 based Riemannian manifolds. Suppose that:
 \begin{enumerate}
@@ -345,8 +353,9 @@ $M_\infty$. This means that $(M_\infty,g_\infty)$ is complete.
 \end{proof}
 
 \begin{corollary}[Geometric convergence under non-collapsing]\label{cor:manifold-convergence-volume-noncollapsed}
-\label{2ndmfdconv}
 \uses{thm:manifold-convergence-complete-limit}
+\label{2ndmfdconv}
+
 Suppose that $\{(M_k,g_k,x_k)\}_{k=1}^\infty$ is a sequence of based, connected
 Riemannian manifolds. Suppose that the first two conditions in
 Theorem~\ref{thm:manifold-convergence-complete-limit} hold and suppose also that there are constants $\kappa>0$
@@ -395,8 +404,9 @@ context of Ricci flows than in general.
 
 
 \begin{theorem}[Geometric convergence of Ricci flow time-slices]\label{thm:ricci-flow-slice-convergence}
+\uses{def:generalized-ricci-flow, def:time-slices-horizontal, def:compatible-embedding}
 \label{sliceconv}
-\uses{def:generalized-ricci-flow,def:time-slices-horizontal,def:compatible-embedding}
+
 Suppose that $({\mathcal M}_k,G_k,x_k)$ is a sequence of based
 generalized $n$-dimensional Ricci flows with ${\bf t}(x_k)=0$. Let
 $(M_k,g_k)$ be the $0$ time-slice of $({\mathcal M}_k,G_k)$. Suppose
@@ -433,7 +443,8 @@ is then immediate from Corollary~\ref{cor:manifold-convergence-volume-noncollaps
 
 
 \begin{definition}[Partial geometric limit Ricci flow]\label{def:partial-geometric-limit-ricci-flow}
-\uses{def:geometric-limit,def:generalized-ricci-flow,def:time-slices-horizontal,def:compatible-embedding}
+\uses{def:geometric-limit, def:generalized-ricci-flow, def:time-slices-horizontal, def:compatible-embedding}
+
 Let $\{({\mathcal M}_k,G_k,x_k)\}_{k=1}^\infty$ be a sequence of based
 generalized Ricci flows. We suppose that ${\bf t}(x_k)=0$ for all $k$ and we
 denote by $(M_k,g_k)$ the time-slice of $({\mathcal M}_k,G_k)$. For some
@@ -457,7 +468,8 @@ family of metrics $g_\infty(t)$ on $M_\infty\times (-T,0]$.
 
 
 \begin{definition}[Geometric limit Ricci flow]\label{def:geometric-limit-ricci-flow}
-\uses{def:partial-geometric-limit-ricci-flow,def:geometric-limit}
+\uses{def:partial-geometric-limit-ricci-flow, def:geometric-limit}
+
 For $0<T\le \infty$, if $(M_\infty,g_\infty(t),x_\infty),\ -T<t\le 0$, is a
 partial geometric limit Ricci flow  of the based generalized Ricci flows
 $({\mathcal M}_k,G_k,x_k)$ and if $(M_\infty,g_\infty(0),x_\infty)$ is a
@@ -467,8 +479,9 @@ $(-T,0]$}.
 \end{definition}
 
 \begin{proposition}[Existence of partial geometric limit flows]\label{prop:partial-flow-limit-existence}
+\uses{def:geometric-limit, def:compatible-embedding, def:generalized-ricci-flow}
 \label{partialflowlimit}
-\uses{def:geometric-limit,def:compatible-embedding,def:generalized-ricci-flow}
+
 Hamilton's compactness construction is summarized in \cite{Hamiltonlimits}.
 Fix constants $-\infty\le T'\le 0\le T\le \infty$ and suppose that $T'<T$. Let
 $\{({\mathcal M}_k,G_k,x_k)\}_{k=1}^\infty$ be a sequence of based generalized
@@ -518,8 +531,9 @@ This `local' result leads immediately to the following result for
 complete limits.
 
 \begin{theorem}[Existence of geometric limit Ricci flows]\label{thm:ricci-flow-geometric-limit-existence}
+\uses{thm:ricci-flow-slice-convergence, prop:partial-flow-limit-existence, def:compatible-embedding}
 \label{flowlimit}
-\uses{thm:ricci-flow-slice-convergence,prop:partial-flow-limit-existence,def:compatible-embedding}
+
 Fix $-\infty\le T'\le 0\le T\le \infty$ with $T'<T$. Let $\{({\mathcal
 M}_k,G_k,x_k)\}_{k=1}^\infty$ be a sequence of based generalized Ricci flows.
 Suppose that ${\bf t}(x_k)=0$ for all $k$, and denote by $(M_k,g_k)$ the $0$
@@ -560,6 +574,7 @@ $g_\infty(0)$ is complete so is $g_\infty(t)$.
 
 \begin{corollary}[Extension of Ricci flow with bounded curvature]\label{cor:ricci-flow-extension-bounded-curvature}
 \uses{def:ricci-flow}
+
 Suppose that $(U,g(t)),\ 0\le t<T<\infty$,\ is a Ricci flow. Suppose
 that $|\Rm(x,t)|$ is bounded independent of $(x,t)\in U\times
 [0,T)$. Then for any open subset $V\subset U$ with compact closure
@@ -623,6 +638,7 @@ the inclusion relation) is a $\delta$-net in $X$.
 
 \begin{lemma}[Triangle inequality for Gromov--Hausdorff distance]\label{lem:gromov-hausdorff-triangle-inequality}
 \uses{def:delta-net}
+
 The Gromov-Hausdorff distance satisfies the triangle inequality.
 \end{lemma}
 
@@ -653,8 +669,9 @@ for any $\delta>0$, we conclude that $D_{GH}((X,x),(Z,z))\le a+b$.
 
 
 \begin{definition}[Gromov--Hausdorff convergence (bounded diameter)]\label{def:gromov-hausdorff-convergence}
-\label{GHconverge}
 \uses{def:delta-net}
+\label{GHconverge}
+
 We say that a sequence of  based metric spaces $(X_k,x_k)$ of
 uniformly bounded diameter {\sl converges in the Gromov-Hausdorff
 sense} to a based metric space $(Y,y)$ of finite
@@ -667,14 +684,16 @@ $\delta_n\rightarrow 0$ as $n\rightarrow\infty$.
 
 \begin{example}[Shrinking manifolds converge to a point]\label{ex:gromov-hausdorff-limit-point}
 \uses{def:gromov-hausdorff-convergence}
+
 A sequence of compact $n$-manifolds of diameter tending to zero has
 a point as  Gromov-Hausdorff limit.
 \end{example}
 
 
 \begin{definition}[Realization sequence]\label{def:realization-sequence}
-\label{seqconv}
 \uses{def:gromov-hausdorff-convergence}
+\label{seqconv}
+
 Suppose that $\{(X_k,x_k)\}_k$ converges in the Gromov-Hausdorff sense to
 $(Y,y)$. Then a {\sl realization sequence} for this convergence is a sequence
 of triples $((Z_k,z_k),f_k,g_k)$ where, for each $k$, the pair $(Z_k,z_k)$ is a
@@ -692,7 +711,8 @@ $d(f_k(\ell_k),g_k(\ell))\rightarrow 0$ as $i\rightarrow\infty$.
 
 
 \begin{lemma}[Net characterization of Gromov--Hausdorff convergence]\label{lem:gromov-hausdorff-net-characterization}
-\uses{def:gromov-hausdorff-convergence,def:delta-net}
+\uses{def:gromov-hausdorff-convergence, def:delta-net}
+
 The characterization is Proposition 3.5 of \cite{Gromov}.
 Let $(X_k,x_k)$ be a sequence of metric spaces whose diameters are uniformly
 bounded. Then the $(X_k,x_k)$ converge in the Gromov-Hausdorff
@@ -708,6 +728,7 @@ $X$.
 
 \begin{lemma}[Uniqueness of compact Gromov--Hausdorff limits]\label{lem:gromov-hausdorff-limit-uniqueness-compact}
 \uses{def:gromov-hausdorff-convergence}
+
 Let $(X_k,x_k)$ be a sequence of  based metric spaces whose diameters are
 uniformly bounded. Suppose that $(Y,y)$ and $(Y',y')$ are limits in the
 Gromov-Hausdorff sense of this sequence and each of $Y$ and $Y'$ are compact.
@@ -749,6 +770,7 @@ is an isometry.
 
 \begin{definition}[Gromov--Hausdorff convergence (unbounded diameter)]\label{def:gromov-hausdorff-convergence-unbounded}
 \uses{def:gromov-hausdorff-convergence}
+
 For  based metric spaces $(X_k,x_k)$ (not necessarily of finite
 diameter) to {\sl converge in the Gromov-Hausdorff sense to a based
 metric space} $(Y,y)$ means
@@ -758,7 +780,8 @@ converges in the Gromov-Hausdorff sense to the ball $B(y,r)$ in $Y$.
 \end{definition}
 
 \begin{lemma}[Uniqueness of locally compact Gromov--Hausdorff limits]\label{lem:gromov-hausdorff-limit-uniqueness-locally-compact}
-\uses{def:gromov-hausdorff-convergence-unbounded,lem:gromov-hausdorff-limit-uniqueness-compact}
+\uses{def:gromov-hausdorff-convergence-unbounded, lem:gromov-hausdorff-limit-uniqueness-compact}
+
 Let $(X_k,x_k)$ be a sequence of locally compact metric spaces. Suppose that
 $(Y,y)$ and $(Y',y')$ are complete, locally compact, based metric spaces that
 are limits of the sequence in the Gromov-Hausdorff sense. Then there is an
@@ -790,7 +813,8 @@ $\ell$ to $\ell'$.
 
 
 \begin{example}[Geometric convergence implies Gromov--Hausdorff convergence]\label{ex:geometric-implies-gromov-hausdorff-convergence}
-\uses{def:geometric-limit,def:gromov-hausdorff-convergence-unbounded}
+\uses{def:geometric-limit, def:gromov-hausdorff-convergence-unbounded}
+
 Let $(M_n,g_n,x_n)$ be a sequence of based Riemannian manifolds
 converging geometrically to $(M_\infty,g_\infty,x_\infty)$. Then the
 sequence also converges in the Gromov-Hausdorff sense to the same
@@ -811,8 +835,9 @@ $R<\infty$ let $N(\delta,R,X)$ be the maximal number of disjoint
 $\delta$-balls in $X$ that can be contained in $B(x,R)$.
 
 \begin{theorem}[Gromov's precompactness theorem]\label{thm:gromov-hausdorff-precompactness}
+\uses{def:length-space, def:gromov-hausdorff-convergence-unbounded}
 \label{GHcompact}
-\uses{def:length-space,def:gromov-hausdorff-convergence-unbounded}
+
 This is Gromov's precompactness theorem \cite{Gromov}.
 Suppose that $(X_k,x_k)$ is a sequence of based length spaces. Then
 there is a based length space $(X,x)$ that is the limit in the
@@ -848,7 +873,8 @@ $\theta_\infty(\gamma,\mu)+\theta_\infty(\mu,\nu)\ge
 
 
 \begin{definition}[Space of directions at infinity]\label{def:space-of-directions-infinity}
-\uses{def:length-space,thm:length-comparison}
+\uses{def:length-space, thm:length-comparison}
+
 Now we define a metric space whose underlying space is the quotient
 space of the equivalence classes of minimal geodesic rays emanating
 from $p$, with two rays equivalent if and only if the angle at
@@ -861,6 +887,7 @@ space by $S_\infty(M,p)$.
 
 \begin{claim}[Space of directions at infinity is compact]\label{claim:space-of-directions-compact}
 \uses{def:space-of-directions-infinity}
+
 $S_\infty(M,p)$ is a compact space.
 \end{claim}
 
@@ -892,8 +919,9 @@ independent of the choice of $p$. From the previous claim, it follows that the
 Tits cone of $M$ is locally compact and complete.
 
 \begin{proposition}[Tits cone as a Gromov--Hausdorff limit]\label{prop:tits-cone-gromov-hausdorff-limit}
+\uses{def:space-of-directions-infinity, claim:space-of-directions-compact, def:gromov-hausdorff-convergence-unbounded}
 \label{conelimit}
-\uses{def:space-of-directions-infinity,claim:space-of-directions-compact,def:gromov-hausdorff-convergence-unbounded}
+
 Let $(M,g)$ be a non-negatively curved, complete, non-compact
 Riemannian manifold of dimension $k$. Fix a point $p\in M$ and let
 $\{x_n\}_{n=1}^\infty$ be a sequence tending to infinity in $M$. Let
@@ -974,7 +1002,8 @@ blow-up limits and the positive curvature result in the arguments in
 the later sections.
 
 \begin{definition}[Blow-up limit]\label{def:blow-up-limit}
-\uses{def:geometric-limit,def:generalized-ricci-flow}
+\uses{def:geometric-limit, def:generalized-ricci-flow}
+
 Let $({\mathcal M}_k,G_k,x_k)$ be a sequence of based
 generalized Ricci flows. We suppose that ${\bf t}(x_k)=0$ for all
 $n$. We set $Q_k$ equal to $R(x_k)$. We denote by $(Q_k{\mathcal
@@ -997,8 +1026,9 @@ originally established in \cite{Hamiltonsurvey}, the latter
 condition implies that any blow-up limit has non-negative curvature.
 
 \begin{theorem}[Blow-up limits have non-negative curvature]\label{thm:blow-up-limit-nonnegative-curvature}
-\label{blowupposcurv}
 \uses{def:blow-up-limit}
+\label{blowupposcurv}
+
 Let $({\mathcal M}_k,G_k,x_k)$ be a sequence of generalized $3$-dimensional
 Ricci flows, each of which has time interval of definition contained in
 $[0,\infty)$ and each of which has curvature pinched toward positive. Suppose
@@ -1046,6 +1076,7 @@ The argument in the case of a geometric limit flow is identical.
 
 \begin{corollary}[Blow-up limits of pinched flows have non-negative curvature]\label{cor:blow-up-limit-nonnegative-curvature-pinched}
 \uses{thm:blow-up-limit-nonnegative-curvature}
+
 Suppose that $(M_k,g_k(t))$ is a sequence of Ricci flows each of which has time
 interval of definition contained in $[0,\infty)$ with each $M_k$ being a
 compact $3$-manifold. Suppose further that, for each $k$, we have $|\Rm(p_k,0)|\le 1$ for all $p_k\in M_k$. Then any blow-up limit of this sequence
@@ -1075,8 +1106,9 @@ The main result of this section gives a condition under which a geometric limit
 automatically splits off a line.
 
 \begin{theorem}[Splitting at infinity]\label{thm:splitting-at-infinity}
-\label{topsplit}
 \uses{def:geometric-limit}
+\label{topsplit}
+
 Let $(M,g)$ be a complete, connected manifold of non-negative
 sectional curvature. Let $\{x_n\}$ be a sequence of points going off
 to infinity, and suppose that we can find scaling factors

@@ -84,8 +84,9 @@ The following proposition shows that every Lie group homomorphism induces a Lie 
 
 \begin{proposition}[Properties of Induced Homomorphisms]
 \label{prop:properties-of-induced-homomorphisms}
-\dcref{chC:C.6}
 \uses{prop:induced-lie-algebra-homomorphism}
+\dcref{chC:C.6}
+
 
 Let $G, H, K$ be Lie groups.
 
@@ -122,8 +123,9 @@ The exponential map is the key ingredient in the proof of the following fundamen
 
 \begin{theorem}[Closed Subgroup Theorem]
 \label{thm:closed-subgroup-theorem}
-\dcref{chC:C.8}
 \uses{prop:properties-of-lie-group-exponential-map}
+\dcref{chC:C.8}
+
 
 Suppose $G$ is a Lie group and $H \subseteq G$ is a subgroup in the algebraic sense. Then $H$ is an embedded Lie subgroup of $G$ if and only if it is closed in the topological sense.
 \end{theorem}
@@ -132,8 +134,9 @@ An important special case of the closed subgroup theorem is that of a \emph{disc
 
 \begin{proposition}
 \label{prop:discrete-subgroups-dimension-zero}
-\dcref{chC:C.9}
 \uses{thm:closed-subgroup-theorem}
+\dcref{chC:C.9}
+
 
 Every discrete subgroup of a Lie group is a closed Lie subgroup of dimension zero.
 \end{proposition}
@@ -160,8 +163,9 @@ The next proposition shows how the two adjoint representations are related.
 
 \begin{proposition}
 \label{prop:adjoint-induced-from-group}
+\uses{ex:adjoint-representations-lie-groups, UNRESOLVED:chC:20.27}
 \dcref{chC:C.11}
-\uses{ex:adjoint-representations-lie-groups,UNRESOLVED:chC:20.27}
+
 
 Let $G$ be a Lie group and $\mathfrak{g}$ its Lie algebra, and let $\text{Ad}: G \to \text{GL}(\mathfrak{g})$ and $\text{ad}: \mathfrak{g} \to \mathfrak{gl}(\mathfrak{g})$ be their respective adjoint representations. The induced Lie algebra representation $\text{Ad}_*: \mathfrak{g} \to \mathfrak{gl}(\mathfrak{g})$ is given by $\text{Ad}_* = \text{ad}$.
 
@@ -187,8 +191,9 @@ Now suppose $G$ is a Lie group, and $M$ and $N$ are smooth manifolds endowed wit
 
 \begin{theorem}[Equivariant Rank Theorem]
 \label{thm:equivariant-rank-theorem}
-\dcref{chC:C.14}
 \uses{UNRESOLVED:chA:LeeSM.7.25}
+\dcref{chC:C.14}
+
 Suppose $M, N$ are smooth manifolds, and $G$ is a Lie group acting smoothly and transitively on $M$ and smoothly on $N$. If $F : M \to N$ is a smooth $G$-equivariant map, then $F$ has constant rank. Thus, if $F$ is surjective, it is a smooth submersion; if it is injective, it is a smooth immersion; and if it is bijective, it is a diffeomorphism.
 \end{theorem}
 
@@ -200,6 +205,7 @@ Suppose $G$ is a Lie group acting smoothly on a smooth manifold $M$. The action 
 
 \begin{corollary}[]\label{cor:compact-lie-group-actions-proper}\dcref{chC:C.16}
 \uses{prop:proper-action-condition}
+
 Every smooth action by a compact Lie group on a smooth manifold is proper.
 \end{corollary}
 
@@ -211,16 +217,19 @@ The next theorem is the most important application of proper actions. If a group
 
 \begin{theorem}[Quotient Manifold Theorem]\label{thm:quotient-manifold-theorem}\dcref{chC:C.17}
 \uses{prop:proper-action-condition}
+
 Suppose $G$ is a Lie group acting smoothly, freely, and properly on a smooth manifold $M$. Then the orbit space $M/G$ is a topological manifold whose dimension is equal to the difference $\dim M - \dim G$, and it has a unique smooth structure with the property that the quotient map $\pi: M \to M/G$ is a smooth submersion.
 \end{theorem}
 
 \begin{example}[Real Projective Spaces]\label{ex:real-projective-spaces}\dcref{chC:C.18}
-\uses{prop:proper-action-condition,thm:quotient-manifold-theorem}
+\uses{prop:proper-action-condition, thm:quotient-manifold-theorem}
+
 For each nonnegative integer $n$, the $n$-dimensional \textit{real projective space}, denoted by $\mathbb{RP}^n$, is defined as the set of one-dimensional linear subspaces of $\mathbb{R}^{n+1}$. It can be identified with the orbit space of $\mathbb{R}^{n+1} \setminus \{0\}$ under the action of the group $\mathbb{R}^*$ of nonzero real numbers given by scalar multiplication: $\lambda \cdot (x^1, \ldots, x^{n+1}) = (\lambda x^1, \ldots, \lambda x^{n+1})$. It is easy to check that this action is smooth and free. To see that it is proper, we use Proposition~C.15. Suppose $(x_i)$ is a sequence in $\mathbb{R}^{n+1} \setminus \{0\}$ and $(\lambda_i)$ is a sequence in $\mathbb{R}^*$ such that $x_i \to x \in \mathbb{R}^{n+1} \setminus \{0\}$ and $\lambda_i x_i \to y \in \mathbb{R}^{n+1} \setminus \{0\}$. Then $|\lambda_i| = |\lambda_i x_i|/|x_i|$. Thus the numbers $\lambda_i$ all lie in a compact set of the form $\{\lambda : 1/C \le |\lambda| \le C\}$ for some positive number $C$, so a subsequence converges to a nonzero real number. Therefore, by the quotient manifold theorem, $\mathbb{RP}^n$ has a unique structure as a smooth $n$-dimensional manifold such that the quotient map $\mathbb{R}^{n+1} \setminus \{0\} \to \mathbb{RP}^n$ is a smooth submersion.
 \end{example}
 
 \begin{example}[Complex Projective Spaces]\label{ex:complex-projective-spaces}\dcref{chC:C.19}
 \uses{ex:real-projective-spaces}
+
 Similarly, the $n$-dimensional \textit{complex projective space}, denoted by $\mathbb{CP}^n$, is the set of 1-dimensional complex subspaces of $\mathbb{C}^{n+1}$, identified with the orbit space of $\mathbb{C}^{n+1} \setminus \{0\}$ under the $\mathbb{C}^*$-action given by $\lambda \cdot z = \lambda z$. The same argument as in the preceding example shows that this action is smooth, free, and proper, so $\mathbb{CP}^n$ is a smooth $2n$-dimensional manifold and the quotient map $\pi: \mathbb{C}^{n+1} \setminus \{0\} \to \mathbb{CP}^n$ is a smooth submersion.
 \end{example}
 
@@ -230,6 +239,7 @@ There is a close connection between smooth covering maps and smooth group action
 
 \begin{proposition}\label{prop:covering-automorphisms-discrete-lie-group}\dcref{chC:C.20}
 \uses{cor:compact-lie-group-actions-proper}
+
 Let $\pi: \widetilde{M} \to M$ be a smooth covering map. With the discrete topology, $\mathrm{Aut}_\pi(\widetilde{M})$ is a discrete Lie group acting smoothly, freely, and properly on $M$.
 \end{proposition}
 
@@ -237,6 +247,7 @@ Because of the requirement that a covering automorphism $\varphi$ satisfy $\pi \
 
 \begin{proposition}\label{prop:normal-covering-transitive-action}\dcref{chC:C.21}
 \uses{prop:covering-automorphisms-discrete-lie-group}
+
 If $\pi: \widetilde{M} \to M$ is a smooth covering map, then the automorphism group of $\pi$ acts transitively on each fiber of $\pi$ if and only if $\pi$ is a normal covering.
 \end{proposition}
 
@@ -244,17 +255,27 @@ The universal covering is the most important special case.
 
 \begin{proposition}[Automorphisms of the Universal Covering]\label{prop:automorphisms-universal-covering}\dcref{chC:C.22}
 \uses{prop:normal-covering-transitive-action}
+
 Suppose $M$ is a connected smooth manifold and $\pi: \widetilde{M} \to M$ is its universal covering. Then $\mathrm{Aut}_\pi(\widetilde{M})$ is isomorphic to the fundamental group of $M$, and it acts transitively on each fiber of $\pi$.
 \end{proposition}
 
 The next theorem, which is an application of the quotient manifold theorem, is a partial converse to Proposition C.20.
 
 \begin{proposition}\label{prop:quotient-orbit-space-covering-map}\dcref{chC:C.23}
-\uses{prop:covering-automorphisms-discrete-lie-group,thm:quotient-manifold-theorem}
+\uses{prop:covering-automorphisms-discrete-lie-group, thm:quotient-manifold-theorem}
+
 Suppose $\widetilde{M}$ is a connected smooth manifold and $\Gamma$ is a discrete Lie group acting smoothly, freely, and properly on $\widetilde{M}$. Then the orbit space $\widetilde{M}/\Gamma$ has a unique smooth manifold structure such that the quotient map $\widetilde{M} \to \widetilde{M}/\Gamma$ is a smooth normal covering map.
 \end{proposition}
 
 \begin{example}[The Universal Covering of $\mathbb{RP}^n$]\label{ex:universal-covering-projective-space}\dcref{chC:C.24}
-\uses{ex:real-projective-spaces,prop:uniqueness-smooth-quotients}
+\uses{ex:real-projective-spaces, prop:uniqueness-smooth-quotients}
+
 The two-element group $\Gamma = \{\pm 1\}$ acts smoothly, freely, and properly on $S^n$ by multiplication, and thus $S^n/\Gamma$ is a smooth manifold and the quotient map $\pi: S^n \to S^n/\Gamma$ is a two-sheeted smooth normal covering map. Note also that the quotient map $\mathbb{R}^{n+1} \to \mathbb{R}^{n+1}$ defined in Example C.18 restricts to a surjective smooth map $q: S^n \to \mathbb{RP}^n$, which is a submersion because each point of $S^n$ is in the image of a smooth local section. Since $q$ and $\pi$ are constant on each other's fibers, Proposition A.19 shows that there is a diffeomorphism $S^n/\Gamma \to \mathbb{RP}^n$, and $q$ is equal to the composition $S^n \to S^n/\Gamma \to \mathbb{RP}^n$. Since this is a smooth normal covering map followed by a diffeomorphism, $q$ is also a smooth normal covering map. Thus $S^n$ is the universal covering space of $\mathbb{RP}^n$, and the fundamental group of $\mathbb{RP}^n$ is isomorphic to $\{\pm 1\}$.
 \end{example}
+
+\begin{exercise}
+\label{exer:semidirect-product-verification}
+\dcref{chC:C.13}
+\uses{ex:semidirect-products}
+Verify that $N \rtimes_\theta H$ is indeed a Lie group with the multiplication defined above, and with $(e,e)$ identity and $(n,h)^{-1} = (\theta_{h^{-1}}(n^{-1}),h^{-1})$.
+\end{exercise}

@@ -2,7 +2,8 @@
 
 \section*{2.1. Mean Values}
 
-\begin{theorem}[Mean value theorem]\label{gt.thm2.1}\dcref{ch2:2.1}\group{chapter-2}\source{gilbarg-trudinger:page-0026}
+\begin{theorem}[Mean value theorem]\label{gt.thm2.1}\dcref{ch2:2.1}\group{chapter-2}
+\source{gilbarg-trudinger:page-0026}
 Let $u\in C^2(\Omega)$ and let $B_R(y)\Subset\Omega$. If
 $\Delta u=0$ (respectively $\Delta u\geq0$ or $\Delta u\leq0$), then
 \begin{equation}
@@ -18,6 +19,7 @@ u(y)=(\leq,\ \geq)\frac{1}{\omega_nR^n}
 \end{equation}
 \end{theorem}
 \begin{proof}
+  \uses{gt.thm2.1}
 \sketch The divergence theorem shows that the derivative with respect to
 $\rho$ of the spherical mean over $\partial B_\rho(y)$ has the sign of
 $\Delta u$. Compare this mean with its limit $u(y)$ as $\rho\downarrow0$ to
@@ -27,7 +29,9 @@ obtain (2.5), then integrate the spherical inequality in $\rho$ to obtain
 
 \section*{2.2. Maximum and Minimum Principles}
 
-\begin{theorem}[Strong maximum principle]\label{gt.thm2.2}\dcref{ch2:2.2}\group{chapter-2}\source{gilbarg-trudinger:page-0027}
+\begin{theorem}[Strong maximum principle]\label{gt.thm2.2}\dcref{ch2:2.2}\group{chapter-2}
+\source{gilbarg-trudinger:page-0027}
+\uses{gt.thm2.1}
 If $\Delta u\geq0$ in a domain $\Omega$ and $u$ attains its supremum at an
 interior point, then $u$ is constant. The analogous assertion holds for
 $\Delta u\leq0$ and an interior minimum. Thus a nonconstant harmonic
@@ -40,7 +44,8 @@ neighborhood of each of its points, hence is also relatively open. Connectedness
 finishes the proof; replace $u$ by $-u$ for minima.
 \end{proof}
 
-\begin{theorem}[Weak maximum principle]\label{gt.thm2.3}\dcref{ch2:2.3}\group{chapter-2}\source{gilbarg-trudinger:page-0027}
+\begin{theorem}[Weak maximum principle]\label{gt.thm2.3}\dcref{ch2:2.3}\group{chapter-2}
+\source{gilbarg-trudinger:page-0027}
 Let $\Omega$ be bounded and
 $u\in C^2(\Omega)\cap C^0(\overline\Omega)$. Then
 \begin{equation}
@@ -54,23 +59,29 @@ $u\in C^2(\Omega)\cap C^0(\overline\Omega)$. Then
 In particular, a harmonic function lies between its boundary extrema.
 \end{theorem}
 \begin{proof}
+  \uses{gt.thm2.3}
 \sketch An extremum exists on the compact closure. If it were achieved only
 in the interior, Theorem~\ref{gt.thm2.2} would make $u$ constant.
 \end{proof}
 
-\begin{theorem}[Dirichlet uniqueness]\label{gt.thm2.4}\dcref{ch2:2.4}\group{chapter-2}\source{gilbarg-trudinger:page-0027}
+\begin{theorem}[Dirichlet uniqueness]\label{gt.thm2.4}\dcref{ch2:2.4}\group{chapter-2}
+\source{gilbarg-trudinger:page-0027}
+\uses{gt.thm2.3}
 If $u,v\in C^2(\Omega)\cap C^0(\overline\Omega)$ satisfy
 $\Delta u=\Delta v$ in bounded $\Omega$ and $u=v$ on $\partial\Omega$, then
 $u=v$ in $\Omega$.
 \end{theorem}
-\begin{proof}\uses{gt.thm2.3}
+\begin{proof}
+  \uses{gt.thm2.3, gt.thm2.1}
 \sketch Apply Theorem~\ref{gt.thm2.3} to the harmonic function $u-v$ and
 to its negative.
 \end{proof}
 
 \section*{2.3. Harnack's Inequality}
 
-\begin{theorem}[Harnack inequality]\label{gt.thm2.5}\dcref{ch2:2.5}\group{chapter-2}\source{gilbarg-trudinger:page-0028}
+\begin{theorem}[Harnack inequality]\label{gt.thm2.5}\dcref{ch2:2.5}\group{chapter-2}
+\source{gilbarg-trudinger:page-0028}
+\uses{gt.thm2.1}
 If $u\geq0$ is harmonic in $\Omega$ and
 $\Omega'\Subset\Omega$ is bounded, then
 \begin{equation}
@@ -79,7 +90,8 @@ $\Omega'\Subset\Omega$ is bounded, then
 \end{equation}
 where $C$ depends only on $n$, $\Omega'$, and $\Omega$.
 \end{theorem}
-\begin{proof}\uses{gt.thm2.1}
+\begin{proof}
+  \uses{gt.thm2.1, gt.thm2.5}
 \sketch For $x_1,x_2\in B_R(y)$ with $B_{4R}(y)\subset\Omega$, the two ball
 mean formulas give
 \begin{equation}
@@ -214,7 +226,10 @@ u(y)=\frac{R^2-|y|^2}{n\omega_nR}
 \int_{\partial B_R}\frac{u(x)}{|x-y|^n}\,ds_x.
 \end{equation}
 
-\begin{theorem}[Dirichlet problem on a ball]\label{gt.thm2.6}\dcref{ch2:2.6}\group{chapter-2}\source{gilbarg-trudinger:page-0032}
+\begin{theorem}[Dirichlet problem on a ball]\label{gt.thm2.6}\dcref{ch2:2.6}\group{chapter-2}
+\source{gilbarg-trudinger:page-0032}
+\source{gilbarg-trudinger:page-0033}
+\uses{gt.thm2.5}
 For continuous $\varphi$ on $\partial B_R$, define
 \begin{equation}
 \tag{2.27}
@@ -225,7 +240,8 @@ u(x)=\frac{R^2-|x|^2}{n\omega_nR}
 and set $u=\varphi$ on $\partial B_R$. Then
 $u\in C^2(B_R)\cap C^0(\overline B_R)$ and $\Delta u=0$ in $B_R$.
 \end{theorem}
-\begin{proof}\uses{gt.thm2.5}
+\begin{proof}
+  \uses{gt.thm2.5, gt.thm2.6, gt.thm2.2, gt.thm2.3, gt.thm2.4}
 \sketch The Poisson kernel satisfies
 \begin{equation}
 \tag{2.28}
@@ -244,7 +260,9 @@ the kernel tends uniformly to zero. Thus $u(x)\to\varphi(x_0)$.
 
 \section*{2.6. Convergence Theorems}
 
-\begin{theorem}[Mean value characterization]\label{gt.thm2.7}\dcref{ch2:2.7}\group{chapter-2}\source{gilbarg-trudinger:page-0033}
+\begin{theorem}[Mean value characterization]\label{gt.thm2.7}\dcref{ch2:2.7}\group{chapter-2}
+\source{gilbarg-trudinger:page-0033}
+\uses{gt.thm2.6, gt.thm2.2, gt.thm2.3, gt.thm2.4}
 A continuous function $u$ is harmonic in $\Omega$ if and only if every ball
 $B_R(y)\Subset\Omega$ satisfies
 \begin{equation}
@@ -259,20 +277,25 @@ between $u$ and that harmonic solution has the mean value property and zero
 boundary values, so the maximum-principle argument forces it to vanish.
 \end{proof}
 
-\begin{theorem}\label{gt.thm2.8}\dcref{ch2:2.8}\group{chapter-2}\source{gilbarg-trudinger:page-0033}
+\begin{theorem}\label{gt.thm2.8}\dcref{ch2:2.8}\group{chapter-2}
+\source{gilbarg-trudinger:page-0033}
 A uniform limit of harmonic functions is harmonic.
 \end{theorem}
 \begin{proof}
+  \uses{gt.thm2.5, gt.thm2.8}
 \sketch Pass to the limit in the spherical mean identity and apply
 Theorem~\ref{gt.thm2.7}.
 \end{proof}
 
-\begin{theorem}[Harnack convergence theorem]\label{gt.thm2.9}\dcref{ch2:2.9}\group{chapter-2}\source{gilbarg-trudinger:page-0034}
+\begin{theorem}[Harnack convergence theorem]\label{gt.thm2.9}\dcref{ch2:2.9}\group{chapter-2}
+\source{gilbarg-trudinger:page-0034}
+\uses{gt.thm2.5, gt.thm2.8}
 Let $u_j$ increase monotonically through harmonic functions on $\Omega$. If
 $u_j(y)$ is bounded at one point, then $u_j$ converges uniformly on every
 bounded $\Omega'\Subset\Omega$ to a harmonic function.
 \end{theorem}
-\begin{proof}\uses{gt.thm2.5, gt.thm2.8}
+\begin{proof}
+  \uses{gt.thm2.5, gt.thm2.8, gt.thm2.9}
 \sketch Apply Harnack's inequality to the nonnegative harmonic differences
 $u_m-u_j$. Their values at $y$ are Cauchy, hence the differences tend
 uniformly to zero on compact subdomains. Theorem~\ref{gt.thm2.8} identifies
@@ -342,11 +365,15 @@ For bounded boundary data $\varphi$, let $S_\varphi$ be the continuous
 subharmonic functions on $\overline\Omega$ satisfying
 $v\leq\varphi$ on $\partial\Omega$.
 
-\begin{theorem}[Perron solution]\label{gt.thm2.12}\dcref{ch2:2.12}\group{chapter-2}\source{gilbarg-trudinger:page-0036}
+\begin{theorem}[Perron solution]\label{gt.thm2.12}\dcref{ch2:2.12}\group{chapter-2}
+\source{gilbarg-trudinger:page-0036}
+\source{gilbarg-trudinger:page-0037}
+\uses{gt.thm2.9}
 The function
 $u(x)=\sup_{v\in S_\varphi}v(x)$ is harmonic in $\Omega$.
 \end{theorem}
-\begin{proof}\uses{gt.thm2.9}
+\begin{proof}
+  \uses{gt.thm2.9, gt.thm2.12}
 \sketch At a fixed $y$, choose subfunctions approaching $u(y)$ and replace
 them by their harmonic liftings in a ball about $y$. The compactness theorem
 gives a harmonic limit $v\leq u$ with $v(y)=u(y)$. If $v<u$ elsewhere,
@@ -360,11 +387,15 @@ $w>0$ on $\overline\Omega\setminus\{\xi\}$. The point $\xi$ is
 \emph{regular} if it has a barrier. A local barrier extends to a global one
 by truncating it at a positive constant outside a small neighborhood.
 
-\begin{lemma}\label{gt.lem2.13}\dcref{ch2:2.13}\group{chapter-2}\source{gilbarg-trudinger:page-0037}
+\begin{lemma}\label{gt.lem2.13}\dcref{ch2:2.13}\group{chapter-2}
+\source{gilbarg-trudinger:page-0037}
+\source{gilbarg-trudinger:page-0038}
+\uses{gt.thm2.12}
 Let $u$ be the Perron solution. If $\xi$ is regular and $\varphi$ is
 continuous at $\xi$, then $u(x)\to\varphi(\xi)$ as $x\to\xi$.
 \end{lemma}
-\begin{proof}\uses{gt.thm2.12}
+\begin{proof}
+  \uses{gt.thm2.12, gt.lem2.13}
 \sketch For a barrier $w$ and any $\varepsilon>0$, choose $k$ so that
 $\varphi(\xi)\pm\varepsilon\pm kw$ are super- and subfunctions relative to
 $\varphi$. Then
@@ -374,7 +405,9 @@ $\varphi$. Then
 and $w(x)\to0$ at $\xi$.
 \end{proof}
 
-\begin{theorem}[Dirichlet solvability and regularity]\label{gt.thm2.14}\dcref{ch2:2.14}\group{chapter-2}\source{gilbarg-trudinger:page-0038}
+\begin{theorem}[Dirichlet solvability and regularity]\label{gt.thm2.14}\dcref{ch2:2.14}\group{chapter-2}
+\source{gilbarg-trudinger:page-0038}
+\uses{gt.lem2.13}
 The classical Dirichlet problem on a bounded domain is solvable for every
 continuous boundary value if and only if every boundary point is regular.
 \end{theorem}

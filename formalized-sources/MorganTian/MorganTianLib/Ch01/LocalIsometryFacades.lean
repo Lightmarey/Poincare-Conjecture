@@ -120,6 +120,32 @@ theorem isLocalIsometry_iff_contMDiff_preservesMetric
 
 /-! ### Geodesics and length -/
 
+omit [CompleteSpace E] in
+/-- **Math.** A local isometry carries a geodesic on an open set of times to a
+geodesic on the same set of times. -/
+theorem IsLocalIsometry.isGeodesicOn_comp
+    (hF : IsLocalIsometry gN gM F) {γ : ℝ → N} {s : Set ℝ}
+    (hs : IsOpen s) (hγc : ContinuousOn γ s)
+    (hγ : Riemannian.Geodesic.IsGeodesicOn (I := I) gN γ s) :
+    Riemannian.Geodesic.IsGeodesicOn (I := I') gM (fun t => F (γ t)) s := by
+  letI : Bundle.RiemannianBundle (fun x : N ↦ TangentSpace I x) :=
+    ⟨gN.toRiemannianMetric⟩
+  letI : Bundle.RiemannianBundle (fun x : M ↦ TangentSpace I' x) :=
+    ⟨gM.toRiemannianMetric⟩
+  exact Riemannian.Geodesic.isGeodesicOn_comp_of_isLocalDiffeomorph
+    hF.1 gN gM hF.2 hs hγc hγ
+
+omit [CompleteSpace E] in
+/-- **Math.** A local isometry carries a continuous geodesic curve on an open
+set of times to a continuous geodesic curve on the same set. -/
+theorem IsLocalIsometry.isGeodesicCurveOn_comp
+    (hF : IsLocalIsometry gN gM F) {γ : ℝ → N} {s : Set ℝ}
+    (hs : IsOpen s)
+    (hγ : Riemannian.Geodesic.IsGeodesicCurveOn (I := I) gN γ s) :
+    Riemannian.Geodesic.IsGeodesicCurveOn (I := I') gM (fun t => F (γ t)) s := by
+  exact ⟨hF.1.contMDiff.continuous.comp_continuousOn hγ.1,
+    hF.isGeodesicOn_comp hs hγ.1 hγ.2⟩
+
 /-- **Math.** A local isometry carries a global geodesic to a global geodesic. -/
 theorem IsLocalIsometry.isGeodesic_comp
     (hF : IsLocalIsometry gN gM F) {γ : ℝ → N}

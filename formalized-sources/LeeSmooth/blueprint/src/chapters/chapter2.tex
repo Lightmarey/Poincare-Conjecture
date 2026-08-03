@@ -9,6 +9,7 @@
 \begin{remark}
 \label{rem:2-8-extra-1}
 \lean{ContMDiffMap}
+
 \mathlibok
 The term \emph{function} denotes a real- or vector-valued map, while \emph{map} may have arbitrary codomain.
 \end{remark}
@@ -16,6 +17,7 @@ The term \emph{function} denotes a real- or vector-valued map, while \emph{map} 
 \begin{notation}
 \label{not:2-8-extra-3}
 \lean{C}
+
 \mathlibok
 For a smooth manifold $M$, write $C^\infty(M)$ for the real-valued smooth
 functions on $M$; with pointwise operations it is a commutative associative
@@ -27,6 +29,8 @@ $\mathbb R$-algebra.
 \label{exer:2-3}
 \lean{smooth_chart_representation_of_contMDiff}
 \leanok
+
+
 \dcref{ch2:2.3}
 If $f:M\to\mathbb R^k$ is smooth and $(U,\varphi)$ is any smooth chart, then $f\circ\varphi^{-1}:\varphi(U)\to\mathbb R^k$ is smooth.
 \end{lemma}
@@ -34,6 +38,7 @@ If $f:M\to\mathbb R^k$ is smooth and $(U,\varphi)$ is any smooth chart, then $f\
 \begin{definition}
 \label{def:2-8-extra-4}
 \lean{writtenInExtChartAt}
+
 \mathlibok
 For $f:M\to\mathbb R^k$ and a chart $(U,\varphi)$, its coordinate representation is $\widehat f=f\circ\varphi^{-1}:\varphi(U)\to\mathbb R^k$. The function $f$ is smooth exactly when these representations are smooth in a chart around every point; by Lemma~\ref{exer:2-3}, smoothness then holds in every smooth chart.
 \end{definition}
@@ -41,6 +46,7 @@ For $f:M\to\mathbb R^k$ and a chart $(U,\varphi)$, its coordinate representation
 \begin{definition}
 \label{def:2-8-extra-5}
 \lean{ContMDiff}
+
 \mathlibok
 For smooth manifolds $M,N$, a map $F:M\to N$ is smooth if for every $p\in M$ there are smooth charts $(U,\varphi)$ about $p$ and $(V,\psi)$ about $F(p)$ with $F(U)\subseteq V$ such that $\psi\circ F\circ\varphi^{-1}:\varphi(U)\to\psi(V)$ is smooth. For manifolds with boundary, maps from subsets of $\mathbb H^n$ are smooth when locally extendible to smooth maps, and maps into subsets of $\mathbb H^n$ are smooth as maps into $\mathbb R^n$. The function definition is the case $N=\mathbb R^k$ with $\psi=\operatorname{Id}$.
 \end{definition}
@@ -48,6 +54,7 @@ For smooth manifolds $M,N$, a map $F:M\to N$ is smooth if for every $p\in M$ the
 \begin{proposition}
 \label{prop:2-4}
 \lean{ContMDiff.continuous}
+
 \mathlibok
 \dcref{ch2:2.4}
 Every smooth map is continuous.
@@ -64,6 +71,7 @@ is continuous, hence $F$ is continuous on $M$.
 \begin{proposition}[Equivalent Characterizations of Smoothness]
 \label{prop:2-5}
 \lean{contMDiff_iff}
+
 \mathlibok
 \dcref{ch2:2.5}
 For a map $F:M\to N$ between smooth manifolds (with or without boundary), $F$ is smooth if and only if either:
@@ -76,6 +84,7 @@ For a map $F:M\to N$ between smooth manifolds (with or without boundary), $F$ is
 \begin{proposition}[Smoothness Is Local]
 \label{prop:2-6}
 \lean{contMDiff_of_locally_contMDiffOn}
+
 \mathlibok
 \dcref{ch2:2.6}
 For a map $F:M\to N$ between smooth manifolds, if every $p\in M$ has a neighborhood on which $F$ is smooth, then $F$ is smooth. Conversely, the restriction of a smooth map to every open subset is smooth.
@@ -85,8 +94,10 @@ For a map $F:M\to N$ between smooth manifolds, if every $p\in M$ has a neighborh
 \begin{corollary}[Gluing Lemma for Smooth Maps]
 \label{cor:2-8}
 \lean{gluing_lemma_for_smooth_maps}
-\leanok
 \uses{prop:2-6}
+
+
+
 \dcref{ch2:2.8}
 If $\{U_\alpha\}_{\alpha\in A}$ is an open cover of $M$ and smooth maps $F_\alpha:U_\alpha\to N$ agree on every overlap, there is a unique smooth $F:M\to N$ with $F|_{U_\alpha}=F_\alpha$.
 \end{corollary}
@@ -95,6 +106,8 @@ If $\{U_\alpha\}_{\alpha\in A}$ is an open cover of $M$ and smooth maps $F_\alph
 \label{def:2-8-extra-6}
 \lean{extended_coordinate_representation_mapsTo}
 \leanok
+
+
 For a smooth $F:M\to N$ and smooth charts $(U,\varphi)$, $(V,\psi)$, define $\widehat F=\psi\circ F\circ\varphi^{-1}$. It maps $\varphi(U\cap F^{-1}(V))$ into $\psi(V)$.
 \end{definition}
 
@@ -102,6 +115,8 @@ For a smooth $F:M\to N$ and smooth charts $(U,\varphi)$, $(V,\psi)$, define $\wi
 \label{exer:2-9}
 \lean{contDiffOn_coord_repr_of_contMDiff}
 \leanok
+
+
 \dcref{ch2:2.9}
 The coordinate representation of a smooth map with respect to every pair of smooth charts is smooth.
 \end{lemma}
@@ -109,8 +124,10 @@ The coordinate representation of a smooth map with respect to every pair of smoo
 \begin{proposition}
 \label{prop:2-10}
 \lean{contMDiff_const}
-\mathlibok
 \uses{exer:2-9}
+
+\mathlibok
+
 \dcref{ch2:2.10}
 For smooth manifolds $M,N,P$: every constant map $M\to N$, the identity of $M$, and the inclusion of an open submanifold $U\hookrightarrow M$ are smooth; if $F:M\to N$ and $G:N\to P$ are smooth, then $G\circ F$ is smooth.
 \end{proposition}
@@ -127,7 +144,10 @@ is a composition of smooth Euclidean maps.
 \begin{proposition}
 \label{prop:2-12}
 \lean{contMDiff_pi_iff}
+\uses{prob:2-2}
 \leanok
+
+
 \dcref{ch2:2.12}
 Let $M_1,\ldots,M_k,N$ be smooth manifolds with or without boundary, with at most one $M_i$ having nonempty boundary. For projections $\pi_i:M_1\times\cdots\times M_k\to M_i$, a map $F:N\to M_1\times\cdots\times M_k$ is smooth if and only if each $F_i=\pi_i\circ F$ is smooth.
 \end{proposition}
@@ -142,6 +162,7 @@ if and only if each component is smooth.
 \begin{remark}
 \label{rem:2-8-extra-7}
 \lean{OpenPartialHomeomorph}
+
 \mathlibok
 Unless specified otherwise, a function or map is set-theoretic, a manifold is topological, and a coordinate chart is a homeomorphism to an open subset of $\mathbb R^n$ or $\mathbb H^n$. Continuity or smoothness is imposed only when stated; saying that $F:M\to N$ is smooth implicitly gives smooth structures on $M$ and $N$.
 \end{remark}
@@ -149,8 +170,11 @@ Unless specified otherwise, a function or map is set-theoretic, a manifold is to
 \begin{example}
 \label{ex:2-13}
 \lean{manifold_pi_projection_contMDiff}
+\uses{ex:1-33, ex:1-8, prob:1-8, prop:2-12}
 \leanok
-\uses{ex:1-33,ex:1-8,prob:1-8,prop:2-12}
+
+
+
 \dcref{ch2:2.13}
 (a) Every map from a zero-dimensional manifold is smooth.
 
@@ -180,6 +204,7 @@ so it is smooth.
 \begin{definition}
 \label{def:2-9-extra-1}
 \lean{M}
+
 \mathlibok
 For smooth manifolds $M,N$, a diffeomorphism is a smooth bijection $F:M\to N$ whose inverse is smooth. The manifolds are diffeomorphic, written $M\approx N$, when such a map exists.
 \end{definition}
@@ -188,6 +213,8 @@ For smooth manifolds $M,N$, a diffeomorphism is a smooth bijection $F:M\to N$ wh
 \label{ex:2-14}
 \lean{smoothChartDiffeomorph}
 \leanok
+
+
 \dcref{ch2:2.14}
 (a) The maps
 \[
@@ -204,6 +231,8 @@ are smooth inverses, so $\mathbb B^n\approx\mathbb R^n$.
 \label{thm:2-17}
 \lean{diffeomorphic_dimension_eq}
 \leanok
+
+
 \dcref{ch2:2.17}
 Nonempty smooth manifolds of dimensions $m$ and $n$ can be diffeomorphic only when $m=n$.
 \end{theorem}
@@ -218,6 +247,7 @@ Nonempty smooth manifolds of dimensions $m$ and $n$ can be diffeomorphic only wh
 \begin{lemma}
 \label{lem:2-20}
 \lean{expNegInvGlue.contDiff}
+
 \mathlibok
 \dcref{ch2:2.20}
 The function
@@ -238,8 +268,11 @@ where $p_k$ is a polynomial of degree at most $k$; differentiating gives the sam
 \begin{lemma}
 \label{lem:2-21}
 \lean{exists_one_zero_smooth_cutoff}
-\leanok
 \uses{lem:2-20}
+\leanok
+
+
+
 \dcref{ch2:2.21}
 For $r_1<r_2$, there is a smooth $h:\mathbb R\to\mathbb R$ with $h=1$ on $(-\infty,r_1]$, $0<h<1$ on $(r_1,r_2)$, and $h=0$ on $[r_2,\infty)$.
 \end{lemma}
@@ -256,16 +289,22 @@ The denominator is positive and the stated values follow from the support proper
 \begin{definition}
 \label{def:2-10-extra-1}
 \lean{exists_one_zero_smooth_cutoff}
-\leanok
 \uses{lem:2-21}
+\leanok
+
+
+
 A function with the properties of Lemma~\ref{lem:2-21} is a cutoff function.
 \end{definition}
 
 \begin{lemma}
 \label{lem:2-22}
 \lean{exists_smooth_ball_cutoff}
-\leanok
 \uses{lem:2-21}
+\leanok
+
+
+
 \dcref{ch2:2.22}
 For $0<r_1<r_2$, there is smooth $H:\mathbb R^n\to\mathbb R$ with $H=1$ on $\overline B_{r_1}(0)$, $0<H<1$ on $B_{r_2}(0)\setminus\overline B_{r_1}(0)$, and $H=0$ outside $B_{r_2}(0)$.
 \end{lemma}
@@ -278,14 +317,17 @@ For $0<r_1<r_2$, there is smooth $H:\mathbb R^n\to\mathbb R$ with $H=1$ on $\ove
 \begin{definition}
 \label{def:2-10-extra-2}
 \lean{SmoothBumpFunction}
-\mathlibok
 \uses{lem:2-22}
+
+\mathlibok
+
 A smooth bump function is a smooth real-valued function equal to $1$ on a specified set and zero outside a specified neighborhood; Lemma~\ref{lem:2-22} supplies such functions on Euclidean balls.
 \end{definition}
 
 \begin{definition}
 \label{def:2-10-extra-3}
 \lean{HasCompactSupport.of_compactSpace}
+
 \mathlibok
 For a real- or vector-valued function $f$ on $M$, define
 \[
@@ -297,6 +339,7 @@ The function is supported in $U$ when this support lies in $U$, and compactly su
 \begin{definition}
 \label{def:2-10-extra-4}
 \lean{SmoothPartitionOfUnity.IsSubordinate}
+
 \mathlibok
 For an open cover $\mathcal X=(X_\alpha)_{\alpha\in A}$ of a topological space $M$, a partition of unity subordinate to $\mathcal X$ is a family of continuous functions $\psi_\alpha:M\to\mathbb R$ satisfying
 \[
@@ -308,8 +351,10 @@ with locally finite supports and $\sum_{\alpha\in A}\psi_\alpha(x)=1$ for every 
 \begin{theorem}[Existence of Partitions of Unity]
 \label{thm:2-23}
 \lean{SmoothPartitionOfUnity.exists_isSubordinate}
+\uses{lem:1-13, lem:2-22, prop:1-19}
+
 \mathlibok
-\uses{lem:1-13,lem:2-22,prop:1-19}
+
 \dcref{ch2:2.23}
 Every indexed open cover of a smooth manifold (with or without boundary) admits a smooth subordinate partition of unity.
 \end{theorem}
@@ -335,15 +380,18 @@ analogous using half-ball charts.
 \begin{definition}
 \label{def:2-11-extra-1}
 \lean{Set.EqOn}
+
 \mathlibok
 If $A$ is closed in a topological space $M$ and $U$ is open with $A\subseteq U$, a bump function for $A$ supported in $U$ is a continuous $\psi:M\to\mathbb R$ with $0\leq\psi\leq1$, $\psi|_A\equiv1$, and $\operatorname{supp}\psi\subseteq U$.
 \end{definition}
 
 \begin{proposition}[Existence of Smooth Bump Functions]
 \label{prop:2-25}
-
 \lean{exists_smooth_bump_function_for}
 \leanok
+
+
+
 \dcref{ch2:2.25}
 For every closed $A$ in a smooth manifold $M$ and every open $U\supseteq A$, there is a smooth bump function for $A$ supported in $U$.
 \end{proposition}
@@ -357,6 +405,8 @@ For every closed $A$ in a smooth manifold $M$ and every open $U\supseteq A$, the
 \label{prop:2-28}
 \lean{exists_positive_smooth_exhaustion_function}
 \leanok
+
+
 \dcref{ch2:2.28}
 Every smooth manifold with or without boundary admits a positive smooth exhaustion function.
 \end{proposition}
@@ -370,6 +420,8 @@ Every smooth manifold with or without boundary admits a positive smooth exhausti
 \label{thm:2-29}
 \lean{exists_nonneg_smooth_zero_set_eq_of_isClosed}
 \leanok
+
+
 \dcref{ch2:2.29}
 For every closed subset $K$ of a smooth manifold $M$, there is a smooth nonnegative $f:M\to\mathbb R$ with $f^{-1}(0)=K$.
 \end{theorem}
@@ -382,3 +434,39 @@ f(x)=\sum_{i=1}^\infty\frac{r_i^i}{2^iC_i}h\!\left(\frac{x-x_i}{r_i}\right).
 \]
 The series and each differentiated series converge uniformly by the $M$-test (the $i$th derivative terms are bounded by $2^{-i}$ for $i\geq k$), so $f$ is smooth, vanishes on $K$, and is positive off $K$. For general $M$, choose a coordinate-ball cover and subordinate partition $\psi_\alpha$; on each ball construct $f_\alpha\geq0$ with zero set $K\cap B_\alpha$, and use $f=\sum_\alpha\psi_\alpha f_\alpha$.
 \end{proof}
+
+\begin{exercise}
+\label{exer:2-1}
+\lean{ContMDiffMap.coe_mul}
+\mathlibok
+\dcref{ch2:2.1}
+Let $M$ be a smooth manifold with or without boundary. Show that pointwise multiplication turns ${C}^{\infty }\left( M\right)$ into a commutative ring and a commutative and associative algebra over $\mathbb{R}$ . (See Appendix B, p. 624, for the definition of an algebra.)
+\end{exercise}
+
+\begin{exercise}
+\label{exer:2-11}
+\lean{contMDiff_subtype_val}
+\mathlibok
+\dcref{ch2:2.11}
+\begin{itemize}
+\item Exercise 2.11. Prove parts (a)-(c) of the preceding proposition.
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+\label{exer:2-24}
+\lean{SmoothPartitionOfUnity.exists_isSubordinate}
+\mathlibok
+\dcref{ch2:2.24}
+Show how the preceding proof needs to be modified for the case in which $M$ has nonempty boundary.
+\end{exercise}
+
+\begin{exercise}
+\label{exer:2-7}
+\lean{ContMDiff.contMDiffOn}
+\mathlibok
+\dcref{ch2:2.7}
+\begin{itemize}
+\item Exercise 2.7. Prove the preceding two propositions.
+\end{itemize}
+\end{exercise}

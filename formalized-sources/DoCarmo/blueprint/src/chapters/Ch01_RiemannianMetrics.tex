@@ -9,9 +9,9 @@ manifold $M$.
 
 \begin{definition}[Riemannian metric]
   \label{def:dc-ch1-2-1}
-  \dcref{ch1:2.1}
   \lean{Riemannian.RiemannianMetric}
   \leanok
+  \dcref{ch1:2.1}
   A \emph{Riemannian metric} (or \emph{Riemannian structure}) on a differentiable
   manifold $M$ assigns an inner product $\langle\ ,\ \rangle_p$ on each $T_pM$,
   varying differentiably with $p$. In a coordinate system
@@ -32,10 +32,10 @@ manifold $M$.
 
 \begin{definition}[isometry]
   \label{def:dc-ch1-2-2}
-  \dcref{ch1:2.2}
+  \lean{Riemannian.DCIsometry, Riemannian.DCIsometry.preservesMetric}
   \uses{def:dc-ch1-2-1}
-  \lean{Riemannian.DCPreservesMetric}
   \leanok
+  \dcref{ch1:2.2}
   For Riemannian manifolds $M,N$, a diffeomorphism $f:M\to N$ is an
   \emph{isometry} when
   $$
@@ -46,10 +46,10 @@ manifold $M$.
 
 \begin{definition}[local isometry]
   \label{def:dc-ch1-2-3}
-  \dcref{ch1:2.3}
-  \uses{def:dc-ch1-2-1,def:dc-ch1-2-2}
-  \lean{Riemannian.DCIsLocalIsometryAt}
+  \lean{Riemannian.DCIsLocalIsometryAtFull, Riemannian.DCIsLocalIsometryAtFull.isLocalDiffeomorphAt, Riemannian.DCIsLocalIsometryAtFull.preservesMetricNear}
+  \uses{def:dc-ch1-2-1, def:dc-ch1-2-2}
   \leanok
+  \dcref{ch1:2.3}
   A differentiable map $f:M\to N$ between Riemannian manifolds is a
   \emph{local isometry at} $p\in M$ if some neighborhood $U$ of $p$ is mapped
   diffeomorphically onto $f(U)$ and the restriction satisfies (1). The manifold
@@ -58,10 +58,10 @@ manifold $M$.
 
 \begin{example}[Euclidean space]
   \label{ex:dc-ch1-2-4}
-  \dcref{ch1:2.4}
-  \uses{def:dc-ch1-2-1}
   \lean{Riemannian.DCEuclideanMetric}
+  \uses{def:dc-ch1-2-1}
   \leanok
+  \dcref{ch1:2.4}
   On $\mathbb{R}^n$, identify $\frac{\partial}{\partial x_i}$ with the standard
   basis vector $e_i$ and set $\langle e_i,e_j\rangle=\delta_{ij}$. This is
   Euclidean space of dimension $n$ with its standard Riemannian metric.
@@ -69,10 +69,10 @@ manifold $M$.
 
 \begin{example}[immersed manifolds]
   \label{ex:dc-ch1-2-5}
-  \dcref{ch1:2.5}
-  \uses{def:dc-ch1-2-1,ex:dc-ch1-2-4}
   \lean{Riemannian.DCInducedForm, Riemannian.DCInducedMetric}
+  \uses{def:dc-ch1-2-1, ex:dc-ch1-2-4}
   \leanok
+  \dcref{ch1:2.5}
   If $f:M^n\to N^{n+k}$ is an immersion into a Riemannian manifold, define
   $$
   \langle u,v\rangle_p=\langle df_p(u),df_p(v)\rangle_{f(p)}.
@@ -98,8 +98,9 @@ manifold $M$.
 
 \begin{example}[Lie groups]
   \label{ex:dc-ch1-2-6}
-  \dcref{ch1:2.6}
   \uses{prop:dc-ch0-5-4}
+  \notready
+  \dcref{ch1:2.6}
   \notready
   A \emph{Lie group} is a group $G$ with a differentiable structure for which
   $(x,y)\mapsto xy^{-1}$ is differentiable. Left and right translations
@@ -151,8 +152,8 @@ manifold $M$.
 
 \begin{proposition}[existence of a left-invariant metric]
   \label{prop:dc-ch1-2-6-leftinv}
-  \uses{def:dc-ch1-2-1}
   \lean{Riemannian.DCLeftInvariantForm, Riemannian.DCLeftInvariantMetric}
+  \uses{def:dc-ch1-2-1}
   \leanok
   Let $G$ be a Lie group with Lie algebra $\mathcal{G}=T_eG$, and let
   $\langle\ ,\ \rangle_e$ be a positive-definite symmetric inner product on
@@ -171,10 +172,10 @@ manifold $M$.
 
 \begin{example}[the product metric]
   \label{ex:dc-ch1-2-7}
-  \dcref{ch1:2.7}
-  \uses{def:dc-ch1-2-1,ex:dc-ch1-2-5}
   \lean{Riemannian.DCProductForm, Riemannian.DCProductMetric}
+  \uses{def:dc-ch1-2-1, ex:dc-ch1-2-5}
   \leanok
+  \dcref{ch1:2.7}
   For Riemannian manifolds $M_1,M_2$ with projections $\pi_1,\pi_2$, define
   the \emph{product metric} on $M_1\times M_2$ by
   $$
@@ -200,9 +201,8 @@ manifold $M$.
 
 \begin{definition}[parametrized curve]
   \label{def:dc-ch1-2-8}
-  \dcref{ch1:2.8}
   \lean{Riemannian.DCIsCurve}
-  \leanok
+  \dcref{ch1:2.8}
   A differentiable map $c:I\to M$ from an open interval $I\subset\mathbb{R}$ to
   a differentiable manifold is a \emph{(parametrized) curve}; it may have
   self-intersections or corners.
@@ -210,10 +210,10 @@ manifold $M$.
 
 \begin{definition}[vector field along a curve; length]
   \label{def:dc-ch1-2-9}
-  \dcref{ch1:2.9}
-  \uses{def:dc-ch1-2-1,def:dc-ch1-2-8}
-  \lean{Riemannian.DCIsVectorFieldAlong, Riemannian.DCArcLength}
+  \lean{Riemannian.DCIsVectorFieldAlong, Riemannian.DCVelocity, Riemannian.DCArcLength}
+  \uses{def:dc-ch1-2-1, def:dc-ch1-2-8}
   \leanok
+  \dcref{ch1:2.9}
   A \emph{vector field along a curve} $c:I\to M$ is a differentiable assignment
   $V(t)\in T_{c(t)}M$, where differentiability means that $t\mapsto V(t)f$ is
   differentiable for every differentiable $f$ on $M$. The velocity field is
@@ -226,8 +226,8 @@ manifold $M$.
 
 \begin{lemma}[isometries preserve length]
   \label{lem:dc-ch1-2-9-isom}
-  \uses{def:dc-ch1-2-2,def:dc-ch1-2-9}
-  \lean{Riemannian.DCPreservesMetric.dcArcLength}
+  \lean{Riemannian.DCIsometry.dcArcLength, Riemannian.DCPreservesMetric.dcArcLength}
+  \uses{def:dc-ch1-2-2, def:dc-ch1-2-9}
   \leanok
   If $f:M\to N$ is an isometry and $c:I\to M$ is differentiable, then
   $$
@@ -245,10 +245,10 @@ manifold $M$.
 
 \begin{proposition}[existence of Riemannian metrics]
   \label{prop:dc-ch1-2-10}
-  \dcref{ch1:2.10}
   \lean{Riemannian.exists_riemannianMetric}
   \uses{def:dc-ch1-2-1}
   \leanok
+  \dcref{ch1:2.10}
   Every differentiable Hausdorff manifold with a countable basis admits a
   Riemannian metric.
 \end{proposition}
@@ -303,6 +303,7 @@ positive chart; orientability fixes the sign.
 
 \begin{remark}[volume form]
   \label{rem:dc-ch1-2-11}
+  \uses{lem:dc-ch1-2-11-pointwise}
   \dcref{ch1:2.11}
   Equation (4) identifies the integrand in (5) with a positive differential
   $n$-form, the \emph{volume form} (or volume element) $\nu$. For a compact region

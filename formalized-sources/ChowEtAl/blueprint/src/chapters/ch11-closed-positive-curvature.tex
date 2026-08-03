@@ -15,9 +15,9 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[two-positive curvature operator]
   \label{def:chow-ii-two-positive-curvature-operator}
+  \source{chow-et-al-ricci-flow-part-ii:page-0094}
   \dcref{ch11:11.1}
   \group{Positive Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0094}
   A Riemannian manifold has \emph{two-positive curvature operator} if every
   sum of two distinct eigenvalues of its Riemann curvature operator is
   positive.  Replacing ``positive'' by ``nonnegative'' defines a
@@ -26,8 +26,8 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[sharp product and curvature quadratic]
   \label{def:chow-ii-sharp-product}
-  \group{Curvature Operator Algebra}
   \source{chow-et-al-ricci-flow-part-ii:page-0099,chow-et-al-ricci-flow-part-ii:page-0100}
+  \group{Curvature Operator Algebra}
   Let \(\{\omega_\alpha\}\) be an orthonormal basis of \(\mathfrak{so}(n)\),
   with structure constants
   \([\omega_\alpha,\omega_\beta]=c_{\alpha\beta}^{\gamma}\omega_\gamma\).
@@ -44,10 +44,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[intrinsic formula for the sharp product]
   \label{lem:chow-ii-sharp-product-intrinsic-formula}
-  \dcref{ch11:11.3}
-  \group{Curvature Operator Algebra}
   \source{chow-et-al-ricci-flow-part-ii:page-0100}
   \uses{def:chow-ii-sharp-product}
+  \dcref{ch11:11.3}
+  \group{Curvature Operator Algebra}
   For every orthonormal basis \(\{\omega_\alpha\}\) of \(\Lambda^2E\),
   \[
   \langle(A\#B)\phi,\psi\rangle
@@ -72,9 +72,9 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[two-nonnegative algebraic curvature operator]
   \label{def:chow-ii-two-nonnegative-algebraic-curvature}
+  \source{chow-et-al-ricci-flow-part-ii:page-0133}
   \dcref{ch11:11.37}
   \group{Positive Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0133}
   An operator \(R\in\mathcal A_n\) is \emph{two-nonnegative} if the sum of
   every two distinct eigenvalues is nonnegative, and \emph{two-positive} if
   all these sums are positive.  Write \(\mathcal C\) for the closed convex
@@ -83,9 +83,9 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[geometrically nonnegative curvature operator]
   \label{def:chow-ii-geometrically-nonnegative-curvature}
+  \source{chow-et-al-ricci-flow-part-ii:page-0133,chow-et-al-ricci-flow-part-ii:page-0134}
   \dcref{ch11:11.38}
   \group{Positive Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0133,chow-et-al-ricci-flow-part-ii:page-0134}
   An algebraic curvature operator is \emph{geometrically nonnegative} if it
   is a finite sum \(\sum_\alpha c_\alpha\omega_\alpha\otimes\omega_\alpha\),
   where \(c_\alpha>0\) and every
@@ -94,10 +94,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[elementary consequences of two-nonnegativity]
   \label{lem:chow-ii-two-nonnegative-consequences}
+  \source{chow-et-al-ricci-flow-part-ii:page-0134,chow-et-al-ricci-flow-part-ii:page-0135}
+  \uses{def:chow-ii-two-nonnegative-algebraic-curvature, def:chow-ii-geometrically-nonnegative-curvature, def:chow-ii-algebraic-ricci-contraction}
   \dcref{ch11:11.39}
   \group{Positive Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0134,chow-et-al-ricci-flow-part-ii:page-0135}
-  \uses{def:chow-ii-two-nonnegative-algebraic-curvature,def:chow-ii-geometrically-nonnegative-curvature,def:chow-ii-algebraic-ricci-contraction}
   Let \(\mu_1\le\cdots\le\mu_N\) be the eigenvalues of a two-nonnegative
   \(R\).  Then
   \[
@@ -124,10 +124,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[geometrically nonnegative defect terms]
   \label{lem:chow-ii-geometric-nonnegativity-defect}
+  \source{chow-et-al-ricci-flow-part-ii:page-0135,chow-et-al-ricci-flow-part-ii:page-0136}
+  \uses{def:chow-ii-geometrically-nonnegative-curvature, thm:chow-ii-conjugation-defect-formula}
   \dcref{ch11:11.40}
   \group{Invariant Curvature Cones}
-  \source{chow-et-al-ricci-flow-part-ii:page-0135,chow-et-al-ricci-flow-part-ii:page-0136}
-  \uses{def:chow-ii-geometrically-nonnegative-curvature,thm:chow-ii-conjugation-defect-formula}
   If \(A\ge0\), then \(A\wedge A\), \(A_0^2\wedge\operatorname{id}\), and
   \(I\) are geometrically nonnegative.  Consequently, if
   \[
@@ -156,10 +156,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{proposition}[the curvature ODE preserves two-nonnegativity]
   \label{prop:chow-ii-ode-preserves-two-nonnegative}
+  \source{chow-et-al-ricci-flow-part-ii:page-0136,chow-et-al-ricci-flow-part-ii:page-0137}
+  \uses{def:chow-ii-two-nonnegative-algebraic-curvature, def:chow-ii-sharp-product}
   \dcref{ch11:11.42}
   \group{Invariant Curvature Cones}
-  \source{chow-et-al-ricci-flow-part-ii:page-0136,chow-et-al-ricci-flow-part-ii:page-0137}
-  \uses{def:chow-ii-two-nonnegative-algebraic-curvature,def:chow-ii-sharp-product}
   The cone \(\mathcal C\) is preserved by \(\dot R=Q(R)\).
 \end{proposition}
 \begin{proof}
@@ -183,10 +183,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{proposition}[Ricci flow preserves two-nonnegative curvature]
   \label{prop:chow-ii-ricci-flow-preserves-two-nonnegative}
+  \source{chow-et-al-ricci-flow-part-ii:page-0137,chow-et-al-ricci-flow-part-ii:page-0138}
+  \uses{prop:chow-ii-curvature-operator-evolution, prop:chow-ii-ode-preserves-two-nonnegative}
   \dcref{ch11:11.44}
   \group{Ricci Flow Maximum Principles}
-  \source{chow-et-al-ricci-flow-part-ii:page-0137,chow-et-al-ricci-flow-part-ii:page-0138}
-  \uses{prop:chow-ii-curvature-operator-evolution,prop:chow-ii-ode-preserves-two-nonnegative}
   A complete bounded-curvature Ricci flow whose initial curvature operator is
   two-nonnegative has two-nonnegative curvature operator at every later time.
 \end{proposition}
@@ -203,10 +203,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{proposition}[strong alternative for two-nonnegative curvature]
   \label{prop:chow-ii-strong-two-nonnegative-alternative}
+  \source{chow-et-al-ricci-flow-part-ii:page-0138,chow-et-al-ricci-flow-part-ii:page-0139,chow-et-al-ricci-flow-part-ii:page-0140}
+  \uses{prop:chow-ii-ricci-flow-preserves-two-nonnegative, prop:chow-ii-ode-preserves-two-nonnegative}
   \dcref{ch11:11.45}
   \group{Ricci Flow Maximum Principles}
-  \source{chow-et-al-ricci-flow-part-ii:page-0138,chow-et-al-ricci-flow-part-ii:page-0139,chow-et-al-ricci-flow-part-ii:page-0140}
-  \uses{prop:chow-ii-ricci-flow-preserves-two-nonnegative,prop:chow-ii-ode-preserves-two-nonnegative}
   For a complete bounded-curvature Ricci flow initially two-nonnegative, at
   every positive time the curvature operator is either nonnegative or
   two-positive.  If it is two-positive at one space-time point, then it is
@@ -230,10 +230,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{proposition}[preserved stretched two-nonnegative cones]
   \label{prop:chow-ii-preserved-stretched-two-nonnegative-cones}
+  \source{chow-et-al-ricci-flow-part-ii:page-0140,chow-et-al-ricci-flow-part-ii:page-0141,chow-et-al-ricci-flow-part-ii:page-0142}
+  \uses{lem:chow-ii-linear-image-ode-cone-criterion, lem:chow-ii-geometric-nonnegativity-defect, prop:chow-ii-ode-preserves-two-nonnegative}
   \dcref{ch11:11.47}
   \group{Invariant Curvature Cones}
-  \source{chow-et-al-ricci-flow-part-ii:page-0140,chow-et-al-ricci-flow-part-ii:page-0141,chow-et-al-ricci-flow-part-ii:page-0142}
-  \uses{lem:chow-ii-linear-image-ode-cone-criterion,lem:chow-ii-geometric-nonnegativity-defect,prop:chow-ii-ode-preserves-two-nonnegative}
   Let \(n\ge4\),
   \[
   \bar b=\frac{\sqrt{2n(n-2)+4}-2}{n(n-2)},\qquad
@@ -268,9 +268,9 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[pinching family]
   \label{def:chow-ii-pinching-family}
+  \source{chow-et-al-ricci-flow-part-ii:page-0143}
   \dcref{ch11:11.50}
   \group{Ricci Flow Pinching}
-  \source{chow-et-al-ricci-flow-part-ii:page-0143}
   A continuous family \(C(s)\subset\mathcal A_n\), \(0\le s<1\), of
   full-dimensional closed convex cones is a \emph{pinching family} when each
   cone is \(O(n)\)-invariant, every nonzero member has positive scalar
@@ -281,10 +281,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{theorem}[pinching family from nonnegative curvature]
   \label{thm:chow-ii-pinching-family-nonnegative-curvature}
+  \source{chow-et-al-ricci-flow-part-ii:page-0143,chow-et-al-ricci-flow-part-ii:page-0144,chow-et-al-ricci-flow-part-ii:page-0145,chow-et-al-ricci-flow-part-ii:page-0146,chow-et-al-ricci-flow-part-ii:page-0147,chow-et-al-ricci-flow-part-ii:page-0148,chow-et-al-ricci-flow-part-ii:page-0149,chow-et-al-ricci-flow-part-ii:page-0150,chow-et-al-ricci-flow-part-ii:page-0151,chow-et-al-ricci-flow-part-ii:page-0152,chow-et-al-ricci-flow-part-ii:page-0153}
+  \uses{def:chow-ii-pinching-family, cor:chow-ii-conjugation-defect-eigenvalues, lem:chow-ii-linear-image-ode-cone-criterion}
   \dcref{ch11:11.51}
   \group{Ricci Flow Pinching}
-  \source{chow-et-al-ricci-flow-part-ii:page-0143,chow-et-al-ricci-flow-part-ii:page-0144,chow-et-al-ricci-flow-part-ii:page-0145,chow-et-al-ricci-flow-part-ii:page-0146,chow-et-al-ricci-flow-part-ii:page-0147,chow-et-al-ricci-flow-part-ii:page-0148,chow-et-al-ricci-flow-part-ii:page-0149,chow-et-al-ricci-flow-part-ii:page-0150,chow-et-al-ricci-flow-part-ii:page-0151,chow-et-al-ricci-flow-part-ii:page-0152,chow-et-al-ricci-flow-part-ii:page-0153}
-  \uses{def:chow-ii-pinching-family,cor:chow-ii-conjugation-defect-eigenvalues,lem:chow-ii-linear-image-ode-cone-criterion}
   There is a pinching family whose initial cone is the cone of nonnegative
   algebraic curvature operators.
 \end{theorem}
@@ -324,10 +324,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{corollary}[pinching family from two-nonnegative curvature]
   \label{cor:chow-ii-pinching-family-two-nonnegative}
+  \source{chow-et-al-ricci-flow-part-ii:page-0143,chow-et-al-ricci-flow-part-ii:page-0144}
+  \uses{prop:chow-ii-preserved-stretched-two-nonnegative-cones, thm:chow-ii-pinching-family-nonnegative-curvature}
   \dcref{ch11:11.52}
   \group{Ricci Flow Pinching}
-  \source{chow-et-al-ricci-flow-part-ii:page-0143,chow-et-al-ricci-flow-part-ii:page-0144}
-  \uses{prop:chow-ii-preserved-stretched-two-nonnegative-cones,thm:chow-ii-pinching-family-nonnegative-curvature}
   There is a pinching family whose initial cone is \(\mathcal C\), the cone of
   two-nonnegative algebraic curvature operators.
 \end{corollary}
@@ -344,9 +344,9 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[pinching set]
   \label{def:chow-ii-pinching-set}
+  \source{chow-et-al-ricci-flow-part-ii:page-0153,chow-et-al-ricci-flow-part-ii:page-0154}
   \dcref{ch11:11.59}
   \group{Ricci Flow Pinching}
-  \source{chow-et-al-ricci-flow-part-ii:page-0153,chow-et-al-ricci-flow-part-ii:page-0154}
   A subset \(Z\subset\mathcal A_n\) is a \emph{pinching set} if it is closed,
   convex, \(O(n)\)-invariant, preserved by \(\dot R=Q(R)\), and there are
   \(\delta>0\), \(K<\infty\) such that
@@ -358,10 +358,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{theorem}[generalized pinching set]
   \label{thm:chow-ii-generalized-pinching-set}
-  \dcref{ch11:11.64}
-  \group{Ricci Flow Pinching}
   \source{chow-et-al-ricci-flow-part-ii:page-0155,chow-et-al-ricci-flow-part-ii:page-0156,chow-et-al-ricci-flow-part-ii:page-0157,chow-et-al-ricci-flow-part-ii:page-0158,chow-et-al-ricci-flow-part-ii:page-0159,chow-et-al-ricci-flow-part-ii:page-0160,chow-et-al-ricci-flow-part-ii:page-0161}
   \uses{def:chow-ii-pinching-family}
+  \dcref{ch11:11.64}
+  \group{Ricci Flow Pinching}
   Let \(C(s)\) be a pinching family.  For every \(\varepsilon\in(0,1)\) and
   \(h_0>0\), there is a closed convex \(O(n)\)-invariant set
   \(F\subset\mathcal A_n\), preserved by \(\dot R=Q(R)\), such that
@@ -399,10 +399,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{theorem}[Boehm--Wilking convergence]
   \label{thm:chow-ii-boehm-wilking-convergence}
-  \dcref{ch11:11.2}
-  \group{Positive Curvature Ricci Flow}
   \source{chow-et-al-ricci-flow-part-ii:page-0095,chow-et-al-ricci-flow-part-ii:page-0156,chow-et-al-ricci-flow-part-ii:page-0157}
   \uses{def:chow-ii-two-positive-curvature-operator}
+  \dcref{ch11:11.2}
+  \group{Positive Curvature Ricci Flow}
   Let \((M^n,g_0)\) be closed with two-positive curvature operator.  The
   volume-normalized Ricci flow starting at \(g_0\) exists for all positive
   time and converges exponentially in every \(C^k\)-norm to a metric of
@@ -430,8 +430,8 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[wedge product of symmetric endomorphisms]
   \label{def:chow-ii-symmetric-endomorphism-wedge}
-  \group{Curvature Operator Algebra}
   \source{chow-et-al-ricci-flow-part-ii:page-0101,chow-et-al-ricci-flow-part-ii:page-0102}
+  \group{Curvature Operator Algebra}
   For \(A,B\in S^2(E)\), define an endomorphism of \(\Lambda^2E\) by
   \[
     (A\wedge B)(v\wedge w)
@@ -441,10 +441,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[elementary properties of the symmetric wedge]
   \label{lem:chow-ii-symmetric-wedge-properties}
-  \dcref{ch11:11.5}
-  \group{Curvature Operator Algebra}
   \source{chow-et-al-ricci-flow-part-ii:page-0101,chow-et-al-ricci-flow-part-ii:page-0102}
   \uses{def:chow-ii-symmetric-endomorphism-wedge}
+  \dcref{ch11:11.5}
+  \group{Curvature Operator Algebra}
   For \(A,B\in S^2(E)\), one has \(A\wedge B=B\wedge A\),
   \(\operatorname{id}\wedge\operatorname{id}=\operatorname{id}_{\Lambda^2E}\),
   and \(A\wedge B\) is self-adjoint.  Moreover,
@@ -465,9 +465,9 @@ is the space of algebraic curvature operators.  We write
 
 \begin{proposition}[irreducible decomposition of two-tensors]
   \label{prop:chow-ii-two-tensor-decomposition}
+  \source{chow-et-al-ricci-flow-part-ii:page-0103,chow-et-al-ricci-flow-part-ii:page-0104}
   \dcref{ch11:11.7}
   \group{Orthogonal Representations}
-  \source{chow-et-al-ricci-flow-part-ii:page-0103,chow-et-al-ricci-flow-part-ii:page-0104}
   As an orthogonal \(O(n)\)-representation,
   \[
     E\otimes E=\Lambda^2E\oplus S^2_0E\oplus\mathbb R\operatorname{id}.
@@ -486,8 +486,8 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[Bianchi map and algebraic curvature operators]
   \label{def:chow-ii-bianchi-map}
-  \group{Algebraic Curvature Operators}
   \source{chow-et-al-ricci-flow-part-ii:page-0108,chow-et-al-ricci-flow-part-ii:page-0109}
+  \group{Algebraic Curvature Operators}
   For a covariant four-tensor \(R\), set
   \[
     b(R)(x,y,z,t)=\frac13\bigl(R(x,y,z,t)+R(y,z,x,t)+R(z,x,y,t)\bigr).
@@ -498,10 +498,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[orthogonal Bianchi decomposition]
   \label{lem:chow-ii-bianchi-orthogonal-decomposition}
-  \dcref{ch11:11.11}
-  \group{Algebraic Curvature Operators}
   \source{chow-et-al-ricci-flow-part-ii:page-0108,chow-et-al-ricci-flow-part-ii:page-0109,chow-et-al-ricci-flow-part-ii:page-0110}
   \uses{def:chow-ii-bianchi-map}
+  \dcref{ch11:11.11}
+  \group{Algebraic Curvature Operators}
   The restriction of \(b\) to \(S^2(\Lambda^2E)\) is a self-adjoint
   projection onto \(\Lambda^4E\).  Consequently
   \[
@@ -522,10 +522,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[wedge constructions satisfy Bianchi]
   \label{lem:chow-ii-wedge-satisfies-bianchi}
+  \source{chow-et-al-ricci-flow-part-ii:page-0110,chow-et-al-ricci-flow-part-ii:page-0111}
+  \uses{def:chow-ii-bianchi-map, def:chow-ii-symmetric-endomorphism-wedge}
   \dcref{ch11:11.13}
   \group{Algebraic Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0110,chow-et-al-ricci-flow-part-ii:page-0111}
-  \uses{def:chow-ii-bianchi-map,def:chow-ii-symmetric-endomorphism-wedge}
   If \(A\in S^2(E)\), then both
   \(A\wedge\operatorname{id}\) and \(A\wedge A\) belong to \(\mathcal A_n\).
 \end{lemma}
@@ -539,8 +539,8 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[Ricci and scalar contractions]
   \label{def:chow-ii-algebraic-ricci-contraction}
-  \group{Algebraic Curvature Operators}
   \source{chow-et-al-ricci-flow-part-ii:page-0111}
+  \group{Algebraic Curvature Operators}
   For \(R\in\mathcal A_n\), define
   \[
     \operatorname{Rc}(R)_{ij}=\sum_kR_{ikjk},
@@ -550,10 +550,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[Ricci contraction of a wedge]
   \label{lem:chow-ii-ricci-contraction-wedge}
+  \source{chow-et-al-ricci-flow-part-ii:page-0112}
+  \uses{def:chow-ii-symmetric-endomorphism-wedge, def:chow-ii-algebraic-ricci-contraction}
   \dcref{ch11:11.14}
   \group{Algebraic Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0112}
-  \uses{def:chow-ii-symmetric-endomorphism-wedge,def:chow-ii-algebraic-ricci-contraction}
   If \(A,B\in S^2(E)\), then
   \[
   \operatorname{Rc}(A\wedge B)
@@ -576,10 +576,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[wedge embedding and Ricci adjunction]
   \label{lem:chow-ii-wedge-embedding-ricci-adjoint}
+  \source{chow-et-al-ricci-flow-part-ii:page-0112,chow-et-al-ricci-flow-part-ii:page-0113}
+  \uses{lem:chow-ii-ricci-contraction-wedge, lem:chow-ii-wedge-satisfies-bianchi}
   \dcref{ch11:11.15}
   \group{Algebraic Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0112,chow-et-al-ricci-flow-part-ii:page-0113}
-  \uses{lem:chow-ii-ricci-contraction-wedge,lem:chow-ii-wedge-satisfies-bianchi}
   If \(n>2\), the map \(A\mapsto\operatorname{id}\wedge A\) from
   \(S^2(E)\) to \(\mathcal A_n\) is injective and is the adjoint of
   \(\operatorname{Rc}:\mathcal A_n\to S^2(E)\).
@@ -598,10 +598,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[scalar--Ricci--Weyl decomposition]
   \label{lem:chow-ii-algebraic-curvature-decomposition}
+  \source{chow-et-al-ricci-flow-part-ii:page-0113,chow-et-al-ricci-flow-part-ii:page-0114}
+  \uses{lem:chow-ii-wedge-embedding-ricci-adjoint, def:chow-ii-algebraic-ricci-contraction}
   \dcref{ch11:11.16}
   \group{Algebraic Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0113,chow-et-al-ricci-flow-part-ii:page-0114}
-  \uses{lem:chow-ii-wedge-embedding-ricci-adjoint,def:chow-ii-algebraic-ricci-contraction}
   For \(n>2\), every \(R\in\mathcal A_n\) decomposes orthogonally and uniquely as
   \[
   R=\frac{\operatorname{Scal}(R)}{n(n-1)}I
@@ -624,10 +624,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{corollary}[decomposition of a trace-free square wedge]
   \label{cor:chow-ii-trace-free-square-wedge-decomposition}
+  \source{chow-et-al-ricci-flow-part-ii:page-0114}
+  \uses{lem:chow-ii-algebraic-curvature-decomposition, lem:chow-ii-ricci-contraction-wedge}
   \dcref{ch11:11.17}
   \group{Algebraic Curvature Operators}
-  \source{chow-et-al-ricci-flow-part-ii:page-0114}
-  \uses{lem:chow-ii-algebraic-curvature-decomposition,lem:chow-ii-ricci-contraction-wedge}
   If \(A\in S^2(E)\) and \(\operatorname{tr}(A)=0\), then
   \[
   A\wedge A=-\frac{\operatorname{tr}(A^2)}{n(n-1)}I
@@ -643,10 +643,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{proposition}[curvature-operator evolution]
   \label{prop:chow-ii-curvature-operator-evolution}
-  \dcref{ch11:11.9}
-  \group{Ricci Flow Evolution}
   \source{chow-et-al-ricci-flow-part-ii:page-0105,chow-et-al-ricci-flow-part-ii:page-0106,chow-et-al-ricci-flow-part-ii:page-0107}
   \uses{def:chow-ii-sharp-product}
+  \dcref{ch11:11.9}
+  \group{Ricci Flow Evolution}
   Under Ricci flow, after identifying the evolving tangent bundles by
   Uhlenbeck's bundle isometries, the curvature operator satisfies
   \[
@@ -669,10 +669,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{corollary}[Ricci trace of the curvature quadratic]
   \label{cor:chow-ii-curvature-quadratic-trace}
+  \source{chow-et-al-ricci-flow-part-ii:page-0114,chow-et-al-ricci-flow-part-ii:page-0115}
+  \uses{def:chow-ii-sharp-product, def:chow-ii-algebraic-ricci-contraction}
   \dcref{ch11:11.18}
   \group{Curvature Operator Algebra}
-  \source{chow-et-al-ricci-flow-part-ii:page-0114,chow-et-al-ricci-flow-part-ii:page-0115}
-  \uses{def:chow-ii-sharp-product,def:chow-ii-algebraic-ricci-contraction}
   For \(R\in\mathcal A_n\), one has \(Q(R)\in\mathcal A_n\) and
   \[
     \operatorname{Rc}(Q(R))_{ij}
@@ -697,10 +697,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[the transformations \(\ell_{a,b}\)]
   \label{def:chow-ii-ell-transformations}
-  \dcref{ch11:11.22}
-  \group{Equivariant Curvature Transformations}
   \source{chow-et-al-ricci-flow-part-ii:page-0117}
   \uses{lem:chow-ii-algebraic-curvature-decomposition}
+  \dcref{ch11:11.22}
+  \group{Equivariant Curvature Transformations}
   For \(a,b\in\mathbb R\), define
   \[
    \ell_{a,b}(R)=R+2(n-1)aR_I+(n-2)bR_{\operatorname{Rc}_0}.
@@ -712,10 +712,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{definition}[conjugated quadratic and defect]
   \label{def:chow-ii-conjugated-curvature-quadratic}
+  \source{chow-et-al-ricci-flow-part-ii:page-0118}
+  \uses{def:chow-ii-ell-transformations, def:chow-ii-sharp-product}
   \dcref{ch11:11.24}
   \group{Equivariant Curvature Transformations}
-  \source{chow-et-al-ricci-flow-part-ii:page-0118}
-  \uses{def:chow-ii-ell-transformations,def:chow-ii-sharp-product}
   For invertible \(\ell_{a,b}\), set
   \[
   X_{a,b}=\ell_{a,b}^{-1}\circ Q\circ\ell_{a,b},
@@ -725,10 +725,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[linear images and invariant ODE cones]
   \label{lem:chow-ii-linear-image-ode-cone-criterion}
-  \dcref{ch11:11.26}
-  \group{Invariant Curvature Cones}
   \source{chow-et-al-ricci-flow-part-ii:page-0118}
   \uses{def:chow-ii-conjugated-curvature-quadratic}
+  \dcref{ch11:11.26}
+  \group{Invariant Curvature Cones}
   Let \(C\subset\mathcal A_n\) be a closed convex \(O(n)\)-invariant cone.
   Then \(\ell_{a,b}(C)\) is preserved by \(\dot R=Q(R)\) if and only if
   \(C\) is preserved by \(\dot R=X_{a,b}(R)\).
@@ -744,10 +744,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[interaction with the identity curvature operator]
   \label{lem:chow-ii-sharp-identity-formula}
+  \source{chow-et-al-ricci-flow-part-ii:page-0126,chow-et-al-ricci-flow-part-ii:page-0127}
+  \uses{def:chow-ii-sharp-product, def:chow-ii-algebraic-ricci-contraction}
   \dcref{ch11:11.33}
   \group{Curvature Operator Algebra}
-  \source{chow-et-al-ricci-flow-part-ii:page-0126,chow-et-al-ricci-flow-part-ii:page-0127}
-  \uses{def:chow-ii-sharp-product,def:chow-ii-algebraic-ricci-contraction}
   For \(R\in\mathcal A_n\),
   \[
     R+R\#I=\operatorname{Rc}(R)\wedge\operatorname{id}
@@ -769,10 +769,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{lemma}[quadratic with vanishing Weyl component]
   \label{lem:chow-ii-quadratic-zero-weyl}
+  \source{chow-et-al-ricci-flow-part-ii:page-0127,chow-et-al-ricci-flow-part-ii:page-0128,chow-et-al-ricci-flow-part-ii:page-0129,chow-et-al-ricci-flow-part-ii:page-0130}
+  \uses{lem:chow-ii-sharp-identity-formula, cor:chow-ii-trace-free-square-wedge-decomposition}
   \dcref{ch11:11.35}
   \group{Curvature Operator Algebra}
-  \source{chow-et-al-ricci-flow-part-ii:page-0127,chow-et-al-ricci-flow-part-ii:page-0128,chow-et-al-ricci-flow-part-ii:page-0129,chow-et-al-ricci-flow-part-ii:page-0130}
-  \uses{lem:chow-ii-sharp-identity-formula,cor:chow-ii-trace-free-square-wedge-decomposition}
   Suppose \(R_W=0\), put
   \(\bar\lambda=\operatorname{Scal}(R)/n\) and
   \(\sigma=|\operatorname{Rc}_0(R)|^2/n\).  Then
@@ -805,10 +805,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{corollary}[Weyl and Ricci parts of the zero-Weyl quadratic]
   \label{cor:chow-ii-zero-weyl-quadratic-components}
+  \source{chow-et-al-ricci-flow-part-ii:page-0127,chow-et-al-ricci-flow-part-ii:page-0128}
+  \uses{lem:chow-ii-quadratic-zero-weyl, lem:chow-ii-ricci-contraction-wedge}
   \dcref{ch11:11.36}
   \group{Curvature Operator Algebra}
-  \source{chow-et-al-ricci-flow-part-ii:page-0127,chow-et-al-ricci-flow-part-ii:page-0128}
-  \uses{lem:chow-ii-quadratic-zero-weyl,lem:chow-ii-ricci-contraction-wedge}
   If \(R_W=0\), then
   \[
   Q(R)_W=\frac1{n-2}(\operatorname{Rc}_0\wedge\operatorname{Rc}_0)_W
@@ -829,10 +829,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{theorem}[formula for the conjugation defect]
   \label{thm:chow-ii-conjugation-defect-formula}
+  \source{chow-et-al-ricci-flow-part-ii:page-0119,chow-et-al-ricci-flow-part-ii:page-0120,chow-et-al-ricci-flow-part-ii:page-0121,chow-et-al-ricci-flow-part-ii:page-0122,chow-et-al-ricci-flow-part-ii:page-0123,chow-et-al-ricci-flow-part-ii:page-0124,chow-et-al-ricci-flow-part-ii:page-0125,chow-et-al-ricci-flow-part-ii:page-0126}
+  \uses{def:chow-ii-conjugated-curvature-quadratic, def:chow-ii-algebraic-ricci-contraction}
   \dcref{ch11:11.27}
   \group{Equivariant Curvature Transformations}
-  \source{chow-et-al-ricci-flow-part-ii:page-0119,chow-et-al-ricci-flow-part-ii:page-0120,chow-et-al-ricci-flow-part-ii:page-0121,chow-et-al-ricci-flow-part-ii:page-0122,chow-et-al-ricci-flow-part-ii:page-0123,chow-et-al-ricci-flow-part-ii:page-0124,chow-et-al-ricci-flow-part-ii:page-0125,chow-et-al-ricci-flow-part-ii:page-0126}
-  \uses{def:chow-ii-conjugated-curvature-quadratic,def:chow-ii-algebraic-ricci-contraction}
   Let \(\operatorname{Rc}=\operatorname{Rc}(R)\),
   \(\bar\lambda=\operatorname{Scal}(R)/n\), and
   \(\sigma=|\operatorname{Rc}_0|^2/n\).  Whenever \(\ell_{a,b}\) is
@@ -881,10 +881,10 @@ is the space of algebraic curvature operators.  We write
 
 \begin{corollary}[eigenvalues of the conjugation defect]
   \label{cor:chow-ii-conjugation-defect-eigenvalues}
-  \dcref{ch11:11.29}
-  \group{Equivariant Curvature Transformations}
   \source{chow-et-al-ricci-flow-part-ii:page-0120,chow-et-al-ricci-flow-part-ii:page-0121}
   \uses{thm:chow-ii-conjugation-defect-formula}
+  \dcref{ch11:11.29}
+  \group{Equivariant Curvature Transformations}
   If \(\operatorname{Rc}_0e_i=\lambda_i e_i\), then \(e_i\wedge e_j\) is an
   eigenvector of \(D_{a,b}(R)\), with eigenvalue
   \[

@@ -30,8 +30,9 @@ At $s=0$, this is the stated equation for $J=S(0,\mathord\cdot)$.
 
 \begin{proposition}[Existence and Uniqueness of Jacobi Fields]
 \label{prop:existence-uniqueness-jacobi-fields}
-\dcref{ch10:10.2}
 \uses{thm:linear-ode-existence-uniqueness}
+\dcref{ch10:10.2}
+
 Let $I\subseteq\mathbb R$ be an interval, let $\gamma:I\to M$ be a geodesic,
 let $a\in I$, and put $p=\gamma(a)$.  For every $v,w\in T_pM$, there is a
 unique Jacobi field along $\gamma$ satisfying
@@ -59,8 +60,9 @@ Jacobi fields along it.
 
 \begin{corollary}
 \label{cor:jacobi-space-dimension}
-\dcref{ch10:10.3}
 \uses{prop:existence-uniqueness-jacobi-fields}
+\dcref{ch10:10.3}
+
 If $(M,g)$ has dimension $n$ and $\gamma$ is any geodesic, then
 $\mathfrak J(\gamma)$ is a $2n$-dimensional linear space.
 \end{corollary}
@@ -78,8 +80,9 @@ which is an isomorphism by the preceding proposition.
 
 \begin{proposition}[Jacobi Fields as Variation Fields]
 \label{prop:jacobi-field-variation-field}
-\dcref{ch10:10.4}
 \uses{thm:jacobi-equation}
+\dcref{ch10:10.4}
+
 Let $(M,g)$ be Riemannian or pseudo-Riemannian and let $\gamma:I\to M$ be a
 geodesic.  If $M$ is complete or $I$ is compact, every Jacobi field along
 $\gamma$ is the variation field of a variation through geodesics.
@@ -165,8 +168,9 @@ derivative vanish at one point.  This is exactly (a)--(d).
 
 \begin{corollary}[Tangential--Normal Jacobi Decomposition]
 \label{cor:jacobi-field-decomposition}
+\uses{cor:jacobi-space-dimension, prop:normal-jacobi-equivalent-conditions}
 \dcref{ch10:10.8}
-\uses{cor:jacobi-space-dimension,prop:normal-jacobi-equivalent-conditions}
+
 Suppose $(M,g)$ is Riemannian or pseudo-Riemannian and $\gamma$ is a
 nonconstant non-null geodesic.  Then
 $\mathfrak J^\perp(\gamma)$ has dimension $2n-2$,
@@ -191,8 +195,9 @@ to $2n$ and give the direct sum.
 
 \begin{lemma}[Variation Formula for a Jacobi Field Vanishing at the Origin]
 \label{lem:jacobi-field-variation}
-\dcref{ch10:10.9}
 \uses{prop:jacobi-field-variation-field}
+\dcref{ch10:10.9}
+
 Let $I$ contain $0$, let $\gamma:I\to M$ be a geodesic, and let $J$ be Jacobi
 with $J(0)=0$.  If $M$ is complete or $I$ is compact, then with
 $p=\gamma(0)$, $v=\gamma'(0)$, and $w=D_tJ(0)$,
@@ -240,8 +245,9 @@ so differentiating in $s$ gives (10.7).
 
 \begin{corollary}
 \label{cor:jacobi-field-tangent-vectors}
-\dcref{ch10:10.11}
 \uses{prop:jacobi-fields-vanishing-at-point}
+\dcref{ch10:10.11}
+
 If $U$ is a normal neighborhood of $p$, every vector in $T_qM$ for
 $q\in U\setminus\{p\}$ is the value at $q$ of a Jacobi field along a radial
 geodesic that vanishes at $p$.
@@ -313,8 +319,9 @@ Let $\check g$ be the unit round metric on $S^{n-1}$ and define
 
 \begin{lemma}[Polar Form of the Euclidean Metric]
 \label{lem:metric-relation-euclidean}
+\uses{ex:warped-products, prop:warped-product-isometry, UNRESOLVED:chA:2-4}
 \dcref{ch10:10.13}
-\uses{ex:warped-products,prop:warped-product-isometry}
+
 On $\mathbb R^n\setminus\{0\}$, the Euclidean metric $\bar g$ satisfies
 \begin{equation}
 \bar g=dr^2+r^2\hat g. \quad (10.15)
@@ -336,8 +343,9 @@ $\Phi^{-1}(x)=(r(x),\pi(x))$, pulling back this identity gives (10.15).
 
 \begin{theorem}[Constant-Curvature Metrics in Normal Coordinates]
 \label{thm:constant-curvature-normal-coords}
+\uses{thm:minimizing-geodesic-unit-speed, cor:jacobi-field-decomposition}
 \dcref{ch10:10.14}
-\uses{thm:minimizing-geodesic-unit-speed,cor:jacobi-field-decomposition}
+
 Suppose $(M,g)$ has constant sectional curvature $c$.  In normal coordinates
 around $p$, let $r$ be the radial distance and let $\hat g$ be (10.14).  On
 $U\setminus\{p\}$,
@@ -371,8 +379,9 @@ $g=g_c$.
 
 \begin{corollary}[Local Uniqueness of Constant-Curvature Metrics]
 \label{cor:local-uniqueness-constant-curvature}
-\dcref{ch10:10.15}
 \uses{thm:constant-curvature-normal-coords}
+\dcref{ch10:10.15}
+
 If $(M,g)$ and $(\widetilde M,\widetilde g)$ have the same dimension and
 constant sectional curvature $c$, then every $p\in M$ and
 $\widetilde p\in\widetilde M$ have neighborhoods related by an isometry.
@@ -407,8 +416,9 @@ $\{\rho\}\times S^{n-1}$,
 
 \begin{corollary}[Polar Decomposition of Integrals]
 \label{cor:polar-decomposition-integrals}
-\dcref{ch10:10.17}
 \uses{cor:constant-curvature-warped-products}
+\dcref{ch10:10.17}
+
 Let $U$ be an open or closed geodesic ball of radius $b$ in a
 constant-curvature $n$-manifold, and let $f:U\to\mathbb R$ be bounded and
 integrable.  Then
@@ -494,8 +504,9 @@ $d\varphi_q$ preserves inner products, hence $\varphi$ is a local isometry.
 
 \begin{theorem}[Characterization of Locally Symmetric Spaces]
 \label{thm:characterization-locally-symmetric-spaces}
+\uses{prop:symmetric-space-parallel-curvature, lem:locally-symmetric-cartan, prob:symmetric-space-parallel-curvature}
 \dcref{ch10:10.19}
-\uses{prop:symmetric-space-parallel-curvature,lem:locally-symmetric-cartan}
+
 
 A Riemannian manifold is locally symmetric if and only if its curvature
 tensor is parallel.
@@ -531,9 +542,11 @@ $n-1$.
 
 \begin{proposition}[Critical Points and Conjugacy]
 \label{prop:critical-points-conjugate}
-\dcref{ch10:10.20}
 \lean{LeeLib.Ch10.criticalPoints_conjugate}
 \leanok
+\dcref{ch10:10.20}
+
+
 
 Let $(M,g)$ be Riemannian or pseudo-Riemannian, let $p\in M$, and let
 $v\in\mathcal E_p\subseteq T_pM$. Set
@@ -569,8 +582,9 @@ satisfying $J(a)=v$ and $J(b)=w$.
 
 \begin{proposition}[The Two-Point Boundary Value Theorem for Jacobi Fields]
 \label{prop:two-point-boundary-problem}
+\uses{prop:existence-uniqueness-jacobi-fields, cor:jacobi-field-tangent-vectors, prop:critical-points-conjugate}
 \dcref{ch10:10.21}
-\uses{prop:existence-uniqueness-jacobi-fields,cor:jacobi-field-tangent-vectors,prop:critical-points-conjugate}
+
 
 Let $(M,g)$ be Riemannian or pseudo-Riemannian and let
 $\gamma:[a,b]\to M$ be a geodesic segment. The two-point boundary problem
@@ -586,8 +600,9 @@ variation field is normal to the underlying curve.
 
 \begin{theorem}[Second Variation Formula]
 \label{thm:second-variation-formula}
+\uses{thm:first-variation-formula, prop:curvature-commutator-failure}
 \dcref{ch10:10.22}
-\uses{thm:first-variation-formula,prop:curvature-commutator-failure}
+
 
 Let $\gamma:[a,b]\to M$ be a unit-speed geodesic segment, let
 $\Gamma:J\times[a,b]\to M$ be a proper variation, and let $V$ be its
@@ -668,8 +683,9 @@ I(V,W)=\int_a^b
 
 \begin{corollary}
 \label{cor:second-variation-minimizing-geodesic}
-\dcref{ch10:10.23}
 \uses{thm:second-variation-formula}
+\dcref{ch10:10.23}
+
 
 Let $\gamma:[a,b]\to M$ be a unit-speed geodesic, let $\Gamma$ be a proper
 normal variation, and let $V$ be its variation field. The second variation is
@@ -732,8 +748,9 @@ $b\in(a,c)$.
 
 \begin{theorem}[Geodesics Do Not Minimize Past Conjugate Points]
 \label{thm:no-minimize-past-conjugate}
-\dcref{ch10:10.26}
 \uses{thm:minimizing-geodesic-unit-speed}
+\dcref{ch10:10.26}
+
 Let $(M,g)$ be Riemannian and let $\gamma$ be a unit-speed geodesic segment
 from $p$ to $q$. If $\gamma$ has an interior conjugate point, there is a proper
 normal vector field $X$ along $\gamma$ such that $I(X,X)<0$. Consequently,
@@ -796,8 +813,9 @@ by the curvature symmetries.
 
 \begin{theorem}
 \label{thm:geodesic-without-conjugate-points}
-\dcref{ch10:10.28}
 \uses{lem:jacobi-field-constant-pairing}
+\dcref{ch10:10.28}
+
 Let $\gamma\colon[a,b]\to M$ be a unit-speed geodesic segment without
 interior conjugate points. Every proper normal piecewise smooth vector field
 $V$ along $\gamma$ satisfies $I(V,V)\geq0$, with equality if and only if $V$
@@ -873,8 +891,9 @@ zero, proving positive definiteness on nonzero fields.
 
 \begin{corollary}
 \label{cor:conjugate-point-not-minimizing}
+\uses{thm:no-minimize-past-conjugate, thm:geodesic-without-conjugate-points}
 \dcref{ch10:10.29}
-\uses{thm:no-minimize-past-conjugate,thm:geodesic-without-conjugate-points}
+
 Let $\gamma\colon[a,b]\to M$ be a unit-speed geodesic segment.
 \begin{enumerate}
 \item[(a)] If $\gamma$ has an interior conjugate point, it is not minimizing.
@@ -935,8 +954,9 @@ $\operatorname{Cut}(p)=\{-p\}$.
 
 \begin{proposition}[Properties of Cut Times]
 \label{prop:properties-of-cut-times}
-\dcref{ch10:10.32}
 \uses{thm:no-minimize-past-conjugate}
+\dcref{ch10:10.32}
+
 Let $(M,g)$ be complete and connected, let $p\in M$, let
 $v\in T_pM$ be a unit vector, and put
 $c=t_{\mathrm{cut}}(p,v)\in(0,\infty]$.
@@ -999,8 +1019,9 @@ $\infty$ has the standard infinite-limit meaning.
 
 \begin{theorem}
 \label{thm:cut-time-continuous}
-\dcref{ch10:10.33}
 \uses{prop:critical-points-conjugate}
+\dcref{ch10:10.33}
+
 For a complete, connected Riemannian manifold, the function
 \[
 t_{\mathrm{cut}}\colon UTM\longrightarrow(0,\infty]
@@ -1077,8 +1098,9 @@ satisfy
 
 \begin{theorem}
 \label{thm:cut-locus-properties}
-\dcref{ch10:10.34}
 \uses{thm:cut-time-continuous}
+\dcref{ch10:10.34}
+
 Let $(M,g)$ be complete and connected, and let $p\in M$.
 \begin{enumerate}
 \item[(a)] The set $\operatorname{Cut}(p)$ is closed and has measure zero.
@@ -1123,8 +1145,9 @@ $\operatorname{ID}(p)$, proving (c).
 
 \begin{corollary}
 \label{cor:compact-manifold-quotient}
-\dcref{ch10:10.35}
 \uses{thm:cut-locus-properties}
+\dcref{ch10:10.35}
+
 Every compact, connected, smooth $n$-manifold is homeomorphic to a quotient of
 the closed ball $\overline{\mathbb B}^n$ by an equivalence relation that
 identifies points only on its boundary.
@@ -1158,8 +1181,9 @@ $\overline{\mathbb B}^n$.
 
 \begin{proposition}
 \label{prop:injectivity-radius-cut-locus}
+\uses{thm:cut-locus-properties, prop:radial-geodesic-unique-minimizer}
 \dcref{ch10:10.36}
-\uses{thm:cut-locus-properties,prop:radial-geodesic-unique-minimizer}
+
 Let $(M,g)$ be complete and connected. For each $p\in M$, the injectivity
 radius at $p$ is the distance from $p$ to $\operatorname{Cut}(p)$ when the cut
 locus is nonempty, and is infinite otherwise.
@@ -1182,8 +1206,9 @@ Thus the admissible radii are exactly those not exceeding $d$.
 
 \begin{proposition}
 \label{prop:continuity-injectivity-radius}
+\uses{prop:properties-of-cut-times, thm:cut-time-continuous}
 \dcref{ch10:10.37}
-\uses{prop:properties-of-cut-times,thm:cut-time-continuous}
+
 For a complete, connected Riemannian manifold, the function
 \[
 \operatorname{inj}\colon M\longrightarrow(0,\infty]
@@ -1232,3 +1257,268 @@ contradicting the defining infimum. Hence
 $c\leq\operatorname{inj}(p)\leq b$, proving continuity.
 \end{proof}
 \end{proposition}
+
+\begin{exercise}
+\label{exer:prove-local-isometry-invariance}
+\dcref{ch10:10.6}
+\uses{prop:local-isometry-invariance-jacobi-fields}
+
+Prove the preceding proposition.
+\end{exercise}
+\begin{proof}
+Define a function $f: I \to \mathbb{R}$ by $f(t) = \langle J(t), \gamma'(t) \rangle$, so that $f(t) = 0$ if and only if $J(t) \perp \gamma'(t)$. Using compatibility with the metric and the fact that $D_t \gamma' \equiv 0$, we compute
+\begin{align*}
+f'' &= \langle D_t^2 J, \gamma' \rangle \\
+&= -\langle R(J, \gamma') \gamma', \gamma' \rangle \\
+&= -\mathrm{Rm}(J, \gamma', \gamma', \gamma') = 0
+\end{align*}
+by the symmetries of the curvature tensor. Thus, by elementary calculus, $f$ is an affine function of $t$.
+
+Note that $f'(t) = \langle D_t J(t), \gamma'(t) \rangle$, which vanishes at $t$ if and only if $D_t J(t) \perp \gamma'(t)$. It follows that $J(a)$ and $D_t J(a)$ are orthogonal to $\gamma'(a)$ for some $a \in I$ if and only if $f$ and its first derivative vanish at $a$, which happens if and only if $f \equiv 0$. Similarly, $J$ is orthogonal to $\gamma'$ at two points if and only if $f$ vanishes at two points, which happens if and only if $f$ is identically zero. If this is the case, then $f' \equiv 0$ as well, which implies that both $J$ and $D_t J$ are orthogonal to $\gamma'$ for all $t$.
+\end{proof}
+
+\begin{exercise}
+\label{exer:verify-cut-loci-claims}
+\dcref{ch10:10.31}
+\uses{ex:cut-loci}
+
+Verify the claims in the preceding example.
+
+\end{exercise}
+\begin{proof}
+Suppose first that $0 < b < c$. By definition of $t_{\text{cut}}(p, v)$, there is a time $b'$ such that $b < b' < c$ and $\gamma_v|_{[0,b']}$ is minimizing. Then $\gamma_v(t)$ cannot be conjugate to $p$ along $\gamma_v$ for any $0 \le t \le b$ (Thm. 10.26), and $\gamma_v|_{[0,b]}$ is minimizing because a shorter admissible curve from $p$ to $\gamma_v(b)$ could be combined with $\gamma_v|_{[b,b']}$ to produce a shorter admissible curve from $p$ to $\gamma_v(b')$, contradicting the fact that $\gamma_v|_{[0,b']}$ is minimizing.
+
+To see that $\gamma_v|_{[0,b]}$ is the unique unit-speed minimizing curve between its endpoints, suppose for the sake of contradiction that $\sigma: [0, b] \to M$ is another. Note that $\sigma'(b) \ne \gamma_v'(b)$, since otherwise $\sigma$ and $\gamma_v$ would agree on $[0, b]$ by uniqueness of geodesics. Define a new unit-speed admissible curve $\tilde{\gamma}: [0, b'] \to M$ that is equal to $\sigma(t)$ for $t \in [0, b]$ and equal to $\gamma_v(t)$ for $t \in [b, b']$. Then $\tilde{\gamma}$ has length $b'$, so it is also a minimizing curve from $p$ to $\gamma_v(b')$; but it is not smooth at $t = b$, contradicting the fact that minimizing curves are smooth geodesics. This completes the proof of (a).
+
+Now suppose $c < \infty$. By definition of $t_{\text{cut}}(\rho, v)$, there is a sequence of times $b_i \nearrow c$ such that the restriction of $\gamma_v$ to $[0,b_i]$ is minimizing. By continuity of the distance function, therefore,
+\[d_g(p, \gamma_v(c)) = \lim_{i \to \infty} d_g(p, \gamma_v(b_i)) = \lim_{i \to \infty} b_i = c,\]
+which shows that $\gamma_v$ is minimizing on $[0,c]$. To prove that one of the options in (b) must hold, assume that $\gamma_v(c)$ is not conjugate to $p$ along $\gamma_v$. We will prove the existence of a second unit-speed minimizing geodesic from $p$ to $\gamma_v(c)$.
+
+Let $(b_i)$ be a sequence of real numbers such that $b_i \searrow c$. By definition of cut time, $\gamma_v|_{[0,b_i]}$ is not minimizing, so for each $i$ there is a unit-speed minimizing geodesic $\sigma_i: [0,a_i] \to M$ such that $\sigma_i(0) = p$, $\sigma_i(a_i) = \gamma_v(b_i)$, and $a_i < b_i$. Set $w_i = \sigma'_i(0) \in T_p M$, so each $w_i$ is a unit vector. By compactness of the unit sphere, after passing to a subsequence we may assume that $w_i$ converges to some unit vector $w$. Since the $a_i$'s are all positive and bounded above by $b_i$, by passing to a further subsequence, we may also assume that $a_i$ converges to some number $a$. Then by continuity of the exponential map, $\sigma_i(a_i) = \exp_p(a_i w_i)$ converges to $\exp_p(aw)$. But we also know that $\sigma_i(a_i) = \gamma_v(b_i)$, which converges to $\gamma_v(c)$, so $\exp_p(aw) = \gamma_v(c)$. Moreover, by continuity of the distance function,
+\[c = d_g(p, \gamma_v(c)) = \lim_{i \to \infty} d_g(p, \sigma_i(a_i)) = \lim_{i \to \infty} a_i = a.\]
+
+Thus $\sigma: [0,c] \to M$ given by $\sigma(t) = \exp_p(tw)$ is also a unit-speed minimizing geodesic from $p$ to $\gamma_v(c)$. We need to show that it is not equal to $\gamma_v$.
+
+The assumption that $\gamma_v(c)$ is not conjugate to $p$ along $\gamma_v$ implies that $cv$ is a regular point of $\exp_p$ (Prop.\ 10.20), so $\exp_p$ is injective in some neighborhood $V$ of $cv$. Note that $\exp_p(a_i w_i) = \exp_p(b_i v)$ for each $i$, while $a_i w_i \ne b_i v$, since $w_i$ and $v$ are unit vectors and $a_i < b_i$. Since $b_i v$ converges to $cv$, we conclude that $b_i v \in V$ for sufficiently large $i$, and thus by injectivity $a_i w_i \notin V$ for these values of $i$. Therefore $cw = \lim_{i \to \infty} a_i w_i \ne cv$, which implies $w \ne v$ and thus $\sigma \ne \gamma_v$, as claimed. $\square$
+\end{proof}
+
+\begin{exercise}\label{prob:area-geodesic-disk}\dcref{ch10:10-2}
+\uses{prob:taylor-series-metric-tensor,prob:associated-quadratic-form}
+Suppose $(M, g)$ is a Riemannian manifold and $p \in M$. Let $S_\Pi \subseteq M$ be the 2-dimensional submanifold obtained by applying the exponential map to a plane $\Pi \subseteq T_p M$, as on page 250. For sufficiently small $r$, let $A(r)$ be the area of the geodesic disk of radius $r$ about $p$ in $S_\Pi$ with its induced metric. Using the results of Problems 10-1 and 8-21, find the Taylor series of $A(r)$ to fourth order in $r$. Then use this result to express $\sec(\Pi)$ in terms of a limit involving the difference $\pi r^2 - A(r)$.
+\end{exercise}
+
+\begin{exercise}[Asymptotic volume of geodesic balls]
+\label{prob:asymptotic-volume-geodesic-balls}
+\dcref{ch10:10-6}
+\uses{prob:taylor-series-metric-tensor,prob:associated-quadratic-form}
+
+Let $p$ be a point in a Riemannian $n$-manifold $(M,g)$. Use the results of Problems~10-1 and~8-21 to show that as $r \searrow 0$,
+\[
+\operatorname{Vol}(B_r(p)) = \frac{1}{n} a_{n-1} r^n \left( 1 - \frac{S(p) r^2}{6(n+2)} + O(r^3) \right),
+\]
+where $S(p)$ is the scalar curvature of $g$ at $p$ and $a_{n-1}$ is as in Problem~10-4.
+\end{exercise}
+
+\begin{exercise}\label{prob:cut-locus-flat-torus}\dcref{ch10:10-21}
+\uses{ex:n-torus-riemannian-submanifold,ex:n-torus-flat-metric}
+Determine the cut locus of an arbitrary point in the $n$-torus $\mathbb{T}^n$ with the flat metric of Examples 2.21 and 7.1.
+\end{exercise}
+
+\begin{exercise}\label{prob:cut-locus-homotopy-equivalence}\dcref{ch10:10-22}
+Suppose $(M,g)$ is a connected, compact Riemannian manifold, $p \in M$, and $C \subseteq M$ is the cut locus of $p$. Prove that $C$ is homotopy equivalent to $M \setminus \{p\}$.
+\end{exercise}
+
+\begin{exercise}\label{prob:distance-cut-locus}\dcref{ch10:10-23}
+Let $(M,g)$ be a complete Riemannian manifold, and suppose $p,q \in M$ are points such that $d_g(p,q)$ is equal to the distance from $p$ to its cut locus.
+
+\begin{enumerate}
+\item[(a)] Prove that either $q$ is conjugate to $p$ along some minimizing geodesic segment, or there are exactly two minimizing geodesic segments from $p$ to $q$, say $\gamma_1, \gamma_2: [0,b] \to M$, such that $\gamma'_1(b) = -\gamma'_2(b)$.
+
+\item[(b)] Now suppose in addition that $\text{inj}(p) = \text{inj}(M)$. Prove that if $q$ is not conjugate to $p$ along any minimizing geodesic, then there is a closed geodesic $\gamma: [0,2b] \to M$ such that $\gamma(0) = \gamma(2b) = p$ and $\gamma(b) = q$, where $b = d_g(p,q)$.
+\end{enumerate}
+
+(Used on p. 343.)
+\end{exercise}
+
+\begin{exercise}\label{prob:focal-point-characterization}\dcref{ch10:10-19}
+\uses{prob:transverse-jacobi-field}
+Suppose $P$ is an embedded submanifold in a Riemannian manifold $(M,g)$. A point $q \in M$ is said to be a \textbf{focal point} of $P$ if it is a critical value of the normal exponential map $E: \varepsilon_p \to M$ (see p. 133). Show that $q$ is a focal point of $P$ if and only if there exist a geodesic segment $\gamma: [0,b] \to M$ that starts normal to $P$ and ends at $q$ and a nontrivial Jacobi field $J \in \mathcal{J}(\gamma)$ that is transverse to $P$ in the sense defined in Problem 10-14 and satisfies $J(b) = 0$. (If this is the case, we say that $q$ is a \textbf{focal point of $P$ along $\gamma$}.)
+\end{exercise}
+
+\begin{exercise}\label{prob:frankel-geodesic-intersection}\dcref{ch10:10-10}
+\uses{prob:normal-variation-submanifolds}
+Prove the following theorem of Theodore Frankel [Fra61], generalizing the well-known fact that any two great circles on $S^2$ must intersect. Suppose $(M, g)$ is a complete, connected Riemannian manifold with positive sectional curvature. If $M_1, M_2 \subseteq M$ are compact, totally geodesic submanifolds such that $\dim M_1 + \dim M_2 \geq \dim M$, then $M_1 \cap M_2 \neq \emptyset$. [Hint: Assuming that the intersection is empty, show that there exist a shortest geodesic segment $\gamma$ connecting $M_1$ and $M_2$ and a parallel vector field along $\gamma$ that is tangent to $M_1$ and $M_2$ at the endpoints; then apply the second variation formula of Problem 10-9 to derive a contradiction.]
+\end{exercise}
+
+\begin{exercise}\label{prob:injectivity-radius-exponential}\dcref{ch10:10-24}
+Let $(M,g)$ be a complete Riemannian manifold and $p \in M$. Show that $\text{inj}(p)$ is equal to the radius of the largest open ball in $T_p M$ on which $\exp_p$ is injective.
+
+(Used on p. 166.)
+\end{exercise}
+
+\begin{exercise}[Jacobi fields via Fermi coordinates]
+\label{prob:jacobi-fermi-transverse}
+\dcref{ch10:10-16}
+\uses{prop:fermi-coordinates-properties}
+
+Suppose $P$ is an embedded $k$-dimensional submanifold of a Riemannian $n$-manifold $(M,g)$, and $(x^1,\ldots,x^k,v^1,\ldots,v^{n-k})$ are Fermi coordinates for $P$ on some open subset $U_0 \subseteq M$. For fixed $(x^i,v^j)$, let $\gamma: I \to M$ be the curve with coordinate representation $\gamma(t) = (x^1,\ldots,x^k,tv^1,\ldots,tv^{n-k})$. Proposition 5.26 shows that $\gamma$ is a geodesic that meets $P$ orthogonally at $t=0$. Prove that the Jacobi fields along $\gamma$ that are transverse to $P$ are exactly the vector fields of the form
+\[
+J(t) = \sum_{i=1}^{k} a^i \frac{\partial}{\partial x^i}\bigg|_{\gamma(t)} + \sum_{j=1}^{n-k} t b^j \frac{\partial}{\partial v^j}\bigg|_{\gamma(t)},
+\]
+for arbitrary constants $a^1,\ldots,a^k,b^1,\ldots,b^{n-k}$.
+\end{exercise}
+
+\begin{exercise}\label{prob:jacobi-field-index-form}\dcref{ch10:10-11}
+\uses{cor:jacobi-field-index-form,thm:minimizing-geodesic-unit-speed}
+Prove Corollary 10.25 ($I(V, W) = 0$ for all $W$ if and only if $V$ is a Jacobi field). [Hint: Adapt the proof of Theorem 6.4.]
+\end{exercise}
+
+\begin{exercise}\label{prob:jacobi-fields-constant-curvature}\dcref{ch10:10-3}
+\uses{prop:jacobi-constant-curvature}
+Extend the result of Proposition 10.12 by finding a basis for the space of all Jacobi fields along a geodesic in the constant-curvature case, not just the normal ones that vanish at 0.
+\end{exercise}
+
+\begin{exercise}[Normal Jacobi fields in semigeodetic coordinates]
+\label{prob:jacobi-semigeodetic-transverse}
+\dcref{ch10:10-15}
+\uses{prop:characterizations-semigeodetic-coordinates}
+
+Let $(x^1,\ldots,x^n)$ be any semigeodetic coordinates on an open subset $U$ in a Riemannian $n$-manifold $(M,g)$ (see Prop.\ 6.41 and Examples 6.43--6.46), and let $\gamma(t) = (x^1,\ldots,x^{n-1},t)$ be an $x^n$-coordinate curve defined on some interval $I$. Prove that for all constants $(a^1,\ldots,a^{n-1})$, the following vector field along $\gamma$ is a normal Jacobi field along $\gamma$ that is transverse to each of the level sets of $x^n$ (in the sense defined in Problem 10-14):
+\[
+J(t) = \sum_{i=1}^{n-1} a^i \frac{\partial}{\partial x^i}\bigg|_{\gamma(t)}.
+\]
+\end{exercise}
+
+\begin{exercise}[Jacobi field in warped product manifold]
+\label{prob:jacobi-warped-product}
+\dcref{ch10:10-18}
+\uses{prob:geodesic-warped-product}
+
+Suppose $(M_1,g_1)$ and $(M_2,g_2)$ are Riemannian manifolds, $f: M_1 \to \mathbb{R}^+$ is a smooth positive function, and $M_1 \times_f M_2$ is the resulting warped product manifold. Let $q_0 \in M_2$ be arbitrary, let $\gamma: I \to M_1$ be a $g_1$-geodesic, and let $\bar{\gamma}: I \to M_1 \times_f M_2$ be the curve $\bar{\gamma}(t) = (\gamma(t),q_0)$. It follows from the result of Problem 5-7 that $\bar{\gamma}$ is a geodesic meeting each submanifold $\{\gamma(t)\} \times M_2$ orthogonally. Given any fixed vector $w \in T_{q_0}M_2$, define a vector field $J$ along $\bar{\gamma}$ by $J(t) = (0,w) \in T_{\gamma(t)}M_1 \oplus T_{q_0}M_2$. Prove that $J$ is a Jacobi field that is transverse to each submanifold $\{\gamma(t)\} \times M_2$ (in the sense defined in Problem 10-14).
+\end{exercise}
+
+\begin{exercise}\label{prob:killing-vector-jacobi-field}\dcref{ch10:10-13}
+\uses{prob:killing-vector-field,prob:killing-vector-field-properties}
+Suppose $(M, g)$ is a Riemannian manifold and $X \in \mathfrak{X}(M)$ is a Killing vector field (see Problems 5-22 and 6-24). Show that if $\gamma: [a, b] \to M$ is any geodesic segment, then $X$ restricts to a Jacobi field along $\gamma$.
+\end{exercise}
+
+\begin{exercise}[Nonpositive curvature implies no conjugate points]
+\label{prob:nonpositive-curvature-conjugate-points}
+\dcref{ch10:10-7}
+
+Suppose $(M,g)$ is a Riemannian manifold with nonpositive sectional curvature. Prove that no point of $M$ has conjugate points along any geodesic. [Hint: Consider derivatives of $|J(t)|^2$ when $J$ is a Jacobi field.] (Used on p.~333.)
+\end{exercise}
+
+\begin{exercise}\label{prob:nonpositive-curvature-focal-points}\dcref{ch10:10-20}
+\uses{prob:nonpositive-curvature-conjugate-points}
+Suppose $(M,g)$ is a Riemannian manifold with nonpositive sectional curvature, and $P \subseteq M$ is a totally geodesic embedded submanifold. Prove that $P$ has no focal points. [Hint: See Problem 10-7.] (Used on p. 370.)
+\end{exercise}
+
+\begin{exercise}\label{prob:normal-jacobi-minimizes-index}\dcref{ch10:10-12}
+Let $(M, g)$ be a Riemannian manifold. Suppose $\gamma: [a, b] \to M$ is a unitspeed geodesic segment with no interior conjugate points, $J$ is a normal Jacobi field along $\gamma$, and $V$ is any other piecewise smooth normal vector field along $\gamma$ such that $V(a) = J(a)$ and $V(b) = J(b)$.
+\begin{enumerate}
+\item[(a)] Show that $I(V, V) \geq I(J, J)$.
+\item[(b)] Now assume in addition that $\gamma(b)$ is not conjugate to $\gamma(a)$ along $\gamma$. Show that $I(V, V) = I(J, J)$ if and only if $V = J$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Normal variation of geodesic between submanifolds]
+\label{prob:normal-variation-submanifolds}
+\dcref{ch10:10-9}
+
+Suppose $(M,g)$ is a Riemannian manifold and $M_1, M_2 \subseteq M$ are embedded submanifolds. Let $\gamma : [a,b] \to M$ be a unit-speed geodesic segment that meets $M_1$ orthogonally at $t = a$ and meets $M_2$ orthogonally at $t = b$, and let $\Gamma : K \times [a,b] \to M$ be a normal variation of $\gamma$ such that $\Gamma(s,a) \in M_1$ and $\Gamma(s,b) \in M_2$ for all $s$. Prove the following generalization of the second variation formula:
+\[
+\frac{d^2}{ds^2}\bigg|_{s=0} L_g(\Gamma_s) = \int_a^b \left(|D_t V|^2 - Rm(V, y', y', V)\right) dt + [\Pi_2(V(b), V(b)), y'(b)] - [\Pi_1(V(a), V(a)), y'(a)],
+\]
+where $V$ is the variation field of $\Gamma$, and $\Pi_i$ is the second fundamental form of $M_i$ for $i = 1, 2$. (Used on p. 365.)
+\end{exercise}
+
+\begin{exercise}[Tangent vectors via transverse Jacobi fields]
+\label{prob:tangent-vector-jacobi-normal-neighborhood}
+\dcref{ch10:10-17}
+\uses{prob:jacobi-fermi-transverse}
+
+Suppose $P$ is an embedded submanifold of a Riemannian manifold $(M,g)$, and $U$ is a normal neighborhood of $P$ in $M$. Prove that every tangent vector to $U \setminus P$ is the value of a transverse Jacobi field: more precisely, for each $q \in U \setminus P$ and each $w \in T_q M$, there is a $g$-geodesic segment $\gamma: [0,b] \to U$ such that $\gamma(0) \in P$, $\gamma'(0) \perp T_{\gamma(0)} P$, and $\gamma(b) = q$, and a Jacobi field $J$ along $\gamma$ that is transverse to $P$ and satisfies $J(b) = w$. [Hint: Use Problem 10-16.]
+\end{exercise}
+
+\begin{exercise}\label{prob:taylor-series-metric-tensor}\dcref{ch10:10-1}
+Suppose $(M, g)$ is a Riemannian manifold and $p \in M$. Show that the second-order Taylor series of $g$ in normal coordinates centered at $p$ is
+\[
+g_{ij}(x) = \delta_{ij} - \frac{1}{3} \sum_{k,l} R_{ikll}(p) x^k x^l + O(|x|^3).
+\]
+
+[Hint: Let $\gamma(t) = (tv^1, \ldots, tv^n)$ be a radial geodesic starting at $p$, let $J(t) = tw^i \partial_i|_{\gamma(t)}$ be a Jacobi field along $\gamma$, and compute the first four $t$-derivatives of $|J(t)|^2$ at $t = 0$ in two ways.]
+\end{exercise}
+
+\begin{exercise}\label{prob:transverse-jacobi-field}\dcref{ch10:10-14}
+Suppose $P$ is an embedded submanifold of a Riemannian manifold $M$, and $\gamma: I \to M$ is a geodesic that meets $P$ orthogonally at $t = a$ for some $a \in I$. A Jacobi field $J$ along $\gamma$ is said to be transverse to $P$ if its restriction to each compact subinterval of $I$ containing $a$ is the variation field of a variation of $\gamma$ through geodesics that all meet $P$ orthogonally at $t = a$.
+\begin{enumerate}
+\item[(a)] Prove that the tangential Jacobi field $J(t) = (t - a)y'(t)$ along $\gamma$ is transverse to $P$.
+\item[(b)] Prove that a normal Jacobi field $J$ along $\gamma$ is transverse to $P$ if and only if
+\[
+D_t J(a) = -W_{y'(a)}(J(a)),
+\]
+where $W_{y'(a)}$ is the Weingarten map of $P$ in the direction of $y'(a)$.
+\item[(c)] When $M$ has dimension $n$, prove that the set of transverse Jacobi fields along $\gamma$ is an $n$-dimensional linear subspace of $\mathcal{J}(\gamma)$, and the set of transverse normal Jacobi fields is an $(n-1)$-dimensional subspace of that.
+\end{enumerate}
+
+(Used on p.\ 342.)
+\end{exercise}
+
+\begin{exercise}[Solvability of the two-point boundary problem]
+\label{prob:two-point-boundary-problem}
+\dcref{ch10:10-8}
+\uses{prop:two-point-boundary-problem}
+
+Prove Proposition~10.21 (solvability of the two-point boundary problem).
+\end{exercise}
+
+\begin{exercise}[Volume of balls in Euclidean space]
+\label{prob:volume-euclidean-balls}
+\dcref{ch10:10-5}
+\uses{prob:volume-formula-spheres}
+
+For $r > 0$, let $B_r(0)$ denote the ball of radius $r$ in Euclidean space $(\mathbb{R}^n, \tilde{g})$, $n \geq 1$. Prove that
+\[
+\operatorname{Vol}(B_r(0)) = \frac{1}{n} a_{n-1} r^n,
+\]
+with $a_{n-1}$ as in Problem~10-4.
+\end{exercise}
+
+\begin{exercise}[Volume formula for spheres]
+\label{prob:volume-formula-spheres}
+\dcref{ch10:10-4}
+
+Prove that the volume of the round sphere $S^n(R)$ is given for $n \ge 0$ by $\text{Vol}(S^n(R)) = \alpha_n R^n$, where
+\[
+a_n = \begin{cases}
+\frac{2^{2k+1} \pi^k k!}{(2k)!}, & n = 2k, k \in \mathbb{Z}, \\
+\frac{2\pi^{k+1}}{k!}, & n = 2k+1, k \in \mathbb{Z}.
+\end{cases}
+\]
+
+(The volume of a compact 0-manifold is just the number of points.)
+
+\begin{enumerate}
+\item[(a)] First show that it suffices to prove the volume formula for $R = 1$.
+\item[(b)] Use Corollary 10.17 to prove the recurrence relation
+\[
+\operatorname{Vol}(S^{n+1}) = \sigma_n \operatorname{Vol}(S^n),
+\]
+where
+\[
+\sigma_n = \int_0^{\pi} (\sin r)^n \, dr.
+\]
+\item[(c)] By differentiating the function $(\sin r)^n \cos r$, prove that
+\[
+\sigma_{n+1} = \frac{n}{n+1} \sigma_{n-1},
+\]
+and use this to prove that
+\[
+\sigma_n \sigma_{n-1} = \frac{2\pi}{n}.
+\]
+\item[(d)] Prove the result by induction on $k$.
+\end{enumerate}
+
+(Used on p.~342.)
+\end{exercise}

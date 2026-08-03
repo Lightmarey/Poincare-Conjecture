@@ -11,7 +11,8 @@ for Ricci flow; the tensor maximum principle is due to Hamilton
 
 \begin{proposition}[Evolution bound for minimum scalar curvature]
 \label{prop:scalar-curvature-min-evolution}
-\uses{def:ricci-flow,def:ricci-curvature}\label{scalarevol}
+\uses{def:ricci-flow, def:ricci-curvature}
+\label{scalarevol}
 Let $(M,g(t)),\ 0\le t<T$, be a Ricci flow on a compact
 $n$-manifold, and let $R_\mathrm{min}(t)$ be the minimum scalar curvature.
 Then $R_\mathrm{min}$ is non-decreasing. If $R_\mathrm{min}(0)\ge0$, then
@@ -25,7 +26,8 @@ R_\mathrm{min}(t)\ge-\frac{n|R_\mathrm{min}(0)|}{2t|R_\mathrm{min}(0)|+n}.
 \]
 \end{proposition}
 \begin{proof}
-\uses{lem:forward-difference-quotient,thm:curvature-evolution}
+  \uses{lem:forward-difference-quotient, thm:curvature-evolution, def:ricci-curvature}
+
 \sketch The evolution equation is $\partial_tR=\Delta R+2|\Ric|^2$.
 At a minimum, $\Delta R\ge0$ and $|R|^2\le n|\Ric|^2$, giving
 the two claims below. Integrating the resulting forward-difference inequality
@@ -43,7 +45,8 @@ and hence
 
 \begin{claim}[Time derivative of R at its minimum]
 \label{claim:scalar-min-derivative-bound}
-\uses{def:ricci-curvature}\label{firstclaim}
+\uses{def:ricci-curvature}
+\label{firstclaim}
 If $R(x,t)=R_\mathrm{min}(t)$, then
 $(\partial R/\partial t)(x,t)\ge\frac{2}{n}R^2(x,t)$.
 \end{claim}
@@ -54,7 +57,8 @@ with $|R|^2\le n|\Ric|^2$.
 
 \begin{claim}[Forward-difference bound for the minimum scalar curvature]
 \label{claim:scalar-min-forward-difference}
-\uses{claim:scalar-min-derivative-bound}\label{Rminprime}
+\uses{claim:scalar-min-derivative-bound}
+\label{Rminprime}
 \[
 \frac{d}{dt}R_\mathrm{min}(t)\ge\frac{2}{n}R_\mathrm{min}^2(t),
 \]
@@ -82,6 +86,7 @@ neighborhood of $Z$ preserves $Z$ if $\psi(z)\in T_zZ$ for every $z\in Z$.
 \begin{lemma}[Integral-curve criterion for preserving a convex set]
 \label{lem:integral-curve-preserves-convex-set}
 \uses{def:vector-field-preserves-convex-set}
+
 For closed convex $Z\subset V$ and smooth $\psi$ near $Z$, $\psi$ preserves
 $Z$ iff every integral curve of $\psi$ starting in $Z$ remains in $Z$.
 This is the standard convex-set criterion \cite{Hamilton4MPCO}.
@@ -92,6 +97,7 @@ This is the standard convex-set criterion \cite{Hamilton4MPCO}.
 \begin{definition}[Convex subbundle and fiberwise preserving vector fields]
 \label{def:convex-subbundle-preserving-vector-field}
 \uses{def:vector-field-preserves-convex-set}
+
 For a vector bundle $\pi:{\mathcal V}\to M$ and closed ${\mathcal Z}\subset
 {\mathcal V}$, call ${\mathcal Z}$ convex when every fiber $Z_x$ is convex.
 A fiberwise vector field on a neighborhood ${\mathcal U}$ preserves ${\mathcal Z}$
@@ -100,7 +106,8 @@ when its restriction to each fiber preserves $Z_x$.
 
 \begin{theorem}[Maximum principle for tensors (global version)]
 \label{thm:maximum-principle-tensors-global}
-\uses{def:convex-subbundle-preserving-vector-field,thm:levi-civita-connection}\label{MP}
+\uses{def:convex-subbundle-preserving-vector-field, thm:levi-civita-connection}
+\label{MP}
 Let $(M,g)$ be compact, ${\mathcal V}\to M$ a tensor bundle, and ${\mathcal Z}$
 a closed convex parallel-invariant subset. If a fiberwise vector field $\psi$
 preserves ${\mathcal Z}$ and
@@ -115,7 +122,8 @@ and \cite{Hamilton4MPCO}.
 
 \begin{theorem}[Maximum principle for tensors with time-varying convex sets]
 \label{thm:maximum-principle-tensors-varying-z}
-\uses{def:convex-subbundle-preserving-vector-field,thm:levi-civita-connection}\label{varyingZ}
+\uses{def:convex-subbundle-preserving-vector-field, thm:levi-civita-connection}
+\label{varyingZ}
 Let ${\mathcal Z}\subset{\mathcal V}\times[0,T]$ have closed, convex,
 parallel-invariant time slices. If $\psi$ preserves the family in the
 integral-curve sense and $\partial_t{\mathcal T}=\Delta{\mathcal T}+\psi({\mathcal T})$,
@@ -128,7 +136,8 @@ The time-dependent formulation is also recorded in \cite{Hamilton4MPCO}.
 
 \begin{theorem}[Local maximum principle for tensors]
 \label{thm:maximum-principle-tensors-local}
-\uses{def:convex-subbundle-preserving-vector-field,thm:levi-civita-connection}\label{localMP}
+\uses{def:convex-subbundle-preserving-vector-field, thm:levi-civita-connection}
+\label{localMP}
 Let $\overline U\subset M$ be compact, smooth, connected, and codimension
 zero, and let ${\mathcal Z}\subset{\mathcal V}$ be closed, convex, and
 parallel-invariant. If $\psi$ preserves ${\mathcal Z}$ and
@@ -147,7 +156,8 @@ The curvature evolution formulas are used in the standard form
 
 \begin{definition}[Normalized initial conditions for Ricci flow]
 \label{def:normalized-initial-conditions}
-\uses{def:ricci-flow,def:riemann-curvature-tensor}\label{norminitcond}
+\uses{def:ricci-flow, def:riemann-curvature-tensor}
+\label{norminitcond}
 A Ricci flow has normalized initial conditions when its initial time is zero,
 $|\Rm(x,0)|\le1$, and, with $\omega_n$ the unit Euclidean $n$-ball volume,
 \[
@@ -157,7 +167,8 @@ $|\Rm(x,0)|\le1$, and, with $\omega_n$ the unit Euclidean $n$-ball volume,
 
 \begin{proposition}[Short-time curvature and volume bounds for normalized flows]
 \label{prop:normalized-flow-short-time-bounds}
-\uses{def:normalized-initial-conditions}\label{kappa0r0t0}
+\uses{def:normalized-initial-conditions}
+\label{kappa0r0t0}
 There is $\kappa_0>0$ depending only on $n$ such that a complete bounded-
 curvature normalized flow satisfies $|\Rm(x,t)|\le2$ and
 $\Vol B(x,t,r)\ge\kappa_0r^n$ for $0\le t\le\min(T,2^{-4})$ and $r\le1$.
@@ -174,7 +185,8 @@ $\Vol_t(B(x,t,r))\ge A^{-1}(\omega_n/2)r_0^nr^n$.
 \subsection{Extending flows}
 \begin{proposition}[Extension criterion for Ricci flows]
 \label{prop:ricci-flow-extension-criterion}
-\uses{def:ricci-flow}\label{flowextend}
+\uses{def:ricci-flow}
+\label{flowextend}
 For a compact Ricci flow on $[0,T)$ with $T<\infty$, either the flow extends
 past $T$ or $|\Rm|$ is unbounded on $M\times[0,T)$.
 \end{proposition}
@@ -183,7 +195,8 @@ past $T$ or $|\Rm|$ is unbounded on $M\times[0,T)$.
 
 \begin{lemma}[Curvature-operator evolution ODE in dimension three]
 \label{lem:curvature-operator-ode-dimension-three}
-\uses{prop:curvature-operator-evolution,def:curvature-operator}\label{quad}
+\uses{prop:curvature-operator-evolution, def:curvature-operator}
+\label{quad}
 For a three-dimensional curvature operator ${\mathcal T}$ in an evolving
 frame,
 \[
@@ -199,7 +212,8 @@ If ${\mathcal T}=\operatorname{diag}(\lambda,\mu,\nu)$, then
 
 \begin{corollary}[Non-negative curvature operator is preserved]
 \label{cor:nonnegative-curvature-operator-preserved}
-\uses{def:curvature-operator}\label{rm>0}
+\uses{def:curvature-operator}
+\label{rm>0}
 For a compact connected three-dimensional Ricci flow, $\Rm(x,0)\ge0$ implies
 \Rm(x,t)\ge0$ for all $x,t$.
 \end{corollary}
@@ -212,7 +226,8 @@ on this set, so apply the global tensor maximum principle.
 
 \begin{corollary}[Non-negative Ricci curvature is preserved]
 \label{cor:nonnegative-ricci-preserved}
-\uses{def:ricci-curvature}\label{Ric>0}
+\uses{def:ricci-curvature}
+\label{Ric>0}
 For a compact connected three-dimensional Ricci flow, $\Ric(x,0)\ge0$ implies
 $\Ric(x,t)\ge0$ for all $x,t$.
 \end{corollary}
@@ -232,7 +247,8 @@ initial point, it is positive on the interior for positive times.
 
 \begin{proposition}[Strong maximum principle for curvature tensors]
 \label{prop:strong-maximum-principle-curvature}
-\uses{def:convex-subbundle-preserving-vector-field}\label{SMPcurv}
+\uses{def:convex-subbundle-preserving-vector-field}
+\label{SMPcurv}
 Let $s$ be fiberwise convex and parallel-invariant, and let
 $\partial_t{\mathcal T}=\Delta{\mathcal T}+\psi({\mathcal T})$ on a compact
 codimension-zero domain. Assume $\psi(A)$ lies in the tangent cone of
@@ -262,7 +278,8 @@ forces $R(p,T)>0$, a contradiction.
 
 \begin{corollary}[Local product splitting at a Ricci null eigenvalue]
 \label{cor:local-product-splitting-ricci-null-eigenvalue}
-\uses{def:curvature-operator}\label{localprod}
+\uses{def:curvature-operator}
+\label{localprod}
 For a nonflat connected three-dimensional flow with nonnegative sectional
 curvature, a zero Ricci eigenvalue at time $T>0$ implies that for every
 $t\in(0,T]$ the flow locally splits as a positively curved surface times a
@@ -279,7 +296,8 @@ therefore gives the asserted local product.
 
 \begin{corollary}[Global product splitting on a cover]
 \label{cor:global-product-splitting-cover}
-\uses{cor:local-product-splitting-ricci-null-eigenvalue}\label{nullspace}
+\uses{cor:local-product-splitting-ricci-null-eigenvalue}
+\label{nullspace}
 For a complete connected nonflat three-dimensional flow with $\Rm\ge0$ and a
 zero curvature-operator eigenvalue at time $T$, a cover splits as
 $(N,h(t))\times(\Ar,ds^2)$, where $N$ has positive curvature and the flow is
@@ -288,6 +306,7 @@ the product with the trivial line flow.
 \begin{remark}[Classification of covers for the product splitting]
 \label{rem:product-splitting-cover-classification}
 \uses{cor:global-product-splitting-cover}
+
 The possible cover is trivial, a normal $\Zee$-cover, a two-sheeted cover, or
 a normal infinite-dihedral cover; the last two carry only a non-orientable
 null line field.
@@ -295,7 +314,8 @@ null line field.
 
 \begin{proposition}[Non-flat cones do not arise from non-negatively curved Ricci flow]
 \label{prop:no-nonflat-cones-from-ricci-flow}
-\uses{def:cone}\label{nocones}
+\uses{def:cone}
+\label{nocones}
 An open subset of a three-dimensional nonnegatively curved Ricci flow that is
 isometric at positive time to an open subset of a cone is flat for all times.
 \end{proposition}
@@ -308,7 +328,8 @@ that eigenvalue constant along the parallel null line. Contradiction.
 
 \begin{theorem}[Compact non-negative Ricci flows become round]
 \label{thm:nonnegative-ricci-flow-becomes-round}
-\uses{cor:nonnegative-ricci-preserved}\label{flowtoround}
+\uses{cor:nonnegative-ricci-preserved}
+\label{flowtoround}
 For a compact three-dimensional flow with $\Ric(0)\ge0$, either the flow is
 flat or $\Ric>0$ for positive times. In the maximal positive case,
 \[
@@ -333,7 +354,8 @@ round.
 \end{proof}
 \begin{remark}[Extending roundness to shrinking solitons]
 \label{rem:roundness-shrinking-soliton-preview}
-\uses{thm:positive-ricci-soliton-round,def:gradient-shrinking-soliton}
+\uses{thm:positive-ricci-soliton-round, def:gradient-shrinking-soliton}
+
 The pinching theorem below extends the roundness conclusion to compact
 shrinking solitons without assuming positive Ricci curvature.
 \end{remark}
@@ -344,7 +366,8 @@ The pinching argument follows the curvature maximum-principle estimates in
 Ivey \cite{Ivey}.
 \begin{theorem}[Pinching toward positive curvature]
 \label{thm:pinching-toward-positive-curvature}
-\uses{def:ricci-flow,def:curvature-operator}\label{pinch}
+\uses{def:ricci-flow, def:curvature-operator}
+\label{pinch}
 For a compact three-dimensional flow whose initial curvature-operator
 eigenvalues satisfy $\lambda(x,0)\ge\mu(x,0)\ge\nu(x,0)\ge-1$, set
 $X=\max(-\nu,0)$. Then
@@ -367,6 +390,7 @@ $f_t(X)<-3X$.
 \begin{remark}[Consequence: negative eigenvalues are small relative to scalar curvature]
 \label{rem:pinching-negative-eigenvalues-small}
 \uses{thm:pinching-toward-positive-curvature}
+
 As scalar curvature tends to infinity, the absolute values of negative
 curvature-operator eigenvalues are negligible relative to it.
 \end{remark}
@@ -387,6 +411,7 @@ convexity of the inverse image.
 \begin{claim}[Initial curvature lies in the pinching region]
 \label{claim:pinching-initial-condition}
 \uses{claim:pinching-region-convex}
+
 ${\mathcal T}(x,0)\in Z(x,0)$ for all $x\in M$.
 \end{claim}
 \begin{proof}
@@ -413,6 +438,7 @@ I=Y^3+(X-Y)(\lambda^2-\lambda Y+Y^2)>0,
 \begin{claim}[The vector field preserves the pinching family of convex sets]
 \label{claim:pinching-vector-field-preserves-family}
 \uses{claim:pinching-region-convex}
+
 The vector field $\psi({\mathcal T})={\mathcal T}^2+{\mathcal T}^{\sharp}$
 preserves ${\mathcal Z}(t)$.
 \end{claim}
@@ -441,7 +467,8 @@ excludes crossing. Thus the family is preserved.
 
 \begin{theorem}[Pinching toward positive curvature persists from time a]
 \label{thm:pinching-persists-from-time-a}
-\uses{thm:pinching-toward-positive-curvature}\label{pincha}
+\uses{thm:pinching-toward-positive-curvature}
+\label{pincha}
 For $a\ge0$, assume the two pinching inequalities at time $a$ for a compact
 three-dimensional flow. Then for $a\le t<T$,
 \begin{eqnarray}\label{Rlower}
@@ -454,6 +481,7 @@ whenever $X(x,t)>0$.
 \begin{corollary}[Curvature bound from a scalar-curvature bound under pinching]
 \label{cor:curvature-bound-from-scalar-pinching}
 \uses{thm:pinching-persists-from-time-a}
+
 Under the hypotheses of the preceding theorem there is a continuous $\phi$
 such that $R(x,t)\le R_0$ implies $|\Rm(x,t)|\le\phi(R_0)$.
 \end{corollary}
@@ -465,7 +493,8 @@ for large $R_0$, and hence bounds $\lambda$ and $\nu$, which bounds $|\Rm|$.
 
 \begin{definition}[Curvature pinched toward positive for a generalized Ricci flow]
 \label{def:curvature-pinched-toward-positive}
-\uses{def:generalized-ricci-flow,thm:pinching-toward-positive-curvature}\label{pinchd}
+\uses{def:generalized-ricci-flow, thm:pinching-toward-positive-curvature, def:curvature-operator}
+\label{pinchd}
 A generalized Ricci flow on $[0,\infty)$ is curvature pinched toward positive
 when, for every $x$,
 \begin{enumerate}
@@ -491,7 +520,8 @@ flat case and imply roundness of every soliton slice.
 
 \begin{theorem}[Compact three-dimensional Ricci solitons are Einstein]
 \label{thm:ricci-soliton-einstein-dimension-three}
-\uses{def:einstein-manifold}\label{ivey}
+\uses{def:einstein-manifold}
+\label{ivey}
 Any compact three-dimensional Ricci soliton $g_0$ is Einstein.
 \end{theorem}
 
@@ -500,7 +530,8 @@ The differential and integrated inequalities are Hamilton's results; the
 general soliton statement is recorded in \cite{Ivey}.
 \begin{theorem}[Hamilton's Harnack inequality for Ricci flow]
 \label{thm:hamilton-harnack-inequality}
-\uses{def:ricci-curvature,def:curvature-operator}\label{Harnack}
+\uses{def:ricci-curvature, def:curvature-operator}
+\label{Harnack}
 For a complete Ricci flow with bounded nonnegative curvature operator on
 $(T_0,T_1)$ and any time-dependent vector field $\chi$,
 \[
@@ -513,12 +544,14 @@ This is Hamilton's differential Harnack inequality \cite{Hamiltonharnack} and
 \begin{remark}[Harnack inequality special case with zero vector field]
 \label{rem:harnack-inequality-zero-field-case}
 \uses{thm:hamilton-harnack-inequality}
+
 The second inequality is the case $\chi=0$.
 \end{remark}
 
 \begin{corollary}[Scalar curvature is non-decreasing for ancient flows]
 \label{cor:ancient-flow-scalar-curvature-nondecreasing}
-\uses{thm:hamilton-harnack-inequality}\label{posderiv}
+\uses{thm:hamilton-harnack-inequality}
+\label{posderiv}
 For an ancient complete flow with bounded nonnegative curvature operator,
 $\partial_tR(x,t)\ge0$.
 \end{corollary}
@@ -530,7 +563,8 @@ inequality.
 
 \begin{theorem}[Integrated Harnack inequality]
 \label{thm:harnack-inequality-integrated}
-\uses{def:geodesic}\label{Harnack2}
+\uses{def:geodesic}
+\label{Harnack2}
 For a complete flow with bounded nonnegative curvature operator on
 $[t_1,t_2]$ and points $x_1,x_2$,
 \[

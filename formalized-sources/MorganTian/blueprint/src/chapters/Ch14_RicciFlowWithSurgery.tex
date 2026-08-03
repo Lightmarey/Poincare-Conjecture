@@ -54,6 +54,7 @@ charts are noninitial manifold-with-boundary regions.
 \begin{definition}[Surgery space-time: smooth, exposed, and singular points]
 \label{def:surgery-space-time}
 \uses{def:space-time-general}
+
 \label{spacetime}
 A surgery space-time is a space-time with a maximal atlas of these three chart
 types and the stated overlap maps. Points with type 1 neighborhoods are
@@ -75,6 +76,7 @@ along exposed and initial boundaries and out along the final boundary.
 \begin{definition}[Embedding compatible with time and the vector field; maximal flow line]
 \label{def:compatible-with-time-vector-field}
 \uses{def:surgery-space-time}
+
 An embedding $K\times J\to{\mathcal M}$ is compatible with time and $\chi$ if
 ${\bf t}$ restricts to the projection on $J$ and each
 $\{x\}\times J$ maps to the $\chi$-integral curve through $x$. If
@@ -87,7 +89,8 @@ when $J$ lies in the domain of every flow line through $K$.
 
 \begin{definition}[Regular and singular times of a surgery space-time]
 \label{def:regular-singular-time-surgery}
-\uses{def:surgery-space-time,def:compatible-with-time-vector-field}
+\uses{def:surgery-space-time, def:compatible-with-time-vector-field}
+
 A time $t$ is regular if some neighborhood $J\subset I$ of $t$ admits a
 compatible diffeomorphism $M_t\times J\to{\bf t}^{-1}(J)$. Otherwise it is
 singular. If every time is regular, the space-time is the product
@@ -97,6 +100,7 @@ $M_t\times I$ with product time and vector field.
 \begin{lemma}[Time-slices are smooth manifolds with a complementary horizontal subbundle]
 \label{lem:time-slice-smooth-manifold}
 \uses{def:surgery-space-time}
+
 Every time-slice $M_t$ is a smooth $n$-manifold. Its tangent bundle embeds as a
 codimension-one subbundle of $T{\mathcal M}|_{M_t}$ complementary to the line
 spanned by $\chi$; these subbundles vary smoothly and form a global horizontal
@@ -113,6 +117,7 @@ $\chi({\bf t})=1$. The local descriptions agree under the overlap maps.
 \begin{definition}[Horizontal subbundle of a surgery space-time]
 \label{def:horizontal-subbundle}
 \uses{lem:time-slice-smooth-manifold}
+
 The codimension-one bundle from the preceding lemma is the horizontal
 subbundle and is denoted ${\mathcal HT}({\mathcal M})$.
 \end{definition}
@@ -122,6 +127,7 @@ subbundle and is denoted ${\mathcal HT}({\mathcal M})$.
 \begin{definition}[Horizontal metric and its curvatures on a surgery space-time]
 \label{def:horizontal-metric}
 \uses{def:horizontal-subbundle}
+
 A horizontal metric $G$ is a smooth metric on
 ${\mathcal HT}({\mathcal M})$. Its restriction $G(t)$ to $M_t$ has the usual
 Levi--Civita connection, gradient, curvature operator $\Rm_G$, Ricci tensor
@@ -131,7 +137,8 @@ over the surgery space-time.
 
 \begin{definition}[Ricci flow with surgery: the generalized Ricci flow equation]
 \label{def:ricci-flow-with-surgery}
-\uses{def:horizontal-metric,def:surgery-space-time}
+\uses{def:horizontal-metric, def:surgery-space-time}
+
 A Ricci flow with surgery is a pair $({\mathcal M},G)$ consisting of a surgery
 space-time and horizontal metric satisfying
 \begin{equation}
@@ -145,6 +152,7 @@ ${\mathcal M}$ has dimension $n+1$, the flow is $n$-dimensional.
 \begin{remark}[Lie derivative is one-sided at exposed points and initial/final times]
 \label{rem:one-sided-lie-derivative}
 \uses{def:ricci-flow-with-surgery}
+
 At exposed points and at initial or final time-slices,
 ${\mathcal L}_\chi$ is the corresponding one-sided derivative.
 \end{remark}
@@ -152,6 +160,7 @@ ${\mathcal L}_\chi$ is the corresponding one-sided derivative.
 \begin{example}[An ordinary Ricci flow is a Ricci flow with surgery]
 \label{ex:ordinary-flow-as-surgery-flow}
 \uses{def:ricci-flow-with-surgery}
+
 For ${\mathcal M}=M_0\times[0,T)$ with product time and vector field,
 ${\mathcal L}_\chi G=\partial_tg(t)$, so Equation~\eqref{GRFEq} is the
 ordinary Ricci flow equation.
@@ -160,6 +169,7 @@ ordinary Ricci flow equation.
 \begin{lemma}[Gluing two Ricci flows along a common time-slice yields a Ricci flow with surgery]
 \label{lem:gluing-ricci-flows-with-surgery}
 \uses{def:ricci-flow-with-surgery}
+
 \label{gluingsoln}
 Let $M_1\times(a,b]$ and $M_2\times[b,c)$ carry compact codimension-zero
 submanifolds $\Omega_i$ with open neighborhoods $U_i$, and let
@@ -185,7 +195,8 @@ preserve Equation~\eqref{GRFEq}.
 
 \begin{proposition}[Smooth and exposed points of a Ricci flow with surgery form a generalized Ricci flow]
 \label{prop:interior-generalized-ricci-flow}
-\uses{def:ricci-flow-with-surgery,def:generalized-ricci-flow}
+\uses{def:ricci-flow-with-surgery, def:generalized-ricci-flow}
+
 For a Ricci flow with surgery, the open subset consisting of smooth points and
 manifold-with-boundary points at the initial or final time inherits a smooth
 manifold-with-boundary structure. Restricting ${\bf t}$, $\chi$, and $G$ to it
@@ -204,13 +215,15 @@ ${\bf t}$ by ${\bf t}+a$ gives time translation without changing $G$ or $\chi$.
 \begin{definition}[Metric ball in a time-slice of space-time]
 \label{def:metric-ball-spacetime}
 \uses{def:surgery-space-time}
+
 For $x\in{\mathcal M}$, $t={\bf t}(x)$, and $r>0$,
 $B(x,t,r)$ is the radius-$r$ metric ball about $x$ in $(M_t,G(t))$.
 \end{definition}
 
 \begin{definition}[Forward and backward parabolic neighborhoods in a Ricci flow with surgery]
 \label{def:parabolic-neighborhood-surgery}
-\uses{def:metric-ball-spacetime,def:compatible-with-time-vector-field}
+\uses{def:metric-ball-spacetime, def:compatible-with-time-vector-field}
+
 The backward neighborhood $P(x,t,r,-\Delta t)$ exists if there is a compatible
 embedding $B(x,t,r)\times(t-\Delta t,t]\to{\mathcal M}$. The forward
 neighborhood $P(x,t,r,\Delta t)$ exists if there is a compatible embedding
@@ -221,6 +234,7 @@ neighborhood.
 \begin{definition}[Kappa-non-collapsed on scales at most $r_0$, for surgery flows]
 \label{def:kappa-noncollapsed-surgery}
 \uses{def:parabolic-neighborhood-surgery}
+
 \label{defnkappa}
 For $\kappa,r_0>0$, a Ricci flow with surgery is
 $\kappa$-noncollapsed on scales $\leq r_0$ if, whenever $r\leq r_0$,
@@ -232,7 +246,8 @@ $P(x,t,r,-r^2)$ exists and $|\Rm_G|\leq r^{-2}$ there, then
 
 \begin{remark}[Non-collapsing constant for epsilon-round components depends on fundamental group order]
 \label{rem:epsilon-round-kappa-dependence}
-\uses{def:kappa-noncollapsed-surgery,def:epsilon-round-component}
+\uses{def:kappa-noncollapsed-surgery, def:epsilon-round-component}
+
 For sufficiently small $\epsilon$, an $\epsilon$-round component satisfies the
 preceding condition with a constant depending on the order of its finite
 fundamental group. If every finite free factor of the initial fundamental group
@@ -241,7 +256,8 @@ has order at most $N$, one may choose $\kappa$ depending only on $N$.
 
 \begin{definition}[Curvature pinched toward positive, for a Ricci flow with surgery]
 \label{def:curvature-pinched-toward-positive-surgery}
-\uses{def:ricci-flow-with-surgery,def:curvature-operator}
+\uses{def:ricci-flow-with-surgery, def:curvature-operator}
+
 For a $3$-dimensional flow with time in $[0,\infty)$, let
 $\lambda\geq\mu\geq\nu$ be the eigenvalues of $\Rm$ and set
 $X=\max(0,-\nu)$. Curvature is \emph{pinched toward positive} if
@@ -258,7 +274,8 @@ inequalities with ${\bf t}(x)$ replaced by $T$.
 
 \begin{definition}[Strong (C,epsilon)-canonical neighborhood assumption with parameter r]
 \label{def:strong-canonical-neighborhood-assumption}
-\uses{def:evolving-epsilon-neck,def:canonical-neighborhood,def:strong-epsilon-neck-canonical-neighborhood,def:compatible-with-time-vector-field}
+\uses{def:evolving-epsilon-neck, def:canonical-neighborhood, def:strong-epsilon-neck-canonical-neighborhood, def:compatible-with-time-vector-field}
+
 Fix $C,\epsilon,r>0$. A Ricci flow with surgery satisfies the strong
 $(C,\epsilon)$-canonical-neighborhood assumption with parameter $r$ if every
 point with $R\geq r^{-2}$ has a strong $(C,\epsilon)$-canonical neighborhood.

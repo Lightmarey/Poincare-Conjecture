@@ -6,8 +6,9 @@
 
 \begin{theorem}[$\kappa$-non-collapsing for generalized Ricci flows]
 \label{thm:kappa-noncollapsed-generalized-flow}
+\uses{def:generalized-ricci-flow, def:compatible-embedding}
 \label{THM}
-\uses{def:generalized-ricci-flow,def:compatible-embedding}
+
 Fix $\bar\tau_0,l_0,V>0$. There is
 $\kappa=\kappa(\bar\tau_0,V,l_0,n)>0$ with the following property.
 Let $({\mathcal M},G)$ be a generalized $n$-dimensional Ricci flow, fix
@@ -34,8 +35,9 @@ Then
 \end{theorem}
 
 \begin{proof}
+  \uses{def:reduced-volume, thm:reduced-volume-monotone, thm:kappa-noncollapsed-generalized-flow, prop:reduced-volume-upper-bound, lem:reduced-volume-small-directions, claim:l-geodesic-stays-in-ball, claim:volume-comparison-time-slices, thm:shi-first-derivative}
 \sketch
-\uses{def:reduced-volume,thm:reduced-volume-monotone}
+
 Reduced-volume monotonicity and hypotheses (4)--(5) give, for
 $0<\tau\leq\tau_0$,
 \begin{equation}
@@ -63,8 +65,9 @@ $\kappa$.
 
 \begin{proposition}[Upper bound for the reduced volume of $W(\tau_1)$]
 \label{prop:reduced-volume-upper-bound}
-\label{step}
 \uses{thm:kappa-noncollapsed-generalized-flow}
+\label{step}
+
 There is
 $0<\varepsilon_0\leq1/(4n(n-1))$, depending on
 $\bar\tau_0$ and $l_0$, such that if
@@ -103,8 +106,9 @@ proves the estimate.
 
 \begin{lemma}[Reduced volume bound for the small-vector region]
 \label{lem:reduced-volume-small-directions}
-\label{small}
 \uses{prop:reduced-volume-upper-bound}
+\label{small}
+
 For $\tau_1=\varepsilon r^2$, there is
 $\varepsilon_0=\varepsilon_0(\bar\tau_0)>0$ such that
 $\varepsilon\leq\varepsilon_0$ implies
@@ -138,6 +142,7 @@ $\varepsilon_0$.
 \begin{corollary}[Reduced volume of $W_{\mathrm{sm}}(\tau_1)$ is small]
 \label{cor:reduced-volume-small-bound}
 \uses{lem:reduced-volume-small-directions}
+
 For sufficiently small
 $\varepsilon_0=\varepsilon_0(\bar\tau_0)>0$, if
 $\varepsilon\leq\varepsilon_0$, then
@@ -148,8 +153,9 @@ $\varepsilon\leq\varepsilon_0$, then
 
 \begin{claim}[Gradient of scalar curvature and metric comparison bounds]
 \label{claim:scalar-curvature-gradient-metric-bound}
-\label{nabR}
 \uses{thm:kappa-noncollapsed-generalized-flow}
+\label{nabR}
+
 There are a universal $\varepsilon'_0>0$ and a constant
 $C_1=C_1(n)<\infty$ such that, if
 $\varepsilon\leq\varepsilon'_0$, then for
@@ -180,6 +186,7 @@ $\varepsilon$.
 \begin{claim}[$\mathcal L$-geodesic norm comparison estimate]
 \label{claim:l-geodesic-norm-comparison}
 \uses{claim:scalar-curvature-gradient-metric-bound}
+
 There is
 $0<\varepsilon_0\leq1/(4n(n-1))$, depending on $\bar\tau_0$, such that the
 following holds. If $\varepsilon\leq\varepsilon_0$,
@@ -210,8 +217,9 @@ gives the asserted $g(T)$ estimate.
 
 \begin{claim}[$\mathcal L$-geodesics with small initial vector stay in the half-ball]
 \label{claim:l-geodesic-stays-in-ball}
-\label{inside}
 \uses{claim:l-geodesic-norm-comparison}
+\label{inside}
+
 Let $\varepsilon_0$ be as in the preceding claim. If
 $\varepsilon\leq\varepsilon_0$, $\tau_1=\varepsilon r^2$, and
 $|Z|\leq(8\sqrt\varepsilon)^{-1}$, then
@@ -236,8 +244,9 @@ contradicting the definition of $\tau'$.
 
 \begin{claim}[Volume comparison between nearby time-slices]
 \label{claim:volume-comparison-time-slices}
-\label{volvomp}
 \uses{thm:kappa-noncollapsed-generalized-flow}
+\label{volvomp}
+
 There is a universal $\varepsilon_0>0$ such that if
 $\varepsilon\leq\varepsilon_0$, then for every open
 $U\subset B(x,T,r)$ and $0\leq\tau_1\leq\tau_0$,
@@ -260,8 +269,9 @@ $[0.9,1.1]$.
 
 \begin{lemma}[Reduced volume bound for the large-vector region]
 \label{lem:reduced-volume-large-directions}
-\label{large}
 \uses{prop:reduced-volume-upper-bound}
+\label{large}
+
 There is a universal $\varepsilon_0>0$ such that
 $\varepsilon\leq\varepsilon_0$ implies
 \[
@@ -298,6 +308,7 @@ $\varepsilon^{n/2}$.
 \begin{theorem}[$\kappa$-non-collapsing for compact 3-dimensional Ricci flows]
 \label{thm:kappa-noncollapsed-compact-3-manifolds}
 \uses{def:ricci-flow}
+
 Fix $\omega,T_0>0$. There is $\kappa=\kappa(\omega,T_0)>0$ such that
 the following holds. Let $(M,g(t))$, $0\leq t<T\leq T_0$, be a Ricci flow
 on a compact $3$-manifold satisfying

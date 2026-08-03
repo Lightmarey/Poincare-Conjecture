@@ -646,7 +646,7 @@ theorem exists_piecewiseSmooth_pathELength_le (g : RiemannianMetric I M)
     letI : RiemannianBundle (fun x : M ↦ TangentSpace I x) := ⟨g.toRiemannianMetric⟩
     ∃ (sigma : ℝ → M) (n : ℕ) (tau : ℕ → ℝ),
       0 < n ∧
-      (∀ i < n, tau i ≤ tau (i + 1)) ∧
+      (∀ i < n, tau i < tau (i + 1)) ∧
       (∀ i < n, ContMDiffOn 𝓘(ℝ, ℝ) I ∞ sigma (Icc (tau i) (tau (i + 1)))) ∧
       sigma (tau 0) = gamma 0 ∧
       sigma (tau n) = gamma 1 ∧
@@ -780,8 +780,8 @@ theorem exists_piecewiseSmooth_pathELength_le (g : RiemannianMetric I M)
   · rw [hN]
     exact Nat.succ_pos N0
   · intro i hi
-    change (i : ℝ) ≤ ((i + 1 : ℕ) : ℝ)
-    exact_mod_cast Nat.le_succ i
+    change (i : ℝ) < ((i + 1 : ℕ) : ℝ)
+    exact_mod_cast Nat.lt_succ_self i
   · intro i hi
     simpa only [Nat.cast_add, Nat.cast_one] using hPsmooth i hi
   · simpa using hP0

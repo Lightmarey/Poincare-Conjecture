@@ -27,9 +27,10 @@ Hereafter $X$ is a normed real linear space.
 
 \begin{definition}[Convergence in a normed space]
 \label{def:convergence-normed-space}
+\uses{def:norm-normed-linear-space}
 \dcref{appD:D.1-def-2}
 \group{Functional Analysis}
-\uses{def:norm-normed-linear-space}
+
 A sequence $\{u_k\}_{k=1}^\infty\subset X$ converges to $u\in X$, written $u_k\to u$, if
 \[
 \lim_{k\to\infty}\|u_k-u\|=0.
@@ -38,9 +39,10 @@ A sequence $\{u_k\}_{k=1}^\infty\subset X$ converges to $u\in X$, written $u_k\t
 
 \begin{definition}[Cauchy sequence, completeness, and Banach space]
 \label{def:cauchy-sequence-complete-banach-space}
+\uses{def:norm-normed-linear-space}
 \dcref{appD:D.1-def-3}
 \group{Functional Analysis}
-\uses{def:norm-normed-linear-space}
+
 (i) A sequence $\{u_k\}_{k=1}^\infty\subset X$ is \textit{Cauchy} if, for every $\varepsilon>0$, there is $N$ such that
 \[
 \|u_k-u_l\|<\varepsilon\qquad(k,l\geq N).
@@ -60,9 +62,10 @@ The space $X$ is \textit{separable} if it contains a countable dense subset.
 
 \begin{example}[Banach space examples: $L^p$, H\"older, and Sobolev spaces]
 \label{ex:banach-space-examples-lp-holder-sobolev}
+\uses{def:cauchy-sequence-complete-banach-space, def:holder-space, def:sobolev-space-wkp}
 \dcref{appD:D.1-ex-1}
 \group{Functional Analysis}
-\uses{def:cauchy-sequence-complete-banach-space,def:holder-space,def:sobolev-space-wkp}
+
 (i) If $U\subset\mathbb R^n$ is open and $1\leq p\leq\infty$, set
 \[
 \|f\|_{L^p(U)}:=
@@ -100,9 +103,10 @@ A map $(\cdot,\cdot):H\times H\to\mathbb R$ is an \textit{inner product} if:
 
 \begin{definition}[Norm induced by an inner product]
 \label{def:norm-from-inner-product}
+\uses{def:inner-product}
 \dcref{appD:D.2-def-2}
 \group{Functional Analysis}
-\uses{def:inner-product}
+
 The norm induced by an inner product is
 \[
 (1)\qquad \|u\|:=(u,u)^{1/2}\qquad(u\in H).
@@ -111,9 +115,10 @@ The norm induced by an inner product is
 
 \begin{lemma}[Cauchy--Schwarz inequality in a Hilbert space]
 \label{lem:cauchy-schwarz-inequality-hilbert}
+\uses{lem:cauchy-schwarz-inequality, def:inner-product, def:norm-from-inner-product}
 \dcref{appD:D.2-lem-1}
 \group{Functional Analysis}
-\uses{lem:cauchy-schwarz-inequality,def:inner-product,def:norm-from-inner-product}
+
 For $u,v\in H$,
 \[
 (2)\qquad |(u,v)|\leq\|u\|\|v\|.
@@ -125,17 +130,19 @@ The Cauchy--Schwarz inequality and the inner-product axioms imply that (1) is a 
 
 \begin{definition}[Hilbert space]
 \label{def:hilbert-space}
+\uses{def:cauchy-sequence-complete-banach-space, def:inner-product, def:norm-from-inner-product}
 \dcref{appD:D.2-def-3}
 \group{Functional Analysis}
-\uses{def:cauchy-sequence-complete-banach-space,def:inner-product,def:norm-from-inner-product}
+
 A \textit{Hilbert space} is a Banach space whose norm is induced by an inner product.
 \end{definition}
 
 \begin{example}[$L^2(U)$ is a Hilbert space]
 \label{ex:l2-hilbert-space-example}
+\uses{def:hilbert-space, def:inner-product}
 \dcref{appD:D.2-ex-1}
 \group{Functional Analysis}
-\uses{def:hilbert-space,def:inner-product}
+
 The space $L^2(U)$ is a Hilbert space with
 \[
 (f,g)=\int_Ufg\,dx.
@@ -144,9 +151,10 @@ The space $L^2(U)$ is a Hilbert space with
 
 \begin{example}[$H^1(U)$ is a Hilbert space]
 \label{ex:h1-hilbert-space-example}
+\uses{def:hilbert-space, def:inner-product}
 \dcref{appD:D.2-ex-2}
 \group{Functional Analysis}
-\uses{def:hilbert-space,def:inner-product}
+
 The Sobolev space $H^1(U)$ is a Hilbert space with
 \[
 (f,g)=\int_U(fg+Df\cdot Dg)\,dx.
@@ -155,9 +163,10 @@ The Sobolev space $H^1(U)$ is a Hilbert space with
 
 \begin{definition}[Orthogonality and orthonormal bases]
 \label{def:orthogonal-orthonormal-basis}
+\uses{def:hilbert-space}
 \dcref{appD:D.2-def-4}
 \group{Functional Analysis}
-\uses{def:hilbert-space}
+
 (i) Elements $u,v\in H$ are \textit{orthogonal} if $(u,v)=0$.
 
 (ii) A countable basis $\{w_k\}_{k=1}^\infty\subset H$ is \textit{orthonormal} if
@@ -177,9 +186,10 @@ u=\sum_{k=1}^\infty(u,w_k)w_k
 
 \begin{definition}[Orthogonal complement]
 \label{def:orthogonal-complement-subspace}
+\uses{def:orthogonal-orthonormal-basis}
 \dcref{appD:D.2-def-5}
 \group{Functional Analysis}
-\uses{def:orthogonal-orthonormal-basis}
+
 For a subspace $S\subset H$,
 \[
 S^\perp:=\{u\in H\mid(u,v)=0\text{ for every }v\in S\}.
@@ -193,9 +203,10 @@ Let $X$ and $Y$ be real Banach spaces.
 
 \begin{definition}[Linear operator]
 \label{def:linear-operator-banach}
+\uses{def:cauchy-sequence-complete-banach-space}
 \dcref{appD:D.3-def-1}
 \group{Functional Analysis}
-\uses{def:cauchy-sequence-complete-banach-space}
+
 (i) A map $A:X\to Y$ is a \textit{linear operator} if
 \[
 A[\lambda u+\mu v]=\lambda Au+\mu Av
@@ -212,9 +223,10 @@ N(A):=\{u\in X\mid Au=0\}.
 
 \begin{definition}[Bounded linear operator]
 \label{def:bounded-linear-operator}
+\uses{def:linear-operator-banach}
 \dcref{appD:D.3-def-2}
 \group{Functional Analysis}
-\uses{def:linear-operator-banach}
+
 A linear operator $A:X\to Y$ is \textit{bounded} if
 \[
 \|A\|:=\sup\{\|Au\|_Y\mid\|u\|_X\leq1\}<\infty.
@@ -236,9 +248,10 @@ u_k\to u\text{ in }X,\quad Au_k\to v\text{ in }Y
 
 \begin{theorem}[Closed Graph Theorem]
 \label{thm:closed-graph-theorem}
+\uses{def:closed-linear-operator}
 \dcref{appD:thm-1}
 \group{Functional Analysis}
-\uses{def:closed-linear-operator}
+
 Every closed linear operator $A:X\to Y$ is bounded.
 \end{theorem}
 
@@ -262,17 +275,19 @@ Let $A:X\to X$ be bounded and linear.
 
 \begin{remark}[The resolvent yields a bounded inverse]
 \label{rem:resolvent-inverse-bounded}
+\uses{thm:closed-graph-theorem, def:resolvent-set-spectrum-appendix-d}
 \dcref{appD:D.3-rem-1}
 \group{Functional Analysis}
-\uses{thm:closed-graph-theorem,def:resolvent-set-spectrum-appendix-d}
+
 If $\eta\in\rho(A)$, then $(A-\eta I)^{-1}:X\to X$ is a bounded linear operator by the Closed Graph Theorem.
 \end{remark}
 
 \begin{definition}[Eigenvalue and eigenvector]
 \label{def:eigenvalue-eigenvector-appendix-d}
+\uses{def:resolvent-set-spectrum-appendix-d}
 \dcref{appD:D.3-def-5}
 \group{Functional Analysis}
-\uses{def:resolvent-set-spectrum-appendix-d}
+
 (i) A point $\eta\in\sigma(A)$ is an \textit{eigenvalue} if
 \[
 N(A-\eta I)\ne\{0\}.
@@ -293,9 +308,10 @@ The set of eigenvalues is the point spectrum $\sigma_p(A)$.
 
 \begin{definition}[Duality pairing, dual norm, and reflexivity]
 \label{def:dual-pairing-reflexive-banach-space}
+\uses{def:bounded-linear-functional-dual-space}
 \dcref{appD:D.3-def-7}
 \group{Functional Analysis}
-\uses{def:bounded-linear-functional-dual-space}
+
 (i) For $u\in X$ and $u^*\in X^*$, the duality pairing is
 \[
 \langle u^*,u\rangle:=u^*(u).
@@ -317,9 +333,10 @@ Let $H$ now be a real Hilbert space with inner product $(\cdot,\cdot)$.
 
 \begin{theorem}[Riesz Representation Theorem]
 \label{thm:riesz-representation-theorem}
+\uses{def:hilbert-space, def:bounded-linear-functional-dual-space}
 \dcref{appD:thm-2}
 \group{Functional Analysis}
-\uses{def:hilbert-space,def:bounded-linear-functional-dual-space}
+
 For every $u^*\in H^*$ there is a unique $u\in H$ such that
 \[
 \langle u^*,v\rangle=(u,v)
@@ -330,9 +347,10 @@ The map $u^*\mapsto u$ is a linear isomorphism from $H^*$ onto $H$.
 
 \begin{definition}[Adjoint operator and symmetric operator]
 \label{def:adjoint-symmetric-operator}
+\uses{thm:riesz-representation-theorem}
 \dcref{appD:D.3-def-8}
 \group{Functional Analysis}
-\uses{thm:riesz-representation-theorem}
+
 (i) If $A:H\to H$ is bounded and linear, its adjoint $A^*:H\to H$ is characterized by
 \[
 (Au,v)=(u,A^*v)
@@ -349,9 +367,10 @@ Let $X$ be a real Banach space.
 
 \begin{definition}[Weak convergence]
 \label{def:weak-convergence}
+\uses{def:bounded-linear-functional-dual-space}
 \dcref{appD:D.4-def-1}
 \group{Functional Analysis}
-\uses{def:bounded-linear-functional-dual-space}
+
 A sequence $\{u_k\}_{k=1}^\infty\subset X$ converges \textit{weakly} to $u\in X$, written $u_k\rightharpoonup u$, if
 \[
 \langle u^*,u_k\rangle\to\langle u^*,u\rangle
@@ -361,9 +380,10 @@ for every $u^*\in X^*$.
 
 \begin{remark}[Basic properties of weak convergence]
 \label{rem:weak-convergence-basic-properties}
+\uses{def:weak-convergence, def:convergence-normed-space}
 \dcref{appD:D.4-rem-1}
 \group{Functional Analysis}
-\uses{def:weak-convergence,def:convergence-normed-space}
+
 Strong convergence implies weak convergence. Every weakly convergent sequence is bounded, and
 \[
 u_k\rightharpoonup u
@@ -374,9 +394,10 @@ u_k\rightharpoonup u
 
 \begin{theorem}[Weak compactness]
 \label{thm:weak-compactness-reflexive-banach}
+\uses{def:weak-convergence, def:dual-pairing-reflexive-banach-space}
 \dcref{appD:thm-3}
 \group{Functional Analysis}
-\uses{def:weak-convergence,def:dual-pairing-reflexive-banach-space}
+
 If $X$ is reflexive and $\{u_k\}_{k=1}^\infty\subset X$ is bounded, then some subsequence satisfies
 \[
 u_{k_j}\rightharpoonup u
@@ -388,17 +409,19 @@ Consequently, every bounded sequence in a Hilbert space has a weakly convergent 
 
 \begin{theorem}[Mazur's Theorem]
 \label{thm:mazurs-theorem}
+\uses{def:weak-convergence}
 \dcref{appD:D.4-thm-mazur}
 \group{Functional Analysis}
-\uses{def:weak-convergence}
+
 Every convex closed subset of $X$ is weakly closed.
 \end{theorem}
 
 \begin{example}[Weak convergence in $L^p$]
 \label{ex:weak-convergence-lp-duality}
+\uses{def:weak-convergence, thm:weak-compactness-reflexive-banach, def:dual-pairing-reflexive-banach-space}
 \dcref{appD:D.4-ex-1}
 \group{Functional Analysis}
-\uses{def:weak-convergence,thm:weak-compactness-reflexive-banach,def:dual-pairing-reflexive-banach-space}
+
 Let $U\subset\mathbb R^n$ be open, $1\leq p<\infty$, and let $q$ satisfy
 \[
 \frac1p+\frac1q=1,
@@ -432,17 +455,19 @@ A bounded linear operator $K:X\to Y$ is \textit{compact} if, for every bounded s
 
 \begin{remark}[Compact operators map weakly convergent to strongly convergent sequences]
 \label{rem:compact-operator-weak-to-strong-convergence}
+\uses{def:compact-linear-operator, def:weak-convergence}
 \dcref{appD:D.5-rem-1}
 \group{Fredholm Theory}
-\uses{def:compact-linear-operator,def:weak-convergence}
+
 If $H$ is a real Hilbert space, $K:H\to H$ is compact, and $u_k\rightharpoonup u$, then $Ku_k\to Ku$ strongly.
 \end{remark}
 
 \begin{theorem}[Compactness of adjoints]
 \label{thm:compactness-of-adjoint-operator}
+\uses{def:compact-linear-operator, def:adjoint-symmetric-operator}
 \dcref{appD:thm-4}
 \group{Fredholm Theory}
-\uses{def:compact-linear-operator,def:adjoint-symmetric-operator}
+
 If $K:H\to H$ is compact, then $K^*:H\to H$ is compact.
 \end{theorem}
 \begin{proof}
@@ -460,9 +485,10 @@ Thus $\{K^*u_{k_j}\}$ converges strongly.
 
 \begin{theorem}[Fredholm alternative]
 \label{thm:fredholm-alternative}
+\uses{thm:compactness-of-adjoint-operator, def:compact-linear-operator}
 \dcref{appD:thm-5}
 \group{Fredholm Theory}
-\uses{thm:compactness-of-adjoint-operator,def:compact-linear-operator}
+
 Let $K:H\to H$ be compact and linear. Then:
 
 (i) $N(I-K)$ is finite dimensional;
@@ -515,9 +541,10 @@ Applying the same inequality to $K^*$ gives the reverse inequality, and therefor
 
 \begin{remark}[The Fredholm alternative dichotomy]
 \label{rem:fredholm-alternative-dichotomy}
+\uses{thm:fredholm-alternative}
 \dcref{appD:D.5-rem-2}
 \group{Fredholm Theory}
-\uses{thm:fredholm-alternative}
+
 Exactly one of the following alternatives holds:
 \[
 (\alpha)\qquad
@@ -538,9 +565,10 @@ is solvable if and only if $f\in N(I-K^*)^\perp$.
 
 \begin{theorem}[Spectrum of a compact operator]
 \label{thm:spectrum-of-compact-operator}
+\uses{thm:fredholm-alternative, def:resolvent-set-spectrum-appendix-d, def:eigenvalue-eigenvector-appendix-d, def:compact-linear-operator}
 \dcref{appD:thm-6}
 \group{Fredholm Theory}
-\uses{thm:fredholm-alternative,def:resolvent-set-spectrum-appendix-d,def:eigenvalue-eigenvector-appendix-d,def:compact-linear-operator}
+
 Assume $\dim H=\infty$ and $K:H\to H$ is compact. Then:
 
 (i) $0\in\sigma(K)$;
@@ -578,9 +606,10 @@ M:=\sup_{\substack{u\in H\\\|u\|=1}}(Su,u).
 
 \begin{lemma}[Bounds on the spectrum of a symmetric operator]
 \label{lem:bounds-on-spectrum-symmetric-operator}
+\uses{def:adjoint-symmetric-operator, def:resolvent-set-spectrum-appendix-d, thm:lax-milgram-theorem, lem:cauchy-schwarz-inequality}
 \dcref{appD:D.6-lem-1}
 \group{Fredholm Theory}
-\uses{def:adjoint-symmetric-operator,def:resolvent-set-spectrum-appendix-d,thm:lax-milgram-theorem,lem:cauchy-schwarz-inequality}
+
 (i) $\sigma(S)\subset[m,M]$;
 
 (ii) $m,M\in\sigma(S)$.

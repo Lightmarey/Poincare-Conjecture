@@ -60,6 +60,7 @@ on the image of $j$.
 \end{lemma}
 
 \begin{proof}
+  \uses{bcbd, 2ndmfdconv, blowupposcurv, partialflowlimit, lem:curvature-control-canonical-nbhd}
 \sketch Along a spatial arclength path, the canonical-neighborhood estimate
 $|R'|\le CR^{3/2}$ gives
 \begin{equation}\label{Rineq}
@@ -73,8 +74,9 @@ $r_0^2/(16C)$ and $\Delta t$.
 
 \begin{corollary}[Uniform curvature bound on a backward parabolic neighborhood]
 \label{cor:uniform-backward-curvature-bound}
-\label{cnnbhd2}
 \uses{lem:curvature-control-canonical-nbhd}
+\label{cnnbhd2}
+
 For each $A<\infty$, if $Q(A)$ bounds the scalar curvature of
 $Q_nG_n$ on $B_{Q_nG_n}(x_n,0,A)$, then there are $t'_0(A)>0$ and
 $Q'(A)<\infty$, with $Q'(A)$ depending only on $Q(A)$, such that eventually
@@ -86,7 +88,8 @@ Assumption (5) of the theorem.\end{proof}
 
 \begin{corollary}[Bounded covariant derivatives of curvature along the blow-up sequence]
 \label{cor:shi-bound-blowup-sequence}
-\uses{shi,cor:uniform-backward-curvature-bound}
+\uses{shi, cor:uniform-backward-curvature-bound}
+
 For each $A<\infty$ and integer $\ell\ge0$, there is $C_2$ such that
 eventually
 $$|\nabla^\ell\Rm_{Q_nG_n}(x)|\le C_2$$
@@ -105,6 +108,7 @@ hypothesis, while the curvature bounds give the required fixed scale.\end{proof}
 \begin{claim}[Points of large curvature in the limit have canonical neighborhoods]
 \label{claim:canonical-neighborhood-persists}
 \uses{thm:short-time-blowup-limit}
+
 Every point of $(M_\infty,g_\infty)$ with curvature greater than $4$ has a
 $(2C,2\epsilon)$-canonical neighborhood.
 \end{claim}
@@ -128,8 +132,9 @@ to Proposition~\ref{narrows}.\end{proof}
 
 \begin{theorem}[Existence of a long-time (ancient) blow-up limit]
 \label{thm:long-time-blowup-limit}
-\label{kaplimit}
 \uses{thm:short-time-blowup-limit}
+\label{kaplimit}
+
 Suppose the hypotheses of Theorem~\ref{thm:short-time-blowup-limit} hold.
 Suppose also that $0<T_0\le\infty$ and, for every $T<T_0$ and $A<\infty$,
 eventually $B(x_n,t_n,AQ_n^{-1/2})\times(t_n-TQ_n^{-1},t_n]$ embeds compatibly
@@ -140,11 +145,13 @@ $T_0=\infty$, the limit is a $\kappa$-solution.
 \end{theorem}
 \begin{remark}[Comparison with the short-time blow-up limit]
 \label{rem:comparison-short-and-long-time-limits}
-\uses{thm:short-time-blowup-limit,thm:long-time-blowup-limit}
+\uses{thm:short-time-blowup-limit, thm:long-time-blowup-limit}
+
 The short-time interval depends on the final-slice curvature, whereas the
 interval here depends only on the available backward time.
 \end{remark}
-\begin{proof}\uses{thm:short-time-blowup-limit,blowupposcurv,narrows,Harnack}
+\begin{proof}
+  \uses{thm:short-time-blowup-limit, blowupposcurv, narrows, Harnack, thm:long-time-blowup-limit, lem:curvature-control-canonical-nbhd, cor:curvature-bound-near-basepoint, claim:distance-distortion-bound, bcbd, cor:distance-integral-bound}
 \sketch Start with Theorem~\ref{thm:short-time-blowup-limit} and repeatedly
 extend the limit backward using the following proposition. Harnack controls
 the resulting time-slices. When $T_0=\infty$, Proposition~\ref{narrows} and
@@ -154,8 +161,9 @@ infinity, and $R(x_\infty,0)=1$, so the limit is a nonflat $\kappa$-solution.
 
 \begin{proposition}[Extending a bounded-curvature limit flow backward in time]
 \label{prop:extend-limit-flow-backward}
-\label{maxT}
 \uses{thm:long-time-blowup-limit}
+\label{maxT}
+
 Under the hypotheses of Theorem~\ref{thm:long-time-blowup-limit}, if a complete
 non-negative-curvature limit flow is defined on $(-T,0]$, $T<T_0$, and is
 locally bounded in time, then its curvature is bounded and it extends with
@@ -210,6 +218,7 @@ $d(y_n,z_n)=d_n$ and $d(x_0,z_n)\ge2d_n-\alpha_n>3d_n/2$, a contradiction.\end{p
 \begin{claim}[Curvature bound outside a large ball around the base point]
 \label{claim:curvature-bound-outside-large-ball}\label{outerbd}
 \uses{lem:far-point-with-distant-antipode}
+
 If $D$ is at least the constant in the preceding lemma and
 $D\ge32\sqrt{Q/3}T$, then $R_{g_\infty}(y,t)$ is uniformly bounded for
 $y\notin B(x_\infty,0,D)$ and $t\in(-T,0]$.
@@ -227,6 +236,7 @@ $4\pi R(y,t)^{-1/2}$; arbitrarily small such balls are impossible.\end{proof}
 \begin{claim}[The point is a neck center with geodesics exiting opposite ends]
 \label{claim:neck-center-opposite-ends}
 \uses{claim:distance-distortion-bound}
+
 The point $y$ in the preceding claim cannot lie in a cap; it is the center of
 a $2\epsilon$-neck, and minimizing geodesics from $y$ to $x_\infty$ and $z$
 exit opposite ends.
@@ -238,7 +248,8 @@ above.\end{proof}
 
 \begin{corollary}[Curvature bound near the base point for all backward times]
 \label{cor:curvature-bound-near-basepoint}\label{ancientlimit}
-\uses{lem:curvature-bound-compact-subset,claim:curvature-bound-outside-large-ball}
+\uses{lem:curvature-bound-compact-subset, claim:curvature-bound-outside-large-ball}
+
 Any complete non-negative-curvature limit flow on $(-T,0]$, $T<\infty$,
 locally bounded in time, has uniformly bounded scalar curvature on
 $B(x_\infty,0,A)\times(-T,0]$ for every $A<\infty$.
@@ -252,6 +263,7 @@ large ball, then apply the compact-subset lemma to each larger ball.\end{proof}
 \begin{claim}[Uniform curvature bound on an extended backward time interval]
 \label{claim:uniform-curvature-bound-extended-interval}
 \uses{cor:curvature-bound-near-basepoint}
+
 For each $A<\infty$, eventually there are $\delta>0$, $\delta\le T_0-T$, and
 a bound independent of $n$ for the scalar curvature of
 $B_{Q_nG_n}(x_n,0,A)\times[-(T+\delta),0]$.
@@ -281,6 +293,7 @@ $$\left|\frac{\partial R}{\partial t}\right|<CR^2,\qquad
 \begin{theorem}[Properties of the limit metric at a singular time]
 \label{thm:singular-time-limit-properties}\label{omega}
 \uses{def:standing-assumptions-singular-time}
+
 Let $({\mathcal M},G)$ satisfy the assumptions above on $0\le t<T<\infty$.
 Choose $T^-<T$, identify the time interval with $M=M_{T^-}$, and write
 $g(t)$ for the pulled-back metrics. Set
@@ -300,7 +313,8 @@ A function is proper when inverse images of compact sets are compact.
 
 \begin{lemma}[Omega is open and the metric converges to a limit at time T]
 \label{lem:omega-open-limit-metric}\label{Rproper}
-\uses{def:standing-assumptions-singular-time,thm:singular-time-limit-properties}
+\uses{def:standing-assumptions-singular-time, thm:singular-time-limit-properties}
+
 The set $\Omega$ is open, $g(t)|_\Omega$ converges smoothly on compact sets
 to $g(T)$, and $R(g(T))$ is proper and bounded below.
 \end{lemma}
@@ -313,7 +327,8 @@ a contradiction.\end{proof}
 
 \begin{definition}[Maximal extension of a generalized Ricci flow to time T]
 \label{def:maximal-extension-to-time-T}\label{hatM}
-\uses{thm:singular-time-limit-properties,lem:omega-open-limit-metric}
+\uses{thm:singular-time-limit-properties, lem:omega-open-limit-metric}
+
 Set
 $$\widehat {\mathcal M}= {\mathcal M}\cup_{\Omega\times[T^-,T)}
 (\Omega\times[T^-,T]).$$
@@ -325,7 +340,8 @@ $\Omega$ need not be complete.
 \subsection{Canonical neighborhoods for $(\widehat{\mathcal M},\widehat G)$}
 \begin{lemma}[Canonical neighborhoods for points of Omega at time T]
 \label{lem:canonical-neighborhoods-at-time-T}\label{omegacanon}
-\uses{def:maximal-extension-to-time-T,def:standing-assumptions-singular-time}
+\uses{def:maximal-extension-to-time-T, def:standing-assumptions-singular-time}
+
 If $(x,T)\in\Omega\times\{T\}$ and $R(x,T)>r_0^{-2}$, then exactly one of
 the available alternatives holds: $(x,T)$ is the center of a strong
 $2\epsilon$-neck; it lies in a $(2C,2\epsilon)$-cap core; it lies in a
@@ -350,13 +366,15 @@ $2\epsilon$-neck at time $T$.\end{proof}
 
 \subsection{The ends of $(\Omega,g(T))$}
 \begin{definition}[Strong 2ε-horn]
-\label{def:strong-epsilon-horn}\uses{def:maximal-extension-to-time-T}
+\label{def:strong-epsilon-horn}
+\uses{def:maximal-extension-to-time-T}
 A strong $2\epsilon$-horn is a proper copy of $S^2\times[0,1)$ in $\Omega$
 whose points are centers of strong $2\epsilon$-necks and whose boundary is a
 central neck sphere.
 \end{definition}
 \begin{definition}[Strong double 2ε-horn and capped 2ε-horn]
-\label{def:strong-double-and-capped-horn}\uses{def:strong-epsilon-horn}
+\label{def:strong-double-and-capped-horn}
+\uses{def:strong-epsilon-horn}
 A strong double $2\epsilon$-horn is a component diffeomorphic to
 $S^2\times(0,1)$ consisting entirely of strong $2\epsilon$-necks, hence a
 $2\epsilon$-tube with two horn ends. A $C'$-capped $2\epsilon$-horn is the
@@ -364,7 +382,8 @@ union of a $(C',2\epsilon)$-cap core and such a horn; it is an open
 $3$-ball or a punctured $\Ar P^3$.
 \end{definition}
 \begin{definition}[The subset $\Omega_\rho$ and horns with boundary contained in it]
-\label{def:omega-rho}\uses{thm:singular-time-limit-properties,def:strong-epsilon-horn}
+\label{def:omega-rho}
+\uses{thm:singular-time-limit-properties, def:strong-epsilon-horn}
 For $0<\rho<r_0$, let
 $$\Omega_\rho=\{x\in\Omega\mid R(x,T)\le\rho^{-2}\}.$$
 A horn has boundary contained in $\Omega_\rho$ when its boundary sphere is
@@ -372,7 +391,8 @@ contained in this set.
 \end{definition}
 
 \begin{lemma}[Classification of components of Omega disjoint from $\Omega_\rho$]
-\label{lem:omega-component-classification}\uses{lem:canonical-neighborhoods-at-time-T,def:omega-rho}
+\label{lem:omega-component-classification}
+\uses{lem:canonical-neighborhoods-at-time-T, def:omega-rho}
 If a component $\Omega^0$ contains no point of $\Omega_\rho$, it is one of:
 \begin{enumerate}
 \item a strong double $2\epsilon$-horn, diffeomorphic to $S^2\times\Ar$;
@@ -389,13 +409,15 @@ point has a $(2C,2\epsilon)$-canonical neighborhood. The round and component
 alternatives give cases (4) and (6); otherwise Proposition~\ref{epstopology}
 classifies the neck and cap alternatives as (1)--(3) or (5).\end{proof}
 \begin{remark}[Possibly infinitely many double horns]
-\label{rem:possibly-infinitely-many-horns}\uses{def:strong-double-and-capped-horn}
+\label{rem:possibly-infinitely-many-horns}
+\uses{def:strong-double-and-capped-horn}
 The hypotheses do not assert that the number of double $2\epsilon$-horns is finite.
 \end{remark}
 
 \begin{lemma}[Finitely many horns meet $\Omega_\rho$]
 \label{lem:finitely-many-horns-meeting-omega-rho}\label{2epshorns}
-\uses{def:omega-rho,def:standing-assumptions-singular-time}
+\uses{def:omega-rho, def:standing-assumptions-singular-time}
+
 For a flow satisfying the standing assumptions and $0<\rho<r_0$, the union
 $\Omega^0(\rho)$ of components meeting $\Omega_\rho$ has finitely many
 components and is a compact set together with finitely many strong
@@ -414,7 +436,8 @@ $\Omega_{\rho/2C}$ then gives finiteness.\end{proof}
 \section{Existence of strong $\delta$-necks sufficiently deep in a $2\epsilon$-horn}
 \begin{theorem}[Strong $\delta$-necks sufficiently deep in a 2ε-horn]
 \label{thm:deep-delta-necks-in-horn}\label{hexist}
-\uses{def:omega-rho,def:standing-assumptions-singular-time}
+\uses{def:omega-rho, def:standing-assumptions-singular-time}
+
 For fixed $\rho>0$ and every $\delta>0$, there is
 $0<h=h(\delta,\rho)\le\min(\rho\delta,\rho/2C)$, depending implicitly on
 $r,(C,\epsilon)$, such that every point $x$ in a $2\epsilon$-horn with
@@ -422,7 +445,8 @@ boundary in $\Omega_{\rho/2C}$ and $R(x,T)\ge h^{-2}$ centers a strong
 $\delta$-neck contained in the horn. There is also $y$ in the horn with
 $R(y)=h^{-2}$ whose neck sphere cuts off an end disjoint from $\Omega_\rho$.
 \end{theorem}
-\begin{proof}\uses{thm:short-time-blowup-limit,thm:splitting-theorem,blowupposcurv,localprod,rm>0,2DGSS}
+\begin{proof}
+  \uses{thm:short-time-blowup-limit, thm:splitting-theorem, blowupposcurv, localprod, rm>0, 2DGSS, bcbd}
 \sketch If no such $h$ exists, choose horns and points with
 $Q_n=R(x_n)\to\infty$ lacking strong $\delta$-necks. The rescaled sequence
 satisfies the five hypotheses below, so it has a nonflat non-negative-curvature
@@ -434,6 +458,7 @@ $R=h^{-2}$ and $h<\rho/2C$ give the final separating neck.\end{proof}
 \begin{claim}[The rescaled sequence satisfies the short-time blow-up hypotheses]
 \label{claim:rescaled-sequence-satisfies-hypotheses}\label{hyp}
 \uses{thm:short-time-blowup-limit}
+
 The rescaled sequence in the proof of Theorem~\ref{thm:deep-delta-necks-in-horn}
 satisfies all five hypotheses of Theorem~\ref{thm:short-time-blowup-limit}.
 \end{claim}
@@ -478,6 +503,7 @@ interval and upper bound.\end{proof}
 \begin{corollary}[Monotone choice of $h(\rho,\delta)$]
 \label{cor:monotone-h-function}\label{hmonotone}
 \uses{thm:deep-delta-necks-in-horn}
+
 The function $h(\rho,\delta)$ may be chosen with $h\le\delta\rho$, weakly
 non-decreasing in $\delta$ for fixed $\rho$, and weakly non-decreasing in
 $\rho$ for fixed $\delta$.

@@ -5,9 +5,10 @@
 
 \begin{definition}[Euclidean Green's function]
 \label{def:chow-ii-euclidean-green-function}
+\source{chow-et-al-ricci-flow-part-ii:page-0406}
 \dcref{appe:1.1}
 \group{Green Functions}
-\source{chow-et-al-ricci-flow-part-ii:page-0406}
+
 For $n\ge3$ set
 \[
 \Gamma(x,y)=\frac{1}{(n-2)n\omega_n}|x-y|^{2-n},
@@ -17,10 +18,12 @@ and for $n=2$ set $\Gamma(x,y)=-(2\pi)^{-1}\log|x-y|$.
 
 \begin{lemma}[Euclidean Green kernel identities]
 \label{lem:chow-ii-euclidean-green-identities}
-\dcref{appe:1.2}
-\group{Green Functions}
 \source{chow-et-al-ricci-flow-part-ii:page-0406,chow-et-al-ricci-flow-part-ii:page-0407}
 \uses{def:chow-ii-euclidean-green-function}
+\dcref{appe:1.2}
+\group{Green Functions}
+
+
 For $x\ne y$ and $n\ge3$, $\Delta_x\Gamma=\Delta_y\Gamma=0$, while
 \[
 |\partial_{x^i}\Gamma|\le(n\omega_n)^{-1}|x-y|^{1-n},
@@ -30,10 +33,12 @@ For $x\ne y$ and $n\ge3$, $\Delta_x\Gamma=\Delta_y\Gamma=0$, while
 
 \begin{theorem}[Euclidean fundamental solution identity]
 \label{thm:chow-ii-euclidean-green-fundamental}
-\dcref{appe:1.3}
-\group{Green Functions}
 \source{chow-et-al-ricci-flow-part-ii:page-0407,chow-et-al-ricci-flow-part-ii:page-0408,chow-et-al-ricci-flow-part-ii:page-0409}
 \uses{lem:chow-ii-euclidean-green-identities}
+\dcref{appe:1.3}
+\group{Green Functions}
+
+
 For $f\in C_c^2(\mathbb R^n)$,
 \[
 \int_{\mathbb R^n}\Gamma(x,y)\Delta f(y)\,dy=-f(x).
@@ -45,10 +50,12 @@ $\Delta Qf=f$.
 
 \begin{theorem}[Green function on a closed manifold]
 \label{thm:chow-ii-closed-manifold-green-function}
-\dcref{appe:1.4}
-\group{Green Functions}
 \source{chow-et-al-ricci-flow-part-ii:page-0409,chow-et-al-ricci-flow-part-ii:page-0410,chow-et-al-ricci-flow-part-ii:page-0411,chow-et-al-ricci-flow-part-ii:page-0412,chow-et-al-ricci-flow-part-ii:page-0413,chow-et-al-ricci-flow-part-ii:page-0414}
 \uses{thm:chow-ii-euclidean-green-fundamental}
+\dcref{appe:1.4}
+\group{Green Functions}
+
+
 On a closed $n$-manifold, $n\ge3$, a cutoff of
 $r^{2-n}/((n-2)\omega_n)$ in geodesic polar coordinates gives a parametrix
 $H$.  Iterated convolution with $\Delta H$ improves the singularity by one
@@ -63,9 +70,10 @@ functions).
 
 \begin{lemma}[Convolution singularity estimate]
 \label{lem:chow-ii-green-convolution-estimate}
+\source{chow-et-al-ricci-flow-part-ii:page-0412,chow-et-al-ricci-flow-part-ii:page-0413,chow-et-al-ricci-flow-part-ii:page-0414}
 \dcref{appe:1.5}
 \group{Green Functions}
-\source{chow-et-al-ricci-flow-part-ii:page-0412,chow-et-al-ricci-flow-part-ii:page-0413,chow-et-al-ricci-flow-part-ii:page-0414}
+
 If $|\Psi(x,z)|\le C d(x,z)^{a-n}$ and
 $|\Theta(z,y)|\le C d(y,z)^{b-n}$ with $0<a,b<n$, then
 \[
@@ -78,10 +86,12 @@ C'(1+|\log d(x,y)|)&a+b=n,\\ C'&a+b>n.
 
 \begin{theorem}[Green asymptotics and estimates]
 \label{thm:chow-ii-green-asymptotics}
-\dcref{appe:1.6}
-\group{Green Functions}
 \source{chow-et-al-ricci-flow-part-ii:page-0414}
 \uses{lem:chow-ii-green-convolution-estimate}
+\dcref{appe:1.6}
+\group{Green Functions}
+
+
 If $(M^n,g)$ is complete noncompact, $n\ge3$, with nonnegative Ricci
 curvature and maximum volume growth, then
 \[
@@ -94,9 +104,10 @@ $\theta_\infty$.
 
 \begin{theorem}[Hopf boundary point lemmas]
 \label{thm:chow-ii-hopf-boundary-point}
+\source{chow-et-al-ricci-flow-part-ii:page-0415}
 \dcref{appe:1.7}
 \group{Maximum Principles}
-\source{chow-et-al-ricci-flow-part-ii:page-0415}
+
 If a closed domain satisfies the interior sphere condition at $x_0$ and
 $u\in C^2$ in its interior obeys $\Delta u+\langle X,\nabla u\rangle\ge0$,
 with a strict maximum at $x_0$, then $\partial_\nu u(x_0)>0$.  The same
@@ -108,9 +119,10 @@ $c\le0$ and $u(x_0)\ge0$, or when $u(x_0)=0$.
 
 \begin{definition}[Fundamental solution]
 \label{def:chow-ii-heat-fundamental-solution}
+\source{chow-et-al-ricci-flow-part-ii:page-0416}
 \dcref{appe:1.8}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0416}
+
 A fundamental solution $h(x,y,t)$ is continuous, $C^2$ in $x$, $C^1$ in $t$,
 satisfies $(\partial_t-\Delta_x)h=0$, and converges to $\delta_y$ as
 $t\downarrow0$ against compactly supported continuous test functions.
@@ -118,9 +130,10 @@ $t\downarrow0$ against compactly supported continuous test functions.
 
 \begin{lemma}[Duhamel's principle on a closed manifold]
 \label{lem:chow-ii-duhamel-closed}
+\source{chow-et-al-ricci-flow-part-ii:page-0417}
 \dcref{appe:1.9}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0417}
+
 For $\square=\partial_t-\Delta$, smooth $A,B$ on a closed manifold satisfy
 \[
 \int_{t_1}^{t_2}\!\int_M[-(\square A)(w,t-s)B+A(w,t-s)(\square B)]
@@ -130,10 +143,12 @@ For $\square=\partial_t-\Delta$, smooth $A,B$ on a closed manifold satisfy
 
 \begin{theorem}[Closed-manifold heat kernel]
 \label{thm:chow-ii-closed-heat-kernel}
+\source{chow-et-al-ricci-flow-part-ii:page-0417,chow-et-al-ricci-flow-part-ii:page-0418,chow-et-al-ricci-flow-part-ii:page-0419,chow-et-al-ricci-flow-part-ii:page-0420}
+\uses{def:chow-ii-heat-fundamental-solution, lem:chow-ii-duhamel-closed}
 \dcref{appe:1.10}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0417,chow-et-al-ricci-flow-part-ii:page-0418,chow-et-al-ricci-flow-part-ii:page-0419,chow-et-al-ricci-flow-part-ii:page-0420}
-\uses{def:chow-ii-heat-fundamental-solution,lem:chow-ii-duhamel-closed}
+
+
 On a closed manifold the fundamental solution is unique, symmetric, positive,
 and has mass one.  If $\mathscr H_t f(x)=\int_M h(x,y,t)f(y)\,d\mu(y)$, then
 \[
@@ -148,19 +163,22 @@ u(x,t)=\int_Mh(x,y,t)f(y)d\mu(y)+\int_0^t\!\int_Mh(x,y,t-s)F(y,s)d\mu(y)ds.
 
 \begin{corollary}[Heat kernel sup-norm bound]
 \label{cor:chow-ii-heat-kernel-sup-bound}
-\dcref{appe:1.11}
-\group{Heat Kernels}
 \source{chow-et-al-ricci-flow-part-ii:page-0420}
 \uses{thm:chow-ii-closed-heat-kernel}
+\dcref{appe:1.11}
+\group{Heat Kernels}
+
+
 For a heat solution with initial value $f$,
 $|u(x,t)|\le\max_yh(x,y,t)\int_M|f|\,d\mu$.
 \end{corollary}
 
 \begin{definition}[Dirichlet heat kernel]
 \label{def:chow-ii-dirichlet-heat-kernel}
+\source{chow-et-al-ricci-flow-part-ii:page-0421}
 \dcref{appe:1.12}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0421}
+
 On a compact manifold with boundary, a Dirichlet heat kernel is a fundamental
 solution in the interior, continuous up to the boundary, and zero when its
 first argument lies on the boundary.
@@ -168,9 +186,10 @@ first argument lies on the boundary.
 
 \begin{lemma}[Duhamel's principle with boundary]
 \label{lem:chow-ii-duhamel-boundary}
+\source{chow-et-al-ricci-flow-part-ii:page-0422}
 \dcref{appe:1.13}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0422}
+
 For a compact manifold with boundary, the closed-manifold Duhamel identity
 acquires the boundary flux term
 \[
@@ -180,10 +199,12 @@ acquires the boundary flux term
 
 \begin{theorem}[Minimal positive heat kernel on complete manifolds]
 \label{thm:chow-ii-minimal-positive-heat-kernel}
+\source{chow-et-al-ricci-flow-part-ii:page-0421,chow-et-al-ricci-flow-part-ii:page-0422,chow-et-al-ricci-flow-part-ii:page-0423,chow-et-al-ricci-flow-part-ii:page-0424,chow-et-al-ricci-flow-part-ii:page-0425}
+\uses{def:chow-ii-dirichlet-heat-kernel, lem:chow-ii-duhamel-boundary, thm:chow-ii-hopf-boundary-point}
 \dcref{appe:1.14}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0421,chow-et-al-ricci-flow-part-ii:page-0422,chow-et-al-ricci-flow-part-ii:page-0423,chow-et-al-ricci-flow-part-ii:page-0424,chow-et-al-ricci-flow-part-ii:page-0425}
-\uses{def:chow-ii-dirichlet-heat-kernel,lem:chow-ii-duhamel-boundary,thm:chow-ii-hopf-boundary-point}
+
+
 On every complete noncompact manifold, an exhaustion by compact regular
 domains and their Dirichlet kernels gives an increasing limit $h=\sup_i h_i$.
 This is a smooth, positive, symmetric, minimal positive fundamental solution.
@@ -194,9 +215,10 @@ bounded (the local estimate used to pass to the limit).
 
 \begin{theorem}[Uniqueness under a Ricci lower bound]
 \label{thm:chow-ii-heat-kernel-uniqueness-lower-ricci}
+\source{chow-et-al-ricci-flow-part-ii:page-0426}
 \dcref{appe:1.15}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0426}
+
 If a complete noncompact manifold satisfies $\operatorname{Rc}\ge-k$, its
 minimal positive fundamental solution is the unique positive fundamental
 solution.
@@ -204,10 +226,12 @@ solution.
 
 \begin{theorem}[Cheeger--Yau heat-kernel comparison]
 \label{thm:chow-ii-cheeger-yau-heat-comparison}
-\dcref{appe:1.16}
-\group{Heat Kernels}
 \source{chow-et-al-ricci-flow-part-ii:page-0426,chow-et-al-ricci-flow-part-ii:page-0427}
 \uses{thm:chow-ii-heat-kernel-uniqueness-lower-ricci}
+\dcref{appe:1.16}
+\group{Heat Kernels}
+
+
 If $\operatorname{Rc}\ge(n-1)K$, then
 \[
 h(x,y,t)\ge H_{n,K}(d(x,y),t),
@@ -218,9 +242,10 @@ of sectional curvature $K$.
 
 \begin{theorem}[Heat kernels on products]
 \label{thm:chow-ii-heat-kernel-products}
+\source{chow-et-al-ricci-flow-part-ii:page-0427,chow-et-al-ricci-flow-part-ii:page-0428,chow-et-al-ricci-flow-part-ii:page-0429}
 \dcref{appe:1.17}
 \group{Heat Kernels}
-\source{chow-et-al-ricci-flow-part-ii:page-0427,chow-et-al-ricci-flow-part-ii:page-0428,chow-et-al-ricci-flow-part-ii:page-0429}
+
 If $h_i$ are fundamental solutions on $(M_i,g_i)$, then
 $h_1(x_1,t)h_2(x_2,t)$ is the fundamental solution on the Riemannian product.
 The same formula gives the Gaussian fiber factor on a flat rank-$k$ vector
@@ -232,9 +257,10 @@ $S^1$.
 
 \begin{theorem}[Li--Yau differential Harnack estimate]
 \label{thm:chow-ii-li-yau-estimate}
+\source{chow-et-al-ricci-flow-part-ii:page-0430,chow-et-al-ricci-flow-part-ii:page-0431}
 \dcref{appe:1.18}
 \group{Heat Kernel Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0430,chow-et-al-ricci-flow-part-ii:page-0431}
+
 If $\operatorname{Rc}\ge-kg$ and $u>0$ solves the heat equation, then for
 $\alpha>1$,
 \[
@@ -247,10 +273,12 @@ $C\alpha R^{-2}(\alpha^2/(\alpha-1)+\sqrt{k}R)$.
 
 \begin{theorem}[Path-integrated Harnack inequality]
 \label{thm:chow-ii-path-harnack}
-\dcref{appe:1.19}
-\group{Heat Kernel Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0431}
 \uses{thm:chow-ii-li-yau-estimate}
+\dcref{appe:1.19}
+\group{Heat Kernel Estimates}
+
+
 For $0<t_1<t_2$,
 \[
 \frac{u(x_2,t_2)}{u(x_1,t_1)}\ge
@@ -264,9 +292,10 @@ Gaussian lower bound $(4\pi t)^{-n/2}e^{-d(x,y)^2/(4t)}$.
 
 \begin{theorem}[Hamilton gradient estimate]
 \label{thm:chow-ii-hamilton-gradient-estimate}
+\source{chow-et-al-ricci-flow-part-ii:page-0432,chow-et-al-ricci-flow-part-ii:page-0433,chow-et-al-ricci-flow-part-ii:page-0434,chow-et-al-ricci-flow-part-ii:page-0435}
 \dcref{appe:1.20}
 \group{Heat Kernel Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0432,chow-et-al-ricci-flow-part-ii:page-0433,chow-et-al-ricci-flow-part-ii:page-0434,chow-et-al-ricci-flow-part-ii:page-0435}
+
 If $M$ is closed, $\operatorname{Rc}\ge-k_1g$, and $0<u\le A$ solves the
 heat equation, then
 \[
@@ -278,10 +307,12 @@ heat-type equation with potential, yielding the E.31 estimate.
 
 \begin{corollary}[Integral-to-pointwise heat bound]
 \label{cor:chow-ii-heat-integral-pointwise}
-\dcref{appe:1.21}
-\group{Heat Kernel Estimates}
 \source{chow-et-al-ricci-flow-part-ii:page-0434,chow-et-al-ricci-flow-part-ii:page-0435}
 \uses{thm:chow-ii-hamilton-gradient-estimate}
+\dcref{appe:1.21}
+\group{Heat Kernel Estimates}
+
+
 On a closed manifold and for $t\in(0,T]$,
 \[
 u(y,t)\le Ct^{-n/2}\int_Mu(x,t)\,d\mu(x).
@@ -290,10 +321,12 @@ u(y,t)\le Ct^{-n/2}\int_Mu(x,t)\,d\mu(x).
 
 \begin{corollary}[Gradient estimate without a pointwise bound]
 \label{cor:chow-ii-heat-gradient-integral}
+\source{chow-et-al-ricci-flow-part-ii:page-0436}
+\uses{cor:chow-ii-heat-integral-pointwise, thm:chow-ii-hamilton-gradient-estimate}
 \dcref{appe:1.22}
 \group{Heat Kernel Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0436}
-\uses{cor:chow-ii-heat-integral-pointwise,thm:chow-ii-hamilton-gradient-estimate}
+
+
 If $u>0$ has unit integral, then
 \[
 t|\nabla\log u|^2\le C\log\left(\frac{B}{t^{n/2}u}\right)
@@ -303,9 +336,10 @@ on $M\times(0,T]$.
 
 \begin{theorem}[Laplacian estimate for bounded heat solutions]
 \label{thm:chow-ii-heat-laplacian-estimate}
+\source{chow-et-al-ricci-flow-part-ii:page-0436,chow-et-al-ricci-flow-part-ii:page-0437}
 \dcref{appe:1.23}
 \group{Heat Kernel Estimates}
-\source{chow-et-al-ricci-flow-part-ii:page-0436,chow-et-al-ricci-flow-part-ii:page-0437}
+
 If $M$ is closed, $\operatorname{Rc}\ge-k_1g$, and $0<u\le A$ solves the heat
 equation, then
 \[
