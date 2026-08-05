@@ -238,6 +238,19 @@ projects:
       The fundamental group, covering spaces, and singular homology and
       cohomology.
 
+  - name: The Geometry and Topology of Three-Manifolds
+    root: formalized-sources/Thurston
+    category: Riemannian Geometry
+    author: William P. Thurston
+    book_title: The Geometry and Topology of Three-Manifolds
+    image: site/img/thurston.svg
+    image_alt: Title card for Thurston, The Geometry and Topology of Three-Manifolds
+    image_fit: contain
+    tag: Lecture notes
+    blurb: >
+      Three-manifold topology, hyperbolic geometry, geometric structures,
+      Dehn surgery, Kleinian groups, convergence, and orbifolds.
+
   - name: Partial Differential Equations
     root: formalized-sources/Evans
     category: Partial Differential Equations

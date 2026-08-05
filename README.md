@@ -58,6 +58,7 @@ site/                  authored website content and assets
 | [Lee, Smooth Manifolds](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/LeeSmooth) | Smooth-manifold foundations |
 | [Cheeger-Gromov-Taylor](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/CheegerGromovTaylor) | Kernel estimates on complete Riemannian manifolds |
 | [Hatcher](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/Hatcher) | Algebraic topology |
+| [Thurston](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/Thurston) | Three-manifold topology and hyperbolic geometry |
 | [Evans](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/Evans) | Partial differential equations |
 | [Gilbarg-Trudinger](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/GilbargTrudinger) | Second-order elliptic partial differential equations |
 | [Han-Lin](https://frenzymath.github.io/Poincare-Conjecture/#/formalized-sources/HanLinLectureNotes) | Elliptic differential equations |

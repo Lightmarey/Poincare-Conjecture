@@ -22,6 +22,7 @@ also keeps cross-project Lake paths stable.
 | `LeeSmooth` | Smooth manifolds |
 | `CheegerGromovTaylor` | Kernel estimates on complete Riemannian manifolds |
 | `Hatcher` | Algebraic topology |
+| `Thurston` | Three-manifold topology and hyperbolic geometry |
 | `Evans` | Partial differential equations |
 | `GilbargTrudinger` | Second-order elliptic partial differential equations |
 | `HanLinLectureNotes` | Elliptic differential equations |
