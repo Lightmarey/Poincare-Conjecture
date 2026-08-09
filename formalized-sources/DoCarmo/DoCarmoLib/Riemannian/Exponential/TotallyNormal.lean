@@ -58,6 +58,22 @@ namespace Exponential
 
 open Riemannian.Geodesic Riemannian.FlowDependence
 
+section
+
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+
+/-- **Math.** The unipotent shear map `(a, b) ↦ (a, a + b)` on `E × E`. -/
+def unipotentShear : (E × E) ≃L[ℝ] E × E :=
+  ContinuousLinearEquiv.equivOfInverse
+    ((ContinuousLinearMap.fst ℝ E E).prod
+      ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)))
+    ((ContinuousLinearMap.fst ℝ E E).prod
+      ((ContinuousLinearMap.snd ℝ E E) - (ContinuousLinearMap.fst ℝ E E)))
+    (fun _ => by simp [ContinuousLinearMap.prod_apply])
+    (fun _ => by simp [ContinuousLinearMap.prod_apply])
+
+end
+
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
   [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
@@ -520,23 +536,8 @@ theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
   set G : E × E → E × E :=
     fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1) with hGdef
   have hTIcc : T ∈ Icc (-ε) ε := ⟨by linarith [hT, hε], hTε.le⟩
-  -- the shear as a continuous linear equivalence
-  set shear : (E × E) ≃L[ℝ] (E × E) := ContinuousLinearEquiv.equivOfInverse
-    ((ContinuousLinearMap.fst ℝ E E).prod
-      ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)))
-    ((ContinuousLinearMap.fst ℝ E E).prod
-      ((ContinuousLinearMap.snd ℝ E E) - (ContinuousLinearMap.fst ℝ E E)))
-    (fun x => by
-      simp [ContinuousLinearMap.prod_apply])
-    (fun x => by
-      simp [ContinuousLinearMap.prod_apply])
-  have hshear_coe : (shear : (E × E) →L[ℝ] E × E)
-      = (ContinuousLinearMap.fst ℝ E E).prod
-          ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)) := rfl
   have hstrict' : HasStrictFDerivAt G
-      ((shear : (E × E) ≃L[ℝ] E × E) : (E × E) →L[ℝ] E × E) x₀ := by
-    rw [hshear_coe]
-    exact hstrict
+      ((unipotentShear : (E × E) ≃L[ℝ] E × E) : (E × E) →L[ℝ] E × E) x₀ := hstrict
   -- the inverse function theorem: `G` is a homeomorphism near `x₀`
   set ho := hstrict'.toOpenPartialHomeomorph G
   have hsource : x₀ ∈ ho.source := hstrict'.mem_toOpenPartialHomeomorph_source
