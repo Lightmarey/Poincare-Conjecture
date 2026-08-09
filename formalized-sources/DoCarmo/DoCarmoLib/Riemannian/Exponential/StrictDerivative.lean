@@ -70,9 +70,8 @@ lemma fderiv_geodesicSprayCoord_equilibrium (g : RiemannianMetric I M) (p : M) :
     fderiv ℝ (fun ζ : E × E => geodesicSprayCoord (I := I) g p ζ.1 ζ.2)
         ((extChartAt I p p, (0 : E)) : E × E)
       = (ContinuousLinearMap.inl ℝ E E).comp (ContinuousLinearMap.snd ℝ E E) := by
-  classical
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def
-  set F : E × E → E × E := fun ζ => geodesicSprayCoord (I := I) g p ζ.1 ζ.2 with hFdef
+  set F : E × E → E × E := fun ζ => geodesicSprayCoord (I := I) g p ζ.1 ζ.2
   have hopen : IsOpen ((extChartAt I p).target ×ˢ (univ : Set E)) :=
     (isOpen_extChartAt_target p).prod isOpen_univ
   have hmem : z₀ ∈ (extChartAt I p).target ×ˢ (univ : Set E) :=
@@ -202,14 +201,14 @@ theorem exists_hasStrictFDerivAt_extChartAt_expMap
   obtain ⟨r, ε, Z, L, hr, hε, hflow, hLip, hZzero, hmax⟩ :=
     exists_uniform_geodesic_flow (I := I) g p
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def
-  set F : E × E → E × E := fun ζ => geodesicSprayCoord (I := I) g p ζ.1 ζ.2 with hFdef
+  set F : E × E → E × E := fun ζ => geodesicSprayCoord (I := I) g p ζ.1 ζ.2
   set A : E × E →L[ℝ] E × E :=
-    (ContinuousLinearMap.inl ℝ E E).comp (ContinuousLinearMap.snd ℝ E E) with hAdef
+    (ContinuousLinearMap.inl ℝ E E).comp (ContinuousLinearMap.snd ℝ E E)
   have hA2 : A.comp A = 0 := sprayLinearization_comp_self
   have hfd : fderiv ℝ F z₀ = A :=
     fderiv_geodesicSprayCoord_equilibrium (I := I) g p
   -- the short Picard time
-  set T : ℝ := min (ε / 2) (1 / (2 * (‖A‖ + 1))) with hTdef
+  set T : ℝ := min (ε / 2) (1 / (2 * (‖A‖ + 1)))
   have hT : 0 < T := lt_min (by positivity) (by positivity)
   have hTε : T < ε := (min_le_left _ _).trans_lt (half_lt_self hε)
   have hTA : T * ‖A‖ < 1 := by
@@ -223,7 +222,7 @@ theorem exists_hasStrictFDerivAt_extChartAt_expMap
   have hIccTsub : Icc (0 : ℝ) T ⊆ Icc (-ε) ε := fun t ht =>
     ⟨le_trans (neg_nonpos.mpr hε.le) ht.1, ht.2.trans hTε.le⟩
   have hTIoo : T ∈ Ioo (-ε) ε := ⟨lt_trans (neg_lt_zero.mpr hε) hT, hTε⟩
-  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩ with htTdef
+  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩
   -- the solution family on `C([0,T], E × E)`
   set σ : E × E → C(Set.Icc (0 : ℝ) T, E × E) := fun x =>
     if hx : x ∈ closedBall z₀ r then
@@ -279,7 +278,6 @@ theorem exists_hasStrictFDerivAt_extChartAt_expMap
   -- the explicit derivative from the nilpotent linearization
   set D : E × E →L[ℝ] C(Set.Icc (0 : ℝ) T, E × E) :=
     ContinuousLinearMap.const ℝ (Set.Icc (0 : ℝ) T) + (linearRamp hT.le).comp A
-    with hDdef
   have hD : ∀ v : E × E, D v - intervalPrimitive hT.le
       (postcomp (fderiv ℝ F z₀) (D v)) = ContinuousMap.const _ v := by
     intro v

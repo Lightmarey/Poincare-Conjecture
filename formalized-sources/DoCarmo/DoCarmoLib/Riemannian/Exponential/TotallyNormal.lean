@@ -115,15 +115,14 @@ theorem isGeodesicOn_uniform_flow_segment
         extChartAt I p
           ((extChartAt I p).symm ((Z ((y, T⁻¹ • w) : E × E) (s * T)).1))))
       (geodesicSprayCoord (I := I) g p y w).2 0 := by
-  classical
   obtain ⟨h0, hd, hconf⟩ := hflow _ hmem
-  set zc : ℝ → E × E := Z ((y, T⁻¹ • w) : E × E) with hzcdef
+  set zc : ℝ → E × E := Z ((y, T⁻¹ • w) : E × E)
   -- upgrade the flow derivative to `HasDerivAt` on the open time interval
   have hdIoo : ∀ t ∈ Ioo (-ε) ε, HasDerivAt zc
       (geodesicSprayCoord (I := I) g p (zc t).1 (zc t).2) t := fun t ht =>
     (hd t (Ioo_subset_Icc_self ht)).hasDerivAt (Icc_mem_nhds ht.1 ht.2)
   -- the rescaled time window
-  set J : Set ℝ := Ioo (-(ε / T)) (ε / T) with hJdef
+  set J : Set ℝ := Ioo (-(ε / T)) (ε / T)
   have hJopen : IsOpen J := isOpen_Ioo
   have hwin : ∀ s ∈ J, s * T ∈ Ioo (-ε) ε := by
     intro s hs
@@ -299,17 +298,17 @@ theorem exists_pairMap_hasStrictFDerivAt (g : RiemannianMetric I M) (p : M) :
           ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)))
         ((extChartAt I p p, (0 : E)) : E × E) := by
   classical
-  obtain ⟨r, ε, Z, L, hr, hε, hflow, hLip, hZzero, hmax⟩ :=
+  obtain ⟨r, ε, Z, L, hr, hε, hflow, hLip, hZzero, _⟩ :=
     exists_uniform_geodesic_flow (I := I) g p
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def
-  set F : E × E → E × E := fun ζ => geodesicSprayCoord (I := I) g p ζ.1 ζ.2 with hFdef
+  set F : E × E → E × E := fun ζ => geodesicSprayCoord (I := I) g p ζ.1 ζ.2
   set A : E × E →L[ℝ] E × E :=
-    (ContinuousLinearMap.inl ℝ E E).comp (ContinuousLinearMap.snd ℝ E E) with hAdef
+    (ContinuousLinearMap.inl ℝ E E).comp (ContinuousLinearMap.snd ℝ E E)
   have hA2 : A.comp A = 0 := sprayLinearization_comp_self
   have hfd : fderiv ℝ F z₀ = A :=
     fderiv_geodesicSprayCoord_equilibrium (I := I) g p
   -- the short Picard time
-  set T : ℝ := min (ε / 2) (1 / (2 * (‖A‖ + 1))) with hTdef
+  set T : ℝ := min (ε / 2) (1 / (2 * (‖A‖ + 1)))
   have hT : 0 < T := lt_min (by positivity) (by positivity)
   have hTε : T < ε := (min_le_left _ _).trans_lt (half_lt_self hε)
   have hTA : T * ‖A‖ < 1 := by
@@ -322,7 +321,7 @@ theorem exists_pairMap_hasStrictFDerivAt (g : RiemannianMetric I M) (p : M) :
     nlinarith [norm_nonneg A]
   have hIccTsub : Icc (0 : ℝ) T ⊆ Icc (-ε) ε := fun t ht =>
     ⟨le_trans (neg_nonpos.mpr hε.le) ht.1, ht.2.trans hTε.le⟩
-  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩ with htTdef
+  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩
   -- the solution family on `C([0,T], E × E)`
   set σ : E × E → C(Set.Icc (0 : ℝ) T, E × E) := fun x =>
     if hx : x ∈ closedBall z₀ r then
@@ -378,7 +377,6 @@ theorem exists_pairMap_hasStrictFDerivAt (g : RiemannianMetric I M) (p : M) :
   -- the explicit derivative from the nilpotent linearization
   set D : E × E →L[ℝ] C(Set.Icc (0 : ℝ) T, E × E) :=
     ContinuousLinearMap.const ℝ (Set.Icc (0 : ℝ) T) + (linearRamp hT.le).comp A
-    with hDdef
   have hD : ∀ v : E × E, D v - intervalPrimitive hT.le
       (postcomp (fderiv ℝ F z₀) (D v)) = ContinuousMap.const _ v := by
     intro v
@@ -515,7 +513,6 @@ theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
           (extChartAt I p).symm
             ((Z ((extChartAt I p q, T⁻¹ • w') : E × E) T).1) = m →
           w' = w) := by
-  classical
   obtain ⟨r, ε, T, Z, hr, hε, hT, hTε, hflow, hzero, hstrict⟩ :=
     exists_pairMap_hasStrictFDerivAt (I := I) g p
   set y₀ : E := extChartAt I p p with hy₀def
@@ -532,7 +529,7 @@ theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
     (fun x => by
       simp [ContinuousLinearMap.prod_apply])
     (fun x => by
-      simp [ContinuousLinearMap.prod_apply]) with hsheardef
+      simp [ContinuousLinearMap.prod_apply])
   have hshear_coe : (shear : (E × E) →L[ℝ] E × E)
       = (ContinuousLinearMap.fst ℝ E E).prod
           ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)) := rfl
@@ -541,13 +538,13 @@ theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
     rw [hshear_coe]
     exact hstrict
   -- the inverse function theorem: `G` is a homeomorphism near `x₀`
-  set ho := hstrict'.toOpenPartialHomeomorph G with hodef
+  set ho := hstrict'.toOpenPartialHomeomorph G
   have hsource : x₀ ∈ ho.source := hstrict'.mem_toOpenPartialHomeomorph_source
   have hcoe : ⇑ho = G := hstrict'.toOpenPartialHomeomorph_coe
   obtain ⟨ρ₂, hρ₂, hρ₂sub⟩ := Metric.isOpen_iff.mp ho.open_source x₀ hsource
   -- the product-ball domain: radii small enough for the IFT source and the flow
-  set δ₁ : ℝ := min ρ₂ r with hδ₁def
-  set δ : ℝ := min ρ₂ (T * r) with hδdef
+  set δ₁ : ℝ := min ρ₂ r
+  set δ : ℝ := min ρ₂ (T * r)
   have hδ₁pos : 0 < δ₁ := lt_min hρ₂ hr
   have hδpos : 0 < δ := lt_min hρ₂ (by positivity)
   set B : Set (E × E) := ball y₀ δ₁ ×ˢ ball (0 : E) δ with hBdef
@@ -592,10 +589,10 @@ theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
     rw [← hmapnhds]
     exact image_mem_map hB𝓝
   obtain ⟨η, hη, hηsub⟩ := Metric.mem_nhds_iff.mp hGB
-  set η' : ℝ := min η δ₁ with hη'def
+  set η' : ℝ := min η δ₁
   have hη'pos : 0 < η' := lt_min hη hδ₁pos
   -- the totally normal neighborhood
-  set W : Set M := (chartAt H p).source ∩ extChartAt I p ⁻¹' ball y₀ η' with hWdef
+  set W : Set M := (chartAt H p).source ∩ extChartAt I p ⁻¹' ball y₀ η'
   have hWopen : IsOpen W := by
     have hcont : ContinuousOn (extChartAt I p) (chartAt H p).source := by
       have := continuousOn_extChartAt (I := I) p
@@ -712,11 +709,10 @@ theorem exists_pairMap_contDiffOn (g : RiemannianMetric I M) (p : M) :
       (∀ y ∈ ball (extChartAt I p p) r,
         ContDiffOn ℝ 1 (fun w : E => (Z ((y, T⁻¹ • w) : E × E) T).1)
           (ball (0 : E) (T * r))) := by
-  classical
-  obtain ⟨r, ε, T, Z, L, σ, hT, hr, hε, hTε, hflow, hLip, hmax, hσZ, hD⟩ :=
+  obtain ⟨r, ε, T, Z, _, σ, hT, hr, hε, hTε, hflow, _, _, hσZ, hD⟩ :=
     exists_uniform_geodesic_flow_hasStrictFDerivAt (I := I) g p
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def
-  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩ with htTdef
+  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩
   set ι₂ : E × E → E × E := fun x => ((x.1 : E), T⁻¹ • x.2) with hι₂def
   set Dι₂ : E × E →L[ℝ] E × E :=
     (ContinuousLinearMap.fst ℝ E E).prod
@@ -729,15 +725,15 @@ theorem exists_pairMap_contDiffOn (g : RiemannianMetric I M) (p : M) :
     rw [hι₂eq]
     exact Dι₂.continuous
   set G : E × E → E × E :=
-    fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1) with hGdef
-  set S : Set (E × E) := {x : E × E | ι₂ x ∈ ball z₀ r} with hSdef
+    fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1)
+  set S : Set (E × E) := {x : E × E | ι₂ x ∈ ball z₀ r}
   have hSopen : IsOpen S := isOpen_ball.preimage hι₂cont
   -- pointwise strict differentiability of `G` on `S`
   have key : ∀ x : E × E, ∃ D' : E × E →L[ℝ] E × E,
       x ∈ S → HasStrictFDerivAt G D' x := by
     intro x
     by_cases hx : x ∈ S
-    · obtain ⟨D, A₀, hA₀, hDeq, hDstrict⟩ := hD (ι₂ x) hx
+    · obtain ⟨D, _, _, _, hDstrict⟩ := hD (ι₂ x) hx
       refine ⟨(ContinuousLinearMap.fst ℝ E E).prod
         ((((ContinuousLinearMap.fst ℝ E E).comp
           ((ContinuousMap.evalCLM ℝ tT).comp D)).comp Dι₂)), fun _ => ?_⟩

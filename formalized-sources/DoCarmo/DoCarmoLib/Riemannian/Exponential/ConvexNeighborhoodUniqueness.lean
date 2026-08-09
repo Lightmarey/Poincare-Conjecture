@@ -85,7 +85,6 @@ theorem movingBase_geodesic_eqOn_flow_reading
     Set.EqOn γ (fun s : ℝ => (extChartAt I p).symm
         ((Z ((extChartAt I p q₁, T⁻¹ • w) : E × E) (s * T)).1))
       (Ioo (max lo (-(εF / T))) (min hi (εF / T))) := by
-  classical
   set y : E := extChartAt I p q₁ with hydef
   set gw : ℝ → M' := fun s : ℝ => (extChartAt I p).symm
     ((Z ((y, T⁻¹ • w) : E × E) (s * T)).1) with hgwdef
@@ -137,7 +136,6 @@ theorem exists_movingBase_geodesic_uniqueness (g : RiemannianMetric I M') (p : M
           γ₂ 0 = q₁ → γ₂ 1 = q₂ →
           HasDerivAt (fun s : ℝ => extChartAt I p (γ₂ s)) w₂ 0 → ‖w₂‖ < ρw →
           Set.EqOn γ₁ γ₂ (Icc 0 1) := by
-  classical
   obtain ⟨W, δ, δ₁, T, Z, Ginv, hWopen, hpW, hWsub, hδpos, hδ₁pos, hTpos, hWchart,
     hmemW, hcover, hGC1, hGinj, hGopen, hGleft, hGright, hGinvC1, hrange, hdiag,
     rF, εF, hrF, hεF, hTεF, hflow⟩ := exists_totallyNormal_c1_diffeo (I := I) g p

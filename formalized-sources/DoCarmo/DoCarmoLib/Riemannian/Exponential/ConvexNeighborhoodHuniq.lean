@@ -203,7 +203,7 @@ theorem sqrt_speedSq_eq_dist_of_minimizing
     (hlo : lo < 0) (hhi : 1 < hi)
     (hgeo : IsGeodesicOn (I := I) g γ (Ioo lo hi))
     (hcont : ContinuousOn γ (Ioo lo hi))
-    (hγ0 : γ 0 = q₁) (hγ1 : γ 1 = q₂)
+    (hγ0 : γ 0 = q₁) (_hγ1 : γ 1 = q₂)
     (hmin : ∀ s ∈ Icc (0 : ℝ) 1, ∀ t ∈ Icc (0 : ℝ) 1,
       dist (γ s) (γ t) = |s - t| * dist q₁ q₂) :
     Real.sqrt (speedSq (I := I) g γ 0) = dist q₁ q₂ := by

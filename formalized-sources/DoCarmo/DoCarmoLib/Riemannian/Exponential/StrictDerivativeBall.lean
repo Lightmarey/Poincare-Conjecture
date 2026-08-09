@@ -70,12 +70,11 @@ theorem exists_hasStrictFDerivAt_extChartAt_expMap_ball
           HasStrictFDerivAt
             (fun w : E => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)))
             D' v₀) := by
-  classical
-  obtain ⟨r, ε, T, Z, L, σ, hT, hr, hε, hTε, hflow, hLip, hmax, hσ_ball, hC1⟩ :=
+  obtain ⟨r, ε, T, Z, _, σ, hT, hr, hε, hTε, hflow, _, _, hσ_ball, hC1⟩ :=
     exists_uniform_geodesic_flow_hasStrictFDerivAt (I := I) g p
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def
   have hTIoo : T ∈ Ioo (-ε) ε := ⟨lt_trans (neg_lt_zero.mpr hε) hT, hTε⟩
-  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩ with htTdef
+  set tT : Set.Icc (0 : ℝ) T := ⟨T, ⟨hT.le, le_rfl⟩⟩
   set ρ : ℝ := r * T with hρdef
   have hρpos : 0 < ρ := by positivity
   -- the identification: for `‖w‖ < ρ`, `exp_p(w)` is computed by the flow at time `T`
@@ -184,7 +183,7 @@ theorem exists_hasStrictFDerivAt_extChartAt_expMap_ball
   -- the affine reparametrization `w ↦ (φ_p(p), w/T)` and its base point
   set ι : E → E × E := fun w => (extChartAt I p p, T⁻¹ • w) with hιdef
   set Dι : E →L[ℝ] E × E :=
-    (0 : E →L[ℝ] E).prod (T⁻¹ • ContinuousLinearMap.id ℝ E) with hDιdef
+    (0 : E →L[ℝ] E).prod (T⁻¹ • ContinuousLinearMap.id ℝ E)
   have hι : HasStrictFDerivAt ι Dι v₀ :=
     (hasStrictFDerivAt_const _ _).prodMk
       (T⁻¹ • ContinuousLinearMap.id ℝ E).hasStrictFDerivAt
@@ -197,7 +196,7 @@ theorem exists_hasStrictFDerivAt_extChartAt_expMap_ball
       linarith [hv₀, mul_comm r T]
     exact max_lt hr hnorm
   -- strict derivative of the flow family at the (non-equilibrium) base point
-  obtain ⟨D, A₀, hA₀, hD, hstrict⟩ := hC1 (ι v₀) hx₀
+  obtain ⟨D, _, _, _, hstrict⟩ := hC1 (ι v₀) hx₀
   have heval : HasStrictFDerivAt (fun y => σ y tT)
       ((ContinuousMap.evalCLM ℝ tT).comp D) (ι v₀) :=
     (ContinuousMap.evalCLM ℝ tT).hasStrictFDerivAt.comp (ι v₀) hstrict
