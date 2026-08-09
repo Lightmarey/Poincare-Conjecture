@@ -79,7 +79,7 @@ theorem exists_ball_forall_chartMetricInner_lt (g : RiemannianMetric I M') (p : 
   -- `Ψ` is continuous on `S`
   have hΨcont : ContinuousOn Ψ S := by
     simp only [hΨdef, chartMetricInner_def]
-    refine continuousOn_finset_sum _ fun i _ => continuousOn_finset_sum _ fun j _ => ?_
+    refine continuousOn_finsetSum _ fun i _ => continuousOn_finsetSum _ fun j _ => ?_
     have hG : ContinuousOn (fun z : E × E => chartGramOnE (I := I) g p i j z.1) S :=
       (chartGramOnE_contDiffOn (I := I) g p i j).continuousOn.comp continuousOn_fst
         (fun z hz => hz.1)

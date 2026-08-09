@@ -314,7 +314,7 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
       have h1 : (u : (E × E) →L[ℝ] E × E) v = v - t v := by
         rw [hudef]
         show (((1 : (E × E) →L[ℝ] E × E) - t) : (E × E) →L[ℝ] E × E) v = v - t v
-        rw [ContinuousLinearMap.sub_apply, ContinuousLinearMap.one_apply]
+        rw [sub_apply, one_apply_eq_self]
       rw [h1, map_sub]
       have h2 : shear (t v) =
           ((shear : (E × E) →L[ℝ] E × E) - fderiv ℝ G x) v := by
@@ -323,7 +323,7 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
           (((shear : (E × E) →L[ℝ] E × E) - fderiv ℝ G x) v)) = _
         rw [ContinuousLinearEquiv.coe_coe]
         exact shear.apply_symm_apply _
-      rw [h2, ContinuousLinearMap.sub_apply]
+      rw [h2, sub_apply]
       have h3 : shear v = (shear : (E × E) →L[ℝ] E × E) v := rfl
       rw [h3]
       abel
