@@ -3,7 +3,6 @@ import DoCarmoLib.Riemannian.Exponential.C2LocalDiffeo
 import DoCarmoLib.Riemannian.Exponential.TotallyNormal
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: joint continuity of the second time-derivative in the base point

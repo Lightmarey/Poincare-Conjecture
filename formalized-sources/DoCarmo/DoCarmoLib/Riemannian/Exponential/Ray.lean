@@ -1,5 +1,4 @@
 import DoCarmoLib.Riemannian.Exponential.Defs
-import DoCarmoLib.Riemannian.Geodesic.Homogeneity
 import DoCarmoLib.Riemannian.Geodesic.InitialVelocity
 
 

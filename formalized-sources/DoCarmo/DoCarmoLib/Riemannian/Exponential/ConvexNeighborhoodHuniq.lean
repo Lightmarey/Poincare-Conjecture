@@ -5,7 +5,6 @@ import DoCarmoLib.Riemannian.Exponential.RayGeodesic
 import DoCarmoLib.Riemannian.Exponential.NormalBallEDist
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: discharging `Huniq` of do Carmo Proposition 4.2 (Ch. 3, §4)

@@ -2,7 +2,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhood42
 import DoCarmoLib.Riemannian.Exponential.NormalBallEDist
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods, Proposition 4.2 — the metric↔radial bridge (do Carmo Ch. 3, §4)

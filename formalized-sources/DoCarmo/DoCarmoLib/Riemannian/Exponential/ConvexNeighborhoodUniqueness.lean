@@ -1,7 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.MovingBaseProp36LowerBound
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: the base-uniform geodesic-uniqueness engine (do Carmo Ch. 3, §4)

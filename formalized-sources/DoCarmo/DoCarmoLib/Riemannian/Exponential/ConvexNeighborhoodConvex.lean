@@ -4,7 +4,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhood42
 import DoCarmoLib.Riemannian.Exponential.MinimizingGeodesic
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: minimizing geodesics with interior in the ball (do Carmo Ch. 3, §4)

@@ -2,7 +2,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodInterior
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodContinuity
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: discharging the interior-deduction admissibility (do Carmo Ch. 3, §4)

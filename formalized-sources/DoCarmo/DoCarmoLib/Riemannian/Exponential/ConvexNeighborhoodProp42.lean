@@ -2,7 +2,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodConvex
 import DoCarmoLib.Riemannian.Exponential.MovingBaseProp36LowerBound
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: discharging the base-uniform lower bound (do Carmo Ch. 3, §4)

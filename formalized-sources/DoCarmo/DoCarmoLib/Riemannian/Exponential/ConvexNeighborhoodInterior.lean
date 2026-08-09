@@ -5,7 +5,6 @@ import DoCarmoLib.Riemannian.Geodesic.HopfRinow.CurveReadback
 import DoCarmoLib.Riemannian.Geodesic.HopfRinow.GramBound
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: the interior-in-ball deduction (do Carmo Ch. 3, §4, Proposition 4.2)

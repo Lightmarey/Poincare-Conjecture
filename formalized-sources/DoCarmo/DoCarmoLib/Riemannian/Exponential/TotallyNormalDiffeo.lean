@@ -1,6 +1,5 @@
 import DoCarmoLib.Riemannian.Exponential.TotallyNormal
 import DoCarmoLib.Riemannian.Geodesic.FlowReadback
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
 
 set_option linter.unusedSectionVars false
 

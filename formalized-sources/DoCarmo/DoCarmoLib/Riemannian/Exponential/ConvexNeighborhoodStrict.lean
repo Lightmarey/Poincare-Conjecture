@@ -1,7 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodAssembly
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Strict form of `lem:dc-ch3-4-1` (do Carmo Ch. 3, §4)

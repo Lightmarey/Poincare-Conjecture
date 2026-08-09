@@ -1,5 +1,6 @@
 import DoCarmoLib.Riemannian.Geodesic.FlowC2Dependence
-import DoCarmoLib.Riemannian.Exponential.Ray
+import DoCarmoLib.Riemannian.Exponential.Defs
+import DoCarmoLib.Riemannian.Geodesic.Homogeneity
 
 set_option maxSynthPendingDepth 3
 

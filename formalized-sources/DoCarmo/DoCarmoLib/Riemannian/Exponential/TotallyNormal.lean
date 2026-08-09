@@ -266,7 +266,6 @@ theorem isGeodesicOn_uniform_flow_segment
   exact ⟨hγ0, hγcont.mono h01J, hgeo.mono h01J,
     fun s hs => ⟨hγsrc s (h01J hs), hread s (h01J hs)⟩, hvel, hacc⟩
 
-set_option maxHeartbeats 1000000 in
 /-- **Math.** **The pair map of the exponential is strictly differentiable at the
 zero section, with derivative the unipotent shear `(a, b) ↦ (a, a + b)`**
 (do Carmo Ch. 3, proof of Theorem 3.7: `dF_{(p,0)} = [[I, 0], [I, I]]`). Here
