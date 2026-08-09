@@ -42,12 +42,14 @@ namespace Riemannian
 real-analysis skeleton). A continuous function `h` on `[0, 1]` with `h 0 ≤ β`, `h 1 ≤ β` and **no
 interior local maximum** on `(0, 1)` stays *strictly* below `β` on the open interval: `h s < β` for
 every `s ∈ (0, 1)`. This is do Carmo's convex-neighborhood contradiction stripped of the geometry:
-with `h(s) = d(p, γ s)` the distance from `p` to a joining geodesic, the maximum of `h` over `[0, 1]`
+with `h(s) = d(p, γ s)` the distance from `p` to a joining geodesic, the maximum of `h` over
+`[0, 1]`
 is attained at an *interior* point unless it sits at an endpoint; an interior maximum is a local
 maximum, which `lem:dc-ch3-4-2-nomax` (through the bridge `F = d²`) forbids, so the maximum is at an
 endpoint and is `≤ β`, and no interior point can equal it. Proof: the max over the compact `[0, 1]`
 is attained at some `s₀`; if `s₀` were interior it would be a local maximum, contradiction, so
-`s₀ ∈ {0, 1}` and `h s₀ ≤ β`; if some interior `s` had `h s = β = h s₀` it would itself be an interior
+`s₀ ∈ {0, 1}` and `h s₀ ≤ β`; if some interior `s` had `h s = β = h s₀` it would itself be an
+interior
 maximizer, again a contradiction, so `h s < β`. -/
 theorem lt_of_forall_not_isLocalMax_of_le {h : ℝ → ℝ} {β : ℝ}
     (hcont : ContinuousOn h (Set.Icc 0 1)) (h0 : h 0 ≤ β) (h1 : h 1 ≤ β)
@@ -123,7 +125,9 @@ theorem sq_dist_eq_chartMetricInner_expMapInv (g : RiemannianMetric I M')
 geodesic ball.** With the `nomax` left-inverse clause `finv(φ_p(exp_p w)) = w` (`‖w‖ < εL`) and the
 Riemannian-distance hypothesis `hg`, there is a radius `δ' > 0` such that on the whole metric ball
 `Metric.ball p δ'` the chart radial functional is the squared distance:
-$$ (d(p, x))^2 = \big\langle \operatorname{finv}(\varphi_p(x)),\, \operatorname{finv}(\varphi_p(x))\big\rangle_p
+$$
+(d(p, x))^2 = \big\langle \operatorname{finv}(\varphi_p(x)),\,
+  \operatorname{finv}(\varphi_p(x))\big\rangle_p
     \qquad (d(p, x) < \delta'). $$
 This is the form do Carmo's convex-neighborhood contradiction consumes directly: on a small
 geodesic ball around `p`, a local maximum of `d(p, ·)` along a geodesic is a local maximum of the

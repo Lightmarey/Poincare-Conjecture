@@ -61,10 +61,12 @@ variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
 /-- **Math.** **A moving-base geodesic coincides with its flow reading on the overlap window**
 (do Carmo Ch. 3, Prop. 3.7 / definition of `exp`, base-uniform).  Let `Z` be the geodesic-spray flow
 of `exists_totallyNormal_c1_diffeo`.  A continuous intrinsic geodesic `γ` on an open window
-`(lo, hi) ∋ 0` whose foot `γ 0 = q₁` lies in the chart at `p` and whose chart-`p` coordinate velocity
-at `0` is `w` *coincides* with the flow-reading geodesic `s ↦ φ_p⁻¹((Z(φ_p q₁, T⁻¹ • w)(sT))₁)` on the
+`(lo, hi) ∋ 0` whose foot `γ 0 = q₁` lies in the chart at `p` and whose chart-`p` coordinate
+velocity at `0` is `w` *coincides* with the flow-reading geodesic
+`s ↦ φ_p⁻¹((Z(φ_p q₁, T⁻¹ • w)(sT))₁)` on the
 overlap window `(lo, hi) ∩ (-(εF/T), εF/T)`.  This is the intrinsic-uniqueness identification
-(`IsGeodesicOn.eqOn_of_deriv_chartReading_eq`) at the shared initial position and chart-`p` velocity,
+(`IsGeodesicOn.eqOn_of_deriv_chartReading_eq`) at the shared initial position and chart-`p`
+velocity,
 exposed as `EqOn` (rather than the single-point `γ 1 = …` of
 `movingBase_geodesic_endpoint_eq_flow_reading`) and requiring only `lo < 0 < hi`. -/
 theorem movingBase_geodesic_eqOn_flow_reading
@@ -120,8 +122,9 @@ common `q₂ ∈ closedBall p β`, with initial chart-`p` coordinate velocities 
 coincide on `[0,1]`.
 
 Proof: each `γᵢ` coincides with the flow-reading geodesic `gw_{wᵢ}` on a window containing `[0,1]`
-(`movingBase_geodesic_eqOn_flow_reading`), so `gw_{wᵢ}(1) = γᵢ 1 = q₂`.  The unique-velocity clause of
-the totally-normal `C¹` diffeomorphism (`exists_totallyNormal_c1_diffeo`) forces `w₁ = w₂` — this is
+(`movingBase_geodesic_eqOn_flow_reading`), so `gw_{wᵢ}(1) = γᵢ 1 = q₂`. The unique-velocity
+clause of the totally-normal `C¹` diffeomorphism (`exists_totallyNormal_c1_diffeo`) forces
+`w₁ = w₂` — this is
 do Carmo's injectivity of `exp_{q₁}` — hence `gw_{w₁} = gw_{w₂}` and `γ₁ = γ₂` on `[0,1]`. -/
 theorem exists_movingBase_geodesic_uniqueness (g : RiemannianMetric I M') (p : M') :
     ∃ β ρw : ℝ, 0 < β ∧ 0 < ρw ∧

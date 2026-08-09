@@ -186,9 +186,9 @@ that the **closed** geodesic ball `closedBall p β` is strongly convex
 (`def:dc-ch3-4-2-stronglyconvex`). This is the full Proposition 4.2 for the closed ball, assembled
 from the totally-normal joining geodesic and its metric payload; only `Hlb` and `Huniq` remain.
 
-The closed ball is used deliberately: the literal open-ball statement is unsatisfiable at a boundary
-diagonal `q₁ = q₂ ∈ ∂ B_β(p)`, where the constant minimizing geodesic's interior `{q₁}` is not in the
-*open* ball. -/
+The closed ball is used deliberately: the literal open-ball statement is unsatisfiable at a
+boundary diagonal `q₁ = q₂ ∈ ∂ B_β(p)`, where the constant minimizing geodesic's interior `{q₁}`
+is not in the *open* ball. -/
 theorem exists_stronglyConvex_closedBall_of_lower_bound
     (g : RiemannianMetric I M') (hg : g.IsRiemannianDist) (p : M')
     (Hlb : ∃ βH ρH : ℝ, 0 < βH ∧ 0 < ρH ∧ ∀ (q₁ q₂ : M') (γ : ℝ → M') (w : E)

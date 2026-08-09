@@ -190,8 +190,8 @@ Prop. 3.6 corollary, local form). If `γ` is a continuous geodesic on an open wi
 (`d(γ s, γ t) = |s-t| · d(q₁,q₂)`), then its constant chart speed at `0` is exactly the distance:
 `√⟨γ'(0), γ'(0)⟩_g = d(q₁, q₂)`.
 
-The `≥` half is the length bound `IsGeodesicOn.dist_le` (`d(q₁,q₂) ≤ √S`).  The `≤` half is the local
-minimizing property of geodesics: rescale the velocity by a small `κ` so the exponential ray
+The `≥` half is the length bound `IsGeodesicOn.dist_le` (`d(q₁,q₂) ≤ √S`). The `≤` half is the
+local minimizing property of geodesics: rescale the velocity by a small `κ` so the exponential ray
 `η(s) = exp_{q₁}(s·(κ w))` exists (`exists_isGeodesicOn_expMap_ray`); it is a geodesic through `q₁`
 with the same chart velocity as the rescaled curve `s ↦ γ(κ s)`, so the two coincide near `0`
 (intrinsic uniqueness); the radial isometry `exists_edist_expMap_ball` then reads
@@ -251,7 +251,9 @@ theorem sqrt_speedSq_eq_dist_of_minimizing
     have hκpos : 0 < κ := lt_min one_pos (by positivity)
     have hκ1 : κ ≤ 1 := min_le_left _ _
     set u : E := κ • wx with hu_def
-    have hupos : 0 < ‖u‖ := by rw [hu_def, norm_smul, Real.norm_eq_abs, abs_of_pos hκpos]; positivity
+    have hupos : 0 < ‖u‖ := by
+      rw [hu_def, norm_smul, Real.norm_eq_abs, abs_of_pos hκpos]
+      positivity
     have huρ : ‖u‖ < ρ := by
       rw [hu_def, norm_smul, Real.norm_eq_abs, abs_of_pos hκpos]
       have hκle : κ ≤ ρ / (2 * ‖wx‖) := min_le_right _ _
@@ -284,7 +286,11 @@ theorem sqrt_speedSq_eq_dist_of_minimizing
           _ = |t| := one_mul _
           _ < c := htabs
       have hb2 := abs_lt.mp habs
-      refine ⟨by simp only [add_zero]; linarith [hb2.1, hc_nlo], by simp only [add_zero]; linarith [hb2.2, hc_hi]⟩
+      constructor
+      · simp only [add_zero]
+        linarith [hb2.1, hc_nlo]
+      · simp only [add_zero]
+        linarith [hb2.2, hc_hi]
     have hWb : W ⊆ Ioo (-b) b :=
       Ioo_subset_Ioo (by linarith [hc_b]) (by linarith [hc_b])
     have hδgeoW : IsGeodesicOn (I := I) g δ W := hδgeoALL.mono hWpre

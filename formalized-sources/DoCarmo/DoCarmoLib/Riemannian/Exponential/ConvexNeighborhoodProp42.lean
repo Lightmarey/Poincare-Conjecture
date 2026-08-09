@@ -71,8 +71,9 @@ theorem exists_minimizing_interior_ball
 /-- **Math.** **Convex neighborhoods (do Carmo Proposition 4.2), reduced to uniqueness alone.**
 Given the *local uniqueness* `Huniq` of minimizing geodesics near `p` (any two constant-speed
 distance-realizing geodesics joining the same pair of points near `p` coincide on `[0,1]` — do
-Carmo's reading of the injectivity of `exp_{q₁}`), there is `β > 0` such that the **closed** geodesic
-ball `closedBall p β` is strongly convex (`def:dc-ch3-4-2-stronglyconvex`). The base-uniform lower
+Carmo's reading of the injectivity of `exp_{q₁}`), there is `β > 0` such that the **closed**
+geodesic ball `closedBall p β` is strongly convex (`def:dc-ch3-4-2-stronglyconvex`). The
+base-uniform lower
 bound `Hlb` is discharged internally by `exists_movingBase_prop36_lower_bound`, so `Huniq` is the
 sole remaining hypothesis. This is the full Proposition 4.2 for the closed ball. -/
 theorem exists_stronglyConvex_closedBall_of_uniq

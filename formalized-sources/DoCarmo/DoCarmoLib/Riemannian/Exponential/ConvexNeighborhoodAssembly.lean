@@ -52,7 +52,9 @@ values eventually in `S`, `x(0) = a ∈ S`, `x'(0) = w`, and second derivative
 `F(s) = ⟨finv(x s), finv(x s)⟩_p` in the fixed chart Gram form at `p` satisfies
 
 * `deriv F 0 = 2⟨Dfinv(a)(w), finv(a)⟩_p` (do Carmo's `∂F/∂t = 2⟨u', u⟩`, at `t = 0`), and
-* `deriv (deriv F) 0 = 2⟨D²finv(a)(w,w) + Dfinv(a)(xacc), finv(a)⟩_p + 2⟨Dfinv(a)(w), Dfinv(a)(w)⟩_p`
+* the second derivative is
+  `deriv (deriv F) 0 = 2⟨D²finv(a)(w,w) + Dfinv(a)(xacc), finv(a)⟩_p`
+  `+ 2⟨Dfinv(a)(w), Dfinv(a)(w)⟩_p`
   (do Carmo's `∂²F/∂t² = 2⟨u'', u⟩ + 2|u'|²`, at `t = 0`),
 
 by the second-order chain rule `u''(0) = D²finv(a)(w,w) + Dfinv(a)(x''(0))` for
@@ -95,7 +97,8 @@ theorem hasDerivAt_and_deriv_deriv_sqNormComp (g : RiemannianMetric I M) (p : M)
   have hu0 : u 0 = finv a := by simp only [hudef, hx0]
   have hu'0 : u' 0 = fderiv ℝ finv a w := by simp only [hu'def, hx0, hdx0]
   -- first conclusion: `deriv F 0`
-  have hF'0 : HasDerivAt F (2 * chartMetricInner (I := I) g p IP (fderiv ℝ finv a w) (finv a)) 0 := by
+  have hF'0 : HasDerivAt F
+      (2 * chartMetricInner (I := I) g p IP (fderiv ℝ finv a w) (finv a)) 0 := by
     have h := hF_ev.self_of_nhds
     rwa [hu'0, hu0] at h
   refine ⟨hF'0, ?_⟩

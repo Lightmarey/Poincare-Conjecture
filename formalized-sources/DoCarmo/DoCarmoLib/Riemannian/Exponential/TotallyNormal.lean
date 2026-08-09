@@ -191,7 +191,8 @@ theorem isGeodesicOn_uniform_flow_segment
     intro s hs
     have hcw : ContinuousWithinAt c J s := (hccont s hs).continuousWithinAt
     have hmap : MapsTo c J (extChartAt I p).target := fun σ hσ => hcmem σ hσ
-    exact ((continuousOn_extChartAt_symm p).comp (fun σ hσ => (hccont σ hσ).continuousWithinAt) hmap) s hs
+    exact ((continuousOn_extChartAt_symm p).comp
+      (fun σ hσ => (hccont σ hσ).continuousWithinAt) hmap) s hs
   -- the reading agrees with `c` near every point of the window
   have hread_ev : ∀ s ∈ J, chartReading (I := I) p γ =ᶠ[𝓝 s] c := by
     intro s hs

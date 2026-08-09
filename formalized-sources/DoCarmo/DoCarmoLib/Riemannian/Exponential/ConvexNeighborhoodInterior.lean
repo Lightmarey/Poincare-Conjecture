@@ -17,7 +17,8 @@ contradiction rests on:
   an admissible intrinsic geodesic `σ`;
 * `exists_ball_sq_dist_eq_chartMetricInner` (`lem:dc-ch3-4-2-bridge-ball`): on a small geodesic ball
   `Metric.ball p δ'` the radial functional equals the squared Riemannian distance, `F = d(p, ·)²`;
-* `lt_of_forall_not_isLocalMax_of_le` (`lem:dc-ch3-4-2-maxdeduction`): the real-analysis skeleton — a
+* `lt_of_forall_not_isLocalMax_of_le` (`lem:dc-ch3-4-2-maxdeduction`): the real-analysis
+  skeleton — a
   continuous `h` on `[0,1]` with `h 0 ≤ β`, `h 1 ≤ β` and no interior local maximum stays `< β` on
   `(0, 1)`.
 
@@ -53,7 +54,8 @@ continuous at `t`, with `γ t` in the source of the chart at `α` and coordinate
 (`HasDerivAt (φ_α ∘ γ) ξ t`), the intrinsic squared speed `⟨γ'(t), γ'(t)⟩_g` equals the chart-Gram
 value `⟨ξ, ξ⟩_{α, φ_α(γ t)}` read in the *fixed* chart at `α` (not the moving chart at `γ t`). This
 is the external-base companion of `speedSq_eq_chartMetricInner_of_hasDerivAt`: it lets the uniform
-coordinate-norm bound `exists_sq_norm_le_chartMetricInner` (whose neighborhood and constant are anchored
+coordinate-norm bound `exists_sq_norm_le_chartMetricInner`
+(whose neighborhood and constant are anchored
 at a *single* base point) control the chart velocity of a geodesic through the conserved speed.
 
 The proof is the general velocity readback `mfderiv_eq_of_hasDerivAt_extChartAt` (the intrinsic
@@ -95,19 +97,21 @@ theorem exists_sq_norm_deriv_le_speedSq (g : RiemannianMetric I M') (p : M') :
 
 /-- **Math.** **The interior of a joining geodesic stays strictly inside a geodesic ball** (do Carmo
 Ch. 3, §4, Proposition 4.2, the geometric core). There are the `C²` exponential-inverse package
-`(finv, V, r, ε, T)` of `lem:dc-ch3-4-2-nomax` and a bridge radius `δ' > 0` (`lem:dc-ch3-4-2-bridge-ball`)
+`(finv, V, r, ε, T)` of `lem:dc-ch3-4-2-nomax` and a bridge radius `δ' > 0`
+(`lem:dc-ch3-4-2-bridge-ball`)
 such that: for every continuous intrinsic geodesic `γ` on an open interval `(lo, hi) ⊋ [0, 1]` with
-endpoints within `β` of `p` (`β ≤ δ'`), staying inside the bridge ball `Metric.ball p δ'` over `[0, 1]`,
-and **admissible for `nomax` at every interior time** (base reads into `V`, nonzero chart velocity in
-the flow's ball of initial conditions), the whole open arc `γ '' (0, 1)` stays *strictly* inside the
+endpoints within `β` of `p` (`β ≤ δ'`), staying inside the bridge ball `Metric.ball p δ'` over
+`[0, 1]`, and **admissible for `nomax` at every interior time** (base reads into `V`, nonzero
+chart velocity in the flow's ball of initial conditions), the whole open arc `γ '' (0, 1)` stays
+*strictly* inside the
 geodesic ball: `d(p, γ t) < β` for all `t ∈ (0, 1)`.
 
 This is do Carmo's max-distance contradiction. The distance `h(t) = d(p, γ t)` is continuous on
 `[0, 1]` with `h 0, h 1 ≤ β`. If `h` had an interior local maximum at `t₀`, re-base
 `σ(s) = γ(t₀ + s)` (`isGeodesicOn_comp_affine`): the metric↔radial bridge `F = d²`
 (`exists_ball_sq_dist_eq_chartMetricInner`) turns the local maximum of `h` into a local maximum of
-the chart radial functional `F_σ` at `0`, which `nomax` forbids. So `h` has no interior local maximum,
-and `lt_of_forall_not_isLocalMax_of_le` gives `h < β` on `(0, 1)`. -/
+the chart radial functional `F_σ` at `0`, which `nomax` forbids. So `h` has no interior local
+maximum, and `lt_of_forall_not_isLocalMax_of_le` gives `h < β` on `(0, 1)`. -/
 theorem exists_forall_geodesic_dist_lt_of_admissible
     (g : RiemannianMetric I M') (hg : g.IsRiemannianDist) (p : M') :
     ∃ (finv : E → E) (V : Set E) (r ε T δ' : ℝ),

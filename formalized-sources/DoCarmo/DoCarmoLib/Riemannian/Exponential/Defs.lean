@@ -160,7 +160,8 @@ section ZeroVelocityPropagation
 variable [I.Boundaryless]
   [T2Space (TangentBundle I M)]
 
-omit [I.Boundaryless] [T2Space (TangentBundle I M)] [InnerProductSpace ℝ E] [NeZero (Module.finrank ℝ E)] in
+omit [I.Boundaryless] [T2Space (TangentBundle I M)] [InnerProductSpace ℝ E]
+    [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** The constant lift `fun _ : ℝ => ⟨p, 0⟩` is a global integral curve
 of `geodesicVectorFieldChart g p`, since the vector field vanishes at the
 zero section over the chart basepoint. -/
