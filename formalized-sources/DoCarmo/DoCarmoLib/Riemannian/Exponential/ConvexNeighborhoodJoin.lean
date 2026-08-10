@@ -2,7 +2,6 @@ import DoCarmoLib.Riemannian.Exponential.UniformSegmentLength
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodVelocity
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # The joining geodesic with metric payload (do Carmo Ch. 3, §4)

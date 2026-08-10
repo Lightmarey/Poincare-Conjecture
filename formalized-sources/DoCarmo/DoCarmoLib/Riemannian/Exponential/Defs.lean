@@ -98,7 +98,6 @@ omit [I.Boundaryless] [InnerProductSpace ℝ E] [NeZero (Module.finrank ℝ E)] 
 theorem maximalGeodesicWitness_zero_all_times
     (g : RiemannianMetric I M) (p : M) (t : ℝ) :
     MaximalGeodesicWitness (I := I) g p (0 : TangentSpace I p) t := by
-  classical
   refine ⟨fun _ : ℝ => p, Set.univ, isOpen_univ, isPreconnected_univ,
     Set.mem_univ _, Set.mem_univ _, ?_⟩
   refine ⟨fun _ : ℝ => (⟨p, (0 : E)⟩ : TangentBundle I M), ?_, rfl, ?_⟩
@@ -161,7 +160,8 @@ section ZeroVelocityPropagation
 variable [I.Boundaryless]
   [T2Space (TangentBundle I M)]
 
-omit [I.Boundaryless] [T2Space (TangentBundle I M)] [InnerProductSpace ℝ E] [NeZero (Module.finrank ℝ E)] in
+omit [I.Boundaryless] [T2Space (TangentBundle I M)] [InnerProductSpace ℝ E]
+    [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** The constant lift `fun _ : ℝ => ⟨p, 0⟩` is a global integral curve
 of `geodesicVectorFieldChart g p`, since the vector field vanishes at the
 zero section over the chart basepoint. -/
@@ -186,7 +186,6 @@ theorem isMIntegralCurveOn_zero_section_eq_const
     (hf : IsMIntegralCurveOn f (geodesicVectorFieldChart (I := I) g p) J)
     (hf0 : f 0 = (⟨p, (0 : E)⟩ : TangentBundle I M)) :
     ∀ t ∈ J, f t = (⟨p, (0 : E)⟩ : TangentBundle I M) := by
-  classical
   set c : ℝ → TangentBundle I M :=
     fun _ : ℝ => (⟨p, (0 : E)⟩ : TangentBundle I M) with hc_def
   have hc_int : IsMIntegralCurve c (geodesicVectorFieldChart (I := I) g p) :=

@@ -2,7 +2,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodInterior
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodContinuity
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: discharging the interior-deduction admissibility (do Carmo Ch. 3, §4)
@@ -16,8 +15,9 @@ ball of initial conditions) has its open arc *strictly* inside `Metric.ball p β
 This file discharges that admissibility from the two facts do Carmo's argument really uses,
 without any flow-continuity (tube) plumbing:
 
-* **base confinement.** A *minimizing* geodesic `γ` of length `≤ 2β` starting at `q₁ ∈ closedBall p β`
-  stays within `3β` of `p` by the triangle inequality (`dist p (γ t) ≤ dist p q₁ + dist q₁ (γ t)` and
+* **base confinement.** A *minimizing* geodesic `γ` of length `≤ 2β` starting at
+  `q₁ ∈ closedBall p β` stays within `3β` of `p` by the triangle inequality
+  (`dist p (γ t) ≤ dist p q₁ + dist q₁ (γ t)` and
   `dist q₁ (γ t) = t · dist q₁ q₂ ≤ 2β`). Making `β` small forces `γ` into every prescribed chart
   neighborhood of `p` and inside `Metric.ball p δ'`.
 * **velocity smallness.** The squared speed is *conserved* along a geodesic
@@ -31,7 +31,8 @@ The new ingredient is `exists_ball_forall_chartMetricInner_lt`: the chart-Gram q
 `(y, w) ↦ ⟨w, w⟩_y` is jointly continuous and vanishes at `(φ_p(p), 0)`, so it is uniformly small on
 a product ball around the center — the speed analogue of the joining-velocity smallness
 `exists_closedBall_forall_ginvSnd_norm_lt`. The `w₀ ≠ 0` clause uses the Gram *lower* bound
-`exists_sq_norm_le_chartMetricInner` (a nonzero initial velocity keeps the conserved speed positive),
+`exists_sq_norm_le_chartMetricInner`
+(a nonzero initial velocity keeps the conserved speed positive),
 not positive-definiteness at a moving base.
 
 Main result: `exists_forall_minimizing_geodesic_interior_ball` (do Carmo Ch. 3, §4, Proposition 4.2,
@@ -62,9 +63,9 @@ the chart-Gram value `⟨w, w⟩_{p, y}` is `< η`.
 
 This is the speed analogue of `exists_closedBall_forall_ginvSnd_norm_lt`: the functional
 `Ψ(y, w) = chartMetricInner g p y w w` is jointly continuous (finite sum of the continuous Gram
-components `chartGramOnE g p i j` composed with the base, times the continuous chart coordinates of
-`w`) and vanishes at `(φ_p(p), 0)` (both vector slots are `0`), so `{Ψ < η}` is a neighborhood of the
-center and contains a product ball. -/
+components `chartGramOnE g p i j` composed with the base, times the continuous chart coordinates
+of `w`) and vanishes at `(φ_p(p), 0)` (both vector slots are `0`), so `{Ψ < η}` is a
+neighborhood of the center and contains a product ball. -/
 theorem exists_ball_forall_chartMetricInner_lt (g : RiemannianMetric I M') (p : M') {η : ℝ}
     (hη : 0 < η) :
     ∃ ρ : ℝ, 0 < ρ ∧ ball (extChartAt I p p) ρ ⊆ (extChartAt I p).target ∧
@@ -79,7 +80,7 @@ theorem exists_ball_forall_chartMetricInner_lt (g : RiemannianMetric I M') (p : 
   -- `Ψ` is continuous on `S`
   have hΨcont : ContinuousOn Ψ S := by
     simp only [hΨdef, chartMetricInner_def]
-    refine continuousOn_finset_sum _ fun i _ => continuousOn_finset_sum _ fun j _ => ?_
+    refine continuousOn_finsetSum _ fun i _ => continuousOn_finsetSum _ fun j _ => ?_
     have hG : ContinuousOn (fun z : E × E => chartGramOnE (I := I) g p i j z.1) S :=
       (chartGramOnE_contDiffOn (I := I) g p i j).continuousOn.comp continuousOn_fst
         (fun z hz => hz.1)
@@ -115,13 +116,14 @@ theorem exists_ball_forall_chartMetricInner_lt (g : RiemannianMetric I M') (p : 
 Ch. 3, §4, Proposition 4.2, interior-arc-in-ball clause). For every `p` there are radii `β₀, ρ > 0`
 such that: any *minimizing* geodesic `γ` (`dist (γ s) (γ t) = |s - t| · dist q₁ q₂`) joining
 `q₁, q₂ ∈ closedBall p β` (with `β ≤ β₀`), extended as a continuous intrinsic geodesic on an open
-window `(lo, hi) ⊋ [0, 1]`, with nonzero small initial chart velocity `w` (`w ≠ 0`, `‖w‖ < ρ`) and a
-chart-velocity derivative at every interior time, has its open arc strictly inside `Metric.ball p β`:
+window `(lo, hi) ⊋ [0, 1]`, with nonzero small initial chart velocity `w`
+(`w ≠ 0`, `‖w‖ < ρ`) and a chart-velocity derivative at every interior time, has its open arc
+strictly inside `Metric.ball p β`:
 `dist p (γ t) < β` for all `t ∈ (0, 1)`.
 
-This discharges the admissibility of `exists_forall_geodesic_dist_lt_of_admissible`: base confinement
-`dist p (γ t) ≤ 3β` (triangle inequality on the minimizing length) puts the base into every prescribed
-chart neighborhood of `p` and inside `Metric.ball p δ'`; conserved speed
+This discharges the admissibility of `exists_forall_geodesic_dist_lt_of_admissible`:
+base confinement `dist p (γ t) ≤ 3β` (triangle inequality on the minimizing length) puts the base
+into every prescribed chart neighborhood of `p` and inside `Metric.ball p δ'`; conserved speed
 (`IsGeodesicOn.speedSq_eq`) plus the coordinate-velocity bound `exists_sq_norm_deriv_le_speedSq`
 and the chart-Gram smallness `exists_ball_forall_chartMetricInner_lt` bound the interior velocity
 `T⁻¹ • w₀` inside the flow's ball of initial conditions; and the Gram lower bound

@@ -1,6 +1,5 @@
 import DoCarmoLib.Riemannian.Exponential.TotallyNormal
 import DoCarmoLib.Riemannian.Geodesic.FlowReadback
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
 
 set_option linter.unusedSectionVars false
 
@@ -182,16 +181,15 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
           HasStrictFDerivAt
             (fun x' : E × E => ((x'.1 : E), (Z ((x'.1, T⁻¹ • x'.2) : E × E) T).1))
             (D' : (E × E) →L[ℝ] E × E) x) := by
-  classical
   obtain ⟨r, ε, T, Z, hr, hε, hT, hTε, hflow, hGC1, -⟩ :=
     exists_pairMap_contDiffOn (I := I) g p
   obtain ⟨ra, εa, Ta, Za, hra, hεa, hTa, hTaεa, hflowa, hzeroa, hstricta⟩ :=
     exists_pairMap_hasStrictFDerivAt (I := I) g p
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def
   set G : E × E → E × E :=
-    fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1) with hGdef
+    fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1)
   set Ga : E × E → E × E :=
-    fun x => ((x.1 : E), (Za ((x.1, Ta⁻¹ • x.2) : E × E) Ta).1) with hGadef
+    fun x => ((x.1 : E), (Za ((x.1, Ta⁻¹ • x.2) : E × E) Ta).1)
   -- the two pair maps agree near the zero section
   have hι : Continuous (fun x : E × E => ((x.1, T⁻¹ • x.2) : E × E)) :=
     continuous_fst.prodMk (continuous_snd.const_smul T⁻¹)
@@ -239,7 +237,6 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
     simpa using this
   -- the admissible set is open and contains the center
   set S : Set (E × E) := {x : E × E | ((x.1, T⁻¹ • x.2) : E × E) ∈ ball z₀ r}
-    with hSdef
   have hSopen : IsOpen S := isOpen_ball.preimage hι
   have hz₀S : z₀ ∈ S := by
     show ((z₀.1, T⁻¹ • z₀.2) : E × E) ∈ ball z₀ r
@@ -249,15 +246,7 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
   have hcontf : ContinuousOn (fderiv ℝ G) S :=
     hGC1.continuousOn_fderiv_of_isOpen hSopen le_rfl
   -- the shear as a continuous linear equivalence
-  set shear : (E × E) ≃L[ℝ] E × E := ContinuousLinearEquiv.equivOfInverse
-    ((ContinuousLinearMap.fst ℝ E E).prod
-      ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)))
-    ((ContinuousLinearMap.fst ℝ E E).prod
-      ((ContinuousLinearMap.snd ℝ E E) - (ContinuousLinearMap.fst ℝ E E)))
-    (fun x => by
-      simp [ContinuousLinearMap.prod_apply])
-    (fun x => by
-      simp [ContinuousLinearMap.prod_apply]) with hsheardef
+  let shear := unipotentShear (E := E)
   have hshear_coe : (shear : (E × E) →L[ℝ] E × E)
       = (ContinuousLinearMap.fst ℝ E E).prod
           ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)) :=
@@ -314,7 +303,7 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
       have h1 : (u : (E × E) →L[ℝ] E × E) v = v - t v := by
         rw [hudef]
         show (((1 : (E × E) →L[ℝ] E × E) - t) : (E × E) →L[ℝ] E × E) v = v - t v
-        rw [ContinuousLinearMap.sub_apply, ContinuousLinearMap.one_apply]
+        rw [sub_apply, one_apply_eq_self]
       rw [h1, map_sub]
       have h2 : shear (t v) =
           ((shear : (E × E) →L[ℝ] E × E) - fderiv ℝ G x) v := by
@@ -323,7 +312,7 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
           (((shear : (E × E) →L[ℝ] E × E) - fderiv ℝ G x) v)) = _
         rw [ContinuousLinearEquiv.coe_coe]
         exact shear.apply_symm_apply _
-      rw [h2, ContinuousLinearMap.sub_apply]
+      rw [h2, sub_apply]
       have h3 : shear v = (shear : (E × E) →L[ℝ] E × E) v := rfl
       rw [h3]
       abel
@@ -417,25 +406,16 @@ theorem exists_totallyNormal_c1_diffeo (g : RiemannianMetric I M) (p : M) :
           (∀ t ∈ Icc (-εF) εF, HasDerivWithinAt (Z z)
             (geodesicSprayCoord (I := I) g p (Z z t).1 (Z z t).2) (Icc (-εF) εF) t) ∧
           (∀ t ∈ Icc (-εF) εF, Z z t ∈ (extChartAt I p).target ×ˢ (univ : Set E)))) := by
-  classical
   obtain ⟨r, ε, T, ρN, Z, hr, hε, hT, hTε, hρN, hflow, hZT1, hρNsub, hGC1,
     hstrict, hinv⟩ :=
     exists_pairMap_hasStrictFDerivAt_equiv_ball (I := I) g p
   set y₀ : E := extChartAt I p p with hy₀def
   set x₀ : E × E := ((y₀, (0 : E)) : E × E) with hx₀def
   set G : E × E → E × E :=
-    fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1) with hGdef
+    fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1)
   have hTIcc : T ∈ Icc (-ε) ε := ⟨by linarith [hT, hε], hTε.le⟩
   -- the shear as a continuous linear equivalence
-  set shear : (E × E) ≃L[ℝ] E × E := ContinuousLinearEquiv.equivOfInverse
-    ((ContinuousLinearMap.fst ℝ E E).prod
-      ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)))
-    ((ContinuousLinearMap.fst ℝ E E).prod
-      ((ContinuousLinearMap.snd ℝ E E) - (ContinuousLinearMap.fst ℝ E E)))
-    (fun x => by
-      simp [ContinuousLinearMap.prod_apply])
-    (fun x => by
-      simp [ContinuousLinearMap.prod_apply]) with hsheardef
+  let shear := unipotentShear (E := E)
   have hshear_coe : (shear : (E × E) →L[ℝ] E × E)
       = (ContinuousLinearMap.fst ℝ E E).prod
           ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)) :=
@@ -445,14 +425,14 @@ theorem exists_totallyNormal_c1_diffeo (g : RiemannianMetric I M) (p : M) :
     rw [hshear_coe]
     exact hstrict
   -- the inverse function theorem: `G` is a homeomorphism near `x₀`
-  set ho := hstrict'.toOpenPartialHomeomorph G with hodef
+  set ho := hstrict'.toOpenPartialHomeomorph G
   have hsource : x₀ ∈ ho.source := hstrict'.mem_toOpenPartialHomeomorph_source
   have hcoe : ⇑ho = G := hstrict'.toOpenPartialHomeomorph_coe
   obtain ⟨ρ₂, hρ₂, hρ₂sub⟩ := Metric.isOpen_iff.mp ho.open_source x₀ hsource
   -- the product-ball domain: radii small enough for the IFT source, the
   -- Neumann ball and the flow
-  set δ₁ : ℝ := min (min ρ₂ ρN) r with hδ₁def
-  set δ : ℝ := min (min ρ₂ ρN) (T * r) with hδdef
+  set δ₁ : ℝ := min (min ρ₂ ρN) r
+  set δ : ℝ := min (min ρ₂ ρN) (T * r)
   have hδ₁pos : 0 < δ₁ := lt_min (lt_min hρ₂ hρN) hr
   have hδpos : 0 < δ := lt_min (lt_min hρ₂ hρN) (by positivity)
   set B : Set (E × E) := ball y₀ δ₁ ×ˢ ball (0 : E) δ with hBdef
@@ -518,11 +498,10 @@ theorem exists_totallyNormal_c1_diffeo (g : RiemannianMetric I M) (p : M) :
     rw [← hmapnhds]
     exact image_mem_map hB𝓝
   obtain ⟨η, hη, hηsub⟩ := Metric.mem_nhds_iff.mp hGB
-  set η' : ℝ := min η δ₁ with hη'def
+  set η' : ℝ := min η δ₁
   have hη'pos : 0 < η' := lt_min hη hδ₁pos
   -- the totally normal neighborhood
   set W : Set M := (chartAt H p).source ∩ extChartAt I p ⁻¹' ball y₀ η'
-    with hWdef
   have hWopen : IsOpen W := by
     have hcont : ContinuousOn (extChartAt I p) (chartAt H p).source := by
       have := continuousOn_extChartAt (I := I) p

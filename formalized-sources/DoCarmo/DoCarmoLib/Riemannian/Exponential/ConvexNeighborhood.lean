@@ -1,7 +1,6 @@
 import Mathlib.Analysis.Calculus.DerivativeTest
 import DoCarmoLib.Riemannian.Exponential.GaussLemma
 import DoCarmoLib.Riemannian.Exponential.LocalDiffeo
-import DoCarmoLib.Riemannian.Exponential.Ray
 
 set_option linter.unusedSectionVars false
 

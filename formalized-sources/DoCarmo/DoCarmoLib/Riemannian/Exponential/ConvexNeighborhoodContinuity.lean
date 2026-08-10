@@ -3,7 +3,6 @@ import DoCarmoLib.Riemannian.Exponential.C2LocalDiffeo
 import DoCarmoLib.Riemannian.Exponential.TotallyNormal
 
 set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
 
 /-!
 # Convex neighborhoods: joint continuity of the second time-derivative in the base point
@@ -65,7 +64,7 @@ coefficients). -/
 theorem continuous_chartMetricInner_pair (g : RiemannianMetric I M) (α : M) (y : E) :
     Continuous (fun z : E × E => chartMetricInner (I := I) g α y z.1 z.2) := by
   simp only [chartMetricInner_def]
-  refine continuous_finset_sum _ (fun i _ => continuous_finset_sum _ (fun j _ => ?_))
+  refine continuous_finsetSum _ (fun i _ => continuous_finsetSum _ (fun j _ => ?_))
   exact (continuous_const.mul
       ((Geodesic.continuous_chartCoord (E := E) i).comp continuous_fst)).mul
     ((Geodesic.continuous_chartCoord (E := E) j).comp continuous_snd)
@@ -121,7 +120,7 @@ theorem secondDerivChartForm_smul_velocity (g : RiemannianMetric I M) (p : M)
       = (c * c) * secondDerivChartForm (I := I) g p finv a w := by
   have hD2 : (fderiv ℝ (fderiv ℝ finv) a (c • w)) (c • w)
       = (c * c) • ((fderiv ℝ (fderiv ℝ finv) a w) w) := by
-    simp only [map_smul, ContinuousLinearMap.smul_apply, smul_smul]
+    simp only [map_smul, smul_apply, smul_smul]
   have hspray2 : (geodesicSprayCoord (I := I) g p a (c • w)).2
       = (c * c) • (geodesicSprayCoord (I := I) g p a w).2 := by
     rw [geodesicSprayCoord_smul_velocity]

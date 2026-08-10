@@ -1,5 +1,6 @@
 import DoCarmoLib.Riemannian.Geodesic.FlowC2Dependence
-import DoCarmoLib.Riemannian.Exponential.Ray
+import DoCarmoLib.Riemannian.Exponential.Defs
+import DoCarmoLib.Riemannian.Geodesic.Homogeneity
 
 set_option maxSynthPendingDepth 3
 
@@ -68,8 +69,7 @@ theorem exists_contDiffOn_two_extChartAt_expMap_ball
       ContDiffOn ℝ 2
         (fun w : E => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)))
         (ball (0 : E) ρ) := by
-  classical
-  obtain ⟨r, ε, T, Z, L, σ, τ, hT, hr, hε, hTε, hflow, hLip, hmax, hσ_ball,
+  obtain ⟨r, ε, T, Z, L, σ, τ, hT, hr, hε, hTε, hflow, _, _, hσ_ball,
     hC1τ, hC2τ⟩ :=
     exists_uniform_geodesic_flow_hasStrictFDerivAt_opFlow (I := I) g p
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def

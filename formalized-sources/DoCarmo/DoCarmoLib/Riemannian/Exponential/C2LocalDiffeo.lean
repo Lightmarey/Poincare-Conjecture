@@ -1,4 +1,3 @@
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.ContDiff
 import DoCarmoLib.Riemannian.Exponential.LocalDiffeo
 import DoCarmoLib.Riemannian.Exponential.C2Ball
 

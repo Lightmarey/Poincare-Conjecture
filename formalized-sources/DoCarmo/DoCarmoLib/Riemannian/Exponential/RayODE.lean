@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Geodesic.FlowC2Dependence
 import DoCarmoLib.Riemannian.Exponential.C2Ball
 
-set_option maxSynthPendingDepth 3
-
 /-!
 # The geodesic ODE along rays of the exponential chart reading
 
@@ -85,16 +83,14 @@ theorem exists_expMap_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
               (extChartAt I p
                 (expMap (I := I) g p ((t • u : E) : TangentSpace I p))))
           t) := by
-  classical
   obtain ⟨ρ₁, hρ₁, hdom₁, hsrc₁, hC2₁⟩ :=
     exists_contDiffOn_two_extChartAt_expMap_ball (I := I) g p
-  obtain ⟨r, ε, T, Z, L, σ, τ, hT, hr, hε, hTε, hflow, hLip, hmax, hσ_ball,
-    hC1τ, hC2τ⟩ :=
+  obtain ⟨r, ε, T, Z, _, _, _, hT, hr, hε, hTε, hflow, _, _, _, _, _⟩ :=
     exists_uniform_geodesic_flow_hasStrictFDerivAt_opFlow (I := I) g p
   set f : E → E :=
-    fun w : E => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)) with hfdef
+    fun w : E => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p))
   set z₀ : E × E := ((extChartAt I p p, (0 : E)) : E × E) with hz₀def
-  set ρ : ℝ := min ρ₁ (r * T) with hρdef
+  set ρ : ℝ := min ρ₁ (r * T)
   set b : ℝ := ε / T with hbdef
   have hρpos : 0 < ρ := lt_min hρ₁ (by positivity)
   have hb1 : 1 < b := (one_lt_div hT).mpr hTε

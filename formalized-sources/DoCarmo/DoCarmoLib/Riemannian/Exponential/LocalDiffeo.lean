@@ -72,11 +72,10 @@ theorem exists_hasStrictFDerivAt_equiv_extChartAt_expMap_ball
           HasStrictFDerivAt
             (fun w : E => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)))
             (D' : E →L[ℝ] E) v₀) := by
-  classical
   obtain ⟨ρ₀, hρ₀, hdom, hsrc, hstrict⟩ :=
     exists_hasStrictFDerivAt_extChartAt_expMap_ball (I := I) g p
   set f : E → E :=
-    fun w => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)) with hfdef
+    fun w => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p))
   -- every point of the ball carries `fderiv f` as a strict derivative
   have hstrict' : ∀ v₀ ∈ ball (0 : E) ρ₀,
       HasStrictFDerivAt f (fderiv ℝ f v₀) v₀ := by
@@ -154,18 +153,17 @@ theorem exists_c1_local_diffeomorphism_expMap
         ContDiffOn ℝ 1 finv
           ((fun w : E => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)))
             '' ball (0 : E) ε) := by
-  classical
   obtain ⟨ρ₁, hρ₁, hdom₁, hsrc₁, hinv⟩ :=
     exists_hasStrictFDerivAt_equiv_extChartAt_expMap_ball (I := I) g p
-  obtain ⟨ρ₂, hρ₂, hinj, hdom₂⟩ := exists_injOn_expMap (I := I) g p
+  obtain ⟨ρ₂, hρ₂, hinj, _⟩ := exists_injOn_expMap (I := I) g p
   obtain ⟨ρ₃, hρ₃, hdom₃, hsrc₃, hcd⟩ :=
     exists_contDiffOn_extChartAt_expMap_ball (I := I) g p
   set f : E → E :=
-    fun w => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p)) with hfdef
+    fun w => extChartAt I p (expMap (I := I) g p (w : TangentSpace I p))
   -- the `C¹` inverse function theorem at the origin, where the derivative is `id`
   have hC1at : ContDiffAt ℝ 1 f 0 :=
     hcd.contDiffAt (isOpen_ball.mem_nhds (mem_ball_self hρ₃))
-  obtain ⟨ρ₄, hρ₄, -, -, hstrict0⟩ :=
+  obtain ⟨_, _, _, _, hstrict0⟩ :=
     exists_hasStrictFDerivAt_extChartAt_expMap (I := I) g p
   have hf'0 : HasFDerivAt f
       (((ContinuousLinearEquiv.refl ℝ E : E ≃L[ℝ] E)) : E →L[ℝ] E) 0 := by

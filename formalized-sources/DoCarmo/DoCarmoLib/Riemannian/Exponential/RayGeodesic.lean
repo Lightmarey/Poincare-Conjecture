@@ -71,7 +71,6 @@ theorem exists_isGeodesicOn_expMap_ray (g : RiemannianMetric I M) (p : M) :
         IsGeodesicOn (I := I) g
           (fun t : ℝ => expMap (I := I) g p ((t • u : E) : TangentSpace I p))
           (Ioo (-b) b) := by
-  classical
   obtain ⟨ρ₀, b, hρ₀, hb, hadm, hC2, hDf0, hode⟩ :=
     exists_expMap_ray_ode_ball (I := I) g p
   have hb0 : (0 : ℝ) < b := lt_trans one_pos hb
