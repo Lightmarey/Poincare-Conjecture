@@ -1,27 +1,26 @@
-\chapter{4. Volume, injectivity radius and injectivity angle}
+\chapter{Volume, injectivity radius and injectivity angle}
 \source{cheeger-gromov-taylor:page-0028,cheeger-gromov-taylor:page-0029,cheeger-gromov-taylor:page-0030,cheeger-gromov-taylor:page-0031,cheeger-gromov-taylor:page-0032,cheeger-gromov-taylor:page-0033,cheeger-gromov-taylor:page-0034,cheeger-gromov-taylor:page-0035,cheeger-gromov-taylor:page-0036,cheeger-gromov-taylor:page-0037,cheeger-gromov-taylor:page-0038,cheeger-gromov-taylor:page-0039,cheeger-gromov-taylor:page-0040}
 
-In this section we prove the geometric estimates used in the previous sections.
-
-We begin by discussing the volume. Let $x\in M^n$, and $A(r,\theta)$,
+Let $x\in M^n$, and let $A(r,\theta)$,
 $\mathcal{Q}^H(r)$, $V_r^H$ be as defined after (1.7) and in (1.16), (1.17).
 Suppose $\Ric_M\geq (n-1)H$ and regard $A(r,\theta)$ as a function on the tangent
 space $T_xM$. If $H>0$, we restrict attention to $B_{\pi/\sqrt{H}}(0)\subset T_xM$.
 Let $U\subset T_xM$ denote the interior of the cut locus in the tangent space.
-The proof of the standard volume comparison (see [3, pp.\ 253--257]) shows that
+The standard volume comparison theorem (see
+\cite[pp.~253--257]{cgt-bishop-crittenden}) shows that
 on $U$,
 \begin{equation}
 \tag{4.1}
 \frac{A(r,\theta)}{\mathcal{Q}^H(r)}\downarrow,
 \end{equation}
-where $\downarrow$ indicates a decreasing function. If $S_r(0)\subset T_xM$ denotes
-the sphere of radius $r$ about the origin, (4.1) implies
+where $\downarrow$ denotes decrease. If $S_r(0)\subset T_xM$ denotes the sphere
+of radius $r$ about the origin, (4.1) implies
 \begin{equation}
 \tag{4.2}
 \frac{\int_{S_r(0)\cap U} A(r,\theta)}{\int_{S_r(0)} \mathcal{Q}^H(r)}\downarrow;
 \end{equation}
-the possible existence of the cut points only helps matters. In general, if
-$f(r)$, $g(r)$ are positive functions such that $\frac{f}{g}\downarrow$, then it follows that
+Cut points can only decrease the numerator. More generally, for positive $f,g$ with
+$f/g\downarrow$,
 \begin{equation}
 \tag{4.3}
 \frac{\int_0^r f(s)}{\int_0^r g(s)}\downarrow.
@@ -43,8 +42,7 @@ Thus, equivalently,
 \geq \int_0^r f \int_0^r g + \int_0^r g \int_r^R f
 = \int_0^r g \int_0^R f,
 \end{equation}
-which gives (4.3). From (4.2) and (4.3) we obtain the following relative volume
-estimates which were emphasized in [21], [23].
+which gives (4.3). Applying (4.2) and (4.3) yields the following estimates.
 
 \begin{proposition}[Relative volume estimates]
 \label{prop:relative-volume-estimates}
@@ -77,6 +75,7 @@ V_{r_2}(p)\frac{V_r^H}{V_{\rho+r_2}^H-V_{\rho-r_2}^H}\le V_r(x).
 
 \begin{proof}
 \source{cheeger-gromov-taylor:page-0029}
+\sketch
 (i) and (ii). Let
 \begin{equation}
 \tag{4.10}
@@ -97,22 +96,11 @@ V_{r_2}(p)\le V_{\rho+r_2}(x)-V_{\rho-r_2}(x)\le \left(V_{\rho+r_2}^H-V_{\rho-r_
 \end{equation}
 \end{proof}
 
-Relative volume estimates are implicit in the proof of the more familiar volume
-comparison $V_r(p)\le V_r^H$, and have, in fact, been used previously (compare
-e.g.\ [5]). However, recent applications in [22], [23] indicate that their
-significance was not fully appreciated.
-
-Note that it follows immediately from Proposition 4.1(iv) that if
-$\Ric_M\ge 0$, $d>2r$, then
+If $\Ric_M\ge 0$ and $d>2r$, Proposition~\ref{prop:relative-volume-estimates}(iv) gives
 \begin{equation}
 \tag{4.13}
 \frac{(d-2r)^n}{d^n-(d-2r)^n}V_r(p)\le V_d(p).
 \end{equation}
-
-Thus we recover the result of Calabi and Yau [35] that $V_d(p)$ grows linearly
-as $d\to\infty$. At the end of this section we will give a sharp generalization
-of (4.13) to manifolds whose Ricci curvature decays no slower than
-$c/[\rho(p,x)^2]$ outside some $B_{r_0}(p)$.
 
 \begin{remark}[Relative volume comparison for geodesically star-shaped sets]
 \label{rem:relative-volume-star-shaped}
@@ -120,11 +108,9 @@ $c/[\rho(p,x)^2]$ outside some $B_{r_0}(p)$.
 \dcref{Remark 4.1}
 \group{section-4}
 
-Let $S\subset M^n$ be any set with the property that if
-$q\in S$ is not on the cut locus of $p$, then the unique minimal geodesic from $p$
-to $q$ is contained in $S$. Clearly, Proposition 4.1(i) and (ii) continue to
-hold with $V_r(p)$ replaced by $V(S\cap B_r(p))$, as do the corresponding
-generalizations of (iii) and (iv).
+Suppose $S\subset M^n$ contains the unique minimizing geodesic from $p$ to
+each $q\in S$ outside the cut locus of $p$. Proposition~\ref{prop:relative-volume-estimates} remains valid with
+$V_r(p)$ replaced by $V(S\cap B_r(p))$.
 \end{remark}
 
 \begin{remark}[Ricci models]
@@ -133,19 +119,16 @@ generalizations of (iii) and (iv).
 \dcref{Remark 4.2}
 \group{section-4}
 
-Let $M^n$ be a Ricci model in the sense of [9]. Thus $M^n$ is a metric ball
-(possibly of infinite radius), with metric $dr^2+f^2(r)g$, where $f(r)\sim
-r-Kr^3/6+\cdots$ for some $K$. If at distance $r$ from $p$, then we have
+For a Ricci model with metric $dr^2+f^2(r)g$, where
+$f(r)\sim r-Kr^3/6+\cdots$, one has
 \[
-\Ric_{M^n}\ge -(n-1)f''(r)/f(r),
+\Ric_{M^n}\geq -(n-1)f''(r)/f(r).
 \]
-Remark 4.1 still applies with $V_r^H$ replaced by $f^{n-1}(r)$.
+Remark~\ref{rem:relative-volume-star-shaped} then holds with $V_r^H$ replaced by $f^{n-1}(r)$.
 \end{remark}
 
-Remarks 4.1 and 4.2 will be used without further comment below.
-We now consider the refined injectivity angle $\wtomega(H,\epsilon,r,x)$
-introduced in \S2 just before Proposition 2.3. We retain the assumptions of
-Proposition 4.1.
+We next consider the refined injectivity angle $\wtomega(H,\epsilon,r,x)$
+under the assumptions of Proposition~\ref{prop:relative-volume-estimates}.
 
 \begin{proposition}[Lower estimates for the refined injectivity angle]
 \label{prop:refined-injectivity-angle-lower-estimates}
@@ -181,6 +164,7 @@ where the right-hand side is $>0$, if $\epsilon,r$ are sufficiently small.
 
 \begin{proof}
 \source{cheeger-gromov-taylor:page-0030,cheeger-gromov-taylor:page-0031}
+\sketch
 \textup{(i)} Since $V_r(x)\le V_r^H$ and $B_{r_2}(p)\subset B_{\rho+r_2}(x)$, we have
 \begin{equation}\tag{4.17}
 V_{r_2}(p)-V_r^H\le V_{\rho+r_2}(x)-V_r(x).
@@ -201,47 +185,22 @@ V_{r_2}(p) \leq V_{\rho+r_2}(x) - V_{\rho-r_2}(x).
 \textup{(iii)} and (iv) follow immediately from (i) and (ii).
 \end{proof}
 
-We now discuss the injectivity radius. Let $M^n$ be a complete Riemannian
-manifold and $p \in M^n$. Let $\gamma$ be a geodesic loop on $p$ of shortest
-length $L[\gamma] = 2l$. Let $K_M \leq K$ on $B_l(p)$. Then by a result of
-Klingenberg (see e.g.\ [7]), the injectivity radius of the exponential map at $p$
-is bounded below by $\min(l, \pi/\sqrt{K})$; if $K \leq 0$, we interpret
-$\pi/\sqrt{K}$ as $\infty$.
+For a shortest geodesic loop $\gamma$ at $p$ with $L[\gamma]=2l$ and
+$K_M\leq K$ on $B_l(p)$, Klingenberg's estimate gives
+$i(p)\geq\min(l,\pi/\sqrt K)$, with the second term interpreted as $\infty$
+when $K\leq0$ \cite{cgt-cheeger-ebin}.
 
-In [6] it was shown that there exists a constant $c_n(d, V, H) > 0$ with the
-following properties. Let $M^n$ be \textit{compact}. Suppose the diameter
-$d(M^n)$ and the volume $V(M^n)$ satisfy $d(M^n) \leq d$, $V(M^n) \geq V$, and
-that $K_M \geq H$. Then every \textit{smooth} closed geodesic on $M^n$ has length
-$\geq c_n(d, V, H)$. For compact mani- folds Klingenberg showed in addition that
-the injectivity radius at all points is bounded below by the minimum of
-$\pi/\sqrt{K}$ (where $K_M \leq K$) and one half the length of a \textit{smooth}
-closed geodesic. Thus it follows that for all $p \in M^n$,
+For a compact manifold with $d(M^n)\leq d$, $V(M^n)\geq V$, and
+$K_M\geq H$, the finiteness theorem \cite{cgt-cheeger-finiteness} gives a
+constant $c_n(d,V,H)>0$ and
 \begin{equation}
 \tag{4.20}
-i(p) \geq \min\left(\frac{1}{2} c_n(d, V, H), \pi/\sqrt{K}\right).
+i(p)\geq \min\left(\frac12c_n(d,V,H),\pi/\sqrt K\right).
 \end{equation}
 
-The method of [6] depends on Toponogov's theorem. It leads to a sharp constant
-in certain situations, and no part of the hypothesis can be removed unless
-something further is added; see e.g.\ [7] for further results of various
-authors in more special situations. However, in [24] Heintze and Karcher gave
-a new derivation. Their method was to estimate the volume of a tube around a
-smooth closed geodesic. This led to a better constant in most cases and did not
-require the use of Toponogov's Theorem. Whether the lower bound
-$K_M \geq H$ can be replaced by $\Ric_M \geq (n-1)H$ in the above estimates,
-is still an open question.
-
-As mentioned in the introduction, in [10] a relative bound on the behavior of
-the injectivity radius $i(x)$ was derived, which did not require the global
-hypothesis of compactness. In particular, the authors worked with geodesic
-loops which were not necessarily smooth, but they assumed a lower bound on
-$i(p)$ for some $p$. The estimate which we now give replaces this assumption by
-a lower bound on the volume $V_r(p)$ for some $r$, $p$. Thus we get a purely
-local generalization of the results of [6], [24], in so far as they pertain to
-the injectivity radius. However, the method by its very nature depends on
-knowing a lower bound for the distance to the conjugate locus. Without this
-assumption, no information on the length of a closed geodesic $\gamma$ is
-obtained, even if $\gamma$ is smooth.
+The local result below replaces this global compactness hypothesis by a lower
+bound for the volume of one ball, while retaining a lower bound for the
+distance to the conjugate locus.
 
 To emphasize the local nature of our result, we now let $B_r(p)$ be a metric
 ball in a Riemannian manifold such that for $r' < r$, $\overline{B_{r'}(p)}$ is
@@ -266,31 +225,22 @@ l \ge \frac{r_0}{2}\,\frac{1}{1+V^H_{r_0+s}(p)/V_s(p)}.
 \end{equation}
 \end{theorem}
 
-To prepare for the proof of Theorem 4.3, we begin with some elementary
-observations.
+\begin{proof}
+\source{cheeger-gromov-taylor:page-0033}
+\sketch For a loop with $L(\gamma)=2l<r_0$, set
+$N=\lfloor r_0/(2l)\rfloor$. Lemmas~\ref{lem:radial-class-concatenation},
+\ref{lem:even-covering}, and \ref{lem:iterated-geodesic-loops} give at least $N$ inverse images
+of each point of $B_s(p)$ in $B_{r_0+s}(0)$. Since $\exp_p$ is nonsingular and
+orientation preserving, $N V_s(p)\leq V^0_{r_0+s}(p)$; rearranging and using
+volume comparison yields (4.21) and (4.22).
+\end{proof}
 
-\begin{enumerate}
-\item[(i)] By the Gauss Lemma, every curve $c$ of length $L[c] < r$ with
-$c(0)=p$ has a unique lift to a curve $\tilde c \subset B_r(0) \subset T_pM$ with
-$\tilde c(0)=0$. In particular, a geodesic segment $\gamma$ of length $< r$ with
-$\gamma(0)=p$ has a unique radial lift. Thus points of $B_r(0)$ can be
-identified uniquely with such $\gamma$. With this identification, the projection
-$\exp_p : B_r(0) \to B_r(p)$ is given by $\gamma \mapsto e(\gamma)$, where
-$e(\gamma)$ denotes the endpoint of $\gamma$.
-
-\item[(ii)] Let $c_1,c_2$ be piecewise smooth curves, and write $c_1 \sim_A c_2$
-if $c_1$ and $c_2$ are homotopic over curves of length $\le A$ keeping endpoints
-fixed. If $L[c]=l<r$, clearly $\tilde c \sim_l \tilde\gamma$ with $\tilde\gamma$
-the unique radial geodesic such that $e(\tilde c)=e(\tilde\gamma)$. Hence
-$c \sim_l \gamma$.
-
-\item[(iii)] Since $\exp_p \vert_{B_r(0)}$ is nonsingular, if $\gamma_1,\gamma_2$
-are distinct radial geodesics with $L[\gamma_i]<r$, then by a standard argument
-on lifting homotopies, $\gamma_1,\gamma_2$ do not satisfy $\gamma_1 \sim_r
-\gamma_2$. In particular, the geodesic segment $\gamma$ in (ii) is the unique
-geodesic segment with $c \sim \gamma$. We write $[c]$ for $\gamma$, and
-$[p]$ for the constant loop on $p$.
-\end{enumerate}
+For $r$ below the conjugate radius, the Gauss lemma identifies $B_r(0)\subset
+T_pM$ with radial geodesics from $p$. Write $c_1\sim_Ac_2$ when the curves
+are homotopic relative endpoints through curves of length at most $A$; the
+radial lift of a curve of length $<r$ is unique. Since $\exp_p$ is nonsingular
+on $B_r(0)$, distinct radial geodesics represent distinct such classes. Write
+$[c]$ for the radial representative and $[p]$ for the constant loop.
 
 Let $\theta_1,\theta_2$ be closed curves on $p$, and let $c$ be an arc from $p$
 with $L[\theta_i]\le 2l$, $L[c]=s$ and $2(l+s)<r$. Let $\theta_i \cup c$ denote
@@ -307,13 +257,14 @@ If $2(l+s)<r$ and $[\theta_1\cup c]=[\theta_2\cup c]$, then $[\theta_1]=[\theta_
 
 \begin{proof}
 \source{cheeger-gromov-taylor:page-0032}
+\sketch
 If $[\theta_1\cup c]=[\theta_2\cup c]$, then $\theta_1\cup c \sim_{2(l+s)}
 \theta_2\cup c$. Thus
 \[
 \theta_1 \sim_{2(l+s)} \theta_1\cup c\cup -c \sim_{2(l+s)}
 \theta_2\cup c\cup -c \sim_{2(l+s)} \theta_2.
 \]
-By (iii) above $[\theta_1]=[\theta_2]$.
+By uniqueness of radial representatives, $[\theta_1]=[\theta_2]$.
 \end{proof}
 
 Let $\#(q,a)$ denote the number of distinct inverse images of $q \in B_r(p)$ in
@@ -333,9 +284,10 @@ If $r_0 + 2s < r/4$ and $q \in B_s(p)$, then
 
 \begin{proof}
 \source{cheeger-gromov-taylor:page-0033}
-By (i) above, $\#(p,r_0)=m$, where $\gamma_1 \cdots \gamma_m$ are the distinct
+\sketch
+By radial lifting, $\#(p,r_0)=m$, where $\gamma_1 \cdots \gamma_m$ are the distinct
 geodesic loops on $p$ of length $< r_0$. Let $\sigma$ be a minimal geodesic from
-$p$ to $q$. By Lemma 4.4, $[\gamma_i \cup \sigma]$, $i=1,\cdots,m$, represent
+$p$ to $q$. By Lemma~\ref{lem:radial-class-concatenation}, $[\gamma_i \cup \sigma]$, $i=1,\cdots,m$, represent
 distinct inverse images of $q$ in $B_{r_0+s}(p)$.
 \end{proof}
 
@@ -345,7 +297,7 @@ $\sigma \mapsto [\theta \cup \sigma]$ defines a map $\pi_{[\theta]}: B_s(0) \to
 B_{2l+s}(0)$ which clearly depends only on $[\theta]$. It is also obvious that
 $\exp_p \pi_{[\theta]}(x)=\exp_p x$ for $x \in B_s(0)$. Hence $\pi_{[\theta]}$ is
 an isometry from $B_s(0)$ to $\pi_{[\theta]}(B_s(0))$ with respect to the pulled
-back metric on $B_{2l+s}(0)$. It follows immediately from Lemma 4.4 that
+back metric on $B_{2l+s}(0)$. It follows immediately from Lemma~\ref{lem:radial-class-concatenation} that
 $\pi_{[\theta]}$ has no fixed points unless $[\theta]=p$.
 
 Set $i\gamma=\gamma\cup \cdots \cup \gamma$ and $L(\gamma)=2l$.
@@ -362,9 +314,10 @@ $[\gamma], [2\gamma], \cdots, [N\gamma]$ are all distinct.
 
 \begin{proof}
 \source{cheeger-gromov-taylor:page-0033}
+\sketch
 Since $(i+j)\gamma=i\gamma \cup j\gamma$, if
 $[(i+j)\gamma]=[i\gamma \cup j\gamma]=[j\gamma]=[j\gamma \cup p]$, then
-$[i\gamma]=p$ by Lemma 4.1. Regard $[p],[\gamma],\cdots,[(i-1)\gamma]$ as points
+$[i\gamma]=p$ by Lemma~\ref{lem:radial-class-concatenation}. Regard $[p],[\gamma],\cdots,[(i-1)\gamma]$ as points
 in the strictly convex ball $B_{2il}(0)$. Then $\pi_{[\gamma]}: B_{2il}(0) \to
 B_{2(i+1)l}(0)$ preserving distance. Hence $\pi_{[\gamma]}$ preserves the unique
 center of gravity of the set $\{[p],[\gamma],\cdots,[(i-1)\gamma]\}$. By
@@ -374,18 +327,7 @@ $y \mapsto \sum_j \rho^2([j\gamma],y)$. It exists because $2il < \frac12
 $\pi_\gamma$ has no fixed points.
 \end{proof}
 
-\begin{proof}[Proof of Theorem 4.3.]
-\source{cheeger-gromov-taylor:page-0033}
-Consider a geodesic loop $\gamma$ with
-$L(\gamma)=2l<r_0$. Let $N=\lfloor r_0/2l \rfloor$. By Lemma 4.6, $p$ has at
-least $N$ inverse images in $B_{r_0}(0)$. By Lemma 4.5, every point in
-$B_s(p)$ has at least $N$ inverse images in $B_{r_0+s}(0)$. Since $\exp_p$ is
-nonsingular and orientation preserving, $N \cdot V_s(p) \le V^0_{r_0+s}(p)$.
-Hence $1/\lfloor r_0/2l \rfloor \le V(B_s(p))/V(B_{r_0+s}(0))$, and (4.20)
-follows. Then (4.21) follows from the standard volume comparison.
-\end{proof}
-
-If we combine Theorem 4.3 with Proposition 4.1, we immediately obtain the
+If we combine Theorem~\ref{thm:local-injectivity-radius-bound} with Proposition~\ref{prop:relative-volume-estimates}, we immediately obtain the
 following lower bound for the injectivity radius.
 
 \begin{theorem}[Injectivity radius from relative volume]
@@ -422,8 +364,8 @@ set \(r=\rho(p,x)\). We assume that for some \(r_0>0\) and all \(r\ge r_0\),
 \operatorname{Ric}_M(x)\ge (n-1)\frac{\frac14\pm v^2}{r^2}.
 \end{equation}
 
-(For Theorem 4.8 and Theorem 4.9(iii) it suffices to assume that (4.25) holds
-only for radial directions from \(p\); however for Theorem 4.9(i) and (ii) this
+(For Theorem~\ref{thm:asymptotic-ricci-compactness} and Theorem~\ref{thm:asymptotic-ricci-volume-growth}(iii) it suffices to assume that (4.25) holds
+only for radial directions from \(p\); however for Theorem~\ref{thm:asymptotic-ricci-volume-growth}(i) and (ii) this
 does not suffice.) By convention we take $v\ge 0$. Observe that the Jacobi
 equation
 \begin{equation}\tag{4.26}
@@ -471,34 +413,14 @@ d_p<e^{\pi/v}r_0.
 \end{equation}
 \end{theorem}
 
-\begin{proof}[Proof of Theorem 4.8.]
+\begin{proof}
 \source{cheeger-gromov-taylor:page-0035}
+\sketch
 We use the field $\mathcal{F}_{\gamma|_{[0,e^{\nu}/r_0]}},$ and argue by index
 comparison as in the standard proof of Myers' theorem. If
 $\gamma|_{[0,e^{\nu}/r_0]}$ is minimal, (4.31) and (4.32) lead to the conclusion
 that $\gamma|_{[r_0,e^{\nu}/r_0]}$ contains a pair of conjugate points.
 \end{proof}
-
-\begin{remark}[The borderline case in the compactness theorem]
-\label{rem:borderline-asymptotic-ricci-compactness}
-\source{cheeger-gromov-taylor:page-0035}
-\dcref{Remark 4.3}
-\group{section-4}
-
-By considering a metric on $\R^n$ which is of the form
-\begin{equation}
-dr^2 + g(\theta)
-\tag{4.34}
-\end{equation}
-outside some compact set, where $g(\theta)$ is the standard metric on $S^{n-1}$,
-we see that $M^n$ need not be compact if $\nu = 0$. However, further refinements
-are possible. For example, a similar argument shows that if
-\begin{equation}
-\Ric_M(x) \ge (n-1)\left\{\frac{1/4}{r^2} + \frac{1/4 + \nu^2}{r^2\log r}\right\},
-\tag{4.35}
-\end{equation}
-then $M^n$ is compact; see also [14] for a sharp result of this type.
-\end{remark}
 
 We now consider the case $(\frac14-\nu^2)/r^2$. Observe that for $\nu>0$, the
 conditions
@@ -567,73 +489,15 @@ V_r(p) < c_M r^{(n-1)(\frac12+\nu)+1}.
 \begin{proof}
 \source{cheeger-gromov-taylor:page-0036,cheeger-gromov-taylor:page-0037}
 \uses{prop:relative-volume-estimates}
-(i) We first consider the case $\nu \geq \frac12$. Fix $x$ with
-$\rho(p,x)=r$. Let $\sigma(t)$ be a normal geodesic emanating from $p$, and set
-$\rho(\gamma(r),\sigma(t))=s$. We consider $t<r-r_0$ and note that $s>r-t$ by
-the triangle inequality. Since $\nu > \frac12$,
-\begin{equation}\tag{4.42}
-\RicM\sigma(t) \geq (n-1)\frac{\left(\frac14-\nu^2\right)}{s^2} \geq
-(n-1)\frac{\left(\frac14-\nu^2\right)}{(r-t)^2}.
-\end{equation}
-
-The argument can now be completed as in Proposition 4.1 (iv) except that we
-use $J^{n-1}_{\nu,r}$ in place of $\mathscr{Q}^H$. This gives
-\begin{equation}\tag{4.43}
-\frac{V_{(r_1-r_0)}(\gamma(r_1))}{V_{(r-r_1)}(\gamma(r))}
-\leq
-\frac{\int_{r_1}^{2r_1-r_0} J^{n-1}_{\nu,r}(t)\,dt}{\int_{2r_1-r_0}^{r} J^{n-1}_{\nu,r}(t)\,dt}
-\sim \frac{r^{(n-1)2\nu}}{r^{(n-1)(\frac12+\nu)+1}},
-\end{equation}
-and (4.39) follows easily.
-
-Now consider the case $0 \leq \nu \leq \frac12$. It will suffice to obtain the
-analog of (4.42). Moreover, clearly we can restrict attention to those $\sigma$
-which are minimal from $\gamma(r)$ to some $\sigma(t) \in B_{r_1-r_0}(\gamma(r_1))$,
-and to $0 \leq t \leq \bar t$. Let $a=\rho(p,\sigma(t))$. Then by the triangle
-inequality,
-\begin{equation}\tag{4.44}
-r_1 + (r_1-r_0) \geq a,
-\end{equation}
-% SOURCE NOTE: the scanned source is illegible at the marked symbol in the middle terms of (4.45) and (4.46).
-\begin{equation}\tag{4.45}
-(r-r_1) + (r_1-r_0) \geq t = \text{[illegible]} + t,
-\end{equation}
-\begin{equation}\tag{4.46}
-a + \text{[illegible]} \geq s.
-\end{equation}
-
-Adding these and cancelling terms give
-\begin{equation}
-r + 2(r_1 - r_0) \geq t + s.
-\tag{4.47}
-\end{equation}
-
-But $r - t \geq r_0$ and so, by the triangle inequality,
-\begin{equation}
-s \geq r_0.
-\tag{4.48}
-\end{equation}
-
-Combining (4.47), (4.48) and the assumption $3r_0 > 2r_1$, we obtain
-\begin{equation}
-r - t \geq s - 2(r_1 - r_0) \geq s - r_0 > 0.
-\tag{4.49}
-\end{equation}
-
-Thus, since $v < \frac{1}{2}$, we get
-\begin{equation}
-\Ric_M(x) \geq (n - 1)\frac{\frac{1}{4} - v^2}{(s - 2(r_1 - r_0))^2}
-\leq (n - 1)\frac{\frac{1}{4} - v^2}{(r - t)^2}.
-\tag{4.50}
-\end{equation}
-
-As above, this implies (4.39) for $v < \frac{1}{2}$.
-
-(ii) The argument is as in (i).
-
-(iii) The estimate (4.41) follows from the proof of the Heintze-Karcher
-comparison theorem [24] applied to $\partial B_{r_1}\setminus C_1$, where
-$r_1 > r_0$ and $C$ is the cut locus of $p$.
+\sketch Apply Proposition~\ref{prop:relative-volume-estimates} to the model
+Jacobi field determined by $dr^2+J_{\nu,R}^2(r)g$. For $\nu\geq 1/2$, the
+curvature hypothesis gives the required radial comparison directly, and the
+asymptotics of $J_{\nu,R}$ give the power lower bound (4.39). For
+$0\leq\nu<1/2$, the shifted denominator in (4.38) gives the same comparison
+after moving the model origin by $2(r_1-r_0)$. The endpoint value
+$\nu=\frac12(n+1)/(n-1)$ is the critical exponent, hence the integral gives the
+logarithmic lower bound (4.40). The upper bound (4.41) is the corresponding
+Heintze--Karcher radial comparison \cite{cgt-heintze-karcher}.
 \end{proof}
 
 \begin{remark}[Sharpness of the volume-growth estimates]
@@ -642,58 +506,11 @@ $r_1 > r_0$ and $C$ is the cut locus of $p$.
 \dcref{Remark 4.4}
 \group{section-4}
 
-By considering a metric on $\R^n$ which is of the form
+The metrics on $\R^n$ that outside a compact set have the form
 \begin{equation}
-dr^2 + r^{1\pm 2v}g
+dr^2+r^{1\pm 2v}g
 \tag{4.51}
 \end{equation}
-outside some compact set, we see that the estimates of Theorem 4.9 are sharp.
-Also as in Proposition 4.2 we see that the injectivity angle $\tilde{\omega}$
-decays at most like $r^{-(n-1)(\frac{1}{2}+v)}$.
+show that Theorem~\ref{thm:asymptotic-ricci-volume-growth} is sharp. Their injectivity angle decays no faster than
+$r^{-(n-1)(\frac12+v)}$.
 \end{remark}
-
-\begin{center}
-\textbf{References}
-\end{center}
-
-\begin{enumerate}
-\item W. Ambrose, \emph{A theorem of Myers}, Duke Math. J. \textbf{24} (1957) 345.
-\item M. Berger, \emph{Blaschke's conjecture for spheres}, Appendix D in A. L. Besse,
-\emph{Manifolds all of who geodesics are closed}, Ergebnisse Math. und ihrer Grenzgebiete,
-Vol. 93, Springer, Berlin, 1978, 236--242.
-\item R. Bishop \& B. Crittenden, \emph{Geometry of manifolds}, Academic Press, New York, 1964.
-\item E. Bombieri, \emph{Theory of minimal surfaces, and a counter-example to the Bernstein conjecture in
-high dimension}, Lecture Notes, Courant Inst., New York, 1970.
-\item J. Cheeger, \textit{The relation between the Laplacian and the diameter for manifolds of non-negative curvature}, Arch. Math. 19 (1968) 558--560.
-\item \underline{\hspace{2em}}, \textit{Finiteness theorems for riemannian manifolds}, Amer. J. Math. 92 (1970), 61--64.
-\item J. Cheeger \& D. G. Ebin, \textit{Comparison theorems in Riemannian geometry}, North Holland, Amsterdam, 1975.
-\item J. Cheeger \& M. Taylor, \textit{On the diffraction of waves by conical singularities}, Comm. Pure Appl. Math., to appear.
-\item J. Cheeger \& S. T. Yau, \textit{A lower bound for the heat kernel}, Comm. Pure Appl. Math. 34 (1981) 465--480.
-\item S. Y. Cheng, P. Li \& S. T. Yau, \textit{On the upper estimate of the heat kernel of a complete riemannian manifold}, Amer. J. Math. 103 (1981) 1021--1063.
-\item P. Chernoff, \textit{Essential self-adjointness of powers of generators of hyperbolic equations}, J. Functional Analysis 12 (1973) 401--414.
-\item J. Clerc \& E. Stein, \textit{$L^p$ multipliers for noncompact symmetric spaces}, Proc. Nat. Acad. Sci. U.S.A. 71 (1974) 3911--3912.
-\item C. Croke, \textit{Some isoperimetric inequalities and eigenvalue estimates}, Ann. Sci. \'{E}cole Norm. Sup. 13 (1980) 419--435.
-\item B. V. Dekster \& I. Kupka, \textit{Asymptotics of curvature in a space of positive curvature}, J. Differential Geometry 15 (1980) 553--568.
-\item G. de Rham, \textit{Varieties differentiables}, Publ. Inst. Math. Univ. Nancago III, Hermann, Paris, 1960.
-\item H. Donnelly, \textit{Spectral geometry for certain noncompact riemannian manifolds}, Math. Z. 169 (1979) 63--76.
-\item H. Federer \& W. Flemming, \textit{Normal integral currents} Ann. of Math. 72 (1960) 458--520.
-\item G. Galloway, \textit{Compactness criteria for Riemannian manifolds}, Proc. Amer. Math. Soc., 84 (1982) 106--110.
-\item L. G\aa rding, \textit{Vecteurs analytiques dans les representations des groupes de Lie}, Bull. Soc. Math. France 188 (1960) 73--93.
-\item D. Gilbarg \& M. Trudinger, \textit{Elliptic partial differential equations of second order}, Springer, Berlin, 1977.
-\item M. Gromov, \textit{Almost flat manifolds}, J. Differential Geometry 13 (1978) 231--241.
-\item \underline{\hspace{2em}}, \textit{Curvature, diameter, and Betti numbers}, Comment. Math. Helv. 56 (1981) 179--197.
-\item \underline{\hspace{2em}}, \textit{Paul Levy's isoperimetric inequality}, Inst. Hautes \'{E}tudes Sci. Publ. Math., to appear.
-\item E. Heintze \& H. Karcher, \textit{A general comparison theorem with applications to volume estimates for submanifolds}, Ann. Sci. \'{E}cole Norm. Sup. 11 (1978) 451--470.
-\item J. Kazdan, \textit{An inequality arising in geometry}, Appendix E, in A. L. Besse, \textit{Manifolds all of whose geodesics are closed}, Ergebnisse Math. und ihrer Grenzgebiete, Vol. 93, Springer, Berlin, 1978, 243--246.
-\item N. N. Lebedev, \textit{Special functions and their applications}, Dover, New York, 1972.
-\item J. Lions \& E. Magenes, \textit{Non-homogeneous boundary value problems and applications}, Vol. 3, Springer, New York, 1972.
-\item V. G. Maz'ya, \textit{Classes of domains and imbedding theorems for function spaces}, Dokl. Akad. Nauk SSSR 133 (1960) 527--530; English Translation, Soviet Math. Dokl. 1 (1960) 882--885.
-\item J. Milnor, \textit{A note on curvature and fundamental group}, J. Differential Geometry 2 (1968) 1--7.
-\item J. Moser, \textit{A Harnack inequality for parabolic differential equations}, Comm. Pure Appl. Math. 17 (1964) 101--134.
-\item R. Stanton \& P. Tomas, \textit{Expansions for spherical functions on noncompact symmetric spaces}, Acta. Math. 140 (1978) 251--276.
-\item M. Taylor, \textit{Pseudodifferential operators}, Princeton Univ. Press, Princeton, 1981.
-\end{enumerate}
-
-\begin{center}
-\textsc{State University of New York, Stony Brook}
-\end{center}
