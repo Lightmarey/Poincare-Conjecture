@@ -41,7 +41,7 @@ uniform velocity ball serves every base point `q ∈ W`:
 * `exists_totallyNormal_neighborhood` — the theorem: the shear is invertible,
   so the inverse function theorem makes `G` a homeomorphism near `(φ_p(p), 0)`;
   a product ball inside its source and a square neighborhood
-  `W̃ × W̃ ⊆ G(ball × ball)` produce `W` and `δ` with existence and uniqueness
+  `W' × W' ⊆ G(ball × ball)` produce `W` and `δ` with existence and uniqueness
   of the joining parameter.
 -/
 
@@ -50,18 +50,11 @@ noncomputable section
 open Bundle Manifold Set Filter Metric
 open scoped Manifold Topology ContDiff NNReal
 
-namespace Riemannian
+namespace ContinuousLinearEquiv
 
-namespace Exponential
-
-open Riemannian.Geodesic Riemannian.FlowDependence
-
-section
-
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
-
-/-- **Math.** The unipotent shear map `(a, b) ↦ (a, a + b)` on `E × E`. -/
-def unipotentShear : (E × E) ≃L[ℝ] E × E :=
+/-- **Math.** The right additive shear map `(a, b) ↦ (a, a + b)` on `E × E`. -/
+protected def shearAddRight (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E] :
+    (E × E) ≃L[ℝ] E × E :=
   ContinuousLinearEquiv.equivOfInverse
     ((ContinuousLinearMap.fst ℝ E E).prod
       ((ContinuousLinearMap.fst ℝ E E) + (ContinuousLinearMap.snd ℝ E E)))
@@ -70,7 +63,13 @@ def unipotentShear : (E × E) ≃L[ℝ] E × E :=
     (fun _ => by simp [ContinuousLinearMap.prod_apply])
     (fun _ => by simp [ContinuousLinearMap.prod_apply])
 
-end
+end ContinuousLinearEquiv
+
+namespace Riemannian
+
+namespace Exponential
+
+open Riemannian.Geodesic Riemannian.FlowDependence
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
@@ -508,7 +507,7 @@ common source size. do Carmo's `F(q, v) = (q, exp_q v)` becomes the pair map
 the invertible shear `(a, b) ↦ (a, a + b)`
 (`exists_pairMap_hasStrictFDerivAt`), the inverse function theorem makes `G` a
 homeomorphism near `(φ_p(p), 0)`, and a square neighborhood
-`W̃ × W̃ ⊆ G(ball × ball)` yields `W = φ_p⁻¹(W̃)` and the joining parameters. -/
+`W' × W' ⊆ G(ball × ball)` yields `W = φ_p⁻¹(W')` and the joining parameters. -/
 theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
     ∃ (W : Set M) (δ T : ℝ) (Z : E × E → ℝ → E × E),
       IsOpen W ∧ p ∈ W ∧ W ⊆ (chartAt H p).source ∧ 0 < δ ∧ 0 < T ∧
@@ -540,7 +539,8 @@ theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
     fun x => ((x.1 : E), (Z ((x.1, T⁻¹ • x.2) : E × E) T).1) with hGdef
   have hTIcc : T ∈ Icc (-ε) ε := ⟨by linarith [hT, hε], hTε.le⟩
   have hstrict' : HasStrictFDerivAt G
-      ((unipotentShear : (E × E) ≃L[ℝ] E × E) : (E × E) →L[ℝ] E × E) x₀ := hstrict
+      ((ContinuousLinearEquiv.shearAddRight E : (E × E) ≃L[ℝ] E × E) :
+        (E × E) →L[ℝ] E × E) x₀ := hstrict
   -- the inverse function theorem: `G` is a homeomorphism near `x₀`
   set ho := hstrict'.toOpenPartialHomeomorph G
   have hsource : x₀ ∈ ho.source := hstrict'.mem_toOpenPartialHomeomorph_source
