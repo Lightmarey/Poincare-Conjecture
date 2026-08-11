@@ -77,11 +77,10 @@ namespace Riemannian.Jacobi
 
 open Riemannian.Geodesic Riemannian.Exponential Riemannian.Tensor
 
--- NOTE: this variable block mirrors `Jacobi/JacobiSectionalCurvature.lean` and
--- `Jacobi/CartanCurvatureBridge.lean` exactly (`MetricSpace M`, and `CompleteSpace E` left to
--- instance search via finite-dimensionality): any divergence makes the instances diamond.
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+-- Use the canonical structures supplied by `InnerProductSpace` and `FiniteDimensional`;
+-- separate `NormedSpace` or `Module.Finite` parameters create diamonds in transport maps.
+variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
   {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
   {M : Type*} [MetricSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
   [I.Boundaryless] [SigmaCompactSpace M] [T2Space M]

@@ -104,7 +104,7 @@ neighborhood of its base point. This is the form do Carmo's convex-neighborhood 
 maximum, the strict inequality here would contradict it. The proof is the assembly of
 `exists_forall_geodesic_tangent_stays_outside_ball` with the strict second-derivative test
 `eventually_lt_of_deriv_deriv_pos` in place of the non-strict `eventually_ge_of_deriv_deriv_pos`. -/
-theorem exists_forall_geodesic_tangent_stays_strictly_outside_ball [T2Space M]
+theorem exists_forall_geodesic_tangent_stays_strictly_outside_ball
     (g : RiemannianMetric I M) (p : M) :
     ∃ (finv : E → E) (V : Set E) (r ε T : ℝ) (Z : E × E → ℝ → E × E),
       IsOpen V ∧ extChartAt I p p ∈ V ∧ V ⊆ (extChartAt I p).target ∧

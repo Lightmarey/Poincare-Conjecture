@@ -147,7 +147,7 @@ The chart reading `x` has `x(0) = y`, `x'(0) = w`, and `x''(0) = (spray(y, w))�
 (`isGeodesicOn_uniform_flow_segment_Ioo`); feeding these into the abstract second-order chain
 rule `hasDerivAt_and_deriv_deriv_sqNormComp` identifies `deriv (deriv F) 0` with the algebraic
 form `secondDerivChartForm` of `ConvexNeighborhoodContinuity.lean`. -/
-theorem hasDerivAt_and_deriv_deriv_sqNorm_flowReading [T2Space M]
+theorem hasDerivAt_and_deriv_deriv_sqNorm_flowReading
     (g : RiemannianMetric I M) (p : M) {r ε T : ℝ} {Z : E × E → ℝ → E × E}
     (hT : 0 < T) (hTε : T < ε)
     (hflow : ∀ z ∈ closedBall ((extChartAt I p p, (0 : E)) : E × E) r,
@@ -226,7 +226,7 @@ The proof combines the F-identity `deriv (deriv F) 0 = secondDerivChartForm g p 
 on `V` for nonzero velocities (`exists_secondDerivChartForm_pos_nhds_ne`), and the
 second-derivative test (`eventually_ge_of_deriv_deriv_pos`): with `∂F/∂t(0) = 0` and
 `∂²F/∂t²(0) > 0`, `F` has a strict local minimum at `0`. -/
-theorem exists_forall_geodesic_tangent_stays_outside_ball [T2Space M]
+theorem exists_forall_geodesic_tangent_stays_outside_ball
     (g : RiemannianMetric I M) (p : M) :
     ∃ (finv : E → E) (V : Set E) (r ε T : ℝ) (Z : E × E → ℝ → E × E),
       IsOpen V ∧ extChartAt I p p ∈ V ∧ V ⊆ (extChartAt I p).target ∧
