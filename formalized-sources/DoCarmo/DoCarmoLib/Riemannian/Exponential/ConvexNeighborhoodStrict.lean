@@ -1,7 +1,5 @@
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodAssembly
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Strict form of `lem:dc-ch3-4-1` (do Carmo Ch. 3, §4)
 
@@ -91,8 +89,8 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]

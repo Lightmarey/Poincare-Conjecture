@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhood42
 import DoCarmoLib.Riemannian.Exponential.NormalBallEDist
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods, Proposition 4.2 — the metric↔radial bridge (do Carmo Ch. 3, §4)
 
@@ -77,11 +75,11 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
-variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]
+variable [I.Boundaryless] [T2Space (TangentBundle I M')]
 
 /-- **Math.** **Bridge A: the chart radial functional is the squared Riemannian distance.**
 Let `finv` be a `C²` local inverse of `φ_p ∘ exp_p` with left-inverse clause

@@ -1,7 +1,5 @@
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodStrict
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods (do Carmo Ch. 3, §4, Proposition 4.2)
 
@@ -42,8 +40,8 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]
@@ -190,7 +188,7 @@ theorem exists_forall_intrinsic_geodesic_not_isLocalMax_radial [T2Space M]
 section StronglyConvex
 
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
-  [I.Boundaryless] [T2Space (TangentBundle I M')]
+  [T2Space (TangentBundle I M')]
 
 /-- **Math.** **Strongly convex set** (do Carmo Ch. 3, §4). A set `S ⊆ M` is *strongly convex*
 if any two points `q₁, q₂` of the closure `closure S` are joined by a **minimizing** geodesic

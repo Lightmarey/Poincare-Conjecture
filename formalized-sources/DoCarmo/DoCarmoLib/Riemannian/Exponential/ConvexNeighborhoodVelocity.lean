@@ -1,7 +1,5 @@
 import DoCarmoLib.Riemannian.Exponential.TotallyNormalDiffeo
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Uniform smallness of the joining velocity (do Carmo Ch. 3, §4)
 
@@ -48,11 +46,9 @@ namespace Riemannian
 
 namespace Exponential
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
-variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
-  [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]
+variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M']
 
 /-- **Math.** **A chart-pair functional vanishing at the center diagonal is
 uniformly small on a small closed ball** (do Carmo Ch. 3, §4). Let `Ψ` be a map

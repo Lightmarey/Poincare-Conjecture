@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.TotallyNormal
 import DoCarmoLib.Riemannian.Geodesic.FlowReadback
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Totally normal neighborhoods: the C¹-diffeomorphism clause (do Carmo Ch. 3, Theorem 3.7)
 
@@ -65,12 +63,14 @@ namespace Exponential
 
 open Riemannian.Geodesic Riemannian.FlowDependence
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)] [T2Space M]
 
+omit [NeZero (Module.finrank ℝ E)] [CompleteSpace E]
+  [T2Space (TangentBundle I M)] in
 /-- **Math.** **Two uniform local flows of the chart-`p` spray compute the same
 pair-map endpoint.** If `(r, ε, T, Z)` and `(r', ε', T', Z')` are two uniform
 flow packages at `p` (each solving the spray ODE on its time interval with
@@ -132,6 +132,7 @@ theorem uniform_flow_pairMap_agree
     ((hflow' _ hmem').2.2 T' hT'Icc).1
   exact (extChartAt I p).symm.injOn htgt htgt' h1
 
+omit [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** **The derivative of the pair map is invertible at every point of a
 ball around the zero section** (do Carmo Ch. 3, proof of Theorem 3.7; the
 pair-map analogue of the invertibility clause `lem:dc-ch3-2-9-invertible`).
@@ -319,6 +320,7 @@ theorem exists_pairMap_hasStrictFDerivAt_equiv_ball
     rw [hcoe]
     exact hstrictx
 
+omit [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** **Totally normal neighborhoods with the `C¹`-diffeomorphism clause**
 (do Carmo Ch. 3, Theorem 3.7, complete at `C¹` regularity). For every `p ∈ M`
 there are an open neighborhood `W ∋ p` inside the chart at `p`, radii

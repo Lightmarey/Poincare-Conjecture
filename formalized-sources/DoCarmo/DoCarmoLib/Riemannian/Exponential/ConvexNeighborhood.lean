@@ -2,8 +2,6 @@ import Mathlib.Analysis.Calculus.DerivativeTest
 import DoCarmoLib.Riemannian.Exponential.GaussLemma
 import DoCarmoLib.Riemannian.Exponential.LocalDiffeo
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: the second-derivative kernel (do Carmo Ch. 3, §4)
 
@@ -31,21 +29,21 @@ at the reference point `p`:
   `∂²F/∂t² = 2⟨u'', u⟩_p + 2|u'|²_p` (the derivative of `∂F/∂t`).
 * `hasDerivAt_secondDeriv_chartMetricInner_smul` — the center specialization
   `u(t) = t v`, giving `∂²F/∂t²(0) = 2⟨v, v⟩_p`.
-* `expMap_inv_smul_eq` — along the radial ray the normal coordinate is `t v`
+* `exists_expMap_inv_smul_eq` — along the radial ray the normal coordinate is `t v`
   itself: `exp_p⁻¹(exp_p(t v)) = t v` on the injectivity ball, so `F` is literally
   the fixed-form quadratic `t ↦ ⟨t v, t v⟩_p = t² ⟨v, v⟩_p`.
 * `eventually_ge_of_deriv_deriv_pos` — the strict-minimum mechanism: a curve with
   `F'(0) = 0` and `F''(0) > 0` satisfies `F(t) ≥ F(0)` near `0`, i.e. the tangent
   geodesic never re-enters the open ball whose boundary sphere it touches.
 
-The **residual** for the full `lem:dc-ch3-4-1` is the joint continuity of
-`∂²F/∂t²(0, q, v)` in the moving base point `q` (needed to propagate the strict
-positivity from `q = p` to a neighborhood). That requires packaging the moving-base
-geodesic family (`exists_totallyNormal_neighborhood`) and the `C²` exponential
-inverse (`exists_c2_local_diffeomorphism_expMap`) into a single object that is
-`C²` in `t` with `(q, v)`-continuous second time-derivative — no such joint object
-exists in the tree yet. This file supplies the fibrewise (fixed-`(q,v)`) calculus
-on which that assembly will rest.
+The downstream module `ConvexNeighborhoodContinuity.lean` packages the moving-base
+second time-derivative as `secondDerivChartForm`, proves its joint continuity, and
+propagates its positivity from `q = p` to a neighborhood. Then
+`ConvexNeighborhoodAssembly.lean` identifies that form with the genuine derivative
+along the moving-base geodesic family and closes the non-strict conclusion of
+`lem:dc-ch3-4-1`; `ConvexNeighborhoodStrict.lean` supplies the punctured strict
+minimum used later. This file is the fibrewise calculus kernel for that completed
+continuity and assembly layer.
 -/
 
 noncomputable section
@@ -57,8 +55,8 @@ namespace Riemannian
 
 section BilinearDerivative
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 
@@ -184,12 +182,13 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]
 
+omit [CompleteSpace E] in
 /-- **Math.** **The normal coordinate along the radial ray is the ray itself.**
 There is `ε > 0` and a local inverse `finv` of `φ_p ∘ exp_p` on `B_ε(0)` such that
 for every `v` and every `t` with `‖t • v‖ < ε`,
@@ -207,6 +206,7 @@ theorem exists_expMap_inv_smul_eq (g : RiemannianMetric I M) (p : M) :
     exists_c1_local_diffeomorphism_expMap (I := I) g p
   exact ⟨ε, hε, finv, hfinvL, fun v t ht => hfinvL (t • v) ht⟩
 
+omit [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)] in
 /-- **Math.** **do Carmo's center Hessian `∂²F/∂t²(0, p, v) = 2|v|²_p`** (Ch. 3, §4,
 Lemma 4.1, the case `q = p`). Along the radial geodesic `t ↦ exp_p(t v)` the normal
 coordinate is `u(t) = t v` (`exists_expMap_inv_smul_eq`), so the squared radial
@@ -220,6 +220,7 @@ theorem hasDerivAt_secondDeriv_expMap_inv_sqNorm_radial (g : RiemannianMetric I 
       (2 * chartMetricInner (I := I) g p (extChartAt I p p) v v) 0 :=
   hasDerivAt_secondDeriv_chartMetricInner_smul (I := I) g p (extChartAt I p p) v
 
+omit [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)] in
 /-- **Math.** **The metric at `p` is positive definite in normal coordinates.** For
 `v ≠ 0`, `|v|²_p = ⟨v, v⟩_p > 0`. Combined with
 `hasDerivAt_secondDeriv_expMap_inv_sqNorm_radial`, the center Hessian

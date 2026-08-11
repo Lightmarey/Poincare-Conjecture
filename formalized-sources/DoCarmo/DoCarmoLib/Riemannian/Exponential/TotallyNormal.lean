@@ -50,8 +50,6 @@ noncomputable section
 open Bundle Manifold Set Filter Metric
 open scoped Manifold Topology ContDiff NNReal
 
-set_option linter.unusedSectionVars false
-
 namespace Riemannian
 
 namespace Exponential
@@ -74,12 +72,14 @@ def unipotentShear : (E × E) ≃L[ℝ] E × E :=
 
 end
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]
 
+omit [NeZero (Module.finrank ℝ E)] [CompleteSpace E]
+  [T2Space (TangentBundle I M)] in
 /-- **Math.** **Descent: flow segments of the chart-`p` spray are intrinsic
 geodesic segments, from any base point in the chart** (do Carmo Ch. 3, §2.5,
 freed from the initial-point-over-`p` restriction of `ChartFlow.lean`). Let `Z`
@@ -282,6 +282,7 @@ theorem isGeodesicOn_uniform_flow_segment
   exact ⟨hγ0, hγcont.mono h01J, hgeo.mono h01J,
     fun s hs => ⟨hγsrc s (h01J hs), hread s (h01J hs)⟩, hvel, hacc⟩
 
+omit [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** **The pair map of the exponential is strictly differentiable at the
 zero section, with derivative the unipotent shear `(a, b) ↦ (a, a + b)`**
 (do Carmo Ch. 3, proof of Theorem 3.7: `dF_{(p,0)} = [[I, 0], [I, I]]`). Here
@@ -480,6 +481,7 @@ theorem exists_pairMap_hasStrictFDerivAt (g : RiemannianMetric I M) (p : M) :
   exact ⟨r, ε, T, Z, hr, hε, hT, hTε, hflow, hZzero,
     hGpair.congr_of_eventuallyEq hev.symm⟩
 
+omit [NeZero (Module.finrank ℝ E)] in
 /-- **Math.** **Totally normal neighborhoods** (do Carmo Ch. 3, Theorem 3.7, in
 the intrinsic/uniform-chart form). For every `p ∈ M` there are an open
 neighborhood `W ∋ p` inside the chart at `p`, a radius `δ > 0`, a time scale
@@ -685,6 +687,7 @@ theorem exists_totallyNormal_neighborhood (g : RiemannianMetric I M) (p : M) :
       have := congrArg Prod.snd hxeq
       simpa using this
 
+omit [NeZero (Module.finrank ℝ E)] [CompleteSpace E] in
 /-- **Math.** **The pair map is `C¹` on a ball around the zero section** (do Carmo
 Ch. 3, Theorem 3.7, the regularity of `F(q, v) = (q, exp_q v)`; the joint
 analogue of `exp_p`-regularity on a ball, `lem:dc-ch3-2-9-c1ball`). There are a

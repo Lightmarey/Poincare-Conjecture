@@ -1,7 +1,5 @@
 import DoCarmoLib.Riemannian.Exponential.MovingBaseProp36LowerBound
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: the base-uniform geodesic-uniqueness engine (do Carmo Ch. 3, §4)
 
@@ -52,11 +50,11 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
-  [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]
+  [I.Boundaryless]
 
 /-- **Math.** **A moving-base geodesic coincides with its flow reading on the overlap window**
 (do Carmo Ch. 3, Prop. 3.7 / definition of `exp`, base-uniform).  Let `Z` be the geodesic-spray flow
@@ -114,6 +112,8 @@ theorem movingBase_geodesic_eqOn_flow_reading
   have hvgw : deriv (chartReading (I := I) p gw) 0 = w := hgwd0.deriv
   exact IsGeodesicOn.eqOn_of_deriv_chartReading_eq isOpen_Ioo isPreconnected_Ioo
     hγS hgwS hγcS hgwcS h0S heq0 hγ0src (hvγ.trans hvgw.symm)
+
+variable [CompleteSpace E] [T2Space (TangentBundle I M')]
 
 /-- **Math.** **The base-uniform geodesic-uniqueness engine** (the injectivity half of `Huniq` of
 do Carmo Proposition 4.2).  For every `p` there are radii `β, ρw > 0` such that: any two continuous

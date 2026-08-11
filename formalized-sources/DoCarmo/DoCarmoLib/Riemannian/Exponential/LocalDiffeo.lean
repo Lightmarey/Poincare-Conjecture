@@ -28,9 +28,12 @@ file closes the statement at the `C¹` regularity level:
   derivative is the identity.
 
 Together with `exists_injOn_expMap` and `map_expMap_nhds` this completes do Carmo's
-Proposition 2.9 with "diffeomorphism" read as "`C¹` diffeomorphism"; the upgrade to
-`C^k`, `k ≥ 2`, awaits `C^k` dependence of the geodesic flow on its initial
-condition (differentiating the variational equation).
+Proposition 2.9 at the `C¹` level. The downstream modules `C2Ball.lean` and
+`C2LocalDiffeo.lean` upgrade the chart reading and its local inverse to `C²` using
+second-order dependence of the geodesic flow on its initial condition.
+`CInftyBall.lean` then proves `exists_contDiffOn_infty_extChartAt_expMap_ball` and
+`exists_infty_local_diffeomorphism_expMap`, completing the `C∞` local-diffeomorphism
+regularity.
 -/
 
 noncomputable section

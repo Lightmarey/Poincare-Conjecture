@@ -77,6 +77,7 @@ variable [I.Boundaryless] [CompleteSpace E]
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
 variable [T2Space (TangentBundle I M')]
 
+omit [InnerProductSpace ℝ E] [Module.Finite ℝ E] in
 /-- **Math.** Subsegment arc length of an arclength-proportional curve: if the
 running length from the left endpoint is `ℓ · (t - a)`, then the length of any
 subsegment `[s, t]` is `ℓ · (t - s)` (cancellation in the additivity of
@@ -156,6 +157,7 @@ theorem edist_le_pathELength_piecewise_partition (g : RiemannianMetric I M')
               Manifold.pathELength_add hsm htm
   exact key n le_rfl s t hs hst ht
 
+omit [InnerProductSpace ℝ E] [Module.Finite ℝ E] in
 /-- **Math.** Subsegment distance realization: if an arclength-proportional
 curve realizes the metric distance between its endpoints, then every
 subsegment realizes the distance between *its* endpoints (triangle

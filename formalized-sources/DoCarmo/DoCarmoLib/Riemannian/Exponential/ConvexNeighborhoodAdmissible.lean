@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodInterior
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodContinuity
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: discharging the interior-deduction admissibility (do Carmo Ch. 3, §4)
 
@@ -50,11 +48,11 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
-  [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]
+  [I.Boundaryless]
 
 /-- **Math.** **The chart-Gram quadratic form is uniformly small near the center.** For every
 tolerance `η > 0` there is a radius `ρ > 0` such that the open chart ball `ball (φ_p(p)) ρ` lies in
@@ -111,6 +109,8 @@ theorem exists_ball_forall_chartMetricInner_lt (g : RiemannianMetric I M') (p : 
       refine max_lt (mem_ball.mp hy) ?_
       rwa [dist_zero_right]
     exact (hball hmem).1
+
+variable [NeZero (Module.finrank ℝ E)] [CompleteSpace E] [T2Space (TangentBundle I M')]
 
 /-- **Math.** **The interior arc of a minimizing joining geodesic stays inside the ball** (do Carmo
 Ch. 3, §4, Proposition 4.2, interior-arc-in-ball clause). For every `p` there are radii `β₀, ρ > 0`
