@@ -1,7 +1,5 @@
 import DoCarmoLib.Riemannian.Geodesic.ChartFlow
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Fibre–time homogeneity of the coordinate geodesic spray flow
 
@@ -42,10 +40,7 @@ open scoped Manifold Topology ContDiff NNReal
 namespace Riemannian
 namespace Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
-variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
-variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- **Math.** The fibre–time rescaling map `S_a` on `E × E`: identity on the
 horizontal (base) component, scaling by `a` on the vertical (velocity)
@@ -56,6 +51,10 @@ def sprayRescale (a : ℝ) : (E × E) →L[ℝ] (E × E) :=
 @[simp] lemma sprayRescale_apply (a : ℝ) (z : E × E) :
     sprayRescale (E := E) a z = (z.1, a • z.2) := by
   simp [sprayRescale]
+
+variable [FiniteDimensional ℝ E]
+variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
+variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 
 /-- **Math.** **Fibre–time rescaling preserves the coordinate spray ODE.** If
 `Zc` solves `z' = F(z)` for the coordinate spray `F = geodesicSprayCoord g p` at
