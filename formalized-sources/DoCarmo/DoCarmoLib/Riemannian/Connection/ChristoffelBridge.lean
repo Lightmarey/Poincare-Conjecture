@@ -7,11 +7,12 @@ import DoCarmoLib.Riemannian.Connection.ChartChristoffel
 do Carmo's Proposition 2.2 characterises the covariant derivative `D/dt` along a
 curve by three properties; property (c) says that when the field along the curve
 is the restriction of a global field `Y`, then `DY/dt = ∇_{dc/dt} Y` for the
-Levi-Civita connection `∇`. The coordinate core of (c) is already proven
-(`Riemannian.covariantDerivCoord_induced`); the sole remaining ingredient is the
-identification of the coordinate connection built from the metric Christoffel
-symbols (`Riemannian.chartChristoffel`) with the abstract Koszul–Riesz
-Levi-Civita connection (`RiemannianMetric.leviCivitaConnection`).
+given affine connection `∇`. The intrinsic arbitrary-connection operator and
+property (c) are implemented in the along-curve connection layer. For the
+Levi-Civita specialization used by the metric/geodesic APIs, one must identify
+the coordinate connection built from `Riemannian.chartChristoffel` with the
+abstract Koszul–Riesz connection
+`RiemannianMetric.leviCivitaConnection`; this file supplies its algebraic core.
 
 This file records the **algebraic heart** of that identification — do Carmo's
 formula (10). Evaluating the Koszul formula (9) on a coordinate frame
@@ -34,8 +35,9 @@ The two genuinely analytic facts about the coordinate frame — bracket vanishin
 `[X_i, X_j] = 0` and the directional-derivative–partial-derivative identity
 `X_i⟨X_j, X_k⟩ = ∂_i g_{jk}` — enter as explicit hypotheses `hbr` / `hdir`,
 isolating them from the algebra; discharging them for the concrete chart frame
-`Riemannian.Tensor.chartBasisVec` is the remaining manifold-analytic step of the
-bridge `lem:dc-ch2-2-2-c-bridge`.
+`Riemannian.Tensor.chartBasisVec` is completed in `ChartFrameBridge.lean`. The
+resulting identity is consumed by the Levi-Civita along-curve specialization;
+it is no longer future work.
 
 Reference: do Carmo, *Riemannian Geometry*, Ch. 2 §2, Prop. 2.2 and eq. (10).
 -/

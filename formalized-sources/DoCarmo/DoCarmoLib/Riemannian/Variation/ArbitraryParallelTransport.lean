@@ -1,4 +1,5 @@
 import DoCarmoLib.Riemannian.Variation.ParallelCovariantField
+import DoCarmoLib.Riemannian.Jacobi.ParallelTransport
 
 /-!
 # Parallel transport along an arbitrary C1 curve
@@ -31,8 +32,8 @@ namespace Riemannian.Variation
 
 open Riemannian.Jacobi Riemannian.Geodesic Riemannian.Exponential
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
   {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
   {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 
@@ -598,6 +599,59 @@ noncomputable def parallelCovariantTransportAlong
     parallelCovariantTransportAlong (I := I) g hab hγ ht w₀ =
       parallelCovariantFieldSeed (I := I) g hab hγ w₀ t :=
   rfl
+
+/-- **Math.** The two manifold-level notions of a parallel field agree.  The
+chart-free covariant-derivative predicate is exactly the zero-derivative
+specialization of the geodesic parallel-field predicate used by the Ch. 3
+transport API. -/
+theorem IsParallelFieldAlongOn.isParallelCovariantFieldAlongOn
+    {g : RiemannianMetric I M} {γ : ℝ → M} {V : ℝ → E} {a b : ℝ}
+    (hV : Riemannian.Jacobi.IsParallelFieldAlongOn (I := I) g γ V a b) :
+    IsParallelCovariantFieldAlongOn (I := I) g γ V a b := by
+  exact hV.isCovariantDerivFieldAlongOn
+
+/-- **Math.** Conversely, a zero covariant-derivative certificate is a parallel
+field certificate in the original geodesic API.  This direction is useful when
+feeding the arbitrary-curve construction into do Carmo's existing uniqueness
+theorems (cf. `lem:dc-ch9-3-1-velocity-frame`). -/
+theorem IsParallelCovariantFieldAlongOn.isParallelFieldAlongOn
+    {g : RiemannianMetric I M} {γ : ℝ → M} {V : ℝ → E} {a b : ℝ}
+    (hV : IsParallelCovariantFieldAlongOn (I := I) g γ V a b) :
+    Riemannian.Jacobi.IsParallelFieldAlongOn (I := I) g γ V a b := by
+  intro t₀ ht₀
+  obtain ⟨α, a', b', hab', ht', hsub, hnbhd, hsrc, hcert⟩ := hV t₀ ht₀
+  refine ⟨α, a', b', hab', ht', hsub, hnbhd, hsrc, ?_⟩
+  intro t ht
+  have hz : chartVectorRep (I := I) γ α (fun _ => (0 : E)) t = 0 := by
+    simp [chartVectorRep_apply]
+  have hc := hcert t ht
+  rw [hz, zero_sub] at hc
+  exact hc
+
+/-- **Math.** On a geodesic, the arbitrary-curve transport map is the same map
+as do Carmo's established `parallelTransportAlong`.  The proof converts the
+left-seeded covariant field to the geodesic predicate and invokes uniqueness;
+this keeps later Ch. 9 orientation arguments on one canonical transport map. -/
+theorem parallelCovariantTransportAlong_eq_parallelTransportAlong
+    [I.Boundaryless] [SigmaCompactSpace M] [T2Space M]
+    {g : RiemannianMetric I M} {γ : ℝ → M} {a b : ℝ} (hab : a < b)
+    (hgeo : Riemannian.Geodesic.IsGeodesicOn (I := I) g γ (Icc a b))
+    (hγ : ContMDiff 𝓘(ℝ, ℝ) I 1 γ) {t : ℝ} (ht : t ∈ Icc a b) :
+    parallelCovariantTransportAlong (I := I) g hab hγ ht =
+      Riemannian.Jacobi.parallelTransportAlong (E := E) (I := I) (g := g) (γ := γ) hab hgeo
+        (fun _t _ht => hγ.continuous.continuousAt) ht := by
+  let hγc : ∀ t ∈ Icc a b, ContinuousAt γ t :=
+    fun _t _ht => hγ.continuous.continuousAt
+  ext w
+  have hnew := parallelCovariantFieldSeed_isParallel (I := I) g hab hγ w
+  have hold : Riemannian.Jacobi.IsParallelFieldAlongOn (I := I) g γ
+      (parallelCovariantFieldSeed (I := I) g hab hγ w) a b :=
+    hnew.isParallelFieldAlongOn
+  have hleft : parallelCovariantFieldSeed (I := I) g hab hγ w a = w :=
+    parallelCovariantFieldSeed_left (I := I) g hab hγ w
+  have heq := Riemannian.Jacobi.parallelFieldSeed_eq (E := E) (I := I) (g := g) (γ := γ)
+    (hab := hab) (hgeo := hgeo) (hγc := hγc) hold hleft t ht
+  exact heq.symm
 
 /-- **Math.** Parallel transport to the initial time is the identity. -/
 @[simp] theorem parallelCovariantTransportAlong_left

@@ -27,7 +27,14 @@ real-valued functions on $M$.
 
 \begin{proposition}[covariant derivative along a curve]
   \label{prop:dc-ch2-2-2}
-  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add, Riemannian.covariantDerivCoord_smul, Riemannian.covariantDerivCoord_induced, Riemannian.covariantDerivCoord_unique}
+  \lean{Riemannian.AffineConnection.covDerivAlong,
+    Riemannian.AffineConnection.covDerivAlong_eq_chart,
+    Riemannian.AffineConnection.covDerivAlong_add,
+    Riemannian.AffineConnection.covDerivAlong_smul,
+    Riemannian.AffineConnection.covDerivAlong_comp_smoothVectorField,
+    Riemannian.AffineConnection.covDerivAlong_unique,
+    Riemannian.AffineConnection.covDerivAlong_unique_global,
+    Riemannian.RiemannianMetric.leviCivita_covDerivAlong_eq}
   \uses{def:dc-ch2-2-1, lem:dc-ch2-2-2-coord, lem:dc-ch2-2-2-c-coord, lem:dc-ch2-2-2-c-bridge}
   \leanok
   \dcref{ch2:2.2}
@@ -61,7 +68,10 @@ real-valued functions on $M$.
 
 \begin{lemma}[covariant derivative in coordinates; properties (a), (b)]
   \label{lem:dc-ch2-2-2-coord}
-  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add, Riemannian.covariantDerivCoord_smul}
+  \lean{Riemannian.covariantDerivCoord,
+    Riemannian.covariantDerivCoord_add,
+    Riemannian.covariantDerivCoord_smul,
+    Riemannian.covariantDerivCoord_unique}
   \uses{def:dc-ch2-3-7-christoffel}
   \leanok
   \dcref{ch2:2.2}
@@ -176,7 +186,11 @@ real-valued functions on $M$.
 
 \begin{remark}[Remark 2.4]
   \label{rem:dc-ch2-2-4}
-  \lean{Riemannian.covariantDerivCoord, Riemannian.covariantDerivCoord_add, Riemannian.covariantDerivCoord_smul}
+  \lean{Riemannian.AffineConnection.covDerivAlong,
+    Riemannian.Geodesic.continuousAt_and_hasGeodesicEquationAt_iff_leviCivita_covDerivAlong_velocity_eq_zero,
+    Riemannian.covariantDerivCoord,
+    Riemannian.covariantDerivCoord_add,
+    Riemannian.covariantDerivCoord_smul}
   \uses{prop:dc-ch2-2-2}
   \leanok
   \dcref{ch2:2.4}
@@ -186,8 +200,15 @@ real-valued functions on $M$.
 
 \begin{definition}[parallel vector field]
   \label{def:dc-ch2-2-5}
-  \lean{Riemannian.IsParallelCoord}
+  \lean{Riemannian.IsParallelCoord,
+    Riemannian.IsParallelAlong,
+    Riemannian.IsParallelAlongOn,
+    Riemannian.IsParallelAlongWithinOn,
+    Riemannian.isParallelAlongWithinOn_iff_isParallelFieldAlongOn,
+    Riemannian.RiemannianMetric.leviCivita_isParallelFieldAlongOn_iff_isParallelAlong,
+    Riemannian.IsIntrinsicPiecewiseParallelAlongOn}
   \uses{lem:dc-ch2-2-2-coord}
+  \leanok
   \dcref{ch2:2.5}
   A vector field $V$ along $c\colon I\to M$ is \emph{parallel} if
   $DV/dt=0$ on $I$. In coordinates this is the linear system
@@ -211,8 +232,13 @@ real-valued functions on $M$.
 
 \begin{proposition}[parallel transport]
   \label{prop:dc-ch2-2-6}
+  \lean{Riemannian.exists_unique_isParallelAlongWithinOn,
+    Riemannian.exists_unique_isIntrinsicPiecewiseParallelAlongOn,
+    Riemannian.intrinsicPiecewiseParallelTransportTangentEquiv,
+    Riemannian.intrinsicPiecewiseParallelTransportTangentEquiv_eq_terminal,
+    Riemannian.metricInner_intrinsicPiecewiseParallelTransportTangentEquiv}
   \uses{def:dc-ch2-2-5, lem:dc-ch2-2-6-exist, lem:dc-ch2-2-6-unique, lem:dc-ch2-2-6-transport}
-  \notready
+  \leanok
   \dcref{ch2:2.6}
   Let $c\colon I\to M$ be differentiable, $t_0\in I$, and
   $V_0\in T_{c(t_0)}M$. There is a unique parallel vector field $V$ along $c$
@@ -236,7 +262,9 @@ real-valued functions on $M$.
 
 \begin{lemma}[existence of parallel transport]
   \label{lem:dc-ch2-2-6-exist}
-  \lean{Riemannian.exists_isParallelCoord_Icc}
+  \lean{Riemannian.exists_isParallelCoord_Icc,
+    Riemannian.exists_isParallelAlongWithinOn,
+    Riemannian.exists_isParallelAlongPresentation}
   \uses{def:dc-ch2-2-5, lem:dc-ch2-2-6-coeff}
   \leanok
   \dcref{ch2:2.6}
@@ -256,7 +284,11 @@ real-valued functions on $M$.
 
 \begin{lemma}[uniqueness of parallel transport]
   \label{lem:dc-ch2-2-6-unique}
-  \lean{Riemannian.isParallelCoord_eqOn_Icc, Riemannian.isParallelSol_eqOn_Icc}
+  \lean{Riemannian.isParallelCoord_eqOn_Icc,
+    Riemannian.isParallelSol_eqOn_Icc,
+    Riemannian.IsParallelAlongWithinOn.eqOn_of_eq_at,
+    Riemannian.eqOn_of_two_intrinsicPresentations,
+    Riemannian.IsIntrinsicPiecewiseParallelAlongOn.eqOn}
   \uses{def:dc-ch2-2-5, lem:dc-ch2-2-2-coord, lem:dc-ch2-2-6-coeff}
   \leanok
   \dcref{ch2:2.6}
@@ -272,7 +304,11 @@ real-valued functions on $M$.
 
 \begin{lemma}[parallel transport is a linear isomorphism]
   \label{lem:dc-ch2-2-6-transport}
-  \lean{Riemannian.parallelTransport, Riemannian.exists_parallelTransport_spec}
+  \lean{Riemannian.parallelTransport,
+    Riemannian.exists_parallelTransport_spec,
+    Riemannian.intrinsicPiecewiseParallelTransportTangentEquiv,
+    Riemannian.intrinsicPiecewiseParallelTransportTangentEquiv_eq_terminal,
+    Riemannian.metricInner_intrinsicPiecewiseParallelTransportTangentEquiv}
   \uses{lem:dc-ch2-2-6-exist, lem:dc-ch2-2-6-unique}
   \leanok
   \dcref{ch2:2.6}
@@ -295,7 +331,10 @@ real-valued functions on $M$.
 
 \begin{definition}[compatible with the metric]
   \label{def:dc-ch2-3-1}
-  \lean{Riemannian.CompatibleGen}
+  \lean{Riemannian.CompatibleGen,
+    Riemannian.AffineConnection.PreservesMetricUnderParallelTransport,
+    Riemannian.AffineConnection.PreservesMetricAlongOn}
+  \leanok
   \dcref{ch2:3.1}
   An affine connection $\nabla$ on a Riemannian manifold is \emph{compatible
   with the metric} if the inner product of any two parallel vector fields along
@@ -304,8 +343,15 @@ real-valued functions on $M$.
 
 \begin{proposition}[product rule characterization]
   \label{prop:dc-ch2-3-2}
-  \lean{Riemannian.compatibleGen_iff_productRuleGen}
+  \lean{Riemannian.compatibleGen_iff_productRuleGen,
+    Riemannian.AffineConnection.HasMetricProductRuleAlong,
+    Riemannian.AffineConnection.preservesMetricUnderParallelTransport_iff_hasMetricProductRuleAlong,
+    Riemannian.hasDerivAt_metricInner_along_of_mdifferentiableAt,
+    Riemannian.RiemannianMetric.leviCivitaConnection_hasMetricProductRuleAlong,
+    Riemannian.metricInner_const_of_isParallelAlong,
+    Riemannian.metricInner_eq_endpoints_of_isParallelAlongWithinOn}
   \uses{def:dc-ch2-3-1, prop:dc-ch2-2-6, lem:dc-ch2-3-2-coord}
+  \leanok
   \dcref{ch2:3.2}
   A connection $\nabla$ is compatible with the metric if and only if, for all
   vector fields $V,W$ along every differentiable curve $c\colon I\to M$,
@@ -328,8 +374,11 @@ real-valued functions on $M$.
 
 \begin{corollary}[compatibility on vector fields]
   \label{cor:dc-ch2-3-3}
-  \lean{Riemannian.AffineConnection.IsMetricCompatible}
+  \lean{Riemannian.AffineConnection.IsMetricCompatible,
+    Riemannian.AffineConnection.isMetricCompatible_iff_hasMetricProductRuleAlong,
+    Riemannian.AffineConnection.preservesMetricUnderParallelTransport_iff_isMetricCompatible}
   \uses{prop:dc-ch2-3-2}
+  \leanok
   \dcref{ch2:3.3}
   A connection $\nabla$ is compatible with the metric if and only if
   \[
@@ -347,7 +396,9 @@ real-valued functions on $M$.
 
 \begin{lemma}[metric compatibility of $D/dt$, coordinate form]
   \label{lem:dc-ch2-3-2-coord}
-  \lean{Riemannian.hasDerivAt_chartMetricInner_along}
+  \lean{Riemannian.CompatibleGen,
+    Riemannian.compatibleGen_iff_productRuleGen,
+    Riemannian.hasDerivAt_chartMetricInner_along}
   \uses{lem:dc-ch2-2-2-coord, def:dc-ch2-3-7-christoffel}
   \leanok
   \dcref{ch2:3.2}
@@ -377,7 +428,8 @@ real-valued functions on $M$.
 
 \begin{lemma}[parallel fields have constant inner product, coordinate form]
   \label{lem:dc-ch2-3-1-coord}
-  \lean{Riemannian.hasDerivAt_chartMetricInner_eq_zero_of_isParallelCoord}
+  \lean{Riemannian.CompatibleGen,
+    Riemannian.hasDerivAt_chartMetricInner_eq_zero_of_isParallelCoord}
   \uses{def:dc-ch2-2-5, def:dc-ch2-3-1, lem:dc-ch2-3-2-coord}
   \leanok
   \dcref{ch2:3.1}

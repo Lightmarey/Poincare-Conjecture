@@ -8,7 +8,13 @@ connection.
 
 \begin{definition}[geodesic]
   \label{def:dc-ch3-2-1}
-  \lean{Riemannian.Geodesic.IsGeodesicCurve}
+  \lean{Riemannian.Geodesic.HasGeodesicEquationAt,
+    Riemannian.Geodesic.hasGeodesicEquationAt_iff_covDerivAlong_velocity_eq_zero,
+    Riemannian.Geodesic.continuousAt_and_hasGeodesicEquationAt_iff_leviCivita_covDerivAlong_velocity_eq_zero,
+    Riemannian.Geodesic.IsGeodesicCurve,
+    Riemannian.Geodesic.isGeodesicCurve_iff_covDerivAlong_velocity_eq_zero,
+    Riemannian.Geodesic.isGeodesicCurve_iff_leviCivita_covDerivAlong_velocity_eq_zero,
+    Riemannian.RiemannianMetric.leviCivita_covDerivAlong_eq}
   \leanok
   \dcref{ch3:2.1}
   A parametrized curve $\gamma:I\to M$ is a \emph{geodesic at} $t_0\in I$ if
@@ -1116,7 +1122,10 @@ velocity $\frac{v}{|v|}$.
 
 \begin{definition}[parametrized surface]
   \label{def:dc-ch3-3-3}
-  \lean{Riemannian.Geodesic.IsSmoothParametrizedSurfaceWithBoundary, Riemannian.Geodesic.IsNonPiAngle, Riemannian.Geodesic.IsNonPiVertexAngle, Riemannian.Geodesic.isNonPiVertexAngle_iff_vertexAngle_ne_pi, Riemannian.Geodesic.vertexAngle_eq_pi_of_reversed, Riemannian.Geodesic.isNonPiAngle_iff_angle_ne_pi, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.interior_vertex_angle_ne_pi, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.closing_vertex_angle_ne_pi, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.toExtended, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.surfaceDomain, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.regularOn, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.isParametrizedSurface, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.interior_vertex_nonPi, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.closing_vertex_nonPi}
+  \lean{Riemannian.Geodesic.IntrinsicParametrizedSurface,
+    Riemannian.Geodesic.IntrinsicParametrizedSurface.velocityU,
+    Riemannian.Geodesic.IntrinsicParametrizedSurface.velocityV,
+    Riemannian.Geodesic.IsSmoothParametrizedSurfaceWithBoundary, Riemannian.Geodesic.IsNonPiAngle, Riemannian.Geodesic.IsNonPiVertexAngle, Riemannian.Geodesic.isNonPiVertexAngle_iff_vertexAngle_ne_pi, Riemannian.Geodesic.vertexAngle_eq_pi_of_reversed, Riemannian.Geodesic.isNonPiAngle_iff_angle_ne_pi, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.interior_vertex_angle_ne_pi, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.closing_vertex_angle_ne_pi, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.toExtended, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.surfaceDomain, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.regularOn, Riemannian.Geodesic.IsParametrizedSurfaceWithBoundary.isParametrizedSurface, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.interior_vertex_nonPi, Riemannian.Geodesic.PiecewiseC1BoundaryParametrization.closing_vertex_nonPi}
   \leanok
   \dcref{ch3:3.3}
   Let $A$ be a connected set in $\mathbb{R}^2$, $U\subset A\subset\overline{U}$, $U$
@@ -1136,7 +1145,9 @@ velocity $\frac{v}{|v|}$.
 
 \begin{lemma}[symmetry]
   \label{lem:dc-ch3-3-4}
-  \lean{Riemannian.Geodesic.covariant_sndFDeriv_symm, Riemannian.Geodesic.covariant_sndFDeriv_symm_of_eventually, Riemannian.Geodesic.covariant_sndFDeriv_symm_of_surface}
+  \lean{Riemannian.Geodesic.IntrinsicParametrizedSurface.mixedCovariantDerivatives_commute,
+    Riemannian.Geodesic.ParametrizedSurface.covariantDerivativeUOfVelocityV_eq_covariantDerivativeVOfVelocityU,
+    Riemannian.Geodesic.covariant_sndFDeriv_symm, Riemannian.Geodesic.covariant_sndFDeriv_symm_of_eventually, Riemannian.Geodesic.covariant_sndFDeriv_symm_of_surface}
   \leanok
   \dcref{ch3:3.4}
   If $M$ has a symmetric connection and $s:A\to M$ is a parametrized surface, then
