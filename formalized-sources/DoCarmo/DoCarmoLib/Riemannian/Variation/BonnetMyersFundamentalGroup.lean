@@ -100,8 +100,8 @@ is obtained, the preceding monodromy argument gives finiteness of every base
 fundamental group.  Universal-cover existence and curvature transfer remain
 separate inputs, rather than being smuggled into this theorem. -/
 theorem bonnetMyers_of_explicit_simplyConnected_cover
-    {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-    [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H} [I.Boundaryless]
     {X : Type*} [MetricSpace X] [ChartedSpace H X] [IsManifold I ∞ X]
     [SigmaCompactSpace X] [T2Space X] [ConnectedSpace X] [CompleteSpace X]

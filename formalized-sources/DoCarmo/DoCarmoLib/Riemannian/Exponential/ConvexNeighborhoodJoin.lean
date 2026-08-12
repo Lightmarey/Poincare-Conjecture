@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.UniformSegmentLength
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodVelocity
 
-set_option linter.unusedSectionVars false
-
 /-!
 # The joining geodesic with metric payload (do Carmo Ch. 3, §4)
 
@@ -44,8 +42,8 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
   [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]

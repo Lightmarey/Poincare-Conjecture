@@ -4,8 +4,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodInterior
 import DoCarmoLib.Riemannian.Exponential.RayGeodesic
 import DoCarmoLib.Riemannian.Exponential.NormalBallEDist
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: discharging `Huniq` of do Carmo Proposition 4.2 (Ch. 3, §4)
 
@@ -37,11 +35,13 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+section NormedModel
+
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
-  [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]
+  [I.Boundaryless]
 
 /-- **Math.** **An `Icc 0 1` geodesic extends to an open time window** (do Carmo Ch. 3, §4, the
 presentation step of Prop. 4.2, `I-0213`).  A continuous intrinsic geodesic `α` on the *closed*
@@ -183,6 +183,8 @@ theorem exists_geodesic_window_of_isGeodesicOn_Icc
           show (if t < (1:ℝ) / 2 then γb t else γf t) = γf t
           exact if_neg htlt
         rw [this]; exact hγfeq htIoo
+
+variable [T2Space (TangentBundle I M')]
 
 /-- **Math.** **A minimizing geodesic has speed equal to the distance it realizes** (do Carmo Ch. 3,
 Prop. 3.6 corollary, local form). If `γ` is a continuous geodesic on an open window `(lo, hi)` with
@@ -378,6 +380,16 @@ theorem sqrt_speedSq_eq_dist_of_minimizing
       exact mul_left_cancel₀ (ne_of_gt hpos) h2
     exact hcancel.symm
 
+end NormedModel
+
+section InnerProductModel
+
+variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
+variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
+  [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]
+
 /-- **Math.** **Convex neighborhoods (do Carmo Proposition 4.2), unconditionally.** For every point
 `p` of a Riemannian manifold there is `β > 0` such that the closed geodesic ball `closedBall p β` is
 strongly convex (`def:dc-ch3-4-2-stronglyconvex`): any two of its points are joined by a *unique*
@@ -493,6 +505,8 @@ theorem exists_stronglyConvex_closedBall (g : RiemannianMetric I M') (hg : g.IsR
   intro s hs
   rw [← heqβ hs, ← hEng hs]
   exact heqα hs
+
+end InnerProductModel
 
 end Exponential
 

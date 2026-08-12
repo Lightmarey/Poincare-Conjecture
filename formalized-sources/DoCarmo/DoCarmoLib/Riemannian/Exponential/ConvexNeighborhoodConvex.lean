@@ -3,8 +3,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodAdmissible
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhood42
 import DoCarmoLib.Riemannian.Exponential.MinimizingGeodesic
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: minimizing geodesics with interior in the ball (do Carmo Ch. 3, §4)
 
@@ -51,8 +49,8 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
   [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]

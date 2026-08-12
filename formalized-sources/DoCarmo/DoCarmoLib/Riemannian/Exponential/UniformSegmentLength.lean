@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Geodesic.FlowReadback
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodInterior
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Length of a geodesic segment: metric payload for uniform-flow segments
 
@@ -28,9 +26,9 @@ uniformly in the base point `y = φ_p(q)`, and hence the radial *upper* bound
 
 This is the length half of do Carmo's Proposition 3.6, the metric input to the
 minimizing clause of Proposition 4.2 (convex neighborhoods,
-`prop:dc-ch3-4-2`). The *lower* bound `d(q, γ 1) = √⟨w,w⟩` — radial geodesics
-realize the distance, uniformly in the center — remains the open crux,
-requiring a base-uniform Gauss estimate not yet available.
+`prop:dc-ch3-4-2`). The downstream module `MovingBaseProp36LowerBound.lean`
+supplies the complementary lower bound, packaged as
+`exists_movingBase_prop36_lower_bound`.
 -/
 
 noncomputable section
@@ -41,8 +39,8 @@ open scoped Manifold Topology ContDiff NNReal ENNReal
 namespace Riemannian
 namespace Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 
 section Length
@@ -82,7 +80,7 @@ end Length
 section FlowSegment
 
 variable {M : Type*} [MetricSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
-  [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]
+  [I.Boundaryless]
 
 /-- **Math.** **The uniform-flow geodesic segment has length `√⟨w,w⟩_{G_p(y)}`.**
 For the rescaled chart-`p` spray segment `γ(s) = φ_p⁻¹((Z(y, T⁻¹ • w)(sT))₁)` of

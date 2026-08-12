@@ -4,8 +4,6 @@ import DoCarmoLib.Riemannian.Geodesic.HopfRinow.ConstantSpeed
 import DoCarmoLib.Riemannian.Geodesic.HopfRinow.CurveReadback
 import DoCarmoLib.Riemannian.Geodesic.HopfRinow.GramBound
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: the interior-in-ball deduction (do Carmo Ch. 3, §4, Proposition 4.2)
 
@@ -43,11 +41,11 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M' : Type*} [MetricSpace M'] [ChartedSpace H M'] [IsManifold I ∞ M']
-  [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M')]
+  [I.Boundaryless]
 
 /-- **Math.** **The intrinsic squared speed read in a fixed external chart.** For a curve `γ`
 continuous at `t`, with `γ t` in the source of the chart at `α` and coordinate velocity `ξ`
@@ -70,6 +68,8 @@ theorem speedSq_eq_chartMetricInner_extChartAt (g : RiemannianMetric I M')
   rw [speedSq_def, mfderiv_eq_of_hasDerivAt_extChartAt (I := I) hcont hsrc hd,
     chartMetricInner_extChartAt_eq_metricInner (I := I) g α hsrc ξ ξ,
     trivializationAt_symm_eq_tangentCoordChange (I := I) α hsrc ξ]
+
+variable [NeZero (Module.finrank ℝ E)]
 
 /-- **Math.** **Chart velocity bounded by the conserved speed, uniformly near `p`.** For every
 `p ∈ M` there are a constant `c > 0` and a neighborhood `V` of `φ_p(p)` in the chart target such
@@ -94,6 +94,8 @@ theorem exists_sq_norm_deriv_le_speedSq (g : RiemannianMetric I M') (p : M') :
   intro γ t ξ hcont hsrc hmem hd
   rw [speedSq_eq_chartMetricInner_extChartAt (I := I) g hcont hsrc hd]
   exact hbound _ hmem ξ
+
+variable [CompleteSpace E] [T2Space (TangentBundle I M')]
 
 /-- **Math.** **The interior of a joining geodesic stays strictly inside a geodesic ball** (do Carmo
 Ch. 3, §4, Proposition 4.2, the geometric core). There are the `C²` exponential-inverse package

@@ -1,4 +1,5 @@
 import DoCarmoLib.Riemannian.Geodesic.FlowC2Dependence
+import DoCarmoLib.Riemannian.Geodesic.FlowHomogeneity
 import DoCarmoLib.Riemannian.Exponential.C2Ball
 
 /-!
@@ -119,11 +120,10 @@ theorem exists_expMap_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
       calc |a| * T < b * T := mul_lt_mul_of_pos_right ha hT
         _ = ε := by rw [hbdef, div_mul_cancel₀ _ hT.ne']
     -- the fibre/time-rescaled trajectory
-    set S : (E × E) →L[ℝ] E × E :=
-      (ContinuousLinearMap.fst ℝ E E).prod
-        ((a * T) • ContinuousLinearMap.snd ℝ E E) with hSdef
     set ζ : ℝ → E × E := fun s =>
-      S (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)) with hζdef
+      ((Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).1,
+        (a * T) • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2)
+      with hζdef
     set J : Set ℝ := {s : ℝ | a * T * s ∈ Ioo (-ε) ε} with hJdef
     have hJo : IsOpen J := isOpen_Ioo.preimage (continuous_const.mul continuous_id)
     have hJconv : Convex ℝ J := by
@@ -163,42 +163,8 @@ theorem exists_expMap_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
             (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).1
             (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2) (a * T * s) :=
         (hzd _ (Ioo_subset_Icc_self hsIoo)).hasDerivAt (Icc_mem_nhds hsIoo.1 hsIoo.2)
-      have hlin : HasDerivAt (fun s' : ℝ => a * T * s') (a * T) s := by
-        simpa using (hasDerivAt_id s).const_mul (a * T)
-      have hcomp : HasDerivAt
-          (fun s' : ℝ => Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s'))
-          ((a * T) • geodesicSprayCoord (I := I) g p
-            (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).1
-            (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2) s :=
-        hZs.scomp s hlin
-      have hSd : HasDerivAt ζ
-          (S ((a * T) • geodesicSprayCoord (I := I) g p
-            (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).1
-            (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2)) s :=
-        S.hasFDerivAt.comp_hasDerivAt s hcomp
-      refine hSd.congr_deriv ?_
-      -- compute both sides componentwise
-      rw [geodesicSprayCoord_def, geodesicSprayCoord_def]
-      have hζs1 : (ζ s).1
-          = (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).1 := rfl
-      have hζs2 : (ζ s).2
-          = (a * T) • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2 := rfl
-      rw [hζs1, hζs2]
-      refine Prod.ext ?_ ?_
-      · show (a * T) • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2
-          = (a * T) • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2
-        rfl
-      · show (a * T) • ((a * T) •
-            (- Geodesic.chartChristoffelContraction (I := I) g p
-              (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2
-              (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2
-              (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).1))
-          = - Geodesic.chartChristoffelContraction (I := I) g p
-              ((a * T) • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2)
-              ((a * T) • (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).2)
-              (Z ((extChartAt I p p, T⁻¹ • u) : E × E) (a * T * s)).1
-        rw [Geodesic.chartChristoffelContraction_smul_smul]
-        rw [smul_neg, smul_neg, smul_smul]
+      simpa only [hζdef] using
+        hasDerivAt_sprayCoord_rescale (I := I) g p (a * T) hZs
     -- membership in the tangent chart target
     have hζmem : ∀ s ∈ J, ζ s ∈
         (extChartAt I.tangent (⟨p, (0 : E)⟩ : TangentBundle I M)).target := by
@@ -227,7 +193,6 @@ theorem exists_expMap_ray_ode_ball (g : RiemannianMetric I M) (p : M) :
       show (ζ 1).1 = _
       rw [hζdef]
       simp only [mul_one]
-      rfl
   -- the chart velocity along a ray is the rescaled flow velocity
   have hvel : ∀ (u : E) (t : ℝ), ‖u‖ < ρ → |t| < b → ‖t • u‖ < ρ →
       fderiv ℝ f (t • u) u

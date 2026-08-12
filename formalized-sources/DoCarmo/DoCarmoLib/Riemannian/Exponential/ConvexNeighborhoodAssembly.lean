@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhoodContinuity
 import DoCarmoLib.Riemannian.Geodesic.FlowReadback
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: assembly of `lem:dc-ch3-4-1` (do Carmo Ch. 3, §4)
 
@@ -39,11 +37,10 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
-variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]
 
 /-- **Math.** **The F-identity: `∂F/∂t(0)` and `∂²F/∂t²(0)` along a chart-read geodesic.**
 Let `finv` be `C²` on an open set `S`, let `x : ℝ → E` be a curve differentiable near `0` with
@@ -132,6 +129,8 @@ theorem hasDerivAt_and_deriv_deriv_sqNormComp (g : RiemannianMetric I M) (p : M)
   rw [hmain.deriv, hu0, hu'0]
   ring
 
+variable [I.Boundaryless]
+
 /-- **Math.** **The F-identity for the moving-base geodesic flow reading.** Let `Z` be a local
 flow of the chart-`p` geodesic spray (from `exists_uniform_geodesic_flow` /
 `exists_pairMap_hasStrictFDerivAt`), let `finv` be `C²` on an open `S ∋ y` (`y = φ_p(q)` the
@@ -148,7 +147,7 @@ The chart reading `x` has `x(0) = y`, `x'(0) = w`, and `x''(0) = (spray(y, w))�
 (`isGeodesicOn_uniform_flow_segment_Ioo`); feeding these into the abstract second-order chain
 rule `hasDerivAt_and_deriv_deriv_sqNormComp` identifies `deriv (deriv F) 0` with the algebraic
 form `secondDerivChartForm` of `ConvexNeighborhoodContinuity.lean`. -/
-theorem hasDerivAt_and_deriv_deriv_sqNorm_flowReading [T2Space M]
+theorem hasDerivAt_and_deriv_deriv_sqNorm_flowReading
     (g : RiemannianMetric I M) (p : M) {r ε T : ℝ} {Z : E × E → ℝ → E × E}
     (hT : 0 < T) (hTε : T < ε)
     (hflow : ∀ z ∈ closedBall ((extChartAt I p p, (0 : E)) : E × E) r,
@@ -209,6 +208,8 @@ theorem hasDerivAt_and_deriv_deriv_sqNorm_flowReading [T2Space M]
   rw [hF'']
   rfl
 
+variable [CompleteSpace E] [T2Space (TangentBundle I M)]
+
 /-- **Math.** **do Carmo Ch. 3, §4, Lemma 4.1 — a geodesic tangent to a geodesic sphere stays
 outside the ball.** For any `p ∈ M` there are a `C²` exponential inverse `finv`, an open
 neighborhood `V` of `φ_p(p)` (do Carmo's `c`: the ball `exp_p(B_c(0))` reads into `V`), and a
@@ -225,7 +226,7 @@ The proof combines the F-identity `deriv (deriv F) 0 = secondDerivChartForm g p 
 on `V` for nonzero velocities (`exists_secondDerivChartForm_pos_nhds_ne`), and the
 second-derivative test (`eventually_ge_of_deriv_deriv_pos`): with `∂F/∂t(0) = 0` and
 `∂²F/∂t²(0) > 0`, `F` has a strict local minimum at `0`. -/
-theorem exists_forall_geodesic_tangent_stays_outside_ball [T2Space M]
+theorem exists_forall_geodesic_tangent_stays_outside_ball
     (g : RiemannianMetric I M) (p : M) :
     ∃ (finv : E → E) (V : Set E) (r ε T : ℝ) (Z : E × E → ℝ → E × E),
       IsOpen V ∧ extChartAt I p p ∈ V ∧ V ⊆ (extChartAt I p).target ∧

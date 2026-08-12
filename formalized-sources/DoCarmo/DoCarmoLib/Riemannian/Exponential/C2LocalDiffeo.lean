@@ -1,8 +1,6 @@
 import DoCarmoLib.Riemannian.Exponential.LocalDiffeo
 import DoCarmoLib.Riemannian.Exponential.C2Ball
 
-set_option linter.unusedSectionVars false
-
 /-!
 # The exponential map is a `C²` local diffeomorphism
 
@@ -44,8 +42,8 @@ namespace Exponential
 
 open Riemannian.Geodesic Riemannian.FlowDependence
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]

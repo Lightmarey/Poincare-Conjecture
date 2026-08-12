@@ -2,8 +2,6 @@ import DoCarmoLib.Riemannian.Exponential.ConvexNeighborhood
 import DoCarmoLib.Riemannian.Exponential.C2LocalDiffeo
 import DoCarmoLib.Riemannian.Exponential.TotallyNormal
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Convex neighborhoods: joint continuity of the second time-derivative in the base point
 
@@ -42,8 +40,8 @@ namespace Riemannian
 
 section ChartMetricInnerContinuous
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 
@@ -84,11 +82,11 @@ namespace Exponential
 
 open Riemannian.Geodesic
 
-variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [InnerProductSpace ℝ E]
-  [Module.Finite ℝ E] [FiniteDimensional ℝ E] [NeZero (Module.finrank ℝ E)]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
-variable [I.Boundaryless] [CompleteSpace E] [T2Space (TangentBundle I M)]
+variable [I.Boundaryless]
 
 /-- **Math.** **The `t = 0` second time-derivative of the squared radial distance, as an
 explicit algebraic form in `(a, w)`.** With `a = φ_p(q)` the chart position, `w` the chart
@@ -107,6 +105,7 @@ def secondDerivChartForm (g : RiemannianMetric I M) (p : M) (finv : E → E)
     + 2 * chartMetricInner (I := I) g p (extChartAt I p p)
         (fderiv ℝ finv a w) (fderiv ℝ finv a w)
 
+omit [I.Boundaryless] in
 /-- **Math.** **Degree-2 homogeneity of the second time-derivative form in the velocity.**
 `secondDerivChartForm g p finv a (c • w) = c² · secondDerivChartForm g p finv a w`. This is
 do Carmo's reduction to unit speed (the homogeneity Lemma 2.6): every building block scales —
@@ -202,6 +201,7 @@ theorem continuousOn_secondDerivChartForm (g : RiemannianMetric I M) (p : M)
   intro z _
   simp only [secondDerivChartForm, Pi.smul_apply, smul_eq_mul, Pi.add_apply]
 
+omit [I.Boundaryless] in
 /-- **Math.** **The second time-derivative is strictly positive at the center `q = p`.**
 At the reference point `q = p` the geodesic through `p` with velocity `v ≠ 0` is the radial
 ray, so `u(0) = finv(φ_p p) = 0` kills the `⟨u''(0), u(0)⟩` term and
@@ -223,6 +223,8 @@ theorem secondDerivChartForm_extChartAt_self_pos (g : RiemannianMetric I M) (p :
   unfold secondDerivChartForm
   rw [h0, chartMetricInner_zero_right]
   linarith
+
+variable [CompleteSpace E] [T2Space (TangentBundle I M)]
 
 /-- **Math.** **Packaged `C²` exponential inverse with an invertible derivative at `p`.**
 There is a `C²` local inverse `finv` of `φ_p ∘ exp_p`, defined on an open set `S` inside the
