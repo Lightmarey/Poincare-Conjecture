@@ -13,11 +13,11 @@ Chapter 2. Vector fields are the bundled `SmoothVectorField I M` (`= 𝒳(M)`) f
 the Chapter 0 interface; the function ring `𝒟(M)` is the globally `C^∞` scalars
 `f : M → ℝ`, acting on vector fields via `SmoothVectorField.smul`.
 
-The abstract connection `∇` (do Carmo Def. 2.1) and the notion of a *symmetric*
-connection (Def. 3.4) are genuinely new material: the library's metric layer
-works `metric → Christoffel → geodesic` directly and never introduces the
-operator `∇`. The coordinate Christoffel end (Def. 3.7) already exists as
-`Riemannian.chartChristoffel`.
+The abstract connection `∇` (do Carmo Def. 2.1), its along-curve derivative, and
+the notion of a *symmetric* connection (Def. 3.4) are part of the checked
+connection layer. The chart Christoffel end (Def. 3.7) remains available as
+`Riemannian.chartChristoffel`, and the along-curve bridge identifies its
+Levi--Civita specialization with the intrinsic operator.
 
 Reference: do Carmo, *Riemannian Geometry*, Ch. 2 §2–§3.
 -/
@@ -211,9 +211,9 @@ metric** `g` when
 `X⟨Y, Z⟩ = ⟨∇_X Y, Z⟩ + ⟨Y, ∇_X Z⟩` for all `X, Y, Z ∈ 𝒳(M)`,
 stated pointwise, with `X⟨Y, Z⟩` the directional derivative of `p ↦ ⟨Y, Z⟩_p`
 along `X` (`SmoothVectorField.dir`). This is do Carmo's characterization (4) of
-compatibility; by Cor. 3.3 / Prop. 3.2 it is equivalent to the
-parallel-transport definition (Def. 3.1) once the covariant derivative along a
-curve is available. -/
+compatibility; the along-curve metric-compatibility theorems prove its
+equivalence with the parallel-transport definition (Def. 3.1) and the intrinsic
+product rule (Prop. 3.2). -/
 def IsMetricCompatible (g : RiemannianMetric I M) (nabla : AffineConnection I M) :
     Prop :=
   ∀ (X Y Z : SmoothVectorField I M) (p : M),

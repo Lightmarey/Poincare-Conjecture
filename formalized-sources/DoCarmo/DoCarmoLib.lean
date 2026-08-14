@@ -6,6 +6,13 @@ import DoCarmoLib.Riemannian.Connection.CurvaturePointwise
 import DoCarmoLib.Riemannian.Connection.ChartCurvatureForm
 import DoCarmoLib.Riemannian.Connection.ChristoffelBridge
 import DoCarmoLib.Riemannian.Connection.PullbackChristoffel
+import DoCarmoLib.Riemannian.Connection.AffineCovariantDerivativeAlong
+import DoCarmoLib.Riemannian.Connection.CovariantDerivativeAlongLeviCivita
+import DoCarmoLib.Riemannian.Connection.GeodesicCovariantDerivative
+import DoCarmoLib.Riemannian.Connection.MetricCompatibilityAlong
+import DoCarmoLib.Riemannian.Connection.ParallelAlong
+import DoCarmoLib.Riemannian.Connection.PiecewiseParallelAlong
+import DoCarmoLib.Riemannian.Connection.SurfaceCovariantDerivative
 import DoCarmoLib.Riemannian.Geodesic.ChartFlow
 import DoCarmoLib.Riemannian.Geodesic.CovariantDerivative
 import DoCarmoLib.Riemannian.Geodesic.ODESmoothness
