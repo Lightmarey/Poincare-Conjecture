@@ -164,7 +164,14 @@ def IsRegularFieldAlongOn (c : ℝ → M)
     (V : ∀ t, TangentSpace I (c t)) (s : Set ℝ) : Prop :=
   ∀ t ∈ s, DifferentiableAt ℝ (chartFieldRep (I := I) c (c t) V) t
 
-/-- **Math.** Parallelism for an affine connection on a parameter set. -/
+/-- **Math.** The unguarded parallel equation for an affine connection on a
+parameter set.
+
+Because `covDerivAlong` is total, this predicate can be satisfied by irregular
+fields whose coordinate derivatives default to zero.  It is meaningful for
+parallel transport only together with `IsRegularFieldAlongOn`; for the
+Levi-Civita connection the guarded notions are `IsParallelAlongWithinOn` and
+`IsIntrinsicPiecewiseParallelAlongOn`. -/
 def AffineConnection.IsParallelFieldAlongOn
     (nabla : AffineConnection I M) (c : ℝ → M)
     (V : ∀ t, TangentSpace I (c t)) (s : Set ℝ) : Prop :=
@@ -179,6 +186,232 @@ theorem RiemannianMetric.leviCivita_isParallelFieldAlongOn_iff_isParallelAlong
       IsParallelAlong (I := I) g c V s := by
   simp only [AffineConnection.IsParallelFieldAlongOn, IsParallelAlong,
     g.leviCivita_covDerivAlong_eq]
+
+private theorem isParallelWithinSolOn_of_isParallelAlong
+    {g : RiemannianMetric I M} {c : ℝ → M}
+    {V : ∀ t, TangentSpace I (c t)} {alpha : M} {a b : ℝ}
+    (hc : ∀ t ∈ Icc a b, ContinuousAt c t)
+    (hdiff : Variation.IsChartDifferentiableOn (I := I) c a b)
+    (hsrc : ∀ t ∈ Icc a b, c t ∈ (chartAt H alpha).source)
+    (hreg : IsRegularFieldAlongOn (I := I) c V (Icc a b))
+    (hpar : IsParallelAlong (I := I) g c V (Icc a b)) :
+    IsParallelWithinSolOn (I := I) g alpha c V a b := by
+  intro t ht
+  have huSelf := hdiff t ht (c t) (mem_chart_source H (c t))
+  have hu := hdiff t ht alpha (hsrc t ht)
+  have hfield : DifferentiableAt ℝ (chartFieldRep (I := I) c alpha V) t :=
+    differentiableAt_chartFieldRep_change (I := I) (c t) alpha
+      (hc t ht) (mem_chart_source H (c t)) (hsrc t ht)
+      huSelf (hreg t ht)
+  have hzero := (covDerivAlong_eq_zero_iff_chart (I := I) g alpha
+    (hc t ht) (hsrc t ht) hu hfield).1 (hpar t ht)
+  refine ⟨deriv (fun s => extChartAt I alpha (c s)) t,
+    hu.hasDerivAt.hasDerivWithinAt, ?_⟩
+  rw [covariantDerivCoord_def] at hzero
+  rw [← (eq_neg_of_add_eq_zero_left hzero)]
+  exact hfield.hasDerivAt.hasDerivWithinAt
+
+private theorem isParallelAlongWithinOn_of_isParallelAlong_Icc
+    {g : RiemannianMetric I M} {c : ℝ → M}
+    {V : ∀ t, TangentSpace I (c t)} {a b : ℝ}
+    (hab : a < b)
+    (hc : ∀ t ∈ Icc a b, ContinuousAt c t)
+    (hdiff : Variation.IsChartDifferentiableOn (I := I) c a b)
+    (hreg : IsRegularFieldAlongOn (I := I) c V (Icc a b))
+    (hpar : IsParallelAlong (I := I) g c V (Icc a b)) :
+    IsParallelAlongWithinOn (I := I) g c V a b := by
+  intro t ht
+  have hpre : c ⁻¹' (chartAt H (c t)).source ∈ 𝓝 t :=
+    (hc t ht).preimage_mem_nhds
+      ((chartAt H (c t)).open_source.mem_nhds (mem_chart_source H (c t)))
+  obtain ⟨eps, heps, hball⟩ := Metric.mem_nhds_iff.1 hpre
+  let l := max a (t - eps / 2)
+  let r := min b (t + eps / 2)
+  have htlr : t ∈ Icc l r :=
+    ⟨max_le ht.1 (by linarith), le_min ht.2 (by linarith)⟩
+  have hsub : Icc l r ⊆ Icc a b :=
+    Icc_subset_Icc (le_max_left _ _) (min_le_left _ _)
+  have hnbhd : Icc l r ∈ 𝓝[Icc a b] t := by
+    refine mem_nhdsWithin.2 ⟨Ioo (t - eps / 2) (t + eps / 2), isOpen_Ioo,
+      ⟨by linarith, by linarith⟩, ?_⟩
+    intro s hs
+    exact ⟨max_le hs.2.1 hs.1.1.le, le_min hs.2.2 hs.1.2.le⟩
+  have hsrc : ∀ s ∈ Icc l r, c s ∈ (chartAt H (c t)).source := by
+    intro s hs
+    have hlower : t - eps / 2 ≤ s :=
+      (le_max_right a (t - eps / 2)).trans hs.1
+    have hupper : s ≤ t + eps / 2 :=
+      hs.2.trans (min_le_right b (t + eps / 2))
+    apply hball
+    rw [Metric.mem_ball, Real.dist_eq]
+    have hle : |s - t| ≤ eps / 2 := abs_le.2 ⟨by linarith, by linarith⟩
+    linarith
+  have hlr : l < r := by
+    apply max_lt
+    · exact lt_min hab (by linarith [ht.1])
+    · exact lt_min (by linarith [ht.2]) (by linarith)
+  refine ⟨c t, l, r, hlr, htlr, hsub, hnbhd, hsrc, ?_⟩
+  exact isParallelWithinSolOn_of_isParallelAlong
+    (fun s hs => hc s (hsub hs))
+    (fun s hs => hdiff s (hsub hs))
+    hsrc
+    (fun s hs => hreg s (hsub hs))
+    (fun s hs => hpar s (hsub hs))
+
+/-- **Math.** On every compact subinterval of an open interval, continuity and
+chart differentiability of the curve, regularity of the field, and the
+unguarded parallel equation yield a genuine closed-interval certificate.  This
+is the converse direction to the existing certificate-to-equation bridge. -/
+theorem IsParallelAlong.isParallelAlongWithinOn_of_isRegularFieldAlongOn
+    {g : RiemannianMetric I M} {c : ℝ → M}
+    {V : ∀ t, TangentSpace I (c t)} {a b l r : ℝ}
+    (hpar : IsParallelAlong (I := I) g c V (Ioo a b))
+    (hreg : IsRegularFieldAlongOn (I := I) c V (Ioo a b))
+    (hc : ∀ t ∈ Ioo a b, ContinuousAt c t)
+    (hdiff : ∀ t ∈ Ioo a b, ∀ alpha : M,
+      c t ∈ (chartAt H alpha).source →
+        DifferentiableAt ℝ (fun s => extChartAt I alpha (c s)) t)
+    (hlr : l < r) (hsub : Icc l r ⊆ Ioo a b) :
+    IsParallelAlongWithinOn (I := I) g c V l r := by
+  exact isParallelAlongWithinOn_of_isParallelAlong_Icc hlr
+    (fun t ht => hc t (hsub ht))
+    (fun t ht alpha hsrc => hdiff t (hsub ht) alpha hsrc)
+    (fun t ht => hreg t (hsub ht))
+    (fun t ht => hpar t (hsub ht))
+
+/-- **Math.** A closed-interval certificate implies the ordinary parallel
+equation at every interior time. -/
+theorem IsParallelAlongWithinOn.isParallelAlong_Ioo_of_contMDiffOn
+    {g : RiemannianMetric I M} {c : ℝ → M}
+    {V : ∀ t, TangentSpace I (c t)} {a b : ℝ}
+    (h : IsParallelAlongWithinOn (I := I) g c V a b)
+    (hc : ContMDiffOn 𝓘(ℝ, ℝ) I 1 c (Icc a b)) :
+    IsParallelAlong (I := I) g c V (Ioo a b) := by
+  intro t ht
+  obtain ⟨alpha, l, r, _hlr, ht', _hsub, hnbhd, hsrc, hcert⟩ :=
+    h t (Ioo_subset_Icc_self ht)
+  have hOuterN : Icc a b ∈ 𝓝 t := Icc_mem_nhds ht.1 ht.2
+  rw [nhdsWithin_eq_nhds.2 hOuterN] at hnbhd
+  obtain ⟨velocity, hu, hV⟩ := hcert t ht'
+  have huAt := hu.hasDerivAt hnbhd
+  have hVAt := hV.hasDerivAt hnbhd
+  have hcoord : covariantDerivCoord (I := I) g alpha
+      (fun s => extChartAt I alpha (c s))
+      (chartFieldRep (I := I) c alpha V) t = 0 := by
+    rw [covariantDerivCoord_def, huAt.deriv, hVAt.deriv]
+    abel
+  have hct : ContMDiffAt 𝓘(ℝ, ℝ) I 1 c t :=
+    (hc t (Ioo_subset_Icc_self ht)).contMDiffAt hOuterN
+  exact (covDerivAlong_eq_zero_iff_chart (I := I) g alpha
+    hct.continuousAt (hsrc t ht')
+    huAt.differentiableAt hVAt.differentiableAt).2 hcoord
+
+/-- **Math.** A one-sided within-parallel certificate on a nontrivial closed
+interval starting at `a` and contained in `[a,b]`. -/
+def IsParallelAlongWithinAtLeft (g : RiemannianMetric I M) (c : ℝ → M)
+    (V : ∀ t, TangentSpace I (c t)) (a b : ℝ) : Prop :=
+  ∃ r, a < r ∧ r ≤ b ∧ ∃ alpha : M,
+    (∀ t ∈ Icc a r, c t ∈ (chartAt H alpha).source) ∧
+    IsParallelWithinSolOn (I := I) g alpha c V a r
+
+/-- **Math.** A one-sided within-parallel certificate on a nontrivial closed
+interval ending at `b` and contained in `[a,b]`. -/
+def IsParallelAlongWithinAtRight (g : RiemannianMetric I M) (c : ℝ → M)
+    (V : ∀ t, TangentSpace I (c t)) (a b : ℝ) : Prop :=
+  ∃ l, a ≤ l ∧ l < b ∧ ∃ alpha : M,
+    (∀ t ∈ Icc l b, c t ∈ (chartAt H alpha).source) ∧
+    IsParallelWithinSolOn (I := I) g alpha c V l b
+
+/-- **Math.** Closed-interval parallelism is exactly the regular interior
+parallel equation together with its two one-sided endpoint certificates. -/
+theorem isParallelAlongWithinOn_iff_isParallelAlong_Ioo_and_endpoints
+    {g : RiemannianMetric I M} {c : ℝ → M}
+    {V : ∀ t, TangentSpace I (c t)} {a b : ℝ}
+    (hab : a < b)
+    (hc : ContMDiffOn 𝓘(ℝ, ℝ) I 1 c (Icc a b))
+    (hreg : IsRegularFieldAlongOn (I := I) c V (Ioo a b)) :
+    IsParallelAlongWithinOn (I := I) g c V a b ↔
+      IsParallelAlong (I := I) g c V (Ioo a b) ∧
+      IsParallelAlongWithinAtLeft (I := I) g c V a b ∧
+      IsParallelAlongWithinAtRight (I := I) g c V a b := by
+  have hcAt : ∀ t ∈ Ioo a b, ContMDiffAt 𝓘(ℝ, ℝ) I 1 c t := by
+    intro t ht
+    exact (hc t (Ioo_subset_Icc_self ht)).contMDiffAt
+      (Icc_mem_nhds ht.1 ht.2)
+  constructor
+  · intro h
+    refine ⟨h.isParallelAlong_Ioo_of_contMDiffOn hc, ?_, ?_⟩
+    · obtain ⟨alpha, l, r, hlr, ha, hsub, _hnbhd, hsrc, hcert⟩ :=
+        h a (left_mem_Icc.2 hab.le)
+      have hleq : l = a := le_antisymm ha.1
+        (hsub (left_mem_Icc.2 hlr.le)).1
+      subst l
+      exact ⟨r, hlr, (hsub (right_mem_Icc.2 hlr.le)).2,
+        alpha, hsrc, hcert⟩
+    · obtain ⟨alpha, l, r, hlr, hb, hsub, _hnbhd, hsrc, hcert⟩ :=
+        h b (right_mem_Icc.2 hab.le)
+      have hre : r = b := le_antisymm
+        (hsub (right_mem_Icc.2 hlr.le)).2 hb.2
+      subst r
+      exact ⟨l, (hsub (left_mem_Icc.2 hlr.le)).1, hlr,
+        alpha, hsrc, hcert⟩
+  · rintro ⟨hpar, hleft, hright⟩ t ht
+    rcases eq_or_lt_of_le ht.1 with hta | hat
+    · subst t
+      obtain ⟨r, har, hrb, alpha, hsrc, hcert⟩ := hleft
+      refine ⟨alpha, a, r, har, left_mem_Icc.2 har.le,
+        Icc_subset_Icc le_rfl hrb, ?_, hsrc, hcert⟩
+      refine mem_nhdsWithin.2 ⟨Iio r, isOpen_Iio, har, ?_⟩
+      intro s hs
+      exact ⟨hs.2.1, hs.1.le⟩
+    · rcases eq_or_lt_of_le ht.2 with htb | htb
+      · subst t
+        obtain ⟨l, hal, hlb, alpha, hsrc, hcert⟩ := hright
+        refine ⟨alpha, l, b, hlb, right_mem_Icc.2 hlb.le,
+          Icc_subset_Icc hal le_rfl, ?_, hsrc, hcert⟩
+        refine mem_nhdsWithin.2 ⟨Ioi l, isOpen_Ioi, hlb, ?_⟩
+        intro s hs
+        exact ⟨hs.1.le, hs.2.2⟩
+      · let l := (a + t) / 2
+        let r := (t + b) / 2
+        have halt : a < l := by dsimp [l]; linarith
+        have hltt : l < t := by dsimp [l]; linarith
+        have httr : t < r := by dsimp [r]; linarith
+        have hrtb : r < b := by dsimp [r]; linarith
+        have hlr : l < r := lt_trans hltt httr
+        have hsubOpen : Icc l r ⊆ Ioo a b := by
+          intro s hs
+          exact ⟨halt.trans_le hs.1, hs.2.trans_lt hrtb⟩
+        have hsmall := hpar.isParallelAlongWithinOn_of_isRegularFieldAlongOn
+          hreg
+          (fun s hs => (hcAt s hs).continuousAt)
+          (fun s hs alpha hsrc =>
+            ((contMDiffAt_extChartAt' (I := I) (n := 1) hsrc).comp
+              s (hcAt s hs)).contDiffAt.differentiableAt (by norm_num))
+          hlr hsubOpen
+        obtain ⟨alpha, l', r', hlr', ht', hsub', hnbhd', hsrc', hcert'⟩ :=
+          hsmall t ⟨hltt.le, httr.le⟩
+        have hlocalN : Icc l r ∈ 𝓝 t := Icc_mem_nhds hltt httr
+        rw [nhdsWithin_eq_nhds.2 hlocalN] at hnbhd'
+        exact ⟨alpha, l', r', hlr', ht',
+          hsub'.trans (Icc_subset_Icc halt.le hrtb.le),
+          mem_nhdsWithin_of_mem_nhds hnbhd', hsrc', hcert'⟩
+
+/-- **Math.** The endpoint seam criterion, written with the arbitrary affine
+parallel equation specialized to the Levi-Civita connection. -/
+theorem isParallelAlongWithinOn_iff_leviCivita_isParallelFieldAlongOn_Ioo_and_endpoints
+    {g : RiemannianMetric I M} {c : ℝ → M}
+    {V : ∀ t, TangentSpace I (c t)} {a b : ℝ}
+    (hab : a < b)
+    (hc : ContMDiffOn 𝓘(ℝ, ℝ) I 1 c (Icc a b))
+    (hreg : IsRegularFieldAlongOn (I := I) c V (Ioo a b)) :
+    IsParallelAlongWithinOn (I := I) g c V a b ↔
+      g.leviCivitaConnection.IsParallelFieldAlongOn c V (Ioo a b) ∧
+      IsParallelAlongWithinAtLeft (I := I) g c V a b ∧
+      IsParallelAlongWithinAtRight (I := I) g c V a b := by
+  rw [isParallelAlongWithinOn_iff_isParallelAlong_Ioo_and_endpoints
+    (I := I) hab hc hreg,
+    g.leviCivita_isParallelFieldAlongOn_iff_isParallelAlong]
 
 /-- **Math.** Prescribed fibre values are realized by regular parallel fields on `s`. -/
 def AffineConnection.HasParallelFieldRealizationAlongOn

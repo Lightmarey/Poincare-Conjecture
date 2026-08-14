@@ -36,8 +36,14 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 variable {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
 variable {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
 
-/-- **Math.** A tangent field along a curve is intrinsically parallel on `s`
-when its covariant derivative along the curve vanishes at every time in `s`. -/
+/-- **Math.** A tangent field along a curve satisfies the parallel equation on
+`s` when its covariant derivative vanishes there.
+
+This equation alone is intentionally unguarded: because `covDerivAlong` is
+total, an irregular field can satisfy it when its coordinate derivatives
+default to zero.  Use it together with `IsRegularFieldAlongOn`; the guarded
+closed-interval and broken-curve notions are `IsParallelAlongWithinOn` and
+`IsIntrinsicPiecewiseParallelAlongOn`. -/
 def IsParallelAlong (g : RiemannianMetric I M) (c : ℝ → M)
     (V : ∀ t, TangentSpace I (c t)) (s : Set ℝ) : Prop :=
   ∀ t ∈ s, covDerivAlong (I := I) g c V t = 0
@@ -111,6 +117,32 @@ theorem congr (h : IsParallelWithinSolOn (I := I) g alpha c V a b)
   refine ⟨velocity, hu, ?_⟩
   rw [hrep t ht]
   exact hV.congr (fun s hs => hrep s hs) (hrep t ht)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- **Math.** An interval-native chart certificate is unchanged when the base
+curve and the ambient values of its dependent tangent field agree on the
+interval. -/
+theorem congr_curve {d : ℝ → M} {W' : ∀ t, TangentSpace I (d t)}
+    (h : IsParallelWithinSolOn (I := I) g alpha c V a b)
+    (hcd : EqOn c d (Icc a b))
+    (hVW : ∀ t ∈ Icc a b, (V t : E) = (W' t : E)) :
+    IsParallelWithinSolOn (I := I) g alpha d W' a b := by
+  intro t ht
+  obtain ⟨velocity, hu, hV⟩ := h t ht
+  have hu' : HasDerivWithinAt (fun s => extChartAt I alpha (d s)) velocity
+      (Icc a b) t :=
+    hu.congr (fun s hs => (congrArg (extChartAt I alpha) (hcd hs)).symm)
+      (congrArg (extChartAt I alpha) (hcd ht)).symm
+  have hrep : ∀ s ∈ Icc a b,
+      chartFieldRep (I := I) d alpha W' s =
+        chartFieldRep (I := I) c alpha V s := by
+    intro s hs
+    simp only [chartFieldRep_apply]
+    rw [← hcd hs, hVW s hs]
+  refine ⟨velocity, hu', ?_⟩
+  have hfield := hV.congr (fun s hs => hrep s hs) (hrep t ht)
+  convert hfield using 1
+  rw [hrep t ht, ← hcd ht]
 
 section Transfer
 
@@ -440,6 +472,23 @@ theorem congr (h : IsParallelAlongWithinOn (I := I) g c V a b)
   obtain ⟨alpha, a', b', hab', ht', hsub, hnbhd, hsrc, hcert⟩ := h t ht
   exact ⟨alpha, a', b', hab', ht', hsub, hnbhd, hsrc,
     hcert.congr (hVW.mono hsub)⟩
+
+set_option backward.isDefEq.respectTransparency false in
+/-- **Math.** Intrinsic interval-native parallelism is invariant under replacing
+the base curve and dependent field by ambient-equal values on the interval. -/
+theorem congr_curve {d : ℝ → M} {W' : ∀ t, TangentSpace I (d t)}
+    (h : IsParallelAlongWithinOn (I := I) g c V a b)
+    (hcd : EqOn c d (Icc a b))
+    (hVW : ∀ t ∈ Icc a b, (V t : E) = (W' t : E)) :
+    IsParallelAlongWithinOn (I := I) g d W' a b := by
+  intro t ht
+  obtain ⟨alpha, a', b', hab', ht', hsub, hnbhd, hsrc, hcert⟩ := h t ht
+  refine ⟨alpha, a', b', hab', ht', hsub, hnbhd, ?_, ?_⟩
+  · intro s hs
+    rw [← hcd (hsub hs)]
+    exact hsrc s hs
+  · exact hcert.congr_curve (hcd.mono hsub)
+      (fun s hs => hVW s (hsub hs))
 
 /-- **Math.** Intrinsic interval-native parallel fields are closed under
 addition. -/
@@ -986,8 +1035,11 @@ theorem IsParallelAlongOn.isParallelAlong_Ioo
   Variation.IsParallelCovariantFieldAlongOn.isParallelAlong_Ioo hV hc
 
 set_option backward.isDefEq.respectTransparency false in
-/-- **Math.** Along a globally `C¹` curve, every prescribed initial tangent
-vector extends to a closed-interval parallel field, uniquely on `[a,b]`. -/
+/-- **Math.** Along a curve that is `C¹` on all of `ℝ`, every prescribed initial
+tangent vector extends to a closed-interval parallel field, uniquely on
+`[a,b]`.  For the book's interval-`C¹` statement use
+`exists_unique_isParallelAlongWithinOn`; for broken curves use
+`exists_unique_isIntrinsicPiecewiseParallelAlongOn`. -/
 theorem exists_unique_isParallelAlongOn
     {g : RiemannianMetric I M} {c : ℝ → M} {a b : ℝ} (hab : a < b)
     (hc : ContMDiff 𝓘(ℝ, ℝ) I 1 c) (v₀ : TangentSpace I (c a)) :
@@ -1020,8 +1072,10 @@ theorem Variation.parallelCovariantFieldSeed_isParallelAlong_Ioo
     (I := I) (E := E) g hab hc w₀).isParallelAlong_Ioo hc
 
 set_option backward.isDefEq.respectTransparency false in
-/-- **Math.** Parallel transport along a globally `C¹` curve, viewed as a
-linear equivalence between the actual endpoint tangent spaces. -/
+/-- **Math.** Parallel transport along a curve that is `C¹` on all of `ℝ`,
+viewed as a linear equivalence between the actual endpoint tangent spaces.  For
+the book's interval-`C¹` and piecewise-`C¹` statements use the `WithinOn` API
+and `intrinsicPiecewiseParallelTransportTangentEquiv`, respectively. -/
 noncomputable def parallelTransportTangentEquiv
     (g : RiemannianMetric I M) {c : ℝ → M} {a b : ℝ}
     (hab : a < b) (hc : ContMDiff 𝓘(ℝ, ℝ) I 1 c) :

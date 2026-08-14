@@ -310,6 +310,27 @@ theorem smul (r : ℝ) (hV : IsParallelAlongPresentation (I := I) g P V) :
 
 end IsParallelAlongPresentation
 
+set_option backward.isDefEq.respectTransparency false in
+/-- **Math.** A global dependent field parallel on the intrinsic pieces of a
+subdivided curve induces a parallel field for any extension-presented
+segmentation of those same pieces. -/
+theorem IsParallelAlongPresentation.toSegmentation
+    (g : RiemannianMetric I M)
+    {C : Geodesic.SubdividedCurveOfOrder I 1 M}
+    (S : Geodesic.Segmentation I M C)
+    {V : ∀ t, TangentSpace I (C.toFun t)}
+    (hV : IsParallelAlongPresentation (I := I) g
+      (IntrinsicPiecewisePresentation.ofSubdivided C) V) :
+    IsPiecewiseParallelAlong (I := I) g S (fun _ t => (V t : E)) := by
+  constructor
+  · intro i hi
+    apply (isParallelAlongOn_iff_isParallelFieldAlongOn (I := I)).2
+    apply (isParallelAlongWithinOn_iff_isParallelFieldAlongOn
+      (I := I) (S.seg_contMDiff i hi)).1
+    exact (hV i hi).congr_curve (S.seg_eqOn i hi).symm (fun _ _ => rfl)
+  · intro i hi
+    rfl
+
 /-- **Math.** Bare piecewise-`C¹` regularity supplies an intrinsic presentation. -/
 theorem exists_intrinsicPiecewisePresentation
     {c : ℝ → M} {a b : ℝ}
@@ -769,6 +790,53 @@ theorem intrinsicPiecewiseParallelTransportTangentEquiv_eq_terminal_of_presentat
     V b = intrinsicPiecewiseParallelTransportTangentEquiv (I := I) g hc v₀ :=
   intrinsicPiecewiseParallelTransportTangentEquiv_eq_terminal
     (I := I) g hc ⟨P, hV⟩ v₀ hV₀
+
+set_option backward.isDefEq.respectTransparency false in
+/-- **Math.** Legacy segmented parallel transport and intrinsic piecewise
+parallel transport have the same value at every initial tangent vector. -/
+theorem piecewiseParallelTransportTangentEquiv_apply_eq_intrinsicPiecewiseParallelTransportTangentEquiv
+    (g : RiemannianMetric I M)
+    {C : Geodesic.SubdividedCurveOfOrder I 1 M}
+    (S : Geodesic.Segmentation I M C)
+    (hc : Geodesic.IsPiecewiseDifferentiableCurveOfOrder
+      I 1 C.toFun C.a C.b)
+    (v : TangentSpace I (C.toFun C.a)) :
+    piecewiseParallelTransportTangentEquiv (I := I) g S v =
+      intrinsicPiecewiseParallelTransportTangentEquiv (I := I) g hc v := by
+  let P := IntrinsicPiecewisePresentation.ofSubdivided C
+  obtain ⟨V, hV, hV0⟩ := exists_isParallelAlongPresentation (I := I) g P v
+  let w : ℕ → ℝ → E := fun _ t => (V t : E)
+  have hw : IsPiecewiseParallelAlong (I := I) g S w :=
+    hV.toSegmentation g S
+  have hw0 : w 0 (C.tau 0) = (v : E) := by
+    dsimp only [w]
+    rw [C.tau_zero]
+    exact congrArg (fun x : TangentSpace I (C.toFun C.a) => (x : E)) hV0
+  have hl := piecewiseParallelTransportTangentEquiv_eq_terminal
+    (I := I) g hw v hw0
+  have hl' : V C.b =
+      piecewiseParallelTransportTangentEquiv (I := I) g S v := by
+    simpa only [w, C.tau_last] using hl
+  have hi :=
+    intrinsicPiecewiseParallelTransportTangentEquiv_eq_terminal_of_presentation
+      (I := I) g hc P hV v hV0
+  exact hl'.symm.trans hi
+
+set_option backward.isDefEq.respectTransparency false in
+/-- **Math.** The legacy segmentation-dependent endpoint equivalence is exactly
+the intrinsic endpoint equivalence for the underlying broken curve. -/
+theorem piecewiseParallelTransportTangentEquiv_eq_intrinsicPiecewiseParallelTransportTangentEquiv
+    (g : RiemannianMetric I M)
+    {C : Geodesic.SubdividedCurveOfOrder I 1 M}
+    (S : Geodesic.Segmentation I M C)
+    (hc : Geodesic.IsPiecewiseDifferentiableCurveOfOrder
+      I 1 C.toFun C.a C.b) :
+    piecewiseParallelTransportTangentEquiv (I := I) g S =
+      intrinsicPiecewiseParallelTransportTangentEquiv (I := I) g hc := by
+  ext v
+  exact
+    piecewiseParallelTransportTangentEquiv_apply_eq_intrinsicPiecewiseParallelTransportTangentEquiv
+      (I := I) g S hc v
 
 end Riemannian
 
