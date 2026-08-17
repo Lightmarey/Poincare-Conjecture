@@ -1,0 +1,2279 @@
+\chapter{Ricci Flow and Surgery Control}
+
+The constructions in this chapter produce a Ricci flow through every finite
+sequence of singular times while retaining quantitative control of its
+high-curvature regions.  The final result is an all-time controlled flow and
+the distance comparison across the separating surgeries used later.
+
+\section{Surgery Flows and Fixed Controls}
+
+\begin{definition}[Ricci flow with surgery]
+\label{def:ricci-flow-with-surgery}
+\dcref{MT:ch14:14.8}
+\notready
+A \emph{Ricci flow with surgery} is a pair $(\mathcal M,G)$ with the
+following structure.  The surgery spacetime $\mathcal M$ has a continuous
+time function $\mathbf t\colon\mathcal M\to I$, a time vector field $\chi$
+with $\chi(\mathbf t)=1$, and the ordinary, one-sided, and surgery charts
+which distinguish smooth, exposed, and singular points.  Every slice
+$M_t=\mathbf t^{-1}(t)$ is a smooth manifold, and the horizontal bundle is
+$\mathcal H=\ker(d\mathbf t)$.  The tensor $G$ is a smooth metric on
+$\mathcal H$ and satisfies
+\[
+ \mathcal L_\chi G=-2\operatorname{Ric}_G.
+\]
+At an exposed point or an endpoint of $I$, the Lie derivative is one-sided.
+The flow is three-dimensional when its slices are three-manifolds.
+\end{definition}
+
+\begin{definition}[Noncollapsing for a surgery flow]
+\label{def:surgery-flow-noncollapsing}
+\dcref{MT:ch14:14.14,MT:ch14:14.15}
+\uses{def:ricci-flow-with-surgery}
+\notready
+Let $(\mathcal M,G)$ be a three-dimensional Ricci flow with surgery.  The
+backward parabolic neighborhood $P(x,t,\rho,-\rho^2)$ exists when every
+point of $B_{g(t)}(x,\rho)$ has a backward $\chi$-flow line of length
+$\rho^2$, and these flow lines give a product embedding of the ball over
+$[t-\rho^2,t]$.  For $\kappa,r_0>0$, the flow is
+\emph{$\kappa$-noncollapsed on scales at most $r_0$} if
+\[
+ P(x,t,\rho,-\rho^2)\text{ exists},\qquad
+ |\operatorname{Rm}|\le \rho^{-2}\text{ on }P
+ \quad\Longrightarrow\quad
+ \operatorname{Vol}_{g(t)}B(x,t,\rho)\ge\kappa\rho^3
+\]
+whenever $0<\rho\le r_0$.
+\end{definition}
+
+\begin{definition}[Strong canonical-neighborhood control]
+\label{def:strong-canonical-neighborhood-control}
+\dcref{MT:ch14:14.18}
+\uses{def:ricci-flow-with-surgery,def:epsilon-neck-and-scale,def:canonical-cap}
+\notready
+Fix $C<\infty$, $0<\epsilon<1/2$, and $r>0$.  A three-dimensional Ricci
+flow with surgery satisfies the \emph{strong
+$(C,\epsilon)$-canonical-neighborhood assumption with parameter $r$} if
+every point $x$ with $R(x)\ge r^{-2}$ has one of the following
+neighborhoods at the curvature scale $R(x)^{-1/2}$:
+\begin{enumerate}
+\item a strong $\epsilon$-neck centered at $x$, whose parabolic rescaling by
+      $R(x)$ is $\epsilon$-close in
+      $C^{\lfloor\epsilon^{-1}\rfloor}$ to the shrinking round cylinder on
+      normalized times $(-1,0]$;
+\item a $(C,\epsilon)$-cap whose core contains $x$, with $C$-comparable
+      scalar curvatures and scale-normalized diameter and volume bounded by
+      $C$, together with a uniform core volume lower bound and the
+      scale-invariant derivative bounds for $R$;
+\item a compact positively curved $C$-component containing $x$, with
+      least sectional curvature at least $C^{-1}\sup R$ and diameter between
+      $C^{-1}(\sup R)^{-1/2}$ and $C(\inf R)^{-1/2}$;
+\item an $\epsilon$-round component containing $x$.
+\end{enumerate}
+Only the first alternative is a spacetime neighborhood.  The other
+alternatives lie in the slice $M_{\mathbf t(x)}$.
+\end{definition}
+
+\begin{definition}[Controlled surgery parameters]
+\label{def:controlled-surgery-parameters}
+\dcref{MT:ch15:15.5,MT:ch15:15.6,MT:ch15:15.7}
+\uses{def:strong-canonical-neighborhood-control,thm:local-neck-surgery}
+\notready
+Fix $\epsilon>0$ sufficiently small and choose $C$ larger than the uniform
+canonical-neighborhood constants for the standard solution and for
+three-dimensional $\kappa$-solutions.  Put $t_0=2^{-5}$ and
+$T_i=2^it_0$.  The control data are positive nonincreasing sequences
+\[
+ \mathbf r=(r_i)_{i\ge0},\qquad
+ \mathbf K=(\kappa_i)_{i\ge0},\qquad
+ \boldsymbol\delta=(\delta_i)_{i\ge0},
+ \qquad r_0=\epsilon,
+\]
+and positive nonincreasing piecewise constant functions $r(t)$ and
+$\kappa(t)$ with values $r_{i+1}$ and $\kappa_{i+1}$ on
+$[T_i,T_{i+1})$.  A positive nonincreasing surgery-control function
+$\bar\delta(t)$ is required to satisfy
+$\bar\delta(t)\le\delta_{i+1}$ on that interval.  Define
+\[
+ \rho(t)=\bar\delta(t)r(t),
+ \qquad
+ h(t)=h(\rho(t),\bar\delta(t))
+ \le \bar\delta(t)^2r(t),
+\]
+where $h$ is the neck scale at which the local surgery construction applies.
+At a surgery time $t$, every cutting sphere is the central sphere of a strong
+$\bar\delta(t)$-neck of scalar curvature $h(t)^{-2}$.
+\end{definition}
+
+\begin{definition}[Controlled Ricci flow with surgery]
+\label{def:controlled-ricci-flow-with-surgery}
+\dcref{MT:ch15:15.9,MT:ch15:15.11}
+\uses{def:ricci-flow-with-surgery,def:strong-canonical-neighborhood-control,def:controlled-surgery-parameters,def:maximal-ricci-flow-extension}
+\notready
+For the fixed $C$, $\epsilon$, and control functions, a
+\emph{controlled Ricci flow with surgery} is a three-dimensional Ricci flow
+with surgery satisfying the following conditions.
+\begin{enumerate}
+\item Every slice is compact and contains no embedded $\mathbb{RP}^2$ with
+      trivial normal bundle.
+\item Singular times form a discrete subset of the time interval.
+\item Time zero is initial, and every component of $(M_0,g(0))$ is
+      normalized: $|\operatorname{Rm}|\le1$ and every unit ball has at least
+      half the Euclidean unit-ball volume.
+\item At a singular time $t$, the exposed region $E_t$ is a finite disjoint
+      union of three-balls, and
+      $M_t=C_t\cup_{\Sigma_t}E_t$ with $\Sigma_t=\partial E_t$ a finite
+      union of two-spheres.
+\item Every component of $\Sigma_t$ is a central sphere at the prescribed
+      scale in the maximal presurgery extension to $t$.
+\item Immediately before $t$, every point which disappears has a strong
+      $(C,\epsilon)$-canonical neighborhood.
+\item Between consecutive singular times the ordinary Ricci flow is maximal.
+\end{enumerate}
+The flow is additionally required to have curvature pinched toward positive
+and to satisfy the strong canonical-neighborhood assumption with parameter
+$r(t)$.  Its stagewise noncollapsing condition is that, whenever
+$0<\rho\le\epsilon$ and
+$P(x,t,\rho,-\rho^2)$ exists with
+$|\operatorname{Rm}|\le\rho^{-2}$, either
+\[
+ \operatorname{Vol}_{g(t)}B(x,t,\rho)\ge\kappa(t)\rho^3
+\]
+or the component of $M_t$ containing $x$ has positive sectional curvature.
+\end{definition}
+
+\begin{theorem}[Local volume and injectivity-radius control]
+\label{thm:local-volume-injectivity-radius-control}
+\dcref{MT:ch1:1.117,MT:ch1:1.123,MT:ch5:5.10}
+\notready
+Fix $n$, $K<\infty$, $r_0>0$, and $v_0>0$.  There are positive constants
+\[
+ v_*=v_*(n,K,r_0,v_0),
+ \qquad \iota_*=\iota_*(n,K,r_0,v_0),
+\]
+with the following property.  If $(M^n,g)$ is complete,
+$|\operatorname{Rm}|\le K$ on $B(p,r_0)$, and
+$\operatorname{Vol}B(p,r_0)\ge v_0$, then, for
+$0<s\le\min\{r_0,K^{-1/2}\}$,
+\[
+ \operatorname{Vol}B(p,s)\ge v_*s^n,
+ \qquad
+ \operatorname{inj}_g(p)\ge
+ \iota_*\min\{r_0,K^{-1/2}\}.
+\]
+The convention is that $K^{-1/2}=\infty$ when $K=0$.
+\end{theorem}
+
+\begin{proof}
+Put $a=\min\{r_0,K^{-1/2}\}$ and rescale by $a^{-2}$, so the relevant
+ball has radius one and sectional curvatures have absolute value at most one.
+In particular $\operatorname{Ric}\ge-(n-1)$.  Bishop--Gromov comparison with
+hyperbolic $n$-space gives, for $0<s\le1$,
+\[
+ \frac{\operatorname{Vol}B(p,s)}{V_{-1}(s)}
+ \ge
+ \frac{\operatorname{Vol}B(p,1)}{V_{-1}(1)}.
+\]
+Applying the same comparison first between radii $a$ and $r_0$ before
+rescaling supplies a positive lower bound for
+$\operatorname{Vol}B(p,1)$ depending only on the displayed data.  Since
+$V_{-1}(s)/s^n$ has a positive minimum on $(0,1]$, this proves the asserted
+volume ratio.
+
+For the injectivity estimate, curvature at most one excludes conjugate points
+on radial geodesics of length less than one.  If the injectivity radius at
+$p$ tended to zero with the volume ratio fixed, Klingenberg's alternative
+would therefore give a shortest geodesic loop of length twice the injectivity
+radius.  Lift the unit ball to the nonsingular exponential ball in $T_pM$.
+The successive lifts obtained by concatenating this loop are distinct until
+their total length reaches a fixed fraction of one.  Curvature comparison
+bounds from below the volume of one fixed lifted subball, while the distinct
+lifts all project into $B(p,1)$ with uniformly bounded multiplicity.  Hence
+the volume of $B(p,1)$ is at most a dimensional constant times the
+injectivity radius, contradicting the positive volume lower bound.  This
+gives a positive rescaled injectivity bound; scaling back gives $\iota_*a$.
+\end{proof}
+
+\begin{theorem}[Normalized short-time flow]
+\label{thm:normalized-short-time-ricci-flow}
+\dcref{MT:ch3:3.11,MT:ch4:4.11,MT:ch5:5.16,MT:ch15:15.1}
+\notready
+There is a universal $\kappa_0>0$ such that every normalized compact
+three-manifold $(M,g_0)$ admits a unique Ricci flow $g(t)$ on
+$[0,2^{-5}]$ with $g(0)=g_0$.  On this interval
+\[
+ |\operatorname{Rm}_{g(t)}|\le2,
+ \qquad
+ \operatorname{Vol}_{g(t)}B_{g(t)}(x,\rho)\ge\kappa_0\rho^3
+ \quad(0<\rho\le1).
+\]
+Consequently this interval has no surgery time and supplies the initial
+stage of a controlled Ricci flow with surgery.
+\end{theorem}
+
+\begin{proof}
+\uses{def:ricci-flow-with-surgery,def:controlled-ricci-flow-with-surgery,def:maximal-ricci-flow-extension,thm:local-volume-injectivity-radius-control}
+The Ricci--DeTurck equation obtained by adding the Lie derivative along the
+trace of the difference between the connections of $g$ and $g_0$ is strictly
+parabolic.  Short-time parabolic existence, followed by pullback under the
+generating diffeomorphisms, gives a Ricci flow; the reverse gauge argument
+gives uniqueness.
+
+The curvature evolution inequality and $|\operatorname{Rm}_{g_0}|\le1$ give
+$|\operatorname{Rm}_{g(t)}|\le2$ for $t\le2^{-4}$ as long as the flow
+exists.  On the same interval metric and volume distortion give universal
+constants $a,b>0$ such that
+\[
+ B_{g_0}(x,a\rho)\subset B_{g(t)}(x,\rho),
+ \qquad
+ d\operatorname{vol}_{g(t)}\ge b\,d\operatorname{vol}_{g_0}.
+\]
+Apply \ref{thm:local-volume-injectivity-radius-control} at time zero.
+Normalization and $|\operatorname{Rm}_{g_0}|\le1$ give one universal lower
+volume ratio $v_*>0$ on all radii at most one.  The distortion estimates therefore
+yield
+\[
+ \operatorname{Vol}_{g(t)}B_{g(t)}(x,\rho)
+ \ge b\operatorname{Vol}_{g_0}B_{g_0}(x,a\rho)
+ \ge bv_*a^3\rho^3.
+\]
+Take $\kappa_0=bv_*a^3$.  If the maximal flow ended before
+$2^{-5}$, its uniform curvature bound and the bounded-curvature extension
+theorem would extend it, a contradiction.  Thus it exists through $2^{-5}$;
+viewed as a surgery flow, its surgery set is empty.
+\end{proof}
+
+\section{Reduced Geometry and Local Estimates}
+
+\begin{definition}[Reduced length]
+\label{def:reduced-length}
+\dcref{MT:ch6:6.2,MT:ch6:6.45}
+\uses{def:ricci-flow-with-surgery}
+\notready
+Fix a smooth point $(x,T)$ and write backward time as $\tau=T-t$.  For a
+piecewise smooth backward path $\gamma\colon[0,\bar\tau]\to\mathcal M$
+with $\gamma(0)=x$, define
+\[
+ \mathcal L(\gamma)=
+ \int_0^{\bar\tau}\sqrt\tau
+ \bigl(R(\gamma(\tau))+|\dot\gamma(\tau)|^2\bigr)\,d\tau.
+\]
+For a point $y$ at backward time $\bar\tau$, let
+$L_x(y,\bar\tau)$ be the infimum of $\mathcal L$ over such paths and put
+\[
+ l_x(y,\bar\tau)=\frac{L_x(y,\bar\tau)}{2\sqrt{\bar\tau}}.
+\]
+These quantities are used only on domains on which every competing path
+stays in the smooth locus.
+\end{definition}
+
+\begin{definition}[Reduced exponential map and injectivity domain]
+\label{def:reduced-exponential-map}
+\dcref{MT:ch6:6.17,MT:ch6:6.25,MT:ch6:6.26}
+\uses{def:reduced-length}
+\notready
+An $\mathcal L$-geodesic from $(x,T)$ is a critical point of
+$\mathcal L$.  Its initial vector is
+\[
+ v=\lim_{\tau\downarrow0}\sqrt\tau\,\dot\gamma(\tau)
+ \in T_xM_T.
+\]
+The reduced exponential map is
+$\mathcal L\exp_x^\tau(v)=\gamma_v(\tau)$ whenever this geodesic exists.
+Its injectivity set $\mathcal D_x^\tau$ consists of those $v$ for which
+$\gamma_v|_{[0,\tau]}$ is the unique minimizing $\mathcal L$-geodesic to its
+endpoint and has no nonzero $\mathcal L$-Jacobi field vanishing at both ends.
+The image $\Omega_x^\tau=\mathcal L\exp_x^\tau(\mathcal D_x^\tau)$ is the
+reduced injectivity domain.
+\end{definition}
+
+\begin{definition}[Reduced volume]
+\label{def:reduced-volume}
+\dcref{MT:ch6:6.70,MT:ch6:6.71}
+\uses{def:reduced-length,def:reduced-exponential-map}
+\notready
+When the reduced injectivity domain has full measure in the time slice, the
+reduced volume based at $(x,T)$ is
+\[
+ \widetilde V_x(\tau)=
+ \int_{M_{T-\tau}}(4\pi\tau)^{-3/2}e^{-l_x(y,\tau)}
+ \,d\operatorname{vol}_{g(T-\tau)}(y).
+\]
+Equivalently, if $J(v,\tau)$ is the Jacobian of
+$\mathcal L\exp_x^\tau$, then
+\[
+ \widetilde V_x(\tau)=
+ \int_{\mathcal D_x^\tau}(4\pi\tau)^{-3/2}
+ e^{-l_x(\mathcal L\exp_x^\tau(v),\tau)}J(v,\tau)\,dv.
+\]
+\end{definition}
+
+\begin{lemma}[Upper support inequality for reduced length]
+\label{lem:reduced-length-support-inequality}
+\dcref{MT:ch6:6.4,MT:ch6:6.13,MT:ch6:6.49,MT:ch6:6.51,MT:ch7:7.8}
+\notready
+On a smooth bounded-curvature Ricci-flow domain, reduced length is smooth
+before the reduced cut locus and satisfies, in dimension three,
+\[
+ \partial_\tau l+\Delta l\le \frac{3/2-l}{\tau}.
+\]
+At an arbitrary endpoint of a minimizing $\mathcal L$-geodesic and for every
+$\eta>0$, there is a smooth upper support $l_\eta$ which agrees with $l$ at
+that endpoint and satisfies
+\[
+ \partial_\tau l_\eta+\Delta l_\eta
+ \le \frac{3/2-l_\eta}{\tau}+\eta.
+\]
+\end{lemma}
+
+\begin{proof}
+\uses{def:reduced-length,def:ricci-flow-with-surgery}
+For a variation field $Y$ along a minimizing curve $\gamma$, differentiate
+the defining integral in \ref{def:reduced-length}.  Integration by parts,
+using $\partial_tg=-2\operatorname{Ric}$, gives the endpoint term and the
+$\mathcal L$-geodesic equation
+\[
+ \nabla_X X-\frac12\nabla R+2\operatorname{Ric}(X,\cdot)^*
+ +\frac{1}{2\tau}X=0.
+\]
+Differentiate once more.  Trace the index form over fields with orthonormal
+endpoint values and compare them with
+$Y_i(s)=\sqrt{s/\tau}\,E_i(s)$, where $E_i$ is parallel after the Ricci
+correction.  The boundary terms combine with the first-variation identities
+for $l=L/(2\sqrt\tau)$, and the traced inequality is exactly
+$\partial_\tau l+\Delta l\le(3/2-l)/\tau$.
+
+At a cut endpoint, stop a fixed minimizing curve at a time
+$0<\tau_0<\tau$.  In a neighborhood of its remaining segment, the reduced
+exponential map is nonsingular.  Add the fixed $\mathcal L$-length of the
+initial segment to the smooth terminal value function.  The resulting
+function is at least $l$, equals it at the chosen endpoint, and obeys the
+same second-variation calculation with an error tending to zero as
+$\tau_0\downarrow0$.  Choosing $\tau_0$ so that this error is below $\eta$
+gives the asserted support.
+\end{proof}
+
+\begin{lemma}[Minimum reduced-length comparison]
+\label{lem:minimum-reduced-length-comparison}
+\dcref{MT:ch7:7.10,MT:ch7:7.11,MT:ch7:7.12}
+\notready
+Suppose that on every slice of a smooth backward-time interval the minimum
+\[
+ m(\tau)=\min_y l_x(y,\tau)
+\]
+is attained, and that the union of the minimizing sets over compact
+subintervals is compact.  Then $m$ is continuous and
+\[
+ D^+m(\tau)\le\frac{3/2-m(\tau)}{\tau}.
+\]
+If $\limsup_{\tau\downarrow0}m(\tau)\le3/2$, then
+$m(\tau)\le3/2$ throughout the interval.
+\end{lemma}
+
+\begin{proof}
+\uses{lem:reduced-length-support-inequality,lem:forward-dini-mean-value}
+Compactness of the minimizing set makes the upper supports in
+\ref{lem:reduced-length-support-inequality} uniform for nearby slices.
+Transport a minimizer by the time vector field for the upper estimate and a
+nearby minimizer backward for the lower estimate.  The two estimates prove
+continuity and, after division by the time increment and passage to the
+limsup, the displayed Dini inequality.
+
+Put $q=m-3/2$.  On every compact interval bounded away from zero,
+$D^+q\le-q/\tau$.  If $q$ became positive, apply
+\ref{lem:forward-dini-mean-value} to $e^{\int d\tau/\tau}q=\tau q$ between
+the last zero and a later positive value.  The product has nonpositive upper
+right Dini derivative but would have to increase, a contradiction.  Letting
+the left endpoint decrease to zero proves $m\le3/2$.
+\end{proof}
+
+\begin{theorem}[Regularity of the reduced exponential map]
+\label{thm:reduced-exponential-regularity}
+\dcref{MT:ch6:6.18,MT:ch6:6.28,MT:ch6:6.56,MT:ch6:6.67}
+\notready
+Assume that minimizing $\mathcal L$-geodesics to an open set remain in a
+smooth region on which $|\operatorname{Ric}|$ and $|\nabla R|$ are bounded.
+Then $\mathcal D_x^\tau$ is open,
+\[
+ \mathcal L\exp_x^\tau\colon\mathcal D_x^\tau
+ \longrightarrow\Omega_x^\tau
+\]
+is a diffeomorphism, and $l_x(\cdot,\tau)$ is smooth on
+$\Omega_x^\tau$.  The complement of $\Omega_x^\tau$ in the selected open
+set has measure zero.
+\end{theorem}
+
+\begin{proof}
+\uses{def:reduced-length,def:reduced-exponential-map,lem:reduced-length-support-inequality}
+The $\mathcal L$-geodesic equation is a smooth ODE after the change of
+variable $s=\sqrt\tau$.  Its derivative with respect to the initial vector is
+the $\mathcal L$-Jacobi equation.  Absence of a Jacobi field vanishing at the
+two endpoints makes this derivative invertible, so the inverse-function
+theorem gives local smoothness of $\mathcal L\exp_x^\tau$.  Uniqueness of the
+minimizer makes the local inverses agree, proving the diffeomorphism and the
+smoothness of $l$.
+
+The curvature bounds and the first-variation formula give a local Lipschitz
+bound for $l$.  An endpoint with two distinct minimizing geodesics is a point
+where $l$ has two different endpoint gradients, hence is not differentiable;
+these points form a null set by Rademacher's theorem.  An endpoint with a
+conjugate minimizer is a critical value of the smooth reduced exponential map
+and therefore forms a null set by Sard's theorem.  Every point outside the
+injectivity domain is of one of these two types, which proves the last claim.
+\end{proof}
+
+\begin{lemma}[Reduced-density monotonicity]
+\label{lem:reduced-density-monotonicity}
+\dcref{MT:ch6:6.50,MT:ch6:6.80,MT:ch6:6.81}
+\notready
+Let $v\in\mathcal D_x^\tau$ and let $J(v,\tau)$ be the Jacobian of the
+reduced exponential map.  Along the corresponding minimizing
+$\mathcal L$-geodesic,
+\[
+ \frac d{d\tau}\left((4\pi\tau)^{-3/2}e^{-l}J\right)\le0.
+\]
+Consequently the reduced volume is nonincreasing in backward time as long as
+all minimizing curves under consideration remain in one smooth domain.
+\end{lemma}
+
+\begin{proof}
+\uses{def:reduced-volume,lem:reduced-length-support-inequality,thm:reduced-exponential-regularity}
+Choose three $\mathcal L$-Jacobi fields whose endpoint values are an
+orthonormal basis.  The logarithmic derivative of their volume is
+$\partial_\tau\log J$.  The traced second-variation estimate used in
+\ref{lem:reduced-length-support-inequality}, together with the endpoint
+identities for $\partial_\tau l$, gives
+\[
+ \partial_\tau\log J-\partial_\tau l-\frac{3}{2\tau}\le0.
+\]
+This is the logarithmic derivative of the displayed density.  By
+\ref{thm:reduced-exponential-regularity}, the injectivity domain has full
+measure, so change of variables in \ref{def:reduced-volume} and monotone
+convergence give the reduced-volume assertion without a cut-locus boundary
+term.
+\end{proof}
+
+\begin{theorem}[Quantitative reduced-volume transfer]
+\label{thm:reduced-volume-transfer}
+\dcref{MT:ch6:6.71,MT:ch6:6.80,MT:ch8:8.1}
+\notready
+Let a measurable family of minimizing $\mathcal L$-geodesics from a terminal
+point remain in a compact smooth domain.  Suppose that at backward time
+$\bar\tau$ their regular endpoints contain a measurable set $E$ with
+\[
+ \operatorname{Vol}(E)\ge V>0,
+ \qquad l\le L_0\quad\hbox{on }E.
+\]
+Suppose also that their terminal ends lie in a parabolic ball
+$B(x,T,\rho)$ on which curvature and metric distortion give the density
+upper bound $C\rho^{-3}$.  Then
+\[
+ \operatorname{Vol}B(x,T,\rho)
+ \ge C^{-1}(4\pi\bar\tau)^{-3/2}e^{-L_0}V\,\rho^3.
+\]
+\end{theorem}
+
+\begin{proof}
+\uses{lem:reduced-density-monotonicity}
+At time $\bar\tau$, the selected geodesics contribute at least
+$(4\pi\bar\tau)^{-3/2}e^{-L_0}V$ to reduced volume.  The pointwise
+monotonicity in \ref{lem:reduced-density-monotonicity} carries this lower
+bound toward the terminal time.  There the same contribution is at most
+$C\rho^{-3}\operatorname{Vol}B(x,T,\rho)$.  Comparing the two quantities
+and rearranging gives the claimed estimate.  The common compact smooth
+domain ensures that no curve crosses a surgery boundary, so there is no
+additional boundary contribution.
+\end{proof}
+
+\begin{theorem}[Local Ricci-flow derivative estimates]
+\label{thm:local-ricci-flow-derivative-estimates}
+\dcref{MT:ch3:3.28,MT:ch3:3.33}
+\notready
+For every $m\ge0$ there is $C_m<\infty$ with the following property.  If a
+Ricci flow has a relatively compact parabolic neighborhood
+$P(x,t,r,-r^2)$ on which $|\operatorname{Rm}|\le r^{-2}$, then
+\[
+ |\nabla^m\operatorname{Rm}|
+ \le C_m r^{-m-2}
+\]
+on $P(x,t,r/2,-r^2/2)$.
+\end{theorem}
+
+\begin{proof}
+\uses{def:ricci-flow-with-surgery}
+Parabolically rescale so that $r=1$.  Commuting covariant derivatives with
+the curvature evolution equation gives
+\[
+ (\partial_t-\Delta)\nabla^m\operatorname{Rm}
+ =\sum_{a+b=m}\nabla^a\operatorname{Rm}*\nabla^b\operatorname{Rm}.
+\]
+For $m=1$, apply the maximum principle to
+$t|\nabla\operatorname{Rm}|^2+A|\operatorname{Rm}|^2$ after multiplying by
+a spatial cutoff supported in the unit ball; choosing $A$ larger than the
+universal reaction coefficients absorbs the cross terms.  This gives a
+uniform first-derivative bound on the half cylinder.
+
+Inductively, assume the estimates through order $m-1$.  Apply the same
+argument to
+\[
+ t^m|\nabla^m\operatorname{Rm}|^2
+ +\sum_{j<m}A_jt^j|\nabla^j\operatorname{Rm}|^2,
+\]
+using nested cutoffs.  The induction bounds every lower-order product, and
+the constants $A_j$ absorb the commutator terms.  The parabolic maximum
+principle gives a bound depending only on $m$.  Scaling back yields the
+factor $r^{-m-2}$.
+\end{proof}
+
+\begin{theorem}[Strong maximum principle for curvature tensors]
+\label{thm:strong-curvature-tensor-maximum-principle}
+\dcref{MT:ch4:4.17,MT:ch4:4.18}
+\uses{thm:time-slice-maximum-comparison}
+\notready
+Let $\mathcal T$ solve
+$\partial_t\mathcal T=\Delta\mathcal T+\Psi(\mathcal T)$ on a compact
+parabolic domain, and let $K$ be a fiberwise convex, parallel-invariant set.
+If $\Psi$ lies in the tangent cone of $K$ along $\partial K$, and the initial
+and parabolic-boundary values lie in $K$, then $\mathcal T$ remains in $K$.
+If an invariant supporting functional is strictly positive at one interior
+initial point, it is strictly positive at every later interior point.
+\end{theorem}
+
+\begin{proof}
+Choose a nonnegative Dirichlet heat solution $h$ supported near the point of
+strict positivity and initially below the supporting functional.  The scalar
+comparison theorem \ref{thm:time-slice-maximum-comparison} makes $h$ positive
+in the later interior.  For $\eta>0$, parallel transport the supporting
+half-space inward by $\eta h$.  At a first contact of $\mathcal T$ with its
+boundary, the spatial Laplacian points into the convex set, the reaction term
+is tangent or inward, and the time derivative of the displaced supporting
+plane points strictly outward.  This contradicts first contact.  Letting
+$\eta\downarrow0$ proves preservation; keeping $\eta>0$ proves the strict
+interior assertion.
+\end{proof}
+
+\begin{theorem}[Splitting at a curvature null direction]
+\label{thm:curvature-null-splitting}
+\dcref{MT:ch4:4.19,MT:ch4:4.20,MT:ch4:4.21}
+\notready
+Let a connected three-dimensional Ricci flow have nonnegative curvature
+operator.  If its curvature operator has a null eigenvector at a positive
+time, then the tangent Ricci-null line distribution is locally parallel and time-independent,
+and every connected parabolic neighborhood on which it is defined locally
+splits as a surface flow times a flat interval.  If the time slices are
+complete, the universal cover splits isometrically as a Ricci flow on a
+surface times a flat line.  Every quotient is obtained from this product by
+a group preserving the parallel line distribution.  In
+particular, if the scalar curvature vanishes at one positive-time point,
+then the flow is flat on that connected spacetime neighborhood.
+\end{theorem}
+
+\begin{proof}
+\uses{thm:strong-curvature-tensor-maximum-principle}
+At the prescribed null point write the curvature-operator eigenvalues as
+$\lambda\ge\mu\ge\nu=0$.  Extend a unit null two-form by spatial parallel
+transport and by the standard time-dependent orthonormal gauge.  Its
+curvature quadratic form has a spacetime minimum at that point.  The normal
+component of the three-dimensional reaction term there is
+$\nu^2+\lambda\mu=\lambda\mu$.  The one-sided time derivative at the final
+time is nonpositive and the spatial Laplacian is nonnegative, so the
+curvature evolution equation forces $\lambda\mu=0$.
+
+If $R=0$ at a point, nonnegativity makes every curvature-operator eigenvalue
+zero there.  Apply the strict assertion of
+\ref{thm:strong-curvature-tensor-maximum-principle} to the scalar curvature:
+positivity at any earlier point would force positivity at the prescribed
+point.  Thus the curvature operator vanishes on every earlier connected
+slice, and the scalar evolution propagates this flatness backward as well.
+
+In the nonflat case $\lambda>0$, so the preceding reaction calculation gives
+$\mu=0$ at the prescribed point.  Let $s=\mu+\nu$, the sum of the two
+smallest curvature-operator eigenvalues.  If $s$ were positive at an earlier
+interior point, the strict assertion of
+\ref{thm:strong-curvature-tensor-maximum-principle} would make it positive at
+the prescribed point.  Hence $s$ vanishes throughout the connected earlier
+region.  Equality in the curvature reaction ODE gives spectrum
+$\{\lambda,0,0\}$ there, and the scalar strong principle gives
+$\lambda>0$ everywhere.
+
+The two-dimensional kernel of the curvature operator corresponds to a
+one-dimensional tangent kernel $\mathcal D$ of the Ricci tensor.  Choose a
+local unit section $V$ of $\mathcal D$.  Fix $x$, $X\in T_xM$, and a curve
+through $x$ tangent to $X$.  Parallel-extend $V(x)$ and an arbitrary vector
+$W$ along this curve.  Nonnegative sectional curvature makes
+\[
+ \operatorname{Rm}(\widetilde V,\widetilde W,
+                        \widetilde V,\widetilde W)\ge0,
+\]
+with equality at $x$; its first variation therefore vanishes.  Polarization
+gives
+$(\nabla_X\operatorname{Rm})(V,\cdot,\cdot,\cdot)=0$.
+Differentiate
+$\operatorname{Rm}(V,W_1,W_2,W_3)=0$ along three parallel fields $W_i$.
+The preceding identity yields
+\[
+ 2\operatorname{Rm}(\nabla_XV,W_1,W_2,W_3)=0.
+\]
+The kernel description makes $\nabla_XV$ a multiple of $V$, whereas
+$|V|=1$ makes it orthogonal to $V$; hence $\nabla_XV=0$.
+
+Thus the metric locally splits as a positively curved surface times a flat
+line, and its curvature tensor is pulled back from the surface.  The
+curvature evolution equation has the same product form, so
+$(\partial_t\operatorname{Rm})(V,\cdot,\cdot,\cdot)=0$; differentiating the
+kernel identity in time gives $\partial_tV$ in the null line, and the
+unit-length condition makes it zero in the time-dependent orthonormal gauge.
+The distribution is therefore parallel and time-independent.  The de Rham
+theorem splits the simply connected complete cover along this line, and deck
+transformations preserve it, giving the asserted global and quotient forms.
+\end{proof}
+
+\begin{theorem}[Ancient scalar-curvature monotonicity]
+\label{thm:ancient-scalar-curvature-monotonicity}
+\dcref{MT:ch4:4.37,MT:ch4:4.39}
+\notready
+Let $(M,g(t))$, $-\infty<t\le0$, be a complete Ricci flow with bounded
+nonnegative curvature operator on each time slice.  Then
+\[
+ \partial_tR(x,t)\ge0
+\]
+at every spacetime point.
+\end{theorem}
+
+\begin{proof}
+Hamilton's differential Harnack inequality, applied on $(T_0,0]$ with zero
+vector field, gives
+\[
+ \partial_tR+\frac{R}{t-T_0}\ge0.
+\]
+For fixed $(x,t)$ the curvature is finite and nonnegative.  Letting
+$T_0\to-\infty$ makes the second term tend to zero and proves the assertion.
+\end{proof}
+
+\begin{theorem}[Weak superharmonicity of Busemann functions]
+\label{thm:busemann-function-superharmonicity}
+\dcref{MT:ch2:2.29}
+\notready
+Let $(M^n,g)$ be complete with nonnegative Ricci curvature, and let $B$ be
+the Busemann function of a ray.  Then $\Delta B\le0$ weakly: for every
+nonnegative compactly supported smooth function $\varphi$,
+\[
+ \int_M B\,\Delta\varphi\,d\mu\le0.
+\]
+\end{theorem}
+
+\begin{proof}
+For the ray $\gamma$, put
+$B_T(x)=d(x,\gamma(T))-T$.  Laplacian comparison away from the cut locus,
+interpreted by upper barriers, gives
+\[
+ \int_M B_T\Delta\varphi\,d\mu
+ \le \int_M\frac{n-1}{d(x,\gamma(T))}\varphi\,d\mu.
+\]
+If the support of $\varphi$ lies in the $D$-ball about $\gamma(0)$, the
+denominator is at least $T-D$.  The right side therefore tends to zero.
+The functions $B_T$ converge locally uniformly to $B$ by monotonicity and
+the triangle inequality, so passage to the limit proves the weak inequality.
+\end{proof}
+
+\begin{lemma}[Long minimizing geodesics align with a neck axis]
+\label{lem:epsilon-neck-geodesic-axis-alignment}
+\dcref{MT:ch19:19.4}
+\uses{def:epsilon-neck-and-scale}
+\notready
+For every $\alpha>0$ there is $\epsilon_0(\alpha)>0$ such that, in a
+normalized $\epsilon$-neck with $\epsilon\le\epsilon_0$, every minimizing
+geodesic of length greater than $\epsilon^{-1}/100$ which crosses in the
+positive axial direction has tangent within $\alpha$ of the axial unit
+vector at every point of the geodesic contained in the neck.
+\end{lemma}
+
+\begin{proof}
+Suppose not and take $\epsilon_j\downarrow0$.  Pull the metrics and geodesics
+back to the standard cylinders.  On every fixed compact subcylinder the
+metrics converge in $C^2$ to the product metric and the geodesics converge
+to a minimizing product geodesic.  Its axial displacement tends to infinity,
+whereas its spherical displacement is at most the diameter of the round
+two-sphere.  Recenter at any chosen point of misalignment.  On the resulting
+full- or half-cylinder limit, the conserved product momenta force its
+spherical speed to zero and its positive axial speed to one.  Smooth
+convergence of the geodesic equation gives the same estimate for the
+approximating tangent at the recentered point, a contradiction.
+\end{proof}
+
+\begin{lemma}[Distance comparison from outside a thin neck]
+\label{lem:external-point-neck-distance-comparison}
+\dcref{MT:ch19:19.9}
+\uses{def:epsilon-neck-and-scale,lem:epsilon-neck-geodesic-axis-alignment}
+\notready
+For every $0<\alpha<1$ there is $\epsilon_2(\alpha)>0$ such that the
+following holds.  Let $N$ be a separating $\epsilon$-neck,
+$\epsilon\le\epsilon_2$, let $z$ lie outside its middle two-thirds on the
+negative side, let $p$ lie in its middle half, and let $q$ lie anywhere later
+on the same axial product line in $N$, with $s(q)>s(p)$.  Then
+\[
+ (1-\alpha)(s(q)-s(p))
+ \le d(z,q)-d(z,p)
+ \le(1+\alpha)(s(q)-s(p)).
+\]
+\end{lemma}
+
+\begin{proof}
+The upper bound is the triangle inequality and the cylindrical metric
+estimate along the axial segment.  For the lower bound, take a minimizing
+geodesic from $z$ to $q$.  Separation forces its last crossing of the neck
+to enter from the negative end.  Once it reaches the fiber through $p$, the
+portion already traversed inside the neck has length greater than
+$\epsilon^{-1}/100$ after shrinking $\epsilon$.
+By \ref{lem:epsilon-neck-geodesic-axis-alignment}, its tangent has axial
+component at least $1-\alpha/2$.  Cut the geodesic at the fiber through $p$
+and compare the remaining segment with axial displacement.  The neck-metric
+error is at most another $\alpha/2$ of that displacement, giving the lower
+bound.
+\end{proof}
+
+\begin{lemma}[Metric spheres cross a thin neck in a fiber sphere]
+\label{lem:metric-sphere-crosses-neck-as-fiber}
+\dcref{MT:ch19:19.10}
+\notready
+For every $\alpha>0$ there is $\epsilon_1(\alpha)>0$ with the following
+property.  Let $N$ be an $\epsilon$-neck, $\epsilon\le\epsilon_1$, whose
+central sphere separates the ambient connected manifold.  If $z$ lies
+outside the middle two-thirds of $N$ and $p$ lies in its middle sixth, then
+$\partial B(z,d(z,p))\cap N$ is a topological two-sphere in the middle
+quarter of $N$, and axial projection maps it homeomorphically to a neck
+fiber.
+\end{lemma}
+
+\begin{proof}
+\uses{lem:external-point-neck-distance-comparison}
+Scale the neck to scalar curvature one.  On each axial product line,
+\ref{lem:external-point-neck-distance-comparison} makes distance from $z$
+strictly increasing through the middle half, with a uniform two-sided slope.
+The comparison at the boundary fibers, together with the uniformly bounded
+diameter of a neck fiber, puts $d(z,p)$ strictly between the two boundary
+values on every axial line.  Thus each axial line meets the level set exactly
+once in the middle quarter.  Applying the comparison with $q$ anywhere in
+the neck shows that outside the middle quarter the axial displacement, of
+order $\epsilon^{-1}$, dominates the fiber-diameter error, so there are no
+additional points of the level set elsewhere in $N$.
+The distance function is continuous, and the uniform strict-monotonicity
+estimate implies directly that the unique axial coordinate depends
+continuously on the $S^2$ coordinate: otherwise two convergent fibers and
+the slope bound would give distinct limiting roots on one fiber.  The level
+set is therefore a continuous graph over $S^2$, and axial projection is a
+homeomorphism.  The same boundary comparisons place the graph in the middle
+quarter.  No differentiability of the distance function at its cut locus is
+used.
+\end{proof}
+
+\section{Compactness and Noncollapsing}
+
+\begin{theorem}[Pointed Riemannian compactness]
+\label{thm:pointed-riemannian-compactness}
+\dcref{MT:ch5:5.6,MT:ch5:5.9,MT:ch5:5.10}
+\notready
+Let $(M_j,g_j,x_j)$ be complete pointed Riemannian manifolds.  Suppose that
+on every fixed based ball all covariant derivatives of curvature are
+uniformly bounded and that for some $r_0,v_0>0$,
+\[
+ \operatorname{Vol}_{g_j}B(x_j,r_0)\ge v_0.
+\]
+Then a subsequence converges smoothly on compact subsets to a complete
+pointed Riemannian manifold.
+\end{theorem}
+
+\begin{proof}
+\uses{thm:local-volume-injectivity-radius-control}
+The base-ball curvature and volume bounds give a positive lower bound for
+the injectivity radius at $x_j$ by
+\ref{thm:local-volume-injectivity-radius-control}.  Bishop--Gromov comparison
+and the curvature bounds propagate the same type of volume lower bound to
+centers in each fixed based ball, so the same theorem gives a uniform
+injectivity-radius bound there.
+
+Exponential charts of a fixed radius therefore cover every such ball with a
+uniform number of charts.  In harmonic refinements of these charts, the
+curvature-derivative hypotheses give uniform $C^k$ bounds for the metric
+coefficients.  Arzela--Ascoli and a diagonal choice in the radius and $k$
+give compatible limiting charts and smooth transition maps.  They assemble
+to the pointed smooth limit.  Every finite-length limiting geodesic remains
+inside one ball of the exhaustion and is the limit of extendible geodesics
+in $M_j$; hence it extends.  Hopf--Rinow gives completeness.
+\end{proof}
+
+\begin{theorem}[Pointed Ricci-flow compactness]
+\label{thm:hamilton-compactness-generalized-flows}
+\dcref{MT:ch5:5.14,MT:ch5:5.15}
+\notready
+Let $(\mathcal M_j,G_j,x_j)$ be based generalized Ricci flows with base time
+zero, defined on a common open time interval $I$.  Suppose that for every
+$A<\infty$ and compact $J\Subset I$ containing zero, all sufficiently large
+$j$ admit compatible embeddings
+\[
+ B_{g_j(0)}(x_j,A)\times J\longrightarrow\mathcal M_j
+\]
+with compact zero-time balls and a uniform curvature bound on the images.
+Assume that for some $r_0,\kappa>0$,
+\[
+ \operatorname{Vol}_{g_j(0)}B(x_j,r_0)\ge\kappa r_0^3.
+\]
+After passing to a subsequence, the flows converge smoothly on compact
+spacetime subsets.  The limit is a pointed Ricci flow
+\[
+ (M_\infty,g_\infty(t),x_\infty)
+\]
+on $I$, and its time-zero slice is complete.  If
+$\operatorname{Ric}_{g_\infty(t)}\ge0$ for $t\le0$, then every nonpositive
+time slice of the limit is complete.
+\end{theorem}
+
+\begin{proof}
+\uses{def:ricci-flow-with-surgery,def:surgery-flow-noncollapsing,thm:local-ricci-flow-derivative-estimates,thm:pointed-riemannian-compactness}
+The curvature bound and the Ricci-flow equation give uniform bounds for all
+covariant derivatives of curvature on smaller compact cylinders by
+\ref{thm:local-ricci-flow-derivative-estimates}.  The base-ball volume lower
+bound and curvature bounds put the zero-time slices under
+\ref{thm:pointed-riemannian-compactness}, producing a complete smooth
+zero-time limit and compatible exhaustion charts.
+
+Exhaust each zero-time slice by the compact balls and exhaust $I$ by compact
+intervals.  Repeating the construction and diagonalizing produces compatible
+limit charts; their transition maps agree because they are limits of the
+original embeddings.  The limiting metrics satisfy the Ricci-flow equation
+by smooth convergence, and pointed Riemannian compactness already gives
+completeness at time zero.
+
+If the limiting Ricci curvature is nonnegative and $t\le0$, then
+$g_\infty(t)\ge g_\infty(0)$ as quadratic forms.  A finite-length
+$g_\infty(t)$-curve escaping every compact set would therefore have finite
+$g_\infty(0)$-length, contradicting completeness of the time-zero slice.
+Thus every nonpositive slice is complete under the additional curvature
+hypothesis.  Local based-ball bounds alone make no completeness assertion at
+other times.
+\end{proof}
+
+\begin{lemma}[Nonflat terminal cones are excluded]
+\label{lem:nonflat-terminal-cone-exclusion}
+\dcref{MT:ch4:4.22}
+\notready
+Let a three-dimensional Ricci flow have nonnegative sectional curvature on a
+connected spacetime neighborhood.  If at a positive time a nonempty open
+subset of a slice is isometric to an open subset of a metric cone, then that
+spacetime neighborhood is flat.
+\end{lemma}
+
+\begin{proof}
+\uses{thm:curvature-null-splitting}
+A nonflat three-dimensional cone has curvature operator of rank one away
+from its vertex: its null two-plane contains the radial direction, while its
+nonzero eigenvalue varies quadratically under radial dilation.  By
+\ref{thm:curvature-null-splitting}, rank-one degeneracy at a positive time
+makes the null distribution parallel and splits the flow locally as a
+surface times a line.  The nonzero curvature
+eigenvalue is then constant along the parallel line, contrary to its radial
+variation on a nonflat cone.  Thus the cone is flat.  The scalar-zero clause
+of \ref{thm:curvature-null-splitting} propagates flatness throughout the
+connected spacetime neighborhood.
+\end{proof}
+
+\begin{lemma}[Short reduced paths avoid surgery caps]
+\label{lem:short-reduced-paths-avoid-surgery-caps}
+\dcref{MT:ch16:16.5,MT:ch16:16.8,MT:ch16:16.13,MT:ch16:16.15}
+\notready
+Fix a controlled stage, a terminal point $(x,T)$ with a controlled
+parabolic ball of radius at least $r_{i+1}$, and $L_0<\infty$.  There is a
+positive surgery-control bound, depending only on the stage data and $L_0$,
+such that every backward path from $x$ with
+\[
+ \mathcal L_+(\gamma)=\int\sqrt\tau
+   \bigl(\max(R,0)+|\dot\gamma|^2\bigr)\,d\tau<L_0
+\]
+misses a fixed open neighborhood of every surgery cap and every exposed
+point in $[T_{i-1},T]$.
+\end{lemma}
+
+\begin{proof}
+\uses{def:controlled-ricci-flow-with-surgery,def:reduced-length,thm:hamilton-compactness-generalized-flows,def:standard-surgery-cap-model,lem:local-surgery-standard-cap-convergence}
+For $0<a<b$, Cauchy--Schwarz gives
+\[
+ \int_a^b\sqrt\tau|\dot\gamma|^2d\tau
+ \ge\frac{\sqrt a\,d(\gamma(a),\gamma(b))^2}{b-a}.
+\]
+After rescaling a newly inserted cap by its surgery scale $h$, the initial
+metrics converge by \ref{lem:local-surgery-standard-cap-convergence} to the
+standard cap.  The curvature and derivative bounds, together with
+\ref{thm:hamilton-compactness-generalized-flows}, extend this convergence on
+each fixed ball through every normalized time interval $[0,\theta]$ with
+$\theta<1$.
+
+Choose a standard annulus so wide that crossing it makes the right side of
+the displayed estimate greater than $2L_0$.  A path which does not cross the
+annulus but remains in the inner cap until normalized time $\theta$ has
+\[
+ \int_a^b\sqrt\tau R\,d\tau
+ \ge c\sqrt a\int_a^b
+ \frac{h^{-2}\,dt}{1-(t-\bar t)h^{-2}},
+\]
+which exceeds $2L_0$ when $\theta$ is sufficiently close to one.  Smooth
+convergence preserves a lower bound $L_0$ in either alternative once the
+surgery control is small.  The terminal controlled ball excludes entry from
+the other end for very small backward time.  Hence a path of the stated
+length cannot enter the chosen cap neighborhoods.  The exposed points are
+the limiting boundaries of the same neighborhoods and are avoided as well.
+\end{proof}
+
+\begin{proposition}[Compact smooth domain for reduced minimizers]
+\label{prop:compact-reduced-minimizing-domain}
+\dcref{MT:ch16:16.4,MT:ch16:16.21,MT:ch16:16.24,MT:ch16:16.25}
+\notready
+Under the hypotheses of \ref{lem:short-reduced-paths-avoid-surgery-caps},
+there is an open subset $U$ of the smooth spacetime over
+$[T_{i-1},T)$ such that:
+\begin{enumerate}
+\item every point of $U$ is joined to $x$ by a minimizing smooth
+      $\mathcal L$-geodesic;
+\item every slice $U_t$ is nonempty and
+      $\min_{U_t}\mathcal L\le3\sqrt{T-t}$;
+\item over every compact time interval, the slice minimizers form a compact
+      subset of the smooth spacetime.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\uses{lem:short-reduced-paths-avoid-surgery-caps,lem:minimum-reduced-length-comparison}
+The scalar lower bound $R\ge-6$ gives
+\[
+ \mathcal L_+(\gamma)
+ \le\mathcal L(\gamma)+4T_{i+1}^{3/2}.
+\]
+Remove the cap neighborhoods supplied by
+\ref{lem:short-reduced-paths-avoid-surgery-caps}.  There are only finitely
+many singular times on the compact interval already constructed, and every
+slice is compact, so the complement $Y(L_0)$ is compact and smooth.  It
+contains every path whose $\mathcal L$-length is below the chosen bound.
+
+A minimizing sequence in $Y(L_0)$ has a uniformly bounded weighted kinetic
+energy.  Away from backward time zero this gives equicontinuity by
+Cauchy--Schwarz; inside the terminal controlled ball the curvature and metric
+distortion estimates give the same conclusion up to zero.  Arzela--Ascoli
+gives uniform convergence, weak $W^{1,2}$ compactness gives lower
+semicontinuity of the kinetic term, and smooth convergence in $Y(L_0)$ gives
+convergence of the scalar term.  The limit is therefore a smooth minimizing
+$\mathcal L$-geodesic.
+
+Let $U$ consist of endpoints joined to $x$ by paths below one fixed bound
+larger than $8\sqrt{T_{i+1}}(1+T_{i+1})$.  The direct method gives the first
+claim, and the same compact set with varying endpoint time gives the third.
+Near backward time zero, the controlled terminal ball has minimum reduced
+length at most $3/2$.  Apply
+\ref{lem:minimum-reduced-length-comparison}; if the interval on which this
+bound holds ended early, compactness of its minimizers and a short vertical
+extension would continue it.  Thus the bound holds on every slice and gives
+the second claim.
+\end{proof}
+
+\begin{lemma}[Reduced-volume noncollapsing transfer]
+\label{lem:reduced-volume-noncollapsing-transfer}
+\dcref{MT:ch16:16.1,MT:ch16:16.27,MT:ch6:6.80}
+\notready
+Assume the stage-$i$ noncollapsing bound on earlier controlled slices.  Under
+the hypotheses of \ref{prop:compact-reduced-minimizing-domain}, there is
+$\kappa_{\mathcal L}>0$, depending only on the stage data, such that every
+terminal parabolic ball of radius
+$\rho\in[r_{i+1},\epsilon]$ and curvature at most $\rho^{-2}$ satisfies
+\[
+ \operatorname{Vol}B(x,T,\rho)\ge\kappa_{\mathcal L}\rho^3,
+\]
+unless the component containing $x$ has positive sectional curvature.
+\end{lemma}
+
+\begin{proof}
+\uses{def:controlled-ricci-flow-with-surgery,def:strong-canonical-neighborhood-control,prop:compact-reduced-minimizing-domain,thm:reduced-volume-transfer}
+Choose a minimizing $\mathcal L$-geodesic from $x$ to time $T_{i-1}$ with
+length at most $3\sqrt{T-T_{i-1}}$.  If its scalar curvature were at least
+$r_i^{-2}$ throughout the middle time interval, integration of
+$\sqrt\tau R$, together with $R\ge-6$ on the two end intervals, would give
+length at least $4\sqrt{T-T_{i-1}}$.  Hence the curve contains a point $y$
+with $R(y)<r_i^{-2}$.
+
+The canonical derivative estimates and curvature pinching give a backward
+parabolic ball of a fixed radius $r'>0$ about $y$ with
+$|\operatorname{Rm}|\le(r')^{-2}$.  A surgery cap cannot meet this ball:
+its curvature is bounded below by a fixed multiple of
+$\bar\delta^{-4}r_i^{-2}$, while the ball has curvature at most
+$2r_i^{-2}$.  The induction hypothesis therefore gives either a
+positive-curvature component or
+$\operatorname{Vol}B(y,r')\ge\kappa_i(r')^3$.
+
+In the second case, join the minimizing curve to all points of this earlier
+ball by short spatial segments.  Metric distortion gives a common upper
+bound $L_0$ for their reduced lengths.  The minimizing curves supplied by
+\ref{prop:compact-reduced-minimizing-domain} lie in one compact smooth
+domain.  Applying \ref{thm:reduced-volume-transfer} with
+$V=\kappa_i(r')^3$ yields the claimed terminal lower bound.  In the first
+case, preservation of positive sectional curvature carries the stated
+exception to the component of $x$.
+\end{proof}
+
+\begin{theorem}[Conditional noncollapsing extension]
+\label{thm:conditional-noncollapsing-extension}
+\dcref{MT:ch16:16.1}
+\notready
+Fix $i\ge0$ and positive nonincreasing finite sequences
+\[
+ \delta_0\ge\cdots\ge\delta_i,
+ \qquad \epsilon=r_0\ge\cdots\ge r_i,
+ \qquad \kappa_0\ge\cdots\ge\kappa_i.
+\]
+There is $0<\kappa_{i+1}\le\kappa_i$ such that, for every
+$0<r_{i+1}\le r_i$, there is
+$0<\delta(r_{i+1})\le\delta_i$ with the following property.  If a
+controlled Ricci flow with surgery on $[0,T)$,
+$T\in(T_i,T_{i+1}]$, satisfies the stage-$i$ induction hypotheses before
+$T_i$, has $\bar\delta\le\delta(r_{i+1})$ on the new stage, and satisfies
+the strong canonical-neighborhood assumption with parameter $r_{i+1}$,
+then every parabolic ball of radius at most $\epsilon$ satisfying the
+curvature hypothesis in
+\ref{def:surgery-flow-noncollapsing} has volume at least
+$\kappa_{i+1}\rho^3$, unless its center lies in a positively curved component
+of the time slice.  The constant is independent of the particular flow.
+\end{theorem}
+
+\begin{proof}
+\uses{def:surgery-flow-noncollapsing,def:strong-canonical-neighborhood-control,def:controlled-ricci-flow-with-surgery,thm:hamilton-compactness-generalized-flows,lem:reduced-length-support-inequality,lem:reduced-volume-noncollapsing-transfer}
+At scales below $r_{i+1}$, inspect the canonical neighborhood of the center.
+A neck has a uniform cylindrical volume ratio, and a cap contains at a
+comparable curvature scale a ball whose volume is bounded below by a constant
+depending only on $C$ and $\epsilon$.  A controlled or round component gives
+the positive-curvature alternative.  Thus the nonexceptional cases give a
+uniform number $\kappa_{\mathrm{can}}>0$ at these scales.  The compactness
+used to make this number uniform is
+\ref{thm:hamilton-compactness-generalized-flows}.
+
+For $r_{i+1}\le\rho\le\epsilon$, decrease
+$\delta(r_{i+1})$ so that the surgery-cap barrier and the compact minimizing
+domain apply.  The support inequality
+\ref{lem:reduced-length-support-inequality} controls the minimizing reduced
+length, and \ref{lem:reduced-volume-noncollapsing-transfer} gives the fixed
+lower volume ratio $\kappa_{\mathcal L}$.  Taking
+\[
+ \kappa_{i+1}=min\{\kappa_i,\kappa_{\mathrm{can}},
+                         \kappa_{\mathcal L}\}
+\]
+proves the asserted two-outcome alternative on every scale.
+\end{proof}
+
+\begin{theorem}[Bounded curvature at bounded distance]
+\label{thm:bounded-curvature-at-bounded-distance}
+\dcref{MT:ch10:10.2}
+\notready
+For sufficiently small $\epsilon>0$ and every $A,C<\infty$, there are
+$D_0=D_0(A,C,\epsilon)$ and $D=D(A,C,\epsilon)$ with the following
+property.  Let $x$ lie in a three-dimensional Ricci flow with surgery whose
+curvature is pinched toward positive.  Suppose every point $z$ at time at
+most $\mathbf t(x)$ with $R(z)\ge4R(x)$ has a strong
+$(C,\epsilon)$-canonical neighborhood.  If $R(x)\ge D_0$, then
+\[
+ R(y)\le D R(x)
+ \qquad\text{for every }y\in
+ B_{g(\mathbf t(x))}\bigl(x,A R(x)^{-1/2}\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+\uses{def:ricci-flow-with-surgery,def:strong-canonical-neighborhood-control,def:epsilon-neck-and-scale,lem:epsilon-neck-metric-control,prop:overlapping-epsilon-necks,lem:neck-chain-product,lem:nonflat-terminal-cone-exclusion}
+Rescale so that $R(x)=1$ and suppose that points at bounded distance have
+unbounded scalar curvature.  Along a minimizing geodesic from $x$, choose
+the first points at which successive curvature levels are reached.  Above
+level four, the canonical-neighborhood hypothesis applies.  A cap or compact
+component at one of these first points has controlled diameter and curvature
+ratio, so it cannot contain both the preceding controlled point and a point
+at the next arbitrarily larger level.  The intervening regions are therefore
+$\epsilon$-necks.
+
+The metric and overlap estimates for necks assemble the relevant part of the
+geodesic into a balanced chain.  By \ref{lem:neck-chain-product}, this chain
+is a product tube.  Rescale at points whose neck radii tend to zero.  The
+axial distance estimates and curvature pinching give a pointed incomplete
+limit with nonnegative curvature, bounded curvature at one end, and
+unbounded curvature at the other.  Blowing down the unbounded end, triangle
+comparison shows that distances converge to
+\[
+ d_C((r,u),(s,v))^2=r^2+s^2-2rs\cos d_\Sigma(u,v),
+\]
+where the space of directions $\Sigma$ contains at least two points; the
+limit is a genuine metric cone and not a ray.
+
+The neck curvature derivative estimates provide uniform backward parabolic
+neighborhoods on every compact subset away from the cone vertex.  Smooth
+compactness therefore realizes the punctured cone as an open subset of a
+nonnegatively curved Ricci flow at a positive time.  By
+\ref{lem:nonflat-terminal-cone-exclusion} it is flat.  A flat punctured
+three-cone has Euclidean volume ratios, so its vertex is removable and the
+original curvature ratios remain bounded near the selected points.  This
+contradicts their construction.  The contradiction gives a uniform $D$;
+choosing $D_0$ large enough to make the pinching and neck estimates uniform
+proves the theorem.
+\end{proof}
+
+\begin{theorem}[Pointed compactness for controlled flows]
+\label{thm:pointed-controlled-flow-compactness}
+\dcref{MT:ch11:11.1,MT:ch11:11.8,MT:ch11:11.10}
+\notready
+Let $(\mathcal M_j,G_j,x_j)$ be based controlled three-dimensional Ricci
+flows and put $Q_j=R(x_j)\to\infty$.  Rescale by $Q_j$ and move the base
+time to zero.  Assume curvature is pinched toward positive, the rescaled
+flows are uniformly $\kappa$-noncollapsed on every fixed scale, and every
+point at nonpositive time with rescaled scalar curvature at least four has a
+strong $(C,\epsilon)$-canonical neighborhood.  Suppose that for some
+$0<T_0\le\infty$, every fixed
+$B(x_j,0,A)\times(-T,0]$, with $A<\infty$ and $T<T_0$, eventually has a
+compatible spacetime embedding.  Then a subsequence converges smoothly to a
+complete pointed Ricci flow on $(-T_0,0]$ with nonnegative curvature,
+locally bounded in time and bounded on each time slice.  If $T_0=\infty$,
+the limit is a $\kappa$-solution.
+\end{theorem}
+
+\begin{proof}
+\uses{def:surgery-flow-noncollapsing,def:controlled-ricci-flow-with-surgery,thm:hamilton-compactness-generalized-flows,thm:bounded-curvature-at-bounded-distance}
+On each fixed zero-time ball,
+\ref{thm:bounded-curvature-at-bounded-distance} gives a scalar-curvature
+bound.  Pinching converts it to a full curvature bound, and the canonical
+derivative estimates propagate the bound for a uniform backward time.
+The noncollapsing bound gives the basepoint volume hypothesis in
+\ref{thm:hamilton-compactness-generalized-flows}.  Diagonalizing over $A$
+and compact backward-time intervals gives a smooth limit complete at time
+zero.
+The negative part of the curvature operator vanishes after division by
+$Q_j$, hence the limit has nonnegative curvature; the final clause of the
+compactness theorem now makes every earlier slice complete.
+
+To continue the limit backward, repeat this argument at the earliest time of
+the current limit using neighborhoods already present in the approximating
+flows.  If curvature is bounded there, Hamilton compactness extends the
+limit.  If it is unbounded, choose first blow-up points.  The
+bounded-curvature-at-bounded-distance theorem and the canonical-neighborhood
+derivative estimates again give a uniform parabolic neighborhood, contrary
+to maximality of the chosen interval.  This reaches every $T<T_0$.
+The same bounded-distance argument rules out unbounded curvature on a fixed
+limit slice.  When $T_0=\infty$, completeness, nonflatness,
+nonnegative bounded curvature, and the assumed uniform noncollapsing are
+precisely the defining properties of a $\kappa$-solution.
+\end{proof}
+
+\begin{definition}[Kappa-solution]
+\label{def:kappa-solution}
+\dcref{MT:ch9:9.1,MT:ch9:9.2}
+\uses{def:surgery-flow-noncollapsing}
+\notready
+A three-dimensional \emph{$\kappa$-solution} is a connected Ricci flow
+$(M,g(t))$, $-\infty<t\le0$, such that every time slice is complete and
+nonflat, has bounded nonnegative curvature operator, and is
+$\kappa$-noncollapsed on every finite scale.  The value of $\kappa>0$ is
+fixed for the flow.
+\end{definition}
+
+\begin{theorem}[Two-dimensional kappa-solutions are round]
+\label{thm:two-dimensional-kappa-solutions-round}
+\dcref{MT:ch9:9.4}
+\uses{def:kappa-solution,thm:ancient-scalar-curvature-monotonicity}
+\notready
+Every orientable two-dimensional $\kappa$-solution is, after a constant
+parabolic scaling and time translation, the shrinking round two-sphere.
+\end{theorem}
+
+\begin{proof}
+The strong maximum principle makes the Gaussian curvature positive: a zero
+would make the ancient solution flat, contrary to nonflatness.  A complete
+noncompact positively curved surface is diffeomorphic to the plane.  Its
+asymptotic circumference ratio is nonincreasing under the flow; if positive,
+a blow-down gives a flat cone and Harnack rigidity makes the solution flat,
+while if zero, balls at the curvature scale violate noncollapsing.  Hence the
+surface is compact.
+
+On a compact surface, write the normalized metric as
+$\widehat g(s)=(-t)^{-1}g(t)$ with $s=-\log(-t)$.  Gauss--Bonnet fixes its
+average curvature.  The evolution of the variance of the Gaussian curvature,
+together with \ref{thm:ancient-scalar-curvature-monotonicity}, is
+nonincreasing and has zero backward limit; otherwise a backward blow-down
+would be a nonround compact shrinking soliton, contradicting the integrated
+soliton equation on a surface.  Thus the curvature is spatially constant on
+every slice.  The Ricci-flow equation then gives precisely the shrinking
+round sphere.
+\end{proof}
+
+\begin{theorem}[Asymptotic models of three-dimensional kappa-solutions]
+\label{thm:kappa-solution-asymptotic-models}
+\dcref{MT:ch9:9.11,MT:ch9:9.42,MT:ch9:9.44,MT:ch9:9.53,MT:ch9:9.54}
+\notready
+Let $(M,g(t))$ be a three-dimensional $\kappa$-solution and fix $(p,0)$.
+There are $\tau_j\to\infty$ and points $q_j$ at time $-\tau_j$ with reduced
+length at most $3/2$ such that the parabolically rescaled pointed flows based
+at $(q_j,-1)$ converge to a complete nonflat gradient shrinking soliton with
+bounded nonnegative curvature.  The limit is a compact round space form or
+one of the three cylindrical models
+\[
+ S^2\times\mathbb R,\qquad
+ \mathbb{RP}^2\times\mathbb R,\qquad
+ \mathbb{RP}^2\widetilde\times\mathbb R,
+\]
+where the last space is the twisted line bundle.  If the original solution
+is nonround, a sequence can be chosen with one of these three noncompact
+limits.
+\end{theorem}
+
+\begin{proof}
+\uses{def:kappa-solution,def:reduced-length,def:reduced-volume,lem:reduced-length-support-inequality,lem:minimum-reduced-length-comparison,lem:reduced-density-monotonicity,thm:reduced-volume-transfer,thm:local-ricci-flow-derivative-estimates,thm:hamilton-compactness-generalized-flows,thm:ancient-scalar-curvature-monotonicity,thm:curvature-null-splitting,thm:two-dimensional-kappa-solutions-round}
+The minimum comparison \ref{lem:minimum-reduced-length-comparison} gives a
+point $q_j$ with $l(q_j,\tau_j)\le3/2$.  The support inequality
+\ref{lem:reduced-length-support-inequality} bounds curvature and reduced
+length on every fixed rescaled ball about $q_j$.  Noncollapsing and
+\ref{thm:hamilton-compactness-generalized-flows} then give an ancient limit
+complete at time zero.  Nonnegative curvature passes to the limit, so its
+earlier slices are complete as well.  The density formula
+\ref{lem:reduced-density-monotonicity} makes its
+reduced volume constant in backward time.  Equality in the traced
+second-variation inequality forces
+the limiting reduced length to be smooth and to satisfy
+\[
+ \operatorname{Ric}+\operatorname{Hess}l=\frac12g
+\]
+on the time $-1$ slice.  The strict reduced-volume upper bound excludes a
+flat limit.  The local derivative estimates in
+\ref{thm:local-ricci-flow-derivative-estimates} and
+\ref{thm:ancient-scalar-curvature-monotonicity} give bounded curvature on
+each limiting slice.
+
+If the limiting curvature operator has a null direction,
+\ref{thm:curvature-null-splitting} splits off a line; the remaining surface
+factor is round by \ref{thm:two-dimensional-kappa-solutions-round}.  A free
+quotient preserving this splitting is the product, the quotient by the
+antipodal map on $S^2$, or the quotient pairing that map with reflection of
+the line.  These are precisely the three cylindrical models in the
+statement.  If the curvature is positive, tracing and differentiating the soliton equation makes
+the potential proper in the noncompact case; its level-set second variation
+and Gauss--Bonnet exclude a noncompact positively curved shrinker.  The
+compact soliton equation and the maximum principle make the compact case
+round.  This gives the listed models.  Finally, a compact asymptotic model
+has equality in reduced-volume monotonicity only when the original flow is
+the corresponding round shrinker.  A nonround solution therefore admits a
+cylindrical asymptotic sequence.
+\end{proof}
+
+\begin{proposition}[Universal noncollapsing for nonround kappa-solutions]
+\label{prop:universal-nonround-kappa}
+\dcref{MT:ch9:9.58}
+\notready
+There is a universal $\kappa_*>0$ such that every nonround
+three-dimensional $\kappa$-solution is a $\kappa_*$-solution.
+\end{proposition}
+
+\begin{proof}
+\uses{thm:kappa-solution-asymptotic-models,thm:reduced-volume-transfer}
+The asymptotic-model theorem
+\ref{thm:kappa-solution-asymptotic-models} gives a backward rescaling which
+converges on a fixed parabolic ball to one of the three cylindrical models.
+There are only these three models, so a fixed model ball has reduced
+volume at least one universal number $V_*>0$.  Smooth convergence gives the
+same lower bound, with $V_*/2$, on the approximating rescaled flows.
+The quantitative transfer theorem \ref{thm:reduced-volume-transfer} converts
+this reduced-volume contribution into a volume ratio
+$\kappa_*>0$ on all balls up to the corresponding backward scale.  Undoing
+the parabolic rescaling makes that scale tend to infinity.  Shifting an
+arbitrary time to zero repeats the argument on every slice, so the same
+$\kappa_*$ works at every point and every finite scale.
+\end{proof}
+
+\begin{theorem}[Normalized kappa-solution compactness]
+\label{thm:kappa-solution-compactness}
+\dcref{MT:ch9:9.59,MT:ch9:9.60,MT:ch9:9.62,MT:ch9:9.63,MT:ch9:9.64,MT:ch9:9.65,MT:ch9:9.66,MT:ch9:9.67,MT:ch9:9.68,MT:ch9:9.69,MT:ch9:9.70,MT:ch9:9.71}
+\notready
+Let $(M_j,g_j(t),p_j)$ be based three-dimensional $\kappa$-solutions with
+$R(p_j,0)=1$.  A subsequence converges smoothly on compact spacetime
+subsets to a based $\kappa$-solution
+\[
+ (M_\infty,g_\infty(t),p_\infty)
+\]
+with $R(p_\infty,0)=1$.
+In particular, for every $A<\infty$ and $m\ge0$ there is $C(A,m)<\infty$
+such that
+\[
+ \sup_{B_{g_j(0)}(p_j,A)\times[-A,0]}
+ |\nabla^m\operatorname{Rm}_{g_j}|\le C(A,m).
+\]
+\end{theorem}
+
+\begin{proof}
+\uses{def:kappa-solution,thm:hamilton-compactness-generalized-flows,thm:local-ricci-flow-derivative-estimates,thm:local-volume-injectivity-radius-control,thm:curvature-null-splitting,thm:ancient-scalar-curvature-monotonicity,lem:nonflat-terminal-cone-exclusion}
+First obtain a uniform scalar-curvature bound on every fixed zero-time ball.
+If this failed, choose a nearest point $q_j$ at which the curvature scale is
+smaller than its distance scale from $p_j$, and rescale at $q_j$.  The
+point-picking choice bounds curvature on a ball whose rescaled radius tends
+to infinity.  If the volume ratio of these balls stayed uniformly positive,
+$\kappa$-noncollapsing and Hamilton compactness would give a complete
+nonflat limit with a zero-curvature point, contradicting
+\ref{thm:curvature-null-splitting}.  Otherwise choose the first radius at
+which the volume ratio is
+half Euclidean.  Volume comparison and the point-picking curvature bound
+give a complete flat limit whose unit ball has half the Euclidean volume.
+It cannot be Euclidean, while every nontrivial complete flat quotient has
+zero asymptotic volume ratio and hence is not noncollapsed on all scales.
+This contradiction proves the required based-ball curvature bound.
+
+By \ref{thm:ancient-scalar-curvature-monotonicity}, the same bound holds on
+the corresponding backward cylinders.  The local estimates
+\ref{thm:local-ricci-flow-derivative-estimates} bound every covariant
+derivative on smaller cylinders.
+Noncollapsing supplies the base-ball volume lower bound in
+\ref{thm:hamilton-compactness-generalized-flows}; diagonalization in the
+radius, derivative order, and backward time therefore gives an ancient
+smooth limit complete at time zero.  Its nonnegative curvature makes every
+earlier slice complete.  It is nonflat because its base scalar curvature is
+one, has nonnegative curvature by smooth convergence, and remains
+$\kappa$-noncollapsed.
+
+If a limit time slice had unbounded curvature, repeat the point selection
+farther and farther from the basepoint.  Blowing down the separating annuli
+would produce a nonflat metric cone realized at a positive Ricci-flow time,
+contrary to \ref{lem:nonflat-terminal-cone-exclusion}.  Thus every limit
+slice has bounded curvature, so the limit satisfies
+\ref{def:kappa-solution}.  The derivative bounds obtained above are uniform
+before passage to the subsequence and give the last assertion.
+\end{proof}
+
+\section{Canonical-Neighborhood Extension}
+
+\begin{lemma}[Stability of canonical neighborhoods]
+\label{lem:canonical-neighborhood-stability}
+\dcref{MT:ch9:9.79,MT:ch9:9.80}
+\notready
+Fix $\epsilon<1/4$ and $C<\infty$.
+\begin{enumerate}
+\item A $(C,\epsilon)$-cap, controlled component, or round component
+      persists under sufficiently small
+      $C^{\lfloor\epsilon^{-1}\rfloor}$ perturbations of its metric and
+      under a sufficiently small change of center.
+\item An evolving $\epsilon$-neck of normalized backward length strictly
+      greater than one persists as a strong $\epsilon$-neck under
+      sufficiently small smooth perturbations of the flow.
+\item If $C'>C$ and $\epsilon'>\epsilon$, sufficiently close pointed
+      metrics carry a $(C',\epsilon')$-canonical neighborhood at the
+      corresponding point.
+\end{enumerate}
+In particular, strong neck centers form an open spacetime set.
+\end{lemma}
+
+\begin{proof}
+\uses{def:strong-canonical-neighborhood-control,def:canonical-cap,def:epsilon-neck-and-scale}
+Curvature ratios, normalized diameters and volumes, core-volume lower
+bounds, and curvature-derivative quantities in the definitions all vary
+continuously in the stated topology.  A neck chart survives a small metric
+perturbation; precomposing it with a small axial translation recenters the
+chart.  For a cap, first keep the compact core and its strict estimates,
+then truncate and recenter the neck end.  These observations prove the
+first assertion and the metric part of the third.
+
+For an evolving neck, the excess normalized time beyond one absorbs the
+small change in curvature scale caused by perturbation.  Restricting the
+persisting cylinder to normalized length one gives the required strong
+neck.  Enlarging $C$ and $\epsilon$ turns all weak boundary inequalities
+into strict ones, proving the last metric assertion.  The same argument on
+a slightly longer spacetime cylinder proves openness of strong neck centers.
+\end{proof}
+
+\begin{proposition}[Curvature trichotomy for kappa-solutions]
+\label{prop:kappa-solution-curvature-trichotomy}
+\dcref{MT:ch9:9.83}
+\notready
+Every three-dimensional $\kappa$-solution is exactly one of the following:
+it has positive sectional curvature at every time; it is the shrinking round
+cylinder $S^2\times\mathbb R$ up to scaling; or it is the free line-bundle
+quotient of that cylinder over $\mathbb{RP}^2$.
+\end{proposition}
+
+\begin{proof}
+\uses{def:kappa-solution,thm:curvature-null-splitting,thm:two-dimensional-kappa-solutions-round}
+If the curvature operator has a zero eigenvalue at a positive time, its null
+distribution is parallel by \ref{thm:curvature-null-splitting}.  The
+universal cover consequently splits isometrically for all earlier times as a
+two-dimensional ancient solution times either a line or a circle.  A circle
+factor has fixed length while the curved factor expands
+backward, so balls at the curvature scale collapse as $t\to-\infty$; this
+contradicts $\kappa$-noncollapsing.  The flat factor is therefore a line.
+The two-dimensional nonflat factor is the shrinking round sphere by
+\ref{thm:two-dimensional-kappa-solutions-round}, and the
+only free quotients preserving the product flow are the round cylinder and
+the line-bundle quotient over $\mathbb{RP}^2$.  If no zero eigenvalue occurs,
+the sectional curvature is positive everywhere.
+\end{proof}
+
+\begin{theorem}[Soul structure in nonnegative curvature]
+\label{thm:soul-structure-nonnegative-curvature}
+\dcref{MT:ch2:2.33}
+\notready
+Every connected complete noncompact manifold of nonnegative sectional
+curvature contains a compact totally geodesic, totally convex soul and is
+diffeomorphic to its normal bundle.  If the sectional curvature is positive,
+the soul is a point.
+\end{theorem}
+
+\begin{proof}
+For a ray $\gamma$, the Busemann function
+$b_\gamma(x)=\lim_{s\to\infty}(s-d(x,\gamma(s)))$ is concave under
+nonnegative curvature by triangle comparison.  Intersect the maximal level
+sets of a finite exhaustion by such functions.  Repeating inside the boundary
+strata terminates at a compact set $S$ with no boundary.  Concavity makes $S$
+totally convex, and the second variation then makes it totally geodesic.
+Distance to $S$ has no critical point away from $S$; its gradient flow and
+normal exponential map identify $M$ with the normal bundle of $S$.  If
+sectional curvature is positive and $S$ contained a nonconstant geodesic, a
+flat normal strip obtained from total convexity would contradict positivity.
+Thus $S$ is a point.
+\end{proof}
+
+\begin{theorem}[Sphere separation and the annulus region about a point soul]
+\label{thm:point-soul-sphere-separation-annulus}
+\dcref{MT:ch2:2.79}
+\uses{thm:soul-structure-nonnegative-curvature}
+\notready
+Let $M^3$ be complete, noncompact, and positively curved, and let $p$ be its
+point soul.  Every smoothly embedded two-sphere in $M\setminus\{p\}$ has one
+relatively compact complementary component with three-ball closure and one
+component containing the unique end.  If such a sphere is isotopic in
+$M\setminus\{p\}$ to a distance sphere about $p$, then it separates $p$ from
+the end.  Any two disjoint embedded two-spheres that separate $p$ from the
+end bound a region diffeomorphic to $S^2\times[0,1]$.
+\end{theorem}
+
+\begin{lemma}[A thin neck separates a point soul from the end]
+\label{lem:positive-curvature-neck-separation}
+\dcref{MT:ch2:2.79}
+\notready
+For sufficiently small $\epsilon$, let $M^3$ be complete, noncompact, and
+positively curved with point soul $p$.  The central sphere of every
+$\epsilon$-neck disjoint from $p$ separates $p$ from the unique end.  Two
+disjoint such central spheres bound a region diffeomorphic to
+$S^2\times[0,1]$.
+\end{lemma}
+
+\begin{proof}
+\uses{thm:soul-structure-nonnegative-curvature,lem:metric-sphere-crosses-neck-as-fiber,thm:point-soul-sphere-separation-annulus}
+By \ref{thm:soul-structure-nonnegative-curvature}, distance from $p$ has no
+critical point away from $p$, so every positive distance sphere is a
+two-sphere separating $p$ from the end, and identifies $M$ with
+$\mathbb R^3$.
+
+Now take $z=p$ in
+\ref{lem:metric-sphere-crosses-neck-as-fiber} and choose any point in the
+middle sixth of the neck.  The resulting distance sphere is a graph over,
+and hence isotopic inside the neck to, the central sphere.  The sphere
+separation theorem \ref{thm:point-soul-sphere-separation-annulus} therefore
+puts the soul and the end on opposite sides of the central sphere.  Applying
+its annulus conclusion to two disjoint central spheres gives the claimed
+$S^2\times[0,1]$ region.
+\end{proof}
+
+\begin{proposition}[Positive curvature excludes arbitrarily small necks]
+\label{prop:positive-curvature-neck-scale-lower-bound}
+\dcref{MT:ch2:2.80}
+\notready
+For every sufficiently small $\epsilon>0$, a complete positively curved
+Riemannian three-manifold contains no sequence of $\epsilon$-necks whose
+scales tend to zero.
+\end{proposition}
+
+\begin{proof}
+\uses{def:epsilon-neck-and-scale,thm:soul-structure-nonnegative-curvature,thm:busemann-function-superharmonicity,lem:epsilon-neck-geodesic-axis-alignment,lem:positive-curvature-neck-separation}
+The assertion is immediate on a compact manifold.  Otherwise
+\ref{thm:soul-structure-nonnegative-curvature} gives a point soul $p$ and
+identifies the manifold with $\mathbb R^3$.  By
+\ref{lem:positive-curvature-neck-separation}, disjoint necks away from the
+soul can be ordered toward the end.
+
+Choose two such ordered necks $N_1,N_2$, with centers $x_i$ and scalar
+curvatures $R_i$.  Let $B$ be the Busemann function of a ray from $p$, and
+choose a nonnegative cutoff $\psi$ which is one between the central regions
+and changes only along the middle thirds of the two necks.  The alignment
+estimate \ref{lem:epsilon-neck-geodesic-axis-alignment} compares $\nabla B$
+with the signed axial direction on both transition regions.  Weak
+superharmonicity from \ref{thm:busemann-function-superharmonicity} and
+integration by parts give
+\[
+ 0\le \int_M\langle\nabla B,\nabla\psi\rangle\,d\mu
+   =\bigl(\alpha_2R_2^{-1}-\alpha_1R_1^{-1}\bigr)
+      \operatorname{Vol}(S^2,h_0),
+\]
+where the cylindrical neck estimates give
+$|\alpha_i-1|\le c\epsilon$.  After decreasing $\epsilon$ so that
+$c\epsilon<1/3$, this implies $R_2\le2R_1$.  Fixing the first neck therefore
+bounds below the scale $R^{-1/2}$ of every later neck.  On the compact region
+on the soul side, scalar curvature is bounded, so neck scales have a positive
+lower bound there as well.  Hence no sequence of neck scales can tend to
+zero.
+\end{proof}
+
+\begin{theorem}[Splitting at infinity for kappa-solutions]
+\label{thm:kappa-solution-splitting-at-infinity}
+\dcref{MT:ch9:9.39}
+\notready
+Let $(M,g(t))$, $-\infty<t\le0$, be a noncompact three-dimensional
+$\kappa$-solution.  If $p_j\to\infty$ and
+\[
+ R(p_j,-1)d_{g(-1)}(p,p_j)^2\longrightarrow\infty,
+\]
+then there are points $q_j\to\infty$ and scales $Q_j=R(q_j,-1)$ for
+which the based parabolic rescalings converge on compact subsets to the
+product of a shrinking round two-sphere with a flat line, possibly modulo
+the free line-bundle involution.
+\end{theorem}
+
+\begin{proof}
+\uses{def:kappa-solution,thm:ancient-scalar-curvature-monotonicity,thm:hamilton-compactness-generalized-flows,thm:curvature-null-splitting,thm:two-dimensional-kappa-solutions-round}
+Point-pick $q_j$ in the ball of half the distance from $p_j$ to maximize
+scalar curvature times the square of the remaining distance.  Then
+$Q_jd(p,q_j)^2\to\infty$ and $R\le4Q_j$ on balls whose rescaled radii tend
+to infinity.  By \ref{thm:ancient-scalar-curvature-monotonicity} this bound
+holds on the corresponding backward cylinders.  Noncollapsing and
+\ref{thm:hamilton-compactness-generalized-flows} give a nonflat ancient limit
+complete at time zero; nonnegative curvature makes all its earlier slices
+complete.
+
+The rescaled minimizing geodesics from $p$ to $q_j$ converge on each compact
+subinterval to a line through the basepoint.  The splitting clause of
+\ref{thm:curvature-null-splitting} therefore writes the limit as a
+two-dimensional ancient flow times a flat line.  The surface factor is
+nonflat and noncollapsed, hence round by
+\ref{thm:two-dimensional-kappa-solutions-round}.  The only free quotient
+compatible with the line factor is the stated line-bundle involution.
+\end{proof}
+
+\begin{theorem}[Structure of noncompact kappa-solutions]
+\label{thm:noncompact-kappa-solution-structure}
+\dcref{MT:ch9:9.84,MT:ch9:9.85,MT:ch9:9.87,MT:ch9:9.88}
+\notready
+For every sufficiently small $\epsilon>0$ there is
+$C_0=C_0(\epsilon)<\infty$ such that the time-zero slice of every
+noncompact three-dimensional $\kappa$-solution containing no embedded
+two-sided $\mathbb{RP}^2$ is either a strong $\epsilon$-tube or a
+$(C_0,\epsilon)$-cap followed by a strong $\epsilon$-tube.  The cap core has
+uniform scale-normalized curvature, derivative, diameter, and volume bounds.
+\end{theorem}
+
+\begin{proof}
+\uses{def:kappa-solution,prop:universal-nonround-kappa,prop:kappa-solution-curvature-trichotomy,thm:soul-structure-nonnegative-curvature,thm:kappa-solution-splitting-at-infinity,thm:kappa-solution-compactness,lem:canonical-neighborhood-stability,def:canonical-neck-cap-regions,thm:canonical-neck-cap-topology}
+Consider first the positive-curvature case and normalize at a soul $p$ by
+$R(p,0)=1$, using \ref{thm:soul-structure-nonnegative-curvature}.  Suppose
+points $q_j$ escaping every fixed ball were not strong
+$\epsilon$-neck centers.  If
+$d(p,q_j)^2R(q_j,0)\to\infty$,
+\ref{thm:kappa-solution-splitting-at-infinity} gives the shrinking round
+cylinder, and
+\ref{lem:canonical-neighborhood-stability} makes $q_j$ a neck center, a
+contradiction.  If those products remain bounded, then
+$R(q_j,0)\to0$ while the unit-curvature soul stays at bounded distance in
+the $R(q_j,0)$-rescaling.  The based curvature bound in
+\ref{thm:kappa-solution-compactness} rules this out.
+
+The universal constant in \ref{prop:universal-nonround-kappa} makes the
+radius beyond which all points are neck centers uniform.  Otherwise
+normalize a sequence of souls and take the first non-neck point beyond an
+ever longer neck annulus.  Compactness at the souls transfers a fixed neck
+annulus to the sequence.  At the outer first-failure point the preceding
+scale-separation argument again gives a cylindrical limit, contradicting
+stability.  Compactness on the remaining soul ball supplies uniform
+curvature ratios, derivative bounds, volume bounds, and diameter bounds.
+The neck spheres separate the unique end, and
+\ref{thm:canonical-neck-cap-topology} identifies the bounded remainder as a
+cap core.
+
+In the zero-curvature cases of
+\ref{prop:kappa-solution-curvature-trichotomy}, the round cylinder is already
+a strong tube.  Its nontrivial orientable quotient has one controlled cap
+core and a cylindrical end.  The excluded two-sided
+$\mathbb{RP}^2$ removes the remaining exceptional product.  Increasing
+$C_0$ to dominate the uniform core estimates proves the theorem.
+\end{proof}
+
+\begin{theorem}[Structure of compact kappa-solutions]
+\label{thm:compact-kappa-solution-structure}
+\dcref{MT:ch9:9.89,MT:ch9:9.90,MT:ch9:9.91}
+\notready
+For every sufficiently small $\epsilon>0$ there is
+$C_1=C_1(\epsilon)<\infty$ such that a compact three-dimensional
+$\kappa$-solution is round, is a positively curved $C_1$-component, or is
+the union of two disjoint $(C_1,\epsilon)$-cap cores joined by a strong
+$\epsilon$-tube.  In the nonround cases its time-zero slice is
+diffeomorphic to $S^3$ or $\mathbb{RP}^3$.
+\end{theorem}
+
+\begin{proof}
+\uses{def:kappa-solution,prop:universal-nonround-kappa,prop:kappa-solution-curvature-trichotomy,thm:kappa-solution-compactness,thm:noncompact-kappa-solution-structure,lem:canonical-neighborhood-stability,thm:canonical-neck-cap-topology}
+The splitting alternatives in
+\ref{prop:kappa-solution-curvature-trichotomy} are noncompact, so a compact
+nonround solution has positive sectional curvature and finite fundamental
+group.  Normalize its maximum scalar curvature to one.  If a sequence has
+unbounded normalized diameter and contains a point with neither a cap nor a
+neck neighborhood, compactness based at that point gives a noncompact
+$\kappa$-solution.  The point lies in the cap/tube decomposition of
+\ref{thm:noncompact-kappa-solution-structure}, and stability transfers that
+neighborhood back, a contradiction.  Hence every large-diameter solution is
+a double-capped strong tube.  The topology classification in
+\ref{thm:canonical-neck-cap-topology}, together with finite fundamental
+group, leaves $S^3$ and $\mathbb{RP}^3$.
+
+For bounded normalized diameter,
+\ref{prop:universal-nonround-kappa} puts every nonround member in one fixed
+noncollapsed family, which is compact by
+\ref{thm:kappa-solution-compactness}.  A nonround limit retains positive
+curvature, so sectional-curvature ratios, diameter, volume, and curvature
+derivative ratios have positive finite extrema over this family.  Taking
+$C_1$ larger than those extrema makes the whole slice a controlled
+component.  A round limit gives the round alternative.  These cases exhaust
+the compact family and prove the assertion.
+\end{proof}
+
+\begin{theorem}[Uniform structure of kappa-solutions]
+\label{thm:kappa-solution-structure-summary}
+\dcref{MT:ch9:9.93}
+\notready
+For every sufficiently small $\epsilon>0$ there is
+$C=C(\epsilon)<\infty$ such that every three-dimensional
+$\kappa$-solution is one of the following: a round spherical space form; a
+compact positively curved $C$-component; a compact double-capped strong
+$\epsilon$-tube; a noncompact $(C,\epsilon)$-capped strong
+$\epsilon$-tube; the round strong cylinder; or
+$\mathbb{RP}^2\times\mathbb R$.  In every nonexceptional case each point is
+in a cap core, a controlled or round component, or is the center of a strong
+$\epsilon$-neck.  Uniformly on the flow,
+\[
+ |\nabla R|\le CR^{3/2},\qquad |\partial_tR|\le CR^2.
+\]
+\end{theorem}
+
+\begin{proof}
+\uses{prop:universal-nonround-kappa,prop:kappa-solution-curvature-trichotomy,thm:noncompact-kappa-solution-structure,thm:compact-kappa-solution-structure,thm:kappa-solution-compactness}
+Apply \ref{prop:kappa-solution-curvature-trichotomy}.  Its two split cases
+give the cylinder and the exceptional product.  The positive-curvature
+noncompact case is exactly
+\ref{thm:noncompact-kappa-solution-structure}, and the compact case is
+\ref{thm:compact-kappa-solution-structure}.  Choose $C$ larger than the
+constants in both results.  By
+\ref{prop:universal-nonround-kappa}, the local derivative estimates applied
+after normalizing any nonround point to scalar curvature one are uniform on
+the compact
+normalized family of \ref{thm:kappa-solution-compactness}; scaling back gives
+the two displayed inequalities.  This establishes every alternative and
+the uniform constants simultaneously.
+\end{proof}
+
+\begin{theorem}[Canonical neighborhoods in kappa-solutions]
+\label{thm:kappa-solution-canonical-neighborhoods}
+\dcref{MT:ch9:9.94,MT:ch9:9.95}
+\notready
+For every sufficiently small $\epsilon>0$ there is
+$C=C(\epsilon)<\infty$ such that every point of every three-dimensional
+$\kappa$-solution has a strong $(C,\epsilon)$-canonical neighborhood,
+unless the solution is the round product $\mathbb{RP}^2\times\mathbb R$.
+Moreover, if generalized flows with no embedded two-sided
+$\mathbb{RP}^2$ converge smoothly to a $\kappa$-solution, then their
+basepoints have strong $(C,\epsilon)$-canonical neighborhoods for all
+sufficiently large indices.
+\end{theorem}
+
+\begin{proof}
+\uses{def:strong-canonical-neighborhood-control,thm:kappa-solution-structure-summary,lem:canonical-neighborhood-stability}
+Every nonexceptional alternative in
+\ref{thm:kappa-solution-structure-summary} is one of the four alternatives
+in \ref{def:strong-canonical-neighborhood-control}; taking the same uniform
+$C(\epsilon)$ proves existence.  The only remaining alternative is the round
+$\mathbb{RP}^2\times\mathbb R$ product.
+
+For the convergence assertion, the limiting basepoint has a canonical
+neighborhood by the first part.  A cap, controlled component, or round
+component transfers directly by the first part of
+\ref{lem:canonical-neighborhood-stability}.  A strong neck extends to a
+slightly longer normalized backward interval, so the second part of that
+lemma transfers it as a strong neck.  The limit cannot be the exceptional
+product: an embedded central $\mathbb{RP}^2$ has trivial normal bundle and
+persists under smooth convergence, contrary to the hypothesis on the
+approximating slices.  Thus the basepoints eventually have the asserted
+canonical neighborhoods.
+\end{proof}
+
+\begin{theorem}[Canonical neighborhoods in the standard solution]
+\label{thm:standard-solution-canonical-neighborhoods}
+\dcref{MT:ch12:12.28,MT:ch12:12.32,MT:ch12:12.36}
+\notready
+For every sufficiently small $\epsilon>0$ there is
+$C_{\mathrm{std}}(\epsilon)<\infty$ such that every point $(q,t)$ of the
+standard solution has one of the following neighborhoods:
+\begin{enumerate}
+\item a $(C_{\mathrm{std}},\epsilon)$-cap whose core contains $q$;
+\item an evolving $\epsilon$-neck reaching time zero, with its initial slice
+      disjoint from the cap core;
+\item an evolving $\epsilon$-neck defined for normalized backward time
+      $1+\epsilon$.
+\end{enumerate}
+The alternatives persist for flows converging smoothly to the standard
+solution on the corresponding parabolic neighborhoods.
+\end{theorem}
+
+\begin{proof}
+\uses{def:strong-canonical-neighborhood-control,def:standard-surgery-cap-model,thm:hamilton-compactness-generalized-flows,thm:kappa-solution-canonical-neighborhoods,lem:canonical-neighborhood-stability}
+The standard solution is rotationally symmetric, positively curved, and
+asymptotic to the evolving round cylinder.  Its scalar curvature tends
+uniformly to infinity as $t\uparrow1$.  Normalize any sequence of points with
+unbounded curvature.  Noncollapsing and the derivative bounds give a smooth
+limit by \ref{thm:hamilton-compactness-generalized-flows}; the limit is a
+noncompact $\kappa$-solution, hence cylindrical away from a possible cap.
+Thus all sufficiently high-curvature points have either a cap neighborhood
+or an evolving neck which extends backward for normalized time
+$1+\epsilon$.
+
+Choose $\theta<1$ so that this covers $t\ge\theta$.  On
+$[0,\theta]$, asymptotic cylindricality is uniform outside one compact
+spacetime set, giving necks which reach time zero.  On the remaining compact
+set, positivity of curvature and smoothness give uniform curvature ratios,
+diameter, volume, and derivative bounds at the curvature scale.  Enlarging
+the fixed core of \ref{def:standard-surgery-cap-model} and then
+$C_{\mathrm{std}}$
+makes this set a controlled cap.  Smooth pointed convergence preserves each
+strict estimate after a harmless enlargement of the constants, proving the
+last assertion.
+\end{proof}
+
+\begin{lemma}[First canonical-neighborhood failure]
+\label{lem:canonical-neighborhood-first-failure}
+\dcref{MT:ch17:17.2}
+\notready
+Fix a finite induction stage and a sequence $r_a\downarrow0$.  Suppose that
+for every $a$ there are controlled surgery flows with surgery controls
+tending to zero for which the strong $(C,\epsilon)$-canonical-neighborhood
+assumption with parameter $r_a$ fails before the stage endpoint.  For each
+$a$, after passing sufficiently far down that sequence, there is a first
+failure time $t_{a,b}$ and a point $x_{a,b}$ at that time such that
+$R(x_{a,b})\ge r_a^{-2}$, the assumption holds before $t_{a,b}$, and no
+strong $(C,\epsilon)$-canonical neighborhood exists at $x_{a,b}$.
+\end{lemma}
+
+\begin{proof}
+\uses{def:controlled-ricci-flow-with-surgery,lem:canonical-neighborhood-stability,thm:standard-solution-canonical-neighborhoods,thm:local-neck-surgery,lem:local-surgery-standard-cap-convergence}
+For fixed $a,b$, take failure points whose times decrease to the infimum of
+all failure times.  The preceding time slice is compact, so after flowing
+the points to a common nearby time and taking a subsequence they converge to
+a point $x_{a,b}$.  Curvature continuity gives
+$R(x_{a,b})\ge r_a^{-2}$.  Caps, controlled components, and round components
+are open under smooth time convergence by
+\ref{lem:canonical-neighborhood-stability}; if the limiting point had one of
+these neighborhoods, the approximating failure points would have the same
+alternative.
+
+Suppose instead that the limiting point is the center of a strong neck.
+If its backward cylinder remains in the continuing region, the spacetime
+part of \ref{lem:canonical-neighborhood-stability} again transfers the neck
+to the approximating points.  Otherwise that cylinder meets a newly inserted
+cap.  Rescale by the surgery scale.  The local construction and
+\ref{lem:local-surgery-standard-cap-convergence} identify a larger and
+larger parabolic ball with the standard solution.  The alternatives in
+\ref{thm:standard-solution-canonical-neighborhoods} give either a cap around
+the failure point or an evolving neck overlapping the original surgery
+neck; the overlap charts from \ref{thm:local-neck-surgery} glue the latter to
+a strong neck.  Both alternatives contradict failure.  Hence the infimum is
+attained at a genuine failure point with the stated preceding control.
+\end{proof}
+
+\begin{lemma}[A bounded-curvature cap encounter is standard]
+\label{lem:standard-cap-encounter-control}
+\dcref{MT:ch17:17.4,MT:ch17:17.5,MT:ch17:17.8}
+\notready
+Consider rescaled first-failure flows and a backward flow line, starting in
+a fixed-radius zero-time ball, which reaches a surgery cap after rescaled
+time $s_a\le s'<\infty$.  If scalar curvature along the line is bounded by
+$D'<\infty$ and $\bar h_a$ is the rescaled surgery scale, then for all large
+$a$ there are constants $c=c(D',s')>0$, $A<\infty$, and $\theta<1$ such that
+\[
+ \bar h_a^2\ge c,
+ \qquad s_a<\theta\bar h_a^2,
+\]
+and the point where the line reaches the surgery slice lies in the image of
+the standard-solution ball $B(p_0,A)$ used to model the cap.
+\end{lemma}
+
+\begin{proof}
+\uses{def:controlled-surgery-parameters,thm:local-neck-surgery,lem:local-surgery-standard-cap-convergence,thm:standard-solution-canonical-neighborhoods}
+At the cap boundary, the surgery construction compares scalar curvature to
+$\bar h_a^{-2}$ within a fixed factor $D$.  The assumed bound $D'$ along the
+flow line therefore gives
+\[
+ \bar h_a^2\ge(2D'D)^{-1}.
+\]
+To reach the inserted cap, the flow line first crosses the retained collar
+of the cutting neck.  In the neck coordinates of
+\ref{thm:local-neck-surgery}, that collar has fixed normalized axial length,
+and the local surgery construction places its inner boundary a fixed
+multiple of $\bar h_a$ from the cap tip.  Thus the entry point is at distance
+at most $C\bar h_a$ from the tip.  After division by $\bar h_a$, it lies in
+one fixed standard ball $B(p_0,A)$.
+
+It remains to bound elapsed time away from the standard singular time.  If
+$s_a\le\bar h_a^2/2$, any $\theta\in(1/2,1)$ works.  Otherwise the curvature
+bound along the line gives a fixed upper bound after cap-scale rescaling.
+Choose $\theta<1$ so close to one that the scalar curvature of the standard
+solution on the corresponding cap ball is larger than that bound.  Smooth
+cap convergence then contradicts $s_a\ge\theta\bar h_a^2$.  This proves all
+three asserted controls.
+\end{proof}
+
+\begin{lemma}[A cap-reaching flow line forces a canonical neighborhood]
+\label{lem:bounded-flow-line-cap-exclusion}
+\dcref{MT:ch17:17.7}
+\notready
+In a rescaled first-failure sequence, suppose a point in a fixed-radius
+zero-time ball has a backward flow line of uniformly bounded scalar
+curvature which reaches a surgery cap in uniformly bounded time.  Then the
+base first-failure points have strong $(C,\epsilon)$-canonical neighborhoods
+for all sufficiently large indices.
+\end{lemma}
+
+\begin{proof}
+\uses{lem:standard-cap-encounter-control,lem:local-surgery-standard-cap-convergence,thm:standard-solution-canonical-neighborhoods,lem:canonical-neighborhood-stability,thm:local-neck-surgery}
+By \ref{lem:standard-cap-encounter-control}, the cap scale is bounded below,
+the elapsed cap-scale time is at most some $\theta<1$, and the relevant
+backward point lies in one fixed standard-solution ball.  Enlarge that ball
+so that forward cap evolution contains the basepoint at time zero.  Smooth
+convergence from \ref{lem:local-surgery-standard-cap-convergence} then
+identifies this entire parabolic region with the corresponding standard
+solution region.
+
+Apply \ref{thm:standard-solution-canonical-neighborhoods} at the limiting
+basepoint.  A cap alternative transfers directly by
+\ref{lem:canonical-neighborhood-stability}.  In an evolving-neck
+alternative, the neck reaches the continuing side of the original surgery
+neck; their overlap charts agree after a small axial adjustment, and
+\ref{thm:local-neck-surgery} glues them into a strong
+$\epsilon$-neck.  Thus either alternative gives a forbidden canonical
+neighborhood at the first-failure point.
+\end{proof}
+
+\begin{lemma}[High-curvature control in a rescaled failure slice]
+\label{lem:rescaled-high-curvature-canonical-control}
+\dcref{MT:ch17:17.6}
+\notready
+After rescaling first-failure points to scalar curvature one and taking the
+surgery controls to zero, every point of the zero-time slice with scalar
+curvature greater than one has a strong
+$(2C,2\epsilon)$-canonical neighborhood for all sufficiently large indices.
+\end{lemma}
+
+\begin{proof}
+\uses{lem:canonical-neighborhood-first-failure,lem:canonical-neighborhood-stability,lem:local-surgery-standard-cap-convergence,thm:standard-solution-canonical-neighborhoods}
+A nonexposed point is approached along its backward flow line by points at
+times strictly before the first failure.  At those points the original
+$(C,\epsilon)$-canonical-neighborhood assumption applies because their
+scalar curvature is above the rescaled threshold.  Smooth convergence to
+time zero and Part~(3) of
+\ref{lem:canonical-neighborhood-stability} transfer a
+$(2C,2\epsilon)$ neighborhood.
+
+An exposed point lies in a newly inserted cap.  As surgery control tends to
+zero, \ref{lem:local-surgery-standard-cap-convergence} identifies its
+bounded cap-scale neighborhood with the standard solution, and
+\ref{thm:standard-solution-canonical-neighborhoods} supplies a cap or strong
+neck alternative.  Stability transfers it with doubled constants.  These
+cases exhaust the zero-time slice.
+\end{proof}
+
+\begin{lemma}[Positive components at first failure]
+\label{lem:positive-component-first-failure-control}
+\dcref{MT:ch16:16.1,MT:ch17:17.1}
+\uses{def:strong-canonical-neighborhood-control,def:controlled-ricci-flow-with-surgery,thm:conditional-noncollapsing-extension,thm:bounded-curvature-at-bounded-distance,thm:pointed-controlled-flow-compactness,thm:kappa-solution-canonical-neighborhoods,lem:bounded-flow-line-cap-exclusion,lem:rescaled-high-curvature-canonical-control,lem:canonical-neighborhood-stability}
+\notready
+In a rescaled first-failure sequence at a fixed positive induction stage,
+with unit scalar curvature at the basepoints, suppose the component
+containing each basepoint has positive sectional curvature.  Then, after
+passing to a subsequence, the basepoints eventually have strong
+$(C,\epsilon)$-canonical neighborhoods.
+\end{lemma}
+
+\begin{lemma}[First-failure noncollapsing bridge]
+\label{lem:first-failure-noncollapsing-bridge}
+\dcref{MT:ch16:16.1,MT:ch17:17.1}
+\notready
+Consider a rescaled first-failure sequence with unit scalar curvature at the
+basepoints and with surgery controls tending to zero.  After passing to a
+subsequence, one of the following holds:
+\begin{enumerate}
+\item the basepoints eventually have strong
+      $(C,\epsilon)$-canonical neighborhoods;
+\item there is $\kappa_*>0$ such that, on every fixed zero-time based ball,
+      every sufficiently advanced flow satisfies the ordinary
+      $\kappa_*$-noncollapsing volume estimate on each fixed scale on which
+      the required backward parabolic neighborhood exists.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\uses{def:surgery-flow-noncollapsing,thm:conditional-noncollapsing-extension,lem:positive-component-first-failure-control}
+Conditional noncollapsing,
+Theorem~\ref{thm:conditional-noncollapsing-extension}, supplies one constant
+on every ball whose center is not in a positively curved component.  Thus
+only the positive-component alternative needs to be removed.  If it occurs
+at a point of a fixed based ball, connectedness puts the unit-curvature
+basepoint in the same compact positive component.  The positive-component
+lemma \ref{lem:positive-component-first-failure-control} then gives the
+first alternative.
+
+Consequently a subsequence whose basepoints remain genuine failures contains
+no positive-component exception on any fixed based ball.  Diagonalizing in
+the radius leaves exactly the ordinary volume estimate with the stage
+constant, which is the second alternative.
+\end{proof}
+
+\begin{lemma}[Short backward curvature control]
+\label{lem:short-backward-curvature-control}
+\dcref{MT:ch17:17.9}
+\notready
+For every $A<\infty$ there are $D(A)<\infty$ and $\sigma(A)>0$ such that,
+in every sufficiently advanced rescaled first-failure flow, scalar curvature
+is at most $D(A)$ along each backward flow line starting in
+$B(x_{a,b},0,A)$ for as long as that line exists in
+$[-\sigma(A),0]$.
+\end{lemma}
+
+\begin{proof}
+\uses{lem:first-failure-noncollapsing-bridge,thm:bounded-curvature-at-bounded-distance,lem:rescaled-high-curvature-canonical-control}
+The canonical alternative in
+\ref{lem:first-failure-noncollapsing-bridge} contradicts the choice of
+first-failure basepoints.  Its other alternative therefore gives one
+ordinary noncollapsing constant on every fixed based ball.  By
+\ref{lem:rescaled-high-curvature-canonical-control}, every zero-time point
+of scalar curvature above one has doubled canonical control.  The
+bounded-curvature-at-bounded-distance argument therefore applies from the
+unit-curvature basepoint and gives a bound $D_0(A)$ on the entire zero-time
+ball.
+
+On a canonical neck, cap, or controlled component, the scale-invariant
+estimate $|\partial_tR|\le cR^2$ holds with a uniform $c$; it also holds on
+the compact low-curvature remainder by the Ricci-flow local derivative
+estimate.  Along a backward flow line starting with
+$R\le D_0(A)$, integration of this differential inequality bounds
+$R$ by $2D_0(A)$ for a time depending only on $A$.  Pinching converts this
+to a full curvature bound.  Taking $D(A)=2D_0(A)$ and the corresponding
+$\sigma(A)$ proves the statement.
+\end{proof}
+
+\begin{lemma}[Backward parabolic-neighborhood dichotomy]
+\label{lem:backward-parabolic-neighborhood-dichotomy}
+\dcref{MT:ch17:17.10}
+\notready
+After passing to a subsequence of rescaled first-failure flows, exactly one
+of the following occurs:
+\begin{enumerate}
+\item for every $A<\infty$ there are $D(A),s(A)>0$ such that the compatible
+      parabolic neighborhood
+      $P(x_{a,b},0,A,-s(A))$ exists and has
+      $|\operatorname{Rm}|\le D(A)$;
+\item eventually every basepoint has a strong
+      $(C,\epsilon)$-canonical neighborhood.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\uses{lem:short-backward-curvature-control,lem:bounded-flow-line-cap-exclusion}
+Fix an integer radius $A$.  The bound in
+\ref{lem:short-backward-curvature-control} controls every backward flow line
+from the zero-time $A$-ball for a uniform short time.  If all such lines
+survive, their union is the required compatible parabolic neighborhood.  If
+one does not survive, it reaches a surgery boundary with uniformly bounded
+curvature and in uniformly bounded time, so
+\ref{lem:bounded-flow-line-cap-exclusion} gives a canonical neighborhood at
+the basepoint.  Diagonalize over integer $A$.  Either the second outcome
+occurs along a subsequence, or the first outcome holds for every radius.
+\end{proof}
+
+\begin{lemma}[Bounded curvature of a first-failure limit slice]
+\label{lem:first-failure-limit-slice-bounded-curvature}
+\dcref{MT:ch11:11.7}
+\notready
+Let a time slice of a pointed first-failure limit be complete, nonflat, and
+nonnegatively curved.  Suppose it is ordinarily $\kappa$-noncollapsed on all
+finite scales and is the smooth limit of slices on which points above a fixed
+scalar-curvature threshold have uniform canonical neighborhoods.  Then its
+curvature is bounded on the whole slice.
+\end{lemma}
+
+\begin{proof}
+\uses{def:surgery-flow-noncollapsing,thm:curvature-null-splitting,lem:rescaled-high-curvature-canonical-control,prop:positive-curvature-neck-scale-lower-bound}
+If the curvature operator has a null eigenvalue, the strong maximum principle
+and the local clause of \ref{thm:curvature-null-splitting}, applied on every
+bounded parabolic ball before passing to the exhaustion, give a compatible
+local product by a positively curved surface and a one-manifold.  These
+products globalize on the universal cover, by the complete-slice clause of
+that theorem, to $\Sigma\times\mathbb R$.  If scalar curvature never exceeds the canonical-
+neighborhood threshold, it is already bounded.  Otherwise choose a point
+above that threshold and lift it to the product cover.  Its lifted canonical
+neighborhood is a neck or contains a
+neck; whole compact-component alternatives cannot cover
+$\Sigma\times\mathbb R$.  On this sufficiently thin neck the unique tangent
+Ricci-null line is uniformly close to the axial line: its orthogonal planes
+carry the only positive curvature eigenvalue.  The central neck sphere is
+therefore transverse to the parallel line foliation and projects as a local
+covering onto the surface factor.  Its image is both open and compact, hence
+all of connected $\Sigma$.  Thus $\Sigma$ is compact, its continuous
+curvature is bounded, and so is the curvature of the product slice and its
+quotient.
+If the slice is compact, boundedness follows directly by continuity.
+
+It remains to consider a noncompact slice with positive sectional curvature.
+Suppose its curvature were unbounded.  Choose points escaping compact sets
+with scalar curvature tending to infinity.  The smooth-limit form of
+\ref{lem:rescaled-high-curvature-canonical-control} gives a doubled canonical
+neighborhood at every sufficiently high-curvature point.  A round-component
+or $C$-component alternative is impossible because the component is
+noncompact.  A cap alternative contains, at a scale comparable to its core
+scale, the neck forming its noncompact end.  Thus every selected canonical
+neighborhood contains a $2\epsilon$-neck whose scale is comparable to
+$R^{-1/2}$ and hence tends to zero.  This contradicts
+\ref{prop:positive-curvature-neck-scale-lower-bound}.  Thus the curvature of
+the complete slice is globally bounded.
+\end{proof}
+
+\begin{lemma}[Uniform backward lifetime]
+\label{lem:uniform-backward-lifetime}
+\dcref{MT:ch17:17.11}
+\uses{lem:backward-parabolic-neighborhood-dichotomy,lem:first-failure-limit-slice-bounded-curvature,lem:short-backward-curvature-control,lem:rescaled-high-curvature-canonical-control,thm:hamilton-compactness-generalized-flows,lem:bounded-flow-line-cap-exclusion}
+\notready
+Suppose the first alternative of
+\ref{lem:backward-parabolic-neighborhood-dichotomy} holds and the basepoints
+remain first-failure points.  The backward lifetimes $s(A)$ may then be
+chosen bounded below by one number $s_*>0$ independent of $A$.  Extending
+maximally, either the compatible neighborhoods exist for every backward
+time, or a flow line starting in one fixed-radius zero-time based ball
+reaches a surgery cap at the finite maximal backward time with curvature
+bounded in the original first-failure normalization.
+\end{lemma}
+
+\begin{theorem}[Extension of strong canonical neighborhoods]
+\label{thm:strong-canonical-neighborhood-extension}
+\dcref{MT:ch17:17.1}
+\notready
+Under the finite stage-$i$ parameter hypotheses of
+\ref{thm:conditional-noncollapsing-extension}, there are
+$0<r_{i+1}\le r_i$ and
+$0<\delta_{i+1}\le\delta(r_{i+1})$ such that the following holds.  If a
+controlled Ricci flow with surgery on $[0,T)$,
+$T\in(T_i,T_{i+1}]$, has $\bar\delta\le\delta_{i+1}$ on
+$[T_{i-1},T]$ and satisfies the stage-$i$ pinching, noncollapsing, and
+canonical-neighborhood hypotheses before $T_i$, then it satisfies the strong
+$(C,\epsilon)$-canonical-neighborhood assumption with parameter
+$r_{i+1}$ throughout $[0,T)$.
+\end{theorem}
+
+\begin{proof}
+\uses{def:strong-canonical-neighborhood-control,def:controlled-ricci-flow-with-surgery,thm:conditional-noncollapsing-extension,lem:canonical-neighborhood-first-failure,lem:rescaled-high-curvature-canonical-control,lem:first-failure-noncollapsing-bridge,lem:backward-parabolic-neighborhood-dichotomy,lem:uniform-backward-lifetime,thm:pointed-controlled-flow-compactness,thm:kappa-solution-canonical-neighborhoods,lem:bounded-flow-line-cap-exclusion}
+If no pair $r_{i+1},\delta_{i+1}$ worked, choose
+$r_a\downarrow0$ and, for each $a$, surgery controls
+$\delta_{a,b}\downarrow0$ with counterexample flows.  Apply
+\ref{lem:canonical-neighborhood-first-failure} and rescale each first-failure
+point to scalar curvature one.  Pinching makes every smooth limit
+nonnegatively curved.  The conditional theorem
+\ref{thm:conditional-noncollapsing-extension} gives the stagewise volume-or-
+positive-component alternative.  Apply
+\ref{lem:first-failure-noncollapsing-bridge}: its canonical-neighborhood
+outcome contradicts first failure, so its other outcome supplies one ordinary
+noncollapsing constant on every fixed based ball.  The higher-curvature points
+in the zero-time slices have doubled canonical control by
+\ref{lem:rescaled-high-curvature-canonical-control}.
+
+The canonical alternative in
+\ref{lem:backward-parabolic-neighborhood-dichotomy} contradicts the choice
+of basepoints, so compatible bounded-curvature backward neighborhoods exist
+at every fixed radius.  By \ref{lem:uniform-backward-lifetime} they have a
+common positive lifetime and can be extended maximally.  A finite maximal
+lifetime would supply a bounded-curvature flow line into a surgery cap;
+\ref{lem:bounded-flow-line-cap-exclusion} again contradicts first failure.
+The lifetime is therefore infinite.
+
+Apply \ref{thm:pointed-controlled-flow-compactness} and diagonalize over all
+radii and backward times.  The limit is a $\kappa$-solution.
+By \ref{thm:kappa-solution-canonical-neighborhoods}, its basepoint has a
+strong $(C,\epsilon)$-canonical neighborhood, and the convergence clause of
+that theorem transfers it to the first-failure points.  This final
+contradiction proves that some $r_{i+1}$ and $\delta_{i+1}$ satisfy the
+statement.
+\end{proof}
+
+\section{Surgery Continuation and Finiteness}
+
+\begin{lemma}[Controlled restart after surgery]
+\label{lem:controlled-surgery-restart}
+\dcref{MT:ch15:15.8,MT:ch15:15.11}
+\notready
+Let a controlled Ricci flow reach a finite singular time $T$.  In its maximal
+extension, cut every sufficiently curved horn at the central sphere of a
+strong $\bar\delta(T)$-neck of scale $h(T)$, discard each horn end and each
+component containing no controlled-curvature point, and insert the standard
+caps.  For sufficiently small control, the post-surgery metric is smooth,
+retains curvature pinching, satisfies the seven controlled-flow conditions,
+and is initial data for a maximal ordinary Ricci flow.  The new flow retains
+the stage noncollapsing and strong canonical-neighborhood estimates.
+\end{lemma}
+
+\begin{proof}
+\uses{def:controlled-surgery-parameters,def:controlled-ricci-flow-with-surgery,def:maximal-ricci-flow-extension,thm:local-neck-surgery,thm:conditional-noncollapsing-extension,thm:strong-canonical-neighborhood-extension}
+The maximal extension \ref{def:maximal-ricci-flow-extension} contains the
+controlled-curvature region at time $T$.  The horn construction selects a
+locally finite family of disjoint cutting necks, and compactness of the slice
+makes the family finite.  Apply \ref{thm:local-neck-surgery} at each neck.
+The metrics agree on the retained halves, the inserted caps are smooth, and
+the local curvature comparison preserves pinching.  Discarding whole
+components cannot spoil any estimate on the components which remain.
+
+The exposed pieces are finitely many three-balls, their boundary spheres are
+the prescribed central neck spheres, and the disappearing region is covered
+by the canonical necks, caps, and discarded components.  Thus the seven
+conditions in \ref{def:controlled-ricci-flow-with-surgery} persist.  Short-time
+existence starts an ordinary flow from the compact post-surgery metric, and
+uniqueness glues it to the continuing region.  Taking its maximal extension
+gives the next smooth interval.  Finally
+\ref{thm:conditional-noncollapsing-extension} and
+\ref{thm:strong-canonical-neighborhood-extension} restore the two quantitative
+stage estimates.
+\end{proof}
+
+\begin{theorem}[Map across a separating surgery]
+\label{thm:separating-surgery-map}
+\dcref{MT:ch15:15.12,MT:ch13:13.2}
+\notready
+Let $T$ be a surgery time of a controlled Ricci flow, and assume every
+surgery sphere involved in a component $X(t)$ is separating.  For $t<T$
+sufficiently close to $T$, let $X(T)$ be the component produced from
+$X(t)$.  The points whose curvature remains bounded form an open set
+$\Omega\subset X(t)$ on which the time-flow identifications converge to an
+isometry onto the persistent open subset of $X(T)$.  This isometry extends
+continuously to a map
+\[
+ F\colon X(t)\longrightarrow X(T)
+\]
+whose restriction to $X(t)\setminus\Omega$ is distance nonincreasing from
+$g(t)$ to $g(T)$.
+\end{theorem}
+
+\begin{proof}
+\uses{def:controlled-ricci-flow-with-surgery,thm:local-neck-surgery,lem:radial-surgery-map-nonexpanding}
+On $\Omega$, curvature and all its derivatives remain bounded up to $T$;
+the time flow therefore converges smoothly and gives the asserted isometry.
+Every component of the complement lies beyond one of the cutting necks.
+Because each cutting sphere separates, it has a unique side not leading to
+the selected persistent component.  Send that side through the radial
+collapse to the corresponding new cap.  On the retained neck half this map
+agrees with the persistent identification, so the local maps glue
+continuously to $F$.
+
+The map on each removed side is the radial map in
+\ref{lem:radial-surgery-map-nonexpanding}; the metric on the persistent side
+converges smoothly.  Hence, after choosing $t$ close enough to $T$, the glued
+map is distance nonincreasing on $X(t)\setminus\Omega$.
+\end{proof}
+
+\begin{theorem}[Finite surgery count on bounded intervals]
+\label{thm:finite-interval-surgery-bound}
+\dcref{MT:ch17:17.12}
+\notready
+Let a controlled Ricci flow with surgery be defined on $[0,T)$ with
+$T\le T_{i+1}$ and with the control functions fixed on that interval.  There
+is
+\[
+ N=N\bigl(\operatorname{Vol}(M_0,g(0)),T_{i+1},r_{i+1},
+             \bar\delta(T_{i+1})\bigr)<\infty
+\]
+such that the flow has at most $N$ surgery times in $[0,T)$.  In particular,
+surgery times cannot accumulate in a bounded interval.
+\end{theorem}
+
+\begin{proof}
+\uses{def:controlled-surgery-parameters,def:controlled-ricci-flow-with-surgery,lem:controlled-surgery-restart}
+Away from surgery, curvature pinching gives $R\ge-6$ and hence
+\[
+ \frac d{dt}\operatorname{Vol}(M_t)
+ =-\int_{M_t}R\,d\operatorname{vol}
+ \le6\operatorname{Vol}(M_t).
+\]
+Thus the total volume immediately before every surgery is at most
+\[
+ e^{6T_{i+1}}\operatorname{Vol}(M_0)
+\]
+plus the earlier downward jumps.
+
+A neck surgery removes a positive half-neck of scale $h(t)$ and inserts a
+cap of volume at most $(1+\epsilon)Kh(t)^3$.  The choice of
+$\bar\delta$ makes the removed cylindrical portion larger by at least
+$c h(t)^3$.  Since $r$ and $\bar\delta$ are nonincreasing on the bounded
+interval, the scale-selection function has a positive lower bound
+\[
+ h(t)\ge h\bigl(r_{i+1},\bar\delta(T_{i+1})\bigr)>0.
+\]
+Every neck surgery therefore removes at least one fixed volume $v_*>0$, so
+the number of cutting operations is bounded by the exponential volume bound
+divided by $v_*$.
+
+If $S$ is the number of cutting operations and $D$ the number of whole
+components discarded, the number of components is at most $N_0+S-D$.
+Normalization gives a fixed positive lower volume for every initial
+component, hence bounds $N_0$ by the initial volume.  It follows that $D$ is
+bounded as well.  Each surgery time performs at least one cutting or discards
+at least one component, which proves the stated bound.
+\end{proof}
+
+\section{All-Time Controlled Extension}
+
+\begin{theorem}[All-time controlled Ricci flow with surgery]
+\label{thm:all-time-controlled-surgery-flow}
+\dcref{MT:ch15:15.9,MT:ch15:15.10}
+\notready
+There are positive nonincreasing sequences
+\[
+ \mathbf K=(\kappa_i)_{i\ge0},\qquad
+ \boldsymbol\delta=(\delta_i)_{i\ge0},\qquad
+ \mathbf r=(r_i)_{i\ge0}
+\]
+such that every normalized compact three-manifold containing no embedded
+$\mathbb{RP}^2$ with trivial normal bundle is the initial slice of a Ricci
+flow with surgery on $[0,\infty)$.  For $t\in[T_i,T_{i+1})$, $x\in M_t$, and
+$0<\rho\le\epsilon$, every parabolic ball satisfying the curvature hypothesis in
+\ref{def:surgery-flow-noncollapsing} has volume at least
+$\kappa_{i+1}\rho^3$ unless its center lies in a positively curved component.
+The flow satisfies the strong $(C,\epsilon)$-canonical-neighborhood assumption
+with parameter $r_{i+1}$, has curvature pinched toward positive, and uses
+surgery control at most $\delta_{i+1}$.  Its surgery times are finite on every
+bounded interval.
+\end{theorem}
+
+\begin{proof}
+\uses{def:surgery-flow-noncollapsing,def:controlled-surgery-parameters,def:controlled-ricci-flow-with-surgery,thm:normalized-short-time-ricci-flow,thm:conditional-noncollapsing-extension,thm:strong-canonical-neighborhood-extension,lem:controlled-surgery-restart,thm:finite-interval-surgery-bound}
+Apply \ref{thm:normalized-short-time-ricci-flow} to the normalized initial
+metric.  It gives the ordinary flow through $T_0=2^{-5}$, its initial
+noncollapsing constant, and the curvature bounds which make the stage-zero
+canonical and pinching requirements automatic after fixing the universal
+constants.
+
+Choose the sequences inductively.  Once the data through stage $i$ are fixed,
+\ref{thm:strong-canonical-neighborhood-extension} supplies $r_{i+1}$ and an
+upper surgery bound.  Decrease that bound if necessary so that
+\ref{thm:conditional-noncollapsing-extension} supplies
+$\kappa_{i+1}\le\kappa_i$.  This defines the next pieces of all three
+control functions in \ref{def:controlled-surgery-parameters}.
+
+Run the maximal ordinary flow from the current slice.  If it becomes singular
+before $T_{i+1}$, apply \ref{lem:controlled-surgery-restart}; if no component
+remains, declare every later slice empty.  Otherwise repeat from the new
+compact slice.  The two extension theorems retain the quantitative hypotheses
+after each restart.  By \ref{thm:finite-interval-surgery-bound}, only finitely
+many restarts occur before $T_{i+1}$, so the construction reaches the stage
+endpoint.
+
+Induction over $i$ gives compatible controlled flows on all bounded time
+intervals.  Their union is a Ricci flow with surgery on $[0,\infty)$ and has
+every property asserted in the statement.
+\end{proof}
