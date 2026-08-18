@@ -2,15 +2,20 @@
 
 \chapter*{About This Blueprint}
 
-This project formalizes the Poincaré Conjecture, for this purpose we 
-build this blueprint, reorganizing the mathematical ideas in a way that 
-is fitting better our formalization purposes.
+This blueprint presents a dependency-ordered proof of the Poincare conjecture.
+It is not a chapter-by-chapter rewrite of any one source: statements are grouped
+by their logical role, and the route retains only the definitions and results
+needed by the final argument. Standard prerequisites that lie outside this
+route are recorded as precise, source-linked interfaces.
 
-This blueprint is under construction, it is expected to evolve alongside with 
-the progressing formalization. 
-
-It relies heavily on external resources such as Morgan and Tian~\cite{MorganTian},
-do Carmo~\cite{doCarmo}, and others~\cite{KleinerLott,CaoZhu,Topping,ChowKnopf,ChowEtAl,Petersen,LeeRiemannian,LeeSmooth,CheegerGromovTaylor,Hatcher,Evans,GilbargTrudinger,HanLin}.
+The proof is organized in five stages. Chapter 1 establishes the analytic
+comparison tools and the topology of necks and caps. Chapter 2 constructs and
+controls Ricci flow with surgery. Chapter 3 develops the curve-shrinking
+estimates used to measure surviving topology. Chapter 4 turns those estimates
+into finite extinction. Chapter 5 reconstructs the initial manifold across the
+surgeries and completes the topological argument. The dependency graph records
+the logical flow between these stages and ends at the Poincare conjecture as its
+unique terminal statement.
 
 \input{chapters/foundations-and-interfaces}
 
