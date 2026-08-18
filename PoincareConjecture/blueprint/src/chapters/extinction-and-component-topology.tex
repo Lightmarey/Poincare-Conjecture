@@ -1,0 +1,1014 @@
+\chapter{Extinction and Component Topology}
+
+This chapter proves finite extinction for the controlled surgery flow.  The
+argument first eliminates components with nontrivial second homotopy, then
+uses a loop-space width attached to a nonzero third-homotopy class.
+
+\section{Two-Sphere Width Control}
+
+For a $C^1$ map $f\colon S^2\to X$ into a Riemannian manifold, its area is
+the integral of the two-dimensional Jacobian, counted with multiplicity.
+
+\begin{definition}[Least nontrivial two-sphere area]
+\label{def:two-sphere-width}
+\dcref{MT:ch18:18.10}
+\notready
+Let $(X,g)$ be compact with $\pi_2(X)\ne0$.  Its \emph{two-sphere width} is
+\[
+ W_2(X,g)=\inf\{\operatorname{Area}_g(f):f\colon S^2\to X\text{ is $C^1$ and not
+ null-homotopic}\}.
+\]
+For a component path $\mathcal X$ in a Ricci flow with surgery, write
+\[
+ W_2(t)=W_2(\mathcal X(t),g(t))
+\]
+whenever
+$\pi_2(\mathcal X(t))\ne0$.
+\end{definition}
+
+\begin{theorem}[Realization of the two-sphere width]
+\label{thm:two-sphere-width-realization}
+\dcref{MT:ch18:18.10}
+\uses{def:two-sphere-width}
+\notready
+If $(X,g)$ is compact and $\pi_2(X)\ne0$, then $W_2(X,g)>0$ and there is a
+non-null-homotopic conformal harmonic map $f\colon S^2\to X$, a branched
+minimal immersion away from finitely many points, such that
+\[
+ \operatorname{Area}_g(f)=W_2(X,g).
+\]
+\end{theorem}
+
+\begin{lemma}[Area variation of a minimal two-sphere]
+\label{lem:minimal-two-sphere-area-variation}
+\dcref{MT:ch18:18.12}
+\notready
+Let $g(t)$ be a Ricci flow near $t_0$, and let
+$f\colon S^2\to(M,g(t_0))$ be a branched minimal immersion.  If
+$R_{\min}(t_0)=\min_M R_{g(t_0)}$, then
+\[
+ \left.\frac d{dt}\right|_{t=t_0}\operatorname{Area}_{g(t)}(f)
+ \le -4\pi-\frac12R_{\min}(t_0)\operatorname{Area}_{g(t_0)}(f).
+\]
+\end{lemma}
+
+\begin{proof}
+Away from the finite branch set, differentiation of the induced area form
+under $\partial_tg=-2\operatorname{Ric}$ gives
+\[
+ \frac d{dt}\operatorname{Area}_{g(t)}(f)
+ =-\int_{S^2}\bigl(R-\operatorname{Ric}(\nu,\nu)\bigr)\,da.
+\]
+For a minimal surface, the Gauss equation rewrites the integrand as
+\[
+ -\int_{S^2}K_f\,da-
+ \frac12\int_{S^2}(|A|^2+R)\,da.
+\]
+If the branch orders are $b_1,\ldots,b_q\ge1$, branched Gauss--Bonnet gives
+$\int K_f\,da=4\pi+2\pi\sum_jb_j$.  The branch and second-fundamental-form
+terms therefore have nonpositive sign.  Finally
+$\int R\,da\ge R_{\min}(t_0)\operatorname{Area}_{g(t_0)}(f)$, which proves the claim.
+\end{proof}
+
+\begin{lemma}[Fixed-map area distortion]
+\label{lem:fixed-sphere-area-distortion}
+\dcref{MT:ch18:18.13}
+\notready
+Let $g(t)$ be a Ricci flow on a compact manifold for
+$t\in[t_0,t_1]$, suppose $|\operatorname{Ric}_{g(t)}|\le D$, and let
+$f\colon S^2\to M$ be $C^1$.  Then, for $s,t\in[t_0,t_1]$,
+\[
+ e^{-4D|t-s|}\operatorname{Area}_{g(s)}(f)
+ \le \operatorname{Area}_{g(t)}(f)
+ \le e^{4D|t-s|}\operatorname{Area}_{g(s)}(f).
+\]
+\end{lemma}
+
+\begin{proof}
+Put $A(t)=\operatorname{Area}_{g(t)}(f)$.  At almost every regular point of $f$, the
+variation of the two-dimensional Jacobian is one half of the trace of
+$\partial_tg=-2\operatorname{Ric}$ on the image plane.  The source norm convention gives
+$|A'(t)|\le4DA(t)$.  Thus
+$e^{-4D(t-s)}A(t)$ is nonincreasing for $t\ge s$, which proves the upper
+bound.  Interchanging $s$ and $t$ proves the lower bound.  Approximation by
+smooth maps and dominated convergence remove the regularity restriction.
+\end{proof}
+
+\begin{lemma}[Continuity of the two-sphere width at regular times]
+\label{lem:two-sphere-width-regular-continuity}
+\dcref{MT:ch18:18.11,MT:ch18:18.13}
+\uses{def:two-sphere-width,thm:two-sphere-width-realization,
+  lem:fixed-sphere-area-distortion}
+\notready
+On a closed surgery-free interval on which the component is identified by
+the Ricci-flow time vector field and has nonzero $\pi_2$, the function $W_2$
+is continuous.
+\end{lemma}
+
+\begin{proof}
+Fix $t$ and let $t_i\to t$.  A minimizing sphere at $t$, supplied by
+\ref{thm:two-sphere-width-realization}, represents the same nonzero class at
+nearby times.  The upper estimate in
+\ref{lem:fixed-sphere-area-distortion} gives
+$\limsup_iW_2(t_i)\le W_2(t)$.  Conversely, choose a minimizing sphere at
+each $t_i$ and view it at time $t$.  The reverse estimate, whose constant is
+uniform for $t_i$ near $t$, gives
+$W_2(t)\le\liminf_iW_2(t_i)$.  The two inequalities prove continuity.
+\end{proof}
+
+\begin{theorem}[Component map for a trivial surgery]
+\label{thm:trivial-surgery-component-map}
+\dcref{MT:ch18:18.18,MT:ch18:18.22,MT:ch15:15.12}
+\uses{thm:separating-surgery-map}
+\notready
+Let $T$ be a surgery time, let $X(t)$ be a presurgery component for $t<T$
+close to $T$, and suppose every cutting sphere in this component is null
+homotopic.  For each selected postsurgery component $Y$ and every $\eta>0$,
+there is, for all $t<T$ sufficiently close to $T$, a map
+\[
+ F_t\colon X(t)\longrightarrow Y,
+ \qquad \operatorname{Lip}(F_t)\le1+\eta,
+\]
+homotopic to the corresponding connected-sum pinch map.  The component with
+nonzero $\pi_2$, when it exists, is unique and its pinch map is a homotopy
+equivalence.  If $\pi_2(X(t))=0$, then $\pi_2(Y)=0$.  If in addition
+$\pi_3(X(t))\cong\mathbb Z$, then $\pi_3(Y)\cong\mathbb Z$ and $(F_t)_*$ is
+multiplication by a nonzero integer; in particular it is injective.
+\end{theorem}
+
+\begin{lemma}[Two-sphere width across a trivial surgery]
+\label{lem:two-sphere-width-surgery-control}
+\dcref{MT:ch18:18.11,MT:ch15:15.12}
+\uses{def:two-sphere-width,thm:trivial-surgery-component-map}
+\notready
+Let $T$ be a surgery time after which the surgery spheres in a continuing
+component are null homotopic, and suppose the selected postsurgery component
+has nonzero $\pi_2$.  Then
+\[
+ W_2(T)\le\liminf_{t\uparrow T}W_2(t).
+\]
+\end{lemma}
+
+\begin{proof}
+By \ref{thm:trivial-surgery-component-map}, the postsurgery component with
+nonzero $\pi_2$ is unique and its pinch map is a homotopy equivalence.  For
+every $\eta>0$ and all
+$t<T$ sufficiently close to $T$, the pinch equivalence is represented by a
+map $F_t\colon\mathcal X(t)\to\mathcal X(T)$ with Lipschitz constant at most
+$1+\eta$.  Composition with $F_t$ preserves nontriviality of
+a sphere class and multiplies area by at most $(1+\eta)^2$.  Hence
+$W_2(T)\le(1+\eta)^2W_2(t)$.  Take a sequence realizing the left liminf and
+then let $\eta\downarrow0$.
+\end{proof}
+
+\begin{lemma}[Forward inequality for the two-sphere width]
+\label{lem:two-sphere-width-forward-inequality}
+\dcref{MT:ch18:18.11}
+\uses{def:two-sphere-width,thm:two-sphere-width-realization,
+  lem:minimal-two-sphere-area-variation,
+  lem:two-sphere-width-regular-continuity,
+  lem:two-sphere-width-surgery-control}
+\notready
+Along a component path with nonzero $\pi_2$, after all essential sphere
+surgeries have ceased, $W_2$ is continuous at regular times, satisfies
+\[
+ D^+W_2(t)\le-4\pi-\frac12R_{\min}(t)W_2(t)
+\]
+there, and obeys the left lower-semicontinuity inequality of
+\ref{lem:two-sphere-width-surgery-control} at every surgery time.
+\end{lemma}
+
+\begin{proof}
+The two continuity assertions are
+\ref{lem:two-sphere-width-regular-continuity} and
+\ref{lem:two-sphere-width-surgery-control}.  At a regular time $t$, choose a
+minimizer $f_t$ from \ref{thm:two-sphere-width-realization}.  Keeping this
+map fixed for $h>0$ gives
+\[
+ W_2(t+h)-W_2(t)
+ \le\operatorname{Area}_{g(t+h)}(f_t)-\operatorname{Area}_{g(t)}(f_t).
+\]
+Divide by $h$, take the upper limit as $h\downarrow0$, and apply
+\ref{lem:minimal-two-sphere-area-variation}.
+\end{proof}
+
+\begin{theorem}[Finiteness of essential sphere surgeries]
+\label{thm:finite-essential-sphere-surgeries}
+\dcref{MT:ch18:18.8}
+\uses{def:controlled-ricci-flow-with-surgery}
+\notready
+In a controlled Ricci flow with surgery, only finitely many surgery times use
+a sphere which is non-null-homotopic in its presurgery component.
+\end{theorem}
+
+\section{Eventual Vanishing of \texorpdfstring{$\pi_2$}{pi2}}
+
+\begin{lemma}[Scalar-curvature lower bound]
+\label{lem:extinction-scalar-curvature-lower-bound}
+\dcref{MT:ch18:18.1,MT:ch15:15.9}
+\uses{thm:all-time-controlled-surgery-flow}
+\notready
+For the normalized all-time controlled surgery flow, including the
+postsurgery time slices,
+\[
+ R_{\min}(t)\ge-\frac6{1+4t}.
+\]
+\end{lemma}
+
+\begin{proof}
+The pinching-toward-positive conclusion in
+\ref{thm:all-time-controlled-surgery-flow} includes the scalar inequality at
+regular times.  At a surgery time the inserted cap and retained neck satisfy
+the same pinching inequality, while discarded components do not affect the
+minimum on a surviving component.  Thus the estimate passes through every
+surgery and holds for all time slices.
+\end{proof}
+
+\begin{theorem}[Noncompact two-connected covers are contractible]
+\label{thm:noncompact-two-connected-cover-contractible}
+\dcref{MT:ch18:18.9,hatcher:prop:3.29,hatcher:thm:4.5,hatcher:thm:4.32}
+\notready
+Let $X$ be a connected three-manifold with $\pi_2(X)=0$.  If its universal
+cover $\widetilde X$ is noncompact, then $\widetilde X$ is contractible.
+\end{theorem}
+
+\begin{proof}
+The cover is simply connected and covering invariance gives
+$\pi_2(\widetilde X)=0$.  Degree-two Hurewicz therefore gives
+$H_2(\widetilde X;\mathbb Z)=0$, while simple connectivity gives $H_1=0$.
+The cover is orientable, and the top homology of a connected noncompact
+three-manifold vanishes, so $H_3=0$.  A smooth triangulation has dimension
+three, hence $H_i=0$ for $i>3$.
+
+Induct on $n\ge3$.  If $\pi_i(\widetilde X)=0$ for $i<n$, the Hurewicz
+theorem identifies $\pi_n(\widetilde X)$ with $H_n(\widetilde X;\mathbb Z)$,
+which is zero.  Thus all homotopy groups vanish.  Smooth manifolds and their
+covering spaces have CW type, so the map from a point to $\widetilde X$ is a
+weak homotopy equivalence between connected CW-type spaces.  Whitehead's
+theorem makes it a homotopy equivalence, proving contractibility.
+\end{proof}
+
+\begin{theorem}[Eventual vanishing of $\pi_2$]
+\label{thm:eventual-pi2-vanishing}
+\dcref{MT:ch18:18.9}
+\uses{thm:finite-essential-sphere-surgeries,
+  lem:two-sphere-width-forward-inequality,
+  lem:extinction-scalar-curvature-lower-bound,
+  thm:forward-dini-comparison,
+  thm:noncompact-two-connected-cover-contractible}
+\notready
+For an all-time controlled surgery flow there is $T_1<\infty$ such that every
+component of every time slice $M_T$, $T\ge T_1$, has trivial $\pi_2$.  Any
+such component with infinite fundamental group has contractible universal
+cover.
+\end{theorem}
+
+\begin{proof}
+By \ref{thm:finite-essential-sphere-surgeries}, choose $T_0$ after the last
+essential sphere surgery.  A component of $M_{T_0}$ with nonzero $\pi_2$ has
+a unique continuation with nonzero $\pi_2$ until it is discarded: surgery on
+null-homotopic spheres leaves exactly one descendant homotopy equivalent to
+the predecessor, while every other descendant is a homotopy three-sphere.
+
+Suppose one such path persists for all $t\ge T_0$.  By
+\ref{lem:two-sphere-width-forward-inequality} and
+\ref{lem:extinction-scalar-curvature-lower-bound}, its positive width obeys
+\[
+ D^+W_2(t)\le-4\pi+\frac3{1+4t}W_2(t).
+\]
+Let $w(T_0)=W_2(T_0)$ and
+$w'=-4\pi+3w/(1+4t)$.  The integrating factor
+$(1+4t)^{-3/4}$ gives
+\[
+ w(t)=W_2(T_0)\left(\frac{1+4t}{1+4T_0}\right)^{3/4}
+ +4\pi(1+4T_0)^{1/4}(1+4t)^{3/4}-4\pi(1+4t).
+\]
+Continuity at regular times, the surgery liminf inequality, and
+\ref{thm:forward-dini-comparison} give $W_2(t)\le w(t)$.  The last term in
+$w$ has order $t$, while the first two have order $t^{3/4}$, so $w$ is
+eventually negative, contradicting $W_2(t)>0$.
+
+There are finitely many components at $T_0$, hence one finite $T_1$ works for
+all their continuations.  Triviality of $\pi_2$ persists under later trivial
+sphere surgeries.  The final assertion follows from
+\ref{thm:noncompact-two-connected-cover-contractible}, since an infinite
+fundamental group makes the universal cover noncompact.
+\end{proof}
+\section{Late-Component \texorpdfstring{$\pi_3$}{pi3} Topology}
+
+\begin{theorem}[Persistence of the fundamental-group class]
+\label{thm:component-fundamental-group-persistence}
+\dcref{MT:ch18:18.19,MT:ch15:15.3}
+\uses{def:controlled-ricci-flow-with-surgery,
+  thm:trivial-surgery-component-map}
+\notready
+Suppose the fundamental group of every initial component of a controlled
+surgery flow is a free product of finitely many finite groups and infinite
+cyclic groups.  Then the same is true for every component of every later
+time slice.
+\end{theorem}
+
+\begin{proof}
+The time vector field identifies components diffeomorphically on every
+regular interval.  At a surgery time, the surgery description writes each
+presurgery component as a connected sum of the selected postsurgery
+components and the discarded spherical or $S^2$-bundle pieces.  Van Kampen
+therefore makes the fundamental group of each postsurgery component a free
+factor of the corresponding presurgery group; the discarded factors are
+finite or infinite cyclic.  This is compatible with the connected-sum pinch
+maps in \ref{thm:trivial-surgery-component-map}.
+
+It remains to check the group-theoretic closure.  Let
+$G=G_1*\cdots*G_m*F_r$, where the $G_i$ are finite, and let $H$ be a free
+factor of $G$.  Restrict the normal-form Bass--Serre tree of this splitting
+to $H$.  Edge stabilizers remain trivial, and every vertex stabilizer is an
+intersection $H\cap gG_ig^{-1}$, hence finite; the free part of the quotient
+graph supplies infinite cyclic factors.  The group $H$ is a retract of the
+finitely generated group $G$, so it is finitely generated.  Normal forms then
+show that only finitely many nontrivial vertex stabilizers and finitely many
+free generators occur.  Thus $H$ has the asserted form.  Induction over the
+surgery times proves the theorem.
+\end{proof}
+
+\begin{theorem}[Free-product obstruction to vanishing $\pi_2$]
+\label{thm:free-product-pi2-obstruction}
+\dcref{MT:ch18:18.20}
+\notready
+Let $X$ be a closed connected three-manifold.  If $\pi_1(X)$ is a
+nontrivial free product, or if $\pi_1(X)\cong\mathbb Z$, then
+$\pi_2(X)\ne0$.
+\end{theorem}
+
+\begin{theorem}[Finite fundamental group and the universal cover]
+\label{thm:finite-cover-homotopy-three-sphere}
+\dcref{MT:ch18:18.19,hatcher:prop:3.7,hatcher:cor:3.9,
+  hatcher:thm:4.32}
+\notready
+Let $X$ be a closed connected three-manifold with finite fundamental group
+and $\pi_2(X)=0$.  Its universal cover $\widetilde X$ is a homotopy
+three-sphere, and covering projection induces
+\[
+ \pi_3(\widetilde X)\cong\pi_3(X)\cong\mathbb Z.
+\]
+\end{theorem}
+
+\begin{proof}
+The universal cover is finite-sheeted, hence compact, closed, and simply
+connected.  It is orientable, and covering invariance gives
+$\pi_2(\widetilde X)=0$.  Poincare duality gives
+$H_3(\widetilde X;\mathbb Z)\cong\mathbb Z$, while degree-two Hurewicz gives
+$H_2=0$ and simple connectivity gives $H_1=0$.  Degree-three Hurewicz now
+identifies $\pi_3(\widetilde X)$ with $H_3$.
+
+Choose a map $S^3\to\widetilde X$ representing a generator.  It is an
+isomorphism on every integral homology group.  Both spaces are simply
+connected CW-type spaces, so the homological Whitehead theorem makes this map
+a homotopy equivalence.  Thus $\widetilde X$ is a homotopy three-sphere.
+Covering invariance in degrees at least two gives the asserted isomorphism
+with $\pi_3(X)$.
+\end{proof}
+
+\begin{theorem}[Nonzero $\pi_3$ on a late surviving component]
+\label{thm:late-component-nontrivial-pi3}
+\dcref{MT:ch18:18.19}
+\uses{thm:eventual-pi2-vanishing,
+  thm:component-fundamental-group-persistence,
+  thm:free-product-pi2-obstruction,
+  thm:finite-cover-homotopy-three-sphere}
+\notready
+Let $T_1$ be as in \ref{thm:eventual-pi2-vanishing}, and assume the initial
+fundamental groups are free products of finite groups and infinite cyclic
+groups.  If $\mathcal X$ is a component path defined on $[T_1,T_2]$, then
+\[
+ \pi_3(\mathcal X(T_1))\cong\mathbb Z.
+\]
+In particular it contains a nonzero class.
+\end{theorem}
+
+\begin{proof}
+Put $X_1=\mathcal X(T_1)$.  By \ref{thm:eventual-pi2-vanishing},
+$\pi_2(X_1)=0$.  The persistence theorem
+\ref{thm:component-fundamental-group-persistence} expresses $\pi_1(X_1)$
+as a free product of finite and infinite cyclic
+groups.  If more than one nontrivial factor occurred, or if an infinite
+cyclic factor occurred, \ref{thm:free-product-pi2-obstruction} would
+contradict the vanishing of $\pi_2$.  Thus the fundamental group is finite,
+possibly trivial.  Apply \ref{thm:finite-cover-homotopy-three-sphere}.
+\end{proof}
+
+\section{The Loop-Space Width Interface}
+
+Let $\Lambda_0X$ denote the component of null-homotopic loops in the free
+$C^1$ loop space of a compact manifold $X$, and let $*$ be the constant loop
+at a chosen base point $x_0$.
+
+\begin{lemma}[The quotient and wedge model]
+\label{lem:loop-space-quotient-wedge}
+\dcref{MT:ch18:18.16}
+\notready
+For $c_0\in S^2$, the quotient
+\[
+ Q=(S^2\times S^1)/(\{c_0\}\times S^1)
+\]
+is homotopy equivalent to $S^2\vee S^3$.  Consequently, for every based
+space $X$ of CW type,
+\[
+ [Q,X]_*\cong\pi_2(X)\times\pi_3(X).
+\]
+\end{lemma}
+
+\begin{proof}
+Give $S^2$ one zero-cell and one two-cell, choosing the zero-cell to be
+$c_0$, and give $S^1$ one zero-cell and one one-cell.  The product has cells
+in dimensions $0,1,2,3$.  Collapsing $\{c_0\}\times S^1$ removes the
+one-cell.  The attaching map of the remaining three-cell is the Whitehead
+product of the two-cell with the collapsed one-cell, hence is null after the
+collapse.  The quotient CW complex is therefore a two-sphere with a
+three-cell attached at the base point, namely $S^2\vee S^3$.  Based maps out
+of a wedge are pairs of based maps, which gives the final identification.
+\end{proof}
+
+\begin{lemma}[Lifting null-loop families]
+\label{lem:loop-space-universal-cover-lift}
+\dcref{MT:ch18:18.16}
+\notready
+Let $p\colon\widetilde X\to X$ be the universal cover of a connected
+manifold.  A continuous family $\Gamma\colon S^2\to\Lambda_0X$ lifts, after
+choosing one lift of one marked point, to a continuous family of loops in
+$\widetilde X$.  Homotopies lift in the same way, and changing the initial
+lift acts by one deck transformation on the entire lifted family.
+\end{lemma}
+
+\begin{proof}
+The adjoint map $F\colon S^2\times S^1\to X$ sends every circle
+$\{c\}\times S^1$ to a null-homotopic loop.  The induced homomorphism on
+$\pi_1(S^2\times S^1)\cong\mathbb Z$ is therefore zero, so the covering
+lifting criterion gives a lift $\widetilde F$.  Uniqueness after fixing one
+point proves continuity of the family and the assertion about deck
+transformations.  Apply the same argument to
+$S^2\times S^1\times[0,1]$ for a homotopy.
+\end{proof}
+
+\begin{theorem}[Free-loop-space identification of $\pi_3$]
+\label{thm:loop-space-pi3-identification}
+\dcref{MT:ch18:18.16}
+\uses{lem:loop-space-quotient-wedge,
+  lem:loop-space-universal-cover-lift}
+\notready
+If $X$ is compact, connected, and $\pi_2(X,x_0)=0$, then adjunction induces
+an isomorphism
+\[
+ \pi_2(\Lambda_0X,*)\cong\pi_3(X,x_0).
+\]
+Free homotopy classes of not necessarily based maps
+$S^2\to\Lambda_0X$ correspond to the orbit set of $\pi_3(X,x_0)$ under its
+natural $\pi_1(X,x_0)$-action.
+\end{theorem}
+
+\begin{proof}
+For based families, compact-open adjunction identifies a map
+$S^2\to\Lambda_0X$ with a map $S^2\times S^1\to X$ which collapses
+$\{c_0\}\times S^1$.  By \ref{lem:loop-space-quotient-wedge}, its based
+homotopy class is a pair in $\pi_2(X)\times\pi_3(X)$.  The first factor
+vanishes, giving the displayed isomorphism.  Passing between continuous and
+$C^1$ loops does not change the homotopy type: smoothing in finitely many
+charts, relative to already smooth loops, gives mutually inverse homotopies.
+
+For an unbased family in $\Lambda_0X$, use
+\ref{lem:loop-space-universal-cover-lift}.  A choice of lift turns it into the
+based construction after moving one constant loop to the chosen base point.
+A different lift applies a deck transformation throughout and changes the
+based representative by the natural $\pi_1(X)$-action.  Conversely, a change
+by this action is realized by moving the base point around the corresponding
+loop.  Thus forgetting the base point gives precisely the stated orbit set.
+\end{proof}
+
+\begin{definition}[Loop-family width]
+\label{def:loop-family-width}
+\dcref{MT:ch18:18.17}
+\uses{thm:loop-space-pi3-identification}
+\notready
+For a null-homotopic $C^1$ loop $\gamma$ in a compact Riemannian manifold,
+let
+\[
+ \mathcal A_g(\gamma)=\inf_F\operatorname{Area}_g(F),
+\]
+where $F\colon D^2\to X$ ranges over Lipschitz maps whose boundary agrees
+with $\gamma$ up to orientation-preserving reparameterization.  For a
+continuous family $\Gamma\colon S^2\to\Lambda_0X$, put
+\[
+ W_g(\Gamma)=\max_{c\in S^2}\mathcal A_g(\Gamma(c)).
+\]
+If $\xi\in\pi_3(X)$, let $[\xi]$ be its $\pi_1(X)$-orbit.  By
+\ref{thm:loop-space-pi3-identification}, this orbit corresponds to a free
+homotopy class of loop families.  Define
+\[
+ W_g(\xi)=\inf_{[\Gamma]=[\xi]}W_g(\Gamma),
+\]
+where representatives need not preserve the base point.  Thus $W_g$ is
+constant on every $\pi_1(X)$-orbit.
+\end{definition}
+
+\begin{lemma}[Continuity of least spanning area]
+\label{lem:least-spanning-area-continuity}
+\dcref{MT:ch18:18.17}
+\notready
+The function $\gamma\mapsto\mathcal A_g(\gamma)$ is finite and continuous
+on $\Lambda_0X$ in the $C^1$ topology.  More precisely, two sufficiently
+$C^1$-close loops cobound a Lipschitz annulus whose area tends to zero with
+their $C^1$ distance, and
+\[
+ |\mathcal A_g(\gamma_0)-\mathcal A_g(\gamma_1)|
+ \le\inf\{\operatorname{Area}_g(A):\partial A=\gamma_0\sqcup\gamma_1\}.
+\]
+\end{lemma}
+
+\begin{proof}
+A null-homotopy can be approximated by a Lipschitz disk, so the infimum is
+finite.  If $\gamma_0$ and $\gamma_1$ are sufficiently $C^1$-close, join
+$\gamma_0(s)$ to $\gamma_1(s)$ by the unique short geodesic.  Smooth
+dependence of these geodesics produces an annulus whose two derivatives are
+uniformly bounded respectively by the pointwise distance and by the common
+$C^1$ bound.  Its area therefore tends to zero with the $C^1$ distance.
+Gluing this annulus to a disk spanning either boundary gives both directions
+of the displayed inequality and hence continuity.
+\end{proof}
+
+\section{The Width Comparison ODE}
+
+\begin{definition}[Comparison equation]
+\label{def:loop-width-comparison-ode}
+\dcref{MT:ch18:18.23}
+\notready
+For a compact Ricci flow $(M,g(t))$, $t\in[t_0,t_1]$, and
+$t'\in[t_0,t_1]$, let $w_{a,t'}$ be the solution of
+\[
+ w'=-2\pi-\frac12R_{\min}(t)w,
+ \qquad w(t')=a.
+\]
+Write $w_a=w_{a,t_0}$.
+\end{definition}
+
+\begin{lemma}[Integrating-factor formula]
+\label{lem:loop-width-ode-formula}
+\dcref{MT:ch18:18.25,MT:ch18:18.26}
+\uses{def:loop-width-comparison-ode}
+\notready
+Put
+\[
+ B_{t'}(t)=\int_{t'}^t\frac12R_{\min}(s)\,ds.
+\]
+Then, for $t''\ge t'$,
+\[
+ w_{a,t'}(t'')=e^{-B_{t'}(t'')}
+ \left(a-2\pi\int_{t'}^{t''}e^{B_{t'}(s)}\,ds\right).
+\]
+If $a'\ge a$, then
+\[
+ w_{a',t'}(t'')-w_{a,t'}(t'')
+ =(a'-a)e^{-B_{t'}(t'')}\ge0.
+\]
+On a fixed compact time interval this difference is bounded by a constant
+times $a'-a$.
+\end{lemma}
+
+\begin{proof}
+Multiplication of the equation in \ref{def:loop-width-comparison-ode} by
+$e^{B_{t'}(t)}$ gives
+\[
+ \frac d{dt}\bigl(e^{B_{t'}(t)}w_{a,t'}(t)\bigr)
+ =-2\pi e^{B_{t'}(t)}.
+\]
+Integration from $t'$ to $t''$ proves the first formula.  Subtracting the
+formulas with initial values $a'$ and $a$ proves the second.  Boundedness of
+$R_{\min}$ on a compact regular interval bounds the exponential factor.
+\end{proof}
+\section{Controlled Loop-Family Deformation}
+
+\begin{theorem}[Least-disk variation interface]
+\label{thm:least-disk-area-variation-interface}
+\dcref{MT:ch18:18.30,MT:ch18:18.32}
+\uses{def:loop-family-width}
+\notready
+Let $g(t)$ be a Ricci flow on a compact three-manifold and let
+$\gamma(t)$ be a smooth curve-shrinking flow of null-homotopic immersed
+loops.  Then $t\mapsto\mathcal A_{g(t)}(\gamma(t))$ is continuous and, at
+every time at which the flow is smooth,
+\[
+ D^+\mathcal A_{g(t)}(\gamma(t))
+ \le-2\pi-\frac12R_{\min}(t)
+       \mathcal A_{g(t)}(\gamma(t)).
+\]
+\end{theorem}
+
+\begin{theorem}[Classical annular Douglas interface]
+\label{thm:annular-douglas-minimizer}
+\dcref{MT:ch19:19.15,
+  white-classical-area-minimizing-surfaces:page-0001,
+  white-classical-area-minimizing-surfaces:page-0002}
+\notready
+Let $(N,h)$ be a compact real-analytic Riemannian manifold of dimension at
+least three.  Let $c_0,c_1$ be disjoint embedded real-analytic closed curves
+which are freely homotopic and homotopically nontrivial.  Suppose their
+spanning-annulus class is nonempty and that there is $\rho>0$ such that, for
+every admissible spanning annulus $F$ and every essential simple closed curve
+$\alpha$ in its domain,
+\[
+ L_h(F\circ\alpha)\ge\rho.
+\]
+Then the annular area infimum is attained by a conformal harmonic annulus.
+Its interior branch set is finite, it is real analytic up to its real-analytic
+boundary, and it has no true boundary branch point.  False boundary branch
+points are not excluded.  There are interior parallel boundary curves
+avoiding the finite branch set which converge to the original boundary and
+whose intervening collar areas tend to zero.
+\end{theorem}
+
+\begin{lemma}[Ramp nondegeneration]
+\label{lem:ramp-annulus-nondegeneration}
+\dcref{MT:ch19:19.15}
+\uses{def:ramp-curve}
+\notready
+Let $c_0,c_1\colon S^1\to M\times S^1_\lambda$ be degree-one ramps in the
+same free homotopy class, and let
+$F\colon S^1\times[0,1]\to M\times S^1_\lambda$ span them.  For every
+essential simple closed domain curve $\alpha$,
+\[
+ L(F\circ\alpha)\ge L(S^1_\lambda)>0.
+\]
+The same bound holds while both curves evolve by smooth curve shrinking.
+\end{lemma}
+
+\begin{proof}
+An essential simple closed curve in the annulus is freely homotopic, with one
+of the two orientations, to either boundary component.  Its composition with
+the circle projection therefore has degree $1$ or $-1$.  Such a map onto
+$S^1_\lambda$ has length at least the circumference of the target, and product
+projection does not increase length.  A smooth curve flow is a homotopy, so
+the circle degree and common free homotopy class are preserved.
+\end{proof}
+
+\begin{lemma}[Variation of the annular area infimum]
+\label{lem:annular-area-infimum-variation}
+\dcref{MT:ch19:19.15}
+\uses{def:ramp-curve,thm:annular-douglas-minimizer,
+  lem:ramp-annulus-nondegeneration}
+\notready
+Let $n=\dim M\ge3$, and let $c_0(t),c_1(t)$ be degree-one ramp
+curve-shrinking flows in $(M,g(t))\times S^1_\lambda$ in the same free
+homotopy class.  If $\mu(t)$ is the infimum of the areas of spanning annuli,
+then $\mu$ is continuous and
+\[
+ D^+\mu(t)\le(2n-1)\max_M|\operatorname{Rm}_{g(t)}|\,\mu(t).
+\]
+Consequently $\mu(t)\le e^{C(t-s)}\mu(s)$ on a compact time interval, with
+$C$ independent of $\lambda$.
+\end{lemma}
+
+\begin{proof}
+First suppose the boundary curves are disjoint and real analytic.  By
+\ref{lem:ramp-annulus-nondegeneration}, the hypothesis of
+\ref{thm:annular-douglas-minimizer} holds.  Choose a minimizing annulus and
+move its boundary by the two curve flows.  Interior normal variation vanishes
+by minimality.  Metric and boundary variation give
+\[
+ \left.\frac d{ds}\right|_{s=t}\operatorname{Area}(A_s)
+ =-\int_A\operatorname{tr}_{TA}\operatorname{Ric}\,da
+   -\int_{\partial A}k_g\,ds.
+\]
+Apply Gauss--Bonnet on parallel subannuli avoiding the finite branch set and
+let them tend to the boundary.  If the interior branch orders are $m_j$, the
+result is
+\[
+ -\int_{\partial A}k_g\,ds
+ =\int_AK_A\,da-2\pi\sum_j(m_j-1)
+ \le\int_AK_A\,da.
+\]
+Minimality gives $K_A\le\sec_{M\times S^1_\lambda}(TA)$, and
+$|\operatorname{tr}_{TA}\operatorname{Ric}|\le2(n-1)\max|\operatorname{Rm}|$.  The circle is flat, so
+the constants are independent of $\lambda$.  This proves the upper
+derivative estimate.
+
+In dimension at least three, perturb one boundary curve in $C^2$ so that the
+curves are disjoint; the original and perturbed curves cobound a thin annulus
+whose area tends to zero.  Gluing this annulus to competitors compares the
+two annular infima in both directions.  The same gluing argument using the
+thin annuli swept out over $[t,t+h]$ proves upper and lower semicontinuity.
+Letting the perturbation vanish proves continuity and the differential
+inequality in general.  Scalar integrating-factor comparison gives the final
+exponential estimate.
+\end{proof}
+
+\begin{theorem}[Small-annulus length transfer]
+\label{thm:small-annulus-length-transfer}
+\dcref{MT:ch18:18.59,MT:ch18:18.63}
+\uses{def:ramp-curve,thm:annular-douglas-minimizer,
+  lem:ramp-annulus-nondegeneration}
+\notready
+There is $\delta_0>0$ with the following property.  For every $r>0$ and every
+ambient sectional-curvature upper bound $K$, there is $\mu_0>0$ such that if
+two ramps $\gamma,\widehat\gamma$ in $M\times S^1_\lambda$ cobound an
+annulus of area below $\mu_0$, and
+\[
+ L(\gamma)\ge r,
+ \qquad
+ \int_I|H_\gamma|\,ds<\delta_0
+\]
+for every length-$r$ subarc $I\subset\gamma$, then
+\[
+ L(\widehat\gamma)\ge\frac34L(\gamma).
+\]
+The constants are uniform in $\lambda$.
+\end{theorem}
+
+\begin{theorem}[Controlled deformation of a loop family]
+\label{thm:controlled-loop-family-deformation}
+\dcref{MT:ch18:18.24}
+\uses{def:loop-family-width,def:loop-width-comparison-ode,
+  lem:loop-width-ode-formula,lem:least-spanning-area-continuity,
+  thm:least-disk-area-variation-interface,
+  lem:annular-area-infimum-variation,
+  thm:small-annulus-length-transfer,
+  thm:controlled-curve-shrinking-existence}
+\notready
+Let $g(t)$ be a Ricci flow on a compact three-manifold for
+$t\in[t_0,t_1]$, let $\Gamma\colon S^2\to\Lambda_0M$ be continuous, and
+let $\zeta>0$.  There is a continuous family
+$\widetilde\Gamma(t)\colon S^2\to\Lambda_0M$ such that
+$[\widetilde\Gamma(t_0)]=[\Gamma]$ and, for every $c\in S^2$,
+\[
+ |\mathcal A_{g(t_0)}(\widetilde\Gamma(t_0)(c))
+   -\mathcal A_{g(t_0)}(\Gamma(c))|<\zeta,
+\]
+and at least one of the following holds:
+\begin{enumerate}
+\item $L_{g(t_1)}(\widetilde\Gamma(t_1)(c))<\zeta$;
+\item
+\[
+ \mathcal A_{g(t_1)}(\widetilde\Gamma(t_1)(c))
+ \le w_{\mathcal A_{g(t_0)}(\widetilde\Gamma(t_0)(c)),t_0}(t_1)+\zeta.
+\]
+\end{enumerate}
+\end{theorem}
+
+\section{\texorpdfstring{$\pi_3$}{pi3}-Width Evolution Through Surgery}
+
+\begin{theorem}[Transport of a nonzero third-homotopy class]
+\label{thm:surgery-pi3-class-transport}
+\dcref{MT:ch18:18.18,MT:ch15:15.12}
+\uses{thm:trivial-surgery-component-map}
+\notready
+Let $\mathcal X$ be a component path on $[t_0,t_1]$ with
+$\pi_2(\mathcal X(t_0))=0$ and
+$\pi_3(\mathcal X(t_0))\cong\mathbb Z$, and let
+$0\ne\xi(t_0)\in\pi_3(\mathcal X(t_0))$.  Then $\pi_2(\mathcal X(t))=0$
+for every $t$, and there is a compatible family of nonzero classes
+$\xi(t)\in\pi_3(\mathcal X(t))$.  At a surgery time $T$, the maps
+$F_t\colon\mathcal X(t)\to\mathcal X(T)$ of
+\ref{thm:trivial-surgery-component-map}, for $t<T$ sufficiently close to $T$,
+satisfy
+\[
+ (F_t)_*\xi(t)=\xi(T).
+\]
+\end{theorem}
+
+\begin{proof}
+At a regular time, the flow identification transports the homotopy groups and
+the class.  At a surgery time, every cutting sphere is null homotopic because
+$\pi_2=0$.  Apply \ref{thm:trivial-surgery-component-map}.  It preserves the
+vanishing of $\pi_2$, and its map on the relevant infinite cyclic third
+homotopy groups is injective.  Hence
+$\xi(T)=(F_t)_*\xi(t)$ is nonzero.  Induction over the surgery times gives the
+compatible family.
+\end{proof}
+
+For the transported class in \ref{thm:surgery-pi3-class-transport}, write
+$W_\xi(t)=W_{g(t)}(\xi(t))$.
+
+\begin{lemma}[Continuity of loop-family width at regular times]
+\label{lem:loop-width-regular-continuity}
+\dcref{MT:ch18:18.21}
+\uses{def:loop-family-width,thm:surgery-pi3-class-transport}
+\notready
+The function $W_\xi$ is continuous at every nonsurgery time.
+\end{lemma}
+
+\begin{proof}
+Use the time vector field to identify a closed surgery-free neighborhood of
+$t$ with a fixed compact manifold.  The pulled-back metrics satisfy
+\[
+ c(s)^{-1}g(t)\le g(s)\le c(s)g(t),
+ \qquad c(s)\longrightarrow1.
+\]
+Every Lipschitz disk then has its area multiplied by a factor between
+$c(s)^{-1}$ and $c(s)$.  The same bounds pass first to the infimum defining
+$\mathcal A$, then to the maximum over a family, and finally to the infimum
+over representatives of the transported class.  Thus
+\[
+ c(s)^{-1}W_\xi(t)\le W_\xi(s)\le c(s)W_\xi(t),
+\]
+which proves continuity.
+\end{proof}
+
+\begin{lemma}[Loop-family width at a surgery time]
+\label{lem:loop-width-surgery-lower-semicontinuity}
+\dcref{MT:ch18:18.22,MT:ch15:15.12}
+\uses{def:loop-family-width,thm:surgery-pi3-class-transport,
+  thm:trivial-surgery-component-map}
+\notready
+At a surgery time $T$,
+\[
+ W_\xi(T)\le\liminf_{t\uparrow T}W_\xi(t).
+\]
+\end{lemma}
+
+\begin{proof}
+For every $\eta>0$ and all $t<T$ sufficiently close to $T$,
+\ref{thm:trivial-surgery-component-map} gives a map $F_t$ with Lipschitz
+constant at most $1+\eta$.  By
+\ref{thm:surgery-pi3-class-transport}, it sends $\xi(t)$ to $\xi(T)$.  If a
+Lipschitz disk spans $\gamma$, then $F_t$ composed with that disk spans
+$F_t\circ\gamma$ and has area at most $(1+\eta)^2$ times the original area.
+Apply this pointwise to a representative family and take both infima to get
+\[
+ W_\xi(T)\le(1+\eta)^2W_\xi(t).
+\]
+Take a sequence realizing the left liminf and then let $\eta\downarrow0$.
+\end{proof}
+
+\begin{lemma}[Short loops bound small-area disks]
+\label{lem:short-loops-small-disk}
+\dcref{MT:ch18:18.28}
+\notready
+Let $(X,g)$ be compact.  For every $\eta>0$ there is
+$0<\zeta<\eta/2$ such that every $C^1$ loop of length less than $\zeta$
+bounds a Lipschitz disk of area less than $\eta$.
+\end{lemma}
+
+\begin{proof}
+Choose $r>0$ below the normal radius uniformly over $X$.  If a loop $\gamma$
+has length $\ell<r/2$, put $p=\gamma(1)$ and write
+$v(\theta)=\exp_p^{-1}(\gamma(\theta))$.  The radial filling
+\[
+ F(s,\theta)=\exp_p(sv(\theta))
+\]
+is defined on the disk.  On the compact radius-$r$ normal bundle the
+differential of the exponential map is uniformly bounded.  Hence
+$|\partial_sF|\le C\ell$ and
+$|\partial_\theta F|\le C|v'(\theta)|$, so
+\[
+ \operatorname{Area}(F)\le C^2\ell\int_{S^1}|v'|\,d\theta\le C'\ell^2.
+\]
+Choose
+$\zeta<\min\{\eta/2,r/2,\sqrt{\eta/C'}\}$.  Then every loop of length below
+$\zeta$ has the required filling.
+\end{proof}
+
+\begin{lemma}[Short loop families are trivial]
+\label{lem:short-loop-families-trivial}
+\dcref{MT:ch18:18.27}
+\uses{thm:loop-space-pi3-identification}
+\notready
+Let $(X,g)$ be compact with $\pi_2(X)=0$.  There is $\zeta>0$ such that any
+continuous family $\Gamma\colon S^2\to\Lambda_0X$ all of whose loops have
+length less than $\zeta$ represents the zero free-homotopy orbit, and hence
+the zero class after any based choice, under
+$\pi_2(\Lambda_0X,*)\cong\pi_3(X)$.
+\end{lemma}
+
+\begin{proof}
+Choose $\zeta$ below the normal radius.  For each $c\in S^2$, join
+$\Gamma(c)(\theta)$ to $\Gamma(c)(1)$ by the unique short geodesic.  Smooth
+dependence of the geodesic on its endpoints gives a continuous family of
+radial disks.  Shrinking through those disks homotopes $\Gamma$ to the family
+of constant loops $c\mapsto\Gamma(c)(1)$.  This remaining family is a map
+$S^2\to X$, and is null-homotopic because $\pi_2(X)=0$.  The identification
+in \ref{thm:loop-space-pi3-identification} gives the conclusion.
+\end{proof}
+
+\begin{theorem}[Forward inequality for the $\pi_3$ width]
+\label{thm:loop-width-forward-inequality}
+\dcref{MT:ch18:18.18}
+\uses{def:loop-family-width,def:loop-width-comparison-ode,
+  lem:loop-width-ode-formula,thm:controlled-loop-family-deformation,
+  lem:short-loops-small-disk,lem:short-loop-families-trivial,
+  lem:loop-width-regular-continuity,
+  lem:loop-width-surgery-lower-semicontinuity,
+  thm:surgery-pi3-class-transport}
+\notready
+Let $\mathcal X$ be a component path of a controlled surgery flow, suppose
+$\pi_2(\mathcal X(t_0))=0$ and
+$\pi_3(\mathcal X(t_0))\cong\mathbb Z$, and let
+$0\ne\xi(t_0)\in\pi_3(\mathcal X(t_0))$.  For the transported class,
+$W_\xi$ is continuous at nonsurgery times, obeys
+\[
+ W_\xi(T)\le\liminf_{t\uparrow T}W_\xi(t)
+\]
+at surgery times, and satisfies
+\[
+ D^+W_\xi(t)
+ \le-2\pi-\frac12R_{\min}(t)W_\xi(t)
+\]
+on the immediate right of every time in the component path.
+\end{theorem}
+
+\begin{proof}
+The transport and continuity assertions are
+\ref{thm:surgery-pi3-class-transport},
+\ref{lem:loop-width-regular-continuity}, and
+\ref{lem:loop-width-surgery-lower-semicontinuity}.  Fix a surgery-free
+interval $[s,t]$ and let $w$ solve
+\ref{def:loop-width-comparison-ode} with $w(s)=W_\xi(s)$.  We prove
+$W_\xi(t)\le w(t)$ whenever the component survives to $t$.
+
+First suppose $w(t)\ge0$.  Given $\eta>0$, choose a representative family
+with width below $W_\xi(s)+\varepsilon$.  Use
+\ref{lem:loop-width-ode-formula} and then choose the deformation error
+$\zeta$ so small that changing any initial disk area by at most
+$2\zeta$ changes its terminal ODE value by less than $\eta/2$.  Also choose
+$\zeta$ by \ref{lem:short-loops-small-disk} so that every terminal loop of
+length below $\zeta$ spans a disk of area below $\eta$.  Apply
+\ref{thm:controlled-loop-family-deformation}.  In its area alternative the
+terminal area is below $w(t)+\eta$; in its short alternative it is below
+$\eta\le w(t)+\eta$.  Hence the terminal family has width at most
+$w(t)+\eta$.  Let $\eta,\varepsilon\downarrow0$.
+
+If $w(t)<0$, choose $\eta>0$ with $w(t)+\eta<0$ and choose $\zeta$ small
+enough for both the ODE sensitivity estimate and
+\ref{lem:short-loop-families-trivial}.  The area alternative in
+\ref{thm:controlled-loop-family-deformation} would give a negative spanning
+area and is impossible.  Thus every terminal loop is short, so the terminal
+family is homotopically trivial.  This contradicts transport of the nonzero
+class.  Consequently the component cannot survive to a time at which the
+comparison solution is negative.
+
+Apply the comparison just proved on arbitrarily short regular intervals.
+Together with regular-time continuity it yields the displayed upper forward
+derivative.  Starting immediately after a surgery gives the same right-hand
+inequality there; the separate left lower-semicontinuity statement accounts
+for the jump from the preceding interval.
+\end{proof}
+
+\section{Finite Extinction}
+
+\begin{theorem}[The free-product hypothesis excludes a two-sided projective
+plane]
+\label{thm:free-product-excludes-two-sided-projective-plane}
+\dcref{MT:ch18:18.1}
+\notready
+Let $M$ be a closed connected three-manifold whose fundamental group is a
+free product of finite groups and infinite cyclic groups.  Then $M$ contains
+no embedded $\mathbb{RP}^2$ with trivial normal bundle.
+\end{theorem}
+
+\begin{theorem}[Finite-time extinction]
+\label{thm:finite-time-extinction}
+\dcref{MT:ch18:18.1}
+\uses{thm:free-product-excludes-two-sided-projective-plane,
+  thm:all-time-controlled-surgery-flow,
+  thm:eventual-pi2-vanishing,
+  thm:late-component-nontrivial-pi3,
+  thm:loop-width-forward-inequality,
+  lem:extinction-scalar-curvature-lower-bound,
+  thm:forward-dini-comparison}
+\notready
+Let $(M,g_0)$ be a compact connected normalized Riemannian three-manifold
+whose fundamental group is a free product of finite groups and infinite
+cyclic groups.  The all-time controlled Ricci flow with surgery starting from
+$(M,g_0)$ has a finite extinction time: there is $T_*<\infty$ such that
+$M_t=\varnothing$ for every $t\ge T_*$.
+\end{theorem}
+
+\begin{proof}
+By \ref{thm:free-product-excludes-two-sided-projective-plane}, the initial
+manifold satisfies the topological hypothesis of
+\ref{thm:all-time-controlled-surgery-flow}; take the flow supplied there.
+Choose $T_1$ from \ref{thm:eventual-pi2-vanishing}.  If a component path
+$\mathcal X$ survives on $[T_1,T]$, then
+\ref{thm:late-component-nontrivial-pi3} supplies a nonzero class
+$\xi\in\pi_3(\mathcal X(T_1))$.
+
+By \ref{thm:loop-width-forward-inequality} and
+\ref{lem:extinction-scalar-curvature-lower-bound},
+\[
+ D^+W_\xi(t)\le-2\pi+\frac3{1+4t}W_\xi(t).
+\]
+Let $w(T_1)=W_\xi(T_1)$ and
+$w'=-2\pi+3w/(1+4t)$.  Direct integration gives the consistent formula
+\[
+ w(t)=W_\xi(T_1)
+       \left(\frac{1+4t}{1+4T_1}\right)^{3/4}
+ +2\pi(1+4T_1)^{1/4}(1+4t)^{3/4}-2\pi(1+4t).
+\]
+The comparison principle \ref{thm:forward-dini-comparison}, applied between
+successive surgery times and combined with the downward surgery inequality,
+gives $0\le W_\xi(t)\le w(t)$ while the path survives.  The negative linear
+term in $w$ dominates its $t^{3/4}$ terms, so $w$ becomes negative after a
+finite time depending only on $T_1$ and $W_\xi(T_1)$.  Thus this component
+path must end before that time.
+
+The compact time slice $M_{T_1}$ has finitely many components.  Taking the
+maximum of their finite lifetime bounds gives $T_*<\infty$ after which no
+component remains.  Once a time slice is empty, every later slice is empty by
+the definition of the surgery flow.
+\end{proof}
